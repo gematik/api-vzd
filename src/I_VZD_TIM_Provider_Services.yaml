@@ -1,1 +1,253 @@
+openapi: 3.0.1
+info:
+  title: I_VZD_TIM_Provider_Services
+  description: REST interface to retrieve the TI-Messenger federation list and the PASSporT signing certificate.
+  version: 1.0.0
+  # initiale Version
+ 
+externalDocs:
+  description: I_VZD_TIMessenger_services REST interface
+  url: https://www.gematik.de
+servers:
+- url: https://vzd-fhir-directory.vzd.ti-dienste.de/tim-provider-services
+tags:
+- name: getInfo
+  description: This operation returns meta data about this interface
+- name: getFederationList
+  description: Returns the TI-Messenger federation list. If a version parameter is given then the federation list will be returned only if there is a newer version available.
+- name: getPASSporTCertificate
+  description: Returns the certificate that signs Personal Assertion Tokens (PASSporT)
 
+paths:
+  /:
+    get:
+      tags:
+      - getInfo
+      summary: This operation returns the meta data of this interface
+      description: Returns the meta data of this interface.
+      operationId: getInfo
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/InfoObject'
+        401:
+          description: Unauthorized
+                    #  Der WWW-Authenticate Header im Response wird auf OAuth gesetzt.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        403:
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+
+  /FederationList:
+    get:
+      tags:
+      - getFederationList
+      summary: This operation is used to get the TI-Messenger federation list.
+      description: Returns the TI-Messenger federation list. If a version parameter is given then the federation list will be only returned if there is a newer version available.
+      operationId: getFederationList
+      parameters:
+      - name: version
+        in: query
+        description: Version of the known federation list
+        schema:
+          type: integer  
+
+      responses:
+        200:
+          description: OK
+                    #  The federation list.
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/schemaFederationList'
+        204:
+          description: No Content
+                    # if the version of the list is less than or equal to the version parameter of the request 
+
+        401:
+          description: Unauthorized
+                    #  The WWW-Authenticate header in the response is OAuth.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        403:
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /PASSporTCertificate:
+    get:
+      tags:
+      - getPASSporTCertificate
+      summary: Returns the certificate that signs Personal Assertion Tokens (PASSporT)
+      description: Returns the certificate that signs Personal Assertion Tokens (PASSporT)
+      operationId: getPASSporTCertificate
+
+      responses:
+        200:
+          description: OK
+                    #  The X.509 certificate.
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/schemaPASSporTCertificate'
+
+        401:
+          description: Unauthorized
+                    #  The WWW-Authenticate header in the response is OAuth.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        403:
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+components:
+
+  schemas:
+  
+    schemaFederationList:
+      type: object
+      properties:
+        version:
+          description: The version of the federation list
+          type: integer
+          readOnly: true
+        domainList:
+          description: The list of hashed TI-Messenger domain names
+          type: array
+          items:
+            type: string
+            description: a hashed domain name
+          readOnly: true
+
+    schemaPASSporTCertificate:
+      type: object
+      properties:
+        passportSigningCertificate:
+          description: The certificate for signing PASSporT in pem format
+          type: string
+          readOnly: true
+
+    Error:
+      type: object
+      maxItems: 50
+      minItems: 0
+      properties:
+        attributeName:
+          description: Name of the attribut in which the error occured
+          type: string
+        attributeError:
+          description: Description of the error
+          type: string
+
+    InfoObject:
+      required:
+      - title
+      - version
+      readOnly: true
+      type: object
+      properties:
+        title:
+          type: string
+          description: Der Titel der Anwendung
+          example: "FederationList"
+        description:
+          type: string
+          description: Eine kurze Beschreibung der Anwendung
+          example: "REST Schnittstelle zur Abfrage der Föderationsliste."
+        termsOfService:
+          type: string
+          format: uri
+          description: Eine URL zu den Terms of Service für dieses API.
+          example: "http://example.com/terms/"
+        contact:
+          $ref: '#/components/schemas/Contact'
+        license:
+          $ref: '#/components/schemas/License'
+        version:
+          type: string
+          description: Die Version von dem OpenAPI Document (YAML Datei)
+          example: "1.1.0"
+
+    Contact:
+      readOnly: true
+      description: Die Kontaktinformationen für diese Schnittstelle.
+      type: object
+      properties:
+        name:
+          type: string
+          description: Der Name von der Kontaktperson / -Organisation
+          example: "Firma 123"
+        url:
+          type: string
+          format: uri
+          description: Eine URL zu den Kontaktinformationen für dieses API.
+                       In dem Dokument unter dieser URL muss ein Link zum Download der aktuell genutzten YAML Datei dieser Schnittstelle hinterlegt sein.
+          example: "http://www.example.com/support"
+        email:
+          type: string
+          format: email
+          description: Der E-Mail Adresse der Kontaktperson / -Organisation.
+          example: "support@example.com"
+
+    License:
+      required:
+      - name
+      readOnly: true
+      description: Der Lizenzinformationen für diese Schnittstelle.
+      type: object
+      properties:
+        name:
+          type: string
+          description: Der Lizenzname
+          example: "Apache 2.0"
+        url:
+          type: string
+          description: Eine URL zu den Lizenzinformationen für dieses API.
+          example: "https://www.apache.org/licenses/LICENSE-2.0.html"
+
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://to.be.defined/oauth/token
+          refreshUrl: https://to.be.defined/oauth/refreshToken
+          scopes:
+            VZD-FHIR-Directory:FederatioList: Client Scope
+              Only TI-Messenger Registrierungsdienste are allowed to use this interface.
+              The AccessToken contains in the "sub" claim the client identifier. The client identifier is written to to log file for each access.
+
+security:
+  - OAuth2:
+      - FederationList
