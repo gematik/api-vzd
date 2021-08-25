@@ -2,7 +2,9 @@ openapi: 3.0.1
 info:
   title: I_VZD_TIM_Provider_Services
   description: REST interface to retrieve the TI-Messenger federation list and the PASSporT signing certificate.
-  version: 1.0.0
+  version: 1.0.1
+  # version 1.0.1
+    # - added hashAlgorithm to schemaFederationList
   # initiale Version
  
 externalDocs:
