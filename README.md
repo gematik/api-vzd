@@ -1,5 +1,3 @@
-:toc=left:
-
 # Verzeichnisdienst - API-Dokumentation
 
 <img src="images/gematik_logo.jpg" alt="gematik_logo" width="35%"/>
