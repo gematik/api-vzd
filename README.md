@@ -1,13 +1,8 @@
+:toc=left:
+
 # Verzeichnisdienst - API-Dokumentation
 
 <img src="images/gematik_logo.jpg" alt="gematik_logo" width="35%"/>
-
-:toc:
-:toc-placement!:
-
-Here is my preamble paragraph, but I could really place the TOC anywhere! Lorem ipsum foo bar baz.
-
-toc::[]
 
 ## Allgemeines
 
