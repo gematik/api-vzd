@@ -14,7 +14,6 @@ Die Schnittstellen des Verzeichnisdienstes sind in Spezifikationen der gematik d
 
 Die Daten des LDAP-Directories sind im Implementierungsleitfaden zur Pflege der Daten des Verzeichnisdienstes beschrieben. Die Dokumente können im Fachportal der gematik gefunden werden: https://fachportal.gematik.de/downloadcenter.
 
-
 ## Systemarchitektur
 
 Die folgende Abbildung gibt einen Überblick über die Systemarchitektur des Verzeichnisdienstes.
@@ -23,7 +22,7 @@ Die folgende Abbildung gibt einen Überblick über die Systemarchitektur des Ver
 
 ## FHIR-Directory Datenmodell
 
-<img src="images/VZD-FHIR-Directory, Datenmodell.svg" alt="Datenmodell" width="35%"/>
+<img src="images/VZD-FHIR-Directory, Datenmodell.svg" alt="Datenmodell"/>
 
 ## FHIR-Directory Datenbeschreibung
 
@@ -36,7 +35,6 @@ Die folgende Abbildung gibt einen Überblick über die Systemarchitektur des Ver
 ### PractitionerRole
 
 ### Endpoint
-
 
 ## Lizenzbedingungen
 Copyright (c) 2020 gematik GmbH
