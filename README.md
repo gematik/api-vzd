@@ -2,6 +2,8 @@
 
 <img src="images/gematik_logo.jpg" alt="gematik_logo" width="35%"/>
 
+:toc:
+
 ## Allgemeines
 
 Die folgende Dokumentation beschreibt wie der Verzeichnisdienst der Telematikinfrastruktur genutzt werden kann.
@@ -33,6 +35,8 @@ Die folgende Abbildung gibt einen Überblick über die Systemarchitektur des Ver
 ### HealthcareService
 
 ### PractitionerRole
+
+### Location
 
 ### Endpoint
 
