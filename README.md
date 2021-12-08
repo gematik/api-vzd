@@ -23,7 +23,7 @@ Die folgende Abbildung gibt einen Überblick über die Systemarchitektur des Ver
 
 ## FHIR-Directory Datenmodell
 
-<img src="images/gematik_logo.jpg" alt="gematik_logo" width="35%"/>
+<img src="images/VZD-FHIR-Directory, Datenmodell.svg" alt="Datenmodell" width="35%"/>
 
 ## FHIR-Directory Datenbeschreibung
 
