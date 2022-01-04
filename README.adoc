@@ -1,0 +1,45 @@
+= Verzeichnisdienst - API-Dokumentation
+gematik, Systems Engineering
+:source-highlighter: rouge
+:title-page:
+:sectnums:
+:imagesdir: images/
+//:toc:
+//:toclevels: 3
+//:toc-title: Inhaltsverzeichnis
+
+image::gematik_logo.png[gematik]
+
+== Allgemeines
+
+Die folgende Dokumentation beschreibt wie der Verzeichnisdienst der Telematikinfrastruktur genutzt werden kann.
+Insbesondere welche Daten im FHIR-Directory gespeichert werden und welche Bedeutung sie haben, wird beschrieben.
+Die Schnittstellen des Verzeichnisdienstes sind in Spezifikationen der gematik definiert:
+
+* gemSpec_VZD
+* gemSpec_FHIR_Directory
+
+Die Daten des LDAP-Directories sind im Implementierungsleitfaden zur Pflege der Daten des Verzeichnisdienstes beschrieben. Die Dokumente können im Fachportal der gematik gefunden werden: https://fachportal.gematik.de/downloadcenter.
+
+== Systemarchitektur
+
+Die folgende Abbildung gibt einen Überblick über die Systemarchitektur des Verzeichnisdienstes.
+
+image::VZD_FHIR_Directory_Zerlegung.svg[VZD overview]
+
+== FHIR-Directory Datenmodell
+
+image::VZD_FHIR_Directory_Datenmodell.svg[Datenmodell]
+
+=== TIOrganization
+
+=== TIPractitioner
+
+=== HealthcareService
+
+=== PractitionerRole
+
+=== Location
+
+=== Endpoint
+
