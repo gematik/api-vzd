@@ -16,10 +16,12 @@ Die folgende Dokumentation beschreibt wie der Verzeichnisdienst der Telematikinf
 Insbesondere welche Daten im FHIR-Directory gespeichert werden und welche Bedeutung sie haben, wird beschrieben.
 Die Schnittstellen des Verzeichnisdienstes sind in Spezifikationen der gematik definiert:
 
-* gemSpec_VZD
-* gemSpec_FHIR_Directory
+image::https://shields.io/badge/gemSpec__VZD-v1.3.4-blue[gemSpec_VZD v1.3.4]
 
-Die Daten des LDAP-Directories sind im Implementierungsleitfaden zur Pflege der Daten des Verzeichnisdienstes beschrieben. Die Dokumente können im Fachportal der gematik gefunden werden: https://fachportal.gematik.de/downloadcenter.
+gemSpec_FHIR_Directory
+
+Die Daten des LDAP-Directories sind im Implementierungsleitfaden zur Pflege der Daten des Verzeichnisdienstes beschrieben. 
+Die Dokumente können im Fachportal der gematik gefunden werden: https://fachportal.gematik.de/downloadcenter.
 
 == Systemarchitektur
 
