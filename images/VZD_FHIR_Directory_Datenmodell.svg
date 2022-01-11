@@ -26,12 +26,12 @@
 		.st12 {fill:#7f6000;font-size:1em;font-weight:normal}
 		.st13 {fill:#00b050;font-size:1em;font-weight:normal}
 		.st14 {fill:#cc00ff;font-size:1em;font-weight:normal}
-		.st15 {fill:#ffffff;stroke:none;stroke-linecap:butt}
-		.st16 {stroke:#cc00ff;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.75}
-		.st17 {fill:#cc00ff;font-family:Arial;font-size:0.666664em}
-		.st18 {stroke:#4bacc6;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.75}
-		.st19 {fill:#4bacc6;font-family:Arial;font-size:0.666664em}
-		.st20 {stroke:#00b050;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.75}
+		.st15 {stroke:#cc00ff;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.75}
+		.st16 {fill:#cc00ff;font-family:Arial;font-size:0.666664em}
+		.st17 {stroke:#4bacc6;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.75}
+		.st18 {fill:#4bacc6;font-family:Arial;font-size:0.666664em}
+		.st19 {stroke:#00b050;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.75}
+		.st20 {fill:#ffffff;stroke:none;stroke-linecap:butt}
 		.st21 {fill:#00b050;font-family:Arial;font-size:0.666664em}
 		.st22 {stroke:#c05046;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.75}
 		.st23 {fill:#c05046;font-family:Arial;font-size:0.666664em}
@@ -150,8 +150,8 @@
 			<title>Tabelle.16</title>
 			<desc>PractitionerRole identifier.value = idPrR1 telecom.value = MX...</desc>
 			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197" v:verticalAlign="0"/>
-			<v:textRect cx="85.0394" cy="531.496" width="170.08" height="127.559"/>
-			<rect x="0" y="467.717" width="170.079" height="127.559" class="st8"/>
+			<v:textRect cx="92.126" cy="531.496" width="184.26" height="127.559"/>
+			<rect x="0" y="467.717" width="184.252" height="127.559" class="st8"/>
 			<text x="4" y="482.52" class="st2" v:langID="1031"><v:paragraph/><v:tabList/>PractitionerRole<v:newlineChar/><tspan
 						x="4" dy="1.2em" class="st3">identifier</tspan><tspan class="st3">.</tspan><tspan class="st3">value </tspan><tspan
 						class="st3">= </tspan><tspan class="st3">idPrR</tspan><tspan class="st3">1<v:newlineChar/><v:newlineChar/></tspan><tspan
@@ -165,15 +165,15 @@
 						class="st14">1</tspan></text>		</g>
 		<g id="shape20-183" v:mID="20" v:groupContext="shape" transform="translate(297.638,-411.05)">
 			<title>Tabelle.20</title>
-			<desc>Location identifier.value = idLoc1 managingOrganization = idO...</desc>
+			<desc>Location identifier.value = idLoc1 managingOrganization = idS...</desc>
 			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197" v:verticalAlign="0"/>
-			<v:textRect cx="85.0394" cy="566.923" width="170.08" height="56.706"/>
-			<rect x="0" y="538.57" width="170.079" height="56.706" class="st8"/>
+			<v:textRect cx="92.126" cy="566.923" width="184.26" height="56.706"/>
+			<rect x="0" y="538.57" width="184.252" height="56.706" class="st8"/>
 			<text x="4" y="553.37" class="st2" v:langID="1031"><v:paragraph/><v:tabList/>Location<v:newlineChar/><tspan x="4"
 						dy="1.2em" class="st3">identifier</tspan><tspan class="st3">.</tspan><tspan class="st3">value </tspan><tspan
 						class="st3">= </tspan><tspan class="st13">idLoc</tspan><tspan class="st13">1<v:newlineChar/></tspan><tspan
-						x="4" dy="1.2em" class="st3">managingOrganization </tspan><tspan class="st3">= </tspan><tspan class="st4">idOrg</tspan><tspan
-						class="st4">2</tspan></text>		</g>
+						x="4" dy="1.2em" class="st3">managingOrganization </tspan><tspan class="st3">= </tspan><tspan class="st4">idSubOrg</tspan><tspan
+						class="st4">1</tspan></text>		</g>
 		<g id="shape25-196" v:mID="25" v:groupContext="shape" transform="translate(297.638,-496.089)">
 			<title>Tabelle.25</title>
 			<desc>HealthcareService identifier.value = idHcS1 providedBy = idOrg1</desc>
@@ -239,7 +239,7 @@
 			<v:textRect cx="58.49" cy="616.2" width="47.82" height="9.60356" transform="rotate(-35.5377)"/>
 			<path d="M0 595.28 L121.92 595.28" class="st9"/>
 			<rect v:rectContext="textBkgnd" x="-332.357" y="530.619" width="43.5858" height="9.59985" transform="rotate(-35.5377)"
-					class="st15"/>
+					class="st10"/>
 			<text x="-332.36" y="537.82" transform="rotate(-35.5377)" class="st11" v:langID="1031"><v:paragraph v:horizAlign="1"/><v:tabList/>organization</text>		</g>
 		<g id="shape31-224" v:mID="31" v:groupContext="shape" transform="translate(-212.598,325.984) rotate(-90)">
 			<title>vert/hor (bi) connection.31</title>
@@ -258,10 +258,10 @@
 			</v:userDefs>
 			<v:textBlock v:margins="rect(0,1,0,1)" v:tabSpace="42.5197"/>
 			<v:textRect cx="14.1732" cy="559.843" width="66.04" height="9.60356" transform="rotate(90)"/>
-			<path d="M0 595.28 L28.35 595.28" class="st16"/>
+			<path d="M0 595.28 L28.35 595.28" class="st15"/>
 			<rect v:rectContext="textBkgnd" x="530.049" y="-18.9731" width="59.586" height="9.59985" transform="rotate(90)"
 					class="st10"/>
-			<text x="530.05" y="-11.77" transform="rotate(90)" class="st17" v:langID="1031"><v:paragraph v:horizAlign="1"/><v:tabList/>helthcareService  </text>		</g>
+			<text x="530.05" y="-11.77" transform="rotate(90)" class="st16" v:langID="1031"><v:paragraph v:horizAlign="1"/><v:tabList/>helthcareService  </text>		</g>
 		<g id="shape34-229" v:mID="34" v:groupContext="shape" transform="translate(56.6929,155.906) rotate(-90)">
 			<title>vert/hor (bi) connection.34</title>
 			<desc>endpoint</desc>
@@ -279,10 +279,10 @@
 			</v:userDefs>
 			<v:textBlock v:margins="rect(0,1,0,1)" v:tabSpace="42.5197"/>
 			<v:textRect cx="14.1732" cy="571.181" width="34.93" height="9.60356" transform="rotate(90)"/>
-			<path d="M0 595.28 L28.35 595.28" class="st18"/>
+			<path d="M0 595.28 L28.35 595.28" class="st17"/>
 			<rect v:rectContext="textBkgnd" x="555.833" y="-18.9731" width="30.695" height="9.59985" transform="rotate(90)"
 					class="st10"/>
-			<text x="555.83" y="-11.77" transform="rotate(90)" class="st19" v:langID="1031"><v:paragraph v:horizAlign="1"/><v:tabList/>endpoint</text>		</g>
+			<text x="555.83" y="-11.77" transform="rotate(90)" class="st18" v:langID="1031"><v:paragraph v:horizAlign="1"/><v:tabList/>endpoint</text>		</g>
 		<g id="shape35-234" v:mID="35" v:groupContext="shape" transform="translate(-226.772,212.598) rotate(-90)">
 			<title>vert/hor (bi) connection.35</title>
 			<desc>location</desc>
@@ -300,9 +300,9 @@
 			</v:userDefs>
 			<v:textBlock v:margins="rect(0,1,0,1)" v:tabSpace="42.5197"/>
 			<v:textRect cx="14.1732" cy="632.126" width="34.03" height="9.60356" transform="rotate(90)"/>
-			<path d="M0 609.45 L28.35 609.45" class="st20"/>
+			<path d="M0 609.45 L28.35 609.45" class="st19"/>
 			<rect v:rectContext="textBkgnd" x="618.339" y="-18.9731" width="27.574" height="9.59985" transform="rotate(90)"
-					class="st15"/>
+					class="st20"/>
 			<text x="618.34" y="-11.77" transform="rotate(90)" class="st21" v:langID="1031"><v:paragraph v:horizAlign="1"/><v:tabList/>location  </text>		</g>
 		<g id="shape40-239" v:mID="40" v:groupContext="shape" transform="translate(-141.732,325.984) rotate(-90)">
 			<title>vert/hor (bi) connection.40</title>
@@ -321,7 +321,7 @@
 			</v:userDefs>
 			<v:textBlock v:margins="rect(0,1,0,1)" v:tabSpace="42.5197"/>
 			<v:textRect cx="74.2808" cy="616.535" width="34.03" height="9.60356" transform="rotate(90)"/>
-			<path d="M0 595.28 L141.76 595.28" class="st20"/>
+			<path d="M0 595.28 L141.76 595.28" class="st19"/>
 			<rect v:rectContext="textBkgnd" x="602.748" y="-79.0806" width="27.574" height="9.59985" transform="rotate(90)"
 					class="st10"/>
 			<text x="602.75" y="-71.88" transform="rotate(90)" class="st21" v:langID="1031"><v:paragraph v:horizAlign="1"/><v:tabList/>location  </text>		</g>
