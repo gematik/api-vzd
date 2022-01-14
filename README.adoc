@@ -37,29 +37,38 @@ image::VZD_FHIR_Directory_Datenmodell.svg[Datenmodell]
 === TIOrganization
 
 Die Ressource TIOrganization ist in Simplifier definiert (https://simplifier.net/vzd-fhir-directory/tiorganization) und ist ein Profil der Organization Ressource (https://www.hl7.org/fhir/organization.html#resource).
-
-Im Element type wird der Typ der Organisation eingetragen. Dafür werden die CodeSysteme https://simplifier.net/vzd-fhir-directory/tiorganizationtypecs und https://simplifier.net/vzd-fhir-directory/tiprofessionoidcs sowie das ValueSet https://simplifier.net/vzd-fhir-directory/tiorganizationtypevs verwendet.
-Im Element telecom KANN der Besitzer eines TIOrganisation Eintrags oder eines TIPractitioner Eintrags TI-Messenger-Adressen (MXID) in url-Notation speichern (telecom.system = url; telecom.value = MXID in url Notation matrix:u/localpart:tim-domain). Mit telecom.period.end lässt sich steuern, ob der Besitzer einverstanden ist, dass andere TI-Messenger-Nutzer mit der in telecom.value gespeicherten MXID Kontakt aufnehmen dürfen. telecom.period.end = leer oder Datum in der Zukunft bedeutet: Kontaktaufnahme ist erlaubt telecom.period.end = Datum in der Vergangenheit bedeutet: Kontaktaufnahme ist nicht erlaubt (gilt nur, wenn die MXID im VZD-FHIR-Directory gesucht wurde).  Durch den Besitzer erstellte TIOrganisations-Einträge MÜSSEN mit seinem TIOrganisations-Eintrag über eine partOf-Referenz verlinkt sein.  Wenn das Element type den Wert "TI-Messenger-Provider" hat, dann handelt es sich um eine Organisation, die einen TI-Messenger-Dienst innerhalb der Telematikinfrastruktur bereitstellt. In endpoint-Referenzen der Organisation werden die Domainnamen der TI-Messenger-Service-Instanzen eingetragen. Dazu wird im Element connectionType das Codesystem https://simplifier.net/vzd-fhir-directory/timessengercs  mit code value="tim-domain"display value="TI-Messenger domain name"  verwendet. Im Element "name" wird der TI-Messenger Domainname eingetragen. In "managingOrganization" wird die TIOrganization eingetragen, für die die TI-Messenger-Domain eingerichtet wurde.
-
 Die einzelnen Elemente der Ressource TIOrganization werden abhängig vom type der Organisation befüllt. Es wird unterschieden zwischen
 
-- Organisationen mit einer zugewiesenen professionOID gemäß https://gematik.de/fhir/VZD-FHIR-Directory/CodeSystem/TIProfessionOidCS und
-- Organisationen gemäß https://gematik.de/fhir/VZD-FHIR-Directory/CodeSystem/TIOrganizationTypeCS (TI-Messenger-Provider, KIM-Provider und Kartenherausgeber). Wenn es sich um eine Organisation von diesem type handelt, dann wird in der Beschreibung
+- Organisationen mit einer zugewiesenen professionOID gemäß https://gematik.de/fhir/VZD-FHIR-Directory/CodeSystem/TIProfessionOidCS[TIProfessionOidCS] und
+- Organisationen gemäß https://gematik.de/fhir/VZD-FHIR-Directory/CodeSystem/TIOrganizationTypeCS[TIOrganizationTypeCS] (TI-Messenger-Provider, KIM-Provider und Kartenherausgeber).
 
-Die Organisationstypen mit dem jeweils verwendeten CodeSystem sind im Valueset https://simplifier.net/vzd-fhir-directory/tiorganizationtypevs festgelegt.
+Die Organisationstypen mit dem jeweils verwendeten CodeSystem sind im Valueset https://simplifier.net/vzd-fhir-directory/tiorganizationtypevs[TIOrganizationTypeVS] festgelegt.
 Dabei kann eine Organization Ressource auch mehrere type Elemente haben. 
 
-- 
+==== Organisationen mit professionOID
 
-identifier.system
-http://fhir.de/StructureDefinition/identifier-telematik-id
-Die telematikID ist im FHIR Basisprofil von HL7 Deutschland definiert (https://simplifier.net/guide/basisprofil-de-r4/Telematik-ID).
+*identifier.system* _(mustsupport)_
+http://fhir.de/StructureDefinition/identifier-telematik-id[identifier-telematik-id]
+Die telematikID ist im FHIR Basisprofil von HL7 Deutschland definiert.
 
-identifier.value 
+*identifier.value* _(mustsupport)_
 telematikID 
 Die telematikID wird vom Verband der Organisation vergeben (z. B. von der KV für Arztpraxen)
- 
 
+*active* _(mustsupport)_
+
+*type.system*
+https://gematik.de/fhir/VZD-FHIR-Directory/CodeSystem/TIProfessionOidCS[TIProfessionOidCS]
+
+*type.code*
+Code aus https://simplifier.net/vzd-fhir-directory/tiorganizationtypevs[TIOrganizationVS]
+
+*type.display*
+Display aus https://simplifier.net/vzd-fhir-directory/tiorganizationtypevs[TIOrganizationVS]
+
+==== TI-Messenger-Provider
+
+==== Kartenherausgeber
 
 
 === TIPractitioner
