@@ -50,30 +50,30 @@ Dabei kann eine Organization Ressource auch mehrere type Elemente haben.
 .*identifier.system* _(mustsupport)_
 ----
 http://fhir.de/StructureDefinition/identifier-telematik-id[identifier-telematik-id]
-Die telematikID ist im FHIR Basisprofil von HL7 Deutschland definiert.
 ----
+Die telematikID ist im FHIR Basisprofil von HL7 Deutschland definiert.
 
 .*identifier.value* _(mustsupport)_
 ----
 telematikID 
-Die telematikID wird vom Verband der Organisation vergeben (z. B. von der KV für Arztpraxen)
 ----
+Die telematikID wird vom Verband der Organisation vergeben (z. B. von der KV für Arztpraxen)
 
 .*active* _(mustsupport)_
 ----
 ----
 
-.*type.system*
+.*type.system* _(mustsupport)_
 ----
 https://gematik.de/fhir/VZD-FHIR-Directory/CodeSystem/TIProfessionOidCS[TIProfessionOidCS]
 ----
 
-.*type.code*
+.*type.code* _(mustsupport)_
 ----
 Code aus https://simplifier.net/vzd-fhir-directory/tiorganizationtypevs[TIOrganizationVS]
 ----
 
-.*type.display*
+.*type.display* _(mustsupport)_
 ----
 Display aus https://simplifier.net/vzd-fhir-directory/tiorganizationtypevs[TIOrganizationVS]
 ----
