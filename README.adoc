@@ -45,38 +45,35 @@ Die einzelnen Elemente der Ressource TIOrganization werden abhängig vom type de
 Die Organisationstypen mit dem jeweils verwendeten CodeSystem sind im Valueset https://simplifier.net/vzd-fhir-directory/tiorganizationtypevs[TIOrganizationTypeVS] festgelegt.
 Dabei kann eine Organization Ressource auch mehrere type Elemente haben. 
 
-==== Organisationen mit professionOID
 
-.*identifier.system* _(mustsupport)_
-----
-http://fhir.de/StructureDefinition/identifier-telematik-id[identifier-telematik-id]
-----
-Die telematikID ist im FHIR Basisprofil von HL7 Deutschland definiert.
+.Organisationen mit professionOID
+|===
+|Element / Attribut |Wert |Beschreibung 
 
-.*identifier.value* _(mustsupport)_
-----
-telematikID 
-----
-Die telematikID wird vom Verband der Organisation vergeben (z. B. von der KV für Arztpraxen)
+|*identifier.system* _(mustsupport)_
+|http://fhir.de/StructureDefinition/identifier-telematik-id[identifier-telematik-id]
+|Die telematikID ist im FHIR Basisprofil von HL7 Deutschland definiert.
 
-.*active* _(mustsupport)_
-----
-----
+|*identifier.value* _(mustsupport)_
+|telematikID
+|Die telematikID wird vom Verband der Organisation vergeben (z. B. von der KV für Arztpraxen)
 
-.*type.system* _(mustsupport)_
-----
-https://gematik.de/fhir/VZD-FHIR-Directory/CodeSystem/TIProfessionOidCS[TIProfessionOidCS]
-----
+|*active* _(mustsupport)_
+|true oder false
+|
 
-.*type.code* _(mustsupport)_
-----
-Code aus https://simplifier.net/vzd-fhir-directory/tiorganizationtypevs[TIOrganizationVS]
-----
+|*type.system* _(mustsupport)_ 
+|https://gematik.de/fhir/VZD-FHIR-Directory/CodeSystem/TIProfessionOidCS[TIProfessionOidCS]
+|
 
-.*type.display* _(mustsupport)_
-----
-Display aus https://simplifier.net/vzd-fhir-directory/tiorganizationtypevs[TIOrganizationVS]
-----
+|*type.code* _(mustsupport)_
+|Code aus https://simplifier.net/vzd-fhir-directory/tiorganizationtypevs[TIOrganizationVS]
+|
+
+|*type.display* _(mustsupport)_
+|Display aus https://simplifier.net/vzd-fhir-directory/tiorganizationtypevs[TIOrganizationVS]
+|
+|===
 
 ==== TI-Messenger-Provider
 
