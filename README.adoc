@@ -60,6 +60,8 @@ Die telematikID wird vom Verband der Organisation vergeben (z. B. von der KV fü
 ----
 
 .*active* _(mustsupport)_
+----
+----
 
 .*type.system*
 ----
