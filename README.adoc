@@ -47,24 +47,34 @@ Dabei kann eine Organization Ressource auch mehrere type Elemente haben.
 
 ==== Organisationen mit professionOID
 
-*identifier.system* _(mustsupport)_
+.*identifier.system* _(mustsupport)_
+----
 http://fhir.de/StructureDefinition/identifier-telematik-id[identifier-telematik-id]
 Die telematikID ist im FHIR Basisprofil von HL7 Deutschland definiert.
+----
 
-*identifier.value* _(mustsupport)_
+.*identifier.value* _(mustsupport)_
+----
 telematikID 
 Die telematikID wird vom Verband der Organisation vergeben (z. B. von der KV für Arztpraxen)
+----
 
-*active* _(mustsupport)_
+.*active* _(mustsupport)_
 
-*type.system*
+.*type.system*
+----
 https://gematik.de/fhir/VZD-FHIR-Directory/CodeSystem/TIProfessionOidCS[TIProfessionOidCS]
+----
 
-*type.code*
+.*type.code*
+----
 Code aus https://simplifier.net/vzd-fhir-directory/tiorganizationtypevs[TIOrganizationVS]
+----
 
-*type.display*
+.*type.display*
+----
 Display aus https://simplifier.net/vzd-fhir-directory/tiorganizationtypevs[TIOrganizationVS]
+----
 
 ==== TI-Messenger-Provider
 
