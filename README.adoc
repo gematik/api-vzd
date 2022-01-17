@@ -201,19 +201,19 @@ Eine Organization Ressource kann auch mehrere type Elemente haben.
 
 |*contact.telecom.system* _(mustsupport)_
 |
-|Siehe https://www.hl7.org/fhir/datatypes.html#ContactPoint[ContactPoint]
+|Siehe https://www.hl7.org/fhir/datatypes.html#ContactPoint[ContactPoint].
 Für TI-Messenger-Adressen wird das system url verwendet.
 Für KIM E-Mail-Adressen wird das system email verwendet.
 
 |*contact.telecom.value* _(mustsupport)_
 |Adresse des Kontakts
-|Siehe https://www.hl7.org/fhir/datatypes.html#ContactPoint[ContactPoint]
+|Siehe https://www.hl7.org/fhir/datatypes.html#ContactPoint[ContactPoint].
 TI-Messenger-Adressen werden un der url Notation angegeben: matrix:u/localpart:tim-domain
-KIM E-Mail-Adressen werden als E-Mail Adressen angegeben: localpart@kim-domain
+KIM E-Mail-Adressen werden als E-Mail Adressen angegeben: localpart@kim-domain.
 
 |*contact.telecom.period.end* _(mustsupport)_
 |
-|Siehe https://www.hl7.org/fhir/datatypes.html#Period[Period]
+|Siehe https://www.hl7.org/fhir/datatypes.html#Period[Period].
 Wenn der Wert vorhanden ist und in der Vergangenheit liegt, dann wird die Kontakt-Adresse nicht verwendet.
 |===
 
