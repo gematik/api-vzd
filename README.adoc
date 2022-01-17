@@ -43,10 +43,10 @@ Die einzelnen Elemente der Ressource TIOrganization werden abhängig vom type de
 - Organisationen gemäß https://gematik.de/fhir/VZD-FHIR-Directory/CodeSystem/TIOrganizationTypeCS[TIOrganizationTypeCS] (TI-Messenger-Provider, KIM-Provider und Kartenherausgeber).
 
 Die Organisationstypen mit dem jeweils verwendeten CodeSystem sind im Valueset https://simplifier.net/vzd-fhir-directory/tiorganizationtypevs[TIOrganizationTypeVS] festgelegt.
-Dabei kann eine Organization Ressource auch mehrere type Elemente haben. 
+Eine Organization Ressource kann auch mehrere type Elemente haben. 
 
 
-.Organisationen mit professionOID
+.*Organisationen mit professionOID, Pflege durch Kartenherausgeber*
 |===
 |Element / Attribut |Wert |Beschreibung 
 
@@ -67,12 +67,154 @@ Dabei kann eine Organization Ressource auch mehrere type Elemente haben.
 |
 
 |*type.code* _(mustsupport)_
-|Code aus https://simplifier.net/vzd-fhir-directory/tiorganizationtypevs[TIOrganizationVS]
-|
+|Code aus https://simplifier.net/vzd-fhir-directory/tiorganizationtypevs[TIOrganizationTypeVS]
+|ProfessionOID der Organisation
 
 |*type.display* _(mustsupport)_
-|Display aus https://simplifier.net/vzd-fhir-directory/tiorganizationtypevs[TIOrganizationVS]
+|Display aus https://simplifier.net/vzd-fhir-directory/tiorganizationtypevs[TIOrganizationTypeVS]
+|Text-Repräsentation der ProfessionOID
+
+|*name* _(mustsupport)_
+|Name der Organisation
 |
+
+|*alias* _(mustsupport)_
+|Alternative Namen der Organisation
+|
+
+|*address* _(mustsupport)_
+|Eine oder mehrere Adressen der Organisation
+|
+
+|*address.text* _(mustsupport)_
+|Siehe https://www.hl7.org/fhir/datatypes.html#Address[Address]
+|
+
+|*address.line* _(mustsupport)_
+|Siehe https://www.hl7.org/fhir/datatypes.html#Address[Address]
+|
+
+|*address.city* _(mustsupport)_
+|Siehe https://www.hl7.org/fhir/datatypes.html#Address[Address]
+|
+
+|*address.district* _(mustsupport)_
+|Siehe https://www.hl7.org/fhir/datatypes.html#Address[Address]
+|
+
+|*address.state* _(mustsupport)_
+|Siehe https://www.hl7.org/fhir/datatypes.html#Address[Address]
+|
+
+|*address.postalCode* _(mustsupport)_
+|Siehe https://www.hl7.org/fhir/datatypes.html#Address[Address]
+|
+
+|*country* _(mustsupport)_
+|Siehe https://www.hl7.org/fhir/datatypes.html#Address[Address]
+|
+
+|*partOf* _(mustsupport)_
+|Referenz auf einen anderen Organization Eintrag
+|Wird verwendet, wenn die Organisation mehrere telematikIDs besitzt.
+|===
+
+.*Organisationen mit professionOID, Pflege durch Besitzer der telematikID*
+|===
+|Element / Attribut |Wert |Beschreibung 
+
+|*identifier.system* _(mustsupport)_
+|http://fhir.de/StructureDefinition/identifier-telematik-id[identifier-telematik-id]
+|Die telematikID ist im FHIR Basisprofil von HL7 Deutschland definiert.
+
+|*identifier.value* _(mustsupport)_
+|Identifier
+|Der Identifier wird vom identifier.value des referenzierten Eintrags abgeleitet und identifiziert den Eintrag eindeutig. Als Trennzeichen wird ein Punkt "." verwendet: <identifier.value des referenzierten Eintrags>.<neue ID>
+
+|*active* _(mustsupport)_
+|true oder false
+|
+
+|*type.system* _(mustsupport)_ 
+|https://gematik.de/fhir/VZD-FHIR-Directory/CodeSystem/TIProfessionOidCS[TIProfessionOidCS]
+|
+
+|*type.code* _(mustsupport)_
+|Code aus https://simplifier.net/vzd-fhir-directory/tiorganizationtypevs[TIOrganizationTypeVS]
+|ProfessionOID der Organisation
+
+|*type.display* _(mustsupport)_
+|Display aus https://simplifier.net/vzd-fhir-directory/tiorganizationtypevs[TIOrganizationTypeVS]
+|Text-Repräsentation der ProfessionOID
+
+|*name* _(mustsupport)_
+|Name der Organisation
+|
+
+|*alias* _(mustsupport)_
+|Alternative Namen der Organisation
+|
+
+|*address* _(mustsupport)_
+|Eine oder mehrere Adressen der Organisation
+|
+
+|*address.text* _(mustsupport)_
+|Siehe https://www.hl7.org/fhir/datatypes.html#Address[Address]
+|
+
+|*address.line* _(mustsupport)_
+|Siehe https://www.hl7.org/fhir/datatypes.html#Address[Address]
+|
+
+|*address.city* _(mustsupport)_
+|Siehe https://www.hl7.org/fhir/datatypes.html#Address[Address]
+|
+
+|*address.district* _(mustsupport)_
+|Siehe https://www.hl7.org/fhir/datatypes.html#Address[Address]
+|
+
+|*address.state* _(mustsupport)_
+|Siehe https://www.hl7.org/fhir/datatypes.html#Address[Address]
+|
+
+|*address.postalCode* _(mustsupport)_
+|Siehe https://www.hl7.org/fhir/datatypes.html#Address[Address]
+|
+
+|*country* _(mustsupport)_
+|Siehe https://www.hl7.org/fhir/datatypes.html#Address[Address]
+|
+
+|*partOf* _(mustsupport)_
+|Referenz auf einen anderen Organization Eintrag
+|Wird verwendet, um auf den Basiseintrag der Organisation zu referenzieren und wenn die Organisation eine Struktur besitzt, die im FHIR-Directory abgebildet werden soll. Wenn vom Besitzer einer telematikID eine Organization Ressource erzeugt wird, dann muss diese immer über partOf Referenzen mit dem Basiseintrag der Organisation verknüpft sein. Die partOf Referenzen können über mehrere Stufen zum Basiseintrag führen.
+
+|*contact.purpose* _(mustsupport)_
+|
+|Bezeichnet den von diesem contact Element unterstützten Prozess. Gültige Werte werden von der gematik im Fachportal veröffentlicht (siehe <link ergänzen>).
+
+|*contact.name* _(mustsupport)_
+|Name
+|Der Name des contact Elements
+
+|*contact.telecom.system* _(mustsupport)_
+|
+|Siehe https://www.hl7.org/fhir/datatypes.html#ContactPoint[ContactPoint]
+Für TI-Messenger-Adressen wird das system url verwendet.
+Für KIM E-Mail-Adressen wird das system email verwendet.
+
+|*contact.telecom.value* _(mustsupport)_
+|Adresse des Kontakts
+|Siehe https://www.hl7.org/fhir/datatypes.html#ContactPoint[ContactPoint]
+TI-Messenger-Adressen werden un der url Notation angegeben: matrix:u/localpart:tim-domain
+KIM E-Mail-Adressen werden als E-Mail Adressen angegeben: localpart@kim-domain
+
+|*contact.telecom.period.end* _(mustsupport)_
+|
+|Siehe https://www.hl7.org/fhir/datatypes.html#Period[Period]
+Wenn der Wert vorhanden ist und in der Vergangenheit liegt, dann wird die Kontakt-Adresse nicht verwendet.
 |===
 
 ==== TI-Messenger-Provider
