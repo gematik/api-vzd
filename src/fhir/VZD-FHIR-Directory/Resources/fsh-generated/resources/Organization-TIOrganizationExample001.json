@@ -1,0 +1,23 @@
+{
+  "resourceType": "Organization",
+  "id": "TIOrganizationExample001",
+  "meta": {
+    "profile": [
+      "https://gematik.de/fhir/directory/StructureDefinition/TIOrganization"
+    ]
+  },
+  "identifier": [
+    {
+      "type": {
+        "coding": [
+          {
+            "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+            "code": "PRN"
+          }
+        ]
+      },
+      "system": "http://fhir.de/StructureDefinition/identifier-telematik-id",
+      "value": "1-123456789"
+    }
+  ]
+}

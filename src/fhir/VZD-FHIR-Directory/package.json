@@ -1,0 +1,13 @@
+{
+  "name": "de.gematik.fhir.directory",
+  "version": "0.1.0",
+  "description": "Package Release des gematik FHIR Directory",
+  "author": null,
+  "fhirVersions": [
+    "4.0.1"
+  ],
+  "canonicals": null,
+  "dependencies": {
+    "de.basisprofil.r4": "1.2.0-alpha3"
+  }
+}
