@@ -45,13 +45,12 @@ Die einzelnen Elemente der Ressource TIOrganization werden abhängig vom type de
 Alle Organisationstypen sind mit dem jeweils verwendeten CodeSystem im https://simplifier.net/vzd-fhir-directory/tiorganizationtypevs[Valueset TIOrganizationTypeVS] festgelegt.
 Eine Organization Ressource kann auch mehrere type Elemente haben.
 
-
 .*Organisationen mit professionOID, Pflege durch Kartenherausgeber oder Synchronisation aus LDAP-Directory*
 |===
 |Element / Attribut |Wert |Beschreibung
 
 |*identifier.system* _(mustsupport)_
-|http://fhir.de/StructureDefinition/identifier-telematik-id[identifier-telematik-id]
+|http://fhir.de/StructureDefinition/identifier-telematik-id
 |Die telematikID ist im FHIR Basisprofil von HL7 Deutschland definiert.
 
 |*identifier.value* _(mustsupport)_
