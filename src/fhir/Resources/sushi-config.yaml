@@ -1,15 +1,11 @@
 id: de.gematik.fhir.directory
 canonical: https://gematik.de/fhir/directory
 name: VZD-FHIR-Directory
-# title: Example Title
-# description: Example Implementation Guide for getting started with SUSHI
+FSHOnly: true
+title: gematik Directory
 status: draft # draft | active | retired | unknown
 version: 0.1.0
-fhirVersion: 4.0.1 # https://www.hl7.org/fhir/valueset-FHIR-version.html
-copyrightYear: 2022+
-releaseLabel: ci-build # ci-build | draft | qa-preview | ballot | trial-use | release | update | normative+trial-use
-# license: CC0-1.0 # https://www.hl7.org/fhir/valueset-spdx-license.html
-# jurisdiction: urn:iso:std:iso:3166#US "United States of America" # https://www.hl7.org/fhir/valueset-jurisdiction.html
+fhirVersion: 4.0.1
 publisher:
   name: gematik GmbH
   url: https://www.gematik.de/
