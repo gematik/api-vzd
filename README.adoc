@@ -21,7 +21,7 @@ image:https://shields.io/badge/v1.13.0-blue[link="https://fachportal.gematik.de/
 image:https://shields.io/badge/v1.12.0-blue[link="https://fachportal.gematik.de/fachportal-import/files/gemSpec_VZD_V1.12.0.pdf"]
 * `gemSpec_FHIR_Directory`
 
-Die Daten des LDAP-Directories sind im Implementierungsleitfaden zur Pflege der Daten des Verzeichnisdienstes beschrieben. 
+Die Daten des LDAP-Directories sind im Implementierungsleitfaden zur Pflege der Daten des Verzeichnisdienstes beschrieben.
 Die Dokumente können im Fachportal der gematik gefunden werden: https://fachportal.gematik.de/downloadcenter.
 
 == Systemarchitektur
@@ -43,26 +43,26 @@ Die einzelnen Elemente der Ressource TIOrganization werden abhängig vom type de
 - Organisationen gemäß https://gematik.de/fhir/VZD-FHIR-Directory/CodeSystem/TIOrganizationTypeCS[TIOrganizationTypeCS] (TI-Messenger-Provider, KIM-Provider und Kartenherausgeber).
 
 Die Organisationstypen mit dem jeweils verwendeten CodeSystem sind im Valueset https://simplifier.net/vzd-fhir-directory/tiorganizationtypevs[TIOrganizationTypeVS] festgelegt.
-Eine Organization Ressource kann auch mehrere type Elemente haben. 
+Eine Organization Ressource kann auch mehrere type Elemente haben.
 
 
 .*Organisationen mit professionOID, Pflege durch Kartenherausgeber*
 |===
-|Element / Attribut |Wert |Beschreibung 
+|Element / Attribut |Wert |Beschreibung
 
 |*identifier.system* _(mustsupport)_
 |http://fhir.de/StructureDefinition/identifier-telematik-id[identifier-telematik-id]
 |Die telematikID ist im FHIR Basisprofil von HL7 Deutschland definiert.
 
 |*identifier.value* _(mustsupport)_
-|telematikID
-|Die telematikID wird vom Verband der Organisation vergeben (z. B. von der KV für Arztpraxen)
+|telematikID der Organisation
+|Die telematikID wird vom Verband der Organisation vergeben (z. B. von der KV für Arztpraxen).
 
 |*active* _(mustsupport)_
 |true oder false
-|
+|Gibt an, ob der Eintrag aktiv genutzt wird oder ob er deaktiviert ist.
 
-|*type.system* _(mustsupport)_ 
+|*type.system* _(mustsupport)_
 |https://gematik.de/fhir/VZD-FHIR-Directory/CodeSystem/TIProfessionOidCS[TIProfessionOidCS]
 |
 
@@ -121,7 +121,7 @@ Eine Organization Ressource kann auch mehrere type Elemente haben.
 
 .*Organisationen mit professionOID, Pflege durch Besitzer der telematikID*
 |===
-|Element / Attribut |Wert |Beschreibung 
+|Element / Attribut |Wert |Beschreibung
 
 |*identifier.system* _(mustsupport)_
 |http://fhir.de/StructureDefinition/identifier-telematik-id[identifier-telematik-id]
@@ -135,7 +135,7 @@ Eine Organization Ressource kann auch mehrere type Elemente haben.
 |true oder false
 |
 
-|*type.system* _(mustsupport)_ 
+|*type.system* _(mustsupport)_
 |https://gematik.de/fhir/VZD-FHIR-Directory/CodeSystem/TIProfessionOidCS[TIProfessionOidCS]
 |
 
