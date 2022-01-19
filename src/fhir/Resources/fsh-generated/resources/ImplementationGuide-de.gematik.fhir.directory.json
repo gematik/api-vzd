@@ -52,13 +52,7 @@
       "nameUrl": "toc.html",
       "title": "Table of Contents",
       "generation": "html",
-      "page": [
-        {
-          "nameUrl": "index.html",
-          "title": "Home",
-          "generation": "markdown"
-        }
-      ]
+      "page": []
     },
     "parameter": [
       {
