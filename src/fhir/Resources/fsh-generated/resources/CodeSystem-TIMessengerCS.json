@@ -1,0 +1,18 @@
+{
+  "resourceType": "CodeSystem",
+  "status": "draft",
+  "content": "complete",
+  "name": "TIMessengerCS",
+  "id": "TIMessengerCS",
+  "title": "CodeSystem of TI-Messenger specific types",
+  "description": "CodeSystem of TI-Messenger specific types",
+  "version": "0.1.0",
+  "url": "https://gematik.de/fhir/directory/CodeSystem/TIMessengerCS",
+  "concept": [
+    {
+      "code": "tim-domain",
+      "display": "TI-Messenger domain name"
+    }
+  ],
+  "count": 1
+}

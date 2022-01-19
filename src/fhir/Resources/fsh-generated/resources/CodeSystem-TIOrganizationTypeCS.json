@@ -1,0 +1,25 @@
+{
+  "resourceType": "CodeSystem",
+  "status": "draft",
+  "content": "fragment",
+  "name": "TIOrganizationTypeCS",
+  "id": "TIOrganizationTypeCS",
+  "title": "CodeSystem of TI Organization types",
+  "description": "Type of Organiziation",
+  "version": "0.1.0",
+  "url": "https://gematik.de/fhir/directory/CodeSystem/TIOrganizationTypeCS",
+  "concept": [
+    {
+      "code": "urn:ti-organization:tim-provider",
+      "display": "TI-Messenger-Provider"
+    },
+    {
+      "code": "urn:ti-organization:kim-provider",
+      "display": "KIM-Provider"
+    },
+    {
+      "code": "urn:ti-organization:card-issuer",
+      "display": "Kartenherausgeber"
+    }
+  ]
+}

@@ -1,0 +1,279 @@
+{
+  "resourceType": "ValueSet",
+  "status": "draft",
+  "name": "TIOrganizationTypeVS",
+  "id": "TIOrganizationTypeVS",
+  "title": "ValueSet of TIOrganization type codes",
+  "description": "Type of TIOrganiziation",
+  "version": "0.1.0",
+  "url": "https://gematik.de/fhir/directory/ValueSet/TIOrganizationTypeVS",
+  "expansion": {
+    "contains": [
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS",
+        "code": "urn:oid:1.2.276.0.76.4.50",
+        "display": "Betriebsstätte Arzt"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS",
+        "code": "urn:oid:1.2.276.0.76.4.51",
+        "display": "Zahnarztpraxis"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS",
+        "code": "urn:oid:1.2.276.0.76.4.52",
+        "display": "Betriebsstätte Psychotherapeut"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS",
+        "code": "urn:oid:1.2.276.0.76.4.53",
+        "display": "Krankenhaus"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS",
+        "code": "urn:oid:1.2.276.0.76.4.54",
+        "display": "Öffentliche Apotheke"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS",
+        "code": "urn:oid:1.2.276.0.76.4.55",
+        "display": "Krankenhausapotheke"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS",
+        "code": "urn:oid:1.2.276.0.76.4.56",
+        "display": "Bundeswehrapotheke"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS",
+        "code": "urn:oid:1.2.276.0.76.4.57",
+        "display": "Betriebsstätte Mobile Einrichtung Rettungsdienst"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS",
+        "code": "urn:oid:1.2.276.0.76.4.58",
+        "display": "Betriebsstätte gematik"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS",
+        "code": "urn:oid:1.2.276.0.76.4.59",
+        "display": "Betriebsstätte Kostenträger"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS",
+        "code": "urn:oid:1.2.276.0.76.4.187",
+        "display": "Betriebsstätte Leistungserbringerorganisation Vertragszahnärzte"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS",
+        "code": "urn:oid:1.2.276.0.76.4.190",
+        "display": "AdV-Umgebung bei Kostenträger"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS",
+        "code": "urn:oid:1.2.276.0.76.4.223",
+        "display": "Betriebsstätte GKV-Spitzenverband"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS",
+        "code": "urn:oid:1.2.276.0.76.4.226",
+        "display": "Betriebsstätte Mitgliedsverband der Krankenhäuser"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS",
+        "code": "urn:oid:1.2.276.0.76.4.227",
+        "display": "Betriebsstätte der Deutsche Krankenhaus TrustCenter und Informationsverarbeitung GmbH"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS",
+        "code": "urn:oid:1.2.276.0.76.4.228",
+        "display": "Betriebsstätte der Deutschen Krankenhausgesellschaft"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS",
+        "code": "urn:oid:1.2.276.0.76.4.224",
+        "display": "Betriebsstätte Apothekerverband"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS",
+        "code": "urn:oid:1.2.276.0.76.4.225",
+        "display": "Betriebsstätte Deutscher Apothekerverband"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS",
+        "code": "urn:oid:1.2.276.0.76.4.229",
+        "display": "Betriebsstätte der Bundesärztekammer"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS",
+        "code": "urn:oid:1.2.276.0.76.4.230",
+        "display": "Betriebsstätte einer Ärztekammer"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS",
+        "code": "urn:oid:1.2.276.0.76.4.231",
+        "display": "Betriebsstätte einer Zahnärztekammer"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS",
+        "code": "urn:oid:1.2.276.0.76.4.242",
+        "display": "Betriebsstätte der Kassenärztlichen Bundesvereinigung"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS",
+        "code": "urn:oid:1.2.276.0.76.4.243",
+        "display": "Betriebsstätte der Bundeszahnärztekammer"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS",
+        "code": "urn:oid:1.2.276.0.76.4.244",
+        "display": "Betriebsstätte der Kassenzahnärztlichen Bundesvereinigung"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS",
+        "code": "urn:oid:1.2.276.0.76.4.245",
+        "display": "Betriebsstätte Gesundheits-, Kranken- und Altenpflege"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS",
+        "code": "urn:oid:1.2.276.0.76.4.246",
+        "display": "Betriebsstätte Geburtshilfe"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS",
+        "code": "urn:oid:1.2.276.0.76.4.247",
+        "display": "Betriebsstätte Physiotherapie"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS",
+        "code": "urn:oid:1.2.276.0.76.4.248",
+        "display": "Betriebsstätte Augenoptiker"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS",
+        "code": "urn:oid:1.2.276.0.76.4.249",
+        "display": "Betriebsstätte Hörakustiker"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS",
+        "code": "urn:oid:1.2.276.0.76.4.250",
+        "display": "Betriebsstätte Orthopädieschuhmacher"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS",
+        "code": "urn:oid:1.2.276.0.76.4.251",
+        "display": "Betriebsstätte Orthopädietechniker"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS",
+        "code": "urn:oid:1.2.276.0.76.4.252",
+        "display": "Betriebsstätte Zahntechniker"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS",
+        "code": "urn:oid:1.2.276.0.76.4.253",
+        "display": "Rettungsleitstelle"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS",
+        "code": "urn:oid:1.2.276.0.76.4.254",
+        "display": "Betriebsstätte Sanitätsdienst Bundeswehr"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS",
+        "code": "urn:oid:1.2.276.0.76.4.255",
+        "display": "Betriebsstätte Öffentlicher Gesundheitsdienst"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS",
+        "code": "urn:oid:1.2.276.0.76.4.256",
+        "display": "Betriebsstätte Arbeitsmedizin"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS",
+        "code": "urn:oid:1.2.276.0.76.4.257",
+        "display": "Betriebsstätte Vorsorge- und Rehabilitation"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS",
+        "code": "urn:oid:1.2.276.0.76.4.273",
+        "display": "ePA KTR-Zugriffsautorisierung"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS",
+        "code": "urn:oid:1.2.276.0.76.4.262",
+        "display": "Betriebsstätte Pflegeberatung nach § 7a SGB XI"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS",
+        "code": "urn:oid:1.2.276.0.76.4.263",
+        "display": "Betriebsstätte Psychotherapeutenkammer"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS",
+        "code": "urn:oid:1.2.276.0.76.4.264",
+        "display": "Betriebsstätte Bundespsychotherapeutenkammer"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS",
+        "code": "urn:oid:1.2.276.0.76.4.265",
+        "display": "Betriebsstätte Landesapothekerkammer"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS",
+        "code": "urn:oid:1.2.276.0.76.4.266",
+        "display": "Betriebsstätte Bundesapothekerkammer"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS",
+        "code": "urn:oid:1.2.276.0.76.4.267",
+        "display": "Betriebsstätte elektronisches Gesundheitsberuferegister"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS",
+        "code": "urn:oid:1.2.276.0.76.4.268",
+        "display": "Betriebsstätte Handwerkskammer"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS",
+        "code": "urn:oid:1.2.276.0.76.4.269",
+        "display": "Betriebsstätte Register für Gesundheitsdaten"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS",
+        "code": "urn:oid:1.2.276.0.76.4.270",
+        "display": "Betriebsstätte Abrechnungsdienstleister"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS",
+        "code": "urn:oid:1.2.276.0.76.4.271",
+        "display": "Betriebsstätte PKV-Verband"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIOrganizationTypeCS",
+        "code": "urn:ti-organization:tim-provider",
+        "display": "TI-Messenger-Provider"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIOrganizationTypeCS",
+        "code": "urn:ti-organization:kim-provider",
+        "display": "KIM-Provider"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIOrganizationTypeCS",
+        "code": "urn:ti-organization:card-issuer",
+        "display": "Kartenherausgeber"
+      }
+    ]
+  },
+  "compose": {
+    "include": [
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIOrganizationTypeCS"
+      }
+    ]
+  }
+}

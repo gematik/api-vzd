@@ -1,0 +1,176 @@
+{
+  "resourceType": "ValueSet",
+  "status": "draft",
+  "name": "TIPractitionerQualificationProfessionOidVS",
+  "id": "TIPractitionerQualificationProfessionOidVS",
+  "title": "ValueSet of TIPractitioner.Qualification.identifier values",
+  "description": "Qualification of TIPractitioner as a ProfessionOID",
+  "version": "0.1.0",
+  "url": "https://gematik.de/fhir/directory/ValueSet/TIPractitionerQualificationProfessionOidVS",
+  "expansion": {
+    "contains": [
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS",
+        "code": "urn:oid:1.2.276.0.76.4.30",
+        "display": "Ärztin/Arzt"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS",
+        "code": "urn:oid:1.2.276.0.76.4.31",
+        "display": "Zahnärztin/Zahnarzt"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS",
+        "code": "urn:oid:1.2.276.0.76.4.32",
+        "display": "Apotheker/-in"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS",
+        "code": "urn:oid:1.2.276.0.76.4.33",
+        "display": "Apothekerassistent/-in"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS",
+        "code": "urn:oid:1.2.276.0.76.4.34",
+        "display": "Pharmazieingenieur/-in"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS",
+        "code": "urn:oid:1.2.276.0.76.4.35",
+        "display": "pharmazeutisch-technische/-r Assistent/-in"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS",
+        "code": "urn:oid:1.2.276.0.76.4.36",
+        "display": "pharmazeutisch-kaufmännische/-r Angestellte"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS",
+        "code": "urn:oid:1.2.276.0.76.4.37",
+        "display": "Apothekenhelfer/-in"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS",
+        "code": "urn:oid:1.2.276.0.76.4.38",
+        "display": "Apothekenassistent/-in"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS",
+        "code": "urn:oid:1.2.276.0.76.4.39",
+        "display": "Pharmazeutische/-r Assistent/-in"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS",
+        "code": "urn:oid:1.2.276.0.76.4.40",
+        "display": "Apothekenfacharbeiter/-in"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS",
+        "code": "urn:oid:1.2.276.0.76.4.41",
+        "display": "Pharmaziepraktikant/-in"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS",
+        "code": "urn:oid:1.2.276.0.76.4.42",
+        "display": "Stud.pharm. oder Famulant/-in"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS",
+        "code": "urn:oid:1.2.276.0.76.4.43",
+        "display": "PTA-Praktikant/-in"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS",
+        "code": "urn:oid:1.2.276.0.76.4.44",
+        "display": "PKA Auszubildende/-r"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS",
+        "code": "urn:oid:1.2.276.0.76.4.45",
+        "display": "Psychotherapeut/-in"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS",
+        "code": "urn:oid:1.2.276.0.76.4.46",
+        "display": "Psychologische/-r Psychotherapeut/-in"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS",
+        "code": "urn:oid:1.2.276.0.76.4.47",
+        "display": "Kinder- und Jugendlichenpsychotherapeut/-in"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS",
+        "code": "urn:oid:1.2.276.0.76.4.48",
+        "display": "Rettungsassistent/-in"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS",
+        "code": "urn:oid:1.2.276.0.76.4.49",
+        "display": "Versicherte/-r"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS",
+        "code": "urn:oid:1.2.276.0.76.4.178",
+        "display": "Notfallsanitäter/-in"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS",
+        "code": "urn:oid:1.2.276.0.76.4.232",
+        "display": "Gesundheits- und Krankenpfleger/-in, Gesundheits- und Kinderkrankenpfleger/-in"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS",
+        "code": "urn:oid:1.2.276.0.76.4.233",
+        "display": "Altenpfleger/-in"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS",
+        "code": "urn:oid:1.2.276.0.76.4.234",
+        "display": "Pflegefachfrauen und Pflegefachmänner"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS",
+        "code": "urn:oid:1.2.276.0.76.4.235",
+        "display": "Hebamme"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS",
+        "code": "urn:oid:1.2.276.0.76.4.236",
+        "display": "Physiotherapeut/-in"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS",
+        "code": "urn:oid:1.2.276.0.76.4.237",
+        "display": "Augenoptiker/-in und Optometrist/-in"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS",
+        "code": "urn:oid:1.2.276.0.76.4.238",
+        "display": "Hörakustiker/-in"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS",
+        "code": "urn:oid:1.2.276.0.76.4.239",
+        "display": "Orthopädieschuhmacher/-in"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS",
+        "code": "urn:oid:1.2.276.0.76.4.240",
+        "display": "Orthopädietechniker/-in"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS",
+        "code": "urn:oid:1.2.276.0.76.4.241",
+        "display": "Zahntechniker/-in"
+      }
+    ]
+  },
+  "compose": {
+    "include": [
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS"
+      }
+    ]
+  }
+}

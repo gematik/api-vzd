@@ -1,21 +1,21 @@
 {
   "resourceType": "StructureDefinition",
-  "id": "TIOrganization",
+  "id": "TIPractitioner",
   "extension": [
     {
       "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-category",
-      "valueString": "Base.Entities"
+      "valueString": "Base.Individuals"
     },
     {
       "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-security-category",
-      "valueCode": "business"
+      "valueCode": "individual"
     }
   ],
-  "url": "https://gematik.de/fhir/directory/StructureDefinition/TIOrganization",
+  "url": "https://gematik.de/fhir/directory/StructureDefinition/TIPractitioner",
   "version": "0.1.0",
-  "name": "TIOrganization",
+  "name": "TIPractitioner",
   "status": "draft",
-  "description": "Profile for the Organization in gematik FHIR Directory",
+  "description": "Profile for the Practitioner in gematik FHIR Directory",
   "fhirVersion": "4.0.1",
   "mapping": [
     {
@@ -41,19 +41,19 @@
   ],
   "kind": "resource",
   "abstract": false,
-  "type": "Organization",
-  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Organization",
+  "type": "Practitioner",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Practitioner",
   "derivation": "constraint",
   "differential": {
     "element": [
       {
-        "id": "Organization.id",
-        "path": "Organization.id",
+        "id": "Practitioner.id",
+        "path": "Practitioner.id",
         "mustSupport": true
       },
       {
-        "id": "Organization.identifier",
-        "path": "Organization.identifier",
+        "id": "Practitioner.identifier",
+        "path": "Practitioner.identifier",
         "slicing": {
           "discriminator": [
             {
@@ -67,8 +67,8 @@
         "mustSupport": true
       },
       {
-        "id": "Organization.identifier:SliceTelematikID",
-        "path": "Organization.identifier",
+        "id": "Practitioner.identifier:SliceTelematikID",
+        "path": "Practitioner.identifier",
         "sliceName": "SliceTelematikID",
         "min": 1,
         "max": "1",
@@ -93,8 +93,8 @@
         "mustSupport": true
       },
       {
-        "id": "Organization.identifier:SliceTelematikID.type",
-        "path": "Organization.identifier.type",
+        "id": "Practitioner.identifier:SliceTelematikID.type",
+        "path": "Practitioner.identifier.type",
         "min": 1
       }
     ]

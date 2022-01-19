@@ -1,0 +1,21 @@
+{
+  "resourceType": "CodeSystem",
+  "status": "draft",
+  "content": "not-present",
+  "name": "TIProfessionOidCS",
+  "id": "TIProfessionOidCS",
+  "title": "CodeSystem of ProfessionOIDs from gemSpec_OID",
+  "description": "The codes for TIOrganization and TIPractitioner types are defined in gemSpec_OID and use a urn notation (urn:oid:[ProfessionOID from gemSpec_OID]). See also https://fachportal.gematik.de/fachportal-import/files/gemSpec_OID_V3.10.0.pdf",
+  "version": "0.1.0",
+  "url": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS",
+  "filter": [
+    {
+      "code": "urn-oid-regex-filter",
+      "description": "A filter to select codes that are in the oid urn format",
+      "operator": [
+        "regex"
+      ],
+      "value": "^urn:oid:([1-9][0-9]{0,3}|0)(\\.([1-9][0-9]{0,3}|0)){5,13}$"
+    }
+  ]
+}
