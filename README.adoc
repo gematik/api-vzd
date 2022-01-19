@@ -36,17 +36,17 @@ image::VZD_FHIR_Directory_Datenmodell.svg[Datenmodell]
 
 === TIOrganization
 
-Die Ressource TIOrganization ist in Simplifier definiert (https://simplifier.net/vzd-fhir-directory/tiorganization) und ist ein Profil der Organization Ressource (https://www.hl7.org/fhir/organization.html#resource).
+Die Ressource TIOrganization ist in https://simplifier.net/vzd-fhir-directory/tiorganization[Simplifier] definiert und ist ein Profil der https://www.hl7.org/fhir/organization.html#resource[Organization Ressource].
 Die einzelnen Elemente der Ressource TIOrganization werden abhängig vom type der Organisation befüllt. Es wird unterschieden zwischen
 
-- Organisationen mit einer zugewiesenen professionOID gemäß https://gematik.de/fhir/VZD-FHIR-Directory/CodeSystem/TIProfessionOidCS[TIProfessionOidCS] und
-- Organisationen gemäß https://gematik.de/fhir/VZD-FHIR-Directory/CodeSystem/TIOrganizationTypeCS[TIOrganizationTypeCS] (TI-Messenger-Provider, KIM-Provider und Kartenherausgeber).
+- Organisationen mit einer zugewiesenen professionOID gemäß https://gematik.de/fhir/VZD-FHIR-Directory/CodeSystem/TIProfessionOidCS[CodeSystem TIProfessionOidCS] und
+- Organisationen gemäß https://gematik.de/fhir/VZD-FHIR-Directory/CodeSystem/TIOrganizationTypeCS[CodeSystem TIOrganizationTypeCS] (TI-Messenger-Provider, KIM-Provider und Kartenherausgeber).
 
-Die Organisationstypen mit dem jeweils verwendeten CodeSystem sind im Valueset https://simplifier.net/vzd-fhir-directory/tiorganizationtypevs[TIOrganizationTypeVS] festgelegt.
+Alle Organisationstypen sind mit dem jeweils verwendeten CodeSystem im https://simplifier.net/vzd-fhir-directory/tiorganizationtypevs[Valueset TIOrganizationTypeVS] festgelegt.
 Eine Organization Ressource kann auch mehrere type Elemente haben.
 
 
-.*Organisationen mit professionOID, Pflege durch Kartenherausgeber*
+.*Organisationen mit professionOID, Pflege durch Kartenherausgeber oder Synchronisation aus LDAP-Directory*
 |===
 |Element / Attribut |Wert |Beschreibung
 
@@ -79,12 +79,12 @@ Eine Organization Ressource kann auch mehrere type Elemente haben.
 |
 
 |*alias* _(mustsupport)_
-|Alternative Namen der Organisation
+|Alternativer Name der Organisation
 |
 
 |*address* _(mustsupport)_
+|Adresse
 |Eine oder mehrere Adressen der Organisation
-|
 
 |*address.text* _(mustsupport)_
 |Siehe https://www.hl7.org/fhir/datatypes.html#Address[Address]
