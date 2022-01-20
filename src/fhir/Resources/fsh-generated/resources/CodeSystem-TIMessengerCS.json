@@ -6,7 +6,7 @@
   "id": "TIMessengerCS",
   "title": "CodeSystem of TI-Messenger specific types",
   "description": "CodeSystem of TI-Messenger specific types",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "url": "https://gematik.de/fhir/directory/CodeSystem/TIMessengerCS",
   "concept": [
     {
