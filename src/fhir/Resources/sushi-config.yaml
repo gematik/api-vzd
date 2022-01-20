@@ -1,8 +1,8 @@
 id: de.gematik.fhir.directory
 canonical: https://gematik.de/fhir/directory
-name: VZD-FHIR-Directory
+name: gematik FHIR Directory
 FSHOnly: true
-title: gematik Directory
+title: gematik FHIR Directory
 status: draft # draft | active | retired | unknown
 version: 0.1.0
 fhirVersion: 4.0.1
