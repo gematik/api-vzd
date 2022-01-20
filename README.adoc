@@ -196,7 +196,7 @@ Eine Organization Ressource kann auch mehrere type Elemente haben.
 
 |*contact.name* _(mustsupport)_
 |Name
-|Der Name des contact Elements
+|Der Name des contact Elements, wie er bei gefundenen Einträgen angezeigt wird
 
 |*contact.telecom.system* _(mustsupport)_
 |
