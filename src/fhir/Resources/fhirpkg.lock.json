@@ -1,8 +1,0 @@
-{
-  "updated": "2022-01-18T10:41:38.11197+01:00",
-  "dependencies": {
-    "de.basisprofil.r4": "1.2.0-alpha3",
-    "hl7.fhir.r4.core": "4.0.1"
-  },
-  "missing": {}
-}
