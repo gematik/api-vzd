@@ -19,4 +19,5 @@ Usage: #example
 Description: "Example of an Organization as to be found in gematik FHIR Directory"
 * identifier[0].type = $v2-0203#PRN
 * identifier[=].system = $IdentifierTelematikID
-* identifier[=].value = "1-123456789"
+* identifier[=].value = "9-2.58.00000040"
+* name = "gematik GmbH"
