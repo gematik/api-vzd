@@ -14,5 +14,5 @@ publisher:
 dependencies:
   de.basisprofil.r4: 
     uri: http://fhir.de/
-    version: 1.2.0
+    version: 1.2.0-alpha3
 
