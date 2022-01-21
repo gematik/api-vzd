@@ -4,6 +4,7 @@ Description: "Profile for the Organization in gematik FHIR Directory"
 * ^url = "https://gematik.de/fhir/directory/StructureDefinition/TIOrganization"
 * ^status = #draft
 * id MS
+* active MS
 * identifier 1..* MS
 * identifier ^slicing.discriminator.type = #pattern
 * identifier ^slicing.discriminator.path = "$this"
@@ -21,3 +22,4 @@ Description: "Example of an Organization as to be found in gematik FHIR Director
 * identifier[=].system = $IdentifierTelematikID
 * identifier[=].value = "9-2.58.00000040"
 * name = "gematik GmbH"
+* active = true
