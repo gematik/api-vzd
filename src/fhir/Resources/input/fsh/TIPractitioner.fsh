@@ -15,14 +15,10 @@ Description: "Profile for the Practitioner in gematik FHIR Directory"
   * system MS
   * value MS
 
-/*
 Instance: TIPractitionerExample001
 InstanceOf: TIPractitioner
 Usage: #example
 Description: "Example of a Practitioner as to be found in gematik FHIR Directory"
 * identifier[0].type = $v2-0203#PRN
-* identifier[=].system = $IdentifierTelematikID
+* identifier[=].system = "http://fhir.de/StructureDefinition/identifier-telematik-id"
 * identifier[=].value = "3-123456789"
-* telecom.url = "matrix:xxx"
-
-*/
