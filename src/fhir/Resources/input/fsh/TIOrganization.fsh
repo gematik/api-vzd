@@ -10,16 +10,17 @@ Description: "Profile for the Organization in gematik FHIR Directory"
 * identifier ^slicing.discriminator.path = "$this"
 * identifier ^slicing.rules = #open
 * identifier contains SliceTelematikID 1..1 MS
-* identifier[SliceTelematikID] only $IdentifierTelematikID
+* identifier[SliceTelematikID] only IdentifierTelematikId
   * ^patternIdentifier.type = $v2-0203#PRN
-  * type 1..
+  * type 1.. MS
+  * system MS
+  * value MS
 
 Instance: TIOrganizationExample001
 InstanceOf: TIOrganization
 Usage: #example
 Description: "Example of an Organization as to be found in gematik FHIR Directory"
-* identifier[0].type = $v2-0203#PRN
-* identifier[=].system = $IdentifierTelematikID
+* identifier[+].system = $IdentifierTelematikID
 * identifier[=].value = "9-2.58.00000040"
 * name = "gematik GmbH"
 * active = true
