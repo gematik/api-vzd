@@ -3,23 +3,24 @@ Parent: Practitioner
 Description: "Profile for the Practitioner in gematik FHIR Directory"
 * ^url = "https://gematik.de/fhir/directory/StructureDefinition/TIPractitioner"
 * ^status = #draft
-* id MS
+* id 1.. MS
+* active 1.. MS
 * identifier 1..* MS
   * ^slicing.discriminator.type = #pattern
   * ^slicing.discriminator.path = "$this"
   * ^slicing.rules = #open
-* identifier contains
-  Versichertennummer-GKV 0..1 MS
-* identifier[Versichertennummer-GKV] only IdentifierKvid10
-  * ^patternIdentifier.type = $identifier-type-de-basis#GKV
+* identifier contains TelematikID 1.. MS
+* identifier[TelematikID] only $IdentifierTelematikID
+  * ^patternIdentifier.type = $v2-0203#PRN
   * type 1.. MS
-  * system MS
-  * value MS
-  
+  * system 1.. MS
+  * value 1.. MS
+
 Instance: TIPractitionerExample001
 InstanceOf: TIPractitioner
 Usage: #example
 Description: "Example of a Practitioner as to be found in gematik FHIR Directory"
-* identifier[0].type = $identifier-type-de-basis#GKV
-* identifier[=].system = "http://fhir.de/sid/gkv/kvid-10"
-* identifier[=].value = "A123456789"
+* id = "TIPractitionerExample001"
+* active = true
+* identifier[+].system = $IdentifierTelematikID
+* identifier[=].value = "3-2.58.00000040"

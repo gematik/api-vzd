@@ -49,6 +49,7 @@
       {
         "id": "Organization.id",
         "path": "Organization.id",
+        "min": 1,
         "mustSupport": true
       },
       {
@@ -67,11 +68,11 @@
         "mustSupport": true
       },
       {
-        "id": "Organization.identifier:SliceTelematikID",
+        "id": "Organization.identifier:TelematikID",
         "path": "Organization.identifier",
-        "sliceName": "SliceTelematikID",
+        "sliceName": "TelematikID",
         "min": 1,
-        "max": "1",
+        "max": "*",
         "type": [
           {
             "code": "Identifier",
@@ -93,29 +94,31 @@
         "mustSupport": true
       },
       {
-        "id": "Organization.identifier:SliceTelematikID.type",
+        "id": "Organization.identifier:TelematikID.type",
         "path": "Organization.identifier.type",
         "min": 1,
         "mustSupport": true
       },
       {
-        "id": "Organization.identifier:SliceTelematikID.system",
+        "id": "Organization.identifier:TelematikID.system",
         "path": "Organization.identifier.system",
         "mustSupport": true
       },
       {
-        "id": "Organization.identifier:SliceTelematikID.value",
+        "id": "Organization.identifier:TelematikID.value",
         "path": "Organization.identifier.value",
         "mustSupport": true
       },
       {
         "id": "Organization.active",
         "path": "Organization.active",
+        "min": 1,
         "mustSupport": true
       },
       {
         "id": "Organization.name",
         "path": "Organization.name",
+        "min": 1,
         "mustSupport": true
       }
     ]

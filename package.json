@@ -5,7 +5,6 @@
   "fhirVersions": [
     "4.0.1"
   ],
-  "canonicals": null,
   "dependencies": {
     "de.basisprofil.r4": "1.2.0"
   }

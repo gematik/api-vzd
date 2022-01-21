@@ -49,6 +49,7 @@
       {
         "id": "Practitioner.id",
         "path": "Practitioner.id",
+        "min": 1,
         "mustSupport": true
       },
       {
@@ -67,16 +68,16 @@
         "mustSupport": true
       },
       {
-        "id": "Practitioner.identifier:Versichertennummer-GKV",
+        "id": "Practitioner.identifier:TelematikID",
         "path": "Practitioner.identifier",
-        "sliceName": "Versichertennummer-GKV",
-        "min": 0,
-        "max": "1",
+        "sliceName": "TelematikID",
+        "min": 1,
+        "max": "*",
         "type": [
           {
             "code": "Identifier",
             "profile": [
-              "http://fhir.de/StructureDefinition/identifier-kvid-10"
+              "http://fhir.de/StructureDefinition/identifier-telematik-id"
             ]
           }
         ],
@@ -84,8 +85,8 @@
           "type": {
             "coding": [
               {
-                "code": "GKV",
-                "system": "http://fhir.de/CodeSystem/identifier-type-de-basis"
+                "code": "PRN",
+                "system": "http://terminology.hl7.org/CodeSystem/v2-0203"
               }
             ]
           }
@@ -93,19 +94,25 @@
         "mustSupport": true
       },
       {
-        "id": "Practitioner.identifier:Versichertennummer-GKV.type",
+        "id": "Practitioner.identifier:TelematikID.type",
         "path": "Practitioner.identifier.type",
         "min": 1,
         "mustSupport": true
       },
       {
-        "id": "Practitioner.identifier:Versichertennummer-GKV.system",
+        "id": "Practitioner.identifier:TelematikID.system",
         "path": "Practitioner.identifier.system",
         "mustSupport": true
       },
       {
-        "id": "Practitioner.identifier:Versichertennummer-GKV.value",
+        "id": "Practitioner.identifier:TelematikID.value",
         "path": "Practitioner.identifier.value",
+        "mustSupport": true
+      },
+      {
+        "id": "Practitioner.active",
+        "path": "Practitioner.active",
+        "min": 1,
         "mustSupport": true
       }
     ]

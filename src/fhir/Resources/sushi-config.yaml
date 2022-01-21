@@ -12,7 +12,4 @@ publisher:
   # email: test@example.org
 
 dependencies:
-  de.basisprofil.r4: 
-    uri: http://fhir.de/
-    version: 1.2.0
-
+  de.basisprofil.r4: 1.2.0
