@@ -20,5 +20,6 @@
       "value": "9-2.58.00000040"
     }
   ],
-  "name": "gematik GmbH"
+  "name": "gematik GmbH",
+  "active": true
 }

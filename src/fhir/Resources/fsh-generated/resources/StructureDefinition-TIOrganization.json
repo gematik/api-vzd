@@ -96,6 +96,11 @@
         "id": "Organization.identifier:SliceTelematikID.type",
         "path": "Organization.identifier.type",
         "min": 1
+      },
+      {
+        "id": "Organization.active",
+        "path": "Organization.active",
+        "mustSupport": true
       }
     ]
   }
