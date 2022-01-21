@@ -5,7 +5,7 @@
   "id": "TIPractitionerQualificationProfessionOidVS",
   "title": "ValueSet of TIPractitioner.Qualification.identifier values",
   "description": "Qualification of TIPractitioner as a ProfessionOID",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "url": "https://gematik.de/fhir/directory/ValueSet/TIPractitionerQualificationProfessionOidVS",
   "expansion": {
     "contains": [

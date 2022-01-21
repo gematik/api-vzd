@@ -6,7 +6,7 @@
   "id": "TIProfessionOidCS",
   "title": "CodeSystem of ProfessionOIDs from gemSpec_OID",
   "description": "The codes for TIOrganization and TIPractitioner types are defined in gemSpec_OID and use a urn notation (urn:oid:[ProfessionOID from gemSpec_OID]). See also https://fachportal.gematik.de/fachportal-import/files/gemSpec_OID_V3.10.0.pdf",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "url": "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS",
   "filter": [
     {
