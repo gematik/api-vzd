@@ -67,16 +67,16 @@
         "mustSupport": true
       },
       {
-        "id": "Practitioner.identifier:SliceTelematikID",
+        "id": "Practitioner.identifier:Versichertennummer-GKV",
         "path": "Practitioner.identifier",
-        "sliceName": "SliceTelematikID",
-        "min": 1,
+        "sliceName": "Versichertennummer-GKV",
+        "min": 0,
         "max": "1",
         "type": [
           {
             "code": "Identifier",
             "profile": [
-              "http://fhir.de/StructureDefinition/identifier-telematik-id"
+              "http://fhir.de/StructureDefinition/identifier-kvid-10"
             ]
           }
         ],
@@ -84,8 +84,8 @@
           "type": {
             "coding": [
               {
-                "code": "PRN",
-                "system": "http://terminology.hl7.org/CodeSystem/v2-0203"
+                "code": "GKV",
+                "system": "http://fhir.de/CodeSystem/identifier-type-de-basis"
               }
             ]
           }
@@ -93,18 +93,18 @@
         "mustSupport": true
       },
       {
-        "id": "Practitioner.identifier:SliceTelematikID.type",
+        "id": "Practitioner.identifier:Versichertennummer-GKV.type",
         "path": "Practitioner.identifier.type",
         "min": 1,
         "mustSupport": true
       },
       {
-        "id": "Practitioner.identifier:SliceTelematikID.system",
+        "id": "Practitioner.identifier:Versichertennummer-GKV.system",
         "path": "Practitioner.identifier.system",
         "mustSupport": true
       },
       {
-        "id": "Practitioner.identifier:SliceTelematikID.value",
+        "id": "Practitioner.identifier:Versichertennummer-GKV.value",
         "path": "Practitioner.identifier.value",
         "mustSupport": true
       }

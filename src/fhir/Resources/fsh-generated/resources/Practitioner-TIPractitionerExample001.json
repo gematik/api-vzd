@@ -11,13 +11,13 @@
       "type": {
         "coding": [
           {
-            "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
-            "code": "PRN"
+            "code": "GKV",
+            "system": "http://fhir.de/CodeSystem/identifier-type-de-basis"
           }
         ]
       },
-      "system": "http://fhir.de/StructureDefinition/identifier-telematik-id",
-      "value": "3-123456789"
+      "system": "http://fhir.de/sid/gkv/kvid-10",
+      "value": "A123456789"
     }
   ]
 }
