@@ -16,6 +16,7 @@ Description: "Profile for the Organization in gematik FHIR Directory"
   * system MS
   * value MS
 
+/*
 Instance: TIOrganizationExample001
 InstanceOf: TIOrganization
 Usage: #example
@@ -24,3 +25,4 @@ Description: "Example of an Organization as to be found in gematik FHIR Director
 * identifier[=].value = "9-2.58.00000040"
 * name = "gematik GmbH"
 * active = true
+*/

@@ -9,10 +9,13 @@ Description: "Profile for the Practitioner in gematik FHIR Directory"
 * identifier ^slicing.discriminator.path = "$this"
 * identifier ^slicing.rules = #open
 * identifier contains SliceTelematikID 1..1 MS
-* identifier[SliceTelematikID] only $IdentifierTelematikID
+* identifier[SliceTelematikID] only IdentifierTelematikId
   * ^patternIdentifier.type = $v2-0203#PRN
-  * type 1..
+  * type 1.. MS
+  * system MS
+  * value MS
 
+/*
 Instance: TIPractitionerExample001
 InstanceOf: TIPractitioner
 Usage: #example
@@ -20,3 +23,6 @@ Description: "Example of a Practitioner as to be found in gematik FHIR Directory
 * identifier[0].type = $v2-0203#PRN
 * identifier[=].system = $IdentifierTelematikID
 * identifier[=].value = "3-123456789"
+* telecom.url = "matrix:xxx"
+
+*/

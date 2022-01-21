@@ -95,7 +95,18 @@
       {
         "id": "Practitioner.identifier:SliceTelematikID.type",
         "path": "Practitioner.identifier.type",
-        "min": 1
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "Practitioner.identifier:SliceTelematikID.system",
+        "path": "Practitioner.identifier.system",
+        "mustSupport": true
+      },
+      {
+        "id": "Practitioner.identifier:SliceTelematikID.value",
+        "path": "Practitioner.identifier.value",
+        "mustSupport": true
       }
     ]
   }
