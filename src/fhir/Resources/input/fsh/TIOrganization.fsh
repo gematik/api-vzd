@@ -5,6 +5,7 @@ Description: "Profile for the Organization in gematik FHIR Directory"
 * ^status = #draft
 * id MS
 * active MS
+* name MS
 * identifier 1..* MS
 * identifier ^slicing.discriminator.type = #pattern
 * identifier ^slicing.discriminator.path = "$this"
