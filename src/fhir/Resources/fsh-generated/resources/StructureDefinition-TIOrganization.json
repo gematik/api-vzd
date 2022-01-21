@@ -112,6 +112,11 @@
         "id": "Organization.active",
         "path": "Organization.active",
         "mustSupport": true
+      },
+      {
+        "id": "Organization.name",
+        "path": "Organization.name",
+        "mustSupport": true
       }
     ]
   }
