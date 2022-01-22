@@ -48,6 +48,7 @@ Description: "Example of an Organization as to be found in gematik FHIR Director
 * address.postalCode = "10117"
 * address.country = "DE"
 * partOf = Reference(280345)
+// Gibt es bedarf an TI/DE-spezifischen Kontakt-Zwecken?
 * contact.purpose = $ContactEntityTypeCS#ADMIN
 * contact.name.text = "gematik ITSM"
 // alternative 1: matrix wird über URL festgestellt
