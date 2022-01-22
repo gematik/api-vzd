@@ -2,11 +2,11 @@ CodeSystem: TIInstitutionTypeOidCS
 Title: "CodeSystem for TI Institutions using OIDs"
 Description: """
 The codes for Institutions based on OIDs defined in gemSpec_OID 
-We use a urn notation (urn:oid:[ProfessionOID from gemSpec_OID]). 
+We use a URN notation (urn:oid:[ProfessionOID from gemSpec_OID]). 
 See also https://fachportal.gematik.de/fachportal-import/files/gemSpec_OID_V3.10.0.pdf
 """
 * insert Meta
-* ^content = #fragment
+* ^content = #complete
 * #urn:oid:1.2.276.0.76.4.50 "Betriebsstätte Arzt"
 * #urn:oid:1.2.276.0.76.4.51 "Zahnarztpraxis"
 * #urn:oid:1.2.276.0.76.4.52 "Betriebsstätte Psychotherapeut"
@@ -55,18 +55,6 @@ See also https://fachportal.gematik.de/fachportal-import/files/gemSpec_OID_V3.10
 * #urn:oid:1.2.276.0.76.4.269 "Betriebsstätte Register für Gesundheitsdaten"
 * #urn:oid:1.2.276.0.76.4.270 "Betriebsstätte Abrechnungsdienstleister"
 * #urn:oid:1.2.276.0.76.4.271 "Betriebsstätte PKV-Verband"
-
-/*
-* ^expansion.contains[+].system = "https://gematik.de/fhir/directory/CodeSystem/TIOrganizationTypeCS"
-* #urn:ti-organization:tim-provider
-"TI-Messenger-Provider"
-* ^expansion.contains[+].system = "https://gematik.de/fhir/directory/CodeSystem/TIOrganizationTypeCS"
-* #urn:ti-organization:kim-provider
-"KIM-Provider"
-* ^expansion.contains[+].system = "https://gematik.de/fhir/directory/CodeSystem/TIOrganizationTypeCS"
-* #urn:ti-organization:card-issuer
-"Kartenherausgeber"
-*/
 
 /*
 * ^url = "https://gematik.de/fhir/directory/CodeSystem/TIProfessionOidCS"

@@ -1,7 +1,7 @@
 {
   "resourceType": "CodeSystem",
   "status": "draft",
-  "content": "fragment",
+  "content": "complete",
   "name": "TIProviderTypeCS",
   "id": "TIProviderTypeCS",
   "description": "CodeSystem of TI Service Provider types as to be found in the gematik FHIR Directory",
@@ -25,5 +25,6 @@
       "display": "Identity Provider"
     }
   ],
-  "publisher": "gematik GmbH"
+  "publisher": "gematik GmbH",
+  "count": 4
 }

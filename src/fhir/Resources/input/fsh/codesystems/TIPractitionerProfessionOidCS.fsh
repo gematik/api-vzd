@@ -2,9 +2,11 @@ CodeSystem: TIPractitionerProfessionOidCS
 Title: "CodeSystem for TI Institutions"
 Description: """
 The codes for Institutions based on OIDs defined in gemSpec_OID 
-We use a urn notation (urn:oid:[ProfessionOID from gemSpec_OID]). 
+We use a URN notation (urn:oid:[ProfessionOID from gemSpec_OID]). 
 See also https://fachportal.gematik.de/fachportal-import/files/gemSpec_OID_V3.10.0.pdf
 """
+* insert Meta
+* ^content = #complete
 * #urn:oid:1.2.276.0.76.4.30 "Ärztin/Arzt"
 * #urn:oid:1.2.276.0.76.4.31 "Zahnärztin/Zahnarzt"
 * #urn:oid:1.2.276.0.76.4.32 "Apotheker/-in"
