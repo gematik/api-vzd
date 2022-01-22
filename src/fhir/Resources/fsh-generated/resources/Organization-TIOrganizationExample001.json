@@ -68,6 +68,18 @@
         {
           "system": "url",
           "value": "matrix:u/gematik-itsm:gematik.de"
+        },
+        {
+          "system": "matrix",
+          "value": "matrix:u/gematik-itsm:gematik.de"
+        },
+        {
+          "system": "email",
+          "value": "gematik006@xxx.kim.telematik"
+        },
+        {
+          "system": "kim",
+          "value": "gematik006@xxx.kim.telematik"
         }
       ]
     }

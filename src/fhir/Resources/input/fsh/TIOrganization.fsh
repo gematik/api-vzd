@@ -50,5 +50,15 @@ Description: "Example of an Organization as to be found in gematik FHIR Director
 * partOf = Reference(280345)
 * contact.purpose = $ContactEntityTypeCS#ADMIN
 * contact.name.text = "gematik ITSM"
-* contact.telecom.system = $ContactPointSystem#url
-* contact.telecom.value = "matrix:u/gematik-itsm:gematik.de"
+// alternative 1: matrix wird über URL festgestellt
+* contact.telecom[+].system = $ContactPointSystemCS#url
+* contact.telecom[=].value = "matrix:u/gematik-itsm:gematik.de"
+// alternative 2: ti-messenger ist eigener code
+* contact.telecom[+].system = TIContactPointSystemCS#matrix
+* contact.telecom[=].value = "matrix:u/gematik-itsm:gematik.de"
+// alternative 1: KIM Adresse ist "email"
+* contact.telecom[+].system = $ContactPointSystemCS#email
+* contact.telecom[=].value = "gematik006@xxx.kim.telematik"
+// alternative 2: KIM Adresse ist eigener code und dadurch kollidiert nicht mit "normalen" email
+* contact.telecom[+].system = TIContactPointSystemCS#kim
+* contact.telecom[=].value = "gematik006@xxx.kim.telematik"
