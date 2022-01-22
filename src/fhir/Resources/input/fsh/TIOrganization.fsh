@@ -28,7 +28,7 @@ Usage: #example
 Description: "Example of an Organization as to be found in gematik FHIR Directory"
 * identifier[+].system = $IdentifierTelematikID
 * identifier[=].value = "9-2.58.00000040"
-* type = TIInstitutionTypeOidCS#urn:oid:1.2.276.0.76.4.58
+* type = TIInstitutionTypeOidCS#urn:oid:1.2.276.0.76.458
 * name = "gematik GmbH"
 * active = true
 * alias = "gematik"
