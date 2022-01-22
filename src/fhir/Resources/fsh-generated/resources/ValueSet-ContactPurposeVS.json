@@ -1,0 +1,18 @@
+{
+  "resourceType": "ValueSet",
+  "status": "draft",
+  "name": "ContactPurposeVS",
+  "id": "ContactPurposeVS",
+  "title": "Code for the contact purpose",
+  "description": "Code for the contact purpose",
+  "version": "0.4.0",
+  "url": "https://gematik.de/fhir/directory/ValueSet/ContactPurposeVS",
+  "publisher": "gematik GmbH",
+  "compose": {
+    "include": [
+      {
+        "system": "http://terminology.hl7.org/CodeSystem/contactentity-type"
+      }
+    ]
+  }
+}

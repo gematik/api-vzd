@@ -47,5 +47,29 @@
       "postalCode": "10117",
       "country": "DE"
     }
+  ],
+  "partOf": {
+    "reference": "280345"
+  },
+  "contact": [
+    {
+      "purpose": {
+        "coding": [
+          {
+            "code": "ADMIN",
+            "system": "http://terminology.hl7.org/CodeSystem/contactentity-type"
+          }
+        ]
+      },
+      "name": {
+        "text": "gematik ITSM"
+      },
+      "telecom": [
+        {
+          "system": "url",
+          "value": "matrix:u/gematik-itsm:gematik.de"
+        }
+      ]
+    }
   ]
 }

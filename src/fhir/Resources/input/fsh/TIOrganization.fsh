@@ -2,7 +2,6 @@ Profile: TIOrganization
 Parent: Organization
 Description: "Profile for the Organization in gematik FHIR Directory"
 * insert Meta
-* ^url = "https://gematik.de/fhir/directory/StructureDefinition/TIOrganization"
 * id 1..1 MS
 * active 1..1 MS
 * name 1..1 MS
@@ -16,11 +15,20 @@ Description: "Profile for the Organization in gematik FHIR Directory"
   * type 1..1 MS
   * system 1..1 MS
   * value 1..1 MS
-* type from TIOrganizationTypeVS (required)
+* type 1..* MS
+* type from TIOrganizationTypeVS
+/*
+* type ^slicing.discriminator.type = #pattern
+* type ^slicing.discriminator.path = "$this"
+* type ^slicing.rules = #open
+* type contains TIOrganizationType 1..1 MS
+* type[TIOrganizationType] from TIOrganizationTypeVS
+*/
 * alias 1..1 MS
 * address MS
 * partOf 0..1 MS
 * contact MS
+* contact.purpose from TIOrganizationTypeVS
 
 Instance: TIOrganizationExample001
 InstanceOf: TIOrganization
@@ -39,10 +47,8 @@ Description: "Example of an Organization as to be found in gematik FHIR Director
 * address.state = "Berlin"
 * address.postalCode = "10117"
 * address.country = "DE"
-/*
-* partOf = "280345"
-* contact.purpose = "ITSM-RFC"
-* contact.name = "gematik ITSM"
-* contact.telecom.system = "url"
+* partOf = Reference(280345)
+* contact.purpose = $ContactEntityTypeCS#ADMIN
+* contact.name.text = "gematik ITSM"
+* contact.telecom.system = $ContactPointSystem#url
 * contact.telecom.value = "matrix:u/gematik-itsm:gematik.de"
-*/

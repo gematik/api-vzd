@@ -12,7 +12,7 @@
     }
   ],
   "url": "https://gematik.de/fhir/directory/StructureDefinition/TIPractitioner",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "name": "TIPractitioner",
   "status": "draft",
   "description": "Profile for the Practitioner in gematik FHIR Directory",

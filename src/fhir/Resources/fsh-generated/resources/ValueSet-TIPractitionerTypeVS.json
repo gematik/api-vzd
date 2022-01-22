@@ -5,7 +5,7 @@
   "id": "TIPractitionerTypeVS",
   "title": "Type of Practitoner",
   "description": "ValueSet of all Practitoner types in the gematik FHIR Directory",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "url": "https://gematik.de/fhir/directory/ValueSet/TIPractitionerTypeVS",
   "publisher": "gematik GmbH",
   "compose": {

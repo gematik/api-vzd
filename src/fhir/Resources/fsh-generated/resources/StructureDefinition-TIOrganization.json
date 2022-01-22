@@ -12,7 +12,7 @@
     }
   ],
   "url": "https://gematik.de/fhir/directory/StructureDefinition/TIOrganization",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "name": "TIOrganization",
   "status": "draft",
   "publisher": "gematik GmbH",
@@ -119,6 +119,8 @@
       {
         "id": "Organization.type",
         "path": "Organization.type",
+        "min": 1,
+        "mustSupport": true,
         "binding": {
           "strength": "required",
           "valueSet": "https://gematik.de/fhir/directory/ValueSet/TIOrganizationTypeVS"
@@ -151,6 +153,14 @@
         "id": "Organization.contact",
         "path": "Organization.contact",
         "mustSupport": true
+      },
+      {
+        "id": "Organization.contact.purpose",
+        "path": "Organization.contact.purpose",
+        "binding": {
+          "strength": "required",
+          "valueSet": "https://gematik.de/fhir/directory/ValueSet/TIOrganizationTypeVS"
+        }
       }
     ]
   }

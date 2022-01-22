@@ -4,7 +4,7 @@ name: gematik FHIR Directory
 FSHOnly: true
 title: gematik FHIR Directory
 status: draft # draft | active | retired | unknown
-version: 0.3.0
+version: 0.4.0
 fhirVersion: 4.0.1
 publisher:
   name: gematik GmbH
