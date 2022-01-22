@@ -1,0 +1,29 @@
+{
+  "resourceType": "CodeSystem",
+  "status": "draft",
+  "content": "fragment",
+  "name": "TIProviderTypeCS",
+  "id": "TIProviderTypeCS",
+  "description": "CodeSystem of TI Service Provider types as to be found in the gematik FHIR Directory",
+  "version": "0.3.0",
+  "url": "https://gematik.de/fhir/directory/CodeSystem/TIProviderTypeCS",
+  "concept": [
+    {
+      "code": "urn:ti-provider:tim-provider",
+      "display": "TI-Messenger-Provider"
+    },
+    {
+      "code": "urn:ti-provider:kim-provider",
+      "display": "KIM-Provider"
+    },
+    {
+      "code": "urn:ti-provider:card-issuer",
+      "display": "Kartenherausgeber"
+    },
+    {
+      "code": "urn:ti-provider:identity-provider",
+      "display": "Identity Provider"
+    }
+  ],
+  "publisher": "gematik GmbH"
+}

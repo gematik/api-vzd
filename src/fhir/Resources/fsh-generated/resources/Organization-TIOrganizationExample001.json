@@ -20,6 +20,32 @@
       "value": "9-2.58.00000040"
     }
   ],
+  "type": [
+    {
+      "coding": [
+        {
+          "code": "urn:oid:1.2.276.0.76.4.5",
+          "system": "https://gematik.de/fhir/directory/CodeSystem/TIInstitutionTypeOidCS"
+        }
+      ]
+    }
+  ],
+  "name": "gematik GmbH",
   "active": true,
-  "name": "gematik GmbH"
+  "alias": [
+    "gematik"
+  ],
+  "address": [
+    {
+      "text": "gematik GmbH, Friedrichstr. 136, 10117 Berlin",
+      "line": [
+        "Friedrichstr. 136"
+      ],
+      "city": "Berlin",
+      "district": "Mitte",
+      "state": "Berlin",
+      "postalCode": "10117",
+      "country": "DE"
+    }
+  ]
 }

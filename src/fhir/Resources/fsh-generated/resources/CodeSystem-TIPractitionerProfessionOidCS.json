@@ -1,0 +1,138 @@
+{
+  "resourceType": "CodeSystem",
+  "status": "active",
+  "content": "complete",
+  "name": "TIPractitionerProfessionOidCS",
+  "id": "TIPractitionerProfessionOidCS",
+  "title": "CodeSystem for TI Institutions",
+  "description": "The codes for Institutions based on OIDs defined in gemSpec_OID \nWe use a urn notation (urn:oid:[ProfessionOID from gemSpec_OID]). \nSee also https://fachportal.gematik.de/fachportal-import/files/gemSpec_OID_V3.10.0.pdf",
+  "version": "0.3.0",
+  "url": "https://gematik.de/fhir/directory/CodeSystem/TIPractitionerProfessionOidCS",
+  "concept": [
+    {
+      "code": "urn:oid:1.2.276.0.76.4.30",
+      "display": "Ärztin/Arzt"
+    },
+    {
+      "code": "urn:oid:1.2.276.0.76.4.31",
+      "display": "Zahnärztin/Zahnarzt"
+    },
+    {
+      "code": "urn:oid:1.2.276.0.76.4.32",
+      "display": "Apotheker/-in"
+    },
+    {
+      "code": "urn:oid:1.2.276.0.76.4.33",
+      "display": "Apothekerassistent/-in"
+    },
+    {
+      "code": "urn:oid:1.2.276.0.76.4.34",
+      "display": "Pharmazieingenieur/-in"
+    },
+    {
+      "code": "urn:oid:1.2.276.0.76.4.35",
+      "display": "pharmazeutisch-technische/-r Assistent/-in"
+    },
+    {
+      "code": "urn:oid:1.2.276.0.76.4.36",
+      "display": "pharmazeutisch-kaufmännische/-r Angestellte"
+    },
+    {
+      "code": "urn:oid:1.2.276.0.76.4.37",
+      "display": "Apothekenhelfer/-in"
+    },
+    {
+      "code": "urn:oid:1.2.276.0.76.4.38",
+      "display": "Apothekenassistent/-in"
+    },
+    {
+      "code": "urn:oid:1.2.276.0.76.4.39",
+      "display": "Pharmazeutische/-r Assistent/-in"
+    },
+    {
+      "code": "urn:oid:1.2.276.0.76.4.40",
+      "display": "Apothekenfacharbeiter/-in"
+    },
+    {
+      "code": "urn:oid:1.2.276.0.76.4.41",
+      "display": "Pharmaziepraktikant/-in"
+    },
+    {
+      "code": "urn:oid:1.2.276.0.76.4.42",
+      "display": "Stud.pharm. oder Famulant/-in"
+    },
+    {
+      "code": "urn:oid:1.2.276.0.76.4.43",
+      "display": "PTA-Praktikant/-in"
+    },
+    {
+      "code": "urn:oid:1.2.276.0.76.4.44",
+      "display": "PKA Auszubildende/-r"
+    },
+    {
+      "code": "urn:oid:1.2.276.0.76.4.45",
+      "display": "Psychotherapeut/-in"
+    },
+    {
+      "code": "urn:oid:1.2.276.0.76.4.46",
+      "display": "Psychologische/-r Psychotherapeut/-in"
+    },
+    {
+      "code": "urn:oid:1.2.276.0.76.4.47",
+      "display": "Kinder- und Jugendlichenpsychotherapeut/-in"
+    },
+    {
+      "code": "urn:oid:1.2.276.0.76.4.48",
+      "display": "Rettungsassistent/-in"
+    },
+    {
+      "code": "urn:oid:1.2.276.0.76.4.49",
+      "display": "Versicherte/-r"
+    },
+    {
+      "code": "urn:oid:1.2.276.0.76.4.178",
+      "display": "Notfallsanitäter/-in"
+    },
+    {
+      "code": "urn:oid:1.2.276.0.76.4.232",
+      "display": "Gesundheits- und Krankenpfleger/-in, Gesundheits- und Kinderkrankenpfleger/-in"
+    },
+    {
+      "code": "urn:oid:1.2.276.0.76.4.233",
+      "display": "Altenpfleger/-in"
+    },
+    {
+      "code": "urn:oid:1.2.276.0.76.4.234",
+      "display": "Pflegefachfrauen und Pflegefachmänner"
+    },
+    {
+      "code": "urn:oid:1.2.276.0.76.4.235",
+      "display": "Hebamme"
+    },
+    {
+      "code": "urn:oid:1.2.276.0.76.4.236",
+      "display": "Physiotherapeut/-in"
+    },
+    {
+      "code": "urn:oid:1.2.276.0.76.4.237",
+      "display": "Augenoptiker/-in und Optometrist/-in"
+    },
+    {
+      "code": "urn:oid:1.2.276.0.76.4.238",
+      "display": "Hörakustiker/-in"
+    },
+    {
+      "code": "urn:oid:1.2.276.0.76.4.239",
+      "display": "Orthopädieschuhmacher/-in"
+    },
+    {
+      "code": "urn:oid:1.2.276.0.76.4.240",
+      "display": "Orthopädietechniker/-in"
+    },
+    {
+      "code": "urn:oid:1.2.276.0.76.4.241",
+      "display": "Zahntechniker/-in"
+    }
+  ],
+  "count": 31
+}
