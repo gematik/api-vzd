@@ -159,8 +159,24 @@
         "path": "Organization.contact.purpose",
         "binding": {
           "strength": "required",
-          "valueSet": "https://gematik.de/fhir/directory/ValueSet/TIOrganizationTypeVS"
+          "valueSet": "http://terminology.hl7.org/ValueSet/contactentity-type"
         }
+      },
+      {
+        "id": "Organization.contact.telecom.extension:certificate",
+        "path": "Organization.contact.telecom.extension",
+        "sliceName": "certificate",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "https://gematik.de/fhir/directory/StructureDefinition/X509Certificate"
+            ]
+          }
+        ],
+        "mustSupport": true
       }
     ]
   }

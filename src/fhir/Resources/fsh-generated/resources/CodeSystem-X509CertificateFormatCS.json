@@ -1,0 +1,22 @@
+{
+  "resourceType": "CodeSystem",
+  "status": "draft",
+  "content": "complete",
+  "name": "X509CertificateFormatCS",
+  "id": "X509CertificateFormatCS",
+  "title": "Codes for X509Certificate encoding formats",
+  "version": "0.4.0",
+  "url": "https://gematik.de/fhir/directory/CodeSystem/X509CertificateFormatCS",
+  "concept": [
+    {
+      "code": "der",
+      "display": "DER with Base64"
+    },
+    {
+      "code": "pem",
+      "display": "PEM as string"
+    }
+  ],
+  "publisher": "gematik GmbH",
+  "count": 2
+}
