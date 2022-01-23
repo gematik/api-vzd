@@ -38,10 +38,10 @@ jobs:
           SIMPLIFIER_USERNAME: ${{ secrets.SIMPLIFIER_USERNAME }}
           SIMPLIFIER_PASSWORD: ${{ secrets.SIMPLIFIER_PASSWORD }}
           SUSHI_ENABLED: true
-          SUSHI_OPTIONS: src/fhir/Resources/
+          SUSHI_OPTIONS: src/fhir/
           EXPECTED_FAILS: VALIDATION_CONFORMANCE_DOTNET VALIDATION_CONFORMANCE_JAVA VALIDATION_EXAMPLES_JAVA
 
       - name: Add & Commit
         uses: EndBug/add-and-commit@v7
         with:
-          add: 'src/fhir/Resources/fsh-generated/resources/'
+          add: 'src/fhir/fsh-generated/resources/'
