@@ -22,7 +22,7 @@ Description: "Profile for the Organization in gematik FHIR Directory"
 * partOf 0..1 MS
 * contact MS
 * contact.purpose from $ContactEntityTypeVS
-* contact.telecom.extension contains X509Certificate named certificate 0..1 MS
+* contact.telecom.extension contains X509Certificate named certificate 0..* MS
 
 Instance: TIOrganizationExample001
 InstanceOf: TIOrganization
