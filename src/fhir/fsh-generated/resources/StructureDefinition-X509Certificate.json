@@ -4,7 +4,6 @@
   "url": "https://gematik.de/fhir/directory/StructureDefinition/X509Certificate",
   "version": "0.4.0",
   "name": "X509Certificate",
-  "title": "X.509 certificate",
   "status": "draft",
   "publisher": "gematik GmbH",
   "description": "General purpose extension to provide X.509 certificates as part of a resource",
@@ -32,7 +31,6 @@
       {
         "id": "Extension",
         "path": "Extension",
-        "short": "X.509 certificate",
         "definition": "General purpose extension to provide X.509 certificates as part of a resource"
       },
       {
