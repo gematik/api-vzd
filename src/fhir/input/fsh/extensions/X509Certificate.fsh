@@ -1,20 +1,17 @@
 CodeSystem: X509CertificateFormatCS
-Title: "Codes for X509Certificate encoding formats"
-Description: """"""
+Description: "Codes for X509Certificate encoding formats"
 * insert Meta
 * ^content = #complete
 * #der "DER with Base64"
 * #pem "PEM as string"
 
 ValueSet: X509CertificateFormatVS
-Title: "Encoding format for X.509 certificate"
 Description: "Encoding format for X.509 certificate"
 * insert Meta
 * include codes from system X509CertificateFormatCS
 
 Extension: X509Certificate
 Id: X509Certificate
-Title: "X.509 certificate"
 Description: "General purpose extension to provide X.509 certificates as part of a resource"
 * insert Meta
 * extension contains
