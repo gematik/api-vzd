@@ -1,0 +1,29 @@
+@startuml
+
+!include gematik-skin.puml
+title Architekturübersicht gematik FHIR Directory
+
+frame "Internet" {
+  [n1]
+}
+
+frame "VZD Provider" {
+  package "VZD-LDAP-Directory (VZD 1.0)"{
+    [OAuth] 
+    [VZD-Service] as LDAP_Admin_Service
+    [LDAP-Directory] as LDAP_Master
+    [LDAP-Directory (flache Liste)] as LDAP_Flat
+  }
+  package "VZD-FHIR-Directory (VZD 2.0)"{
+    [FHIR-Proxy] 
+    [FHIR-Directory]
+    [PASSporT-Service]
+  }
+}
+
+frame "Zentrales Netz" {
+  [n3]
+}
+
+
+@enduml
