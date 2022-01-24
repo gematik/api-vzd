@@ -12,6 +12,9 @@
     "include": [
       {
         "system": "https://gematik.de/fhir/directory/CodeSystem/TIInstitutionTypeOidCS"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIProviderTypeCS"
       }
     ]
   }
