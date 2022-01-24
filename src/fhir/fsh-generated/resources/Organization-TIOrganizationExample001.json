@@ -81,5 +81,10 @@
   ],
   "partOf": {
     "reference": "280345"
-  }
+  },
+  "endpoint": [
+    {
+      "reference": "Endpoint/TIOrganizationExample001-Endpoint-KIM"
+    }
+  ]
 }

@@ -24,6 +24,16 @@ Description: "Profile for the Organization in gematik FHIR Directory"
 * contact.purpose from $ContactEntityTypeVS
 * contact.telecom.extension contains X509CertificatePEM named certificate 0..* MS
 
+Instance: TIOrganizationExample001-Endpoint-KIM
+InstanceOf: Endpoint
+Usage: #example
+Description: """
+"""
+* status = #active
+* connectionType = #secure-email
+* payloadType = #urn:ihe:pcc:xphr:2007
+* address = "mailto:gematik006@xxx.kim.telematik"
+
 Instance: TIOrganizationExample001
 InstanceOf: TIOrganization
 Usage: #example
@@ -70,3 +80,4 @@ A2HRSa+kuBgvRe/Ts+juMfvm6HT9hD+zX1KKCxejoCYzthJ7Dm3zBk5dUaNUXKzC
 PB/fbtfleMpbrN1Y3wpPcXDuWrPYcer8WGvs18ru
 -----END CERTIFICATE-----
 """
+* endpoint[+] = Reference(TIOrganizationExample001-Endpoint-KIM)

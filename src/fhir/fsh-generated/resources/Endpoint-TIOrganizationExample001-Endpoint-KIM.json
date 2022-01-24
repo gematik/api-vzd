@@ -1,0 +1,18 @@
+{
+  "resourceType": "Endpoint",
+  "id": "TIOrganizationExample001-Endpoint-KIM",
+  "status": "active",
+  "connectionType": {
+    "code": "secure-email"
+  },
+  "payloadType": [
+    {
+      "coding": [
+        {
+          "code": "urn:ihe:pcc:xphr:2007"
+        }
+      ]
+    }
+  ],
+  "address": "mailto:gematik006@xxx.kim.telematik"
+}
