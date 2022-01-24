@@ -6,7 +6,7 @@
   "id": "TIPractitionerProfessionOidCS",
   "title": "CodeSystem for TI Institutions",
   "description": "The codes for Institutions based on OIDs defined in gemSpec_OID \nWe use a URN notation (urn:oid:[ProfessionOID from gemSpec_OID]). \nSee also https://fachportal.gematik.de/fachportal-import/files/gemSpec_OID_V3.10.0.pdf",
-  "version": "0.4.0",
+  "version": "0.5.0-wip",
   "url": "https://gematik.de/fhir/directory/CodeSystem/TIPractitionerProfessionOidCS",
   "concept": [
     {

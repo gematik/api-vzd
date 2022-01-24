@@ -2,7 +2,7 @@
   "resourceType": "StructureDefinition",
   "id": "X509Certificate",
   "url": "https://gematik.de/fhir/directory/StructureDefinition/X509Certificate",
-  "version": "0.4.0",
+  "version": "0.5.0-wip",
   "name": "X509Certificate",
   "status": "draft",
   "publisher": "gematik GmbH",

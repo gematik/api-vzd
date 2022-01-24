@@ -5,7 +5,7 @@
   "name": "X509CertificateFormatCS",
   "id": "X509CertificateFormatCS",
   "description": "Codes for X509Certificate encoding formats",
-  "version": "0.4.0",
+  "version": "0.5.0-wip",
   "url": "https://gematik.de/fhir/directory/CodeSystem/X509CertificateFormatCS",
   "concept": [
     {
