@@ -30,7 +30,7 @@
         {
           "extension": [
             {
-              "url": "https://gematik.de/fhir/directory/StructureDefinition/X509Certificate",
+              "url": "https://gematik.de/fhir/directory/StructureDefinition/X509CertificatePEM",
               "valueString": "-----BEGIN CERTIFICATE-----\nMIIC6jCCAksCCQCwBVjloct7dDAKBggqhkjOPQQDAjCBuDELMAkGA1UEBhMCREUx\nDzANBgNVBAgMBkJlcmxpbjEPMA0GA1UEBwwGQmVybGluMRUwEwYDVQQKDAxnZW1h\ndGlrIEdtYkgxHDAaBgNVBAsME1N5c3RlbXMgRW5naW5lZXJpbmcxJTAjBgNVBAMM\nHGdlbWF0aWswMDZAeHh4LmtpbS50ZWxlbWF0aWsxKzApBgkqhkiG9w0BCQEWHGdl\nbWF0aWswMDZAeHh4LmtpbS50ZWxlbWF0aWswHhcNMjIwMTI0MTcxMDU0WhcNMzEx\nMjAzMTcxMDU0WjCBuDELMAkGA1UEBhMCREUxDzANBgNVBAgMBkJlcmxpbjEPMA0G\nA1UEBwwGQmVybGluMRUwEwYDVQQKDAxnZW1hdGlrIEdtYkgxHDAaBgNVBAsME1N5\nc3RlbXMgRW5naW5lZXJpbmcxJTAjBgNVBAMMHGdlbWF0aWswMDZAeHh4LmtpbS50\nZWxlbWF0aWsxKzApBgkqhkiG9w0BCQEWHGdlbWF0aWswMDZAeHh4LmtpbS50ZWxl\nbWF0aWswgZswEAYHKoZIzj0CAQYFK4EEACMDgYYABABD6IbJvLbm+Q+QwKRg5L+Q\n399OYMyBQENdX4K1k8esIK2eFynSrTW9T9QKnlUpGJ6JoyqR7AII6MS5yJHwqBir\nwQHHTaDrmPmACYW93nQ0uuNRA3C62AthKdLHFnC0kkfu99R7bszB3vvoLQCDHRj+\n4cmxVmSI9oEPRnPM3IeRxL8I0zAKBggqhkjOPQQDAgOBjAAwgYgCQgHbg/d3J7Z9\nA2HRSa+kuBgvRe/Ts+juMfvm6HT9hD+zX1KKCxejoCYzthJ7Dm3zBk5dUaNUXKzC\n1y2mJttRWIE9YgJCAVV0nLIIl0Qf2akSkQS+bS3/ZtsN3hdFVhUknDIASfGDEeH7\nPB/fbtfleMpbrN1Y3wpPcXDuWrPYcer8WGvs18ru\n-----END CERTIFICATE-----"
             }
           ],

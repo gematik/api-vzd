@@ -1,5 +1,5 @@
 Extension: X509CertificatePEM
-Id: X509Certificate
+Id: X509CertificatePEM
 Description: """
 General purpose extension to provide X.509 certificates as part of a resource
 The certificate is specified as PEM-String.

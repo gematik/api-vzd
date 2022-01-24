@@ -161,22 +161,6 @@
           "strength": "required",
           "valueSet": "http://terminology.hl7.org/ValueSet/contactentity-type"
         }
-      },
-      {
-        "id": "Organization.contact.telecom.extension:certificate",
-        "path": "Organization.contact.telecom.extension",
-        "sliceName": "certificate",
-        "min": 0,
-        "max": "*",
-        "type": [
-          {
-            "code": "Extension",
-            "profile": [
-              "https://gematik.de/fhir/directory/StructureDefinition/X509Certificate"
-            ]
-          }
-        ],
-        "mustSupport": true
       }
     ]
   }
