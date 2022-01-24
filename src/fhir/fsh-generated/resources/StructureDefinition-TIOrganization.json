@@ -177,6 +177,22 @@
           }
         ],
         "mustSupport": true
+      },
+      {
+        "id": "Organization.endpoint.extension:certificate",
+        "path": "Organization.endpoint.extension",
+        "sliceName": "certificate",
+        "min": 0,
+        "max": "*",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "https://gematik.de/fhir/directory/StructureDefinition/X509CertificatePEM"
+            ]
+          }
+        ],
+        "mustSupport": true
       }
     ]
   }

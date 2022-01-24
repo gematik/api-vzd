@@ -23,6 +23,7 @@ Description: "Profile for the Organization in gematik FHIR Directory"
 * contact MS
 * contact.purpose from $ContactEntityTypeVS
 * contact.telecom.extension contains X509CertificatePEM named certificate 0..* MS
+* endpoint.extension contains X509CertificatePEM named certificate 0..* MS
 
 Instance: TIOrganizationExample001-Endpoint-KIM
 InstanceOf: Endpoint
@@ -33,7 +34,26 @@ Description: """
 * connectionType = #secure-email
 * payloadType = #urn:ihe:pcc:xphr:2007
 * address = "mailto:gematik006@xxx.kim.telematik"
-
+* extension[X509CertificatePEM].valueString = """
+-----BEGIN CERTIFICATE-----
+MIIC6jCCAksCCQCwBVjloct7dDAKBggqhkjOPQQDAjCBuDELMAkGA1UEBhMCREUx
+DzANBgNVBAgMBkJlcmxpbjEPMA0GA1UEBwwGQmVybGluMRUwEwYDVQQKDAxnZW1h
+dGlrIEdtYkgxHDAaBgNVBAsME1N5c3RlbXMgRW5naW5lZXJpbmcxJTAjBgNVBAMM
+HGdlbWF0aWswMDZAeHh4LmtpbS50ZWxlbWF0aWsxKzApBgkqhkiG9w0BCQEWHGdl
+bWF0aWswMDZAeHh4LmtpbS50ZWxlbWF0aWswHhcNMjIwMTI0MTcxMDU0WhcNMzEx
+MjAzMTcxMDU0WjCBuDELMAkGA1UEBhMCREUxDzANBgNVBAgMBkJlcmxpbjEPMA0G
+A1UEBwwGQmVybGluMRUwEwYDVQQKDAxnZW1hdGlrIEdtYkgxHDAaBgNVBAsME1N5
+c3RlbXMgRW5naW5lZXJpbmcxJTAjBgNVBAMMHGdlbWF0aWswMDZAeHh4LmtpbS50
+ZWxlbWF0aWsxKzApBgkqhkiG9w0BCQEWHGdlbWF0aWswMDZAeHh4LmtpbS50ZWxl
+bWF0aWswgZswEAYHKoZIzj0CAQYFK4EEACMDgYYABABD6IbJvLbm+Q+QwKRg5L+Q
+399OYMyBQENdX4K1k8esIK2eFynSrTW9T9QKnlUpGJ6JoyqR7AII6MS5yJHwqBir
+wQHHTaDrmPmACYW93nQ0uuNRA3C62AthKdLHFnC0kkfu99R7bszB3vvoLQCDHRj+
+4cmxVmSI9oEPRnPM3IeRxL8I0zAKBggqhkjOPQQDAgOBjAAwgYgCQgHbg/d3J7Z9
+A2HRSa+kuBgvRe/Ts+juMfvm6HT9hD+zX1KKCxejoCYzthJ7Dm3zBk5dUaNUXKzC
+1y2mJttRWIE9YgJCAVV0nLIIl0Qf2akSkQS+bS3/ZtsN3hdFVhUknDIASfGDEeH7
+PB/fbtfleMpbrN1Y3wpPcXDuWrPYcer8WGvs18ru
+-----END CERTIFICATE-----
+"""
 Instance: TIOrganizationExample001
 InstanceOf: TIOrganization
 Usage: #example
