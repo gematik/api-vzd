@@ -1,0 +1,78 @@
+{
+  "resourceType": "CodeSystem",
+  "status": "draft",
+  "content": "complete",
+  "name": "BundeslaenderCS",
+  "id": "BundeslaenderCS",
+  "title": "Codes für deutsche Bundesländer",
+  "version": "0.5.0-wip",
+  "url": "https://gematik.de/fhir/directory/CodeSystem/BundeslaenderCS",
+  "concept": [
+    {
+      "code": "BW",
+      "display": "Baden-Württemberg"
+    },
+    {
+      "code": "BY",
+      "display": "Bayern"
+    },
+    {
+      "code": "BE",
+      "display": "Berlin"
+    },
+    {
+      "code": "BB",
+      "display": "Brandenburg"
+    },
+    {
+      "code": "HB",
+      "display": "Bremen"
+    },
+    {
+      "code": "HH",
+      "display": "Hamburg"
+    },
+    {
+      "code": "HE",
+      "display": "Hessen"
+    },
+    {
+      "code": "MV",
+      "display": "Mecklenburg-Vorpommern"
+    },
+    {
+      "code": "NI",
+      "display": "Niedersachsen"
+    },
+    {
+      "code": "NW",
+      "display": "Nordrhein-Westfalen"
+    },
+    {
+      "code": "RP",
+      "display": "Rheinland-Pfalz"
+    },
+    {
+      "code": "SL",
+      "display": "Saarland"
+    },
+    {
+      "code": "SN",
+      "display": "Sachsen"
+    },
+    {
+      "code": "ST",
+      "display": "Sachsen-Anhalt"
+    },
+    {
+      "code": "SH",
+      "display": "Schleswig-Holstein"
+    },
+    {
+      "code": "TH",
+      "display": "Thüringen"
+    }
+  ],
+  "publisher": "gematik GmbH",
+  "count": 16
+}

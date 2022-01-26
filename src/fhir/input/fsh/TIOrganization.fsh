@@ -68,7 +68,7 @@ Description: "Example of an Organization as to be found in gematik FHIR Director
 * address.line = "Friedrichstr. 136"
 * address.city = "Berlin"
 * address.district = "Mitte"
-* address.state = "Berlin"
+* address.state = BundeslaenderCS#BE
 * address.postalCode = "10117"
 * address.country = "DE"
 * partOf = Reference(280345)
