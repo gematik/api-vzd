@@ -17,9 +17,9 @@ Insbesondere welche Daten im FHIR-Directory gespeichert werden und welche Bedeut
 Die Schnittstellen des Verzeichnisdienstes sind in Spezifikationen der gematik definiert:
 
 * image:https://shields.io/badge/gemSpec__VZD-v1.13.1-blue[link="https://fachportal.gematik.de/fachportal-import/files/gemSpec_VZD_V1.13.1.pdf"]
-image:https://shields.io/badge/v1.13.0-blue[link="https://fachportal.gematik.de/fachportal-import/files/gemSpec_VZD_V1.13.0.pdf"]
+image:'https://shields.io/badge/v1.13.0-blue[link="https://fachportal.gematik.de/fachportal-import/files/gemSpec_VZD_V1.13.0.pdf"]
 image:https://shields.io/badge/v1.12.0-blue[link="https://fachportal.gematik.de/fachportal-import/files/gemSpec_VZD_V1.12.0.pdf"]
-* image:https://shields.io/badge/gemILF__Pflege__VZD-v1.5.1-blue[link="https://fachportal.gematik.de/fileadmin/Fachportal/Downloadcenter/Implementierungsleitfaeden/gemILF_Pflege_VZD_V1.5.1.pdf"]
+* image:https://shields.io/badge/gemILF_Pflege_VZD-v1.5.1-blue[link="https://fachportal.gematik.de/fileadmin/Fachportal/Downloadcenter/Implementierungsleitfaeden/gemILF_Pflege_VZD_V1.5.1.pdf"]
 * `gemSpec_FHIR_Directory`
 
 Die Daten des LDAP-Directories sind im Implementierungsleitfaden zur Pflege der Daten des Verzeichnisdienstes beschrieben.
