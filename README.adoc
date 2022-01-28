@@ -10,6 +10,9 @@ gematik, Systems Engineering
 
 image::gematik_logo.png[gematik,float="right"]
 
+++++
+<img align="right" role="right" src="images/gematik_logo.png?raw=true"/>
+++++
 
 image:https://shields.io/badge/gemSpec__VZD-v1.13.1-blue[link="https://fachportal.gematik.de/fachportal-import/files/gemSpec_VZD_V1.13.1.pdf"]
 image:https://shields.io/badge/v1.13.0-blue[link="https://fachportal.gematik.de/fachportal-import/files/gemSpec_VZD_V1.13.0.pdf"]
