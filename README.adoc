@@ -1,3 +1,6 @@
+ifndef::env-github[]
+image::gematik_logo.png[gematik,float="right"]
+endif::[]
 = Verzeichnisdienst der Telematikinfrastruktur
 gematik, Systems Engineering
 :source-highlighter: rouge
@@ -7,10 +10,6 @@ gematik, Systems Engineering
 //:toc:
 //:toclevels: 3
 //:toc-title: Inhaltsverzeichnis
-
-ifndef::env-github[]
-image::gematik_logo.png[gematik,float="right"]
-endif::[]
 
 ifdef::env-github[]
 ++++
