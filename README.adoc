@@ -22,7 +22,7 @@ image:https://shields.io/badge/v1.13.0-blue[link="https://fachportal.gematik.de/
 image:https://shields.io/badge/gemILF_Pflege_VZD-v1.5.1-green[link="https://fachportal.gematik.de/fileadmin/Fachportal/Downloadcenter/Implementierungsleitfaeden/gemILF_Pflege_VZD_V1.5.1.pdf"]
 image:https://shields.io/badge/simplifier.net-latest-red[link="https://simplifier.net/vzd-fhir-directory"] +
 image:https://shields.io/badge/OpenAPI-current-green?logo=swagger[link="src/openapi/I_VZD_DirectoryAdministration.yaml"]
-image:https://shields.io/badge/1.7-green[link="https://simplifier.net/vzd-fhir-directory"]
+image:https://shields.io/badge/1.7-green[link="I_VZD_DirectoryAdministration/1.7/src/openapi/I_VZD_DirectoryAdministration.yaml"]
 
 == Allgemeines
 
