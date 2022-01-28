@@ -1,0 +1,199 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "TIOrganization",
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-category",
+      "valueString": "Base.Entities"
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-security-category",
+      "valueCode": "business"
+    }
+  ],
+  "url": "https://gematik.de/fhir/directory/StructureDefinition/TIOrganization",
+  "version": "0.6.0-wip",
+  "name": "TIOrganization",
+  "status": "draft",
+  "publisher": "gematik GmbH",
+  "description": "Profile for the Organization in gematik FHIR Directory",
+  "fhirVersion": "4.0.1",
+  "mapping": [
+    {
+      "identity": "v2",
+      "uri": "http://hl7.org/v2",
+      "name": "HL7 v2 Mapping"
+    },
+    {
+      "identity": "rim",
+      "uri": "http://hl7.org/v3",
+      "name": "RIM Mapping"
+    },
+    {
+      "identity": "servd",
+      "uri": "http://www.omg.org/spec/ServD/1.0/",
+      "name": "ServD"
+    },
+    {
+      "identity": "w5",
+      "uri": "http://hl7.org/fhir/fivews",
+      "name": "FiveWs Pattern Mapping"
+    }
+  ],
+  "kind": "resource",
+  "abstract": false,
+  "type": "Organization",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Organization",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Organization.id",
+        "path": "Organization.id",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.identifier",
+        "path": "Organization.identifier",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "pattern",
+              "path": "$this"
+            }
+          ],
+          "rules": "open"
+        },
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.identifier:TelematikID",
+        "path": "Organization.identifier",
+        "sliceName": "TelematikID",
+        "min": 1,
+        "max": "1",
+        "type": [
+          {
+            "code": "Identifier",
+            "profile": [
+              "http://fhir.de/StructureDefinition/identifier-telematik-id"
+            ]
+          }
+        ],
+        "patternIdentifier": {
+          "type": {
+            "coding": [
+              {
+                "code": "PRN",
+                "system": "http://terminology.hl7.org/CodeSystem/v2-0203"
+              }
+            ]
+          }
+        },
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.identifier:TelematikID.type",
+        "path": "Organization.identifier.type",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.identifier:TelematikID.system",
+        "path": "Organization.identifier.system",
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.identifier:TelematikID.value",
+        "path": "Organization.identifier.value",
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.active",
+        "path": "Organization.active",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.type",
+        "path": "Organization.type",
+        "min": 1,
+        "mustSupport": true,
+        "binding": {
+          "strength": "required",
+          "valueSet": "https://gematik.de/fhir/directory/ValueSet/TIOrganizationTypeVS"
+        }
+      },
+      {
+        "id": "Organization.name",
+        "path": "Organization.name",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.alias",
+        "path": "Organization.alias",
+        "min": 1,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.address",
+        "path": "Organization.address",
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.partOf",
+        "path": "Organization.partOf",
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.contact",
+        "path": "Organization.contact",
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.contact.purpose",
+        "path": "Organization.contact.purpose",
+        "binding": {
+          "strength": "required",
+          "valueSet": "http://terminology.hl7.org/ValueSet/contactentity-type"
+        }
+      },
+      {
+        "id": "Organization.contact.telecom.extension:certificate",
+        "path": "Organization.contact.telecom.extension",
+        "sliceName": "certificate",
+        "min": 0,
+        "max": "*",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "https://gematik.de/fhir/directory/StructureDefinition/X509CertificatePEM"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.endpoint.extension:certificate",
+        "path": "Organization.endpoint.extension",
+        "sliceName": "certificate",
+        "min": 0,
+        "max": "*",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "https://gematik.de/fhir/directory/StructureDefinition/X509CertificatePEM"
+            ]
+          }
+        ],
+        "mustSupport": true
+      }
+    ]
+  }
+}
