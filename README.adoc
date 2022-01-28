@@ -1,7 +1,4 @@
 = Verzeichnisdienst der Telematikinfrastruktur
-++++
-<img align="right" role="right" src="images/gematik_logo.png?raw=true"/>
-++++
 gematik, Systems Engineering
 :source-highlighter: rouge
 :title-page:
