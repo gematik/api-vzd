@@ -8,7 +8,7 @@ gematik, Systems Engineering
 //:toclevels: 3
 //:toc-title: Inhaltsverzeichnis
 
-image::gematik_logo.svg[gematik,float="right"]
+image::gematik_logo.png[gematik,float="right"]
 
 
 image:https://shields.io/badge/gemSpec__VZD-v1.13.1-blue[link="https://fachportal.gematik.de/fachportal-import/files/gemSpec_VZD_V1.13.1.pdf"]
