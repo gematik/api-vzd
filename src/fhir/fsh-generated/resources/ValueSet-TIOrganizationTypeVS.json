@@ -5,7 +5,7 @@
   "id": "TIOrganizationTypeVS",
   "title": "Type of TIOrganization",
   "description": "ValueSet of all Organization types in the gematik FHIR Directory",
-  "version": "0.5.0",
+  "version": "0.6.0-wip",
   "url": "https://gematik.de/fhir/directory/ValueSet/TIOrganizationTypeVS",
   "publisher": "gematik GmbH",
   "compose": {

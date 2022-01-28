@@ -12,7 +12,7 @@
     }
   ],
   "url": "https://gematik.de/fhir/directory/StructureDefinition/TIOrganization",
-  "version": "0.5.0",
+  "version": "0.6.0-wip",
   "name": "TIOrganization",
   "status": "draft",
   "publisher": "gematik GmbH",
