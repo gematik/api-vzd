@@ -1,0 +1,15 @@
+id: de.gematik.fhir.directory
+canonical: https://gematik.de/fhir/directory
+name: gematik FHIR Directory
+FSHOnly: true
+title: gematik FHIR Directory
+status: draft # draft | active | retired | unknown
+version: 0.6.0-wip
+fhirVersion: 4.0.1
+publisher:
+  name: gematik GmbH
+  url: https://www.gematik.de/
+  # email: test@example.org
+
+dependencies:
+  de.basisprofil.r4: 1.2.0
