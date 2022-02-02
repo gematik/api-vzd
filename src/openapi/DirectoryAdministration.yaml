@@ -1504,16 +1504,15 @@ components:
             Hat keinen Einfluss auf Fachdaten und Zertifikatsdaten.
             Beim Anlegen eines neuen Verzeichniseintrags (add_Directory_Entry)
               - Ist im add_Directory_Entry Request das Attribut "holder" nicht vorhanden oder enthält keine Werte
-                 o Wird vom VZD aus dem ID_TOKEN claim scope der Wert entnommen und als "holder" in dieses Attribut eingetragen. 
+                 o Wird vom VZD in dieses Attribut kein Wert (leeres Attribut) eingetragen. 
               - Ist im add_Directory_Entry Request das Attribut "holder" vorhanden und mit Inhalten gefüllt
-                 o Übernimmt der VZD die Werte aus dem Request und trägt sie - nach Prüfung ihrer Gültigkeit - in den Verzeuichniseintrag ein. 
-                   Ist ein Wert aus dem Request nicht gültig, weist der VZD die Operation mit HTTP-Status-Code 422 ab.
+                 o Ist ein Wert aus dem Request Attribut "holder" nicht gültig, MUSS der VZD die Operation mit 
+                 HTTP-Status-Code 422 abweisen und die weitere Verarbeitung von diesem Request abbrechen.
+                 o Sind alle Werte aus dem Request Attribut "holder" gültig, MUSS der VZD die Werte aus dem Request 
+                 entnehmen und sie in das "holder" Attribut des Verzeichniseintrags übernehmen.
             Beim Ändern eines neuen Verzeichniseintrags (modify_Directory_Entry)
               - Ist im modify_Directory_Entry Request das Attribut "holder" nicht vorhanden oder enthält keine Werte
                  o Die Werte im aktuellen "holder" Attribut des Verzeichniseintrags bleiben erhalten.
-              - Ist im add_Directory_Entry Request das Attribut "holder" vorhanden und mit Inhalten gefüllt
-                 o Übernimmt der VZD die Werte aus dem Request und trägt sie - nach Prüfung ihrer Gültigkeit - in den Verzeuichniseintrag ein. 
-                   Ist ein Wert aus dem Request nicht gültig, weist der VZD die Operation mit HTTP-Status-Code 422 ab.
           items:
             type: string
             example: KartenHerausgeberABC
