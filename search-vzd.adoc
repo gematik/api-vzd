@@ -60,3 +60,9 @@ Dafür kann man unter anderem folgende Attribute in der Suchanfrage verwenden:
 ** Für die Attribute kann ebenfalls die Suche mit Wildcards entsprechend LDAP genutzt werden z.B. "Charité*".
 
 ===   Spezielle Attribute
+
+* domainID 
+** Die Nutzung für die Sektoren wird in Kapitel *Attributtabellen* von Dokument https://fachportal.gematik.de/fileadmin/Fachportal/Downloadcenter/Implementierungsleitfaeden/gemILF_Pflege_VZD_V1.5.1.pdf[gemILF_Pflege_VZD] beschrieben.
+
+kann IK der Kasse oder BSNR des Arztes oder Abrechnungsnummer des Zahnarztes enthalten
+
