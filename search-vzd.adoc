@@ -1,1 +1,48 @@
+= Verzeichnisdienst der Telematikinfrastruktur
+gematik, Systems Engineering
+:source-highlighter: rouge
+:title-page:
+:imagesdir: images/
+//:sectnums:
+//:toc:
+//:toclevels: 3
+//:toc-title: Inhaltsverzeichnis
 
+ifndef::env-github[]
+image::gematik_logo.svg[gematik,float="right"]
+endif::[]
+ifdef::env-github[]
+++++
+<img align="right" role="right" src="images/gematik_logo.svg?raw=true"/>
+++++
+endif::[]
+
+image:https://shields.io/badge/gem Spec VZD-v1.13.1-blue[link="https://fachportal.gematik.de/fachportal-import/files/gemSpec_VZD_V1.13.1.pdf"]
+image:https://shields.io/badge/v1.13.0-blue[link="https://fachportal.gematik.de/fachportal-import/files/gemSpec_VZD_V1.13.0.pdf"]
+image:https://shields.io/badge/gemILF_Pflege_VZD-v1.5.1-green[link="https://fachportal.gematik.de/fileadmin/Fachportal/Downloadcenter/Implementierungsleitfaeden/gemILF_Pflege_VZD_V1.5.1.pdf"]
+image:https://shields.io/badge/simplifier.net-latest-red[link="https://simplifier.net/vzd-fhir-directory"] +
+image:https://shields.io/badge/Admin API-current-green?logo=swagger[link="src/openapi/DirectoryAdministration.yaml"]
+image:https://shields.io/badge/1.7-green[link="https://github.com/gematik/api-vzd/blob/DirectoryAdministration/1.7/src/openapi/DirectoryAdministration.yaml"]
+
+== Allgemeines
+
+Die Seite gibt Hinweise zur Suche im VZD für Anwendungen. Die Suche von Einträgen für den Anwendungen/Endanwender ist über Schnittstelle I_Directory_Query mit LDAPv3 möglich. Gesucht werden kann nach allen Attributen.
+
+Eine Auswahl von Suchkriterien:
+
+Suche nach Art der Organisation/Leistungserbringers und Spezialisierung
+Dafür kann man unter anderem folgende Attribute in der Suchanfrage verwenden:
+
+* [entryType] 
+
+  Eintragstyp - Siehe [gemSpec_VZD#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID].
+  
+* [ProfessionOID] 
+
+  Profession OID - Siehe [gemSpec_VZD#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID].
+
+* [specialization] 
+
+  Fachgebiet entsprechend https://wiki.hl7.de/index.php?title=IG:Value_Sets_f%C3%BCr_XDS#DocumentEntry.practiceSettingCode[HL7]
+
+  
