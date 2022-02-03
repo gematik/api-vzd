@@ -65,8 +65,8 @@ Dafür kann man unter anderem folgende Attribute in der Suchanfrage verwenden:
 ** Die Nutzung für die Sektoren wird in Kapitel *Attributtabellen* von Dokument https://fachportal.gematik.de/fileadmin/Fachportal/Downloadcenter/Implementierungsleitfaeden/gemILF_Pflege_VZD_V1.5.1.pdf[gemILF_Pflege_VZD] beschrieben.
 *** Kassenärztliche Vereinigungen (SMC-B-Eintrag): Betriebsstättennummer der Praxis
 *** Kassenzahnärztliche Vereinigungen (SMC-B Eintrag): Abrechnungsnummer
-*** SMC-B-Eintrag für Apotheken: nicht verwendet
-*** HBA-Eintrag für Apotheker:Spezifisches Kennzeichen der Apotheker. Kann mehrfach vorkommen (0..100).
+*** SMC-B-Eintrag für Apotheken: Nicht verwendet
+*** HBA-Eintrag für Apotheker: Spezifisches Kennzeichen der Apotheker. Kann mehrfach vorkommen (0..100).
 *** Krankenhäuser (SMC-B-Eintrag): Betriebsstättennummer des Krankenhauses
 *** Psychotherapeuten (HBA-Eintrag): Spezifisches Kennzeichen der Psychotherapeuten. Kann mehrfach vorkommen (0..100).
 *** Ärzte (HBA-Eintrag): Spezifisches Kennzeichen der Ärzte. Kann mehrfach vorkommen (0..100).
