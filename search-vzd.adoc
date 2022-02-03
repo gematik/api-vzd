@@ -20,7 +20,7 @@ endif::[]
 
 Die Seite gibt Hinweise zur Suche im VZD für Anwendungen. Die Suche von Einträgen für den Anwendungen/Endanwender ist über Schnittstelle I_Directory_Query mit LDAPv3 möglich. Gesucht werden kann nach allen Attributen.
 
-Eine Auswahl von Suchkriterien:
+=== Eine Auswahl von Suchkriterien:
 
 *Suche nach Art der Organisation/Leistungserbringers und Spezialisierung*
 
@@ -51,4 +51,12 @@ Dafür kann man unter anderem folgende Attribute in der Suchanfrage verwenden:
 * [streetAddress] 
 ** Straße - z.B. "Friedrichstraße"
 
-  
+*Suche bei bekanntem Namen*
+
+Dafür kann man unter anderem folgende Attribute in der Suchanfrage verwenden:
+
+* [displayName] 
+** Name der Organisation oder der Person - z.B. "Charité"
+** Für die Attribute kann ebenfalls die Suche mit Wildcards entsprechend LDAP genutzt werden z.B. "Charité*".
+
+===   Spezielle Attribute
