@@ -2,8 +2,7 @@ Profile: TIOrganization
 Parent: Organization
 Description: "Profile for the Organization in gematik FHIR Directory"
 * insert Meta
-* id 1..1 MS
-* active 1..1 MS
+* id 0..1 MS
 * name 1..1 MS
 * identifier 1..* MS
 * identifier ^slicing.discriminator.type = #pattern
@@ -17,7 +16,7 @@ Description: "Profile for the Organization in gematik FHIR Directory"
   * value 1..1 MS
 * type 1..* MS
 * type from TIOrganizationTypeVS
-* alias 1..1 MS
+* alias 1..* MS
 * address MS
 * partOf 0..1 MS
 * contact MS
