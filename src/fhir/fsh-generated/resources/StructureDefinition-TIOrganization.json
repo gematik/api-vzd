@@ -126,6 +126,11 @@
         "mustSupport": true
       },
       {
+        "id": "Organization.alias",
+        "path": "Organization.alias",
+        "mustSupport": true
+      },
+      {
         "id": "Organization.address",
         "path": "Organization.address",
         "mustSupport": true
