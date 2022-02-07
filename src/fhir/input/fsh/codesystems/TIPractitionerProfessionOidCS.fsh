@@ -1,5 +1,5 @@
 CodeSystem: TIPractitionerProfessionOidCS
-Title: "CodeSystem for TI Institutions"
+Title: "CodeSystem for Practitioner's ProfessioiOid"
 Description: """
 The codes for Institutions based on OIDs defined in gemSpec_OID 
 We use a URN notation (urn:oid:[ProfessionOID from gemSpec_OID]). 

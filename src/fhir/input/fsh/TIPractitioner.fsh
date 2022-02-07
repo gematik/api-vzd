@@ -2,8 +2,7 @@ Profile: TIPractitioner
 Parent: Practitioner
 Description: "Profile for the Practitioner in gematik FHIR Directory"
 * ^status = #draft
-* id 1.. MS
-* active 1.. MS
+* id MS
 * identifier 1..* MS
   * ^slicing.discriminator.type = #pattern
   * ^slicing.discriminator.path = "$this"
