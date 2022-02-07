@@ -16,7 +16,6 @@ Description: "Profile for the Organization in gematik FHIR Directory"
   * value 1..1 MS
 * type 1..* MS
 * type from TIOrganizationTypeVS
-* alias 0..* MS
 * address MS
 * partOf 0..1 MS
 * contact MS
