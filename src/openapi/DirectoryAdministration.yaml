@@ -177,7 +177,7 @@ paths:
 
                        specialization  Kann optional belegt werden.
                        domainID      Kann optional belegt werden.
-                       holder         Kann optional belegt werden (falls nicht belegt, dann vom VZD aus dem ID_Token entnommen).
+                       holder         Kann optional belegt werden.
                        maxKOMLEadr   Kann optional belegt werden.
                        personalEntry Nicht vorhanden (wird vom Verzeichnisdienst belegt)
                        dataFromAuthority Nicht vorhanden (wird vom Verzeichnisdienst belegt)
