@@ -18,7 +18,6 @@ ifdef::env-github[]
 endif::[]
 
 image:https://shields.io/badge/gem Spec VZD-v1.13.1-blue[link="https://fachportal.gematik.de/fachportal-import/files/gemSpec_VZD_V1.13.1.pdf"]
-image:https://shields.io/badge/v1.13.0-blue[link="https://fachportal.gematik.de/fachportal-import/files/gemSpec_VZD_V1.13.0.pdf"]
 image:https://shields.io/badge/gemILF_Pflege_VZD-v1.5.1-green[link="https://fachportal.gematik.de/fileadmin/Fachportal/Downloadcenter/Implementierungsleitfaeden/gemILF_Pflege_VZD_V1.5.1.pdf"]
 image:https://shields.io/badge/simplifier.net-latest-red[link="https://simplifier.net/vzd-fhir-directory"] +
 image:https://shields.io/badge/Admin API-1.6-green?logo=swagger[link="src/openapi/DirectoryAdministration.yaml"]
