@@ -1,12 +1,12 @@
 {
   "resourceType": "ValueSet",
   "status": "draft",
-  "name": "TIPractitionerTypeVS",
-  "id": "TIPractitionerTypeVS",
-  "title": "Type of Practitoner",
-  "description": "ValueSet of all Practitoner types in the gematik FHIR Directory",
+  "name": "TIPractitionerRoleVS",
+  "id": "TIPractitionerRoleVS",
+  "title": "Role of Practitoner",
+  "description": "ValueSet of all Practitoner roles in the gematik FHIR Directory",
   "version": "0.6.0-wip",
-  "url": "https://gematik.de/fhir/directory/ValueSet/TIPractitionerTypeVS",
+  "url": "https://gematik.de/fhir/directory/ValueSet/TIPractitionerRoleVS",
   "publisher": "gematik GmbH",
   "compose": {
     "include": [

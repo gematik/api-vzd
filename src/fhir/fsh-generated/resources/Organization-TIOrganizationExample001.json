@@ -55,8 +55,8 @@
     {
       "coding": [
         {
-          "code": "urn:oid:1.2.276.0.76.4.30",
-          "system": "https://gematik.de/fhir/directory/CodeSystem/TIPractitionerProfessionOidCS"
+          "code": "urn:oid:1.2.276.0.76.4.58",
+          "system": "https://gematik.de/fhir/directory/CodeSystem/TIInstitutionTypeOidCS"
         }
       ]
     }

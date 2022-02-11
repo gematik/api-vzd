@@ -2,8 +2,7 @@ Profile: TIOrganization
 Parent: Organization
 Description: "Profile for the Organization in gematik FHIR Directory"
 * insert Meta
-* id 1..1 MS
-* active 1..1 MS
+* id 0..1 MS
 * name 1..1 MS
 * identifier 1..* MS
 * identifier ^slicing.discriminator.type = #pattern
@@ -17,9 +16,9 @@ Description: "Profile for the Organization in gematik FHIR Directory"
   * value 1..1 MS
 * type 1..* MS
 * type from TIOrganizationTypeVS
-* alias 1..1 MS
 * address MS
-* partOf 0..1 MS
+* partOf MS
+* alias MS
 * contact MS
 * contact.purpose from $ContactEntityTypeVS
 * contact.telecom.extension contains X509CertificatePEM named certificate 0..* MS
@@ -60,7 +59,7 @@ Usage: #example
 Description: "Example of an Organization as to be found in gematik FHIR Directory"
 * identifier[+].system = $IdentifierTelematikID
 * identifier[=].value = "9-2.58.00000040"
-* type = TIPractitionerProfessionOidCS#urn:oid:1.2.276.0.76.4.30
+* type = TIInstitutionTypeOidCS#urn:oid:1.2.276.0.76.4.58
 * name = "gematik GmbH"
 * active = true
 * alias = "gematik"
