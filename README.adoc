@@ -31,7 +31,7 @@ Die Schnittstellen des Verzeichnisdienstes sind in Spezifikationen der gematik d
 
 * https://fachportal.gematik.de/fachportal-import/files/gemSpec_VZD_V1.13.1.pdf[gemSpec_VZD_V1.13.1.pdf]
 
-* https://fachportal.gematik.de/fileadmin/Fachportal/Downloadcenter/Implementierungsleitfaeden/gemILF_Pflege_VZD_V1.5.1.pdf[gemILF_Pflege_VZD_V1.5.1.pdf]
+* image:https://shields.io/badge/Neu-red https://fachportal.gematik.de/fileadmin/Fachportal/Downloadcenter/Implementierungsleitfaeden/gemILF_Pflege_VZD_V1.5.1.pdf[gemILF_Pflege_VZD_V1.5.1.pdf]
 
 Die Daten des LDAP-Directories sind im Implementierungsleitfaden zur Pflege der Daten des Verzeichnisdienstes beschrieben.
 Die Dokumente können im Fachportal der gematik gefunden werden: https://fachportal.gematik.de/downloadcenter.
