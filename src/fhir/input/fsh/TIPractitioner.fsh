@@ -14,7 +14,7 @@ Description: "Profile for the Practitioner in gematik FHIR Directory"
   * system 1.. MS
   * value 1.. MS
 * qualification.code MS
-* qualification.code from TIPractitionerRoleVS
+* qualification.code from TIPractitionerQualificationVS
 
 Instance: TIPractitionerExample001
 InstanceOf: TIPractitioner
