@@ -35,9 +35,20 @@
       "code": {
         "coding": [
           {
-            "code": "1",
-            "system": "urn:oid:1.2.276.0.76.5.492",
-            "display": "Zahnarzt"
+            "code": "010",
+            "system": "urn:oid:1.2.276.0.76.5.514",
+            "display": "FA Allgemeinmedizin"
+          }
+        ]
+      }
+    },
+    {
+      "code": {
+        "coding": [
+          {
+            "code": "523",
+            "system": "urn:oid:1.2.276.0.76.5.514",
+            "display": "FA Innere Medizin und (SP) Gastroenterologie"
           }
         ]
       }
