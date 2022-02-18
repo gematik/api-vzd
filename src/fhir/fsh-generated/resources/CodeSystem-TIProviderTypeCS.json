@@ -9,22 +9,26 @@
   "url": "https://gematik.de/fhir/directory/CodeSystem/TIProviderTypeCS",
   "concept": [
     {
-      "code": "urn:ti-provider:tim-provider",
+      "code": "tim-provider",
       "display": "TI-Messenger-Provider"
     },
     {
-      "code": "urn:ti-provider:kim-provider",
+      "code": "kim-provider",
       "display": "KIM-Provider"
     },
     {
-      "code": "urn:ti-provider:card-issuer",
+      "code": "card-issuer",
       "display": "Kartenherausgeber"
     },
     {
-      "code": "urn:ti-provider:identity-provider",
+      "code": "tsp",
+      "display": "Trust Service Provider"
+    },
+    {
+      "code": "idp",
       "display": "Identity Provider"
     }
   ],
   "publisher": "gematik GmbH",
-  "count": 4
+  "count": 5
 }

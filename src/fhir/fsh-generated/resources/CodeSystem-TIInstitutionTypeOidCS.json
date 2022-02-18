@@ -5,203 +5,219 @@
   "name": "TIInstitutionTypeOidCS",
   "id": "TIInstitutionTypeOidCS",
   "title": "CodeSystem for TI Institutions using OIDs",
-  "description": "The codes for Institutions based on OIDs defined in gemSpec_OID \nWe use a URN notation (urn:oid:[ProfessionOID from gemSpec_OID]). \nSee also https://fachportal.gematik.de/fachportal-import/files/gemSpec_OID_V3.10.0.pdf",
+  "description": "The codes for Institutions based on OIDs defined in gemSpec_OID \nWe use a URN notation ([ProfessionOID from gemSpec_OID]). \nSee also https://fachportal.gematik.de/fachportal-import/files/gemSpec_OID_V3.10.0.pdf",
   "version": "0.6.0-wip",
   "url": "https://gematik.de/fhir/directory/CodeSystem/TIInstitutionTypeOidCS",
   "concept": [
     {
-      "code": "urn:oid:1.2.276.0.76.4.50",
+      "code": "1.2.276.0.76.4.50",
       "display": "Betriebsstätte Arzt"
     },
     {
-      "code": "urn:oid:1.2.276.0.76.4.51",
+      "code": "1.2.276.0.76.4.51",
       "display": "Zahnarztpraxis"
     },
     {
-      "code": "urn:oid:1.2.276.0.76.4.52",
+      "code": "1.2.276.0.76.4.52",
       "display": "Betriebsstätte Psychotherapeut"
     },
     {
-      "code": "urn:oid:1.2.276.0.76.4.53",
+      "code": "1.2.276.0.76.4.53",
       "display": "Krankenhaus"
     },
     {
-      "code": "urn:oid:1.2.276.0.76.4.54",
+      "code": "1.2.276.0.76.4.54",
       "display": "Öffentliche Apotheke"
     },
     {
-      "code": "urn:oid:1.2.276.0.76.4.55",
+      "code": "1.2.276.0.76.4.55",
       "display": "Krankenhausapotheke"
     },
     {
-      "code": "urn:oid:1.2.276.0.76.4.56",
+      "code": "1.2.276.0.76.4.56",
       "display": "Bundeswehrapotheke"
     },
     {
-      "code": "urn:oid:1.2.276.0.76.4.57",
+      "code": "1.2.276.0.76.4.57",
       "display": "Betriebsstätte Mobile Einrichtung Rettungsdienst"
     },
     {
-      "code": "urn:oid:1.2.276.0.76.4.58",
+      "code": "1.2.276.0.76.4.58",
       "display": "Betriebsstätte gematik"
     },
     {
-      "code": "urn:oid:1.2.276.0.76.4.59",
+      "code": "1.2.276.0.76.4.59",
       "display": "Betriebsstätte Kostenträger"
     },
     {
-      "code": "urn:oid:1.2.276.0.76.4.187",
+      "code": "1.2.276.0.76.4.187",
       "display": "Betriebsstätte Leistungserbringerorganisation Vertragszahnärzte"
     },
     {
-      "code": "urn:oid:1.2.276.0.76.4.190",
+      "code": "1.2.276.0.76.4.190",
       "display": "AdV-Umgebung bei Kostenträger"
     },
     {
-      "code": "urn:oid:1.2.276.0.76.4.223",
+      "code": "1.2.276.0.76.4.223",
       "display": "Betriebsstätte GKV-Spitzenverband"
     },
     {
-      "code": "urn:oid:1.2.276.0.76.4.226",
+      "code": "1.2.276.0.76.4.226",
       "display": "Betriebsstätte Mitgliedsverband der Krankenhäuser"
     },
     {
-      "code": "urn:oid:1.2.276.0.76.4.227",
+      "code": "1.2.276.0.76.4.227",
       "display": "Betriebsstätte der Deutsche Krankenhaus TrustCenter und Informationsverarbeitung GmbH"
     },
     {
-      "code": "urn:oid:1.2.276.0.76.4.228",
+      "code": "1.2.276.0.76.4.228",
       "display": "Betriebsstätte der Deutschen Krankenhausgesellschaft"
     },
     {
-      "code": "urn:oid:1.2.276.0.76.4.224",
+      "code": "1.2.276.0.76.4.224",
       "display": "Betriebsstätte Apothekerverband"
     },
     {
-      "code": "urn:oid:1.2.276.0.76.4.225",
+      "code": "1.2.276.0.76.4.225",
       "display": "Betriebsstätte Deutscher Apothekerverband"
     },
     {
-      "code": "urn:oid:1.2.276.0.76.4.229",
+      "code": "1.2.276.0.76.4.229",
       "display": "Betriebsstätte der Bundesärztekammer"
     },
     {
-      "code": "urn:oid:1.2.276.0.76.4.230",
+      "code": "1.2.276.0.76.4.230",
       "display": "Betriebsstätte einer Ärztekammer"
     },
     {
-      "code": "urn:oid:1.2.276.0.76.4.231",
+      "code": "1.2.276.0.76.4.231",
       "display": "Betriebsstätte einer Zahnärztekammer"
     },
     {
-      "code": "urn:oid:1.2.276.0.76.4.242",
+      "code": "1.2.276.0.76.4.242",
       "display": "Betriebsstätte der Kassenärztlichen Bundesvereinigung"
     },
     {
-      "code": "urn:oid:1.2.276.0.76.4.243",
+      "code": "1.2.276.0.76.4.243",
       "display": "Betriebsstätte der Bundeszahnärztekammer"
     },
     {
-      "code": "urn:oid:1.2.276.0.76.4.244",
+      "code": "1.2.276.0.76.4.244",
       "display": "Betriebsstätte der Kassenzahnärztlichen Bundesvereinigung"
     },
     {
-      "code": "urn:oid:1.2.276.0.76.4.245",
+      "code": "1.2.276.0.76.4.245",
       "display": "Betriebsstätte Gesundheits-, Kranken- und Altenpflege"
     },
     {
-      "code": "urn:oid:1.2.276.0.76.4.246",
+      "code": "1.2.276.0.76.4.246",
       "display": "Betriebsstätte Geburtshilfe"
     },
     {
-      "code": "urn:oid:1.2.276.0.76.4.247",
+      "code": "1.2.276.0.76.4.247",
       "display": "Betriebsstätte Physiotherapie"
     },
     {
-      "code": "urn:oid:1.2.276.0.76.4.248",
+      "code": "1.2.276.0.76.4.248",
       "display": "Betriebsstätte Augenoptiker"
     },
     {
-      "code": "urn:oid:1.2.276.0.76.4.249",
+      "code": "1.2.276.0.76.4.249",
       "display": "Betriebsstätte Hörakustiker"
     },
     {
-      "code": "urn:oid:1.2.276.0.76.4.250",
+      "code": "1.2.276.0.76.4.250",
       "display": "Betriebsstätte Orthopädieschuhmacher"
     },
     {
-      "code": "urn:oid:1.2.276.0.76.4.251",
+      "code": "1.2.276.0.76.4.251",
       "display": "Betriebsstätte Orthopädietechniker"
     },
     {
-      "code": "urn:oid:1.2.276.0.76.4.252",
+      "code": "1.2.276.0.76.4.252",
       "display": "Betriebsstätte Zahntechniker"
     },
     {
-      "code": "urn:oid:1.2.276.0.76.4.253",
+      "code": "1.2.276.0.76.4.253",
       "display": "Rettungsleitstelle"
     },
     {
-      "code": "urn:oid:1.2.276.0.76.4.254",
+      "code": "1.2.276.0.76.4.254",
       "display": "Betriebsstätte Sanitätsdienst Bundeswehr"
     },
     {
-      "code": "urn:oid:1.2.276.0.76.4.255",
+      "code": "1.2.276.0.76.4.255",
       "display": "Betriebsstätte Öffentlicher Gesundheitsdienst"
     },
     {
-      "code": "urn:oid:1.2.276.0.76.4.256",
+      "code": "1.2.276.0.76.4.256",
       "display": "Betriebsstätte Arbeitsmedizin"
     },
     {
-      "code": "urn:oid:1.2.276.0.76.4.257",
+      "code": "1.2.276.0.76.4.257",
       "display": "Betriebsstätte Vorsorge- und Rehabilitation"
     },
     {
-      "code": "urn:oid:1.2.276.0.76.4.273",
+      "code": "1.2.276.0.76.4.273",
       "display": "ePA KTR-Zugriffsautorisierung"
     },
     {
-      "code": "urn:oid:1.2.276.0.76.4.262",
+      "code": "1.2.276.0.76.4.262",
       "display": "Betriebsstätte Pflegeberatung nach § 7a SGB XI"
     },
     {
-      "code": "urn:oid:1.2.276.0.76.4.263",
+      "code": "1.2.276.0.76.4.263",
       "display": "Betriebsstätte Psychotherapeutenkammer"
     },
     {
-      "code": "urn:oid:1.2.276.0.76.4.264",
+      "code": "1.2.276.0.76.4.264",
       "display": "Betriebsstätte Bundespsychotherapeutenkammer"
     },
     {
-      "code": "urn:oid:1.2.276.0.76.4.265",
+      "code": "1.2.276.0.76.4.265",
       "display": "Betriebsstätte Landesapothekerkammer"
     },
     {
-      "code": "urn:oid:1.2.276.0.76.4.266",
+      "code": "1.2.276.0.76.4.266",
       "display": "Betriebsstätte Bundesapothekerkammer"
     },
     {
-      "code": "urn:oid:1.2.276.0.76.4.267",
+      "code": "1.2.276.0.76.4.267",
       "display": "Betriebsstätte elektronisches Gesundheitsberuferegister"
     },
     {
-      "code": "urn:oid:1.2.276.0.76.4.268",
+      "code": "1.2.276.0.76.4.268",
       "display": "Betriebsstätte Handwerkskammer"
     },
     {
-      "code": "urn:oid:1.2.276.0.76.4.269",
+      "code": "1.2.276.0.76.4.269",
       "display": "Betriebsstätte Register für Gesundheitsdaten"
     },
     {
-      "code": "urn:oid:1.2.276.0.76.4.270",
+      "code": "1.2.276.0.76.4.270",
       "display": "Betriebsstätte Abrechnungsdienstleister"
     },
     {
-      "code": "urn:oid:1.2.276.0.76.4.271",
+      "code": "1.2.276.0.76.4.271",
       "display": "Betriebsstätte PKV-Verband"
+    },
+    {
+      "code": "1.2.276.0.76.4.278",
+      "display": "Ergotherapiepraxis"
+    },
+    {
+      "code": "1.2.276.0.76.4.279",
+      "display": "Logopaedische Praxis"
+    },
+    {
+      "code": "1.2.276.0.76.4.280",
+      "display": "Podologiepraxis"
+    },
+    {
+      "code": "1.2.276.0.76.4.281",
+      "display": "Ernährungstherapeutische Praxis"
     }
   ],
   "publisher": "gematik GmbH",
-  "count": 48
+  "count": 52
 }

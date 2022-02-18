@@ -12,6 +12,9 @@
     "include": [
       {
         "system": "https://gematik.de/fhir/directory/CodeSystem/TIPractitionerProfessionOidCS"
+      },
+      {
+        "system": "http://ihe-d.de/ValueSets/IHEXDSauthorSpeciality"
       }
     ]
   }
