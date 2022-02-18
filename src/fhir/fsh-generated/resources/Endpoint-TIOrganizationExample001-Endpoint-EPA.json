@@ -1,11 +1,6 @@
 {
   "resourceType": "Endpoint",
-  "id": "TIOrganizationExample001-Endpoint-KIM",
-  "meta": {
-    "profile": [
-      "https://gematik.de/fhir/directory/StructureDefinition/TIEndpoint"
-    ]
-  },
+  "id": "TIOrganizationExample001-Endpoint-EPA",
   "extension": [
     {
       "url": "https://gematik.de/fhir/directory/StructureDefinition/X509CertificatePEM",
@@ -14,8 +9,9 @@
   ],
   "status": "active",
   "connectionType": {
-    "code": "secure-email"
+    "code": "gematik-tepaim"
   },
+  "address": "urn:TODO",
   "payloadType": [
     {
       "coding": [
@@ -24,6 +20,5 @@
         }
       ]
     }
-  ],
-  "address": "mailto:gematik006@xxx.kim.telematik"
+  ]
 }

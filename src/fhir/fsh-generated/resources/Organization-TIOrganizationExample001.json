@@ -85,6 +85,12 @@
   "endpoint": [
     {
       "reference": "Endpoint/TIOrganizationExample001-Endpoint-KIM"
+    },
+    {
+      "reference": "Endpoint/TIOrganizationExample001-Endpoint-TIM"
+    },
+    {
+      "reference": "Endpoint/TIOrganizationExample001-Endpoint-EPA"
     }
   ]
 }

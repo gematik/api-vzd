@@ -1,0 +1,18 @@
+{
+  "resourceType": "Endpoint",
+  "id": "TIOrganizationExample001-Endpoint-TIM",
+  "status": "active",
+  "connectionType": {
+    "code": "gematik-tim"
+  },
+  "address": "@betrieb:tim.gematik.de",
+  "payloadType": [
+    {
+      "coding": [
+        {
+          "code": "any"
+        }
+      ]
+    }
+  ]
+}
