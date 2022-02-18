@@ -1,0 +1,6 @@
+= Änderungen am Verzeichnisdienst
+
+== v3.1.0-11 (17.2.2022)
+* Anpassung REST-SST mit Umsetzung yaml 1.8.0
+* Wiederaktivierung der Delete-Operation für Zertifikate aus Release 3.1.0-9
+* Neue Sync-Schnittstelle für Paging (nur definiert nicht implementiert)
