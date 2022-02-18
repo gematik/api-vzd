@@ -4,7 +4,7 @@
   "content": "complete",
   "name": "BundeslaenderCS",
   "id": "BundeslaenderCS",
-  "title": "Codes für deutsche Bundesländer",
+  "title": "Experimentell: Codes für deutsche Bundesländer",
   "version": "0.6.0-wip",
   "url": "https://gematik.de/fhir/directory/CodeSystem/BundeslaenderCS",
   "concept": [

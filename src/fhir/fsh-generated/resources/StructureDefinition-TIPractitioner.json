@@ -107,6 +107,15 @@
         "id": "Practitioner.identifier:TelematikID.value",
         "path": "Practitioner.identifier.value",
         "mustSupport": true
+      },
+      {
+        "id": "Practitioner.qualification.code",
+        "path": "Practitioner.qualification.code",
+        "mustSupport": true,
+        "binding": {
+          "strength": "required",
+          "valueSet": "https://gematik.de/fhir/directory/ValueSet/TIPractitionerRoleVS"
+        }
       }
     ]
   }

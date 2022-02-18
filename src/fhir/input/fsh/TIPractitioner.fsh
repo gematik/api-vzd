@@ -13,12 +13,15 @@ Description: "Profile for the Practitioner in gematik FHIR Directory"
   * type 1.. MS
   * system 1.. MS
   * value 1.. MS
+* qualification.code MS
+* qualification.code from TIPractitionerRoleVS
 
 Instance: TIPractitionerExample001
 InstanceOf: TIPractitioner
 Usage: #example
 Description: "Example of a Practitioner as to be found in gematik FHIR Directory"
 * id = "TIPractitionerExample001"
-* active = true
 * identifier[+].system = $IdentifierTelematikID
 * identifier[=].value = "3-2.58.00000040"
+* qualification[+].code = TIPractitionerProfessionOidCS#1.2.276.0.76.4.31
+* qualification[+].code = $ZahnärztlicheAutoren#1 "Zahnarzt"
