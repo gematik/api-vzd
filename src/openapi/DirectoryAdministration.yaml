@@ -3,8 +3,34 @@ info:
   title: I_Directory_Administration
   description: REST Schnittstelle zur Pflege der Verzeichniseinträge.
               Über diese Schnittstelle können Verzeichniseinträge inklusive Zertifikaten erzeugt, aktualisiert und gelöscht werden. Die Administration von Fachdaten erfolgt über Schnittstelle I_Directory_Application_Maintenance und wird durch die Fachanwendungen durchgeführt. Lesender Zugriff auf die Fachdaten ist mit Operation getDirectoryEntries in vorliegender Schnittstelle möglich.
-  version: 1.6.3
-    # Änderungen in Version 1.6.3
+  version: 1.8.0
+  # Änderungen in Version 1.8.0
+  #  - Operation read_Directory_Entry_for_Sync: Zur Kompatibilität mit existierenden Clients wurde 
+  #    read_Directory_Entry_for_Sync in der Version ohne Paging wieder aufgenommen.
+  #    Die Operation mit Paging Mechanismus wurde in read_Directory_Entry_for_Sync_paging umbenannt.
+  #  - Konkretisierung der Filtermöglichkeiten der Operationen read_Directory_Entry, 
+  #    read_Directory_Entry_for_Sync und read_Directory_Entry_for_Sync_paging
+  #  - Schema readDirectoryEntryforSyncResponse: Verschachtelung von directoryEntries reduziert.
+  #  - Schema userCertificate: "required: dn" entfernt, da diese Attribute nicht im Request enthalten sein müssen.
+  #
+  # Änderungen in Version 1.7.0
+  #  - Schema baseDirectoryEntry: "required: cn, dn" entfernt, da diese Attribute nicht im Request enthalten sein müssen.
+  #  - Error Struktur angepasst (mehrere Fehlermeldungen ermöglicht)
+  #  - Paging in Operation read_Directory_Entry_for_Sync aufgenommen
+  #  - Filtermöglichkeiten in Leseoperationen read_Directory_Entry und
+  #    read_Directory_Entry_for_Sync (Wildcard "*" & Vorhandensein \00) aufgenommen.
+  #  - Suchparameter in Leseoperationen read_Directory_Entry und
+  #    read_Directory_Entry_for_Sync aufgenommen:
+  #    maxKOMLEadr, changeDateTimeFrom, changeDateTimeTo
+  #  - Fehlercodes aus Version 1.5.2 übernommen:
+  #     - Fehlercode 409 für Operation add_Directory_Entry_Certificate hinzugefügt.
+  #     - Fehlercode 409 für Operation add_Directory_Entry hinzugefügt  (Basiseintrag bereits vorhanden).  
+  #     - Fehlercode 400 für Operation add_Directory_Entry hinzugefügt  (generelle Fehlersituationen).  
+  #  - Schema #/components/schemas/Error' korrigiert:
+  #      In der bisherigen Definition war die Angabe von maxItems/minItems wirkungslos.
+  #      Deshalb wird jetzt in dem Error Schema ein 'array' genutzt. 
+  #
+  # Änderungen in Version 1.6.3
   #  - Operation "delete_Directory_Entry_Certificate" hinzugefügt.
   #
   # Änderungen in Version 1.6.2
@@ -19,6 +45,11 @@ info:
   # Änderungen in Version 1.6.0
   #  - getInfo Operation - inklusive den dazugehörenden Schema Objekten "InfoObject", "Contact" und "License" - hinzugefügt.
   #  - Attribute professionOID und entryType zusätzlich in die Basisdaten - als Kopie aus den Zertifikatsdaten (userCertificate) aufgenommen. Diese Attribute wurden ebenfalls in die read_Directory_Entry Operation als Suchparameter aufgenommen.
+  #
+  # Änderungen in Version 1.5.2
+  #  - Fehlercode 409 für Operation add_Directory_Entry_Certificate hinzugefügt (Zertifikat bereits vorhanden).
+  #  - Fehlercode 409 für Operation add_Directory_Entry hinzugefügt  (Basiseintrag bereits vorhanden).  
+  #  - Fehlercode 400 für Operation add_Directory_Entry hinzugefügt  (generelle Fehlersituationen).  
   #
   # Änderungen in Version 1.5.1
   #  - Header 'Accept: application/json' wird bei delete_Directory_Entry benötigt.
@@ -146,7 +177,7 @@ paths:
 
                        specialization  Kann optional belegt werden.
                        domainID      Kann optional belegt werden.
-                       holder         Kann optional belegt werden (falls nicht belegt, dann vom VZD aus dem ID_Token entnommen).
+                       holder         Kann optional belegt werden.
                        maxKOMLEadr   Kann optional belegt werden.
                        personalEntry Nicht vorhanden (wird vom Verzeichnisdienst belegt)
                        dataFromAuthority Nicht vorhanden (wird vom Verzeichnisdienst belegt)
@@ -177,6 +208,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/distinguishedName'
+        400:
+          description: Bad Request
+                # Allgemeiner Fehler im Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         401:
           description: Unauthorized
                      # Der WWW-Authenticate Header im Response muss auf OAuth gesetzt werden.
@@ -186,6 +224,16 @@ paths:
           content: {}
         405:
           description: Method Not Allowed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        409:
+          description: Conflict
+                # Verzeichniseintrag (identifiziert anhand der Telematik-ID) ist schon vorhanden.
+                #      Die 'Error' Parameter werden für diese Fehler so gesetzt:
+                #           "attributeName": "telematikID",
+                #           "attributeError": "DirectoryEntry already exists"
           content:
             application/json:
               schema:
@@ -204,6 +252,61 @@ paths:
       - DirectoryEntry Administration
       summary: Gesamten Verzeichniseintrag lesen
       description: Liefert alle zum Filter passenden Verzeichniseinträge (maximal 100 Einträge). Die angegebenen Parameter werden mit logischen UND verknüpft.
+#
+# Für die Leseoperationen read_Directory_Entry, read_Directory_Entry_for_Sync und
+# read_Directory_Entry_for_Sync_paging der Schnittstellen I_Directory_Administration 
+# und I_Directory_Application_Maintenance
+# werden die folgenden Filtermöglichkeiten unterstützt: 
+#     o Suche mit Wildcard "*" in den Parametern
+#           - givenName
+#           - sn
+#           - cn
+#           - displayName
+#           - streetAddress
+#           - postalCode
+#           - countryCode
+#           - localityName
+#           - stateOrProvinceName
+#           - title
+#           - organization
+#           - otherName
+#           - telematikID
+#           - specialization
+#           - domainID
+#           - holder
+#           - professionOID
+#       Wildcard ist am Ende und am Anfang nutzbar:
+#           - *Mustermann* - "contains" 
+#           - "Dr. Manfred*" - "startsWith"
+#           - "* MBA" - "endsWith"
+#           treffen alle "Dr. Manfred Mustermann MBA".
+#
+#      o Suche nach Vorhandensein ODER leerem Inhalt eines Attributs des 
+#        VZD Datensatzes durch Belegung des Attributs im GET Request mit "" in den Parametern
+#           - givenName
+#           - sn
+#           - cn
+#           - displayName
+#           - streetAddress
+#           - postalCode
+#           - countryCode
+#           - localityName
+#           - stateOrProvinceName
+#           - title
+#           - organization
+#           - otherName
+#           - specialization
+#           - domainID
+#           - holder
+#           - professionOID
+#           - maxKOMLEadr
+#           - changeDateTimeFrom
+#           - changeDateTimeTo
+#        Diese Suche findet sowohl Datensätze mit nicht vorhandenem Attribut
+#        wie auch vorhandenem aber leerem Attribut.
+#     Alle Filterparameter einer Leseoperationen werden mit einem UND (&) verknüpft.
+#        
+
       operationId: read_Directory_Entry
       parameters:
       - name: uid
@@ -324,13 +427,37 @@ paths:
                      Selektiert der Verzeichniseintrag, wenn der angegebene Wert in den entryType's (array) des Basiseintrags vorhanden ist. 
         schema:
           type: string  
+      - name: maxKOMLEadr
+        in: query
+        description: Erlaubt die Suche mit Hilfe des Attributs maxKOMLEadr. 
+        schema:
+          type: string  
+      - name: changeDateTimeFrom
+        in: query
+        description: Erlaubt die Suche mit Hilfe des Attributs changeDateTime. 
+                  #  Selektiert alle Datensätze mit 
+                  #  changeDateTime >= changeDateTimeFrom
+        schema:
+          type: string  
+          # format: date-time
+          example: "2017-07-21T17:32:28Z"          
+      - name: changeDateTimeTo
+        in: query
+        description: Erlaubt die Suche mit Hilfe des Attributs changeDateTime. 
+                  #  Selektiert alle Datensätze mit 
+                  #  changeDateTime <= changeDateTimeTo
+        schema:
+          type: string  
+          # format: date-time
+          example: "2018-07-21T17:32:28Z"
       - name: baseEntryOnly
         in: query
         description: Mit baseEntryOnly = "true" wird nur der Basiseintrag (baseDirectoryEntry) im Response zurückgegeben. Falls nicht angegeben oder mit "false" belegt, wird der gesamte Verzeichniseintrag mit Zertifikaten und Fachdaten im Response zurückgegeben.
         schema:
           type: boolean
           example: true
-          
+
+        
       responses:
         200:
           description: OK
@@ -359,6 +486,60 @@ paths:
       summary: Synchronisation der Verzeichniseinträge zwischen VZD und Herausgeber
       description: Liefert - analog zu read_Directory_Entry - alle zum Filter passenden Verzeichniseinträge. Im Unterschied zu read_Directory_Entry wird die Limitierung auf 100 Suchergebnisse aufgehoben. Die parallele Ausführung dieser Operation wird vom Server aus Performancegründen eingeschränkt.
         Diese Operation soll nur genutzt werden, wenn mehr als 100 Suchergebnisse benötigt werden. Für alle anderen Suchanfragen soll Operation read_Directory_Entry genutzt werden.
+#
+# Für die Leseoperationen read_Directory_Entry, read_Directory_Entry_for_Sync und
+# read_Directory_Entry_for_Sync_paging der Schnittstellen I_Directory_Administration 
+# und I_Directory_Application_Maintenance
+# werden die folgenden Filtermöglichkeiten unterstützt: 
+#     o Suche mit Wildcard "*" in den Parametern
+#           - givenName
+#           - sn
+#           - cn
+#           - displayName
+#           - streetAddress
+#           - postalCode
+#           - countryCode
+#           - localityName
+#           - stateOrProvinceName
+#           - title
+#           - organization
+#           - otherName
+#           - telematikID
+#           - specialization
+#           - domainID
+#           - holder
+#           - professionOID
+#       Wildcard ist am Ende und am Anfang nutzbar:
+#           - *Mustermann* - "contains" 
+#           - "Dr. Manfred*" - "startsWith"
+#           - "* MBA" - "endsWith"
+#           treffen alle "Dr. Manfred Mustermann MBA".
+#
+#      o Suche nach Vorhandensein ODER leerem Inhalt eines Attributs des 
+#        VZD Datensatzes durch Belegung des Attributs im GET Request mit "" in den Parametern
+#           - givenName
+#           - sn
+#           - cn
+#           - displayName
+#           - streetAddress
+#           - postalCode
+#           - countryCode
+#           - localityName
+#           - stateOrProvinceName
+#           - title
+#           - organization
+#           - otherName
+#           - specialization
+#           - domainID
+#           - holder
+#           - professionOID
+#           - maxKOMLEadr
+#           - changeDateTimeFrom
+#           - changeDateTimeTo
+#        Diese Suche findet sowohl Datensätze mit nicht vorhandenem Attribut
+#        wie auch vorhandenem aber leerem Attribut.
+#     Alle Filterparameter einer Leseoperationen werden mit einem UND (&) verknüpft.
+#        
       operationId: read_Directory_Entry_for_Sync
       parameters:
       - name: uid
@@ -467,13 +648,36 @@ paths:
         description: Erlaubt die Suche mit Hilfe des Attributs dataFromAuthority. 
         schema:
           type: string  
+      - name: maxKOMLEadr
+        in: query
+        description: Erlaubt die Suche mit Hilfe des Attributs maxKOMLEadr. 
+        schema:
+          type: string  
+      - name: changeDateTimeFrom
+        in: query
+        description: Erlaubt die Suche mit Hilfe des Attributs changeDateTime. 
+                  #  Selektiert alle Datensätze mit 
+                  #  changeDateTime >= changeDateTimeFrom
+        schema:
+          type: string  
+          # format: date-time
+          example: "2017-07-21T17:32:28Z"          
+      - name: changeDateTimeTo
+        in: query
+        description: Erlaubt die Suche mit Hilfe des Attributs changeDateTime. 
+                  #  Selektiert alle Datensätze mit 
+                  #  changeDateTime <= changeDateTimeTo
+        schema:
+          type: string  
+          # format: date-time
+          example: "2018-07-21T17:32:28Z"
       - name: baseEntryOnly
         in: query
         description: Mit baseEntryOnly = "true" wird nur der Basiseintrag (baseDirectoryEntry) im Response zurückgegeben. Falls nicht angegeben oder mit "false" belegt, wird der gesamte Verzeichniseintrag mit Zertifikaten und Fachdaten im Response zurückgegeben.
         schema:
           type: boolean
           example: true
-          
+
       responses:
         200:
           description: OK
@@ -499,6 +703,253 @@ paths:
           description: Service Unavailable
           # Der Server schränkt die parallele Nutzung dieser Operation read_Directory_Entry_WL ein. Der Request kann nach einer angemessenen Zeitspanne wiederholt werden. 
           content: {}  
+
+  /v2/DirectoryEntriesSync:
+    get:
+      tags:
+      - DirectoryEntry Synchronization
+      summary: Synchronisation der Verzeichniseinträge zwischen VZD und Herausgeber
+      description: Liefert - analog zu read_Directory_Entry - alle zum Filter passenden Verzeichniseinträge. Im Unterschied zu read_Directory_Entry wird die Limitierung auf 100 Suchergebnisse aufgehoben. Die parallele Ausführung dieser Operation wird vom Server aus Performancegründen eingeschränkt.
+        Diese Operation soll nur genutzt werden, wenn mehr als 100 Suchergebnisse benötigt werden. Für alle anderen Suchanfragen soll Operation read_Directory_Entry genutzt werden.
+#
+# Für die Leseoperationen read_Directory_Entry, read_Directory_Entry_for_Sync und
+# read_Directory_Entry_for_Sync_paging der Schnittstellen I_Directory_Administration 
+# und I_Directory_Application_Maintenance
+# werden die folgenden Filtermöglichkeiten unterstützt: 
+#     o Suche mit Wildcard "*" in den Parametern
+#           - givenName
+#           - sn
+#           - cn
+#           - displayName
+#           - streetAddress
+#           - postalCode
+#           - countryCode
+#           - localityName
+#           - stateOrProvinceName
+#           - title
+#           - organization
+#           - otherName
+#           - telematikID
+#           - specialization
+#           - domainID
+#           - holder
+#           - professionOID
+#       Wildcard ist am Ende und am Anfang nutzbar:
+#           - *Mustermann* - "contains" 
+#           - "Dr. Manfred*" - "startsWith"
+#           - "* MBA" - "endsWith"
+#           treffen alle "Dr. Manfred Mustermann MBA".
+#
+#      o Suche nach Vorhandensein ODER leerem Inhalt eines Attributs des 
+#        VZD Datensatzes durch Belegung des Attributs im GET Request mit "" in den Parametern
+#           - givenName
+#           - sn
+#           - cn
+#           - displayName
+#           - streetAddress
+#           - postalCode
+#           - countryCode
+#           - localityName
+#           - stateOrProvinceName
+#           - title
+#           - organization
+#           - otherName
+#           - specialization
+#           - domainID
+#           - holder
+#           - professionOID
+#           - maxKOMLEadr
+#           - changeDateTimeFrom
+#           - changeDateTimeTo
+#        Diese Suche findet sowohl Datensätze mit nicht vorhandenem Attribut
+#        wie auch vorhandenem aber leerem Attribut.
+#     Alle Filterparameter einer Leseoperationen werden mit einem UND (&) verknüpft.
+#        
+      operationId: read_Directory_Entry_for_Sync_paging
+      parameters:
+      - name: uid
+        in: query
+        description: ID von dem Verzeichniseintrag (distinguishedName.uid)
+        schema:
+          type: string  
+      - name: givenName
+        in: query
+        description: Erlaubt die Suche mit Hilfe des Attributs givenName.
+        schema:
+          type: string  
+      - name: sn
+        in: query
+        description: Erlaubt die Suche mit Hilfe des Attributs sn.
+        schema:
+          type: string  
+      - name: cn
+        in: query
+        description: Erlaubt die Suche mit Hilfe des Attributs cn.
+        schema:
+          type: string  
+      - name: displayName
+        in: query
+        description: Erlaubt die Suche mit Hilfe des Attributs displayName.
+        schema:
+          type: string  
+      - name: streetAddress
+        in: query
+        description: Erlaubt die Suche mit Hilfe des Attributs streetAddress.
+        schema:
+          type: string  
+      - name: postalCode
+        in: query
+        description: Erlaubt die Suche mit Hilfe des Attributs postalCode.
+        schema:
+          type: string  
+      - name: countryCode
+        in: query
+        description: Erlaubt die Suche mit Hilfe des Attributs countryCode.
+        schema:
+          type: string    
+      - name: localityName
+        in: query
+        description: Erlaubt die Suche mit Hilfe des Attributs localityName.
+        schema:
+          type: string  
+      - name: stateOrProvinceName
+        in: query
+        description: Erlaubt die Suche mit Hilfe des Attributs stateOrProvinceName.
+        schema:
+          type: string  
+      - name: title
+        in: query
+        description: Erlaubt die Suche mit Hilfe des Attributs title.
+        schema:
+          type: string  
+      - name: organization
+        in: query
+        description: Erlaubt die Suche mit Hilfe des Attributs organization.
+        schema:
+          type: string  
+      - name: otherName
+        in: query
+        description: Erlaubt die Suche mit Hilfe des Attributs otherName.
+        schema:
+          type: string  
+      - name: telematikID
+        in: query
+        description: Erlaubt die Suche mit Hilfe des Attributs telematikID (die telematikID in den Basisdaten).
+        schema:
+          type: string  
+      - name: telematikID-SubStr
+        in: query
+        description: Erlaubt die Suche nach einem Substring am Anfang der telematikID (die telematikID in den Basisdaten).
+                      Entspricht der LDAP Filters Substring Assertion vom Typ "subInitial Component".
+        schema:
+          type: string  
+      - name: specialization
+        in: query
+        description: Erlaubt die Suche mit Hilfe des Attributs specialization. 
+                     Der Verzeichniseintrag wird selektiert, wenn die angegebene domainID im Attribut domainID (array) des Verzeichniseintrags enthalten ist.
+        schema:
+          type: string  
+      - name: domainID
+        in: query
+        description: Erlaubt die Suche mit Hilfe des Attributs domainID. 
+                     Der Verzeichniseintrag wird selektiert, wenn die angegebene domainID im Attribut domainID (array) des Verzeichniseintrags enthalten ist.
+        schema:
+          type: string  
+      - name: holder
+        in: query
+        description: Erlaubt die Suche mit Hilfe des Attributs holder. 
+                     Der Verzeichniseintrag wird selektiert, wenn der angegebene holder im Attribut holder (array) des Verzeichniseintrags enthalten ist.
+                     Wenn der Parameter mit dem eigenen Wert des Clients belegt wird, werden alle gefundenen Einträge zurückgegeben (für eigene Einträge gilt das Limit von 100 Ergebnissen nicht).
+                     Zur Suche nach Einträge ohne holder ist der Parameter mit dem einem leeren String "" zu belegen. Auch in diesem Fall werden alle gefundenen Einträge zurückgegeben (für Einträge ohne holder gilt das Limit von 100 Ergebnissen nicht).
+        schema:
+          type: string  
+      - name: personalEntry
+        in: query
+        description: Erlaubt die Suche mit Hilfe des Attributs personalEntry. 
+        schema:
+          type: string  
+      - name: dataFromAuthority
+        in: query
+        description: Erlaubt die Suche mit Hilfe des Attributs dataFromAuthority. 
+        schema:
+          type: string  
+      - name: maxKOMLEadr
+        in: query
+        description: Erlaubt die Suche mit Hilfe des Attributs maxKOMLEadr. 
+        schema:
+          type: string  
+      - name: changeDateTimeFrom
+        in: query
+        description: Erlaubt die Suche mit Hilfe des Attributs changeDateTime. 
+                  #  Selektiert alle Datensätze mit 
+                  #  changeDateTime >= changeDateTimeFrom
+        schema:
+          type: string  
+          # format: date-time
+          example: "2017-07-21T17:32:28Z"          
+      - name: changeDateTimeTo
+        in: query
+        description: Erlaubt die Suche mit Hilfe des Attributs changeDateTime. 
+                  #  Selektiert alle Datensätze mit 
+                  #  changeDateTime <= changeDateTimeTo
+        schema:
+          type: string  
+          # format: date-time
+          example: "2018-07-21T17:32:28Z"
+      - name: baseEntryOnly
+        in: query
+        description: Mit baseEntryOnly = "true" wird nur der Basiseintrag (baseDirectoryEntry) im Response zurückgegeben. Falls nicht angegeben oder mit "false" belegt, wird der gesamte Verzeichniseintrag mit Zertifikaten und Fachdaten im Response zurückgegeben.
+        schema:
+          type: boolean
+          example: true
+    # Paging Parameter entsprechend https://tools.ietf.org/html/rfc2696
+    # Paging ist nur für eigene Verzeichniseinträge erlaubt. Deshalb muss bei
+    # Verwendung des Pagings zwingend der "holder" Suchparameter angegeben werden 
+    # und den eigenen holderID (entsprechend dem Wert im ID_Token claim scope) enthalten.
+    # Siehe auch #/components/schemas/searchControlValue
+      - name: size   
+        in: query
+        description: Paging Größe 
+           # Entspricht realSearchControlValue.size in RFC2696.
+           # Maximal diese Anzahl von Verzeichniseinträgen sind in einem Response enthalten. 
+           # In dem nächsten Response sind die nächsten Verzeichniseinträge enthalten.
+        schema:
+         type: integer 
+         example: 50
+      - name: cookie  
+        in: query
+        description: Paging Cookie
+          # Im ersten Request übergibt der Client einen leeren String in diesem Parameter. 
+          # In den Folgerequests übernimmt der Client dieses Cookie jeweils aus dem letzten Response und erhält die nächsten Verzeichniseinträge.
+        schema:
+         type: string 
+          
+      responses:
+        200:
+          description: OK
+                    #  Es werden alle zu dem Filter Parametern passenden Verzeichniseinträge - inklusive Zertifikaten und Fachdaten - zurückgegeben.
+                    # Bei mehr als 100 gefundenen Einträgen nur 100 gefundenen Einträge zurückgegeben.   
+                    # Wenn der Suchparameter "holder" mit dem eigenen Wert des Clients belegt wird, werden alle gefundenen Einträge zurückgegeben (für eigene Einträge gilt das Limit von 100 Ergebnissen nicht).
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/readDirectoryEntryforSyncResponse'
+
+        401:
+          description: Unauthorized
+                    #  Der WWW-Authenticate Header im Response wird auf OAuth gesetzt.
+          content: {}
+        403:
+          description: Forbidden
+          content: {}
+        404:
+          description: Not Found
+          content: {}
+        503:
+          description: Service Unavailable
+          # Der Server schränkt die parallele Nutzung dieser Operation read_Directory_Entry_WL ein. Der Request kann nach einer angemessenen Zeitspanne wiederholt werden. 
+          content: {}  
+
 
 
   /DirectoryEntries/{uid}/baseDirectoryEntries:
@@ -694,6 +1145,19 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+        409:
+          description: Conflict
+                # Zertifikat (identifiziert anhand der Serial Number) ist für den 
+                # Verzeichniseintrag (identifiziert anhand der Telematik-ID) schon vorhanden.
+                #      Die 'Error' Parameter werden für diese Fehler so gesetzt:
+                #           "attributeName": "userCertificate",
+                #           "attributeError": "userCertificate already exists"
+                # Wenn es sich um ein anderes / weiteres Zertifikat handelt (andere Serial Number), 
+                # wird dieses normal hinzugefügt.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         422:
           description: Unprocessable Entity
             # Bei unterschiedlichen telematikIDs (Parameter telematikID und Wert im userCertificate) wird die Operation mit Fehlercode 422 abgelehnt.
@@ -830,15 +1294,12 @@ paths:
                 $ref: '#/components/schemas/Error'
   
 
-
 components:
 
   schemas:
   
     userCertificate:
       description: Jeder Verzeichniseintrag muss mindestens ein Zertifikat enthalten.
-      required:
-      - dn
       type: object
       properties:
         dn:
@@ -948,9 +1409,6 @@ components:
           description: Common Name
 
     baseDirectoryEntry:
-      required:
-      - cn
-      - dn
       type: object
       properties:
         dn:
@@ -1046,16 +1504,15 @@ components:
             Hat keinen Einfluss auf Fachdaten und Zertifikatsdaten.
             Beim Anlegen eines neuen Verzeichniseintrags (add_Directory_Entry)
               - Ist im add_Directory_Entry Request das Attribut "holder" nicht vorhanden oder enthält keine Werte
-                 o Wird vom VZD aus dem ID_TOKEN claim scope der Wert entnommen und als "holder" in dieses Attribut eingetragen. 
+                 o Wird vom VZD in dieses Attribut kein Wert (leeres Attribut) eingetragen. 
               - Ist im add_Directory_Entry Request das Attribut "holder" vorhanden und mit Inhalten gefüllt
-                 o Übernimmt der VZD die Werte aus dem Request und trägt sie - nach Prüfung ihrer Gültigkeit - in den Verzeuichniseintrag ein. 
-                   Ist ein Wert aus dem Request nicht gültig, weist der VZD die Operation mit HTTP-Status-Code 422 ab.
+                 o Ist ein Wert aus dem Request Attribut "holder" nicht gültig, MUSS der VZD die Operation mit 
+                 HTTP-Status-Code 422 abweisen und die weitere Verarbeitung von diesem Request abbrechen.
+                 o Sind alle Werte aus dem Request Attribut "holder" gültig, MUSS der VZD die Werte aus dem Request 
+                 entnehmen und sie in das "holder" Attribut des Verzeichniseintrags übernehmen.
             Beim Ändern eines neuen Verzeichniseintrags (modify_Directory_Entry)
               - Ist im modify_Directory_Entry Request das Attribut "holder" nicht vorhanden oder enthält keine Werte
                  o Die Werte im aktuellen "holder" Attribut des Verzeichniseintrags bleiben erhalten.
-              - Ist im add_Directory_Entry Request das Attribut "holder" vorhanden und mit Inhalten gefüllt
-                 o Übernimmt der VZD die Werte aus dem Request und trägt sie - nach Prüfung ihrer Gültigkeit - in den Verzeuichniseintrag ein. 
-                   Ist ein Wert aus dem Request nicht gültig, weist der VZD die Operation mit HTTP-Status-Code 422 ab.
           items:
             type: string
             example: KartenHerausgeberABC
@@ -1105,7 +1562,7 @@ components:
         DirectoryEntryBase:
           $ref: '#/components/schemas/baseDirectoryEntry'
         userCertificates:
-          maxItems: 100
+          maxItems: 50
           minItems: 0
           type: array
           items:
@@ -1123,7 +1580,7 @@ components:
         DirectoryEntryBase:
           $ref: '#/components/schemas/baseDirectoryEntry'
         userCertificates:
-          maxItems: 100
+          maxItems: 50
           minItems: 0
           type: array
           items:
@@ -1137,8 +1594,16 @@ components:
             
     Error:
       type: object
-      maxItems: 50
-      minItems: 0
+      properties:
+        errors:
+          maxItems: 50
+          minItems: 0
+          type: array
+          items:
+            $ref: '#/components/schemas/InnerError'
+
+    InnerError:
+      type: object
       properties:
         attributeName:
           description: Name des Attributs, in dem ein Fehler erkannt wurde
@@ -1169,15 +1634,15 @@ components:
           description: Eine URL zu den Terms of Service für dieses API.
           example: "http://example.com/terms/"
         contact:
-          $ref: '#/components/schemas/Contact'
+          $ref: '#/components/schemas/contact'
         license:
-          $ref: '#/components/schemas/License'
+          $ref: '#/components/schemas/license'
         version:
           type: string
           description: Die Version von dem OpenAPI Document (YAML Datei)
           example: "1.6.0"
 
-    Contact:
+    contact:
       readOnly: true
       description: Die Kontaktinformationen für diese Schnittstelle.
       type: object
@@ -1198,7 +1663,7 @@ components:
           description: Der E-Mail Adresse der Kontaktperson / -Organisation.
           example: "support@example.com"
 
-    License:
+    license:
       required:
       - name
       readOnly: true
@@ -1214,6 +1679,38 @@ components:
           description: Eine URL zu den Lizenzinformationen für dieses API.
           example: "https://www.apache.org/licenses/LICENSE-2.0.html"
 
+    searchControlValue:
+    # https://tools.ietf.org/html/rfc2696
+    # Mit den Parametern dieser Datenstruktur kann das Paging von LDAP Suchergebnissen entsprechend RFC2696 gesteuert werden.
+    # Mit dem Paging können alle (oder eine Teilmenge) eigenen Verzeichniseinträge gelesen werden, auch wenn das Limit von 100 Suchergebnissen überschritten wird.
+    # Paging ist nur für eigene Verzeichniseinträge erlaubt. Deshalb muss bei Verwendung des Pagings zwingend der "owner" Suchparameter angegeben werden 
+    # und den eigenen ownerID (entsprechend dem Wert im ID_Token) enthalten. Wird Paging nicht mit dem korrekten "owner" Suchparameter ausgeführt,
+    # wird mit einem Fehler (HTTP Status Code 403) geantwortet.
+    # Die Suchparameter müssen während eines Pagings (mit mehreren Request/Response Sequenzen) identisch sein (nur das "cookie" ändert sich). 
+      type: object
+      properties:
+        size:
+          type: integer
+          example: 50
+      # Im Request gibt der Client die gewünschte Paging Größe an (Maximalgröße entsprechend TIP1-A_5552). 
+      #    Maximal diese Anzahl von Verzeichniseinträgen sind in einer Antwort enthalten.
+      # Im Response trägt der Verzeichnisdienst in diesen Parameter die gesamte Anzahl von gefundenen Verzeichniseinträge an.
+        cookie:
+          type: string
+          example: bGlnaHQgd29yay4=
+      # Im ersten Request übergibt der Client einen leeren String in diesem Parameter. 
+      # In jedes Response trägt der Verzeichnisdienst in diesen Parameter ein Cookie ein, über den das Paging zum nächsten Ergebnis erfolgt.
+      # Der Client übernimmt dieses Cookie jeweils in den folgenden Request und erhält die nachsten Verzeichniseinträge.
+      # Für den Client ist das Cookie transparent und darf nicht von ihm manipuliert werden.
+      # In dem letzten Response - mit den letzten Verzeichniseinträgen - liefert der Verzeichnisdienst in diesem Parameter einen leeren String.
+
+    readDirectoryEntryforSyncResponse:
+      type: object
+      properties:
+        searchControlValue:
+          $ref: '#/components/schemas/searchControlValue'
+        directoryEntries:
+          $ref: '#/components/schemas/DirectoryEntries'
 
   securitySchemes:
     OAuth2:
