@@ -33,7 +33,6 @@ image:https://shields.io/badge/develop-green[link="https://github.com/gematik/ap
 .Verzeichnisdienst Systemkontext
 image::VZD_Systemkontext.svg[VZD Systemkontext]
 
-
 Verzeichnisdienst der TI verwaltet Einträge von Leistungserbringern und Organisationen/Institutionen mit allen definierten Attributen, die in das Verzeichnis aufgenommen werden sollen. Anhand einer Suchanfrage können diese  Daten abgefragt werden (z. B. Adressdaten, X.509-Zertifikate). Ferner können Einträge des Verzeichnisses durch Kartenherausgeber (Basisdaten) oder berechtigte fachanwendungsspezifische Dienste (Fachanwendungsdaten) geändert, hinzugefügt und gelöscht (Kartenherausgeber vollständige Einträge, fachanwendungsspezifische Dienste nur die jeweiligen Fachdaten) werden.
 
 Verzeichnisdienst bittet folgende Außenschnittstellen an (s Nummerierung in der Abbildung):
@@ -43,7 +42,9 @@ Verzeichnisdienst bittet folgende Außenschnittstellen an (s Nummerierung in der
 3. Die Kartenherausgeber (bspw. Landesärztekammer oder Kassenzahnärztliche Vereinigungen) in Kooperation mit Trust Service Provider sind verantwortlich für die Befüllung des VZD mit Basisdaten und Zertifikaten. Hierfür stell VZD eine REST API für die Administration der Daten im Verzeichnisdienst. Schnittstelle `I_Directory_Administration`.
 4. Die KIM Anbieter ergänzen die Basisdaten um eigene Inhalte, insb. um die KIM-EMail-Adressen. Schnittstelle `I_Application_Maintenance`.
 5. Für die Suche der Apotheken, z.B. in der gematik eRezept APP, existiert ein dediziertes Apothekenverzeichnis (ApoVZD). ApoVZD synchronisiert regelmäßig die Daten aus dem VZD und ergänzt diese um weitere Inhalte (z.B. um Geolokalisierung und Öffnungszeiten der Apotheken). Schnittstelle `I_Directory_Administration`, analog zu p.3.
-6. Für die Suche der Leistungserbringer-Institutionen im Rahmen der Berechtigungsvergabe in der elektronischen Patientenakte (ePA),vermittelt das ePA-Aktensystem die Kommunikation zwischen VZD und ePA-Frontend. Schnittstelle `I_Directory_Query`, zentral. 
+6. Für die Suche der Leistungserbringer-Institutionen im Rahmen der Berechtigungsvergabe in der elektronischen Patientenakte (ePA),vermittelt das ePA-Aktensystem die Kommunikation zwischen VZD und ePA-Frontend. Schnittstelle `I_Directory_Query`, zentral.
+7. #In Entwicklung#: TIM Anbieter registrieren sich und verifizieren sich gegenseitig mit Hilfe von VZD. Schnittstelle. `I_VZD_TIM_Provider_Services``
+8. #In Entwicklung#: VZD bietet direkten Zugriff zur den Daten über FHIR REST Schnittstellen für die TIM Clients und perspektivisch anderen registrierten Clients. Schnittstelle `I_FHIR_Directory`.
 
 Die Schnittstellen des Verzeichnisdienstes sind in Spezifikationen der gematik definiert:
 
