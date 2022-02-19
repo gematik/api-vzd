@@ -17,10 +17,6 @@
       "display": "KIM-Provider"
     },
     {
-      "code": "card-issuer",
-      "display": "Kartenherausgeber"
-    },
-    {
       "code": "tsp",
       "display": "Trust Service Provider"
     },
@@ -30,5 +26,5 @@
     }
   ],
   "publisher": "gematik GmbH",
-  "count": 5
+  "count": 4
 }
