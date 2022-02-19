@@ -30,11 +30,13 @@ image:https://shields.io/badge/develop-green[link="https://github.com/gematik/ap
 
 == Kontextabgrenzung
 
+.Verzeichnisdienst Systemkontext
 image::VZD_Systemkontext.svg[VZD Systemkontext]
+
 
 Verzeichnisdienst der TI verwaltet Einträge von Leistungserbringern und Organisationen/Institutionen mit allen definierten Attributen, die in das Verzeichnis aufgenommen werden sollen. Anhand einer Suchanfrage können diese  Daten abgefragt werden (z. B. Adressdaten, X.509-Zertifikate). Ferner können Einträge des Verzeichnisses durch Kartenherausgeber (Basisdaten) oder berechtigte fachanwendungsspezifische Dienste (Fachanwendungsdaten) geändert, hinzugefügt und gelöscht (Kartenherausgeber vollständige Einträge, fachanwendungsspezifische Dienste nur die jeweiligen Fachdaten) werden.
 
-Verzeichnisdienst bitte folgende Außenschnittstellen an (s Nummerierung in der Abbildung):
+Verzeichnisdienst bittet folgende Außenschnittstellen an (s Nummerierung in der Abbildung):
 
 1. Über den TI-Konnektor wird dem KIM-Client sowie Primärsystemen eine LDAP Schnittstelle zur Abfrage der Daten bereitgestellt. Schnittstelle `I_Directory_Query`, dezentral.
 2. Die Konnektoren leiten die Anfragen zustandslos über das zentrale Nezt der TI an das Verzeichnisdienst weiter. Über die LDAP Schnittstelle des zentrale betriebenen VZD werden speziell für solche Abfragen aufbereitete und optimierte Daten durchsucht (so genannte flache Liste). Schnittstelle `I_Directory_Query`, zentral.
