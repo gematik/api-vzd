@@ -1,6 +1,9 @@
 Profile: TIPractitioner
 Parent: Practitioner
-Description: "Profile for the Practitioner in gematik FHIR Directory"
+Title: "Profile for Practitioner resource in the TI"
+Description: """Defines the data structure for practitioner 
+to be managed by gematik FHIR Directory.
+"""
 * ^status = #draft
 * id MS
 * identifier 1..* MS

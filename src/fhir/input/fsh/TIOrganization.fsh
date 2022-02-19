@@ -1,6 +1,9 @@
 Profile: TIOrganization
 Parent: Organization
-Description: "Profile for the Organization in gematik FHIR Directory"
+Title: "Profile for an Organization resource in the TI"
+Description: """Defines the data structure for medical, regulatory and technical 
+organisations specific for german Healthcare and Telematics Infrastructure.
+"""
 * insert Meta
 * id 0..1 MS
 * name 1..1 MS

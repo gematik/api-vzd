@@ -14,9 +14,10 @@
   "url": "https://gematik.de/fhir/directory/StructureDefinition/TIOrganization",
   "version": "0.6.0-wip",
   "name": "TIOrganization",
+  "title": "Profile for an Organization resource in the TI",
   "status": "draft",
   "publisher": "gematik GmbH",
-  "description": "Profile for the Organization in gematik FHIR Directory",
+  "description": "Defines the data structure for medical, regulatory and technical \norganisations specific for german Healthcare and Telematics Infrastructure.",
   "fhirVersion": "4.0.1",
   "mapping": [
     {
