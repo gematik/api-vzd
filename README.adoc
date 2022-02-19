@@ -28,18 +28,30 @@ image:https://shields.io/badge/develop-green[link="https://github.com/gematik/ap
 * *17.02.2022* 🎁 link:CHANGELOG.adoc[Produktrelease v3.1.0-11]
 * *14.02.2022* 📄 https://fachportal.gematik.de/fileadmin/Fachportal/Downloadcenter/Implementierungsleitfaeden/gemILF_Pflege_VZD_V1.5.2.pdf[Implementierungsleitfaden v1.5.2]
 
-== Allgemeines
+== Kontextabgrenzung
 
-Die folgende Dokumentation beschreibt wie der Verzeichnisdienst der Telematikinfrastruktur genutzt werden kann.
-Insbesondere welche Daten im FHIR-Directory gespeichert werden und welche Bedeutung sie haben, wird beschrieben.
+image::VZD_Systemkontext.svg[VZD Systemkontext]
+
+Verzeichnisdienst der TI verwaltet Einträge von Leistungserbringern und Organisationen/Institutionen mit allen definierten Attributen, die in das Verzeichnis aufgenommen werden sollen. Anhand einer Suchanfrage können diese  Daten abgefragt werden (z. B. Adressdaten, X.509-Zertifikate). Ferner können Einträge des Verzeichnisses durch Kartenherausgeber (Basisdaten) oder berechtigte fachanwendungsspezifische Dienste (Fachanwendungsdaten) geändert, hinzugefügt und gelöscht (Kartenherausgeber vollständige Einträge, fachanwendungsspezifische Dienste nur die jeweiligen Fachdaten) werden.
+
+Verzeichnisdienst bitte folgende Außenschnittstellen an (s Nummerierung in der Abbildung):
+
+1. Über den TI-Konnektor wird dem KIM-Client sowie Primärsystemen eine LDAP Schnittstelle zur Abfrage der Daten bereitgestellt. Schnittstelle `I_Directory_Query`, dezentral.
+2. Die Konnektoren leiten die Anfragen zustandslos über das zentrale Nezt der TI an das Verzeichnisdienst weiter. Über die LDAP Schnittstelle des zentrale betriebenen VZD werden speziell für solche Abfragen aufbereitete und optimierte Daten durchsucht (so genannte flache Liste). Schnittstelle `I_Directory_Query`, zentral.
+3. Die Kartenherausgeber (bspw. Landesärztekammer oder Kassenzahnärztliche Vereinigungen) in Kooperation mit Trust Service Provider sind verantwortlich für die Befüllung des VZD mit Basisdaten und Zertifikaten. Hierfür stell VZD eine REST API für die Administration der Daten im Verzeichnisdienst. Schnittstelle `I_Directory_Administration`.
+4. Die KIM Anbieter ergänzen die Basisdaten um eigene Inhalte, insb. um die KIM-EMail-Adressen. Schnittstelle `I_Application_Maintenance`.
+5. Für die Suche der Apotheken, z.B. in der gematik eRezept APP, existiert ein dediziertes Apothekenverzeichnis (ApoVZD). ApoVZD synchronisiert regelmäßig die Daten aus dem VZD und ergänzt diese um weitere Inhalte (z.B. um Geolokalisierung und Öffnungszeiten der Apotheken). Schnittstelle `I_Directory_Administration`, analog zu p.3.
+6. Für die Suche der Leistungserbringer-Institutionen im Rahmen der Berechtigungsvergabe in der elektronischen Patientenakte (ePA),vermittelt das ePA-Aktensystem die Kommunikation zwischen VZD und ePA-Frontend. Schnittstelle `I_Directory_Query`, zentral. 
+
 Die Schnittstellen des Verzeichnisdienstes sind in Spezifikationen der gematik definiert:
 
 * https://fachportal.gematik.de/fachportal-import/files/gemSpec_VZD_V1.13.1.pdf[gemSpec_VZD_V1.13.1.pdf]
 
+Die Daten des LDAP-Directories sind im Implementierungsleitfaden zur Pflege der Daten des Verzeichnisdienstes beschrieben.
+Die Dokumente können im Fachportal der gematik gefunden werden: 
+
 * https://fachportal.gematik.de/fileadmin/Fachportal/Downloadcenter/Implementierungsleitfaeden/gemILF_Pflege_VZD_V1.5.2.pdf[gemILF_Pflege_VZD_V1.5.2.pdf]
 
-Die Daten des LDAP-Directories sind im Implementierungsleitfaden zur Pflege der Daten des Verzeichnisdienstes beschrieben.
-Die Dokumente können im Fachportal der gematik gefunden werden: https://fachportal.gematik.de/downloadcenter.
 
 == Systemarchitektur
 
@@ -49,7 +61,7 @@ image::VZD_Architektur.svg[VZD overview]
 
 == FHIR-Directory Datenmodell
 
-image::VZD_FHIR_Directory_Datenmodell.svg[Datenmodell]
+image::VZD_FHIR_Directory_Resourcen.svg[Datenmodell]
 
 === TIOrganization
 
