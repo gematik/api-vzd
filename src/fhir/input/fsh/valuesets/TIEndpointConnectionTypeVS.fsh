@@ -4,4 +4,4 @@ Description: """
 """
 * insert Meta
 * include codes from system $EndpointConnectionTypeCS
-* include codes from system TIMessengerCS
+* include codes from system TIEndpointConnectionTypeCS

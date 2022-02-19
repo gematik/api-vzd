@@ -14,7 +14,8 @@
   "url": "https://gematik.de/fhir/directory/StructureDefinition/TIEndpoint",
   "version": "0.6.0-wip",
   "name": "TIEndpoint",
-  "status": "active",
+  "status": "draft",
+  "publisher": "gematik GmbH",
   "description": "Endpoints for applications in the TI",
   "fhirVersion": "4.0.1",
   "mapping": [

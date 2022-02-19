@@ -4,9 +4,9 @@ Usage: #example
 Description: """
 """
 * status = #active
-* connectionType = #secure-email
+* connectionType = $EndpointConnectionTypeCS#secure-email
 * payloadType = #any
-* address = "mailto:gematik006@xxx.kim.telematik"
+* address = "gematik006@xxx.kim.telematik"
 * extension[X509CertificatePEM].valueString = """
 -----BEGIN CERTIFICATE-----
 MIIC6jCCAksCCQCwBVjloct7dDAKBggqhkjOPQQDAjCBuDELMAkGA1UEBhMCREUx
@@ -34,7 +34,7 @@ Usage: #example
 Description: """
 """
 * status = #active
-* connectionType = #gematik-tim
+* connectionType = TIEndpointConnectionTypeCS#tim
 * address = "@betrieb:tim.gematik.de"
 * payloadType = #any
 
@@ -44,7 +44,7 @@ Usage: #example
 Description: """
 """
 * status = #active
-* connectionType = #gematik-tepaim
+* connectionType = TIEndpointConnectionTypeCS#epa
 * address = "urn:TODO"
 * payloadType = #any
 * extension[X509CertificatePEM].valueString = """

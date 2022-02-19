@@ -9,7 +9,8 @@
   ],
   "status": "active",
   "connectionType": {
-    "code": "gematik-tepaim"
+    "code": "epa",
+    "system": "https://gematik.de/fhir/directory/CodeSystem/TIEndpointConnectionTypeCS"
   },
   "address": "urn:TODO",
   "payloadType": [

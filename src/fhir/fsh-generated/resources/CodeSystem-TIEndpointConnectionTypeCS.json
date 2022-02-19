@@ -1,0 +1,35 @@
+{
+  "resourceType": "CodeSystem",
+  "status": "draft",
+  "content": "complete",
+  "name": "TIEndpointConnectionTypeCS",
+  "id": "TIEndpointConnectionTypeCS",
+  "title": "Codes for Endpoint.connectionType",
+  "description": "CodeSystem TI specific connection types assigned to the Endpoints",
+  "version": "0.6.0-wip",
+  "url": "https://gematik.de/fhir/directory/CodeSystem/TIEndpointConnectionTypeCS",
+  "concept": [
+    {
+      "code": "tim-domain",
+      "display": "TI-Messenger domain name"
+    },
+    {
+      "code": "kim",
+      "display": "KIM Adresse"
+    },
+    {
+      "code": "epa",
+      "display": "ePA"
+    },
+    {
+      "code": "erp",
+      "display": "eRP"
+    },
+    {
+      "code": "tim",
+      "display": "TI-Messender Adresse"
+    }
+  ],
+  "publisher": "gematik GmbH",
+  "count": 5
+}

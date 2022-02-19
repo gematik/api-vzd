@@ -4,6 +4,7 @@ Description: "CodeSystem of TI Service Provider types as to be found in the gema
 * ^content = #complete
 * #tim-provider "TI-Messenger-Provider"
 * #kim-provider "KIM-Provider"
-* #card-issuer "Kartenherausgeber"
+// Kartenherausgeber sind eigentlich Betriebstätten "ABC"
+//* #card-issuer "Kartenherausgeber"
 * #tsp "Trust Service Provider"
 * #idp "Identity Provider"
