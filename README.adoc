@@ -43,8 +43,9 @@ Verzeichnisdienst bittet folgende Außenschnittstellen an (s Nummerierung in der
 4. Die KIM Anbieter ergänzen die Basisdaten um eigene Inhalte, insb. um die KIM-EMail-Adressen. Schnittstelle `I_Application_Maintenance`.
 5. Für die Suche der Apotheken, z.B. in der gematik eRezept APP, existiert ein dediziertes Apothekenverzeichnis (ApoVZD). ApoVZD synchronisiert regelmäßig die Daten aus dem VZD und ergänzt diese um weitere Inhalte (z.B. um Geolokalisierung und Öffnungszeiten der Apotheken). Schnittstelle `I_Directory_Administration`, analog zu p.3.
 6. Für die Suche der Leistungserbringer-Institutionen im Rahmen der Berechtigungsvergabe in der elektronischen Patientenakte (ePA),vermittelt das ePA-Aktensystem die Kommunikation zwischen VZD und ePA-Frontend. Schnittstelle `I_Directory_Query`, zentral.
-7. _In Entwicklung_: TIM Anbieter registrieren sich und verifizieren sich gegenseitig mit Hilfe von VZD. Schnittstelle. `I_VZD_TIM_Provider_Services``
-8. _In Entwicklung_: VZD bietet direkten Zugriff zur den Daten über FHIR REST Schnittstellen für die TIM Clients und perspektivisch anderen registrierten Clients. Schnittstelle `I_FHIR_Directory`.
+7. _In Entwicklung_: TIM Anbieter registrieren sich und verifizieren sich gegenseitig mit Hilfe von VZD. Schnittstelle. `I_VZD_TIM_Provider_Services`
+8. _In Entwicklung_: VZD bietet direkten Zugriff zur den Daten über FHIR REST Schnittstellen für die TIM Clients und perspektivisch anderen registrierten Clients. Schnittstelle `I_FHIR_Directory#tim-search`.
+9. _In Entwicklung_: Die Leistungserbringer können ihre Daten selbstständig administrieren, um z.B. die Organisationsstrukturen und Standorte zur erfassen. Schnittstelle `I_FHIR_Directory#owner`.
 
 Die Schnittstellen des Verzeichnisdienstes sind in Spezifikationen der gematik definiert:
 
