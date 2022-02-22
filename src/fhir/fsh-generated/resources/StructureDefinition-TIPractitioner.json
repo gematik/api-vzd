@@ -15,6 +15,7 @@
   "version": "0.6.0-wip",
   "name": "TIPractitioner",
   "status": "draft",
+  "publisher": "gematik GmbH",
   "description": "Profile for the Practitioner in gematik FHIR Directory",
   "fhirVersion": "4.0.1",
   "mapping": [

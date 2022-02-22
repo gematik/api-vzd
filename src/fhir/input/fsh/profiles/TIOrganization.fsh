@@ -21,3 +21,4 @@ Description: "Profile for the Organization in gematik FHIR Directory"
 * alias MS
 * contact MS
 * contact.purpose from $ContactEntityTypeVS
+* extension contains X509CertificateBundleExtension named certificates 0..1 MS
