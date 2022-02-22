@@ -21,4 +21,3 @@ Description: "Profile for the Organization in gematik FHIR Directory"
 * alias MS
 * contact MS
 * contact.purpose from $ContactEntityTypeVS
-* contact.telecom.extension contains X509CertificatePEM named certificate 0..* MS

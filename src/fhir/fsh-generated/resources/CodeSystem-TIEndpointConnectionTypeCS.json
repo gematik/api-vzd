@@ -15,21 +15,25 @@
     },
     {
       "code": "kim",
-      "display": "KIM Adresse"
+      "display": "KIM Endpoint"
+    },
+    {
+      "code": "kim1.5",
+      "display": "KIM 1.5 Endpoint"
     },
     {
       "code": "epa",
-      "display": "ePA"
+      "display": "ePA Endpoint"
     },
     {
       "code": "erp",
-      "display": "eRP"
+      "display": "eRP Endpoint"
     },
     {
       "code": "tim",
-      "display": "TI-Messender Adresse"
+      "display": "TI-Messender Endpoint"
     }
   ],
   "publisher": "gematik GmbH",
-  "count": 5
+  "count": 6
 }

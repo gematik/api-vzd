@@ -4,7 +4,8 @@ Description: "CodeSystem TI specific connection types assigned to the Endpoints"
 * insert Meta
 * ^content = #complete
 * #tim-domain "TI-Messenger domain name"
-* #kim "KIM Adresse"
-* #epa "ePA"
-* #erp "eRP"
-* #tim "TI-Messender Adresse"
+* #kim "KIM Endpoint"
+* #kim1.5 "KIM 1.5 Endpoint"
+* #epa "ePA Endpoint"
+* #erp "eRP Endpoint"
+* #tim "TI-Messender Endpoint"
