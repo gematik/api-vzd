@@ -6,6 +6,7 @@ Alias: $ContactPointSystemCS = http://hl7.org/fhir/contact-point-system
 Alias: $EndpointConnectionTypeCS = http://terminology.hl7.org/CodeSystem/endpoint-connection-type
 
 Alias: $IHEXDSauthorSpeciality = http://ihe-d.de/ValueSets/IHEXDSauthorSpeciality
+Alias: $IHEXDShealthcareFacilityTypeCode = http://ihe-d.de/ValueSets/IHEXDShealthcareFacilityTypeCode
 
 Alias: $Facharzttitel = urn:oid:1.2.276.0.76.5.514
 Alias: $ZahnärztlicheAutoren = urn:oid:1.2.276.0.76.5.492
