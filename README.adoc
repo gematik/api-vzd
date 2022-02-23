@@ -28,18 +28,34 @@ image:https://shields.io/badge/develop-green[link="https://github.com/gematik/ap
 * *17.02.2022* 🎁 link:CHANGELOG.adoc[Produktrelease v3.1.0-11]
 * *14.02.2022* 📄 https://fachportal.gematik.de/fileadmin/Fachportal/Downloadcenter/Implementierungsleitfaeden/gemILF_Pflege_VZD_V1.5.2.pdf[Implementierungsleitfaden v1.5.2]
 
-== Allgemeines
+== Kontextabgrenzung
 
-Die folgende Dokumentation beschreibt wie der Verzeichnisdienst der Telematikinfrastruktur genutzt werden kann.
-Insbesondere welche Daten im FHIR-Directory gespeichert werden und welche Bedeutung sie haben, wird beschrieben.
+.Verzeichnisdienst Systemkontext
+image::VZD_Systemkontext.svg[VZD Systemkontext]
+
+Verzeichnisdienst der TI verwaltet Einträge von Leistungserbringern und Organisationen/Institutionen mit allen definierten Attributen, die in das Verzeichnis aufgenommen werden sollen. Anhand einer Suchanfrage können diese  Daten abgefragt werden (z. B. Adressdaten, X.509-Zertifikate). Ferner können Einträge des Verzeichnisses durch Kartenherausgeber (Basisdaten) oder berechtigte fachanwendungsspezifische Dienste (Fachanwendungsdaten) geändert, hinzugefügt und gelöscht (Kartenherausgeber vollständige Einträge, fachanwendungsspezifische Dienste nur die jeweiligen Fachdaten) werden.
+
+Verzeichnisdienst bittet folgende Außenschnittstellen an (s Nummerierung in der Abbildung):
+
+1. Über den TI-Konnektor wird dem KIM-Client sowie Primärsystemen eine LDAP Schnittstelle zur Abfrage der Daten bereitgestellt. Schnittstelle `I_Directory_Query`, dezentral.
+2. Die Konnektoren leiten die Anfragen zustandslos über das zentrale Nezt der TI an das Verzeichnisdienst weiter. Über die LDAP Schnittstelle des zentrale betriebenen VZD werden speziell für solche Abfragen aufbereitete und optimierte Daten durchsucht (so genannte flache Liste). Schnittstelle `I_Directory_Query`, zentral.
+3. Die Kartenherausgeber (bspw. Landesärztekammer oder Kassenzahnärztliche Vereinigungen) in Kooperation mit Trust Service Provider sind verantwortlich für die Befüllung des VZD mit Basisdaten und Zertifikaten. Hierfür stell VZD eine REST API für die Administration der Daten im Verzeichnisdienst. Schnittstelle `I_Directory_Administration`.
+4. Die KIM Anbieter ergänzen die Basisdaten um eigene Inhalte, insb. um die KIM-EMail-Adressen. Schnittstelle `I_Application_Maintenance`.
+5. Für die Suche der Apotheken, z.B. in der gematik eRezept APP, existiert ein dediziertes Apothekenverzeichnis (ApoVZD). ApoVZD synchronisiert regelmäßig die Daten aus dem VZD und ergänzt diese um weitere Inhalte (z.B. um Geolokalisierung und Öffnungszeiten der Apotheken). Schnittstelle `I_Directory_Administration`, analog zu p.3.
+6. Für die Suche der Leistungserbringer-Institutionen im Rahmen der Berechtigungsvergabe in der elektronischen Patientenakte (ePA),vermittelt das ePA-Aktensystem die Kommunikation zwischen VZD und ePA-Frontend. Schnittstelle `I_Directory_Query`, zentral.
+7. _In Entwicklung_: TIM Anbieter registrieren sich und verifizieren sich gegenseitig mit Hilfe von VZD. Schnittstelle. `I_VZD_TIM_Provider_Services`
+8. _In Entwicklung_: VZD bietet direkten Zugriff zur den Daten über FHIR REST Schnittstellen für die TIM Clients und perspektivisch anderen registrierten Clients. Schnittstelle `I_FHIR_Directory#tim-search`.
+9. _In Entwicklung_: Die Leistungserbringer können ihre Daten selbstständig administrieren, um z.B. die Organisationsstrukturen und Standorte zur erfassen. Schnittstelle `I_FHIR_Directory#owner`.
+
 Die Schnittstellen des Verzeichnisdienstes sind in Spezifikationen der gematik definiert:
 
 * https://fachportal.gematik.de/fachportal-import/files/gemSpec_VZD_V1.13.1.pdf[gemSpec_VZD_V1.13.1.pdf]
 
+Die Daten des LDAP-Directories sind im Implementierungsleitfaden zur Pflege der Daten des Verzeichnisdienstes beschrieben.
+Die Dokumente können im Fachportal der gematik gefunden werden: 
+
 * https://fachportal.gematik.de/fileadmin/Fachportal/Downloadcenter/Implementierungsleitfaeden/gemILF_Pflege_VZD_V1.5.2.pdf[gemILF_Pflege_VZD_V1.5.2.pdf]
 
-Die Daten des LDAP-Directories sind im Implementierungsleitfaden zur Pflege der Daten des Verzeichnisdienstes beschrieben.
-Die Dokumente können im Fachportal der gematik gefunden werden: https://fachportal.gematik.de/downloadcenter.
 
 == Systemarchitektur
 
@@ -49,201 +65,32 @@ image::VZD_Architektur.svg[VZD overview]
 
 == FHIR-Directory Datenmodell
 
-image::VZD_FHIR_Directory_Datenmodell.svg[Datenmodell]
+image::VZD_FHIR_Directory_Resourcen.svg[Datenmodell]
 
-=== TIOrganization
+=== Organization
 
-Die Ressource TIOrganization ist in https://simplifier.net/vzd-fhir-directory/tiorganization[Simplifier] definiert und ist ein Profil der https://www.hl7.org/fhir/organization.html#resource[Organization Ressource].
-Die einzelnen Elemente der Ressource TIOrganization werden abhängig vom type der Organisation befüllt. Es wird unterschieden zwischen
+Die Datenstrukturen für medizinische, sektorale und technische Institutionen bzw. Organisationen werden über den https://simplifier.net/vzd-fhir-directory/tiorganization[TI spezifischen Profil der Organization Ressource] abgebildet.
 
-- Organisationen mit einer zugewiesenen professionOID gemäß https://gematik.de/fhir/VZD-FHIR-Directory/CodeSystem/TIProfessionOidCS[CodeSystem TIProfessionOidCS] und
-- Organisationen gemäß https://gematik.de/fhir/VZD-FHIR-Directory/CodeSystem/TIOrganizationTypeCS[CodeSystem TIOrganizationTypeCS] (TI-Messenger-Provider, KIM-Provider und Kartenherausgeber).
+Die einzelnen Elemente der Ressource Organization werden abhängig vom type der Organisation befüllt. Es wird unterschieden zwischen
 
-Alle Organisationstypen sind mit dem jeweils verwendeten CodeSystem im https://simplifier.net/vzd-fhir-directory/tiorganizationtypevs[Valueset TIOrganizationTypeVS] festgelegt.
+- Organisationen mit einer zugewiesenen professionOID gemäß https://simplifier.net/vzd-fhir-directory/tiinstitutiontypeoidcs[Codes für Endanwender Organisationen] und
+- https://simplifier.net/vzd-fhir-directory/tiprovidertypecs[Codes für Betrieb unterstützende Organisationen], z.B. TI-Messenger-Provider, KIM-Provider und Kartenherausgeber.
+
+Alle Organisationstypen sind mit dem jeweils verwendeten CodeSystem im https://simplifier.net/vzd-fhir-directory/tiorganizationtypevs[Valueset] festgelegt.
+
 Eine Organization Ressource kann auch mehrere type Elemente haben.
 
-.*Organisationen mit professionOID, Pflege durch Kartenherausgeber oder Synchronisation aus LDAP-Directory*
-|===
-|Element / Attribut |Wert |Beschreibung
-
-|*identifier.system* _(mustsupport)_
-|http://fhir.de/StructureDefinition/identifier-telematik-id
-|Die telematikID ist im FHIR Basisprofil von HL7 Deutschland definiert.
-
-|*identifier.value* _(mustsupport)_
-|telematikID der Organisation
-|Die telematikID wird vom Verband der Organisation vergeben (z. B. von der KV für Arztpraxen).
-
-|*active* _(mustsupport)_
-|true oder false
-|Gibt an, ob der Eintrag aktiv genutzt wird oder ob er deaktiviert ist.
-
-|*type.system* _(mustsupport)_
-|https://gematik.de/fhir/VZD-FHIR-Directory/CodeSystem/TIProfessionOidCS[TIProfessionOidCS]
-|
-
-|*type.code* _(mustsupport)_
-|Code aus https://simplifier.net/vzd-fhir-directory/tiorganizationtypevs[TIOrganizationTypeVS]
-|ProfessionOID der Organisation
-
-|*type.display* _(mustsupport)_
-|Display aus https://simplifier.net/vzd-fhir-directory/tiorganizationtypevs[TIOrganizationTypeVS]
-|Text-Repräsentation der ProfessionOID
-
-|*name* _(mustsupport)_
-|Name der Organisation
-|
-
-|*alias* _(mustsupport)_
-|Alternativer Name der Organisation
-|
-
-|*address* _(mustsupport)_
-|Adresse
-|Eine oder mehrere Adressen der Organisation
-
-|*address.text* _(mustsupport)_
-|Siehe https://www.hl7.org/fhir/datatypes.html#Address[Address]
-|
-
-|*address.line* _(mustsupport)_
-|Siehe https://www.hl7.org/fhir/datatypes.html#Address[Address]
-|
-
-|*address.city* _(mustsupport)_
-|Siehe https://www.hl7.org/fhir/datatypes.html#Address[Address]
-|
-
-|*address.district* _(mustsupport)_
-|Siehe https://www.hl7.org/fhir/datatypes.html#Address[Address]
-|
-
-|*address.state* _(mustsupport)_
-|Siehe https://www.hl7.org/fhir/datatypes.html#Address[Address]
-|
-
-|*address.postalCode* _(mustsupport)_
-|Siehe https://www.hl7.org/fhir/datatypes.html#Address[Address]
-|
-
-|*country* _(mustsupport)_
-|Siehe https://www.hl7.org/fhir/datatypes.html#Address[Address]
-|
-
-|*partOf* _(mustsupport)_
-|Referenz auf einen anderen Organization Eintrag
-|Wird verwendet, wenn die Organisation mehrere telematikIDs besitzt.
-|===
-
-.*Organisationen mit professionOID, Pflege durch Besitzer der telematikID*
-|===
-|Element / Attribut |Wert |Beschreibung
-
-|*identifier.system* _(mustsupport)_
-|http://fhir.de/StructureDefinition/identifier-telematik-id[identifier-telematik-id]
-|Die telematikID ist im FHIR Basisprofil von HL7 Deutschland definiert.
-
-|*identifier.value* _(mustsupport)_
-|Identifier
-|Der Identifier wird vom identifier.value des referenzierten Eintrags abgeleitet und identifiziert den Eintrag eindeutig. Als Trennzeichen wird ein Punkt "." verwendet: <identifier.value des referenzierten Eintrags>.<neue ID>
-
-|*active* _(mustsupport)_
-|true oder false
-|
-
-|*type.system* _(mustsupport)_
-|https://gematik.de/fhir/VZD-FHIR-Directory/CodeSystem/TIProfessionOidCS[TIProfessionOidCS]
-|
-
-|*type.code* _(mustsupport)_
-|Code aus https://simplifier.net/vzd-fhir-directory/tiorganizationtypevs[TIOrganizationTypeVS]
-|ProfessionOID der Organisation
-
-|*type.display* _(mustsupport)_
-|Display aus https://simplifier.net/vzd-fhir-directory/tiorganizationtypevs[TIOrganizationTypeVS]
-|Text-Repräsentation der ProfessionOID
-
-|*name* _(mustsupport)_
-|Name der Organisation
-|
-
-|*alias* _(mustsupport)_
-|Alternative Namen der Organisation
-|
-
-|*address* _(mustsupport)_
-|Eine oder mehrere Adressen der Organisation
-|
-
-|*address.text* _(mustsupport)_
-|Siehe https://www.hl7.org/fhir/datatypes.html#Address[Address]
-|
-
-|*address.line* _(mustsupport)_
-|Siehe https://www.hl7.org/fhir/datatypes.html#Address[Address]
-|
-
-|*address.city* _(mustsupport)_
-|Siehe https://www.hl7.org/fhir/datatypes.html#Address[Address]
-|
-
-|*address.district* _(mustsupport)_
-|Siehe https://www.hl7.org/fhir/datatypes.html#Address[Address]
-|
-
-|*address.state* _(mustsupport)_
-|Siehe https://www.hl7.org/fhir/datatypes.html#Address[Address]
-|
-
-|*address.postalCode* _(mustsupport)_
-|Siehe https://www.hl7.org/fhir/datatypes.html#Address[Address]
-|
-
-|*country* _(mustsupport)_
-|Siehe https://www.hl7.org/fhir/datatypes.html#Address[Address]
-|
-
-|*partOf* _(mustsupport)_
-|Referenz auf einen anderen Organization Eintrag
-|Wird verwendet, um auf den Basiseintrag der Organisation zu referenzieren und wenn die Organisation eine Struktur besitzt, die im FHIR-Directory abgebildet werden soll. Wenn vom Besitzer einer telematikID eine Organization Ressource erzeugt wird, dann muss diese immer über partOf Referenzen mit dem Basiseintrag der Organisation verknüpft sein. Die partOf Referenzen können über mehrere Stufen zum Basiseintrag führen.
-
-|*contact.purpose* _(mustsupport)_
-|
-|Bezeichnet den von diesem contact Element unterstützten Prozess. Gültige Werte werden von der gematik im Fachportal veröffentlicht (siehe <link ergänzen>).
-
-|*contact.name* _(mustsupport)_
-|Name
-|Der Name des contact Elements, wie er bei gefundenen Einträgen angezeigt wird
-
-|*contact.telecom.system* _(mustsupport)_
-|
-|Siehe https://www.hl7.org/fhir/datatypes.html#ContactPoint[ContactPoint].
-Für TI-Messenger-Adressen wird das system url verwendet.
-Für KIM E-Mail-Adressen wird das system email verwendet.
-
-|*contact.telecom.value* _(mustsupport)_
-|Adresse des Kontakts
-|Siehe https://www.hl7.org/fhir/datatypes.html#ContactPoint[ContactPoint].
-TI-Messenger-Adressen werden un der url Notation angegeben: matrix:u/localpart:tim-domain
-KIM E-Mail-Adressen werden als E-Mail Adressen angegeben: localpart@kim-domain.
-
-|*contact.telecom.period.end* _(mustsupport)_
-|
-|Siehe https://www.hl7.org/fhir/datatypes.html#Period[Period].
-Wenn der Wert vorhanden ist und in der Vergangenheit liegt, dann wird die Kontakt-Adresse nicht verwendet.
-|===
-
-==== TI-Messenger-Provider
-
-==== Kartenherausgeber
-
-
-=== TIPractitioner
-
-=== HealthcareService
+=== Practitioner
 
 === PractitionerRole
 
 === Location
 
+=== HealthcareService
+
 === Endpoint
+
+
+=== Bundle für X509-Zertifikate
+
+https://simplifier.net/vzd-fhir-directory/x509certificatebundleextension
