@@ -14,7 +14,6 @@
   "url": "https://gematik.de/fhir/directory/StructureDefinition/TIPractitioner",
   "version": "0.6.0-wip",
   "name": "TIPractitioner",
-  "title": "Profile for Practitioner resource in the TI",
   "status": "draft",
   "publisher": "gematik GmbH",
   "description": "Profile for the Practitioner in gematik FHIR Directory",
