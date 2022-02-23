@@ -90,4 +90,7 @@ Eine Organization Ressource kann auch mehrere type Elemente haben.
 
 === Endpoint
 
-=== Provenance
+
+=== Bundle für X509-Zertifikate
+
+https://simplifier.net/vzd-fhir-directory/x509certificatebundleextension
