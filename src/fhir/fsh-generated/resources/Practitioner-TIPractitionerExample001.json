@@ -1,0 +1,57 @@
+{
+  "resourceType": "Practitioner",
+  "id": "TIPractitionerExample001",
+  "meta": {
+    "profile": [
+      "https://gematik.de/fhir/directory/StructureDefinition/TIPractitioner"
+    ]
+  },
+  "identifier": [
+    {
+      "type": {
+        "coding": [
+          {
+            "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+            "code": "PRN"
+          }
+        ]
+      },
+      "system": "http://fhir.de/StructureDefinition/identifier-telematik-id",
+      "value": "3-2.58.00000040"
+    }
+  ],
+  "qualification": [
+    {
+      "code": {
+        "coding": [
+          {
+            "code": "1.2.276.0.76.4.31",
+            "system": "https://gematik.de/fhir/directory/CodeSystem/TIPractitionerProfessionOidCS"
+          }
+        ]
+      }
+    },
+    {
+      "code": {
+        "coding": [
+          {
+            "code": "010",
+            "system": "urn:oid:1.2.276.0.76.5.514",
+            "display": "FA Allgemeinmedizin"
+          }
+        ]
+      }
+    },
+    {
+      "code": {
+        "coding": [
+          {
+            "code": "523",
+            "system": "urn:oid:1.2.276.0.76.5.514",
+            "display": "FA Innere Medizin und (SP) Gastroenterologie"
+          }
+        ]
+      }
+    }
+  ]
+}
