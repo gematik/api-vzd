@@ -24,4 +24,4 @@ organisations specific for german Healthcare and Telematics Infrastructure.
 * alias MS
 * contact MS
 * contact.purpose from $ContactEntityTypeVS
-* contact.telecom.extension contains X509CertificatePEM named certificate 0..* MS
+* extension contains X509CertificateBundleExtension named certificates 0..1 MS

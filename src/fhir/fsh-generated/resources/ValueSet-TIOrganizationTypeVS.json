@@ -15,6 +15,9 @@
       },
       {
         "system": "https://gematik.de/fhir/directory/CodeSystem/TIProviderTypeCS"
+      },
+      {
+        "system": "http://ihe-d.de/ValueSets/IHEXDSpracticeSettingCode"
       }
     ]
   }

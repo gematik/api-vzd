@@ -1,0 +1,60 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "X509CertificateBundleExtension",
+  "url": "https://gematik.de/fhir/directory/StructureDefinition/X509CertificateBundleExtension",
+  "version": "0.6.0-wip",
+  "name": "X509CertificateBundleExtension",
+  "status": "draft",
+  "publisher": "gematik GmbH",
+  "description": "This bundle contains a list of X509Certificates, \neach represented as Binary resource.",
+  "fhirVersion": "4.0.1",
+  "mapping": [
+    {
+      "identity": "rim",
+      "uri": "http://hl7.org/v3",
+      "name": "RIM Mapping"
+    }
+  ],
+  "kind": "complex-type",
+  "abstract": false,
+  "context": [
+    {
+      "type": "element",
+      "expression": "Element"
+    }
+  ],
+  "type": "Extension",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Extension",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Extension",
+        "path": "Extension",
+        "definition": "This bundle contains a list of X509Certificates, \neach represented as Binary resource."
+      },
+      {
+        "id": "Extension.extension.extension",
+        "path": "Extension.extension.extension",
+        "max": "0"
+      },
+      {
+        "id": "Extension.extension.value[x]",
+        "path": "Extension.extension.value[x]",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://gematik.de/fhir/directory/StructureDefinition/X509CertificateBundle"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Extension.url",
+        "path": "Extension.url",
+        "fixedUri": "https://gematik.de/fhir/directory/StructureDefinition/X509CertificateBundleExtension"
+      }
+    ]
+  }
+}

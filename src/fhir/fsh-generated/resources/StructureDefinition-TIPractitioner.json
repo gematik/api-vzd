@@ -16,7 +16,8 @@
   "name": "TIPractitioner",
   "title": "Profile for Practitioner resource in the TI",
   "status": "draft",
-  "description": "Defines the data structure for practitioner \nto be managed by gematik FHIR Directory.",
+  "publisher": "gematik GmbH",
+  "description": "Profile for the Practitioner in gematik FHIR Directory",
   "fhirVersion": "4.0.1",
   "mapping": [
     {
