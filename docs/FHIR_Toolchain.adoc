@@ -1,6 +1,6 @@
-= Werkzeuge 
+= Umgang mit FHIR Package
 
-= FHIR Werkzeuge
+== FHIR Werkzeuge
 
 Für die Erzeugung der FHIR Resourcen (z.B. Profile, Implementation Guide) 
 werden folgende benötigt verwendet:
@@ -14,10 +14,11 @@ werden folgende benötigt verwendet:
 ** `dotnet tool install --global Firely.Terminal --version 2.5.0-beta-7`
 ** PATH Variable für `fhir` Befehl richtig setzen
 
-= Validieren und Bauen die FHIR Resourcen 
+== Validieren und Bauen von FHIR Resourcen 
 [source,bash]
 ----
 cd src/fhir
 fhir restore
 sushi
 ----
+
