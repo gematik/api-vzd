@@ -5,74 +5,82 @@
   "name": "BundeslaenderCS",
   "id": "BundeslaenderCS",
   "title": "Experimentell: Codes für deutsche Bundesländer",
-  "version": "0.6.1",
+  "version": "0.7.0-wip",
   "url": "https://gematik.de/fhir/directory/CodeSystem/BundeslaenderCS",
   "concept": [
     {
-      "code": "BW",
+      "code": "Baden-Württemberg",
       "display": "Baden-Württemberg"
     },
     {
-      "code": "BY",
+      "code": "Bayern",
       "display": "Bayern"
     },
     {
-      "code": "BE",
+      "code": "Berlin",
       "display": "Berlin"
     },
     {
-      "code": "BB",
+      "code": "Brandenburg",
       "display": "Brandenburg"
     },
     {
-      "code": "HB",
+      "code": "Bremen",
       "display": "Bremen"
     },
     {
-      "code": "HH",
+      "code": "Hamburg",
       "display": "Hamburg"
     },
     {
-      "code": "HE",
+      "code": "Hessen",
       "display": "Hessen"
     },
     {
-      "code": "MV",
+      "code": "Mecklenburg-Vorpommern",
       "display": "Mecklenburg-Vorpommern"
     },
     {
-      "code": "NI",
+      "code": "Niedersachsen",
       "display": "Niedersachsen"
     },
     {
-      "code": "NW",
+      "code": "Nordrhein-Westfalen",
       "display": "Nordrhein-Westfalen"
     },
     {
-      "code": "RP",
+      "code": "Rheinland-Pfalz",
       "display": "Rheinland-Pfalz"
     },
     {
-      "code": "SL",
+      "code": "Saarland",
       "display": "Saarland"
     },
     {
-      "code": "SN",
+      "code": "Sachsen",
       "display": "Sachsen"
     },
     {
-      "code": "ST",
+      "code": "Sachsen-Anhalt",
       "display": "Sachsen-Anhalt"
     },
     {
-      "code": "SH",
+      "code": "Schleswig-Holstein",
       "display": "Schleswig-Holstein"
     },
     {
-      "code": "TH",
+      "code": "Thüringen",
       "display": "Thüringen"
+    },
+    {
+      "code": "Nordrhein",
+      "display": "Nordrhein"
+    },
+    {
+      "code": "Westfalen-Lippe",
+      "display": "Westfalen-Lippe"
     }
   ],
   "publisher": "gematik GmbH",
-  "count": 16
+  "count": 18
 }

@@ -5,7 +5,7 @@
   "id": "TIPractitionerQualificationVS",
   "title": "Qualification of a Practitoner",
   "description": "ValueSet of all Practitoner.qualification.code in the gematik FHIR Directory",
-  "version": "0.6.1",
+  "version": "0.7.0-wip",
   "url": "https://gematik.de/fhir/directory/ValueSet/TIPractitionerQualificationVS",
   "publisher": "gematik GmbH",
   "compose": {

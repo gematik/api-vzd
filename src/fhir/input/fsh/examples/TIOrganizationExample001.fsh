@@ -65,7 +65,7 @@ Description: "Example of an Organization as to be found in gematik FHIR Director
 * address.line = "Friedrichstr. 136"
 * address.city = "Berlin"
 * address.district = "Mitte"
-* address.state = BundeslaenderCS#BE
+* address.state = BundeslaenderCS#Berlin
 * address.postalCode = "10117"
 * address.country = "DE"
 // Gibt es bedarf an TI/DE-spezifischen Kontakt-Zwecken?

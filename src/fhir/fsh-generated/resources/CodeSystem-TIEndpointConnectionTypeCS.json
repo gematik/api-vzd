@@ -6,7 +6,7 @@
   "id": "TIEndpointConnectionTypeCS",
   "title": "Codes for Endpoint.connectionType",
   "description": "CodeSystem TI specific connection types assigned to the Endpoints",
-  "version": "0.6.1",
+  "version": "0.7.0-wip",
   "url": "https://gematik.de/fhir/directory/CodeSystem/TIEndpointConnectionTypeCS",
   "concept": [
     {
