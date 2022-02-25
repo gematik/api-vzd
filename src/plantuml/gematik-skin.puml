@@ -1,9 +1,0 @@
-skinparam DefaultFontName Helvetica
-skinparam Shadowing false
-
-skinparam ComponentStyle rectangle
-skinparam ComponentBackgroundColor white
-skinparam ComponentBorderColor black
-
-skinparam RectangleBackgroundColor white
-skinparam RectangleBorderColor black
