@@ -22,3 +22,8 @@ fhir restore
 sushi
 ----
 
+== Ein Package auf Simplifier.net veröffentlichen
+
+1. Gewünschte Package Version im `package.json` setzen, z.B. durch löschen des `-wip` Suffixes 
+2. Das gleich in der Datei `src/fhir/sushi-config.yaml` wiederholen
+3. Final FHIR Ressourcen mit SUSHI generieren: `(cd src/fhir;sushi)`
