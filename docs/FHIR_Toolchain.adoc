@@ -26,4 +26,12 @@ sushi
 
 1. Gewünschte Package Version im `package.json` setzen, z.B. durch löschen des `-wip` Suffixes 
 2. Das gleich in der Datei `src/fhir/sushi-config.yaml` wiederholen
-3. Final FHIR Ressourcen mit SUSHI generieren: `(cd src/fhir;sushi)`
+3. Finale FHIR Ressourcen mit SUSHI generieren: `(cd src/fhir;sushi)`
+4. `git add .`
+5. `git commit`
+6. `git tag de.gematik.fhir.directory/0.6.0`
+7. `git push origin --tags`
+8. Auf Simplifier.net 
+  * überprüfen ob die Versionen richtig synchroniert wurden. Im zweifel manuell mit github synchronisieren.
+  * Packages => Create => Create New Package
+  * Package name: `de.gematik.directory`
