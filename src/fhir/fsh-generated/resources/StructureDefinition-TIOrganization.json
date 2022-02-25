@@ -12,7 +12,7 @@
     }
   ],
   "url": "https://gematik.de/fhir/directory/StructureDefinition/TIOrganization",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "name": "TIOrganization",
   "title": "Profile for an Organization resource in the TI",
   "status": "draft",

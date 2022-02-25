@@ -12,7 +12,7 @@
     }
   ],
   "url": "https://gematik.de/fhir/directory/StructureDefinition/TIEndpoint",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "name": "TIEndpoint",
   "status": "draft",
   "publisher": "gematik GmbH",

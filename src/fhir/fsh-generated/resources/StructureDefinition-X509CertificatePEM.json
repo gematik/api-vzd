@@ -2,7 +2,7 @@
   "resourceType": "StructureDefinition",
   "id": "X509CertificatePEM",
   "url": "https://gematik.de/fhir/directory/StructureDefinition/X509CertificatePEM",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "name": "X509CertificatePEM",
   "status": "draft",
   "publisher": "gematik GmbH",
