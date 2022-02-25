@@ -1,0 +1,40 @@
+:toc: auto
+:sectnums: |,all|
+:figure-caption: Abbildung
+
+= SpezifikationVerzeichnisdienst FHIR-Directory
+
+== Einordnung des Dokumentes
+
+== Systemüberblick
+
+Das VZD-FHIR-Directory ist eine Erweiterung des bisherigen Verzeichnisdienstes der TI. Im VZD-FHIR-Directory werden Einträge von Organisationen und Leistungserbringern gespeichert. Die Einträge werden mit den Einträgen im VZD-LDAP-Directory synchronisiert. Bei diesem Vorgang erfolgt eine Umsetzung von der LDAP-Datenstruktur auf die Datenstruktur der FHIR-Ressourcen. Personeneinträge der Leistungserbringer werden auf die TIPractitioner-Ressource und Organisations-Einträge auf die TIOrganization-Ressource abgebildet. Die synchronisierten Einträge bilden die Basis-Einträge, die durch die Besitzer um zusätzliche Daten ergänzt bzw. erweitert werden können. TIPractitioner und TIOrganization sind Profilierungen der FHIR-Ressourcen Practitioner und Organization. Die Anbieter von Fachanwendungen werden ebenfalls als TIOrganization-Einträge im FHIR-Directory eingetragen um Daten der Fachanwendung zu dieser Organisation zuordnen zu können.
+
+Der Besitzer einer Telematik-ID erhält das Recht seinen Eintrag zu erweitern (um z. B. Unterstrukturen für eine Organisation einzutragen) und Fachdaten zu ergänzen (z. B. TI-Messenger-Adressen). Die von den Kartenherausgebern eingetragenen Daten dürfen durch die Besitzer nicht verändert werden. Zusätzliche FHIR-Ressourcen (wie z. B. Location und HealthcareService) können durch die Besitzer ergänzt werden, um den Komfort bei der Suche nach Einträgen zu erhöhen.
+
+Alle vom VZD-FHIR-Directory bereitgestellten Schnittstellen sind über das Internet erreichbar und TLS-gesichert. Die Authentisierung erfolgt mit:
+
+* OpenID Connect Authorization Code Flow für Schreibzugriffe der Besitzer von Einträgen
+* OAuth2 Client Credential Flow für Schreibzugriffe der Fachdienste
+* Matrix-OpenID-Token für Lesezugriffe von TI-Messenger-Nutzern
+
+Eine Nutzung der Schnittstellen des VZD-FHIR-Directory ohne Authentisierung der Nutzer ist nicht zulässig.
+
+Als erste Anwendung wird der TI-Messenger das VZD-FHIR-Directory nutzen.
+
+.Systemüberblick VZD-FHIR-Directory
+image::Systemüberblick VZD-FHIR-Directory.png[Systemüberblick VZD-FHIR-Directory]
+
+Das VZD-FHIR-Directory besteht aus den logischen Komponenten FHIR-Directory, FHIR-Proxy und PASSporT-Service.
+
+Das FHIR-Directory ist eine Implementierung der FHIR-Spezifikation (http://hl7.org/fhir/summary.html).
+
+Der FHIR-Proxy terminiert die TLS-Verbindungen, prüft die Zugriffsberechtigung der Nutzer und verteilt die Anfragen der Nutzer auf die Instanzen des FHIR-Directory sowie des PASSporT-Service. Zusätzlich übernimmt und aktualisiert der FHIR-Proxy die Basiseinträge im VZD-FHIR-Directory mit den geänderten Daten des VZD-LDAP-Directories.
+
+Der PASSporT-Service ist eine Komponente, die Personal Assertion Token gemäß [RFC8225] ausstellt. Die Token bestätigen, dass ein Leistungserbringer oder eine Organisation durch die Eintragung der TI-Messenger-Adresse im VZD-FHIR-Directory damit einverstanden ist, dass eine TI-Messenger-Kommunikation zu dieser Adresse aufgebaut werden darf. Für die Signatur des PASSporT wird ein Zertifikat aus der Komponenten PKI der TI verwendet (C.FD.SIG).
+
+== Systemkontext
+
+=== Akteure und Rollen
+
+Das VZD-FHIR-Directory ist ein Dienst der Telematikinfrastruktur und kann von allen Nutzern der TI abgefragt werden. Zusätzlich ist es erforderlich, dass die Einträge gepflegt werden. Dies erfolgt durch die Kartenherausgeber, die Fachanwendungen, falls spezifische Fachdaten den Einträgen zugeordnet sind, und optional durch die Besitzer der Einträge.
