@@ -8,7 +8,7 @@
   },
   "status": "active",
   "connectionType": {
-    "code": "kim1.5",
+    "code": "kim-1.5",
     "system": "https://gematik.de/fhir/directory/CodeSystem/TIEndpointConnectionTypeCS"
   },
   "payloadType": [

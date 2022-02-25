@@ -5,7 +5,7 @@ Description: """
 Example KIM 1.5 Endpoint with any payload
 """
 * status = #active
-* connectionType = TIEndpointConnectionTypeCS#kim1.5
+* connectionType = TIEndpointConnectionTypeCS#kim-1.5
 * payloadType = #any
 * address = "mailto:gematik006@xxx.kim.telematik"
 
@@ -15,7 +15,7 @@ Usage: #example
 Description: """
 """
 * status = #active
-* connectionType = TIEndpointConnectionTypeCS#tim
+* connectionType = TIEndpointConnectionTypeCS#ti-messenger
 * address = "@betrieb:tim.gematik.de"
 * payloadType = #any
 
