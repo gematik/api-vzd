@@ -3,7 +3,7 @@
   "id": "TIOrganizationExample001-Endpoint-TIM",
   "status": "active",
   "connectionType": {
-    "code": "ti-messenger",
+    "code": "tim",
     "system": "https://gematik.de/fhir/directory/CodeSystem/TIEndpointConnectionTypeCS"
   },
   "address": "@betrieb:tim.gematik.de",

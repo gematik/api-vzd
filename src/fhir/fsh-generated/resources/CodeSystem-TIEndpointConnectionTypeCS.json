@@ -10,7 +10,7 @@
   "url": "https://gematik.de/fhir/directory/CodeSystem/TIEndpointConnectionTypeCS",
   "concept": [
     {
-      "code": "ti-messenger-domain",
+      "code": "tim-domain",
       "display": "TI-Messenger domain name"
     },
     {
@@ -34,7 +34,7 @@
       "display": "eRP Endpoint"
     },
     {
-      "code": "ti-messenger",
+      "code": "tim",
       "display": "TI-Messenger Endpoint"
     }
   ],

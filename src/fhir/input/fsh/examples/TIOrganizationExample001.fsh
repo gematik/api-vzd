@@ -15,7 +15,7 @@ Usage: #example
 Description: """
 """
 * status = #active
-* connectionType = TIEndpointConnectionTypeCS#ti-messenger
+* connectionType = TIEndpointConnectionTypeCS#tim
 * address = "@betrieb:tim.gematik.de"
 * payloadType = #any
 
