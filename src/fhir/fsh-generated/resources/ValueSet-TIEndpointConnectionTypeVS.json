@@ -4,7 +4,7 @@
   "name": "TIEndpointConnectionTypeVS",
   "id": "TIEndpointConnectionTypeVS",
   "title": "Connections Types for Endpoints in the TI",
-  "version": "0.6.0-wip",
+  "version": "0.6.0",
   "url": "https://gematik.de/fhir/directory/ValueSet/TIEndpointConnectionTypeVS",
   "publisher": "gematik GmbH",
   "compose": {
