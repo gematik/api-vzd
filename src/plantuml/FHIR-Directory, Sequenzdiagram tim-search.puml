@@ -1,0 +1,51 @@
+@startuml
+skinparam dpi 100
+skinparam WrapWidth 200
+skinparam monochrome true
+
+'title "FHIR-Directory, Sequenzdiagram tim-search'
+actor Nutzer
+participant cl as "TI-Messenger-Client"
+participant fp as "FHIR-Proxy"
+participant fd as "FHIR-Directory"
+participant hs as "Matrix-Homeserver\n(Messenger-Proxy)"
+activate cl
+Nutzer -> cl:gibt FHIR-\nSuchparameter ein
+cl -> cl: prüfe ob noch gültiges Accesstoken\nvom FHIR-Proxy vorliegt
+alt kein gültiges Accesstoken vorhanden
+cl -> hs: POST /_matrix/client/r0/user/{userId}/openid/request_token
+activate hs
+hs --> cl: HTTP 200 OK, Result body\n{"access_token": "Matrix-OpenID-Token",..., "matrix_server_name": "example.com",...}
+deactivate hs
+cl -> fp: GET /tim-authenticate... (Auth Header mit\nMatrix-OpenID-Token)
+activate fp
+fp -> fp: Prüfe ob matrix_server_name\nin Föderationsliste enthalten
+fp -> hs: GET /openid/userinfo/?\naccess_token=Matrix-OpenID-Token)
+activate hs
+hs --> fp: HTTP 200 OK\n(Result Body MXID des Nutzers)
+deactivate hs
+fp -> fp: erzeuge Accesstoken für TI-Messenger-Client
+fp --> cl: HTTP 200 OK, Result body\n{"access_token"="accesstoken",\n"token_type":"bearer",\n"expires_in":86400}
+end
+cl -> fp: GET /tim-search?... (Auth Header mit\nAccesstoken)
+fp -> fp: prüfe Accesstoken
+fp -> fp: werden TIPractitioner-Einträge gesucht?
+alt TIPractitioner-Einträge werden gesucht
+fp -> fd: GET /?...<eigene MXID>
+activate fd
+fd --> fp: HTTP 200 OK\n(Result Body json mit TIPractitioner-Eintrag)
+fp -> fd: GET /?...
+fd --> fp: HTTP 200 OK\n(Result Body json)
+deactivate fd
+end
+alt TIOrganization-Einträge werden gesucht
+fp -> fd: GET /?...
+activate fd
+fd --> fp: HTTP 200 OK\n(Result Body json)
+deactivate fd
+end
+fp -> fp: prüfe telecom\nElemente\nund ergänze PASSporT
+fp --> cl: HTTP 200 OK (Result Body json mit\nMXID und PASSporT)
+deactivate fp
+deactivate cl
+@enduml
