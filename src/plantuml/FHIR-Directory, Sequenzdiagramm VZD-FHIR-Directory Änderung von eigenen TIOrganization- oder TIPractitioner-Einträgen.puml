@@ -7,46 +7,56 @@ skinparam monochrome true
 actor oa as "Admin_Owner"
 participant cl as "Org-Admin-Client\noder\nTI-Messenger-Client"
 participant aa as "Authenticator App\ndes IDP"
+participant au as "Auth-Service"
 participant fp as "FHIR-Proxy"
 participant idp as "Identity Provider"
 participant fd as "FHIR-Directory"
 oa -> cl: möchte seinen FHIR-Eintrag\nändern
 activate cl
-cl -> cl: prüfe ob noch gültiges Accesstoken\nfür Schreibzugriff vom FHIR-Proxy vorliegt
-alt kein gültiges Accesstoken für Schreibzugriff vorhanden
+cl -> cl: prüfe ob noch gültiges owner-accesstoken\nfür Schreibzugriff vom Auth-Service vorliegt
+alt kein gültiges owner-accesstoken für Schreibzugriff vorhanden
 cl -> cl: Erzeuge PKCE Code für verifier und challenge
-cl -> idp: GET /authorize + scope=VZD-FHIR-Directory + openid + code_challenge
-activate idp
-idp --> cl: HTTP 200 OK (Result Body "Bestätige Identität in der Authenticator App des IDP")
-oa -> aa: Authentisierung und\nEinverständnis
+cl -> au: GET /owner-authenticate
+activate au
+au --> cl: Redirect to IDP Authorization Endpoint
+cl -> idp: GET /authorize
+idp --> cl: Authentication challenge
 activate aa
-aa -> idp: Authentisierung und Einverständnis
+aa -> aa: Authentication
+aa --> idp: Authentication challenge response
 deactivate aa
-idp --> cl: HTTP 200 OK (Result Body {"AuthorizationCode"})
+activate idp
+idp --> cl: Authorization Response with Authorization code
+cl -> au: GET /owner-authenticate with Authorization code
+au -> idp: POST /tokenEndpoint {authorization code}
+idp --> au: Response {id_token}
 
-cl -> idp: POST /token\ngrant_type=authorization_code\ncode="AuthorizationCode"\ncode_verifier="verifier"
-idp -> idp: Auswertung des PKCE codes
-idp --> cl: HTTP 200 OK (Result Body {\n"id_token": "idtoken"\n"access_token": "accesstoken"\n"refresh_token": "refreshtoken"...})
+'cl -> idp: GET /authorize + scope=VZD-FHIR-Directory + openid + code_challenge
+'activate idp
+'idp --> cl: HTTP 200 OK (Result Body "Bestätige Identität in der Authenticator App des IDP")
+'oa -> aa: Authentisierung und\nEinverständnis
+'activate aa
+'aa -> idp: Authentisierung und Einverständnis
+'deactivate aa
+'idp --> cl: HTTP 200 OK (Result Body {"AuthorizationCode"})
+
+'cl -> idp: POST /token\ngrant_type=authorization_code\ncode="AuthorizationCode"\ncode_verifier="verifier"
+'idp -> idp: Auswertung des PKCE codes
+'idp --> cl: HTTP 200 OK (Result Body {\n"id_token": "idtoken"\n"access_token": "accesstoken"\n"refresh_token": "refreshtoken"...})
 deactivate idp
-cl -> fp: GET /owner-authenticate... (Auth Header mit\naccesstoken und idtoken)
-activate fp
-fp -> fp: Prüfe accesstoken und idtoken
-fp -> fp: erzeuge Accesstoken für Schreibzugriff des TI-Messenger-Clients
-fp --> cl: HTTP 200 OK, Result body\n{"access_token"="accesstoken",\n"token_type":"bearer",\n"expires_in":86400}
+'cl -> fp: GET /owner-authenticate... (Auth Header mit\naccesstoken und idtoken)
+au -> au: Prüfe idtoken
+au -> au: erzeuge owner-accesstoken
+au --> cl: HTTP 200 OK, Result body\n{"access_token"="owner-accesstoken"}
+deactivate au
 end
-cl -> fp: GET /owner/TIOrganization?id=telematikID\nAuthorization Bearer accesstoken
-fp -> fp: prüfe accesstoken
-fp -> fd: GET /TIOrganization?id=telematikID
+cl -> fp: GET /owner/TIHealthcareService?providedBy.id=telematikID\nAuthorization Bearer owner-accesstoken
+activate fp
+fp -> fp: prüfe owner-accesstoken
+fp -> fd: GET /TIHealthcareService?providedBy.id=telematikID
 activate fd
 fd --> fp: HTTP 200 OK (Result Body json)
 fp --> cl: HTTP 200 OK (Result Body json)
-group optional FHIR Operationen
-oa -> cl: Nutzereingabe
-cl -> fp: Request
-fp -> fd: Request
-fd --> fp: Response
-fp --> cl: Response
-end
 deactivate fd
 deactivate fp
 deactivate cl
