@@ -1,0 +1,116 @@
+= 🗂️ SMC-B-Org-Eintrag (gematik)
+
+[cols="1,1,1,6"]
+|===
+| LDAP-Directory Attribut | 0..N | Datenquelle | Erläuterung
+
+4+|Identifikatoren
+
+m| telematikID
+| 1..1
+| Kartenherausgeber
+|
+m| domainID
+| 1..1
+| Kartenherausgeber
+|
+
+4+|Namen
+m| displayName
+| 1..1
+| Kartenherausgeber
+|
+m| cn
+| 1..1
+| Zertifikat
+|
+m| otherName
+| 1..1
+| Kartenherausgeber
+|
+m| organization
+| 0..0
+| Keine
+| Bleibt leer
+m| givenName
+| 0..0
+| Keine
+| Bleibt leer
+m| sn
+| 1..1
+| VZD
+| Automatisch aus `displayName``
+m| title
+| 0..0
+| Keine
+| Bleibt leer
+
+4+|Adressdaten
+m| streetAddress
+| 1..1
+| Kartenherausgeber 
+|
+m| postalCode
+| 1..1
+| Kartenherausgeber
+|
+m| localityName
+| 1..1
+| Kartenherausgeber
+|
+m| stateOrProvinceName
+| 1..1
+| Kartenherausgeber
+|
+m| streetAddress
+| 1..1
+| Kartenherausgeber
+|
+m| countryCode
+| 1..1
+| Kartenherausgeber
+|
+
+4+|Berufliche Informationen
+m| professionOID
+| 1..N
+| Zertifikat
+|
+m| specialization
+| 1..N
+| Kartenherausgeber
+|
+m| entryType
+| 1..1
+| VZD
+| Wird automatisch berechnet.
+
+4+|Anwendungsdaten
+m| mail
+| 0..N
+| KIM-Anbieter
+|
+m| KOM-LE-Version
+| 0..1
+| KIM-Anbieter
+|
+
+4+|Zertifikate
+m| userCertificate
+| 0..N
+| Kartenherausgeber
+|
+
+4+|Systemdaten
+m| dataFromAuthority
+| 1..1
+| VZD
+| Wird automatisch berechnet
+m| personalEntry
+| 1..1
+| VZD
+| Wird automatisch berechnet
+
+
+
+|===
