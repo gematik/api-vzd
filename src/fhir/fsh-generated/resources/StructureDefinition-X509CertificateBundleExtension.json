@@ -2,7 +2,7 @@
   "resourceType": "StructureDefinition",
   "id": "X509CertificateBundleExtension",
   "url": "https://gematik.de/fhir/directory/StructureDefinition/X509CertificateBundleExtension",
-  "version": "0.6.0-wip",
+  "version": "0.7.0-wip",
   "name": "X509CertificateBundleExtension",
   "status": "draft",
   "publisher": "gematik GmbH",

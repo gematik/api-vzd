@@ -17,14 +17,15 @@ ifdef::env-github[]
 ++++
 endif::[]
 
-image:https://shields.io/badge/gem Spec VZD-v1.13.1-blue[link="https://fachportal.gematik.de/fachportal-import/files/gemSpec_VZD_V1.13.1.pdf"]
+image:https://shields.io/badge/gem Spec VZD-v1.14.0-blue[link="https://fachportal.gematik.de/fachportal-import/files/gemSpec_VZD_V1.14.0.pdf"]
 image:https://shields.io/badge/gemILF_Pflege_VZD-v1.5.2-green[link="https://fachportal.gematik.de/fileadmin/Fachportal/Downloadcenter/Implementierungsleitfaeden/gemILF_Pflege_VZD_V1.5.2.pdf"]
 image:https://shields.io/badge/simplifier.net-latest-red[link="https://simplifier.net/vzd-fhir-directory"] +
-image:https://shields.io/badge/Admin API-1.6-green?logo=swagger[link="src/openapi/DirectoryAdministration.yaml"]
+image:https://shields.io/badge/Admin API-current-green?logo=swagger[link="src/openapi/DirectoryAdministration.yaml"]
 image:https://shields.io/badge/develop-green[link="https://github.com/gematik/api-vzd/blob/develop/src/openapi/DirectoryAdministration.yaml"]
 
 == Aktuelles
 
+* *25.02.2022* 🔥 https://simplifier.net/packages/de.gematik.fhir.directory/0.6.1/~introduction[FHIR Package 0.6.1]
 * *17.02.2022* 🎁 link:CHANGELOG.adoc[Produktrelease v3.1.0-11]
 * *14.02.2022* 📄 https://fachportal.gematik.de/fileadmin/Fachportal/Downloadcenter/Implementierungsleitfaeden/gemILF_Pflege_VZD_V1.5.2.pdf[Implementierungsleitfaden v1.5.2]
 
@@ -52,7 +53,7 @@ Die Schnittstellen des Verzeichnisdienstes sind in Spezifikationen der gematik d
 * https://fachportal.gematik.de/fachportal-import/files/gemSpec_VZD_V1.13.1.pdf[gemSpec_VZD_V1.13.1.pdf]
 
 Die Daten des LDAP-Directories sind im Implementierungsleitfaden zur Pflege der Daten des Verzeichnisdienstes beschrieben.
-Die Dokumente können im Fachportal der gematik gefunden werden: 
+Die Dokumente können im Fachportal der gematik gefunden werden:
 
 * https://fachportal.gematik.de/fileadmin/Fachportal/Downloadcenter/Implementierungsleitfaeden/gemILF_Pflege_VZD_V1.5.2.pdf[gemILF_Pflege_VZD_V1.5.2.pdf]
 

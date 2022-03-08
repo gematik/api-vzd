@@ -5,7 +5,7 @@ Description: """
 Example KIM 1.5 Endpoint with any payload
 """
 * status = #active
-* connectionType = TIEndpointConnectionTypeCS#kim1.5
+* connectionType = TIEndpointConnectionTypeCS#kim-1.5
 * payloadType = #any
 * address = "mailto:gematik006@xxx.kim.telematik"
 
@@ -65,7 +65,7 @@ Description: "Example of an Organization as to be found in gematik FHIR Director
 * address.line = "Friedrichstr. 136"
 * address.city = "Berlin"
 * address.district = "Mitte"
-* address.state = BundeslaenderCS#BE
+* address.state = BundeslaenderCS#Berlin
 * address.postalCode = "10117"
 * address.country = "DE"
 // Gibt es bedarf an TI/DE-spezifischen Kontakt-Zwecken?
