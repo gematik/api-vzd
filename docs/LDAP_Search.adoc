@@ -5,16 +5,16 @@ gematik, Systems Engineering
 
 Die Seite gibt Hinweise zur Suche im VZD für Anwendungen. Die Suche von Einträgen für den Anwendungen/Endanwender ist über Schnittstelle `I_Directory_Query` mit LDAPv3 möglich. Gesucht werden kann nach allen link:LDAP_Attribute.adoc[Attributen].
 
-=== Eine Auswahl von Suchkriterien:
+== Eine Auswahl von Suchkriterien:
 
-*Suche nach Art der Organisation/Leistungserbringers und Spezialisierung*
+=== Suche nach Art der Organisation/Leistungserbringers und Spezialisierung*
 
 Dafür kann man unter anderem folgende Attribute in der Suchanfrage verwenden:
 
-* [ProfessionOID] 
+* `professionOID` 
 ** Profession OID - Siehe [gemSpec_VZD#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID].
 
-* [specialization] 
+* `specialization` 
 ** Fachgebiet entsprechend https://wiki.hl7.de/index.php?title=IG:Value_Sets_f%C3%BCr_XDS#DocumentEntry.practiceSettingCode[FHIR HL7]
 
 .Beispiel für die Suche nach einer Arztpraxis für Allgemeinmedizin
@@ -26,7 +26,7 @@ m|(&(professionOID=1.2.276.0.76.4.50)(specialization=urn:psc:1.3.6.1.4.1.19376.3
 {nbsp} +
 
 
-*Suche nach Adresse bzw. in einem Suchgebiet*
+=== Suche nach Adresse bzw. in einem Suchgebiet
 
 Dafür kann man unter anderem folgende Attribute in der Suchanfrage verwenden:
 
@@ -42,8 +42,8 @@ Dafür kann man unter anderem folgende Attribute in der Suchanfrage verwenden:
 * `streetAddress` 
 ** Straße - z.B. "Friedrichstraße"
 
-{nbsp} +
-_Beispiel für die Suche nach einer Adresse_
+
+.Beispiel für die Suche nach einer Adresse
 [cols="h,a"] 
 |===
 |LDAP Filter
@@ -51,7 +51,7 @@ m|(&(stateOrProvinceName=Berlin)(postalCode=10117)(localityName=Berlin)(streetAd
 |===
 {nbsp} +
 
-*Suche bei bekanntem Namen*
+=== Suche bei bekanntem Namen
 
 Dafür kann man unter anderem folgende Attribute in der Suchanfrage verwenden:
 
@@ -59,21 +59,19 @@ Dafür kann man unter anderem folgende Attribute in der Suchanfrage verwenden:
 ** Name der Organisation oder der Person - z.B. "Meier"
 ** Für die Attribute kann ebenfalls die Suche mit Wildcards entsprechend LDAP genutzt werden z.B. "Meier*".
 
-{nbsp} +
-_Beispiel für die Suche nach Namen_
+.Beispiel für die Suche nach Namen
 [cols="h,a"] 
 |===
 |LDAP Filter       
 m|(displayName=Meier*)
 |===
-{nbsp} +
 
-{nbsp} +
-_Beispiel für die Kombination der Suchkriterien_
+=== Kombination der Suchkriterien
+
 [cols="h,a"] 
 |===
 |LDAP Filter
 m|(&(professionOID=1.2.276.0.76.4.50)(specialization=urn:psc:1.3.6.1.4.1.19376.3.276.1.5.4:ALLG)(stateOrProvinceName=Berlin)(postalCode=10117)(localityName=Berlin)(streetAddress=Friedrichstraße*)(displayName=Meier*))
 |===
-{nbsp} +
+
 
