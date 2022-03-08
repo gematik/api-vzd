@@ -67,11 +67,11 @@ Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2256#section-5.4[RFC225
 | PLZ
 | Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2256#section-5.18[RFC2256 Section 5.18]
 
-| `l`
+| `localityName` oder `l`
 | Ort
 | Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2256#section-5.8[RFC2256 Section 5.8]
 
-| `st`
+| `stateOrProvinceName` oder `st`
 | Bundesland oder Region
 a| 
 
