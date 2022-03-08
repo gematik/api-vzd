@@ -1,4 +1,4 @@
-= 🗂️ Definition der LDAP-Attribute im gematik Verzeichnisdienst
+= 🗂️ LDAP-Attribute im gematik Verzeichnisdienst
 
 == Identifikator
 
@@ -176,3 +176,31 @@ Beispiel für Allgemeinmedizin: +
 .Zusäzliche KV-Regionen:
 * Nordrhein
 * Westfalen-Lippe
+
+== Beispiel
+
+|===
+| Name | Nachname | Vorname | Adresse | PLZ | Ort 
+
+| `displayName`
+| `sn`
+| `givenName`
+| `street`
+| `postalCode`
+| `l`
+
+| Praxis Helga Freifrau Mondwürfel
+| 
+| 
+| Bahnhof Str. 13
+| 91234
+| Nürnberg
+
+| Oldenburg, Petra
+| Oldenburg
+| Petra
+| Hallesches Ufer 21
+| 88451
+| Dettingen
+
+|===
