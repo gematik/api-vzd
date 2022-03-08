@@ -20,7 +20,7 @@
 
 | `displayName`
 | Anzeigename
-|
+| Dieses Attribut wird genutzt, um den Namen der Person oder Institution gegenüber dem Anwender darzustellen
 
 | `cn`
 | Kanonischer Name
@@ -68,7 +68,28 @@
 
 | `st`
 | Bundesland oder Region
-|
+a| 
+.Gültige Werte für Deutschland:
+* Baden-Württemberg
+* Bayern
+* Berlin
+* Brandenburg 
+* Bremen
+* Hamburg
+* Hessen 
+* Mecklenburg-Vorpommern
+* Niedersachsen 
+* Nordrhein-Westfalen
+* Rheinland-Pfalz
+* Saarland
+* Sachsen
+* Sachsen-Anhalt 
+* Schleswig-Holstein
+* Thüringen
+
+.Zusäzliche KV-Regionen:
+* Nordrhein
+* Westfalen-Lippe
 
 | `countryCode`
 | Landeskürzel
