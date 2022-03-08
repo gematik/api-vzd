@@ -11,7 +11,7 @@ m| telematikID
 | Kartenherausgeber
 |
 m| domainID
-| 1..1
+| 1..N
 | Kartenherausgeber
 |
 
@@ -39,7 +39,7 @@ m| givenName
 m| sn
 | 1..1
 | VZD
-| Automatisch aus `displayName``
+| Automatisch aus `displayName`
 m| title
 | 0..0
 | Keine
