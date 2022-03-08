@@ -1,6 +1,6 @@
 = 🗂️ LDAP-Attribute im gematik Verzeichnisdienst
 
-== Identifikator
+== Identifikatoren
 
 [cols="1,2,6"]
 |===
@@ -8,7 +8,11 @@
 
 | `telematikID`
 | Telematik-ID
-| Identifikator einer Institution oder Person in der TI. Spezifiziert in https://fachportal.gematik.de/fachportal-import/files/gemSpec_PKI_V2.11.1.pdf[gemSpec_PKI], Kapitel 4.7. 
+| Eindeutiger Identifikator einer Institution oder Person in der TI. Spezifiziert in https://fachportal.gematik.de/fachportal-import/files/gemSpec_PKI_V2.11.1.pdf[gemSpec_PKI], Kapitel 4.7. TelematikID darf nur einmal vorkommen.
+
+| `domainID`
+| Kennung
+| Die sektorspezifische Kennung einer Person oder einer Institution. Per Eintag können mehrere Kennungen angeben werden. Im Gegensatz zu TelematikID sind die `domainID` nicht eindeutig können in mehreren Einträgen gleichzeitig vorkommen.
 
 |===
 
@@ -81,7 +85,7 @@ a|
 
 <<valueset_cn>>
 
-https://datatracker.ietf.org/doc/html/rfc2256#section-5.9[RFC2256 Section 5.9]
+Spezifiziert ib https://datatracker.ietf.org/doc/html/rfc2256#section-5.9[RFC2256 Section 5.9]
 
 Kann als `st` abgekürzt werden
 
@@ -179,7 +183,7 @@ Beispiel für Allgemeinmedizin: +
 * Schleswig-Holstein
 * Thüringen
 
-.Zusäzliche KV-Regionen:
+.Zusätzliche KV-Regionen:
 * Nordrhein
 * Westfalen-Lippe
 
