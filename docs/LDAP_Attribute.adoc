@@ -8,7 +8,7 @@
 
 | `telematikID`
 | Telematik-ID
-| Identifikator einer Institution oder Person in der TI. https://fachportal.gematik.de/fachportal-import/files/gemSpec_PKI_V2.11.1.pdf[gemSpec_PKI], Kapitel 4.7. 
+| Identifikator einer Institution oder Person in der TI. Spezifiziert in https://fachportal.gematik.de/fachportal-import/files/gemSpec_PKI_V2.11.1.pdf[gemSpec_PKI], Kapitel 4.7. 
 
 |===
 
@@ -95,7 +95,7 @@ Bildungsregel: +
 `urn:psc:{OID Codesystem}:{Code}`
 
 Beispiel für Allgemeinmedizin: +
-`urn:psc:1.3.6.1.4.1.19376.3.276.1.5.4:ALLG``
+`urn:psc:1.3.6.1.4.1.19376.3.276.1.5.4:ALLG`
 
 |===
 
@@ -110,13 +110,13 @@ Beispiel für Allgemeinmedizin: +
 | KIM-Adresse
 |
 
-| `userCertificate`
-| Zertifikat
-| X509-Zertifikate werden für Verschlüsselung der KIM-Nachrichten  sowie bei der Berechtigungserteilung in der ePA verwendet
-
 | `KOM-LE-Version`
 | KIM-Version
 | 
+
+| `userCertificate`
+| Zertifikat
+| X509-Zertifikate werden für Verschlüsselung der KIM-Nachrichten  sowie bei der Berechtigungserteilung in der ePA verwendet
 
 | `entryType`
 | Typ des Eintags
@@ -126,17 +126,16 @@ Beispiel für Allgemeinmedizin: +
 
 === System
 
-[cols="1,1,1"]
 |===
-| Attribut  | Bezeichnung | Anmerkungen
+| Attribut  | Beschreibung 
 
 | `dataFromAuthority`
-| Verwaltet durch Kartenherausgeber  
-| Enthält `true` wenn die Daten durch einen Kartenherausgeber eingestellt wurden. 
+| *Eintrag wird durch Kartenherausgeber verwaltet*
+Enthält `true` wenn die Daten durch einen Kartenherausgeber eingestellt wurden. 
 
 | `personalEntry`
-| Eintrag einer natürlichen Person
-| Enthält `true` wenn Eintrag eine natürliche Person beschreibt (einen Leistungsebringer)
+| *Eintrag einer natürlichen Person*
+Enthält `true` wenn Eintrag eine natürliche Person beschreibt (einen Leistungsebringer)
 
 
 |===
