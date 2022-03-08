@@ -1,6 +1,6 @@
 = 🗂️ SMC-B-Org-Eintrag (gematik)
 
-[cols="1,1,1,6"]
+[width=100%, cols="1,1,1,8"]
 |===
 | LDAP-Directory Attribut | 0..N | Datenquelle | Erläuterung
 
@@ -110,7 +110,10 @@ m| personalEntry
 | 1..1
 | VZD
 | Wird automatisch berechnet
-
+m| changeDateTime
+| 1..1
+| VZD
+| Wird automatisch berechnet
 
 
 |===
