@@ -64,10 +64,13 @@ Die folgende Abbildung gibt einen Überblick über die Systemarchitektur des Ver
 
 image::VZD_Architektur.svg[VZD overview]
 
-== LDAP-Directory
+== LDAP-Directory Datenmodell
+
+image::VZD_LDAP_Directory_Datenmodell.svg[Datenmodell]
+
 
 * link:docs/LDAP_Attribute.adoc[LDAP Attribute]
-* link:docs/LDAP_Search.adoc[LDAP Attribute]
+* link:docs/LDAP_Search.adoc[LDAP Suche-Tips]
 
 == FHIR-Directory Datenmodell
 

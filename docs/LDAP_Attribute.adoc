@@ -33,7 +33,7 @@ Die Nutzung für die Sektoren wird in Kapitel *Attributtabellen* von Dokument ht
 * Gesetzlichen Krankenkassen (SMC-B-Eintrag): Institutionskennzeichen. Kann mehrfach vorkommen (0..100).
 
 
-== Bezeichnungen
+== Namen
 
 [cols="1,2,6"]
 |===
@@ -74,7 +74,7 @@ Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2256#section-5.4[RFC225
 
 |===
 
-=== Adressdaten
+== Adressdaten
 
 [cols="1,2,6"]
 |===
@@ -138,7 +138,7 @@ Kann als `st` abgekürzt werden
 * Nordrhein
 * Westfalen-Lippe
 
-=== Berufliche Informationen
+== Berufliche Informationen
 
 [cols="1,2,6"]
 |===
@@ -159,10 +159,13 @@ Bildungsregel: +
 Beispiel für Allgemeinmedizin: +
 `urn:psc:1.3.6.1.4.1.19376.3.276.1.5.4:ALLG`
 
+| `entryType`
+| Typ des Eintags
+| Das Attribut wird autmatisch aus `professionOID` berechnet. Werte werden primär durch ePA verwendet.
+
 |===
 
-
-=== Anwendungen
+=== Anwendungsdaten
 
 [cols="1,2,6"]
 |===
@@ -176,17 +179,21 @@ Beispiel für Allgemeinmedizin: +
 | KIM-Version
 | 
 
+|===
+
+=== Zertifikate
+
+[cols="1,2,6"]
+|===
+| Attribut  | Bezeichnung | Anmerkungen
+
 | `userCertificate`
 | Zertifikat
 | X509-Zertifikate werden für Verschlüsselung der KIM-Nachrichten  sowie bei der Berechtigungserteilung in der ePA verwendet
 
-| `entryType`
-| Typ des Eintags
-| Das Attribut wird autmatisch aus `professionOID` berechnet. Werte werden primär durch ePA verwendet.
-
 |===
 
-=== Systeminformationen
+=== Systemdaten
 
 |===
 | Attribut  | Beschreibung | Anmerkungen
