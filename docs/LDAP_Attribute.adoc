@@ -4,7 +4,7 @@
 
 [cols="1,2,6"]
 |===
-| Attribut  | Bezeichnung | Anmerkungen
+| Attribut  | Bezeichner | Anmerkungen
 
 | `telematikID`
 | Telematik-ID
@@ -16,35 +16,40 @@
 
 [cols="1,2,6"]
 |===
-| Attribut  | Bezeichnung | Anmerkungen
+| Attribut  | Bezeichner | Anmerkungen
 
 | `displayName`
 | Anzeigename
-| Dieses Attribut wird genutzt, um den Namen der Person oder Institution gegenüber dem Anwender darzustellen
+| Dieses Attribut wird genutzt, um den Namen einer Person oder einer Institution gegenüber dem Anwender darzustellen
+
+Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2798#section-2.3[RFC2798 Section 2.3]
 
 | `cn`
-| Kanonischer Name
-|
+| Name
+| Eindeutiger Name einer Person oder Institution.
+LDAP unterstützt grundsätzlich mehrere Namen eines Objekts. In der TI wird jedoch meistens nur ein `cn`-Attribut verwendet, daher ist `cn` identisch mit `displayName`. 
+
+Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2256#section-5.4[RFC2256 Section 5.4]
 
 | `otherName`
-| Alternative Bezeichnung
+| Weitere Name(n)
 |
 
 | `organization`
-| Organizationsname
+| Organization
 |
 
 | `givenName`
 | Vorname
-|
+| Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2256#section-5.43[RFC2256 Section 5.43]
 
 | `sn`
 | Nachname
-|
+| Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2256#section-5.5[RFC2256 Section 5.5]
 
 | `title`
 | Akademischer oder Adelstitel
-| 
+| Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2256#section-5.13[RFC2256 Section 5.13]
 
 |===
 
@@ -56,44 +61,47 @@
 
 | `street`
 | Straße und Hausnummer
-|
+| Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2256#section-5.10[RFC2256 Section 5.10]
 
 | `postalCode`
 | PLZ
-|
+| Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2256#section-5.18[RFC2256 Section 5.18]
 
 | `l`
 | Ort
-|
+| Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2256#section-5.8[RFC2256 Section 5.8]
 
 | `st`
 | Bundesland oder Region
 a| 
 .Gültige Werte für Deutschland:
-* Baden-Württemberg
-* Bayern
-* Berlin
-* Brandenburg 
-* Bremen
-* Hamburg
-* Hessen 
-* Mecklenburg-Vorpommern
-* Niedersachsen 
-* Nordrhein-Westfalen
-* Rheinland-Pfalz
-* Saarland
-* Sachsen
-* Sachsen-Anhalt 
-* Schleswig-Holstein
-* Thüringen
+Baden-Württemberg +
+Bayern +
+Berlin +
+Brandenburg +
+Bremen +
+Hamburg +
+Hessen +
+Mecklenburg-Vorpommern +
+Niedersachsen +
+Nordrhein-Westfalen +
+Rheinland-Pfalz +
+Saarland +
+Sachsen +
+Sachsen-Anhalt +
+Schleswig-Holstein +
+Thüringen +
 
 .Zusäzliche KV-Regionen:
-* Nordrhein
-* Westfalen-Lippe
+Nordrhein +
+Westfalen-Lippe +
+
+https://datatracker.ietf.org/doc/html/rfc2256#section-5.9[RFC2256 Section 5.9]
 
 | `countryCode`
 | Landeskürzel
-| Zweistelliger Landeskürzel genäß https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2[ISO 3166-1 alpha-2]
+| Zweistelliger Landeskürzel aus dem Wertebereich https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2[ISO 3166-1 alpha-2]
+
 
 |===
 
