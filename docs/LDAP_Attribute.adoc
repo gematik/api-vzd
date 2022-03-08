@@ -1,0 +1,142 @@
+= 🗂️ Definition der LDAP-Attribute im gematik Verzeichnisdienst
+
+== Identifikator
+
+[cols="1,1,1"]
+|===
+| Attribut  | Bezeichnung | Anmerkungen
+
+| `telematikID`
+| Telematik-ID
+|
+
+|===
+
+== Bezeichnungen
+
+[cols="1,1,1"]
+|===
+| Attribut  | Bezeichnung | Anmerkungen
+
+| `displayName`
+| Anzeigename
+|
+
+| `cn`
+| Kanonischer Name
+|
+
+| `otherName`
+| Alternative Bezeichnung
+|
+
+| `organization`
+| Organizationsname
+|
+
+| `givenName`
+| Vorname
+|
+
+| `sn`
+| Nachname
+|
+
+| `title`
+| Akademischer oder Adelstitel
+| 
+
+| `personalEntry`
+| Eintrag einer natürlichen Person
+| Enthält `true` wenn Eintrag eine natürliche Person beschreibt (einen Leistungsebringer)
+
+|===
+
+=== Adresse
+
+[cols="1,1,1"]
+|===
+| Attribut  | Bezeichnung | Anmerkungen
+
+| `street`
+| Straße und Hausnummer
+|
+
+| `postalCode`
+| PLZ
+|
+
+| `l`
+| Ort
+|
+
+| `st`
+| Bundesland oder Region
+|
+
+| `countryCode`
+| Landeskürzel
+| Zweistelliger Landeskürzel genäß https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2[ISO 3166-1 alpha-2]
+
+|===
+
+=== Berufliche Informationen
+
+[cols="1,1,1"]
+|===
+| Attribut  | Bezeichnung | Anmerkungen
+
+
+| `professionOID`
+| Berufsgruppe
+| Wertebereich gemäß https://fachportal.gematik.de/fachportal-import/files/gemSpec_OID_V3.11.0.pdf[gemSpec_OID]
+
+| `specialization`
+| Fachgebiet
+| Der Wertebereich entspricht den in hl7 definierten und für ePA festgelegten Werten  https://wiki.hl7.de/index.php?title=IG:Value_Sets_für_XDS#DocumentEntry.practiceSettingCode[PracticeSettingCode]
+
+Bildungsregel: +
+`urn:psc:{OID Codesystem}:{Code}`
+
+Beispiel für Allgemeinmedizin: +
+`urn:psc:1.3.6.1.4.1.19376.3.276.1.5.4:ALLG``
+
+|===
+
+
+=== Anwendungen
+
+[cols="1,1,1"]
+|===
+| Attribut  | Bezeichnung | Anmerkungen
+
+| `mail`
+| KIM-Adresse
+|
+
+| `userCertificate`
+| Zertifikat
+| X509-Zertifikate werden für Verschlüsselung der KIM-Nachrichten  sowie bei der Berechtigungserteilung in der ePA verwendet
+
+| `KOM-LE-Version`
+| KIM-Version
+| 
+
+| `entryType`
+| Typ des Eintags
+| Das Attribut wird autmatisch aus `professionOID` berechnet. Werte werden primär durch ePA verwendet.
+
+|===
+
+=== System
+
+[cols="1,1,1"]
+|===
+| Attribut  | Bezeichnung | Anmerkungen
+
+| `dataFromAuthority`
+| Verwaltet durch Kartenherausgeber  
+|
+
+
+|===
