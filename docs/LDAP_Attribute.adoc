@@ -1,0 +1,246 @@
+= 🗂️ LDAP-Attribute im gematik Verzeichnisdienst
+:toc:
+:toc-title: Inhaltsverzeichnis
+
+== Identifikatoren
+
+[cols="1,2,6"]
+|===
+| Attribut  | Bezeichner | Anmerkungen
+
+| `telematikID`
+| Telematik-ID
+| Eindeutiger Identifikator einer Institution oder einer Person in der TI. 
+Spezifiziert in https://fachportal.gematik.de/fachportal-import/files/gemSpec_PKI_V2.11.1.pdf[gemSpec_PKI], Kapitel 4.7. 
+TelematikID darf nur einmal vorkommen.
+
+| `domainID`
+| Kennung
+| Die sektorspezifische Kennung einer Institution oder einer Person.
+Per Eintag können mehrere Kennungen angeben werden. Im Gegensatz zu TelematikID sind die `domainID` nicht eindeutig können in mehreren Einträgen gleichzeitig vorkommen.
+
+|===
+
+=== Festlegungen zu `domainID`
+Die Nutzung für die Sektoren wird in Kapitel *Attributtabellen* von Dokument https://fachportal.gematik.de/fileadmin/Fachportal/Downloadcenter/Implementierungsleitfaeden/gemILF_Pflege_VZD_V1.5.1.pdf[gemILF_Pflege_VZD] beschrieben.
+
+* Kassenärztliche Vereinigungen (SMC-B-Eintrag): Betriebsstättennummer der Praxis
+* Kassenzahnärztliche Vereinigungen (SMC-B Eintrag): Abrechnungsnummer
+* SMC-B-Eintrag für Apotheken: Nicht verwendet
+* HBA-Eintrag für Apotheker: Spezifisches Kennzeichen der Apotheker. Kann mehrfach vorkommen (0..100).
+* Krankenhäuser (SMC-B-Eintrag): Betriebsstättennummer des Krankenhauses
+* Psychotherapeuten (HBA-Eintrag): Spezifisches Kennzeichen der Psychotherapeuten. Kann mehrfach vorkommen (0..100).
+* Ärzte (HBA-Eintrag): Spezifisches Kennzeichen der Ärzte. Kann mehrfach vorkommen (0..100).
+* Zahnärzte (HBA-Eintrag): Spezifisches Kennzeichen der Zahnärzte. Kann mehrfach vorkommen (0..100).
+* Gesetzlichen Krankenkassen (SMC-B-Eintrag): Institutionskennzeichen. Kann mehrfach vorkommen (0..100).
+
+
+== Namen
+
+[cols="1,2,6"]
+|===
+| Attribut  | Bezeichner | Anmerkungen
+
+| `displayName`
+| Anzeigename
+| Dieses Attribut wird genutzt, um den Namen einer Person oder einer Institution gegenüber dem Anwender darzustellen
+
+Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2798#section-2.3[RFC2798 Section 2.3]
+
+| `cn`
+| Name
+| Eindeutiger Name einer Person oder Institution.
+LDAP unterstützt grundsätzlich mehrere Namen eines Objekts. In der TI wird jedoch meistens nur ein `cn`-Attribut verwendet, daher ist `cn` identisch mit `displayName`. 
+
+Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2256#section-5.4[RFC2256 Section 5.4]
+
+| `otherName`
+| Weitere Name(n)
+|
+
+| `organization`
+| Organization
+|
+
+| `givenName`
+| Vorname
+| Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2256#section-5.43[RFC2256 Section 5.43]
+
+| `sn`
+| Nachname
+| Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2256#section-5.5[RFC2256 Section 5.5]
+
+| `title`
+| Akademischer oder Adelstitel
+| Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2256#section-5.13[RFC2256 Section 5.13]
+
+|===
+
+== Adressdaten
+
+[cols="1,2,6"]
+|===
+| Attribut  | Bezeichnung | Anmerkungen
+
+| `streetAddress`
+| Straße und Hausnummer
+| Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2256#section-5.10[RFC2256 Section 5.10]
+
+Kann als `street` abgekürzt werden
+
+| `postalCode`
+| PLZ
+| Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2256#section-5.18[RFC2256 Section 5.18]
+
+| `localityName`
+| Ort
+| Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2256#section-5.8[RFC2256 Section 5.8]
+
+Kann als `l` abgekürzt werden
+
+| `stateOrProvinceName`
+| Bundesland oder Region
+a| 
+
+<<valueset_cn>>
+
+Spezifiziert ib https://datatracker.ietf.org/doc/html/rfc2256#section-5.9[RFC2256 Section 5.9]
+
+Kann als `st` abgekürzt werden
+
+| `countryCode`
+| Landeskürzel
+| Zweistelliger Landeskürzel aus dem Wertebereich https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2[ISO 3166-1 alpha-2]
+
+
+|===
+
+[#valueset_cn]
+=== Wertebereich für `stateOrProvinceName`
+
+.Gültige Werte für Deutschland:
+* Baden-Württemberg
+* Bayern
+* Berlin
+* Brandenburg 
+* Bremen
+* Hamburg
+* Hessen 
+* Mecklenburg-Vorpommern
+* Niedersachsen 
+* Nordrhein-Westfalen
+* Rheinland-Pfalz
+* Saarland
+* Sachsen
+* Sachsen-Anhalt 
+* Schleswig-Holstein
+* Thüringen
+
+.Zusätzliche KV-Regionen:
+* Nordrhein
+* Westfalen-Lippe
+
+== Berufliche Informationen
+
+[cols="1,2,6"]
+|===
+| Attribut  | Bezeichnung | Anmerkungen
+
+
+| `professionOID`
+| Berufsgruppe
+| Wertebereich gemäß https://fachportal.gematik.de/fachportal-import/files/gemSpec_OID_V3.11.0.pdf[gemSpec_OID]
+
+| `specialization`
+| Fachgebiet
+| Der Wertebereich entspricht den in hl7 definierten und für ePA festgelegten Werten  https://wiki.hl7.de/index.php?title=IG:Value_Sets_für_XDS#DocumentEntry.practiceSettingCode[PracticeSettingCode]
+
+Bildungsregel: +
+`urn:psc:{OID Codesystem}:{Code}`
+
+Beispiel für Allgemeinmedizin: +
+`urn:psc:1.3.6.1.4.1.19376.3.276.1.5.4:ALLG`
+
+| `entryType`
+| Typ des Eintags
+| Das Attribut wird autmatisch aus `professionOID` berechnet. Werte werden primär durch ePA verwendet.
+
+|===
+
+=== Anwendungsdaten
+
+[cols="1,2,6"]
+|===
+| Attribut  | Bezeichnung | Anmerkungen
+
+| `mail`
+| KIM-Adresse
+|
+
+| `KOM-LE-Version`
+| KIM-Version
+| 
+
+|===
+
+=== Zertifikate
+
+[cols="1,2,6"]
+|===
+| Attribut  | Bezeichnung | Anmerkungen
+
+| `userCertificate`
+| Zertifikat
+| X509-Zertifikate werden für Verschlüsselung der KIM-Nachrichten  sowie bei der Berechtigungserteilung in der ePA verwendet
+
+|===
+
+=== Systemdaten
+
+|===
+| Attribut  | Beschreibung | Anmerkungen
+
+| `dataFromAuthority`
+| Verwaltet durch Kartenherausgeber  
+| Enthält `TRUE` wenn die Daten durch einen Kartenherausgeber eingestellt wurden. 
+
+| `personalEntry`
+| Eintrag einer natürlichen Person
+| Enthält `TRUE` wenn Eintrag eine natürliche Person beschreibt (einen Leistungsebringer)
+
+
+|===
+
+== Beispiele
+
+=== Darstellung von Personen und Institutionen in einer Liste
+
+|===
+^| Typ | Name | Nachname | Vorname | Adresse | PLZ | Ort 
+
+^| 🏥
+| Praxis Helga Freifrau Mondwürfel
+| 
+| 
+| Bahnhof Str. 13
+| 91234
+| Nürnberg
+
+^| 👩‍⚕️
+| Oldenburg, Petra
+| Oldenburg
+| Petra
+| Hallesches Ufer 21
+| 88451
+| Dettingen
+
+^| `personalEntry`
+| `displayName`
+| `sn`
+| `givenName`
+| `street`
+| `postalCode`
+| `localityName`
+
+
+|===

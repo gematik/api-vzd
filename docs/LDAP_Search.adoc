@@ -1,106 +1,74 @@
-= Suche im Verzeichnisdienst
+= 🔍 Suche im Verzeichnisdienst
 gematik, Systems Engineering
-:source-highlighter: rouge
-:title-page:
-:imagesdir: images/
-//:sectnums:
-
-
-ifndef::env-github[]
-image::gematik_logo.svg[gematik,float="right"]
-endif::[]
-ifdef::env-github[]
-++++
-
-++++
-endif::[]
-
 
 == Allgemeines
 
-Die Seite gibt Hinweise zur Suche im VZD für Anwendungen. Die Suche von Einträgen für den Anwendungen/Endanwender ist über Schnittstelle I_Directory_Query mit LDAPv3 möglich. Gesucht werden kann nach allen Attributen.
+Die Seite gibt Hinweise zur Suche im VZD für Anwendungen. Die Suche von Einträgen für den Anwendungen/Endanwender ist über Schnittstelle `I_Directory_Query` mit LDAPv3 möglich. Gesucht werden kann nach allen link:LDAP_Attribute.adoc[Attributen].
 
-=== Eine Auswahl von Suchkriterien:
+== Eine Auswahl von Suchkriterien
 
-*Suche nach Art der Organisation/Leistungserbringers und Spezialisierung*
+=== Suche nach Art der Organisation/Leistungserbringers und Spezialisierung*
 
 Dafür kann man unter anderem folgende Attribute in der Suchanfrage verwenden:
 
-* [ProfessionOID] 
-** Profession OID - Siehe [gemSpec_VZD#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID].
+* `professionOID` 
+** Profession OID - Siehe [gemSpec_VZD#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID].
 
-* [specialization] 
-** Fachgebiet entsprechend https://wiki.hl7.de/index.php?title=IG:Value_Sets_f%C3%BCr_XDS#DocumentEntry.practiceSettingCode[FHIR HL7]
+* `specialization` 
+** Fachgebiet entsprechend https://wiki.hl7.de/index.php?title=IG:Value_Sets_f%C3%BCr_XDS#DocumentEntry.practiceSettingCode[FHIR HL7]
 
-{nbsp} +
-_Beispiel für die Suche nach einer Arztpraxis für Allgemeinmedizin_
+.Beispiel für die Suche nach einer Arztpraxis für Allgemeinmedizin
 [cols="h,a"] 
 |===
-|LDAP Filter       |(&(professionOID=1.2.276.0.76.4.50)(specialization=urn:psc:1.3.6.1.4.1.19376.3.276.1.5.4:ALLG))
+|LDAP Filter       
+m|(&(professionOID=1.2.276.0.76.4.50)(specialization=urn:psc:1.3.6.1.4.1.19376.3.276.1.5.4:ALLG))
 |===
-{nbsp} +
 
-
-*Suche nach Adresse bzw. in einem Suchgebiet*
+=== Suche nach Adresse bzw. in einem Suchgebiet
 
 Dafür kann man unter anderem folgende Attribute in der Suchanfrage verwenden:
 
-* [stateOrProvinceName] 
-** Bundesland - z.B. "Berlin"
+* `stateOrProvinceName`
+** Bundesland - z.B. "Berlin"
   
-* [postalCode] 
+* `postalCode` 
 ** Postleitzahl - z.B. "10117"
 
-* [localityName] 
+* `localityName` 
 ** Ort - z.B. "Berlin"
 
-* [streetAddress] 
+* `streetAddress` 
 ** Straße - z.B. "Friedrichstraße"
 
-{nbsp} +
-_Beispiel für die Suche nach einer Adresse_
+.Beispiel für die Suche nach einer Adresse
 [cols="h,a"] 
 |===
-|LDAP Filter       |(&(stateOrProvinceName=Berlin)(postalCode=10117)(localityName=Berlin)(streetAddress=Friedrichstraße*))
+|LDAP Filter
+m|(&(stateOrProvinceName=Berlin)(postalCode=10117)(localityName=Berlin)(streetAddress=Friedrichstraße*))
 |===
 {nbsp} +
 
-*Suche bei bekanntem Namen*
+=== Suche bei bekanntem Namen
 
 Dafür kann man unter anderem folgende Attribute in der Suchanfrage verwenden:
 
-* [displayName] 
+* `displayName` 
 ** Name der Organisation oder der Person - z.B. "Meier"
 ** Für die Attribute kann ebenfalls die Suche mit Wildcards entsprechend LDAP genutzt werden z.B. "Meier*".
 
-{nbsp} +
-_Beispiel für die Suche nach Namen_
+.Beispiel für die Suche nach Namen
 [cols="h,a"] 
 |===
-|LDAP Filter       |(displayName=Meier*)
+|LDAP Filter       
+m|(displayName=Meier*)
 |===
-{nbsp} +
 
-{nbsp} +
-_Beispiel für die Kombination der Suchkriterien_
+=== Kombination der Suchkriterien
+
 [cols="h,a"] 
 |===
-|LDAP Filter       |(&(professionOID=1.2.276.0.76.4.50)(specialization=urn:psc:1.3.6.1.4.1.19376.3.276.1.5.4:ALLG)(stateOrProvinceName=Berlin)(postalCode=10117)(localityName=Berlin)(streetAddress=Friedrichstraße*)(displayName=Meier*))
+|LDAP Filter
+m|(&(professionOID=1.2.276.0.76.4.50)(specialization=urn:psc:1.3.6.1.4.1.19376.3.276.1.5.4:ALLG)(stateOrProvinceName=Berlin)(postalCode=10117)(localityName=Berlin)(streetAddress=Friedrichstraße*)(displayName=Meier*))
 |===
-{nbsp} +
-
-===   Spezielle Attribute
-
-* domainID 
-** Die Nutzung für die Sektoren wird in Kapitel *Attributtabellen* von Dokument https://fachportal.gematik.de/fileadmin/Fachportal/Downloadcenter/Implementierungsleitfaeden/gemILF_Pflege_VZD_V1.5.1.pdf[gemILF_Pflege_VZD] beschrieben.
-*** Kassenärztliche Vereinigungen (SMC-B-Eintrag): Betriebsstättennummer der Praxis
-*** Kassenzahnärztliche Vereinigungen (SMC-B Eintrag): Abrechnungsnummer
-*** SMC-B-Eintrag für Apotheken: Nicht verwendet
-*** HBA-Eintrag für Apotheker: Spezifisches Kennzeichen der Apotheker. Kann mehrfach vorkommen (0..100).
-*** Krankenhäuser (SMC-B-Eintrag): Betriebsstättennummer des Krankenhauses
-*** Psychotherapeuten (HBA-Eintrag): Spezifisches Kennzeichen der Psychotherapeuten. Kann mehrfach vorkommen (0..100).
-*** Ärzte (HBA-Eintrag): Spezifisches Kennzeichen der Ärzte. Kann mehrfach vorkommen (0..100).
-*** Zahnärzte (HBA-Eintrag): Spezifisches Kennzeichen der Zahnärzte. Kann mehrfach vorkommen (0..100).
-*** Kassen (SMC-B-Eintrag): Institutionskennzeichen. Kann mehrfach vorkommen (0..100).
 
 

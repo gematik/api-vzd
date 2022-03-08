@@ -44,9 +44,9 @@ Verzeichnisdienst bittet folgende Außenschnittstellen an (s Nummerierung in der
 4. Die KIM Anbieter ergänzen die Basisdaten um eigene Inhalte, insb. um die KIM-EMail-Adressen. Schnittstelle `I_Application_Maintenance`.
 5. Für die Suche der Apotheken, z.B. in der gematik eRezept APP, existiert ein dediziertes Apothekenverzeichnis (ApoVZD). ApoVZD synchronisiert regelmäßig die Daten aus dem VZD und ergänzt diese um weitere Inhalte (z.B. um Geolokalisierung und Öffnungszeiten der Apotheken). Schnittstelle `I_Directory_Administration`, analog zu p.3.
 6. Für die Suche der Leistungserbringer-Institutionen im Rahmen der Berechtigungsvergabe in der elektronischen Patientenakte (ePA),vermittelt das ePA-Aktensystem die Kommunikation zwischen VZD und ePA-Frontend. Schnittstelle `I_Directory_Query`, zentral.
-7. _In Entwicklung_: TIM Anbieter registrieren sich und verifizieren sich gegenseitig mit Hilfe von VZD. Schnittstelle. `I_VZD_TIM_Provider_Services`
-8. _In Entwicklung_: VZD bietet direkten Zugriff zur den Daten über FHIR REST Schnittstellen für die TIM Clients und perspektivisch anderen registrierten Clients. Schnittstelle `I_FHIR_Directory#tim-search`.
-9. _In Entwicklung_: Die Leistungserbringer können ihre Daten selbstständig administrieren, um z.B. die Organisationsstrukturen und Standorte zur erfassen. Schnittstelle `I_FHIR_Directory#owner`.
+7. _In Entwicklung_: TIM Anbieter registrieren sich und verifizieren sich gegenseitig mit Hilfe von VZD. Schnittstelle. `I_Directory_TIM_Provider_Services`
+8. _In Entwicklung_: VZD bietet direkten Zugriff zur den Daten über FHIR REST Schnittstellen für die TIM Clients und perspektivisch anderen registrierten Clients. Schnittstelle `I_Directory_FHIR#tim-search`.
+9. _In Entwicklung_: Die Leistungserbringer können ihre Daten selbstständig administrieren, um z.B. die Organisationsstrukturen und Standorte zur erfassen. Schnittstelle `I_Directory_FHIR#owner`.
 
 Die Schnittstellen des Verzeichnisdienstes sind in Spezifikationen der gematik definiert:
 
@@ -63,6 +63,14 @@ Die Dokumente können im Fachportal der gematik gefunden werden:
 Die folgende Abbildung gibt einen Überblick über die Systemarchitektur des Verzeichnisdienstes.
 
 image::VZD_Architektur.svg[VZD overview]
+
+== LDAP-Directory Datenmodell
+
+image::VZD_LDAP_Directory_Datenmodell.svg[Datenmodell]
+
+
+* link:docs/LDAP_Attribute.adoc[LDAP Attribute]
+* link:docs/LDAP_Search.adoc[LDAP Suche-Tips]
 
 == FHIR-Directory Datenmodell
 
