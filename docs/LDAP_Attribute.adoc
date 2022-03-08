@@ -1,5 +1,6 @@
 = 🗂️ LDAP-Attribute im gematik Verzeichnisdienst
 :toc:
+:toc-title: Inhaltsverzeichnis
 
 == Identifikatoren
 
