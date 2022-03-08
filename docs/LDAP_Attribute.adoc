@@ -208,6 +208,11 @@ Beispiel für Allgemeinmedizin: +
 | Eintrag einer natürlichen Person
 | Enthält `TRUE` wenn Eintrag eine natürliche Person beschreibt (einen Leistungsebringer)
 
+| `changeDateTime`
+| Geändert
+| Zeitstempel der letzten Änderung, wird bei jeder Aktualisierung auf aktuelle Systemzeit geändert.
+
+
 
 |===
 
