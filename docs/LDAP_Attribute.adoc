@@ -75,6 +75,8 @@ Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2256#section-5.4[RFC225
 | Bundesland oder Region
 a| 
 
+<<valueset_cn>>
+
 https://datatracker.ietf.org/doc/html/rfc2256#section-5.9[RFC2256 Section 5.9]
 
 | `countryCode`
@@ -150,7 +152,9 @@ Beispiel für Allgemeinmedizin: +
 
 == Wertebereiche
 
-=== Budndesländer (`st`)
+[#valueset_cn]
+=== Wertebereich für `st` (Bundesland oder Region)
+
 .Gültige Werte für Deutschland:
 * Baden-Württemberg
 * Bayern
