@@ -8,13 +8,29 @@
 
 | `telematikID`
 | Telematik-ID
-| Eindeutiger Identifikator einer Institution oder Person in der TI. Spezifiziert in https://fachportal.gematik.de/fachportal-import/files/gemSpec_PKI_V2.11.1.pdf[gemSpec_PKI], Kapitel 4.7. TelematikID darf nur einmal vorkommen.
+| Eindeutiger Identifikator einer Institution oder einer Person in der TI. 
+Spezifiziert in https://fachportal.gematik.de/fachportal-import/files/gemSpec_PKI_V2.11.1.pdf[gemSpec_PKI], Kapitel 4.7. 
+TelematikID darf nur einmal vorkommen.
 
 | `domainID`
 | Kennung
-| Die sektorspezifische Kennung einer Person oder einer Institution. Per Eintag können mehrere Kennungen angeben werden. Im Gegensatz zu TelematikID sind die `domainID` nicht eindeutig können in mehreren Einträgen gleichzeitig vorkommen.
+| Die sektorspezifische Kennung einer Institution oder einer Person.
+Per Eintag können mehrere Kennungen angeben werden. Im Gegensatz zu TelematikID sind die `domainID` nicht eindeutig können in mehreren Einträgen gleichzeitig vorkommen.
 
 |===
+
+=== Festlegungen zu `domainID`
+Die Nutzung für die Sektoren wird in Kapitel *Attributtabellen* von Dokument https://fachportal.gematik.de/fileadmin/Fachportal/Downloadcenter/Implementierungsleitfaeden/gemILF_Pflege_VZD_V1.5.1.pdf[gemILF_Pflege_VZD] beschrieben.
+* Kassenärztliche Vereinigungen (SMC-B-Eintrag): Betriebsstättennummer der Praxis
+* Kassenzahnärztliche Vereinigungen (SMC-B Eintrag): Abrechnungsnummer
+* SMC-B-Eintrag für Apotheken: Nicht verwendet
+* HBA-Eintrag für Apotheker: Spezifisches Kennzeichen der Apotheker. Kann mehrfach vorkommen (0..100).
+* Krankenhäuser (SMC-B-Eintrag): Betriebsstättennummer des Krankenhauses
+* Psychotherapeuten (HBA-Eintrag): Spezifisches Kennzeichen der Psychotherapeuten. Kann mehrfach vorkommen (0..100).
+* Ärzte (HBA-Eintrag): Spezifisches Kennzeichen der Ärzte. Kann mehrfach vorkommen (0..100).
+* Zahnärzte (HBA-Eintrag): Spezifisches Kennzeichen der Zahnärzte. Kann mehrfach vorkommen (0..100).
+* Kassen (SMC-B-Eintrag): Institutionskennzeichen. Kann mehrfach vorkommen (0..100).
+
 
 == Bezeichnungen
 
@@ -96,6 +112,31 @@ Kann als `st` abgekürzt werden
 
 |===
 
+[#valueset_cn]
+=== Wertebereich für `stateOrProvinceName` (Bundesland oder Region)
+
+.Gültige Werte für Deutschland:
+* Baden-Württemberg
+* Bayern
+* Berlin
+* Brandenburg 
+* Bremen
+* Hamburg
+* Hessen 
+* Mecklenburg-Vorpommern
+* Niedersachsen 
+* Nordrhein-Westfalen
+* Rheinland-Pfalz
+* Saarland
+* Sachsen
+* Sachsen-Anhalt 
+* Schleswig-Holstein
+* Thüringen
+
+.Zusätzliche KV-Regionen:
+* Nordrhein
+* Westfalen-Lippe
+
 === Berufliche Informationen
 
 [cols="1,2,6"]
@@ -159,33 +200,6 @@ Beispiel für Allgemeinmedizin: +
 
 
 |===
-
-== Wertebereiche
-
-[#valueset_cn]
-=== Wertebereich für `stateOrProvinceName` (Bundesland oder Region)
-
-.Gültige Werte für Deutschland:
-* Baden-Württemberg
-* Bayern
-* Berlin
-* Brandenburg 
-* Bremen
-* Hamburg
-* Hessen 
-* Mecklenburg-Vorpommern
-* Niedersachsen 
-* Nordrhein-Westfalen
-* Rheinland-Pfalz
-* Saarland
-* Sachsen
-* Sachsen-Anhalt 
-* Schleswig-Holstein
-* Thüringen
-
-.Zusätzliche KV-Regionen:
-* Nordrhein
-* Westfalen-Lippe
 
 == Beispiele
 
