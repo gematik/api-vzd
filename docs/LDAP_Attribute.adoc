@@ -74,7 +74,7 @@ Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2256#section-5.4[RFC225
 
 |===
 
-=== Adresse
+=== Adressdaten
 
 [cols="1,2,6"]
 |===
