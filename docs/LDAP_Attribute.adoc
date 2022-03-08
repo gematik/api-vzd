@@ -59,25 +59,31 @@ Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2256#section-5.4[RFC225
 |===
 | Attribut  | Bezeichnung | Anmerkungen
 
-| `street`
+| `streetAddress`
 | Straße und Hausnummer
 | Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2256#section-5.10[RFC2256 Section 5.10]
+
+Kann als `street` abgekürzt werden
 
 | `postalCode`
 | PLZ
 | Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2256#section-5.18[RFC2256 Section 5.18]
 
-| `localityName` oder `l`
+| `localityName`
 | Ort
 | Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2256#section-5.8[RFC2256 Section 5.8]
 
-| `stateOrProvinceName` oder `st`
+Kann als `l` abgekürzt werden
+
+| `stateOrProvinceName`
 | Bundesland oder Region
 a| 
 
 <<valueset_cn>>
 
 https://datatracker.ietf.org/doc/html/rfc2256#section-5.9[RFC2256 Section 5.9]
+
+Kann als `st` abgekürzt werden
 
 | `countryCode`
 | Landeskürzel
@@ -141,11 +147,11 @@ Beispiel für Allgemeinmedizin: +
 
 | `dataFromAuthority`
 | Verwaltet durch Kartenherausgeber  
-| Enthält `true` wenn die Daten durch einen Kartenherausgeber eingestellt wurden. 
+| Enthält `TRUE` wenn die Daten durch einen Kartenherausgeber eingestellt wurden. 
 
 | `personalEntry`
 | Eintrag einer natürlichen Person
-| Enthält `true` wenn Eintrag eine natürliche Person beschreibt (einen Leistungsebringer)
+| Enthält `TRUE` wenn Eintrag eine natürliche Person beschreibt (einen Leistungsebringer)
 
 
 |===
@@ -153,7 +159,7 @@ Beispiel für Allgemeinmedizin: +
 == Wertebereiche
 
 [#valueset_cn]
-=== Wertebereich für `st` (Bundesland oder Region)
+=== Wertebereich für `stateOrProvinceName` (Bundesland oder Region)
 
 .Gültige Werte für Deutschland:
 * Baden-Württemberg
@@ -206,7 +212,7 @@ Beispiel für Allgemeinmedizin: +
 | `givenName`
 | `street`
 | `postalCode`
-| `l`
+| `localityName`
 
 
 |===
