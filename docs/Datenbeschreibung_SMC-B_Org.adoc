@@ -4,7 +4,7 @@
 |===
 | LDAP-Directory Attribut | 0..N | Datenquelle | Erläuterung
 
-4+|Identifikatoren
+4+s|Identifikatoren
 
 m| telematikID
 | 1..1
@@ -15,7 +15,7 @@ m| domainID
 | Kartenherausgeber
 |
 
-4+|Namen
+4+s|Namen
 m| displayName
 | 1..1
 | Kartenherausgeber
@@ -39,13 +39,13 @@ m| givenName
 m| sn
 | 1..1
 | VZD
-| Automatisch aus `displayName`
+| Wird automatisch aus `displayName` berechnet.
 m| title
 | 0..0
 | Keine
 | Bleibt leer
 
-4+|Adressdaten
+4+s|Adressdaten
 m| streetAddress
 | 1..1
 | Kartenherausgeber 
@@ -71,7 +71,7 @@ m| countryCode
 | Kartenherausgeber
 |
 
-4+|Berufliche Informationen
+4+s|Berufliche Informationen
 m| professionOID
 | 1..N
 | Zertifikat
@@ -83,9 +83,9 @@ m| specialization
 m| entryType
 | 1..1
 | VZD
-| Wird automatisch berechnet.
+| Wird automatisch aus `professionOID` berechnet.
 
-4+|Anwendungsdaten
+4+s|Anwendungsdaten
 m| mail
 | 0..N
 | KIM-Anbieter
@@ -95,13 +95,13 @@ m| KOM-LE-Version
 | KIM-Anbieter
 |
 
-4+|Zertifikate
+4+s|Zertifikate
 m| userCertificate
 | 0..N
 | Kartenherausgeber
 |
 
-4+|Systemdaten
+4+s|Systemdaten
 m| dataFromAuthority
 | 1..1
 | VZD
@@ -114,6 +114,5 @@ m| changeDateTime
 | 1..1
 | VZD
 | Wird automatisch berechnet
-
 
 |===
