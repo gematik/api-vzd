@@ -74,27 +74,6 @@ Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2256#section-5.4[RFC225
 | `st`
 | Bundesland oder Region
 a| 
-.Gültige Werte für Deutschland:
-Baden-Württemberg +
-Bayern +
-Berlin +
-Brandenburg +
-Bremen +
-Hamburg +
-Hessen +
-Mecklenburg-Vorpommern +
-Niedersachsen +
-Nordrhein-Westfalen +
-Rheinland-Pfalz +
-Saarland +
-Sachsen +
-Sachsen-Anhalt +
-Schleswig-Holstein +
-Thüringen +
-
-.Zusäzliche KV-Regionen:
-Nordrhein +
-Westfalen-Lippe +
 
 https://datatracker.ietf.org/doc/html/rfc2256#section-5.9[RFC2256 Section 5.9]
 
@@ -168,3 +147,28 @@ Beispiel für Allgemeinmedizin: +
 
 
 |===
+
+== Wertebereiche
+
+=== Budndesländer (`st`)
+.Gültige Werte für Deutschland:
+* Baden-Württemberg
+* Bayern
+* Berlin
+* Brandenburg 
+* Bremen
+* Hamburg
+* Hessen 
+* Mecklenburg-Vorpommern
+* Niedersachsen 
+* Nordrhein-Westfalen
+* Rheinland-Pfalz
+* Saarland
+* Sachsen
+* Sachsen-Anhalt 
+* Schleswig-Holstein
+* Thüringen
+
+.Zusäzliche KV-Regionen:
+* Nordrhein
+* Westfalen-Lippe
