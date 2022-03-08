@@ -186,7 +186,7 @@ Beispiel für Allgemeinmedizin: +
 
 |===
 
-=== System
+=== Systeminformationen
 
 |===
 | Attribut  | Beschreibung | Anmerkungen
