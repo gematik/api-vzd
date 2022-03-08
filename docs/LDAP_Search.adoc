@@ -5,7 +5,7 @@ gematik, Systems Engineering
 
 Die Seite gibt Hinweise zur Suche im VZD für Anwendungen. Die Suche von Einträgen für den Anwendungen/Endanwender ist über Schnittstelle `I_Directory_Query` mit LDAPv3 möglich. Gesucht werden kann nach allen link:LDAP_Attribute.adoc[Attributen].
 
-== Eine Auswahl von Suchkriterien:
+== Eine Auswahl von Suchkriterien
 
 === Suche nach Art der Organisation/Leistungserbringers und Spezialisierung*
 
@@ -23,8 +23,6 @@ Dafür kann man unter anderem folgende Attribute in der Suchanfrage verwenden:
 |LDAP Filter       
 m|(&(professionOID=1.2.276.0.76.4.50)(specialization=urn:psc:1.3.6.1.4.1.19376.3.276.1.5.4:ALLG))
 |===
-{nbsp} +
-
 
 === Suche nach Adresse bzw. in einem Suchgebiet
 
@@ -41,7 +39,6 @@ Dafür kann man unter anderem folgende Attribute in der Suchanfrage verwenden:
 
 * `streetAddress` 
 ** Straße - z.B. "Friedrichstraße"
-
 
 .Beispiel für die Suche nach einer Adresse
 [cols="h,a"] 
