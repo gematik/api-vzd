@@ -1,6 +1,6 @@
 = 🗂️ SMC-B-Org-Eintrag (gematik)
 
-[width=100%, cols="1,1,1,8"]
+[width=100%]
 |===
 | LDAP-Directory Attribut | 0..N | Datenquelle | Erläuterung
 
