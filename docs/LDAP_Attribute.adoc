@@ -167,7 +167,7 @@ Beispiel für Allgemeinmedizin: +
 
 |===
 
-=== Anwendungsdaten
+== Anwendungsdaten
 
 [cols="1,2,6"]
 |===
@@ -183,7 +183,7 @@ Beispiel für Allgemeinmedizin: +
 
 |===
 
-=== Zertifikate
+== Zertifikate
 
 [cols="1,2,6"]
 |===
@@ -195,7 +195,7 @@ Beispiel für Allgemeinmedizin: +
 
 |===
 
-=== Systemdaten
+== Systemdaten
 
 |===
 | Attribut  | Beschreibung | Anmerkungen
