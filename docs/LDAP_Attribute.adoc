@@ -2,7 +2,7 @@
 
 == Identifikator
 
-[cols="1,1,1"]
+[cols="1,2,6"]
 |===
 | Attribut  | Bezeichnung | Anmerkungen
 
@@ -14,7 +14,7 @@
 
 == Bezeichnungen
 
-[cols="1,1,1"]
+[cols="1,2,6"]
 |===
 | Attribut  | Bezeichnung | Anmerkungen
 
@@ -50,7 +50,7 @@
 
 === Adresse
 
-[cols="1,1,1"]
+[cols="1,2,6"]
 |===
 | Attribut  | Bezeichnung | Anmerkungen
 
@@ -78,7 +78,7 @@
 
 === Berufliche Informationen
 
-[cols="1,1,1"]
+[cols="1,2,6"]
 |===
 | Attribut  | Bezeichnung | Anmerkungen
 
@@ -102,7 +102,7 @@ Beispiel für Allgemeinmedizin: +
 
 === Anwendungen
 
-[cols="1,1,1"]
+[cols="1,2,6"]
 |===
 | Attribut  | Bezeichnung | Anmerkungen
 
@@ -127,15 +127,15 @@ Beispiel für Allgemeinmedizin: +
 === System
 
 |===
-| Attribut  | Beschreibung 
+| Attribut  | Beschreibung | Anmerkungen
 
 | `dataFromAuthority`
-| *Eintrag wird durch Kartenherausgeber verwaltet*
-Enthält `true` wenn die Daten durch einen Kartenherausgeber eingestellt wurden. 
+| Verwaltet durch Kartenherausgeber  
+| Enthält `true` wenn die Daten durch einen Kartenherausgeber eingestellt wurden. 
 
 | `personalEntry`
-| *Eintrag einer natürlichen Person*
-Enthält `true` wenn Eintrag eine natürliche Person beschreibt (einen Leistungsebringer)
+| Eintrag einer natürlichen Person
+| Enthält `true` wenn Eintrag eine natürliche Person beschreibt (einen Leistungsebringer)
 
 
 |===
