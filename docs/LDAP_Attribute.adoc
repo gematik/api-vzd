@@ -182,13 +182,6 @@ Beispiel für Allgemeinmedizin: +
 |===
 | Name | Nachname | Vorname | Adresse | PLZ | Ort 
 
-| `displayName`
-| `sn`
-| `givenName`
-| `street`
-| `postalCode`
-| `l`
-
 | Praxis Helga Freifrau Mondwürfel
 | 
 | 
@@ -202,5 +195,13 @@ Beispiel für Allgemeinmedizin: +
 | Hallesches Ufer 21
 | 88451
 | Dettingen
+
+| `displayName`
+| `sn`
+| `givenName`
+| `street`
+| `postalCode`
+| `l`
+
 
 |===
