@@ -182,9 +182,9 @@ Beispiel für Allgemeinmedizin: +
 === Darstellung von Personen und Institutionen in einer Liste
 
 |===
-| Typ | Name | Nachname | Vorname | Adresse | PLZ | Ort 
+^| Typ | Name | Nachname | Vorname | Adresse | PLZ | Ort 
 
-| 🏥
+^| 🏥
 | Praxis Helga Freifrau Mondwürfel
 | 
 | 
@@ -192,7 +192,7 @@ Beispiel für Allgemeinmedizin: +
 | 91234
 | Nürnberg
 
-| 👩‍⚕️
+^| 👩‍⚕️
 | Oldenburg, Petra
 | Oldenburg
 | Petra
@@ -200,7 +200,7 @@ Beispiel für Allgemeinmedizin: +
 | 88451
 | Dettingen
 
-| `personalEntry`
+^| `personalEntry`
 | `displayName`
 | `sn`
 | `givenName`
