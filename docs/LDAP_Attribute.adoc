@@ -8,7 +8,7 @@
 
 | `telematikID`
 | Telematik-ID
-|
+| Identifikator einer Institution oder Person in der TI. https://fachportal.gematik.de/fachportal-import/files/gemSpec_PKI_V2.11.1.pdf[gemSpec_PKI], Kapitel 4.7. 
 
 |===
 
@@ -45,10 +45,6 @@
 | `title`
 | Akademischer oder Adelstitel
 | 
-
-| `personalEntry`
-| Eintrag einer natürlichen Person
-| Enthält `true` wenn Eintrag eine natürliche Person beschreibt (einen Leistungsebringer)
 
 |===
 
@@ -136,7 +132,11 @@ Beispiel für Allgemeinmedizin: +
 
 | `dataFromAuthority`
 | Verwaltet durch Kartenherausgeber  
-|
+| Enthält `true` wenn die Daten durch einen Kartenherausgeber eingestellt wurden. 
+
+| `personalEntry`
+| Eintrag einer natürlichen Person
+| Enthält `true` wenn Eintrag eine natürliche Person beschreibt (einen Leistungsebringer)
 
 
 |===
