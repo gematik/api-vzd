@@ -167,7 +167,7 @@ Beispiel für Allgemeinmedizin: +
 
 |===
 
-=== Anwendungsdaten
+== Anwendungsdaten
 
 [cols="1,2,6"]
 |===
@@ -175,15 +175,19 @@ Beispiel für Allgemeinmedizin: +
 
 | `mail`
 | KIM-Adresse
-|
+| zur Kompatibilität bleibt die KIM Mail Adresse in diesem Attribut erhalten
 
-| `KOM-LE-Version`
+| `komLeData.mail`
+| KIM-Adresse
+| Liste von KIM-Adressen mit der zugehörigen KIM-Version im Attribut komLeData.version
+
+| `komLeData.version`
 | KIM-Version
-| 
+| KIM-Version der zugeordneten KIM-Adresse
 
 |===
 
-=== Zertifikate
+== Zertifikate
 
 [cols="1,2,6"]
 |===
@@ -195,7 +199,7 @@ Beispiel für Allgemeinmedizin: +
 
 |===
 
-=== Systemdaten
+== Systemdaten
 
 |===
 | Attribut  | Beschreibung | Anmerkungen
