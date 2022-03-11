@@ -175,15 +175,20 @@ Beispiel für Allgemeinmedizin: +
 
 | `mail`
 | KIM-Adresse
-| zur Kompatibilität bleibt die KIM Mail Adresse in diesem Attribut erhalten
+a| Liste aller KIM-Adressen einer Person oder einer Institution. Zur Kompatibilität bleibt die KIM Mail Adresse in diesem Attribut zusätzlich zum Attribut  `komLeData` erhalten.
+----
+mail: adresse1@anbieter.kim.telematik
+mail: adresse2@anbieter.kim.telematik
+----
 
-| `komLeData.mail`
+| `komLeData`
 | KIM-Adresse
-| Liste von KIM-Adressen mit der zugehörigen KIM-Version im Attribut komLeData.version
+a| Liste von KIM-Adressen mit der zugehörigen KIM-Version
+----
+komLeData: 1.0,adresse1@anbieter.kim.telematik
+komLeData: 1.5,adresse2@anbieter.kim.telematik
+----
 
-| `komLeData.version`
-| KIM-Version
-| KIM-Version der zugeordneten KIM-Adresse
 
 |===
 

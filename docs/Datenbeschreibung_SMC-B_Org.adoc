@@ -89,13 +89,12 @@ m| entryType
 m| mail
 | 0..N
 | KIM-Anbieter
-| Liste der KIM1.0 E-Mail-Adressen
+a| Liste aller KIM-Adressen
 
 m| komLeData
 | 0..N
 | KIM-Anbieter
-| Liste von KIM-Adressen mit der zugehörigen KIM-Version für KIM 1.5ff.
-
+a| Liste von KIM-Adressen mit der zugehörigen KIM-Version.
 
 4+s|Zertifikate
 m| userCertificate
