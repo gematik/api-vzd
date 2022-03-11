@@ -78,9 +78,11 @@ Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2256#section-5.4[RFC225
 | Vorname
 | Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2256#section-5.43[RFC2256 Section 5.43]
 
-| `sn`
+| `surname`
 | Nachname
 | Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2256#section-5.5[RFC2256 Section 5.5]
+
+Kann als `sn` abgekürzt werden
 
 | `title`
 | Akademischer oder Adelstitel
