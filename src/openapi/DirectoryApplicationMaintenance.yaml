@@ -3,8 +3,20 @@ info:
   title: I_Directory_Application_Maintenance
   description: REST Schnittstelle zur Pflege der Fachanwendungsdaten der Verzeichniseinträge.
               Über diese Schnittstelle können Fachanwendungsdaten der Verzeichniseinträge erzeugt, aktualisiert und gelöscht werden. 
-  version: 1.0.0
-  # initiale Version
+  version: 1.1.2
+  ### 1.1.2  
+  # - extended the description of error handling in operation modify_Directory_FA-Attributes
+  # - changed "maxItems" to 50 for the DirectoryEntry Attribute "userCertificates"
+  # - changed attribute "KOM-LE-Version" to data type list 
+  ### 1.1.1
+  # - to commented out the string "date-time" in "changeDateTime" 
+  #   Now, it is not possible to generate some code any more. It should be observed this format. 
+  ### 1.1.0
+  # - added operation getInfo in addition witch schema objects "InfoObject", "Contact" and "License"
+  # - added attributes "professionOID" and "entryType". Also extended this attributes as search criteria in operation read_Directory_Entry
+  ### 1.0.0
+  # - initial Version of I_Directory_Application_Maintenance
+
  
 externalDocs:
   description: Schnittstelle zur Pflege der Fachanwendungsdaten der Verzeichniseinträge
@@ -12,6 +24,8 @@ externalDocs:
 servers:
 - url: https://to.be.defined/
 tags:
+- name: getInfo Directory Application Maintenance
+  description: Diese Operation liefert Metadaten über diese Schnittstelle
 - name: DirectoryEntry Administration
   description: Pflege der Verzeichniseinträge (Basiseinträge)
 - name: Certificate Administration
@@ -20,6 +34,29 @@ tags:
   description: Pflege der Fachdaten
 
 paths:
+  /:
+    get:
+      tags:
+      - getInfo Directory Application Maintenance
+      summary: Diese Operation liefert Metadaten über diese Schnittstelle
+      description: Liefert die Metadaten aus dem Info Object diese OpenAPI Spezifikation und ergänzt sie.
+      operationId: getInfo
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/InfoObject'
+        401:
+          description: Unauthorized
+                    #  Der WWW-Authenticate Header im Response wird auf OAuth gesetzt.
+          content: {}
+        403:
+          description: Forbidden
+          content: {}
+
+
   /DirectoryEntries:
     get:
       tags:
@@ -132,6 +169,18 @@ paths:
       - name: dataFromAuthority
         in: query
         description: Erlaubt die Suche mit Hilfe des Attributs dataFromAuthority. 
+        schema:
+          type: string  
+      - name: professionOID
+        in: query
+        description: Erlaubt die Suche mit Hilfe des Attributs professionOID. 
+                     Selektiert der Verzeichniseintrag, wenn der angegebene Wert in den professionOID's (array) des Basiseintrags vorhanden ist. 
+        schema:
+          type: string  
+      - name: entryType
+        in: query
+        description: Erlaubt die Suche mit Hilfe des Attributs entryType. 
+                     Selektiert der Verzeichniseintrag, wenn der angegebene Wert in den entryType's (array) des Basiseintrags vorhanden ist. 
         schema:
           type: string  
       - name: baseEntryOnly
@@ -355,7 +404,25 @@ paths:
           content: {}
         400:
           description: Bad Request
-                    #  Fehler in dem Request Body
+                    # Fehler in dem Request Body
+                    # Beispiele für Fehlerfälle:
+                    #
+                    ### Anzahl der zulässigen Mail Adressen (maxKOMLEadr) überschritten 
+                    #   Ein Response mit HTTP Status Kode 400 und folgenden Werten im Body
+                    #   wird zurück gegeben
+                    #   {
+                    #    "attributeName": "mail",
+                    #    "attributeError": "maxKOMLEadr wurde überschritten"
+                    #    }
+                    #   
+                    ### Unzulässiger Wert von Attribut KOM-LE_Version im Request
+                    #   Ein Response mit HTTP Status Kode 400 und folgenden Werten im Body
+                    #   wird zurück gegeben
+                    #   {
+                    #    "attributeName": "KOM-LE_Version",
+                    #    "attributeError": "Unzulässiger Wert"
+                    #    }
+                    #   
           content: 
             application/json:
              schema:
@@ -505,10 +572,24 @@ components:
           items:
             type: string
             description: 'E-Mail-Adresse'
-        KOM-LE_Version:
-          type: string
-          description: Die höchste KOM-LE_Version der KIM Clientmodule des KIM Kunden
-
+        komLeData:
+          type: array
+          items:
+            type: object
+            properties:
+              mail:
+                type: string
+                description: 'E-Mail-Adresse'
+              version:
+                type: string
+                example: 1.5
+                description: Die höchste KOM-LE_Version der KIM Clientmodule für die KIM Mail Adresse
+            # Für jede Mail Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Attribut
+            # KOM-LE_Version geben. Es dürfen in KOM-LE_Version keine Mail Adressen referenziert werden,
+            # die nicht im zugehörigen "mail" Attribut enthalten sind.
+            # Wenn eine Mail Adresse gelöscht wird, muss auch ihre KOM-LE_Version gelöscht werden.
+            # Geschrieben wird immer die gesamte Liste. Für Änderungen muss erst der aktuelle Eintrag
+            # gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
 
     distinguishedName:
       required:
@@ -662,11 +743,27 @@ components:
           example: true
         changeDateTime:
           type: string
-          format: date-time
+#          format: date-time Mit dieser Format Vorgabe ist kein Code mehr generierbar, deshalb auskommentiert. Es soll sich aber weiterhin an das Format gehalten werden.
           description: Der VZD setzt dieses Attribut bei jeder Schreiboperation für den Datensatz (Basisdaten) auf die aktuelle Zeit. Format entsprechend RFC 3339, section 5.6.
           readOnly: true
           example: "2017-07-21T17:32:28Z"
-          
+        professionOID:
+          maxItems: 100
+          minItems: 0
+          type: array
+          readOnly: true
+          items:
+            type: string
+            description: Erlaubt die Suche nach professionOID (als Kopie des Attributs aus dem Zertifikatseintrags).
+        entryType:
+          maxItems: 10
+          minItems: 0
+          type: array
+          readOnly: true
+          items:
+            type: string
+            description: Erlaubt die Suche nach entryType (als Kopie des Attributs aus dem Zertifikatseintrags).
+
 
     DirectoryEntry:
       type: object
@@ -674,7 +771,7 @@ components:
         DirectoryEntryBase:
           $ref: '#/components/schemas/baseDirectoryEntry'
         userCertificates:
-          maxItems: 50
+          maxItems: 100
           minItems: 0
           type: array
           items:
@@ -685,18 +782,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Fachdaten'
-
-    CreateDirectoryEntry:
-      type: object
-      properties:
-        DirectoryEntryBase:
-          $ref: '#/components/schemas/baseDirectoryEntry'
-        userCertificates:
-          maxItems: 50
-          minItems: 0
-          type: array
-          items:
-            $ref: '#/components/schemas/userCertificate'
 
     DirectoryEntries:
       type: array
@@ -715,6 +800,73 @@ components:
         attributeError:
           description: Beschreibung des erkannten Fehlers
           type: string
+
+    InfoObject:
+      required:
+      - title
+      - version
+      readOnly: true
+      type: object
+      properties:
+        title:
+          type: string
+          description: Der Titel der Anwendung
+          example: "I_Directory_Application_Maintenance"
+        description:
+          type: string
+          description: Eine kurze Beschreibung der Anwendung
+          example: "REST Schnittstelle zur Pflege der Fachanwendungsdaten der Verzeichniseinträge.
+              Über diese Schnittstelle können Fachanwendungsdaten der Verzeichniseinträge erzeugt, aktualisiert und gelöscht werden."
+        termsOfService:
+          type: string
+          format: uri
+          description: Eine URL zu den Terms of Service für dieses API.
+          example: "http://example.com/terms/"
+        contact:
+          $ref: '#/components/schemas/Contact'
+        license:
+          $ref: '#/components/schemas/License'
+        version:
+          type: string
+          description: Die Version von dem OpenAPI Document (YAML Datei)
+          example: "1.1.0"
+
+    Contact:
+      readOnly: true
+      description: Die Kontaktinformationen für diese Schnittstelle.
+      type: object
+      properties:
+        name:
+          type: string
+          description: Der Name von der Kontaktperson / -Organisation
+          example: "Firma 123"
+        url:
+          type: string
+          format: uri
+          description: Eine URL zu den Kontaktinformationen für dieses API.
+                       In dem Dokument unter dieser URL muss ein Link zum Download der aktuell genutzten YAML Datei dieser Schnittstelle hinterlegt sein.
+          example: "http://www.example.com/support"
+        email:
+          type: string
+          format: email
+          description: Der E-Mail Adresse der Kontaktperson / -Organisation.
+          example: "support@example.com"
+
+    License:
+      required:
+      - name
+      readOnly: true
+      description: Der Lizenzinformationen für diese Schnittstelle.
+      type: object
+      properties:
+        name:
+          type: string
+          description: Der Lizenzname
+          example: "Apache 2.0"
+        url:
+          type: string
+          description: Eine URL zu den Lizenzinformationen für dieses API.
+          example: "https://www.apache.org/licenses/LICENSE-2.0.html"
 
   securitySchemes:
     OAuth2:
