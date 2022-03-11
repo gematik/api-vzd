@@ -115,9 +115,14 @@ info:
 
 externalDocs:
   description: Schnittstelle zur Pflege der Verzeichniseinträge
-  url: http://www.gematik.de
+  url: http://github.com/gematik/api-vzd/
 servers:
-- url: https://to.be.defined/
+- url: https://vzdpflege-test.vzd.ti-dienste.de:9543/
+  description: Testumgebung
+- url: https://vzdpflege-ref.vzd.ti-dienste.de:9543/
+  description: Referenzumgebung
+- url: https://vzdpflege.vzd.ti-dienste.de:9543/
+  description: Produktivumgebung
 tags:
 - name: getInfo DirectoryEntry Administration
   description: Diese Operation liefert Metadaten über diese Schnittstelle
@@ -1736,11 +1741,22 @@ components:
 
   securitySchemes:
     OAuth2:
+      description: |
+        I_Directory_Administration unterstützt OAuth2 Client Credentials Flow.
+        Token Endpoint ist spezifisch für die jeweilige Umgebung:
+        
+        **Testumgenung:**
+        * https://auth-test.vzd.ti-dienste.de:9443/auth/realms/RSDirectoryAdministration/protocol/openid-connect/token
+        
+        **Referenzumgebung:**
+        * https://auth-ref.vzd.ti-dienste.de:9443/auth/realms/RSDirectoryAdministration/protocol/openid-connect/token
+        
+        **Produktifumgebung:**
+        * https://auth.vzd.ti-dienste.de:9443/auth/realms/RSDirectoryAdministration/protocol/openid-connect/token
       type: oauth2
       flows:
         clientCredentials:
-          tokenUrl: https://to.be.defined/oauth/token
-          refreshUrl: https://to.be.defined/oauth/refreshToken
+          tokenUrl: '#umgebungsspezifisch'
           scopes:
             VZD:DirectoryAdministration: I_Directory_Administration Client Scope
               Als Clients dieser Schnittstelle sind nur Systeme der TI Kartenherausgeber und von ihnen beauftragte Organisationen (z.B. TSPs) zulässig.
@@ -1749,4 +1765,4 @@ components:
 
 security:
   - OAuth2:
-      - VZD:DirectoryAdministration  
+      - VZD:DirectoryAdministration
