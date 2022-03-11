@@ -44,6 +44,7 @@ Die Nutzung für die Sektoren wird in Kapitel *Attributtabellen* von Dokument ht
 .2+| `displayName`
 .2+| Anzeigename
 a| _Person (HBA)_
+
 Dieses Attribut wird genutzt, um vollen Namen einer Person gegenüber dem Anwender darzustellen. Es wird empfohlen den Namen wie folgt anzugeben:
 
 ----
@@ -54,6 +55,7 @@ Müstermann, Manfred
 Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2798#section-2.3[RFC2798 Section 2.3]
 
 a| _Institution (SMC-B)_
+
 Dieses Attribut wird genutzt, um  Namen einer Institution gegenüber dem Anwender darzustellen. 
 
 
