@@ -3,7 +3,10 @@ info:
   title: I_Directory_Administration
   description: REST Schnittstelle zur Pflege der Verzeichniseinträge.
               Über diese Schnittstelle können Verzeichniseinträge inklusive Zertifikaten erzeugt, aktualisiert und gelöscht werden. Die Administration von Fachdaten erfolgt über Schnittstelle I_Directory_Application_Maintenance und wird durch die Fachanwendungen durchgeführt. Lesender Zugriff auf die Fachdaten ist mit Operation getDirectoryEntries in vorliegender Schnittstelle möglich.
-  version: 1.8.0
+  version: 1.8.1
+  # Änderungen in Version 1.8.1
+  #  - Attribute "KOM-LE-Version" in eine Liste geändert 
+  #  - Attribut "active" für Zertifikate aufgenommen
   # Änderungen in Version 1.8.0
   #  - Operation read_Directory_Entry_for_Sync: Zur Kompatibilität mit existierenden Clients wurde 
   #    read_Directory_Entry_for_Sync in der Version ohne Paging wieder aufgenommen.
@@ -1348,7 +1351,12 @@ components:
           type: string
           description: Dieses Attribut ermöglicht das Zertifikat zu beschreiben, um
              die Administration des VZD Eintrags zu vereinfachen.
-
+        active:
+          type: boolean
+          readOnly: true
+          example: true
+          description: Dieses Attribut eigt an, ob das Zertifikat aktiv ist oder nicht (true oder false).
+             
     userCertificates:
       type: array
       items:
@@ -1380,10 +1388,24 @@ components:
           items:
             type: string
             description: 'E-Mail-Adresse'
-          readOnly: true
-        KOM-LE_Version:
-          type: string
-          description: Die höchste KOM-LE_Version der KIM Clientmodule des KIM Kunden
+        komLeData:
+          type: array
+          items:
+            type: object
+            properties:
+              mail:
+                type: string
+                description: 'E-Mail-Adresse'
+              version:
+                type: string
+                example: 1.5
+                description: Die höchste KOM-LE_Version der KIM Clientmodule für die KIM Mail Adresse
+            # Für jede Mail Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Attribut
+            # KOM-LE_Version geben. Es dürfen in KOM-LE_Version keine Mail Adressen referenziert werden,
+            # die nicht im zugehörigen "mail" Attribut enthalten sind.
+            # Wenn eine Mail Adresse gelöscht wird, muss auch ihre KOM-LE_Version gelöscht werden.
+            # Geschrieben wird immer die gesamte Liste. Für Änderungen muss erst der aktuelle Eintrag
+            # gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
 
     distinguishedName:
       required:
