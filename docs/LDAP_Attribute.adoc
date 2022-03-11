@@ -41,11 +41,21 @@ Die Nutzung für die Sektoren wird in Kapitel *Attributtabellen* von Dokument ht
 |===
 | Attribut  | Bezeichner | Anmerkungen
 
-| `displayName`
-| Anzeigename
-| Dieses Attribut wird genutzt, um den Namen einer Person oder einer Institution gegenüber dem Anwender darzustellen
+.2+| `displayName`
+.2+| Anzeigename
+a| .Person (HBA)
+Dieses Attribut wird genutzt, um vollen Namen einer Person gegenüber dem Anwender darzustellen. Es wird empfohlen den Namen wie folgt anzugeben:
+
+----
+Nachname, Vorname(n)
+Müstermann, Manfred
+----
 
 Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2798#section-2.3[RFC2798 Section 2.3]
+
+a| .Institution (SMC-B)
+Dieses Attribut wird genutzt, um  Namen einer Institution gegenüber dem Anwender darzustellen. 
+
 
 | `cn`
 | Name
