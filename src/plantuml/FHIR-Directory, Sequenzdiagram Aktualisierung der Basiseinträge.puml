@@ -27,32 +27,3 @@ end
 deactivate fp
 deactivate fd
 @enduml
-
-@startuml
-skinparam dpi 100
-skinparam WrapWidth 200
-skinparam monochrome true
-
-participant fd as "FHIR-Directory"
-participant fp as "FHIR-Proxy"
-participant ld as "VZD-LDAP-Directory"
-
-fp -> ld: Verbindungsaufbau
-activate fp
-activate ld
-ld --> fp: verschlüsselte Verbindung aufgebaut
-fp -> ld: GET /changed_entries?changed_since=dateTime
-ld --> fp: Result Body changed_entries
-fp -> ld: Verbindungsabbau
-ld --> fp: Verbindung getrennt
-deactivate ld
-group Für jeden geänderten Eintrag
-fp -> fd: HTTP GET /ResourceName/telematikID
-activate fd
-fd --> fp: HTTP Result Body json resource
-fp -> fd: HTTP PUT /resourceName/telematikID Request Body json\n(anstatt PUT auch POST oder DELETE möglich)
-fd --> fp: HTTP 200 OK Result Body json
-end
-deactivate fp
-deactivate fd
-@enduml
