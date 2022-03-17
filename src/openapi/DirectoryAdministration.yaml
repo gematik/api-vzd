@@ -1761,7 +1761,7 @@ components:
             VZD:DirectoryAdministration: I_Directory_Administration Client Scope
               Als Clients dieser Schnittstelle sind nur Systeme der TI Kartenherausgeber und von ihnen beauftragte Organisationen (z.B. TSPs) zulässig.
               Sie dürfen alle Operationen zur Administration der Verzeichniseinträge nutzen.
-              Das AccessToken enthält im "sub" claim den Identifier des Clients, der auf die Einträge zugreift. Dieser Identifier wird im Log abgelegt, welcher die Zugriffe über diese Schnittstelle protokolliert.
+              Das AccessToken enthält im 'sub' claim den Identifier des Clients, der auf die Einträge zugreift. Dieser Identifier wird im Log abgelegt, welcher die Zugriffe über diese Schnittstelle protokolliert.
 
 security:
   - OAuth2:
