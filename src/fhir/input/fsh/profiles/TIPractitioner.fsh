@@ -13,10 +13,10 @@ Description: "Profile for the Practitioner in gematik FHIR Directory"
   * type 1.. MS
   * system 1.. MS
   * value 1.. MS
-/* // Vorschlag Oliver: neue Meta IDs: holder_id, owner_id, damit
-die telematikIDs nicht in allen Ressourcen gepflegt werden müssen
+/* neue Meta IDs: holder_id, owner_id, damit die telematikIDs nicht in allen Ressourcen gepflegt werden müssen
 Eigene Codesysteme für die IDs um sie von telematikID und LANR unterscheiden zu können
-*/* identifier contains HolderID 1.. MS
+*/
+* identifier contains HolderID 1.. MS
 * identifier[HolderID] only $IdentifierHolderID
   * type 1..1 MS
   * system 1..1 MS

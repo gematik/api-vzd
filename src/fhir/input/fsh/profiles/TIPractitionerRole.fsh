@@ -3,8 +3,7 @@ Parent: PractitionerRole
 Description: "Profile for the PractitionerRole in gematik FHIR Directory"
 * insert Meta
 * id MS
-/* // Vorschlag Oliver: neue Meta IDs: holder_id, owner_id, damit
-die telematikIDs nicht in allen Ressourcen gepflegt werden müssen
+/* neue Meta IDs: holder_id, owner_id, damit die telematikIDs nicht in allen Ressourcen gepflegt werden müssen
 Eigene Codesysteme für die IDs um sie von telematikID und LANR unterscheiden zu können
 */
 * identifier 1..* MS
@@ -23,6 +22,6 @@ Eigene Codesysteme für die IDs um sie von telematikID und LANR unterscheiden zu
   * value 1..* MS
 
 * practitioner 1..1 MS
-* speciality 0..* MS
-* location 0..* MS
-* endpoint 0..* MS
+* speciality MS
+* location MS
+* endpoint MS
