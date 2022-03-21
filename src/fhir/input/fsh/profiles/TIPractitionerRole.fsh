@@ -22,14 +22,7 @@ Eigene Codesysteme für die IDs um sie von telematikID und LANR unterscheiden zu
   * system 1..1 MS
   * value 1..* MS
 
-* 
-
-
-
-
-
- # {field} active (1..1, MS, LDAP) //reicht active hier oder\n    auch in practitioner und endpoint?
- # {field} practitioner (1..1, MS, LDAP)
- # {field} speciality (0..*, MS)
- # {field} location (0..*, MS)
- # {field} endpoint (0..*, MS)
+* practitioner 1..1 MS
+* speciality 0..* MS
+* location 0..* MS
+* endpoint 0..* MS
