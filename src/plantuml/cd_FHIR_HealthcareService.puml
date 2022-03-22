@@ -39,7 +39,6 @@ class Organization {
   {field} name (1..1, MS)
   {field} alias (0..*, MS)
   {field} telecom (0..*, MS)
-  {field} partOf (0..*, MS)
   {field} contact (0..*, MS)
 }
 
