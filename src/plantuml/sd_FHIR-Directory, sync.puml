@@ -1,4 +1,4 @@
-@startuml sd_FHIR-Directory, Aktualisierung der Basiseinträge
+@startuml sd_FHIR-Directory, sync
 skinparam dpi 100
 skinparam WrapWidth 200
 skinparam monochrome true
