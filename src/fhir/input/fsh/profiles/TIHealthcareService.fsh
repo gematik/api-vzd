@@ -21,11 +21,13 @@ organisations specific for german Healthcare and Telematics Infrastructure.
   * type 1..1 MS
   * system 1..1 MS
   * value 1..* MS
-* status MS
-* name MS
-* description MS
+* providedBy 1..1 MS
+* speciality MS
+* location MS
 * telecom MS
-* address MS
-* position MS
-* hoursOfOperation MS
+* serviceProvisionCode MS
+* communication MS
+* appointmentRequired MS
+* availableTime MS
 * availabilityExceptions MS
+* endpoint MS
