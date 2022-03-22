@@ -1,4 +1,4 @@
-@startuml
+@startuml od_FHIR_PractitionerRole
 object "PractitionerRole 1" as pr1
 object "Practitioner 1" as p1
 object "Location 1" as l1

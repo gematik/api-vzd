@@ -1,4 +1,4 @@
-@startuml
+@startuml cd_FHIR_HealthcareService
 class Endpoint {
   {field} identifier (1..*, MS, LDAP)
   {field} status (0..*, MS)

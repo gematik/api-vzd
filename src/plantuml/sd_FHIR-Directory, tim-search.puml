@@ -1,4 +1,4 @@
-@startuml
+@startuml sd_FHIR-Directory, tim-search
 skinparam dpi 100
 skinparam WrapWidth 200
 skinparam monochrome true
