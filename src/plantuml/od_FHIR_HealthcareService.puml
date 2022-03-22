@@ -1,0 +1,17 @@
+@startuml
+object "HealthcareService 1" as hs1
+object "HealthcareService 2" as hs2
+object "Organization 1" as o1
+object "Location 1" as l1
+object "Location 2" as l2
+object "Endpoint 1" as e1
+object "Endpoint 2" as e2
+
+hs1 o-- o1
+hs1 o-- l1
+hs1 o-- e1
+hs2 o-- o1
+hs2 o-- l2
+hs2 o-- e2
+
+@enduml

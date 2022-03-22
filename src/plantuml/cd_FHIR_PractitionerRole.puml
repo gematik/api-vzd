@@ -38,7 +38,7 @@ class Location {
   {field} availabilityExceptions (0..1, MS)
 }
 
-PractitionerRole --> Practitioner: practitioner
-PractitionerRole --> Endpoint: endpoint
-PractitionerRole --> Location: location
+PractitionerRole o-- Practitioner: practitioner
+PractitionerRole o-- Endpoint: endpoint
+PractitionerRole o-- Location: location
 @enduml

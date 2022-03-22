@@ -1,0 +1,11 @@
+@startuml
+object "PractitionerRole 1" as pr1
+object "Practitioner 1" as p1
+object "Location 1" as l1
+object "Endpoint 1" as e1
+
+pr1 o-- p1
+pr1 o-- l1
+pr1 o-- e1
+
+@enduml

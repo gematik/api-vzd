@@ -42,46 +42,8 @@ class Organization {
   {field} contact (0..*, MS)
 }
 
-class HealthcareService_2 {
-  {field} identifier (1..*, MS, LDAP)
-  {field} active (1..1, MS, LDAP) //reicht active hier oder\n    auch in practitioner und endpoint?
-  {field} providedBy (1..1, MS, LDAP)
-  {field} speciality (0..*, MS, LDAP)
-  {field} location (0..*, MS)
-  {field} telecom (0..*, MS)
-  {field} serviceProvisionCode (0..*, MS)
-  {field} communication (0..*, MS)
-  '{field} appointmentRequired (0..1, MS)
-  {field} availableTime (0..*, MS)
-  {field} availabilityExceptions (0..*, MS)
-  {field} endpoint (0..*, MS)
-}
-class Endpoint_2 {
-  {field} identifier (1..*, MS, LDAP)
-  {field} status (0..*, MS)
-  {field} connectionType (0..*, MS)
-  {field} name (0..1, MS)
-  {field} managingOrganization (0..1, MS)
-  {field} payloadType (1..*, MS)
-  {field} address (1..1, MS)
-}
-class Location_2 {
-  {field} identifier (1..*, MS, LDAP)
-  {field} status (0..*, MS)
-  {field} name (0..1, MS)
-  {field} description (0..1, MS)
-  {field} telecom (0..*, MS)
-  {field} address (0..1, MS)
-  {field} position (0..1, MS)
-  {field} hoursOfOperation (0..*, MS)
-  {field} availabilityExceptions (0..1, MS)
-}
-
-HealthcareService --> Organization: providedBy
-HealthcareService --> Endpoint: endpoint
-HealthcareService --> Location: location
-HealthcareService_2 --> Organization: providedBy
-HealthcareService_2 --> Endpoint_2: endpoint
-HealthcareService_2 --> Location_2:location
+HealthcareService o-- Organization: providedBy
+HealthcareService o-- Endpoint: endpoint
+HealthcareService o-- Location: location
 
 @enduml
