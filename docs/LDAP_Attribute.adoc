@@ -41,11 +41,23 @@ Die Nutzung für die Sektoren wird in Kapitel *Attributtabellen* von Dokument ht
 |===
 | Attribut  | Bezeichner | Anmerkungen
 
-| `displayName`
-| Anzeigename
-| Dieses Attribut wird genutzt, um den Namen einer Person oder einer Institution gegenüber dem Anwender darzustellen
+.2+| `displayName`
+.2+| Anzeigename
+a| _Person (HBA)_
+
+Dieses Attribut wird genutzt, um vollen Namen einer Person gegenüber dem Anwender darzustellen. Es wird empfohlen den Namen wie folgt anzugeben:
+
+----
+Nachname, Vorname(n)
+Müstermann, Manfred
+----
 
 Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2798#section-2.3[RFC2798 Section 2.3]
+
+a| _Institution (SMC-B)_
+
+Dieses Attribut wird genutzt, um  Namen einer Institution gegenüber dem Anwender darzustellen. 
+
 
 | `cn`
 | Name
@@ -56,7 +68,7 @@ Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2256#section-5.4[RFC225
 
 | `otherName`
 | Weitere Name(n)
-|
+| Es wird nicht mehr empfohlen dieses Attrit zu verwenden.
 
 | `organization`
 | Organization
@@ -64,11 +76,13 @@ Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2256#section-5.4[RFC225
 
 | `givenName`
 | Vorname
-| Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2256#section-5.43[RFC2256 Section 5.43]
+| Nachnamen sollen nur bei natürlichen Personen befüllt sein.
+Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2256#section-5.43[RFC2256 Section 5.43]
 
 | `sn`
 | Nachname
-| Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2256#section-5.5[RFC2256 Section 5.5]
+| Nachnamen sollen nur bei natürlichen Personen befüllt sein.
+Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2256#section-5.5[RFC2256 Section 5.5]
 
 | `title`
 | Akademischer oder Adelstitel
@@ -175,15 +189,20 @@ Beispiel für Allgemeinmedizin: +
 
 | `mail`
 | KIM-Adresse
-| zur Kompatibilität bleibt die KIM Mail Adresse in diesem Attribut erhalten
+a| Liste aller KIM-Adressen einer Person oder einer Institution. Zur Kompatibilität bleibt die KIM Mail Adresse in diesem Attribut zusätzlich zum Attribut  `komLeData` erhalten.
+----
+mail: adresse1@anbieter.kim.telematik
+mail: adresse2@anbieter.kim.telematik
+----
 
-| `komLeData.mail`
+| `komLeData`
 | KIM-Adresse
-| Liste von KIM-Adressen mit der zugehörigen KIM-Version im Attribut komLeData.version
+a| Liste von KIM-Adressen mit der zugehörigen KIM-Version
+----
+komLeData: 1.0,adresse1@anbieter.kim.telematik
+komLeData: 1.5,adresse2@anbieter.kim.telematik
+----
 
-| `komLeData.version`
-| KIM-Version
-| KIM-Version der zugeordneten KIM-Adresse
 
 |===
 
@@ -211,6 +230,16 @@ Beispiel für Allgemeinmedizin: +
 | `personalEntry`
 | Eintrag einer natürlichen Person
 | Enthält `TRUE` wenn Eintrag eine natürliche Person beschreibt (einen Leistungsebringer)
+
+| `usage`
+| Verwendungszweck
+| TODO: Wofür wird es benutzt?
+
+
+| `changeDateTime`
+| Geändert
+| Zeitstempel der letzten Änderung, wird bei jeder Aktualisierung auf aktuelle Systemzeit geändert.
+
 
 
 |===
