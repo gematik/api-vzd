@@ -19,11 +19,17 @@ jobs:
       # Runs a single command using the runners shell
       - name: Generate images
         run: |
-          ls
-          export puml_file="FHIR-Directory, Sequenzdiagram tim-search"
-          curl --silent --show-error --fail -H "Content-Type: text/plain" \
-            --data-binary @- https://plantuml.gematik.solutions/plantuml/svg/ \
-            --output - < src/plantuml/${puml_file}.puml > images/${puml_file}.svg
-          curl --silent --show-error --fail -H "Content-Type: text/plain" \
-            --data-binary @- https://plantuml.gematik.solutions/plantuml/png/ \
+          mkdir -p images/plantuml
+          rm -rf images/plantuml/*
+          for fullname in src/plantuml/*.puml
+          do
+            base=$(basename -- "$fullname")
+            echo ${base%.*}
+          done
+
+#curl --silent --show-error --fail -H "Content-Type: text/plain" \
+#            --data-binary @- https://plantuml.gematik.solutions/plantuml/svg/ \
+#            --output - < src/plantuml/${puml_file}.puml > images/${puml_file}.svg
+#          curl --silent --show-error --fail -H "Content-Type: text/plain" \
++            --data-binary @- https://plantuml.gematik.solutions/plantuml/png/ \
             --output - < src/plantuml/${puml_file}.puml > images/${puml_file}.png
