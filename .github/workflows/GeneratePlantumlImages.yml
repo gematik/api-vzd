@@ -25,10 +25,10 @@ jobs:
           do
             base=$(basename -- "$fullname")
             echo ${base%.*}
-            curl --silent --show-error --fail -H "Content-Type: text/plain" \
+            curl --silent --show-error --fail -H "Content-Type: text/plain; charset=utf-8" \
               --data-binary @- https://plantuml.gematik.solutions/plantuml/svg/ \
               --output - < "src/plantuml/${base%.*}.puml" > "images/plantuml/${base%.*}.svg"
-            curl --silent --show-error --fail -H "Content-Type: text/plain" \
+            curl --silent --show-error --fail -H "Content-Type: text/plain; charset=utf-8" \
               --data-binary @- https://plantuml.gematik.solutions/plantuml/png/ \
               --output - < "src/plantuml/${base%.*}.puml" > "images/plantuml/${base%.*}.png"
           done
