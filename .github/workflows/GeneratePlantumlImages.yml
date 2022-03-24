@@ -30,7 +30,7 @@ jobs:
               --output - < "src/plantuml/${base%.*}.puml" > "images/plantuml/${base%.*}.svg"
             curl --silent --show-error --fail -H "Content-Type: text/plain" \
               --data-binary @- https://plantuml.gematik.solutions/plantuml/png/ \
-              --output - < src/plantuml/${base%.*}.puml > images/${base%.*}.png
+              --output - < "src/plantuml/${base%.*}.puml" > "images/${base%.*}.png"
           done
 
 
