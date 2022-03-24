@@ -1,0 +1,121 @@
+@startuml
+' muss die Suchbarkeit auch im Profil angegeben werden
+class PractitionerRole {
+  {field} identifier (1..*, MS, LDAP)
+  {field} active (1..1, MS, LDAP) //reicht active hier oder\n    auch in practitioner und endpoint?
+  {field} practitioner (1..1, MS, LDAP)
+  {field} speciality (0..*, MS)
+  {field} location (0..*, MS)
+  {field} endpoint (0..*, MS)
+}
+class Practitioner {
+  {field} identifier (1..*, MS, LDAP)
+  {field} name (1..*, MS, LDAP)
+  {field} telecom (0..*, MS)
+  {field} gender (0..*, MS)
+  {field} birthDate (0..*, MS)
+  {field} photo (0..*, MS)
+  {field} qualification (0..*, MS, LDAP)
+  {field} communication (0..*, MS)
+}
+class Endpoint {
+  {field} identifier (1..*, MS, LDAP)
+  {field} status (0..*, MS)
+  {field} connectionType (0..*, MS)
+  {field} name (0..1, MS)
+  {field} managingOrganization (0..1, MS)
+  {field} payloadType (1..*, MS)
+  {field} address (1..1, MS)
+}
+class Location {
+  {field} identifier (1..*, MS, LDAP)
+  {field} status (0..*, MS)
+  {field} name (0..1, MS)
+  {field} description (0..1, MS)
+  {field} telecom (0..*, MS)
+  {field} address (0..1, MS)
+  {field} position (0..1, MS)
+  {field} hoursOfOperation (0..*, MS)
+  {field} availabilityExceptions (0..1, MS)
+}
+class HealthcareService {
+  {field} identifier (1..*, MS, LDAP)
+  {field} active (1..1, MS, LDAP) //reicht active hier oder\n    auch in practitioner und endpoint?
+  {field} providedBy (1..1, MS, LDAP)
+  {field} speciality (0..*, MS, LDAP)
+  {field} location (0..*, MS)
+  {field} telecom (0..*, MS)
+  {field} serviceProvisionCode (0..*, MS)
+  {field} communication (0..*, MS)
+  '{field} appointmentRequired (0..1, MS)
+  {field} availableTime (0..*, MS)
+  {field} availabilityExceptions (0..*, MS)
+  {field} endpoint (0..*, MS)
+}
+class Organization {
+  {field} identifier (1..*, MS, LDAP)
+  {field} type (1..1, MS, LDAP)
+  {field} name (1..1, MS)
+  {field} alias (0..*, MS)
+  {field} telecom (0..*, MS)
+  {field} partOf (0..*, MS)
+  {field} contact (0..*, MS)
+}
+
+class HealthcareService_2 {
+  {field} identifier (1..*, MS, LDAP)
+  {field} active (1..1, MS, LDAP) //reicht active hier oder\n    auch in practitioner und endpoint?
+  {field} providedBy (1..1, MS, LDAP)
+  {field} speciality (0..*, MS, LDAP)
+  {field} location (0..*, MS)
+  {field} telecom (0..*, MS)
+  {field} serviceProvisionCode (0..*, MS)
+  {field} communication (0..*, MS)
+  '{field} appointmentRequired (0..1, MS)
+  {field} availableTime (0..*, MS)
+  {field} availabilityExceptions (0..*, MS)
+  {field} endpoint (0..*, MS)
+}
+class partOfOrganization {
+  {field} identifier (1..*, MS, LDAP)
+  {field} type (1..1, MS, LDAP)
+  {field} name (1..1, MS)
+  {field} alias (0..*, MS)
+  {field} telecom (0..*, MS)
+  {field} partOf (0..*, MS)
+  {field} contact (0..*, MS)
+}
+class Endpoint_2 {
+  {field} identifier (1..*, MS, LDAP)
+  {field} status (0..*, MS)
+  {field} connectionType (0..*, MS)
+  {field} name (0..1, MS)
+  {field} managingOrganization (0..1, MS)
+  {field} payloadType (1..*, MS)
+  {field} address (1..1, MS)
+}
+class Location_2 {
+  {field} identifier (1..*, MS, LDAP)
+  {field} status (0..*, MS)
+  {field} name (0..1, MS)
+  {field} description (0..1, MS)
+  {field} telecom (0..*, MS)
+  {field} address (0..1, MS)
+  {field} position (0..1, MS)
+  {field} hoursOfOperation (0..*, MS)
+  {field} availabilityExceptions (0..1, MS)
+}
+
+PractitionerRole --> Practitioner
+PractitionerRole --> Endpoint
+PractitionerRole --> Location
+
+HealthcareService --> Organization
+HealthcareService --> Endpoint
+HealthcareService --> Location
+partOfOrganization --> Organization
+HealthcareService_2 --> partOfOrganization
+HealthcareService_2 --> Endpoint_2
+HealthcareService_2 --> Location_2
+
+@enduml
