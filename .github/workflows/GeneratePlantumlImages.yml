@@ -25,6 +25,9 @@ jobs:
           do
             base=$(basename -- "$fullname")
             echo ${base%.*}
+            curl --silent --show-error --fail -H "Content-Type: text/plain" \
+              --data-binary @- https://plantuml.gematik.solutions/plantuml/svg/ \
+              --output - < src/plantuml/${base%.*}.puml > images/plantuml/${base%.*}.svg
           done
 
 #curl --silent --show-error --fail -H "Content-Type: text/plain" \
