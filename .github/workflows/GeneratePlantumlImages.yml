@@ -20,7 +20,7 @@ jobs:
       - name: Run a one-line script
         run: |
           ls
-          exoport puml_file="FHIR-Directory, Sequenzdiagram tim-search.puml"
+          export puml_file="FHIR-Directory, Sequenzdiagram tim-search.puml"
           curl --silent --show-error --fail -H "Content-Type: text/plain" \
             --data-binary @- https://plantuml.gematik.solutions/plantuml/svg/ \
             --output - < ${puml_file}.puml > images/${puml_file}.svg
