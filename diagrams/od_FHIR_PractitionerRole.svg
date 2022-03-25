@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="148px" preserveAspectRatio="none" style="width:583px;height:148px;background:#FFFFFF;" version="1.1" viewBox="0 0 583 148" width="583px" zoomAndPan="magnify"><defs><filter height="300%" id="f8hgh987cye3" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><rect fill="#FEFECE" filter="url(#f8hgh987cye3)" height="33.9688" style="stroke:#A80036;stroke-width:1.5;" width="126" x="99.5" y="7"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="112" x="106.5" y="20.1387">PractitionerRole 1</text><line style="stroke:#A80036;stroke-width:1.5;" x1="100.5" x2="224.5" y1="24.9688" y2="24.9688"/><rect fill="#FEFECE" filter="url(#f8hgh987cye3)" height="33.9688" style="stroke:#A80036;stroke-width:1.5;" width="126" x="349.5" y="7"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="112" x="356.5" y="20.1387">PractitionerRole 2</text><line style="stroke:#A80036;stroke-width:1.5;" x1="350.5" x2="474.5" y1="24.9688" y2="24.9688"/><rect fill="#FEFECE" filter="url(#f8hgh987cye3)" height="33.9688" style="stroke:#A80036;stroke-width:1.5;" width="99" x="239" y="101"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="85" x="246" y="114.1387">Practitioner 1</text><line style="stroke:#A80036;stroke-width:1.5;" x1="240" x2="337" y1="118.9688" y2="118.9688"/><rect fill="#FEFECE" filter="url(#f8hgh987cye3)" height="33.9688" style="stroke:#A80036;stroke-width:1.5;" width="79" x="7" y="101"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="65" x="14" y="114.1387">Location 1</text><line style="stroke:#A80036;stroke-width:1.5;" x1="8" x2="85" y1="118.9688" y2="118.9688"/><rect fill="#FEFECE" filter="url(#f8hgh987cye3)" height="33.9688" style="stroke:#A80036;stroke-width:1.5;" width="79" x="373" y="101"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="65" x="380" y="114.1387">Location 2</text><line style="stroke:#A80036;stroke-width:1.5;" x1="374" x2="451" y1="118.9688" y2="118.9688"/><rect fill="#FEFECE" filter="url(#f8hgh987cye3)" height="33.9688" style="stroke:#A80036;stroke-width:1.5;" width="82" x="121.5" y="101"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="68" x="128.5" y="114.1387">Endpoint 1</text><line style="stroke:#A80036;stroke-width:1.5;" x1="122.5" x2="202.5" y1="118.9688" y2="118.9688"/><rect fill="#FEFECE" filter="url(#f8hgh987cye3)" height="33.9688" style="stroke:#A80036;stroke-width:1.5;" width="82" x="487.5" y="101"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="68" x="494.5" y="114.1387">Endpoint 2</text><line style="stroke:#A80036;stroke-width:1.5;" x1="488.5" x2="568.5" y1="118.9688" y2="118.9688"/><!--MD5=[0fb1e0c7ab30456332cb0526259fa6f6]
+reverse link pr1 to p1--><path codeLine="9" d="M195.15,48.84 C217.54,65.19 246.66,86.45 266.38,100.85 " fill="none" id="pr1-backto-p1" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#FFFFFF" points="184.45,41.03,186.935,47.7994,194.1394,48.1092,191.6544,41.3398,184.45,41.03" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[0b876e82722816cf4c8e4fa63890e7ee]
+reverse link pr1 to l1--><path codeLine="10" d="M131.88,49.29 C111.34,65.58 84.85,86.58 66.86,100.85 " fill="none" id="pr1-backto-l1" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#FFFFFF" points="142.29,41.03,135.1037,41.6276,132.8913,48.4909,140.0776,47.8933,142.29,41.03" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[452109bb5980ef0f5df5bfed4c91d3cc]
+reverse link pr1 to e1--><path codeLine="11" d="M162.5,54.14 C162.5,69.58 162.5,87.96 162.5,100.85 " fill="none" id="pr1-backto-e1" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#FFFFFF" points="162.5,41.03,158.5,47.03,162.5,53.03,166.5,47.03,162.5,41.03" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[53c05ff1d9575e6f59b48ed4c62bebb0]
+reverse link pr2 to p1--><path codeLine="12" d="M380.37,48.84 C358.33,65.19 329.67,86.45 310.27,100.85 " fill="none" id="pr2-backto-p1" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#FFFFFF" points="390.9,41.03,383.6979,41.3904,381.2606,48.1771,388.4627,47.8167,390.9,41.03" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[f7312579e7dc4c05630e95ed0bcbbb51]
+reverse link pr2 to l2--><path codeLine="13" d="M412.5,54.14 C412.5,69.58 412.5,87.96 412.5,100.85 " fill="none" id="pr2-backto-l2" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#FFFFFF" points="412.5,41.03,408.5,47.03,412.5,53.03,416.5,47.03,412.5,41.03" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[e16c3c8a5801420fa98a89b02814061c]
+reverse link pr2 to e2--><path codeLine="14" d="M443.12,49.29 C463.66,65.58 490.15,86.58 508.14,100.85 " fill="none" id="pr2-backto-e2" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#FFFFFF" points="432.71,41.03,434.9224,47.8933,442.1087,48.4909,439.8963,41.6276,432.71,41.03" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[54c06b496711eb04f04a5486d6f60660]
+@startuml od_FHIR_PractitionerRole
+object "PractitionerRole 1" as pr1
+object "PractitionerRole 2" as pr2
+object "Practitioner 1" as p1
+object "Location 1" as l1
+object "Location 2" as l2
+object "Endpoint 1" as e1
+object "Endpoint 2" as e2
+
+pr1 o- - p1
+pr1 o- - l1
+pr1 o- - e1
+pr2 o- - p1
+pr2 o- - l2
+pr2 o- - e2
+
+@enduml
+
+PlantUML version 1.2021.16(Wed Dec 08 17:25:22 UTC 2021)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: null
+--></g></svg>
