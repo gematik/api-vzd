@@ -1,4 +1,5 @@
 @startuml od_FHIR_HealthcareService
+skinparam monochrome true
 object "HealthcareService 1" as hs1
 object "HealthcareService 2" as hs2
 object "Organization 1" as o1

@@ -1,4 +1,5 @@
 @startuml od_FHIR_PractitionerRole
+skinparam monochrome true
 object "PractitionerRole 1" as pr1
 object "PractitionerRole 2" as pr2
 object "Practitioner 1" as p1

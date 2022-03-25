@@ -1,4 +1,5 @@
 @startuml cd_FHIR_PractitionerRole
+skinparam monochrome true
 class PractitionerRole {
   {field} identifier (1..*, MS, LDAP)
   {field} active (1..1, MS, LDAP) //reicht active hier oder\n    auch in practitioner und endpoint?
