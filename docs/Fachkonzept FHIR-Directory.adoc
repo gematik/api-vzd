@@ -24,17 +24,21 @@ Siehe Anforderungen und Ziele in der online-Dokumentation (auf Englisch!).
 
 == Qualitätsziele
 uhe
-Funktionale Eignung
-Zuverlässigkeit
-Sicherheit
-Wartbarkeit und Betreibbarkeit
-Performance und Skalierbarkeit
-Kompatibilität (FHIR, OIDC, OAuth)
-Übertragbarkeit
+
+* Funktionale Eignung
+* Zuverlässigkeit
+* Sicherheit
+* Wartbarkeit und Betreibbarkeit
+* Performance und Skalierbarkeit
+* Kompatibilität (FHIR, OIDC, OAuth)
+* Übertragbarkeit
 
 Motivation
+
 Weil Qualitätsziele grundlegende Architekturentscheidungen oft maßgeblich beeinflussen, sollten Sie die für Ihre Stakeholder relevanten Qualitätsziele kennen, möglichst konkret und operationalisierbar.
+
 Form
+
 Tabellarische Darstellung der Qualitätsziele mit möglichst konkreten Szenarien, geordnet nach Prioritäten.
 
 == Stakeholder
