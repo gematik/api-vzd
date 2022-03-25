@@ -1,6 +1,6 @@
-Profile: TIHealthcareService
+Profile: HealthcareService-FhirDirectory
 Parent: HealthcareService
-Title: "Profile for an HealthcareService resource in the TI"
+Title: "Profile for an HealthcareService resource in the TI FHIR-Directory"
 Description: """Defines the data structure for medical, regulatory and technical
 organisations specific for german Healthcare and Telematics Infrastructure.
 """
@@ -11,19 +11,17 @@ organisations specific for german Healthcare and Telematics Infrastructure.
 * identifier ^slicing.discriminator.type = #pattern
 * identifier ^slicing.discriminator.path = "$this"
 * identifier ^slicing.rules = #open
-* identifier contains HolderID 1.. MS
-* identifier[HolderID] only $IdentifierHolderID
+* identifier contains TelematikID 1..1 MS
+* identifier[TelematikID] only $IdentifierTelematikID
+  * ^patternIdentifier.type = $v2-0203#PRN
   * type 1..1 MS
   * system 1..1 MS
-  * value 1..* MS
-* identifier contains OwnerID 1.. MS
-* identifier[OwnerID] only $IdentifierOwnerID
-  * type 1..1 MS
-  * system 1..1 MS
-  * value 1..* MS
+  * value 1..1 MS
+* active 1..1 MS
 * providedBy 1..1 MS
 * speciality MS
 * location MS
+* name MS
 * telecom MS
 * serviceProvisionCode MS
 * communication MS

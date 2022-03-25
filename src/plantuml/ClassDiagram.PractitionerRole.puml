@@ -2,7 +2,7 @@
 skinparam monochrome true
 class PractitionerRole {
   {field} identifier (1..*, MS, LDAP)
-  {field} active (1..1, MS, LDAP) //reicht active hier oder\n    auch in practitioner und endpoint?
+  {field} active (1..1, MS, LDAP)
   {field} practitioner (1..1, MS, LDAP)
   {field} speciality (0..*, MS)
   {field} location (0..*, MS)

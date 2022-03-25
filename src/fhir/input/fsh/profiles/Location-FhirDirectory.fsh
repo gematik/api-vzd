@@ -1,6 +1,6 @@
-Profile: TILocation
+Profile: Location-FhirDirectory
 Parent: Location
-Title: "Profile for an Location resource in the TI"
+Title: "Profile for an Location resource in the TI FHIR-Directory"
 Description: """Defines the data structure for medical, regulatory and technical
 organisations specific for german Healthcare and Telematics Infrastructure.
 """
@@ -11,16 +11,12 @@ organisations specific for german Healthcare and Telematics Infrastructure.
 * identifier ^slicing.discriminator.type = #pattern
 * identifier ^slicing.discriminator.path = "$this"
 * identifier ^slicing.rules = #open
-* identifier contains HolderID 1.. MS
-* identifier[HolderID] only $IdentifierHolderID
+* identifier contains TelematikID 1..1 MS
+* identifier[TelematikID] only $IdentifierTelematikID
+  * ^patternIdentifier.type = $v2-0203#PRN
   * type 1..1 MS
   * system 1..1 MS
-  * value 1..* MS
-* identifier contains OwnerID 1.. MS
-* identifier[OwnerID] only $IdentifierOwnerID
-  * type 1..1 MS
-  * system 1..1 MS
-  * value 1..* MS
+  * value 1..1 MS
 * status MS
 * name MS
 * description MS
