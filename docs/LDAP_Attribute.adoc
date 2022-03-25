@@ -62,17 +62,17 @@ Dieses Attribut wird genutzt, um  Namen einer Institution gegenüber dem Anwende
 | `cn`
 | Name
 | Eindeutiger Name einer Person oder Institution.
-LDAP unterstützt grundsätzlich mehrere Namen eines Objekts. In der TI wird jedoch meistens nur ein `cn`-Attribut verwendet, daher ist `cn` identisch mit `displayName`. 
+LDAP unterstützt grundsätzlich mehrere Namen eines Objekts, in der TI wird jedoch meistens nur ein `cn`-Attribut verwendet, daher ist `cn` in der Regel identisch mit `displayName`.
 
 Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2256#section-5.4[RFC2256 Section 5.4]
 
 | `otherName`
 | Weitere Name(n)
-| Es wird nicht mehr empfohlen dieses Attrit zu verwenden.
+| Es wird nicht mehr empfohlen dieses Attribut zu verwenden.
 
 | `organization`
 | Organization
-|
+| Es wird nicht mehr empfohlen dieses Attribut zu verwenden.
 
 | `givenName`
 | Vorname
@@ -223,18 +223,17 @@ komLeData: 1.5,adresse2@anbieter.kim.telematik
 |===
 | Attribut  | Beschreibung | Anmerkungen
 
+| `holder`
+| Verwaltet durch  
+| Enthält eine Liste von Organisationen, die für die Administration dieses Datensatzes berechtigt sind.
+
 | `dataFromAuthority`
-| Verwaltet durch Kartenherausgeber  
+| Geprüfte Daten? 
 | Enthält `TRUE` wenn die Daten durch einen Kartenherausgeber eingestellt wurden. 
 
 | `personalEntry`
 | Eintrag einer natürlichen Person
 | Enthält `TRUE` wenn Eintrag eine natürliche Person beschreibt (einen Leistungsebringer)
-
-| `usage`
-| Verwendungszweck
-| TODO: Wofür wird es benutzt?
-
 
 | `changeDateTime`
 | Geändert
