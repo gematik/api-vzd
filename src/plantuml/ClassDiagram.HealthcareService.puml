@@ -1,4 +1,5 @@
 @startuml cd_FHIR_HealthcareService
+skinparam monochrome true
 class Endpoint {
   {field} identifier (1..*, MS, LDAP)
   {field} status (0..*, MS)
