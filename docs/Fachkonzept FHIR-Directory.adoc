@@ -26,9 +26,36 @@ Siehe Anforderungen und Ziele in der online-Dokumentation (auf Englisch!).
 uhe
 
 * Funktionale Eignung
++
+Über den VZD-FHIR-Directory müssen Einträge von Organisationen und Leistungserbringern inklusive ihrer Kontaktdaten auffindbar sein. Dazu bietet der VZD-FHIR-Directory folgende Schnittstellen an:
+
+. FHIR Schnittstelle zur Suche /tim-search
+. FHIR Schnittstelle zur Pflege eigener Einträge /owner
+. REST Schnittstelle zur Pflege eigener TIM Provider Einträge und MXID's der Oragnisationen und Leistungserbringer /tim-provide-services
+
 * Zuverlässigkeit
++
+TI Anwendungen wie der TI Messenger benötigen die Suchfunktion vom dem VZD-FHIR-Directory. Die Suchfunktion vom dem VZD-FHIR-Directory muss deshalb mit einer hohen Verfügbarkeit bereitgestellt werden.
+
 * Sicherheit
++
+Einzelne Organisations- und Leistungserbringer-Einträge aus dem VZD-FHIR-Directory werden allen Clients zur Vefügung gestellt. Geschützt werden müssen
+
+- Schreibzugriffe auf VZD-FHIR-Directory Einträge
+- Der VZD-FHIR-Directory Datenbestand als gesamter Datenbestand (einzelne Einträge sind für alle Clients lesbar, der gesamte Datenbestand nur für berechtigte Clients)
+
 * Wartbarkeit und Betreibbarkeit
++
+Die Wartbarkeit und Betreibbarkeit von dem VZD-FHIR-Directory muss gewährleistet werden durch:
+
+- die Dokumentation,
+- Spezifikation von Schnittstellen,
+- eine skalierbare und erweiterbare Architektur auf Basis von Standardkomponenten (FHIR Server, Datenbanken,...),
+- ein übersichtliches Design, 
+- die Konfigurierbarkeit wichtiger Variablen,
+- eine hohe Kohäsion und lose Kopplung der Module,
+- automatisierte Tests.
+
 * Performance und Skalierbarkeit
 * Kompatibilität (FHIR, OIDC, OAuth)
 * Übertragbarkeit
