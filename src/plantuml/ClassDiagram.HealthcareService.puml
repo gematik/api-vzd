@@ -1,4 +1,4 @@
-@startuml cd_FHIR_HealthcareService
+@startuml ClassDiagram.HealthcareService
 skinparam monochrome true
 class Endpoint {
   {field} identifier (1..*, MS, LDAP)

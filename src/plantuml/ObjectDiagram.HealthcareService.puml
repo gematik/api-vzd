@@ -1,4 +1,4 @@
-@startuml od_FHIR_HealthcareService
+@startuml ObjectDiagram.HealthcareService
 skinparam monochrome true
 object "HealthcareService 1" as hs1
 object "HealthcareService 2" as hs2

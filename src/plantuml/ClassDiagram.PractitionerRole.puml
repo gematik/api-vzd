@@ -1,4 +1,4 @@
-@startuml cd_FHIR_PractitionerRole
+@startuml ClassDiagram.PractitionerRole
 skinparam monochrome true
 class PractitionerRole {
   {field} identifier (1..*, MS, LDAP)

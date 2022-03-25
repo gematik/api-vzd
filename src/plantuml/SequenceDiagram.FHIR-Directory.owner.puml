@@ -1,4 +1,4 @@
-@startuml sd_FHIR-Directory, owner
+@startuml SequenceDiagram.FHIR-Directory.owner
 skinparam dpi 100
 skinparam WrapWidth 200
 skinparam monochrome true
