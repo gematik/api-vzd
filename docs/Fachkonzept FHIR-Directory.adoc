@@ -109,6 +109,11 @@ Form
 Einfache Tabellen der Randbedingungen mit Erläuterungen. Bei Bedarf unterscheiden Sie technische, organisatorische und politische Randbedingungen oder übergreifende Konventionen (beispielsweise Programmier- oder Versionierungsrichtlinien, Dokumentations- oder Namenskonvention).
 Siehe Randbedingungen in der online-Dokumentation (auf Englisch!).
 
+Das VZD-FHIR-Directory muss mit dem VZD-LDAP-Directory [gemSpec_VZD] koexistieren. Die Daten aus dem VZD-LDAP-Directory werden in das VZD-FHIR-Directory synchronisiert und können dort ergänzt werden.
+Das VZD-FHIR-Directory muss die nötigen Services für den TI-Messenger bereitstellen [gemSpec_TI-Messenger-Client][gemSpec_TI-Messenger-Dienst][gemSpec_TI-Messenger-FD].
+
+
+
 == Kontextabgrenzung
 cp
 Inhalt
