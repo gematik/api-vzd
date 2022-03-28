@@ -50,8 +50,29 @@ Die Wartbarkeit und Betreibbarkeit von dem VZD-FHIR-Directory muss gewährleiste
 - automatisierte Tests.
 
 * Performance und Skalierbarkeit
++
+Die Performanceanforderungen berücksichtigen den Bedarf der Fachanwendungen, welche das VZD-FHIR-Directory nutzen. Die Performance-Kenngrößen decken drei Dimensionen ab:
+
+- Durchsatz, die Anzahl an Funktionsaufrufen oder die Datenmenge, die pro Zeiteinheit durch das System oder eine seiner Komponenten abgearbeitet werden,
+- die erlaubte Bearbeitungszeit je Funktionsaufruf und die
+- Verfügbarkeit über die gesamte Betriebszeit.
+
++
+Die Skalierbarkeit stellt die Anpassbarkeit des VZD-FHIR-Directory an sich ändernde Performanceanforderungen der Fachanwendungen sicher.
+
 * Kompatibilität (FHIR, OIDC, OAuth)
++
+Das VZD-FHIR-Directory basiert - zur Gewährleistung der Kompatibilität mit möglichst vielen Fachanwendungen - auf Standards. Dazu gehören
+
+- FHIR (Fast Healthcare Interoperability Resources): Der Standard unterstützt den Datenaustausch zwischen Softwaresystemen im Gesundheitswesen.
+- OpenID Connect (OIDC) als Authentifizierungsschicht (basiert auf dem Autorisierungsframework OAuth 2.0) gewährleistet die Kompatibilität zu Authentifizierungslösungen.
+- OAuth (Open Authorization) ermöglicht die standardisierte, sichere API-Autorisierung für Desktop-, Web- und Mobile-Anwendungen. 
+
+
 * Übertragbarkeit
++
+Mit der Übertragbarkeit (oder Portabilität) kann die Software von einer Hardware- oder Softwareumgebung in eine andere ‚übertragen‘ werden. 
+
 
 Motivation
 
