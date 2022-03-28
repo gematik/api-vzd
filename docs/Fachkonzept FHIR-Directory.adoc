@@ -16,7 +16,7 @@ Um dies zu erreichen besitzt das FHIR-Directory Schnittstellen
 - zur Suche nach Einträgen durch Nutzer der TI
 
 == Qualitätsziele
-uhe
+
 
 * Funktionale Eignung
 +
