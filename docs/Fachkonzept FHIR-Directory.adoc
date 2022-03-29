@@ -2,7 +2,7 @@
 gematik, Systems Engineering
 :source-highlighter: rouge
 :title-page:
-:imagesdir: ../images/
+:imagesdir: /images/
 //:sectnums:
 //:toc:
 //:toclevels: 3
@@ -13,7 +13,7 @@ image::gematik_logo.svg[gematik,float="right"]
 endif::[]
 ifdef::env-github[]
 ++++
-<img align="right" role="right" src="images/gematik_logo.svg?raw=true"/>
+<img align="right" role="right" src="gematik_logo.svg?raw=true"/>
 ++++
 endif::[]
 
