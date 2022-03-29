@@ -4,18 +4,11 @@ gematik, Systems Engineering
 :title-page:
 :imagesdir: /images/
 //:sectnums:
-//:toc:
-//:toclevels: 3
-//:toc-title: Inhaltsverzeichnis
+:toc:
+:toclevels: 3
+:toc-title: Inhaltsverzeichnis
 
-//ifndef::env-github[]
 image::gematik_logo.svg[gematik,float="right"]
-//endif::[]
-//ifdef::env-github[]
-//++++
-//<img align="right" role="right" src="gematik_logo.svg?raw=true"/>
-//++++
-//endif::[]
 
 == Einführung und Ziele
 
@@ -24,13 +17,12 @@ Eine Datenbasis für die Einträge der Organisationen und LE wird durch die Kart
 
 == Aufgabenstellung
 
-Das FHIR-Directory ist das zentrale Adressbuch für die Organisationen des Gesundheitswesens und LE. Alle Fachanwendungen der TI, die Adressdaten und fachliche Daten der Organisationen und LE benötigen finden die Daten im FHIR-Directory.
+Das FHIR-Directory ist das zentrale Adressbuch für die Organisationen des Gesundheitswesens und LE. Alle Fachanwendungen der TI, die Adressdaten und fachliche Daten der Organisationen und LE benötigen finden die Daten im FHIR-Directory. Dabei wird unterschieden zwischen einem Organisationsverzeichnis und einem Personenverzeichnis.
 Um dies zu erreichen besitzt das FHIR-Directory Schnittstellen
 * zur Pflege der Daten durch Kartenherausgeber und durch die Eigentümer der Einträge
 * zur Suche nach Einträgen durch Nutzer der TI
 
 == Qualitätsziele
-
 
 * Funktionale Eignung
 +
@@ -148,8 +140,11 @@ Siehe Kontextabgrenzung in der online-Dokumentation (auf Englisch!).
 
 
 == Fachlicher Kontext
-image::VZD_Systemkontext.svg[VZD Systemkontext]
+image::FHIR-Directory_Systemkontext.svg[FHIR-Directory Systemkontext]
 
+Die Abbildung zeigt das FHIR-Directory mit seinen Schnittstellen und Nutzern. Alle Schnittstellen mit Ausnahme (6) sind über das Internet erreichbar. Die Schnittstellen stellen folgende Funktionen bereit:
+. Für Nutzer des TI-Messengers gibt es eine Schnittstelle zur Suche nach Einträgen im Organisationsverzeichnis und für LE auch zur Suche im Personenverzeichnis.
+. Für Administratoren der Organisationen des Gesundheitswesens gibt es eine Schnittstelle zur Änderung Ihres Eintrags im Organisationsverzeichnis. Über diese Schnittstelle kann ein Eintrag einer Organisation über eine Verlinkung um zusätzliche Einträge erweitert werden.
 
 
 
