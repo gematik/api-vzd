@@ -169,7 +169,10 @@ image::diagrams/ClassDiagram.PractitionerRole.png[ClassDiagram PractitionerRole]
 
 Die Objektdiagramme zeigen mögliche Verlinkungen der Ressourcen.
 
+Organisationsverzeichnis
 image::diagrams/ObjectDiagram.HealthcareService.png[ObjectDiagram HealthcareService]
+
+Personenverzeichnis
 image::diagrams/ObjectDiagram.PractitionerRole.png[ObjectDiagram PractitionerRole]
 
 == Ein- und Ausgangsdaten
