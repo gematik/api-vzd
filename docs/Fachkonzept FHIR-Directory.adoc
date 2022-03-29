@@ -8,14 +8,14 @@ gematik, Systems Engineering
 //:toclevels: 3
 //:toc-title: Inhaltsverzeichnis
 
-ifndef::env-github[]
+//ifndef::env-github[]
 image::gematik_logo.svg[gematik,float="right"]
-endif::[]
-ifdef::env-github[]
-++++
-<img align="right" role="right" src="gematik_logo.svg?raw=true"/>
-++++
-endif::[]
+//endif::[]
+//ifdef::env-github[]
+//++++
+//<img align="right" role="right" src="gematik_logo.svg?raw=true"/>
+//++++
+//endif::[]
 
 == Einführung und Ziele
 
