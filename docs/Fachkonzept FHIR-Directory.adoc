@@ -159,6 +159,8 @@ Die Schnittstellen stellen folgende Funktionen bereit:
 
 == Datenstruktur im FHIR-Directory
 
+=== Organisationsverzeichnis
+
 Die Einträge im Organisationsverzeichnis beginnen immer mit einer HealthcareService Ressource (Bezeichner des Service und Verfügbarkeitszeiten) mit Links zu einer Organization Ressource (Name der Organisation) sowie einer Location Ressource (postalische Adresse und Geodaten sowie Öffnungszeiten). Die Endpoint Ressource ist optional und enthält fachliche Daten der Anwendungen wie z. B. Adressdaten des TI-Messengers.
 
 image::diagrams/ClassDiagram.HealthcareService.png[ClassDiagram HealthcareService]
@@ -166,6 +168,8 @@ image::diagrams/ClassDiagram.HealthcareService.png[ClassDiagram HealthcareServic
 Das Objektdiagramm zeigt mögliche Verlinkungen der Ressourcen.
 
 image::diagrams/ObjectDiagram.HealthcareService.png[ObjectDiagram HealthcareService]
+
+=== Personenverzeichnis
 
 Die Einträge im Personenverzeichnis beginnen immer mit einer PractitionerRole Ressource (Rolle des LE) mit Links zu einer Practitioner Ressource (Name des LE) sowie optional einer Location Ressource (postalische Adresse und Geodaten sowie Öffnungszeiten). Die Endpoint Ressource ist optional und enthält fachliche Daten der Anwendungen wie z. B. Adressdaten des TI-Messengers.
 
