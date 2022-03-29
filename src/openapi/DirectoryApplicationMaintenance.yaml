@@ -3,20 +3,24 @@ info:
   title: I_Directory_Application_Maintenance
   description: REST Schnittstelle zur Pflege der Fachanwendungsdaten der Verzeichniseinträge.
               Über diese Schnittstelle können Fachanwendungsdaten der Verzeichniseinträge erzeugt, aktualisiert und gelöscht werden. 
-  version: 1.1.2
-  ### 1.1.2  
-  # - extended the description of error handling in operation modify_Directory_FA-Attributes
-  # - changed "maxItems" to 50 for the DirectoryEntry Attribute "userCertificates"
-  # - changed attribute "KOM-LE-Version" to data type list 
-  ### 1.1.1
-  # - to commented out the string "date-time" in "changeDateTime" 
-  #   Now, it is not possible to generate some code any more. It should be observed this format. 
-  ### 1.1.0
-  # - added operation getInfo in addition witch schema objects "InfoObject", "Contact" and "License"
-  # - added attributes "professionOID" and "entryType". Also extended this attributes as search criteria in operation read_Directory_Entry
-  ### 1.0.0
-  # - initial Version of I_Directory_Application_Maintenance
-
+  version: 1.1.3
+  # Änderungen in Version 1.1.3
+  #  - Filtermöglichkeiten in Leseoperationen read_Directory_Entry 
+  #    (Wildcard "*" & Vorhandensein \00) aufgenommen.
+  #  - Suchparameter in Leseoperationen read_Directory_Entry aufgenommen:
+  #    maxKOMLEadr, changeDateTimeFrom, changeDateTimeTo
+  # Änderungen in Version 1.1.2
+  #  - Fehlerbehandlung für Operation modify_Directory_FA-Attributes in den Kommentaren dieser Operation ausführlicher beschrieben.
+  #  - Im Datenmodell für DirectoryEntry Attribut "userCertificates" maxItems auf 50 gesetzt
+  #
+  # Änderungen in Version 1.1.1
+  #  - Im Datenmodell für Attribut "changeDateTime" den Format String "date-time" auskommentiert. Mit dieser Format Vorgabe ist kein Code mehr generierbar. Es soll sich aber weiterhin an das Format gehalten werden.
+  #
+  # Änderungen in Version 1.1.0
+  #  - getInfo Operation - inklusive den dazugehörenden Schema Objekten "InfoObject", "Contact" und "License" - hinzugefügt.
+  #  - Attribute professionOID und entryType zusätzlich in die Basisdaten - als Kopie aus den Zertifikatsdaten (userCertificate) aufgenommen. Diese Attribute wurden ebenfalls in die read_Directory_Entry Operation als Suchparameter aufgenommen.
+  #
+  # initiale Version
  
 externalDocs:
   description: Schnittstelle zur Pflege der Fachanwendungsdaten der Verzeichniseinträge
@@ -63,6 +67,52 @@ paths:
       - DirectoryEntry Administration
       summary: Gesamten Verzeichniseintrag lesen
       description: Liefert alle zum Filter passenden Verzeichniseinträge (maximal 100 Einträge). Die angegebenen Parameter werden mit logischen UND verknüpft.
+# Für die Leseoperationen read_Directory_Entry read_Directory_Entry_for_Sync der
+# Schnittstellen I_Directory_Administration und I_Directory_Application_Maintenance
+# werden die folgenden Filtermöglichkeiten unterstützt: 
+#     o Suche mit Wildcard "*" in den Parametern
+#           - givenName
+#           - sn
+#           - cn
+#           - displayName
+#           - streetAddress
+#           - postalCode
+#           - countryCode
+#           - localityName
+#           - stateOrProvinceName
+#           - title
+#           - organization
+#           - otherName
+#           - telematikID
+#           - specialization
+#           - domainID
+#           - holder
+#           - professionOID
+#      o Suche nach Vorhandensein oder leerem Inhalt eines Attributs des 
+#        VZD Datensatzes mit dem Kode \00 in den Parametern
+#           - givenName
+#           - sn
+#           - cn
+#           - displayName
+#           - streetAddress
+#           - postalCode
+#           - countryCode
+#           - localityName
+#           - stateOrProvinceName
+#           - title
+#           - organization
+#           - otherName
+#           - specialization
+#           - domainID
+#           - holder
+#           - professionOID
+#           - changeDateTimeFrom
+#           - changeDateTimeTo
+#        Diese Suche findet sowohl Datensätze mit nicht vorhandenem Attribut
+#        wie auch vorhandenem aber leerem Attribut.
+#        Der Suchparameter darf nur den Kode \00 enthalten, keine weiteren Zeichen.
+#     Alle Filterparameter einer Leseoperationen werden mit einem UND (&) verknüpft.
+#            
       operationId: read_Directory_Entry
       parameters:
       - name: uid
@@ -183,6 +233,29 @@ paths:
                      Selektiert der Verzeichniseintrag, wenn der angegebene Wert in den entryType's (array) des Basiseintrags vorhanden ist. 
         schema:
           type: string  
+      - name: maxKOMLEadr
+        in: query
+        description: Erlaubt die Suche mit Hilfe des Attributs maxKOMLEadr. 
+        schema:
+          type: string  
+      - name: changeDateTimeFrom
+        in: query
+        description: Erlaubt die Suche mit Hilfe des Attributs changeDateTime. 
+                  #  Selektiert alle Datensätze mit 
+                  #  changeDateTime >= changeDateTimeFrom
+        schema:
+          type: string  
+          # format: date-time
+          example: "2017-07-21T17:32:28Z"          
+      - name: changeDateTimeTo
+        in: query
+        description: Erlaubt die Suche mit Hilfe des Attributs changeDateTime. 
+                  #  Selektiert alle Datensätze mit 
+                  #  changeDateTime <= changeDateTimeTo
+        schema:
+          type: string  
+          # format: date-time
+          example: "2018-07-21T17:32:28Z"
       - name: baseEntryOnly
         in: query
         description: Mit baseEntryOnly = "true" wird nur der Basiseintrag (baseDirectoryEntry) im Response zurückgegeben. Falls nicht angegeben oder mit "false" belegt, wird der gesamte Verzeichniseintrag mit Zertifikaten und Fachdaten im Response zurückgegeben.
@@ -572,24 +645,10 @@ components:
           items:
             type: string
             description: 'E-Mail-Adresse'
-        komLeData:
-          type: array
-          items:
-            type: object
-            properties:
-              mail:
-                type: string
-                description: 'E-Mail-Adresse'
-              version:
-                type: string
-                example: 1.5
-                description: Die höchste KOM-LE_Version der KIM Clientmodule für die KIM Mail Adresse
-            # Für jede Mail Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Attribut
-            # KOM-LE_Version geben. Es dürfen in KOM-LE_Version keine Mail Adressen referenziert werden,
-            # die nicht im zugehörigen "mail" Attribut enthalten sind.
-            # Wenn eine Mail Adresse gelöscht wird, muss auch ihre KOM-LE_Version gelöscht werden.
-            # Geschrieben wird immer die gesamte Liste. Für Änderungen muss erst der aktuelle Eintrag
-            # gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
+        KOM-LE_Version:
+          type: string
+          description: Die höchste KOM-LE_Version der KIM Clientmodule des KIM Kunden
+
 
     distinguishedName:
       required:
@@ -771,7 +830,7 @@ components:
         DirectoryEntryBase:
           $ref: '#/components/schemas/baseDirectoryEntry'
         userCertificates:
-          maxItems: 100
+          maxItems: 50
           minItems: 0
           type: array
           items:
