@@ -134,8 +134,10 @@ Motivation
 Die fachlichen und technischen Schnittstellen zur Kommunikation gehören zu den kritischsten Aspekten eines Systems. Stellen Sie sicher, dass Sie diese komplett verstanden haben.
 Form
 Verschiedene Optionen:
+
 •	Diverse Kontextdiagramme
 •	Listen von Kommunikationsbeziehungen mit deren Schnittstellen
+
 Siehe Kontextabgrenzung in der online-Dokumentation (auf Englisch!).
 
 
@@ -143,10 +145,13 @@ Siehe Kontextabgrenzung in der online-Dokumentation (auf Englisch!).
 image::FHIR-Directory_Systemkontext.svg[FHIR-Directory Systemkontext]
 
 Die Abbildung zeigt das FHIR-Directory mit seinen Schnittstellen und Nutzern. Alle Schnittstellen mit Ausnahme (6) sind über das Internet erreichbar. Die Schnittstellen stellen folgende Funktionen bereit:
+
 . Für Nutzer des TI-Messengers gibt es eine Schnittstelle zur Suche nach Einträgen im Organisationsverzeichnis und für LE auch zur Suche im Personenverzeichnis.
 . Für Administratoren der Organisationen des Gesundheitswesens gibt es eine Schnittstelle zur Änderung Ihres Eintrags im Organisationsverzeichnis. Über diese Schnittstelle kann ein Eintrag einer Organisation über eine Verlinkung um zusätzliche Einträge erweitert werden.
-
-
+. Für Kartenherausgeber gibt es eine Schnittstelle um Einträge im LDAP-Directory anzulegen und zu pflegen. Zukünftig ist vorgesehen, dass die Kartenherausgeber auch direkt die Schnittstelle zum FHIR-Directory nutzen können.
+. TI-Messenger-Anbieter pflegen im FHIR-Directory für die von ihenen angebotenen Messenger-Services die TI-Messenger Domänen und verlinken sie zu den Einträgen der Organisationen, für die die Messenger-Services angeboten werden.
+. Die gematik hat Schnittstellen um die Daten-Qualität der Einträge zu prüfen.
+. Die Einträge im LDAP-Directory werden in das FHIR-Directory Organisations- und Personenverzeichnis synchronisiert. Für Einträge, die von den Kartenherausgebern schon direkt im FHIR-Directory gepflegt werden erfolgt die Synchronisation umgekehrt in das LDAP-Directory. Die Einträge erhalten dazu im FHIR-Directory eine spezielle Kennung, die angibt, ob die Pflege schon direkt im FHIR-Directory erfolgt ist.
 
 
 
