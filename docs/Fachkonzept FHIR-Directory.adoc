@@ -1,7 +1,21 @@
-# gematik logo
 = Fachkonzept FHIR-Directory
+gematik, Systems Engineering
+:source-highlighter: rouge
+:title-page:
+:imagesdir: images/
+//:sectnums:
+//:toc:
+//:toclevels: 3
+//:toc-title: Inhaltsverzeichnis
 
-== Inhalt
+ifndef::env-github[]
+image::gematik_logo.svg[gematik,float="right"]
+endif::[]
+ifdef::env-github[]
+++++
+<img align="right" role="right" src="images/gematik_logo.svg?raw=true"/>
+++++
+endif::[]
 
 == Einführung und Ziele
 
@@ -134,6 +148,14 @@ Siehe Kontextabgrenzung in der online-Dokumentation (auf Englisch!).
 
 
 == Fachlicher Kontext
+image::VZD_Systemkontext.svg[VZD Systemkontext]
+
+
+
+
+
+
+------
 cp
 Inhalt
 Festlegung aller Kommunikationsbeziehungen (Nutzer, IT-Systeme, …) mit Erklärung der fachlichen Ein- und Ausgabedaten oder Schnittstellen. Zusätzlich (bei Bedarf) fachliche Datenformate oder Protokolle der Kommunikation mit den Nachbarsystemen.
