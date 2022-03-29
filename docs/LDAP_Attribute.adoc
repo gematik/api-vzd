@@ -10,8 +10,8 @@
 
 | `telematikID`
 | Telematik-ID
-| Eindeutiger Identifikator einer Institution oder einer Person in der TI. 
-Spezifiziert in https://fachportal.gematik.de/fachportal-import/files/gemSpec_PKI_V2.11.1.pdf[gemSpec_PKI], Kapitel 4.7. 
+| Eindeutiger Identifikator einer Institution oder einer Person in der TI.
+Spezifiziert in https://fachportal.gematik.de/fachportal-import/files/gemSpec_PKI_V2.11.1.pdf[gemSpec_PKI], Kapitel 4.7.
 TelematikID darf nur einmal vorkommen.
 
 | `domainID`
@@ -56,7 +56,7 @@ Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2798#section-2.3[RFC279
 
 a| _Institution (SMC-B)_
 
-Dieses Attribut wird genutzt, um  Namen einer Institution gegenüber dem Anwender darzustellen. 
+Dieses Attribut wird genutzt, um  Namen einer Institution gegenüber dem Anwender darzustellen.
 
 
 | `cn`
@@ -114,7 +114,7 @@ Kann als `l` abgekürzt werden
 
 | `stateOrProvinceName`
 | Bundesland oder Region
-a| 
+a|
 
 <<valueset_cn>>
 
@@ -136,17 +136,17 @@ Kann als `st` abgekürzt werden
 * Baden-Württemberg
 * Bayern
 * Berlin
-* Brandenburg 
+* Brandenburg
 * Bremen
 * Hamburg
-* Hessen 
+* Hessen
 * Mecklenburg-Vorpommern
-* Niedersachsen 
+* Niedersachsen
 * Nordrhein-Westfalen
 * Rheinland-Pfalz
 * Saarland
 * Sachsen
-* Sachsen-Anhalt 
+* Sachsen-Anhalt
 * Schleswig-Holstein
 * Thüringen
 
@@ -224,18 +224,18 @@ komLeData: 1.5,adresse2@anbieter.kim.telematik
 | Attribut  | Beschreibung | Anmerkungen
 
 | `holder`
-| Verwaltet durch  
+| Verwaltet durch
 | Enthält eine Liste von Organisationen, die für die Administration dieses Datensatzes berechtigt sind.
 
 | `dataFromAuthority`
-| Geprüfte Daten? 
-| Enthält `TRUE` wenn die Daten durch einen Kartenherausgeber eingestellt wurden. 
+| Geprüfte Daten?
+| Enthält `TRUE` wenn die Daten durch einen Kartenherausgeber eingestellt wurden.
 
 | `personalEntry`
 | Eintrag einer natürlichen Person
 | Enthält `TRUE` wenn Eintrag eine natürliche Person beschreibt (einen Leistungsebringer)
 
-| `changeDateTime`
+`changeDateTime`
 | Geändert
 | Zeitstempel der letzten Änderung, wird bei jeder Aktualisierung auf aktuelle Systemzeit geändert.
 
@@ -248,12 +248,12 @@ komLeData: 1.5,adresse2@anbieter.kim.telematik
 === Darstellung von Personen und Institutionen in einer Liste
 
 |===
-^| Typ | Name | Nachname | Vorname | Adresse | PLZ | Ort 
+^| Typ | Name | Nachname | Vorname | Adresse | PLZ | Ort
 
 ^| 🏥
 | Praxis Helga Freifrau Mondwürfel
-| 
-| 
+|
+|
 | Bahnhof Str. 13
 | 91234
 | Nürnberg
