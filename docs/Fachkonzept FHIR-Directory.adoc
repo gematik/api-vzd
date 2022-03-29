@@ -12,8 +12,8 @@ Eine Datenbasis für die Einträge der Organisationen und LE wird durch die Kart
 
 Das FHIR-Directory ist das zentrale Adressbuch für die Organisationen des Gesundheitswesens und LE. Alle Fachanwendungen der TI, die Adressdaten und fachliche Daten der Organisationen und LE benötigen finden die Daten im FHIR-Directory.
 Um dies zu erreichen besitzt das FHIR-Directory Schnittstellen
-- zur Pflege der Daten durch Krtenherausgeber und durch die Eigentümer der Einträge
-- zur Suche nach Einträgen durch Nutzer der TI
+* zur Pflege der Daten durch Kartenherausgeber und durch die Eigentümer der Einträge
+* zur Suche nach Einträgen durch Nutzer der TI
 
 == Qualitätsziele
 
@@ -64,14 +64,14 @@ Die Skalierbarkeit stellt die Anpassbarkeit des VZD-FHIR-Directory an sich ände
 +
 Das VZD-FHIR-Directory basiert - zur Gewährleistung der Kompatibilität mit möglichst vielen Fachanwendungen - auf Standards. Dazu gehören
 
-- FHIR (Fast Healthcare Interoperability Resources): Der Standard unterstützt den Datenaustausch zwischen Softwaresystemen im Gesundheitswesen.
-- OpenID Connect (OIDC) als Authentifizierungsschicht (basiert auf dem Autorisierungsframework OAuth 2.0) gewährleistet die Kompatibilität zu Authentifizierungslösungen.
-- OAuth (Open Authorization) ermöglicht die standardisierte, sichere API-Autorisierung für Desktop-, Web- und Mobile-Anwendungen. 
+* FHIR (Fast Healthcare Interoperability Resources): Der Standard unterstützt den Datenaustausch zwischen Softwaresystemen im Gesundheitswesen.
+* OpenID Connect (OIDC) als Authentifizierungsschicht (basiert auf dem Autorisierungsframework OAuth 2.0) gewährleistet die Kompatibilität zu Authentifizierungslösungen.
+* OAuth (Open Authorization) ermöglicht die standardisierte, sichere API-Autorisierung für Desktop-, Web- und Mobile-Anwendungen.
 
 
 * Übertragbarkeit
 +
-Mit der Übertragbarkeit (oder Portabilität) kann die Software von einer Hardware- oder Softwareumgebung in eine andere ‚übertragen‘ werden. 
+Mit der Übertragbarkeit (oder Portabilität) kann die Software von einer Hardware- oder Softwareumgebung in eine andere ‚übertragen‘ werden.
 
 
 Motivation
@@ -83,21 +83,26 @@ Form
 Tabellarische Darstellung der Qualitätsziele mit möglichst konkreten Szenarien, geordnet nach Prioritäten.
 
 == Stakeholder
-cp
-Inhalt
-Expliziter Überblick über die Stakeholder des Systems – über alle Personen, Rollen oder Organisationen –, die
-•	die Architektur kennen sollten oder
-•	von der Architektur überzeugt werden müssen,
-•	mit der Architektur oder dem Code arbeiten (z.B. Schnittstellen nutzen),
-•	die Dokumentation der Architektur für ihre eigene Arbeit benötigen,
-•	Entscheidungen über das System und dessen Entwicklung treffen.
-Motivation
-Sie sollten die Projektbeteiligten und -betroffenen kennen, sonst erleben Sie später im Entwicklungsprozess Überraschungen. Diese Stakeholder bestimmen unter anderem Umfang und Detaillierungsgrad der von Ihnen zu leistenden Arbeit und Ergebnisse.
-Form
-Tabelle mit Rollen- oder Personennamen, sowie deren Erwartungshaltung bezüglich der Architektur und deren Dokumentation.
-Rolle	Kontakt	Erwartungshaltung
-<Rolle-1>	<Kontakt-1>	<Erwartung-1>
-<Rolle-2>	<Kontakt-2>	<Erwartung-2>
+
+.Überblick über die Stakeholder des FHIR-Directory
+|===
+|Stakeholder |Erwartung
+
+|Hersteller von TI-Messenger Clients
+|Die Hersteller müssen wissen, welche FHIR-Ressourcen im FHIR-Directory gespeichert werden und welche Attribute von Clients für die Suche nach Einträgen und für die  Darstellung von Ergebnissen unterstützt werden müssen.
+
+|Hersteller von Org-Admin Clients
+|Die Hersteller müssen wissen, welche FHIR-Ressourcen im FHIR-Directory gespeichert werden, welche FHIR-Ressourcen angelegt werden dürfen, wie die Beziehungen zwischen den FHIR Ressourcen sind und welche Attribute geändert werden dürfen.
+
+|Kartenherausgeber
+|Die Kartenherausgeber müssen wissen, welche FHIR-Ressourcen im FHIR-Directory gespeichert werden, welche FHIR-Ressourcen angelegt werden dürfen, wie die Beziehungen zwischen den FHIR Ressourcen sind und welche Attribute geändert werden dürfen.
+
+|Hersteller von TI-Messenger Fachdiensten
+|Die Hersteller müssen wissen, welche FHIR-Ressourcen sie erzeugen und ändern dürfen und welche Attribute sie pflegen müssen.
+
+|gematik
+|Die gematik muss in der Lage sein die Daten-Qualität im FHIR-Directory zu prüfen.
+|===
 
 == Randbedingungen
 uhe
@@ -129,7 +134,7 @@ Siehe Kontextabgrenzung in der online-Dokumentation (auf Englisch!).
 
 
 == Fachlicher Kontext
-uhe
+cp
 Inhalt
 Festlegung aller Kommunikationsbeziehungen (Nutzer, IT-Systeme, …) mit Erklärung der fachlichen Ein- und Ausgabedaten oder Schnittstellen. Zusätzlich (bei Bedarf) fachliche Datenformate oder Protokolle der Kommunikation mit den Nachbarsystemen.
 Motivation
