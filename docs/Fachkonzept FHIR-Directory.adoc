@@ -163,17 +163,15 @@ Die Einträge im Organisationsverzeichnis beginnen immer mit einer HealthcareSer
 
 image::diagrams/ClassDiagram.HealthcareService.png[ClassDiagram HealthcareService]
 
+Das Objektdiagramm zeigt mögliche Verlinkungen der Ressourcen.
+
+image::diagrams/ObjectDiagram.HealthcareService.png[ObjectDiagram HealthcareService]
+
 Die Einträge im Personenverzeichnis beginnen immer mit einer PractitionerRole Ressource (Rolle des LE) mit Links zu einer Practitioner Ressource (Name des LE) sowie optional einer Location Ressource (postalische Adresse und Geodaten sowie Öffnungszeiten). Die Endpoint Ressource ist optional und enthält fachliche Daten der Anwendungen wie z. B. Adressdaten des TI-Messengers.
 
 image::diagrams/ClassDiagram.PractitionerRole.png[ClassDiagram PractitionerRole]
 
-Die Objektdiagramme zeigen mögliche Verlinkungen der Ressourcen.
-
-Organisationsverzeichnis
-
-image::diagrams/ObjectDiagram.HealthcareService.png[ObjectDiagram HealthcareService]
-
-Personenverzeichnis
+Das Objektdiagramm zeigt mögliche Verlinkungen der Ressourcen.
 
 image::diagrams/ObjectDiagram.PractitionerRole.png[ObjectDiagram PractitionerRole]
 
