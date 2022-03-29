@@ -2,7 +2,7 @@
 gematik, Systems Engineering
 :source-highlighter: rouge
 :title-page:
-:imagesdir: images/
+:imagesdir: ../images/
 //:sectnums:
 //:toc:
 //:toclevels: 3
