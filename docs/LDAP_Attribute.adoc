@@ -245,6 +245,39 @@ komLeData: 1.5,adresse2@anbieter.kim.telematik
 
 == Beispiele
 
+=== Verwirrende Suchergebnisse
+
+|===
+^| Name | Nachname | Vorname | E-Mail | Adresse | PLZ | Ort
+
+| Herr Dr. med. Michael Guttenberg  
+| Herr Dr. med. Michael Guttenberg
+|
+| praxis.guttenberg@...kim 
+| Bahnhof Str. 13
+| 91234
+| Nürnberg
+
+| Martina Anna Berg
+| Berg
+| Martina Anna
+|  
+| Dillingerstr. 21
+| 88451
+| Dettingen
+
+| Praxis Martina Berg
+| Praxis Martina Berg
+| 
+| martinaberg@...kim
+| Dillinger Straße 21
+| 88451
+| Dettingen
+
+
+|===
+
+
 === Darstellung von Personen und Institutionen in einer Liste
 
 |===
