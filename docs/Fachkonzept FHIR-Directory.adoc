@@ -3,7 +3,12 @@ gematik, Systems Engineering
 :source-highlighter: rouge
 :title-page:
 :imagesdir: /images/
+ifdef::env-github[]
 :toc: preamble
+endif::[]
+ifndef::env-github[]
+:toc: left
+endif::[]
 :toclevels: 3
 :toc-title: Inhaltsverzeichnis
 //:sectnums:
