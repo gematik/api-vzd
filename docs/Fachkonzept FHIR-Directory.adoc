@@ -3,13 +3,13 @@ gematik, Systems Engineering
 :source-highlighter: rouge
 :title-page:
 :imagesdir: /images/
+:toc: left
+:toclevels: 3
+:toc-title: Inhaltsverzeichnis
+//:sectnums:
 
 image::gematik_logo.svg[gematik,float="right"]
 
-//:sectnums:
-:toc:
-:toclevels: 3
-:toc-title: Inhaltsverzeichnis
 
 
 == Einführung und Ziele
