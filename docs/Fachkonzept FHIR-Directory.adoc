@@ -146,20 +146,20 @@ image::FHIR-Directory_Systemkontext.svg[FHIR-Directory Systemkontext]
 
 Die Abbildung zeigt das FHIR-Directory mit seinen Schnittstellen und Nutzern. Alle Schnittstellen mit Ausnahme (6) sind über das Internet erreichbar.
 
-== Schnittstellen und Nutzer
+=== Schnittstellen und Nutzer
 
 Die Schnittstellen stellen folgende Funktionen bereit:
 
-. Für Nutzer des TI-Messengers gibt es eine Schnittstelle zur Suche nach Einträgen im Organisationsverzeichnis und für LE zusätzlich zur Suche im Personenverzeichnis. Die Schnittstelle kann nur nach erfolgreicher Authentisierung genutzt werden. Alle TI-Messenger Nutzer können sich authentisieren und bekommen vom FHIR-Directory ein Accesstoken ausgestellt, dass für die Suchanfragen verwendet wird. Die Suche ermöglicht nach Volltext über die verlinkten Ressourcen zu suchen. Gefundene Ressourcen werden in einem Bundle von FHIR Ressourcen zurückgeliefert. Das FHIR-Directory egänzt zu gefundenen TI-Messenger Adressen automatisch ein PASSporT. Es wird Paging unterstützt. Das Datenformat ist json.
+. Für Nutzer des TI-Messengers gibt es eine Schnittstelle zur Suche nach Einträgen im Organisationsverzeichnis und für LE zusätzlich zur Suche im Personenverzeichnis. Die Schnittstelle kann nur nach erfolgreicher Authentisierung genutzt werden. Alle TI-Messenger Nutzer können sich authentisieren und bekommen vom FHIR-Directory ein Accesstoken ausgestellt, dass für die Suchanfragen verwendet wird. Die Suche ermöglicht es komfortabel nach Volltext oder nach bestimmten Werten der einzelnen Attribute über die verlinkten Ressourcen zu suchen. Gefundene Ressourcen werden in einem Bundle von FHIR Ressourcen zurückgeliefert. Das FHIR-Directory egänzt zu gefundenen TI-Messenger Adressen automatisch ein PASSporT. Es wird Paging unterstützt. Das Datenformat ist json.
 . Für Administratoren der Organisationen des Gesundheitswesens gibt es eine Schnittstelle zur Änderung Ihres Eintrags im Organisationsverzeichnis. Zur Nutzung der Schnittstelle ist eine Authentifizierung mit OIDC Authorization Code Flow erforderlich. Über diese Schnittstelle kann der eigene Eintrag der Organisation über eine Verlinkung um zusätzliche Einträge erweitert werden. LE können diese Schnittstelle nutzen, um ihre TI-Messenger-Adresse in ihrem Eintrag im Personenverzeichnis zu speichern, sodass sie von anderen LE gefunden werden können. Auch hier erfolgt die Authnetifizierung über OIDC. Das FHIR-Datenformat ist json.
 . Für Kartenherausgeber gibt es eine Schnittstelle um Einträge im LDAP-Directory anzulegen und zu pflegen. Das Datenformat ist json und ist in einer OpenAPI yaml Datei festgelegt. Zukünftig ist vorgesehen, dass die Kartenherausgeber auch direkt die Schnittstelle zum FHIR-Directory nutzen können. Dann ist das Datenformat FHIR in der Ausprägung json. Die Authentifizierung der Kartenherausgber erfolgt mit OAuth Client Credential Flow.
 . TI-Messenger-Anbieter pflegen im FHIR-Directory für die von ihenen angebotenen Messenger-Services die TI-Messenger Domänen und verlinken sie zu den Einträgen der Organisationen, für die die Messenger-Services angeboten werden. Das Datenformat FHIR in der Ausprägung json. Zusätzlich können die TI-Messenger Anbieter die Föderationsliste abfragen. Sie beinhaltet alle an der Föderation des TI-Messengers beteiligte Domains. Die Authentifizierung der TI-Messenger-Anbieter erfolgt mit OAuth Client Credential Flow.
 . Die gematik hat Schnittstellen um die Daten-Qualität der Einträge zu prüfen. Dazu wird die Schnittstelle der Kartenherausgeber genutzt. Die gematik hat aber nur Leserechte.
 . Die Einträge im LDAP-Directory werden in das FHIR-Directory Organisations- und Personenverzeichnis synchronisiert. Es handelt sich um eine interne Schnittstelle des Verzeichnisdienstes der TI. Für Einträge, die von den Kartenherausgebern schon direkt im FHIR-Directory gepflegt werden erfolgt die Synchronisation umgekehrt in das LDAP-Directory. Die Einträge erhalten dazu im FHIR-Directory eine spezielle Kennung, die angibt, ob die Pflege schon direkt im FHIR-Directory erfolgt ist.
 
-== Datenstruktur im FHIR-Directory
+=== Datenstruktur im FHIR-Directory
 
-=== Organisationsverzeichnis
+==== Organisationsverzeichnis
 
 Die Einträge im Organisationsverzeichnis beginnen immer mit einer HealthcareService Ressource (Bezeichner des Service und Verfügbarkeitszeiten) mit Links zu einer Organization Ressource (Name der Organisation) sowie einer Location Ressource (postalische Adresse und Geodaten sowie Öffnungszeiten). Die Endpoint Ressource ist optional und enthält fachliche Daten der Anwendungen wie z. B. Adressdaten des TI-Messengers.
 
@@ -169,7 +169,7 @@ Das Objektdiagramm zeigt mögliche Verlinkungen der Ressourcen.
 
 image::diagrams/ObjectDiagram.HealthcareService.png[ObjectDiagram HealthcareService]
 
-=== Personenverzeichnis
+==== Personenverzeichnis
 
 Die Einträge im Personenverzeichnis beginnen immer mit einer PractitionerRole Ressource (Rolle des LE) mit Links zu einer Practitioner Ressource (Name des LE) sowie optional einer Location Ressource (postalische Adresse und Geodaten sowie Öffnungszeiten). Die Endpoint Ressource ist optional und enthält fachliche Daten der Anwendungen wie z. B. Adressdaten des TI-Messengers.
 
@@ -179,7 +179,7 @@ Das Objektdiagramm zeigt mögliche Verlinkungen der Ressourcen.
 
 image::diagrams/ObjectDiagram.PractitionerRole.png[ObjectDiagram PractitionerRole]
 
-== Ein- und Ausgangsdaten
+=== Ein- und Ausgangsdaten
 
 
 ------
