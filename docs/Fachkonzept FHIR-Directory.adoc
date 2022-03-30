@@ -145,17 +145,44 @@ Siehe Kontextabgrenzung in der online-Dokumentation (auf Englisch!).
 
 == Fachlicher Kontext
 
-=== Schnittstellen und Nutzer
+=== Nutzer und Rollen
 
 image::FHIR-Directory_Systemkontext.svg[FHIR-Directory Systemkontext]
 
-Die Abbildung zeigt das FHIR-Directory mit seinen Schnittstellen und Nutzern. Alle Schnittstellen mit Ausnahme (6) sind über das Internet erreichbar.
+Die Abbildung zeigt das FHIR-Directory mit seinen Schnittstellen und Nutzern.
 
-Die Schnittstellen stellen folgende Funktionen bereit:
+.Überblick Nutzer und Rollen
+|===
+|Nutzer und Rolle |Beschreibung
+
+|TI-Messenger Nutzer
+|TI-Messenger Nutzer können zwei Rollen einnehmen. Alle TI-Messenger Nutzer können im FHIR-Directory über die Schnittstelle (1) nach Einträgen im Organisationsverzeichnis suchen.
+
+|TI-Messenger Nutzer LE
+|TI-Messenger Nutzer, die auch LE sind, können zusätzlich im Personenverzeichnis nach Einträgen suchen, wenn sie ihre Matrix Adresse über die Schnittstelle (2) in ihrem Eintrag gespeichert haben.
+
+|Org-Admin
+|Administratoren der Organisationen können im FHIR-Directory über die Schnittstelle (2) ihren Eintrag im Organisationsverzeichnis ändern und um zusätzliche Ressourcen erweitern.
+
+|Kartenherausgeber
+|Die Kartenherausgeber nutzen die Schnittstelle (3) um die Einträge ihrer Mitglieder im LDAP-Directory und zukünftig im FHIR-Directory zu pflegen.
+
+|TI-Messenger Anbieter
+|Die TI-Messenger Anbieter nutzen die Schnittstelle (4) um die Föderationsliste des TI-Messengers abzufragen und um ihre TI-Messenger Domains als Teil der TI-Messenger Föderation zu verwalten.
+
+|gematik
+|Die gematik kann über die Schnittstelle (5) lesend auf die Einträge im FHIR-Directory und im LDAP-Directory zugreifen um die Daten-Qualität der Einträge zu prüfen und um Fehler zu analysieren.
+
+|LDAP-Directory
+|Die Schnittstelle (6) zwischen FHIR-Directory und LDAP-Directory wird vom Verzeichnisdienst genutzt, um die Einträge zu synchronisieren.
+|===
+
+=== Schnittstellen
+
+Alle Schnittstellen mit Ausnahme (6) sind über das Internet erreichbar. Die Schnittstellen stellen folgende Funktionen bereit:
 
 . Für Nutzer des TI-Messengers gibt es eine Schnittstelle zur Suche nach Einträgen im Organisationsverzeichnis und für LE zusätzlich zur Suche im Personenverzeichnis. Die Schnittstelle kann nur nach erfolgreicher Authentisierung genutzt werden. Alle TI-Messenger Nutzer können sich authentisieren und bekommen vom FHIR-Directory ein Accesstoken ausgestellt, dass für die Suchanfragen verwendet wird. Die Suche ermöglicht es komfortabel nach Volltext oder nach bestimmten Werten der einzelnen Attribute über die verlinkten Ressourcen zu suchen. Gefundene Ressourcen werden in einem Bundle von FHIR Ressourcen zurückgeliefert. Das FHIR-Directory egänzt zu gefundenen TI-Messenger Adressen automatisch ein PASSporT. Es wird Paging unterstützt. Das Datenformat ist json.
-. Für Administratoren der Organisationen des Gesundheitswesens gibt es eine Schnittstelle zur Änderung Ihres Eintrags im Organisationsverzeichnis. Zur Nutzung der Schnittstelle ist eine Authentifizierung mit OIDC Authorization Code Flow erforderlich. Über diese Schnittstelle kann der eigene Eintrag der Organisation über eine Verlinkung um zusätzliche Einträge erweitert werden.
-TI-Messenger Nutzer die auch LE sind, können diese Schnittstelle nutzen, um ihre TI-Messenger-Adresse in ihrem Eintrag im Personenverzeichnis zu speichern, sodass sie von anderen LE gefunden werden können. Auch hier erfolgt die Authnetifizierung über OIDC. Das FHIR-Datenformat ist json.
+. Für Administratoren der Organisationen des Gesundheitswesens gibt es eine Schnittstelle zur Änderung Ihres Eintrags im Organisationsverzeichnis. Zur Nutzung der Schnittstelle ist eine Authentifizierung mit OIDC Authorization Code Flow erforderlich. Über diese Schnittstelle kann der eigene Eintrag der Organisation über eine Verlinkung um zusätzliche Einträge erweitert werden. TI-Messenger Nutzer die auch LE sind, können diese Schnittstelle nutzen, um ihre TI-Messenger-Adresse in ihrem Eintrag im Personenverzeichnis zu speichern, sodass sie von anderen LE gefunden werden können. Auch hier erfolgt die Authnetifizierung über OIDC. Das FHIR-Datenformat ist json.
 . Für Kartenherausgeber gibt es eine Schnittstelle um Einträge im LDAP-Directory anzulegen und zu pflegen. Das Datenformat ist json und ist in einer OpenAPI yaml Datei festgelegt. Zukünftig ist vorgesehen, dass die Kartenherausgeber auch direkt die Schnittstelle zum FHIR-Directory nutzen können. Dann ist das Datenformat FHIR in der Ausprägung json. Die Authentifizierung der Kartenherausgber erfolgt mit OAuth Client Credential Flow.
 . TI-Messenger-Anbieter pflegen im FHIR-Directory für die von ihenen angebotenen Messenger-Services die TI-Messenger Domänen und verlinken sie zu den Einträgen der Organisationen, für die die Messenger-Services angeboten werden. Das Datenformat FHIR in der Ausprägung json. Zusätzlich können die TI-Messenger Anbieter die Föderationsliste abfragen. Sie beinhaltet alle an der Föderation des TI-Messengers beteiligte Domains. Die Authentifizierung der TI-Messenger-Anbieter erfolgt mit OAuth Client Credential Flow.
 . Die gematik hat Schnittstellen um die Daten-Qualität der Einträge zu prüfen. Dazu wird die Schnittstelle der Kartenherausgeber genutzt. Die gematik hat aber nur Leserechte.
@@ -169,7 +196,7 @@ Die Einträge im Organisationsverzeichnis beginnen immer mit einer HealthcareSer
 
 image::diagrams/ClassDiagram.HealthcareService.png[ClassDiagram HealthcareService]
 
-Das Objektdiagramm zeigt mögliche Verlinkungen der Ressourcen.
+Das Objektdiagramm zeigt mögliche Verlinkungen der Ressourcen. Ein HealthcareService ist immer mit einer Organisation verlinkt.
 
 image::diagrams/ObjectDiagram.HealthcareService.png[ObjectDiagram HealthcareService]
 
@@ -179,7 +206,7 @@ Die Einträge im Personenverzeichnis beginnen immer mit einer PractitionerRole R
 
 image::diagrams/ClassDiagram.PractitionerRole.png[ClassDiagram PractitionerRole]
 
-Das Objektdiagramm zeigt mögliche Verlinkungen der Ressourcen.
+Das Objektdiagramm zeigt mögliche Verlinkungen der Ressourcen. Eine PractitionerRole ist immer mit einem Practitioner verlinkt.
 
 image::diagrams/ObjectDiagram.PractitionerRole.png[ObjectDiagram PractitionerRole]
 
