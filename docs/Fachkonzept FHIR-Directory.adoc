@@ -152,11 +152,11 @@ Siehe Kontextabgrenzung in der online-Dokumentation (auf Englisch!).
 
 image::FHIR-Directory_Systemkontext.svg[FHIR-Directory Systemkontext]
 
-Die Abbildung zeigt das FHIR-Directory mit seinen Schnittstellen und Nutzern.
+Die Abbildung zeigt das FHIR-Directory mit seinen Außen-Schnittstellen und Nutzern.
 
-.Überblick Nutzer und Rollen
+.Überblick Endnutzer und Rollen
 |===
-|Nutzer und Rolle |Beschreibung
+|Endnutzer und Rolle |Beschreibung
 
 |TI-Messenger Nutzer
 |TI-Messenger Nutzer können zwei Rollen einnehmen. Alle TI-Messenger Nutzer können im FHIR-Directory über die Schnittstelle (1) nach Einträgen im Organisationsverzeichnis suchen.
@@ -166,12 +166,15 @@ Die Abbildung zeigt das FHIR-Directory mit seinen Schnittstellen und Nutzern.
 
 |Org-Admin
 |Administratoren der Organisationen können im FHIR-Directory über die Schnittstelle (2) ihren Eintrag im Organisationsverzeichnis ändern und um zusätzliche Ressourcen erweitern.
+|===
 
+.Überblick technische Nutzer und Rollen
+|===
 |Kartenherausgeber
 |Die Kartenherausgeber nutzen die Schnittstelle (3) um die Einträge ihrer Mitglieder im LDAP-Directory und zukünftig im FHIR-Directory zu pflegen.
 
 |TI-Messenger Anbieter
-|Die TI-Messenger Anbieter nutzen die Schnittstelle (4) um die Föderationsliste des TI-Messengers abzufragen und um ihre TI-Messenger Domains als Teil der TI-Messenger Föderation zu verwalten.
+|Die TI-Messenger Anbieter nutzen die Schnittstelle (4) um die Föderationsliste des TI-Messengers abzufragen und um die Domains der von ihnen betriebenen Messenger-Services als Teil der TI-Messenger Föderation zu verwalten.
 
 |gematik
 |Die gematik kann über die Schnittstelle (5) lesend auf die Einträge im FHIR-Directory und im LDAP-Directory zugreifen um die Daten-Qualität der Einträge zu prüfen und um Fehler zu analysieren.
@@ -193,6 +196,8 @@ Alle Schnittstellen mit Ausnahme (6) sind über das Internet erreichbar. Die Sch
 
 === Datenstruktur im FHIR-Directory
 
+Im FHIR-Directory werden FHIR-Ressourcen nach der http://hl7.org/fhir/[HL7 FHIR] Spezifikation gespeichert.
+
 ==== Organisationsverzeichnis
 
 Die Einträge im Organisationsverzeichnis beginnen immer mit einer HealthcareService Ressource (Bezeichner des Service und Verfügbarkeitszeiten) mit Links zu einer Organization Ressource (Name der Organisation) sowie einer Location Ressource (postalische Adresse und Geodaten sowie Öffnungszeiten). Die Endpoint Ressource ist optional und enthält fachliche Daten der Anwendungen wie z. B. Adressdaten des TI-Messengers.
@@ -213,20 +218,10 @@ Das Objektdiagramm zeigt mögliche Verlinkungen der Ressourcen. Eine Practitione
 
 image::diagrams/ObjectDiagram.PractitionerRole.png[ObjectDiagram PractitionerRole]
 
-=== Ein- und Ausgangsdaten
+==== Beschreibung der FHIR Ressourcen
 
+Die FHIR Ressourcen sind im Simplifier Projekt https://simplifier.net/vzd-fhir-directory[VZD-FHIR-Directory] beschrieben.
 
-------
-cp
-Inhalt
-Festlegung aller Kommunikationsbeziehungen (Nutzer, IT-Systeme, …) mit Erklärung der fachlichen Ein- und Ausgabedaten oder Schnittstellen. Zusätzlich (bei Bedarf) fachliche Datenformate oder Protokolle der Kommunikation mit den Nachbarsystemen.
-Motivation
-Alle Beteiligten müssen verstehen, welche fachlichen Informationen mit der Umwelt ausgetauscht werden.
-Form
-Alle Diagrammarten, die das System als Blackbox darstellen und die fachlichen Schnittstellen zu den Nachbarsystemen beschreiben.
-Alternativ oder ergänzend können Sie eine Tabelle verwenden. Der Titel gibt den Namen Ihres Systems wieder; die drei Spalten sind: Kommunikationsbeziehung, Eingabe, Ausgabe.
-<Diagramm und/oder Tabelle>
-<optional: Erläuterung der externen fachlichen Schnittstellen>
 
 == Technischer Kontext
 cp
