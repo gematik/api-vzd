@@ -3,12 +3,14 @@ gematik, Systems Engineering
 :source-highlighter: rouge
 :title-page:
 :imagesdir: /images/
+
+image::gematik_logo.svg[gematik,float="right"]
+
 //:sectnums:
 :toc:
 :toclevels: 3
 :toc-title: Inhaltsverzeichnis
 
-image::gematik_logo.svg[gematik,float="right"]
 
 == Einführung und Ziele
 
@@ -142,16 +144,18 @@ Siehe Kontextabgrenzung in der online-Dokumentation (auf Englisch!).
 
 
 == Fachlicher Kontext
+
+=== Schnittstellen und Nutzer
+
 image::FHIR-Directory_Systemkontext.svg[FHIR-Directory Systemkontext]
 
 Die Abbildung zeigt das FHIR-Directory mit seinen Schnittstellen und Nutzern. Alle Schnittstellen mit Ausnahme (6) sind über das Internet erreichbar.
 
-=== Schnittstellen und Nutzer
-
 Die Schnittstellen stellen folgende Funktionen bereit:
 
 . Für Nutzer des TI-Messengers gibt es eine Schnittstelle zur Suche nach Einträgen im Organisationsverzeichnis und für LE zusätzlich zur Suche im Personenverzeichnis. Die Schnittstelle kann nur nach erfolgreicher Authentisierung genutzt werden. Alle TI-Messenger Nutzer können sich authentisieren und bekommen vom FHIR-Directory ein Accesstoken ausgestellt, dass für die Suchanfragen verwendet wird. Die Suche ermöglicht es komfortabel nach Volltext oder nach bestimmten Werten der einzelnen Attribute über die verlinkten Ressourcen zu suchen. Gefundene Ressourcen werden in einem Bundle von FHIR Ressourcen zurückgeliefert. Das FHIR-Directory egänzt zu gefundenen TI-Messenger Adressen automatisch ein PASSporT. Es wird Paging unterstützt. Das Datenformat ist json.
-. Für Administratoren der Organisationen des Gesundheitswesens gibt es eine Schnittstelle zur Änderung Ihres Eintrags im Organisationsverzeichnis. Zur Nutzung der Schnittstelle ist eine Authentifizierung mit OIDC Authorization Code Flow erforderlich. Über diese Schnittstelle kann der eigene Eintrag der Organisation über eine Verlinkung um zusätzliche Einträge erweitert werden. LE können diese Schnittstelle nutzen, um ihre TI-Messenger-Adresse in ihrem Eintrag im Personenverzeichnis zu speichern, sodass sie von anderen LE gefunden werden können. Auch hier erfolgt die Authnetifizierung über OIDC. Das FHIR-Datenformat ist json.
+. Für Administratoren der Organisationen des Gesundheitswesens gibt es eine Schnittstelle zur Änderung Ihres Eintrags im Organisationsverzeichnis. Zur Nutzung der Schnittstelle ist eine Authentifizierung mit OIDC Authorization Code Flow erforderlich. Über diese Schnittstelle kann der eigene Eintrag der Organisation über eine Verlinkung um zusätzliche Einträge erweitert werden.
+TI-Messenger Nutzer die auch LE sind, können diese Schnittstelle nutzen, um ihre TI-Messenger-Adresse in ihrem Eintrag im Personenverzeichnis zu speichern, sodass sie von anderen LE gefunden werden können. Auch hier erfolgt die Authnetifizierung über OIDC. Das FHIR-Datenformat ist json.
 . Für Kartenherausgeber gibt es eine Schnittstelle um Einträge im LDAP-Directory anzulegen und zu pflegen. Das Datenformat ist json und ist in einer OpenAPI yaml Datei festgelegt. Zukünftig ist vorgesehen, dass die Kartenherausgeber auch direkt die Schnittstelle zum FHIR-Directory nutzen können. Dann ist das Datenformat FHIR in der Ausprägung json. Die Authentifizierung der Kartenherausgber erfolgt mit OAuth Client Credential Flow.
 . TI-Messenger-Anbieter pflegen im FHIR-Directory für die von ihenen angebotenen Messenger-Services die TI-Messenger Domänen und verlinken sie zu den Einträgen der Organisationen, für die die Messenger-Services angeboten werden. Das Datenformat FHIR in der Ausprägung json. Zusätzlich können die TI-Messenger Anbieter die Föderationsliste abfragen. Sie beinhaltet alle an der Föderation des TI-Messengers beteiligte Domains. Die Authentifizierung der TI-Messenger-Anbieter erfolgt mit OAuth Client Credential Flow.
 . Die gematik hat Schnittstellen um die Daten-Qualität der Einträge zu prüfen. Dazu wird die Schnittstelle der Kartenherausgeber genutzt. Die gematik hat aber nur Leserechte.
