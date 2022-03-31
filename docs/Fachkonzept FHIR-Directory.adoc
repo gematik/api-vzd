@@ -50,7 +50,9 @@ Komfortabel suchen heißt, dass verschiedene Suchoptionen unterstützt werden, w
 
 . Als Kartenherausgeber möchte ich, dass ich bei einem Ausfall oder Störungen des FHIR-Directory entsprechendes Feedback und Support erhalte.
 
+. Als TI-Messenger-Anbieter möchte ich einfach und effizient die Föderationsliste des TI-Messengers herunterladen und die Domains der von mir betriebenen Messenger-Services verwalten können.
 
+. Als gematik möchte ich die Daten-Qualität der Einträge im FHIR-Directory prüfen können, damit alle Nutzer die benötigten Daten im FHIR-Directory finden können.
 
 
 == Qualitätsziele
