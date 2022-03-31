@@ -1,8 +1,7 @@
 @startuml ClassDiagram.HealthcareService
 skinparam monochrome true
 class HealthcareService {
-  {field} identifier (1..*, MS, LDAP)
-  {field} active (1..1, MS, LDAP)
+  {field} identifier (0..*, MS)
   {field} providedBy (1..1, MS, LDAP)
   {field} speciality (0..*, MS, LDAP)
   {field} location (0..*, MS, LDAP)
@@ -16,7 +15,7 @@ class HealthcareService {
   {field} endpoint (0..*, MS)
 }
 class Endpoint {
-  {field} identifier (1..*, MS)
+  {field} identifier (0..*, MS)
   {field} status (0..*, MS)
   {field} connectionType (1..1, MS)
   {field} name (0..1, MS)
@@ -25,7 +24,7 @@ class Endpoint {
   {field} address (1..1, MS)
 }
 class Location {
-  {field} identifier (1..*, MS, LDAP)
+  {field} identifier (0..*, MS)
   {field} status (0..*, MS)
   {field} name (0..1, MS)
   {field} description (0..1, MS)
@@ -37,6 +36,7 @@ class Location {
 }
 class Organization {
   {field} identifier (1..*, MS, LDAP)
+  {field} active (1..1, MS, LDAP)
   {field} type (1..1, MS, LDAP)
   {field} name (1..1, MS, LDAP)
   {field} alias (0..*, MS)
