@@ -154,9 +154,9 @@ image::FHIR-Directory_Systemkontext.svg[FHIR-Directory Systemkontext]
 
 Die Abbildung zeigt das FHIR-Directory mit seinen Außen-Schnittstellen und Nutzern.
 
-.Überblick Endnutzer und Rollen
+.Nutzer und Rollen
 |===
-|Endnutzer und Rolle |Beschreibung
+|Nutzer und Rolle |Beschreibung
 
 |TI-Messenger Nutzer
 |TI-Messenger Nutzer können zwei Rollen einnehmen. Alle TI-Messenger Nutzer können im FHIR-Directory über die Schnittstelle (1) nach Einträgen im Organisationsverzeichnis suchen.
@@ -168,8 +168,10 @@ Die Abbildung zeigt das FHIR-Directory mit seinen Außen-Schnittstellen und Nutz
 |Administratoren der Organisationen können im FHIR-Directory über die Schnittstelle (2) ihren Eintrag im Organisationsverzeichnis ändern und um zusätzliche Ressourcen erweitern.
 |===
 
-.Überblick technische Nutzer und Rollen
+.Kommunikationsbeziehungen zu IT-Systemen
 |===
+|IT-Systeme |Beschreibung
+
 |Kartenherausgeber
 |Die Kartenherausgeber nutzen die Schnittstelle (3) um die Einträge ihrer Mitglieder im LDAP-Directory und zukünftig im FHIR-Directory zu pflegen.
 
