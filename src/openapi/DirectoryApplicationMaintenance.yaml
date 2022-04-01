@@ -1000,7 +1000,7 @@ components:
           example: "https://www.apache.org/licenses/LICENSE-2.0.html"
 
 #  securitySchemes:
-#    OAuth2:
+#    TLS:
 #      type: mutualTLS
 #   Da "mutualTLS" erst ab OpenAPI 3.1 möglich ist - welches viele Tools noch nicht unterstützen -
 #   wird die beidseitige TLS Authentisierung nicht hier definiert.
