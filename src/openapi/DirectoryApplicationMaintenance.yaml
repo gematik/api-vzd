@@ -65,7 +65,6 @@ paths:
                   $ref: '#/components/schemas/InfoObject'
         401:
           description: Unauthorized
-                    #  Der WWW-Authenticate Header im Response wird auf OAuth gesetzt.
           content: {}
         403:
           description: Forbidden
@@ -293,7 +292,6 @@ paths:
 
         401:
           description: Unauthorized
-                    #  Der WWW-Authenticate Header im Response wird auf OAuth gesetzt.
           content: {}
         403:
           description: Forbidden
@@ -365,7 +363,6 @@ paths:
         401:
           description: |
            Unauthorized
-           Der WWW-Authenticate Header im Response muss auf OAuth gesetzt werden.
           content: {}
         403:
           description: Forbidden
@@ -416,9 +413,7 @@ paths:
              schema:
               $ref: '#/components/schemas/Error'
         401:
-          description: |
-           Unauthorized
-           Der WWW-Authenticate Header im Response muss auf OAuth gesetzt werden.
+          description: Unauthorized
           content: {}
         403:
           description: Forbidden
@@ -463,7 +458,6 @@ paths:
 
         401:
           description: Unauthorized
-                    #  Der WWW-Authenticate Header im Response muss auf OAuth gesetzt werden.
           content: {}
         403:
           description: Forbidden
@@ -532,7 +526,6 @@ paths:
               $ref: '#/components/schemas/Error'
         401:
           description: Unauthorized
-                    #  Der WWW-Authenticate Header im Response muss auf OAuth gesetzt werden.
           content: {}
         403:
           description: Forbidden
@@ -577,7 +570,6 @@ paths:
               $ref: '#/components/schemas/Error'
         401:
           description: Unauthorized
-                    #  Der WWW-Authenticate Header im Response muss auf OAuth gesetzt werden.
           content: {}
         403:
           description: Forbidden
