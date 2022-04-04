@@ -8,6 +8,7 @@ info:
   # Änderungen in Version 1.1.4
   #  - KOM-LE_Version wurde durch komLeData ersetzt. Dies erlaubt die Angabe von KIM-Versionen für einzelne KIM-Adressen. 
   #  - Die Client Authentisierung wurde auf mutualTLS angepasst (OAuth2 wurde gestrichen)
+  #  - Server URLs hinzugefügt  
   # Änderungen in Version 1.1.3
   #  - Filtermöglichkeiten in Leseoperationen read_Directory_Entry 
   #    (Wildcard "*" & Vorhandensein \00) aufgenommen.
@@ -30,11 +31,11 @@ externalDocs:
   description: Weitere Dokumentationen
   url: http://www.gematik.de
 servers:
-- url: https://to.be.defined/
+- url: https://directory.vzd.telematik:9643/
   description: Production server (PU)
-- url: https://to.be.defined/
+- url: https://directory-test.vzd.telematik-test:9643/
   description: Test server (TU)
-- url: https://to.be.defined/
+- url: https://directory-ref.vzd.telematik-test:9643/
   description: Reference server (RU)
 
 
