@@ -59,16 +59,17 @@ Als Administrator einer Organisation des Gesundheitswesens möchte ich konfiguri
 
 ==== Kartenherausgeber pflegen Daten im FHIR-Directory
 
-(cp)
-
 . Als Kartenherausgeber brauche ich eine einfache (technische) Möglichkeit, die Daten für die ich verantwortlich bin, im VZD-FHIR-Directory editieren zu können (einstellen, lesen, verändern, löschen).
 
 . Als Kartenherausgeber möchte ich, dass ich bei einem Ausfall oder Störungen des FHIR-Directory entsprechendes Feedback und Support erhalte.
 
+Die Kartenherausgeber pflegen die Daten ihrer Mitglieder im FHIR-Directory. Das erfolgt zur Zeit noch nicht direkt, sondern über die Pflege der Einträge im LDAP-Directory, die in das FHIR-Directory regelmäßig automatisch synchronisiert werden. Damit ein Kartenherausgeber Einträge pflegen kann, muss er sich beim Anbieter des Verzeichnisdienstes registrieren. Als Ergebnis der Registrierung erhält der Kartenherausgeber Credentials, mit denen er sich authentisieren kann und so die Berechtigung zur Pflege der Einträge in Form eines accesstokens erhält.
+
 ==== TI-Messenger-Anbieter verwaltet TI-Messenger-Föderations-Domains
 
-(cp)
 Als TI-Messenger-Anbieter möchte ich einfach und effizient die Föderationsliste des TI-Messengers herunterladen und die Domains der von mir betriebenen Messenger-Services verwalten können.
+
+Die TI-Messenger-Anbieter pflegen die TI-Messenger-Domains der von ihnen betriebenen Messenger-Services im FHIR-Directory. Zusätzlich benötigt der TI-Messenger-Anbieter die Föderationsliste vom FHIR-Directory. Das FHIR-Directory stellt für diese Operationen eine Schnittstelle bereit. Damit ein TI-Messenger-Anbieter die Schnittstelle nutzen kann, muss er sich beim Anbieter des Verzeichnisdienstes registrieren. Als Ergebnis der Registrierung erhält der TI-Messenger-Anbieter Credentials, mit denen er sich authentisieren kann und so die Berechtigung zur Nutzung der Schnittstelle in Form eines accesstokens erhält.
 
 ==== Sicherung der Datenqualität durch die gematik
 
