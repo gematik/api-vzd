@@ -54,9 +54,12 @@ Um die TI-Messenger-Adresse im eigenen Eintrag im Personenverzeichnis speichern 
 
 ==== Organisation des Gesundheitswesens verwaltet ihren Eintrag im Organisationsverzeichnis
 
+(uhe)
 Als Administrator einer Organisation des Gesundheitswesens möchte ich konfigurieren können, wie meine TI-Messenger-Kontaktdaten im Organisationsverzeichnis gefunden werden, damit die Arbeitsabläufe in meiner Organisation sinnvoll durch den TI-Messenger unterstützt werden.
 
 ==== Kartenherausgeber pflegen Daten im FHIR-Directory
+
+(cp)
 
 . Als Kartenherausgeber brauche ich eine einfache (technische) Möglichkeit, die Daten für die ich verantwortlich bin, im VZD-FHIR-Directory editieren zu können (einstellen, lesen, verändern, löschen).
 
@@ -64,10 +67,12 @@ Als Administrator einer Organisation des Gesundheitswesens möchte ich konfiguri
 
 ==== TI-Messenger-Anbieter verwaltet TI-Messenger-Föderations-Domains
 
+(cp)
 Als TI-Messenger-Anbieter möchte ich einfach und effizient die Föderationsliste des TI-Messengers herunterladen und die Domains der von mir betriebenen Messenger-Services verwalten können.
 
 ==== Sicherung der Datenqualität durch die gematik
 
+(uhe)
 Als gematik möchte ich die Daten-Qualität der Einträge im FHIR-Directory prüfen können, damit alle Nutzer die benötigten Daten im FHIR-Directory finden können.
 
 
