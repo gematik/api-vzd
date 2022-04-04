@@ -31,9 +31,9 @@ Um dies zu erreichen besitzt das FHIR-Directory Schnittstellen
 
 === User Stories
 
-==== TI-Messenger Nutzer sucht im Organisationsverzeichnis
+==== TI-Messenger Nutzer sucht im FHIR-Directory
 
-. Als TI-Messenger-Nutzer möchte ich komfortabel aus meiner TI-Messenger App nach Kontakten im Organisationsverzeichnis suchen können, sodass ich  einen geeigneten TI-Messenger-Kommunikationspartner finden kann.
+. Als TI-Messenger-Nutzer möchte ich komfortabel aus meiner TI-Messenger App nach Kontakten im FHIR-Directory suchen können, sodass ich  einen geeigneten TI-Messenger-Kommunikationspartner finden kann.
 Komfortabel suchen heißt, dass verschiedene Suchoptionen unterstützt werden, wie Volltextsuche, genaue Angabe von Suchparametern und unscharfe Suche. Ich möchte auch in meiner App verschiedene Such- und Filterfunktionen kombinieren können wie z.B. die Ortungsfunktion und die Filterung nach Öffnungszeiten, um eine Organisation zu finden.
 
 . Als TI-Messenger-Nutzer möchte ich die Ortungsfunktion meines Geräts nutzen können, um nahegelegene Organisationen finden zu können, so dass ich spontan die für mich bestgelegene Organisation auswählen kann.
@@ -42,17 +42,17 @@ Komfortabel suchen heißt, dass verschiedene Suchoptionen unterstützt werden, w
 
 . Als TI-Messenger-Nutzer möchte ich zu den gefundenen Organisationen zusätzliche Informationen erhalten, um mich mit ihnen in Verbindung setzen bzw. um mich über sie informieren zu können (z.B. Webseite, E-Mail-Adresse, Telefonnummer, unterstützte Sprachen).
 
-Die Authentifizierung der TI-Messenger-Nutzer am FHIR-Directory erfolgt durch Nachweis der Zugehörigkeit zu einem TI-Messenger-Service. Die Zugehörigkeit zu einem TI-Messenger-Service wird durch eine sichere Überprüfung durch das FHIR-Directory beim Messenger-Service erreicht. Der Vorgang erfolgt ohne Nuzerinteraktion. Als Ergebnis der Authentifizierung erhält der TI-Messenger-Client ein accesstoken, dass für die Zugriffe auf das Organisationsverzeichnis verwendet werden kann ohne
-
-==== TI-Messenger-Nutzer und Leistungserbringer sucht im Personenverzeichnis
-
 . Als TI-Messenger-Nutzer und Leistungserbringer (LE) möchte ich im Personenverzeichnis komfortabel (siehe User Story (1)) nach anderen LE suchen können, um mit ihnen auf unkomplizierte Weise kommunizieren zu können.
 
-. Als TI-Messenger-Nutzer und LE möchte ich, dass ich selbst entscheiden kann, ob ich von anderen LE im Personenverzeichnis gefunden werde, damit ich die Kontrolle darüber habe, ob ich über den TI-Messenger erreichbar bin.
+Die Authentifizierung der TI-Messenger-Nutzer am FHIR-Directory erfolgt durch Nachweis der Zugehörigkeit zu einem TI-Messenger-Service. Die Zugehörigkeit zu einem TI-Messenger-Service wird durch eine sichere Überprüfung durch das FHIR-Directory beim Messenger-Service erreicht. Der Vorgang erfolgt ohne Nuzerinteraktion. Als Ergebnis der Authentifizierung erhält der TI-Messenger-Client ein accesstoken, dass für die Zugriffe auf das FHIR-Directory, ohne erneute Überpräfung beim TI-Messenger-Service, verwendet werden kann. Das accesstoken enthält die TI-Messenger-Adresse des TI-Messenger-Nutzers und, ob es sich beim Nutzer um einen Leistungserbringer (LE) handelt, der eine TI-Messenger-Adresse im Personenverzeichnis hat. TI-Messenger-Nutzer dürfen grundsätzlich immer im Organisationsverzeichnis suchen. Wenn der Nutzer zusätzlich ein LE ist und seine TI-Messenger-Adresse im Personenverzeichnis eingetragen ist, dann kann der Nutzer auch im Personenverzeichnis nach Kontakten suchen.
+
+==== Eintrag im Personenverzeichnis für LE
+
+Als TI-Messenger-Nutzer und LE habe ich die Möglichkeit meine TI-Messenger-Adresse in das Personenverzeichnis einzutragen. Dadurch habe ich die Kontrolle, ob ich über den TI-Messenger im Personenverzeichnis erreichbar bin.
 
 ==== Organisation des Gesundheitswesens verwaltet ihren Eintrag im Organisationsverzeichnis
 
-. Als Administrator einer Organisation des Gesundheitswesens möchte ich konfigurieren können, wie meine TI-Messenger-Kontaktdaten im Organisationsverzeichnis gefunden werden, damit die Arbeitsabläufe in meiner Organisation sinnvoll durch den TI-Messenger unterstützt werden.
+Als Administrator einer Organisation des Gesundheitswesens möchte ich konfigurieren können, wie meine TI-Messenger-Kontaktdaten im Organisationsverzeichnis gefunden werden, damit die Arbeitsabläufe in meiner Organisation sinnvoll durch den TI-Messenger unterstützt werden.
 
 ==== Kartenherausgeber pflegen Daten im FHIR-Directory
 
@@ -62,11 +62,11 @@ Die Authentifizierung der TI-Messenger-Nutzer am FHIR-Directory erfolgt durch Na
 
 ==== TI-Messenger-Anbieter verwaltet TI-Messenger-Föderations-Domains
 
-. Als TI-Messenger-Anbieter möchte ich einfach und effizient die Föderationsliste des TI-Messengers herunterladen und die Domains der von mir betriebenen Messenger-Services verwalten können.
+Als TI-Messenger-Anbieter möchte ich einfach und effizient die Föderationsliste des TI-Messengers herunterladen und die Domains der von mir betriebenen Messenger-Services verwalten können.
 
 ==== Sicherung der Datenqualität durch die gematik
 
-. Als gematik möchte ich die Daten-Qualität der Einträge im FHIR-Directory prüfen können, damit alle Nutzer die benötigten Daten im FHIR-Directory finden können.
+Als gematik möchte ich die Daten-Qualität der Einträge im FHIR-Directory prüfen können, damit alle Nutzer die benötigten Daten im FHIR-Directory finden können.
 
 
 == Qualitätsziele
