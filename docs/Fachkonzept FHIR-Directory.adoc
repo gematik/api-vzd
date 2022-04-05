@@ -75,8 +75,16 @@ Die TI-Messenger-Anbieter pflegen die TI-Messenger-Domains der von ihnen betrieb
 
 ==== Sicherung der Datenqualität durch die gematik
 
-(uhe)
 Als gematik möchte ich die Daten-Qualität der Einträge im FHIR-Directory prüfen können, damit alle Nutzer die benötigten Daten im FHIR-Directory finden können.
+
+Zur Sicherung der Datenqualität nutzt die gematik
+
+- periodische, datenschutzkonforme Reports, welche durch den VZD-FHIR-Directory Anbieter erstellt werden
+- die Suchfunktion im VZD-FHIR-Directory zum Auffinden von Datensätzen mit geringer Qualität bzw. Fehlern.
+
+Die Suchfunktion im VZD-FHIR-Directory erfolgt durch die gematik analog zu der Suche durch normale TI-Messenger-Nutzer:
+
+Die Authentifizierung der gematik-Nutzer am FHIR-Directory erfolgt durch Nachweis der Zugehörigkeit zu einem TI-Messenger-Service. Die Zugehörigkeit zu einem TI-Messenger-Service wird durch eine sichere Überprüfung durch das FHIR-Directory beim Messenger-Service erreicht. Der Vorgang erfolgt ohne Nuzerinteraktion. Als Ergebnis der Authentifizierung erhält der TI-Messenger-Client ein tim-search-accesstoken, dass für die Zugriffe auf das FHIR-Directory, ohne erneute Überprüfung beim TI-Messenger-Service, verwendet werden kann. Das accesstoken enthält die TI-Messenger-Adresse des gematik-Nutzer und, dass es sich beim Nutzer um einen Leistungserbringer (LE) handelt, der eine TI-Messenger-Adresse im Personenverzeichnis hat. gematik-Nutzer dürfen grundsätzlich immer im Organisationsverzeichnis und auch im Personenverzeichnis nach Kontakten suchen.
 
 
 == Qualitätsziele
