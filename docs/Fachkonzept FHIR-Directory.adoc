@@ -54,8 +54,10 @@ Um die TI-Messenger-Adresse im eigenen Eintrag im Personenverzeichnis speichern 
 
 ==== Organisation des Gesundheitswesens verwaltet ihren Eintrag im Organisationsverzeichnis
 
-(uhe)
 Als Administrator einer Organisation des Gesundheitswesens möchte ich konfigurieren können, wie meine TI-Messenger-Kontaktdaten im Organisationsverzeichnis gefunden werden, damit die Arbeitsabläufe in meiner Organisation sinnvoll durch den TI-Messenger unterstützt werden.
+
+Um die TI-Messenger-Kontaktdaten im eigenen Eintrag im Organisationszeichnis speichern zu können und Unterstukturen von TIOrganization-Einträgen anzulegen und zu verwalten, ist es erforderlich, dass der Administrator einer Organisation sicher authentifiziert wird. Durch Anfrage des Org-Admin-Clients oder TI-Messenger-Clients beim FHIR-Directory wird ein OpenID Connect Authorization Code Flow ausgelöst. Mithilfe eines IDPs aus der TI-IDP-Föderation und eines Authenticators auf dem Gerät des Org-Admin-Clients/TI-Messenger-Clients authentifiziert sich der Administrator. Am Ende erhält der Administrator ein owner-accesstoken, dass ihn berechtigt seine Daten im Organisationszeichnis des FHIR-Directories einzutragen oder zu löschen. Vom Kartenherausgeber verwaltete Daten können nicht durch den Administrator einer Organisation geändert werden.
+
 
 ==== Kartenherausgeber pflegen Daten im FHIR-Directory
 
