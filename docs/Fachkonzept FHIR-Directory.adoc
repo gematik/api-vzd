@@ -18,7 +18,7 @@ image::gematik_logo.svg[gematik,float="right"]
 == Einführung und Ziele
 
 Das FHIR-Directory der Telematikinfrastruktur (TI) ist ein Verzeichnis von Organisationen des Gesundheitswesens und ein Verzeichnis von Leistungserbringern (LE). Es ist ein wesentlicher Bestandteil der TI 2.0 und ermöglicht den Nutzern und Anbietern von Fachanwendungen der TI, wie z. B. dem TI-Messenger, ihre Einträge im FHIR-Directory um Informationen zu erweitern sowie nach Organisationen und Personen zu suchen.
-Eine Datenbasis für die Einträge der Organisationen und LE wird durch die Kartenherausgeber gepflegt. Die Einträge der Organisationen und LE werden im FHIR-Format gepflegt und und abgefragt.
+Eine Datenbasis für die Einträge der Organisationen und LE wird durch die Kartenherausgeber gepflegt. Die Einträge der Organisationen und LE werden im FHIR-Format gepflegt und abgefragt.
 
 == Aufgabenstellung
 
@@ -270,6 +270,75 @@ Das Objektdiagramm zeigt mögliche Verlinkungen der Ressourcen. Ein HealthcareSe
 
 image::diagrams/ObjectDiagram.HealthcareService.png[ObjectDiagram HealthcareService]
 
+.Datenmodell Ressource Organisation
+|===
+|Attribut
+|Fachlicher Wert
+|Kardinalität
+|Bemerkung
+|Sync mit LDAP-Directory
+|Kann vom Besitzer geändert werden
+
+|identifier
+|telematikID
+|1..*
+|Aktuell gibt es nur eine telematikID je Eintrag
+|ja
+|nein
+
+|identifier
+|Betriebsstättennummer
+|0..*
+|Wird von Arztpraxen verwendet
+|ja
+|nein
+
+|identifier
+|Abrechnungsnummer
+|0..*
+|Wird von Zahnarztpraxen verwendet
+|ja
+|nein
+
+|identifier
+|IK-Nummer
+|0..*
+|Wird von Krankenkassen und Krankenhäusern verwendet
+|ja
+|nein
+
+|name
+|Name der Organisation
+|1..1
+|Kann nur vom Kartenherausgeber geändert werden
+|ja
+|nein
+
+|type
+|Institutions-Typ
+|0..1
+|Gemäß professionOID (Pflicht, wenn Organisation kein Provider ist)
+|ja
+|nein
+
+|type
+|Provider-Typ
+|0..1
+|Gemäß TIProviderType
+Pflicht, wenn Organisation ein Provider ist
+
+|nein
+|nein
+
+|active
+|Status des Eintrags
+|1..1
+|Gibt die Sichtbarkeit des Eintrags für Nutzer an
+Ist immer true, wenn der Eintrag aus dem LDAP-Directory synchronisiert wurde
+|nein
+|nein
+|===
+
 ==== Personenverzeichnis
 
 Die Einträge im Personenverzeichnis beginnen immer mit einer PractitionerRole Ressource (Rolle des LE) mit Links zu einer Practitioner Ressource (Name des LE) sowie optional einer Location Ressource (postalische Adresse und Geodaten sowie Öffnungszeiten). Die Endpoint Ressource ist optional und enthält fachliche Daten der Anwendungen wie z. B. Adressdaten des TI-Messengers.
@@ -283,7 +352,6 @@ image::diagrams/ObjectDiagram.PractitionerRole.png[ObjectDiagram PractitionerRol
 ==== Beschreibung der FHIR Ressourcen
 
 Die FHIR Ressourcen sind im Simplifier Projekt https://simplifier.net/vzd-fhir-directory[VZD-FHIR-Directory] beschrieben.
-
 
 == Technischer Kontext
 cp
