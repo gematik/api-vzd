@@ -270,6 +270,95 @@ Das Objektdiagramm zeigt mögliche Verlinkungen der Ressourcen. Ein HealthcareSe
 
 image::diagrams/ObjectDiagram.HealthcareService.png[ObjectDiagram HealthcareService]
 
+.Datenmodell Ressource HealthcareService
+|===
+|Attribut|Fachlicher Wert|Kardinalität|Bemerkung|Sync mit LDAP-Directory|Kann vom Besitzer geändert werden
+
+|identifier
+|n/a
+|0..*
+|Aktuell kein Identifier vorgesehen
+|nein
+|nein
+
+|providedBy
+|Reference der Organization Ressource
+|1..1
+|Es gibt immer einen HealthcareService, der von den Kartenherausgebern erzeugt wird. Der Besitzer des Eintrags kann weitere Healthcareservices erzeugen, die immer eine Referenz auf die eigene Organization Ressource haben müssen.
+|ja
+|ja
+
+|speciality
+|Fachrichtung
+|0..*
+|Inhalt gemäß https://wiki.hl7.de/index.php?title=IG:Value_Sets_f%C3%BCr_XDS#DocumentEntry.practiceSettingCode
+|ja
+|nein
+
+|location
+|Reference der Location Ressource
+|0..*
+|
+|ja
+|ja
+
+|name
+|Name des HealthcareService
+|0..*
+|
+|nein
+|ja
+
+|telecom
+|Kontaktdaten des HealthcareService
+|0..*
+|
+|nein
+|ja
+
+|serviceProvisionCode
+|Service-Konditionen
+|0..*
+|Bedingungen unter denen der Service angeboten wird oder genutzt werden kann (z. B. kostenpflichtig)
+|nein
+|ja
+
+|communication
+|Sprache
+|0..*
+|Sprache, in der der Service angeboten wird
+|nein
+|ja
+
+|appointmentRequired
+|Termin erforderlich?
+|0..1
+|Ob ein Termin erforderlich ist
+|nein
+|ja
+
+|availableTime
+|Verfügbarkeit des Service
+|0..*
+|Wann der Service verfügbar ist
+|nein
+|ja
+
+|availabilityExceptions
+|Ausnahmen der Verfügbarkeit
+|0..*
+|Beschreibung der Verfügbarkeitsausnahmen
+|nein
+|ja
+
+|endpoint
+|Referenz zur Endpoint Ressource
+|0..*
+|
+|nein
+|ja
+|===
+
 .Datenmodell Ressource Organisation
 |===
 |Attribut|Fachlicher Wert|Kardinalität|Bemerkung|Sync mit LDAP-Directory|Kann vom Besitzer geändert werden
@@ -302,13 +391,6 @@ image::diagrams/ObjectDiagram.HealthcareService.png[ObjectDiagram HealthcareServ
 |ja
 |nein
 
-|name
-|Name der Organisation
-|1..1
-|Kann nur vom Kartenherausgeber geändert werden
-|ja
-|nein
-
 |type
 |Institutions-Typ
 |0..1
@@ -323,6 +405,34 @@ image::diagrams/ObjectDiagram.HealthcareService.png[ObjectDiagram HealthcareServ
 Pflicht, wenn Organisation ein Provider ist
 |nein
 |nein
+
+|name
+|Name der Organisation
+|1..1
+|Kann nur vom Kartenherausgeber geändert werden
+|ja
+|nein
+
+|alias
+|Alias Name der Organisation
+|0..*
+|Hat den Wert des LDAP-Attributs organization, wenn vorhanden. Der Besitzer kann das Attribut ändern.
+|ja
+|ja
+
+|telecom
+|Kontaktdaten der Organisation
+|0..*
+|
+|nein
+|ja
+
+|contact
+|Kontakt-Personen der Organisation
+|0..*
+|
+|nein
+|ja
 
 |active
 |Status des Eintrags
