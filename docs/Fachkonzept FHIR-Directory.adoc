@@ -272,12 +272,7 @@ image::diagrams/ObjectDiagram.HealthcareService.png[ObjectDiagram HealthcareServ
 
 .Datenmodell Ressource Organisation
 |===
-|Attribut
-|Fachlicher Wert
-|Kardinalität
-|Bemerkung
-|Sync mit LDAP-Directory
-|Kann vom Besitzer geändert werden
+|Attribut|Fachlicher Wert|Kardinalität|Bemerkung|Sync mit LDAP-Directory|Kann vom Besitzer geändert werden
 
 |identifier
 |telematikID
@@ -326,7 +321,6 @@ image::diagrams/ObjectDiagram.HealthcareService.png[ObjectDiagram HealthcareServ
 |0..1
 |Gemäß TIProviderType
 Pflicht, wenn Organisation ein Provider ist
-
 |nein
 |nein
 
