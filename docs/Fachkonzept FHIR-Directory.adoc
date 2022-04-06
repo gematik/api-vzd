@@ -327,8 +327,7 @@ Pflicht, wenn Organisation ein Provider ist
 |active
 |Status des Eintrags
 |1..1
-|Gibt die Sichtbarkeit des Eintrags für Nutzer an
-Ist immer true, wenn der Eintrag aus dem LDAP-Directory synchronisiert wurde
+|Gibt die Sichtbarkeit des Eintrags für Nutzer an. Ist immer true, wenn der Eintrag aus dem LDAP-Directory synchronisiert wurde.
 |nein
 |nein
 |===
