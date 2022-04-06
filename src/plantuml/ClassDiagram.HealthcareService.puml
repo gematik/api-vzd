@@ -35,7 +35,7 @@ class Location {
   {field} availabilityExceptions (0..1, MS)
 }
 class Organization {
-  {field} identifier (1..*, MS, LDAP)
+  {field} identifier (0..*, MS, LDAP)
   {field} active (1..1, MS, LDAP)
   {field} type (1..1, MS, LDAP)
   {field} name (1..1, MS, LDAP)
