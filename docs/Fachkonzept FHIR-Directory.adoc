@@ -442,6 +442,75 @@ Pflicht, wenn Organisation ein Provider ist
 |nein
 |===
 
+.Datenmodell Ressource Location
+|===
+|Attribut|Fachlicher Wert|Kardinalität|Bemerkung|Sync mit LDAP-Directory|Kann vom Besitzer geändert werden
+
+|identifier
+|n/a
+|0..*
+|Aktuell kein Identifier vorgesehen
+|nein
+|ja
+
+|status
+|active | suspended | inactive
+|0..1
+|
+|nein
+|ja
+
+|name
+|Name der Location
+|0..*
+|
+|nein
+|ja
+
+|description
+|Beschreibung der Location
+|0..*
+|
+|nein
+|ja
+
+|telecom
+|Kontaktdaten der Location
+|0..*
+|
+|nein
+|ja
+
+|address
+|Postalische Adresse der Location
+|0..*
+|Wenn vom Kartenherausgeber angelegt, dann kann die Adresse nur durch den Kartenherausgeber geändert werden. Wenn durch die Organisation angelegt, dann kann die Adresse nur durch die Organisation geändert werden.
+|ja
+|ja
+
+|position
+|Geographische Position der Location
+|0..*
+|Wenn vom Kartenherausgeber angelegt, dann kann die Position nur durch den Kartenherausgeber geändert werden. Wenn durch die Organisation angelegt, dann kann die Position nur durch die Organisation geändert werden.
+|ja
+|ja
+
+|hoursOfOperation
+|Öffnungszeiten
+|0..*
+|
+|nein
+|ja
+
+|availabilityExceptions
+|Ausnahmen der Öffnungszeiten
+|0..*
+|
+|nein
+|ja
+|===
+
+
 ==== Personenverzeichnis
 
 Die Einträge im Personenverzeichnis beginnen immer mit einer PractitionerRole Ressource (Rolle des LE) mit Links zu einer Practitioner Ressource (Name des LE) sowie optional einer Location Ressource (postalische Adresse und Geodaten sowie Öffnungszeiten). Die Endpoint Ressource ist optional und enthält fachliche Daten der Anwendungen wie z. B. Adressdaten des TI-Messengers.
