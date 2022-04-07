@@ -121,7 +121,8 @@ paths:
 
             Diese Suche findet sowohl Datensätze mit nicht vorhandenem Attribut wie auch vorhandenem aber leerem Attribut.
             Der Suchparameter darf nur den Kode \00 enthalten, keine weiteren Zeichen.
-            Alle Filterparameter einer Leseoperationen werden mit einem UND (&) verknüpft.      operationId: read_Directory_Entry
+            Alle Filterparameter einer Leseoperationen werden mit einem UND (&) verknüpft.      
+      operationId: read_Directory_Entry
       parameters:
       - name: uid
         in: query
