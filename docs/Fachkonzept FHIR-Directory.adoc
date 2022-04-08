@@ -510,6 +510,59 @@ Pflicht, wenn Organisation ein Provider ist
 |ja
 |===
 
+.Datenmodell Ressource Endpoint
+|===
+|Attribut|Fachlicher Wert|Kardinalität|Bemerkung|Sync mit LDAP-Directory|Kann vom Besitzer geändert werden
+
+|identifier
+|n/a
+|0..*
+|Aktuell kein Identifier vorgesehen
+|nein
+|ja
+
+|status
+|active | suspended | inactive
+|1..1
+|
+|nein
+|ja
+
+|connectionType
+|Verbindungstyp
+|1..1
+|Gültige Werte werden in einem ValueSet vorgegeben.
+|nein
+|ja
+
+|name
+|Name der Endpoint Ressource
+|1..1
+|
+|nein
+|ja
+
+|managingOrganization
+|Referenz der Organisation, zu der der Endpoint gehört.
+|0..1
+|Wird von TI-Messenger Anbietern genutzt
+|nein
+|ja
+
+|payloadType
+|Prozessbezeichner
+|1..*
+|Bezeichnet den vom Endpoint unterstützten Prozess.
+|nein
+|ja
+
+|address
+|Adresse des Endpoints
+|1..1
+|Adresse des Endpoints in URL Notation
+|nein
+|ja
+|===
 
 ==== Personenverzeichnis
 

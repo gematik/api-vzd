@@ -21,7 +21,7 @@ class Practitioner {
 class Endpoint {
   {field} identifier (0..*, MS)
   {field} status (1..1, MS)
-  {field} connectionType (0..*, MS)
+  {field} connectionType (1..1, MS)
   {field} name (1..1, MS)
   {field} managingOrganization (0..1, MS)
   {field} payloadType (1..*, MS)
