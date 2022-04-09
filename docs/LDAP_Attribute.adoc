@@ -19,25 +19,25 @@ m| <<domainID>>
 | Sektor-ID
 
 3+s|Namen
-m| displayName
+m| <<displayName>>
 | 1..1
 | Anzeigename
-m| cn
+m| <<cn>>
 | 1..1
 | Name
-m| otherName
+m| <<otherName>>
 | 0..1
 | Alternativer Name
-m| organization
+m| <<organization>>
 | 0..1
 | Organisation
-m| givenName
+m| <<givenName>>
 | 0..1
 | Vorname
-m| sn
+m| <<sn>>
 | 0..1
 | Nachname
-m| title
+m| <<title>>
 | 0..1
 | Titel
 
@@ -98,7 +98,7 @@ m| changeDateTime
 
 == Identifikatoren
 
-=== telematikID [[telematikID]]
+=== `telematikID` [[telematikID]]
 
 Telematik-ID ist ein eindeutiger Identifikator einer Institution oder einer Person in der TI.
 Spezifiziert in https://fachportal.gematik.de/fachportal-import/files/gemSpec_PKI_V2.11.1.pdf[gemSpec_PKI], Kapitel 4.7.
@@ -121,61 +121,63 @@ Die Nutzung für die Sektoren wird in Kapitel *Attributtabellen* von Dokument ht
 * Zahnärzte (HBA-Eintrag): Spezifisches Kennzeichen der Zahnärzte. Kann mehrfach vorkommen (0..100).
 * Gesetzlichen Krankenkassen (SMC-B-Eintrag): Institutionskennzeichen. Kann mehrfach vorkommen (0..100).
 
-
 == Namen
 
-[cols="1,2,6"]
-|===
-| Attribut  | Bezeichner | Anmerkungen
+=== `displayName` [[displayName]]
 
-.2+| `displayName`
-.2+| Anzeigename
-a| _Person (HBA)_
-
-Dieses Attribut wird genutzt, um vollen Namen einer Person gegenüber dem Anwender darzustellen. Es wird empfohlen den Namen wie folgt anzugeben:
-
-----
-Nachname, Vorname(n)
-Müstermann, Manfred
-----
+Dieses Attribut wird verwendet um vollen Namen einer Institution oder Person in GUI anzuzeigen. 
 
 Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2798#section-2.3[RFC2798 Section 2.3]
 
-a| _Institution (SMC-B)_
+==== Person (HBA)
 
-Dieses Attribut wird genutzt, um  Namen einer Institution gegenüber dem Anwender darzustellen.
+Bei Personen wird `displayName` genutzt, um vollen Namen einer Person gegenüber dem Anwender darzustellen. Es wird empfohlen den Namen wie folgt anzugeben (_Nachname, Vorname_):
 
+----
+Dr. Mustermann, Manfred
+----
 
-| `cn`
-| Name
-| Eindeutiger Name einer Person oder Institution.
+==== Institution (SMC-B)
+
+Bei Institutionen wird `displayName` genutzt, um  den Namen einer Institution gegenüber dem Anwender darzustellen.
+
+----
+Praxis Dr. Sandra Meyer
+----
+
+=== `cn` [[cn]]
+Eindeutiger Name einer Person oder Institution.
 LDAP unterstützt grundsätzlich mehrere Namen eines Objekts, in der TI wird jedoch meistens nur ein `cn`-Attribut verwendet, daher ist `cn` in der Regel identisch mit `displayName`.
 
 Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2256#section-5.4[RFC2256 Section 5.4]
 
-| `otherName`
-| Weitere Name(n)
-| Es wird nicht mehr empfohlen dieses Attribut zu verwenden.
+=== `otherName` [[otherName]]
 
-| `organization`
-| Organization
-| Es wird nicht mehr empfohlen dieses Attribut zu verwenden.
+WARNING: Es wird nicht mehr empfohlen dieses Attribut zu verwenden.
 
-| `givenName`
-| Vorname
-| Nachnamen sollen nur bei natürlichen Personen befüllt sein.
+=== `organization` [[organization]]
+
+Optionaler Name einer Organisation zu welcher diese Eintrag gehört.
+
+Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2256#section-5.11[RFC2256 Section 5.11]
+
+=== `givenName` [[givenName]]
+
+Alle Vornamen einer natürlicher Person. Vornamen sollen nur bei natürlichen Personen befüllt sein, bei Institutionen muss `givenName` leer bleiben.
+
 Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2256#section-5.43[RFC2256 Section 5.43]
 
-| `sn`
-| Nachname
-| Nachnamen sollen nur bei natürlichen Personen befüllt sein.
+=== `sn` [[sn]]
+
+Nachname eine natürlichen Person. Nachnamen sollen nur bei natürlichen Personen befüllt sein, bei Institutionen muss `sn` leer bleiben.
+
 Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2256#section-5.5[RFC2256 Section 5.5]
 
-| `title`
-| Akademischer oder Adelstitel
-| Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2256#section-5.13[RFC2256 Section 5.13]
+=== `title` [[title]]
+Akademischer oder Adelstitel einer natürlichen Person.
 
-|===
+Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2256#section-5.13[RFC2256 Section 5.13]
+
 
 == Adressdaten
 
