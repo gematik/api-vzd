@@ -61,38 +61,38 @@ m| <<countryCode>>
 | Landeskürzel
 
 3+s|Berufliche Informationen
-m| professionOID
+m| <<professionOID>>
 | 1..N
 | Berufsgruppe
-m| specialization
+m| <<specialization>>
 | 1..N
 | Fachgebiet
-m| entryType
+m| <<entryType>>
 | 1..1
 | Typ des Eintags
 
 3+s|Anwendungsdaten
-m| mail
+m| <<mail>>
 | 0..N
 | KIM-Adresse
 
-m| komLeData
+m| <<komLeData>>
 | 0..N
 | KIM-Adresse mit Version
 
 3+s|Zertifikate
-m| userCertificate
+m| <<userCertificate>>
 | 0..N
 | Zertifikat
 
 3+s|Systemdaten
-m| dataFromAuthority
+m| <<dataFromAuthority>>
 | 1..1
 | Verwaltet durch Kartenherausgeber?
-m| personalEntry
+m| <<personalEntry>>
 | 1..1
 | Eintrag einer natürlichen Person?
-m| changeDateTime
+m| <<changeDateTime>>
 | 1..1
 | Geändert am
 
@@ -296,65 +296,42 @@ Das Attribut wird automatisch aus `professionOID` berechnet. Werte werden primä
 
 == Anwendungsdaten
 
-[cols="1,2,6"]
-|===
-| Attribut  | Bezeichnung | Anmerkungen
+=== mail
+Liste aller KIM-Adressen einer Person oder einer Institution. Zur Kompatibilität bleibt die KIM Mail Adresse in diesem Attribut zusätzlich zum Attribut  `komLeData` erhalten.
 
-| `mail`
-| KIM-Adresse
-a| Liste aller KIM-Adressen einer Person oder einer Institution. Zur Kompatibilität bleibt die KIM Mail Adresse in diesem Attribut zusätzlich zum Attribut  `komLeData` erhalten.
 ----
 mail: adresse1@anbieter.kim.telematik
 mail: adresse2@anbieter.kim.telematik
 ----
 
-| `komLeData`
-| KIM-Adresse
-a| Liste von KIM-Adressen mit der zugehörigen KIM-Version
+=== komLeData
+Liste von KIM-Adressen mit der zugehörigen KIM-Version
+
 ----
 komLeData: 1.0,adresse1@anbieter.kim.telematik
 komLeData: 1.5,adresse2@anbieter.kim.telematik
 ----
 
-
-|===
-
 == Zertifikate
 
-[cols="1,2,6"]
-|===
-| Attribut  | Bezeichnung | Anmerkungen
+=== userCertificate
+X509-Zertifikate werden für Verschlüsselung der KIM-Nachrichten sowie bei der Berechtigungserteilung in der ePA verwendet.
 
-| `userCertificate`
-| Zertifikat
-| X509-Zertifikate werden für Verschlüsselung der KIM-Nachrichten  sowie bei der Berechtigungserteilung in der ePA verwendet
-
-|===
+Zertifikate werden als DER-kodierte Binary transportiert.
 
 == Systemdaten
 
-|===
-| Attribut  | Beschreibung | Anmerkungen
+=== holder
+Enthält eine Liste von Organisationen, die für die Administration dieses Datensatzes berechtigt sind.
 
-| `holder`
-| Verwaltet durch
-| Enthält eine Liste von Organisationen, die für die Administration dieses Datensatzes berechtigt sind.
+=== dataFromAuthority
+Enthält `TRUE` wenn die Daten durch einen Kartenherausgeber eingestellt wurden.
 
-| `dataFromAuthority`
-| Geprüfte Daten?
-| Enthält `TRUE` wenn die Daten durch einen Kartenherausgeber eingestellt wurden.
+=== personalEntry
+Enthält `TRUE` wenn Eintrag eine natürliche Person beschreibt (einen Leistungsebringer)
 
-| `personalEntry`
-| Eintrag einer natürlichen Person
-| Enthält `TRUE` wenn Eintrag eine natürliche Person beschreibt (einen Leistungsebringer)
-
-`changeDateTime`
-| Geändert
-| Zeitstempel der letzten Änderung, wird bei jeder Aktualisierung auf aktuelle Systemzeit geändert.
-
-
-
-|===
+=== changeDateTime
+Zeitstempel der letzten Änderung. Wert wird bei jeder Aktualisierung durch VZD auf aktuelle Systemzeit gesetzt.
 
 == Beispiele
 
