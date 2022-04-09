@@ -129,7 +129,7 @@ Dieses Attribut wird verwendet um vollen Namen einer Institution oder Person in 
 
 Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2798#section-2.3[RFC2798 Section 2.3]
 
-==== Person (HBA)
+==== `displayName` bei Personen (HBA)
 
 Bei Personen wird `displayName` genutzt, um vollen Namen einer Person gegenüber dem Anwender darzustellen. Es wird empfohlen den Namen wie folgt anzugeben (_Nachname, Vorname_):
 
@@ -137,7 +137,7 @@ Bei Personen wird `displayName` genutzt, um vollen Namen einer Person gegenüber
 Dr. Mustermann, Manfred
 ----
 
-==== Institution (SMC-B)
+==== `displayName` bei Institutionen (SMC-B)
 
 Bei Institutionen wird `displayName` genutzt, um  den Namen einer Institution gegenüber dem Anwender darzustellen.
 
