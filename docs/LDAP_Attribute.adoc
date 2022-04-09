@@ -185,13 +185,12 @@ Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2256#section-5.13[RFC22
 
 |===
 | Beispiel  | Attribute
-|
-Hallesches Ufer 21 +
+
+| Hallesches Ufer 21 +
 88451 Dettingen +
 Baden-Württemberg +
 DE +
-|
-`streetAddress` +
+| `streetAddress` +
 `postalCode` `localityName` +
 `stateOrProvinceName` +
 `countryCode`
