@@ -1,6 +1,7 @@
 = 🗂️ LDAP-Attribute im gematik Verzeichnisdienst
 :toc:
 :toc-title: Inhaltsverzeichnis
+:sectnums:
 :note-caption: ℹ️
 
 == Übersicht
