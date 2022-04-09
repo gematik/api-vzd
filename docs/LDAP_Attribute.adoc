@@ -2,26 +2,113 @@
 :toc:
 :toc-title: Inhaltsverzeichnis
 
+== Übersicht
+
+[%autowidth.stretch]
+|===
+| Attribut | 0..N | Bezeichnung
+
+3+s|Identifikatoren
+
+m| <<telematikID>>
+| 1..1
+| Telematik-ID
+
+m| <<domainID>>
+| 1..N
+| Sektor-ID
+
+3+s|Namen
+m| displayName
+| 1..1
+| Anzeigename
+m| cn
+| 1..1
+| Name
+m| otherName
+| 0..1
+| Alternativer Name
+m| organization
+| 0..1
+| Organisation
+m| givenName
+| 0..1
+| Vorname
+m| sn
+| 0..1
+| Nachname
+m| title
+| 0..1
+| Titel
+
+3+s|Adressdaten
+m| streetAddress
+| 1..1
+| Straße und Hausnummer
+m| postalCode
+| 1..1
+| PLZ
+m| localityName
+| 1..1
+| Ort
+m| stateOrProvinceName
+| 1..1
+| Bundesland oder Region
+m| countryCode
+| 1..1
+| Landeskürzel
+
+3+s|Berufliche Informationen
+m| professionOID
+| 1..N
+| Berufsgruppe
+m| specialization
+| 1..N
+| Fachgebiet
+m| entryType
+| 1..1
+| Typ des Eintags
+
+3+s|Anwendungsdaten
+m| mail
+| 0..N
+| KIM-Adresse
+
+m| komLeData
+| 0..N
+| KIM-Adresse mit Version
+
+3+s|Zertifikate
+m| userCertificate
+| 0..N
+| Zertifikat
+
+3+s|Systemdaten
+m| dataFromAuthority
+| 1..1
+| Verwaltet durch Kartenherausgeber?
+m| personalEntry
+| 1..1
+| Eintrag einer natürlichen Person?
+m| changeDateTime
+| 1..1
+| Geändert am
+
+|===
+
 == Identifikatoren
 
-[cols="1,2,6"]
-|===
-| Attribut  | Bezeichner | Anmerkungen
+=== `telematikID` [[telematikID]]
 
-| `telematikID`
-| Telematik-ID
-| Eindeutiger Identifikator einer Institution oder einer Person in der TI.
+Telematik-ID ist ein eindeutiger Identifikator einer Institution oder einer Person in der TI.
 Spezifiziert in https://fachportal.gematik.de/fachportal-import/files/gemSpec_PKI_V2.11.1.pdf[gemSpec_PKI], Kapitel 4.7.
-TelematikID darf nur einmal vorkommen.
 
-| `domainID`
-| Kennung
-| Die sektorspezifische Kennung einer Institution oder einer Person.
+=== `domainID` [[domainID]]
+
+Die sektorspezifische Kennung einer Institution oder einer Person.
+
 Per Eintag können mehrere Kennungen angeben werden. Im Gegensatz zu TelematikID sind die `domainID` nicht eindeutig können in mehreren Einträgen gleichzeitig vorkommen.
 
-|===
-
-=== Festlegungen zu `domainID`
 Die Nutzung für die Sektoren wird in Kapitel *Attributtabellen* von Dokument https://fachportal.gematik.de/fileadmin/Fachportal/Downloadcenter/Implementierungsleitfaeden/gemILF_Pflege_VZD_V1.5.1.pdf[gemILF_Pflege_VZD] beschrieben.
 
 * Kassenärztliche Vereinigungen (SMC-B-Eintrag): Betriebsstättennummer der Praxis
