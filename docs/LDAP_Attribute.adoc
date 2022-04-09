@@ -10,34 +10,34 @@
 
 3+s|Identifikatoren
 
-m| <<telematikID>>
+| <<telematikID>>
 | 1..1
 | Telematik-ID
 
-m| <<domainID>>
+| <<domainID>>
 | 1..N
 | Sektor-ID
 
 3+s|Namen
-m| <<displayName>>
+| <<displayName>>
 | 1..1
 | Anzeigename
-m| <<cn>>
+| <<cn>>
 | 1..1
 | Name
-m| <<otherName>>
+| <<otherName>>
 | 0..1
 | Alternativer Name
-m| <<organization>>
+| <<organization>>
 | 0..1
 | Organisation
-m| <<givenName>>
+| <<givenName>>
 | 0..1
 | Vorname
-m| <<sn>>
+| <<sn>>
 | 0..1
 | Nachname
-m| <<title>>
+| <<title>>
 | 0..1
 | Titel
 
