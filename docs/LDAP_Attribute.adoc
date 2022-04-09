@@ -249,18 +249,25 @@ Zweistelliger Landeskürzel aus dem Wertebereich https://en.wikipedia.org/wiki/I
 
 == Berufliche Informationen
 
-[cols="1,2,6"]
-|===
-| Attribut  | Bezeichnung | Anmerkungen
+=== professionOID
 
+Berufsgruppe oder Betriebsstätten-Typ innerhalb der Telematikinfrastruktur.
 
-| `professionOID`
-| Berufsgruppe
-| Wertebereich gemäß https://fachportal.gematik.de/fachportal-import/files/gemSpec_OID_V3.11.0.pdf[gemSpec_OID]
+Spezifiziert in https://fachportal.gematik.de/fachportal-import/files/gemSpec_OID_V3.11.0.pdf[gemSpec_OID]
 
-| `specialization`
-| Fachgebiet
-a| Der Wertebereich entspricht den in hl7 definierten und für ePA festgelegten Werten:
+Wertebereiche:
+
+* https://github.com/gematik/api-vzd/blob/master/src/fhir/input/fsh/codesystems/TIPractitionerProfessionOidCS.fsh[für Personen (HBA)]
+* https://github.com/gematik/api-vzd/blob/master/src/fhir/input/fsh/codesystems/TIInstitutionTypeOidCS.fsh[für Institutionen (SMC-B)]
+
+=== specialization
+==== Personen (HBA)
+
+TODO
+
+==== Institutionen (SMC-B)
+
+Der Wertebereich entspricht den in HL7 definierten und für ePA festgelegten Werten:
 
 * https://wiki.hl7.de/index.php?title=IG:Value_Sets_für_XDS#DocumentEntry.practiceSettingCode[PracticeSettingCode]
 * https://github.com/hl7germany/de.basisprofil.terminology/blob/3917ab759560993f9486562af6811765e357b8fc/input/fsh/codesystems/AerztlicheFachrichtungenIHEXDS.fsh[http://ihe-d.de/CodeSystems/AerztlicheFachrichtungen]
@@ -272,11 +279,8 @@ Bildungsregel: +
 Beispiel für Allgemeinmedizin: +
 `urn:psc:1.3.6.1.4.1.19376.3.276.1.5.4:ALLG`
 
-| `entryType`
-| Typ des Eintags
-| Das Attribut wird autmatisch aus `professionOID` berechnet. Werte werden primär durch ePA verwendet.
-
-|===
+=== entryType
+Das Attribut wird automatisch aus `professionOID` berechnet. Werte werden primär durch ePA verwendet.
 
 == Anwendungsdaten
 
