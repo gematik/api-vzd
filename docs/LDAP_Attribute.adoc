@@ -1,6 +1,7 @@
 = 🗂️ LDAP-Attribute im gematik Verzeichnisdienst
 :toc:
 :toc-title: Inhaltsverzeichnis
+:note-caption: ℹ️
 
 == Übersicht
 
@@ -153,7 +154,7 @@ Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2256#section-5.4[RFC225
 
 === `otherName` [[otherName]]
 
-WARNING: Es wird nicht mehr empfohlen dieses Attribut zu verwenden.
+NOTE: Es wird nicht mehr empfohlen dieses Attribut zu verwenden.
 
 === `organization` [[organization]]
 
