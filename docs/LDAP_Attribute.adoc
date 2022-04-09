@@ -43,19 +43,19 @@
 | Titel
 
 3+s|Adressdaten
-m| streetAddress
+m| <<streetAddress>>
 | 1..1
 | Straße und Hausnummer
-m| postalCode
+m| <<postalCode>>
 | 1..1
 | PLZ
-m| localityName
+m| <<localityName>>
 | 1..1
 | Ort
-m| stateOrProvinceName
+m| <<stateOrProvinceName>>
 | 1..1
 | Bundesland oder Region
-m| countryCode
+m| <<countryCode>>
 | 1..1
 | Landeskürzel
 
@@ -182,47 +182,46 @@ Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2256#section-5.13[RFC22
 
 == Adressdaten
 
-[cols="1,2,6"]
 |===
-| Attribut  | Bezeichnung | Anmerkungen
+| Beispiel  | Attribute
+|
+Hallesches Ufer 21 +
+88451 Dettingen +
+Baden-Württemberg +
+DE +
+|
+`streetAddress` +
+`postalCode` `localityName` +
+`stateOrProvinceName` +
+`countryCode`
+|===
 
-| `streetAddress`
-| Straße und Hausnummer
-| Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2256#section-5.10[RFC2256 Section 5.10]
+=== streetAddress [[streetAddress]]
+Straße und Hausnummer
+
+Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2256#section-5.10[RFC2256 Section 5.10]
 
 Kann als `street` abgekürzt werden
 
-| `postalCode`
-| PLZ
-| Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2256#section-5.18[RFC2256 Section 5.18]
+=== postalCode [[postalCode]]
+Postleitzahl 
+Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2256#section-5.18[RFC2256 Section 5.18]
 
-| `localityName`
-| Ort
-| Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2256#section-5.8[RFC2256 Section 5.8]
+=== localityName [[localityName]]
+Ort
+
+Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2256#section-5.8[RFC2256 Section 5.8]
 
 Kann als `l` abgekürzt werden
 
-| `stateOrProvinceName`
-| Bundesland oder Region
-a|
-
-<<valueset_cn>>
+=== stateOrProvinceName [[stateOrProvinceName]]
+Bundesland oder Region
 
 Spezifiziert ib https://datatracker.ietf.org/doc/html/rfc2256#section-5.9[RFC2256 Section 5.9]
 
 Kann als `st` abgekürzt werden
 
-| `countryCode`
-| Landeskürzel
-| Zweistelliger Landeskürzel aus dem Wertebereich https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2[ISO 3166-1 alpha-2]
-
-
-|===
-
-[#valueset_cn]
-=== Wertebereich für `stateOrProvinceName`
-
-.Gültige Werte für Deutschland:
+==== Gültige Werte für `stateOrProvinceName` in Deutschland:
 * Baden-Württemberg
 * Bayern
 * Berlin
@@ -243,6 +242,9 @@ Kann als `st` abgekürzt werden
 .Zusätzliche KV-Regionen:
 * Nordrhein
 * Westfalen-Lippe
+
+=== countryCode [[countryCode]]
+Zweistelliger Landeskürzel aus dem Wertebereich https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2[ISO 3166-1 alpha-2]
 
 == Berufliche Informationen
 
