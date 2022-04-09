@@ -98,7 +98,7 @@ m| changeDateTime
 
 == Identifikatoren
 
-=== `telematikID` [[telematikID]]
+=== telematikID [[telematikID]]
 
 Telematik-ID ist ein eindeutiger Identifikator einer Institution oder einer Person in der TI.
 Spezifiziert in https://fachportal.gematik.de/fachportal-import/files/gemSpec_PKI_V2.11.1.pdf[gemSpec_PKI], Kapitel 4.7.
