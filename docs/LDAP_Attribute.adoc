@@ -11,34 +11,34 @@
 
 3+s|Identifikatoren
 
-| <<telematikID>>
+m| <<telematikID>>
 | 1..1
 | Telematik-ID
 
-| <<domainID>>
+m| <<domainID>>
 | 1..N
 | Sektor-ID
 
 3+s|Namen
-| <<displayName>>
+m| <<displayName>>
 | 1..1
 | Anzeigename
-| <<cn>>
+m| <<cn>>
 | 1..1
 | Name
-| <<otherName>>
+m| <<otherName>>
 | 0..1
 | Alternativer Name
-| <<organization>>
+m| <<organization>>
 | 0..1
 | Organisation
-| <<givenName>>
+m| <<givenName>>
 | 0..1
 | Vorname
-| <<sn>>
+m| <<sn>>
 | 0..1
 | Nachname
-| <<title>>
+m| <<title>>
 | 0..1
 | Titel
 
@@ -99,12 +99,12 @@ m| changeDateTime
 
 == Identifikatoren
 
-=== `telematikID` [[telematikID]]
+=== telematikID
 
 Telematik-ID ist ein eindeutiger Identifikator einer Institution oder einer Person in der TI.
 Spezifiziert in https://fachportal.gematik.de/fachportal-import/files/gemSpec_PKI_V2.11.1.pdf[gemSpec_PKI], Kapitel 4.7.
 
-=== `domainID` [[domainID]]
+=== domainID
 
 Die sektorspezifische Kennung einer Institution oder einer Person.
 
@@ -124,13 +124,13 @@ Die Nutzung für die Sektoren wird in Kapitel *Attributtabellen* von Dokument ht
 
 == Namen
 
-=== `displayName` [[displayName]]
+=== displayName
 
 Dieses Attribut wird verwendet um vollen Namen einer Institution oder Person in GUI anzuzeigen. 
 
 Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2798#section-2.3[RFC2798 Section 2.3]
 
-==== `displayName` bei Personen (HBA)
+==== Personen (HBA)
 
 Bei Personen wird `displayName` genutzt, um vollen Namen einer Person gegenüber dem Anwender darzustellen. Es wird empfohlen den Namen wie folgt anzugeben (_Nachname, Vorname_):
 
@@ -138,7 +138,7 @@ Bei Personen wird `displayName` genutzt, um vollen Namen einer Person gegenüber
 Dr. Mustermann, Manfred
 ----
 
-==== `displayName` bei Institutionen (SMC-B)
+==== Institutionen (SMC-B)
 
 Bei Institutionen wird `displayName` genutzt, um  den Namen einer Institution gegenüber dem Anwender darzustellen.
 
@@ -146,35 +146,35 @@ Bei Institutionen wird `displayName` genutzt, um  den Namen einer Institution ge
 Praxis Dr. Sandra Meyer
 ----
 
-=== `cn` [[cn]]
+=== cn
 Eindeutiger Name einer Person oder Institution.
 LDAP unterstützt grundsätzlich mehrere Namen eines Objekts, in der TI wird jedoch meistens nur ein `cn`-Attribut verwendet, daher ist `cn` in der Regel identisch mit `displayName`.
 
 Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2256#section-5.4[RFC2256 Section 5.4]
 
-=== `otherName` [[otherName]]
+=== otherName
 
 NOTE: Es wird nicht mehr empfohlen dieses Attribut zu verwenden.
 
-=== `organization` [[organization]]
+=== organization
 
 Optionaler Name einer Organisation zu welcher diese Eintrag gehört.
 
 Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2256#section-5.11[RFC2256 Section 5.11]
 
-=== `givenName` [[givenName]]
+=== givenName
 
 Alle Vornamen einer natürlicher Person. Vornamen sollen nur bei natürlichen Personen befüllt sein, bei Institutionen muss `givenName` leer bleiben.
 
 Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2256#section-5.43[RFC2256 Section 5.43]
 
-=== `sn` [[sn]]
+=== sn
 
 Nachname eine natürlichen Person. Nachnamen sollen nur bei natürlichen Personen befüllt sein, bei Institutionen muss `sn` leer bleiben.
 
 Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2256#section-5.5[RFC2256 Section 5.5]
 
-=== `title` [[title]]
+=== title
 Akademischer oder Adelstitel einer natürlichen Person.
 
 Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2256#section-5.13[RFC2256 Section 5.13]
@@ -196,25 +196,25 @@ DE +
 `countryCode`
 |===
 
-=== streetAddress [[streetAddress]]
+=== streetAddress
 Straße und Hausnummer
 
 Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2256#section-5.10[RFC2256 Section 5.10]
 
 Kann als `street` abgekürzt werden
 
-=== postalCode [[postalCode]]
+=== postalCode
 Postleitzahl 
 Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2256#section-5.18[RFC2256 Section 5.18]
 
-=== localityName [[localityName]]
+=== localityName
 Ort
 
 Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2256#section-5.8[RFC2256 Section 5.8]
 
 Kann als `l` abgekürzt werden
 
-=== stateOrProvinceName [[stateOrProvinceName]]
+=== stateOrProvinceName
 Bundesland oder Region
 
 Spezifiziert ib https://datatracker.ietf.org/doc/html/rfc2256#section-5.9[RFC2256 Section 5.9]
