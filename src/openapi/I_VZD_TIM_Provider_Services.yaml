@@ -149,12 +149,62 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
 
+    get:
+      tags:
+      - getTiMessengerDomain
+      summary: Get a TI-Messenger domain
+      description: Get a single or all TI-Messenger domains.
+      operationId: getTiMessengerDomain
+      parameters:
+        - name: domain
+          in: query
+          description: Domain
+          schema:
+            type: string  
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/Domain'
+
+        401:
+          description: Unauthorized
+                    #  The WWW-Authenticate header in the response is OAuth.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        403:
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+
+  /federation/{domain}:
+
     put:
       tags:
       - updateTiMessengerDomain
       summary: Update a domain in the TI-Messenger federation
       description: A update to a domain in the TI-Messenger federation.
       operationId: updateTiMessengerDomain
+      parameters:
+        - name: domain
+          in: path
+          description: Domain
+          required: true
+          schema:
+            type: string  
       requestBody:
         content:
           application/json:
@@ -167,7 +217,6 @@ paths:
             application/json:
               schema:
                   $ref: '#/components/schemas/Domain'
-
         401:
           description: Unauthorized
                     #  The WWW-Authenticate header in the response is OAuth.
@@ -188,39 +237,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
 
-    get:
-      tags:
-      - getTiMessengerDomain
-      summary: Get a TI-Messenger domain
-      description: Get a single or all TI-Messenger domains.
-      operationId: getTiMessengerDomain
-      responses:
-        200:
-          description: OK
-          content:
-            application/json:
-              schema:
-                  $ref: '#/components/schemas/Domain'
-
-        401:
-          description: Unauthorized
-                    #  The WWW-Authenticate header in the response is OAuth.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-        403:
-          description: Forbidden
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-        404:
-          description: Not Found
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
 
 components:
 
