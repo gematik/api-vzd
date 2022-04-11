@@ -1,27 +1,116 @@
 = 🗂️ LDAP-Attribute im gematik Verzeichnisdienst
 :toc:
 :toc-title: Inhaltsverzeichnis
+:sectnums:
+:note-caption: ℹ️
+
+== Übersicht
+
+[%autowidth.stretch]
+|===
+| Attribut | 0..N | Bezeichnung
+
+3+s|Identifikatoren
+
+m| <<telematikID>>
+| 1..1
+| Telematik-ID
+
+m| <<domainID>>
+| 1..N
+| Sektor-ID
+
+3+s|Namen
+m| <<displayName>>
+| 1..1
+| Anzeigename
+m| <<cn>>
+| 1..1
+| Name
+m| <<otherName>>
+| 0..1
+| Alternativer Name
+m| <<organization>>
+| 0..1
+| Organisation
+m| <<givenName>>
+| 0..1
+| Vorname
+m| <<sn>>
+| 0..1
+| Nachname
+m| <<title>>
+| 0..1
+| Titel
+
+3+s|Adressdaten
+m| <<streetAddress>>
+| 1..1
+| Straße und Hausnummer
+m| <<postalCode>>
+| 1..1
+| PLZ
+m| <<localityName>>
+| 1..1
+| Ort
+m| <<stateOrProvinceName>>
+| 1..1
+| Bundesland oder Region
+m| <<countryCode>>
+| 1..1
+| Landeskürzel
+
+3+s|Berufliche Informationen
+m| <<professionOID>>
+| 1..N
+| Berufsgruppe
+m| <<specialization>>
+| 1..N
+| Fachgebiet
+m| <<entryType>>
+| 1..1
+| Typ des Eintags
+
+3+s|Anwendungsdaten
+m| <<mail>>
+| 0..N
+| KIM-Adresse
+
+m| <<komLeData>>
+| 0..N
+| KIM-Adresse mit Version
+
+3+s|Zertifikate
+m| <<userCertificate>>
+| 0..N
+| Zertifikat
+
+3+s|Systemdaten
+m| <<dataFromAuthority>>
+| 1..1
+| Verwaltet durch Kartenherausgeber?
+m| <<personalEntry>>
+| 1..1
+| Eintrag einer natürlichen Person?
+m| <<changeDateTime>>
+| 1..1
+| Geändert am
+
+|===
 
 == Identifikatoren
 
-[cols="1,2,6"]
-|===
-| Attribut  | Bezeichner | Anmerkungen
+=== telematikID
 
-| `telematikID`
-| Telematik-ID
-| Eindeutiger Identifikator einer Institution oder einer Person in der TI. 
-Spezifiziert in https://fachportal.gematik.de/fachportal-import/files/gemSpec_PKI_V2.11.1.pdf[gemSpec_PKI], Kapitel 4.7. 
-TelematikID darf nur einmal vorkommen.
+Telematik-ID ist ein eindeutiger Identifikator einer Institution oder einer Person in der TI.
+Spezifiziert in https://fachportal.gematik.de/fachportal-import/files/gemSpec_PKI_V2.11.1.pdf[gemSpec_PKI], Kapitel 4.7.
 
-| `domainID`
-| Kennung
-| Die sektorspezifische Kennung einer Institution oder einer Person.
+=== domainID
+
+Die sektorspezifische Kennung einer Institution oder einer Person.
+
 Per Eintag können mehrere Kennungen angeben werden. Im Gegensatz zu TelematikID sind die `domainID` nicht eindeutig können in mehreren Einträgen gleichzeitig vorkommen.
 
-|===
-
-=== Festlegungen zu `domainID`
 Die Nutzung für die Sektoren wird in Kapitel *Attributtabellen* von Dokument https://fachportal.gematik.de/fileadmin/Fachportal/Downloadcenter/Implementierungsleitfaeden/gemILF_Pflege_VZD_V1.5.1.pdf[gemILF_Pflege_VZD] beschrieben.
 
 * Kassenärztliche Vereinigungen (SMC-B-Eintrag): Betriebsstättennummer der Praxis
@@ -34,119 +123,119 @@ Die Nutzung für die Sektoren wird in Kapitel *Attributtabellen* von Dokument ht
 * Zahnärzte (HBA-Eintrag): Spezifisches Kennzeichen der Zahnärzte. Kann mehrfach vorkommen (0..100).
 * Gesetzlichen Krankenkassen (SMC-B-Eintrag): Institutionskennzeichen. Kann mehrfach vorkommen (0..100).
 
-
 == Namen
 
-[cols="1,2,6"]
-|===
-| Attribut  | Bezeichner | Anmerkungen
+=== displayName
 
-.2+| `displayName`
-.2+| Anzeigename
-a| _Person (HBA)_
-
-Dieses Attribut wird genutzt, um vollen Namen einer Person gegenüber dem Anwender darzustellen. Es wird empfohlen den Namen wie folgt anzugeben:
-
-----
-Nachname, Vorname(n)
-Müstermann, Manfred
-----
+Dieses Attribut wird verwendet um vollen Namen einer Institution oder Person in GUI anzuzeigen. 
 
 Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2798#section-2.3[RFC2798 Section 2.3]
 
-a| _Institution (SMC-B)_
+==== Personen (HBA)
 
-Dieses Attribut wird genutzt, um  Namen einer Institution gegenüber dem Anwender darzustellen. 
+Bei Personen wird `displayName` genutzt, um vollen Namen einer Person gegenüber dem Anwender darzustellen. Es wird empfohlen den Namen wie folgt anzugeben (_Nachname, Vorname_):
 
+----
+Dr. Mustermann, Manfred
+----
 
-| `cn`
-| Name
-| Eindeutiger Name einer Person oder Institution.
-LDAP unterstützt grundsätzlich mehrere Namen eines Objekts. In der TI wird jedoch meistens nur ein `cn`-Attribut verwendet, daher ist `cn` identisch mit `displayName`. 
+==== Institutionen (SMC-B)
+
+Bei Institutionen wird `displayName` genutzt, um  den Namen einer Institution gegenüber dem Anwender darzustellen.
+
+----
+Praxis Dr. Sandra Meyer
+----
+
+=== cn
+Eindeutiger Name einer Person oder Institution.
+LDAP unterstützt grundsätzlich mehrere Namen eines Objekts, in der TI wird jedoch meistens nur ein `cn`-Attribut verwendet, daher ist `cn` in der Regel identisch mit `displayName`.
 
 Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2256#section-5.4[RFC2256 Section 5.4]
 
-| `otherName`
-| Weitere Name(n)
-| Es wird nicht mehr empfohlen dieses Attrit zu verwenden.
+=== otherName
 
-| `organization`
-| Organization
-|
+NOTE: Es wird nicht mehr empfohlen dieses Attribut zu verwenden.
 
-| `givenName`
-| Vorname
-| Nachnamen sollen nur bei natürlichen Personen befüllt sein.
+=== organization
+
+Optionaler Name einer Organisation zu welcher diese Eintrag gehört.
+
+Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2256#section-5.11[RFC2256 Section 5.11]
+
+=== givenName
+
+Alle Vornamen einer natürlicher Person. Vornamen sollen nur bei natürlichen Personen befüllt sein, bei Institutionen muss `givenName` leer bleiben.
+
 Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2256#section-5.43[RFC2256 Section 5.43]
 
-| `sn`
-| Nachname
-| Nachnamen sollen nur bei natürlichen Personen befüllt sein.
+=== sn
+
+Nachname eine natürlichen Person. Nachnamen sollen nur bei natürlichen Personen befüllt sein, bei Institutionen muss `sn` leer bleiben.
+
 Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2256#section-5.5[RFC2256 Section 5.5]
 
-| `title`
-| Akademischer oder Adelstitel
-| Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2256#section-5.13[RFC2256 Section 5.13]
+=== title
+Akademischer oder Adelstitel einer natürlichen Person.
 
-|===
+Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2256#section-5.13[RFC2256 Section 5.13]
+
 
 == Adressdaten
 
-[cols="1,2,6"]
 |===
-| Attribut  | Bezeichnung | Anmerkungen
+| Beispiel  | Attribute
 
-| `streetAddress`
-| Straße und Hausnummer
-| Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2256#section-5.10[RFC2256 Section 5.10]
+| Hallesches Ufer 21 +
+88451 Dettingen +
+Baden-Württemberg +
+DE +
+| `streetAddress` +
+`postalCode` `localityName` +
+`stateOrProvinceName` +
+`countryCode`
+|===
+
+=== streetAddress
+Straße und Hausnummer
+
+Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2256#section-5.10[RFC2256 Section 5.10]
 
 Kann als `street` abgekürzt werden
 
-| `postalCode`
-| PLZ
-| Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2256#section-5.18[RFC2256 Section 5.18]
+=== postalCode
+Postleitzahl 
+Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2256#section-5.18[RFC2256 Section 5.18]
 
-| `localityName`
-| Ort
-| Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2256#section-5.8[RFC2256 Section 5.8]
+=== localityName
+Ort
+
+Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2256#section-5.8[RFC2256 Section 5.8]
 
 Kann als `l` abgekürzt werden
 
-| `stateOrProvinceName`
-| Bundesland oder Region
-a| 
-
-<<valueset_cn>>
+=== stateOrProvinceName
+Bundesland oder Region
 
 Spezifiziert ib https://datatracker.ietf.org/doc/html/rfc2256#section-5.9[RFC2256 Section 5.9]
 
 Kann als `st` abgekürzt werden
 
-| `countryCode`
-| Landeskürzel
-| Zweistelliger Landeskürzel aus dem Wertebereich https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2[ISO 3166-1 alpha-2]
-
-
-|===
-
-[#valueset_cn]
-=== Wertebereich für `stateOrProvinceName`
-
-.Gültige Werte für Deutschland:
+==== Gültige Werte für `stateOrProvinceName` in Deutschland:
 * Baden-Württemberg
 * Bayern
 * Berlin
-* Brandenburg 
+* Brandenburg
 * Bremen
 * Hamburg
-* Hessen 
+* Hessen
 * Mecklenburg-Vorpommern
-* Niedersachsen 
+* Niedersachsen
 * Nordrhein-Westfalen
 * Rheinland-Pfalz
 * Saarland
 * Sachsen
-* Sachsen-Anhalt 
+* Sachsen-Anhalt
 * Schleswig-Holstein
 * Thüringen
 
@@ -154,22 +243,44 @@ Kann als `st` abgekürzt werden
 * Nordrhein
 * Westfalen-Lippe
 
+=== countryCode [[countryCode]]
+Zweistelliger Landeskürzel aus dem Wertebereich https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2[ISO 3166-1 alpha-2]
+
 == Berufliche Informationen
 
-[cols="1,2,6"]
-|===
-| Attribut  | Bezeichnung | Anmerkungen
+=== professionOID
 
+Berufsgruppe oder Betriebsstätten-Typ innerhalb der Telematikinfrastruktur.
 
-| `professionOID`
-| Berufsgruppe
-| Wertebereich gemäß https://fachportal.gematik.de/fachportal-import/files/gemSpec_OID_V3.11.0.pdf[gemSpec_OID]
+Spezifiziert in https://fachportal.gematik.de/fachportal-import/files/gemSpec_OID_V3.11.0.pdf[gemSpec_OID]
 
-| `specialization`
-| Fachgebiet
-a| Der Wertebereich entspricht den in hl7 definierten und für ePA festgelegten Werten:
+Wertebereiche:
 
-* https://wiki.hl7.de/index.php?title=IG:Value_Sets_für_XDS#DocumentEntry.practiceSettingCode[PracticeSettingCode]
+* https://github.com/gematik/api-vzd/blob/master/src/fhir/input/fsh/codesystems/TIPractitionerProfessionOidCS.fsh[für Personen (HBA)]
+* https://github.com/gematik/api-vzd/blob/master/src/fhir/input/fsh/codesystems/TIInstitutionTypeOidCS.fsh[für Institutionen (SMC-B)]
+
+=== specialization
+
+Der Wertebereich für `specialization` entspricht den in HL7 definierten und für ePA festgelegten Werten.
+
+==== Personen (HBA)
+
+* https://wiki.hl7.de/index.php?title=IG:Value_Sets_für_XDS#DocumentEntry.authorSpecialty[Überblick AuthorSpeciality bei HL7]
+* https://github.com/gematik/api-ePA/blob/master/src/vocabulary/value_sets/vs-author-specialty.xml[Normatives ValueSet für ePA]
+
+Bildungsregel: +
+`urn:as:{OID Codesystem}:{Code}`
+
+Beispiel für Facharzt Allgemeinmedizin: +
+`urn:as:1.2.276.0.76.5.114:010`
+
+==== Institutionen (SMC-B)
+
+* https://wiki.hl7.de/index.php?title=IG:Value_Sets_für_XDS#DocumentEntry.practiceSettingCode[Überblick PracticeSettingCode bei HL7]
+* https://github.com/gematik/api-ePA/blob/master/src/vocabulary/value_sets/vs-practice-setting-code.xml[Normatives ValueSet für ePA]
+
+Weitere Ressourcen: 
+
 * https://github.com/hl7germany/de.basisprofil.terminology/blob/3917ab759560993f9486562af6811765e357b8fc/input/fsh/codesystems/AerztlicheFachrichtungenIHEXDS.fsh[http://ihe-d.de/CodeSystems/AerztlicheFachrichtungen]
 * https://github.com/hl7germany/de.basisprofil.terminology/blob/3917ab759560993f9486562af6811765e357b8fc/input/fsh/codesystems/NichtAerztlicheFachrichtungenIHEXDS.fsh[http://ihe-d.de/CodeSystems/NichtaerztlicheFachrichtungen]
 
@@ -179,86 +290,59 @@ Bildungsregel: +
 Beispiel für Allgemeinmedizin: +
 `urn:psc:1.3.6.1.4.1.19376.3.276.1.5.4:ALLG`
 
-| `entryType`
-| Typ des Eintags
-| Das Attribut wird autmatisch aus `professionOID` berechnet. Werte werden primär durch ePA verwendet.
-
-|===
+=== entryType
+Das Attribut wird automatisch aus `professionOID` berechnet. Werte werden primär durch ePA verwendet.
 
 == Anwendungsdaten
 
-[cols="1,2,6"]
-|===
-| Attribut  | Bezeichnung | Anmerkungen
+=== mail
+Liste aller KIM-Adressen einer Person oder einer Institution. Zur Kompatibilität bleibt die KIM Mail Adresse in diesem Attribut zusätzlich zum Attribut  `komLeData` erhalten.
 
-| `mail`
-| KIM-Adresse
-a| Liste aller KIM-Adressen einer Person oder einer Institution. Zur Kompatibilität bleibt die KIM Mail Adresse in diesem Attribut zusätzlich zum Attribut  `komLeData` erhalten.
 ----
 mail: adresse1@anbieter.kim.telematik
 mail: adresse2@anbieter.kim.telematik
 ----
 
-| `komLeData`
-| KIM-Adresse
-a| Liste von KIM-Adressen mit der zugehörigen KIM-Version
+=== komLeData
+Liste von KIM-Adressen mit der zugehörigen KIM-Version
+
 ----
 komLeData: 1.0,adresse1@anbieter.kim.telematik
 komLeData: 1.5,adresse2@anbieter.kim.telematik
 ----
 
-
-|===
-
 == Zertifikate
 
-[cols="1,2,6"]
-|===
-| Attribut  | Bezeichnung | Anmerkungen
+=== userCertificate
+X509-Zertifikate werden für Verschlüsselung der KIM-Nachrichten sowie bei der Berechtigungserteilung in der ePA verwendet.
 
-| `userCertificate`
-| Zertifikat
-| X509-Zertifikate werden für Verschlüsselung der KIM-Nachrichten  sowie bei der Berechtigungserteilung in der ePA verwendet
-
-|===
+Zertifikate werden als DER-kodierte Binary transportiert.
 
 == Systemdaten
 
-|===
-| Attribut  | Beschreibung | Anmerkungen
+=== holder
+Enthält eine Liste von Organisationen, die für die Administration dieses Datensatzes berechtigt sind.
 
-| `dataFromAuthority`
-| Verwaltet durch Kartenherausgeber  
-| Enthält `TRUE` wenn die Daten durch einen Kartenherausgeber eingestellt wurden. 
+=== dataFromAuthority
+Enthält `TRUE` wenn die Daten durch einen Kartenherausgeber eingestellt wurden.
 
-| `personalEntry`
-| Eintrag einer natürlichen Person
-| Enthält `TRUE` wenn Eintrag eine natürliche Person beschreibt (einen Leistungsebringer)
+=== personalEntry
+Enthält `TRUE` wenn Eintrag eine natürliche Person beschreibt (einen Leistungsebringer)
 
-| `usage`
-| Verwendungszweck
-| TODO: Wofür wird es benutzt?
-
-
-| `changeDateTime`
-| Geändert
-| Zeitstempel der letzten Änderung, wird bei jeder Aktualisierung auf aktuelle Systemzeit geändert.
-
-
-
-|===
+=== changeDateTime
+Zeitstempel der letzten Änderung. Wert wird bei jeder Aktualisierung durch VZD auf aktuelle Systemzeit gesetzt.
 
 == Beispiele
 
 === Darstellung von Personen und Institutionen in einer Liste
 
 |===
-^| Typ | Name | Nachname | Vorname | Adresse | PLZ | Ort 
+^| Typ | Name | Nachname | Vorname | Adresse | PLZ | Ort
 
 ^| 🏥
 | Praxis Helga Freifrau Mondwürfel
-| 
-| 
+|
+|
 | Bahnhof Str. 13
 | 91234
 | Nürnberg
