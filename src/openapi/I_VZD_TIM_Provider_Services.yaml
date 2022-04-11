@@ -2,7 +2,10 @@ openapi: 3.0.1
 info:
   title: I_VZD_TIM_Provider_Services
   description: REST interface to retrieve the TI-Messenger federation list and the PASSporT signing certificate.
-  version: 1.0.2
+  version: 1.1.0
+  # version 1.1.0
+    # - removed operation getPASSporTCertificates.
+    # - new REST crud operations for TI-Messenger domains
   # version 1.0.2
     # - Operation getPASSporTCertificates returns now an array of certificates in pem format
   # version 1.0.1
@@ -19,9 +22,17 @@ tags:
   description: This operation returns meta data about this interface
 - name: getFederationList
   description: Returns the TI-Messenger federation list. If a version parameter is given then the federation list will be returned only if there is a newer version available.
-- name: getPASSporTCertificates
-  description: Returns the list of certificates which are used for signing Personal Assertion Tokens (PASSporT)
-
+- name: addTiMessengerDomain
+  description: This operation adds the domain in the TI-Messenger Federationlist
+- name: getTiMessengerDomain
+  description: This operation returns a single or all managed TI-Messenger domains
+- name: updateTiMessengerDomain
+  description: This operation updates a TI-Messenger domain.
+- name: deleteTiMessengerDomain
+  description: This operation deletes a domain trom the TI-Messenger Federationlist.
+- name: checkTiMessengerDomains
+  description: This operation verifies that all managed domains belong to active Organization ressources in the FHIR-Directory. 
+  
 paths:
   /:
     get:
@@ -73,7 +84,7 @@ paths:
           content:
             application/json:
               schema:
-                  $ref: '#/components/schemas/schemaFederationList'
+                  $ref: '#/components/schemas/FederationList'
         204:
           description: No Content
                     # if the version of the list is less than or equal to the version parameter of the request 
@@ -98,22 +109,98 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
 
-  /PASSporTCertificates:
-    get:
+  /federation:
+    post:
       tags:
-      - getPASSporTCertificates
-      summary: Returns the list of certificates that signs Personal Assertion Tokens (PASSporT)
-      description: Returns the certificate that signs Personal Assertion Tokens (PASSporT)
+      - addTiMessengerDomain
+      summary: Add a domain to the TI-Messenger federation
+      description: A new domain in the TI-Messenger federation.
       operationId: getPASSporTCertificates
-
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Domain'
       responses:
         200:
           description: OK
-                    #  The list of X.509 certificates in pem format.
           content:
             application/json:
               schema:
-                  $ref: '#/components/schemas/schemaPASSporTCertificates'
+                  $ref: '#/components/schemas/Domain'
+
+        401:
+          description: Unauthorized
+                    #  The WWW-Authenticate header in the response is OAuth.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        403:
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+    put:
+      tags:
+      - updateTiMessengerDomain
+      summary: Update a domain in the TI-Messenger federation
+      description: A update to a domain in the TI-Messenger federation.
+      operationId: updateTiMessengerDomain
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Domain'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/Domain'
+
+        401:
+          description: Unauthorized
+                    #  The WWW-Authenticate header in the response is OAuth.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        403:
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+    get:
+      tags:
+      - getTiMessengerDomain
+      summary: Get a TI-Messenger domain
+      description: Get a single or all TI-Messenger domains.
+      operationId: getTiMessengerDomain
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/Domain'
 
         401:
           description: Unauthorized
@@ -139,7 +226,7 @@ components:
 
   schemas:
   
-    schemaFederationList:
+    FederationList:
       type: object
       properties:
         version:
@@ -158,16 +245,15 @@ components:
             description: a hashed domain name
           readOnly: true
 
-    schemaPASSporTCertificates:
+    Domain:
       type: object
       properties:
-        passportSigningCertificates:
-          description: The list of certificates for signing PASSporT in pem format
-          type: array
-          items:
-            type: string
-            description: certificate in pem format
-          readOnly: true
+        domain:
+          description: The TI-Messenger domain
+          type: string
+        telematikID:
+          description: The telematikID of the organization that uses the TI-Messenger domain
+          type: string
 
     Error:
       type: object
