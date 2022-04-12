@@ -115,7 +115,7 @@ paths:
       - addTiMessengerDomain
       summary: Add a domain to the TI-Messenger federation
       description: A new domain in the TI-Messenger federation.
-      operationId: getPASSporTCertificates
+      operationId: addTiMessengerDomain
       requestBody:
         content:
           application/json:
@@ -158,7 +158,10 @@ paths:
       parameters:
         - name: domain
           in: query
-          description: Domain
+          description: |
+            Domain
+            If this parameter is used, then the selected domain is returned.
+            If this parameter is not present, then all domains of the requesting clint are returned.
           schema:
             type: string  
       responses:
@@ -167,6 +170,8 @@ paths:
           content:
             application/json:
               schema:
+                type: array
+                items:
                   $ref: '#/components/schemas/Domain'
 
         401:
@@ -189,7 +194,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
 
-
   /federation/{domain}:
 
     put:
@@ -201,7 +205,9 @@ paths:
       parameters:
         - name: domain
           in: path
-          description: Domain
+          description: |
+            Domain
+            Has to be equal to the domain in the requestBody
           required: true
           schema:
             type: string  
@@ -237,6 +243,86 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
 
+    delete:
+      tags:
+      - deleteTiMessengerDomain
+      summary: Deletes a domain in the TI-Messenger federation
+      description: Deletes a domain in the TI-Messenger federation.
+      operationId: deleteTiMessengerDomain
+      parameters:
+        - name: domain
+          in: path
+          description: Domain
+          required: true
+          schema:
+            type: string  
+      responses:
+        204:
+          description: No content
+        401:
+          description: Unauthorized
+                    #  The WWW-Authenticate header in the response is OAuth.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        403:
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /federationCheck:
+    get:
+      tags:
+      - checkTiMessengerDomains
+      summary: This operation verifies that all managed domains belong to active Organization ressources in the FHIR-Directory.
+      description: |
+        This operation verifies that all managed domains belong to active Organization ressources in the FHIR-Directory.
+        Returns a list of all domains which belong to inactive Organizations.
+      operationId: checkTiMessengerDomains
+      responses:
+        200:
+          description: |
+           OK
+           Returns the list of all domains which belong to inactive Organizations
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Domain'
+        204:
+          description: |
+            No content
+            All domains of the client are OK
+        401:
+          description: Unauthorized
+                    #  The WWW-Authenticate header in the response is OAuth.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        403:
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
 
 components:
 
@@ -248,18 +334,33 @@ components:
         version:
           description: The version of the federation list
           type: integer
+          example: 12
           readOnly: true
         hashAlgorithm:
           description: The hash algorithm that was used to create the hashes. Currently only SHA-256 is supported.
           type: string
+          example: SHA-256
           readOnly: true
         domainList:
           description: The list of hashed TI-Messenger domain names
           type: array
           items:
-            type: string
+            $ref: '#/components/schemas/DomainEntry'            
+
+    DomainEntry:
+      type: object
+      description: One domain
+      properties:
+          domain:
             description: a hashed domain name
-          readOnly: true
+            type: string
+          isEnsurance:
+            description: |
+              Indicates if it is a domain of an health insurance for insured persons
+            type: boolean
+            example: false
+      readOnly: true
+
 
     Domain:
       type: object
