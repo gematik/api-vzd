@@ -1,0 +1,18 @@
+@startuml ObjectDiagram.PractitionerRole
+skinparam monochrome true
+object "PractitionerRole 1" as pr1
+object "PractitionerRole 2" as pr2
+object "Practitioner 1" as p1
+object "Location 1" as l1
+object "Location 2" as l2
+object "Endpoint 1" as e1
+object "Endpoint 2" as e2
+
+pr1 o-- p1
+pr1 o-- l1
+pr1 o-- e1
+pr2 o-- p1
+pr2 o-- l2
+pr2 o-- e2
+
+@enduml

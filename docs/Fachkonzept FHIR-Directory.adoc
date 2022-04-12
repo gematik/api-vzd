@@ -1,0 +1,932 @@
+= Fachkonzept FHIR-Directory
+gematik, Systems Engineering
+:source-highlighter: rouge
+:title-page:
+:imagesdir: /images/
+ifdef::env-github[]
+:toc: preamble
+endif::[]
+ifndef::env-github[]
+:toc: left
+endif::[]
+:toclevels: 3
+:toc-title: Inhaltsverzeichnis
+//:sectnums:
+
+image::gematik_logo.svg[gematik,float="right"]
+
+== Einführung und Ziele
+
+Das FHIR-Directory der Telematikinfrastruktur (TI) ist ein Verzeichnis von Organisationen des Gesundheitswesens und ein Verzeichnis von Leistungserbringern (LE). Es ist ein wesentlicher Bestandteil der TI 2.0 und ermöglicht den Nutzern und Anbietern von Fachanwendungen der TI, wie z. B. dem TI-Messenger, ihre Einträge im FHIR-Directory um Informationen zu erweitern sowie nach Organisationen und Personen zu suchen.
+Eine Datenbasis für die Einträge der Organisationen und LE wird durch die Kartenherausgeber gepflegt. Die Einträge der Organisationen und LE werden im FHIR-Format gepflegt und abgefragt.
+
+== Aufgabenstellung
+
+Das FHIR-Directory ist das zentrale Adressbuch für die Organisationen des Gesundheitswesens und LE. Alle Fachanwendungen der TI, die Adressdaten und fachliche Daten der Organisationen und LE benötigen finden die Daten im FHIR-Directory. Dabei wird unterschieden zwischen einem Organisationsverzeichnis und einem Personenverzeichnis.
+Um dies zu erreichen besitzt das FHIR-Directory Schnittstellen
+
+* zur Pflege der Daten durch Kartenherausgeber und durch die Eigentümer der Einträge
+
+* zur Suche nach Einträgen durch Nutzer der TI
+
+=== User Stories
+
+==== TI-Messenger Nutzer sucht im FHIR-Directory
+
+. Als TI-Messenger-Nutzer möchte ich komfortabel aus meiner TI-Messenger App nach Kontakten im FHIR-Directory suchen können, sodass ich  einen geeigneten TI-Messenger-Kommunikationspartner finden kann.
+Komfortabel suchen heißt, dass verschiedene Suchoptionen unterstützt werden, wie Volltextsuche, genaue Angabe von Suchparametern und unscharfe Suche. Ich möchte auch in meiner App verschiedene Such- und Filterfunktionen kombinieren können wie z.B. die Ortungsfunktion und die Filterung nach Öffnungszeiten, um eine Organisation zu finden.
+
+. Als TI-Messenger-Nutzer möchte ich die Ortungsfunktion meines Geräts nutzen können, um nahegelegene Organisationen finden zu können, so dass ich spontan die für mich bestgelegene Organisation auswählen kann.
+
+. Als TI-Messenger-Nutzer möchte ich in der Lage sein, Organisationen herauszufiltern, die gerade geöffnet haben oder die bald öffnen werden, so dass ich nicht vor verschlossenen Türen stehe, wenn ich die Organisation aufsuchen will.
+
+. Als TI-Messenger-Nutzer möchte ich zu den gefundenen Organisationen zusätzliche Informationen erhalten, um mich mit ihnen in Verbindung setzen bzw. um mich über sie informieren zu können (z.B. Webseite, E-Mail-Adresse, Telefonnummer, unterstützte Sprachen).
+
+. Als TI-Messenger-Nutzer und Leistungserbringer (LE) möchte ich im Personenverzeichnis komfortabel (siehe User Story (1)) nach anderen LE suchen können, um mit ihnen auf unkomplizierte Weise kommunizieren zu können.
+
+Die Authentifizierung der TI-Messenger-Nutzer am FHIR-Directory erfolgt durch Nachweis der Zugehörigkeit zu einem TI-Messenger-Service. Die Zugehörigkeit zu einem TI-Messenger-Service wird durch eine sichere Überprüfung durch das FHIR-Directory beim Messenger-Service erreicht. Der Vorgang erfolgt ohne Nuzerinteraktion. Als Ergebnis der Authentifizierung erhält der TI-Messenger-Client ein tim-search-accesstoken, dass für die Zugriffe auf das FHIR-Directory, ohne erneute Überpräfung beim TI-Messenger-Service, verwendet werden kann. Das accesstoken enthält die TI-Messenger-Adresse des TI-Messenger-Nutzers und, ob es sich beim Nutzer um einen Leistungserbringer (LE) handelt, der eine TI-Messenger-Adresse im Personenverzeichnis hat. TI-Messenger-Nutzer dürfen grundsätzlich immer im Organisationsverzeichnis suchen. Wenn der Nutzer zusätzlich ein LE ist und seine TI-Messenger-Adresse im Personenverzeichnis eingetragen ist, dann kann der Nutzer auch im Personenverzeichnis nach Kontakten suchen.
+
+==== Eintrag im Personenverzeichnis für LE
+
+Als TI-Messenger-Nutzer und LE habe ich die Möglichkeit meine TI-Messenger-Adresse in das Personenverzeichnis einzutragen. Dadurch habe ich die Kontrolle, ob ich über den TI-Messenger im Personenverzeichnis erreichbar bin.
+
+Um die TI-Messenger-Adresse im eigenen Eintrag im Personenverzeichnis speichern zu können, ist es erforderlich, dass der TI-Messenger-Nutzer sicher authentifiziert wird. Durch Anfrage des TI-Messenger-Clients beim FHIR-Directory wird ein OpenID Connect Authorization Code Flow ausgelöst. Mithilfe eines IDPs aus der TI-IDP-Föderation und eines Authenticators für diesen IDP authentifiziert sich der Nutzer. Am Ende erhält der Nutzer ein owner-accesstoken, dass ihn berechtigt seine TI-Messenger-Adresse im Personenverzeichnis des FHIR-Directories einzutragen oder zu löschen. Die Eintragung der eigenen TI-Messenger-Adresse in den eigenen Eintrag im Personenverzeichnis ist die Voraiussetzung, um selbst im Personenverzeichnis nach anderen LE suchen und von anderen LE gefunden werden zu können.
+
+==== Organisation des Gesundheitswesens verwaltet ihren Eintrag im Organisationsverzeichnis
+
+Als Administrator einer Organisation des Gesundheitswesens möchte ich konfigurieren können, wie meine TI-Messenger-Kontaktdaten im Organisationsverzeichnis gefunden werden, damit die Arbeitsabläufe in meiner Organisation sinnvoll durch den TI-Messenger unterstützt werden.
+
+Um die TI-Messenger-Kontaktdaten im eigenen Eintrag im Organisationszeichnis speichern zu können und Unterstukturen von TIOrganization-Einträgen anzulegen und zu verwalten, ist es erforderlich, dass der Administrator einer Organisation sicher authentifiziert wird. Durch Anfrage des Org-Admin-Clients oder TI-Messenger-Clients beim FHIR-Directory wird ein OpenID Connect Authorization Code Flow ausgelöst. Mithilfe eines IDPs aus der TI-IDP-Föderation und eines Authenticators auf dem Gerät des Org-Admin-Clients/TI-Messenger-Clients authentifiziert sich der Administrator. Am Ende erhält der Administrator ein owner-accesstoken, dass ihn berechtigt seine Daten im Organisationszeichnis des FHIR-Directories einzutragen oder zu löschen. Vom Kartenherausgeber verwaltete Daten können nicht durch den Administrator einer Organisation geändert werden.
+
+
+==== Kartenherausgeber pflegen Daten im FHIR-Directory
+
+. Als Kartenherausgeber brauche ich eine einfache (technische) Möglichkeit, die Daten für die ich verantwortlich bin, im VZD-FHIR-Directory editieren zu können (einstellen, lesen, verändern, löschen).
+
+. Als Kartenherausgeber möchte ich, dass ich bei einem Ausfall oder Störungen des FHIR-Directory entsprechendes Feedback und Support erhalte.
+
+Die Kartenherausgeber pflegen die Daten ihrer Mitglieder im FHIR-Directory. Das erfolgt zur Zeit noch nicht direkt, sondern über die Pflege der Einträge im LDAP-Directory, die in das FHIR-Directory regelmäßig automatisch synchronisiert werden. Damit ein Kartenherausgeber Einträge pflegen kann, muss er sich beim Anbieter des Verzeichnisdienstes registrieren. Als Ergebnis der Registrierung erhält der Kartenherausgeber Credentials, mit denen er sich authentisieren kann und so die Berechtigung zur Pflege der Einträge in Form eines accesstokens erhält.
+
+==== TI-Messenger-Anbieter verwaltet TI-Messenger-Föderations-Domains
+
+Als TI-Messenger-Anbieter möchte ich einfach und effizient die Föderationsliste des TI-Messengers herunterladen und die Domains der von mir betriebenen Messenger-Services verwalten können.
+
+Die TI-Messenger-Anbieter pflegen die TI-Messenger-Domains der von ihnen betriebenen Messenger-Services im FHIR-Directory. Zusätzlich benötigt der TI-Messenger-Anbieter die Föderationsliste vom FHIR-Directory. Das FHIR-Directory stellt für diese Operationen eine Schnittstelle bereit. Damit ein TI-Messenger-Anbieter die Schnittstelle nutzen kann, muss er sich beim Anbieter des Verzeichnisdienstes registrieren. Als Ergebnis der Registrierung erhält der TI-Messenger-Anbieter Credentials, mit denen er sich authentisieren kann und so die Berechtigung zur Nutzung der Schnittstelle in Form eines accesstokens erhält.
+
+==== Sicherung der Datenqualität durch die gematik
+
+Als gematik möchte ich die Daten-Qualität der Einträge im FHIR-Directory prüfen können, damit alle Nutzer die benötigten Daten im FHIR-Directory finden können.
+
+Zur Sicherung der Datenqualität nutzt die gematik
+
+- periodische, datenschutzkonforme Reports, welche durch den VZD-FHIR-Directory Anbieter erstellt werden
+- die Suchfunktion im VZD-FHIR-Directory zum Auffinden von Datensätzen mit geringer Qualität bzw. Fehlern.
+
+Die Suchfunktion im VZD-FHIR-Directory erfolgt durch die gematik analog zu der Suche durch TI-Messenger-Anbieter:
+
+Damit die gematik die Schnittstelle nutzen kann, muss sie sich beim Anbieter des Verzeichnisdienstes registrieren. Als Ergebnis der Registrierung erhält die gematik Credentials, mit denen sie sich authentisieren kann und so die Berechtigung zur lesenden Nutzung der Schnittstelle in Form eines accesstokens erhält.
+gematik-Nutzer dürfen im Organisationsverzeichnis und im Personenverzeichnis nach Datensätzen suchen.
+
+== Qualitätsziele
+
+* Funktionale Eignung
++
+Über den VZD-FHIR-Directory müssen Einträge von Organisationen und Leistungserbringern inklusive ihrer Kontaktdaten auffindbar sein. Dazu bietet der VZD-FHIR-Directory folgende Schnittstellen an:
+
+. FHIR Schnittstelle zur Suche /tim-search
+. FHIR Schnittstelle zur Pflege eigener Einträge /owner
+. REST Schnittstelle zur Pflege eigener TIM Provider Einträge und MXID's der Oragnisationen und Leistungserbringer /tim-provide-services
+
+* Zuverlässigkeit
++
+TI Anwendungen wie der TI Messenger benötigen die Suchfunktion vom dem VZD-FHIR-Directory. Die Suchfunktion vom dem VZD-FHIR-Directory muss deshalb mit einer hohen Verfügbarkeit bereitgestellt werden.
+
+* Sicherheit
++
+Einzelne Organisations- und Leistungserbringer-Einträge aus dem VZD-FHIR-Directory werden allen Clients zur Vefügung gestellt. Geschützt werden müssen
+
+- Schreibzugriffe auf VZD-FHIR-Directory Einträge
+- Der VZD-FHIR-Directory Datenbestand als gesamter Datenbestand (einzelne Einträge sind für alle Clients lesbar, der gesamte Datenbestand nur für berechtigte Clients)
+
+* Wartbarkeit und Betreibbarkeit
++
+Die Wartbarkeit und Betreibbarkeit von dem VZD-FHIR-Directory muss gewährleistet werden durch:
+
+- die Dokumentation,
+- Spezifikation von Schnittstellen,
+- eine skalierbare und erweiterbare Architektur auf Basis von Standardkomponenten (FHIR Server, Datenbanken,...),
+- ein übersichtliches Design,
+- die Konfigurierbarkeit wichtiger Variablen,
+- eine hohe Kohäsion und lose Kopplung der Module,
+- automatisierte Tests.
+
+* Performance und Skalierbarkeit
++
+Die Performanceanforderungen berücksichtigen den Bedarf der Fachanwendungen, welche das VZD-FHIR-Directory nutzen. Die Performance-Kenngrößen decken drei Dimensionen ab:
+
+- Durchsatz, die Anzahl an Funktionsaufrufen oder die Datenmenge, die pro Zeiteinheit durch das System oder eine seiner Komponenten abgearbeitet werden,
+- die erlaubte Bearbeitungszeit je Funktionsaufruf und die
+- Verfügbarkeit über die gesamte Betriebszeit.
+
++
+Die Skalierbarkeit stellt die Anpassbarkeit des VZD-FHIR-Directory an sich ändernde Performanceanforderungen der Fachanwendungen sicher.
+
+* Kompatibilität (FHIR, OIDC, OAuth)
++
+Das VZD-FHIR-Directory basiert - zur Gewährleistung der Kompatibilität mit möglichst vielen Fachanwendungen - auf Standards. Dazu gehören
+
+* FHIR (Fast Healthcare Interoperability Resources): Der Standard unterstützt den Datenaustausch zwischen Softwaresystemen im Gesundheitswesen.
+* OpenID Connect (OIDC) als Authentifizierungsschicht (basiert auf dem Autorisierungsframework OAuth 2.0) gewährleistet die Kompatibilität zu Authentifizierungslösungen.
+* OAuth (Open Authorization) ermöglicht die standardisierte, sichere API-Autorisierung für Desktop-, Web- und Mobile-Anwendungen.
+
+
+* Übertragbarkeit
++
+Mit der Übertragbarkeit (oder Portabilität) kann die Software von einer Hardware- oder Softwareumgebung in eine andere ‚übertragen‘ werden.
+
+
+Motivation
+
+Weil Qualitätsziele grundlegende Architekturentscheidungen oft maßgeblich beeinflussen, sollten Sie die für Ihre Stakeholder relevanten Qualitätsziele kennen, möglichst konkret und operationalisierbar.
+
+Form
+
+Tabellarische Darstellung der Qualitätsziele mit möglichst konkreten Szenarien, geordnet nach Prioritäten.
+
+== Stakeholder
+
+.Überblick über die Stakeholder des FHIR-Directory
+|===
+|Stakeholder |Erwartung
+
+|Hersteller von TI-Messenger Clients
+|Die Hersteller müssen wissen, welche FHIR-Ressourcen im FHIR-Directory gespeichert werden und welche Attribute von Clients für die Suche nach Einträgen und für die  Darstellung von Ergebnissen unterstützt werden müssen.
+
+|Hersteller von Org-Admin Clients
+|Die Hersteller müssen wissen, welche FHIR-Ressourcen im FHIR-Directory gespeichert werden, welche FHIR-Ressourcen angelegt werden dürfen, wie die Beziehungen zwischen den FHIR Ressourcen sind und welche Attribute geändert werden dürfen.
+
+|Kartenherausgeber
+|Die Kartenherausgeber müssen wissen, welche FHIR-Ressourcen im FHIR-Directory gespeichert werden, welche FHIR-Ressourcen angelegt werden dürfen, wie die Beziehungen zwischen den FHIR Ressourcen sind und welche Attribute geändert werden dürfen.
+
+|Hersteller von TI-Messenger Fachdiensten
+|Die Hersteller müssen wissen, welche FHIR-Ressourcen sie erzeugen und ändern dürfen und welche Attribute sie pflegen müssen.
+
+|gematik
+|Die gematik muss in der Lage sein die Daten-Qualität im FHIR-Directory zu prüfen.
+|===
+
+== Randbedingungen
+uhe
+Inhalt
+Randbedingungen und Vorgaben, die ihre Freiheiten bezüglich Entwurf, Implementierung oder Ihres Entwicklungsprozesses einschränken. Diese Randbedingungen gelten manchmal organisations- oder firmenweit über die Grenzen einzelner Systeme hinweg.
+Motivation
+Für eine tragfähige Architektur sollten Sie genau wissen, wo Ihre Freiheitsgrade bezüglich der Entwurfsentscheidungen liegen und wo Sie Randbedingungen beachten müssen. Sie können Randbedingungen vielleicht noch verhandeln, zunächst sind sie aber da.
+Form
+Einfache Tabellen der Randbedingungen mit Erläuterungen. Bei Bedarf unterscheiden Sie technische, organisatorische und politische Randbedingungen oder übergreifende Konventionen (beispielsweise Programmier- oder Versionierungsrichtlinien, Dokumentations- oder Namenskonvention).
+Siehe Randbedingungen in der online-Dokumentation (auf Englisch!).
+
+Das VZD-FHIR-Directory muss mit dem VZD-LDAP-Directory [gemSpec_VZD] koexistieren. Die Daten aus dem VZD-LDAP-Directory werden in das VZD-FHIR-Directory synchronisiert und können dort ergänzt werden.
+Das VZD-FHIR-Directory muss die nötigen Services für den TI-Messenger bereitstellen [gemSpec_TI-Messenger-Client][gemSpec_TI-Messenger-Dienst][gemSpec_TI-Messenger-FD].
+
+
+////
+== Kontextabgrenzung
+cp
+Inhalt
+Die Kontextabgrenzung grenzt das System von allen Kommunikationsbeziehungen (Nachbarsystemen und Benutzerrollen) ab. Sie legt damit die externen Schnittstellen fest.
+Differenzieren Sie fachliche (fachliche Ein- und Ausgaben) und technische Kontexte (Kanäle, Protokolle, Hardware), falls nötig.
+Motivation
+Die fachlichen und technischen Schnittstellen zur Kommunikation gehören zu den kritischsten Aspekten eines Systems. Stellen Sie sicher, dass Sie diese komplett verstanden haben.
+Form
+Verschiedene Optionen:
+
+•	Diverse Kontextdiagramme
+•	Listen von Kommunikationsbeziehungen mit deren Schnittstellen
+
+Siehe Kontextabgrenzung in der online-Dokumentation (auf Englisch!).
+////
+
+== Fachlicher Kontext
+
+=== Nutzer und Rollen
+
+image::FHIR-Directory_Systemkontext.svg[FHIR-Directory Systemkontext]
+
+Die Abbildung zeigt das FHIR-Directory mit seinen Außen-Schnittstellen und Nutzern.
+
+.Nutzer und Rollen
+|===
+|Nutzer und Rolle |Beschreibung
+
+|TI-Messenger Nutzer
+|TI-Messenger Nutzer können zwei Rollen einnehmen. Alle TI-Messenger Nutzer können im FHIR-Directory über die Schnittstelle (1) nach Einträgen im Organisationsverzeichnis suchen.
+
+|TI-Messenger Nutzer LE
+|TI-Messenger Nutzer, die auch LE sind, können zusätzlich im Personenverzeichnis nach Einträgen suchen, wenn sie ihre Matrix Adresse über die Schnittstelle (2) in ihrem Eintrag gespeichert haben.
+
+|Org-Admin
+|Administratoren der Organisationen können im FHIR-Directory über die Schnittstelle (2) ihren Eintrag im Organisationsverzeichnis ändern und um zusätzliche Ressourcen erweitern.
+|===
+
+.Kommunikationsbeziehungen zu IT-Systemen
+|===
+|IT-Systeme |Beschreibung
+
+|Kartenherausgeber
+|Die Kartenherausgeber nutzen die Schnittstelle (3) um die Einträge ihrer Mitglieder im LDAP-Directory und zukünftig im FHIR-Directory zu pflegen.
+
+|TI-Messenger Anbieter
+|Die TI-Messenger Anbieter nutzen die Schnittstelle (4) um die Föderationsliste des TI-Messengers abzufragen und um die Domains der von ihnen betriebenen Messenger-Services als Teil der TI-Messenger Föderation zu verwalten.
+
+|gematik
+|Die gematik kann über die Schnittstelle (5) lesend auf die Einträge im FHIR-Directory und im LDAP-Directory zugreifen um die Daten-Qualität der Einträge zu prüfen und um Fehler zu analysieren.
+
+|LDAP-Directory
+|Die Schnittstelle (6) zwischen FHIR-Directory und LDAP-Directory wird vom Verzeichnisdienst genutzt, um die Einträge zu synchronisieren.
+|===
+
+=== Schnittstellen
+
+Alle Schnittstellen mit Ausnahme (6) sind über das Internet erreichbar. Die Schnittstellen stellen folgende Funktionen bereit:
+
+. Für Nutzer des TI-Messengers gibt es eine Schnittstelle zur Suche nach Einträgen im Organisationsverzeichnis und für LE zusätzlich zur Suche im Personenverzeichnis. Die Schnittstelle kann nur nach erfolgreicher Authentisierung genutzt werden. Alle TI-Messenger Nutzer können sich authentisieren und bekommen vom FHIR-Directory ein Accesstoken ausgestellt, dass für die Suchanfragen verwendet wird. Die Suche ermöglicht es komfortabel nach Volltext oder nach bestimmten Werten der einzelnen Attribute über die verlinkten Ressourcen zu suchen. Gefundene Ressourcen werden in einem Bundle von FHIR Ressourcen zurückgeliefert. Das FHIR-Directory egänzt zu gefundenen TI-Messenger Adressen automatisch ein PASSporT. Es wird Paging unterstützt. Das Datenformat ist json.
+. Für Administratoren der Organisationen des Gesundheitswesens gibt es eine Schnittstelle zur Änderung Ihres Eintrags im Organisationsverzeichnis. Zur Nutzung der Schnittstelle ist eine Authentifizierung mit OIDC Authorization Code Flow erforderlich. Über diese Schnittstelle kann der eigene Eintrag der Organisation über eine Verlinkung um zusätzliche Einträge erweitert werden. TI-Messenger Nutzer die auch LE sind, können diese Schnittstelle nutzen, um ihre TI-Messenger-Adresse in ihrem Eintrag im Personenverzeichnis zu speichern, sodass sie von anderen LE gefunden werden können. Auch hier erfolgt die Authnetifizierung über OIDC. Das FHIR-Datenformat ist json.
+. Für Kartenherausgeber gibt es eine Schnittstelle um Einträge im LDAP-Directory anzulegen und zu pflegen. Das Datenformat ist json und ist in einer OpenAPI yaml Datei festgelegt. Zukünftig ist vorgesehen, dass die Kartenherausgeber auch direkt die Schnittstelle zum FHIR-Directory nutzen können. Dann ist das Datenformat FHIR in der Ausprägung json. Die Authentifizierung der Kartenherausgber erfolgt mit OAuth Client Credential Flow.
+. TI-Messenger-Anbieter pflegen im FHIR-Directory für die von ihenen angebotenen Messenger-Services die TI-Messenger Domänen und verlinken sie zu den Einträgen der Organisationen, für die die Messenger-Services angeboten werden. Das Datenformat FHIR in der Ausprägung json. Zusätzlich können die TI-Messenger Anbieter die Föderationsliste abfragen. Sie beinhaltet alle an der Föderation des TI-Messengers beteiligte Domains. Die Authentifizierung der TI-Messenger-Anbieter erfolgt mit OAuth Client Credential Flow.
+. Die gematik hat Schnittstellen um die Daten-Qualität der Einträge zu prüfen. Dazu wird die Schnittstelle der Kartenherausgeber genutzt. Die gematik hat aber nur Leserechte.
+. Die Einträge im LDAP-Directory werden in das FHIR-Directory Organisations- und Personenverzeichnis synchronisiert. Es handelt sich um eine interne Schnittstelle des Verzeichnisdienstes der TI. Für Einträge, die von den Kartenherausgebern schon direkt im FHIR-Directory gepflegt werden erfolgt die Synchronisation umgekehrt in das LDAP-Directory. Die Einträge erhalten dazu im FHIR-Directory eine spezielle Kennung, die angibt, ob die Pflege schon direkt im FHIR-Directory erfolgt ist.
+
+=== Datenstruktur im FHIR-Directory
+
+Im FHIR-Directory werden FHIR-Ressourcen nach der http://hl7.org/fhir/[HL7 FHIR] Spezifikation gespeichert.
+
+==== Organisationsverzeichnis
+
+Die Einträge im Organisationsverzeichnis beginnen immer mit einer HealthcareService Ressource (Bezeichner des Service und Verfügbarkeitszeiten) mit Links zu einer Organization Ressource (Name der Organisation) sowie einer Location Ressource (postalische Adresse und Geodaten sowie Öffnungszeiten). Die Endpoint Ressource ist optional und enthält fachliche Daten der Anwendungen wie z. B. Adressdaten des TI-Messengers.
+
+image::diagrams/ClassDiagram.HealthcareService.png[ClassDiagram HealthcareService]
+
+Das Objektdiagramm zeigt mögliche Verlinkungen der Ressourcen. Ein HealthcareService ist immer mit einer Organisation verlinkt.
+
+image::diagrams/ObjectDiagram.HealthcareService.png[ObjectDiagram HealthcareService]
+
+.Datenmodell Ressource HealthcareService
+|===
+|Attribut|Fachlicher Wert|Kardinalität|Bemerkung|Sync mit LDAP-Directory|Kann vom Besitzer geändert werden
+
+|identifier
+|n/a
+|0..*
+|Aktuell kein Identifier vorgesehen
+|nein
+|nein
+
+|providedBy
+|Reference der Organization Ressource
+|1..1
+|Es gibt immer einen HealthcareService, der von den Kartenherausgebern erzeugt wird. Der Besitzer des Eintrags kann weitere Healthcareservices erzeugen, die immer eine Referenz auf die eigene Organization Ressource haben müssen.
+|ja
+|ja
+
+|speciality
+|Fachrichtung
+|0..*
+|https://wiki.hl7.de/index.php?title=IG:Value_Sets_f%C3%BCr_XDS#DocumentEntry.practiceSettingCode[practiceSettingCode]
+|ja
+|nein
+
+|location
+|Reference der Location Ressource
+|0..*
+|
+|ja
+|ja
+
+|name
+|Name des HealthcareService
+|0..*
+|
+|nein
+|ja
+
+|telecom
+|Kontaktdaten des HealthcareService
+|0..*
+|
+|nein
+|ja
+
+|serviceProvisionCode
+|Service-Konditionen
+|0..*
+|Bedingungen unter denen der Service angeboten wird oder genutzt werden kann (z. B. kostenpflichtig)
+|nein
+|ja
+
+|communication
+|Sprache
+|0..*
+|Sprache, in der der Service angeboten wird
+|nein
+|ja
+
+|appointmentRequired
+|Termin erforderlich?
+|0..1
+|Ob ein Termin erforderlich ist
+|nein
+|ja
+
+|availableTime
+|Verfügbarkeit des Service
+|0..*
+|Wann der Service verfügbar ist
+|nein
+|ja
+
+|availabilityExceptions
+|Ausnahmen der Verfügbarkeit
+|0..*
+|Beschreibung der Verfügbarkeitsausnahmen
+|nein
+|ja
+
+|endpoint
+|Referenz zur Endpoint Ressource
+|0..*
+|
+|nein
+|ja
+|===
+
+.Datenmodell Ressource Organisation
+|===
+|Attribut|Fachlicher Wert|Kardinalität|Bemerkung|Sync mit LDAP-Directory|Kann vom Besitzer geändert werden
+
+|identifier
+|telematikID
+|1..*
+|Aktuell gibt es nur eine telematikID je Eintrag
+|ja
+|nein
+
+|identifier
+|Betriebsstättennummer
+|0..*
+|Wird von Arztpraxen verwendet
+|ja
+|nein
+
+|identifier
+|Abrechnungsnummer
+|0..*
+|Wird von Zahnarztpraxen verwendet
+|ja
+|nein
+
+|identifier
+|IK-Nummer
+|0..*
+|Wird von Krankenkassen und Krankenhäusern verwendet
+|ja
+|nein
+
+|type
+|Institutions-Typ
+|0..1
+|Gemäß professionOID (Pflicht, wenn Organisation kein Provider ist)
+|ja
+|nein
+
+|type
+|Provider-Typ
+|0..1
+|Gemäß TIProviderType
+Pflicht, wenn Organisation ein Provider ist
+|nein
+|nein
+
+|name
+|Name der Organisation
+|1..1
+|Kann nur vom Kartenherausgeber geändert werden
+|ja
+|nein
+
+|alias
+|Alias Name der Organisation
+|0..*
+|Hat den Wert des LDAP-Attributs organization, wenn vorhanden. Der Besitzer kann das Attribut ändern.
+|ja
+|ja
+
+|telecom
+|Kontaktdaten der Organisation
+|0..*
+|
+|nein
+|ja
+
+|contact
+|Kontakt-Personen der Organisation
+|0..*
+|
+|nein
+|ja
+
+|active
+|Status des Eintrags
+|1..1
+|Gibt die Sichtbarkeit des Eintrags für Nutzer an. Ist immer true, wenn der Eintrag aus dem LDAP-Directory synchronisiert wurde.
+|nein
+|nein
+|===
+
+.Datenmodell Ressource Location [[Location]]
+|===
+|Attribut|Fachlicher Wert|Kardinalität|Bemerkung|Sync mit LDAP-Directory|Kann vom Besitzer geändert werden
+
+|identifier
+|n/a
+|0..*
+|Aktuell kein Identifier vorgesehen
+|nein
+|ja
+
+|status
+|active, suspended, inactive
+|0..1
+|
+|nein
+|ja
+
+|name
+|Name der Location
+|0..*
+|
+|nein
+|ja
+
+|description
+|Beschreibung der Location
+|0..*
+|
+|nein
+|ja
+
+|telecom
+|Kontaktdaten der Location
+|0..*
+|
+|nein
+|ja
+
+|address
+|Postalische Adresse der Location
+|0..*
+|Wenn vom Kartenherausgeber angelegt, dann kann die Adresse nur durch den Kartenherausgeber geändert werden. Wenn durch die Organisation angelegt, dann kann die Adresse nur durch die Organisation geändert werden.
+|ja
+|ja
+
+|position
+|Geographische Position der Location
+|0..*
+|Wenn vom Kartenherausgeber angelegt, dann kann die Position nur durch den Kartenherausgeber geändert werden. Wenn durch die Organisation angelegt, dann kann die Position nur durch die Organisation geändert werden.
+|ja
+|ja
+
+|hoursOfOperation
+|Öffnungszeiten
+|0..*
+|
+|nein
+|ja
+
+|availabilityExceptions
+|Ausnahmen der Öffnungszeiten
+|0..*
+|
+|nein
+|ja
+|===
+
+.Datenmodell Ressource Endpoint [[Endpoint]]
+|===
+|Attribut|Fachlicher Wert|Kardinalität|Bemerkung|Sync mit LDAP-Directory|Kann vom Besitzer geändert werden
+
+|identifier
+|n/a
+|0..*
+|Aktuell kein Identifier vorgesehen
+|nein
+|ja
+
+|status
+|Status
+|1..1
+|
+|nein
+|ja
+
+|connectionType
+|Verbindungstyp
+|1..1
+|Gültige Werte werden in einem ValueSet vorgegeben.
+|nein
+|ja
+
+|name
+|Name der Endpoint Ressource
+|1..1
+|
+|nein
+|ja
+
+|managingOrganization
+|Referenz der Organisation, zu der der Endpoint gehört.
+|0..1
+|Wird von TI-Messenger Anbietern genutzt
+|nein
+|ja
+
+|payloadType
+|Prozessbezeichner
+|1..*
+|Bezeichnet den vom Endpoint unterstützten Prozess.
+|nein
+|ja
+
+|address
+|Adresse des Endpoints
+|1..1
+|Adresse des Endpoints in URL Notation
+|nein
+|ja
+|===
+
+==== Personenverzeichnis
+
+Die Einträge im Personenverzeichnis beginnen immer mit einer PractitionerRole Ressource (Rolle des LE) mit Links zu einer Practitioner Ressource (Name des LE) sowie optional einer Location Ressource (postalische Adresse und Geodaten sowie Öffnungszeiten). Die Endpoint Ressource ist optional und enthält fachliche Daten der Anwendungen wie z. B. Adressdaten des TI-Messengers.
+
+image::diagrams/ClassDiagram.PractitionerRole.png[ClassDiagram PractitionerRole]
+
+Das Objektdiagramm zeigt mögliche Verlinkungen der Ressourcen. Eine PractitionerRole ist immer mit einem Practitioner verlinkt.
+
+image::diagrams/ObjectDiagram.PractitionerRole.png[ObjectDiagram PractitionerRole]
+
+.Datenmodell Ressource PractitionerRole
+|===
+|Attribut|Fachlicher Wert|Kardinalität|Bemerkung|Sync mit LDAP-Directory|Kann vom Besitzer geändert werden
+
+|identifier
+|Kein Identifier vorgeschrieben
+|0..*
+|
+|nein
+|ja
+
+|practitioner
+|Reference zur Practitioner Ressource
+|1..1
+|Wenn vom Kartenherausgeber angelegt, dann wird die Reference auch vom Kartenherausgeber gesetzt. Wenn vom LE angelegt, dann wird die Reference vom LE gesetzt.
+|ja
+|ja
+
+|speciality
+|https://wiki.hl7.de/index.php?title=IG:Value_Sets_f%C3%BCr_XDS#DocumentEntry.practiceSettingCode[practiceSettingCode]
+|0..*
+|
+|ja
+|nein
+
+|location
+|Reference zur Location Ressource
+|0..*
+|Wenn vom Kartenherausgeber angelegt, dann wird die Reference auch vom Kartenherausgeber gesetzt. Wenn vom LE angelegt, dann wird die Reference vom LE gesetzt.
+|ja
+|ja
+
+|endpoint
+|Reference zur Endpoint Ressource
+|0..*
+|
+|nein
+|ja
+|===
+
+.Datenmodell Ressource Practitioner
+|===
+|Attribut|Fachlicher Wert|Kardinalität|Bemerkung|Sync mit LDAP-Directory|Kann vom Besitzer geändert werden
+
+|identifier
+|telematikID
+|1..*
+|Aktuell gibt es nur eine telematikID je Eintrag
+|ja
+|nein
+
+|active
+|Status des Eintrags
+|1..1
+|
+|ja
+|nein
+
+|name
+|Name des Practitioners
+|1..*
+|
+|ja
+|nein
+
+|telecom
+|Kontaktdaten des Practitioners
+|0..*
+|
+|nein
+|ja
+
+|gender
+|Geschlecht
+|0..1
+|
+|nein
+|ja
+
+|birthDate
+|Geburtsdatum
+|0..1
+|
+|nein
+|ja
+
+|photo
+|Foto
+|0..*
+|
+|nein
+|ja
+
+|qualification
+|https://wiki.hl7.de/index.php?title=IG:Value_Sets_f%C3%BCr_XDS#DocumentEntry.authorSpecialty[authorSpecialty]
+|0..*
+|
+|ja
+|nein
+
+|communication
+|Unterstützte Sprachen
+|0..*
+|
+|nein
+|ja
+|===
+
+Die Ressourcen <<Location>> und <<Endpoint>> werden wie im Organisationsverzeichnis verwendet.
+
+==== Beschreibung der FHIR Ressourcen
+
+Die FHIR Ressourcen sind im Simplifier Projekt https://simplifier.net/vzd-fhir-directory[VZD-FHIR-Directory] beschrieben.
+
+////
+== Technischer Kontext
+cp
+Inhalt
+Technische Schnittstellen (Kanäle, Übertragungsmedien) zwischen dem System und seiner Umwelt. Zusätzlich eine Erklärung (mapping), welche fachlichen Ein- und Ausgaben über welche technischen Kanäle fließen.
+Motivation
+Viele Stakeholder treffen Architekturentscheidungen auf Basis der technischen Schnittstellen des Systems zu seinem Kontext.
+Insbesondere bei der Entwicklung von Infrastruktur oder Hardware sind diese technischen Schnittstellen durchaus entscheidend.
+Form
+Beispielsweise UML Deployment-Diagramme mit den Kanälen zu Nachbarsystemen, begleitet von einer Tabelle, die Kanäle auf Ein-/Ausgaben abbildet.
+<Diagramm oder Tabelle>
+<optional: Erläuterung der externen technischen Schnittstellen>
+<Mapping fachliche auf technische Schnittstellen>
+
+== Lösungsstrategie
+uhe
+Inhalt
+Kurzer Überblick über die grundlegenden Entscheidungen und Lösungsansätze, die Entwurf und Implementierung des Systems prägen. Hierzu gehören:
+•	Technologieentscheidungen
+•	Entscheidungen über die Top-Level-Zerlegung des Systems, beispielsweise die Verwendung gesamthaft prägender Entwurfs- oder Architekturmuster,
+•	Entscheidungen zur Erreichung der wichtigsten Qualitätsanforderungen sowie
+•	relevante organisatorische Entscheidungen, beispielsweise für bestimmte Entwicklungsprozesse oder Delegation bestimmter Aufgaben an andere Stakeholder.
+Motivation
+Diese wichtigen Entscheidungen bilden wesentliche „Eckpfeiler“ der Architektur. Von ihnen hängen viele weitere Entscheidungen oder Implementierungsregeln ab.
+Form
+Fassen Sie die zentralen Entwurfsentscheidungen kurz zusammen. Motivieren Sie, ausgehend von Aufgabenstellung, Qualitätszielen und Randbedingungen, was Sie entschieden haben und warum Sie so entschieden haben. Vermeiden Sie redundante Beschreibungen und verweisen Sie eher auf weitere Ausführungen in Folgeabschnitten.
+Siehe Lösungsstrategie in der online-Dokumentation (auf Englisch!).
+
+== Bausteinsicht
+cp
+Inhalt
+Diese Sicht zeigt die statische Zerlegung des Systems in Bausteine sowie deren Beziehungen. Beispiele für Bausteine sind unter anderem:
+•	Module
+•	Komponenten
+•	Subsysteme
+•	Klassen
+•	Interfaces
+•	Pakete
+•	Bibliotheken
+•	Frameworks
+•	Schichten
+•	Partitionen
+•	Tiers
+•	Funktionen
+•	Makros
+•	Operationen
+•	Datenstrukturen
+
+Diese Sicht sollte in jeder Architekturdokumentation vorhanden sein. In der Analogie zum Hausbau bildet die Bausteinsicht den Grundrissplan.
+Motivation
+Behalten Sie den Überblick über den Quellcode, indem Sie die statische Struktur des Systems durch Abstraktion verständlich machen.
+Damit ermöglichen Sie Kommunikation auf abstrakterer Ebene, ohne zu viele Implementierungsdetails offenlegen zu müssen.
+Form
+Die Bausteinsicht ist eine hierarchische Sammlung von Blackboxen und Whiteboxen (siehe Abbildung unten) und deren Beschreibungen.
+
+Ebene 1 ist die Whitebox-Beschreibung des Gesamtsystems, zusammen mit Blackbox-Beschreibungen der darin enthaltenen Bausteine.
+Ebene 2 zoomt in einige Bausteine der Ebene 1 hinein. Sie enthält somit die Whitebox-Beschreibungen ausgewählter Bausteine der Ebene 1, jeweils zusammen mit Blackbox-Beschreibungen darin enthaltener Bausteine.
+Ebene 3 zoomt in einige Bausteine der Ebene 2 hinein, usw.
+Siehe Bausteinsicht in der online-Dokumentation (auf Englisch!).
+
+== Whitebox Gesamtsystem
+uhe
+An dieser Stelle beschreiben Sie die Zerlegung des Gesamtsystems anhand des nachfolgenden Whitebox-Templates. Dieses enthält:
+•	Ein Übersichtsdiagramm
+•	die Begründung dieser Zerlegung
+•	Blackbox-Beschreibungen der hier enthaltenen Bausteine. Dafür haben Sie verschiedene Optionen:
+–	in einer Tabelle, gibt einen kurzen und pragmatischen Überblick über die enthaltenen Bausteine sowie deren Schnittstellen.
+–	als Liste von Blackbox-Beschreibungen der Bausteine, gemäß dem Blackbox-Template (siehe unten). Diese Liste können Sie, je nach Werkzeug, etwa in Form von Unterkapiteln (Text), Unter-Seiten (Wiki) oder geschachtelten Elementen (Modellierungswerkzeug) darstellen.
+•	(optional:) wichtige Schnittstellen, die nicht bereits im Blackbox-Template eines der Bausteine erläutert werden, aber für das Verständnis der Whitebox von zentraler Bedeutung sind. Aufgrund der vielfältigen Möglichkeiten oder Ausprägungen von Schnittstellen geben wir hierzu kein weiteres Template vor. Im schlimmsten Fall müssen Sie Syntax, Semantik, Protokolle, Fehlerverhalten, Restriktionen, Versionen, Qualitätseigenschaften, notwendige Kompatibilitäten und vieles mehr spezifizieren oder beschreiben. Im besten Fall kommen Sie mit Beispielen oder einfachen Signaturen zurecht.
+<Übersichtsdiagramm>
+Begründung
+<Erläuternder Text>
+Enthaltene Bausteine
+<Beschreibung der enthaltenen Bausteine (Blackboxen)>
+Wichtige Schnittstellen
+<Beschreibung wichtiger Schnittstellen>
+Hier folgen jetzt Erläuterungen zu Blackboxen der Ebene 1.
+Falls Sie die tabellarische Beschreibung wählen, so werden Blackboxen darin nur mit Name und Verantwortung nach folgendem Muster beschrieben:
+Name	Verantwortung
+<Blackbox 1>	 <Text>
+<Blackbox 2>	 <Text>
+Falls Sie die ausführliche Liste von Blackbox-Beschreibungen wählen, beschreiben Sie jede wichtige Blackbox in einem eigenen Blackbox-Template. Dessen Überschrift ist jeweils der Namen dieser Blackbox.
+<Name Blackbox 1>
+Beschreiben Sie die <Blackbox 1> anhand des folgenden Blackbox-Templates:
+•	Zweck/Verantwortung
+•	Schnittstelle(n), sofern diese nicht als eigenständige Beschreibungen herausgezogen sind. Hierzu gehören eventuell auch Qualitäts- und Leistungsmerkmale dieser Schnittstelle.
+•	(Optional) Qualitäts-/Leistungsmerkmale der Blackbox, beispielsweise Verfügbarkeit, Laufzeitverhalten o. Ä.
+•	(Optional) Ablageort/Datei(en)
+•	(Optional) Erfüllte Anforderungen, falls Sie Traceability zu Anforderungen benötigen.
+•	(Optional) Offene Punkte/Probleme/Risiken
+<Zweck/Verantwortung>
+<Schnittstelle(n)>
+<(Optional) Qualitäts-/Leistungsmerkmale>
+<(Optional) Ablageort/Datei(en)>
+<(Optional) Erfüllte Anforderungen>
+<(optional) Offene Punkte/Probleme/Risiken>
+<Name Blackbox 2>
+<Blackbox-Template>
+<Name Blackbox n>
+<Blackbox-Template>
+
+== Laufzeitsicht
+cp
+Inhalt
+Diese Sicht erklärt konkrete Abläufe und Beziehungen zwischen Bausteinen in Form von Szenarien aus den folgenden Bereichen:
+•	Wichtige Abläufe oder Features: Wie führen die Bausteine der Architektur die wichtigsten Abläufe durch?
+•	Interaktionen an kritischen externen Schnittstellen: Wie arbeiten Bausteine mit Nutzern und Nachbarsystemen zusammen?
+•	Betrieb und Administration: Inbetriebnahme, Start, Stop.
+•	Fehler- und Ausnahmeszenarien
+Anmerkung: Das Kriterium für die Auswahl der möglichen Szenarien (d.h. Abläufe) des Systems ist deren Architekturrelevanz. Es geht nicht darum, möglichst viele Abläufe darzustellen, sondern eine angemessene Auswahl zu dokumentieren.
+Motivation
+Sie sollten verstehen, wie (Instanzen von) Bausteine(n) Ihres Systems ihre jeweiligen Aufgaben erfüllen und zur Laufzeit miteinander kommunizieren.
+Nutzen Sie diese Szenarien in der Dokumentation hauptsächlich für eine verständlichere Kommunikation mit denjenigen Stakeholdern, die die statischen Modelle (z.B. Bausteinsicht, Verteilungssicht) weniger verständlich finden.
+Form
+Für die Beschreibung von Szenarien gibt es zahlreiche Ausdrucksmöglichkeiten. Nutzen Sie beispielsweise:
+•	Nummerierte Schrittfolgen oder Aufzählungen in Umgangssprache
+•	Aktivitäts- oder Flussdiagramme
+•	Sequenzdiagramme
+•	BPMN (Geschäftsprozessmodell und -notation) oder EPKs (Ereignis-Prozessketten)
+•	Zustandsautomaten
+•	…
+Siehe Laufzeitsicht in der online-Dokumentation (auf Englisch!).
+<Bezeichnung Laufzeitszenario 1>
+•	<hier Laufzeitdiagramm oder Ablaufbeschreibung einfügen>
+•	<hier Besonderheiten bei dem Zusammenspiel der Bausteine in diesem Szenario erläutern>
+<Bezeichnung Laufzeitszenario 2>
+…
+<Bezeichnung Laufzeitszenario n>
+…
+
+== Verteilungssicht
+uhe
+Inhalt
+Die Verteilungssicht beschreibt:
+1.	die technische Infrastruktur, auf der Ihr System ausgeführt wird, mit Infrastrukturelementen wie Standorten, Umgebungen, Rechnern, Prozessoren, Kanälen und Netztopologien sowie sonstigen Bestandteilen, und
+2.	die Abbildung von (Software-)Bausteinen auf diese Infrastruktur.
+Häufig laufen Systeme in unterschiedlichen Umgebungen, beispielsweise Entwicklung-/Test- oder Produktionsumgebungen. In solchen Fällen sollten Sie alle relevanten Umgebungen aufzeigen.
+Nutzen Sie die Verteilungssicht insbesondere dann, wenn Ihre Software auf mehr als einem Rechner, Prozessor, Server oder Container abläuft oder Sie Ihre Hardware sogar selbst konstruieren.
+Aus Softwaresicht genügt es, auf die Aspekte zu achten, die für die Softwareverteilung relevant sind. Insbesondere bei der Hardwareentwicklung kann es notwendig sein, die Infrastruktur mit beliebigen Details zu beschreiben.
+Motivation
+Software läuft nicht ohne Infrastruktur. Diese zugrundeliegende Infrastruktur beeinflusst Ihr System und/oder querschnittliche Lösungskonzepte, daher müssen Sie diese Infrastruktur kennen.
+Form
+Das oberste Verteilungsdiagramm könnte bereits in Ihrem technischen Kontext enthalten sein, mit Ihrer Infrastruktur als EINE Blackbox. Jetzt zoomen Sie in diese Infrastruktur mit weiteren Verteilungsdiagrammen hinein:
+•	Die UML stellt mit Verteilungsdiagrammen (Deployment diagrams) eine Diagrammart zur Verfügung, um diese Sicht auszudrücken. Nutzen Sie diese, evtl. auch geschachtelt, wenn Ihre Verteilungsstruktur es verlangt.
+•	Falls Ihre Infrastruktur-Stakeholder andere Diagrammarten bevorzugen, die beispielsweise Prozessoren und Kanäle zeigen, sind diese hier ebenfalls einsetzbar.
+Siehe Verteilungssicht in der online-Dokumentation (auf Englisch!).
+Infrastruktur Ebene 1
+An dieser Stelle beschreiben Sie (als Kombination von Diagrammen mit Tabellen oder Texten):
+•	die Verteilung des Gesamtsystems auf mehrere Standorte, Umgebungen, Rechner, Prozessoren o. Ä., sowie die physischen Verbindungskanäle zwischen diesen,
+•	wichtige Begründungen für diese Verteilungsstruktur,
+•	Qualitäts- und/oder Leistungsmerkmale dieser Infrastruktur,
+•	Zuordnung von Softwareartefakten zu Bestandteilen der Infrastruktur
+Für mehrere Umgebungen oder alternative Deployments kopieren Sie diesen Teil von arc42 für alle wichtigen Umgebungen/Varianten.
+<Übersichtsdiagramm>
+Begründung
+<Erläuternder Text>
+Qualitäts- und/oder Leistungsmerkmale
+<Erläuternder Text>
+Zuordnung von Bausteinen zu Infrastruktur
+<Beschreibung der Zuordnung>
+Infrastruktur Ebene 2
+An dieser Stelle können Sie den inneren Aufbau (einiger) Infrastrukturelemente aus Ebene 1 beschreiben.
+Für jedes Infrastrukturelement kopieren Sie die Struktur aus Ebene 1.
+<Infrastrukturelement 1>
+<Diagramm + Erläuterungen>
+<Infrastrukturelement 2>
+<Diagramm + Erläuterungen>
+…
+<Infrastrukturelement n>
+<Diagramm + Erläuterungen>
+
+== Architekturentscheidungen
+cp
+Inhalt
+Wichtige, teure, große oder riskante Architektur- oder Entwurfsentscheidungen inklusive der jeweiligen Begründungen. Mit "Entscheidungen" meinen wir hier die Auswahl einer von mehreren Alternativen unter vorgegebenen Kriterien.
+Wägen Sie ab, inwiefern Sie Entscheidungen hier zentral beschreiben, oder wo eine lokale Beschreibung (z.B. in der Whitebox-Sicht von Bausteinen) sinnvoller ist. Vermeiden Sie Redundanz. Verweisen Sie evtl. auf Abschnitt 4, wo schon grundlegende strategische Entscheidungen beschrieben wurden.
+Motivation
+Stakeholder des Systems sollten wichtige Entscheidungen verstehen und nachvollziehen können.
+Form
+Verschiedene Möglichkeiten:
+•	ADR (Architecture Decision Record) für jede wichtige Entscheidung
+•	Liste oder Tabelle, nach Wichtigkeit und Tragweite der Entscheidungen geordnet
+•	ausführlicher in Form einzelner Unterkapitel je Entscheidung
+Siehe Architekturentscheidungen in der arc42 Dokumentation (auf Englisch!). Dort finden Sie Links und Beispiele zum Thema ADR.
+
+== Qualitätsanforderungen
+uhe
+Inhalt
+Dieser Abschnitt enthält möglichst alle Qualitätsanforderungen als Qualitätsbaum mit Szenarien. Die wichtigsten davon haben Sie bereits in Abschnitt 1.2 (Qualitätsziele) hervorgehoben.
+Nehmen Sie hier auch Qualitätsanforderungen geringerer Priorität auf, deren Nichteinhaltung oder -erreichung geringe Risiken birgt.
+Motivation
+Weil Qualitätsanforderungen die Architekturentscheidungen oft maßgeblich beeinflussen, sollten Sie die für Ihre Stakeholder relevanten Qualitätsanforderungen kennen, möglichst konkret und operationalisiert.
+Weiterführende Informationen
+Siehe Qualitätsanforderungen in der online-Dokumentation (auf Englisch!).
+Qualitätsbaum
+Inhalt
+Der Qualitätsbaum (à la ATAM) mit Qualitätsszenarien an den Blättern.
+Motivation
+Die mit Prioritäten versehene Baumstruktur gibt Überblick über die — oftmals zahlreichen — Qualitätsanforderungen.
+•	Baumartige Verfeinerung des Begriffes „Qualität“, mit „Qualität“ oder „Nützlichkeit“ als Wurzel.
+•	Mindmap mit Qualitätsoberbegriffen als Hauptzweige
+In jedem Fall sollten Sie hier Verweise auf die Qualitätsszenarien des folgenden Abschnittes aufnehmen.
+Qualitätsszenarien
+Inhalt
+Konkretisierung der (in der Praxis oftmals vagen oder impliziten) Qualitätsanforderungen durch (Qualitäts-)Szenarien.
+Diese Szenarien beschreiben, was beim Eintreffen eines Stimulus auf ein System in bestimmten Situationen geschieht.
+Wesentlich sind zwei Arten von Szenarien:
+•	Nutzungsszenarien (auch bekannt als Anwendungs- oder Anwendungsfallszenarien) beschreiben, wie das System zur Laufzeit auf einen bestimmten Auslöser reagieren soll. Hierunter fallen auch Szenarien zur Beschreibung von Effizienz oder Performance. Beispiel: Das System beantwortet eine Benutzeranfrage innerhalb einer Sekunde.
+•	Änderungsszenarien beschreiben eine Modifikation des Systems oder seiner unmittelbaren Umgebung. Beispiel: Eine zusätzliche Funktionalität wird implementiert oder die Anforderung an ein Qualitätsmerkmal ändert sich.
+Motivation
+Szenarien operationalisieren Qualitätsanforderungen und machen deren Erfüllung mess- oder entscheidbar.
+Insbesondere wenn Sie die Qualität Ihrer Architektur mit Methoden wie ATAM überprüfen wollen, bedürfen die in Abschnitt 1.2 genannten Qualitätsziele einer weiteren Präzisierung bis auf die Ebene von diskutierbaren und nachprüfbaren Szenarien.
+Form
+Entweder tabellarisch oder als Freitext.
+
+== Risiken und technische Schulden
+cp
+Inhalt
+Eine nach Prioritäten geordnete Liste der erkannten Architekturrisiken und/oder technischen Schulden.
+Risikomanagement ist Projektmanagement für Erwachsene.
+—  Tim Lister Atlantic Systems Guild
+Unter diesem Motto sollten Sie Architekturrisiken und/oder technische Schulden gezielt ermitteln, bewerten und Ihren Management-Stakeholdern (z.B. Projektleitung, Product-Owner) transparent machen.
+Form
+Liste oder Tabelle von Risiken und/oder technischen Schulden, eventuell mit vorgeschlagenen Maßnahmen zur Risikovermeidung, Risikominimierung oder dem Abbau der technischen Schulden.
+Siehe Risiken und technische Schulden in der online-Dokumentation (auf Englisch!).
+Glossar
+Inhalt
+Die wesentlichen fachlichen und technischen Begriffe, die Stakeholder im Zusammenhang mit dem System verwenden.
+Nutzen Sie das Glossar ebenfalls als Übersetzungsreferenz, falls Sie in mehrsprachigen Teams arbeiten.
+Motivation
+Sie sollten relevante Begriffe klar definieren, so dass alle Beteiligten
+•	diese Begriffe identisch verstehen, und
+•	vermeiden, mehrere Begriffe für die gleiche Sache zu haben.
+•	Zweispaltige Tabelle mit <Begriff> und <Definition>
+•	Eventuell weitere Spalten mit Übersetzungen, falls notwendig.
+Siehe Glossar in der online-Dokumentation (auf Englisch!).
+Begriff	Definition
+<Begriff-1>	<Definition-1>
+<Begriff-2	<Definition-2>
+////
+
+
