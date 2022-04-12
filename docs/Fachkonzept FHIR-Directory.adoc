@@ -522,7 +522,7 @@ Pflicht, wenn Organisation ein Provider ist
 |ja
 
 |status
-|active | suspended | inactive
+|Status
 |1..1
 |
 |nein
