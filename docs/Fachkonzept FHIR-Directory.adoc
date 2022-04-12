@@ -189,7 +189,7 @@ Das VZD-FHIR-Directory muss mit dem VZD-LDAP-Directory [gemSpec_VZD] koexistiere
 Das VZD-FHIR-Directory muss die nötigen Services für den TI-Messenger bereitstellen [gemSpec_TI-Messenger-Client][gemSpec_TI-Messenger-Dienst][gemSpec_TI-Messenger-FD].
 
 
-
+////
 == Kontextabgrenzung
 cp
 Inhalt
@@ -204,7 +204,7 @@ Verschiedene Optionen:
 •	Listen von Kommunikationsbeziehungen mit deren Schnittstellen
 
 Siehe Kontextabgrenzung in der online-Dokumentation (auf Englisch!).
-
+////
 
 == Fachlicher Kontext
 
@@ -291,7 +291,7 @@ image::diagrams/ObjectDiagram.HealthcareService.png[ObjectDiagram HealthcareServ
 |speciality
 |Fachrichtung
 |0..*
-|Inhalt gemäß HL7 practiceSettingCode
+|https://wiki.hl7.de/index.php?title=IG:Value_Sets_f%C3%BCr_XDS#DocumentEntry.practiceSettingCode[practiceSettingCode]
 |ja
 |nein
 
@@ -442,7 +442,7 @@ Pflicht, wenn Organisation ein Provider ist
 |nein
 |===
 
-.Datenmodell Ressource Location
+.Datenmodell Ressource Location [[Location]]
 |===
 |Attribut|Fachlicher Wert|Kardinalität|Bemerkung|Sync mit LDAP-Directory|Kann vom Besitzer geändert werden
 
@@ -510,7 +510,7 @@ Pflicht, wenn Organisation ein Provider ist
 |ja
 |===
 
-.Datenmodell Ressource Endpoint
+.Datenmodell Ressource Endpoint [[Endpoint]]
 |===
 |Attribut|Fachlicher Wert|Kardinalität|Bemerkung|Sync mit LDAP-Directory|Kann vom Besitzer geändert werden
 
@@ -574,10 +574,121 @@ Das Objektdiagramm zeigt mögliche Verlinkungen der Ressourcen. Eine Practitione
 
 image::diagrams/ObjectDiagram.PractitionerRole.png[ObjectDiagram PractitionerRole]
 
+.Datenmodell Ressource PractitionerRole
+|===
+|Attribut|Fachlicher Wert|Kardinalität|Bemerkung|Sync mit LDAP-Directory|Kann vom Besitzer geändert werden
+
+|identifier
+|Kein Identifier vorgeschrieben
+|0..*
+|
+|nein
+|ja
+
+|practitioner
+|Reference zur Practitioner Ressource
+|1..1
+|Wenn vom Kartenherausgeber angelegt, dann wird die Reference auch vom Kartenherausgeber gesetzt. Wenn vom LE angelegt, dann wird die Reference vom LE gesetzt.
+|ja
+|ja
+
+|speciality
+|https://wiki.hl7.de/index.php?title=IG:Value_Sets_f%C3%BCr_XDS#DocumentEntry.practiceSettingCode[practiceSettingCode]
+|0..*
+|
+|ja
+|nein
+
+|location
+|Reference zur Location Ressource
+|0..*
+|Wenn vom Kartenherausgeber angelegt, dann wird die Reference auch vom Kartenherausgeber gesetzt. Wenn vom LE angelegt, dann wird die Reference vom LE gesetzt.
+|ja
+|ja
+
+|endpoint
+|Reference zur Endpoint Ressource
+|0..*
+|
+|nein
+|ja
+|===
+
+.Datenmodell Ressource Practitioner
+|===
+|Attribut|Fachlicher Wert|Kardinalität|Bemerkung|Sync mit LDAP-Directory|Kann vom Besitzer geändert werden
+
+|identifier
+|telematikID
+|1..*
+|Aktuell gibt es nur eine telematikID je Eintrag
+|ja
+|nein
+
+|active
+|Status des Eintrags
+|1..1
+|
+|ja
+|nein
+
+|name
+|Name des Practitioners
+|1..*
+|
+|ja
+|nein
+
+|telecom
+|Kontaktdaten des Practitioners
+|0..*
+|
+|nein
+|ja
+
+|gender
+|Geschlecht
+|0..1
+|
+|nein
+|ja
+
+|birthDate
+|Geburtsdatum
+|0..1
+|
+|nein
+|ja
+
+|photo
+|Foto
+|0..*
+|
+|nein
+|ja
+
+|qualification
+|https://wiki.hl7.de/index.php?title=IG:Value_Sets_f%C3%BCr_XDS#DocumentEntry.authorSpecialty[authorSpecialty]
+|0..*
+|
+|ja
+|nein
+
+|communication
+|Unterstützte Sprachen
+|0..*
+|
+|nein
+|ja
+|===
+
+Die Ressourcen <<Location>> und <<Endpoint>> werden wie im Organisationsverzeichnis verwendet.
+
 ==== Beschreibung der FHIR Ressourcen
 
 Die FHIR Ressourcen sind im Simplifier Projekt https://simplifier.net/vzd-fhir-directory[VZD-FHIR-Directory] beschrieben.
 
+////
 == Technischer Kontext
 cp
 Inhalt
@@ -816,6 +927,6 @@ Siehe Glossar in der online-Dokumentation (auf Englisch!).
 Begriff	Definition
 <Begriff-1>	<Definition-1>
 <Begriff-2	<Definition-2>
-
+////
 
 
