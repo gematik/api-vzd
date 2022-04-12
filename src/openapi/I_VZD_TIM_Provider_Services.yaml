@@ -371,6 +371,11 @@ components:
         telematikID:
           description: The telematikID of the organization that uses the TI-Messenger domain
           type: string
+        isEnsurance:
+          description: |
+              Indicates if it is a domain of an health insurance for insured persons
+          type: boolean
+          example: false
 
     Error:
       type: object
@@ -389,6 +394,15 @@ components:
       - title
       - version
       readOnly: true
+      description: |
+       The following attributes have to be present in the return of the getInfo operation:
+        - title (can be copied from info.title of this YAML file)
+        - version
+        - description: 
+           o Short description of the interface. 
+           o Has to contain
+             - product version
+             - link to the corresponding YAML file
       type: object
       properties:
         title:
@@ -402,7 +416,8 @@ components:
         termsOfService:
           type: string
           format: uri
-          description: Eine URL zu den Terms of Service für dieses API.
+          description: |
+            Eine URL zu den Terms of Service für dieses API.
           example: "http://example.com/terms/"
         contact:
           $ref: '#/components/schemas/Contact'
