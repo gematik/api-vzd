@@ -296,9 +296,12 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Domain'
+                type: object
+                properties:
+                 inactiveOrganizationDomains:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Domain'
         204:
           description: |
             No content
