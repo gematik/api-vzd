@@ -4,7 +4,11 @@ info:
   description: |
    # REST Schnittstelle zur Pflege der Fachanwendungsdaten der Verzeichniseinträge
      Über diese Schnittstelle können Fachanwendungsdaten der Verzeichniseinträge erzeugt, aktualisiert und gelöscht werden. 
-  version: 1.1.4
+  version: 1.1.5
+  # Änderungen in Version 1.1.5
+  #  - Parameter "fad" in Operation add_Directory_FA-Attributes gestrichen. Die FAD des Clients wird auf Basis des TLS Client Zertifikats ermittelt.
+  #  - Im Schema FAD1 das "required: - dn" gestrichen, da es Probleme mit einem Code-Generator verursacht hat
+  #
   # Änderungen in Version 1.1.4
   #  - KOM-LE_Version wurde durch komLeData ersetzt. Dies erlaubt die Angabe von KIM-Versionen für einzelne KIM-Adressen. 
   #  - Die Client Authentisierung wurde auf mutualTLS angepasst (OAuth2 wurde gestrichen)
@@ -383,11 +387,6 @@ paths:
       description: Erzeugt einen neuen Fachdateneintrag
       operationId: add_Directory_FA-Attributes
       parameters:
-       - name: fad
-         in: query
-         description: Identifikator vom anfragenden Fachdienstanbieter.
-         schema:
-          type: string
        - name: telematikID
          in: path
          description: telematikID von dem Verzeichniseintrag 
@@ -659,8 +658,6 @@ components:
             $ref: '#/components/schemas/FAD1'
 
     FAD1:
-      required:
-      - dn
       type: object
       properties:
         dn:
