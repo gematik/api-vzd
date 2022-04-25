@@ -13,5 +13,8 @@ Alias: $NichtÄrztlicheAutoren = urn:oid:1.3.6.1.4.1.19376.3.276.1.5.11
 
 
 Alias: $IHEXDSpracticeSettingCode = http://ihe-d.de/ValueSets/IHEXDSpracticeSettingCode
+Alias: $IHEXDSauthorSpeciality = http://ihe-d.de/ValueSets/IHEXDSauthorSpeciality
 Alias: $ÄrztlicheFachrichtungen = urn:oid:1.3.6.1.4.1.19376.3.276.1.5.4
 Alias: $NichtÄrztlicheFachrichtungen = urn:oid:1.3.6.1.4.1.19376.3.276.1.5.5
+
+Alias: $IdentifierLebenslangeArztNummer = http://fhir.de/StructureDefinition/identifier-lanr
