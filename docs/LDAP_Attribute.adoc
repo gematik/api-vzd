@@ -441,5 +441,15 @@ Erläuterungen zu den Spalten:
 * KIM Anbieter
 - Der Wert für das LDAP Attribut wird durch den KIM-Abieter gepflegt.
 
+*Erläuterungen für spezielle Attribute*:
+
+* *personalEntry*: Beim Löschen von Zertifikaten wird der Wert neu berechnet. Wenn alle Zertifikate gelöscht wurden, wird der Wert auf "FALSE" gesetzt.
+
+* *Aus den Zertifikaten befüllte Attribute* *entryType*, *professionOID*: Beim Löschen eines Zertifikats wird der Wert auf Basis aller verbleibender Zertifikate neu berechnet und gesetzt.
+
+* *Alle aus den Zertifikaten befüllte Attribute (givenName, sn, personalEntry, telematikID, professionOID, entryType)* werden beim Hinzufügen eines neuen Zertifikats aktualisiert bzw. ergänzt.
+
+* *telematikID* im VZD Basiseintrag: Wird aus dem Zertifikat befüllt. Kann in dem REST Interface zwar angegeben, aber nicht auf einen anderen Wert geändert werden.
+
 
 |===
