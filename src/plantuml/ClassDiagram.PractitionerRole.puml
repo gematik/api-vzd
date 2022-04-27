@@ -1,9 +1,7 @@
 @startuml ClassDiagram.PractitionerRole
 skinparam monochrome true
 class PractitionerRole {
-  {field} identifier (0.., MS)
   {field} practitioner (1..1, MS, LDAP)
-  {field} speciality (0.., MS)
   {field} location (0.., MS)
   {field} endpoint (0.., MS)
 }
@@ -12,14 +10,13 @@ class Practitioner {
   {field} active (1..1, MS, LDAP)
   {field} name (1..1, MS, LDAP)
   {field} telecom (0.., MS)
-  {field} gender (0..1, MS)
-  {field} birthDate (0..1, MS)
+  {field} gender (..1, MS)
+  {field} birthDate (..1, MS)
   {field} photo (0.., MS)
   {field} qualification (0.., MS, LDAP)
   {field} communication (0.., MS)
 }
 class Endpoint {
-  {field} identifier (0.., MS)
   {field} status (1..1, MS)
   {field} connectionType (1..1, MS)
   {field} name (1..1, MS)
@@ -28,13 +25,12 @@ class Endpoint {
   {field} address (1..1, MS)
 }
 class Location {
-  {field} identifier (0.., MS)
   {field} status (0.., MS)
-  {field} name (0..1, MS)
-  {field} description (0..1, MS)
+  {field} name (..1, MS)
+  {field} description (..1, MS)
   {field} telecom (0.., MS)
-  {field} address (0..1, MS)
-  {field} position (0..1, MS)
+  {field} address (..1, MS)
+  {field} position (..1, MS)
   {field} hoursOfOperation (0.., MS)
   {field} availabilityExceptions (0..1, MS)
 }

@@ -2,20 +2,21 @@ Profile: Endpoint-FhirDirectory
 Parent: Endpoint
 Description: "Endpoints for applications in the TI FHIR-Directory"
 * insert Meta
-//* extension contains X509CertificatePEM named certificate 0..* MS
-* identifier 1..* MS
-* identifier ^slicing.discriminator.type = #pattern
-* identifier ^slicing.discriminator.path = "$this"
-* identifier ^slicing.rules = #open
-* identifier contains TelematikID 1..1 MS
-* identifier[TelematikID] only $IdentifierTelematikID
-  * ^patternIdentifier.type = $v2-0203#PRN
-  * type 1..1 MS
-  * system 1..1 MS
-  * value 1..1 MS
-* status 0..* MS
+* status MS
 * connectionType 1..1 MS
-* name 0..1 MS
-* managingOrganization 0..* MS
+/* @spilikin: habe die Detailierung für qualification ergänzt. Passt das so?
+  * system = "https://gematik.de/fhir/directory/CodeSystem/TIEndpointConnectionTypeCS" (exactly)
+  * code 1..1 MS
+  * display 1..1 MS
+*/
+* name 1..1 MS  // identical to address; because search is possible in element name and not in element address
+* managingOrganization 0..1 MS
 * payloadType 1..* MS
+/* @spilikin: habe die Detailierung für payloadType ergänzt. Passt das so?
+  * coding MS
+    * system = "https://gematik.de/fhir/directory/CodeSystem/TIEndpointConnectionTypeCS" (exactly)
+    * code 1..1 MS
+    * display 1..1 MS
+*/
+
 * address 1..1 MS

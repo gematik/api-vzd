@@ -1,21 +1,19 @@
 @startuml ClassDiagram.HealthcareService
 skinparam monochrome true
 class HealthcareService {
-  {field} identifier (0.., MS)
   {field} providedBy (1..1, MS, LDAP)
   {field} speciality (0.., MS, LDAP)
   {field} location (0.., MS, LDAP)
-  {field} name (0..1, MS)
+  {field} name (..1, MS)
   {field} telecom (0.., MS)
   {field} serviceProvisionCode (0.., MS)
   {field} communication (0.., MS)
-  {field} appointmentRequired (0..1, MS)
+  {field} appointmentRequired (..1, MS)
   {field} availableTime (0.., MS)
   {field} availabilityExceptions (0.., MS)
   {field} endpoint (0.., MS)
 }
 class Endpoint {
-  {field} identifier (0.., MS)
   {field} status (1..1, MS)
   {field} connectionType (1..1, MS)
   {field} name (1..1, MS)
@@ -24,9 +22,8 @@ class Endpoint {
   {field} address (1..1, MS)
 }
 class Location {
-  {field} identifier (0.., MS)
   {field} status (0.., MS)
-  {field} name (0..1, MS)
+  {field} name (..1, MS)
   {field} description (0..1, MS)
   {field} telecom (0.., MS)
   {field} address (0..1, MS, LDAP)
