@@ -21,7 +21,7 @@ Description: "Profile for the Practitioner in gematik FHIR Directory"
   * system 1.. MS
   * value 1.. MS
 * identifier contains LebenslangeZahnarztNummer 1.. MS
-* identifier[LebenslangeZahnarztNummer] only $LebenslangeZahnarztNummer
+* identifier[LebenslangeZahnarztNummer] only $IdentifierLebenslangeZahnarztNummer
   * ^patternIdentifier.type = $v2-0203#PRN
   * type 1.. MS
   * system 1.. MS
