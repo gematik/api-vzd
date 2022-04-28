@@ -32,7 +32,7 @@ class Location {
   {field} address (..1, MS)
   {field} position (..1, MS)
   {field} hoursOfOperation (0.., MS)
-  {field} availabilityExceptions (0..1, MS)
+  {field} availabilityExceptions (..1, MS)
 }
 
 PractitionerRole o-- Practitioner: practitioner
