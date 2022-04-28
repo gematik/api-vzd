@@ -29,7 +29,7 @@ class Location {
   {field} address (0..1, MS, LDAP)
   {field} position (0..1, MS)
   {field} hoursOfOperation (0.., MS)
-  {field} availabilityExceptions (0..1, MS)
+  {field} availabilityExceptions (..1, MS)
 }
 class Organization {
   {field} identifier (0.., MS, LDAP)
