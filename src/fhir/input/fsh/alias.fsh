@@ -11,6 +11,7 @@ Alias: $ÄrztlicheBerufsvarianten = urn:oid:1.2.276.0.76.5.493
 Alias: $NichtÄrztlicheAutoren = urn:oid:1.3.6.1.4.1.19376.3.276.1.5.11
 
 
+// @spilikin: hier fehlt uns noch das ValueSet.
 Alias: $IHEXDSpracticeSettingCode = http://ihe-d.de/ValueSets/IHEXDSpracticeSettingCode
 Alias: $IHEXDSauthorSpeciality = http://ihe-d.de/ValueSets/IHEXDSauthorSpeciality
 Alias: $ÄrztlicheFachrichtungen = urn:oid:1.3.6.1.4.1.19376.3.276.1.5.4

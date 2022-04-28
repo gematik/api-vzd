@@ -25,10 +25,8 @@ class Endpoint {
   {field} address (1..1, MS)
 }
 class Location {
-  {field} status (0.., MS)
   {field} name (..1, MS)
   {field} description (..1, MS)
-  {field} telecom (0.., MS)
   {field} address (..1, MS)
   {field} position (..1, MS)
   {field} hoursOfOperation (0.., MS)

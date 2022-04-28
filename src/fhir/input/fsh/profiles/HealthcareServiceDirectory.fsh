@@ -6,9 +6,15 @@ organisations specific for german Healthcare and Telematics Infrastructure.
 """
 * insert Meta
 * id ..1 MS
-* active 1..1 MS
 * providedBy 1..1 MS
 * specialty MS
+/* @spilikin: habe die Detailierung für telecom ergänzt. Passt das so?
+*/
+  * coding MS
+    * code 1..1 MS
+    * code from $IHEXDSpracticeSettingCode
+    * display 1..1 MS
+    * display from $IHEXDSpracticeSettingCode
 * location MS
 * name MS
 * telecom MS

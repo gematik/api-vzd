@@ -18,6 +18,12 @@ organisations specific for german Healthcare and Telematics Infrastructure.
   * system 1..1 MS
   * value 1..1 MS
 * type 1..1 MS
+  * coding MS
+    * system MS
+    * code MS
+//    * code
+    * display MS
+//    * display
 * name 1..1 MS
 * alias MS
 * telecom MS
