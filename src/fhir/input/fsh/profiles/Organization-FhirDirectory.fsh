@@ -1,4 +1,4 @@
-Profile: Organization-FhirDirectory
+Profile: OrganizationDirectory
 Parent: Organization
 Title: "Profile for an Organization resource in the TI FHIR-Directory"
 Description: """Defines the data structure for medical, regulatory and technical

@@ -1,4 +1,4 @@
-Profile: Location-FhirDirectory
+Profile: LocationDirectory
 Parent: Location
 Title: "Profile for an Location resource in the TI FHIR-Directory"
 Description: """Defines the data structure for medical, regulatory and technical

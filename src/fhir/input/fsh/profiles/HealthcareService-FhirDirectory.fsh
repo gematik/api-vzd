@@ -1,4 +1,4 @@
-Profile: HealthcareService-FhirDirectory
+Profile: HealthcareServiceDirectory
 Parent: HealthcareService
 Title: "Profile for an HealthcareService resource in the TI FHIR-Directory"
 Description: """Defines the data structure for medical, regulatory and technical

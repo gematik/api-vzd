@@ -1,4 +1,4 @@
-Profile: PractitionerRole-FhirDirectory
+Profile: PractitionerRoleDirectory
 Parent: PractitionerRole
 Description: "Profile for the PractitionerRole in gematik FHIR Directory"
 * insert Meta

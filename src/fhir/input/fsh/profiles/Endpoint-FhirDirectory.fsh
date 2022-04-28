@@ -1,4 +1,4 @@
-Profile: Endpoint-FhirDirectory
+Profile: EndpointDirectory
 Parent: Endpoint
 Description: "Endpoints for applications in the TI FHIR-Directory"
 * insert Meta
