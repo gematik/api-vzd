@@ -1,7 +1,7 @@
 id: de.gematik.fhir.directory
 canonical: https://gematik.de/fhir/directory
 name: gematik Directory
-FSHOnly: true
+# FSHOnly: true
 title: gematik Directory
 status: draft # draft | active | retired | unknown
 publisher:
@@ -22,21 +22,21 @@ fhirVersion: 4.0.1
 dependencies:
   de.basisprofil.r4: 1.3.2
 
-#pages:
-#  index.md:
-#    title: Home
-#  conformance.md:
-#    general-requirements.md:
-#    must-support.md:
-#  guidance.md:
-#  profiles-and-extensions.md:
-#  capability-statements.md:
-#  search-parameters-and-operations.md:
-#  terminology.md:
-#  security.md:
-#  examples.md:
-#  downloads.md:
-#  changes.md:
+pages:
+  index.md:
+    title: Home
+  conformance.md:
+    general-requirements.md:
+    must-support.md:
+  guidance.md:
+  profiles-and-extensions.md:
+  capability-statements.md:
+  search-parameters-and-operations.md:
+  terminology.md:
+  security.md:
+  examples.md:
+  downloads.md:
+  changes.md:
 #parameters:  # see https://confluence.hl7.org/display/FHIR/Implementation+Guide+Parameters
 #  path-resource:
 #    - input/resources
@@ -73,32 +73,32 @@ dependencies:
 #  #    - 3.1.1  # does not seems to work
 #  #    - 2.0.0  # does not seems to work
 #  #    - 1.0.0  # does not seems to work
-#copyrightyear: '2022+'
-#releaselabel: STU5 Release
-#
-## ╭────────────────────────────────────────────menu.xml────────────────────────────────────────────╮
-## │  To use a provided ig-data/input/includes/menu.xml file, delete the "menu" property below.     │
-## ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
-#menu:
-#  Home: index.html
-#  Conformance: #conformance.html
-#      General Requirements: general-requirements.html
-#      Must Support: must-support.html
-#  Guidance: #guidance.html
-#      USCDI: uscdi.html
-#      General Guidance: general-guidance.html
-#      Clinical Notes: clinical-notes.html
-#      Medication List: medication-list.html
-#      Basic Provenance: basic-provenance.html
-#      SDOH: sdoh.html
-#      Changes Between Versions: changes-between-versions.html
-#      Future of US Core: future-of-US-core.html
-#  FHIR Artifacts: #artifact.html
-#      Profiles and Extensions: profiles-and-extensions.html
-#      Search Parameters and Operations: search-parameters-and-operations.html
-#      Terminology: terminology.html
-#      Capability Statements: capability-statements.html
-#  Security: security.html
-#  Examples: examples.html
-#  Downloads: downloads.html
-#  Change Log: changes.html
+copyrightyear: '2022+'
+releaselabel: Release 0.8.8wip
+
+# ╭────────────────────────────────────────────menu.xml────────────────────────────────────────────╮
+# │  To use a provided ig-data/input/includes/menu.xml file, delete the "menu" property below.     │
+# ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
+menu:
+  Home: index.html
+  Conformance: #conformance.html
+      General Requirements: general-requirements.html
+      Must Support: must-support.html
+  Guidance: #guidance.html
+      USCDI: uscdi.html
+      General Guidance: general-guidance.html
+      Clinical Notes: clinical-notes.html
+      Medication List: medication-list.html
+      Basic Provenance: basic-provenance.html
+      SDOH: sdoh.html
+      Changes Between Versions: changes-between-versions.html
+      Future of US Core: future-of-US-core.html
+  FHIR Artifacts: #artifact.html
+      Profiles and Extensions: profiles-and-extensions.html
+      Search Parameters and Operations: search-parameters-and-operations.html
+      Terminology: terminology.html
+      Capability Statements: capability-statements.html
+  Security: security.html
+  Examples: examples.html
+  Downloads: downloads.html
+  Change Log: changes.html
