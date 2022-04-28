@@ -1,6 +1,6 @@
 {
   "resourceType": "StructureDefinition",
-  "id": "HealthcareService-FhirDirectory",
+  "id": "HealthcareServiceDirectory",
   "extension": [
     {
       "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-category",
@@ -11,9 +11,9 @@
       "valueCode": "business"
     }
   ],
-  "url": "https://gematik.de/fhir/directory/StructureDefinition/HealthcareService-FhirDirectory",
-  "version": "0.7.0-wip",
-  "name": "HealthcareService-FhirDirectory",
+  "url": "https://gematik.de/fhir/directory/StructureDefinition/HealthcareServiceDirectory",
+  "version": "0.8.0-wip",
+  "name": "HealthcareServiceDirectory",
   "title": "Profile for an HealthcareService resource in the TI FHIR-Directory",
   "status": "draft",
   "publisher": "gematik GmbH",
@@ -44,12 +44,6 @@
         "mustSupport": true
       },
       {
-        "id": "HealthcareService.active",
-        "path": "HealthcareService.active",
-        "min": 1,
-        "mustSupport": true
-      },
-      {
         "id": "HealthcareService.providedBy",
         "path": "HealthcareService.providedBy",
         "min": 1,
@@ -59,6 +53,31 @@
         "id": "HealthcareService.specialty",
         "path": "HealthcareService.specialty",
         "mustSupport": true
+      },
+      {
+        "id": "HealthcareService.specialty.coding",
+        "path": "HealthcareService.specialty.coding",
+        "mustSupport": true
+      },
+      {
+        "id": "HealthcareService.specialty.coding.code",
+        "path": "HealthcareService.specialty.coding.code",
+        "min": 1,
+        "mustSupport": true,
+        "binding": {
+          "strength": "required",
+          "valueSet": "http://ihe-d.de/ValueSets/IHEXDSpracticeSettingCode"
+        }
+      },
+      {
+        "id": "HealthcareService.specialty.coding.display",
+        "path": "HealthcareService.specialty.coding.display",
+        "min": 1,
+        "mustSupport": true,
+        "binding": {
+          "strength": "required",
+          "valueSet": "http://ihe-d.de/ValueSets/IHEXDSpracticeSettingCode"
+        }
       },
       {
         "id": "HealthcareService.location",
@@ -76,13 +95,62 @@
         "mustSupport": true
       },
       {
+        "id": "HealthcareService.telecom.system",
+        "path": "HealthcareService.telecom.system",
+        "mustSupport": true
+      },
+      {
+        "id": "HealthcareService.telecom.value",
+        "path": "HealthcareService.telecom.value",
+        "mustSupport": true
+      },
+      {
+        "id": "HealthcareService.telecom.use",
+        "path": "HealthcareService.telecom.use",
+        "mustSupport": true
+      },
+      {
         "id": "HealthcareService.serviceProvisionCode",
         "path": "HealthcareService.serviceProvisionCode",
         "mustSupport": true
       },
       {
+        "id": "HealthcareService.serviceProvisionCode.coding",
+        "path": "HealthcareService.serviceProvisionCode.coding",
+        "mustSupport": true
+      },
+      {
+        "id": "HealthcareService.serviceProvisionCode.coding.code",
+        "path": "HealthcareService.serviceProvisionCode.coding.code",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "HealthcareService.serviceProvisionCode.coding.display",
+        "path": "HealthcareService.serviceProvisionCode.coding.display",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
         "id": "HealthcareService.communication",
         "path": "HealthcareService.communication",
+        "mustSupport": true
+      },
+      {
+        "id": "HealthcareService.communication.coding",
+        "path": "HealthcareService.communication.coding",
+        "mustSupport": true
+      },
+      {
+        "id": "HealthcareService.communication.coding.code",
+        "path": "HealthcareService.communication.coding.code",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "HealthcareService.communication.coding.display",
+        "path": "HealthcareService.communication.coding.display",
+        "min": 1,
         "mustSupport": true
       },
       {

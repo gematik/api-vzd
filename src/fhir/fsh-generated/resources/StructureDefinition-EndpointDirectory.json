@@ -1,6 +1,6 @@
 {
   "resourceType": "StructureDefinition",
-  "id": "Endpoint-FhirDirectory",
+  "id": "EndpointDirectory",
   "extension": [
     {
       "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-category",
@@ -11,9 +11,9 @@
       "valueCode": "business"
     }
   ],
-  "url": "https://gematik.de/fhir/directory/StructureDefinition/Endpoint-FhirDirectory",
-  "version": "0.7.0-wip",
-  "name": "Endpoint-FhirDirectory",
+  "url": "https://gematik.de/fhir/directory/StructureDefinition/EndpointDirectory",
+  "version": "0.8.0-wip",
+  "name": "EndpointDirectory",
   "status": "draft",
   "publisher": "gematik GmbH",
   "description": "Endpoints for applications in the TI FHIR-Directory",
@@ -48,6 +48,23 @@
         "mustSupport": true
       },
       {
+        "id": "Endpoint.connectionType.system",
+        "path": "Endpoint.connectionType.system",
+        "fixedUri": "https://gematik.de/fhir/directory/CodeSystem/TIEndpointConnectionTypeCS"
+      },
+      {
+        "id": "Endpoint.connectionType.code",
+        "path": "Endpoint.connectionType.code",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "Endpoint.connectionType.display",
+        "path": "Endpoint.connectionType.display",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
         "id": "Endpoint.name",
         "path": "Endpoint.name",
         "min": 1,
@@ -61,6 +78,28 @@
       {
         "id": "Endpoint.payloadType",
         "path": "Endpoint.payloadType",
+        "mustSupport": true
+      },
+      {
+        "id": "Endpoint.payloadType.coding",
+        "path": "Endpoint.payloadType.coding",
+        "mustSupport": true
+      },
+      {
+        "id": "Endpoint.payloadType.coding.system",
+        "path": "Endpoint.payloadType.coding.system",
+        "fixedUri": "https://gematik.de/fhir/directory/CodeSystem/TIEndpointConnectionTypeCS"
+      },
+      {
+        "id": "Endpoint.payloadType.coding.code",
+        "path": "Endpoint.payloadType.coding.code",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "Endpoint.payloadType.coding.display",
+        "path": "Endpoint.payloadType.coding.display",
+        "min": 1,
         "mustSupport": true
       },
       {

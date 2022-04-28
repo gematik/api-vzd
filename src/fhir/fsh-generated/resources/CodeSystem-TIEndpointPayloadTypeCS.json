@@ -6,7 +6,7 @@
   "id": "TIEndpointPayloadTypeCS",
   "title": "Codes for Endpoint.payloadType",
   "description": "CodeSystem TI specific payload types assigned to the Endpoints",
-  "version": "0.7.0-wip",
+  "version": "0.8.0-wip",
   "url": "https://gematik.de/fhir/directory/CodeSystem/TIEndpointPayloadTypeCS",
   "concept": [
     {

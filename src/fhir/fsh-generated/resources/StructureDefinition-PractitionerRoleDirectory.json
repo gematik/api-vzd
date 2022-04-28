@@ -1,6 +1,6 @@
 {
   "resourceType": "StructureDefinition",
-  "id": "PractitionerRole-FhirDirectory",
+  "id": "PractitionerRoleDirectory",
   "extension": [
     {
       "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-category",
@@ -11,9 +11,9 @@
       "valueCode": "individual"
     }
   ],
-  "url": "https://gematik.de/fhir/directory/StructureDefinition/PractitionerRole-FhirDirectory",
-  "version": "0.7.0-wip",
-  "name": "PractitionerRole-FhirDirectory",
+  "url": "https://gematik.de/fhir/directory/StructureDefinition/PractitionerRoleDirectory",
+  "version": "0.8.0-wip",
+  "name": "PractitionerRoleDirectory",
   "status": "draft",
   "publisher": "gematik GmbH",
   "description": "Profile for the PractitionerRole in gematik FHIR Directory",

@@ -1,0 +1,267 @@
+{
+  "resourceType": "ImplementationGuide",
+  "id": "de.gematik.fhir.directory",
+  "url": "https://gematik.de/fhir/directory/ImplementationGuide/de.gematik.fhir.directory",
+  "version": "0.8.0-wip",
+  "name": "gematikDirectory",
+  "title": "gematik Directory",
+  "status": "draft",
+  "date": "2022-04-28",
+  "publisher": "gematik GmbH",
+  "contact": [
+    {
+      "name": "gematik GmbH",
+      "telecom": [
+        {
+          "system": "url",
+          "value": "https://www.gematik.de/"
+        }
+      ]
+    }
+  ],
+  "description": "The gematik FHIR Directory Implementation Guide is based on FHIR Version R4 and defines the minimum conformance requirements for accessing the FHIR-Directory.",
+  "copyright": "Used by permission of HL7 International, all rights reserved Creative Commons License",
+  "packageId": "de.gematik.fhir.directory",
+  "license": "CC0-1.0",
+  "fhirVersion": [
+    "4.0.1"
+  ],
+  "dependsOn": [
+    {
+      "packageId": "de.basisprofil.r4",
+      "version": "1.3.2",
+      "uri": "http://fhir.org/packages/de.basisprofil.r4/ImplementationGuide/de.basisprofil.r4",
+      "id": "de_basisprofil_r4"
+    }
+  ],
+  "definition": {
+    "resource": [
+      {
+        "reference": {
+          "reference": "StructureDefinition/EndpointDirectory"
+        },
+        "name": "EndpointDirectory",
+        "description": "Endpoints for applications in the TI FHIR-Directory",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/HealthcareServiceDirectory"
+        },
+        "name": "Profile for an HealthcareService resource in the TI FHIR-Directory",
+        "description": "Defines the data structure for medical, regulatory and technical\norganisations specific for german Healthcare and Telematics Infrastructure.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/LocationDirectory"
+        },
+        "name": "Profile for an Location resource in the TI FHIR-Directory",
+        "description": "Defines the data structure for medical, regulatory and technical\norganisations specific for german Healthcare and Telematics Infrastructure.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/OrganizationDirectory"
+        },
+        "name": "Profile for an Organization resource in the TI FHIR-Directory",
+        "description": "Defines the data structure for medical, regulatory and technical\norganisations specific for german Healthcare and Telematics Infrastructure.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/PractitionerDirectory"
+        },
+        "name": "PractitionerDirectory",
+        "description": "Profile for the Practitioner in gematik FHIR Directory",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/PractitionerRoleDirectory"
+        },
+        "name": "PractitionerRoleDirectory",
+        "description": "Profile for the PractitionerRole in gematik FHIR Directory",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/X509CertificateBundle"
+        },
+        "name": "X509CertificateBundle",
+        "description": "Collection of X509-Certificates",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/X509CertificateBundleExtension"
+        },
+        "name": "X509CertificateBundleExtension",
+        "description": "This bundle contains a list of X509Certificates, \neach represented as Binary resource.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/X509CertificatePEM"
+        },
+        "name": "X509CertificatePEM",
+        "description": "General purpose extension to provide X.509 certificates as part of a resource\nThe certificate is specified as PEM-String.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "ValueSet/TIEndpointConnectionTypeVS"
+        },
+        "name": "Connections Types for Endpoints in the TI",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "ValueSet/TIOrganizationTypeVS"
+        },
+        "name": "Type of TIOrganization",
+        "description": "ValueSet of all Organization types in the gematik FHIR Directory",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "ValueSet/TIPractitionerQualificationVS"
+        },
+        "name": "Qualification of a Practitoner",
+        "description": "ValueSet of all Practitoner.qualification.code in the gematik FHIR Directory",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "CodeSystem/BundeslaenderCS"
+        },
+        "name": "Experimentell: Codes für deutsche Bundesländer",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "CodeSystem/TIEndpointConnectionTypeCS"
+        },
+        "name": "Codes for Endpoint.connectionType",
+        "description": "CodeSystem TI specific connection types assigned to the Endpoints",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "CodeSystem/TIEndpointPayloadTypeCS"
+        },
+        "name": "Codes for Endpoint.payloadType",
+        "description": "CodeSystem TI specific payload types assigned to the Endpoints",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "CodeSystem/TIInstitutionTypeOidCS"
+        },
+        "name": "CodeSystem for TI Institutions using OIDs",
+        "description": "The codes for Institutions based on OIDs defined in gemSpec_OID \nWe use a URN notation ([ProfessionOID from gemSpec_OID]). \nSee also https://fachportal.gematik.de/fachportal-import/files/gemSpec_OID_V3.10.0.pdf",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "CodeSystem/TIPractitionerProfessionOidCS"
+        },
+        "name": "CodeSystem for Practitioner's ProfessioiOid",
+        "description": "The codes for Institutions based on OIDs defined in gemSpec_OID \nWe use a URN notation ([ProfessionOID from gemSpec_OID]). \nSee also https://fachportal.gematik.de/fachportal-import/files/gemSpec_OID_V3.10.0.pdf",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "CodeSystem/TIProviderTypeCS"
+        },
+        "name": "TIProviderTypeCS",
+        "description": "CodeSystem of TI Service Provider types as to be found in the gematik FHIR Directory",
+        "exampleBoolean": false
+      }
+    ],
+    "page": {
+      "nameUrl": "toc.html",
+      "title": "Table of Contents",
+      "generation": "html",
+      "page": [
+        {
+          "nameUrl": "index.html",
+          "title": "Home",
+          "generation": "markdown"
+        },
+        {
+          "nameUrl": "conformance.html",
+          "title": "Conformance",
+          "generation": "markdown",
+          "page": [
+            {
+              "nameUrl": "general-requirements.html",
+              "title": "General Requirements",
+              "generation": "markdown"
+            },
+            {
+              "nameUrl": "must-support.html",
+              "title": "Must Support",
+              "generation": "markdown"
+            }
+          ]
+        },
+        {
+          "nameUrl": "guidance.html",
+          "title": "Guidance",
+          "generation": "markdown"
+        },
+        {
+          "nameUrl": "profiles-and-extensions.html",
+          "title": "Profiles and Extensions",
+          "generation": "markdown"
+        },
+        {
+          "nameUrl": "capability-statements.html",
+          "title": "Capability Statements",
+          "generation": "markdown"
+        },
+        {
+          "nameUrl": "search-parameters-and-operations.html",
+          "title": "Search Parameters and Operations",
+          "generation": "markdown"
+        },
+        {
+          "nameUrl": "terminology.html",
+          "title": "Terminology",
+          "generation": "markdown"
+        },
+        {
+          "nameUrl": "security.html",
+          "title": "Security",
+          "generation": "markdown"
+        },
+        {
+          "nameUrl": "examples.html",
+          "title": "Examples",
+          "generation": "markdown"
+        },
+        {
+          "nameUrl": "downloads.html",
+          "title": "Downloads",
+          "generation": "markdown"
+        },
+        {
+          "nameUrl": "changes.html",
+          "title": "Changes",
+          "generation": "markdown"
+        }
+      ]
+    },
+    "parameter": [
+      {
+        "code": "copyrightyear",
+        "value": "2022+"
+      },
+      {
+        "code": "releaselabel",
+        "value": "Release 0.8.8wip"
+      }
+    ]
+  }
+}
