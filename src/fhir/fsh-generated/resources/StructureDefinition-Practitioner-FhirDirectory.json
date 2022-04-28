@@ -1,6 +1,6 @@
 {
   "resourceType": "StructureDefinition",
-  "id": "TIPractitioner",
+  "id": "Practitioner-FhirDirectory",
   "extension": [
     {
       "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-category",
@@ -11,9 +11,9 @@
       "valueCode": "individual"
     }
   ],
-  "url": "https://gematik.de/fhir/directory/StructureDefinition/TIPractitioner",
+  "url": "https://gematik.de/fhir/directory/StructureDefinition/Practitioner-FhirDirectory",
   "version": "0.7.0-wip",
-  "name": "TIPractitioner",
+  "name": "Practitioner-FhirDirectory",
   "status": "draft",
   "publisher": "gematik GmbH",
   "description": "Profile for the Practitioner in gematik FHIR Directory",
@@ -110,13 +110,43 @@
         "mustSupport": true
       },
       {
-        "id": "Practitioner.qualification.code",
-        "path": "Practitioner.qualification.code",
-        "mustSupport": true,
-        "binding": {
-          "strength": "required",
-          "valueSet": "https://gematik.de/fhir/directory/ValueSet/TIPractitionerQualificationVS"
-        }
+        "id": "Practitioner.name",
+        "path": "Practitioner.name",
+        "min": 1,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "Practitioner.telecom",
+        "path": "Practitioner.telecom",
+        "mustSupport": true
+      },
+      {
+        "id": "Practitioner.gender",
+        "path": "Practitioner.gender",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "Practitioner.birthDate",
+        "path": "Practitioner.birthDate",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "Practitioner.photo",
+        "path": "Practitioner.photo",
+        "mustSupport": true
+      },
+      {
+        "id": "Practitioner.qualification",
+        "path": "Practitioner.qualification",
+        "mustSupport": true
+      },
+      {
+        "id": "Practitioner.communication",
+        "path": "Practitioner.communication",
+        "mustSupport": true
       }
     ]
   }

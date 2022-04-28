@@ -1,0 +1,19 @@
+{
+  "resourceType": "CodeSystem",
+  "status": "draft",
+  "content": "complete",
+  "name": "TIEndpointPayloadTypeCS",
+  "id": "TIEndpointPayloadTypeCS",
+  "title": "Codes for Endpoint.payloadType",
+  "description": "CodeSystem TI specific payload types assigned to the Endpoints",
+  "version": "0.7.0-wip",
+  "url": "https://gematik.de/fhir/directory/CodeSystem/TIEndpointPayloadTypeCS",
+  "concept": [
+    {
+      "code": "tim-chat",
+      "display": "TI-Messenger chat"
+    }
+  ],
+  "publisher": "gematik GmbH",
+  "count": 1
+}

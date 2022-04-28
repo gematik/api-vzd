@@ -1,6 +1,6 @@
 {
   "resourceType": "StructureDefinition",
-  "id": "TIOrganization",
+  "id": "Organization-FhirDirectory",
   "extension": [
     {
       "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-category",
@@ -11,13 +11,13 @@
       "valueCode": "business"
     }
   ],
-  "url": "https://gematik.de/fhir/directory/StructureDefinition/TIOrganization",
+  "url": "https://gematik.de/fhir/directory/StructureDefinition/Organization-FhirDirectory",
   "version": "0.7.0-wip",
-  "name": "TIOrganization",
-  "title": "Profile for an Organization resource in the TI",
+  "name": "Organization-FhirDirectory",
+  "title": "Profile for an Organization resource in the TI FHIR-Directory",
   "status": "draft",
   "publisher": "gematik GmbH",
-  "description": "Defines the data structure for medical, regulatory and technical \norganisations specific for german Healthcare and Telematics Infrastructure.",
+  "description": "Defines the data structure for medical, regulatory and technical\norganisations specific for german Healthcare and Telematics Infrastructure.",
   "fhirVersion": "4.0.1",
   "mapping": [
     {
@@ -51,22 +51,6 @@
       {
         "id": "Organization.id",
         "path": "Organization.id",
-        "mustSupport": true
-      },
-      {
-        "id": "Organization.extension:certificates",
-        "path": "Organization.extension",
-        "sliceName": "certificates",
-        "min": 0,
-        "max": "1",
-        "type": [
-          {
-            "code": "Extension",
-            "profile": [
-              "https://gematik.de/fhir/directory/StructureDefinition/X509CertificateBundleExtension"
-            ]
-          }
-        ],
         "mustSupport": true
       },
       {
@@ -130,11 +114,8 @@
         "id": "Organization.type",
         "path": "Organization.type",
         "min": 1,
-        "mustSupport": true,
-        "binding": {
-          "strength": "required",
-          "valueSet": "https://gematik.de/fhir/directory/ValueSet/TIOrganizationTypeVS"
-        }
+        "max": "1",
+        "mustSupport": true
       },
       {
         "id": "Organization.name",
@@ -148,27 +129,14 @@
         "mustSupport": true
       },
       {
-        "id": "Organization.address",
-        "path": "Organization.address",
-        "mustSupport": true
-      },
-      {
-        "id": "Organization.partOf",
-        "path": "Organization.partOf",
+        "id": "Organization.telecom",
+        "path": "Organization.telecom",
         "mustSupport": true
       },
       {
         "id": "Organization.contact",
         "path": "Organization.contact",
         "mustSupport": true
-      },
-      {
-        "id": "Organization.contact.purpose",
-        "path": "Organization.contact.purpose",
-        "binding": {
-          "strength": "required",
-          "valueSet": "http://terminology.hl7.org/ValueSet/contactentity-type"
-        }
       }
     ]
   }
