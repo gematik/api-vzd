@@ -59,6 +59,5 @@ Description: "Profile for the Practitioner in gematik FHIR Directory"
 /* @spilikin: habe die Detailierung für qualification ergänzt. Passt das so?
 */
   * coding MS
-    * system 1..1 MS
     * code 1..1 MS
     * display 1..1 MS
