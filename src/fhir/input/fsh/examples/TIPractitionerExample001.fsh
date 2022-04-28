@@ -1,3 +1,4 @@
+/*
 Instance: TIPractitionerExample001
 InstanceOf: TIPractitioner
 Usage: #example
@@ -8,3 +9,4 @@ Description: "Example of a Practitioner as to be found in gematik FHIR Directory
 * qualification[+].code = TIPractitionerProfessionOidCS#1.2.276.0.76.4.31
 * qualification[+].code = $Facharzttitel#010 "FA Allgemeinmedizin"
 * qualification[+].code = $Facharzttitel#523 "FA Innere Medizin und (SP) Gastroenterologie"
+*/

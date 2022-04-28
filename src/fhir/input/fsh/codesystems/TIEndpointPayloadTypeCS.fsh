@@ -1,7 +1,6 @@
 CodeSystem: TIEndpointPayloadTypeCS
 Title: "Codes for Endpoint.payloadType"
 Description: "CodeSystem TI specific payload types assigned to the Endpoints"
-^version = "1.0.0"
 * insert Meta
 * ^content = #complete
 /* Codes are maintained by gematik

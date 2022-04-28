@@ -1,3 +1,4 @@
+/*
 Instance: TIOrganizationExample001-Endpoint-KIM
 InstanceOf: TIEndpoint
 Usage: #example
@@ -76,3 +77,4 @@ Description: "Example of an Organization as to be found in gematik FHIR Director
 * endpoint[+] = Reference(TIOrganizationExample001-Endpoint-KIM)
 * endpoint[+] = Reference(TIOrganizationExample001-Endpoint-TIM)
 * endpoint[+] = Reference(TIOrganizationExample001-Endpoint-EPA)
+*/
