@@ -19,8 +19,8 @@
       ]
     }
   ],
-  "description": "The gematik FHIR Directory Implementation Guide is based on FHIR Version R4 and defines the minimum conformance requirements for accessing the FHIR-Directory.",
-  "copyright": "Used by permission of HL7 International, all rights reserved Creative Commons License",
+  "description": "The gematik Directory Implementation Guide is based on FHIR Version R4 and defines the minimum conformance requirements for accessing the FHIR-Directory.",
+  "copyright": "Copyright gematik GmbH, Berlin, Germany",
   "packageId": "de.gematik.fhir.directory",
   "license": "CC0-1.0",
   "fhirVersion": [
@@ -29,8 +29,8 @@
   "dependsOn": [
     {
       "packageId": "de.basisprofil.r4",
+      "uri": "https://simplifier.net/guide/basisprofil-de-r4?version=current",
       "version": "1.3.2",
-      "uri": "http://fhir.org/packages/de.basisprofil.r4/ImplementationGuide/de.basisprofil.r4",
       "id": "de_basisprofil_r4"
     }
   ],
