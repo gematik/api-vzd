@@ -9,9 +9,9 @@ publisher:
   url: https://www.gematik.de/
   # email: test@example.org
 copyright: >-
-  Used by permission of HL7 International, all rights reserved Creative Commons License
+  Copyright gematik GmbH, Berlin, Germany
 description: >-
-  The gematik FHIR Directory Implementation Guide is based on FHIR Version R4 and defines the minimum conformance requirements for accessing the FHIR-Directory.
+  The gematik Directory Implementation Guide is based on FHIR Version R4 and defines the minimum conformance requirements for accessing the FHIR-Directory.
 license: CC0-1.0
 date: 2022-04-28
 version: 0.8.0-wip
