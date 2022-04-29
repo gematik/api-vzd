@@ -86,30 +86,6 @@
       },
       {
         "reference": {
-          "reference": "StructureDefinition/X509CertificateBundle"
-        },
-        "name": "X509CertificateBundle",
-        "description": "Collection of X509-Certificates",
-        "exampleBoolean": false
-      },
-      {
-        "reference": {
-          "reference": "StructureDefinition/X509CertificateBundleExtension"
-        },
-        "name": "X509CertificateBundleExtension",
-        "description": "This bundle contains a list of X509Certificates, \neach represented as Binary resource.",
-        "exampleBoolean": false
-      },
-      {
-        "reference": {
-          "reference": "StructureDefinition/X509CertificatePEM"
-        },
-        "name": "X509CertificatePEM",
-        "description": "General purpose extension to provide X.509 certificates as part of a resource\nThe certificate is specified as PEM-String.",
-        "exampleBoolean": false
-      },
-      {
-        "reference": {
           "reference": "ValueSet/TIEndpointConnectionTypeVS"
         },
         "name": "Connections Types for Endpoints in the TI",
