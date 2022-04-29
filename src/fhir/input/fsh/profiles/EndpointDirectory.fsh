@@ -5,6 +5,8 @@ Description: "Endpoints for applications in the TI FHIR-Directory"
 * status MS
 * connectionType 1..1 MS
 /* @spilikin: habe die Detailierung für qualification ergänzt. Passt das so?
+Nein, hier muss ValueSet verwendet werden
+* connectionType from $ValueSetName
 */
   * system = "https://gematik.de/fhir/directory/CodeSystem/TIEndpointConnectionTypeCS" (exactly)
   * code 1..1 MS
