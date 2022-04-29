@@ -1,5 +1,10 @@
 = Umgang mit FHIR Package
 
+== Wichtige Konfigurationsdateien
+
+* `package.json` (im Root) beschreibt die Dependencies für FHIR IG für automatisierte Validierung. Hier muss z.B. HL7 Deutschland Basisprofil angegeben werden. 
+* `src/fhir/sushi-config.yaml` Konfiguration von FISH/SUSHI
+
 == FHIR Werkzeuge
 
 Für die Erzeugung der FHIR Resourcen (z.B. Profile, Implementation Guide) 
