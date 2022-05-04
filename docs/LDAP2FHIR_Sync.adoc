@@ -45,9 +45,6 @@ Wird wie definiert umgesetzt.
 .2+|title |HBA |Bezeichner: Titel | Practitioner | name.prefix |Leer oder Titel nur mit "-" werden nicht übernommen. 
 |SMC-B |nicht verwendet |- | (wird nicht gemapped) |
 
-.2+|title |HBA |Bezeichner: Titel | Practitioner | name.prefix |Leer oder Titel nur mit "-" werden nicht übernommen. 
-|SMC-B |nicht verwendet |- | (wird nicht gemapped) |
-
 .2+|organization |HBA |Bezeichner: Name der Organisation oder Name der Betriebsstätte | *offen* | *offen* |
 |SMC-B |Alternativer Name nach dem der Eintrag von Nutzern gesucht wird und unter dem gefundene Einträge angezeigt werden |TIOrganization | alias |
 
