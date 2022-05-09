@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Bundle xmlns="http://hl7.org/fhir">
+  <id value="9c0f8706-f063-4d34-99c7-41a5da79519f"/>
+  <meta>
+    <lastUpdated value="2022-05-09T08:08:29.830+02:00"/>
+  </meta>
+  <type value="collection"/>
+  <entry>
+    <fullUrl value="https://gematik.de/fhir/directory/ValueSet/TIEndpointConnectionTypeVS"/>
+    <resource>
+      <ValueSet>
+        <id value="TIEndpointConnectionTypeVS"/>
+        <text>
+          <status value="generated"/>
+          <div xmlns="http://www.w3.org/1999/xhtml">
+            <p>This value set contains 21 concepts</p>
+            <div style="border: black 1px dotted; background-color: #EEEEEE; padding: 8px; margin-bottom: 8px">
+              <p>Expansion based on: </p>
+              <ul>
+                <li>
+                  <a href="http://terminology.hl7.org/3.1.0/CodeSystem-endpoint-connection-type.html">Endpoint Connection Type v0.1.0 (CodeSystem)</a>
+                </li>
+                <li>
+                  <a href="CodeSystem-TIEndpointConnectionTypeCS.html">Codes for Endpoint.connectionType v0.8.0-wip (CodeSystem)</a>
+                </li>
+              </ul>
+            </div>
+            <table class="codes">
+              <tr>
+                <td style="white-space:nowrap">
+                  <b>Code</b>
+                </td>
+                <td>
+                  <b>System</b>
+                </td>
+                <td>
+                  <b>Display</b>
+                </td>
+                <td>
+                  <b>Definition</b>
+                </td>
+              </tr>
+              <tr>
+                <td style="white-space:nowrap">
+                  <a name="http---terminology.hl7.org-CodeSystem-endpoint-connection-type-ihe-xcpd"> </a>  
+                  <a href="http://terminology.hl7.org/3.1.0/CodeSystem-endpoint-connection-type.html#endpoint-connection-type-ihe-xcpd">ihe-xcpd</a>
+                </td>
+                <td>http://terminology.hl7.org/CodeSystem/endpoint-connection-type</td>
+                <td>IHE XCPD</td>
+                <td>IHE Cross Community Patient Discovery Profile (XCPD) - http://wiki.ihe.net/index.php/Cross-Community_Patient_Discovery</td>
+              </tr>
+              <tr>
+                <td style="white-space:nowrap">
+                  <a name="http---terminology.hl7.org-CodeSystem-endpoint-connection-type-ihe-xca"> </a>  
+                  <a href="http://terminology.hl7.org/3.1.0/CodeSystem-endpoint-connection-type.html#endpoint-connection-type-ihe-xca">ihe-xca</a>
+                </td>
+                <td>http://terminology.hl7.org/CodeSystem/endpoint-connection-type</td>
+                <td>IHE XCA</td>
+                <td>IHE Cross Community Access Profile (XCA) - http://wiki.ihe.net/index.php/Cross-Community_Access</td>
+              </tr>
+              <tr>
+                <td style="white-space:nowrap">
+                  <a name="http---terminology.hl7.org-CodeSystem-endpoint-connection-type-ihe-xdr"> </a>  
+                  <a href="http://terminology.hl7.org/3.1.0/CodeSystem-endpoint-connection-type.html#endpoint-connection-type-ihe-xdr">ihe-xdr</a>
+                </td>
+                <td>http://terminology.hl7.org/CodeSystem/endpoint-connection-type</td>
+                <td>IHE XDR</td>
+                <td>IHE Cross-Enterprise Document Reliable Exchange (XDR) - http://wiki.ihe.net/index.php/Cross-enterprise_Document_Reliable_Interchange</td>
+              </tr>
+              <tr>
+                <td style="white-space:nowrap">
+                  <a name="http---terminology.hl7.org-CodeSystem-endpoint-connection-type-ihe-xds"> </a>  
+                  <a href="http://terminology.hl7.org/3.1.0/CodeSystem-endpoint-connection-type.html#endpoint-connection-type-ihe-xds">ihe-xds</a>
+                </td>
+                <td>http://terminology.hl7.org/CodeSystem/endpoint-connection-type</td>
+                <td>IHE XDS</td>
+                <td>IHE Cross-Enterprise Document Sharing (XDS) - http://wiki.ihe.net/index.php/Cross-Enterprise_Document_Sharing</td>
+              </tr>
+              <tr>
+                <td style="white-space:nowrap">
+                  <a name="http---terminology.hl7.org-CodeSystem-endpoint-connection-type-ihe-iid"> </a>  
+                  <a href="http://terminology.hl7.org/3.1.0/CodeSystem-endpoint-connection-type.html#endpoint-connection-type-ihe-iid">ihe-iid</a>
+                </td>
+                <td>http://terminology.hl7.org/CodeSystem/endpoint-connection-type</td>
+                <td>IHE IID</td>
+                <td>IHE Invoke Image Display (IID) - http://wiki.ihe.net/index.php/Invoke_Image_Display</td>
+              </tr>
+              <tr>
+                <td style="white-space:nowrap">
+                  <a name="http---terminology.hl7.org-CodeSystem-endpoint-connection-type-dicom-wado-rs"> </a>  
+                  <a href="http://terminology.hl7.org/3.1.0/CodeSystem-endpoint-connection-type.html#endpoint-connection-type-dicom-wado-rs">dicom-wado-rs</a>
+                </td>
+                <td>http://terminology.hl7.org/CodeSystem/endpoint-connection-type</td>
+                <td>DICOM WADO-RS</td>
+                <td>DICOMweb RESTful Image Retrieve - http://dicom.nema.org/medical/dicom/current/output/chtml/part18/sect_6.5.html</td>
+              </tr>
+              <tr>
+                <td style="white-space:nowrap">
+                  <a name="http---terminology.hl7.org-CodeSystem-endpoint-connection-type-dicom-qido-rs"> </a>  
+                  <a href="http://terminology.hl7.org/3.1.0/CodeSystem-endpoint-connection-type.html#endpoint-connection-type-dicom-qido-rs">dicom-qido-rs</a>
+                </td>
+                <td>http://terminology.hl7.org/CodeSystem/endpoint-connection-type</td>
+                <td>DICOM QIDO-RS</td>
+                <td>DICOMweb RESTful Image query - http://dicom.nema.org/medical/dicom/current/output/chtml/part18/sect_6.7.html</td>
+              </tr>
+              <tr>
+                <td style="white-space:nowrap">
+                  <a name="http---terminology.hl7.org-CodeSystem-endpoint-connection-type-dicom-stow-rs"> </a>  
+                  <a href="http://terminology.hl7.org/3.1.0/CodeSystem-endpoint-connection-type.html#endpoint-connection-type-dicom-stow-rs">dicom-stow-rs</a>
+                </td>
+                <td>http://terminology.hl7.org/CodeSystem/endpoint-connection-type</td>
+                <td>DICOM STOW-RS</td>
+                <td>DICOMweb RESTful image sending and storage - http://dicom.nema.org/medical/dicom/current/output/chtml/part18/sect_6.6.html</td>
+              </tr>
+              <tr>
+                <td style="white-space:nowrap">
+                  <a name="http---terminology.hl7.org-CodeSystem-endpoint-connection-type-dicom-wado-uri"> </a>  
+                  <a href="http://terminology.hl7.org/3.1.0/CodeSystem-endpoint-connection-type.html#endpoint-connection-type-dicom-wado-uri">dicom-wado-uri</a>
+                </td>
+                <td>http://terminology.hl7.org/CodeSystem/endpoint-connection-type</td>
+                <td>DICOM WADO-URI</td>
+                <td>DICOMweb Image Retrieve - http://dicom.nema.org/dicom/2013/output/chtml/part18/sect_6.3.html</td>
+              </tr>
+              <tr>
+                <td style="white-space:nowrap">
+                  <a name="http---terminology.hl7.org-CodeSystem-endpoint-connection-type-hl7-fhir-rest"> </a>  
+                  <a href="http://terminology.hl7.org/3.1.0/CodeSystem-endpoint-connection-type.html#endpoint-connection-type-hl7-fhir-rest">hl7-fhir-rest</a>
+                </td>
+                <td>http://terminology.hl7.org/CodeSystem/endpoint-connection-type</td>
+                <td>HL7 FHIR</td>
+                <td>Interact with the server interface using FHIR's RESTful interface. For details on its version/capabilities you should connect the value in Endpoint.address and retrieve the FHIR CapabilityStatement.</td>
+              </tr>
+              <tr>
+                <td style="white-space:nowrap">
+                  <a name="http---terminology.hl7.org-CodeSystem-endpoint-connection-type-hl7-fhir-msg"> </a>  
+                  <a href="http://terminology.hl7.org/3.1.0/CodeSystem-endpoint-connection-type.html#endpoint-connection-type-hl7-fhir-msg">hl7-fhir-msg</a>
+                </td>
+                <td>http://terminology.hl7.org/CodeSystem/endpoint-connection-type</td>
+                <td>HL7 FHIR Messaging</td>
+                <td>Use the servers FHIR Messaging interface. Details can be found on the messaging.html page in the FHIR Specification. The FHIR server's base address is specified in the Endpoint.address property.</td>
+              </tr>
+              <tr>
+                <td style="white-space:nowrap">
+                  <a name="http---terminology.hl7.org-CodeSystem-endpoint-connection-type-hl7v2-mllp"> </a>  
+                  <a href="http://terminology.hl7.org/3.1.0/CodeSystem-endpoint-connection-type.html#endpoint-connection-type-hl7v2-mllp">hl7v2-mllp</a>
+                </td>
+                <td>http://terminology.hl7.org/CodeSystem/endpoint-connection-type</td>
+                <td>HL7 v2 MLLP</td>
+                <td>HL7v2 messages over an LLP TCP connection</td>
+              </tr>
+              <tr>
+                <td style="white-space:nowrap">
+                  <a name="http---terminology.hl7.org-CodeSystem-endpoint-connection-type-secure-email"> </a>  
+                  <a href="http://terminology.hl7.org/3.1.0/CodeSystem-endpoint-connection-type.html#endpoint-connection-type-secure-email">secure-email</a>
+                </td>
+                <td>http://terminology.hl7.org/CodeSystem/endpoint-connection-type</td>
+                <td>Secure email</td>
+                <td>Email delivery using a digital certificate to encrypt the content using the public key, receiver must have the private key to decrypt the content</td>
+              </tr>
+              <tr>
+                <td style="white-space:nowrap">
+                  <a name="http---terminology.hl7.org-CodeSystem-endpoint-connection-type-direct-project"> </a>  
+                  <a href="http://terminology.hl7.org/3.1.0/CodeSystem-endpoint-connection-type.html#endpoint-connection-type-direct-project">direct-project</a>
+                </td>
+                <td>http://terminology.hl7.org/CodeSystem/endpoint-connection-type</td>
+                <td>Direct Project</td>
+                <td>Direct Project information - http://wiki.directproject.org/</td>
+              </tr>
+              <tr>
+                <td style="white-space:nowrap">
+                  <a name="https---gematik.de-fhir-directory-CodeSystem-TIEndpointConnectionTypeCS-tim-domain"> </a>  
+                  <a href="CodeSystem-TIEndpointConnectionTypeCS.html#TIEndpointConnectionTypeCS-tim-domain">tim-domain</a>
+                </td>
+                <td>https://gematik.de/fhir/directory/CodeSystem/TIEndpointConnectionTypeCS</td>
+                <td>TI-Messenger domain name</td>
+                <td/>
+              </tr>
+              <tr>
+                <td style="white-space:nowrap">
+                  <a name="https---gematik.de-fhir-directory-CodeSystem-TIEndpointConnectionTypeCS-kim-1.0"> </a>  
+                  <a href="CodeSystem-TIEndpointConnectionTypeCS.html#TIEndpointConnectionTypeCS-kim-1.460">kim-1.0</a>
+                </td>
+                <td>https://gematik.de/fhir/directory/CodeSystem/TIEndpointConnectionTypeCS</td>
+                <td>KIM 1.0 Endpoint</td>
+                <td/>
+              </tr>
+              <tr>
+                <td style="white-space:nowrap">
+                  <a name="https---gematik.de-fhir-directory-CodeSystem-TIEndpointConnectionTypeCS-kim-1.5"> </a>  
+                  <a href="CodeSystem-TIEndpointConnectionTypeCS.html#TIEndpointConnectionTypeCS-kim-1.465">kim-1.5</a>
+                </td>
+                <td>https://gematik.de/fhir/directory/CodeSystem/TIEndpointConnectionTypeCS</td>
+                <td>KIM 1.5 Endpoint</td>
+                <td/>
+              </tr>
+              <tr>
+                <td style="white-space:nowrap">
+                  <a name="https---gematik.de-fhir-directory-CodeSystem-TIEndpointConnectionTypeCS-kim-2.0"> </a>  
+                  <a href="CodeSystem-TIEndpointConnectionTypeCS.html#TIEndpointConnectionTypeCS-kim-2.460">kim-2.0</a>
+                </td>
+                <td>https://gematik.de/fhir/directory/CodeSystem/TIEndpointConnectionTypeCS</td>
+                <td>KIM 2.0 Endpoint</td>
+                <td/>
+              </tr>
+              <tr>
+                <td style="white-space:nowrap">
+                  <a name="https---gematik.de-fhir-directory-CodeSystem-TIEndpointConnectionTypeCS-epa"> </a>  
+                  <a href="CodeSystem-TIEndpointConnectionTypeCS.html#TIEndpointConnectionTypeCS-epa">epa</a>
+                </td>
+                <td>https://gematik.de/fhir/directory/CodeSystem/TIEndpointConnectionTypeCS</td>
+                <td>ePA Endpoint</td>
+                <td/>
+              </tr>
+              <tr>
+                <td style="white-space:nowrap">
+                  <a name="https---gematik.de-fhir-directory-CodeSystem-TIEndpointConnectionTypeCS-erp"> </a>  
+                  <a href="CodeSystem-TIEndpointConnectionTypeCS.html#TIEndpointConnectionTypeCS-erp">erp</a>
+                </td>
+                <td>https://gematik.de/fhir/directory/CodeSystem/TIEndpointConnectionTypeCS</td>
+                <td>eRP Endpoint</td>
+                <td/>
+              </tr>
+              <tr>
+                <td style="white-space:nowrap">
+                  <a name="https---gematik.de-fhir-directory-CodeSystem-TIEndpointConnectionTypeCS-tim"> </a>  
+                  <a href="CodeSystem-TIEndpointConnectionTypeCS.html#TIEndpointConnectionTypeCS-tim">tim</a>
+                </td>
+                <td>https://gematik.de/fhir/directory/CodeSystem/TIEndpointConnectionTypeCS</td>
+                <td>TI-Messenger Endpoint</td>
+                <td/>
+              </tr>
+            </table>
+          </div>
+        </text>
+        <url value="https://gematik.de/fhir/directory/ValueSet/TIEndpointConnectionTypeVS"/>
+        <version value="0.8.0-wip"/>
+        <name value="TIEndpointConnectionTypeVS"/>
+        <title value="Connections Types for Endpoints in the TI"/>
+        <status value="draft"/>
+        <date value="2022-05-09T08:08:29+02:00"/>
+        <publisher value="gematik GmbH"/>
+        <contact>
+          <name value="gematik GmbH"/>
+          <telecom>
+            <system value="url"/>
+            <value value="https://www.gematik.de/"/>
+          </telecom>
+        </contact>
+        <copyright value="Copyright gematik GmbH, Berlin, Germany"/>
+        <expansion>
+          <identifier value="urn:uuid:65e83a5f-c59d-41cc-9cd7-0db8c2275b0a"/>
+          <timestamp value="2022-05-09T08:08:44+02:00"/>
+          <total value="21"/>
+          <parameter>
+            <name value="excludeNested"/>
+            <valueBoolean value="false"/>
+          </parameter>
+          <parameter>
+            <name value="version"/>
+            <valueUri value="http://terminology.hl7.org/CodeSystem/endpoint-connection-type|0.1.0"/>
+          </parameter>
+          <parameter>
+            <name value="version"/>
+            <valueUri value="https://gematik.de/fhir/directory/CodeSystem/TIEndpointConnectionTypeCS|0.8.0-wip"/>
+          </parameter>
+          <contains>
+            <system value="http://terminology.hl7.org/CodeSystem/endpoint-connection-type"/>
+            <code value="ihe-xcpd"/>
+            <display value="IHE XCPD"/>
+          </contains>
+          <contains>
+            <system value="http://terminology.hl7.org/CodeSystem/endpoint-connection-type"/>
+            <code value="ihe-xca"/>
+            <display value="IHE XCA"/>
+          </contains>
+          <contains>
+            <system value="http://terminology.hl7.org/CodeSystem/endpoint-connection-type"/>
+            <code value="ihe-xdr"/>
+            <display value="IHE XDR"/>
+          </contains>
+          <contains>
+            <system value="http://terminology.hl7.org/CodeSystem/endpoint-connection-type"/>
+            <code value="ihe-xds"/>
+            <display value="IHE XDS"/>
+          </contains>
+          <contains>
+            <system value="http://terminology.hl7.org/CodeSystem/endpoint-connection-type"/>
+            <code value="ihe-iid"/>
+            <display value="IHE IID"/>
+          </contains>
+          <contains>
+            <system value="http://terminology.hl7.org/CodeSystem/endpoint-connection-type"/>
+            <code value="dicom-wado-rs"/>
+            <display value="DICOM WADO-RS"/>
+          </contains>
+          <contains>
+            <system value="http://terminology.hl7.org/CodeSystem/endpoint-connection-type"/>
+            <code value="dicom-qido-rs"/>
+            <display value="DICOM QIDO-RS"/>
+          </contains>
+          <contains>
+            <system value="http://terminology.hl7.org/CodeSystem/endpoint-connection-type"/>
+            <code value="dicom-stow-rs"/>
+            <display value="DICOM STOW-RS"/>
+          </contains>
+          <contains>
+            <system value="http://terminology.hl7.org/CodeSystem/endpoint-connection-type"/>
+            <code value="dicom-wado-uri"/>
+            <display value="DICOM WADO-URI"/>
+          </contains>
+          <contains>
+            <system value="http://terminology.hl7.org/CodeSystem/endpoint-connection-type"/>
+            <code value="hl7-fhir-rest"/>
+            <display value="HL7 FHIR"/>
+          </contains>
+          <contains>
+            <system value="http://terminology.hl7.org/CodeSystem/endpoint-connection-type"/>
+            <code value="hl7-fhir-msg"/>
+            <display value="HL7 FHIR Messaging"/>
+          </contains>
+          <contains>
+            <system value="http://terminology.hl7.org/CodeSystem/endpoint-connection-type"/>
+            <code value="hl7v2-mllp"/>
+            <display value="HL7 v2 MLLP"/>
+          </contains>
+          <contains>
+            <system value="http://terminology.hl7.org/CodeSystem/endpoint-connection-type"/>
+            <code value="secure-email"/>
+            <display value="Secure email"/>
+          </contains>
+          <contains>
+            <system value="http://terminology.hl7.org/CodeSystem/endpoint-connection-type"/>
+            <code value="direct-project"/>
+            <display value="Direct Project"/>
+          </contains>
+          <contains>
+            <system value="https://gematik.de/fhir/directory/CodeSystem/TIEndpointConnectionTypeCS"/>
+            <code value="tim-domain"/>
+            <display value="TI-Messenger domain name"/>
+          </contains>
+          <contains>
+            <system value="https://gematik.de/fhir/directory/CodeSystem/TIEndpointConnectionTypeCS"/>
+            <code value="kim-1.0"/>
+            <display value="KIM 1.0 Endpoint"/>
+          </contains>
+          <contains>
+            <system value="https://gematik.de/fhir/directory/CodeSystem/TIEndpointConnectionTypeCS"/>
+            <code value="kim-1.5"/>
+            <display value="KIM 1.5 Endpoint"/>
+          </contains>
+          <contains>
+            <system value="https://gematik.de/fhir/directory/CodeSystem/TIEndpointConnectionTypeCS"/>
+            <code value="kim-2.0"/>
+            <display value="KIM 2.0 Endpoint"/>
+          </contains>
+          <contains>
+            <system value="https://gematik.de/fhir/directory/CodeSystem/TIEndpointConnectionTypeCS"/>
+            <code value="epa"/>
+            <display value="ePA Endpoint"/>
+          </contains>
+          <contains>
+            <system value="https://gematik.de/fhir/directory/CodeSystem/TIEndpointConnectionTypeCS"/>
+            <code value="erp"/>
+            <display value="eRP Endpoint"/>
+          </contains>
+          <contains>
+            <system value="https://gematik.de/fhir/directory/CodeSystem/TIEndpointConnectionTypeCS"/>
+            <code value="tim"/>
+            <display value="TI-Messenger Endpoint"/>
+          </contains>
+        </expansion>
+      </ValueSet>
+    </resource>
+  </entry>
+</Bundle>

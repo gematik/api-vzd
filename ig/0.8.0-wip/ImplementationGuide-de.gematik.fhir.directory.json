@@ -1,0 +1,608 @@
+{
+  "resourceType": "ImplementationGuide",
+  "id": "de.gematik.fhir.directory",
+  "text": {
+    "status": "extensions",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><h2>gematikDirectory</h2><p>The official URL for this implementation guide is: </p><pre>https://gematik.de/fhir/directory/ImplementationGuide/de.gematik.fhir.directory</pre><div><p>The gematik Directory Implementation Guide is based on FHIR Version R4 and defines the minimum conformance requirements for accessing the FHIR-Directory.</p>\n</div></div>"
+  },
+  "url": "https://gematik.de/fhir/directory/ImplementationGuide/de.gematik.fhir.directory",
+  "version": "0.8.0-wip",
+  "name": "gematikDirectory",
+  "title": "gematik Directory",
+  "status": "draft",
+  "date": "2022-05-09",
+  "publisher": "gematik GmbH",
+  "contact": [
+    {
+      "name": "gematik GmbH",
+      "telecom": [
+        {
+          "system": "url",
+          "value": "https://www.gematik.de/"
+        }
+      ]
+    }
+  ],
+  "description": "The gematik Directory Implementation Guide is based on FHIR Version R4 and defines the minimum conformance requirements for accessing the FHIR-Directory.",
+  "copyright": "Copyright gematik GmbH, Berlin, Germany",
+  "packageId": "de.gematik.fhir.directory",
+  "license": "CC0-1.0",
+  "fhirVersion": [
+    "4.0.1"
+  ],
+  "dependsOn": [
+    {
+      "id": "de_basisprofil_r4",
+      "uri": "https://simplifier.net/guide/basisprofil-de-r4?version=current",
+      "packageId": "de.basisprofil.r4",
+      "version": "1.3.2"
+    }
+  ],
+  "definition": {
+    "extension": [
+      {
+        "extension": [
+          {
+            "url": "code",
+            "valueString": "copyrightyear"
+          },
+          {
+            "url": "value",
+            "valueString": "2022+"
+          }
+        ],
+        "url": "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"
+      },
+      {
+        "extension": [
+          {
+            "url": "code",
+            "valueString": "releaselabel"
+          },
+          {
+            "url": "value",
+            "valueString": "Release 0.8.0-wip"
+          }
+        ],
+        "url": "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"
+      },
+      {
+        "extension": [
+          {
+            "url": "code",
+            "valueString": "path-liquid"
+          },
+          {
+            "url": "value",
+            "valueString": "template/liquid"
+          }
+        ],
+        "url": "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"
+      },
+      {
+        "extension": [
+          {
+            "url": "code",
+            "valueString": "path-liquid"
+          },
+          {
+            "url": "value",
+            "valueString": "input/liquid"
+          }
+        ],
+        "url": "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"
+      },
+      {
+        "extension": [
+          {
+            "url": "code",
+            "valueString": "path-qa"
+          },
+          {
+            "url": "value",
+            "valueString": "temp/qa"
+          }
+        ],
+        "url": "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"
+      },
+      {
+        "extension": [
+          {
+            "url": "code",
+            "valueString": "path-temp"
+          },
+          {
+            "url": "value",
+            "valueString": "temp/pages"
+          }
+        ],
+        "url": "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"
+      },
+      {
+        "extension": [
+          {
+            "url": "code",
+            "valueString": "path-output"
+          },
+          {
+            "url": "value",
+            "valueString": "output"
+          }
+        ],
+        "url": "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"
+      },
+      {
+        "extension": [
+          {
+            "url": "code",
+            "valueString": "path-suppressed-warnings"
+          },
+          {
+            "url": "value",
+            "valueString": "input/ignoreWarnings.txt"
+          }
+        ],
+        "url": "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"
+      },
+      {
+        "extension": [
+          {
+            "url": "code",
+            "valueString": "path-history"
+          },
+          {
+            "url": "value",
+            "valueString": "https://gematik.de/fhir/directory/history.html"
+          }
+        ],
+        "url": "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"
+      },
+      {
+        "extension": [
+          {
+            "url": "code",
+            "valueString": "template-html"
+          },
+          {
+            "url": "value",
+            "valueString": "template-page.html"
+          }
+        ],
+        "url": "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"
+      },
+      {
+        "extension": [
+          {
+            "url": "code",
+            "valueString": "template-md"
+          },
+          {
+            "url": "value",
+            "valueString": "template-page-md.html"
+          }
+        ],
+        "url": "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"
+      },
+      {
+        "extension": [
+          {
+            "url": "code",
+            "valueString": "apply-contact"
+          },
+          {
+            "url": "value",
+            "valueString": "true"
+          }
+        ],
+        "url": "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"
+      },
+      {
+        "extension": [
+          {
+            "url": "code",
+            "valueString": "apply-context"
+          },
+          {
+            "url": "value",
+            "valueString": "true"
+          }
+        ],
+        "url": "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"
+      },
+      {
+        "extension": [
+          {
+            "url": "code",
+            "valueString": "apply-copyright"
+          },
+          {
+            "url": "value",
+            "valueString": "true"
+          }
+        ],
+        "url": "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"
+      },
+      {
+        "extension": [
+          {
+            "url": "code",
+            "valueString": "apply-jurisdiction"
+          },
+          {
+            "url": "value",
+            "valueString": "true"
+          }
+        ],
+        "url": "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"
+      },
+      {
+        "extension": [
+          {
+            "url": "code",
+            "valueString": "apply-license"
+          },
+          {
+            "url": "value",
+            "valueString": "true"
+          }
+        ],
+        "url": "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"
+      },
+      {
+        "extension": [
+          {
+            "url": "code",
+            "valueString": "apply-publisher"
+          },
+          {
+            "url": "value",
+            "valueString": "true"
+          }
+        ],
+        "url": "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"
+      },
+      {
+        "extension": [
+          {
+            "url": "code",
+            "valueString": "apply-version"
+          },
+          {
+            "url": "value",
+            "valueString": "true"
+          }
+        ],
+        "url": "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"
+      },
+      {
+        "extension": [
+          {
+            "url": "code",
+            "valueString": "active-tables"
+          },
+          {
+            "url": "value",
+            "valueString": "true"
+          }
+        ],
+        "url": "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"
+      },
+      {
+        "extension": [
+          {
+            "url": "code",
+            "valueString": "fmm-definition"
+          },
+          {
+            "url": "value",
+            "valueString": "http://hl7.org/fhir/versions.html#maturity"
+          }
+        ],
+        "url": "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"
+      },
+      {
+        "extension": [
+          {
+            "url": "code",
+            "valueString": "propagate-status"
+          },
+          {
+            "url": "value",
+            "valueString": "true"
+          }
+        ],
+        "url": "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"
+      },
+      {
+        "extension": [
+          {
+            "url": "code",
+            "valueString": "excludelogbinaryformat"
+          },
+          {
+            "url": "value",
+            "valueString": "true"
+          }
+        ],
+        "url": "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"
+      }
+    ],
+    "resource": [
+      {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString": "StructureDefinition:resource"
+          }
+        ],
+        "reference": {
+          "reference": "StructureDefinition/EndpointDirectory"
+        },
+        "name": "EndpointDirectory",
+        "description": "Endpoints for applications in the TI FHIR-Directory",
+        "exampleBoolean": false
+      },
+      {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString": "StructureDefinition:resource"
+          }
+        ],
+        "reference": {
+          "reference": "StructureDefinition/HealthcareServiceDirectory"
+        },
+        "name": "Profile for an HealthcareService resource in the TI FHIR-Directory",
+        "description": "Defines the data structure for medical, regulatory and technical\norganisations specific for german Healthcare and Telematics Infrastructure.",
+        "exampleBoolean": false
+      },
+      {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString": "StructureDefinition:resource"
+          }
+        ],
+        "reference": {
+          "reference": "StructureDefinition/LocationDirectory"
+        },
+        "name": "Profile for an Location resource in the TI FHIR-Directory",
+        "description": "Defines the data structure for medical, regulatory and technical\norganisations specific for german Healthcare and Telematics Infrastructure.",
+        "exampleBoolean": false
+      },
+      {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString": "StructureDefinition:resource"
+          }
+        ],
+        "reference": {
+          "reference": "StructureDefinition/OrganizationDirectory"
+        },
+        "name": "Profile for an Organization resource in the TI FHIR-Directory",
+        "description": "Defines the data structure for medical, regulatory and technical\norganisations specific for german Healthcare and Telematics Infrastructure.",
+        "exampleBoolean": false
+      },
+      {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString": "StructureDefinition:resource"
+          }
+        ],
+        "reference": {
+          "reference": "StructureDefinition/PractitionerDirectory"
+        },
+        "name": "PractitionerDirectory",
+        "description": "Profile for the Practitioner in gematik FHIR Directory",
+        "exampleBoolean": false
+      },
+      {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString": "StructureDefinition:resource"
+          }
+        ],
+        "reference": {
+          "reference": "StructureDefinition/PractitionerRoleDirectory"
+        },
+        "name": "PractitionerRoleDirectory",
+        "description": "Profile for the PractitionerRole in gematik FHIR Directory",
+        "exampleBoolean": false
+      },
+      {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString": "ValueSet"
+          }
+        ],
+        "reference": {
+          "reference": "ValueSet/TIEndpointConnectionTypeVS"
+        },
+        "name": "Connections Types for Endpoints in the TI",
+        "exampleBoolean": false
+      },
+      {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString": "ValueSet"
+          }
+        ],
+        "reference": {
+          "reference": "ValueSet/TIOrganizationTypeVS"
+        },
+        "name": "Type of TIOrganization",
+        "description": "ValueSet of all Organization types in the gematik FHIR Directory",
+        "exampleBoolean": false
+      },
+      {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString": "ValueSet"
+          }
+        ],
+        "reference": {
+          "reference": "ValueSet/TIPractitionerQualificationVS"
+        },
+        "name": "Qualification of a Practitoner",
+        "description": "ValueSet of all Practitoner.qualification.code in the gematik FHIR Directory",
+        "exampleBoolean": false
+      },
+      {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString": "CodeSystem"
+          }
+        ],
+        "reference": {
+          "reference": "CodeSystem/BundeslaenderCS"
+        },
+        "name": "Experimentell: Codes für deutsche Bundesländer",
+        "exampleBoolean": false
+      },
+      {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString": "CodeSystem"
+          }
+        ],
+        "reference": {
+          "reference": "CodeSystem/TIEndpointConnectionTypeCS"
+        },
+        "name": "Codes for Endpoint.connectionType",
+        "description": "CodeSystem TI specific connection types assigned to the Endpoints",
+        "exampleBoolean": false
+      },
+      {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString": "CodeSystem"
+          }
+        ],
+        "reference": {
+          "reference": "CodeSystem/TIEndpointPayloadTypeCS"
+        },
+        "name": "Codes for Endpoint.payloadType",
+        "description": "CodeSystem TI specific payload types assigned to the Endpoints",
+        "exampleBoolean": false
+      },
+      {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString": "CodeSystem"
+          }
+        ],
+        "reference": {
+          "reference": "CodeSystem/TIInstitutionTypeOidCS"
+        },
+        "name": "CodeSystem for TI Institutions using OIDs",
+        "description": "The codes for Institutions based on OIDs defined in gemSpec_OID \nWe use a URN notation ([ProfessionOID from gemSpec_OID]). \nSee also https://fachportal.gematik.de/fachportal-import/files/gemSpec_OID_V3.10.0.pdf",
+        "exampleBoolean": false
+      },
+      {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString": "CodeSystem"
+          }
+        ],
+        "reference": {
+          "reference": "CodeSystem/TIPractitionerProfessionOidCS"
+        },
+        "name": "CodeSystem for Practitioner's ProfessioiOid",
+        "description": "The codes for Institutions based on OIDs defined in gemSpec_OID \nWe use a URN notation ([ProfessionOID from gemSpec_OID]). \nSee also https://fachportal.gematik.de/fachportal-import/files/gemSpec_OID_V3.10.0.pdf",
+        "exampleBoolean": false
+      },
+      {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString": "CodeSystem"
+          }
+        ],
+        "reference": {
+          "reference": "CodeSystem/TIProviderTypeCS"
+        },
+        "name": "TIProviderTypeCS",
+        "description": "CodeSystem of TI Service Provider types as to be found in the gematik FHIR Directory",
+        "exampleBoolean": false
+      }
+    ],
+    "page": {
+      "nameUrl": "toc.html",
+      "title": "Table of Contents",
+      "generation": "html"
+    },
+    "parameter": [
+      {
+        "code": "path-resource",
+        "value": "input/capabilities"
+      },
+      {
+        "code": "path-resource",
+        "value": "input/examples"
+      },
+      {
+        "code": "path-resource",
+        "value": "input/extensions"
+      },
+      {
+        "code": "path-resource",
+        "value": "input/models"
+      },
+      {
+        "code": "path-resource",
+        "value": "input/operations"
+      },
+      {
+        "code": "path-resource",
+        "value": "input/profiles"
+      },
+      {
+        "code": "path-resource",
+        "value": "input/resources"
+      },
+      {
+        "code": "path-resource",
+        "value": "input/vocabulary"
+      },
+      {
+        "code": "path-resource",
+        "value": "input/maps"
+      },
+      {
+        "code": "path-resource",
+        "value": "input/testing"
+      },
+      {
+        "code": "path-resource",
+        "value": "input/history"
+      },
+      {
+        "code": "path-resource",
+        "value": "fsh-generated/resources"
+      },
+      {
+        "code": "path-pages",
+        "value": "template/config"
+      },
+      {
+        "code": "path-pages",
+        "value": "input/images"
+      },
+      {
+        "code": "path-tx-cache",
+        "value": "input-cache/txcache"
+      }
+    ]
+  }
+}

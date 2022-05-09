@@ -1,0 +1,184 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<https://gematik.de/fhir/directory/CodeSystem/TIPractitionerProfessionOidCS> a fhir:CodeSystem;
+  fhir:nodeRole fhir:treeRoot;
+  fhir:Resource.id [ fhir:value "TIPractitionerProfessionOidCS"];
+  fhir:DomainResource.text [
+     fhir:Narrative.status [ fhir:value "generated" ];
+     fhir:Narrative.div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>This code system https://gematik.de/fhir/directory/CodeSystem/TIPractitionerProfessionOidCS defines the following codes:</p><table class=\"codes\"><tr><td style=\"white-space:nowrap\"><b>Code</b></td><td><b>Display</b></td><td><b>Definition</b></td></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.30<a name=\"TIPractitionerProfessionOidCS-1.462.46276.460.4676.464.4630\"> </a></td><td>Ärztin/Arzt</td><td/></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.31<a name=\"TIPractitionerProfessionOidCS-1.462.46276.460.4676.464.4631\"> </a></td><td>Zahnärztin/Zahnarzt</td><td>...</td></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.32<a name=\"TIPractitionerProfessionOidCS-1.462.46276.460.4676.464.4632\"> </a></td><td>Apotheker/-in</td><td/></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.33<a name=\"TIPractitionerProfessionOidCS-1.462.46276.460.4676.464.4633\"> </a></td><td>Apothekerassistent/-in</td><td/></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.34<a name=\"TIPractitionerProfessionOidCS-1.462.46276.460.4676.464.4634\"> </a></td><td>Pharmazieingenieur/-in</td><td/></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.35<a name=\"TIPractitionerProfessionOidCS-1.462.46276.460.4676.464.4635\"> </a></td><td>pharmazeutisch-technische/-r Assistent/-in</td><td/></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.36<a name=\"TIPractitionerProfessionOidCS-1.462.46276.460.4676.464.4636\"> </a></td><td>pharmazeutisch-kaufmännische/-r Angestellte</td><td/></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.37<a name=\"TIPractitionerProfessionOidCS-1.462.46276.460.4676.464.4637\"> </a></td><td>Apothekenhelfer/-in</td><td/></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.38<a name=\"TIPractitionerProfessionOidCS-1.462.46276.460.4676.464.4638\"> </a></td><td>Apothekenassistent/-in</td><td/></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.39<a name=\"TIPractitionerProfessionOidCS-1.462.46276.460.4676.464.4639\"> </a></td><td>Pharmazeutische/-r Assistent/-in</td><td/></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.40<a name=\"TIPractitionerProfessionOidCS-1.462.46276.460.4676.464.4640\"> </a></td><td>Apothekenfacharbeiter/-in</td><td/></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.41<a name=\"TIPractitionerProfessionOidCS-1.462.46276.460.4676.464.4641\"> </a></td><td>Pharmaziepraktikant/-in</td><td/></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.42<a name=\"TIPractitionerProfessionOidCS-1.462.46276.460.4676.464.4642\"> </a></td><td>Stud.pharm. oder Famulant/-in</td><td/></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.43<a name=\"TIPractitionerProfessionOidCS-1.462.46276.460.4676.464.4643\"> </a></td><td>PTA-Praktikant/-in</td><td/></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.44<a name=\"TIPractitionerProfessionOidCS-1.462.46276.460.4676.464.4644\"> </a></td><td>PKA Auszubildende/-r</td><td/></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.45<a name=\"TIPractitionerProfessionOidCS-1.462.46276.460.4676.464.4645\"> </a></td><td>Psychotherapeut/-in</td><td/></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.46<a name=\"TIPractitionerProfessionOidCS-1.462.46276.460.4676.464.4646\"> </a></td><td>Psychologische/-r Psychotherapeut/-in</td><td/></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.47<a name=\"TIPractitionerProfessionOidCS-1.462.46276.460.4676.464.4647\"> </a></td><td>Kinder- und Jugendlichenpsychotherapeut/-in</td><td/></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.48<a name=\"TIPractitionerProfessionOidCS-1.462.46276.460.4676.464.4648\"> </a></td><td>Rettungsassistent/-in</td><td/></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.49<a name=\"TIPractitionerProfessionOidCS-1.462.46276.460.4676.464.4649\"> </a></td><td>Versicherte/-r</td><td/></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.178<a name=\"TIPractitionerProfessionOidCS-1.462.46276.460.4676.464.46178\"> </a></td><td>Notfallsanitäter/-in</td><td/></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.232<a name=\"TIPractitionerProfessionOidCS-1.462.46276.460.4676.464.46232\"> </a></td><td>Gesundheits- und Krankenpfleger/-in, Gesundheits- und Kinderkrankenpfleger/-in</td><td/></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.233<a name=\"TIPractitionerProfessionOidCS-1.462.46276.460.4676.464.46233\"> </a></td><td>Altenpfleger/-in</td><td/></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.234<a name=\"TIPractitionerProfessionOidCS-1.462.46276.460.4676.464.46234\"> </a></td><td>Pflegefachfrauen und Pflegefachmänner</td><td/></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.235<a name=\"TIPractitionerProfessionOidCS-1.462.46276.460.4676.464.46235\"> </a></td><td>Hebamme</td><td/></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.236<a name=\"TIPractitionerProfessionOidCS-1.462.46276.460.4676.464.46236\"> </a></td><td>Physiotherapeut/-in</td><td/></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.237<a name=\"TIPractitionerProfessionOidCS-1.462.46276.460.4676.464.46237\"> </a></td><td>Augenoptiker/-in und Optometrist/-in</td><td/></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.238<a name=\"TIPractitionerProfessionOidCS-1.462.46276.460.4676.464.46238\"> </a></td><td>Hörakustiker/-in</td><td/></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.239<a name=\"TIPractitionerProfessionOidCS-1.462.46276.460.4676.464.46239\"> </a></td><td>Orthopädieschuhmacher/-in</td><td/></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.240<a name=\"TIPractitionerProfessionOidCS-1.462.46276.460.4676.464.46240\"> </a></td><td>Orthopädietechniker/-in</td><td/></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.241<a name=\"TIPractitionerProfessionOidCS-1.462.46276.460.4676.464.46241\"> </a></td><td>Zahntechniker/-in</td><td/></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.274<a name=\"TIPractitionerProfessionOidCS-1.462.46276.460.4676.464.46274\"> </a></td><td>Ergotherapeut/-in</td><td/></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.275<a name=\"TIPractitionerProfessionOidCS-1.462.46276.460.4676.464.46275\"> </a></td><td>Logopäde/Logopädin</td><td/></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.276<a name=\"TIPractitionerProfessionOidCS-1.462.46276.460.4676.464.46276\"> </a></td><td>Podologe/Podologin</td><td/></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.277<a name=\"TIPractitionerProfessionOidCS-1.462.46276.460.4676.464.46277\"> </a></td><td>Ernährungstherapeut/-in</td><td/></tr></table></div>"
+  ];
+  fhir:CodeSystem.url [ fhir:value "https://gematik.de/fhir/directory/CodeSystem/TIPractitionerProfessionOidCS"];
+  fhir:CodeSystem.version [ fhir:value "0.8.0-wip"];
+  fhir:CodeSystem.name [ fhir:value "TIPractitionerProfessionOidCS"];
+  fhir:CodeSystem.title [ fhir:value "CodeSystem for Practitioner's ProfessioiOid"];
+  fhir:CodeSystem.status [ fhir:value "draft"];
+  fhir:CodeSystem.date [ fhir:value "2022-05-09T08:08:29+02:00"^^xsd:dateTime];
+  fhir:CodeSystem.publisher [ fhir:value "gematik GmbH"];
+  fhir:CodeSystem.contact [
+     fhir:index 0;
+     fhir:ContactDetail.name [ fhir:value "gematik GmbH" ];
+     fhir:ContactDetail.telecom [
+       fhir:index 0;
+       fhir:ContactPoint.system [ fhir:value "url" ];
+       fhir:ContactPoint.value [ fhir:value "https://www.gematik.de/" ]
+     ]
+  ];
+  fhir:CodeSystem.description [ fhir:value "The codes for Institutions based on OIDs defined in gemSpec_OID \nWe use a URN notation ([ProfessionOID from gemSpec_OID]). \nSee also https://fachportal.gematik.de/fachportal-import/files/gemSpec_OID_V3.10.0.pdf"];
+  fhir:CodeSystem.copyright [ fhir:value "Copyright gematik GmbH, Berlin, Germany"];
+  fhir:CodeSystem.content [ fhir:value "complete"];
+  fhir:CodeSystem.count [ fhir:value "35"^^xsd:nonNegativeInteger];
+  fhir:CodeSystem.concept [
+     fhir:index 0;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.30" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Ärztin/Arzt" ]
+  ], [
+     fhir:index 1;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.31" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Zahnärztin/Zahnarzt" ];
+     fhir:CodeSystem.concept.definition [ fhir:value "..." ]
+  ], [
+     fhir:index 2;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.32" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Apotheker/-in" ]
+  ], [
+     fhir:index 3;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.33" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Apothekerassistent/-in" ]
+  ], [
+     fhir:index 4;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.34" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Pharmazieingenieur/-in" ]
+  ], [
+     fhir:index 5;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.35" ];
+     fhir:CodeSystem.concept.display [ fhir:value "pharmazeutisch-technische/-r Assistent/-in" ]
+  ], [
+     fhir:index 6;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.36" ];
+     fhir:CodeSystem.concept.display [ fhir:value "pharmazeutisch-kaufmännische/-r Angestellte" ]
+  ], [
+     fhir:index 7;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.37" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Apothekenhelfer/-in" ]
+  ], [
+     fhir:index 8;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.38" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Apothekenassistent/-in" ]
+  ], [
+     fhir:index 9;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.39" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Pharmazeutische/-r Assistent/-in" ]
+  ], [
+     fhir:index 10;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.40" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Apothekenfacharbeiter/-in" ]
+  ], [
+     fhir:index 11;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.41" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Pharmaziepraktikant/-in" ]
+  ], [
+     fhir:index 12;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.42" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Stud.pharm. oder Famulant/-in" ]
+  ], [
+     fhir:index 13;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.43" ];
+     fhir:CodeSystem.concept.display [ fhir:value "PTA-Praktikant/-in" ]
+  ], [
+     fhir:index 14;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.44" ];
+     fhir:CodeSystem.concept.display [ fhir:value "PKA Auszubildende/-r" ]
+  ], [
+     fhir:index 15;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.45" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Psychotherapeut/-in" ]
+  ], [
+     fhir:index 16;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.46" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Psychologische/-r Psychotherapeut/-in" ]
+  ], [
+     fhir:index 17;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.47" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Kinder- und Jugendlichenpsychotherapeut/-in" ]
+  ], [
+     fhir:index 18;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.48" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Rettungsassistent/-in" ]
+  ], [
+     fhir:index 19;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.49" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Versicherte/-r" ]
+  ], [
+     fhir:index 20;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.178" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Notfallsanitäter/-in" ]
+  ], [
+     fhir:index 21;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.232" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Gesundheits- und Krankenpfleger/-in, Gesundheits- und Kinderkrankenpfleger/-in" ]
+  ], [
+     fhir:index 22;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.233" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Altenpfleger/-in" ]
+  ], [
+     fhir:index 23;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.234" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Pflegefachfrauen und Pflegefachmänner" ]
+  ], [
+     fhir:index 24;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.235" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Hebamme" ]
+  ], [
+     fhir:index 25;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.236" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Physiotherapeut/-in" ]
+  ], [
+     fhir:index 26;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.237" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Augenoptiker/-in und Optometrist/-in" ]
+  ], [
+     fhir:index 27;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.238" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Hörakustiker/-in" ]
+  ], [
+     fhir:index 28;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.239" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Orthopädieschuhmacher/-in" ]
+  ], [
+     fhir:index 29;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.240" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Orthopädietechniker/-in" ]
+  ], [
+     fhir:index 30;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.241" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Zahntechniker/-in" ]
+  ], [
+     fhir:index 31;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.274" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Ergotherapeut/-in" ]
+  ], [
+     fhir:index 32;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.275" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Logopäde/Logopädin" ]
+  ], [
+     fhir:index 33;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.276" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Podologe/Podologin" ]
+  ], [
+     fhir:index 34;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.277" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Ernährungstherapeut/-in" ]
+  ] .
+
+# - ontology header ------------------------------------------------------------
+
+<https://gematik.de/fhir/directory/CodeSystem/TIPractitionerProfessionOidCS.ttl> a owl:Ontology;
+  owl:imports fhir:fhir.ttl .
+
+# -------------------------------------------------------------------------------------
+

@@ -1,0 +1,8 @@
+{
+  "version": "0.8.0-wip",
+  "fhirVersion": [
+    "4.0.1"
+  ],
+  "date": "20220509080816",
+  "name": "de.gematik.fhir.directory"
+}

@@ -1,0 +1,114 @@
+[
+  {
+    "id": "BundeslaenderCS",
+    "type": "CodeSystem",
+    "url": "https://gematik.de/fhir/directory/CodeSystem/BundeslaenderCS",
+    "version": "0.8.0-wip",
+    "name": "BundeslaenderCS"
+  },
+  {
+    "id": "TIEndpointConnectionTypeCS",
+    "type": "CodeSystem",
+    "url": "https://gematik.de/fhir/directory/CodeSystem/TIEndpointConnectionTypeCS",
+    "version": "0.8.0-wip",
+    "name": "TIEndpointConnectionTypeCS"
+  },
+  {
+    "id": "TIEndpointPayloadTypeCS",
+    "type": "CodeSystem",
+    "url": "https://gematik.de/fhir/directory/CodeSystem/TIEndpointPayloadTypeCS",
+    "version": "0.8.0-wip",
+    "name": "TIEndpointPayloadTypeCS"
+  },
+  {
+    "id": "TIInstitutionTypeOidCS",
+    "type": "CodeSystem",
+    "url": "https://gematik.de/fhir/directory/CodeSystem/TIInstitutionTypeOidCS",
+    "version": "0.8.0-wip",
+    "name": "TIInstitutionTypeOidCS"
+  },
+  {
+    "id": "TIPractitionerProfessionOidCS",
+    "type": "CodeSystem",
+    "url": "https://gematik.de/fhir/directory/CodeSystem/TIPractitionerProfessionOidCS",
+    "version": "0.8.0-wip",
+    "name": "TIPractitionerProfessionOidCS"
+  },
+  {
+    "id": "TIProviderTypeCS",
+    "type": "CodeSystem",
+    "url": "https://gematik.de/fhir/directory/CodeSystem/TIProviderTypeCS",
+    "version": "0.8.0-wip",
+    "name": "TIProviderTypeCS"
+  },
+  {
+    "id": "de.gematik.fhir.directory",
+    "type": "ImplementationGuide",
+    "url": "https://gematik.de/fhir/directory/ImplementationGuide/de.gematik.fhir.directory",
+    "version": "0.8.0-wip",
+    "name": "gematikDirectory"
+  },
+  {
+    "id": "EndpointDirectory",
+    "type": "StructureDefinition",
+    "url": "https://gematik.de/fhir/directory/StructureDefinition/EndpointDirectory",
+    "version": "0.8.0-wip",
+    "name": "EndpointDirectory"
+  },
+  {
+    "id": "HealthcareServiceDirectory",
+    "type": "StructureDefinition",
+    "url": "https://gematik.de/fhir/directory/StructureDefinition/HealthcareServiceDirectory",
+    "version": "0.8.0-wip",
+    "name": "HealthcareServiceDirectory"
+  },
+  {
+    "id": "LocationDirectory",
+    "type": "StructureDefinition",
+    "url": "https://gematik.de/fhir/directory/StructureDefinition/LocationDirectory",
+    "version": "0.8.0-wip",
+    "name": "LocationDirectory"
+  },
+  {
+    "id": "OrganizationDirectory",
+    "type": "StructureDefinition",
+    "url": "https://gematik.de/fhir/directory/StructureDefinition/OrganizationDirectory",
+    "version": "0.8.0-wip",
+    "name": "OrganizationDirectory"
+  },
+  {
+    "id": "PractitionerDirectory",
+    "type": "StructureDefinition",
+    "url": "https://gematik.de/fhir/directory/StructureDefinition/PractitionerDirectory",
+    "version": "0.8.0-wip",
+    "name": "PractitionerDirectory"
+  },
+  {
+    "id": "PractitionerRoleDirectory",
+    "type": "StructureDefinition",
+    "url": "https://gematik.de/fhir/directory/StructureDefinition/PractitionerRoleDirectory",
+    "version": "0.8.0-wip",
+    "name": "PractitionerRoleDirectory"
+  },
+  {
+    "id": "TIEndpointConnectionTypeVS",
+    "type": "ValueSet",
+    "url": "https://gematik.de/fhir/directory/ValueSet/TIEndpointConnectionTypeVS",
+    "version": "0.8.0-wip",
+    "name": "TIEndpointConnectionTypeVS"
+  },
+  {
+    "id": "TIOrganizationTypeVS",
+    "type": "ValueSet",
+    "url": "https://gematik.de/fhir/directory/ValueSet/TIOrganizationTypeVS",
+    "version": "0.8.0-wip",
+    "name": "TIOrganizationTypeVS"
+  },
+  {
+    "id": "TIPractitionerQualificationVS",
+    "type": "ValueSet",
+    "url": "https://gematik.de/fhir/directory/ValueSet/TIPractitionerQualificationVS",
+    "version": "0.8.0-wip",
+    "name": "TIPractitionerQualificationVS"
+  }
+]

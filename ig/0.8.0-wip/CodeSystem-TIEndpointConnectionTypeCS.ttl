@@ -1,0 +1,71 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<https://gematik.de/fhir/directory/CodeSystem/TIEndpointConnectionTypeCS> a fhir:CodeSystem;
+  fhir:nodeRole fhir:treeRoot;
+  fhir:Resource.id [ fhir:value "TIEndpointConnectionTypeCS"];
+  fhir:DomainResource.text [
+     fhir:Narrative.status [ fhir:value "generated" ];
+     fhir:Narrative.div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>This code system https://gematik.de/fhir/directory/CodeSystem/TIEndpointConnectionTypeCS defines the following codes:</p><table class=\"codes\"><tr><td style=\"white-space:nowrap\"><b>Code</b></td><td><b>Display</b></td></tr><tr><td style=\"white-space:nowrap\">tim-domain<a name=\"TIEndpointConnectionTypeCS-tim-domain\"> </a></td><td>TI-Messenger domain name</td></tr><tr><td style=\"white-space:nowrap\">kim-1.0<a name=\"TIEndpointConnectionTypeCS-kim-1.460\"> </a></td><td>KIM 1.0 Endpoint</td></tr><tr><td style=\"white-space:nowrap\">kim-1.5<a name=\"TIEndpointConnectionTypeCS-kim-1.465\"> </a></td><td>KIM 1.5 Endpoint</td></tr><tr><td style=\"white-space:nowrap\">kim-2.0<a name=\"TIEndpointConnectionTypeCS-kim-2.460\"> </a></td><td>KIM 2.0 Endpoint</td></tr><tr><td style=\"white-space:nowrap\">epa<a name=\"TIEndpointConnectionTypeCS-epa\"> </a></td><td>ePA Endpoint</td></tr><tr><td style=\"white-space:nowrap\">erp<a name=\"TIEndpointConnectionTypeCS-erp\"> </a></td><td>eRP Endpoint</td></tr><tr><td style=\"white-space:nowrap\">tim<a name=\"TIEndpointConnectionTypeCS-tim\"> </a></td><td>TI-Messenger Endpoint</td></tr></table></div>"
+  ];
+  fhir:CodeSystem.url [ fhir:value "https://gematik.de/fhir/directory/CodeSystem/TIEndpointConnectionTypeCS"];
+  fhir:CodeSystem.version [ fhir:value "0.8.0-wip"];
+  fhir:CodeSystem.name [ fhir:value "TIEndpointConnectionTypeCS"];
+  fhir:CodeSystem.title [ fhir:value "Codes for Endpoint.connectionType"];
+  fhir:CodeSystem.status [ fhir:value "draft"];
+  fhir:CodeSystem.date [ fhir:value "2022-05-09T08:08:29+02:00"^^xsd:dateTime];
+  fhir:CodeSystem.publisher [ fhir:value "gematik GmbH"];
+  fhir:CodeSystem.contact [
+     fhir:index 0;
+     fhir:ContactDetail.name [ fhir:value "gematik GmbH" ];
+     fhir:ContactDetail.telecom [
+       fhir:index 0;
+       fhir:ContactPoint.system [ fhir:value "url" ];
+       fhir:ContactPoint.value [ fhir:value "https://www.gematik.de/" ]
+     ]
+  ];
+  fhir:CodeSystem.description [ fhir:value "CodeSystem TI specific connection types assigned to the Endpoints"];
+  fhir:CodeSystem.copyright [ fhir:value "Copyright gematik GmbH, Berlin, Germany"];
+  fhir:CodeSystem.content [ fhir:value "complete"];
+  fhir:CodeSystem.count [ fhir:value "7"^^xsd:nonNegativeInteger];
+  fhir:CodeSystem.concept [
+     fhir:index 0;
+     fhir:CodeSystem.concept.code [ fhir:value "tim-domain" ];
+     fhir:CodeSystem.concept.display [ fhir:value "TI-Messenger domain name" ]
+  ], [
+     fhir:index 1;
+     fhir:CodeSystem.concept.code [ fhir:value "kim-1.0" ];
+     fhir:CodeSystem.concept.display [ fhir:value "KIM 1.0 Endpoint" ]
+  ], [
+     fhir:index 2;
+     fhir:CodeSystem.concept.code [ fhir:value "kim-1.5" ];
+     fhir:CodeSystem.concept.display [ fhir:value "KIM 1.5 Endpoint" ]
+  ], [
+     fhir:index 3;
+     fhir:CodeSystem.concept.code [ fhir:value "kim-2.0" ];
+     fhir:CodeSystem.concept.display [ fhir:value "KIM 2.0 Endpoint" ]
+  ], [
+     fhir:index 4;
+     fhir:CodeSystem.concept.code [ fhir:value "epa" ];
+     fhir:CodeSystem.concept.display [ fhir:value "ePA Endpoint" ]
+  ], [
+     fhir:index 5;
+     fhir:CodeSystem.concept.code [ fhir:value "erp" ];
+     fhir:CodeSystem.concept.display [ fhir:value "eRP Endpoint" ]
+  ], [
+     fhir:index 6;
+     fhir:CodeSystem.concept.code [ fhir:value "tim" ];
+     fhir:CodeSystem.concept.display [ fhir:value "TI-Messenger Endpoint" ]
+  ] .
+
+# - ontology header ------------------------------------------------------------
+
+<https://gematik.de/fhir/directory/CodeSystem/TIEndpointConnectionTypeCS.ttl> a owl:Ontology;
+  owl:imports fhir:fhir.ttl .
+
+# -------------------------------------------------------------------------------------
+

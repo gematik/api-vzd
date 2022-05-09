@@ -1,0 +1,47 @@
+{
+  "resourceType": "CodeSystem",
+  "id": "TIProviderTypeCS",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>This code system https://gematik.de/fhir/directory/CodeSystem/TIProviderTypeCS defines the following codes:</p><table class=\"codes\"><tr><td style=\"white-space:nowrap\"><b>Code</b></td><td><b>Display</b></td></tr><tr><td style=\"white-space:nowrap\">tim-provider<a name=\"TIProviderTypeCS-tim-provider\"> </a></td><td>TI-Messenger-Provider</td></tr><tr><td style=\"white-space:nowrap\">kim-provider<a name=\"TIProviderTypeCS-kim-provider\"> </a></td><td>KIM-Provider</td></tr><tr><td style=\"white-space:nowrap\">tsp<a name=\"TIProviderTypeCS-tsp\"> </a></td><td>Trust Service Provider</td></tr><tr><td style=\"white-space:nowrap\">idp<a name=\"TIProviderTypeCS-idp\"> </a></td><td>Identity Provider</td></tr></table></div>"
+  },
+  "url": "https://gematik.de/fhir/directory/CodeSystem/TIProviderTypeCS",
+  "version": "0.8.0-wip",
+  "name": "TIProviderTypeCS",
+  "status": "draft",
+  "date": "2022-05-09T08:08:29+02:00",
+  "publisher": "gematik GmbH",
+  "contact": [
+    {
+      "name": "gematik GmbH",
+      "telecom": [
+        {
+          "system": "url",
+          "value": "https://www.gematik.de/"
+        }
+      ]
+    }
+  ],
+  "description": "CodeSystem of TI Service Provider types as to be found in the gematik FHIR Directory",
+  "copyright": "Copyright gematik GmbH, Berlin, Germany",
+  "content": "complete",
+  "count": 4,
+  "concept": [
+    {
+      "code": "tim-provider",
+      "display": "TI-Messenger-Provider"
+    },
+    {
+      "code": "kim-provider",
+      "display": "KIM-Provider"
+    },
+    {
+      "code": "tsp",
+      "display": "Trust Service Provider"
+    },
+    {
+      "code": "idp",
+      "display": "Identity Provider"
+    }
+  ]
+}

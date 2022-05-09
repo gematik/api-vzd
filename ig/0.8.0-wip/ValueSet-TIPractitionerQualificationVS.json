@@ -1,0 +1,38 @@
+{
+  "resourceType": "ValueSet",
+  "id": "TIPractitionerQualificationVS",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>This value set includes codes based on the following rules:</p><ul><li>Include all codes defined in <a href=\"CodeSystem-TIPractitionerProfessionOidCS.html\"><code>https://gematik.de/fhir/directory/CodeSystem/TIPractitionerProfessionOidCS</code></a></li><li>Include all codes defined in <code>http://ihe-d.de/ValueSets/IHEXDSauthorSpeciality</code></li></ul></div>"
+  },
+  "url": "https://gematik.de/fhir/directory/ValueSet/TIPractitionerQualificationVS",
+  "version": "0.8.0-wip",
+  "name": "TIPractitionerQualificationVS",
+  "title": "Qualification of a Practitoner",
+  "status": "draft",
+  "date": "2022-05-09T08:08:29+02:00",
+  "publisher": "gematik GmbH",
+  "contact": [
+    {
+      "name": "gematik GmbH",
+      "telecom": [
+        {
+          "system": "url",
+          "value": "https://www.gematik.de/"
+        }
+      ]
+    }
+  ],
+  "description": "ValueSet of all Practitoner.qualification.code in the gematik FHIR Directory",
+  "copyright": "Copyright gematik GmbH, Berlin, Germany",
+  "compose": {
+    "include": [
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/TIPractitionerProfessionOidCS"
+      },
+      {
+        "system": "http://ihe-d.de/ValueSets/IHEXDSauthorSpeciality"
+      }
+    ]
+  }
+}

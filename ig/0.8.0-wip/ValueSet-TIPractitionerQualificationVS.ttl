@@ -1,0 +1,49 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<https://gematik.de/fhir/directory/ValueSet/TIPractitionerQualificationVS> a fhir:ValueSet;
+  fhir:nodeRole fhir:treeRoot;
+  fhir:Resource.id [ fhir:value "TIPractitionerQualificationVS"];
+  fhir:DomainResource.text [
+     fhir:Narrative.status [ fhir:value "generated" ];
+     fhir:Narrative.div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>This value set includes codes based on the following rules:</p><ul><li>Include all codes defined in <a href=\"CodeSystem-TIPractitionerProfessionOidCS.html\"><code>https://gematik.de/fhir/directory/CodeSystem/TIPractitionerProfessionOidCS</code></a></li><li>Include all codes defined in <code>http://ihe-d.de/ValueSets/IHEXDSauthorSpeciality</code></li></ul></div>"
+  ];
+  fhir:ValueSet.url [ fhir:value "https://gematik.de/fhir/directory/ValueSet/TIPractitionerQualificationVS"];
+  fhir:ValueSet.version [ fhir:value "0.8.0-wip"];
+  fhir:ValueSet.name [ fhir:value "TIPractitionerQualificationVS"];
+  fhir:ValueSet.title [ fhir:value "Qualification of a Practitoner"];
+  fhir:ValueSet.status [ fhir:value "draft"];
+  fhir:ValueSet.date [ fhir:value "2022-05-09T08:08:29+02:00"^^xsd:dateTime];
+  fhir:ValueSet.publisher [ fhir:value "gematik GmbH"];
+  fhir:ValueSet.contact [
+     fhir:index 0;
+     fhir:ContactDetail.name [ fhir:value "gematik GmbH" ];
+     fhir:ContactDetail.telecom [
+       fhir:index 0;
+       fhir:ContactPoint.system [ fhir:value "url" ];
+       fhir:ContactPoint.value [ fhir:value "https://www.gematik.de/" ]
+     ]
+  ];
+  fhir:ValueSet.description [ fhir:value "ValueSet of all Practitoner.qualification.code in the gematik FHIR Directory"];
+  fhir:ValueSet.copyright [ fhir:value "Copyright gematik GmbH, Berlin, Germany"];
+  fhir:ValueSet.compose [
+     fhir:ValueSet.compose.include [
+       fhir:index 0;
+       fhir:ValueSet.compose.include.system [ fhir:value "https://gematik.de/fhir/directory/CodeSystem/TIPractitionerProfessionOidCS" ]
+     ], [
+       fhir:index 1;
+       fhir:ValueSet.compose.include.system [ fhir:value "http://ihe-d.de/ValueSets/IHEXDSauthorSpeciality" ]
+     ]
+  ] .
+
+# - ontology header ------------------------------------------------------------
+
+<https://gematik.de/fhir/directory/ValueSet/TIPractitionerQualificationVS.ttl> a owl:Ontology;
+  owl:imports fhir:fhir.ttl .
+
+# -------------------------------------------------------------------------------------
+

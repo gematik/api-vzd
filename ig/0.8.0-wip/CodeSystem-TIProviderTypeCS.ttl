@@ -1,0 +1,58 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<https://gematik.de/fhir/directory/CodeSystem/TIProviderTypeCS> a fhir:CodeSystem;
+  fhir:nodeRole fhir:treeRoot;
+  fhir:Resource.id [ fhir:value "TIProviderTypeCS"];
+  fhir:DomainResource.text [
+     fhir:Narrative.status [ fhir:value "generated" ];
+     fhir:Narrative.div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>This code system https://gematik.de/fhir/directory/CodeSystem/TIProviderTypeCS defines the following codes:</p><table class=\"codes\"><tr><td style=\"white-space:nowrap\"><b>Code</b></td><td><b>Display</b></td></tr><tr><td style=\"white-space:nowrap\">tim-provider<a name=\"TIProviderTypeCS-tim-provider\"> </a></td><td>TI-Messenger-Provider</td></tr><tr><td style=\"white-space:nowrap\">kim-provider<a name=\"TIProviderTypeCS-kim-provider\"> </a></td><td>KIM-Provider</td></tr><tr><td style=\"white-space:nowrap\">tsp<a name=\"TIProviderTypeCS-tsp\"> </a></td><td>Trust Service Provider</td></tr><tr><td style=\"white-space:nowrap\">idp<a name=\"TIProviderTypeCS-idp\"> </a></td><td>Identity Provider</td></tr></table></div>"
+  ];
+  fhir:CodeSystem.url [ fhir:value "https://gematik.de/fhir/directory/CodeSystem/TIProviderTypeCS"];
+  fhir:CodeSystem.version [ fhir:value "0.8.0-wip"];
+  fhir:CodeSystem.name [ fhir:value "TIProviderTypeCS"];
+  fhir:CodeSystem.status [ fhir:value "draft"];
+  fhir:CodeSystem.date [ fhir:value "2022-05-09T08:08:29+02:00"^^xsd:dateTime];
+  fhir:CodeSystem.publisher [ fhir:value "gematik GmbH"];
+  fhir:CodeSystem.contact [
+     fhir:index 0;
+     fhir:ContactDetail.name [ fhir:value "gematik GmbH" ];
+     fhir:ContactDetail.telecom [
+       fhir:index 0;
+       fhir:ContactPoint.system [ fhir:value "url" ];
+       fhir:ContactPoint.value [ fhir:value "https://www.gematik.de/" ]
+     ]
+  ];
+  fhir:CodeSystem.description [ fhir:value "CodeSystem of TI Service Provider types as to be found in the gematik FHIR Directory"];
+  fhir:CodeSystem.copyright [ fhir:value "Copyright gematik GmbH, Berlin, Germany"];
+  fhir:CodeSystem.content [ fhir:value "complete"];
+  fhir:CodeSystem.count [ fhir:value "4"^^xsd:nonNegativeInteger];
+  fhir:CodeSystem.concept [
+     fhir:index 0;
+     fhir:CodeSystem.concept.code [ fhir:value "tim-provider" ];
+     fhir:CodeSystem.concept.display [ fhir:value "TI-Messenger-Provider" ]
+  ], [
+     fhir:index 1;
+     fhir:CodeSystem.concept.code [ fhir:value "kim-provider" ];
+     fhir:CodeSystem.concept.display [ fhir:value "KIM-Provider" ]
+  ], [
+     fhir:index 2;
+     fhir:CodeSystem.concept.code [ fhir:value "tsp" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Trust Service Provider" ]
+  ], [
+     fhir:index 3;
+     fhir:CodeSystem.concept.code [ fhir:value "idp" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Identity Provider" ]
+  ] .
+
+# - ontology header ------------------------------------------------------------
+
+<https://gematik.de/fhir/directory/CodeSystem/TIProviderTypeCS.ttl> a owl:Ontology;
+  owl:imports fhir:fhir.ttl .
+
+# -------------------------------------------------------------------------------------
+

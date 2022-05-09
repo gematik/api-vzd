@@ -1,0 +1,60 @@
+{
+  "resourceType": "CodeSystem",
+  "id": "TIEndpointConnectionTypeCS",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>This code system https://gematik.de/fhir/directory/CodeSystem/TIEndpointConnectionTypeCS defines the following codes:</p><table class=\"codes\"><tr><td style=\"white-space:nowrap\"><b>Code</b></td><td><b>Display</b></td></tr><tr><td style=\"white-space:nowrap\">tim-domain<a name=\"TIEndpointConnectionTypeCS-tim-domain\"> </a></td><td>TI-Messenger domain name</td></tr><tr><td style=\"white-space:nowrap\">kim-1.0<a name=\"TIEndpointConnectionTypeCS-kim-1.460\"> </a></td><td>KIM 1.0 Endpoint</td></tr><tr><td style=\"white-space:nowrap\">kim-1.5<a name=\"TIEndpointConnectionTypeCS-kim-1.465\"> </a></td><td>KIM 1.5 Endpoint</td></tr><tr><td style=\"white-space:nowrap\">kim-2.0<a name=\"TIEndpointConnectionTypeCS-kim-2.460\"> </a></td><td>KIM 2.0 Endpoint</td></tr><tr><td style=\"white-space:nowrap\">epa<a name=\"TIEndpointConnectionTypeCS-epa\"> </a></td><td>ePA Endpoint</td></tr><tr><td style=\"white-space:nowrap\">erp<a name=\"TIEndpointConnectionTypeCS-erp\"> </a></td><td>eRP Endpoint</td></tr><tr><td style=\"white-space:nowrap\">tim<a name=\"TIEndpointConnectionTypeCS-tim\"> </a></td><td>TI-Messenger Endpoint</td></tr></table></div>"
+  },
+  "url": "https://gematik.de/fhir/directory/CodeSystem/TIEndpointConnectionTypeCS",
+  "version": "0.8.0-wip",
+  "name": "TIEndpointConnectionTypeCS",
+  "title": "Codes for Endpoint.connectionType",
+  "status": "draft",
+  "date": "2022-05-09T08:08:29+02:00",
+  "publisher": "gematik GmbH",
+  "contact": [
+    {
+      "name": "gematik GmbH",
+      "telecom": [
+        {
+          "system": "url",
+          "value": "https://www.gematik.de/"
+        }
+      ]
+    }
+  ],
+  "description": "CodeSystem TI specific connection types assigned to the Endpoints",
+  "copyright": "Copyright gematik GmbH, Berlin, Germany",
+  "content": "complete",
+  "count": 7,
+  "concept": [
+    {
+      "code": "tim-domain",
+      "display": "TI-Messenger domain name"
+    },
+    {
+      "code": "kim-1.0",
+      "display": "KIM 1.0 Endpoint"
+    },
+    {
+      "code": "kim-1.5",
+      "display": "KIM 1.5 Endpoint"
+    },
+    {
+      "code": "kim-2.0",
+      "display": "KIM 2.0 Endpoint"
+    },
+    {
+      "code": "epa",
+      "display": "ePA Endpoint"
+    },
+    {
+      "code": "erp",
+      "display": "eRP Endpoint"
+    },
+    {
+      "code": "tim",
+      "display": "TI-Messenger Endpoint"
+    }
+  ]
+}

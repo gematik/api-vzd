@@ -1,0 +1,251 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<https://gematik.de/fhir/directory/CodeSystem/TIInstitutionTypeOidCS> a fhir:CodeSystem;
+  fhir:nodeRole fhir:treeRoot;
+  fhir:Resource.id [ fhir:value "TIInstitutionTypeOidCS"];
+  fhir:DomainResource.text [
+     fhir:Narrative.status [ fhir:value "generated" ];
+     fhir:Narrative.div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>This code system https://gematik.de/fhir/directory/CodeSystem/TIInstitutionTypeOidCS defines the following codes:</p><table class=\"codes\"><tr><td style=\"white-space:nowrap\"><b>Code</b></td><td><b>Display</b></td></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.50<a name=\"TIInstitutionTypeOidCS-1.462.46276.460.4676.464.4650\"> </a></td><td>Betriebsstätte Arzt</td></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.51<a name=\"TIInstitutionTypeOidCS-1.462.46276.460.4676.464.4651\"> </a></td><td>Zahnarztpraxis</td></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.52<a name=\"TIInstitutionTypeOidCS-1.462.46276.460.4676.464.4652\"> </a></td><td>Betriebsstätte Psychotherapeut</td></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.53<a name=\"TIInstitutionTypeOidCS-1.462.46276.460.4676.464.4653\"> </a></td><td>Krankenhaus</td></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.54<a name=\"TIInstitutionTypeOidCS-1.462.46276.460.4676.464.4654\"> </a></td><td>Öffentliche Apotheke</td></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.55<a name=\"TIInstitutionTypeOidCS-1.462.46276.460.4676.464.4655\"> </a></td><td>Krankenhausapotheke</td></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.56<a name=\"TIInstitutionTypeOidCS-1.462.46276.460.4676.464.4656\"> </a></td><td>Bundeswehrapotheke</td></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.57<a name=\"TIInstitutionTypeOidCS-1.462.46276.460.4676.464.4657\"> </a></td><td>Betriebsstätte Mobile Einrichtung Rettungsdienst</td></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.58<a name=\"TIInstitutionTypeOidCS-1.462.46276.460.4676.464.4658\"> </a></td><td>Betriebsstätte gematik</td></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.59<a name=\"TIInstitutionTypeOidCS-1.462.46276.460.4676.464.4659\"> </a></td><td>Betriebsstätte Kostenträger</td></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.187<a name=\"TIInstitutionTypeOidCS-1.462.46276.460.4676.464.46187\"> </a></td><td>Betriebsstätte Leistungserbringerorganisation Vertragszahnärzte</td></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.190<a name=\"TIInstitutionTypeOidCS-1.462.46276.460.4676.464.46190\"> </a></td><td>AdV-Umgebung bei Kostenträger</td></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.223<a name=\"TIInstitutionTypeOidCS-1.462.46276.460.4676.464.46223\"> </a></td><td>Betriebsstätte GKV-Spitzenverband</td></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.226<a name=\"TIInstitutionTypeOidCS-1.462.46276.460.4676.464.46226\"> </a></td><td>Betriebsstätte Mitgliedsverband der Krankenhäuser</td></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.227<a name=\"TIInstitutionTypeOidCS-1.462.46276.460.4676.464.46227\"> </a></td><td>Betriebsstätte der Deutsche Krankenhaus TrustCenter und Informationsverarbeitung GmbH</td></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.228<a name=\"TIInstitutionTypeOidCS-1.462.46276.460.4676.464.46228\"> </a></td><td>Betriebsstätte der Deutschen Krankenhausgesellschaft</td></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.224<a name=\"TIInstitutionTypeOidCS-1.462.46276.460.4676.464.46224\"> </a></td><td>Betriebsstätte Apothekerverband</td></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.225<a name=\"TIInstitutionTypeOidCS-1.462.46276.460.4676.464.46225\"> </a></td><td>Betriebsstätte Deutscher Apothekerverband</td></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.229<a name=\"TIInstitutionTypeOidCS-1.462.46276.460.4676.464.46229\"> </a></td><td>Betriebsstätte der Bundesärztekammer</td></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.230<a name=\"TIInstitutionTypeOidCS-1.462.46276.460.4676.464.46230\"> </a></td><td>Betriebsstätte einer Ärztekammer</td></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.231<a name=\"TIInstitutionTypeOidCS-1.462.46276.460.4676.464.46231\"> </a></td><td>Betriebsstätte einer Zahnärztekammer</td></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.242<a name=\"TIInstitutionTypeOidCS-1.462.46276.460.4676.464.46242\"> </a></td><td>Betriebsstätte der Kassenärztlichen Bundesvereinigung</td></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.243<a name=\"TIInstitutionTypeOidCS-1.462.46276.460.4676.464.46243\"> </a></td><td>Betriebsstätte der Bundeszahnärztekammer</td></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.244<a name=\"TIInstitutionTypeOidCS-1.462.46276.460.4676.464.46244\"> </a></td><td>Betriebsstätte der Kassenzahnärztlichen Bundesvereinigung</td></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.245<a name=\"TIInstitutionTypeOidCS-1.462.46276.460.4676.464.46245\"> </a></td><td>Betriebsstätte Gesundheits-, Kranken- und Altenpflege</td></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.246<a name=\"TIInstitutionTypeOidCS-1.462.46276.460.4676.464.46246\"> </a></td><td>Betriebsstätte Geburtshilfe</td></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.247<a name=\"TIInstitutionTypeOidCS-1.462.46276.460.4676.464.46247\"> </a></td><td>Betriebsstätte Physiotherapie</td></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.248<a name=\"TIInstitutionTypeOidCS-1.462.46276.460.4676.464.46248\"> </a></td><td>Betriebsstätte Augenoptiker</td></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.249<a name=\"TIInstitutionTypeOidCS-1.462.46276.460.4676.464.46249\"> </a></td><td>Betriebsstätte Hörakustiker</td></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.250<a name=\"TIInstitutionTypeOidCS-1.462.46276.460.4676.464.46250\"> </a></td><td>Betriebsstätte Orthopädieschuhmacher</td></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.251<a name=\"TIInstitutionTypeOidCS-1.462.46276.460.4676.464.46251\"> </a></td><td>Betriebsstätte Orthopädietechniker</td></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.252<a name=\"TIInstitutionTypeOidCS-1.462.46276.460.4676.464.46252\"> </a></td><td>Betriebsstätte Zahntechniker</td></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.253<a name=\"TIInstitutionTypeOidCS-1.462.46276.460.4676.464.46253\"> </a></td><td>Rettungsleitstelle</td></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.254<a name=\"TIInstitutionTypeOidCS-1.462.46276.460.4676.464.46254\"> </a></td><td>Betriebsstätte Sanitätsdienst Bundeswehr</td></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.255<a name=\"TIInstitutionTypeOidCS-1.462.46276.460.4676.464.46255\"> </a></td><td>Betriebsstätte Öffentlicher Gesundheitsdienst</td></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.256<a name=\"TIInstitutionTypeOidCS-1.462.46276.460.4676.464.46256\"> </a></td><td>Betriebsstätte Arbeitsmedizin</td></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.257<a name=\"TIInstitutionTypeOidCS-1.462.46276.460.4676.464.46257\"> </a></td><td>Betriebsstätte Vorsorge- und Rehabilitation</td></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.273<a name=\"TIInstitutionTypeOidCS-1.462.46276.460.4676.464.46273\"> </a></td><td>ePA KTR-Zugriffsautorisierung</td></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.262<a name=\"TIInstitutionTypeOidCS-1.462.46276.460.4676.464.46262\"> </a></td><td>Betriebsstätte Pflegeberatung nach § 7a SGB XI</td></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.263<a name=\"TIInstitutionTypeOidCS-1.462.46276.460.4676.464.46263\"> </a></td><td>Betriebsstätte Psychotherapeutenkammer</td></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.264<a name=\"TIInstitutionTypeOidCS-1.462.46276.460.4676.464.46264\"> </a></td><td>Betriebsstätte Bundespsychotherapeutenkammer</td></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.265<a name=\"TIInstitutionTypeOidCS-1.462.46276.460.4676.464.46265\"> </a></td><td>Betriebsstätte Landesapothekerkammer</td></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.266<a name=\"TIInstitutionTypeOidCS-1.462.46276.460.4676.464.46266\"> </a></td><td>Betriebsstätte Bundesapothekerkammer</td></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.267<a name=\"TIInstitutionTypeOidCS-1.462.46276.460.4676.464.46267\"> </a></td><td>Betriebsstätte elektronisches Gesundheitsberuferegister</td></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.268<a name=\"TIInstitutionTypeOidCS-1.462.46276.460.4676.464.46268\"> </a></td><td>Betriebsstätte Handwerkskammer</td></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.269<a name=\"TIInstitutionTypeOidCS-1.462.46276.460.4676.464.46269\"> </a></td><td>Betriebsstätte Register für Gesundheitsdaten</td></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.270<a name=\"TIInstitutionTypeOidCS-1.462.46276.460.4676.464.46270\"> </a></td><td>Betriebsstätte Abrechnungsdienstleister</td></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.271<a name=\"TIInstitutionTypeOidCS-1.462.46276.460.4676.464.46271\"> </a></td><td>Betriebsstätte PKV-Verband</td></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.278<a name=\"TIInstitutionTypeOidCS-1.462.46276.460.4676.464.46278\"> </a></td><td>Ergotherapiepraxis</td></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.279<a name=\"TIInstitutionTypeOidCS-1.462.46276.460.4676.464.46279\"> </a></td><td>Logopaedische Praxis</td></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.280<a name=\"TIInstitutionTypeOidCS-1.462.46276.460.4676.464.46280\"> </a></td><td>Podologiepraxis</td></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.281<a name=\"TIInstitutionTypeOidCS-1.462.46276.460.4676.464.46281\"> </a></td><td>Ernährungstherapeutische Praxis</td></tr></table></div>"
+  ];
+  fhir:CodeSystem.url [ fhir:value "https://gematik.de/fhir/directory/CodeSystem/TIInstitutionTypeOidCS"];
+  fhir:CodeSystem.version [ fhir:value "0.8.0-wip"];
+  fhir:CodeSystem.name [ fhir:value "TIInstitutionTypeOidCS"];
+  fhir:CodeSystem.title [ fhir:value "CodeSystem for TI Institutions using OIDs"];
+  fhir:CodeSystem.status [ fhir:value "draft"];
+  fhir:CodeSystem.date [ fhir:value "2022-05-09T08:08:29+02:00"^^xsd:dateTime];
+  fhir:CodeSystem.publisher [ fhir:value "gematik GmbH"];
+  fhir:CodeSystem.contact [
+     fhir:index 0;
+     fhir:ContactDetail.name [ fhir:value "gematik GmbH" ];
+     fhir:ContactDetail.telecom [
+       fhir:index 0;
+       fhir:ContactPoint.system [ fhir:value "url" ];
+       fhir:ContactPoint.value [ fhir:value "https://www.gematik.de/" ]
+     ]
+  ];
+  fhir:CodeSystem.description [ fhir:value "The codes for Institutions based on OIDs defined in gemSpec_OID \nWe use a URN notation ([ProfessionOID from gemSpec_OID]). \nSee also https://fachportal.gematik.de/fachportal-import/files/gemSpec_OID_V3.10.0.pdf"];
+  fhir:CodeSystem.copyright [ fhir:value "Copyright gematik GmbH, Berlin, Germany"];
+  fhir:CodeSystem.content [ fhir:value "complete"];
+  fhir:CodeSystem.count [ fhir:value "52"^^xsd:nonNegativeInteger];
+  fhir:CodeSystem.concept [
+     fhir:index 0;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.50" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Betriebsstätte Arzt" ]
+  ], [
+     fhir:index 1;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.51" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Zahnarztpraxis" ]
+  ], [
+     fhir:index 2;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.52" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Betriebsstätte Psychotherapeut" ]
+  ], [
+     fhir:index 3;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.53" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Krankenhaus" ]
+  ], [
+     fhir:index 4;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.54" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Öffentliche Apotheke" ]
+  ], [
+     fhir:index 5;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.55" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Krankenhausapotheke" ]
+  ], [
+     fhir:index 6;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.56" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Bundeswehrapotheke" ]
+  ], [
+     fhir:index 7;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.57" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Betriebsstätte Mobile Einrichtung Rettungsdienst" ]
+  ], [
+     fhir:index 8;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.58" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Betriebsstätte gematik" ]
+  ], [
+     fhir:index 9;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.59" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Betriebsstätte Kostenträger" ]
+  ], [
+     fhir:index 10;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.187" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Betriebsstätte Leistungserbringerorganisation Vertragszahnärzte" ]
+  ], [
+     fhir:index 11;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.190" ];
+     fhir:CodeSystem.concept.display [ fhir:value "AdV-Umgebung bei Kostenträger" ]
+  ], [
+     fhir:index 12;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.223" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Betriebsstätte GKV-Spitzenverband" ]
+  ], [
+     fhir:index 13;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.226" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Betriebsstätte Mitgliedsverband der Krankenhäuser" ]
+  ], [
+     fhir:index 14;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.227" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Betriebsstätte der Deutsche Krankenhaus TrustCenter und Informationsverarbeitung GmbH" ]
+  ], [
+     fhir:index 15;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.228" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Betriebsstätte der Deutschen Krankenhausgesellschaft" ]
+  ], [
+     fhir:index 16;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.224" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Betriebsstätte Apothekerverband" ]
+  ], [
+     fhir:index 17;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.225" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Betriebsstätte Deutscher Apothekerverband" ]
+  ], [
+     fhir:index 18;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.229" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Betriebsstätte der Bundesärztekammer" ]
+  ], [
+     fhir:index 19;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.230" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Betriebsstätte einer Ärztekammer" ]
+  ], [
+     fhir:index 20;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.231" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Betriebsstätte einer Zahnärztekammer" ]
+  ], [
+     fhir:index 21;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.242" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Betriebsstätte der Kassenärztlichen Bundesvereinigung" ]
+  ], [
+     fhir:index 22;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.243" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Betriebsstätte der Bundeszahnärztekammer" ]
+  ], [
+     fhir:index 23;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.244" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Betriebsstätte der Kassenzahnärztlichen Bundesvereinigung" ]
+  ], [
+     fhir:index 24;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.245" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Betriebsstätte Gesundheits-, Kranken- und Altenpflege" ]
+  ], [
+     fhir:index 25;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.246" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Betriebsstätte Geburtshilfe" ]
+  ], [
+     fhir:index 26;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.247" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Betriebsstätte Physiotherapie" ]
+  ], [
+     fhir:index 27;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.248" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Betriebsstätte Augenoptiker" ]
+  ], [
+     fhir:index 28;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.249" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Betriebsstätte Hörakustiker" ]
+  ], [
+     fhir:index 29;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.250" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Betriebsstätte Orthopädieschuhmacher" ]
+  ], [
+     fhir:index 30;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.251" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Betriebsstätte Orthopädietechniker" ]
+  ], [
+     fhir:index 31;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.252" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Betriebsstätte Zahntechniker" ]
+  ], [
+     fhir:index 32;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.253" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Rettungsleitstelle" ]
+  ], [
+     fhir:index 33;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.254" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Betriebsstätte Sanitätsdienst Bundeswehr" ]
+  ], [
+     fhir:index 34;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.255" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Betriebsstätte Öffentlicher Gesundheitsdienst" ]
+  ], [
+     fhir:index 35;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.256" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Betriebsstätte Arbeitsmedizin" ]
+  ], [
+     fhir:index 36;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.257" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Betriebsstätte Vorsorge- und Rehabilitation" ]
+  ], [
+     fhir:index 37;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.273" ];
+     fhir:CodeSystem.concept.display [ fhir:value "ePA KTR-Zugriffsautorisierung" ]
+  ], [
+     fhir:index 38;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.262" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Betriebsstätte Pflegeberatung nach § 7a SGB XI" ]
+  ], [
+     fhir:index 39;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.263" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Betriebsstätte Psychotherapeutenkammer" ]
+  ], [
+     fhir:index 40;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.264" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Betriebsstätte Bundespsychotherapeutenkammer" ]
+  ], [
+     fhir:index 41;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.265" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Betriebsstätte Landesapothekerkammer" ]
+  ], [
+     fhir:index 42;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.266" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Betriebsstätte Bundesapothekerkammer" ]
+  ], [
+     fhir:index 43;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.267" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Betriebsstätte elektronisches Gesundheitsberuferegister" ]
+  ], [
+     fhir:index 44;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.268" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Betriebsstätte Handwerkskammer" ]
+  ], [
+     fhir:index 45;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.269" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Betriebsstätte Register für Gesundheitsdaten" ]
+  ], [
+     fhir:index 46;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.270" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Betriebsstätte Abrechnungsdienstleister" ]
+  ], [
+     fhir:index 47;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.271" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Betriebsstätte PKV-Verband" ]
+  ], [
+     fhir:index 48;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.278" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Ergotherapiepraxis" ]
+  ], [
+     fhir:index 49;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.279" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Logopaedische Praxis" ]
+  ], [
+     fhir:index 50;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.280" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Podologiepraxis" ]
+  ], [
+     fhir:index 51;
+     fhir:CodeSystem.concept.code [ fhir:value "1.2.276.0.76.4.281" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Ernährungstherapeutische Praxis" ]
+  ] .
+
+# - ontology header ------------------------------------------------------------
+
+<https://gematik.de/fhir/directory/CodeSystem/TIInstitutionTypeOidCS.ttl> a owl:Ontology;
+  owl:imports fhir:fhir.ttl .
+
+# -------------------------------------------------------------------------------------
+

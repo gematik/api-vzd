@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<CodeSystem xmlns="http://hl7.org/fhir">
+  <id value="TIEndpointConnectionTypeCS"/>
+  <text>
+    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><p>This code system https://gematik.de/fhir/directory/CodeSystem/TIEndpointConnectionTypeCS defines the following codes:</p><table class="codes"><tr><td style="white-space:nowrap"><b>Code</b></td><td><b>Display</b></td></tr><tr><td style="white-space:nowrap">tim-domain<a name="TIEndpointConnectionTypeCS-tim-domain"> </a></td><td>TI-Messenger domain name</td></tr><tr><td style="white-space:nowrap">kim-1.0<a name="TIEndpointConnectionTypeCS-kim-1.460"> </a></td><td>KIM 1.0 Endpoint</td></tr><tr><td style="white-space:nowrap">kim-1.5<a name="TIEndpointConnectionTypeCS-kim-1.465"> </a></td><td>KIM 1.5 Endpoint</td></tr><tr><td style="white-space:nowrap">kim-2.0<a name="TIEndpointConnectionTypeCS-kim-2.460"> </a></td><td>KIM 2.0 Endpoint</td></tr><tr><td style="white-space:nowrap">epa<a name="TIEndpointConnectionTypeCS-epa"> </a></td><td>ePA Endpoint</td></tr><tr><td style="white-space:nowrap">erp<a name="TIEndpointConnectionTypeCS-erp"> </a></td><td>eRP Endpoint</td></tr><tr><td style="white-space:nowrap">tim<a name="TIEndpointConnectionTypeCS-tim"> </a></td><td>TI-Messenger Endpoint</td></tr></table></div>
+  </text>
+  <url value="https://gematik.de/fhir/directory/CodeSystem/TIEndpointConnectionTypeCS"/>
+  <version value="0.8.0-wip"/>
+  <name value="TIEndpointConnectionTypeCS"/>
+  <title value="Codes for Endpoint.connectionType"/>
+  <status value="draft"/>
+  <date value="2022-05-09T08:08:29+02:00"/>
+  <publisher value="gematik GmbH"/>
+  <contact>
+    <name value="gematik GmbH"/>
+    <telecom>
+      <system value="url"/>
+      <value value="https://www.gematik.de/"/>
+    </telecom>
+  </contact>
+  <description value="CodeSystem TI specific connection types assigned to the Endpoints"/>
+  <copyright value="Copyright gematik GmbH, Berlin, Germany"/>
+  <content value="complete"/>
+  <count value="7"/>
+  <concept>
+    <code value="tim-domain"/>
+    <display value="TI-Messenger domain name"/>
+  </concept>
+  <concept>
+    <code value="kim-1.0"/>
+    <display value="KIM 1.0 Endpoint"/>
+  </concept>
+  <concept>
+    <code value="kim-1.5"/>
+    <display value="KIM 1.5 Endpoint"/>
+  </concept>
+  <concept>
+    <code value="kim-2.0"/>
+    <display value="KIM 2.0 Endpoint"/>
+  </concept>
+  <concept>
+    <code value="epa"/>
+    <display value="ePA Endpoint"/>
+  </concept>
+  <concept>
+    <code value="erp"/>
+    <display value="eRP Endpoint"/>
+  </concept>
+  <concept>
+    <code value="tim"/>
+    <display value="TI-Messenger Endpoint"/>
+  </concept>
+</CodeSystem>

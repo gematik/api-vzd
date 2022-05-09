@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ValueSet xmlns="http://hl7.org/fhir">
+  <id value="TIEndpointConnectionTypeVS"/>
+  <text>
+    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><p>This value set includes codes based on the following rules:</p><ul><li>Include all codes defined in <a href="http://terminology.hl7.org/3.1.0/CodeSystem-endpoint-connection-type.html"><code>http://terminology.hl7.org/CodeSystem/endpoint-connection-type</code></a></li><li>Include all codes defined in <a href="CodeSystem-TIEndpointConnectionTypeCS.html"><code>https://gematik.de/fhir/directory/CodeSystem/TIEndpointConnectionTypeCS</code></a></li></ul></div>
+  </text>
+  <url value="https://gematik.de/fhir/directory/ValueSet/TIEndpointConnectionTypeVS"/>
+  <version value="0.8.0-wip"/>
+  <name value="TIEndpointConnectionTypeVS"/>
+  <title value="Connections Types for Endpoints in the TI"/>
+  <status value="draft"/>
+  <date value="2022-05-09T08:08:29+02:00"/>
+  <publisher value="gematik GmbH"/>
+  <contact>
+    <name value="gematik GmbH"/>
+    <telecom>
+      <system value="url"/>
+      <value value="https://www.gematik.de/"/>
+    </telecom>
+  </contact>
+  <copyright value="Copyright gematik GmbH, Berlin, Germany"/>
+  <compose>
+    <include>
+      <system value="http://terminology.hl7.org/CodeSystem/endpoint-connection-type"/>
+    </include>
+    <include>
+      <system value="https://gematik.de/fhir/directory/CodeSystem/TIEndpointConnectionTypeCS"/>
+    </include>
+  </compose>
+</ValueSet>

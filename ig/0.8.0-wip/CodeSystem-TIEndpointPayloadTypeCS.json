@@ -1,0 +1,36 @@
+{
+  "resourceType": "CodeSystem",
+  "id": "TIEndpointPayloadTypeCS",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>This code system https://gematik.de/fhir/directory/CodeSystem/TIEndpointPayloadTypeCS defines the following codes:</p><table class=\"codes\"><tr><td style=\"white-space:nowrap\"><b>Code</b></td><td><b>Display</b></td></tr><tr><td style=\"white-space:nowrap\">tim-chat<a name=\"TIEndpointPayloadTypeCS-tim-chat\"> </a></td><td>TI-Messenger chat</td></tr></table></div>"
+  },
+  "url": "https://gematik.de/fhir/directory/CodeSystem/TIEndpointPayloadTypeCS",
+  "version": "0.8.0-wip",
+  "name": "TIEndpointPayloadTypeCS",
+  "title": "Codes for Endpoint.payloadType",
+  "status": "draft",
+  "date": "2022-05-09T08:08:29+02:00",
+  "publisher": "gematik GmbH",
+  "contact": [
+    {
+      "name": "gematik GmbH",
+      "telecom": [
+        {
+          "system": "url",
+          "value": "https://www.gematik.de/"
+        }
+      ]
+    }
+  ],
+  "description": "CodeSystem TI specific payload types assigned to the Endpoints",
+  "copyright": "Copyright gematik GmbH, Berlin, Germany",
+  "content": "complete",
+  "count": 1,
+  "concept": [
+    {
+      "code": "tim-chat",
+      "display": "TI-Messenger chat"
+    }
+  ]
+}

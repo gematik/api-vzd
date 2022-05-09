@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<CodeSystem xmlns="http://hl7.org/fhir">
+  <id value="BundeslaenderCS"/>
+  <text>
+    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><p>This code system https://gematik.de/fhir/directory/CodeSystem/BundeslaenderCS defines the following codes:</p><table class="codes"><tr><td style="white-space:nowrap"><b>Code</b></td><td><b>Display</b></td></tr><tr><td style="white-space:nowrap">Baden-Württemberg<a name="BundeslaenderCS-Baden-W.252rttemberg"> </a></td><td>Baden-Württemberg</td></tr><tr><td style="white-space:nowrap">Bayern<a name="BundeslaenderCS-Bayern"> </a></td><td>Bayern</td></tr><tr><td style="white-space:nowrap">Berlin<a name="BundeslaenderCS-Berlin"> </a></td><td>Berlin</td></tr><tr><td style="white-space:nowrap">Brandenburg<a name="BundeslaenderCS-Brandenburg"> </a></td><td>Brandenburg</td></tr><tr><td style="white-space:nowrap">Bremen<a name="BundeslaenderCS-Bremen"> </a></td><td>Bremen</td></tr><tr><td style="white-space:nowrap">Hamburg<a name="BundeslaenderCS-Hamburg"> </a></td><td>Hamburg</td></tr><tr><td style="white-space:nowrap">Hessen<a name="BundeslaenderCS-Hessen"> </a></td><td>Hessen</td></tr><tr><td style="white-space:nowrap">Mecklenburg-Vorpommern<a name="BundeslaenderCS-Mecklenburg-Vorpommern"> </a></td><td>Mecklenburg-Vorpommern</td></tr><tr><td style="white-space:nowrap">Niedersachsen<a name="BundeslaenderCS-Niedersachsen"> </a></td><td>Niedersachsen</td></tr><tr><td style="white-space:nowrap">Nordrhein-Westfalen<a name="BundeslaenderCS-Nordrhein-Westfalen"> </a></td><td>Nordrhein-Westfalen</td></tr><tr><td style="white-space:nowrap">Rheinland-Pfalz<a name="BundeslaenderCS-Rheinland-Pfalz"> </a></td><td>Rheinland-Pfalz</td></tr><tr><td style="white-space:nowrap">Saarland<a name="BundeslaenderCS-Saarland"> </a></td><td>Saarland</td></tr><tr><td style="white-space:nowrap">Sachsen<a name="BundeslaenderCS-Sachsen"> </a></td><td>Sachsen</td></tr><tr><td style="white-space:nowrap">Sachsen-Anhalt<a name="BundeslaenderCS-Sachsen-Anhalt"> </a></td><td>Sachsen-Anhalt</td></tr><tr><td style="white-space:nowrap">Schleswig-Holstein<a name="BundeslaenderCS-Schleswig-Holstein"> </a></td><td>Schleswig-Holstein</td></tr><tr><td style="white-space:nowrap">Thüringen<a name="BundeslaenderCS-Th.252ringen"> </a></td><td>Thüringen</td></tr><tr><td style="white-space:nowrap">Nordrhein<a name="BundeslaenderCS-Nordrhein"> </a></td><td>Nordrhein</td></tr><tr><td style="white-space:nowrap">Westfalen-Lippe<a name="BundeslaenderCS-Westfalen-Lippe"> </a></td><td>Westfalen-Lippe</td></tr></table></div>
+  </text>
+  <url value="https://gematik.de/fhir/directory/CodeSystem/BundeslaenderCS"/>
+  <version value="0.8.0-wip"/>
+  <name value="BundeslaenderCS"/>
+  <title value="Experimentell: Codes für deutsche Bundesländer"/>
+  <status value="draft"/>
+  <date value="2022-05-09T08:08:29+02:00"/>
+  <publisher value="gematik GmbH"/>
+  <contact>
+    <name value="gematik GmbH"/>
+    <telecom>
+      <system value="url"/>
+      <value value="https://www.gematik.de/"/>
+    </telecom>
+  </contact>
+  <copyright value="Copyright gematik GmbH, Berlin, Germany"/>
+  <content value="complete"/>
+  <count value="18"/>
+  <concept>
+    <code value="Baden-Württemberg"/>
+    <display value="Baden-Württemberg"/>
+  </concept>
+  <concept>
+    <code value="Bayern"/>
+    <display value="Bayern"/>
+  </concept>
+  <concept>
+    <code value="Berlin"/>
+    <display value="Berlin"/>
+  </concept>
+  <concept>
+    <code value="Brandenburg"/>
+    <display value="Brandenburg"/>
+  </concept>
+  <concept>
+    <code value="Bremen"/>
+    <display value="Bremen"/>
+  </concept>
+  <concept>
+    <code value="Hamburg"/>
+    <display value="Hamburg"/>
+  </concept>
+  <concept>
+    <code value="Hessen"/>
+    <display value="Hessen"/>
+  </concept>
+  <concept>
+    <code value="Mecklenburg-Vorpommern"/>
+    <display value="Mecklenburg-Vorpommern"/>
+  </concept>
+  <concept>
+    <code value="Niedersachsen"/>
+    <display value="Niedersachsen"/>
+  </concept>
+  <concept>
+    <code value="Nordrhein-Westfalen"/>
+    <display value="Nordrhein-Westfalen"/>
+  </concept>
+  <concept>
+    <code value="Rheinland-Pfalz"/>
+    <display value="Rheinland-Pfalz"/>
+  </concept>
+  <concept>
+    <code value="Saarland"/>
+    <display value="Saarland"/>
+  </concept>
+  <concept>
+    <code value="Sachsen"/>
+    <display value="Sachsen"/>
+  </concept>
+  <concept>
+    <code value="Sachsen-Anhalt"/>
+    <display value="Sachsen-Anhalt"/>
+  </concept>
+  <concept>
+    <code value="Schleswig-Holstein"/>
+    <display value="Schleswig-Holstein"/>
+  </concept>
+  <concept>
+    <code value="Thüringen"/>
+    <display value="Thüringen"/>
+  </concept>
+  <concept>
+    <code value="Nordrhein"/>
+    <display value="Nordrhein"/>
+  </concept>
+  <concept>
+    <code value="Westfalen-Lippe"/>
+    <display value="Westfalen-Lippe"/>
+  </concept>
+</CodeSystem>

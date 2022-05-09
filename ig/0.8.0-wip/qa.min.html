@@ -1,0 +1,755 @@
+﻿<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- broken links = 137, errors = 4, warn = 12, info = 24 -->
+<head>
+  <title>gematikDirectory : Validation Results</title>
+  <link href="fhir.css" rel="stylesheet"/>
+  <style>
+    span.flip  { background-color: #4CAF50; color: white; border: solid 1px #a6d8a8; padding: 2px }
+    span.toggle  { background-color: #e6f2ff; color: black; border: solid 1px #0056b3; padding: 2px; font-size: 10px }
+    span.toggle  { font-size: 10px }
+  </style>
+  <script>
+    function flip(id) {
+      var span = document.getElementById('s'+id);
+      var div = document.getElementById(id);
+      if (document.getElementById('s'+id).innerHTML == 'Show Reasoning') {
+        div.style.display = 'block';
+        span.innerHTML = 'Hide Reasoning';
+      } else {
+        div.style.display = 'none';
+        span.innerHTML = 'Show Reasoning';
+      }
+    }
+    function toggle(id) {
+      var span = document.getElementById('s'+id);
+      var div = document.getElementById(id);
+      if (document.getElementById('s'+id).innerHTML == 'Show Validation Information') {
+        div.style.display = 'block';
+        span.innerHTML = 'Hide Validation Information';
+      } else {
+        div.style.display = 'none';
+        span.innerHTML = 'Show Validation Information';
+      }
+    }
+  </script>
+</head>
+<body style="margin: 20px; background-color: #ffffff">
+ <h1>Validation Results for gematikDirectory</h1>
+ <p>Generated Mon May 09 08:08:56 CEST 2022, FHIR version 4.0.1 for de.gematik.fhir.directory#0.8.0-wip (canonical = <a href="https://gematik.de/fhir/directory">https://gematik.de/fhir/directory</a> (<a href="https://gematik.de/fhir/directory/history.html">history</a>)). See <a href="/users/serg/development/gematik/api-vzd/src/fhir/output/qa.html">Full QA Report</a></p>
+<table class="grid"> <tr><td colspan=2><b>Quality Checks</b></td></tr>
+ <tr><td>Publisher Version:</td><td><span>IG Publisher Version: v1.1.118</span></td></tr>
+ <tr><td>Publication Code:</td><td>n/a<span style="color: maroon; font-weight: bold"> </span>. PackageId = de.gematik.fhir.directory, Canonical = https://gematik.de/fhir/directory</td></tr>
+ <tr><td>Realm Check for n/a:</td><td><span style="color: maroon; font-weight: bold"></span><ul><li>n/a</li></ul></td></tr>
+ <tr><td>Version Check:</td><td>0.8.0-wip: <span stlye="color: marron; font-weight: bold">no package-list.json - the guide is not ready for publishing</span></td></tr>
+ <tr><td>Supressed Messages:</td><td>No Suppressed Issues
+</td></tr>
+ <tr><td>Dependency Checks:</td><td><div><table border="0" cellpadding="0" cellspacing="0" style="border: 0px #F0F0F0 solid; font-size: 11px; font-family: verdana; vertical-align: top;"><tr style="border: 1px #F0F0F0 solid; font-size: 11px; font-family: verdana; vertical-align: top"><th style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"><span title="The NPM Package Id">Package</span></th><th style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"><span title="The version of the package">Version</span></th><th style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"><span title="The version of FHIR that the package is based on">FHIR Release</span></th><th style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"><span title="Canonical URL">Canonical</span></th><th style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"><span title="Web Reference Base">Web Base</span></th><th style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"><span title="Comments about this entry">Comment</span></th></tr><tr style="border: 0px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: white"><td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(/Users/serg/Development/gematik/api-vzd/src/fhir/outputdata:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAyAAAAACCAYAAACg/LjIAAAALUlEQVR4Xu3IoREAIAwEwfT6/ddA0GBAxO3NrLlKUj9263wAAAAvrgEAADClAVWFQIBRHMicAAAAAElFTkSuQmCC)" class="hierarchy"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAWCAYAAAABxvaqAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3wYeFzIs1vtcMQAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAAAE0lEQVQI12P4//8/AxMDAwNdCABMPwMo2ctnoQAAAABJRU5ErkJggg==" alt="." style="background-color: inherit" class="hierarchy"/><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3QYZCik0qECmbAAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAABtUlEQVQoz2P8//8/Ayb4///v8xfM4iIMzKxoMkwMOMC3DVv/vXmEKY5Dw///Pw8c+Xn2CLEa/r55+/P07t/nrxKl4f/PX6+8g1mlP/44c4eAhn8fP33bsOV1dBoT51V2+z/MohIfeyYy/P2LXcPfFy8/NLb9efTs//utgjUfft35xRUY8Hnm/N/Xb2LT8P//h5ZOnvjoj+11giXcTH//MTLp/v/x9c/z279uXsOi4e/LRwzsbz6vmMyTLM6m9fnXE3Y2l+yv+yez2nL9eX0Wi4afF5eyW4r/+3qYP1Xjz/N3P17ZsRsKMrJd4rL9wcTxDIsGZqEvLEKv2VT/Mgl+/XGbXSB72s/zxXyBYmwqLCxSLFg0sKkHsAg+YJX7xfBTmt204s/NXE4dQTZtT2beH6yqFv9ebkDXwMhnxixrySb68f9fcWYRTSbGA6ya2QwMsixCvxk/djByiWIJVkbBBGaNOoafO5nYWVlkPRjYtP5/388s+JdJkI+R1xquDMl9zOqMQioM7BIMjJ8Z2IUYWOQZeT0Y/u5mEF+G7AdGLMn7712GnycY/v1g+HOZga+WgUkYWRIAe6ip9OnE1GoAAAAASUVORK5CYII=" alt="." style="background-color: white; background-color: inherit" title="NPM Package" class="hierarchy"/> de.gematik.fhir.directory</td><td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">0.8.0-wip</td><td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">4.0.1</td><td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">https://gematik.de/fhir/directory</td><td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"></td><td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"></td></tr>
+<tr style="border: 0px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: #F7F7F7"><td style="vertical-align: top; text-align : left; background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(/Users/serg/Development/gematik/api-vzd/src/fhir/outputdata:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAyAAAAACCAYAAACg/LjIAAAAJUlEQVR4Xu3IIQEAAAgDsHd9/w4EQIOamFnaBgAA4MMKAACAKwNp30CqZFfFmwAAAABJRU5ErkJggg==)" class="hierarchy"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAWCAYAAAABxvaqAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3wYeFzIs1vtcMQAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAAAE0lEQVQI12P4//8/AxMDAwNdCABMPwMo2ctnoQAAAABJRU5ErkJggg==" alt="." style="background-color: inherit" class="hierarchy"/><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAWCAYAAADJqhx8AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3wYeFzME+lXFigAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAAANklEQVQ4y+3OsRUAIAjEUOL+O8cJABttJM11/x1qZAGqRBEVcNIqdWj1efDqQbb3HwwwwEfABmQUHSPM9dtDAAAAAElFTkSuQmCC" alt="." style="background-color: inherit" class="hierarchy"/><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3QYZCik0qECmbAAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAABtUlEQVQoz2P8//8/Ayb4///v8xfM4iIMzKxoMkwMOMC3DVv/vXmEKY5Dw///Pw8c+Xn2CLEa/r55+/P07t/nrxKl4f/PX6+8g1mlP/44c4eAhn8fP33bsOV1dBoT51V2+z/MohIfeyYy/P2LXcPfFy8/NLb9efTs//utgjUfft35xRUY8Hnm/N/Xb2LT8P//h5ZOnvjoj+11giXcTH//MTLp/v/x9c/z279uXsOi4e/LRwzsbz6vmMyTLM6m9fnXE3Y2l+yv+yez2nL9eX0Wi4afF5eyW4r/+3qYP1Xjz/N3P17ZsRsKMrJd4rL9wcTxDIsGZqEvLEKv2VT/Mgl+/XGbXSB72s/zxXyBYmwqLCxSLFg0sKkHsAg+YJX7xfBTmt204s/NXE4dQTZtT2beH6yqFv9ebkDXwMhnxixrySb68f9fcWYRTSbGA6ya2QwMsixCvxk/djByiWIJVkbBBGaNOoafO5nYWVlkPRjYtP5/388s+JdJkI+R1xquDMl9zOqMQioM7BIMjJ8Z2IUYWOQZeT0Y/u5mEF+G7AdGLMn7712GnycY/v1g+HOZga+WgUkYWRIAe6ip9OnE1GoAAAAASUVORK5CYII=" alt="." style="background-color: #F7F7F7; background-color: inherit" title="NPM Package" class="hierarchy"/> de.basisprofil.r4</td><td style="vertical-align: top; text-align : left; background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">1.3.2 <span style="padding-left: 3px; padding-right: 3px; color: white; background-color: red" title="Not yet released">U</span></td><td style="vertical-align: top; text-align : left; background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">4.0.1</td><td style="vertical-align: top; text-align : left; background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"></td><td style="vertical-align: top; text-align : left; background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"></td><td style="vertical-align: top; text-align : left; background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"></td></tr>
+</table><para>Templates: fhir.base.template#current</para></div></td></tr>
+ <tr><td>Publication Rules:</td><td>Code = n/a. n/a - not an HL7.org or FHIR.org implementation guide
+ <br/><br/>The copyrightYear parameter ('2022+') in the IG resource is good</td></tr>
+ <tr><td>HTA Analysis:</td><td><i>Non-HL7 Igs are exempt from terminology dependency analysis</i></td></tr>
+ <tr><td>R5 Dependencies:</td><td><span style="color: grey">(none)</span></td></tr>
+ <tr><td>Previous Version Comparison:</td><td> Unable to compare with previous version: Unable to find version history at https://gematik.de/fhir/directory (Problem #1 with package-list.json at https://gematik.de/fhir/directory: Error parsing JSON source: Unexpected char '<' in json stream at Line 1 (path=[null]))</td></tr>
+ <tr><td>Summary:</td><td> broken links = 137, errors = 4, warn = 12, info = 24</td></tr>
+</table>
+ <table class="grid">
+   <tr>
+     <td><b>Filename</b></td><td><b>Errors</b></td><td><b>Warnings</b></td><td><b>Hints</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><a href="#internal"><b>Build Errors</b></a></td><td><b>141</b></td><td><b>3</b></td><td><b>0</b></td>
+   </tr>
+   <tr style="background-color: #EFFFEF">
+     <td><a href="#_Users_serg_Development_gematik_api-vzd_src_fhir_fsh-generated_resources_ImplementationGuide-de.gematik.fhir.directory"><b>/Users/serg/Development/gematik/api-vzd/src/fhir/fsh-generated/resources/ImplementationGuide-de.gematik.fhir.directory</b></a></td><td><b>0</b></td><td><b>1</b></td><td><b>0</b></td>
+   </tr>
+   <tr style="background-color: #EFFFEF">
+     <td><a href="#_Users_serg_Development_gematik_api-vzd_src_fhir_fsh-generated_resources_structuredefinition-EndpointDirectory"><b>/Users/serg/Development/gematik/api-vzd/src/fhir/fsh-generated/resources/structuredefinition-EndpointDirectory</b></a></td><td><b>0</b></td><td><b>1</b></td><td><b>1</b></td>
+   </tr>
+   <tr style="background-color: #EFFFEF">
+     <td><a href="#_Users_serg_Development_gematik_api-vzd_src_fhir_fsh-generated_resources_structuredefinition-HealthcareServiceDirectory"><b>/Users/serg/Development/gematik/api-vzd/src/fhir/fsh-generated/resources/structuredefinition-HealthcareServiceDirectory</b></a></td><td><b>0</b></td><td><b>1</b></td><td><b>2</b></td>
+   </tr>
+   <tr style="background-color: #EFFFEF">
+     <td><a href="#_Users_serg_Development_gematik_api-vzd_src_fhir_fsh-generated_resources_structuredefinition-LocationDirectory"><b>/Users/serg/Development/gematik/api-vzd/src/fhir/fsh-generated/resources/structuredefinition-LocationDirectory</b></a></td><td><b>0</b></td><td><b>1</b></td><td><b>1</b></td>
+   </tr>
+   <tr style="background-color: #EFFFEF">
+     <td><a href="#_Users_serg_Development_gematik_api-vzd_src_fhir_fsh-generated_resources_structuredefinition-OrganizationDirectory"><b>/Users/serg/Development/gematik/api-vzd/src/fhir/fsh-generated/resources/structuredefinition-OrganizationDirectory</b></a></td><td><b>0</b></td><td><b>1</b></td><td><b>1</b></td>
+   </tr>
+   <tr style="background-color: #EFFFEF">
+     <td><a href="#_Users_serg_Development_gematik_api-vzd_src_fhir_fsh-generated_resources_structuredefinition-PractitionerDirectory"><b>/Users/serg/Development/gematik/api-vzd/src/fhir/fsh-generated/resources/structuredefinition-PractitionerDirectory</b></a></td><td><b>0</b></td><td><b>1</b></td><td><b>11</b></td>
+   </tr>
+   <tr style="background-color: #EFFFEF">
+     <td><a href="#_Users_serg_Development_gematik_api-vzd_src_fhir_fsh-generated_resources_structuredefinition-PractitionerRoleDirectory"><b>/Users/serg/Development/gematik/api-vzd/src/fhir/fsh-generated/resources/structuredefinition-PractitionerRoleDirectory</b></a></td><td><b>0</b></td><td><b>1</b></td><td><b>2</b></td>
+   </tr>
+   <tr style="background-color: #EFFFEF">
+     <td><a href="#_Users_serg_Development_gematik_api-vzd_src_fhir_fsh-generated_resources_valueset-TIOrganizationTypeVS"><b>/Users/serg/Development/gematik/api-vzd/src/fhir/fsh-generated/resources/valueset-TIOrganizationTypeVS</b></a></td><td><b>0</b></td><td><b>1</b></td><td><b>0</b></td>
+   </tr>
+   <tr style="background-color: #EFFFEF">
+     <td><a href="#_Users_serg_Development_gematik_api-vzd_src_fhir_fsh-generated_resources_valueset-TIPractitionerQualificationVS"><b>/Users/serg/Development/gematik/api-vzd/src/fhir/fsh-generated/resources/valueset-TIPractitionerQualificationVS</b></a></td><td><b>0</b></td><td><b>1</b></td><td><b>0</b></td>
+   </tr>
+</table>
+<hr/>
+<a name="internal"> </a>
+<h2><a href="">n/a</a> <span id="sv" class="toggle" onclick="toggle('v')">Show Validation Information</span> <span class="vcount" onclick="toggle('v')"></span></h2>
+ <div style="border: 1px grey solid; display: none" id="v"></div>
+ <table class="grid">
+   <tr style="background-color: #ffcccc">
+     <td><b>ImplementationGuide.definition.parameter[22].value</b></td><td><b>error</b></td><td title=""><b>Supressed messages file not found</b></td>
+   </tr>
+   <tr style="background-color: #ffebcc">
+     <td><b>ImplementationGuide.dependency[0].url</b></td><td><b>warning</b></td><td title=""><b>The canonical URL for an Implementation Guide must point directly to the implementation guide resource, not to the Implementation Guide as a whole</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>?pkp-1?</b></td><td><b>error</b></td><td title=""><b>The reference http://fhir.de/StructureDefinition/identifier-telematik-id could not be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>?pkp-1?</b></td><td><b>error</b></td><td title=""><b>The reference http://fhir.de/StructureDefinition/identifier-lanr could not be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b>?pkp-1?</b></td><td><b>error</b></td><td title=""><b>The reference http://fhir.de/StructureDefinition/identifier-zanr could not be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffebcc">
+     <td><b></b></td><td><b>warning</b></td><td title=""><b>Unable to find ImplementationGuide.definition.resource.description for the resource ValueSet/TIEndpointConnectionTypeVS.  Descriptions are strongly encouraged if they cannot be inferred from the resource to allow proper population of the artifact list.</b></td>
+   </tr>
+   <tr style="background-color: #ffebcc">
+     <td><b></b></td><td><b>warning</b></td><td title=""><b>Unable to find ImplementationGuide.definition.resource.description for the resource CodeSystem/BundeslaenderCS.  Descriptions are strongly encouraged if they cannot be inferred from the resource to allow proper population of the artifact list.</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="CodeSystem-BundeslaenderCS.change.history.html#l133">output/CodeSystem-BundeslaenderCS.change.history.html#/html/body/div/div/nav/div/div/ul/li/a at Line 84, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="CodeSystem-BundeslaenderCS.html#l131">output/CodeSystem-BundeslaenderCS.html#/html/body/div/div/nav/div/div/ul/li/a at Line 80, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="CodeSystem-BundeslaenderCS.json.html#l131">output/CodeSystem-BundeslaenderCS.json.html#/html/body/div/div/nav/div/div/ul/li/a at Line 82, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="CodeSystem-BundeslaenderCS.ttl.html#l131">output/CodeSystem-BundeslaenderCS.ttl.html#/html/body/div/div/nav/div/div/ul/li/a at Line 82, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="CodeSystem-BundeslaenderCS.xml.html#l131">output/CodeSystem-BundeslaenderCS.xml.html#/html/body/div/div/nav/div/div/ul/li/a at Line 82, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="CodeSystem-TIEndpointConnectionTypeCS.change.history.html#l133">output/CodeSystem-TIEndpointConnectionTypeCS.change.history.html#/html/body/div/div/nav/div/div/ul/li/a at Line 84, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="CodeSystem-TIEndpointConnectionTypeCS.html#l131">output/CodeSystem-TIEndpointConnectionTypeCS.html#/html/body/div/div/nav/div/div/ul/li/a at Line 80, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="CodeSystem-TIEndpointConnectionTypeCS.json.html#l131">output/CodeSystem-TIEndpointConnectionTypeCS.json.html#/html/body/div/div/nav/div/div/ul/li/a at Line 82, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="CodeSystem-TIEndpointConnectionTypeCS.ttl.html#l131">output/CodeSystem-TIEndpointConnectionTypeCS.ttl.html#/html/body/div/div/nav/div/div/ul/li/a at Line 82, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="CodeSystem-TIEndpointConnectionTypeCS.xml.html#l131">output/CodeSystem-TIEndpointConnectionTypeCS.xml.html#/html/body/div/div/nav/div/div/ul/li/a at Line 82, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="CodeSystem-TIEndpointPayloadTypeCS.change.history.html#l133">output/CodeSystem-TIEndpointPayloadTypeCS.change.history.html#/html/body/div/div/nav/div/div/ul/li/a at Line 84, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="CodeSystem-TIEndpointPayloadTypeCS.html#l131">output/CodeSystem-TIEndpointPayloadTypeCS.html#/html/body/div/div/nav/div/div/ul/li/a at Line 80, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="CodeSystem-TIEndpointPayloadTypeCS.json.html#l131">output/CodeSystem-TIEndpointPayloadTypeCS.json.html#/html/body/div/div/nav/div/div/ul/li/a at Line 82, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="CodeSystem-TIEndpointPayloadTypeCS.ttl.html#l131">output/CodeSystem-TIEndpointPayloadTypeCS.ttl.html#/html/body/div/div/nav/div/div/ul/li/a at Line 82, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="CodeSystem-TIEndpointPayloadTypeCS.xml.html#l131">output/CodeSystem-TIEndpointPayloadTypeCS.xml.html#/html/body/div/div/nav/div/div/ul/li/a at Line 82, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="CodeSystem-TIInstitutionTypeOidCS.change.history.html#l133">output/CodeSystem-TIInstitutionTypeOidCS.change.history.html#/html/body/div/div/nav/div/div/ul/li/a at Line 84, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="CodeSystem-TIInstitutionTypeOidCS.html#l131">output/CodeSystem-TIInstitutionTypeOidCS.html#/html/body/div/div/nav/div/div/ul/li/a at Line 80, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="CodeSystem-TIInstitutionTypeOidCS.json.html#l131">output/CodeSystem-TIInstitutionTypeOidCS.json.html#/html/body/div/div/nav/div/div/ul/li/a at Line 82, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="CodeSystem-TIInstitutionTypeOidCS.ttl.html#l131">output/CodeSystem-TIInstitutionTypeOidCS.ttl.html#/html/body/div/div/nav/div/div/ul/li/a at Line 82, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="CodeSystem-TIInstitutionTypeOidCS.xml.html#l131">output/CodeSystem-TIInstitutionTypeOidCS.xml.html#/html/body/div/div/nav/div/div/ul/li/a at Line 82, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="CodeSystem-TIPractitionerProfessionOidCS.change.history.html#l133">output/CodeSystem-TIPractitionerProfessionOidCS.change.history.html#/html/body/div/div/nav/div/div/ul/li/a at Line 84, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="CodeSystem-TIPractitionerProfessionOidCS.html#l131">output/CodeSystem-TIPractitionerProfessionOidCS.html#/html/body/div/div/nav/div/div/ul/li/a at Line 80, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="CodeSystem-TIPractitionerProfessionOidCS.json.html#l131">output/CodeSystem-TIPractitionerProfessionOidCS.json.html#/html/body/div/div/nav/div/div/ul/li/a at Line 82, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="CodeSystem-TIPractitionerProfessionOidCS.ttl.html#l131">output/CodeSystem-TIPractitionerProfessionOidCS.ttl.html#/html/body/div/div/nav/div/div/ul/li/a at Line 82, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="CodeSystem-TIPractitionerProfessionOidCS.xml.html#l131">output/CodeSystem-TIPractitionerProfessionOidCS.xml.html#/html/body/div/div/nav/div/div/ul/li/a at Line 82, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="CodeSystem-TIProviderTypeCS.change.history.html#l133">output/CodeSystem-TIProviderTypeCS.change.history.html#/html/body/div/div/nav/div/div/ul/li/a at Line 84, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="CodeSystem-TIProviderTypeCS.html#l131">output/CodeSystem-TIProviderTypeCS.html#/html/body/div/div/nav/div/div/ul/li/a at Line 80, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="CodeSystem-TIProviderTypeCS.json.html#l131">output/CodeSystem-TIProviderTypeCS.json.html#/html/body/div/div/nav/div/div/ul/li/a at Line 82, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="CodeSystem-TIProviderTypeCS.ttl.html#l131">output/CodeSystem-TIProviderTypeCS.ttl.html#/html/body/div/div/nav/div/div/ul/li/a at Line 82, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="CodeSystem-TIProviderTypeCS.xml.html#l131">output/CodeSystem-TIProviderTypeCS.xml.html#/html/body/div/div/nav/div/div/ul/li/a at Line 82, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-EndpointDirectory-definitions.html#l132">output/StructureDefinition-EndpointDirectory-definitions.html#/html/body/div/div/nav/div/div/ul/li/a at Line 84, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-EndpointDirectory-examples.html#l132">output/StructureDefinition-EndpointDirectory-examples.html#/html/body/div/div/nav/div/div/ul/li/a at Line 84, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-EndpointDirectory-mappings.html#l132">output/StructureDefinition-EndpointDirectory-mappings.html#/html/body/div/div/nav/div/div/ul/li/a at Line 84, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-EndpointDirectory.html#l132">output/StructureDefinition-EndpointDirectory.html#/html/body/div/div/nav/div/div/ul/li/a at Line 84, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-EndpointDirectory.profile.history.html#l132">output/StructureDefinition-EndpointDirectory.profile.history.html#/html/body/div/div/nav/div/div/ul/li/a at Line 84, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-EndpointDirectory.profile.json.html#l132">output/StructureDefinition-EndpointDirectory.profile.json.html#/html/body/div/div/nav/div/div/ul/li/a at Line 88, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-EndpointDirectory.profile.ttl.html#l132">output/StructureDefinition-EndpointDirectory.profile.ttl.html#/html/body/div/div/nav/div/div/ul/li/a at Line 88, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-EndpointDirectory.profile.xml.html#l132">output/StructureDefinition-EndpointDirectory.profile.xml.html#/html/body/div/div/nav/div/div/ul/li/a at Line 88, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-HealthcareServiceDirectory-definitions.html#l132">output/StructureDefinition-HealthcareServiceDirectory-definitions.html#/html/body/div/div/nav/div/div/ul/li/a at Line 84, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-HealthcareServiceDirectory-definitions.html#l1765">output/StructureDefinition-HealthcareServiceDirectory-definitions.html#/html/body/div/div/div/div/div/table/tr/td/a at Line 426, column 115</a></b></td><td><b>error</b></td><td><b>The link '' for &quot;IHEXDSpracticeSettingCode&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-HealthcareServiceDirectory-definitions.html#l1846">output/StructureDefinition-HealthcareServiceDirectory-definitions.html#/html/body/div/div/div/div/div/table/tr/td/a at Line 439, column 115</a></b></td><td><b>error</b></td><td><b>The link '' for &quot;IHEXDSpracticeSettingCode&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-HealthcareServiceDirectory-examples.html#l132">output/StructureDefinition-HealthcareServiceDirectory-examples.html#/html/body/div/div/nav/div/div/ul/li/a at Line 84, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-HealthcareServiceDirectory-mappings.html#l132">output/StructureDefinition-HealthcareServiceDirectory-mappings.html#/html/body/div/div/nav/div/div/ul/li/a at Line 84, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-HealthcareServiceDirectory.html#l132">output/StructureDefinition-HealthcareServiceDirectory.html#/html/body/div/div/nav/div/div/ul/li/a at Line 84, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-HealthcareServiceDirectory.html#l7259">output/StructureDefinition-HealthcareServiceDirectory.html#/html/body/div/div/div/div/div/table/tr/td/a at Line 909, column 162</a></b></td><td><b>error</b></td><td><b>The link '??' for &quot;IHEXDSpracticeSettingCode (missing link)&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-HealthcareServiceDirectory.html#l7269">output/StructureDefinition-HealthcareServiceDirectory.html#/html/body/div/div/div/div/div/table/tr/td/a at Line 910, column 165</a></b></td><td><b>error</b></td><td><b>The link '??' for &quot;IHEXDSpracticeSettingCode (missing link)&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-HealthcareServiceDirectory.profile.history.html#l132">output/StructureDefinition-HealthcareServiceDirectory.profile.history.html#/html/body/div/div/nav/div/div/ul/li/a at Line 84, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-HealthcareServiceDirectory.profile.json.html#l132">output/StructureDefinition-HealthcareServiceDirectory.profile.json.html#/html/body/div/div/nav/div/div/ul/li/a at Line 88, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-HealthcareServiceDirectory.profile.ttl.html#l132">output/StructureDefinition-HealthcareServiceDirectory.profile.ttl.html#/html/body/div/div/nav/div/div/ul/li/a at Line 88, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-HealthcareServiceDirectory.profile.xml.html#l132">output/StructureDefinition-HealthcareServiceDirectory.profile.xml.html#/html/body/div/div/nav/div/div/ul/li/a at Line 88, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-LocationDirectory-definitions.html#l132">output/StructureDefinition-LocationDirectory-definitions.html#/html/body/div/div/nav/div/div/ul/li/a at Line 84, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-LocationDirectory-examples.html#l132">output/StructureDefinition-LocationDirectory-examples.html#/html/body/div/div/nav/div/div/ul/li/a at Line 84, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-LocationDirectory-mappings.html#l132">output/StructureDefinition-LocationDirectory-mappings.html#/html/body/div/div/nav/div/div/ul/li/a at Line 84, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-LocationDirectory.html#l132">output/StructureDefinition-LocationDirectory.html#/html/body/div/div/nav/div/div/ul/li/a at Line 84, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-LocationDirectory.profile.history.html#l132">output/StructureDefinition-LocationDirectory.profile.history.html#/html/body/div/div/nav/div/div/ul/li/a at Line 84, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-LocationDirectory.profile.json.html#l132">output/StructureDefinition-LocationDirectory.profile.json.html#/html/body/div/div/nav/div/div/ul/li/a at Line 88, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-LocationDirectory.profile.ttl.html#l132">output/StructureDefinition-LocationDirectory.profile.ttl.html#/html/body/div/div/nav/div/div/ul/li/a at Line 88, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-LocationDirectory.profile.xml.html#l132">output/StructureDefinition-LocationDirectory.profile.xml.html#/html/body/div/div/nav/div/div/ul/li/a at Line 88, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-OrganizationDirectory-definitions.html#l132">output/StructureDefinition-OrganizationDirectory-definitions.html#/html/body/div/div/nav/div/div/ul/li/a at Line 84, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-OrganizationDirectory-definitions.html#l1013">output/StructureDefinition-OrganizationDirectory-definitions.html#/html/body/div/div/div/div/div/table/tr/td/a at Line 307, column 152</a></b></td><td><b>error</b></td><td><b>The link '' for &quot;IdentifierTelematikId&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-OrganizationDirectory-examples.html#l132">output/StructureDefinition-OrganizationDirectory-examples.html#/html/body/div/div/nav/div/div/ul/li/a at Line 84, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-OrganizationDirectory-mappings.html#l132">output/StructureDefinition-OrganizationDirectory-mappings.html#/html/body/div/div/nav/div/div/ul/li/a at Line 84, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-OrganizationDirectory.html#l132">output/StructureDefinition-OrganizationDirectory.html#/html/body/div/div/nav/div/div/ul/li/a at Line 84, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-OrganizationDirectory.html#l420">output/StructureDefinition-OrganizationDirectory.html#/html/body/div/div/div/div/div/div/div/div/div/ul/li/a at Line 301, column 7</a></b></td><td><b>error</b></td><td><b>The link '' for &quot;Identifier-Profil für die Telematik-ID (http://fhir.de/StructureDefinition/identifier-telematik-id)&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-OrganizationDirectory.html#l581">output/StructureDefinition-OrganizationDirectory.html#/html/body/div/div/div/div/div/div/div/div/div/table/tr/td/a at Line 325, column 1559</a></b></td><td><b>error</b></td><td><b>The link 'unknown.html' for &quot;?pkp-2?&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-OrganizationDirectory.html#l1333">output/StructureDefinition-OrganizationDirectory.html#/html/body/div/div/div/div/div/div/div/div/div/table/tr/td/a at Line 362, column 1664</a></b></td><td><b>error</b></td><td><b>The link 'unknown.html' for &quot;?pkp-2?&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-OrganizationDirectory.html#l3015">output/StructureDefinition-OrganizationDirectory.html#/html/body/div/div/div/div/div/div/div/div/div/table/tr/td/a at Line 526, column 1540</a></b></td><td><b>error</b></td><td><b>The link 'unknown.html' for &quot;?pkp-2?&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-OrganizationDirectory.html#l3550">output/StructureDefinition-OrganizationDirectory.html#/html/body/div/div/div/div/div/div/div/div/div/ul/li/a at Line 563, column 7</a></b></td><td><b>error</b></td><td><b>The link '' for &quot;Identifier-Profil für die Telematik-ID (http://fhir.de/StructureDefinition/identifier-telematik-id)&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-OrganizationDirectory.html#l3711">output/StructureDefinition-OrganizationDirectory.html#/html/body/div/div/div/div/div/div/div/div/div/table/tr/td/a at Line 587, column 1559</a></b></td><td><b>error</b></td><td><b>The link 'unknown.html' for &quot;?pkp-2?&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-OrganizationDirectory.html#l4463">output/StructureDefinition-OrganizationDirectory.html#/html/body/div/div/div/div/div/div/div/div/div/table/tr/td/a at Line 624, column 1664</a></b></td><td><b>error</b></td><td><b>The link 'unknown.html' for &quot;?pkp-2?&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-OrganizationDirectory.profile.history.html#l132">output/StructureDefinition-OrganizationDirectory.profile.history.html#/html/body/div/div/nav/div/div/ul/li/a at Line 84, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-OrganizationDirectory.profile.json.html#l132">output/StructureDefinition-OrganizationDirectory.profile.json.html#/html/body/div/div/nav/div/div/ul/li/a at Line 88, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-OrganizationDirectory.profile.ttl.html#l132">output/StructureDefinition-OrganizationDirectory.profile.ttl.html#/html/body/div/div/nav/div/div/ul/li/a at Line 88, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-OrganizationDirectory.profile.xml.html#l132">output/StructureDefinition-OrganizationDirectory.profile.xml.html#/html/body/div/div/nav/div/div/ul/li/a at Line 88, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-PractitionerDirectory-definitions.html#l132">output/StructureDefinition-PractitionerDirectory-definitions.html#/html/body/div/div/nav/div/div/ul/li/a at Line 84, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-PractitionerDirectory-definitions.html#l1009">output/StructureDefinition-PractitionerDirectory-definitions.html#/html/body/div/div/div/div/div/table/tr/td/a at Line 307, column 152</a></b></td><td><b>error</b></td><td><b>The link '' for &quot;IdentifierTelematikId&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-PractitionerDirectory-definitions.html#l1707">output/StructureDefinition-PractitionerDirectory-definitions.html#/html/body/div/div/div/div/div/table/tr/td/a at Line 413, column 152</a></b></td><td><b>error</b></td><td><b>The link '' for &quot;IdentifierLanr&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-PractitionerDirectory-definitions.html#l3345">output/StructureDefinition-PractitionerDirectory-definitions.html#/html/body/div/div/div/div/div/table/tr/td/a at Line 669, column 152</a></b></td><td><b>error</b></td><td><b>The link '' for &quot;IdentifierZanr&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-PractitionerDirectory-definitions.html#l7420">output/StructureDefinition-PractitionerDirectory-definitions.html#/html/body/div/div/div/div/div/table/tr/td/a at Line 1315, column 115</a></b></td><td><b>error</b></td><td><b>The link '' for &quot;IHEXDSauthorSpeciality&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-PractitionerDirectory-definitions.html#l7501">output/StructureDefinition-PractitionerDirectory-definitions.html#/html/body/div/div/div/div/div/table/tr/td/a at Line 1328, column 115</a></b></td><td><b>error</b></td><td><b>The link '' for &quot;IHEXDSauthorSpeciality&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-PractitionerDirectory-examples.html#l132">output/StructureDefinition-PractitionerDirectory-examples.html#/html/body/div/div/nav/div/div/ul/li/a at Line 84, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-PractitionerDirectory-mappings.html#l132">output/StructureDefinition-PractitionerDirectory-mappings.html#/html/body/div/div/nav/div/div/ul/li/a at Line 84, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-PractitionerDirectory.html#l132">output/StructureDefinition-PractitionerDirectory.html#/html/body/div/div/nav/div/div/ul/li/a at Line 84, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-PractitionerDirectory.html#l420">output/StructureDefinition-PractitionerDirectory.html#/html/body/div/div/div/div/div/div/div/div/div/ul/li/a at Line 300, column 7</a></b></td><td><b>error</b></td><td><b>The link '' for &quot;Identifier-Profil für die Telematik-ID (http://fhir.de/StructureDefinition/identifier-telematik-id)&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-PractitionerDirectory.html#l426">output/StructureDefinition-PractitionerDirectory.html#/html/body/div/div/div/div/div/div/div/div/div/ul/li/a at Line 301, column 7</a></b></td><td><b>error</b></td><td><b>The link '' for &quot;Identifier-Profil für die Abbildung einer lebenslangen Arztnummer (http://fhir.de/StructureDefinition/identifier-lanr)&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-PractitionerDirectory.html#l432">output/StructureDefinition-PractitionerDirectory.html#/html/body/div/div/div/div/div/div/div/div/div/ul/li/a at Line 302, column 7</a></b></td><td><b>error</b></td><td><b>The link '' for &quot;Identifier-Profil für die Abbildung einer lebenslangen Zahnarztnummer (http://fhir.de/StructureDefinition/identifier-zanr)&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-PractitionerDirectory.html#l593">output/StructureDefinition-PractitionerDirectory.html#/html/body/div/div/div/div/div/div/div/div/div/table/tr/td/a at Line 326, column 1555</a></b></td><td><b>error</b></td><td><b>The link 'unknown.html' for &quot;?pkp-2?&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-PractitionerDirectory.html#l807">output/StructureDefinition-PractitionerDirectory.html#/html/body/div/div/div/div/div/div/div/div/div/table/tr/td/a at Line 334, column 1585</a></b></td><td><b>error</b></td><td><b>The link 'unknown.html' for &quot;?pkp-2?&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-PractitionerDirectory.html#l1021">output/StructureDefinition-PractitionerDirectory.html#/html/body/div/div/div/div/div/div/div/div/div/table/tr/td/a at Line 342, column 1601</a></b></td><td><b>error</b></td><td><b>The link 'unknown.html' for &quot;?pkp-2?&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-PractitionerDirectory.html#l2132">output/StructureDefinition-PractitionerDirectory.html#/html/body/div/div/div/div/div/div/div/div/div/table/tr/td/a at Line 392, column 1660</a></b></td><td><b>error</b></td><td><b>The link 'unknown.html' for &quot;?pkp-2?&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-PractitionerDirectory.html#l3043">output/StructureDefinition-PractitionerDirectory.html#/html/body/div/div/div/div/div/div/div/div/div/table/tr/td/a at Line 431, column 1702</a></b></td><td><b>error</b></td><td><b>The link 'unknown.html' for &quot;?pkp-2?&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-PractitionerDirectory.html#l4362">output/StructureDefinition-PractitionerDirectory.html#/html/body/div/div/div/div/div/div/div/div/div/table/tr/td/a at Line 486, column 1706</a></b></td><td><b>error</b></td><td><b>The link 'unknown.html' for &quot;?pkp-2?&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-PractitionerDirectory.html#l7173">output/StructureDefinition-PractitionerDirectory.html#/html/body/div/div/div/div/div/div/div/div/div/table/tr/td/a at Line 782, column 1536</a></b></td><td><b>error</b></td><td><b>The link 'unknown.html' for &quot;?pkp-2?&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-PractitionerDirectory.html#l7467">output/StructureDefinition-PractitionerDirectory.html#/html/body/div/div/div/div/div/div/div/div/div/table/tr/td/a at Line 793, column 1554</a></b></td><td><b>error</b></td><td><b>The link 'unknown.html' for &quot;?pkp-2?&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-PractitionerDirectory.html#l7763">output/StructureDefinition-PractitionerDirectory.html#/html/body/div/div/div/div/div/div/div/div/div/table/tr/td/a at Line 804, column 1582</a></b></td><td><b>error</b></td><td><b>The link 'unknown.html' for &quot;?pkp-2?&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-PractitionerDirectory.html#l8670">output/StructureDefinition-PractitionerDirectory.html#/html/body/div/div/div/div/div/div/div/div/div/ul/li/a at Line 854, column 7</a></b></td><td><b>error</b></td><td><b>The link '' for &quot;Identifier-Profil für die Telematik-ID (http://fhir.de/StructureDefinition/identifier-telematik-id)&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-PractitionerDirectory.html#l8676">output/StructureDefinition-PractitionerDirectory.html#/html/body/div/div/div/div/div/div/div/div/div/ul/li/a at Line 855, column 7</a></b></td><td><b>error</b></td><td><b>The link '' for &quot;Identifier-Profil für die Abbildung einer lebenslangen Arztnummer (http://fhir.de/StructureDefinition/identifier-lanr)&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-PractitionerDirectory.html#l8682">output/StructureDefinition-PractitionerDirectory.html#/html/body/div/div/div/div/div/div/div/div/div/ul/li/a at Line 856, column 7</a></b></td><td><b>error</b></td><td><b>The link '' for &quot;Identifier-Profil für die Abbildung einer lebenslangen Zahnarztnummer (http://fhir.de/StructureDefinition/identifier-zanr)&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-PractitionerDirectory.html#l8843">output/StructureDefinition-PractitionerDirectory.html#/html/body/div/div/div/div/div/div/div/div/div/table/tr/td/a at Line 880, column 1555</a></b></td><td><b>error</b></td><td><b>The link 'unknown.html' for &quot;?pkp-2?&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-PractitionerDirectory.html#l9057">output/StructureDefinition-PractitionerDirectory.html#/html/body/div/div/div/div/div/div/div/div/div/table/tr/td/a at Line 888, column 1585</a></b></td><td><b>error</b></td><td><b>The link 'unknown.html' for &quot;?pkp-2?&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-PractitionerDirectory.html#l9271">output/StructureDefinition-PractitionerDirectory.html#/html/body/div/div/div/div/div/div/div/div/div/table/tr/td/a at Line 896, column 1601</a></b></td><td><b>error</b></td><td><b>The link 'unknown.html' for &quot;?pkp-2?&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-PractitionerDirectory.html#l10382">output/StructureDefinition-PractitionerDirectory.html#/html/body/div/div/div/div/div/div/div/div/div/table/tr/td/a at Line 946, column 1660</a></b></td><td><b>error</b></td><td><b>The link 'unknown.html' for &quot;?pkp-2?&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-PractitionerDirectory.html#l11293">output/StructureDefinition-PractitionerDirectory.html#/html/body/div/div/div/div/div/div/div/div/div/table/tr/td/a at Line 985, column 1702</a></b></td><td><b>error</b></td><td><b>The link 'unknown.html' for &quot;?pkp-2?&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-PractitionerDirectory.html#l12612">output/StructureDefinition-PractitionerDirectory.html#/html/body/div/div/div/div/div/div/div/div/div/table/tr/td/a at Line 1040, column 1706</a></b></td><td><b>error</b></td><td><b>The link 'unknown.html' for &quot;?pkp-2?&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-PractitionerDirectory.html#l15445">output/StructureDefinition-PractitionerDirectory.html#/html/body/div/div/div/div/div/table/tr/td/a at Line 1348, column 307</a></b></td><td><b>error</b></td><td><b>The link '#identifier-type-de-basis-ZANR' for &quot;ZANR&quot; cannot be resolved (valid targets: 380 targets)</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-PractitionerDirectory.html#l15536">output/StructureDefinition-PractitionerDirectory.html#/html/body/div/div/div/div/div/table/tr/td/a at Line 1357, column 166</a></b></td><td><b>error</b></td><td><b>The link '??' for &quot;IHEXDSauthorSpeciality (missing link)&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-PractitionerDirectory.html#l15546">output/StructureDefinition-PractitionerDirectory.html#/html/body/div/div/div/div/div/table/tr/td/a at Line 1358, column 169</a></b></td><td><b>error</b></td><td><b>The link '??' for &quot;IHEXDSauthorSpeciality (missing link)&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-PractitionerDirectory.profile.history.html#l132">output/StructureDefinition-PractitionerDirectory.profile.history.html#/html/body/div/div/nav/div/div/ul/li/a at Line 84, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-PractitionerDirectory.profile.json.html#l132">output/StructureDefinition-PractitionerDirectory.profile.json.html#/html/body/div/div/nav/div/div/ul/li/a at Line 88, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-PractitionerDirectory.profile.ttl.html#l132">output/StructureDefinition-PractitionerDirectory.profile.ttl.html#/html/body/div/div/nav/div/div/ul/li/a at Line 88, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-PractitionerDirectory.profile.xml.html#l132">output/StructureDefinition-PractitionerDirectory.profile.xml.html#/html/body/div/div/nav/div/div/ul/li/a at Line 88, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-PractitionerRoleDirectory-definitions.html#l132">output/StructureDefinition-PractitionerRoleDirectory-definitions.html#/html/body/div/div/nav/div/div/ul/li/a at Line 84, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-PractitionerRoleDirectory-examples.html#l132">output/StructureDefinition-PractitionerRoleDirectory-examples.html#/html/body/div/div/nav/div/div/ul/li/a at Line 84, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-PractitionerRoleDirectory-mappings.html#l132">output/StructureDefinition-PractitionerRoleDirectory-mappings.html#/html/body/div/div/nav/div/div/ul/li/a at Line 84, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-PractitionerRoleDirectory.html#l132">output/StructureDefinition-PractitionerRoleDirectory.html#/html/body/div/div/nav/div/div/ul/li/a at Line 84, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-PractitionerRoleDirectory.profile.history.html#l132">output/StructureDefinition-PractitionerRoleDirectory.profile.history.html#/html/body/div/div/nav/div/div/ul/li/a at Line 84, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-PractitionerRoleDirectory.profile.json.html#l132">output/StructureDefinition-PractitionerRoleDirectory.profile.json.html#/html/body/div/div/nav/div/div/ul/li/a at Line 88, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-PractitionerRoleDirectory.profile.ttl.html#l132">output/StructureDefinition-PractitionerRoleDirectory.profile.ttl.html#/html/body/div/div/nav/div/div/ul/li/a at Line 88, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="StructureDefinition-PractitionerRoleDirectory.profile.xml.html#l132">output/StructureDefinition-PractitionerRoleDirectory.profile.xml.html#/html/body/div/div/nav/div/div/ul/li/a at Line 88, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="ValueSet-TIEndpointConnectionTypeVS.change.history.html#l133">output/ValueSet-TIEndpointConnectionTypeVS.change.history.html#/html/body/div/div/nav/div/div/ul/li/a at Line 84, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="ValueSet-TIEndpointConnectionTypeVS.html#l131">output/ValueSet-TIEndpointConnectionTypeVS.html#/html/body/div/div/nav/div/div/ul/li/a at Line 80, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="ValueSet-TIEndpointConnectionTypeVS.json.html#l131">output/ValueSet-TIEndpointConnectionTypeVS.json.html#/html/body/div/div/nav/div/div/ul/li/a at Line 82, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="ValueSet-TIEndpointConnectionTypeVS.ttl.html#l131">output/ValueSet-TIEndpointConnectionTypeVS.ttl.html#/html/body/div/div/nav/div/div/ul/li/a at Line 82, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="ValueSet-TIEndpointConnectionTypeVS.xml.html#l131">output/ValueSet-TIEndpointConnectionTypeVS.xml.html#/html/body/div/div/nav/div/div/ul/li/a at Line 82, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="ValueSet-TIOrganizationTypeVS.change.history.html#l133">output/ValueSet-TIOrganizationTypeVS.change.history.html#/html/body/div/div/nav/div/div/ul/li/a at Line 84, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="ValueSet-TIOrganizationTypeVS.html#l131">output/ValueSet-TIOrganizationTypeVS.html#/html/body/div/div/nav/div/div/ul/li/a at Line 80, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="ValueSet-TIOrganizationTypeVS.json.html#l131">output/ValueSet-TIOrganizationTypeVS.json.html#/html/body/div/div/nav/div/div/ul/li/a at Line 82, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="ValueSet-TIOrganizationTypeVS.ttl.html#l131">output/ValueSet-TIOrganizationTypeVS.ttl.html#/html/body/div/div/nav/div/div/ul/li/a at Line 82, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="ValueSet-TIOrganizationTypeVS.xml.html#l131">output/ValueSet-TIOrganizationTypeVS.xml.html#/html/body/div/div/nav/div/div/ul/li/a at Line 82, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="ValueSet-TIPractitionerQualificationVS.change.history.html#l133">output/ValueSet-TIPractitionerQualificationVS.change.history.html#/html/body/div/div/nav/div/div/ul/li/a at Line 84, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="ValueSet-TIPractitionerQualificationVS.html#l131">output/ValueSet-TIPractitionerQualificationVS.html#/html/body/div/div/nav/div/div/ul/li/a at Line 80, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="ValueSet-TIPractitionerQualificationVS.json.html#l131">output/ValueSet-TIPractitionerQualificationVS.json.html#/html/body/div/div/nav/div/div/ul/li/a at Line 82, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="ValueSet-TIPractitionerQualificationVS.ttl.html#l131">output/ValueSet-TIPractitionerQualificationVS.ttl.html#/html/body/div/div/nav/div/div/ul/li/a at Line 82, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="ValueSet-TIPractitionerQualificationVS.xml.html#l131">output/ValueSet-TIPractitionerQualificationVS.xml.html#/html/body/div/div/nav/div/div/ul/li/a at Line 82, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="artifacts.html#l131">output/artifacts.html#/html/body/div/div/nav/div/div/ul/li/a at Line 80, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="searchform.html#l118">output/searchform.html#/html/body/div/div/a/img/div/div/nav/div/div/ul/li/a at Line 63, column 21</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Specification&quot; cannot be resolved</b></td>
+   </tr>
+   <tr style="background-color: #ffcccc">
+     <td><b><a href="toc.html#l131">output/toc.html#/html/body/div/div/nav/div/div/ul/li/a at Line 80, column 6</a></b></td><td><b>error</b></td><td><b>The link 'index.html' for &quot;Home&quot; cannot be resolved</b></td>
+   </tr>
+</table>
+<hr/>
+<a name="_Users_serg_Development_gematik_api-vzd_src_fhir_fsh-generated_resources_ImplementationGuide-de.gematik.fhir.directory"> </a>
+<h2><a href="ImplementationGuide-de.gematik.fhir.directory.html">fsh-generated/resources/ImplementationGuide-de.gematik.fhir.directory.json</a> <span id="svi1" class="toggle" onclick="toggle('vi1')">Show Validation Information</span> <span class="vcount" onclick="toggle('vi1')">(0)</span></h2>
+ <div style="border: 1px grey solid; display: none" id="vi1"></div>
+ <table class="grid">
+   <tr>
+     <td><b>Path</b></td><td><b>Severity</b></td><td><b>Message</b></td>
+   </tr>
+   <tr style="background-color: #ffebcc">
+     <td><b>ImplementationGuide</b></td><td><b>warning</b></td><td title="ig-0: 'Name should be usable as an identifier for the module by machine processing applications such as code generation' Rule 'Name should be usable as an identifier for the module by machine processing applications such as code generation' Failed"><b>ig-0: 'Name should be usable as an identifier for the module by machine processing applications such as code generation' Rule 'Name should be usable as an identifier for the module by machine processing applications such as code generation' Failed</b></td>
+   </tr>
+</table>
+<hr/>
+<a name="_Users_serg_Development_gematik_api-vzd_src_fhir_fsh-generated_resources_structuredefinition-EndpointDirectory"> </a>
+<h2><a href="StructureDefinition-EndpointDirectory.html">fsh-generated/resources/StructureDefinition-EndpointDirectory.json</a> <span id="svi2" class="toggle" onclick="toggle('vi2')">Show Validation Information</span> <span class="vcount" onclick="toggle('vi2')">(1)</span></h2>
+ <div style="border: 1px grey solid; display: none" id="vi2"><ul style="font-size: 7px"><li>StructureDefinition: Validated against <a href="http://hl7.org/fhir">fhir</a>.<a href="http://hl7.org/fhir/R4/structuredefinition.html">StructureDefinition</a></li></ul>
+</div>
+ <table class="grid">
+   <tr>
+     <td><b>Path</b></td><td><b>Severity</b></td><td><b>Message</b></td>
+   </tr>
+   <tr style="background-color: #ffffe6">
+     <td><b>StructureDefinition.snapshot.element[22].mapping[2].map</b></td><td><b>information</b></td><td title="SECURITY_STRING_CONTENT_WARNING"><b>The string value contains text that looks like embedded HTML tags. If this content is rendered to HTML without appropriate post-processing, it may be a security risk</b></td>
+   </tr>
+   <tr style="background-color: #ffebcc">
+     <td><b>StructureDefinition.where(url = 'https://gematik.de/fhir/directory/StructureDefinition/EndpointDirectory')</b></td><td><b>warning</b></td><td title=""><b>The Implementation Guide contains no examples for this profile</b></td>
+   </tr>
+</table>
+<hr/>
+<a name="_Users_serg_Development_gematik_api-vzd_src_fhir_fsh-generated_resources_structuredefinition-HealthcareServiceDirectory"> </a>
+<h2><a href="StructureDefinition-HealthcareServiceDirectory.html">fsh-generated/resources/StructureDefinition-HealthcareServiceDirectory.json</a> <span id="svi3" class="toggle" onclick="toggle('vi3')">Show Validation Information</span> <span class="vcount" onclick="toggle('vi3')">(1)</span></h2>
+ <div style="border: 1px grey solid; display: none" id="vi3"><ul style="font-size: 7px"><li>StructureDefinition: Validated against <a href="http://hl7.org/fhir">fhir</a>.<a href="http://hl7.org/fhir/R4/structuredefinition.html">StructureDefinition</a></li></ul>
+</div>
+ <table class="grid">
+   <tr>
+     <td><b>Path</b></td><td><b>Severity</b></td><td><b>Message</b></td>
+   </tr>
+   <tr style="background-color: #ffffe6">
+     <td><b>StructureDefinition.snapshot.element[38].mapping[2].map</b></td><td><b>information</b></td><td title="SECURITY_STRING_CONTENT_WARNING"><b>The string value contains text that looks like embedded HTML tags. If this content is rendered to HTML without appropriate post-processing, it may be a security risk</b></td>
+   </tr>
+   <tr style="background-color: #ffffe6">
+     <td><b>StructureDefinition.snapshot.element[87].mapping[2].map</b></td><td><b>information</b></td><td title="SECURITY_STRING_CONTENT_WARNING"><b>The string value contains text that looks like embedded HTML tags. If this content is rendered to HTML without appropriate post-processing, it may be a security risk</b></td>
+   </tr>
+   <tr style="background-color: #ffebcc">
+     <td><b>StructureDefinition.where(url = 'https://gematik.de/fhir/directory/StructureDefinition/HealthcareServiceDirectory')</b></td><td><b>warning</b></td><td title=""><b>The Implementation Guide contains no examples for this profile</b></td>
+   </tr>
+</table>
+<hr/>
+<a name="_Users_serg_Development_gematik_api-vzd_src_fhir_fsh-generated_resources_structuredefinition-LocationDirectory"> </a>
+<h2><a href="StructureDefinition-LocationDirectory.html">fsh-generated/resources/StructureDefinition-LocationDirectory.json</a> <span id="svi4" class="toggle" onclick="toggle('vi4')">Show Validation Information</span> <span class="vcount" onclick="toggle('vi4')">(1)</span></h2>
+ <div style="border: 1px grey solid; display: none" id="vi4"><ul style="font-size: 7px"><li>StructureDefinition: Validated against <a href="http://hl7.org/fhir">fhir</a>.<a href="http://hl7.org/fhir/R4/structuredefinition.html">StructureDefinition</a></li></ul>
+</div>
+ <table class="grid">
+   <tr>
+     <td><b>Path</b></td><td><b>Severity</b></td><td><b>Message</b></td>
+   </tr>
+   <tr style="background-color: #ffffe6">
+     <td><b>StructureDefinition.snapshot.element[30].mapping[2].map</b></td><td><b>information</b></td><td title="SECURITY_STRING_CONTENT_WARNING"><b>The string value contains text that looks like embedded HTML tags. If this content is rendered to HTML without appropriate post-processing, it may be a security risk</b></td>
+   </tr>
+   <tr style="background-color: #ffebcc">
+     <td><b>StructureDefinition.where(url = 'https://gematik.de/fhir/directory/StructureDefinition/LocationDirectory')</b></td><td><b>warning</b></td><td title=""><b>The Implementation Guide contains no examples for this profile</b></td>
+   </tr>
+</table>
+<hr/>
+<a name="_Users_serg_Development_gematik_api-vzd_src_fhir_fsh-generated_resources_structuredefinition-OrganizationDirectory"> </a>
+<h2><a href="StructureDefinition-OrganizationDirectory.html">fsh-generated/resources/StructureDefinition-OrganizationDirectory.json</a> <span id="svi5" class="toggle" onclick="toggle('vi5')">Show Validation Information</span> <span class="vcount" onclick="toggle('vi5')">(1)</span></h2>
+ <div style="border: 1px grey solid; display: none" id="vi5"><ul style="font-size: 7px"><li>StructureDefinition: Validated against <a href="http://hl7.org/fhir">fhir</a>.<a href="http://hl7.org/fhir/R4/structuredefinition.html">StructureDefinition</a></li></ul>
+</div>
+ <table class="grid">
+   <tr>
+     <td><b>Path</b></td><td><b>Severity</b></td><td><b>Message</b></td>
+   </tr>
+   <tr style="background-color: #ffffe6">
+     <td><b>StructureDefinition.snapshot.element[17].mapping[2].map</b></td><td><b>information</b></td><td title="SECURITY_STRING_CONTENT_WARNING"><b>The string value contains text that looks like embedded HTML tags. If this content is rendered to HTML without appropriate post-processing, it may be a security risk</b></td>
+   </tr>
+   <tr style="background-color: #ffebcc">
+     <td><b>StructureDefinition.where(url = 'https://gematik.de/fhir/directory/StructureDefinition/OrganizationDirectory')</b></td><td><b>warning</b></td><td title=""><b>The Implementation Guide contains no examples for this profile</b></td>
+   </tr>
+</table>
+<hr/>
+<a name="_Users_serg_Development_gematik_api-vzd_src_fhir_fsh-generated_resources_structuredefinition-PractitionerDirectory"> </a>
+<h2><a href="StructureDefinition-PractitionerDirectory.html">fsh-generated/resources/StructureDefinition-PractitionerDirectory.json</a> <span id="svi6" class="toggle" onclick="toggle('vi6')">Show Validation Information</span> <span class="vcount" onclick="toggle('vi6')">(1)</span></h2>
+ <div style="border: 1px grey solid; display: none" id="vi6"><ul style="font-size: 7px"><li>StructureDefinition: Validated against <a href="http://hl7.org/fhir">fhir</a>.<a href="http://hl7.org/fhir/R4/structuredefinition.html">StructureDefinition</a></li></ul>
+</div>
+ <table class="grid">
+   <tr>
+     <td><b>Path</b></td><td><b>Severity</b></td><td><b>Message</b></td>
+   </tr>
+   <tr style="background-color: #ffffe6">
+     <td><b>StructureDefinition.snapshot.element[17].mapping[2].map</b></td><td><b>information</b></td><td title="SECURITY_STRING_CONTENT_WARNING"><b>The string value contains text that looks like embedded HTML tags. If this content is rendered to HTML without appropriate post-processing, it may be a security risk</b></td>
+   </tr>
+   <tr style="background-color: #ffffe6">
+     <td><b>StructureDefinition.snapshot.element[26].mapping[2].map</b></td><td><b>information</b></td><td title="SECURITY_STRING_CONTENT_WARNING"><b>The string value contains text that looks like embedded HTML tags. If this content is rendered to HTML without appropriate post-processing, it may be a security risk</b></td>
+   </tr>
+   <tr style="background-color: #ffffe6">
+     <td><b>StructureDefinition.snapshot.element[39].mapping[2].map</b></td><td><b>information</b></td><td title="SECURITY_STRING_CONTENT_WARNING"><b>The string value contains text that looks like embedded HTML tags. If this content is rendered to HTML without appropriate post-processing, it may be a security risk</b></td>
+   </tr>
+   <tr style="background-color: #ffffe6">
+     <td><b>StructureDefinition.snapshot.element[49].mapping[2].map</b></td><td><b>information</b></td><td title="SECURITY_STRING_CONTENT_WARNING"><b>The string value contains text that looks like embedded HTML tags. If this content is rendered to HTML without appropriate post-processing, it may be a security risk</b></td>
+   </tr>
+   <tr style="background-color: #ffffe6">
+     <td><b>StructureDefinition.snapshot.element[62].mapping[2].map</b></td><td><b>information</b></td><td title="SECURITY_STRING_CONTENT_WARNING"><b>The string value contains text that looks like embedded HTML tags. If this content is rendered to HTML without appropriate post-processing, it may be a security risk</b></td>
+   </tr>
+   <tr style="background-color: #ffffe6">
+     <td><b>StructureDefinition.snapshot.element[75].mapping[2].map</b></td><td><b>information</b></td><td title="SECURITY_STRING_CONTENT_WARNING"><b>The string value contains text that looks like embedded HTML tags. If this content is rendered to HTML without appropriate post-processing, it may be a security risk</b></td>
+   </tr>
+   <tr style="background-color: #ffffe6">
+     <td><b>StructureDefinition.snapshot.element[83].mapping[2].map</b></td><td><b>information</b></td><td title="SECURITY_STRING_CONTENT_WARNING"><b>The string value contains text that looks like embedded HTML tags. If this content is rendered to HTML without appropriate post-processing, it may be a security risk</b></td>
+   </tr>
+   <tr style="background-color: #ffffe6">
+     <td><b>StructureDefinition.snapshot.element[105].mapping[2].map</b></td><td><b>information</b></td><td title="SECURITY_STRING_CONTENT_WARNING"><b>The string value contains text that looks like embedded HTML tags. If this content is rendered to HTML without appropriate post-processing, it may be a security risk</b></td>
+   </tr>
+   <tr style="background-color: #ffffe6">
+     <td><b>StructureDefinition.snapshot.element[10].pattern.ofType(Identifier)</b></td><td><b>information</b></td><td title=""><b>The repeating element has a pattern. The pattern will apply to all the repeats (this has not been clear to all users) </b></td>
+   </tr>
+   <tr style="background-color: #ffffe6">
+     <td><b>StructureDefinition.snapshot.element[19].pattern.ofType(Identifier)</b></td><td><b>information</b></td><td title=""><b>The repeating element has a pattern. The pattern will apply to all the repeats (this has not been clear to all users) </b></td>
+   </tr>
+   <tr style="background-color: #ffffe6">
+     <td><b>StructureDefinition.snapshot.element[42].pattern.ofType(Identifier)</b></td><td><b>information</b></td><td title=""><b>The repeating element has a pattern. The pattern will apply to all the repeats (this has not been clear to all users) </b></td>
+   </tr>
+   <tr style="background-color: #ffebcc">
+     <td><b>StructureDefinition.where(url = 'https://gematik.de/fhir/directory/StructureDefinition/PractitionerDirectory')</b></td><td><b>warning</b></td><td title=""><b>The Implementation Guide contains no examples for this profile</b></td>
+   </tr>
+</table>
+<hr/>
+<a name="_Users_serg_Development_gematik_api-vzd_src_fhir_fsh-generated_resources_structuredefinition-PractitionerRoleDirectory"> </a>
+<h2><a href="StructureDefinition-PractitionerRoleDirectory.html">fsh-generated/resources/StructureDefinition-PractitionerRoleDirectory.json</a> <span id="svi7" class="toggle" onclick="toggle('vi7')">Show Validation Information</span> <span class="vcount" onclick="toggle('vi7')">(1)</span></h2>
+ <div style="border: 1px grey solid; display: none" id="vi7"><ul style="font-size: 7px"><li>StructureDefinition: Validated against <a href="http://hl7.org/fhir">fhir</a>.<a href="http://hl7.org/fhir/R4/structuredefinition.html">StructureDefinition</a></li></ul>
+</div>
+ <table class="grid">
+   <tr>
+     <td><b>Path</b></td><td><b>Severity</b></td><td><b>Message</b></td>
+   </tr>
+   <tr style="background-color: #ffffe6">
+     <td><b>StructureDefinition.snapshot.element[11].mapping[2].map</b></td><td><b>information</b></td><td title="SECURITY_STRING_CONTENT_WARNING"><b>The string value contains text that looks like embedded HTML tags. If this content is rendered to HTML without appropriate post-processing, it may be a security risk</b></td>
+   </tr>
+   <tr style="background-color: #ffffe6">
+     <td><b>StructureDefinition.snapshot.element[32].mapping[2].map</b></td><td><b>information</b></td><td title="SECURITY_STRING_CONTENT_WARNING"><b>The string value contains text that looks like embedded HTML tags. If this content is rendered to HTML without appropriate post-processing, it may be a security risk</b></td>
+   </tr>
+   <tr style="background-color: #ffebcc">
+     <td><b>StructureDefinition.where(url = 'https://gematik.de/fhir/directory/StructureDefinition/PractitionerRoleDirectory')</b></td><td><b>warning</b></td><td title=""><b>The Implementation Guide contains no examples for this profile</b></td>
+   </tr>
+</table>
+<hr/>
+<a name="_Users_serg_Development_gematik_api-vzd_src_fhir_fsh-generated_resources_valueset-TIOrganizationTypeVS"> </a>
+<h2><a href="ValueSet-TIOrganizationTypeVS.html">fsh-generated/resources/ValueSet-TIOrganizationTypeVS.json</a> <span id="svi8" class="toggle" onclick="toggle('vi8')">Show Validation Information</span> <span class="vcount" onclick="toggle('vi8')">(1)</span></h2>
+ <div style="border: 1px grey solid; display: none" id="vi8"><ul style="font-size: 7px"><li>ValueSet: Validated against <a href="http://hl7.org/fhir">fhir</a>.<a href="http://hl7.org/fhir/R4/valueset.html">ValueSet</a></li></ul>
+</div>
+ <table class="grid">
+   <tr>
+     <td><b>Path</b></td><td><b>Severity</b></td><td><b>Message</b></td>
+   </tr>
+   <tr style="background-color: #ffebcc">
+     <td><b>ValueSet.where(id = 'TIOrganizationTypeVS')</b></td><td><b>warning</b></td><td title=""><b>Error from server: Unable to provide support for code system http://ihe-d.de/ValueSets/IHEXDSpracticeSettingCode</b></td>
+   </tr>
+</table>
+<hr/>
+<a name="_Users_serg_Development_gematik_api-vzd_src_fhir_fsh-generated_resources_valueset-TIPractitionerQualificationVS"> </a>
+<h2><a href="ValueSet-TIPractitionerQualificationVS.html">fsh-generated/resources/ValueSet-TIPractitionerQualificationVS.json</a> <span id="svi9" class="toggle" onclick="toggle('vi9')">Show Validation Information</span> <span class="vcount" onclick="toggle('vi9')">(1)</span></h2>
+ <div style="border: 1px grey solid; display: none" id="vi9"><ul style="font-size: 7px"><li>ValueSet: Validated against <a href="http://hl7.org/fhir">fhir</a>.<a href="http://hl7.org/fhir/R4/valueset.html">ValueSet</a></li></ul>
+</div>
+ <table class="grid">
+   <tr>
+     <td><b>Path</b></td><td><b>Severity</b></td><td><b>Message</b></td>
+   </tr>
+   <tr style="background-color: #ffebcc">
+     <td><b>ValueSet.where(id = 'TIPractitionerQualificationVS')</b></td><td><b>warning</b></td><td title=""><b>Error from server: Unable to provide support for code system http://ihe-d.de/ValueSets/IHEXDSauthorSpeciality</b></td>
+   </tr>
+</table>
+<a name="suppressed"> </a>
+<p><b>Suppressed Messages (Warnings, hints, broken links)</b></p>
+<p>No suppressed messsages</p><a name="sorted"> </a>
+<p><b>Errors sorted by type</b></p>
+<hr/>
+<a name="SECURITY_STRING_CONTENT_WARNING"> </a>
+<h2>SECURITY_STRING_CONTENT_WARNING</h2>
+ <table class="grid">
+   <tr style="background-color: #fffff2">
+     <td><a href="StructureDefinition-EndpointDirectory.html">fsh-generated/resources/StructureDefinition-EndpointDirectory.json</a></td><td><b>The string value contains text that looks like embedded HTML tags. If this content is rendered to HTML without appropriate post-processing, it may be a security risk</b></td>
+   </tr>
+   <tr style="background-color: #fffff2">
+     <td><a href="StructureDefinition-HealthcareServiceDirectory.html">fsh-generated/resources/StructureDefinition-HealthcareServiceDirectory.json</a></td><td><b>The string value contains text that looks like embedded HTML tags. If this content is rendered to HTML without appropriate post-processing, it may be a security risk</b></td>
+   </tr>
+   <tr style="background-color: #fffff2">
+     <td><a href="StructureDefinition-HealthcareServiceDirectory.html">fsh-generated/resources/StructureDefinition-HealthcareServiceDirectory.json</a></td><td><b>The string value contains text that looks like embedded HTML tags. If this content is rendered to HTML without appropriate post-processing, it may be a security risk</b></td>
+   </tr>
+   <tr style="background-color: #fffff2">
+     <td><a href="StructureDefinition-LocationDirectory.html">fsh-generated/resources/StructureDefinition-LocationDirectory.json</a></td><td><b>The string value contains text that looks like embedded HTML tags. If this content is rendered to HTML without appropriate post-processing, it may be a security risk</b></td>
+   </tr>
+   <tr style="background-color: #fffff2">
+     <td><a href="StructureDefinition-OrganizationDirectory.html">fsh-generated/resources/StructureDefinition-OrganizationDirectory.json</a></td><td><b>The string value contains text that looks like embedded HTML tags. If this content is rendered to HTML without appropriate post-processing, it may be a security risk</b></td>
+   </tr>
+   <tr style="background-color: #fffff2">
+     <td><a href="StructureDefinition-PractitionerDirectory.html">fsh-generated/resources/StructureDefinition-PractitionerDirectory.json</a></td><td><b>The string value contains text that looks like embedded HTML tags. If this content is rendered to HTML without appropriate post-processing, it may be a security risk</b></td>
+   </tr>
+   <tr style="background-color: #fffff2">
+     <td><a href="StructureDefinition-PractitionerDirectory.html">fsh-generated/resources/StructureDefinition-PractitionerDirectory.json</a></td><td><b>The string value contains text that looks like embedded HTML tags. If this content is rendered to HTML without appropriate post-processing, it may be a security risk</b></td>
+   </tr>
+   <tr style="background-color: #fffff2">
+     <td><a href="StructureDefinition-PractitionerDirectory.html">fsh-generated/resources/StructureDefinition-PractitionerDirectory.json</a></td><td><b>The string value contains text that looks like embedded HTML tags. If this content is rendered to HTML without appropriate post-processing, it may be a security risk</b></td>
+   </tr>
+   <tr style="background-color: #fffff2">
+     <td><a href="StructureDefinition-PractitionerDirectory.html">fsh-generated/resources/StructureDefinition-PractitionerDirectory.json</a></td><td><b>The string value contains text that looks like embedded HTML tags. If this content is rendered to HTML without appropriate post-processing, it may be a security risk</b></td>
+   </tr>
+   <tr style="background-color: #fffff2">
+     <td><a href="StructureDefinition-PractitionerDirectory.html">fsh-generated/resources/StructureDefinition-PractitionerDirectory.json</a></td><td><b>The string value contains text that looks like embedded HTML tags. If this content is rendered to HTML without appropriate post-processing, it may be a security risk</b></td>
+   </tr>
+   <tr style="background-color: #fffff2">
+     <td><a href="StructureDefinition-PractitionerDirectory.html">fsh-generated/resources/StructureDefinition-PractitionerDirectory.json</a></td><td><b>The string value contains text that looks like embedded HTML tags. If this content is rendered to HTML without appropriate post-processing, it may be a security risk</b></td>
+   </tr>
+   <tr style="background-color: #fffff2">
+     <td><a href="StructureDefinition-PractitionerDirectory.html">fsh-generated/resources/StructureDefinition-PractitionerDirectory.json</a></td><td><b>The string value contains text that looks like embedded HTML tags. If this content is rendered to HTML without appropriate post-processing, it may be a security risk</b></td>
+   </tr>
+   <tr style="background-color: #fffff2">
+     <td><a href="StructureDefinition-PractitionerDirectory.html">fsh-generated/resources/StructureDefinition-PractitionerDirectory.json</a></td><td><b>The string value contains text that looks like embedded HTML tags. If this content is rendered to HTML without appropriate post-processing, it may be a security risk</b></td>
+   </tr>
+   <tr style="background-color: #fffff2">
+     <td><a href="StructureDefinition-PractitionerRoleDirectory.html">fsh-generated/resources/StructureDefinition-PractitionerRoleDirectory.json</a></td><td><b>The string value contains text that looks like embedded HTML tags. If this content is rendered to HTML without appropriate post-processing, it may be a security risk</b></td>
+   </tr>
+   <tr style="background-color: #fffff2">
+     <td><a href="StructureDefinition-PractitionerRoleDirectory.html">fsh-generated/resources/StructureDefinition-PractitionerRoleDirectory.json</a></td><td><b>The string value contains text that looks like embedded HTML tags. If this content is rendered to HTML without appropriate post-processing, it may be a security risk</b></td>
+   </tr>
+</table>
+</body>
+</html>

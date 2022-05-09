@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ValueSet xmlns="http://hl7.org/fhir">
+  <id value="TIOrganizationTypeVS"/>
+  <text>
+    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><p>This value set includes codes based on the following rules:</p><ul><li>Include all codes defined in <a href="CodeSystem-TIInstitutionTypeOidCS.html"><code>https://gematik.de/fhir/directory/CodeSystem/TIInstitutionTypeOidCS</code></a></li><li>Include all codes defined in <a href="CodeSystem-TIProviderTypeCS.html"><code>https://gematik.de/fhir/directory/CodeSystem/TIProviderTypeCS</code></a></li><li>Include all codes defined in <code>http://ihe-d.de/ValueSets/IHEXDSpracticeSettingCode</code></li></ul></div>
+  </text>
+  <url value="https://gematik.de/fhir/directory/ValueSet/TIOrganizationTypeVS"/>
+  <version value="0.8.0-wip"/>
+  <name value="TIOrganizationTypeVS"/>
+  <title value="Type of TIOrganization"/>
+  <status value="draft"/>
+  <date value="2022-05-09T08:08:29+02:00"/>
+  <publisher value="gematik GmbH"/>
+  <contact>
+    <name value="gematik GmbH"/>
+    <telecom>
+      <system value="url"/>
+      <value value="https://www.gematik.de/"/>
+    </telecom>
+  </contact>
+  <description value="ValueSet of all Organization types in the gematik FHIR Directory"/>
+  <copyright value="Copyright gematik GmbH, Berlin, Germany"/>
+  <compose>
+    <include>
+      <system value="https://gematik.de/fhir/directory/CodeSystem/TIInstitutionTypeOidCS"/>
+    </include>
+    <include>
+      <system value="https://gematik.de/fhir/directory/CodeSystem/TIProviderTypeCS"/>
+    </include>
+    <include>
+      <system value="http://ihe-d.de/ValueSets/IHEXDSpracticeSettingCode"/>
+    </include>
+  </compose>
+</ValueSet>

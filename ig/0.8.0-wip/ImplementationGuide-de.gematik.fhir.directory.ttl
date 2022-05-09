@@ -1,0 +1,598 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<https://gematik.de/fhir/directory/ImplementationGuide/de.gematik.fhir.directory> a fhir:ImplementationGuide;
+  fhir:nodeRole fhir:treeRoot;
+  fhir:Resource.id [ fhir:value "de.gematik.fhir.directory"];
+  fhir:DomainResource.text [
+     fhir:Narrative.status [ fhir:value "extensions" ];
+     fhir:Narrative.div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><h2>gematikDirectory</h2><p>The official URL for this implementation guide is: </p><pre>https://gematik.de/fhir/directory/ImplementationGuide/de.gematik.fhir.directory</pre><div><p>The gematik Directory Implementation Guide is based on FHIR Version R4 and defines the minimum conformance requirements for accessing the FHIR-Directory.</p>\n</div></div>"
+  ];
+  fhir:ImplementationGuide.url [ fhir:value "https://gematik.de/fhir/directory/ImplementationGuide/de.gematik.fhir.directory"];
+  fhir:ImplementationGuide.version [ fhir:value "0.8.0-wip"];
+  fhir:ImplementationGuide.name [ fhir:value "gematikDirectory"];
+  fhir:ImplementationGuide.title [ fhir:value "gematik Directory"];
+  fhir:ImplementationGuide.status [ fhir:value "draft"];
+  fhir:ImplementationGuide.date [ fhir:value "2022-05-09"^^xsd:date];
+  fhir:ImplementationGuide.publisher [ fhir:value "gematik GmbH"];
+  fhir:ImplementationGuide.contact [
+     fhir:index 0;
+     fhir:ContactDetail.name [ fhir:value "gematik GmbH" ];
+     fhir:ContactDetail.telecom [
+       fhir:index 0;
+       fhir:ContactPoint.system [ fhir:value "url" ];
+       fhir:ContactPoint.value [ fhir:value "https://www.gematik.de/" ]
+     ]
+  ];
+  fhir:ImplementationGuide.description [ fhir:value "The gematik Directory Implementation Guide is based on FHIR Version R4 and defines the minimum conformance requirements for accessing the FHIR-Directory."];
+  fhir:ImplementationGuide.copyright [ fhir:value "Copyright gematik GmbH, Berlin, Germany"];
+  fhir:ImplementationGuide.packageId [ fhir:value "de.gematik.fhir.directory"];
+  fhir:ImplementationGuide.license [ fhir:value "CC0-1.0"];
+  fhir:ImplementationGuide.fhirVersion [
+     fhir:value "4.0.1";
+     fhir:index 0
+  ];
+  fhir:ImplementationGuide.dependsOn [
+     fhir:index 0;
+     fhir:Element.id [ fhir:value "de_basisprofil_r4" ];
+     fhir:ImplementationGuide.dependsOn.uri [
+       fhir:value "https://simplifier.net/guide/basisprofil-de-r4?version=current";
+       fhir:link <https://simplifier.net/guide/basisprofil-de-r4?version=current>
+     ];
+     fhir:ImplementationGuide.dependsOn.packageId [ fhir:value "de.basisprofil.r4" ];
+     fhir:ImplementationGuide.dependsOn.version [ fhir:value "1.3.2" ]
+  ];
+  fhir:ImplementationGuide.definition [
+     fhir:Element.extension [
+       fhir:index 0;
+       fhir:Element.extension [
+         fhir:index 0;
+         fhir:Extension.url [ fhir:value "code" ];
+         fhir:Extension.valueString [ fhir:value "copyrightyear" ]
+       ], [
+         fhir:index 1;
+         fhir:Extension.url [ fhir:value "value" ];
+         fhir:Extension.valueString [ fhir:value "2022+" ]
+       ];
+       fhir:Extension.url [ fhir:value "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter" ]
+     ], [
+       fhir:index 1;
+       fhir:Element.extension [
+         fhir:index 0;
+         fhir:Extension.url [ fhir:value "code" ];
+         fhir:Extension.valueString [ fhir:value "releaselabel" ]
+       ], [
+         fhir:index 1;
+         fhir:Extension.url [ fhir:value "value" ];
+         fhir:Extension.valueString [ fhir:value "Release 0.8.0-wip" ]
+       ];
+       fhir:Extension.url [ fhir:value "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter" ]
+     ], [
+       fhir:index 2;
+       fhir:Element.extension [
+         fhir:index 0;
+         fhir:Extension.url [ fhir:value "code" ];
+         fhir:Extension.valueString [ fhir:value "path-liquid" ]
+       ], [
+         fhir:index 1;
+         fhir:Extension.url [ fhir:value "value" ];
+         fhir:Extension.valueString [ fhir:value "template/liquid" ]
+       ];
+       fhir:Extension.url [ fhir:value "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter" ]
+     ], [
+       fhir:index 3;
+       fhir:Element.extension [
+         fhir:index 0;
+         fhir:Extension.url [ fhir:value "code" ];
+         fhir:Extension.valueString [ fhir:value "path-liquid" ]
+       ], [
+         fhir:index 1;
+         fhir:Extension.url [ fhir:value "value" ];
+         fhir:Extension.valueString [ fhir:value "input/liquid" ]
+       ];
+       fhir:Extension.url [ fhir:value "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter" ]
+     ], [
+       fhir:index 4;
+       fhir:Element.extension [
+         fhir:index 0;
+         fhir:Extension.url [ fhir:value "code" ];
+         fhir:Extension.valueString [ fhir:value "path-qa" ]
+       ], [
+         fhir:index 1;
+         fhir:Extension.url [ fhir:value "value" ];
+         fhir:Extension.valueString [ fhir:value "temp/qa" ]
+       ];
+       fhir:Extension.url [ fhir:value "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter" ]
+     ], [
+       fhir:index 5;
+       fhir:Element.extension [
+         fhir:index 0;
+         fhir:Extension.url [ fhir:value "code" ];
+         fhir:Extension.valueString [ fhir:value "path-temp" ]
+       ], [
+         fhir:index 1;
+         fhir:Extension.url [ fhir:value "value" ];
+         fhir:Extension.valueString [ fhir:value "temp/pages" ]
+       ];
+       fhir:Extension.url [ fhir:value "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter" ]
+     ], [
+       fhir:index 6;
+       fhir:Element.extension [
+         fhir:index 0;
+         fhir:Extension.url [ fhir:value "code" ];
+         fhir:Extension.valueString [ fhir:value "path-output" ]
+       ], [
+         fhir:index 1;
+         fhir:Extension.url [ fhir:value "value" ];
+         fhir:Extension.valueString [ fhir:value "output" ]
+       ];
+       fhir:Extension.url [ fhir:value "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter" ]
+     ], [
+       fhir:index 7;
+       fhir:Element.extension [
+         fhir:index 0;
+         fhir:Extension.url [ fhir:value "code" ];
+         fhir:Extension.valueString [ fhir:value "path-suppressed-warnings" ]
+       ], [
+         fhir:index 1;
+         fhir:Extension.url [ fhir:value "value" ];
+         fhir:Extension.valueString [ fhir:value "input/ignoreWarnings.txt" ]
+       ];
+       fhir:Extension.url [ fhir:value "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter" ]
+     ], [
+       fhir:index 8;
+       fhir:Element.extension [
+         fhir:index 0;
+         fhir:Extension.url [ fhir:value "code" ];
+         fhir:Extension.valueString [ fhir:value "path-history" ]
+       ], [
+         fhir:index 1;
+         fhir:Extension.url [ fhir:value "value" ];
+         fhir:Extension.valueString [ fhir:value "https://gematik.de/fhir/directory/history.html" ]
+       ];
+       fhir:Extension.url [ fhir:value "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter" ]
+     ], [
+       fhir:index 9;
+       fhir:Element.extension [
+         fhir:index 0;
+         fhir:Extension.url [ fhir:value "code" ];
+         fhir:Extension.valueString [ fhir:value "template-html" ]
+       ], [
+         fhir:index 1;
+         fhir:Extension.url [ fhir:value "value" ];
+         fhir:Extension.valueString [ fhir:value "template-page.html" ]
+       ];
+       fhir:Extension.url [ fhir:value "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter" ]
+     ], [
+       fhir:index 10;
+       fhir:Element.extension [
+         fhir:index 0;
+         fhir:Extension.url [ fhir:value "code" ];
+         fhir:Extension.valueString [ fhir:value "template-md" ]
+       ], [
+         fhir:index 1;
+         fhir:Extension.url [ fhir:value "value" ];
+         fhir:Extension.valueString [ fhir:value "template-page-md.html" ]
+       ];
+       fhir:Extension.url [ fhir:value "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter" ]
+     ], [
+       fhir:index 11;
+       fhir:Element.extension [
+         fhir:index 0;
+         fhir:Extension.url [ fhir:value "code" ];
+         fhir:Extension.valueString [ fhir:value "apply-contact" ]
+       ], [
+         fhir:index 1;
+         fhir:Extension.url [ fhir:value "value" ];
+         fhir:Extension.valueString [ fhir:value "true" ]
+       ];
+       fhir:Extension.url [ fhir:value "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter" ]
+     ], [
+       fhir:index 12;
+       fhir:Element.extension [
+         fhir:index 0;
+         fhir:Extension.url [ fhir:value "code" ];
+         fhir:Extension.valueString [ fhir:value "apply-context" ]
+       ], [
+         fhir:index 1;
+         fhir:Extension.url [ fhir:value "value" ];
+         fhir:Extension.valueString [ fhir:value "true" ]
+       ];
+       fhir:Extension.url [ fhir:value "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter" ]
+     ], [
+       fhir:index 13;
+       fhir:Element.extension [
+         fhir:index 0;
+         fhir:Extension.url [ fhir:value "code" ];
+         fhir:Extension.valueString [ fhir:value "apply-copyright" ]
+       ], [
+         fhir:index 1;
+         fhir:Extension.url [ fhir:value "value" ];
+         fhir:Extension.valueString [ fhir:value "true" ]
+       ];
+       fhir:Extension.url [ fhir:value "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter" ]
+     ], [
+       fhir:index 14;
+       fhir:Element.extension [
+         fhir:index 0;
+         fhir:Extension.url [ fhir:value "code" ];
+         fhir:Extension.valueString [ fhir:value "apply-jurisdiction" ]
+       ], [
+         fhir:index 1;
+         fhir:Extension.url [ fhir:value "value" ];
+         fhir:Extension.valueString [ fhir:value "true" ]
+       ];
+       fhir:Extension.url [ fhir:value "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter" ]
+     ], [
+       fhir:index 15;
+       fhir:Element.extension [
+         fhir:index 0;
+         fhir:Extension.url [ fhir:value "code" ];
+         fhir:Extension.valueString [ fhir:value "apply-license" ]
+       ], [
+         fhir:index 1;
+         fhir:Extension.url [ fhir:value "value" ];
+         fhir:Extension.valueString [ fhir:value "true" ]
+       ];
+       fhir:Extension.url [ fhir:value "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter" ]
+     ], [
+       fhir:index 16;
+       fhir:Element.extension [
+         fhir:index 0;
+         fhir:Extension.url [ fhir:value "code" ];
+         fhir:Extension.valueString [ fhir:value "apply-publisher" ]
+       ], [
+         fhir:index 1;
+         fhir:Extension.url [ fhir:value "value" ];
+         fhir:Extension.valueString [ fhir:value "true" ]
+       ];
+       fhir:Extension.url [ fhir:value "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter" ]
+     ], [
+       fhir:index 17;
+       fhir:Element.extension [
+         fhir:index 0;
+         fhir:Extension.url [ fhir:value "code" ];
+         fhir:Extension.valueString [ fhir:value "apply-version" ]
+       ], [
+         fhir:index 1;
+         fhir:Extension.url [ fhir:value "value" ];
+         fhir:Extension.valueString [ fhir:value "true" ]
+       ];
+       fhir:Extension.url [ fhir:value "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter" ]
+     ], [
+       fhir:index 18;
+       fhir:Element.extension [
+         fhir:index 0;
+         fhir:Extension.url [ fhir:value "code" ];
+         fhir:Extension.valueString [ fhir:value "active-tables" ]
+       ], [
+         fhir:index 1;
+         fhir:Extension.url [ fhir:value "value" ];
+         fhir:Extension.valueString [ fhir:value "true" ]
+       ];
+       fhir:Extension.url [ fhir:value "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter" ]
+     ], [
+       fhir:index 19;
+       fhir:Element.extension [
+         fhir:index 0;
+         fhir:Extension.url [ fhir:value "code" ];
+         fhir:Extension.valueString [ fhir:value "fmm-definition" ]
+       ], [
+         fhir:index 1;
+         fhir:Extension.url [ fhir:value "value" ];
+         fhir:Extension.valueString [ fhir:value "http://hl7.org/fhir/versions.html#maturity" ]
+       ];
+       fhir:Extension.url [ fhir:value "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter" ]
+     ], [
+       fhir:index 20;
+       fhir:Element.extension [
+         fhir:index 0;
+         fhir:Extension.url [ fhir:value "code" ];
+         fhir:Extension.valueString [ fhir:value "propagate-status" ]
+       ], [
+         fhir:index 1;
+         fhir:Extension.url [ fhir:value "value" ];
+         fhir:Extension.valueString [ fhir:value "true" ]
+       ];
+       fhir:Extension.url [ fhir:value "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter" ]
+     ], [
+       fhir:index 21;
+       fhir:Element.extension [
+         fhir:index 0;
+         fhir:Extension.url [ fhir:value "code" ];
+         fhir:Extension.valueString [ fhir:value "excludelogbinaryformat" ]
+       ], [
+         fhir:index 1;
+         fhir:Extension.url [ fhir:value "value" ];
+         fhir:Extension.valueString [ fhir:value "true" ]
+       ];
+       fhir:Extension.url [ fhir:value "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter" ]
+     ];
+     fhir:ImplementationGuide.definition.resource [
+       fhir:index 0;
+       fhir:Element.extension [
+         fhir:index 0;
+         fhir:Extension.url [ fhir:value "http://hl7.org/fhir/tools/StructureDefinition/resource-information" ];
+         fhir:Extension.valueString [ fhir:value "StructureDefinition:resource" ]
+       ];
+       fhir:ImplementationGuide.definition.resource.reference [
+         fhir:link <https://gematik.de/fhir/directory/StructureDefinition/EndpointDirectory>;
+         fhir:Reference.reference [ fhir:value "StructureDefinition/EndpointDirectory" ]
+       ];
+       fhir:ImplementationGuide.definition.resource.name [ fhir:value "EndpointDirectory" ];
+       fhir:ImplementationGuide.definition.resource.description [ fhir:value "Endpoints for applications in the TI FHIR-Directory" ];
+       fhir:ImplementationGuide.definition.resource.exampleBoolean [ fhir:value "false"^^xsd:boolean ]
+     ], [
+       fhir:index 1;
+       fhir:Element.extension [
+         fhir:index 0;
+         fhir:Extension.url [ fhir:value "http://hl7.org/fhir/tools/StructureDefinition/resource-information" ];
+         fhir:Extension.valueString [ fhir:value "StructureDefinition:resource" ]
+       ];
+       fhir:ImplementationGuide.definition.resource.reference [
+         fhir:link <https://gematik.de/fhir/directory/StructureDefinition/HealthcareServiceDirectory>;
+         fhir:Reference.reference [ fhir:value "StructureDefinition/HealthcareServiceDirectory" ]
+       ];
+       fhir:ImplementationGuide.definition.resource.name [ fhir:value "Profile for an HealthcareService resource in the TI FHIR-Directory" ];
+       fhir:ImplementationGuide.definition.resource.description [ fhir:value "Defines the data structure for medical, regulatory and technical\norganisations specific for german Healthcare and Telematics Infrastructure." ];
+       fhir:ImplementationGuide.definition.resource.exampleBoolean [ fhir:value "false"^^xsd:boolean ]
+     ], [
+       fhir:index 2;
+       fhir:Element.extension [
+         fhir:index 0;
+         fhir:Extension.url [ fhir:value "http://hl7.org/fhir/tools/StructureDefinition/resource-information" ];
+         fhir:Extension.valueString [ fhir:value "StructureDefinition:resource" ]
+       ];
+       fhir:ImplementationGuide.definition.resource.reference [
+         fhir:link <https://gematik.de/fhir/directory/StructureDefinition/LocationDirectory>;
+         fhir:Reference.reference [ fhir:value "StructureDefinition/LocationDirectory" ]
+       ];
+       fhir:ImplementationGuide.definition.resource.name [ fhir:value "Profile for an Location resource in the TI FHIR-Directory" ];
+       fhir:ImplementationGuide.definition.resource.description [ fhir:value "Defines the data structure for medical, regulatory and technical\norganisations specific for german Healthcare and Telematics Infrastructure." ];
+       fhir:ImplementationGuide.definition.resource.exampleBoolean [ fhir:value "false"^^xsd:boolean ]
+     ], [
+       fhir:index 3;
+       fhir:Element.extension [
+         fhir:index 0;
+         fhir:Extension.url [ fhir:value "http://hl7.org/fhir/tools/StructureDefinition/resource-information" ];
+         fhir:Extension.valueString [ fhir:value "StructureDefinition:resource" ]
+       ];
+       fhir:ImplementationGuide.definition.resource.reference [
+         fhir:link <https://gematik.de/fhir/directory/StructureDefinition/OrganizationDirectory>;
+         fhir:Reference.reference [ fhir:value "StructureDefinition/OrganizationDirectory" ]
+       ];
+       fhir:ImplementationGuide.definition.resource.name [ fhir:value "Profile for an Organization resource in the TI FHIR-Directory" ];
+       fhir:ImplementationGuide.definition.resource.description [ fhir:value "Defines the data structure for medical, regulatory and technical\norganisations specific for german Healthcare and Telematics Infrastructure." ];
+       fhir:ImplementationGuide.definition.resource.exampleBoolean [ fhir:value "false"^^xsd:boolean ]
+     ], [
+       fhir:index 4;
+       fhir:Element.extension [
+         fhir:index 0;
+         fhir:Extension.url [ fhir:value "http://hl7.org/fhir/tools/StructureDefinition/resource-information" ];
+         fhir:Extension.valueString [ fhir:value "StructureDefinition:resource" ]
+       ];
+       fhir:ImplementationGuide.definition.resource.reference [
+         fhir:link <https://gematik.de/fhir/directory/StructureDefinition/PractitionerDirectory>;
+         fhir:Reference.reference [ fhir:value "StructureDefinition/PractitionerDirectory" ]
+       ];
+       fhir:ImplementationGuide.definition.resource.name [ fhir:value "PractitionerDirectory" ];
+       fhir:ImplementationGuide.definition.resource.description [ fhir:value "Profile for the Practitioner in gematik FHIR Directory" ];
+       fhir:ImplementationGuide.definition.resource.exampleBoolean [ fhir:value "false"^^xsd:boolean ]
+     ], [
+       fhir:index 5;
+       fhir:Element.extension [
+         fhir:index 0;
+         fhir:Extension.url [ fhir:value "http://hl7.org/fhir/tools/StructureDefinition/resource-information" ];
+         fhir:Extension.valueString [ fhir:value "StructureDefinition:resource" ]
+       ];
+       fhir:ImplementationGuide.definition.resource.reference [
+         fhir:link <https://gematik.de/fhir/directory/StructureDefinition/PractitionerRoleDirectory>;
+         fhir:Reference.reference [ fhir:value "StructureDefinition/PractitionerRoleDirectory" ]
+       ];
+       fhir:ImplementationGuide.definition.resource.name [ fhir:value "PractitionerRoleDirectory" ];
+       fhir:ImplementationGuide.definition.resource.description [ fhir:value "Profile for the PractitionerRole in gematik FHIR Directory" ];
+       fhir:ImplementationGuide.definition.resource.exampleBoolean [ fhir:value "false"^^xsd:boolean ]
+     ], [
+       fhir:index 6;
+       fhir:Element.extension [
+         fhir:index 0;
+         fhir:Extension.url [ fhir:value "http://hl7.org/fhir/tools/StructureDefinition/resource-information" ];
+         fhir:Extension.valueString [ fhir:value "ValueSet" ]
+       ];
+       fhir:ImplementationGuide.definition.resource.reference [
+         fhir:link <https://gematik.de/fhir/directory/ValueSet/TIEndpointConnectionTypeVS>;
+         fhir:Reference.reference [ fhir:value "ValueSet/TIEndpointConnectionTypeVS" ]
+       ];
+       fhir:ImplementationGuide.definition.resource.name [ fhir:value "Connections Types for Endpoints in the TI" ];
+       fhir:ImplementationGuide.definition.resource.exampleBoolean [ fhir:value "false"^^xsd:boolean ]
+     ], [
+       fhir:index 7;
+       fhir:Element.extension [
+         fhir:index 0;
+         fhir:Extension.url [ fhir:value "http://hl7.org/fhir/tools/StructureDefinition/resource-information" ];
+         fhir:Extension.valueString [ fhir:value "ValueSet" ]
+       ];
+       fhir:ImplementationGuide.definition.resource.reference [
+         fhir:link <https://gematik.de/fhir/directory/ValueSet/TIOrganizationTypeVS>;
+         fhir:Reference.reference [ fhir:value "ValueSet/TIOrganizationTypeVS" ]
+       ];
+       fhir:ImplementationGuide.definition.resource.name [ fhir:value "Type of TIOrganization" ];
+       fhir:ImplementationGuide.definition.resource.description [ fhir:value "ValueSet of all Organization types in the gematik FHIR Directory" ];
+       fhir:ImplementationGuide.definition.resource.exampleBoolean [ fhir:value "false"^^xsd:boolean ]
+     ], [
+       fhir:index 8;
+       fhir:Element.extension [
+         fhir:index 0;
+         fhir:Extension.url [ fhir:value "http://hl7.org/fhir/tools/StructureDefinition/resource-information" ];
+         fhir:Extension.valueString [ fhir:value "ValueSet" ]
+       ];
+       fhir:ImplementationGuide.definition.resource.reference [
+         fhir:link <https://gematik.de/fhir/directory/ValueSet/TIPractitionerQualificationVS>;
+         fhir:Reference.reference [ fhir:value "ValueSet/TIPractitionerQualificationVS" ]
+       ];
+       fhir:ImplementationGuide.definition.resource.name [ fhir:value "Qualification of a Practitoner" ];
+       fhir:ImplementationGuide.definition.resource.description [ fhir:value "ValueSet of all Practitoner.qualification.code in the gematik FHIR Directory" ];
+       fhir:ImplementationGuide.definition.resource.exampleBoolean [ fhir:value "false"^^xsd:boolean ]
+     ], [
+       fhir:index 9;
+       fhir:Element.extension [
+         fhir:index 0;
+         fhir:Extension.url [ fhir:value "http://hl7.org/fhir/tools/StructureDefinition/resource-information" ];
+         fhir:Extension.valueString [ fhir:value "CodeSystem" ]
+       ];
+       fhir:ImplementationGuide.definition.resource.reference [
+         fhir:link <https://gematik.de/fhir/directory/CodeSystem/BundeslaenderCS>;
+         fhir:Reference.reference [ fhir:value "CodeSystem/BundeslaenderCS" ]
+       ];
+       fhir:ImplementationGuide.definition.resource.name [ fhir:value "Experimentell: Codes für deutsche Bundesländer" ];
+       fhir:ImplementationGuide.definition.resource.exampleBoolean [ fhir:value "false"^^xsd:boolean ]
+     ], [
+       fhir:index 10;
+       fhir:Element.extension [
+         fhir:index 0;
+         fhir:Extension.url [ fhir:value "http://hl7.org/fhir/tools/StructureDefinition/resource-information" ];
+         fhir:Extension.valueString [ fhir:value "CodeSystem" ]
+       ];
+       fhir:ImplementationGuide.definition.resource.reference [
+         fhir:link <https://gematik.de/fhir/directory/CodeSystem/TIEndpointConnectionTypeCS>;
+         fhir:Reference.reference [ fhir:value "CodeSystem/TIEndpointConnectionTypeCS" ]
+       ];
+       fhir:ImplementationGuide.definition.resource.name [ fhir:value "Codes for Endpoint.connectionType" ];
+       fhir:ImplementationGuide.definition.resource.description [ fhir:value "CodeSystem TI specific connection types assigned to the Endpoints" ];
+       fhir:ImplementationGuide.definition.resource.exampleBoolean [ fhir:value "false"^^xsd:boolean ]
+     ], [
+       fhir:index 11;
+       fhir:Element.extension [
+         fhir:index 0;
+         fhir:Extension.url [ fhir:value "http://hl7.org/fhir/tools/StructureDefinition/resource-information" ];
+         fhir:Extension.valueString [ fhir:value "CodeSystem" ]
+       ];
+       fhir:ImplementationGuide.definition.resource.reference [
+         fhir:link <https://gematik.de/fhir/directory/CodeSystem/TIEndpointPayloadTypeCS>;
+         fhir:Reference.reference [ fhir:value "CodeSystem/TIEndpointPayloadTypeCS" ]
+       ];
+       fhir:ImplementationGuide.definition.resource.name [ fhir:value "Codes for Endpoint.payloadType" ];
+       fhir:ImplementationGuide.definition.resource.description [ fhir:value "CodeSystem TI specific payload types assigned to the Endpoints" ];
+       fhir:ImplementationGuide.definition.resource.exampleBoolean [ fhir:value "false"^^xsd:boolean ]
+     ], [
+       fhir:index 12;
+       fhir:Element.extension [
+         fhir:index 0;
+         fhir:Extension.url [ fhir:value "http://hl7.org/fhir/tools/StructureDefinition/resource-information" ];
+         fhir:Extension.valueString [ fhir:value "CodeSystem" ]
+       ];
+       fhir:ImplementationGuide.definition.resource.reference [
+         fhir:link <https://gematik.de/fhir/directory/CodeSystem/TIInstitutionTypeOidCS>;
+         fhir:Reference.reference [ fhir:value "CodeSystem/TIInstitutionTypeOidCS" ]
+       ];
+       fhir:ImplementationGuide.definition.resource.name [ fhir:value "CodeSystem for TI Institutions using OIDs" ];
+       fhir:ImplementationGuide.definition.resource.description [ fhir:value "The codes for Institutions based on OIDs defined in gemSpec_OID \nWe use a URN notation ([ProfessionOID from gemSpec_OID]). \nSee also https://fachportal.gematik.de/fachportal-import/files/gemSpec_OID_V3.10.0.pdf" ];
+       fhir:ImplementationGuide.definition.resource.exampleBoolean [ fhir:value "false"^^xsd:boolean ]
+     ], [
+       fhir:index 13;
+       fhir:Element.extension [
+         fhir:index 0;
+         fhir:Extension.url [ fhir:value "http://hl7.org/fhir/tools/StructureDefinition/resource-information" ];
+         fhir:Extension.valueString [ fhir:value "CodeSystem" ]
+       ];
+       fhir:ImplementationGuide.definition.resource.reference [
+         fhir:link <https://gematik.de/fhir/directory/CodeSystem/TIPractitionerProfessionOidCS>;
+         fhir:Reference.reference [ fhir:value "CodeSystem/TIPractitionerProfessionOidCS" ]
+       ];
+       fhir:ImplementationGuide.definition.resource.name [ fhir:value "CodeSystem for Practitioner's ProfessioiOid" ];
+       fhir:ImplementationGuide.definition.resource.description [ fhir:value "The codes for Institutions based on OIDs defined in gemSpec_OID \nWe use a URN notation ([ProfessionOID from gemSpec_OID]). \nSee also https://fachportal.gematik.de/fachportal-import/files/gemSpec_OID_V3.10.0.pdf" ];
+       fhir:ImplementationGuide.definition.resource.exampleBoolean [ fhir:value "false"^^xsd:boolean ]
+     ], [
+       fhir:index 14;
+       fhir:Element.extension [
+         fhir:index 0;
+         fhir:Extension.url [ fhir:value "http://hl7.org/fhir/tools/StructureDefinition/resource-information" ];
+         fhir:Extension.valueString [ fhir:value "CodeSystem" ]
+       ];
+       fhir:ImplementationGuide.definition.resource.reference [
+         fhir:link <https://gematik.de/fhir/directory/CodeSystem/TIProviderTypeCS>;
+         fhir:Reference.reference [ fhir:value "CodeSystem/TIProviderTypeCS" ]
+       ];
+       fhir:ImplementationGuide.definition.resource.name [ fhir:value "TIProviderTypeCS" ];
+       fhir:ImplementationGuide.definition.resource.description [ fhir:value "CodeSystem of TI Service Provider types as to be found in the gematik FHIR Directory" ];
+       fhir:ImplementationGuide.definition.resource.exampleBoolean [ fhir:value "false"^^xsd:boolean ]
+     ];
+     fhir:ImplementationGuide.definition.page [
+       fhir:ImplementationGuide.definition.page.nameUrl [ fhir:value "toc.html" ];
+       fhir:ImplementationGuide.definition.page.title [ fhir:value "Table of Contents" ];
+       fhir:ImplementationGuide.definition.page.generation [ fhir:value "html" ]
+     ];
+     fhir:ImplementationGuide.definition.parameter [
+       fhir:index 0;
+       fhir:ImplementationGuide.definition.parameter.code [ fhir:value "path-resource" ];
+       fhir:ImplementationGuide.definition.parameter.value [ fhir:value "input/capabilities" ]
+     ], [
+       fhir:index 1;
+       fhir:ImplementationGuide.definition.parameter.code [ fhir:value "path-resource" ];
+       fhir:ImplementationGuide.definition.parameter.value [ fhir:value "input/examples" ]
+     ], [
+       fhir:index 2;
+       fhir:ImplementationGuide.definition.parameter.code [ fhir:value "path-resource" ];
+       fhir:ImplementationGuide.definition.parameter.value [ fhir:value "input/extensions" ]
+     ], [
+       fhir:index 3;
+       fhir:ImplementationGuide.definition.parameter.code [ fhir:value "path-resource" ];
+       fhir:ImplementationGuide.definition.parameter.value [ fhir:value "input/models" ]
+     ], [
+       fhir:index 4;
+       fhir:ImplementationGuide.definition.parameter.code [ fhir:value "path-resource" ];
+       fhir:ImplementationGuide.definition.parameter.value [ fhir:value "input/operations" ]
+     ], [
+       fhir:index 5;
+       fhir:ImplementationGuide.definition.parameter.code [ fhir:value "path-resource" ];
+       fhir:ImplementationGuide.definition.parameter.value [ fhir:value "input/profiles" ]
+     ], [
+       fhir:index 6;
+       fhir:ImplementationGuide.definition.parameter.code [ fhir:value "path-resource" ];
+       fhir:ImplementationGuide.definition.parameter.value [ fhir:value "input/resources" ]
+     ], [
+       fhir:index 7;
+       fhir:ImplementationGuide.definition.parameter.code [ fhir:value "path-resource" ];
+       fhir:ImplementationGuide.definition.parameter.value [ fhir:value "input/vocabulary" ]
+     ], [
+       fhir:index 8;
+       fhir:ImplementationGuide.definition.parameter.code [ fhir:value "path-resource" ];
+       fhir:ImplementationGuide.definition.parameter.value [ fhir:value "input/maps" ]
+     ], [
+       fhir:index 9;
+       fhir:ImplementationGuide.definition.parameter.code [ fhir:value "path-resource" ];
+       fhir:ImplementationGuide.definition.parameter.value [ fhir:value "input/testing" ]
+     ], [
+       fhir:index 10;
+       fhir:ImplementationGuide.definition.parameter.code [ fhir:value "path-resource" ];
+       fhir:ImplementationGuide.definition.parameter.value [ fhir:value "input/history" ]
+     ], [
+       fhir:index 11;
+       fhir:ImplementationGuide.definition.parameter.code [ fhir:value "path-resource" ];
+       fhir:ImplementationGuide.definition.parameter.value [ fhir:value "fsh-generated/resources" ]
+     ], [
+       fhir:index 12;
+       fhir:ImplementationGuide.definition.parameter.code [ fhir:value "path-pages" ];
+       fhir:ImplementationGuide.definition.parameter.value [ fhir:value "template/config" ]
+     ], [
+       fhir:index 13;
+       fhir:ImplementationGuide.definition.parameter.code [ fhir:value "path-pages" ];
+       fhir:ImplementationGuide.definition.parameter.value [ fhir:value "input/images" ]
+     ], [
+       fhir:index 14;
+       fhir:ImplementationGuide.definition.parameter.code [ fhir:value "path-tx-cache" ];
+       fhir:ImplementationGuide.definition.parameter.value [ fhir:value "input-cache/txcache" ]
+     ]
+  ] .
+
+# - ontology header ------------------------------------------------------------
+
+<https://gematik.de/fhir/directory/ImplementationGuide/de.gematik.fhir.directory.ttl> a owl:Ontology;
+  owl:imports fhir:fhir.ttl .
+
+# -------------------------------------------------------------------------------------
+

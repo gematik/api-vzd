@@ -1,0 +1,173 @@
+{
+  "resourceType": "CodeSystem",
+  "id": "TIPractitionerProfessionOidCS",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>This code system https://gematik.de/fhir/directory/CodeSystem/TIPractitionerProfessionOidCS defines the following codes:</p><table class=\"codes\"><tr><td style=\"white-space:nowrap\"><b>Code</b></td><td><b>Display</b></td><td><b>Definition</b></td></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.30<a name=\"TIPractitionerProfessionOidCS-1.462.46276.460.4676.464.4630\"> </a></td><td>Ärztin/Arzt</td><td/></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.31<a name=\"TIPractitionerProfessionOidCS-1.462.46276.460.4676.464.4631\"> </a></td><td>Zahnärztin/Zahnarzt</td><td>...</td></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.32<a name=\"TIPractitionerProfessionOidCS-1.462.46276.460.4676.464.4632\"> </a></td><td>Apotheker/-in</td><td/></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.33<a name=\"TIPractitionerProfessionOidCS-1.462.46276.460.4676.464.4633\"> </a></td><td>Apothekerassistent/-in</td><td/></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.34<a name=\"TIPractitionerProfessionOidCS-1.462.46276.460.4676.464.4634\"> </a></td><td>Pharmazieingenieur/-in</td><td/></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.35<a name=\"TIPractitionerProfessionOidCS-1.462.46276.460.4676.464.4635\"> </a></td><td>pharmazeutisch-technische/-r Assistent/-in</td><td/></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.36<a name=\"TIPractitionerProfessionOidCS-1.462.46276.460.4676.464.4636\"> </a></td><td>pharmazeutisch-kaufmännische/-r Angestellte</td><td/></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.37<a name=\"TIPractitionerProfessionOidCS-1.462.46276.460.4676.464.4637\"> </a></td><td>Apothekenhelfer/-in</td><td/></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.38<a name=\"TIPractitionerProfessionOidCS-1.462.46276.460.4676.464.4638\"> </a></td><td>Apothekenassistent/-in</td><td/></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.39<a name=\"TIPractitionerProfessionOidCS-1.462.46276.460.4676.464.4639\"> </a></td><td>Pharmazeutische/-r Assistent/-in</td><td/></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.40<a name=\"TIPractitionerProfessionOidCS-1.462.46276.460.4676.464.4640\"> </a></td><td>Apothekenfacharbeiter/-in</td><td/></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.41<a name=\"TIPractitionerProfessionOidCS-1.462.46276.460.4676.464.4641\"> </a></td><td>Pharmaziepraktikant/-in</td><td/></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.42<a name=\"TIPractitionerProfessionOidCS-1.462.46276.460.4676.464.4642\"> </a></td><td>Stud.pharm. oder Famulant/-in</td><td/></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.43<a name=\"TIPractitionerProfessionOidCS-1.462.46276.460.4676.464.4643\"> </a></td><td>PTA-Praktikant/-in</td><td/></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.44<a name=\"TIPractitionerProfessionOidCS-1.462.46276.460.4676.464.4644\"> </a></td><td>PKA Auszubildende/-r</td><td/></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.45<a name=\"TIPractitionerProfessionOidCS-1.462.46276.460.4676.464.4645\"> </a></td><td>Psychotherapeut/-in</td><td/></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.46<a name=\"TIPractitionerProfessionOidCS-1.462.46276.460.4676.464.4646\"> </a></td><td>Psychologische/-r Psychotherapeut/-in</td><td/></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.47<a name=\"TIPractitionerProfessionOidCS-1.462.46276.460.4676.464.4647\"> </a></td><td>Kinder- und Jugendlichenpsychotherapeut/-in</td><td/></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.48<a name=\"TIPractitionerProfessionOidCS-1.462.46276.460.4676.464.4648\"> </a></td><td>Rettungsassistent/-in</td><td/></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.49<a name=\"TIPractitionerProfessionOidCS-1.462.46276.460.4676.464.4649\"> </a></td><td>Versicherte/-r</td><td/></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.178<a name=\"TIPractitionerProfessionOidCS-1.462.46276.460.4676.464.46178\"> </a></td><td>Notfallsanitäter/-in</td><td/></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.232<a name=\"TIPractitionerProfessionOidCS-1.462.46276.460.4676.464.46232\"> </a></td><td>Gesundheits- und Krankenpfleger/-in, Gesundheits- und Kinderkrankenpfleger/-in</td><td/></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.233<a name=\"TIPractitionerProfessionOidCS-1.462.46276.460.4676.464.46233\"> </a></td><td>Altenpfleger/-in</td><td/></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.234<a name=\"TIPractitionerProfessionOidCS-1.462.46276.460.4676.464.46234\"> </a></td><td>Pflegefachfrauen und Pflegefachmänner</td><td/></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.235<a name=\"TIPractitionerProfessionOidCS-1.462.46276.460.4676.464.46235\"> </a></td><td>Hebamme</td><td/></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.236<a name=\"TIPractitionerProfessionOidCS-1.462.46276.460.4676.464.46236\"> </a></td><td>Physiotherapeut/-in</td><td/></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.237<a name=\"TIPractitionerProfessionOidCS-1.462.46276.460.4676.464.46237\"> </a></td><td>Augenoptiker/-in und Optometrist/-in</td><td/></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.238<a name=\"TIPractitionerProfessionOidCS-1.462.46276.460.4676.464.46238\"> </a></td><td>Hörakustiker/-in</td><td/></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.239<a name=\"TIPractitionerProfessionOidCS-1.462.46276.460.4676.464.46239\"> </a></td><td>Orthopädieschuhmacher/-in</td><td/></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.240<a name=\"TIPractitionerProfessionOidCS-1.462.46276.460.4676.464.46240\"> </a></td><td>Orthopädietechniker/-in</td><td/></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.241<a name=\"TIPractitionerProfessionOidCS-1.462.46276.460.4676.464.46241\"> </a></td><td>Zahntechniker/-in</td><td/></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.274<a name=\"TIPractitionerProfessionOidCS-1.462.46276.460.4676.464.46274\"> </a></td><td>Ergotherapeut/-in</td><td/></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.275<a name=\"TIPractitionerProfessionOidCS-1.462.46276.460.4676.464.46275\"> </a></td><td>Logopäde/Logopädin</td><td/></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.276<a name=\"TIPractitionerProfessionOidCS-1.462.46276.460.4676.464.46276\"> </a></td><td>Podologe/Podologin</td><td/></tr><tr><td style=\"white-space:nowrap\">1.2.276.0.76.4.277<a name=\"TIPractitionerProfessionOidCS-1.462.46276.460.4676.464.46277\"> </a></td><td>Ernährungstherapeut/-in</td><td/></tr></table></div>"
+  },
+  "url": "https://gematik.de/fhir/directory/CodeSystem/TIPractitionerProfessionOidCS",
+  "version": "0.8.0-wip",
+  "name": "TIPractitionerProfessionOidCS",
+  "title": "CodeSystem for Practitioner's ProfessioiOid",
+  "status": "draft",
+  "date": "2022-05-09T08:08:29+02:00",
+  "publisher": "gematik GmbH",
+  "contact": [
+    {
+      "name": "gematik GmbH",
+      "telecom": [
+        {
+          "system": "url",
+          "value": "https://www.gematik.de/"
+        }
+      ]
+    }
+  ],
+  "description": "The codes for Institutions based on OIDs defined in gemSpec_OID \nWe use a URN notation ([ProfessionOID from gemSpec_OID]). \nSee also https://fachportal.gematik.de/fachportal-import/files/gemSpec_OID_V3.10.0.pdf",
+  "copyright": "Copyright gematik GmbH, Berlin, Germany",
+  "content": "complete",
+  "count": 35,
+  "concept": [
+    {
+      "code": "1.2.276.0.76.4.30",
+      "display": "Ärztin/Arzt"
+    },
+    {
+      "code": "1.2.276.0.76.4.31",
+      "display": "Zahnärztin/Zahnarzt",
+      "definition": "..."
+    },
+    {
+      "code": "1.2.276.0.76.4.32",
+      "display": "Apotheker/-in"
+    },
+    {
+      "code": "1.2.276.0.76.4.33",
+      "display": "Apothekerassistent/-in"
+    },
+    {
+      "code": "1.2.276.0.76.4.34",
+      "display": "Pharmazieingenieur/-in"
+    },
+    {
+      "code": "1.2.276.0.76.4.35",
+      "display": "pharmazeutisch-technische/-r Assistent/-in"
+    },
+    {
+      "code": "1.2.276.0.76.4.36",
+      "display": "pharmazeutisch-kaufmännische/-r Angestellte"
+    },
+    {
+      "code": "1.2.276.0.76.4.37",
+      "display": "Apothekenhelfer/-in"
+    },
+    {
+      "code": "1.2.276.0.76.4.38",
+      "display": "Apothekenassistent/-in"
+    },
+    {
+      "code": "1.2.276.0.76.4.39",
+      "display": "Pharmazeutische/-r Assistent/-in"
+    },
+    {
+      "code": "1.2.276.0.76.4.40",
+      "display": "Apothekenfacharbeiter/-in"
+    },
+    {
+      "code": "1.2.276.0.76.4.41",
+      "display": "Pharmaziepraktikant/-in"
+    },
+    {
+      "code": "1.2.276.0.76.4.42",
+      "display": "Stud.pharm. oder Famulant/-in"
+    },
+    {
+      "code": "1.2.276.0.76.4.43",
+      "display": "PTA-Praktikant/-in"
+    },
+    {
+      "code": "1.2.276.0.76.4.44",
+      "display": "PKA Auszubildende/-r"
+    },
+    {
+      "code": "1.2.276.0.76.4.45",
+      "display": "Psychotherapeut/-in"
+    },
+    {
+      "code": "1.2.276.0.76.4.46",
+      "display": "Psychologische/-r Psychotherapeut/-in"
+    },
+    {
+      "code": "1.2.276.0.76.4.47",
+      "display": "Kinder- und Jugendlichenpsychotherapeut/-in"
+    },
+    {
+      "code": "1.2.276.0.76.4.48",
+      "display": "Rettungsassistent/-in"
+    },
+    {
+      "code": "1.2.276.0.76.4.49",
+      "display": "Versicherte/-r"
+    },
+    {
+      "code": "1.2.276.0.76.4.178",
+      "display": "Notfallsanitäter/-in"
+    },
+    {
+      "code": "1.2.276.0.76.4.232",
+      "display": "Gesundheits- und Krankenpfleger/-in, Gesundheits- und Kinderkrankenpfleger/-in"
+    },
+    {
+      "code": "1.2.276.0.76.4.233",
+      "display": "Altenpfleger/-in"
+    },
+    {
+      "code": "1.2.276.0.76.4.234",
+      "display": "Pflegefachfrauen und Pflegefachmänner"
+    },
+    {
+      "code": "1.2.276.0.76.4.235",
+      "display": "Hebamme"
+    },
+    {
+      "code": "1.2.276.0.76.4.236",
+      "display": "Physiotherapeut/-in"
+    },
+    {
+      "code": "1.2.276.0.76.4.237",
+      "display": "Augenoptiker/-in und Optometrist/-in"
+    },
+    {
+      "code": "1.2.276.0.76.4.238",
+      "display": "Hörakustiker/-in"
+    },
+    {
+      "code": "1.2.276.0.76.4.239",
+      "display": "Orthopädieschuhmacher/-in"
+    },
+    {
+      "code": "1.2.276.0.76.4.240",
+      "display": "Orthopädietechniker/-in"
+    },
+    {
+      "code": "1.2.276.0.76.4.241",
+      "display": "Zahntechniker/-in"
+    },
+    {
+      "code": "1.2.276.0.76.4.274",
+      "display": "Ergotherapeut/-in"
+    },
+    {
+      "code": "1.2.276.0.76.4.275",
+      "display": "Logopäde/Logopädin"
+    },
+    {
+      "code": "1.2.276.0.76.4.276",
+      "display": "Podologe/Podologin"
+    },
+    {
+      "code": "1.2.276.0.76.4.277",
+      "display": "Ernährungstherapeut/-in"
+    }
+  ]
+}

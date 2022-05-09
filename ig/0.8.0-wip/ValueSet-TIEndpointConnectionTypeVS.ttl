@@ -1,0 +1,48 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<https://gematik.de/fhir/directory/ValueSet/TIEndpointConnectionTypeVS> a fhir:ValueSet;
+  fhir:nodeRole fhir:treeRoot;
+  fhir:Resource.id [ fhir:value "TIEndpointConnectionTypeVS"];
+  fhir:DomainResource.text [
+     fhir:Narrative.status [ fhir:value "generated" ];
+     fhir:Narrative.div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>This value set includes codes based on the following rules:</p><ul><li>Include all codes defined in <a href=\"http://terminology.hl7.org/3.1.0/CodeSystem-endpoint-connection-type.html\"><code>http://terminology.hl7.org/CodeSystem/endpoint-connection-type</code></a></li><li>Include all codes defined in <a href=\"CodeSystem-TIEndpointConnectionTypeCS.html\"><code>https://gematik.de/fhir/directory/CodeSystem/TIEndpointConnectionTypeCS</code></a></li></ul></div>"
+  ];
+  fhir:ValueSet.url [ fhir:value "https://gematik.de/fhir/directory/ValueSet/TIEndpointConnectionTypeVS"];
+  fhir:ValueSet.version [ fhir:value "0.8.0-wip"];
+  fhir:ValueSet.name [ fhir:value "TIEndpointConnectionTypeVS"];
+  fhir:ValueSet.title [ fhir:value "Connections Types for Endpoints in the TI"];
+  fhir:ValueSet.status [ fhir:value "draft"];
+  fhir:ValueSet.date [ fhir:value "2022-05-09T08:08:29+02:00"^^xsd:dateTime];
+  fhir:ValueSet.publisher [ fhir:value "gematik GmbH"];
+  fhir:ValueSet.contact [
+     fhir:index 0;
+     fhir:ContactDetail.name [ fhir:value "gematik GmbH" ];
+     fhir:ContactDetail.telecom [
+       fhir:index 0;
+       fhir:ContactPoint.system [ fhir:value "url" ];
+       fhir:ContactPoint.value [ fhir:value "https://www.gematik.de/" ]
+     ]
+  ];
+  fhir:ValueSet.copyright [ fhir:value "Copyright gematik GmbH, Berlin, Germany"];
+  fhir:ValueSet.compose [
+     fhir:ValueSet.compose.include [
+       fhir:index 0;
+       fhir:ValueSet.compose.include.system [ fhir:value "http://terminology.hl7.org/CodeSystem/endpoint-connection-type" ]
+     ], [
+       fhir:index 1;
+       fhir:ValueSet.compose.include.system [ fhir:value "https://gematik.de/fhir/directory/CodeSystem/TIEndpointConnectionTypeCS" ]
+     ]
+  ] .
+
+# - ontology header ------------------------------------------------------------
+
+<https://gematik.de/fhir/directory/ValueSet/TIEndpointConnectionTypeVS.ttl> a owl:Ontology;
+  owl:imports fhir:fhir.ttl .
+
+# -------------------------------------------------------------------------------------
+
