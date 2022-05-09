@@ -6,7 +6,7 @@
   "name": "gematikDirectory",
   "title": "gematik Directory",
   "status": "draft",
-  "date": "2022-04-28",
+  "date": "2022-05-09",
   "publisher": "gematik GmbH",
   "contact": [
     {
@@ -159,75 +159,7 @@
       "nameUrl": "toc.html",
       "title": "Table of Contents",
       "generation": "html",
-      "page": [
-        {
-          "nameUrl": "index.html",
-          "title": "Home",
-          "generation": "markdown"
-        },
-        {
-          "nameUrl": "conformance.html",
-          "title": "Conformance",
-          "generation": "markdown",
-          "page": [
-            {
-              "nameUrl": "general-requirements.html",
-              "title": "General Requirements",
-              "generation": "markdown"
-            },
-            {
-              "nameUrl": "must-support.html",
-              "title": "Must Support",
-              "generation": "markdown"
-            }
-          ]
-        },
-        {
-          "nameUrl": "guidance.html",
-          "title": "Guidance",
-          "generation": "markdown"
-        },
-        {
-          "nameUrl": "profiles-and-extensions.html",
-          "title": "Profiles and Extensions",
-          "generation": "markdown"
-        },
-        {
-          "nameUrl": "capability-statements.html",
-          "title": "Capability Statements",
-          "generation": "markdown"
-        },
-        {
-          "nameUrl": "search-parameters-and-operations.html",
-          "title": "Search Parameters and Operations",
-          "generation": "markdown"
-        },
-        {
-          "nameUrl": "terminology.html",
-          "title": "Terminology",
-          "generation": "markdown"
-        },
-        {
-          "nameUrl": "security.html",
-          "title": "Security",
-          "generation": "markdown"
-        },
-        {
-          "nameUrl": "examples.html",
-          "title": "Examples",
-          "generation": "markdown"
-        },
-        {
-          "nameUrl": "downloads.html",
-          "title": "Downloads",
-          "generation": "markdown"
-        },
-        {
-          "nameUrl": "changes.html",
-          "title": "Changes",
-          "generation": "markdown"
-        }
-      ]
+      "page": []
     },
     "parameter": [
       {
@@ -236,7 +168,7 @@
       },
       {
         "code": "releaselabel",
-        "value": "Release 0.8.8wip"
+        "value": "Release 0.8.0-wip"
       }
     ]
   }

@@ -13,9 +13,10 @@ copyright: >-
 description: >-
   The gematik Directory Implementation Guide is based on FHIR Version R4 and defines the minimum conformance requirements for accessing the FHIR-Directory.
 license: CC0-1.0
-date: 2022-04-28
+date: 2022-05-09
 version: 0.8.0-wip
-
+copyrightyear: '2022+'
+releaselabel: Release 0.8.0-wip
 
 fhirVersion: 4.0.1
 
@@ -24,83 +25,6 @@ dependencies:
     version: 1.3.2
     uri: 'https://simplifier.net/guide/basisprofil-de-r4?version=current'
 
-pages:
-  index.md:
-    title: Home
-  conformance.md:
-    general-requirements.md:
-    must-support.md:
-  guidance.md:
-  profiles-and-extensions.md:
-  capability-statements.md:
-  search-parameters-and-operations.md:
-  terminology.md:
-  security.md:
-  examples.md:
-  downloads.md:
-  changes.md:
-#parameters:  # see https://confluence.hl7.org/display/FHIR/Implementation+Guide+Parameters
-#  path-resource:
-#    - input/resources
-#    - fsh-generated/resources
-#  path-pages:
-#    - input/pagecontent
-#    - input/intro-notes
-#    - fsh-generated/includes
-#    #- input/summaries
-#  path-expansion-params: '../../input/_resources/exp-params.json'  # for using US ed of SNOMED
-#  active-tables: 'false'
-#  apply-contact: 'true'
-#  apply-jurisdiction: 'true'
-#  apply-publisher: 'true'
-#  apply-version: 'true'
-#  show-inherited-invariants: 'false'
-#  usage-stats-opt-out: 'true'
-#  excludexml: 'false'
-#  excludejsn: 'false'
-#  excludettl: 'true'
-#  excludemap: 'true'
-#  excludeexample: 'true'
-#  # generate: #what does this do - todo: remove and see
-#  #   - xml
-#  #   - json
-#  # no-narrative:
-#  #   - '*/*'  # does not seems to work
-#  #   - 'StructureDefinition/*'
-#  # no-validate:
-#  #   - '*/*'  # does not seems to work
-#  #   - 'StructureDefinition/*'
-#  # version-comparison:
-#  #    - 4.0.0  # does not seems to work
-#  #    - 3.1.1  # does not seems to work
-#  #    - 2.0.0  # does not seems to work
-#  #    - 1.0.0  # does not seems to work
-copyrightyear: '2022+'
-releaselabel: Release 0.8.8wip
-
-# ╭────────────────────────────────────────────menu.xml────────────────────────────────────────────╮
-# │  To use a provided ig-data/input/includes/menu.xml file, delete the "menu" property below.     │
-# ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
 menu:
   Home: index.html
-  Conformance: #conformance.html
-      General Requirements: general-requirements.html
-      Must Support: must-support.html
-  Guidance: #guidance.html
-      USCDI: uscdi.html
-      General Guidance: general-guidance.html
-      Clinical Notes: clinical-notes.html
-      Medication List: medication-list.html
-      Basic Provenance: basic-provenance.html
-      SDOH: sdoh.html
-      Changes Between Versions: changes-between-versions.html
-      Future of US Core: future-of-US-core.html
-  FHIR Artifacts: #artifact.html
-      Profiles and Extensions: profiles-and-extensions.html
-      Search Parameters and Operations: search-parameters-and-operations.html
-      Terminology: terminology.html
-      Capability Statements: capability-statements.html
-  Security: security.html
-  Examples: examples.html
-  Downloads: downloads.html
-  Change Log: changes.html
+  Artifacts: artifacts.html
