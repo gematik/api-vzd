@@ -77,31 +77,3 @@ image::VZD_LDAP_Directory_Datenmodell.svg[Datenmodell]
 == FHIR-Directory Datenmodell
 
 image::VZD_FHIR_Directory_Resourcen.svg[Datenmodell]
-
-=== Organization
-
-Die Datenstrukturen für medizinische, sektorale und technische Institutionen bzw. Organisationen werden über den https://simplifier.net/vzd-fhir-directory/tiorganization[TI spezifischen Profil der Organization Ressource] abgebildet.
-
-Die einzelnen Elemente der Ressource Organization werden abhängig vom type der Organisation befüllt. Es wird unterschieden zwischen
-
-- Organisationen mit einer zugewiesenen professionOID gemäß https://simplifier.net/vzd-fhir-directory/tiinstitutiontypeoidcs[Codes für Endanwender Organisationen] und
-- https://simplifier.net/vzd-fhir-directory/tiprovidertypecs[Codes für Betrieb unterstützende Organisationen], z.B. TI-Messenger-Provider, KIM-Provider und Kartenherausgeber.
-
-Alle Organisationstypen sind mit dem jeweils verwendeten CodeSystem im https://simplifier.net/vzd-fhir-directory/tiorganizationtypevs[Valueset] festgelegt.
-
-Eine Organization Ressource kann auch mehrere type Elemente haben.
-
-=== Practitioner
-
-=== PractitionerRole
-
-=== Location
-
-=== HealthcareService
-
-=== Endpoint
-
-
-=== Bundle für X509-Zertifikate
-
-https://simplifier.net/vzd-fhir-directory/x509certificatebundleextension
