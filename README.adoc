@@ -35,7 +35,7 @@ image:https://shields.io/badge/App API-latest-green?logo=swagger[link="src/opena
 
 .*Verzeichnisdienst Systemkontext*
 image::VZD_Systemkontext.svg[VZD Systemkontext]
-
+{zwsp} +
 Verzeichnisdienst der TI verwaltet Einträge von Leistungserbringern und Organisationen/Institutionen mit allen definierten Attributen, die in das Verzeichnis aufgenommen werden sollen. Anhand einer Suchanfrage können diese  Daten abgefragt werden (z. B. Adressdaten, X.509-Zertifikate). Ferner können Einträge des Verzeichnisses durch Kartenherausgeber (Basisdaten) oder berechtigte fachanwendungsspezifische Dienste (Fachanwendungsdaten) geändert, hinzugefügt und gelöscht (Kartenherausgeber vollständige Einträge, fachanwendungsspezifische Dienste nur die jeweiligen Fachdaten) werden.
 
 Verzeichnisdienst bittet folgende Außenschnittstellen an (s Nummerierung in der Abbildung):
