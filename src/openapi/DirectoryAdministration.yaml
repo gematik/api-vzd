@@ -3,7 +3,12 @@ info:
   title: I_Directory_Administration
   description: REST Schnittstelle zur Pflege der Verzeichniseinträge.
               Über diese Schnittstelle können Verzeichniseinträge inklusive Zertifikaten erzeugt, aktualisiert und gelöscht werden. Die Administration von Fachdaten erfolgt über Schnittstelle I_Directory_Application_Maintenance und wird durch die Fachanwendungen durchgeführt. Lesender Zugriff auf die Fachdaten ist mit Operation getDirectoryEntries in vorliegender Schnittstelle möglich.
-  version: 1.8.1
+  version: 1.8.2
+  # Änderungen in Version 1.8.2
+  #  - Fehlerbehandlung verbessert:
+  #    o Schema Error: Optionale Fehlernachricht hinzugefügt
+  #    o Für alle Fehler HTTP Status Kodes das Error Schema aufgenommen
+  #    o Fehlercode 400 für Operationen read_Directory_Certificates & read_Directory_Entry_for_Sync & read_Directory_Entry_for_Sync_paging ergänzt
   # Änderungen in Version 1.8.1
   #  - Attribute "KOM-LE-Version" in eine Liste geändert 
   #  - Attribut "active" für Zertifikate aufgenommen
@@ -150,10 +155,16 @@ paths:
         401:
           description: Unauthorized
                     #  Der WWW-Authenticate Header im Response wird auf OAuth gesetzt.
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         403:
           description: Forbidden
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
 
 
   /DirectoryEntries:
@@ -226,10 +237,16 @@ paths:
         401:
           description: Unauthorized
                      # Der WWW-Authenticate Header im Response muss auf OAuth gesetzt werden.
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         403:
           description: Forbidden
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         405:
           description: Method Not Allowed
           content:
@@ -479,13 +496,22 @@ paths:
         401:
           description: Unauthorized
                     #  Der WWW-Authenticate Header im Response wird auf OAuth gesetzt.
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         403:
           description: Forbidden
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         404:
           description: Not Found
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
 
   /DirectoryEntriesSync:
     get:
@@ -697,20 +723,39 @@ paths:
               schema:
                   $ref: '#/components/schemas/DirectoryEntries'
 
+        400:
+          description: Bad Request
+                    #  Invalid uid supplied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         401:
           description: Unauthorized
                     #  Der WWW-Authenticate Header im Response wird auf OAuth gesetzt.
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         403:
           description: Forbidden
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         404:
           description: Not Found
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         503:
           description: Service Unavailable
           # Der Server schränkt die parallele Nutzung dieser Operation read_Directory_Entry_WL ein. Der Request kann nach einer angemessenen Zeitspanne wiederholt werden. 
-          content: {}  
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
 
   /v2/DirectoryEntriesSync:
     get:
@@ -943,20 +988,39 @@ paths:
               schema:
                   $ref: '#/components/schemas/readDirectoryEntryforSyncResponse'
 
+        400:
+          description: Bad Request
+                    #  Invalid uid supplied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         401:
           description: Unauthorized
                     #  Der WWW-Authenticate Header im Response wird auf OAuth gesetzt.
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         403:
           description: Forbidden
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         404:
           description: Not Found
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         503:
           description: Service Unavailable
           # Der Server schränkt die parallele Nutzung dieser Operation read_Directory_Entry_WL ein. Der Request kann nach einer angemessenen Zeitspanne wiederholt werden. 
-          content: {}  
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
 
 
 
@@ -1033,17 +1097,29 @@ paths:
         400:
           description: Bad Request
                      # Invalid ID supplied
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         401:
           description: Unauthorized
                      # Der WWW-Authenticate Header im Response muss auf OAuth gesetzt werden.
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         403:
           description: Forbidden
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         404:
           description: Not Found
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         405:
           description: Method Not Allowed
           content:
@@ -1084,17 +1160,29 @@ paths:
         400:
           description: Bad Request
                      # Invalid ID supplied
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         401:
           description: Unauthorized
                     #  Der WWW-Authenticate Header im Response muss auf OAuth gesetzt werden.
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         403:
           description: Forbidden
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         404:
           description: Not Found
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
 
   /DirectoryEntries/{uid}/Certificates:
     post:
@@ -1143,10 +1231,16 @@ paths:
         401:
           description: Unauthorized
                     #  Der WWW-Authenticate Header im Response muss auf OAuth gesetzt werden.
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         403:
           description: Forbidden
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         405:
           description: Method Not Allowed
           content:
@@ -1230,17 +1324,33 @@ paths:
               schema:
                   $ref: '#/components/schemas/userCertificates'
 
+        400:
+          description: Bad Request
+                    #  Invalid uid supplied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         401:
           description: Unauthorized
                     #  Der WWW-Authenticate Header im Response muss auf OAuth gesetzt werden.
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         403:
           description: Forbidden
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         404:
           description: Not Found
                     #  Certificate not found
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
 
   /DirectoryEntries/{uid}/Certificates/{certificateEntryID}:
     delete:
@@ -1622,6 +1732,9 @@ components:
     Error:
       type: object
       properties:
+        message: 
+          type: string
+          description: (optionale) Fehlernachricht
         errors:
           maxItems: 50
           minItems: 0
