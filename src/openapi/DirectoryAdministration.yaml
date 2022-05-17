@@ -8,7 +8,7 @@ info:
   #  - Fehlerbehandlung verbessert:
   #    o Schema Error: Optionale Fehlernachricht hinzugefügt
   #    o Für alle Fehler HTTP Status Kodes das Error Schema aufgenommen
-  #    o Fehlercode 400 für Operationen read_Directory_Certificates & read_Directory_Entry_for_Sync & read_Directory_Entry_for_Sync_paging ergänzt
+  #    o Fehlercode 400 für Operationen read_Directory_Certificates, read_Directory_Entry_for_Sync, read_Directory_Entry_for_Sync_paging, read_Directory_Entry ergänzt
   # Änderungen in Version 1.8.1
   #  - Attribute "KOM-LE-Version" in eine Liste geändert 
   #  - Attribut "active" für Zertifikate aufgenommen
@@ -492,7 +492,13 @@ paths:
             application/json:
               schema:
                   $ref: '#/components/schemas/DirectoryEntries'
-
+        400:
+          description: Bad Request
+                    #  Invalid uid supplied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         401:
           description: Unauthorized
                     #  Der WWW-Authenticate Header im Response wird auf OAuth gesetzt.
