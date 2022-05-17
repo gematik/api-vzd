@@ -494,7 +494,6 @@ paths:
                   $ref: '#/components/schemas/DirectoryEntries'
         400:
           description: Bad Request
-                    #  Invalid uid supplied
           content:
             application/json:
               schema:
@@ -731,7 +730,6 @@ paths:
 
         400:
           description: Bad Request
-                    #  Invalid uid supplied
           content:
             application/json:
               schema:
@@ -996,7 +994,6 @@ paths:
 
         400:
           description: Bad Request
-                    #  Invalid uid supplied
           content:
             application/json:
               schema:
@@ -1102,7 +1099,6 @@ paths:
                 $ref: '#/components/schemas/distinguishedName'
         400:
           description: Bad Request
-                     # Invalid ID supplied
           content:
             application/json:
               schema:
@@ -1165,7 +1161,6 @@ paths:
                 schema: {}
         400:
           description: Bad Request
-                     # Invalid ID supplied
           content:
             application/json:
               schema:
@@ -1332,7 +1327,6 @@ paths:
 
         400:
           description: Bad Request
-                    #  Invalid uid supplied
           content:
             application/json:
               schema:
@@ -1384,7 +1378,6 @@ paths:
           content: {}
         400:
           description: Bad Request
-                    #  Invalid uid supplied
           content:
             application/json:
               schema:
