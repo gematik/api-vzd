@@ -2,13 +2,24 @@ openapi: 3.0.1
 info:
   title: I_VZD_TIM_Provider_Services
   description: REST interface to retrieve the TI-Messenger federation list and the PASSporT signing certificate.
-  version: 1.0.2
+  version: 1.1.2
+  # version 1.1.2
+  #  - error handling improved:
+  #    o Schema Error: Optional error message added
+  #    o added error code 400 for getFederationList, updateTiMessengerDomain
+  #  - corrected schema schemaPASSporTCertificates
+  #
+  # version 1.1.1
+    # - corrected isEnsurance ->isInsurance
+  # version 1.1.0
+    # - removed operation getPASSporTCertificates.
+    # - new REST crud operations for TI-Messenger domains
   # version 1.0.2
     # - Operation getPASSporTCertificates returns now an array of certificates in pem format
   # version 1.0.1
     # - added hashAlgorithm to schemaFederationList
   # initiale Version
- 
+
 externalDocs:
   description: I_VZD_TIMessenger_services REST interface
   url: https://www.gematik.de
@@ -64,7 +75,7 @@ paths:
         in: query
         description: Version of the known federation list
         schema:
-          type: integer  
+          type: integer
 
       responses:
         200:
@@ -76,8 +87,13 @@ paths:
                   $ref: '#/components/schemas/schemaFederationList'
         204:
           description: No Content
-                    # if the version of the list is less than or equal to the version parameter of the request 
-
+                    # if the version of the list is less than or equal to the version parameter of the request
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         401:
           description: Unauthorized
                     #  The WWW-Authenticate header in the response is OAuth.
@@ -135,12 +151,152 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
 
+  /federation/{domain}:
+
+    put:
+      tags:
+      - updateTiMessengerDomain
+      summary: Update a domain in the TI-Messenger federation
+      description: A update to a domain in the TI-Messenger federation.
+      operationId: updateTiMessengerDomain
+      parameters:
+        - name: domain
+          in: path
+          description: |
+            Domain
+            Has to be equal to the domain in the requestBody
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Domain'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/Domain'
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        401:
+          description: Unauthorized
+                    #  The WWW-Authenticate header in the response is OAuth.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        403:
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+    delete:
+      tags:
+      - deleteTiMessengerDomain
+      summary: Deletes a domain in the TI-Messenger federation
+      description: Deletes a domain in the TI-Messenger federation.
+      operationId: deleteTiMessengerDomain
+      parameters:
+        - name: domain
+          in: path
+          description: Domain
+          required: true
+          schema:
+            type: string
+      responses:
+        204:
+          description: No content
+        401:
+          description: Unauthorized
+                    #  The WWW-Authenticate header in the response is OAuth.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        403:
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /federationCheck:
+    get:
+      tags:
+      - checkTiMessengerDomains
+      summary: This operation verifies that all managed domains belong to active Organization ressources in the FHIR-Directory.
+      description: |
+        This operation verifies that all managed domains belong to active Organization ressources in the FHIR-Directory.
+        Returns a list of all domains which belong to inactive Organizations.
+      operationId: checkTiMessengerDomains
+      responses:
+        200:
+          description: |
+           OK
+           Returns the list of all domains which belong to inactive Organizations
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                 inactiveOrganizationDomains:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Domain'
+        204:
+          description: |
+            No content
+            All domains of the client are OK
+        401:
+          description: Unauthorized
+                    #  The WWW-Authenticate header in the response is OAuth.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        403:
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+
 components:
 
   schemas:
-  
+
     schemaFederationList:
       type: object
+      readOnly: true
       properties:
         version:
           description: The version of the federation list
@@ -154,31 +310,69 @@ components:
           description: The list of hashed TI-Messenger domain names
           type: array
           items:
-            type: string
-            description: a hashed domain name
-          readOnly: true
+            $ref: '#/components/schemas/DomainList'
+
+    DomainList:
+        description: The list of hashed TI-Messenger domain names
+        type: object
+        properties:
+           domain:
+             type: string 
+             description: |
+               hashed TI-Messenger domain name
+           isInsurance:
+             description: |
+               Indicates if it is a domain of an health insurance for insured persons
+             type: boolean
+             example: false
+
 
     schemaPASSporTCertificates:
       type: object
       properties:
-        passportSigningCertificates:
-          description: The list of certificates for signing PASSporT in pem format
-          type: array
-          items:
-            type: string
-            description: certificate in pem format
-          readOnly: true
+        domain:
+          description: The TI-Messenger domain
+          type: string
+        telematikID:
+          description: The telematikID of the organization that uses the TI-Messenger domain
+          type: string
+        isInsurance:
+          description: |
+              Indicates if it is a domain of an health insurance for insured persons
+          type: boolean
+          example: false
+
+    Domain:
+      type: object
+      properties:
+        domain:
+          description: The TI-Messenger domain
+          type: string
+        telematikID:
+          description: The telematikID of the organization that uses the TI-Messenger domain
+          type: string
 
     Error:
       type: object
-      maxItems: 50
-      minItems: 0
+      properties:
+        message: 
+          type: string
+          description: (optionale) Fehlernachricht
+        errors:
+          maxItems: 50
+          minItems: 0
+          type: array
+          items:
+            $ref: '#/components/schemas/InnerError'
+
+    InnerError:
+      type: object
       properties:
         attributeName:
-          description: Name of the attribut in which the error occured
+          description: Name des Attributs, in dem ein Fehler erkannt wurde
           type: string
         attributeError:
-          description: Description of the error
+          description: Beschreibung des erkannten Fehlers
           type: string
 
     InfoObject:

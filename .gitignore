@@ -1,1 +1,5 @@
 *.dtmp
+src/fhir/output
+src/fhir/temp
+src/fhir/template
+src/fhir/input-cache

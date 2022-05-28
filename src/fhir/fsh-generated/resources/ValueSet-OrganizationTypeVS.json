@@ -1,0 +1,23 @@
+{
+  "resourceType": "ValueSet",
+  "status": "draft",
+  "name": "OrganizationTypeVS",
+  "id": "OrganizationTypeVS",
+  "description": "ValueSet for `Organization.type`",
+  "version": "0.8.0-wip",
+  "url": "https://gematik.de/fhir/directory/ValueSet/OrganizationTypeVS",
+  "publisher": "gematik GmbH",
+  "compose": {
+    "include": [
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/OrganizationProfessionOID"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/OrganizationProviderType"
+      },
+      {
+        "system": "http://ihe-d.de/ValueSets/IHEXDSpracticeSettingCode"
+      }
+    ]
+  }
+}

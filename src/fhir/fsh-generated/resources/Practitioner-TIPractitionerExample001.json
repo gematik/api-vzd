@@ -3,7 +3,7 @@
   "id": "TIPractitionerExample001",
   "meta": {
     "profile": [
-      "https://gematik.de/fhir/directory/StructureDefinition/TIPractitioner"
+      "https://gematik.de/fhir/directory/StructureDefinition/PractitionerDirectory"
     ]
   },
   "identifier": [
@@ -26,7 +26,7 @@
         "coding": [
           {
             "code": "1.2.276.0.76.4.31",
-            "system": "https://gematik.de/fhir/directory/CodeSystem/TIPractitionerProfessionOidCS"
+            "system": "https://gematik.de/fhir/directory/CodeSystem/PractitionerProfessionOID"
           }
         ]
       }
@@ -52,6 +52,19 @@
           }
         ]
       }
+    }
+  ],
+  "name": [
+    {
+      "prefix": [
+        "Dr."
+      ],
+      "given": [
+        "Max",
+        "Manfred"
+      ],
+      "family": "Musterman",
+      "text": "Dr. Max Manfred Mustermann"
     }
   ]
 }

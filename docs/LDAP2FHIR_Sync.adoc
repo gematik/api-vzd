@@ -1,0 +1,141 @@
+[cols="2,1,2,1,2,2",options="header"]
+|============================
+|LDAP-Attribut |LDAP-Eintragstyp |Nutzung LDAP gemäß VZD-Spec Tab_VZD_Datenbeschreibung |FHIR-Ressource | FHIR-Element | Bemerkungen
+
+.2+|givenName |HBA |Bezeichner: Vorname, wird vom VZD aus dem Zertifikat übernommen. |Practitioner |         name.given[0] | 
+|SMC-B |wird nicht verwendet |- | - | 
+
+.2+|sn |HBA |Bezeichner: Name, wird vom VZD aus dem Zertifikat übernommen |Practitioner | name.family | 
+|SMC-B |Wird vom VZD als Kopie des Attributs displayName übernommen. |- | (wird nicht gemapped) | 
+
+.2+|cn |HBA |Eintrag: Bezeichner: Nachname, Vorname | - | (wird nicht gemapped) .2+| 
+|SMC-B |Eintrag: Bezeichner: Name |- | (wird nicht gemapped) 
+
+.2+|displayName |HBA |Bezeichner: Anzeigename, Name nach dem der Eintrag von Nutzern gesucht wird und unter dem gefundene Einträge angezeigt werden. Konvention für HBA Einträge: Name, Vorname | Practitioner | name.text | TI-Practitioner:
+family und given werden durch givenName und sn gesetzt: https://www.hl7.org/fhir/datatypes.html#HumanName
+|SMC-B |Bezeichner: Anzeigename, Name nach dem der Eintrag von Nutzern gesucht wird und unter dem gefundene Einträge angezeigt werden. |TIOrganization | name | 
+
+.2+|streetAddress,
+postalCode,
+countryCode,
+localityName,
+stateOrProvinceName |HBA .2+|Bezeichner: Straße und Hausnummer
+Bezeichner: Postleitzahl
+Kann beim Anlegen des Datensatzes und beim Ändern gesetzt werden (falls nicht gesetzt, ergänzt der VZD den Defaultwert für Deutschland).
+Bezeichner: Ort
+
+Bezeichner: Bundesland oder Region | Practitioner 
+.2+| address. use = work
+address.type = postal
+address.text = "streetAddress&#13;&#10;postalCode &#13;&#10;localityName&#13;&#10;
+stateOrProvinceName&#13;
+&#10;countryCode"
+address.line="streetAddress"
+address.city = localityName
+address.state = stateOrProvinceName
+address.postalCode = postalCode
+address.country = countryCode
+.2+| HL7 Deutschland hat die Adresse definiert:
+
+https://simplifier.net/basisprofil-de-r4/addressdebasis
+
+Wird wie definiert umgesetzt.
+|SMC-B |TIOrganization  
+
+.2+|title |HBA |Bezeichner: Titel | Practitioner | name.prefix |Leer oder Titel nur mit "-" werden nicht übernommen. 
+|SMC-B |nicht verwendet |- | (wird nicht gemapped) |
+
+.2+|organization |HBA |Bezeichner: Name der Organisation oder Name der Betriebsstätte | *offen* | *offen* |
+|SMC-B |Alternativer Name nach dem der Eintrag von Nutzern gesucht wird und unter dem gefundene Einträge angezeigt werden |TIOrganization | alias |
+
+.2+|otherName |HBA .2+|Bezeichner: Anderer Name Veraltet: Wird für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen nicht benötigt (siehe displayName und organization) | - | - .2+| Veraltet wird nicht gemapped.
+|SMC-B |- |-  
+
+.2+|specialization Format
+
+urn:psc:<OID Codesystem:Code> |HBA |Bezeichner: Fachgebiet
+Kann mehrfach vorkommen (1..100).
+
+Für Einträge der Leistungserbringer (HBA-Eintrag)
+Der Wertebereich entspricht den in hl7 definierten Werten ( https://wiki.hl7.de/index.php?title=IG:Value_Sets_f%C3%BCr_XDS# DocumentEntry.authorSpecialty). urn:as:<OID Codesystem:Code> Beispiel für FA Allgemeinmedizin: urn:as:1.2.276.0.76.5.114:010 | TIPractitioner | qualification.code.coding.system = Codesystem
+qualification.code.coding.code = Code
+qualification.code.coding.display = <added by FHIR-Proxy> 
+| specialization enthält die medizinische Fachrichtung (Allgemein, Augen, Kinder, ...) 
+
+im Gegensatz zur professionOID, die die Art der LEI beschreibt (Arztpraxis, Zahnarztpraxis, Krankenhaus, ...)
+
+Es werden folgenden Codes verwendet: https://simplifier.net/packages/de.basisprofil.r4/1.2.0/files/483083
+
+Codesystem ist ensprechend:  urn:oid:1.2.276.0.76.5.114
+|SMC-B |Bezeichner: Fachgebiet
+Kann mehrfach vorkommen (1..100).
+
+Für Einträge der Leistungserbringerorganisationen (SMC-B Eintrag) Der Wertebereich entspricht den in hl7 definierten und für ePA festgelegten Werten ( https://wiki.hl7.de/index.php?title=IG:Value_Sets_f%C3%BCr_XDS# DocumentEntry.practiceSettingCode). 
+| TIOrganization | type.coding.system = Codesystem
+specialty.coding.code = Code
+specialty.coding.display = <added by FHIR-Proxy> |
+0.6.0 ValueSets / Code Systems definiert:
+https://simplifier.net/vzd-fhir-directory/tiorganizationtypevs
+https://simplifier.net/vzd-fhir-directory/tipractitionerrolevs
+
+.2+|domainID |HBA |- | - | - |DomainID wird bei Personen nicht benötigt (wird also nicht berücksichtigt).
+|SMC-B |Bezeichner: domänenspezifisches Kennzeichen des Eintrags. kann mehrfach vorkommen (0..100)
+| TIOrganization | identifier|
+Es wird ein "genereller" Identifier Type für diese domainID verwendet. 
+Annahme: Identifier.type = domainID
+
+|holder |HBA und SMC-B |Legt fest, wer Änderungen an den Basisdaten des Eintrags vornehmen darf. Hat keinen Einfluss auf Fachdaten und Zertifikatsdaten. 
+| - | - |Wird aktuelle nicht synchronisiert, da dieses nicht für die TIM-Umsetzung gebraucht wird.
+
+|maxKOMLEadr |HBA und SMC-B |Maximale Anzahl von mail Adressen in den KOM-LE-Fachdaten. Falls kein Wert eingetragen wurde, können beliebig viele mail Adressen in den KOM-LE Fachdaten eingetragen werden. Falls ein Wert eingetragen wurde, können maximal so viele mail Adressen in den KOM-LE Fachdaten eingetragen werden.
+| - | - |Wird aktuelle nicht synchronisiert, da dieses nicht für die TIM-Umsetzung gebraucht wird und in FHIR anderes geregelt werden kann.
+
+|personalEntry |HBA und SMC-B |Wird vom VZD eingetragen Wert == TRUE, wenn alle Zertifikate den entryType 1 haben (Berufsgruppe), Wert == FALSE sonst
+| - | - |
+
+|dataFromAuthority |HBA und SMC-B |wird vom VZD eingetragen Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
+| - | - |Wird über neues Berechtigungsmodell behandelet
+
+.2+|userCertificate |HBA .2+|Bezeichner: Enc-Zertifikat kann mehrfach vorkommen (0..50) Das Zertifikat wird gelöscht, wenn es ungültig geworden ist. Wenn kein Zertifikat vorliegt, dann kann der Eintrag nicht mittels LDAP-Abfrage gefunden werden. Format: DER, Base64-kodiert | - | - |Da aktuelle nur erste einmal der TIM-UserCase umgesetzt wird, werden keine KIM-Zertifikat genutzt.
+|SMC-B 
+| - | - |
+Da aktuelle nur erste einmal der TIM-UserCase umgesetzt wird, werden keine KIM-Zertifikat genutzt.
+
+.2+|entryType |HBA .2+|Bezeichner: Eintragstyp Wird vom VZD anhand der im Zertifikat enthaltenen OID (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. | - | - |Wird für EPA perspektivisch genutzt. Aus diesem Grund wird aktuelle hier keine Mapping vorgesehen.
+|SMC-B 
+| - | - |
+Wird für EPA perspektivisch genutzt. Aus diesem Grund wird aktuelle hier keine Mapping vorgesehen.
+
+.2+|telematikID |HBA .2+|Bezeichner: TelematikID Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen. Ist in den Basisdaten und in den Zertifikatsdaten enthalten. 
+| Practitioner  | identifier.value = telematikID |
+|SMC-B | TIOrganization | identifier.value = telematikID |
+
+.2+|professionOID |HBA .2+|
+| Practitioner  | qualification.code | ValueSet: https://simplifier.net/vzd-fhir-directory/tiorganizationtypevs
+|SMC-B | TIOrganization | type.coding.system = https://simplifier.net/vzd-fhir-directory/tiinstitutiontypeoidcs
+type.coding.code = professionOID
+type.coding.display = display aus https://simplifier.net/vzd-fhir-directory/tiorganizationtypevs
+| ValueSet: https://simplifier.net/vzd-fhir-directory/tipractitionerrolevs
+
+|usage |HBA und SMC-B | 
+| - | - |
+
+|description |HBA und SMC-B | 
+| - | - |
+
+|mail |HBA und SMC-B | 
+| - | - | KIM Informationen werden als Endpoint kodiert, s.
+https://simplifier.net/vzd-fhir-directory/endpointdirectory
+
+KIM-Daten werden aktuell nicht mit übertragen, da nur TIM-UserCase betrachtet wird.
+
+|KOM-LE-Version |HBA und SMC-B | 
+| - | - | KIM Informationen werden als Endpoint kodiert, s.
+https://simplifier.net/vzd-fhir-directory/endpointdirectory
+
+KIM-Daten werden aktuell nicht mit übertragen, da nur TIM-UserCase betrachtet wird.
+
+|changeDateTime |HBA und SMC-B | 
+| - | - | wird über FHIR Bordmittel realisiert
+
+|============================

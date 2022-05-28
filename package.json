@@ -1,12 +1,12 @@
 {
   "name": "de.gematik.fhir.directory",
-  "version": "0.7.0-wip",
+  "version": "0.8.0-wip",
   "author": "gematik GmbH",
   "description": "Package Release des gematik FHIR Directory",
   "fhirVersions": [
     "4.0.1"
   ],
   "dependencies": {
-    "de.basisprofil.r4": "1.2.0"
+    "de.basisprofil.r4": "1.3.2"
   }
 }

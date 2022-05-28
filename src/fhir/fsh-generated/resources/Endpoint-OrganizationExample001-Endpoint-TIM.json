@@ -1,0 +1,26 @@
+{
+  "resourceType": "Endpoint",
+  "id": "OrganizationExample001-Endpoint-TIM",
+  "meta": {
+    "profile": [
+      "https://gematik.de/fhir/directory/StructureDefinition/EndpointDirectory"
+    ]
+  },
+  "status": "active",
+  "connectionType": {
+    "code": "tim",
+    "system": "https://gematik.de/fhir/directory/CodeSystem/EndpointConnectionTypeDirectory"
+  },
+  "name": "@SystemsEngineering:tim.gematik.de",
+  "address": "@SystemsEngineering:tim.gematik.de",
+  "payloadType": [
+    {
+      "coding": [
+        {
+          "code": "tim-chat",
+          "system": "https://gematik.de/fhir/directory/CodeSystem/EndpointPayloadTypeDirectory"
+        }
+      ]
+    }
+  ]
+}

@@ -127,7 +127,7 @@ Die Nutzung für die Sektoren wird in Kapitel *Attributtabellen* von Dokument ht
 
 === displayName
 
-Dieses Attribut wird verwendet um vollen Namen einer Institution oder Person in GUI anzuzeigen. 
+Dieses Attribut wird verwendet um vollen Namen einer Institution oder Person in GUI anzuzeigen.
 
 Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2798#section-2.3[RFC2798 Section 2.3]
 
@@ -204,7 +204,7 @@ Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2256#section-5.10[RFC22
 Kann als `street` abgekürzt werden
 
 === postalCode
-Postleitzahl 
+Postleitzahl
 Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2256#section-5.18[RFC2256 Section 5.18]
 
 === localityName
@@ -279,7 +279,7 @@ Beispiel für Facharzt Allgemeinmedizin: +
 * https://wiki.hl7.de/index.php?title=IG:Value_Sets_für_XDS#DocumentEntry.practiceSettingCode[Überblick PracticeSettingCode bei HL7]
 * https://github.com/gematik/api-ePA/blob/master/src/vocabulary/value_sets/vs-practice-setting-code.xml[Normatives ValueSet für ePA]
 
-Weitere Ressourcen: 
+Weitere Ressourcen:
 
 * https://github.com/hl7germany/de.basisprofil.terminology/blob/3917ab759560993f9486562af6811765e357b8fc/input/fsh/codesystems/AerztlicheFachrichtungenIHEXDS.fsh[http://ihe-d.de/CodeSystems/AerztlicheFachrichtungen]
 * https://github.com/hl7germany/de.basisprofil.terminology/blob/3917ab759560993f9486562af6811765e357b8fc/input/fsh/codesystems/NichtAerztlicheFachrichtungenIHEXDS.fsh[http://ihe-d.de/CodeSystems/NichtaerztlicheFachrichtungen]
@@ -372,64 +372,64 @@ Zeitstempel der letzten Änderung. Wert wird bei jeder Aktualisierung durch VZD 
 [options="header"]
 [cols="2s,^1,^1,^1,^1"]
 |===
-|LDAP-Directory Attribut|       | Zertifikat    | Client    | KIM Anbieter 
-|givenName              | HBA   |  x            |           | 
-|                       | SMC-B 3+| nicht verwendet 
-|sn                     | HBA   |  x            |           | 
+|LDAP-Directory Attribut|       | Zertifikat    | Client    | KIM Anbieter
+|givenName              | HBA   |  x            |           |
+|                       | SMC-B 3+| nicht verwendet
+|sn                     | HBA   |  x            |           |
 |                       | SMC-B 3+| Vom VZD als Kopie des Attributs displayName eingetragen
 |cn                     | HBA   3+| Vom VZD als Kopie des Attributs displayName eingetragen
-|                       | SMC-B 3+| Vom VZD als Kopie des Attributs displayName eingetragen 
-|displayName            | HBA   |               |  x     | 
-|                       | SMC-B |               |  x     | 
-|streetAddress          | HBA   |               |  x     | 
-|                       | SMC-B |               |  x     | 
-|postalCode             | HBA   |               |  x     | 
-|                       | SMC-B |               |  x     | 
-|countryCode            | HBA   |               |  x     | 
-|                       | SMC-B |               |  x     | 
-|localityName           | HBA   |               |  x     | 
-|                       | SMC-B |               |  x     | 
-|stateOrProvinceName    | HBA   |               |  x     | 
-|                       | SMC-B |               |  x     | 
-|title                  | HBA   |               |  x     | 
-|                       | SMC-B 3+| nicht verwendet  
-|organization           | HBA   |               |  x     | 
-|                       | SMC-B |               |  x     | 
-|otherName              | HBA   |               |  x     | 
-|                       | SMC-B |               |  x     | 
-|specialization         | HBA   |               |  x     | 
-|                       | SMC-B |               |  x     | 
-|domainID               | HBA   |               |  x     | 
-|                       | SMC-B |               |  x     | 
-|holder                 | HBA   |               |  x     | 
-|                       | SMC-B |               |  x     | 
-|maxKOMLEadr            | HBA   |               |  x     | 
-|                       | SMC-B |               |  x     | 
-|personalEntry          | HBA   |  x            |        | 
-|                       | SMC-B |  x            |        | 
+|                       | SMC-B 3+| Vom VZD als Kopie des Attributs displayName eingetragen
+|displayName            | HBA   |               |  x     |
+|                       | SMC-B |               |  x     |
+|streetAddress          | HBA   |               |  x     |
+|                       | SMC-B |               |  x     |
+|postalCode             | HBA   |               |  x     |
+|                       | SMC-B |               |  x     |
+|countryCode            | HBA   |               |  x     |
+|                       | SMC-B |               |  x     |
+|localityName           | HBA   |               |  x     |
+|                       | SMC-B |               |  x     |
+|stateOrProvinceName    | HBA   |               |  x     |
+|                       | SMC-B |               |  x     |
+|title                  | HBA   |               |  x     |
+|                       | SMC-B 3+| nicht verwendet
+|organization           | HBA   |               |  x     |
+|                       | SMC-B |               |  x     |
+|otherName              | HBA   |               |  x     |
+|                       | SMC-B |               |  x     |
+|specialization         | HBA   |               |  x     |
+|                       | SMC-B |               |  x     |
+|domainID               | HBA   |               |  x     |
+|                       | SMC-B |               |  x     |
+|holder                 | HBA   |               |  x     |
+|                       | SMC-B |               |  x     |
+|maxKOMLEadr            | HBA   |               |  x     |
+|                       | SMC-B |               |  x     |
+|personalEntry          | HBA   |  x            |        |
+|                       | SMC-B |  x            |        |
 |dataFromAuthority      | HBA   3+| wird vom VZD eingetragen
 |                       | SMC-B 3+| wird vom VZD eingetragen
-|userCertificate        | HBA   |               |  x     | 
-|                       | SMC-B |               |  x     | 
-|entryType              | HBA   | x             |        | 
-|                       | SMC-B | x             |        | 
-|telematikID            | HBA   | x             |  x     | 
-|                       | SMC-B | x             |  x     | 
-|professionOID          | HBA   | x             |        | 
-|                       | SMC-B | x             |        | 
-|usage                  | HBA   |               |  x     | 
-|                       | SMC-B |               |  x     | 
-|description            | HBA   |               |  x     | 
-|                       | SMC-B |               |  x     | 
-|mail                   | HBA   |               |        |  x 
+|userCertificate        | HBA   |               |  x     |
+|                       | SMC-B |               |  x     |
+|entryType              | HBA   | x             |        |
+|                       | SMC-B | x             |        |
+|telematikID            | HBA   | x             |  x     |
+|                       | SMC-B | x             |  x     |
+|professionOID          | HBA   | x             |        |
+|                       | SMC-B | x             |        |
+|usage                  | HBA   |               |  x     |
+|                       | SMC-B |               |  x     |
+|description            | HBA   |               |  x     |
+|                       | SMC-B |               |  x     |
+|mail                   | HBA   |               |        |  x
 |                       | SMC-B |               |        |  x
-|komLeData              | HBA   |               |        |  x 
+|komLeData              | HBA   |               |        |  x
 |                       | SMC-B |               |        |  x
 |changeDateTime         | HBA   3+| wird vom VZD eingetragen
 |                       | SMC-B 3+| wird vom VZD eingetragen
 |===
 
-Erläuterungen zu den Spalten:
+*Erläuterungen zu den Spalten*:
 
 * Zertifikat
 - Der Wert für das LDAP Attribut wird dem Zertifikat entnommen.
@@ -450,6 +450,5 @@ Erläuterungen zu den Spalten:
 * *Alle aus den Zertifikaten befüllte Attribute (givenName, sn, personalEntry, telematikID, professionOID, entryType)* werden beim Hinzufügen eines neuen Zertifikats aktualisiert bzw. ergänzt.
 
 * *telematikID* im VZD Basiseintrag: Wird aus dem Zertifikat befüllt. Kann in dem REST Interface zwar angegeben, aber nicht auf einen anderen Wert geändert werden.
-
 
 |===
