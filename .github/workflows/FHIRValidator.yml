@@ -5,7 +5,8 @@ name: FHIRValidator
 on:
   push:
     branches:
-      - '*'
+      - main
+      - 'feature/**'
     paths: 
       - 'src/fhir/**'
       - 'package.json'
