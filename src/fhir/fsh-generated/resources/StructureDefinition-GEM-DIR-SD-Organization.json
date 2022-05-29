@@ -1,6 +1,6 @@
 {
   "resourceType": "StructureDefinition",
-  "id": "OrganizationDirectory",
+  "id": "GEM-DIR-SD-Organization",
   "extension": [
     {
       "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-category",
@@ -11,9 +11,9 @@
       "valueCode": "business"
     }
   ],
-  "url": "https://gematik.de/fhir/directory/StructureDefinition/OrganizationDirectory",
+  "url": "https://gematik.de/fhir/directory/StructureDefinition/GEM_DIR_SD_Organization",
   "version": "0.8.0-wip",
-  "name": "OrganizationDirectory",
+  "name": "GEM_DIR_SD_Organization",
   "title": "Organization in gematik Directory",
   "status": "draft",
   "publisher": "gematik GmbH",

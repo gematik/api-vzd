@@ -1,4 +1,4 @@
-Profile: OrganizationDirectory
+Profile: GEM_DIR_SD_Organization
 Parent: Organization
 Title: "Organization in gematik Directory"
 Description: """Defines the data structure for medical, regulatory and technical 

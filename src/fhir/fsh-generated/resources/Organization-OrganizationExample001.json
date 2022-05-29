@@ -3,7 +3,7 @@
   "id": "OrganizationExample001",
   "meta": {
     "profile": [
-      "https://gematik.de/fhir/directory/StructureDefinition/OrganizationDirectory"
+      "https://gematik.de/fhir/directory/StructureDefinition/GEM_DIR_SD_Organization"
     ]
   },
   "identifier": [
@@ -16,7 +16,7 @@
           }
         ]
       },
-      "system": "http://fhir.de/StructureDefinition/identifier-telematik-id",
+      "system": "https://gematik.de/fhir/sid/telematik-id",
       "value": "9-2.58.00000040"
     }
   ],

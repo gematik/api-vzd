@@ -16,7 +16,7 @@
           }
         ]
       },
-      "system": "http://fhir.de/StructureDefinition/identifier-telematik-id",
+      "system": "https://gematik.de/fhir/sid/telematik-id",
       "value": "3-2.58.00000040"
     }
   ],

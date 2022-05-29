@@ -11,7 +11,7 @@ Example TI-Messenger Endpoint
 * payloadType = EndpointPayloadTypeDirectory#tim-chat
 
 Instance: OrganizationExample001
-InstanceOf: OrganizationDirectory
+InstanceOf: GEM_DIR_SD_Organization
 Usage: #example
 Description: "Example of an Organization as to be found in gematik FHIR Directory"
 * identifier[+].system = $IdentifierTelematikID
