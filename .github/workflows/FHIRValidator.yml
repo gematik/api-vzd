@@ -4,8 +4,11 @@ name: FHIRValidator
 
 on:
   push:
-    branches: [ "*" ]
-    paths: [ 'src/fhir/**', 'package.json' ]
+    branches:
+      - '*'
+    paths: 
+      - 'src/fhir/**'
+      - 'package.json'
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
