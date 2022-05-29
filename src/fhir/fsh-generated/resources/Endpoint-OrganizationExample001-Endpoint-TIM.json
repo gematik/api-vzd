@@ -3,13 +3,13 @@
   "id": "OrganizationExample001-Endpoint-TIM",
   "meta": {
     "profile": [
-      "https://gematik.de/fhir/directory/StructureDefinition/EndpointDirectory"
+      "https://gematik.de/fhir/directory/StructureDefinition/GEM_DIR_SD_Endpoint"
     ]
   },
   "status": "active",
   "connectionType": {
     "code": "tim",
-    "system": "https://gematik.de/fhir/directory/CodeSystem/EndpointConnectionTypeDirectory"
+    "system": "https://gematik.de/fhir/directory/CodeSystem/GEM-DIR-CS-EndpointConnectionType"
   },
   "name": "@SystemsEngineering:tim.gematik.de",
   "address": "@SystemsEngineering:tim.gematik.de",
@@ -18,7 +18,7 @@
       "coding": [
         {
           "code": "tim-chat",
-          "system": "https://gematik.de/fhir/directory/CodeSystem/EndpointPayloadTypeDirectory"
+          "system": "https://gematik.de/fhir/directory/CodeSystem/GEM-DIR-CS-EndpointPayloadType"
         }
       ]
     }

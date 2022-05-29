@@ -25,7 +25,7 @@
       "coding": [
         {
           "code": "1.2.276.0.76.4.58",
-          "system": "https://gematik.de/fhir/directory/CodeSystem/OrganizationProfessionOID"
+          "system": "https://gematik.de/fhir/directory/CodeSystem/GEM-DIR-CS-OrganizationProfessionOID"
         }
       ]
     }

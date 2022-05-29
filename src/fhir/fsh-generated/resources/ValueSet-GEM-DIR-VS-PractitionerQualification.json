@@ -1,0 +1,20 @@
+{
+  "resourceType": "ValueSet",
+  "status": "draft",
+  "name": "GEM_DIR_VS_PractitionerQualification",
+  "id": "GEM-DIR-VS-PractitionerQualification",
+  "description": "ValueSet for `Practitoner.qualification`",
+  "version": "0.8.0-wip",
+  "url": "https://gematik.de/fhir/directory/ValueSet/GEM-DIR-VS-PractitionerQualification",
+  "publisher": "gematik GmbH",
+  "compose": {
+    "include": [
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/GEM-DIR-CS-PractitionerProfessionOID"
+      },
+      {
+        "system": "http://ihe-d.de/ValueSets/IHEXDSauthorSpeciality"
+      }
+    ]
+  }
+}

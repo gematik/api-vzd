@@ -118,7 +118,7 @@
         "mustSupport": true,
         "binding": {
           "strength": "required",
-          "valueSet": "https://gematik.de/fhir/directory/ValueSet/OrganizationTypeVS"
+          "valueSet": "https://gematik.de/fhir/directory/ValueSet/GEM_DIR_VS_OrganizationType"
         }
       },
       {

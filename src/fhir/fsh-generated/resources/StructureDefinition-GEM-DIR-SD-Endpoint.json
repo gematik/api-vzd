@@ -1,0 +1,86 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "GEM-DIR-SD-Endpoint",
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-category",
+      "valueString": "Base.Entities"
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-security-category",
+      "valueCode": "business"
+    }
+  ],
+  "url": "https://gematik.de/fhir/directory/StructureDefinition/GEM_DIR_SD_Endpoint",
+  "version": "0.8.0-wip",
+  "name": "GEM_DIR_SD_Endpoint",
+  "title": "Endpoint in gematik Directory",
+  "status": "draft",
+  "publisher": "gematik GmbH",
+  "description": "Endpoints for applications in the gematik Directory",
+  "fhirVersion": "4.0.1",
+  "mapping": [
+    {
+      "identity": "rim",
+      "uri": "http://hl7.org/v3",
+      "name": "RIM Mapping"
+    },
+    {
+      "identity": "w5",
+      "uri": "http://hl7.org/fhir/fivews",
+      "name": "FiveWs Pattern Mapping"
+    }
+  ],
+  "kind": "resource",
+  "abstract": false,
+  "type": "Endpoint",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Endpoint",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Endpoint.status",
+        "path": "Endpoint.status",
+        "mustSupport": true
+      },
+      {
+        "id": "Endpoint.connectionType",
+        "path": "Endpoint.connectionType",
+        "mustSupport": true
+      },
+      {
+        "id": "Endpoint.connectionType.code",
+        "path": "Endpoint.connectionType.code",
+        "binding": {
+          "strength": "required",
+          "valueSet": "https://gematik.de/fhir/directory/ValueSet/GEM_DIR_VS_EndpointConnectionType"
+        }
+      },
+      {
+        "id": "Endpoint.name",
+        "path": "Endpoint.name",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "Endpoint.managingOrganization",
+        "path": "Endpoint.managingOrganization",
+        "mustSupport": true
+      },
+      {
+        "id": "Endpoint.payloadType",
+        "path": "Endpoint.payloadType",
+        "mustSupport": true,
+        "binding": {
+          "strength": "required",
+          "valueSet": "https://gematik.de/fhir/directory/ValueSet/GEM_DIR_VS_EndpointPayloadType"
+        }
+      },
+      {
+        "id": "Endpoint.address",
+        "path": "Endpoint.address",
+        "mustSupport": true
+      }
+    ]
+  }
+}
