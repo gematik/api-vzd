@@ -15,6 +15,10 @@ organisations specific for german Healthcare and Telematics Infrastructure.
 * identifier[TelematikID] only $IdentifierTelematikID
 * identifier contains BSNR 0..1 MS
 * identifier[BSNR] only $IdentifierBSNR
+* identifier contains KZVA 0..1 MS
+* identifier[KZVA] only $IdentifierKZVA
+* identifier contains IKNR 0..1 MS
+* identifier[IKNR] only $IdentifierIKNR
 * type 1..1 MS
 * type from GEM_DIR_VS_OrganizationType
 * name 1..1 MS

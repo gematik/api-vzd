@@ -17,12 +17,18 @@ Alias: $NichtÄrztlicheFachrichtungen = urn:oid:1.3.6.1.4.1.19376.3.276.1.5.5
 // TelematikID
 Alias: $IdentifierTelematikID = http://fhir.de/StructureDefinition/identifier-telematik-id
 Alias: $NamingSystemTelematikID = https://gematik.de/fhir/sid/telematik-id
-
 // BSNR (Betriebstättennummer)
 Alias: $IdentifierBSNR = http://fhir.de/StructureDefinition/identifier-bsnr
 Alias: $NamingSystemBSNR = https://fhir.kbv.de/NamingSystem/KBV_NS_Base_BSNR
-
-Alias: $IdentifierLebenslangeArztNummer = http://fhir.de/StructureDefinition/identifier-lanr
-Alias: $IdentifierLebenslangeZahnarztNummer = http://fhir.de/StructureDefinition/identifier-zanr
-Alias: $IdentifierIKNummer = http://fhir.de/StructureDefinition/identifier-iknr
-Alias: $IdentifierKZVAbrechnungsnummer = http://fhir.de/StructureDefinition/identifier-kzva
+// KZVA (KZV-Abrechnungsnummer)
+Alias: $IdentifierKZVA = http://fhir.de/StructureDefinition/identifier-kzva
+Alias: $NamingSystemKZVA = http://fhir.de/sid/kzbv/kzvabrechnungsnummer
+// IKNR (Institutionskennzeichen)
+Alias: $IdentifierIKNR = http://fhir.de/StructureDefinition/identifier-iknr
+Alias: $NamingSystemIKNR = http://fhir.de/sid/arge-ik/iknr
+// LANR (Lebenslange Arztnummer)
+Alias: $IdentifierLANR = http://fhir.de/StructureDefinition/identifier-lanr
+Alias: $NamingSystemLANR = https://fhir.kbv.de/NamingSystem/KBV_NS_Base_ANR
+// ZANR (Lebenslange Zahnarztnummer)
+Alias: $IdentifierZANR = http://fhir.de/StructureDefinition/identifier-zanr
+Alias: $NamingSystemZANR = http://fhir.de/sid/kzbv/zahnarztnummer
