@@ -3,7 +3,6 @@ Parent: Organization
 Title: "Organization in gematik Directory"
 Description: """Defines the data structure for medical, regulatory and technical 
 organisations specific for german Healthcare and Telematics Infrastructure.
-
 """
 * insert Meta
 * id 0..1 MS
