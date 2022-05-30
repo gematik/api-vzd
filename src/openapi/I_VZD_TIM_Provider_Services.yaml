@@ -2,7 +2,11 @@ openapi: 3.0.1
 info:
   title: I_VZD_TIM_Provider_Services
   description: REST interface to retrieve the TI-Messenger federation list and the PASSporT signing certificate.
-  version: 1.1.2
+  version: 1.1.3
+  # version 1.1.3
+  #  - removed operation getPASSporTCertificates
+  #  - added /localization operation whereIs
+  # 
   # version 1.1.2
   #  - error handling improved:
   #    o Schema Error: Optional error message added
@@ -114,23 +118,41 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
 
-  /PASSporTCertificates:
+  /localization:
     get:
       tags:
-      - getPASSporTCertificates
-      summary: Returns the list of certificates that signs Personal Assertion Tokens (PASSporT)
-      description: Returns the certificate that signs Personal Assertion Tokens (PASSporT)
-      operationId: getPASSporTCertificates
+      - whereIs
+      summary: Checks in which directory part the MXID is located.
+      description: This operation returns the directory part, to which the hash of the MXId in the request belongs.
+      operationId: whereIs
+      parameters:
+      - name: hash
+        in: query
+        description: hash of the MXID
+        schema:
+          type: string
 
       responses:
         200:
           description: OK
-                    #  The list of X.509 certificates in pem format.
           content:
             application/json:
               schema:
-                  $ref: '#/components/schemas/schemaPASSporTCertificates'
-
+                  type: string
+                  enum: [org, pract, orgPract, none]
+                  example: org
+                  description: |
+                    Returns in which part of the directory the MXID (the request contains the hash of the MXID) is located:
+                     - org:      Located in the Organization part
+                     - pract:    Located in the Practitioner part
+                     - orgPract: Located in the Organization and Practitioner part
+                     - none:     Not found in any part
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         401:
           description: Unauthorized
                     #  The WWW-Authenticate header in the response is OAuth.
@@ -144,12 +166,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        404:
-          description: Not Found
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
+
 
   /federation/{domain}:
 
