@@ -34,8 +34,8 @@ tags:
   description: This operation returns meta data about this interface
 - name: getFederationList
   description: Returns the TI-Messenger federation list. If a version parameter is given then the federation list will be returned only if there is a newer version available.
-- name: getPASSporTCertificates
-  description: Returns the list of certificates which are used for signing Personal Assertion Tokens (PASSporT)
+- name: whereIs
+  description: Checks in which directory part the MXID is located
 
 paths:
   /:
