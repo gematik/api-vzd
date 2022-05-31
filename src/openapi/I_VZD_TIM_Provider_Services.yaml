@@ -363,16 +363,17 @@ paths:
     get:
       tags:
       - checkTiMessengerDomains
-      summary: This operation verifies that all managed domains belong to active Organization ressources in the FHIR-Directory.
+      summary: This operation verifies that all own managed domains belong to active Organization ressources in the FHIR-Directory.
       description: |
-        This operation verifies that all managed domains belong to active Organization ressources in the FHIR-Directory.
+        This operation verifies that all own managed domains belong to active Organization ressources in the FHIR-Directory.
         Returns a list of all domains which belong to inactive Organizations.
+        The own domains are determined based on the used token. 
       operationId: checkTiMessengerDomains
       responses:
         200:
           description: |
            OK
-           Returns the list of all domains which belong to inactive Organizations
+           Returns the list of all own domains which belong to inactive Organizations
           content:
             application/json:
               schema:
