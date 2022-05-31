@@ -2,7 +2,19 @@ openapi: 3.0.1
 info:
   title: I_VZD_TIM_Provider_Services
   description: REST interface to retrieve the TI-Messenger federation list and the PASSporT signing certificate.
-  version: 1.1.0
+  version: 1.1.3
+  # version 1.1.3
+  #  - removed operation getPASSporTCertificates
+  #  - added /localization operation whereIs
+  # 
+  # version 1.1.2
+  #  - error handling improved:
+  #    o Schema Error: Optional error message added
+  #    o added error code 400 for getFederationList, updateTiMessengerDomain
+  #  - corrected schema schemaPASSporTCertificates
+  #
+  # version 1.1.1
+    # - corrected isEnsurance ->isInsurance
   # version 1.1.0
     # - removed operation getPASSporTCertificates.
     # - new REST crud operations for TI-Messenger domains
@@ -11,7 +23,7 @@ info:
   # version 1.0.1
     # - added hashAlgorithm to schemaFederationList
   # initiale Version
- 
+
 externalDocs:
   description: I_VZD_TIMessenger_services REST interface
   url: https://www.gematik.de
@@ -22,17 +34,12 @@ tags:
   description: This operation returns meta data about this interface
 - name: getFederationList
   description: Returns the TI-Messenger federation list. If a version parameter is given then the federation list will be returned only if there is a newer version available.
-- name: addTiMessengerDomain
-  description: This operation adds the domain in the TI-Messenger Federationlist
-- name: getTiMessengerDomain
-  description: This operation returns a single or all managed TI-Messenger domains
-- name: updateTiMessengerDomain
-  description: This operation updates a TI-Messenger domain.
-- name: deleteTiMessengerDomain
-  description: This operation deletes a domain trom the TI-Messenger Federationlist.
-- name: checkTiMessengerDomains
-  description: This operation verifies that all managed domains belong to active Organization ressources in the FHIR-Directory. 
-  
+- name: whereIs
+  description: Checks in which directory part the MXID is located
+- name: domainAdministration
+  description: Operations for the administration of the federation domains.
+
+
 paths:
   /:
     get:
@@ -75,7 +82,7 @@ paths:
         in: query
         description: Version of the known federation list
         schema:
-          type: integer  
+          type: integer
 
       responses:
         200:
@@ -84,11 +91,16 @@ paths:
           content:
             application/json:
               schema:
-                  $ref: '#/components/schemas/FederationList'
+                  $ref: '#/components/schemas/schemaFederationList'
         204:
           description: No Content
-                    # if the version of the list is less than or equal to the version parameter of the request 
-
+                    # if the version of the list is less than or equal to the version parameter of the request
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         401:
           description: Unauthorized
                     #  The WWW-Authenticate header in the response is OAuth.
@@ -109,10 +121,59 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
 
+  /localization:
+    get:
+      tags:
+      - whereIs
+      summary: Checks in which directory part the MXID is located.
+      description: This operation returns the directory part, to which the hash of the MXId in the request belongs.
+      operationId: whereIs
+      parameters:
+      - name: hash
+        in: query
+        description: hash of the MXID
+        schema:
+          type: string
+
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                  type: string
+                  enum: [org, pract, orgPract, none]
+                  example: org
+                  description: |
+                    Returns in which part of the directory the MXID (the request contains the hash of the MXID) is located:
+                     - org:      Located in the Organization part
+                     - pract:    Located in the Practitioner part
+                     - orgPract: Located in the Organization and Practitioner part
+                     - none:     Not found in any part
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        401:
+          description: Unauthorized
+                    #  The WWW-Authenticate header in the response is OAuth.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        403:
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
   /federation:
     post:
       tags:
-      - addTiMessengerDomain
+      - domainAdministration
       summary: Add a domain to the TI-Messenger federation
       description: A new domain in the TI-Messenger federation.
       operationId: addTiMessengerDomain
@@ -129,6 +190,12 @@ paths:
               schema:
                   $ref: '#/components/schemas/Domain'
 
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         401:
           description: Unauthorized
                     #  The WWW-Authenticate header in the response is OAuth.
@@ -142,16 +209,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        404:
-          description: Not Found
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
 
     get:
       tags:
-      - getTiMessengerDomain
+      - domainAdministration
       summary: Get a TI-Messenger domain
       description: Get a single or all TI-Messenger domains.
       operationId: getTiMessengerDomain
@@ -174,6 +235,12 @@ paths:
                 items:
                   $ref: '#/components/schemas/Domain'
 
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         401:
           description: Unauthorized
                     #  The WWW-Authenticate header in the response is OAuth.
@@ -194,11 +261,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
 
+
   /federation/{domain}:
 
     put:
       tags:
-      - updateTiMessengerDomain
+      - domainAdministration
       summary: Update a domain in the TI-Messenger federation
       description: A update to a domain in the TI-Messenger federation.
       operationId: updateTiMessengerDomain
@@ -210,7 +278,7 @@ paths:
             Has to be equal to the domain in the requestBody
           required: true
           schema:
-            type: string  
+            type: string
       requestBody:
         content:
           application/json:
@@ -223,6 +291,12 @@ paths:
             application/json:
               schema:
                   $ref: '#/components/schemas/Domain'
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         401:
           description: Unauthorized
                     #  The WWW-Authenticate header in the response is OAuth.
@@ -245,7 +319,7 @@ paths:
 
     delete:
       tags:
-      - deleteTiMessengerDomain
+      - domainAdministration
       summary: Deletes a domain in the TI-Messenger federation
       description: Deletes a domain in the TI-Messenger federation.
       operationId: deleteTiMessengerDomain
@@ -255,10 +329,16 @@ paths:
           description: Domain
           required: true
           schema:
-            type: string  
+            type: string
       responses:
         204:
           description: No content
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         401:
           description: Unauthorized
                     #  The WWW-Authenticate header in the response is OAuth.
@@ -330,40 +410,54 @@ paths:
 components:
 
   schemas:
-  
-    FederationList:
+
+    schemaFederationList:
       type: object
+      readOnly: true
       properties:
         version:
           description: The version of the federation list
           type: integer
-          example: 12
           readOnly: true
         hashAlgorithm:
           description: The hash algorithm that was used to create the hashes. Currently only SHA-256 is supported.
           type: string
-          example: SHA-256
           readOnly: true
         domainList:
           description: The list of hashed TI-Messenger domain names
           type: array
           items:
-            $ref: '#/components/schemas/DomainEntry'            
+            $ref: '#/components/schemas/DomainList'
 
-    DomainEntry:
+    DomainList:
+        description: The list of hashed TI-Messenger domain names
+        type: object
+        properties:
+           domain:
+             type: string 
+             description: |
+               hashed TI-Messenger domain name
+           isInsurance:
+             description: |
+               Indicates if it is a domain of an health insurance for insured persons
+             type: boolean
+             example: false
+
+
+    schemaPASSporTCertificates:
       type: object
-      description: One domain
       properties:
-          domain:
-            description: a hashed domain name
-            type: string
-          isEnsurance:
-            description: |
+        domain:
+          description: The TI-Messenger domain
+          type: string
+        telematikID:
+          description: The telematikID of the organization that uses the TI-Messenger domain
+          type: string
+        isInsurance:
+          description: |
               Indicates if it is a domain of an health insurance for insured persons
-            type: boolean
-            example: false
-      readOnly: true
-
+          type: boolean
+          example: false
 
     Domain:
       type: object
@@ -374,22 +468,28 @@ components:
         telematikID:
           description: The telematikID of the organization that uses the TI-Messenger domain
           type: string
-        isEnsurance:
-          description: |
-              Indicates if it is a domain of an health insurance for insured persons
-          type: boolean
-          example: false
 
     Error:
       type: object
-      maxItems: 50
-      minItems: 0
+      properties:
+        message: 
+          type: string
+          description: (optionale) Fehlernachricht
+        errors:
+          maxItems: 50
+          minItems: 0
+          type: array
+          items:
+            $ref: '#/components/schemas/InnerError'
+
+    InnerError:
+      type: object
       properties:
         attributeName:
-          description: Name of the attribut in which the error occured
+          description: Name des Attributs, in dem ein Fehler erkannt wurde
           type: string
         attributeError:
-          description: Description of the error
+          description: Beschreibung des erkannten Fehlers
           type: string
 
     InfoObject:
@@ -397,15 +497,6 @@ components:
       - title
       - version
       readOnly: true
-      description: |
-       The following attributes have to be present in the return of the getInfo operation:
-        - title (can be copied from info.title of this YAML file)
-        - version
-        - description: 
-           o Short description of the interface. 
-           o Has to contain
-             - product version
-             - link to the corresponding YAML file
       type: object
       properties:
         title:
@@ -419,8 +510,7 @@ components:
         termsOfService:
           type: string
           format: uri
-          description: |
-            Eine URL zu den Terms of Service für dieses API.
+          description: Eine URL zu den Terms of Service für dieses API.
           example: "http://example.com/terms/"
         contact:
           $ref: '#/components/schemas/Contact'
