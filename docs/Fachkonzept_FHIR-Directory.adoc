@@ -44,7 +44,7 @@ Komfortabel suchen heißt, dass verschiedene Suchoptionen unterstützt werden, w
 
 . Als TI-Messenger-Nutzer und Leistungserbringer (LE) möchte ich im Personenverzeichnis komfortabel (siehe User Story (1)) nach anderen LE suchen können, um mit ihnen auf unkomplizierte Weise kommunizieren zu können.
 
-Die Authentifizierung der TI-Messenger-Nutzer am FHIR-Directory erfolgt durch Nachweis der Zugehörigkeit zu einem TI-Messenger-Service. Die Zugehörigkeit zu einem TI-Messenger-Service wird durch eine sichere Überprüfung durch das FHIR-Directory beim Messenger-Service erreicht. Der Vorgang erfolgt ohne Nuzerinteraktion. Als Ergebnis der Authentifizierung erhält der TI-Messenger-Client ein tim-search-accesstoken, dass für die Zugriffe auf das FHIR-Directory, ohne erneute Überpräfung beim TI-Messenger-Service, verwendet werden kann. Das accesstoken enthält die TI-Messenger-Adresse des TI-Messenger-Nutzers und, ob es sich beim Nutzer um einen Leistungserbringer (LE) handelt, der eine TI-Messenger-Adresse im Personenverzeichnis hat. TI-Messenger-Nutzer dürfen grundsätzlich immer im Organisationsverzeichnis suchen. Wenn der Nutzer zusätzlich ein LE ist und seine TI-Messenger-Adresse im Personenverzeichnis eingetragen ist, dann kann der Nutzer auch im Personenverzeichnis nach Kontakten suchen.
+Die Authentifizierung der TI-Messenger-Nutzer am FHIR-Directory erfolgt durch Nachweis der Zugehörigkeit zu einem TI-Messenger-Service. Die Zugehörigkeit zu einem TI-Messenger-Service wird durch eine sichere Überprüfung durch das FHIR-Directory beim Messenger-Service erreicht. Der Vorgang erfolgt ohne Nuzerinteraktion. Als Ergebnis der Authentifizierung erhält der TI-Messenger-Client ein search-accesstoken, dass für die Zugriffe auf das FHIR-Directory, ohne erneute Überpräfung beim TI-Messenger-Service, verwendet werden kann.
 
 ==== Eintrag im Personenverzeichnis für LE
 
@@ -93,9 +93,9 @@ gematik-Nutzer dürfen im Organisationsverzeichnis und im Personenverzeichnis na
 +
 Über den VZD-FHIR-Directory müssen Einträge von Organisationen und Leistungserbringern inklusive ihrer Kontaktdaten auffindbar sein. Dazu bietet der VZD-FHIR-Directory folgende Schnittstellen an:
 
-. FHIR Schnittstelle zur Suche /tim-search
+. FHIR Schnittstelle zur Suche /search
 . FHIR Schnittstelle zur Pflege eigener Einträge /owner
-. REST Schnittstelle zur Pflege eigener TIM Provider Einträge und MXID's der Oragnisationen und Leistungserbringer /tim-provide-services
+. REST Schnittstelle zur Pflege eigener TIM Provider Einträge und selbst betriebener TI-Messenger-Domänen der Oragnisationen /tim-provide-services
 
 * Zuverlässigkeit
 +
