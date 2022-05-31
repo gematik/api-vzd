@@ -34,8 +34,11 @@ tags:
   description: This operation returns meta data about this interface
 - name: getFederationList
   description: Returns the TI-Messenger federation list. If a version parameter is given then the federation list will be returned only if there is a newer version available.
-- name: getPASSporTCertificates
-  description: Returns the list of certificates which are used for signing Personal Assertion Tokens (PASSporT)
+- name: whereIs
+  description: Checks in which directory part the MXID is located
+- name: domainAdministration
+  description: Operations for the administration of the federation domains.
+
 
 paths:
   /:
@@ -167,12 +170,103 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
 
+  /federation:
+    post:
+      tags:
+      - domainAdministration
+      summary: Add a domain to the TI-Messenger federation
+      description: A new domain in the TI-Messenger federation.
+      operationId: addTiMessengerDomain
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Domain'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/Domain'
+
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        401:
+          description: Unauthorized
+                    #  The WWW-Authenticate header in the response is OAuth.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        403:
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+    get:
+      tags:
+      - domainAdministration
+      summary: Get a TI-Messenger domain
+      description: Get a single or all TI-Messenger domains.
+      operationId: getTiMessengerDomain
+      parameters:
+        - name: domain
+          in: query
+          description: |
+            Domain
+            If this parameter is used, then the selected domain is returned.
+            If this parameter is not present, then all domains of the requesting clint are returned.
+          schema:
+            type: string  
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Domain'
+
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        401:
+          description: Unauthorized
+                    #  The WWW-Authenticate header in the response is OAuth.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        403:
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
 
   /federation/{domain}:
 
     put:
       tags:
-      - updateTiMessengerDomain
+      - domainAdministration
       summary: Update a domain in the TI-Messenger federation
       description: A update to a domain in the TI-Messenger federation.
       operationId: updateTiMessengerDomain
@@ -225,7 +319,7 @@ paths:
 
     delete:
       tags:
-      - deleteTiMessengerDomain
+      - domainAdministration
       summary: Deletes a domain in the TI-Messenger federation
       description: Deletes a domain in the TI-Messenger federation.
       operationId: deleteTiMessengerDomain
@@ -239,6 +333,12 @@ paths:
       responses:
         204:
           description: No content
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         401:
           description: Unauthorized
                     #  The WWW-Authenticate header in the response is OAuth.
@@ -263,16 +363,17 @@ paths:
     get:
       tags:
       - checkTiMessengerDomains
-      summary: This operation verifies that all managed domains belong to active Organization ressources in the FHIR-Directory.
+      summary: This operation verifies that all own managed domains belong to active Organization ressources in the FHIR-Directory.
       description: |
-        This operation verifies that all managed domains belong to active Organization ressources in the FHIR-Directory.
+        This operation verifies that all own managed domains belong to active Organization ressources in the FHIR-Directory.
         Returns a list of all domains which belong to inactive Organizations.
+        The own domains are determined based on the used token. 
       operationId: checkTiMessengerDomains
       responses:
         200:
           description: |
            OK
-           Returns the list of all domains which belong to inactive Organizations
+           Returns the list of all own domains which belong to inactive Organizations
           content:
             application/json:
               schema:
