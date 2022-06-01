@@ -218,8 +218,8 @@ Die Abbildung zeigt das FHIR-Directory mit seinen Außen-Schnittstellen und Nutz
 |===
 |Nutzer und Rolle |Beschreibung
 
-|TI-Messenger Nutzer
-|TI-Messenger Nutzer können zwei Rollen einnehmen. Alle TI-Messenger Nutzer können im FHIR-Directory über die Schnittstelle (1) nach Einträgen im Organisationsverzeichnis suchen.
+|Nutzer
+|Alle Nutzer können im FHIR-Directory über die Schnittstelle (1) nach Einträgen im Organisationsverzeichnis und im Personenverzeichnis suchen.
 
 |TI-Messenger Nutzer LE
 |TI-Messenger Nutzer, die auch LE sind, können zusätzlich im Personenverzeichnis nach Einträgen suchen, wenn sie ihre Matrix Adresse über die Schnittstelle (2) in ihrem Eintrag gespeichert haben.
