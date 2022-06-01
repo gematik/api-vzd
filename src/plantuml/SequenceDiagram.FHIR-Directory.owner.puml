@@ -1,9 +1,9 @@
-@startuml
+@startuml FHIR-Directory, Sequenzdiagram Änderung von eigenen -Einträgen
 skinparam dpi 100
 skinparam WrapWidth 200
 skinparam monochrome true
 
-'title "FHIR-Directory, Sequenzdiagram Änderung von eigenen TIOrganization- oder TIPractitioner-Einträgen'
+'title "FHIR-Directory, Sequenzdiagram Änderung von eigenen Einträgen'
 actor o as "Org-Admin\noder LE"
 participant cl as "Org-Admin-Client\noder\nTI-Messenger-Client"
 participant aa as "Authenticator App\ndes IDP"
