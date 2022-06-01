@@ -1,4 +1,4 @@
-@startuml
+@startuml I_VZD_TIM_Provider_Services
 skinparam dpi 100
 skinparam WrapWidth 200
 skinparam monochrome true
@@ -21,6 +21,10 @@ end
 group optional
 rd -> fp: GET /FederationList mit Accesstoken
 fp --> rd: HTTP 200 OK Response body domainList json
+end
+group optional
+rd -> fp: GET /localization mit Accesstoken und hash der MXID in URL Form
+fp --> rd: HTTP 200 OK Response body <enum: [org, pract, orgPract, none]> json
 end
 
 deactivate fp
