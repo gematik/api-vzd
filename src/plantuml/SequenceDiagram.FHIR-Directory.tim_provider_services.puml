@@ -22,10 +22,7 @@ group optional
 rd -> fp: GET /FederationList mit Accesstoken
 fp --> rd: HTTP 200 OK Response body domainList json
 end
-group optional
-rd -> fp: GET /PASSporTCertificates mit Accesstoken
-fp --> rd: HTTP 200 OK Response body list of certificate json
-end
+
 deactivate fp
 deactivate rd
 @enduml
