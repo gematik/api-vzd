@@ -1,5 +1,35 @@
 = Änderungen am Verzeichnisdienst
 
+== v3.1.0-14 (31.5.2022)
+* *professionOID und entryType in die Basisdaten spiegeln* +
+Die professionOID und entryType soll analog zur telematik-ID in die Basisdaten gespiegelt werden um somit durchsuchbar zu sein.
+* *REST-SST Info Operation gemäß yaml* +
+Die Schnittstelle soll um die Info-Operation entsprechend der Spezifikation erweitert werden um die Version der yaml-Datei und den Link zum Downloadpunkt auszugeben.
+* *Prüfung auf das Holder-Attribut an der REST-SST* +
+Die Auswertung des holder-Attributes kann per Konfiguration aktiviert werden.
+* *Warnung maxKOMLE-Adressen* +
+Meldung (Warnung) beim Setzen von maxKOMLEadr über REST-Schnittstelle wenn zu setzende Zahl kleiner als Anzahl bereits hinterlegter Adressen.
+* *I_Directory_Administration REST: professionOID/entryType* +
+Erweiterung der GET-Operation: professionOID und entryType müssen aufgenommen/umgesetzt werden (Suche und Response).
+* *professionOID in Basisdaten: Migration Bestandsdaten* +
+Migration zu ZTI-11074
+* *KOM-LE-Version Datenmigration* +
+Die Umsetzung erfolgt nicht, da das Attribut KOM-LE-Version im Folge CR durch die Struktur KomLEData refakturiert wird.
+* *Mapping professionOID konfigurierbar*
+* *SOAP/REST Plausi: Keine RU/TU-Zertifikate in PU* +
+Konfigurativ aktivierbare Prüfung ob der Zertifikats-Issuer in der aktiven TSL enthalten ist.
+* *I_Directory_Administration REST: Filterung und Wildcard* +
+Suche mit Wildcard "*" in den Parametern
+* *I_Directory_Administration REST: Suchparameter* +
+Die durch das Datenmodell zusätzlich im Entry eingeführten Attribute sollen gesucht werden können.
+* *I_Directory_Administration REST: paging* +
+Fortssetzung einer Suche mit Cookie (RFC 2696).
+* *I_Directory_Administration REST: Suche nach leeren Werten* +
+Suche nach Vorhandensein oder leerem Inhalt eines Attributs eines VZD Datensatzes.
+* *Fehlermeldungen sind nicht als UTF-8 kodiert* +
+VZD REST-SST Header-Inhalte dürfen keine Umlaute enthalten.
+* *Bugfix für fehlerhafte Löschung nicht gesperrter Zertifikate*
+
 == v3.1.0-11 (17.2.2022)
 * Anpassung REST-SST mit Umsetzung yaml 1.8.0
 * Wiederaktivierung der Delete-Operation für Zertifikate aus Release 3.1.0-9
