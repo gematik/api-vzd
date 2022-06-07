@@ -7,7 +7,7 @@ participant rd as "TI-Messenger-Fachdienst\nRegistrierungsdienst"
 participant oa as "VZD\nOAuth-Server"
 participant fp as "FHIR-Proxy"
 
-rd -> oa: GET /token (client_id, client_secret)
+rd -> oa: GET /authenticate (client_id, client_secret)
 activate rd
 activate oa
 oa -> oa: prüfe client_id und client_secret
