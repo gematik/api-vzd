@@ -6,8 +6,8 @@ Description: "Example of a Practitioner (Dentist) as to be found in gematik FHIR
 * identifier[+].system = $IdentifierTelematikID
 * identifier[=].value = "2-2.58.00000040"
 * qualification[+].code.coding.system=https://gematik.de/fhir/directory/CodeSystem/PractitionerProfessionOID
-* qualification[+].code.coding.code = PractitionerProfessionOID#1.2.276.0.76.4.31
-* qualification[+].code.coding.display = $Facharzttitel#"Zahn‰rztin/Zahnarzt"
+* qualification[=].code.coding.code = PractitionerProfessionOID#1.2.276.0.76.4.31
+* qualification[=].code.coding.display = $Facharzttitel#"Zahn√§rztin/Zahnarzt"
 * name
   * prefix = "Dr."
   * given[+] = "Max"
