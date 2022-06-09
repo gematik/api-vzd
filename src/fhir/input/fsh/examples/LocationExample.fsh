@@ -17,6 +17,6 @@ Description: "Example of a Location as to be found in gematik FHIR Directory"
 * hoursOfOperation.daysOfWeek[+] = "thu"
 * hoursOfOperation.daysOfWeek[+] = "fri"
 * hoursOfOperation.openingTime = "08:00:00"
-* hoursOfOperation.openingTime = "18:00:00"
+* hoursOfOperation.closingTime = "18:00:00"
 * availabilityExceptions = "An Feiertagen geschlossen"
 
