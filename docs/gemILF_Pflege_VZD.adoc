@@ -1,5 +1,4 @@
 = Implementierungsleitfaden zur Pflege der Daten des Verzeichnisdienstes
-
 gematik, Systems Engineering
 :source-highlighter: rouge
 :title-page:
