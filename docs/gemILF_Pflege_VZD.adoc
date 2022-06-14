@@ -17,7 +17,7 @@ image::gematik_logo.svg[gematik,float="right"]
 
 [width="100%",cols="50%,50%",options="header",]
 |===
-|2Version: |1.5.2
+|Version: |1.5.2
 |Revision: |470432
 |Stand: |14.02.2022
 |Status: |in Bearbeitung
@@ -25,9 +25,9 @@ image::gematik_logo.svg[gematik,float="right"]
 |Referenzierung: |gemILF_Pflege_VZD
 |===
 
-Dokumentinformationen
+== Dokumentinformationen
 
-== Änderungen zur Vorversion
+=== Änderungen zur Vorversion
 
 Anpassungen des vorliegenden Dokumentes im Vergleich zur Vorversion können Sie der nachfolgenden Tabelle entnehmen.
 
