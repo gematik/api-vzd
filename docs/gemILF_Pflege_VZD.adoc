@@ -1,0 +1,2239 @@
+​​
+
+​​
+
+​​
+
+​​
+
+​​
+
+*+++Elektronische Gesundheitskarte und Telematikinfrastruktur+++*
+
+​​
+
+​​
+
+​​
+
+​​
+
+*Implementierungsleitfaden* +
+*zur Pflege der Daten* +
+*des Verzeichnisdienstes*
+
+​​
+
+​​
+
+​​
+
+​​
+
+​​
+
+[width="100%",cols="50%,50%",options="header",]
+|===
+|2Version: |1.5.2
+|Revision: |470432
+|Stand: |14.02.2022
+|Status: |in Bearbeitung
+|Klassifizierung: |öffentlich
+|Referenzierung: |gemILF_Pflege_VZD
+|===
+
+Dokumentinformationen
+
+*Änderungen zur Vorversion*
+
+Anpassungen des vorliegenden Dokumentes im Vergleich zur Vorversion können Sie der nachfolgenden Tabelle entnehmen.
+
+​​
+
+*Dokumentenhistorie*
+
+[width="100%",cols="11%,11%,7%,58%,13%",options="header",]
+|===
+|*Version +
+* |*Stand +
+* |*Kap./ Seite +
+* |*Grund der Änderung, besondere Hinweise +
+* |*Bearbeitung +
+*
+|1.0.0 |10.12.19 |​ |Ersterstellung |gematik
+|1.1.0 |29.03.20 |​ |Anpassung Kapitel 3.3.1.1, diverse Ergänzungen und Klarstellungen |gematik
+|1.2.0 |13.07.20 |​ |Anpassungen in Kapitel 3.1.1, Prozessbeschreibung zur Registrierung ausgearbeitet, +
+Anpassungen in Kapitel 4, Link auf aktualisierte DirectoryAdministration.yaml, RU-URLs für die Schnittstellen |gematik
+|1.3.0 |31.08.20 |​ |Prozessbeschreibung zur Registrierung angepasst, Link auf gematik-VZD-Client ergänzt, behobene Fehler dokumentiert, Beispiele für GET Requests ergänzt |gematik
+|1.3.1 |21.09.2020 |​ |Änderung des Verhaltens, wenn mehr als 100 Einträge gefunden werden. Es werden nun 100 Einträge in der Antwort übergeben. |gematik
+|1.3.2 |11.11.2020 |​ |Korrektur des links zur yaml-Datei Version 1.1.2 |gematik
+|1.3.3 |25.11.2020 |​ |Wertebereich für das Attribut stateOrProvinceName ergänzt |gematik
+|1.4.0 |16.12.2020 |​ |Alle gefundenen Daten werden in der Response zurückgeliefert (bisher 100). Der GET-Request wurde um einen Parameter erweitert, der es ermöglicht, die Zertifikatsdaten in der Response nicht zu erhalten. Dadurch kann die Datenmenge der Response bei sehr vielen gefundenen Einträgen stark reduziert werden. +
+Die Telematik-ID wurde zusätzlich in den Basisdaten aufgenommen. Dadurch kann direkt nach der Telematik-ID gesucht werden, ohne erst über die Zertifikate zu suchen. +
+Das holder-Attribut wurde eingeführt; wird jedoch noch nicht in diesem Change vom VZD ausgewertet. Es wird aber bereits im yaml-File als Parameter aufgeführt, damit Client-Entwickler schon jetzt passenden Client-Code entwickeln können. Für die Umsetzung im VZD wird es einen separaten Change geben. +
+Es wurde ein Ländercode-Attribut (countryCode) ins Datenmodell aufgenommen. +
+Es wurde ein Attribut changeDateTime ins Datenmodell aufgenommen, das den Zeitpunkt der letzten Änderung an den Basisdaten angibt. |gematik
+|1.4.1 |​ |3.1.1 |Konkretisierung: Credentials-Vergabe auf Organisationsebene. Anpassung des Ansprechpartners bei Arvato für Störungen an der Schnittstelle. |gematik
+|1.5.0 |02.06.2021 |4.1 +
+4.4 +
+4.5 |- Erweiterung des Wertebereichs stateOrProvinceName für EU-Versandapotheken in Vorbereitung auf das E-Rezept +
+- Anpassung der Überschrift für Kartenherausgabe SMC-B für Apotheken in Vorbereitung auf das E-Rezept +
+- Ergänzung des Kapitels „Kartenherausgabe HBA für Apotheker“ |gematik
+|1.5.1 |15.11.2021 |4.* +
+ +
+3.3.3.1 +
+ +
+3.1.1 +
+4.9 +
+4.10 |- Attribut maxKOMLEadr in die Attributtabellen aufgenommen +
+- Zusätzliche Suchparameter und Filtermöglichkeiten aufgenommen +
+- Aktualisierung des Kontakts zur Beantragung für Client Credentials +
+- Aktualisierung Tabelle Tab_VZD_Datenbeschreibung_BZÄK (street Address, postalCode, localityName jetzt optional) +
+- Aktualisierung Tabellen VZD_Datenbeschreibung_Tab_VZD_Datenbeschreibung_GKV-SV_SMC-B KTR und GKV-SV_SM-B_KTR ePA |gematik
+|1.5.2 |14.02.2022 |4.2-4.11 +
+3.1.1 +
+3.2 +
+3.3.1.3 +
+ +
+4.11 +
+4.12, 4.13 |Struktur KOM-LE-Version in komLeData geändert. +
+Verwendung der client_id (vorher claim scope) besser erläutert +
+ +
+ +
+Update zum SMC-B ORG-Eintrag der gematik +
+Neu für eGBR HBA und SMC-B |gematik
+|1.5.3 |​ |3.6 |Rückverfolgbarkeit der Einträge (Holder-Attribute) - C_11048 +
+TODO: Link vor Veröffentl. entfernen +
+https://service.gematik.de/browse/DIR-84.[+++https://service.gematik.de/browse/DIR-84.+++]  |gematik
+|===
+
+​​
+
+Inhaltsverzeichnis
+
+_Please update the table of contents._
+
+​​
+
+== Einordnung des Dokumentes
+
+=== Zielsetzung
+
+Das vorliegende Dokument beschreibt, wie die Schnittstelle zur Pflege der Daten des Verzeichnisdienstes der TI clientseitig implementiert und genutzt werden kann.
+
+=== Zielgruppe
+
+Das Dokument richtet sich an Software-Entwickler, die sich mit der Implementierung eines Clients zur Pflege der Einträge im Verzeichnisdienst der Telematikinfrastruktur (TI) befassen.
+
+=== Geltungsbereich
+
+*Schutzrechts-/Patentrechtshinweis*
+
+_Die nachfolgende Spezifikation ist von der gematik allein unter technischen Gesichtspunkten erstellt worden. Im Einzelfall kann nicht ausgeschlossen werden, dass die Implementierung der Spezifikation in technische Schutzrechte Dritter eingreift. Es ist allein Sache des Anbieters oder Herstellers, durch geeignete Maßnahmen dafür Sorge zu tragen, dass von ihm aufgrund der Spezifikation angebotene Produkte und/oder Leistungen nicht gegen Schutzrechte Dritter verstoßen und sich ggf. die erforderlichen Erlaubnisse/Lizenzen von den betroffenen Schutzrechtsinhabern einzuholen. Die gematik GmbH übernimmt insofern keinerlei Gewährleistungen._
+
+== Systemüberblick
+
+Der Verzeichnisdienst der TI (VZD) stellt eine Schnittstelle im Internet bereit, über die die Daten von Nutzern der TI gepflegt werden können. Zur Pflege berechtigt sind Kartenherausgeber (HBA und SMC-B) sowie von ihnen berechtigte Dritte (z. B. TSP).
+
+image:gemILF_Pflege_VZD-media/media/image1.png[image,width=604,height=324]
+
+Abbildung 1: Systemüberblick, Pflege der Basisdaten
+
+== API Dokumentation
+
+Die Schnittstelle zur Pflege der Einträge des Verzeichnisdienstes (gematik Bezeichnung I_Directory_Administration) nutzt die https://de.wikipedia.org/wiki/Representational_State_Transfer[+++REST+++]-Architektur und basiert auf https://swagger.io/docs/specification/about/[+++OpenAPI+++]. Über diese Schnittstelle können Verzeichniseinträge inklusive Zertifikatseinträge erzeugt, aktualisiert, gelesen und gelöscht werden. Es ist möglich, dass die Daten für einen Eintrag von verschiedenen Akteuren gepflegt werden (z. B. der Kartenherausgeber erzeugt einen Eintrag ohne Zertifikat – aber mit telematikID – und der TSP findet den Basiseintrag anhand der telematikID und ergänzt das Zertifikat).
+
+Die Administration von Fachdaten erfolgt über die Schnittstelle I_Directory_Application_Maintenance und wird durch die Fachanwendungen durchgeführt. Lesender Zugriff auf die Fachdaten ist mit der Operation getDirectoryEntries in vorliegender Schnittstelle möglich.
+
+Zur Verschlüsselung der Verbindung wird TLS und zur Authentifizierung des Nutzers wird ein  https://de.wikipedia.org/wiki/OAuth[+++OAuth2+++]  Access Token eingesetzt. Es werden Standard HTTP Response Codes verwendet.
+
+Die Schnittstelle kann in drei Umgebungen genutzt werden:
+
+* {blank}
++
+____
+Referenzumgebung (RU): für den Test durch Kartenherausgeber (HBA und SMC-B) sowie von ihnen berechtigte Dritte.
+____
+* {blank}
++
+____
+Testumgebung (TU): für den Test durch gematik-Mitarbeiter
+____
+* {blank}
++
+____
+Produktivumgebung (PU): für die produktive Nutzung mit Echtdaten durch Kartenherausgeber (HBA und SMC-B) sowie von ihnen berechtigte Dritte
+____
+
+Neue Versionen der Schnittstelle und dieser Anleitung werden im https://fachportal.gematik.de/spezifikationen/[+++Fachportal der gematik+++] veröffentlicht.
+
+=== Schnellanleitung
+
+Die Schnellanleitung ermöglicht es, direkt mit der Entwicklung des Clients zu beginnen und beinhaltet 5 Schritte. Anstatt der hier angegebenen Online-OpenAPI-Editor-Entwicklungsumgebung (Swagger) können auch andere Entwicklungsumgebungen genutzt werden, die OpenAPI unterstützen.
+
+Alternativ kann auch der VZD-Client der gematik verwendet werden.
+
+https://github.com/gematik/app-VZD-Client[+++https://github.com/gematik/app-VZD-Client+++] 
+
+==== Schritt 1: Registrierung (und Deregistrierung)
+
+Durch die Registrierung erhält der Nutzer den erforderlichen Berechtigungsnachweis (client_id und client_secret), um die Schnittstelle nutzen zu können. Der Berechtigungsnachweis wird während der Authentifizierung verwendet, um vom OAuth2-Server einen Access Token zu erhalten.
+
+Zur Registrierung und folgender Nutzung der Schnittstelle des VZD in der RU/PU, ist ein Antrag an request_fulfillment@gematik.de mit dem Betreff "VZD (De-)/Registrierung" notwendig.
+
+Die Registrierung und Vergabe der Credentials erfolgt dabei auf Organisationsebene.
+
+Der Antrag muss folgende Informationen enthalten um weiter bearbeitet werden zu können:
+
+* {blank}
++
+____
+Angaben zur Rolle und Organisation des Antragstellers, Erläuterung der Berechtigung und des Bedarfs (zur Verifikation notwendig, siehe Kapitel 2)
+____
+* {blank}
++
+____
+Kontaktdaten zu Ansprechpartnern beim Antragsteller (2 Personen) inkl. Telefonnummer, E-Mail-Adresse, Anschrift
+____
+* {blank}
++
+____
+Angabe der Betriebsumgebung (RU/PU)
+____
+* {blank}
++
+____
+E-Mail-Adresse und dazugehöriges S/MIME-Zertifikat (in einer ZIP-Datei als Anhang) an welche die Zugangsdaten verschlüsselt übermittelt werden können (kostenlose Zertifikate sind z.B. beim DGN erhältlich)
+____
+* {blank}
++
+____
+falls bereits vorhanden, eine entsprechende Ticketnummer
+____
+* {blank}
++
+____
+nur bei Deregistrierung durch den Antragsteller: vorab vergebene Client-ID
+____
+* {blank}
++
+____
+gewünschte Bezeichnung im OAuth2-Server ID_TOKEN client_id (bzw. VZD "holder" Attribut)
+____
+
+Nach Prüfung der Angaben, werden die Zugangsdaten direkt vom Anbieter Zentrale Plattformdienste (vgl. gemKPT_Betr) an die gewünschte E-Mail-Adresse übermittelt.
+
+Es ist zu beachten, dass dieser Prozess ausschließlich für Neuanlagen und Löschungen vorgesehen ist. Änderungen oder der Neuversand von Zugangsdaten können nicht bearbeitet werden.
+
+Bei technischen Problemen ist die Absenderadresse bzw. eGK-Usermanagement@bertelsmann.de für die Zugangsdaten zu kontaktieren und die gematik (request_fulfillment@gematik.de) parallel dazu zu informieren (Eintrag im CC-Feld). Der Helpdesk von Arvato kann nur von berechtigten Antragstellern bzw. über ihre E-Mail-Adresse kontaktiert werden. Also von denjenigen Kontakten, welche bei der Beantragung der Client-Credentials genannt wurden.
+
+Für sonstige Anfragen zum VZD steht die gematik berechtigten Kartenherausgebern bzw. Anbietern ebenfalls über das Kontaktformular auf gematik.de zur Verfügung.
+
+​​
+
+==== Schritt 2: Schnittstellenbeschreibung herunterladen
+
+Die OpenAPI Schnittstellenbeschreibung ist unter GitHub veröffentlicht.
+
+Datei: DirectoryAdministration.yaml
+
+https://github.com/gematik/api-vzd/blob/main/src/openapi/DirectoryAdministration.yaml[+++https://github.com/gematik/api-vzd/blob/main/src/openapi/DirectoryAdministration.yaml+++] 
+
+​​
+
+==== Schritt 3: OpenAPI-Entwicklungsumgebung verwenden
+
+https://editor.swagger.io/[+++OpenAPI Editor+++] öffnen und vzd_DirectoryAdministration.yaml in die Online-Entwicklungsumgebung laden per [File]/[Import file].
+
+image:gemILF_Pflege_VZD-media/media/image2.png[image,width=604,height=536]
+
+Abbildung 2: OpenAPI Editor
+
+==== Schritt 4: Client-Code generieren
+
+Im OpenAPI Editor im Menu [Generate Client] aufrufen und die gewünschte Programmiersprache auswählen. Den generierten Client-Code weiter entwickeln.
+
+==== Schritt 5: API-Request senden
+
+Zum Test des Clients wird empfohlen, in der Referenzumgebung Requests zu senden.
+
+==== Einträge pflegen
+
+Um einen Eintrag anzulegen oder zu ändern, wird empfohlen wie folgt vorzugehen:
+
+[arabic]
+. {blank}
++
+____
+Eintrag anhand der telematikID suchen GET /DirectoryEntries?telematikID=SomeTelematikID HTTP/1.1
+____
+. {blank}
++
+____
+Wenn der Eintrag gefunden wurde, dann den Eintrag mittels PUT /DirectoryEntries/\{uid}/baseDirectoryEntries ändern
+____
+. {blank}
++
+____
+Wenn der Eintrag nicht gefunden wurde, dann den Eintrag mittels POST /DirectoryEntries neu anlegen
+____
+
+=== Authentifizierung
+
+Als Clients dieser Schnittstelle sind nur Systeme der TI-Kartenherausgeber und von ihnen berechtigte Organisationen (z. B. TSPs) zulässig. Sie dürfen alle Operationen zur Administration der Verzeichniseinträge nutzen.
+
+Das verwendete Authentifizierungsverfahren ist OAuth2. Die Authentifizierung des Nutzers an der Schnittstelle erfolgt mittels eines Access Tokens (Authorization Grant Client Credentials https://tools.ietf.org/html/rfc6749#section-1.3.4[+++RFC6749#section-1.3.4+++]). Um einen Access Token erhalten zu können, muss zuvor eine Registrierung erfolgen. Nach erfolgreicher Registrierung erhält der Nutzer Client Credentials bestehend aus [client_id] und [client_secret]. Der Client sendet einen Request mit den Client Credentials an den OAuth2-Server, um einen Access Token zu erhalten. 
+
+[width="100%",cols="100%",options="header",]
+|===
+|*OAuth2-Server URL:  https://auth.vzd.ti-dienste.de:9443/auth/realms/RSDirectoryAdministration/protocol/openid-connect/token%A0[+++https://auth.vzd.ti-dienste.de:9443/auth/realms/RSDirectoryAdministration/protocol/openid-connect/token +++] *
+|===
+
+Neben der Produktivumgebung gibt es auch eine Instanz des OAuth2-Servers in der Referenzumgebung (RU) für Tests der Kartenherausgeber und der Testumgebung (TU) für Tests der gematik.
+
+[width="100%",cols="100%",options="header",]
+|===
+|RU OAuth2-Server URL: https://auth-ref.vzd.ti-dienste.de:9443/auth/realms/RSDirectoryAdministration/protocol/openid-connect/token[+++https://auth-ref.vzd.ti-dienste.de:9443/auth/realms/RSDirectoryAdministration/protocol/openid-connect/token+++]  +
+TU OAuth2-Server URL: https://auth-test.vzd.ti-dienste.de:9443/auth/realms/RSDirectoryAdministration/protocol/openid-connect/token[+++https://auth-test.vzd.ti-dienste.de:9443/auth/realms/RSDirectoryAdministration/protocol/openid-connect/token+++] 
+|===
+
+Der Access Token enthält in der client_id den Identifier des Clients, der auf die Einträge zugreift. Dieser Identifier wird im Log  abgelegt, welcher die Zugriffe über die Schnittstelle protokolliert.
+
+=== Endpunkte und Methoden
+
+Die Schnittstelle zur Pflege der Einträge des Verzeichnisdienstes ermöglicht das Erzeugen, Lesen, Ändern und Löschen von Einträgen und von den Einträgen zugeordneten Zertifikatsdaten.
+
+[width="100%",cols="100%",options="header",]
+|===
+|VZD Service URL: https://vzdpflege.vzd.ti-dienste.de:9543%A0[+++https://vzdpflege.vzd.ti-dienste.de:9543 +++] 
+|===
+
+Neben der Produktivumgebung gibt es auch eine Instanz des VZD-Services in der Referenzumgebung (RU) für Tests der Kartenherausgeber und der Testumgebung (TU) für Tests der gematik.
+
+[width="100%",cols="100%",options="header",]
+|===
+|VZD Service URL (RU): https://vzdpflege-ref.vzd.ti-dienste.de:9543[+++https://vzdpflege-ref.vzd.ti-dienste.de:9543+++]   +
+VZD Service URL (TU): https://vzdpflege-test.vzd.ti-dienste.de:9543[+++https://vzdpflege-test.vzd.ti-dienste.de:9543+++] 
+|===
+
+​​
+
+==== DirectoryEntryAdministration
+
+Hinweis: In allen Operationen müssen folgende HTTP-Header gesetzt sein:
+
+Accept: application/json
+
+Content-Type: application/json
+
+Zusätzlich müssen alle Strings als UTF-8 kodiert sein.
+
+​​
+
+===== POST /DirectoryEntries
+
+Durch die addDirectoryEntry-Operation (HTTP POST /DirectoryEntries) wird ein Eintrag zum Verzeichnisdienst hinzugefügt.
+
+Entweder der Parameter telematikID oder der Parameter userCertificate muss im Request angegeben werden. Wird weder telematikID noch userCertificate angegeben, wird der Request mit HTTP Code 405 (Invalid Input) beantwortet. Wird telematikID und userCertificate angegeben, dann muss die telematikID mit der telematikID im userCertificate übereinstimmen. Bei unterschiedlicher telematikID wird die Operation mit Fehlercode 422 (Unprocessable Entity) abgelehnt. Wenn mehrere userCertificate-Parameter angegeben werden, dann werden nur vom letzten userCertificate die automatisch vom VZD extrahierten Daten wie z. B. cn in den VZD-Eintrag hinzugefügt. Die telematikID muss in allen übergebenen userCertificate-Parametern gleich sein. Bei unterschiedlicher telematikID wird die Operation mit Fehlercode 422 (Unprocessable Entity) abgelehnt. Wenn kein userCertificate angegeben ist, dann wird ein Certificates-Eintrag erstellt, der nur die telematikID enthält. In diesem Fall muss der Parameter personalEntry mit angegeben sein.
+
+Der Parameter dn kann nicht im Request angegeben werden.
+
+Entsprechend [gemSpec_VZD] wird ein Teil der Attribute durch den Verzeichnisdienst automatisch mit Werten aus dem Zertifikat gefüllt. Wenn in dieser Operation Attribute, für die dies erlaubt ist, mit einem Wert belegt werden, wird dieser Wert im Verzeichniseintrag gespeichert (auch wenn der Wert durch den Verzeichnisdienst aus dem Zertifikat entnommen werden kann).
+
+===== DELETE /DirectoryEntries/\{uid}
+
+Durch die Operation deleteDirectoryEntry (HTTP 3.3.1.2 DELETE /DirectoryEntries/\{uid}) wird ein gesamter Verzeichniseintrag gelöscht. Wird eine nicht existierende uid angegeben, dann wird der Request mit HTTP 400 (Not Found) beantwortet.
+
+===== PUT /DirectoryEntries/\{uid}/baseDirectoryEntries
+
+Durch die Operation modifyDirectoryEntry (HTTP PUT /DirectoryEntries/\{uid}/baseDirectoryEntries) wird ein Eintrag im VZD geändert. Es wird empfohlen, dass zuvor mittels readDirectoryEntry (HTTP GET /DirectoryEntries) der Inhalt des Eintrags gelesen wird, um die bestehenden Daten zu erhalten, da nur die als Parameter übergebenen Daten am Ende der Operation im VZD enthalten sind. Das heißt alle zuvor im VZD-Eintrag enthaltenen Daten werden gelöscht  (mit Ausnahme der aus dem Zertifikat übernommenen Daten) und die als Parameter übergebenen Daten werden eingetragen.
+
+Der Parameter dn kann nicht im Request angegeben werden.
+
+Wird eine nicht existierende uid angegeben, dann wird der Request mit HTTP 400 (Not Found) beantwortet.
+
+*Zukünftige Verwendung von client_id und holder:*
+
+Bei der Beantragung der Credentials zur Nutzung der Schnittstelle wird auch die client_id abgefragt. Die client_id ist im Access Token enthalten und wird vom VZD ausgewertet. Der holder kann über die REST-Schnittstelle beim Erzeugen oder Ändern des Eintrags gesetzt werden und auch mehrere Werte sind für holder möglich. Der Inhalt der client_id im Access Token wird mit dem Inhalt des holder-Attributs im VZD-Eintrag verglichen. Bei Übereinstimmung darf der Eintrag geändert werden. Wenn der holder nicht vorhanden oder leer ist, darf der Eintrag geändert werden. Wenn client_id und holder nicht übereinstimmen, darf der Eintrag nicht geändert werden. Dadurch kann der Kartenherausgeber den oder die Werte für holder zu einem ihm passenden Zeitpunkt setzen und der Eintrag ist von da an vor Veränderung durch andere Kartenherausgeber geschützt. Falls ein Kartenherausgeber sich unberechtigt als holder für einen Eintrag angegeben hat, kann man das über das Logfile des VZD herausfinden und zwischen den betroffenen Kartenherausgebern zur Klärung bringen.
+
+===== GET /DirectoryEntries
+
+Durch die Operation readDirectoryEntry (HTTP GET /DirectoryEntries) wird anhand der übergebenen Parameter ein Eintrag im Verzeichnisdienst gesucht und als Response zurückgegeben. Es kann nach nahezu allen Attributen des Eintrags gesucht werden. Die angegebenen Filter-Parameter werden mit logischen UND verknüpft.
+
+Wenn mehr als 100 Einträge gefunden werden, dann wird das in der Response zurückgegebene Suchergebnis auf 100 Einträge begrenzt.
+
+Um genau einen Eintrag zu finden, wird empfohlen, nach der telematikID (mittels HTTP GET /DirectoryEntries) zu suchen.
+
+Beispiel
+
+GET /DirectoryEntries?telematikID=SomeTelematikID HTTP/1.1
+
+Authorization: Bearer ey**-g
+
+Accept: application/json
+
+Content-Type: application/json
+
+User-Agent: OpenAPI-Generator/1.0.0/java
+
+Host: https://vzdpflege-ref.vzd.ti-dienste.de:9543[+++https://vzdpflege-ref.vzd.ti-dienste.de:9543+++]
+
+Connection: Keep-Alive
+
+Accept-Encoding: gzip
+
+===== GET /DirectoryEntriesSync
+
+Diese Operation verhält sich wie die GET /DirectoryEntries, liefert jedoch alle gefundenen Einträge zurück. Um eine Überlast des VZD zu vermeiden, hat diese Operation ein Rate Limit.
+
+Um die Datenmenge in der Response zu verringern, wird empfohlen, baseEntryOnly=true zu verwenden, wenn die Zertifikatsdaten nicht benötigt werden.
+
+==== CertificateAdministration
+
+Hinweis: Im LDAP-Datenmodell (siehe gemSpec_VZD, Kapitel 5 Datenmodell) entspricht der hier für die Adressierung der Zertifikats-Ressourcen verwendete Parameter certificateEntryID dem cn Teil des dn in der ou Unterstruktur Certificates.
+
+===== POST /DirectoryEntries/\{uid}/Certificates
+
+Durch die addDirectoryEntryCertificate-Operation (HTTP POST /DirectoryEntries/\{uid}/Certificates) wird ein Zertifikatseintrag zum VZD-Eintrag hinzugefügt und ist logisch über dn.uid mit dem VZD-Eintrag verknüpft.
+
+Wird telematikID und userCertificate angegeben, dann muss die telematikID mit der telematikID im userCertificate übereinstimmen. Bei unterschiedlicher telematikID wird die Operation mit Fehlercode 422 (Unprocessable Entity) abgelehnt.
+
+Wenn ein Zertifikatseintrag zu einem VZD-Eintrag hinzugefügt wird, der schon einen Zertifikatseintrag hat, dann werden vom VZD automatisch die folgenden Attribute des VZD-Eintrags mit den Daten aus dem neuen bzw. zuletzt hinzugefügtem userCertificate überschrieben:
+
+* {blank}
++
+____
+cn
+____
+* {blank}
++
+____
+sn
+____
+* {blank}
++
+____
+givenName
+____
+* {blank}
++
+____
+otherName
+____
+
+Der Parameter dn kann nicht im Request angegeben werden.
+
+Wenn versucht wird, ein bereits im Eintrag vorhandenes Zertifikat hinzuzufügen, dann wird der Request mit HTTP 422 (Unprocessable Entity) abgelehnt.
+
+Wenn mehrere userCertificate-Parameter angegeben werden, dann werden nur vom letzten userCertificate die automatisch vom VZD extrahierten Daten in den VZD-Eintrag hinzugefügt. Die telematikID muss in allen übergebenen userCertificate-Parametern gleich sein. Bei unterschiedlicher telematikID wird die Operation mit Fehlercode 422 (Unprocessable Entity) abgelehnt.
+
+===== DELETE /DirectoryEntries/\{uid}/Certificates/\{certificateEntryID}
+
+Durch die Operation deleteDirectoryEntryCertificate (HTTP 3.3.1.2 DELETE /DirectoryEntries/\{uid}/Certificates/\{certificateEntryID}) wird ein Zertifikatseintrag gelöscht. Wird eine nicht existierende uid oder certificateEntryID angegeben, dann wird der Request mit HTTP 400 (Not Found) beantwortet.
+
+===== PUT /DirectoryEntries/\{uid}/Certificates/\{certificateEntryID}
+
+Durch die Operation modifyDirectoryEntryCertificate (HTTP PUT /DirectoryEntries/\{uid}/Certificates/\{certificateEntryID}) wird ein Zertifikatseintrag geändert.
+
+Der Parameter dn kann nicht im Request angegeben werden.
+
+Wird eine nicht existierende uid oder certificateEntryID angegeben, dann wird der Request mit HTTP 400 (Not Found) beantwortet.
+
+Da die Attribute im Zertifikatseintrag aus dem Zertifikat entnommen werden, ist die Operation PUT /DirectoryEntries/\{uid}/Certificates/\{certificateEntryID} nicht zulässig und wird mit HTTP 405 (Method Not Allowed) beantwortet. 
+
+===== GET /DirectoryEntries/Certificates
+
+Durch die Operation readDirectoryCertificates (HTTP GET /DirectoryEntries/Certificates) wird anhand der übergebenen Parameter ein Zertifikatseintrag gesucht und als Response zurückgegeben. Es kann nach allen Attributen des Zertifikatseintrags außer userCertificate gesucht werden. Die angegebenen Filter-Parameter werden mit logischen UND verknüpft.
+
+Wenn mehr als 100 Einträge gefunden werden, dann wird das in der Response zurückgegebene Suchergebnis auf 100 Einträge begrenzt.
+
+Beispiel
+
+GET /DirectoryEntries/Certificates?telematikID=SomeTelematikID HTTP/1.1
+
+Authorization: Bearer ey**g
+
+Accept: application/json
+
+Content-Type: application/json
+
+User-Agent: OpenAPI-Generator/1.0.0/java
+
+Host: https://vzdpflege-ref.vzd.ti-dienste.de:9543[+++https://vzdpflege-ref.vzd.ti-dienste.de:9543+++]
+
+Connection: Keep-Alive
+
+Accept-Encoding: gzip
+
+==== DirectoryEntrySynchronization
+
+===== GET /DirectoryEntriesSync
+
+Diese Operation dient der Synchronisation der Verzeichniseinträge zwischen VZD und Herausgeber (*readDirectoryEntryForSync*).
+
+Analog zu read_Directory_Entry werden alle zum Filter passenden Verzeichniseinträge gefunden. Im Unterschied zu read_Directory_Entry ist die Limitierung auf 100 Suchergebnisse aufgehoben. Die parallele Ausführung dieser Operation wird vom Server aus Performancegründen eingeschränkt. Diese Operation soll nur genutzt werden, wenn mehr als 100 Suchergebnisse benötigt werden. Für alle anderen Suchanfragen soll Operation read_Directory_Entry genutzt werden.
+
+*Query parameters*
+
+*uid (optional)* +
+_Query Parameter_ — ID von dem Verzeichniseintrag (distinguishedName.uid) +
+*givenName (optional)* +
+_Query Parameter_ — Erlaubt die Suche mit Hilfe des Attributs givenName. +
+*sn (optional)* +
+_Query Parameter_ — Erlaubt die Suche mit Hilfe des Attributs sn. +
+*cn (optional)* +
+_Query Parameter_ — Erlaubt die Suche mit Hilfe des Attributs cn. +
+*displayName (optional)* +
+_Query Parameter_ — Erlaubt die Suche mit Hilfe des Attributs displayName. +
+*streetAddress (optional)* +
+_Query Parameter_ — Erlaubt die Suche mit Hilfe des Attributs streetAddress. +
+*postalCode (optional)* +
+_Query Parameter_ — Erlaubt die Suche mit Hilfe des Attributs postalCode. +
+*countryCode (optional)* +
+_Query Parameter_ — Erlaubt die Suche mit Hilfe des Attributs countryCode. +
+*localityName (optional)* +
+_Query Parameter_ — Erlaubt die Suche mit Hilfe des Attributs localityName. +
+*stateOrProvinceName (optional)* +
+_Query Parameter_ — Erlaubt die Suche mit Hilfe des Attributs stateOrProvinceName. +
+*title (optional)* +
+_Query Parameter_ — Erlaubt die Suche mit Hilfe des Attributs title. +
+*organization (optional)* +
+_Query Parameter_ — Erlaubt die Suche mit Hilfe des Attributs organization. +
+*otherName (optional)* +
+_Query Parameter_ — Erlaubt die Suche mit Hilfe des Attributs otherName. +
+*telematikID (optional)* +
+_Query Parameter_ — Erlaubt die Suche mit Hilfe des Attributs telematikID (die telematikID in den Basisdaten). +
+*telematikID-SubStr (optional)* +
+_Query Parameter_ — Erlaubt die Suche nach einem Substring am Anfang der telematikID (die telematikID in den Basisdaten). Entspricht der LDAP Filters Substring Assertion vom Typ &quot;subInitial Component&quot;. +
+*specialization (optional)* +
+_Query Parameter_ — Erlaubt die Suche mit Hilfe des Attributs specialization. Der Verzeichniseintrag wird selektiert, wenn die angegebene domainID im Attribut domainID (array) des Verzeichniseintrags enthalten ist. +
+*domainID (optional)* +
+_Query Parameter_ — Erlaubt die Suche mit Hilfe des Attributs domainID. Der Verzeichniseintrag wird selektiert, wenn die angegebene domainID im Attribut domainID (array) des Verzeichniseintrags enthalten ist. +
+*holder (optional)* +
+_Query Parameter_ — Erlaubt die Suche mit Hilfe des Attributs holder. Der Verzeichniseintrag wird selektiert, wenn der angegebene holder im Attribut holder (array) des Verzeichniseintrags enthalten ist. Wenn der Parameter mit dem eigenen Wert des Clients belegt wird, werden alle gefundenen Einträge zurückgegeben (für eigene Einträge gilt das Limit von 100 Ergebnissen nicht). Zur Suche nach Einträge ohne holder ist der Parameter mit dem einem leeren String &quot;&quot; zu belegen. Auch in diesem Fall werden alle gefundenen Einträge zurückgegeben (für Einträge ohne holder gilt das Limit von 100 Ergebnissen nicht). +
+*personalEntry (optional)* +
+_Query Parameter_ — Erlaubt die Suche mit Hilfe des Attributs personalEntry. +
+*dataFromAuthority (optional)* +
+_Query Parameter_ — Erlaubt die Suche mit Hilfe des Attributs dataFromAuthority.
+
+*professionOID (optional)*
+
+_Query Parameter_ — Erlaubt die Suche mit Hilfe des Attributs professionOID. Selektiert der Verzeichniseintrag, wenn der angegebene Wert in den professionOID's (array) des Basiseintrags vorhanden ist.
+
+*entryType (optional)*
+
+_Query Parameter_ — Erlaubt die Suche mit Hilfe des Attributs entryType. Selektiert der Verzeichniseintrag, wenn der angegebene Wert in den entryType's (array) des Basiseintrags vorhanden ist.
+
+*maxKOMLEadr (optional)*
+
+_Query Parameter_ — Erlaubt die Suche mit Hilfe des Attributs maxKOMLEadr.
+
+*changeDateTimeFrom (optional)*
+
+_Query Parameter_ — Erlaubt die Suche mit Hilfe des Attributs changeDateTime. 
+
+____
+Selektiert alle Datensätze mit changeDateTime >= changeDateTimeTo
+____
+
+*changeDateTimeTo (optional)*
+
+_Query Parameter_ — Erlaubt die Suche mit Hilfe des Attributs changeDateTime. 
+
+____
+Selektiert alle Datensätze mit changeDateTime <= changeDateTimeTo +
+​​
+____
+
+*baseEntryOnly (optional)* +
+_Query Parameter_ — Mit baseEntryOnly = &quot;true&quot; wird nur der Basiseintrag (baseDirectoryEntry) im Response zurückgegeben. Falls nicht angegeben oder mit &quot;false&quot; belegt, wird der gesamte Verzeichniseintrag mit Zertifikaten und Fachdaten im Response zurückgegeben.
+
+​​
+
+Der VZD unterstützt für die Leseoperationen read_Directory_Entry und read_Directory_Entry_for_Sync der Schnittstellen I_Directory_Administration und I_Directory_Application_Maintenance die folgenden Filtermöglichkeiten:
+
+* {blank}
++
+____
+Suche mit Wildcard "*" in den Parametern +
+- givenName +
+- sn +
+- cn +
+- displayName +
+- streetAddress +
+- postalCode +
+- countryCode +
+- localityName +
+- stateOrProvinceName +
+- title +
+- organization +
+- otherName +
+- telematikID +
+- specialization +
+- domainID +
+- holder +
+- professionOID
+____
+* {blank}
++
+____
+Suche nach Vorhandensein und leerem Inhalt eines Attributs des VZD-Datensatzes mit dem Kode \00 in den Parametern. +
+- givenName +
+- sn +
+- cn +
+- displayName +
+- streetAddress +
+- postalCode +
+- countryCode +
+- localityName +
+- stateOrProvinceName +
+- title +
+- organization +
+- otherName +
+- specialization +
+- domainID +
+- holder +
+- professionOID +
+- maxKOMLEadr +
+- changeDateTimeFrom +
+- changeDateTimeTo +
+Diese Suche findet sowohl Datensätze mit nicht vorhandenem Attribut wie auch vorhandenem aber leerem Attribut. Der Suchparameter darf nur den Kode \00 enthalten, keine weiteren Zeichen.
+____
+
+Alle Filterparameter einer Leseoperation werden mit einem UND (&) verknüpft. 
+
+=== Return type
+
+file:///C:/cp/vzd-client-generated-v1.4.0/index.html#DirectoryEntries[+++DirectoryEntries+++]
+
+=== Example data
+
+Content-Type: application/json
+
+=== Berechtigungen I_Directory_Administration (Holder Attribut)
+
+Die Daten im VZD dienen als Grundlage für TI Anwendungen. Zur Vermeidung von versehentlichen Änderungen – welche zu Problemen in TI Anwendungen führen können – wurden Berechtigungen für das Ändern von VZD Datensätzen eingeführt. Diese werden über das Attribut „holder“ realisiert. +
+ +
+Bei der Registrierung für die Nutzung der VZD Schnittstelle I_Directory_Administration erfolgt die Festlegung der clientId - welche in das Attribut „holder“ eingetragen wird - für den jeweiligen Antragsteller.  +
+ +
+*Zugriffsprüfungen über das „holder“ Attribut* +
+ +
+Für VZD Basisdatensätze erfolgt die Prüfung der Berechtigung bei jedem schreibenden/löschenden Zugriff (siehe Anforderungen A_20272 und A_20273) und bei der Synchronisation  (siehe Anforderung A_21230):
+
+* {blank}
++
+____
+Wenn das „holder“ Attribut des VZD Basisdatensatzes nicht befüllt (also leer) ist, werden Änderungen des VZD Basisdatensatzes erlaubt.
+____
+* {blank}
++
+____
+Wenn das „holder“ Attribut des VZD Basisdatensatzes befüllt ist und der aktuelle Client (identifiziert durch Attribut clientId des Access Tokens) in dem „holder“ Attribut enthalten ist (ein Wert des „holder“ Attributs muss der clientId entsprechen), werden Änderungen des VZD Basisdatensatzes und die Synchronisation (Operation read_Directory_Entry_for_Sync) erlaubt.
+____
+* {blank}
++
+____
+In allen anderen Fällen wird der schreibende/löschende Zugriff auf den VZD Basisdatensatz abgelehnt (http Status Code 403).
+____
+
+*Befüllung des „holder“ Attributs* +
+ +
+Bei dem Anlegen eines VZD Basisdatensatzes (Operation add_Directory_Entry) und bei Änderungen eines VZD Basisdatensatzes (Operation modify_Directory_Entry) kann das Attribut „holder“ angegeben werden (siehe Anforderung A_20271 und A_20272): +
+​​
+
+* {blank}
++
+____
+Wird das „holder“ Attribut nicht befüllt, werden Zugriffe auf diesen VZD Basisdatensatz nicht eingeschränkt.
+____
+* {blank}
++
+____
+Wird das „holder“ Attribut mit bis zu 100 Eigentümer des VZD Basisdatensatzes befüllt, haben nur diese Eigentümer schreibenden / löschenden Zugriff auf diesen VZD Basisdatensatz und können ihn mit der Paging Funktion der Synchronisationsoperation read_Directory_Entry_for_Sync lesen.
+____
+
+Zur Aktualisierung des Attributs „holder“ mit Operation modify_Directory_Entry muss immer das gesamte Attribut geschrieben werden (siehe Anforderung A_20271 und A_20272):
+
+* {blank}
++
+____
+Der Client muss – wenn er nicht alle Werte vorliegen hat – erst den VZD Basisdatensatz lesen (Operation read_Directory_Entry),
+____
+* {blank}
++
+____
+die Werte von Attribut „holder“ aktualisieren und dann
+____
+* {blank}
++
+____
+den VZD Basisdatensatz mit den gesamten Werten des Attributs „holder“ schreiben.
+____
+
+Wenn der Client das Attribut „holder“ befüllt und seine eigene clientId nicht einträgt, dann hat er nach Ausführung der Operation keinen schreibenden/löschenden Zugriff mehr auf diesen VZD Basisdatensatz. +
+ +
+*Belegung des Holder Attributs* +
+ +
+Bei mehrfacher Belegung des „holder“ Attributs erhält jeder eingetragene Client die Rechte für schreibende Zugriffe auf den VZD Basisdatensatz. +
+Jeder Client, der als Holder eingetragen ist kann weitere holder dazu nehmen oder entfernen. Sobald er sich selbst entfernt ist der Client "ausgesperrt". +
+Bei Aktualisierung des „holder“ Attributs über Operation modify_Directory_Entry muss immer der gesamte Inhalt des Attributs geschrieben werden. +
+ +
+Beispiel für den Inhalt eines Attributs „holder“, das um die Werte "KartenHerausgeber3" und "TSP3" ergänzt werden soll: +
+​​
+
+* {blank}
++
+____
+Aktueller Inhalt Attributs „holder“ vor der Aktualisierung:
+____
+
+"holder": [ "KartenHerausgeber1", "KartenHerausgeber2", "TSP1", "TSP2" ]
+
+* {blank}
++
+____
+In Operation modify_Directory_Entry ist der gesamte Inhalt des Attributs „holder“ anzugeben (die Reihenfolge der Werte ist beliebig):
+____
+
+„holder": [ "KartenHerausgeber1", "KartenHerausgeber2", "TSP1", "TSP2", "KartenHerausgeber3", "TSP3" ]
+
+​​
+
+*Zusammenarbeit zwischen TSP und Kartenherausgeber*
+
+Für die Zusammenarbeit von Kartenherausgebern und TSPs werden folgende Varianten unterstützt
+
+* {blank}
++
+____
+Kartenherausgeber pflegt seine Daten und Zertifikate
+____
+
+Der Kartenherausgeber registriert sich beim VZD für die Schnittstelle I_Directory_Administration. Er trägt seine clientId in das „holder“ Attribut seiner VZD Basisdatensätze ein und beschränkt damit die Änderungen an diesen Basisdatensätzen. Die Zertifikate für diese VZD Basisdatensätze werden ebenfalls durch den Kartenherausgeber eingetragen und gelöscht.
+
+* {blank}
++
+____
+TSP pflegt die gesamten Daten eines Kartenherausgebers inklusive Zertifikaten
+____
+
+Der TSP wird vom Kartenherausgeber mit der Pflege der gesamten VZD Daten des Kartenherausgebers beauftragt. Der TSP registriert sich dafür beim VZD für die Schnittstelle I_Directory_Administration und weist seine Beauftragung durch den Kartenherausgeber nach. Er trägt seine clientId in das „holder“ Attribut seiner VZD Basisdatensätze ein und beschränkt damit die Änderungen an diesen Basisdatensätzen. Die Zertifikate für diese VZD Basisdatensätze werden durch den TSP eingetragen.
+
+Empfehlung: Zusätzlich zur clientId des TSPs wird auch die clientId des Kartenherausgebers in das „holder“ Attribut eingetragen.
+
+* {blank}
++
+____
+Kartenherausgeber pflegt VZD Basisdaten und der TSP die Zertifikate
+____
+
+Der Kartenherausgeber registriert sich beim VZD für die Schnittstelle I_Directory_Administration. Er trägt seine clientId in das „holder“ Attribut seiner VZD Basisdatensätze ein und beschränkt damit die Änderungen an diesen Basisdatensätzen. Die Zertifikate für diese VZD Basisdatensätze werden durch den TSP eingetragen und gelöscht. Für die Verwaltung der Zertifikate muss der TSP nicht in das „holder“ Attribut aufgenommen werden.
+
+ 
+
+Hinweis: Das Eintragen von Zertifikaten in den VZD wird durch das „holder“ Attribut nicht beschränkt, das Zertifikat muss aber immer zur TelematikID des VZD Basisdatensatzes passen und gültig sein. Unter gültige Zertifikate fallen
+
+* {blank}
++
+____
+ausgestellte, aber nicht aktivierte Zertifikate und
+____
+* {blank}
++
+____
+vollständig gültige Zertifikate (prüfbar über OCSP).
+____
+
+​​
+
+*Aktivierung der Berechtigungen (Prüfung über „holder“ Attribut)*
+
+Die Prüfung der Berechtigungen für VZD Basisdatensätze erfolgt in folgenden Schritten:
+
+[arabic]
+. {blank}
++
+____
+Befüllung des „holder“ Attributs
+____
+[loweralpha]
+.. {blank}
++
+____
+Das „holder“ Attribut wird von den Clients befüllt.
+____
+.. {blank}
++
+____
+Der VZD führt noch keine Prüfung der Berechtigungen auf Basis des „holder“ Attributs aus.
+____
+.. {blank}
++
+____
+Der VZD prüft die angegebenen Werte des „holder“ Attributs gegen die hinterlegten Client_IDs.
+____
+. {blank}
++
+____
+Prüfung der Befüllung
+____
+[loweralpha]
+.. {blank}
++
+____
+Die gematik prüft mit statistischen VZD Reports den Stand der Befüllung des „holder“ Attributs.
+____
+.. {blank}
++
+____
+Die Kartenherausgeber bzw. beauftragten TSPs prüfen die Befüllung „ihrer“ VZD Basisdatensätze.
+____
+. {blank}
++
+____
+Aktivierung der Berechtigungsprüfung
+____
+[loweralpha]
+.. {blank}
++
+____
+Der VZD prüft die Berechtigungen bei Änderungen an den VZD Basisdatensätzen.
+____
+.. {blank}
++
+____
+Für VZD Basisdatensätzen ohne befülltes „holder“ Attribut erfolgt weiterhin keine Prüfung.
+____
+
+​​
+
+Versehentlich fehlerhaft eingetragene Berechtigungen müssen durch einen aktuellen Eigentümer des VZD Basisdatensatzes korrigiert werden:
+
+* {blank}
++
+____
+Wenn das „holder“ Attribut keine Werte enthält, kann jeder berechtigte Client die korrekten Werte eintragen.
+____
+* {blank}
++
+____
+Wenn ein Kartenherausgeber nicht (mehr) als "holder" eingetragen ist, muss er sich an einen der eingetragenen "holder" wenden und sich eintragen lassen.
+____
+* {blank}
++
+____
+Kartenherausgeber, die als "holder" in dem VZD Basisdatensatz eingetragen sind und fehlerhafte Daten im "holder" Attribut feststellen, können die Werte des Attributs korrigieren.
+____
+
+== Attributtabellen
+
+In den folgenden Abschnitten werden für die Kartenherausgeber spezifische Festlegungen zu den Attributen des VZD getroffen.
+
+Tabelle 1: Legende für Tab_VZD_Datenbeschreibung_*
+
+[width="100%",cols="22%,78%",options="header",]
+|===
+|*orange* |Das Attribut muss von der pflegenden Stelle (Kartenherausgeber oder vom Kartenherausgeber berechtigte Organisationen wie z. B. TSP) aus dem Zertifikat ermittelt und über die Schnittstelle I_Directory_Administration an den VZD übergeben werden.
+|*rot* |Wird vom VZD eingetragen.
+|*blau* |Das Attribut muss von der pflegenden Stelle über die Schnittstelle I_Directory_Administration an den VZD übergeben werden.
+|*schwarz* |Das Attribut wird vom Fachdienst gepflegt. Der Fachdienst ist für die Korrektheit des Wertes verantwortlich.
+|*grün* |Das Attribut wird nicht gepflegt.
+|===
+
+=== Wertebereiche der Attribute
+
+Tabelle 2: TAB_VZD_Wertebereiche_der_Attribute
+
+[width="100%",cols="24%,40%,36%",options="header",]
+|===
+|*Attribut* |*gültige Werte* |*Beschreibung*
+|stateOrProvinceName |Baden-Württemberg +
+Bayern +
+Berlin +
+Brandenburg +
+Bremen +
+Hamburg +
+Hessen +
+Mecklenburg-Vorpommern +
+Niedersachsen +
+Nordrhein-Westfalen +
+Rheinland-Pfalz +
+Saarland +
+Sachsen +
+Sachsen-Anhalt +
+Schleswig-Holstein +
+Thüringen +
+ +
+Nordrhein +
+Westfalen-Lippe +
+ +
+<Platzhalter für EU-Organisationen/Personen außerhalb Deutschlands> |Zu den 16 Bundesländern sind auch die KV-Regionen Nordrhein und Westfalen-Lippe gültige Werte. +
+ +
+Mit der Einführung des E-Rezepts sind auch Bezeichnungen von EU-Ortschaften und EU-Ländern außerhalb Deutschlands möglich.
+|countryCode |Werte gemäß  ISO-3166-1 ALPHA-2 |Wenn nicht im add oder modify Request angegeben, wird vom VZD der Code "DE" eingetragen.
+|===
+
+=== Kassenärztliche Vereinigungen (SMC-B-Eintrag)
+
+Tabelle 3: Tab_VZD_Datenbeschreibung_KVen
+
+[width="100%",cols="18%,10%,72%",options="header",]
+|===
+|*LDAP-Directory Attribut* |*Pflichtfeld aus Sicht Pflege und Nutzung?* |*Erläuterung*
+|*givenName* |optional |Wird für SMC-B nicht verwendet.
+|*sn* |obligatorisch |Wird vom VZD als Kopie von displayName automatisch eingetragen. +
+Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet.
+|*cn* +
+* * +
+  |obligatorisch |Bezeichner: Name +
+Wird vom VZD als Kopie des Attributs displayName übernommen. +
+Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet.
+|*otherName* |optional |Das Attribut otherName ist veraltet und wird in einer zukünftigen Version aus dem Datenmodell entfernt. +
+ +
+Bezeichner: Anderer Name +
+Wird vom VZD aus dem Zertifikatsattribut otherName übernommen.
+|*displayName* |obligatorisch |Bezeichner: Anzeigename +
+Dieses Attribut wird genutzt, um den Namen der Betriebsstätte gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut, um die Suche einzuschränken, und bei der Darstellung des Ergebnisses).
+|*streetAddress* |obligatorisch |Bezeichner: Straße und Hausnummer der Betriebsstätte
+|*postalCode* |obligatorisch |Bezeichner: Postleitzahl der Betriebsstätte
+|*localityName * |obligatorisch |Bezeichner: Ort der Betriebsstätte
+|*stateOrProvinceName * |optional |Bezeichner: Bundesland der Betriebsstätte oder KV-Region
+|*organization* |optional |Bezeichner: Organisation +
+Dieses Attribut ist ein optionales zweites Namensattribut und wird befüllt bei Bedarf. Ebenso wie displayName ist es geeignet, um nach einem Namen zu filtern und ihn im Suchergebnis anzuzeigen.
+|*domainID* |obligatorisch |Bezeichner: Betriebsstättennummer der Praxis +
+Das Attribut kann nur einmal vorkommen. Der Wert wird von der KV vergeben.
+|*specialization* |obligatorisch |Bezeichner: Fachgebiet +
+Kann mehrfach vorkommen (1..100) +
+*Für Einträge der Leistungserbringer-Organisationen (SMC-B Eintrag)* +
+Der Wertebereich entspricht den in hl7 definierten und für ePA festgelegten Werten ( https://wiki.hl7.de/index.php?title=IG:Value_Sets_f%C3%BCr_XDS#DocumentEntry.practiceSettingCode[+++https://wiki.hl7.de/index.php?title=IG:Value_Sets_f%C3%BCr_XDS#DocumentEntry.practiceSettingCode+++]). +
+urn:psc:<OID Codesystem:Code> +
+Beispiel für Allgemeinmedizin: urn:psc:1.3.6.1.4.1.19376.3.276.1.5.4:ALLG
+|*countryCode* |optional |Siehe TAB_VZD_Wertebereiche_der_Attribute
+|*changeDateTime* |optional |Bezeichner: Änderungszeitstempel +
+Wird vom VZD automatisch eingetragen.
+|*usage* |optional |Das Attribut usage wird nicht verwendet.
+|*userCertificate* |optional |Bezeichner: Enc-Zertifikat der SMC-B +
+Kann mehrfach vorkommen (0..50) +
+Format: DER, Base64 kodiert +
+Die pflegende Stelle erhält das Zertifikat vom TSP. +
+Es können Einträge ohne Zertifikat angelegt werden. Diese Einträge werden jedoch nicht über die LDAP-Abfrageschnittstelle gefunden.
+|maxKOMLEadr |optional |Maximale Anzahl von Mail-Adressen in den KOM-LE-Fachdaten.  +
+Falls kein Wert eingetragen wurde, können beliebig viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden. +
+Falls ein Wert eingetragen wurde, können maximal so viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden.
+|*personalEntry* |obligatorisch |Wird vom VZD eingetragen. +
+Wert == TRUE, wenn alle zum Eintrag gehörenden Zertifikate den entryType 1 haben (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID).
+|*entryType* |obligatorisch |Bezeichner: Eintragstyp +
+Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403.
+|*telematikID* |obligatorisch |Bezeichner: TelematikID +
+Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
+|*professionOID* |obligatorisch |Bezeichner: Profession OID +
+Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und dem Mapping in ab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
+Kann mehrfach vorkommen (0..100)
+|*title* |optional |Wird für SMC-B nicht verwendet.
+|*description* |optional |Wird derzeit nicht verwendet. +
+ +
+Bezeichner: Beschreibung +
+Dieses Attribut ermöglicht, das Zertifikat zu beschreiben, um die Administration des VZD-Eintrags zu vereinfachen.
+|*mail* |optional |Bezeichner: E-Mail-Adresse +
+Kann mehrfach vorkommen (0..100) +
+Wird vom KOM-LE-Anbieter eingetragen.
+|*komLeData* |optional a|
+Bezeichner: komLeData +
+Enthält die KOM-LE-Version des Clientmoduls der angegebenen "mail" Adresse im Attribut "version". Anhand dieser Version erkennt das sendende Clientmodul, welche KOM-LE-Version vom Empfänger-Clientmodul unterstützt wird und in welchem Format die Mail an diesen Empfänger versandt wird. +
+Wenn nicht angegeben, wird KOM-LE-Version 1.0 angenommen. +
+Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
+
+* {blank}
++
+____
+Ein komLeData-Eintrag setzt sich zusammen aus der Mail-Adresse (Attribut "mail") und der zugehörigen KOM-LE Version (Attribut "version"). 
+____
+* {blank}
++
+____
+Für jede Mail-Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Datenstruktur komLeData geben. Es dürfen in komLeData keine Mail-Adressen referenziert werden, die nicht im übergeordneten "mail" Attribut enthalten sind.
+____
+* {blank}
++
+____
+Wenn eine Mail-Adresse gelöscht wird, muss auch ihr komLeData-Eintrag gelöscht werden. +
+ Geschrieben wird immer die gesamte Liste. Für Änderungen muss erst der aktuelle Eintrag gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
+____
+* {blank}
++
+____
+Beispiel für den Wert eines komLeData-Eintrags: \{"mail": "erik.mustermann@hrstdomain.kim.telematik"; "version": "1.5"}
+____
+
+Wird vom KOM-LE-Anbieter eingetragen.
+
+|===
+
+​​
+
+=== Kassenzahnärztliche Vereinigungen (SMC-B Eintrag)
+
+Tabelle 4: Tab_VZD_Datenbeschreibung_KZVen
+
+[width="100%",cols="18%,10%,72%",options="header",]
+|===
+|*LDAP-Directory Attribut* |*Pflichtfeld aus Sicht Pflege und Nutzung?* |*Erläuterung*
+|*givenName* |optional |Wird für SMC-B nicht verwendet.
+|*sn* |optional |Wird vom VZD als Kopie von displayName automatisch eingetragen. +
+Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet.
+|*cn* |obligatorisch |Bezeichner: Name +
+Wird vom VZD als Kopie des Attributs displayName übernommen. +
+Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet.
+|*otherName* |optional |Das Attribut otherName ist veraltet und wird in einer zukünftigen Version aus dem Datenmodell entfernt. +
+ +
+Bezeichner: Anderer Name +
+Wird vom VZD aus dem Zertifikatsattribut otherName übernommen.
+|*displayName* |obligatorisch |Bezeichner: Anzeigename +
+Dieses Attribut wird genutzt, um den Namen der Zahnarztpraxis gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut um die Suche einzuschränken und bei der Darstellung des Ergebnisses).
+|*streetAddress* |obligatorisch |Bezeichner: Straße und Hausnummer
+|*postalCode* |obligatorisch |Bezeichner: Postleitzahl
+|*localityName * |obligatorisch |Bezeichner: Ort
+|*stateOrProvinceName * |optional |Bezeichner: Bundesland der Betriebsstätte oder KZV-Region
+|*countryCode* |optional |Siehe TAB_VZD_Wertebereiche_der_Attribute 
+|*changeDateTime* |optional |Bezeichner: Änderungszeitstempel +
+Wird vom VZD automatisch eingetragen.
+|*organization* |optional |Bezeichner: Organisation +
+Dieses Attribut ist ein optionales zweites Namensattribut und wird befüllt bei Bedarf. Ebenso wie displayName ist es geeignet, um nach einem Namen zu filtern und ihn im Suchergebnis anzuzeigen.
+|*domainID* |optional |Ärzte: Bezeichner: Abrechnungsnummer +
+Das Attribut kann nur einmal vorkommen. Der Wert wird von der KZV vergeben.
+|*specialization* |obligatorisch |Bezeichner: Fachgebiet +
+Kann mehrfach vorkommen (1..100) +
+*Für Einträge der Leistungserbringer-Organisationen (SMC-B Eintrag)* +
+Der Wertebereich entspricht den in hl7 definierten und für ePA festgelegten Werten ( https://wiki.hl7.de/index.php?title=IG:Value_Sets_f%C3%BCr_XDS#DocumentEntry.practiceSettingCode[+++https://wiki.hl7.de/index.php?title=IG:Value_Sets_f%C3%BCr_XDS#DocumentEntry.practiceSettingCode+++]). +
+urn:psc:<OID Codesystem:Code> +
+Beispiel für Zahnmedizin: urn:psc:1.3.6.1.4.1.19376.3.276.1.5.4:MKZH
+|*usage* |optional |Das Attribut usage wird nicht verwendet.
+|*userCertificate* |optional |Bezeichner: Enc-Zertifikat der SMC-B +
+Kann mehrfach vorkommen (0..50) +
+Format: DER, Base64 kodiert +
+Die pflegende Stelle erhält das Zertifikat vom TSP. +
+Es können Einträge ohne Zertifikat angelegt werden. Diese Einträge werden jedoch nicht über die LDAP-Abfrageschnittstelle gefunden.
+|maxKOMLEadr |optional |Maximale Anzahl von Mail-Adressen in den KOM-LE-Fachdaten.  +
+Falls kein Wert eingetragen wurde, können beliebig viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden. +
+Falls ein Wert eingetragen wurde, können maximal so viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden.
+|*personalEntry* |obligatorisch |Wird vom VZD eingetragen. +
+Wert == TRUE, wenn alle zum Eintrag gehörenden Zertifikate den entryType 1 haben (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID).
+|*entryType* |obligatorisch |Bezeichner: Eintragstyp +
+Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403.
+|*telematikID* |obligatorisch |Bezeichner: TelematikID +
+Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
+|*professionOID* |obligatorisch |Bezeichner: Profession OID +
+Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und dem Mapping in ab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
+Kann mehrfach vorkommen (0..100).
+|*title* |optional |Wird für SMC-B nicht verwendet.
+|*description* |optional |Wird derzeit nicht verwendet. +
+ +
+Bezeichner: Beschreibung +
+Dieses Attribut ermöglicht, das Zertifikat zu beschreiben, um die Administration des VZD-Eintrags zu vereinfachen.
+|*mail* |optional |Bezeichner: E-Mail-Adresse +
+Kann mehrfach vorkommen (0..100). +
+Wird vom KOM-LE-Anbieter eingetragen.
+|*komLeData* |optional a|
+Bezeichner: komLeData +
+Enthält die KOM-LE-Version des Clientmoduls der angegebenen "mail" Adresse im Attribut "version". Anhand dieser Version erkennt das sendende Clientmodul, welche KOM-LE-Version vom Empfänger-Clientmodul unterstützt wird und in welchem Format die Mail an diesen Empfänger versandt wird. +
+Wenn nicht angegeben, wird KOM-LE-Version 1.0 angenommen. +
+Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
+
+* {blank}
++
+____
+Ein komLeData-Eintrag setzt sich zusammen aus der Mail-Adresse (Attribut "mail") und der zugehörigen KOM-LE Version (Attribut "version"). 
+____
+* {blank}
++
+____
+Für jede Mail-Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Datenstruktur komLeData geben. Es dürfen in komLeData keine Mail-Adressen referenziert werden, die nicht im übergeordneten "mail" Attribut enthalten sind.
+____
+* {blank}
++
+____
+Wenn eine Mail-Adresse gelöscht wird, muss auch ihr komLeData-Eintrag gelöscht werden. +
+ Geschrieben wird immer die gesamte Liste. Für Änderungen muss erst der aktuelle Eintrag gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
+____
+* {blank}
++
+____
+Beispiel für den Wert eines komLeData-Eintrags: \{"mail": "erik.mustermann@hrstdomain.kim.telematik"; "version": "1.5"}
+____
+
+Wird vom KOM-LE-Anbieter eingetragen.
+
+|===
+
+​​
+
+=== SMC-B-Eintrag für Apotheken (ABDA, gematik)
+
+Tabelle 5: Tab_VZD_Datenbeschreibung_Apotheken_SMC-B
+
+[width="100%",cols="18%,10%,72%",options="header",]
+|===
+|*LDAP-Directory Attribut* |*Pflichtfeld aus Sicht Pflege und Nutzung?* |*Erläuterung*
+|*givenName* |optional |Wird für SMC-B nicht verwendet.
+|*sn* |optional |Wird vom VZD als Kopie von displayName automatisch eingetragen. +
+Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet.
+|*cn* |obligatorisch |Bezeichner: Name +
+Wird vom VZD als Kopie des Attributs displayName übernommen. +
+Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet.
+|*otherName* |optional |Das Attribut otherName ist veraltet und wird in einer zukünftigen Version aus dem Datenmodell entfernt. +
+ +
+Bezeichner: Anderer Name +
+Wird vom VZD aus dem Zertifikatsattribut otherName übernommen.
+|*displayName* |obligatorisch |Bezeichner: Anzeigename +
+Dieses Attribut wird genutzt um den Namen der Apotheke gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut um die Suche einzuschränken und bei der Darstellung des Ergebnisses).
+|*streetAddress* |obligatorisch |Bezeichner: Straße und Hausnummer der Apotheke
+|*postalCode* |obligatorisch |Bezeichner: Postleitzahl der Apotheke
+|*localityName * |obligatorisch |Bezeichner: Ort der Apotheke
+|*stateOrProvinceName * |optional |Bezeichner: Bundesland der Apotheke
+|*countryCode* |optional |Siehe TAB_VZD_Wertebereiche_der_Attribute
+|*changeDateTime* |optional |Bezeichner: Änderungszeitstempel +
+Wird vom VZD automatisch eingetragen.
+|*organization* |optional |Bezeichner: Organisation +
+Dieses Attribut ist ein optionales zweites Namensattribut und wird befüllt bei Bedarf. Ebenso wie displayName ist es geeignet um nach einem Namen zu filtern und ihn im Suchergebnis anzuzeigen. +
+Für EU-Versandapotheken: EU-Versandapotheke
+|*domainID* |optional |Wird für Apotheken nicht verwendet.
+|*specialization* |optional |Wird für Apotheken nicht verwendet. +
+ +
+Bezeichner: Fachgebiet +
+Kann mehrfach vorkommen (0..100). +
+*Für Einträge der Leistungserbringer-Organisationen (SMC-B Eintrag)* +
+Der Wertebereich entspricht den in hl7 definierten und für ePA festgelegten Werten ( https://wiki.hl7.de/index.php?title=IG:Value_Sets_f%C3%BCr_XDS#DocumentEntry.practiceSettingCode[+++https://wiki.hl7.de/index.php?title=IG:Value_Sets_f%C3%BCr_XDS#DocumentEntry.practiceSettingCode+++]). +
+urn:psc:<OID Codesystem:Code> +
+Beispiel für Apotheke: urn:psc:1.3.6.1.4.1.19376.3.276.1.5.5:PHZ +
+Für EU-Versandapotheken: urn:psc:1.3.6.1.4.1.19376.3.276.1.5.5:PHZ
+|*usage* |optional |Das Attribut usage wird nicht verwendet.
+|maxKOMLEadr |optional |Maximale Anzahl von Mail-Adressen in den KOM-LE-Fachdaten.  +
+Falls kein Wert eingetragen wurde, können beliebig viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden. +
+Falls ein Wert eingetragen wurde, können maximal so viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden.
+|*userCertificate* |optional |Bezeichner: Enc-Zertifikat der SMC-B +
+Kann mehrfach vorkommen (0..50). +
+Format: DER, Base64 kodiert +
+Die pflegende Stelle erhält das Zertifikat vom TSP. +
+Es können Einträge ohne Zertifikat angelegt werden. Diese Einträge werden jedoch nicht über die LDAP-Abfrageschnittstelle gefunden.
+|*personalEntry* |obligatorisch |Wird vom VZD eingetragen. +
+Wert == TRUE, wenn alle zum Eintrag gehörenden Zertifikate den entryType 1 haben (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID).
+|*entryType* |obligatorisch |Bezeichner: Eintragstyp +
+Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403.
+|*telematikID* |obligatorisch |Bezeichner: TelematikID +
+Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
+|*professionOID* |obligatorisch |Bezeichner: Profession OID  +
+Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und dem Mapping in ab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
+Kann mehrfach vorkommen (0..100).
+|*title* |optional |Wird für SMC-B nicht verwendet.
+|*description* |optional |Wird derzeit nicht verwendet. +
+ +
+Bezeichner: Beschreibung +
+Dieses Attribut ermöglicht, das Zertifikat zu beschreiben, um die Administration des VZD-Eintrags zu vereinfachen.
+|*mail* |optional |Bezeichner: E-Mail-Adresse +
+kann mehrfach vorkommen (0..100). +
+Wird vom KOM-LE-Anbieter eingetragen.
+|*komLeData* |optional a|
+Bezeichner: komLeData +
+Enthält die KOM-LE-Version des Clientmoduls der angegebenen "mail" Adresse im Attribut "version". Anhand dieser Version erkennt das sendende Clientmodul, welche KOM-LE-Version vom Empfänger-Clientmodul unterstützt wird und in welchem Format die Mail an diesen Empfänger versandt wird. +
+Wenn nicht angegeben, wird KOM-LE-Version 1.0 angenommen. +
+Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
+
+* {blank}
++
+____
+Ein komLeData-Eintrag setzt sich zusammen aus der Mail-Adresse (Attribut "mail") und der zugehörigen KOM-LE Version (Attribut "version"). 
+____
+* {blank}
++
+____
+Für jede Mail-Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Datenstruktur komLeData geben. Es dürfen in komLeData keine Mail-Adressen referenziert werden, die nicht im übergeordneten "mail" Attribut enthalten sind.
+____
+* {blank}
++
+____
+Wenn eine Mail-Adresse gelöscht wird, muss auch ihr komLeData-Eintrag gelöscht werden. +
+ Geschrieben wird immer die gesamte Liste. Für Änderungen muss erst der aktuelle Eintrag gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
+____
+* {blank}
++
+____
+Beispiel für den Wert eines komLeData-Eintrags: \{"mail": "erik.mustermann@hrstdomain.kim.telematik"; "version": "1.5"}
+____
+
+Wird vom KOM-LE-Anbieter eingetragen.
+
+|===
+
+​​
+
+=== HBA-Eintrag für Apotheker (ABDA, gematik)
+
+Tabelle 6: Tab_VZD_Datenbeschreibung_Apotheker
+
+[width="100%",cols="18%,9%,73%",options="header",]
+|===
+|*LDAP-Directory Attribut* |*Pflichtfeld aus Sicht Pflege und Nutzung?* |*Erläuterung*
+|*givenName* |optional |Bezeichner: Vorname +
+Wird vom VZD aus dem Zertifikatsattribut givenName übernommen.
+|*sn* |optional |Bezeichner: Nachname +
+Wird vom VZD aus dem Zertifikatsattribut sn übernommen.
+|*cn* |obligatorisch |Bezeichner: Name +
+Wird vom VZD automatisch als Kopie von displayName eingetragen (weil E-Mail-Clients über dieses Attribut suchen; Verwendung als Filter-Attribut, um die Suche einzuschränken, und bei der Darstellung des Ergebnisses).
+|*otherName* |optional |Das Attribut otherName ist veraltet und wird in einer zukünftigen Version aus dem Datenmodell entfernt. +
+ +
+Bezeichner: Anderer Name +
+Wird vom VZD aus dem Zertifikatsattribut otherName übernommen.
+|*displayName* |obligatorisch |Bezeichner: Anzeigename +
+Dieses Attribut wird genutzt, um den Namen der Person gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut, um die Suche einzuschränken, und bei der Darstellung des Ergebnisses).
+|*streetAddress* |optional |Bezeichner: Straße und Hausnummer (berufliche Adresse) +
+Der Wert wird von der pflegenden Stelle festgelegt.
+|*postalCode* |optional |Bezeichner: Postleitzahl  (berufliche Adresse) +
+Der Wert wird von der pflegenden Stelle festgelegt.
+|*localityName * |optional |Bezeichner: Ort  (berufliche Adresse) +
+Der Wert wird von der pflegenden Stelle festgelegt.
+|*stateOrProvinceName * |optional |Bezeichner: Bundesland  (berufliche Adresse) +
+Der Wert wird von der pflegenden Stelle festgelegt.
+|*countryCode* |optional |Siehe TAB_VZD_Wertebereiche_der_Attribute
+|*changeDateTime* |optional |Bezeichner: Änderungszeitstempel +
+Wird vom VZD automatisch eingetragen.
+|*organization* |optional |Bezeichner: Organisation +
+Dieses Attribut wird genutzt, um den Namen der Betriebsstätte gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut, um die Suche einzuschränken, und bei der Darstellung des Ergebnisses)
+|*domainID* |optional |Bezeichner: spezifisches Kennzeichen der Apotheker +
+Kann mehrfach vorkommen (0..100). +
+Der Wert wird von der pflegenden Stelle festgelegt.
+|*specialization* |obligatorisch |Bezeichner: Fachgebiet +
+Kann mehrfach vorkommen (1..100). +
+*Für Einträge der Leistungserbringer (HBA-Eintrag)* +
+Der Wertebereich entspricht den in hl7 definierten Werten ( https://wiki.hl7.de/index.php?title=IG:Value_Sets_f%C3%BCr_XDS#DocumentEntry.authorSpecialty[+++https://wiki.hl7.de/index.php?title=IG:Value_Sets_f%C3%BCr_XDS#DocumentEntry.authorSpecialty+++]). +
+urn:as:<OID Codesystem:Code> +
+Beispiel für Apotheker/Fachapotheker: urn:as:1.3.6.1.4.1.19376.3.276.1.5.11:70
+|*usage* |optional |Das Attribut usage wird nicht verwendet.
+|maxKOMLEadr |optional |Maximale Anzahl von Mail-Adressen in den KOM-LE-Fachdaten.  +
+Falls kein Wert eingetragen wurde, können beliebig viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden. +
+Falls ein Wert eingetragen wurde, können maximal so viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden.
+|*userCertificate* |obligatorisch |Bezeichner: Zertifikat +
+Kann mehrfach vorkommen (0..50). +
+Neue Einträge können nur mit Zertifikat angelegt werden. +
+Format: DER, Base64 kodiert +
+Die pflegende Stelle erhält das Zertifikat vom TSP. +
+Es können Einträge ohne Zertifikat angelegt werden. Diese Einträge werden jedoch nicht über die LDAP-Abfrageschnittstelle gefunden.
+|*personalEntry* |obligatorisch |Wird vom VZD eingetragen +
+Wert == TRUE, wenn alle zum Eintrag gehörenden Zertifikate den entryType 1 haben (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID).
+|*entryType* |obligatorisch |Bezeichner: Eintragstyp +
+Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403.
+|*telematikID* |obligatorisch |Bezeichner: TelematikID +
+Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
+|*professionOID* |obligatorisch |Bezeichner: Profession OID +
+Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und dem Mapping in ab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
+Kann mehrfach vorkommen (0..100).
+|*title* |optional |Bezeichner: Titel +
+Der Wert wird von der pflegenden Stelle festgelegt.
+|*description* |optional |Wird derzeit nicht verwendet. +
+ +
+Bezeichner: Beschreibung +
+Dieses Attribut ermöglicht, das Zertifikat zu beschreiben, um die Administration des VZD-Eintrags zu vereinfachen.
+|*mail* |optional |Bezeichner: E-Mail-Adresse +
+Kann mehrfach vorkommen (0..100). +
+Wird vom KOM-LE-Anbieter eingetragen.
+|*komLeData* |optional a|
+Bezeichner: komLeData +
+Enthält die KOM-LE-Version des Clientmoduls der angegebenen "mail" Adresse im Attribut "version". Anhand dieser Version erkennt das sendende Clientmodul, welche KOM-LE-Version vom Empfänger-Clientmodul unterstützt wird und in welchem Format die Mail an diesen Empfänger versandt wird. +
+Wenn nicht angegeben, wird KOM-LE-Version 1.0 angenommen. +
+Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
+
+* {blank}
++
+____
+Ein komLeData-Eintrag setzt sich zusammen aus der Mail-Adresse (Attribut "mail") und der zugehörigen KOM-LE Version (Attribut "version"). 
+____
+* {blank}
++
+____
+Für jede Mail-Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Datenstruktur komLeData geben. Es dürfen in komLeData keine Mail-Adressen referenziert werden, die nicht im übergeordneten "mail" Attribut enthalten sind.
+____
+* {blank}
++
+____
+Wenn eine Mail-Adresse gelöscht wird, muss auch ihr komLeData-Eintrag gelöscht werden. +
+ Geschrieben wird immer die gesamte Liste. Für Änderungen muss erst der aktuelle Eintrag gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
+____
+* {blank}
++
+____
+Beispiel für den Wert eines komLeData-Eintrags: \{"mail": "erik.mustermann@hrstdomain.kim.telematik"; "version": "1.5"}
+____
+
+Wird vom KOM-LE-Anbieter eingetragen.
+
+|===
+
+​​
+
+​​
+
+=== DKG (SMC-B-Eintrag)
+
+Tabelle 7: Tab_VZD_Datenbeschreibung_DKG
+
+[width="100%",cols="18%,10%,72%",options="header",]
+|===
+|*LDAP-Directory Attribut +
+* |*Pflichtfeld aus Sicht Pflege und Nutzung? +
+* |*Erläuterung +
+*
+|givenName |optional |Wird für SMC-B nicht verwendet.
+|*sn* |optional |Wird vom VZD als Kopie von displayName automatisch eingetragen. +
+Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet.
+|*cn* +
+* * +
+  |obligatorisch |Bezeichner: Name +
+Wird vom VZD als Kopie des Attributs displayName übernommen. +
+Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet.
+|*otherName* |optional |Das Attribut otherName ist veraltet und wird in einer zukünftigen Version aus dem Datenmodell entfernt. +
+ +
+Bezeichner: Anderer Name +
+Wird vom VZD aus dem Zertifikatsattribut otherName übernommen.
+|*displayName* |obligatorisch |Bezeichner: Anzeigename +
+Dieses Attribut wird genutzt um den Namen der Betriebsstätte gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut um die Suche einzuschränken und bei der Darstellung des Ergebnisses).
+|*streetAddress* |obligatorisch |Bezeichner: Straße und Hausnummer des Krankenhauses
+|*postalCode* |obligatorisch |Bezeichner: Postleitzahl des Krankenhauses
+|*localityName * |obligatorisch |Bezeichner: Ort des Krankenhauses
+|*stateOrProvinceName * |optional |Bezeichner: Bundesland des Krankenhauses
+|*countryCode* |optional |Siehe TAB_VZD_Wertebereiche_der_Attribute
+|*changeDateTime* |optional |Bezeichner: Änderungszeitstempel +
+Wird vom VZD automatisch eingetragen.
+|*organization* |optional |Bezeichner: Organisation +
+Dieses Attribut ist ein optionales zweites Namensattribut und wird befüllt bei Bedarf. Ebenso wie displayName ist es geeignet, um nach einem Namen zu filtern und ihn im Suchergebnis anzuzeigen.
+|*domainID* |optional |Bezeichner: Betriebsstättennummer des Krankenhauses +
+Das Attribut kann nur einmal vorkommen. Der Wert wird von der DKG vergeben.
+|*specialization* |obligatorisch |Bezeichner: Fachgebiet +
+Kann mehrfach vorkommen (1..100). +
+*Für Einträge der Leistungserbringer-Organisationen (SMC-B Eintrag)* +
+Der Wertebereich entspricht den in hl7 definierten und für ePA festgelegten Werten ( https://wiki.hl7.de/index.php?title=IG:Value_Sets_f%C3%BCr_XDS#DocumentEntry.practiceSettingCode[+++https://wiki.hl7.de/index.php?title=IG:Value_Sets_f%C3%BCr_XDS#DocumentEntry.practiceSettingCode+++]). +
+urn:psc:<OID Codesystem:Code> +
+Beispiel für Krankenhaus: urn:psc:1.3.6.1.4.1.19376.3.276.1.5.4:GESU
+|*usage* |optional |Das Attribut usage wird nicht verwendet.
+|maxKOMLEadr |optional |Maximale Anzahl von Mail-Adressen in den KOM-LE-Fachdaten.  +
+Falls kein Wert eingetragen wurde, können beliebig viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden. +
+Falls ein Wert eingetragen wurde, können maximal so viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden.
+|*userCertificate* |obligatorisch |Bezeichner: Enc-Zertifikat der SMC-B +
+Kann mehrfach vorkommen (0..50) +
+Format: DER, Base64 kodiert +
+Die pflegende Stelle erhält das Zertifikat vom TSP. +
+Es können Einträge ohne Zertifikat angelegt werden. Diese Einträge werden jedoch nicht über die LDAP-Abfrageschnittstelle gefunden.
+|*personalEntry* |obligatorisch |Wird vom VZD eingetragen +
+Wert == TRUE, wenn alle zum Eintrag gehörenden Zertifikate den entryType 1 haben (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID).
+|*entryType* |obligatorisch |Bezeichner: Eintragstyp +
+Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403.
+|*telematikID* |obligatorisch |Bezeichner: TelematikID +
+Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
+|*professionOID* |obligatorisch |Bezeichner: Profession OID +
+Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und dem Mapping in ab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
+Kann mehrfach vorkommen (0..100).
+|*title* |optional |Wird für SMC-B nicht verwendet.
+|*description* |optional |Wird derzeit nicht verwendet. +
+ +
+Bezeichner: Beschreibung +
+Dieses Attribut ermöglicht, das Zertifikat zu beschreiben, um die Administration des VZD-Eintrags zu vereinfachen.
+|*mail* |optional |Bezeichner: E-Mail-Adresse +
+Kann mehrfach vorkommen (0..100). +
+Wird vom KOM-LE-Anbieter eingetragen.
+|*komLeData* |optional a|
+Bezeichner: komLeData +
+Enthält die KOM-LE-Version des Clientmoduls der angegebenen "mail" Adresse im Attribut "version". Anhand dieser Version erkennt das sendende Clientmodul, welche KOM-LE-Version vom Empfänger-Clientmodul unterstützt wird und in welchem Format die Mail an diesen Empfänger versandt wird. +
+Wenn nicht angegeben, wird KOM-LE-Version 1.0 angenommen. +
+Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
+
+* {blank}
++
+____
+Ein komLeData-Eintrag setzt sich zusammen aus der Mail-Adresse (Attribut "mail") und der zugehörigen KOM-LE Version (Attribut "version"). 
+____
+* {blank}
++
+____
+Für jede Mail-Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Datenstruktur komLeData geben. Es dürfen in komLeData keine Mail-Adressen referenziert werden, die nicht im übergeordneten "mail" Attribut enthalten sind.
+____
+* {blank}
++
+____
+Wenn eine Mail-Adresse gelöscht wird, muss auch ihr komLeData-Eintrag gelöscht werden. +
+ Geschrieben wird immer die gesamte Liste. Für Änderungen muss erst der aktuelle Eintrag gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
+____
+* {blank}
++
+____
+Beispiel für den Wert eines komLeData-Eintrags: \{"mail": "erik.mustermann@hrstdomain.kim.telematik"; "version": "1.5"}
+____
+
+Wird vom KOM-LE-Anbieter eingetragen.
+
+|===
+
+​​
+
+=== Psychotherapeuten (HBA-Eintrag)
+
+Tabelle 8: Tab_VZD_Datenbeschreibung_Psychotherapeuten
+
+[width="100%",cols="19%,10%,71%",options="header",]
+|===
+|*LDAP-Directory Attribut* |*Pflichtfeld aus Sicht Pflege und Nutzung?* |*Erläuterung*
+|*givenName* |optional |Bezeichner: Vorname +
+Wird vom VZD aus dem Zertifikatsattribut givenName übernommen.
+|*sn* |optional |Bezeichner: Nachname +
+Wird vom VZD aus dem Zertifikatsattribut sn übernommen.
+|*cn* |obligatorisch |Bezeichner: Name, Vorname +
+Wird vom VZD automatisch als Kopie von displayName eingetragen (weil E-Mail-Clients über dieses Attribut suchen; Verwendung als Filter-Attribut, um die Suche einzuschränken, und bei der Darstellung des Ergebnisses).
+|*otherName* |optional |Das Attribut otherName ist veraltet und wird in einer zukünftigen Version aus dem Datenmodell entfernt. +
+ +
+Bezeichner: Anderer Name +
+Wird vom VZD aus dem Zertifikatsattribut otherName übernommen.
+|*displayName* |obligatorisch |Bezeichner: Anzeigename +
+Dieses Attribut wird genutzt, um den Namen der Person gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut, um die Suche einzuschränken, und bei der Darstellung des Ergebnisses).
+|*streetAddress* |obligatorisch |Bezeichner: Straße und Hausnummer (Adresse der Betriebsstätte)
+|*postalCode* |obligatorisch |Bezeichner: Postleitzahl  (Adresse der Betriebsstätte)
+|*localityName * |obligatorisch |Bezeichner: Ort  (Adresse der Betriebsstätte)
+|*stateOrProvinceName * |optional |Bezeichner: Bundesland  (Adresse der Betriebsstätte)
+|*countryCode* |optional |Siehe TAB_VZD_Wertebereiche_der_Attribute
+|*changeDateTime* |optional |Bezeichner: Änderungszeitstempel +
+Wird vom VZD automatisch eingetragen.
+|*organization* |optional |Bezeichner: Organisation +
+Dieses Attribut wird genutzt um den Namen der Betriebsstätte gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut, um die Suche einzuschränken, und bei der Darstellung des Ergebnisses).
+|*domainID* |optional |Bezeichner: spezifisches Kennzeichen der Psychotherapeuten +
+Kann mehrfach vorkommen (0..100). +
+Der Wert wird von der pflegenden Stelle festgelegt.
+|*specialization* |obligatorisch |Bezeichner: Fachgebiet +
+Kann mehrfach vorkommen (1..100). +
+*Für Einträge der Leistungserbringer (HBA-Eintrag)* +
+Der Wertebereich entspricht den in hl7 definierten Werten ( https://wiki.hl7.de/index.php?title=IG:Value_Sets_f%C3%BCr_XDS#DocumentEntry.authorSpecialty[+++https://wiki.hl7.de/index.php?title=IG:Value_Sets_f%C3%BCr_XDS#DocumentEntry.authorSpecialty+++]). +
+urn:as:<OID Codesystem:Code> +
+ +
+Werte für Psychotherapeuten: +
+Kinder- und Jugendlichenpsychotherapeut: urn:as:1.3.6.1.4.1.19376.3.276.1.5.11:76 +
+Psychologischer Psychotherapeut: urn:as:1.3.6.1.4.1.19376.3.276.1.5.11:82 +
+Psychotherapeut: urn:as:1.3.6.1.4.1.19376.3.276.1.5.11:183 +
+Fachpsychotherapeut für Kinder und Jugendliche: urn:as:1.3.6.1.4.1.19376.3.276.1.5.11:184 +
+Fachpsychotherapeut für Erwachsene: urn:as:1.3.6.1.4.1.19376.3.276.1.5.11:185
+|*usage* |optional |Das Attribut usage wird nicht verwendet.
+|maxKOMLEadr |optional |Maximale Anzahl von Mail-Adressen in den KOM-LE-Fachdaten.  +
+Falls kein Wert eingetragen wurde, können beliebig viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden. +
+Falls ein Wert eingetragen wurde, können maximal so viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden.
+|*userCertificate* |obligatorisch |Bezeichner: Enc-Zertifikat des HBA +
+Kann mehrfach vorkommen (0..50). +
+Format: DER, Base64 kodiert +
+Die pflegende Stelle erhält das Zertifikat vom TSP. +
+Es können Einträge ohne Zertifikat angelegt werden. Diese Einträge werden jedoch nicht über die LDAP-Abfrageschnittstelle gefunden.
+|*personalEntry* |obligatorisch |Wird vom VZD eingetragen. +
+Wert == TRUE, wenn alle zum Eintrag gehörenden Zertifikate den entryType 1 haben (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID).
+|*entryType* |obligatorisch |Bezeichner: Eintragstyp +
+Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403.
+|*telematikID* |obligatorisch |Bezeichner: TelematikID +
+Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
+|*professionOID* |obligatorisch |Bezeichner: Profession OID +
+Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und dem Mapping in ab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
+Kann mehrfach vorkommen (0..100).
+|*title* |optional |Bezeichner: Titel +
+Der Wert wird von der pflegenden Stelle festgelegt.
+|*description* |optional |Wird derzeit nicht verwendet. +
+ +
+Bezeichner: Beschreibung +
+Dieses Attribut ermöglicht, das Zertifikat zu beschreiben, um die Administration des VZD-Eintrags zu vereinfachen.
+|*mail* |optional |Bezeichner: E-Mail-Adresse +
+Kann mehrfach vorkommen (0..100). +
+Wird vom KOM-LE-Anbieter eingetragen.
+|*komLeData* |optional a|
+Bezeichner: komLeData +
+Enthält die KOM-LE-Version des Clientmoduls der angegebenen "mail" Adresse im Attribut "version". Anhand dieser Version erkennt das sendende Clientmodul, welche KOM-LE-Version vom Empfänger-Clientmodul unterstützt wird und in welchem Format die Mail an diesen Empfänger versandt wird. +
+Wenn nicht angegeben, wird KOM-LE-Version 1.0 angenommen. +
+Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
+
+* {blank}
++
+____
+Ein komLeData-Eintrag setzt sich zusammen aus der Mail-Adresse (Attribut "mail") und der zugehörigen KOM-LE Version (Attribut "version"). 
+____
+* {blank}
++
+____
+Für jede Mail-Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Datenstruktur komLeData geben. Es dürfen in komLeData keine Mail-Adressen referenziert werden, die nicht im übergeordneten "mail" Attribut enthalten sind.
+____
+* {blank}
++
+____
+Wenn eine Mail-Adresse gelöscht wird, muss auch ihr komLeData-Eintrag gelöscht werden. +
+ Geschrieben wird immer die gesamte Liste. Für Änderungen muss erst der aktuelle Eintrag gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
+____
+* {blank}
++
+____
+Beispiel für den Wert eines komLeData-Eintrags: \{"mail": "erik.mustermann@hrstdomain.kim.telematik"; "version": "1.5"}
+____
+
+Wird vom KOM-LE-Anbieter eingetragen.
+
+|===
+
+​​
+
+=== Ärzte-Kammern (HBA-Eintrag)
+
+Tabelle 9: Tab_VZD_Datenbeschreibung_BÄK
+
+[width="100%",cols="17%,9%,74%",options="header",]
+|===
+|LDAP-Directory Attribut |Pflichtfeld aus Sicht Pflege und Nutzung? |Erläuterung
+|*givenName* |optional |Bezeichner: Vorname +
+Wird vom VZD aus dem Zertifikatsattribut givenName übernommen.
+|*sn* |optional |Bezeichner: Nachname +
+Wird vom VZD aus dem Zertifikatsattribut sn übernommen.
+|*cn* |obligatorisch |Bezeichner: Name +
+Wird vom VZD automatisch als Kopie von displayName eingetragen (weil E-Mail-Clients über dieses Attribut suchen; Verwendung als Filter-Attribut, um die Suche einzuschränken, und bei der Darstellung des Ergebnisses).
+|*otherName* |optional |Das Attribut otherName ist veraltet und wird in einer zukünftigen Version aus dem Datenmodell entfernt. +
+ +
+Bezeichner: Anderer Name +
+Wird vom VZD aus dem Zertifikatsattribut otherName übernommen.
+|*displayName* |obligatorisch |Bezeichner: Anzeigename +
+Dieses Attribut wird genutzt, um den Namen der Person gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut, um die Suche einzuschränken, und bei der Darstellung des Ergebnisses).
+|*streetAddress* |optional |Bezeichner: Straße und Hausnummer (berufliche Adresse) +
+Der Wert wird von der pflegenden Stelle festgelegt.
+|*postalCode* |optional |Bezeichner: Postleitzahl  (berufliche Adresse) +
+Der Wert wird von der pflegenden Stelle festgelegt.
+|*localityName * |optional |Bezeichner: Ort  (berufliche Adresse) +
+Der Wert wird von der pflegenden Stelle festgelegt.
+|*stateOrProvinceName * |optional |Bezeichner: Bundesland  (berufliche Adresse) +
+Der Wert wird von der pflegenden Stelle festgelegt.
+|*countryCode* |optional |Siehe TAB_VZD_Wertebereiche_der_Attribute
+|*changeDateTime* |optional |Bezeichner: Änderungszeitstempel +
+Wird vom VZD automatisch eingetragen.
+|*organization* |optional |Bezeichner: Organisation +
+Dieses Attribut wird genutzt, um den Namen der Betriebsstätte gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut, um die Suche einzuschränken, und bei der Darstellung des Ergebnisses)
+|*domainID* |optional |Bezeichner: spezifisches Kennzeichen der Ärzte +
+Kann mehrfach vorkommen (0..100). +
+Der Wert wird von der pflegenden Stelle festgelegt.
+|*specialization* |obligatorisch |Bezeichner: Fachgebiet +
+Kann mehrfach vorkommen (1..100). +
+*Für Einträge der Leistungserbringer (HBA-Eintrag)* +
+Der Wertebereich entspricht den in hl7 definierten Werten ( https://wiki.hl7.de/index.php?title=IG:Value_Sets_f%C3%BCr_XDS#DocumentEntry.authorSpecialty[+++https://wiki.hl7.de/index.php?title=IG:Value_Sets_f%C3%BCr_XDS#DocumentEntry.authorSpecialty+++]). +
+urn:as:<OID Codesystem:Code> +
+Beispiel für FA Allgemeinmedizin: urn:as:1.2.276.0.76.5.514:011001
+|*usage* |optional |Das Attribut usage wird nicht verwendet.
+|maxKOMLEadr |optional |Maximale Anzahl von Mail-Adressen in den KOM-LE-Fachdaten.  +
+Falls kein Wert eingetragen wurde, können beliebig viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden. +
+Falls ein Wert eingetragen wurde, können maximal so viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden.
+|*userCertificate* |obligatorisch |Bezeichner: Zertifikat +
+Kann mehrfach vorkommen (0..50). +
+Neue Einträge können nur mit Zertifikat angelegt werden. +
+Format: DER, Base64 kodiert +
+Die pflegende Stelle erhält das Zertifikat vom TSP. +
+Es können Einträge ohne Zertifikat angelegt werden. Diese Einträge werden jedoch nicht über die LDAP-Abfrageschnittstelle gefunden.
+|*personalEntry* |obligatorisch |Wird vom VZD eingetragen +
+Wert == TRUE, wenn alle zum Eintrag gehörenden Zertifikate den entryType 1 haben (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID).
+|*entryType* |obligatorisch |Bezeichner: Eintragstyp +
+Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403.
+|*telematikID* |obligatorisch |Bezeichner: TelematikID +
+Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
+|*professionOID* |obligatorisch |Bezeichner: Profession OID +
+Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und dem Mapping in ab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
+Kann mehrfach vorkommen (0..100).
+|*title* |optional |Bezeichner: Titel +
+Der Wert wird von der pflegenden Stelle festgelegt.
+|*description* |optional |Wird derzeit nicht verwendet. +
+ +
+Bezeichner: Beschreibung +
+Dieses Attribut ermöglicht, das Zertifikat zu beschreiben, um die Administration des VZD-Eintrags zu vereinfachen.
+|*mail* |optional |Bezeichner: E-Mail-Adresse +
+Kann mehrfach vorkommen (0..100). +
+Wird vom KOM-LE-Anbieter eingetragen.
+|*komLeData* |optional a|
+Bezeichner: komLeData +
+Enthält die KOM-LE-Version des Clientmoduls der angegebenen "mail" Adresse im Attribut "version". Anhand dieser Version erkennt das sendende Clientmodul, welche KOM-LE-Version vom Empfänger-Clientmodul unterstützt wird und in welchem Format die Mail an diesen Empfänger versandt wird. +
+Wenn nicht angegeben, wird KOM-LE-Version 1.0 angenommen. +
+Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
+
+* {blank}
++
+____
+Ein komLeData-Eintrag setzt sich zusammen aus der Mail-Adresse (Attribut "mail") und der zugehörigen KOM-LE Version (Attribut "version"). 
+____
+* {blank}
++
+____
+Für jede Mail-Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Datenstruktur komLeData geben. Es dürfen in komLeData keine Mail-Adressen referenziert werden, die nicht im übergeordneten "mail" Attribut enthalten sind.
+____
+* {blank}
++
+____
+Wenn eine Mail-Adresse gelöscht wird, muss auch ihr komLeData-Eintrag gelöscht werden. +
+ Geschrieben wird immer die gesamte Liste. Für Änderungen muss erst der aktuelle Eintrag gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
+____
+* {blank}
++
+____
+Beispiel für den Wert eines komLeData-Eintrags: \{"mail": "erik.mustermann@hrstdomain.kim.telematik"; "version": "1.5"}
+____
+
+Wird vom KOM-LE-Anbieter eingetragen.
+
+|===
+
+​​
+
+=== Zahnärzte-Kammern (HBA-Eintrag)
+
+Tabelle 10: Tab_VZD_Datenbeschreibung_BZÄK
+
+[width="100%",cols="19%,10%,71%",options="header",]
+|===
+|LDAP-Directory Attribut |Pflichtfeld aus Sicht Pflege und Nutzung? |Erläuterung
+|*givenName* |optional |Bezeichner: Vorname +
+Wird vom VZD aus dem Zertifikatsattribut givenName übernommen.
+|*sn* |optional |Bezeichner: Nachname +
+Wird vom VZD aus dem Zertifikatsattribut sn übernommen.
+|*cn* |obligatorisch |Bezeichner: Name +
+Wird vom VZD automatisch als Kopie von displayName eingetragen (weil E-Mail-Clients über dieses Attribut suchen; Verwendung als Filter-Attribut, um die Suche einzuschränken, und bei der Darstellung des Ergebnisses).
+|*otherName* |optional |Das Attribut otherName ist veraltet und wird in einer zukünftigen Version aus dem Datenmodell entfernt. +
+ +
+Bezeichner: Anderer Name +
+Wird vom VZD aus dem Zertifikatsattribut otherName übernommen.
+|*displayName* |obligatorisch |Bezeichner: Anzeigename +
+Dieses Attribut wird genutzt, um den Namen der Person gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut, um die Suche einzuschränken, und bei der Darstellung des Ergebnisses).
+|*streetAddress* |optional |Bezeichner: Straße und Hausnummer (berufliche Adresse) +
+Der Wert wird von der pflegenden Stelle festgelegt.
+|*postalCode* |optional |Bezeichner: Postleitzahl  (berufliche Adresse) +
+Der Wert wird von der pflegenden Stelle festgelegt.
+|*localityName * |optional |Bezeichner: Ort  (berufliche Adresse) +
+Der Wert wird von der pflegenden Stelle festgelegt.
+|*stateOrProvinceName * |optional |Bezeichner: Bundesland  (berufliche Adresse) +
+Der Wert wird von der pflegenden Stelle festgelegt.
+|*countryCode* |optional |Siehe TAB_VZD_Wertebereiche_der_Attribute
+|*changeDateTime* |optional |Bezeichner: Änderungszeitstempel +
+Wird vom VZD automatisch eingetragen.
+|*organization* |optional |Bezeichner: Organisation +
+Dieses Attribut wird genutzt, um den Namen der Betriebsstätte gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut, um die Suche einzuschränken, und bei der Darstellung des Ergebnisses).
+|*domainID* |optional |Bezeichner: spezifisches Kennzeichen der Zahnärzte +
+Kann mehrfach vorkommen (0..100). +
+Der Wert wird von der pflegenden Stelle festgelegt.
+|*specialization* |obligatorisch |Bezeichner: Fachgebiet +
+Kann mehrfach vorkommen (1..100). +
+*Für Einträge der Leistungserbringer (HBA-Eintrag)* +
+Der Wertebereich entspricht den in hl7 definierten Werten ( https://wiki.hl7.de/index.php?title=IG:Value_Sets_f%C3%BCr_XDS#DocumentEntry.authorSpecialty[+++https://wiki.hl7.de/index.php?title=IG:Value_Sets_f%C3%BCr_XDS#DocumentEntry.authorSpecialty+++]). +
+urn:as:<OID Codesystem:Code> +
+Beispiel für Zahnarzt: urn:as:1.2.276.0.76.5.492:1
+|*usage* |optional |Das Attribut usage wird nicht verwendet.
+|maxKOMLEadr |optional |Maximale Anzahl von Mail-Adressen in den KOM-LE-Fachdaten.  +
+Falls kein Wert eingetragen wurde, können beliebig viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden. +
+Falls ein Wert eingetragen wurde, können maximal so viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden.
+|*userCertificate* |obligatorisch |Bezeichner: Zertifikat +
+Kann mehrfach vorkommen (0..50). +
+Neue Einträge können nur mit Zertifikat angelegt werden. +
+Format: DER, Base64 kodiert +
+Die pflegende Stelle erhält das Zertifikat vom TSP. +
+Es können Einträge ohne Zertifikat angelegt werden. Diese Einträge werden jedoch nicht über die LDAP-Abfrageschnittstelle gefunden.
+|*personalEntry* |obligatorisch |Wird vom VZD eingetragen +
+Wert == TRUE, wenn alle zum Eintrag gehörenden Zertifikate den entryType 1 haben (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID).
+|*entryType* |obligatorisch |Bezeichner: Eintragstyp +
+Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403.
+|*telematikID* |obligatorisch |Bezeichner: TelematikID +
+Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
+|*professionOID* |obligatorisch |Bezeichner: Profession OID +
+Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und dem Mapping in ab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
+Kann mehrfach vorkommen (0..100).
+|*title* |optional |Bezeichner: Titel +
+Der Wert wird von der pflegenden Stelle festgelegt.
+|*description* |optional |Wird derzeit nicht verwendet. +
+ +
+Bezeichner: Beschreibung +
+Dieses Attribut ermöglicht, das Zertifikat zu beschreiben, um die Administration des VZD-Eintrags zu vereinfachen.
+|*mail* |optional |Bezeichner: E-Mail-Adresse +
+Kann mehrfach vorkommen (0..100). +
+Wird vom KOM-LE-Anbieter eingetragen.
+|*komLeData* |optional a|
+Bezeichner: komLeData +
+Enthält die KOM-LE-Version des Clientmoduls der angegebenen "mail" Adresse im Attribut "version". Anhand dieser Version erkennt das sendende Clientmodul, welche KOM-LE-Version vom Empfänger-Clientmodul unterstützt wird und in welchem Format die Mail an diesen Empfänger versandt wird. +
+Wenn nicht angegeben, wird KOM-LE-Version 1.0 angenommen. +
+Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
+
+* {blank}
++
+____
+Ein komLeData-Eintrag setzt sich zusammen aus der Mail-Adresse (Attribut "mail") und der zugehörigen KOM-LE Version (Attribut "version"). 
+____
+* {blank}
++
+____
+Für jede Mail-Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Datenstruktur komLeData geben. Es dürfen in komLeData keine Mail-Adressen referenziert werden, die nicht im übergeordneten "mail" Attribut enthalten sind.
+____
+* {blank}
++
+____
+Wenn eine Mail-Adresse gelöscht wird, muss auch ihr komLeData-Eintrag gelöscht werden. +
+ Geschrieben wird immer die gesamte Liste. Für Änderungen muss erst der aktuelle Eintrag gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
+____
+* {blank}
++
+____
+Beispiel für den Wert eines komLeData-Eintrags: \{"mail": "erik.mustermann@hrstdomain.kim.telematik"; "version": "1.5"}
+____
+
+Wird vom KOM-LE-Anbieter eingetragen.
+
+|===
+
+​​
+
+=== GKV-SV (SMC-B-Eintrag)
+
+Hinweis: Wenn die Suche ausschließlichen nach der Domain-ID erfolgt, kann das Ergebnis mehrere Einträge umfassen. Daher sollte immer der entryType bei der Suche mit angegeben werden.
+
+Tabelle 11: Tab_VZD_Datenbeschreibung_GKV-SV_SMC-B KTR
+
+[width="100%",cols="24%,12%,64%",options="header",]
+|===
+|*LDAP-Directory Attribut* |*Pflichtfeld aus Sicht Pflege und Nutzung?* |*Erläuterung*
+|*givenName* |optional |Wird für SMC-B nicht verwendet.
+|*sn* |obligatorisch |Wird vom VZD als Kopie von displayName automatisch eingetragen. +
+Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet.
+|*cn* |obligatorisch |Bezeichner: Name +
+Wird vom VZD als Kopie des Attributs displayName übernommen. +
+Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet.
+|*displayName* |obligatorisch |Bezeichner: Anzeigename +
+Dieses Attribut wird genutzt, um den Namen der Organisation gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut, um die Suche einzuschränken, und bei der Darstellung des Ergebnisses). +
+  +
+Der Wert wird von der pflegenden Stelle aus dem Zertifikat übernommen (Attribut otherName wenn vorhanden, sonst commonName).
+|*streetAddress* |obligatorisch |Bezeichner: Straßenanschrift und Hausnummer gemäß Krankenkassenhauptsitz +
+  +
+Der Wert wird von der pflegenden Stelle aus dem Zertifikat übernommen (Attribut streetAddress).
+|*postalCode* |obligatorisch |Bezeichner: Postleitzahl +
+  +
+Der Wert wird von der pflegenden Stelle aus dem Zertifikat übernommen (Attribut postalCode).
+|*localityName * |obligatorisch |Bezeichner: Ort des Krankenkassenhauptsitzes +
+  +
+Der Wert wird von der pflegenden Stelle aus dem Zertifikat übernommen (Attribut localityName).
+|*organization* |obligatorisch |Bezeichner: Name der Organisation +
+  +
+Der Wert wird von der pflegenden aus dem Zertifikat übernommen (Attribut organizationName).
+|*domainID* |obligatorisch |Bezeichner:  Institutionskennzeichen +
+Kann mehrfach vorkommen (0..100). +
+  +
+Der Wert wird vom GKV-SV festgelegt
+|maxKOMLEadr |optional  |1 +
+Der Wert wird vom GKV-SV festgelegt.
+|*userCertificate* |obligatorisch |Bezeichner: Enc-Zertifikat der SMC-B KTR +
+Kann mehrfach vorkommen (0..50). +
+Format: DER, Base64 kodiert +
+Das Zertifikat wird von der pflegenden Stelle (TSP) eingetragen. +
+Es können Einträge ohne Zertifikat angelegt werden. Diese Einträge werden jedoch nicht über die LDAP-Abfrageschnittstelle gefunden.
+|*otherName* |optional |Das Attribut otherName ist veraltet und wird in einer zukünftigen Version aus dem Datenmodell entfernt. +
+ +
+Bezeichner: Anderer Name +
+Wird vom VZD aus dem Zertifikatsattribut otherName übernommen.
+|*personalEntry* |obligatorisch |Wird vom VZD eingetragen +
+Wert == TRUE, wenn alle zum Eintrag gehörenden Zertifikate den entryType 1 haben (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID). +
+Wert == FALSE für SMC-B KTR
+|*entryType* |obligatorisch |Bezeichner: Eintragstyp +
+Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403.
+|*telematikID* |obligatorisch |Bezeichner: TelematikID +
+Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
+|*professionOID* |obligatorisch |Bezeichner: Profession OID +
+Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und dem Mapping in ab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
+Kann mehrfach vorkommen (0..100).
+|*dataFromAuthority* |optional |Gibt an, ob die Daten vom Kartenherausgeber stammen. +
+  +
+Wird vom VZD auf TRUE gesetzt, wenn die Daten über die Schnittstelle I_Directory_Administration eingetragen werden. +
+  +
+Wenn der Wert TRUE ist, können die Daten nicht mehr über die Schnittstelle I_Directory_Maintenance bearbeitet werden. Die Schnittstelle I_Directory_Maintenance wird von KOM-LE-Anbietern verwendet.
+|*mail* |optional |Bezeichner: E-Mail-Adresse +
+Kann mehrfach vorkommen (0..100). +
+Wird vom KOM-LE-Anbieter eingetragen.
+|*komLeData* |​ a|
+Bezeichner: komLeData +
+Enthält die KOM-LE-Version des Clientmoduls der angegebenen "mail" Adresse im Attribut "version". Anhand dieser Version erkennt das sendende Clientmodul, welche KOM-LE-Version vom Empfänger-Clientmodul unterstützt wird und in welchem Format die Mail an diesen Empfänger versandt wird. +
+Wenn nicht angegeben, wird KOM-LE-Version 1.0 angenommen. +
+Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
+
+* {blank}
++
+____
+Ein komLeData-Eintrag setzt sich zusammen aus der Mail-Adresse (Attribut "mail") und der zugehörigen KOM-LE Version (Attribut "version"). 
+____
+* {blank}
++
+____
+Für jede Mail-Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Datenstruktur komLeData geben. Es dürfen in komLeData keine Mail-Adressen referenziert werden, die nicht im übergeordneten "mail" Attribut enthalten sind.
+____
+* {blank}
++
+____
+Wenn eine Mail-Adresse gelöscht wird, muss auch ihr komLeData-Eintrag gelöscht werden. +
+ Geschrieben wird immer die gesamte Liste. Für Änderungen muss erst der aktuelle Eintrag gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
+____
+* {blank}
++
+____
+Beispiel für den Wert eines komLeData-Eintrags: \{"mail": "erik.mustermann@hrstdomain.kim.telematik"; "version": "1.5"}
+____
+
+Wird vom KOM-LE-Anbieter eingetragen.
+
+|*stateOrProvinceName * |optional |Bezeichner: Bundesland +
+  +
+Der Wert wird für SMC-B KTR nicht verwendet.
+|*countryCode* |optional |Siehe TAB_VZD_Wertebereiche_der_Attribute
+|*changeDateTime* |optional |Bezeichner: Änderungszeitstempel +
+Wird vom VZD automatisch eingetragen.
+|*title* |optional |Wird für SMC-B nicht verwendet.
+|*usage* |optional |Das Attribut usage wird nicht verwendet.
+|*description* |optional |Bezeichner: Beschreibung +
+Dieses Attribut ermöglicht, das Zertifikat zu beschreiben, um die Administration des VZD-Eintrags zu vereinfachen. +
+Wird derzeit nicht verwendet.
+|*specialization* |optional |Wird für SMC-B KTR nicht verwendet.
+|===
+
+​​
+
+Tabelle 12: VZD_Datenbeschreibung_GKV-SV_SM-B_KTR ePA
+
+[width="100%",cols="24%,12%,64%",options="header",]
+|===
+|*LDAP-Directory Attribut* |*Pflichtfeld aus Sicht Pflege und Nutzung?* |*Erläuterung*
+|*givenName* |optional |Wird für SMC-B nicht verwendet.
+|*sn* |obligatorisch |Wird vom VZD als Kopie von displayName automatisch eingetragen. +
+Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet.
+|*cn* |obligatorisch |Bezeichner: Name +
+Wird vom VZD als Kopie des Attributs displayName übernommen. +
+Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet.
+|*displayName* |obligatorisch |Bezeichner: Anzeigename +
+Dieses Attribut wird genutzt, um den Namen der Organisation gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut, um die Suche einzuschränken, und bei der Darstellung des Ergebnisses). +
+  +
+Der Wert wird von der pflegenden Stelle aus dem Zertifikat übernommen (Attribut otherName wenn vorhanden, sonst commonName).
+|*streetAddress* |obligatorisch |Bezeichner: Straßenanschrift und Hausnummer gemäß Krankenkassenhauptsitz +
+  +
+Der Wert wird von der pflegenden Stelle aus dem Zertifikat übernommen (Attribut streetAddress).
+|*postalCode* |obligatorisch |Bezeichner: Postleitzahl +
+  +
+Der Wert wird von der pflegenden Stelle aus dem Zertifikat übernommen (Attribut postalCode).
+|*localityName * |obligatorisch |Bezeichner: Ort des Krankenkassenhauptsitzes +
+  +
+Der Wert wird von der pflegenden Stelle aus dem Zertifikat übernommen (Attribut localityName).
+|*organization* |obligatorisch |Bezeichner: Name der Organisation +
+  +
+Der Wert wird von der pflegenden aus dem Zertifikat übernommen (Attribut organizationName).
+|*domainID* |optional |Der Wert wird vom GKV-SV festgelegt: 9-stellige Ziffer mit Bildungsregel: Stelle 1 und 2: 98, Stelle 3-9: Regionalbereich, Seriennummer und  Prüfziffer des Institutionskennzeichens. Kann mehrfach vorkommen (0..100). Die Befüllung erfolgt bei technischer Notwendigkeit.
+|maxKOMLEadr |optional  |0 +
+Der Wert wird vom GKV-SV festgelegt.
+|*userCertificate* |obligatorisch |Bezeichner: Enc-Zertifikat der SMC-B KTR ePA +
+Kann mehrfach vorkommen (0..50). +
+Format: DER, Base64 kodiert +
+Das Zertifikat wird von der pflegenden Stelle (TSP) eingetragen. +
+Es können Einträge ohne Zertifikat angelegt werden. Diese Einträge werden jedoch nicht über die LDAP-Abfrageschnittstelle gefunden.
+|*otherName* |optional |Das Attribut otherName ist veraltet und wird in einer zukünftigen Version aus dem Datenmodell entfernt. +
+ +
+Bezeichner: Anderer Name +
+Wird vom VZD aus dem Zertifikatsattribut otherName übernommen.
+|*personalEntry* |obligatorisch |Wird vom VZD eingetragen +
+Wert == TRUE, wenn alle zum Eintrag gehörenden Zertifikate den entryType 1 haben (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID). +
+Wert == FALSE für SMC-B KTR ePA
+|*entryType* |obligatorisch |Bezeichner: Eintragstyp +
+Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403.
+|*telematikID* |obligatorisch |Bezeichner: TelematikID +
+Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
+|*professionOID* |obligatorisch |Bezeichner: Profession OID +
+Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und dem Mapping in ab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
+Kann mehrfach vorkommen (0..100).
+|*dataFromAuthority* |optional |Gibt an, ob die Daten vom Kartenherausgeber stammen. +
+  +
+Wird vom VZD auf TRUE gesetzt, wenn die Daten über die Schnittstelle I_Directory_Administration eingetragen werden. +
+  +
+Wenn der Wert TRUE ist, können die Daten nicht mehr über die Schnittstelle I_Directory_Maintenance bearbeitet werden. Die Schnittstelle I_Directory_Maintenance wird von KOM-LE-Anbietern verwendet.
+|*mail* |optional |Wird für SMC-B KTR ePA nicht verwendet. 
+|*komLeData* |optional |Wird für SMC-B KTR ePA nicht verwendet.
+|*stateOrProvinceName * |optional |Bezeichner: Bundesland +
+  +
+Der Wert wird für SMC-B KTR ePA nicht verwendet.
+|*countryCode* |optional |Siehe TAB_VZD_Wertebereiche_der_Attribute
+|*changeDateTime* |optional |Bezeichner: Änderungszeitstempel +
+Wird vom VZD automatisch eingetragen.
+|*title* |optional |Wird für SMC-B nicht verwendet.
+|*usage* |optional |Das Attribut usage wird nicht verwendet.
+|*description* |optional |Bezeichner: Beschreibung +
+Dieses Attribut ermöglicht, das Zertifikat zu beschreiben, um die Administration des VZD-Eintrags zu vereinfachen. +
+Wird derzeit nicht verwendet.
+|*specialization* |optional |Wird für SMC-B KTR ePA nicht verwendet.
+|===
+
+​​
+
+=== SMC-B-Org-Eintrag (gematik)
+
+Tabelle 13: Tab_VZD_Datenbeschreibung_der_SMC-B_Org
+
+[width="100%",cols="23%,15%,62%",options="header",]
+|===
+|*LDAP-Directory Attribut* |*Pflichtfeld aus Sicht Pflege und Nutzung?* |*Erläuterung*
+|*givenName* |optional |Wird für SMC-B nicht verwendet.
+|*sn* |optional |Wird vom VZD als Kopie von displayName automatisch eingetragen. +
+Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet.
+|*cn* |obligatorisch |Bezeichner: Name +
+Wird vom VZD als Kopie des Attributs displayName übernommen. +
+Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet.
+|*otherName* |optional |Das Attribut otherName ist veraltet und wird in einer zukünftigen Version aus dem Datenmodell entfernt. +
+ +
+Bezeichner: Anderer Name +
+Wird vom VZD aus dem Zertifikatsattribut otherName übernommen.
+|*displayName* |obligatorisch |Bezeichner: Anzeigename +
+Dieses Attribut wird genutzt, um den Namen der Organisation gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut um die Suche einzuschränken und bei der Darstellung des Ergebnisses).
+|*streetAddress* |obligatorisch |Bezeichner: Straße und Hausnummer (wenn verfügbar) der Organisation 
+|*postalCode* |obligatorisch |Bezeichner: Postleitzahl der Organisation 
+|*localityName * |obligatorisch |Bezeichner: Ort der Organisation 
+|*stateOrProvinceName * |optional |Bezeichner: Bundesland der Organisation 
+|*countryCode* |optional |Siehe TAB_VZD_Wertebereiche_der_Attribute
+|*changeDateTime* |optional |Bezeichner: Änderungszeitstempel +
+Wird vom VZD automatisch eingetragen.
+|*organization* |optional |Bezeichner: Organisation +
+Dieses Attribut ist ein optionales zweites Namensattribut und wird befüllt bei Bedarf. Ebenso wie displayName ist es geeignet, um nach einem Namen zu filtern und ihn im Suchergebnis anzuzeigen.
+|*domainID* |optional |nicht belegt
+|*specialization* |optional |nicht belegt
+|*usage* |optional |Das Attribut usage wird nicht verwendet.
+|maxKOMLEadr |optional |Maximale Anzahl von Mail-Adressen in den KOM-LE-Fachdaten.  +
+Falls kein Wert eingetragen wurde, können beliebig viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden. +
+Falls ein Wert eingetragen wurde, können maximal so viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden.
+|*userCertificate* |obligatorisch |Bezeichner: Enc-Zertifikat der SMC-B +
+Kann mehrfach vorkommen (0..50) +
+Format: DER, Base64 kodiert +
+Die pflegende Stelle erhält das Zertifikat vom TSP. +
+Es können Einträge ohne Zertifikat angelegt werden. Diese Einträge werden jedoch nicht über die LDAP-Abfrageschnittstelle gefunden.
+|*personalEntry* |obligatorisch |Wird vom VZD eingetragen. +
+Wert == TRUE, wenn alle zum Eintrag gehörenden Zertifikate den entryType 1 haben (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID).
+|*entryType* |obligatorisch |Bezeichner: Eintragstyp +
+Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403.
+|*telematikID* |obligatorisch |Bezeichner: TelematikID +
+Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
+|*professionOID* |obligatorisch |Bezeichner: Profession OID +
+Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und dem Mapping in ab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
+Kann mehrfach vorkommen (0..100).
+|*title* |optional |Wird für SMC-B nicht verwendet.
+|*description* |optional |Wird derzeit nicht verwendet.
+|*mail* |optional |Bezeichner: E-Mail-Adresse +
+Kann mehrfach vorkommen (0..100). +
+Wird vom KOM-LE-Anbieter eingetragen.
+|*komLeData* |optional a|
+Bezeichner: komLeData +
+Enthält die KOM-LE-Version des Clientmoduls der angegebenen "mail" Adresse im Attribut "version". Anhand dieser Version erkennt das sendende Clientmodul, welche KOM-LE-Version vom Empfänger-Clientmodul unterstützt wird und in welchem Format die Mail an diesen Empfänger versandt wird. +
+Wenn nicht angegeben, wird KOM-LE-Version 1.0 angenommen. +
+Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
+
+* {blank}
++
+____
+Ein komLeData-Eintrag setzt sich zusammen aus der Mail-Adresse (Attribut "mail") und der zugehörigen KOM-LE Version (Attribut "version"). 
+____
+* {blank}
++
+____
+Für jede Mail-Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Datenstruktur komLeData geben. Es dürfen in komLeData keine Mail-Adressen referenziert werden, die nicht im übergeordneten "mail" Attribut enthalten sind.
+____
+* {blank}
++
+____
+Wenn eine Mail-Adresse gelöscht wird, muss auch ihr komLeData-Eintrag gelöscht werden. +
+ Geschrieben wird immer die gesamte Liste. Für Änderungen muss erst der aktuelle Eintrag gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
+____
+* {blank}
++
+____
+Beispiel für den Wert eines komLeData-Eintrags: \{"mail": "erik.mustermann@hrstdomain.kim.telematik"; "version": "1.5"}
+____
+
+Wird vom KOM-LE-Anbieter eingetragen.
+
+|===
+
+​​
+
+=== eGBR – Nichtärztliche Institutionen (SMC-B-Eintrag)
+
+Tabelle 14: Tab_VZD_Datenbeschreibung_der_SMC-B_eGBR
+
+[width="100%",cols="18%,12%,70%",options="header",]
+|===
+|*LDAP-Directory Attribut* |*Pflichtfeld aus Sicht Pflege und Nutzung?* |*Erläuterung*
+|*givenName* |optional |Wird für SMC-B nicht verwendet.
+|*sn* |optional |Wird vom VZD als Kopie von displayName automatisch eingetragen. +
+Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet.
+|*cn* |obligatorisch |Bezeichner: Name +
+Wird vom VZD als Kopie des Attributs displayName übernommen. +
+Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet.
+|*otherName* |optional |Das Attribut otherName ist veraltet und wird in einer zukünftigen Version aus dem Datenmodell entfernt. +
+ +
+Bezeichner: Anderer Name +
+Wird vom VZD aus dem Zertifikatsattribut otherName übernommen.
+|*displayName* |obligatorisch |Bezeichner: Anzeigename +
+Dieses Attribut wird genutzt, um den Namen der Leistungserbringerinstitution gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut um die Suche einzuschränken und bei der Darstellung des Ergebnisses).
+|*streetAddress* |obligatorisch |Bezeichner: Straße und Hausnummer (wenn verfügbar) der Leistungserbringerinstitution
+|*postalCode* |obligatorisch |Bezeichner: Postleitzahl der Leistungserbringerinstitution
+|*localityName * |obligatorisch |Bezeichner: Ort der Leistungserbringerinstitution
+|*stateOrProvinceName * |obligatorisch |Bezeichner: Bundesland der Leistungserbringerinstitution
+|*countryCode* |optional |Siehe TAB_VZD_Wertebereiche_der_Attribute
+|*changeDateTime* |optional |Bezeichner: Änderungszeitstempel +
+Wird vom VZD automatisch eingetragen.
+|*organization* |optional |Bezeichner: Organisation +
+Dieses Attribut ist ein optionales zweites Namensattribut und wird befüllt bei Bedarf. Ebenso wie displayName ist es geeignet, um nach einem Namen zu filtern und ihn im Suchergebnis anzuzeigen.
+|*domainID* |obligatorisch |Bezeichner: IK-Nummer der Leistungserbringerinstitution +
+Dieses Attribut kann nur einmal vorkommen. Der Wert wird von der ARGE-IK vergeben.
+|*specialization* |obligatorisch |Bezeichner: Fachgebiet +
+Kann mehrfach vorkommen (1..100). +
+Der Wertebereich entspricht den in HL7 definierten und für ePA festgelegten Werten ( https://wiki.hl7.de/index.php?title=IG:Value_Sets_f%C3%BCr_XDS#DocumentEntry.practiceSettingCode[+++https://wiki.hl7.de/index.php?title=IG:Value_Sets_f%C3%BCr_XDS#DocumentEntry.practiceSettingCode+++]) für nicht-ärztliche Fachrichtungen. +
+urn:psc:<OID Codesystem:Code> +
+Beispiel für Pflege und Betreuung: urn:psc:1.3.6.1.4.1.19376.3.276.1.5.5:PFL
+|*usage* |optional |Das Attribut usage wird nicht verwendet.
+|maxKOMLEadr |optional |Maximale Anzahl von Mail-Adressen in den KOM-LE-Fachdaten.  +
+Falls kein Wert eingetragen wurde, können beliebig viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden. +
+Falls ein Wert eingetragen wurde, können maximal so viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden.
+|*userCertificate* |obligatorisch |Bezeichner: Enc-Zertifikat der SMC-B +
+Kann mehrfach vorkommen (0..50) +
+Format: DER, Base64 kodiert +
+Die pflegende Stelle erhält das Zertifikat vom TSP. +
+Es können Einträge ohne Zertifikat angelegt werden. Diese Einträge werden jedoch nicht über die LDAP-Abfrageschnittstelle gefunden.
+|*personalEntry* |obligatorisch |Wird vom VZD eingetragen. +
+Wert == TRUE, wenn alle zum Eintrag gehörenden Zertifikate den entryType 1 haben (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID).
+|*entryType* |obligatorisch |Bezeichner: Eintragstyp +
+Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403.
+|*telematikID* |obligatorisch |Bezeichner: TelematikID +
+Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
+|*professionOID* |obligatorisch |Bezeichner: Profession OID +
+Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und dem Mapping in ab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
+Kann mehrfach vorkommen (0..100).
+|*title* |optional |Wird für SMC-B nicht verwendet.
+|*description* |optional |Wird derzeit nicht verwendet.
+|*mail* |optional |Bezeichner: E-Mail-Adresse +
+Kann mehrfach vorkommen (0..100). +
+Wird vom KOM-LE-Anbieter eingetragen.
+|*komLeData* |optional a|
+Bezeichner: komLeData +
+Enthält die KOM-LE-Version des Clientmoduls der angegebenen "mail" Adresse im Attribut "version". Anhand dieser Version erkennt das sendende Clientmodul, welche KOM-LE-Version vom Empfänger-Clientmodul unterstützt wird und in welchem Format die Mail an diesen Empfänger versandt wird. +
+Wenn nicht angegeben, wird KOM-LE-Version 1.0 angenommen. +
+Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
+
+* {blank}
++
+____
+Ein komLeData-Eintrag setzt sich zusammen aus der Mail-Adresse (Attribut "mail") und der zugehörigen KOM-LE Version (Attribut "version"). 
+____
+* {blank}
++
+____
+Für jede Mail-Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Datenstruktur komLeData geben. Es dürfen in komLeData keine Mail-Adressen referenziert werden, die nicht im übergeordneten "mail" Attribut enthalten sind.
+____
+* {blank}
++
+____
+Wenn eine Mail-Adresse gelöscht wird, muss auch ihr komLeData-Eintrag gelöscht werden. +
+ Geschrieben wird immer die gesamte Liste. Für Änderungen muss erst der aktuelle Eintrag gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
+____
+* {blank}
++
+____
+Beispiel für den Wert eines komLeData-Eintrags: \{"mail": "erik.mustermann@hrstdomain.kim.telematik"; "version": "1.5"}
+____
+
+Wird vom KOM-LE-Anbieter eingetragen.
+
+|===
+
+​​
+
+=== eGBR – Weitere Gesundheitsfachberufe (HBA-Eintrag)
+
+Tabelle 15: Tab_VZD_Datenbeschreibung_eGBR_HBA
+
+[width="100%",cols="18%,10%,72%",options="header",]
+|===
+|*LDAP-Directory Attribut* |*Pflichtfeld aus Sicht Pflege und Nutzung?* |*Erläuterung*
+|*givenName* |optional |Bezeichner: Vorname +
+Wird vom VZD aus dem Zertifikatsattribut givenName übernommen.
+|*sn* |optional |Bezeichner: Nachname +
+Wird vom VZD aus dem Zertifikatsattribut sn übernommen.
+|*cn* |obligatorisch |Bezeichner: Name +
+Wird vom VZD automatisch als Kopie von displayName eingetragen (weil E-Mail-Clients über dieses Attribut suchen; Verwendung als Filter-Attribut, um die Suche einzuschränken, und bei der Darstellung des Ergebnisses).
+|*otherName* |optional |Das Attribut otherName ist veraltet und wird in einer zukünftigen Version aus dem Datenmodell entfernt. +
+ +
+Bezeichner: Anderer Name +
+Wird vom VZD aus dem Zertifikatsattribut otherName übernommen.
+|*displayName* |obligatorisch |Bezeichner: Anzeigename +
+Dieses Attribut wird genutzt, um den Namen der Person gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut, um die Suche einzuschränken, und bei der Darstellung des Ergebnisses).
+|*streetAddress* |optional |Nicht belegt.
+|*postalCode* |optional |Nicht belegt.
+|*localityName * |optional |Nicht belegt.
+|*stateOrProvinceName * |optional |Nicht belegt.
+|*countryCode* |optional |Siehe TAB_VZD_Wertebereiche_der_Attribute
+|*changeDateTime* |optional |Bezeichner: Änderungszeitstempel +
+Wird vom VZD automatisch eingetragen.
+|*organization* |optional |Nicht belegt.
+|*domainID* |optional |Nicht belegt.
+|*specialization* |obligatorisch |Bezeichner: Fachgebiet +
+Kann mehrfach vorkommen (1..100). +
+Der Wertebereich entspricht den in hl7 definierten Werten**( https://wiki.hl7.de/index.php?title=IG:Value_Sets_f%C3%BCr_XDS#DocumentEntry.authorSpecialty[+++https://wiki.hl7.de/index.php?title=IG:Value_Sets_f%C3%BCr_XDS#DocumentEntry.authorSpecialty+++])** für nicht ärztliche Berufe. +
+urn:as:<OID Codesystem:Code> +
+Beispiel Notfallsanitäter: urn:as:1.3.6.1.4.1.19376.3.276.1.5.11:88
+|*usage* |optional |Das Attribut usage wird nicht verwendet.
+|maxKOMLEadr |optional |Maximale Anzahl von Mail-Adressen in den KOM-LE-Fachdaten.  +
+Falls kein Wert eingetragen wurde, können beliebig viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden. +
+Falls ein Wert eingetragen wurde, können maximal so viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden.
+|*userCertificate* |obligatorisch |Bezeichner: Zertifikat +
+Kann mehrfach vorkommen (0..50). +
+Neue Einträge können nur mit Zertifikat angelegt werden. +
+Format: DER, Base64 kodiert +
+Die pflegende Stelle erhält das Zertifikat vom TSP. +
+Es können Einträge ohne Zertifikat angelegt werden. Diese Einträge werden jedoch nicht über die LDAP-Abfrageschnittstelle gefunden.
+|*personalEntry* |obligatorisch |Wird vom VZD eingetragen +
+Wert == TRUE, wenn alle zum Eintrag gehörenden Zertifikate den entryType 1 haben (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID).
+|*entryType* |obligatorisch |Bezeichner: Eintragstyp +
+Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403.
+|*telematikID* |obligatorisch |Bezeichner: TelematikID +
+Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
+|*professionOID* |obligatorisch |Bezeichner: Profession OID +
+Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und dem Mapping in ab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
+Kann mehrfach vorkommen (0..100).
+|*title* |optional |Bezeichner: Titel +
+Der Wert wird von der pflegenden Stelle festgelegt.
+|*description* |optional |Wird derzeit nicht verwendet. +
+ +
+Bezeichner: Beschreibung +
+Dieses Attribut ermöglicht, das Zertifikat zu beschreiben, um die Administration des VZD-Eintrags zu vereinfachen.
+|*mail* |optional |Bezeichner: E-Mail-Adresse +
+Kann mehrfach vorkommen (0..100). +
+Wird vom KOM-LE-Anbieter eingetragen.
+|*komLeData* |optional a|
+Bezeichner: komLeData +
+Enthält die KOM-LE-Version des Clientmoduls der angegebenen "mail" Adresse im Attribut "version". Anhand dieser Version erkennt das sendende Clientmodul, welche KOM-LE-Version vom Empfänger-Clientmodul unterstützt wird und in welchem Format die Mail an diesen Empfänger versandt wird. +
+Wenn nicht angegeben, wird KOM-LE-Version 1.0 angenommen. +
+Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
+
+* {blank}
++
+____
+Ein komLeData-Eintrag setzt sich zusammen aus der Mail-Adresse (Attribut "mail") und der zugehörigen KOM-LE Version (Attribut "version"). 
+____
+* {blank}
++
+____
+Für jede Mail-Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Datenstruktur komLeData geben. Es dürfen in komLeData keine Mail-Adressen referenziert werden, die nicht im übergeordneten "mail" Attribut enthalten sind.
+____
+* {blank}
++
+____
+Wenn eine Mail-Adresse gelöscht wird, muss auch ihr komLeData-Eintrag gelöscht werden. +
+ Geschrieben wird immer die gesamte Liste. Für Änderungen muss erst der aktuelle Eintrag gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
+____
+* {blank}
++
+____
+Beispiel für den Wert eines komLeData-Eintrags: \{"mail": "erik.mustermann@hrstdomain.kim.telematik"; "version": "1.5"}
+____
+
+Wird vom KOM-LE-Anbieter eingetragen.
+
+|===
+
+​​
+
+​​
+
+== Anhang A – Verzeichnisse
+
+=== Abkürzungen
+
+[width="100%",cols="17%,83%",options="header",]
+|===
+|*Kürzel* |*Erläuterung*
+|​ |​
+|​ |​
+|===
+
+=== Glossar
+
+Das Glossar wird als eigenständiges Dokument (vgl. [gemGlossar]) zur Verfügung gestellt.
+
+=== Abbildungsverzeichnis
+
+Abbildung 1: Systemüberblick, Pflege der Basisdaten 7
+
+Abbildung 2: OpenAPI Editor 10
+
+=== Tabellenverzeichnis
+
+Tabelle 1: Legende für Tab_VZD_Datenbeschreibung_* 22
+
+Tabelle 2: TAB_VZD_Wertebereiche_der_Attribute 22
+
+Tabelle 3: Tab_VZD_Datenbeschreibung_KVen 23
+
+Tabelle 4: Tab_VZD_Datenbeschreibung_KZVen 26
+
+Tabelle 5: Tab_VZD_Datenbeschreibung_Apotheken_SMC-B 29
+
+Tabelle 6: Tab_VZD_Datenbeschreibung_Apotheker 32
+
+Tabelle 7: Tab_VZD_Datenbeschreibung_DKG 36
+
+Tabelle 8: Tab_VZD_Datenbeschreibung_Psychotherapeuten 39
+
+Tabelle 9: Tab_VZD_Datenbeschreibung_BÄK 41
+
+Tabelle 10: Tab_VZD_Datenbeschreibung_BZÄK 45
+
+Tabelle 11: Tab_VZD_Datenbeschreibung_GKV-SV_SMC-B KTR 48
+
+Tabelle 12: VZD_Datenbeschreibung_GKV-SV_SM-B_KTR ePA 51
+
+Tabelle 13: Tab_VZD_Datenbeschreibung_der_SMC-B_Org 54
+
+Tabelle 14: Tab_VZD_Datenbeschreibung_der_SMC-B_eGBR 57
+
+Tabelle 15: Tab_VZD_Datenbeschreibung_eGBR_HBA 59
+
+=== Referenzierte Dokumente
+
+==== Dokumente der gematik
+
+Die nachfolgende Tabelle enthält die Bezeichnung der in dem vorliegenden Dokument referenzierten Dokumente der gematik zur Telematikinfrastruktur. Der mit der vorliegenden Version korrelierende Entwicklungsstand dieser Konzepte und Spezifikationen wird pro Release in einer Dokumentenlandkarte definiert; Version und Stand der referenzierten Dokumente sind daher in der nachfolgenden Tabelle nicht aufgeführt. Deren zu diesem Dokument jeweils gültige Versionsnummern sind in der aktuellen, von der gematik veröffentlichten Dokumentenlandkarte enthalten, in der die vorliegende Version aufgeführt wird.
+
+​​
+
+[width="100%",cols="23%,77%",options="header",]
+|===
+|*[Quelle]* |*Herausgeber: Titel*
+|[gemGlossar] |gematik: Glossar der Telematikinfrastruktur
+|[gemSpec_VZD] |gematik: Spezifikation Verzeichnisdienst
+|===
+
+==== Weitere Dokumente
+
+[width="100%",cols="21%,79%",options="header",]
+|===
+|*[Quelle]* |*Herausgeber (Erscheinungsdatum): Titel*
+|​ |​
+|​ |​
+|===
+
+=== Bekannte Fehler
+
+[width="100%",cols="21%,26%,53%",options="header",]
+|===
+|*ID* |*Titel* |*Beschreibung*
+|ILF_VZD_ERR_001 |POST Request mit cn |Die Operation POST /DirectoryEntries benötigt entgegen der Festlegung in der yaml Datei den Parameter cn. +
+ +
+Workaround: Den cn als Parameter im Request mit angeben. +
+ +
+*Der Fehler ist im VZD bereits behoben*
+|ILF_VZD_ERR_002 |DELETE Response mit HTTP 405 |DELETE /DirectoryEntries/\{uid} Requests werden teilweise entgegen der Festlegung in der yaml Datei mit "HTTP 405 - Method Not Allowed" beantwortet. +
+ +
+Workaround: Im Header fehlt die Information "Accept", "application/json" +
+Behebung: wird noch geklärt. 
+|ILF_VZD_ERR_003 |POST Request ändert nur übergebene Parameter |Die Operation PUT /DirectoryEntries ändert entgegen der Beschreibung im Implementierungsleitfaden und in der yaml-Datei nur die übergebenen Parameter. Die nicht übergebenen Parameter werden nicht gelöscht. +
+ +
+*Der Fehler ist im VZD bereits behoben*
+|===
+
+​​
