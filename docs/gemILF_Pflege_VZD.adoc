@@ -108,7 +108,7 @@ _Die nachfolgende Spezifikation ist von der gematik allein unter technischen Ges
 
 Der Verzeichnisdienst der TI (VZD) stellt eine Schnittstelle im Internet bereit, über die die Daten von Nutzern der TI gepflegt werden können. Zur Pflege berechtigt sind Kartenherausgeber (HBA und SMC-B) sowie von ihnen berechtigte Dritte (z. B. TSP).
 
-image:gemILF_Pflege_VZD-media/media/image1.png[image,width=604,height=324]
+image:image1.png[image,width=604,height=324]
 
 Abbildung 1: Systemüberblick, Pflege der Basisdaten
 
@@ -208,7 +208,7 @@ https://github.com/gematik/api-vzd/blob/main/src/openapi/DirectoryAdministration
 
 https://editor.swagger.io/[+++OpenAPI Editor+++] öffnen und vzd_DirectoryAdministration.yaml in die Online-Entwicklungsumgebung laden per [File]/[Import file].
 
-image:gemILF_Pflege_VZD-media/media/image2.png[image,width=604,height=536]
+image:image2.png[image,width=604,height=536]
 
 Abbildung 2: OpenAPI Editor
 
