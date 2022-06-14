@@ -1,36 +1,20 @@
-​​
+= Implementierungsleitfaden zur Pflege der Daten des Verzeichnisdienstes
 
-​​
+gematik, Systems Engineering
+:source-highlighter: rouge
+:title-page:
+:imagesdir: /images/
+ifdef::env-github[]
+:toc: preamble
+endif::[]
+ifndef::env-github[]
+:toc: left
+endif::[]
+:toclevels: 3
+:toc-title: Inhaltsverzeichnis
+//:sectnums:
 
-​​
-
-​​
-
-​​
-
-*+++Elektronische Gesundheitskarte und Telematikinfrastruktur+++*
-
-​​
-
-​​
-
-​​
-
-​​
-
-*Implementierungsleitfaden* +
-*zur Pflege der Daten* +
-*des Verzeichnisdienstes*
-
-​​
-
-​​
-
-​​
-
-​​
-
-​​
+image::gematik_logo.svg[gematik,float="right"]
 
 [width="100%",cols="50%,50%",options="header",]
 |===
@@ -44,13 +28,11 @@
 
 Dokumentinformationen
 
-*Änderungen zur Vorversion*
+== Änderungen zur Vorversion
 
 Anpassungen des vorliegenden Dokumentes im Vergleich zur Vorversion können Sie der nachfolgenden Tabelle entnehmen.
 
-​​
-
-*Dokumentenhistorie*
+=== Dokumentenhistorie
 
 [width="100%",cols="11%,11%,7%,58%,13%",options="header",]
 |===
@@ -107,14 +89,6 @@ TODO: Link vor Veröffentl. entfernen +
 https://service.gematik.de/browse/DIR-84.[+++https://service.gematik.de/browse/DIR-84.+++]  |gematik
 |===
 
-​​
-
-Inhaltsverzeichnis
-
-_Please update the table of contents._
-
-​​
-
 == Einordnung des Dokumentes
 
 === Zielsetzung
@@ -149,21 +123,11 @@ Zur Verschlüsselung der Verbindung wird TLS und zur Authentifizierung des Nutze
 
 Die Schnittstelle kann in drei Umgebungen genutzt werden:
 
-* {blank}
-+
-____
-Referenzumgebung (RU): für den Test durch Kartenherausgeber (HBA und SMC-B) sowie von ihnen berechtigte Dritte.
-____
-* {blank}
-+
-____
-Testumgebung (TU): für den Test durch gematik-Mitarbeiter
-____
-* {blank}
-+
-____
-Produktivumgebung (PU): für die produktive Nutzung mit Echtdaten durch Kartenherausgeber (HBA und SMC-B) sowie von ihnen berechtigte Dritte
-____
+- Referenzumgebung (RU): für den Test durch Kartenherausgeber (HBA und SMC-B) sowie von ihnen berechtigte Dritte.
+
+- Testumgebung (TU): für den Test durch gematik-Mitarbeiter
+
+- Produktivumgebung (PU): für die produktive Nutzung mit Echtdaten durch Kartenherausgeber (HBA und SMC-B) sowie von ihnen berechtigte Dritte
 
 Neue Versionen der Schnittstelle und dieser Anleitung werden im https://fachportal.gematik.de/spezifikationen/[+++Fachportal der gematik+++] veröffentlicht.
 
