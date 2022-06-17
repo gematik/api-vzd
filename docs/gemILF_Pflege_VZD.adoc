@@ -624,7 +624,7 @@ Versehentlich fehlerhaft eingetragene Berechtigungen müssen durch einen aktuell
 - Wenn das „holder“ Attribut keine Werte enthält, kann jeder berechtigte Client die korrekten Werte eintragen.
 - Wenn ein Kartenherausgeber nicht (mehr) als "holder" eingetragen ist, muss er sich an einen der eingetragenen "holder" wenden und sich eintragen lassen.
 - Kartenherausgeber, die als "holder" in dem VZD Basisdatensatz eingetragen sind und fehlerhafte Daten im "holder" Attribut feststellen, können die Werte des Attributs korrigieren.
-____
+
 
 == Attributtabellen
 
@@ -632,7 +632,7 @@ In den folgenden Abschnitten werden für die Kartenherausgeber spezifische Festl
 
 Tabelle 1: Legende für Tab_VZD_Datenbeschreibung_*
 
-[width="100%",cols="22%,78%",options="header",]
+[width="100%",cols="22%,78%",]
 |===
 |*orange* |Das Attribut muss von der pflegenden Stelle (Kartenherausgeber oder vom Kartenherausgeber berechtigte Organisationen wie z. B. TSP) aus dem Zertifikat ermittelt und über die Schnittstelle I_Directory_Administration an den VZD übergeben werden.
 |*rot* |Wird vom VZD eingetragen.
