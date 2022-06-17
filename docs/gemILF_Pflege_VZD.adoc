@@ -18,10 +18,6 @@ image::gematik_logo.svg[gematik,float="right"]
 [width="100%",cols="50%,50%",options="header",]
 |===
 |Version: |1.5.2
-|Revision: |470432
-|Stand: |14.02.2022
-|Status: |in Bearbeitung
-|Klassifizierung: |öffentlich
 |Referenzierung: |gemILF_Pflege_VZD
 |===
 
@@ -35,12 +31,12 @@ Anpassungen des vorliegenden Dokumentes im Vergleich zur Vorversion können Sie 
 
 [width="100%",cols="11%,11%,7%,58%,13%",options="header",]
 |===
-|*Version +
-* |*Stand +
-* |*Kap./ Seite +
-* |*Grund der Änderung, besondere Hinweise +
-* |*Bearbeitung +
-*
+|*Version* +
+ |*Stand* +
+ |*Kap./ Seite* +
+ |*Grund der Änderung, besondere Hinweise** +
+ |*Bearbeitung* +
+
 |1.0.0 |10.12.19 |​ |Ersterstellung |gematik
 |1.1.0 |29.03.20 |​ |Anpassung Kapitel 3.3.1.1, diverse Ergänzungen und Klarstellungen |gematik
 |1.2.0 |13.07.20 |​ |Anpassungen in Kapitel 3.1.1, Prozessbeschreibung zur Registrierung ausgearbeitet, +
@@ -83,9 +79,7 @@ Verwendung der client_id (vorher claim scope) besser erläutert +
  +
 Update zum SMC-B ORG-Eintrag der gematik +
 Neu für eGBR HBA und SMC-B |gematik
-|1.5.3 |​ |3.6 |Rückverfolgbarkeit der Einträge (Holder-Attribute) - C_11048 +
-TODO: Link vor Veröffentl. entfernen +
-https://service.gematik.de/browse/DIR-84.[+++https://service.gematik.de/browse/DIR-84.+++]  |gematik
+|1.5.3 |​ |3.6, 3.3.1.3 |Rückverfolgbarkeit der Einträge (Holder-Attribute) - C_11048 |gematik
 |===
 
 == Einordnung des Dokumentes
@@ -148,41 +142,20 @@ Die Registrierung und Vergabe der Credentials erfolgt dabei auf Organisationsebe
 
 Der Antrag muss folgende Informationen enthalten um weiter bearbeitet werden zu können:
 
-* {blank}
-+
-____
-Angaben zur Rolle und Organisation des Antragstellers, Erläuterung der Berechtigung und des Bedarfs (zur Verifikation notwendig, siehe Kapitel 2)
-____
-* {blank}
-+
-____
-Kontaktdaten zu Ansprechpartnern beim Antragsteller (2 Personen) inkl. Telefonnummer, E-Mail-Adresse, Anschrift
-____
-* {blank}
-+
-____
-Angabe der Betriebsumgebung (RU/PU)
-____
-* {blank}
-+
-____
-E-Mail-Adresse und dazugehöriges S/MIME-Zertifikat (in einer ZIP-Datei als Anhang) an welche die Zugangsdaten verschlüsselt übermittelt werden können (kostenlose Zertifikate sind z.B. beim DGN erhältlich)
-____
-* {blank}
-+
-____
-falls bereits vorhanden, eine entsprechende Ticketnummer
-____
-* {blank}
-+
-____
-nur bei Deregistrierung durch den Antragsteller: vorab vergebene Client-ID
-____
-* {blank}
-+
-____
-gewünschte Bezeichnung im OAuth2-Server ID_TOKEN client_id (bzw. VZD "holder" Attribut)
-____
+- Angaben zur Rolle und Organisation des Antragstellers, Erläuterung der Berechtigung und des Bedarfs (zur Verifikation notwendig, siehe Kapitel 2)
+
+- Kontaktdaten zu Ansprechpartnern beim Antragsteller (2 Personen) inkl. Telefonnummer, E-Mail-Adresse, Anschrift
+
+- Angabe der Betriebsumgebung (RU/PU)
+
+- E-Mail-Adresse und dazugehöriges S/MIME-Zertifikat (in einer ZIP-Datei als Anhang) an welche die Zugangsdaten verschlüsselt übermittelt werden können (kostenlose Zertifikate sind z.B. beim DGN erhältlich)
+
+- falls bereits vorhanden, eine entsprechende Ticketnummer
+
+- nur bei Deregistrierung durch den Antragsteller: vorab vergebene Client-ID
+
+- gewünschte Bezeichnung im OAuth2-Server ID_TOKEN client_id (bzw. VZD "holder" Attribut)
+
 
 Nach Prüfung der Angaben, werden die Zugangsdaten direkt vom Anbieter Zentrale Plattformdienste (vgl. gemKPT_Betr) an die gewünschte E-Mail-Adresse übermittelt.
 
@@ -314,10 +287,6 @@ Durch die Operation modifyDirectoryEntry (HTTP PUT /DirectoryEntries/\{uid}/bas
 Der Parameter dn kann nicht im Request angegeben werden.
 
 Wird eine nicht existierende uid angegeben, dann wird der Request mit HTTP 400 (Not Found) beantwortet.
-
-*Zukünftige Verwendung von client_id und holder:*
-
-Bei der Beantragung der Credentials zur Nutzung der Schnittstelle wird auch die client_id abgefragt. Die client_id ist im Access Token enthalten und wird vom VZD ausgewertet. Der holder kann über die REST-Schnittstelle beim Erzeugen oder Ändern des Eintrags gesetzt werden und auch mehrere Werte sind für holder möglich. Der Inhalt der client_id im Access Token wird mit dem Inhalt des holder-Attributs im VZD-Eintrag verglichen. Bei Übereinstimmung darf der Eintrag geändert werden. Wenn der holder nicht vorhanden oder leer ist, darf der Eintrag geändert werden. Wenn client_id und holder nicht übereinstimmen, darf der Eintrag nicht geändert werden. Dadurch kann der Kartenherausgeber den oder die Werte für holder zu einem ihm passenden Zeitpunkt setzen und der Eintrag ist von da an vor Veränderung durch andere Kartenherausgeber geschützt. Falls ein Kartenherausgeber sich unberechtigt als holder für einen Eintrag angegeben hat, kann man das über das Logfile des VZD herausfinden und zwischen den betroffenen Kartenherausgebern zur Klärung bringen.
 
 ===== GET /DirectoryEntries
 
@@ -634,6 +603,7 @@ den VZD Basisdatensatz mit den gesamten Werten des Attributs „holder“ schrei
 ____
 
 Wenn der Client das Attribut „holder“ befüllt und seine eigene clientId nicht einträgt, dann hat er nach Ausführung der Operation keinen schreibenden/löschenden Zugriff mehr auf diesen VZD Basisdatensatz. +
+Falls ein Kartenherausgeber sich unberechtigt als holder für einen Eintrag angegeben hat, kann man das über das Logfile des VZD herausfinden und zwischen den betroffenen Kartenherausgebern zur Klärung bringen.
  +
 *Belegung des Holder Attributs* +
  +
