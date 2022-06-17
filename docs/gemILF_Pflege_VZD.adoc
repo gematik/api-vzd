@@ -634,7 +634,7 @@ Tabelle 1: Legende für Tab_VZD_Datenbeschreibung_*
 
 [width="100%",cols="22%,78%",]
 |===
-|*orange* |Das Attribut muss von der pflegenden Stelle (Kartenherausgeber oder vom Kartenherausgeber berechtigte Organisationen wie z. B. TSP) aus dem Zertifikat ermittelt und über die Schnittstelle I_Directory_Administration an den VZD übergeben werden.
+|[orange]#orange# |Das Attribut muss von der pflegenden Stelle (Kartenherausgeber oder vom Kartenherausgeber berechtigte Organisationen wie z. B. TSP) aus dem Zertifikat ermittelt und über die Schnittstelle I_Directory_Administration an den VZD übergeben werden.
 |*rot* |Wird vom VZD eingetragen.
 |*blau* |Das Attribut muss von der pflegenden Stelle über die Schnittstelle I_Directory_Administration an den VZD übergeben werden.
 |*schwarz* |Das Attribut wird vom Fachdienst gepflegt. Der Fachdienst ist für die Korrektheit des Wertes verantwortlich.
