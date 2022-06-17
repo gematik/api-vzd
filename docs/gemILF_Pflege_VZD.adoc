@@ -197,22 +197,12 @@ Zum Test des Clients wird empfohlen, in der Referenzumgebung Requests zu senden.
 
 Um einen Eintrag anzulegen oder zu ändern, wird empfohlen wie folgt vorzugehen:
 
-[arabic]
-. {blank}
-+
-____
-Eintrag anhand der telematikID suchen GET /DirectoryEntries?telematikID=SomeTelematikID HTTP/1.1
-____
-. {blank}
-+
-____
-Wenn der Eintrag gefunden wurde, dann den Eintrag mittels PUT /DirectoryEntries/\{uid}/baseDirectoryEntries ändern
-____
-. {blank}
-+
-____
-Wenn der Eintrag nicht gefunden wurde, dann den Eintrag mittels POST /DirectoryEntries neu anlegen
-____
+- Eintrag anhand der telematikID suchen GET /DirectoryEntries?telematikID=SomeTelematikID HTTP/1.1
+
+- Wenn der Eintrag gefunden wurde, dann den Eintrag mittels PUT /DirectoryEntries/\{uid}/baseDirectoryEntries ändern
+
+- Wenn der Eintrag nicht gefunden wurde, dann den Eintrag mittels POST /DirectoryEntries neu anlegen
+
 
 === Authentifizierung
 
@@ -332,26 +322,14 @@ Wird telematikID und userCertificate angegeben, dann muss die telematikID mit de
 
 Wenn ein Zertifikatseintrag zu einem VZD-Eintrag hinzugefügt wird, der schon einen Zertifikatseintrag hat, dann werden vom VZD automatisch die folgenden Attribute des VZD-Eintrags mit den Daten aus dem neuen bzw. zuletzt hinzugefügtem userCertificate überschrieben:
 
-* {blank}
-+
-____
-cn
-____
-* {blank}
-+
-____
-sn
-____
-* {blank}
-+
-____
-givenName
-____
-* {blank}
-+
-____
-otherName
-____
+- cn
+
+- sn
+
+- givenName
+
+- otherName
+
 
 Der Parameter dn kann nicht im Request angegeben werden.
 
@@ -484,53 +462,52 @@ _Query Parameter_ — Mit baseEntryOnly = &quot;true&quot; wird nur der Basisei
 
 Der VZD unterstützt für die Leseoperationen read_Directory_Entry und read_Directory_Entry_for_Sync der Schnittstellen I_Directory_Administration und I_Directory_Application_Maintenance die folgenden Filtermöglichkeiten:
 
-* {blank}
-+
-____
-Suche mit Wildcard "*" in den Parametern +
-- givenName +
-- sn +
-- cn +
-- displayName +
-- streetAddress +
-- postalCode +
-- countryCode +
-- localityName +
-- stateOrProvinceName +
-- title +
-- organization +
-- otherName +
-- telematikID +
-- specialization +
-- domainID +
-- holder +
+
+
+Suche mit Wildcard "*" in den Parametern 
+
+- givenName 
+- sn 
+- cn 
+- displayName 
+- streetAddress 
+- postalCode 
+- countryCode 
+- localityName 
+- stateOrProvinceName 
+- title 
+- organization 
+- otherName 
+- telematikID 
+- specialization 
+- domainID 
+- holder 
 - professionOID
-____
-* {blank}
-+
-____
-Suche nach Vorhandensein und leerem Inhalt eines Attributs des VZD-Datensatzes mit dem Kode \00 in den Parametern. +
-- givenName +
-- sn +
-- cn +
-- displayName +
-- streetAddress +
-- postalCode +
-- countryCode +
-- localityName +
-- stateOrProvinceName +
-- title +
-- organization +
-- otherName +
-- specialization +
-- domainID +
-- holder +
-- professionOID +
-- maxKOMLEadr +
-- changeDateTimeFrom +
-- changeDateTimeTo +
+
+Suche nach Vorhandensein ODER leerem Inhalt eines Attributs des VZD Datensatzes durch Belegung des Attributs im GET Request mit "" in den Parametern 
+
+- givenName 
+- sn 
+- cn 
+- displayName 
+- streetAddress 
+- postalCode 
+- countryCode 
+- localityName 
+- stateOrProvinceName 
+- title 
+- organization 
+- otherName 
+- specialization
+- domainID
+- holder
+- professionOID
+- maxKOMLEadr
+- changeDateTimeFrom
+- changeDateTimeTo
+
 Diese Suche findet sowohl Datensätze mit nicht vorhandenem Attribut wie auch vorhandenem aber leerem Attribut. Der Suchparameter darf nur den Kode \00 enthalten, keine weiteren Zeichen.
-____
+
 
 Alle Filterparameter einer Leseoperation werden mit einem UND (&) verknüpft. 
 
@@ -552,59 +529,32 @@ Bei der Registrierung für die Nutzung der VZD Schnittstelle I_Directory_Adminis
  +
 Für VZD Basisdatensätze erfolgt die Prüfung der Berechtigung bei jedem schreibenden/löschenden Zugriff (siehe Anforderungen A_20272 und A_20273) und bei der Synchronisation  (siehe Anforderung A_21230):
 
-* {blank}
-+
-____
-Wenn das „holder“ Attribut des VZD Basisdatensatzes nicht befüllt (also leer) ist, werden Änderungen des VZD Basisdatensatzes erlaubt.
-____
-* {blank}
-+
-____
-Wenn das „holder“ Attribut des VZD Basisdatensatzes befüllt ist und der aktuelle Client (identifiziert durch Attribut clientId des Access Tokens) in dem „holder“ Attribut enthalten ist (ein Wert des „holder“ Attributs muss der clientId entsprechen), werden Änderungen des VZD Basisdatensatzes und die Synchronisation (Operation read_Directory_Entry_for_Sync) erlaubt.
-____
-* {blank}
-+
-____
-In allen anderen Fällen wird der schreibende/löschende Zugriff auf den VZD Basisdatensatz abgelehnt (http Status Code 403).
-____
+- Wenn das „holder“ Attribut des VZD Basisdatensatzes nicht befüllt (also leer) ist, werden Änderungen des VZD Basisdatensatzes erlaubt.
+- Wenn das „holder“ Attribut des VZD Basisdatensatzes befüllt ist und der aktuelle Client (identifiziert durch Attribut clientId des Access Tokens) in dem „holder“ Attribut enthalten ist (ein Wert des „holder“ Attributs muss der clientId entsprechen), werden Änderungen des VZD Basisdatensatzes und die Synchronisation (Operation read_Directory_Entry_for_Sync) erlaubt.
+- In allen anderen Fällen wird der schreibende/löschende Zugriff auf den VZD Basisdatensatz abgelehnt (http Status Code 403).
+
+
 
 *Befüllung des „holder“ Attributs* +
  +
 Bei dem Anlegen eines VZD Basisdatensatzes (Operation add_Directory_Entry) und bei Änderungen eines VZD Basisdatensatzes (Operation modify_Directory_Entry) kann das Attribut „holder“ angegeben werden (siehe Anforderung A_20271 und A_20272): +
-​​
 
-* {blank}
-+
-____
-Wird das „holder“ Attribut nicht befüllt, werden Zugriffe auf diesen VZD Basisdatensatz nicht eingeschränkt.
-____
-* {blank}
-+
-____
-Wird das „holder“ Attribut mit bis zu 100 Eigentümer des VZD Basisdatensatzes befüllt, haben nur diese Eigentümer schreibenden / löschenden Zugriff auf diesen VZD Basisdatensatz und können ihn mit der Paging Funktion der Synchronisationsoperation read_Directory_Entry_for_Sync lesen.
-____
+- Wird das „holder“ Attribut nicht befüllt, werden Zugriffe auf diesen VZD Basisdatensatz nicht eingeschränkt.
+- Wird das „holder“ Attribut mit bis zu 100 Eigentümer des VZD Basisdatensatzes befüllt, haben nur diese Eigentümer schreibenden / löschenden Zugriff auf diesen VZD Basisdatensatz und können ihn mit der Paging Funktion der Synchronisationsoperation read_Directory_Entry_for_Sync lesen.
+
 
 Zur Aktualisierung des Attributs „holder“ mit Operation modify_Directory_Entry muss immer das gesamte Attribut geschrieben werden (siehe Anforderung A_20271 und A_20272):
 
-* {blank}
-+
-____
-Der Client muss – wenn er nicht alle Werte vorliegen hat – erst den VZD Basisdatensatz lesen (Operation read_Directory_Entry),
-____
-* {blank}
-+
-____
-die Werte von Attribut „holder“ aktualisieren und dann
-____
-* {blank}
-+
-____
-den VZD Basisdatensatz mit den gesamten Werten des Attributs „holder“ schreiben.
-____
+- Der Client muss – wenn er nicht alle Werte vorliegen hat – erst den VZD Basisdatensatz lesen (Operation read_Directory_Entry),
+- die Werte von Attribut „holder“ aktualisieren und dann
+- den VZD Basisdatensatz mit den gesamten Werten des Attributs „holder“ schreiben.
+
 
 Wenn der Client das Attribut „holder“ befüllt und seine eigene clientId nicht einträgt, dann hat er nach Ausführung der Operation keinen schreibenden/löschenden Zugriff mehr auf diesen VZD Basisdatensatz. +
 Falls ein Kartenherausgeber sich unberechtigt als holder für einen Eintrag angegeben hat, kann man das über das Logfile des VZD herausfinden und zwischen den betroffenen Kartenherausgebern zur Klärung bringen.
  +
+ 
+ 
 *Belegung des Holder Attributs* +
  +
 Bei mehrfacher Belegung des „holder“ Attributs erhält jeder eingetragene Client die Rechte für schreibende Zugriffe auf den VZD Basisdatensatz. +
@@ -612,53 +562,36 @@ Jeder Client, der als Holder eingetragen ist kann weitere holder dazu nehmen ode
 Bei Aktualisierung des „holder“ Attributs über Operation modify_Directory_Entry muss immer der gesamte Inhalt des Attributs geschrieben werden. +
  +
 Beispiel für den Inhalt eines Attributs „holder“, das um die Werte "KartenHerausgeber3" und "TSP3" ergänzt werden soll: +
-​​
 
-* {blank}
-+
-____
-Aktueller Inhalt Attributs „holder“ vor der Aktualisierung:
-____
+- Aktueller Inhalt Attributs „holder“ vor der Aktualisierung:
+
 
 "holder": [ "KartenHerausgeber1", "KartenHerausgeber2", "TSP1", "TSP2" ]
 
-* {blank}
-+
-____
-In Operation modify_Directory_Entry ist der gesamte Inhalt des Attributs „holder“ anzugeben (die Reihenfolge der Werte ist beliebig):
-____
+- In Operation modify_Directory_Entry ist der gesamte Inhalt des Attributs „holder“ anzugeben (die Reihenfolge der Werte ist beliebig):
+
 
 „holder": [ "KartenHerausgeber1", "KartenHerausgeber2", "TSP1", "TSP2", "KartenHerausgeber3", "TSP3" ]
 
-​​
+
 
 *Zusammenarbeit zwischen TSP und Kartenherausgeber*
 
 Für die Zusammenarbeit von Kartenherausgebern und TSPs werden folgende Varianten unterstützt
 
-* {blank}
-+
-____
-Kartenherausgeber pflegt seine Daten und Zertifikate
-____
+- Kartenherausgeber pflegt seine Daten und Zertifikate
+
 
 Der Kartenherausgeber registriert sich beim VZD für die Schnittstelle I_Directory_Administration. Er trägt seine clientId in das „holder“ Attribut seiner VZD Basisdatensätze ein und beschränkt damit die Änderungen an diesen Basisdatensätzen. Die Zertifikate für diese VZD Basisdatensätze werden ebenfalls durch den Kartenherausgeber eingetragen und gelöscht.
 
-* {blank}
-+
-____
-TSP pflegt die gesamten Daten eines Kartenherausgebers inklusive Zertifikaten
-____
+- TSP pflegt die gesamten Daten eines Kartenherausgebers inklusive Zertifikaten
+
 
 Der TSP wird vom Kartenherausgeber mit der Pflege der gesamten VZD Daten des Kartenherausgebers beauftragt. Der TSP registriert sich dafür beim VZD für die Schnittstelle I_Directory_Administration und weist seine Beauftragung durch den Kartenherausgeber nach. Er trägt seine clientId in das „holder“ Attribut seiner VZD Basisdatensätze ein und beschränkt damit die Änderungen an diesen Basisdatensätzen. Die Zertifikate für diese VZD Basisdatensätze werden durch den TSP eingetragen.
 
 Empfehlung: Zusätzlich zur clientId des TSPs wird auch die clientId des Kartenherausgebers in das „holder“ Attribut eingetragen.
 
-* {blank}
-+
-____
-Kartenherausgeber pflegt VZD Basisdaten und der TSP die Zertifikate
-____
+- Kartenherausgeber pflegt VZD Basisdaten und der TSP die Zertifikate
 
 Der Kartenherausgeber registriert sich beim VZD für die Schnittstelle I_Directory_Administration. Er trägt seine clientId in das „holder“ Attribut seiner VZD Basisdatensätze ein und beschränkt damit die Änderungen an diesen Basisdatensätzen. Die Zertifikate für diese VZD Basisdatensätze werden durch den TSP eingetragen und gelöscht. Für die Verwaltung der Zertifikate muss der TSP nicht in das „holder“ Attribut aufgenommen werden.
 
@@ -666,96 +599,31 @@ Der Kartenherausgeber registriert sich beim VZD für die Schnittstelle I_Directo
 
 Hinweis: Das Eintragen von Zertifikaten in den VZD wird durch das „holder“ Attribut nicht beschränkt, das Zertifikat muss aber immer zur TelematikID des VZD Basisdatensatzes passen und gültig sein. Unter gültige Zertifikate fallen
 
-* {blank}
-+
-____
-ausgestellte, aber nicht aktivierte Zertifikate und
-____
-* {blank}
-+
-____
-vollständig gültige Zertifikate (prüfbar über OCSP).
-____
+- ausgestellte, aber nicht aktivierte Zertifikate und
+- vollständig gültige Zertifikate (prüfbar über OCSP).
 
-​​
 
 *Aktivierung der Berechtigungen (Prüfung über „holder“ Attribut)*
 
 Die Prüfung der Berechtigungen für VZD Basisdatensätze erfolgt in folgenden Schritten:
 
-[arabic]
-. {blank}
-+
-____
-Befüllung des „holder“ Attributs
-____
-[loweralpha]
-.. {blank}
-+
-____
-Das „holder“ Attribut wird von den Clients befüllt.
-____
-.. {blank}
-+
-____
-Der VZD führt noch keine Prüfung der Berechtigungen auf Basis des „holder“ Attributs aus.
-____
-.. {blank}
-+
-____
-Der VZD prüft die angegebenen Werte des „holder“ Attributs gegen die hinterlegten Client_IDs.
-____
-. {blank}
-+
-____
-Prüfung der Befüllung
-____
-[loweralpha]
-.. {blank}
-+
-____
-Die gematik prüft mit statistischen VZD Reports den Stand der Befüllung des „holder“ Attributs.
-____
-.. {blank}
-+
-____
-Die Kartenherausgeber bzw. beauftragten TSPs prüfen die Befüllung „ihrer“ VZD Basisdatensätze.
-____
-. {blank}
-+
-____
-Aktivierung der Berechtigungsprüfung
-____
-[loweralpha]
-.. {blank}
-+
-____
-Der VZD prüft die Berechtigungen bei Änderungen an den VZD Basisdatensätzen.
-____
-.. {blank}
-+
-____
-Für VZD Basisdatensätzen ohne befülltes „holder“ Attribut erfolgt weiterhin keine Prüfung.
-____
+. Befüllung des „holder“ Attributs
+.. Das „holder“ Attribut wird von den Clients befüllt.
+.. Der VZD führt noch keine Prüfung der Berechtigungen auf Basis des „holder“ Attributs aus.
+.. Der VZD prüft die angegebenen Werte des „holder“ Attributs gegen die hinterlegten Client_IDs.
+. Prüfung der Befüllung
+.. Die gematik prüft mit statistischen VZD Reports den Stand der Befüllung des „holder“ Attributs.
+.. Die Kartenherausgeber bzw. beauftragten TSPs prüfen die Befüllung „ihrer“ VZD Basisdatensätze.
+. Aktivierung der Berechtigungsprüfung
+.. Der VZD prüft die Berechtigungen bei Änderungen an den VZD Basisdatensätzen.
+.. Für VZD Basisdatensätzen ohne befülltes „holder“ Attribut erfolgt weiterhin keine Prüfung.
 
-​​
 
 Versehentlich fehlerhaft eingetragene Berechtigungen müssen durch einen aktuellen Eigentümer des VZD Basisdatensatzes korrigiert werden:
 
-* {blank}
-+
-____
-Wenn das „holder“ Attribut keine Werte enthält, kann jeder berechtigte Client die korrekten Werte eintragen.
-____
-* {blank}
-+
-____
-Wenn ein Kartenherausgeber nicht (mehr) als "holder" eingetragen ist, muss er sich an einen der eingetragenen "holder" wenden und sich eintragen lassen.
-____
-* {blank}
-+
-____
-Kartenherausgeber, die als "holder" in dem VZD Basisdatensatz eingetragen sind und fehlerhafte Daten im "holder" Attribut feststellen, können die Werte des Attributs korrigieren.
+- Wenn das „holder“ Attribut keine Werte enthält, kann jeder berechtigte Client die korrekten Werte eintragen.
+- Wenn ein Kartenherausgeber nicht (mehr) als "holder" eingetragen ist, muss er sich an einen der eingetragenen "holder" wenden und sich eintragen lassen.
+- Kartenherausgeber, die als "holder" in dem VZD Basisdatensatz eingetragen sind und fehlerhafte Daten im "holder" Attribut feststellen, können die Werte des Attributs korrigieren.
 ____
 
 == Attributtabellen
