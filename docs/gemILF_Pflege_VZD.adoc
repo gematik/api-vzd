@@ -634,11 +634,11 @@ Tabelle 1: Legende für Tab_VZD_Datenbeschreibung_*
 
 [width="100%",cols="22%,78%",]
 |===
-|orange |Das Attribut muss von der pflegenden Stelle (Kartenherausgeber oder vom Kartenherausgeber berechtigte Organisationen wie z. B. TSP) aus dem Zertifikat ermittelt und über die Schnittstelle I_Directory_Administration an den VZD übergeben werden.
-|[red]#rot# |Wird vom VZD eingetragen.
-|*blau* |Das Attribut muss von der pflegenden Stelle über die Schnittstelle I_Directory_Administration an den VZD übergeben werden.
-|*schwarz* |Das Attribut wird vom Fachdienst gepflegt. Der Fachdienst ist für die Korrektheit des Wertes verantwortlich.
-|*grün* |Das Attribut wird nicht gepflegt.
+|a^👩[zert-kh]^[[zert-kh]] |Das Attribut muss von der pflegenden Stelle (Kartenherausgeber oder vom Kartenherausgeber berechtigte Organisationen wie z. B. TSP) aus dem Zertifikat ermittelt und über die Schnittstelle I_Directory_Administration an den VZD übergeben werden.
+|rot |Wird vom VZD eingetragen.
+|blau |Das Attribut muss von der pflegenden Stelle über die Schnittstelle I_Directory_Administration an den VZD übergeben werden.
+|schwarz |Das Attribut wird vom Fachdienst gepflegt. Der Fachdienst ist für die Korrektheit des Wertes verantwortlich.
+|grün |Das Attribut wird nicht gepflegt.
 |===
 
 === Wertebereiche der Attribute
@@ -649,7 +649,7 @@ Tabelle 2: TAB_VZD_Wertebereiche_der_Attribute
 |===
 |*Attribut* |*gültige Werte* |*Beschreibung*
 |stateOrProvinceName |Baden-Württemberg +
-Bayern +
+Bayern^👩‍<<zert-kh>>^ +
 Berlin +
 Brandenburg +
 Bremen +
