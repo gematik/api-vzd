@@ -1,0 +1,30 @@
+{
+  "resourceType": "CodeSystem",
+  "status": "draft",
+  "content": "complete",
+  "name": "OrganizationProviderType",
+  "id": "OrganizationProviderType",
+  "description": "CodeSystem of TI Service Provider types as to be found in the gematik Directory",
+  "version": "0.8.0-wip",
+  "url": "https://gematik.de/fhir/directory/CodeSystem/OrganizationProviderType",
+  "concept": [
+    {
+      "code": "tim-provider",
+      "display": "TI-Messenger-Provider"
+    },
+    {
+      "code": "kim-provider",
+      "display": "KIM-Provider"
+    },
+    {
+      "code": "tsp",
+      "display": "Trust Service Provider"
+    },
+    {
+      "code": "idp",
+      "display": "Identity Provider"
+    }
+  ],
+  "publisher": "gematik GmbH",
+  "count": 4
+}

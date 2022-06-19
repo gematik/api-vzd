@@ -1,0 +1,43 @@
+{
+  "resourceType": "CodeSystem",
+  "status": "draft",
+  "content": "complete",
+  "name": "EndpointConnectionType",
+  "id": "EndpointConnectionType",
+  "title": "Codes for Endpoint.connectionType",
+  "description": "CodeSystem TI specific connection types assigned to the Endpoints",
+  "version": "0.8.0-wip",
+  "url": "https://gematik.de/fhir/directory/CodeSystem/EndpointConnectionType",
+  "concept": [
+    {
+      "code": "tim",
+      "display": "TI-Messenger Endpoint"
+    },
+    {
+      "code": "tim-domain",
+      "display": "TI-Messenger domain name"
+    },
+    {
+      "code": "kim-1.0",
+      "display": "KIM 1.0 Endpoint"
+    },
+    {
+      "code": "kim-1.5",
+      "display": "KIM 1.5 Endpoint"
+    },
+    {
+      "code": "kim-2.0",
+      "display": "KIM 2.0 Endpoint"
+    },
+    {
+      "code": "epa-supported",
+      "display": "ePA Endpoint"
+    },
+    {
+      "code": "erp-supported",
+      "display": "eRP Endpoint"
+    }
+  ],
+  "publisher": "gematik GmbH",
+  "count": 7
+}

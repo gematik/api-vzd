@@ -1,10 +1,10 @@
 Instance: PractitionerExample001
-InstanceOf: GEM_DIR_SD_Practitioner
+InstanceOf: PractitionerDirectory
 Usage: #example
 Description: "Example of a Practitioner as to be found in gematik FHIR Directory"
 * id = "TIPractitionerExample001"
 * identifier[TelematikID].value = "3-2.58.00000040"
-* qualification[+].code = GEM_DIR_CS_PractitionerProfessionOID#1.2.276.0.76.4.31
+* qualification[+].code = PractitionerProfessionOID#1.2.276.0.76.4.31
 * qualification[+].code = $Facharzttitel#010 "FA Allgemeinmedizin"
 * qualification[+].code = $Facharzttitel#523 "FA Innere Medizin und (SP) Gastroenterologie"
 * name

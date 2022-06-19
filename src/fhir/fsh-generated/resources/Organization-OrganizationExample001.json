@@ -3,7 +3,7 @@
   "id": "OrganizationExample001",
   "meta": {
     "profile": [
-      "https://gematik.de/fhir/directory/StructureDefinition/GEM_DIR_SD_Organization"
+      "https://gematik.de/fhir/directory/StructureDefinition/OrganizationDirectory"
     ]
   },
   "identifier": [
@@ -17,7 +17,7 @@
       "coding": [
         {
           "code": "1.2.276.0.76.4.58",
-          "system": "https://gematik.de/fhir/directory/CodeSystem/GEM-DIR-CS-OrganizationProfessionOID"
+          "system": "https://gematik.de/fhir/directory/CodeSystem/OrganizationProfessionOID"
         }
       ]
     }
