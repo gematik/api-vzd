@@ -24,4 +24,3 @@ organisations specific for german Healthcare and Telematics Infrastructure.
 * name 1..1 MS
 * alias MS
 * contact MS
-* contact.purpose from $ContactEntityTypeVS
