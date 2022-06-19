@@ -1,16 +1,16 @@
 {
   "resourceType": "ValueSet",
   "status": "draft",
-  "name": "GEM_DIR_VS_PractitionerRoleSpecialty",
-  "id": "GEM-DIR-VS-PractitionerRoleSpecialty",
+  "name": "PractitionerRoleSpecialtyVS",
+  "id": "PractitionerRoleSpecialtyVS",
   "description": "ValueSet for `PractitonerRole.specialty`",
   "version": "0.8.0-wip",
-  "url": "https://gematik.de/fhir/directory/ValueSet/GEM-DIR-VS-PractitionerRoleSpecialty",
+  "url": "https://gematik.de/fhir/directory/ValueSet/PractitionerRoleSpecialtyVS",
   "publisher": "gematik GmbH",
   "compose": {
     "include": [
       {
-        "system": "https://gematik.de/fhir/directory/CodeSystem/GEM-DIR-CS-PractitionerProfessionOID"
+        "system": "https://gematik.de/fhir/directory/CodeSystem/PractitionerProfessionOID"
       },
       {
         "system": "urn:oid:1.2.276.0.76.5.114",

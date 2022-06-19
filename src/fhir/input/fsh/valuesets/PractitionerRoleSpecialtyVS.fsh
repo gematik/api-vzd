@@ -1,7 +1,7 @@
-ValueSet: GEM_DIR_VS_PractitionerRoleSpecialty
+ValueSet: PractitionerRoleSpecialtyVS
 Description: "ValueSet for `PractitonerRole.specialty`"
 * insert Meta
-* include codes from system GEM_DIR_CS_PractitionerProfessionOID
+* include codes from system PractitionerProfessionOID
 // S_BAR2_WBO
 * urn:oid:1.2.276.0.76.5.114#010 "FA Allgemeinmedizin"
 * urn:oid:1.2.276.0.76.5.114#020 "FA Anästhesiologie"

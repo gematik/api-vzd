@@ -27,19 +27,19 @@ def generate_value_set(url, output_file, template):
 
 generate_value_set(
   url=f"https://raw.githubusercontent.com/gematik/api-ePA/{VERSION}/src/vocabulary/value_sets/vs-practice-setting-code.xml",
-  output_file="input/fsh/valuesets/GEM_DIR_VS_OrganizationType.fsh",
-  template="""ValueSet: GEM_DIR_VS_OrganizationType
+  output_file="input/fsh/valuesets/OrganizationTypeVS.fsh",
+  template="""ValueSet: OrganizationTypeVS
 Description: "ValueSet for `Organization.type`"
 * insert Meta
-* include codes from system GEM_DIR_CS_OrganizationProfessionOID
-* include codes from system GEM_DIR_CS_OrganizationProviderType"""
+* include codes from system OrganizationProfessionOID
+* include codes from system OrganizationProviderType"""
 )
 
 generate_value_set(
   url=f"https://raw.githubusercontent.com/gematik/api-ePA/{VERSION}/src/vocabulary/value_sets/vs-author-specialty.xml",
-  output_file="input/fsh/valuesets/GEM_DIR_VS_PractitionerRoleSpecialty.fsh",
-  template="""ValueSet: GEM_DIR_VS_PractitionerRoleSpecialty
+  output_file="input/fsh/valuesets/PractitionerRoleSpecialtyVS.fsh",
+  template="""ValueSet: PractitionerRoleSpecialtyVS
 Description: "ValueSet for `PractitonerRole.specialty`"
 * insert Meta
-* include codes from system GEM_DIR_CS_PractitionerProfessionOID"""
+* include codes from system PractitionerProfessionOID"""
 )
