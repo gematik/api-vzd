@@ -59,6 +59,14 @@
         "mustSupport": true
       },
       {
+        "id": "PractitionerRole.specialty",
+        "path": "PractitionerRole.specialty",
+        "binding": {
+          "strength": "required",
+          "valueSet": "https://gematik.de/fhir/directory/ValueSet/PractitionerRoleSpecialtyVS"
+        }
+      },
+      {
         "id": "PractitionerRole.location",
         "path": "PractitionerRole.location",
         "mustSupport": true

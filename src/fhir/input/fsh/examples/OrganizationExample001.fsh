@@ -5,17 +5,16 @@ Description: """
 Example TI-Messenger Endpoint
 """
 * status = #active
-* connectionType = EndpointConnectionTypeDirectory#tim
+* connectionType = EndpointConnectionType#tim
 * name = "@SystemsEngineering:tim.gematik.de"
 * address = "@SystemsEngineering:tim.gematik.de"
-* payloadType = EndpointPayloadTypeDirectory#tim-chat
+* payloadType = EndpointPayloadType#tim-chat
 
 Instance: OrganizationExample001
 InstanceOf: OrganizationDirectory
 Usage: #example
 Description: "Example of an Organization as to be found in gematik FHIR Directory"
-* identifier[+].system = $IdentifierTelematikID
-* identifier[=].value = "9-2.58.00000040"
+* identifier[TelematikID].value = "9-2.58.00000040"
 * type = OrganizationProfessionOID#1.2.276.0.76.4.58
 * name = "gematik GmbH"
 * active = true
@@ -26,7 +25,7 @@ Friedrichstr. 136,
 * address.line[+] = "Friedrichstr. 136"
 * address.city = "Berlin"
 * address.district = "Mitte"
-* address.state = GermanRegion#Berlin
+* address.state = Region#Berlin
 * address.postalCode = "10117"
 * address.country = "DE"
 // Gibt es bedarf an TI/DE-spezifischen Kontakt-Zwecken?

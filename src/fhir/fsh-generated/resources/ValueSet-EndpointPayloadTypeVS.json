@@ -10,7 +10,7 @@
   "compose": {
     "include": [
       {
-        "system": "https://gematik.de/fhir/directory/CodeSystem/EndpointPayloadTypeDirectory"
+        "system": "https://gematik.de/fhir/directory/CodeSystem/EndpointPayloadType"
       }
     ]
   }

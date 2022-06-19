@@ -1,4 +1,4 @@
-CodeSystem: EndpointPayloadTypeDirectory
+CodeSystem: EndpointPayloadType
 Title: "Codes for Endpoint.payloadType"
 Description: """CodeSystem TI specific payload types assigned to the Endpoints
 

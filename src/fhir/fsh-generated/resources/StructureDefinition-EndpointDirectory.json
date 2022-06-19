@@ -53,7 +53,7 @@
         "path": "Endpoint.connectionType.code",
         "binding": {
           "strength": "required",
-          "valueSet": "https://gematik.de/fhir/directory/ValueSet/EndpointConnectionTypeVS"
+          "valueSet": "http://hl7.org/fhir/ValueSet/endpoint-connection-type"
         }
       },
       {
@@ -73,7 +73,7 @@
         "mustSupport": true,
         "binding": {
           "strength": "required",
-          "valueSet": "https://gematik.de/fhir/directory/ValueSet/EndpointPayloadTypeVS"
+          "valueSet": "http://hl7.org/fhir/ValueSet/endpoint-payload-type"
         }
       },
       {
