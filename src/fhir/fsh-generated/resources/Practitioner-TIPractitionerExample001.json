@@ -3,7 +3,7 @@
   "id": "TIPractitionerExample001",
   "meta": {
     "profile": [
-      "https://gematik.de/fhir/directory/StructureDefinition/GEM_DIR_SD_Practitioner"
+      "https://gematik.de/fhir/directory/StructureDefinition/PractitionerDirectory"
     ]
   },
   "identifier": [
@@ -22,7 +22,7 @@
         "coding": [
           {
             "code": "1.2.276.0.76.4.31",
-            "system": "https://gematik.de/fhir/directory/CodeSystem/GEM-DIR-CS-PractitionerProfessionOID"
+            "system": "https://gematik.de/fhir/directory/CodeSystem/PractitionerProfessionOID"
           }
         ]
       }

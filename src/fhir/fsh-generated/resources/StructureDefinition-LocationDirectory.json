@@ -1,0 +1,157 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "LocationDirectory",
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-category",
+      "valueString": "Base.Entities"
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-security-category",
+      "valueCode": "business"
+    }
+  ],
+  "url": "https://gematik.de/fhir/directory/StructureDefinition/LocationDirectory",
+  "version": "0.8.0-wip",
+  "name": "LocationDirectory",
+  "title": "Location in gematik Directory",
+  "status": "draft",
+  "publisher": "gematik GmbH",
+  "description": "Defines the data structure for medical, regulatory and technical\norganisations specific for german Healthcare and Telematics Infrastructure.",
+  "fhirVersion": "4.0.1",
+  "mapping": [
+    {
+      "identity": "rim",
+      "uri": "http://hl7.org/v3",
+      "name": "RIM Mapping"
+    },
+    {
+      "identity": "w5",
+      "uri": "http://hl7.org/fhir/fivews",
+      "name": "FiveWs Pattern Mapping"
+    }
+  ],
+  "kind": "resource",
+  "abstract": false,
+  "type": "Location",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Location",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Location.id",
+        "path": "Location.id",
+        "mustSupport": true
+      },
+      {
+        "id": "Location.name",
+        "path": "Location.name",
+        "mustSupport": true
+      },
+      {
+        "id": "Location.description",
+        "path": "Location.description",
+        "mustSupport": true
+      },
+      {
+        "id": "Location.address",
+        "path": "Location.address",
+        "mustSupport": true
+      },
+      {
+        "id": "Location.address.use",
+        "path": "Location.address.use",
+        "mustSupport": true
+      },
+      {
+        "id": "Location.address.text",
+        "path": "Location.address.text",
+        "mustSupport": true
+      },
+      {
+        "id": "Location.address.line",
+        "path": "Location.address.line",
+        "mustSupport": true
+      },
+      {
+        "id": "Location.address.city",
+        "path": "Location.address.city",
+        "mustSupport": true
+      },
+      {
+        "id": "Location.address.district",
+        "path": "Location.address.district",
+        "mustSupport": true
+      },
+      {
+        "id": "Location.address.state",
+        "path": "Location.address.state",
+        "mustSupport": true,
+        "binding": {
+          "strength": "required",
+          "valueSet": "https://gematik.de/fhir/directory/ValueSet/AddressStateVS"
+        }
+      },
+      {
+        "id": "Location.address.postalCode",
+        "path": "Location.address.postalCode",
+        "mustSupport": true
+      },
+      {
+        "id": "Location.address.country",
+        "path": "Location.address.country",
+        "mustSupport": true
+      },
+      {
+        "id": "Location.position",
+        "path": "Location.position",
+        "mustSupport": true
+      },
+      {
+        "id": "Location.position.longitude",
+        "path": "Location.position.longitude",
+        "mustSupport": true
+      },
+      {
+        "id": "Location.position.latitude",
+        "path": "Location.position.latitude",
+        "mustSupport": true
+      },
+      {
+        "id": "Location.position.altitude",
+        "path": "Location.position.altitude",
+        "mustSupport": true
+      },
+      {
+        "id": "Location.hoursOfOperation",
+        "path": "Location.hoursOfOperation",
+        "mustSupport": true
+      },
+      {
+        "id": "Location.hoursOfOperation.daysOfWeek",
+        "path": "Location.hoursOfOperation.daysOfWeek",
+        "mustSupport": true
+      },
+      {
+        "id": "Location.hoursOfOperation.allDay",
+        "path": "Location.hoursOfOperation.allDay",
+        "mustSupport": true
+      },
+      {
+        "id": "Location.hoursOfOperation.openingTime",
+        "path": "Location.hoursOfOperation.openingTime",
+        "mustSupport": true
+      },
+      {
+        "id": "Location.hoursOfOperation.closingTime",
+        "path": "Location.hoursOfOperation.closingTime",
+        "mustSupport": true
+      },
+      {
+        "id": "Location.availabilityExceptions",
+        "path": "Location.availabilityExceptions",
+        "mustSupport": true
+      }
+    ]
+  }
+}

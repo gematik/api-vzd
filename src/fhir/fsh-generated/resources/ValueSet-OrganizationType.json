@@ -1,0 +1,415 @@
+{
+  "resourceType": "ValueSet",
+  "status": "draft",
+  "name": "OrganizationType",
+  "id": "OrganizationType",
+  "description": "ValueSet for `Organization.type`",
+  "version": "0.8.0-wip",
+  "url": "https://gematik.de/fhir/directory/ValueSet/OrganizationType",
+  "publisher": "gematik GmbH",
+  "compose": {
+    "include": [
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/OrganizationProfessionOID"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/OrganizationProviderType"
+      },
+      {
+        "system": "urn:oid:1.3.6.1.4.1.19376.3.276.1.5.4",
+        "concept": [
+          {
+            "code": "ALLG",
+            "display": "Allgemeinmedizin"
+          },
+          {
+            "code": "ANAE",
+            "display": "Anästhesiologie"
+          },
+          {
+            "code": "ARBE",
+            "display": "Arbeitsmedizin"
+          },
+          {
+            "code": "AUGE",
+            "display": "Augenheilkunde"
+          },
+          {
+            "code": "CHIR",
+            "display": "Chirurgie"
+          },
+          {
+            "code": "ALCH",
+            "display": "Allgemeinchirurgie"
+          },
+          {
+            "code": "GFCH",
+            "display": "Gefäßchirurgie"
+          },
+          {
+            "code": "HZCH",
+            "display": "Herzchirurgie"
+          },
+          {
+            "code": "KDCH",
+            "display": "Kinderchirurgie"
+          },
+          {
+            "code": "ORTH",
+            "display": "Orthopädie"
+          },
+          {
+            "code": "PLCH",
+            "display": "Plastische und Ästhetische Chirurgie"
+          },
+          {
+            "code": "THCH",
+            "display": "Thoraxchirurgie"
+          },
+          {
+            "code": "UNFC",
+            "display": "Unfallchirurgie"
+          },
+          {
+            "code": "VICH",
+            "display": "Viszeralchirurgie"
+          },
+          {
+            "code": "FRAU",
+            "display": "Frauenheilkunde und Geburtshilfe"
+          },
+          {
+            "code": "GEND",
+            "display": "Gynäkologische Endokrinologie und Reproduktionsmedizin"
+          },
+          {
+            "code": "GONK",
+            "display": "Gynäkologische Onkologie"
+          },
+          {
+            "code": "PERI",
+            "display": "Perinatalmedizin"
+          },
+          {
+            "code": "GERI",
+            "display": "Geriatrie"
+          },
+          {
+            "code": "HNOH",
+            "display": "Hals-Nasen-Ohrenheilkunde"
+          },
+          {
+            "code": "HRST",
+            "display": "Sprach-, Stimm- und kindliche Hörstörungen"
+          },
+          {
+            "code": "HAUT",
+            "display": "Haut- und Geschlechtskrankheiten"
+          },
+          {
+            "code": "HIST",
+            "display": "Histologie / Zytologie"
+          },
+          {
+            "code": "HUMA",
+            "display": "Humangenetik"
+          },
+          {
+            "code": "HYGI",
+            "display": "Hygiene und Umweltmedizin"
+          },
+          {
+            "code": "INNE",
+            "display": "Innere Medizin"
+          },
+          {
+            "code": "ANGI",
+            "display": "Angiologie"
+          },
+          {
+            "code": "ENDO",
+            "display": "Endokrinologie und Diabetologie"
+          },
+          {
+            "code": "GAST",
+            "display": "Gastroenterologie"
+          },
+          {
+            "code": "HAEM",
+            "display": "Hämatologie und internistische Onkologie"
+          },
+          {
+            "code": "KARD",
+            "display": "Kardiologie"
+          },
+          {
+            "code": "NEPH",
+            "display": "Nephrologie"
+          },
+          {
+            "code": "PNEU",
+            "display": "Pneumologie"
+          },
+          {
+            "code": "RHEU",
+            "display": "Rheumatologie"
+          },
+          {
+            "code": "INTM",
+            "display": "Intensivmedizin"
+          },
+          {
+            "code": "INTZ",
+            "display": "Interdisziplinäre Zusammenarbeit"
+          },
+          {
+            "code": "INTO",
+            "display": "Interdisziplinäre Onkologie"
+          },
+          {
+            "code": "INTS",
+            "display": "Interdisziplinäre Schmerzmedizin"
+          },
+          {
+            "code": "TRPL",
+            "display": "Transplantationsmedizin"
+          },
+          {
+            "code": "SELT",
+            "display": "seltene Erkrankungen"
+          },
+          {
+            "code": "KIJU",
+            "display": "Kinder- und Jugendmedizin"
+          },
+          {
+            "code": "KONK",
+            "display": "Kinder-Hämatologie und -Onkologie"
+          },
+          {
+            "code": "KKAR",
+            "display": "Kinder-Kardiologie"
+          },
+          {
+            "code": "NNAT",
+            "display": "Neonatologie"
+          },
+          {
+            "code": "NPAE",
+            "display": "Neuropädiatrie"
+          },
+          {
+            "code": "KPSY",
+            "display": "Kinder- und Jugendpsychiatrie und -psychotherapie"
+          },
+          {
+            "code": "LABO",
+            "display": "Laboratoriumsmedizin"
+          },
+          {
+            "code": "MIKR",
+            "display": "Mikrobiologie, Virologie und Infektionsepidemiologie"
+          },
+          {
+            "code": "MKGC",
+            "display": "Mund-Kiefer-Gesichtschirurgie"
+          },
+          {
+            "code": "NATU",
+            "display": "Naturheilverfahren und alternative Heilmethoden"
+          },
+          {
+            "code": "NOTF",
+            "display": "Notfallmedizin"
+          },
+          {
+            "code": "NRCH",
+            "display": "Neurochirurgie"
+          },
+          {
+            "code": "NEUR",
+            "display": "Neurologie"
+          },
+          {
+            "code": "NUKL",
+            "display": "Nuklearmedizin"
+          },
+          {
+            "code": "GESU",
+            "display": "Öffentliches Gesundheitswesen"
+          },
+          {
+            "code": "PALL",
+            "display": "Palliativmedizin"
+          },
+          {
+            "code": "PATH",
+            "display": "Pathologie"
+          },
+          {
+            "code": "NPAT",
+            "display": "Neuropathologie"
+          },
+          {
+            "code": "PHAR",
+            "display": "Pharmakologie"
+          },
+          {
+            "code": "TOXI",
+            "display": "Toxikologie"
+          },
+          {
+            "code": "REHA",
+            "display": "Physikalische und Rehabilitative Medizin"
+          },
+          {
+            "code": "PSYC",
+            "display": "Psychiatrie und Psychotherapie"
+          },
+          {
+            "code": "FPSY",
+            "display": "Forensische Psychiatrie"
+          },
+          {
+            "code": "PSYM",
+            "display": "Psychosomatische Medizin und Psychotherapie"
+          },
+          {
+            "code": "RADI",
+            "display": "Radiologie"
+          },
+          {
+            "code": "KRAD",
+            "display": "Kinderradiologie"
+          },
+          {
+            "code": "NRAD",
+            "display": "Neuroradiologie"
+          },
+          {
+            "code": "RECH",
+            "display": "Rechtsmedizin"
+          },
+          {
+            "code": "SCHL",
+            "display": "Schlafmedizin"
+          },
+          {
+            "code": "SPOR",
+            "display": "Sport- und Bewegungsmedizin"
+          },
+          {
+            "code": "STRA",
+            "display": "Strahlentherapie"
+          },
+          {
+            "code": "TRAN",
+            "display": "Transfusionsmedizin"
+          },
+          {
+            "code": "TROP",
+            "display": "Tropen-/Reisemedizin"
+          },
+          {
+            "code": "UROL",
+            "display": "Urologie"
+          },
+          {
+            "code": "MZKH",
+            "display": "Zahnmedizin"
+          },
+          {
+            "code": "ORAL",
+            "display": "Oralchirurgie"
+          },
+          {
+            "code": "KIEF",
+            "display": "Kieferorthopädie"
+          },
+          {
+            "code": "PARO",
+            "display": "Parodontologie"
+          }
+        ]
+      },
+      {
+        "system": "urn:oid:1.2.276.0.76.5.494",
+        "concept": [
+          {
+            "code": "MZAH",
+            "display": "Allgemeine Zahnheilkunde"
+          },
+          {
+            "code": "ZGES",
+            "display": "Öffentliches Gesundheitswesen"
+          }
+        ]
+      },
+      {
+        "system": "urn:oid:1.3.6.1.4.1.19376.3.276.1.5.5",
+        "concept": [
+          {
+            "code": "ERG",
+            "display": "Ergotherapie"
+          },
+          {
+            "code": "ERN",
+            "display": "Ernährung und Diätetik"
+          },
+          {
+            "code": "FOR",
+            "display": "Forschung"
+          },
+          {
+            "code": "PFL",
+            "display": "Pflege und Betreuung"
+          },
+          {
+            "code": "ALT",
+            "display": "Altenpflege"
+          },
+          {
+            "code": "KIN",
+            "display": "Kinderpflege"
+          },
+          {
+            "code": "PAT",
+            "display": "Patient außerhalb der Betreuung"
+          },
+          {
+            "code": "PHZ",
+            "display": "Pharmazeutik"
+          },
+          {
+            "code": "POD",
+            "display": "Podologie"
+          },
+          {
+            "code": "PRV",
+            "display": "Prävention"
+          },
+          {
+            "code": "SOZ",
+            "display": "Sozialwesen"
+          },
+          {
+            "code": "SPR",
+            "display": "Sprachtherapie"
+          },
+          {
+            "code": "VKO",
+            "display": "Versorgungskoordination"
+          },
+          {
+            "code": "VER",
+            "display": "Verwaltung"
+          },
+          {
+            "code": "PST",
+            "display": "Psychotherapie"
+          }
+        ]
+      }
+    ]
+  }
+}

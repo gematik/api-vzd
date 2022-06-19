@@ -1,5 +1,5 @@
 Instance: PractitionerExample001
-InstanceOf: GEM_DIR_SD_Practitioner
+InstanceOf: PractitionerDirectory
 Usage: #example
 Description: "Example of a Practitioner as to be found in gematik FHIR Directory"
 * id = "TIPractitionerExample001"
