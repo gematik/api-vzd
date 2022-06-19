@@ -55,7 +55,7 @@
         "mustSupport": true,
         "binding": {
           "strength": "required",
-          "valueSet": "https://gematik.de/fhir/directory/ValueSet/OrganizationType"
+          "valueSet": "https://gematik.de/fhir/directory/ValueSet/OrganizationTypeVS"
         }
       },
       {

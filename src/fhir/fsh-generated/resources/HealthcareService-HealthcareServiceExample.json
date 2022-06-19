@@ -1,0 +1,76 @@
+{
+  "resourceType": "HealthcareService",
+  "id": "HealthcareServiceExample",
+  "meta": {
+    "profile": [
+      "https://gematik.de/fhir/directory/StructureDefinition/HealthcareServiceDirectory"
+    ]
+  },
+  "providedBy": {
+    "reference": "Organization/OrganizationExample"
+  },
+  "location": [
+    {
+      "reference": "Location/LocationExample"
+    }
+  ],
+  "name": "Zahnmedizin",
+  "telecom": [
+    {
+      "system": "phone",
+      "value": "030 7654321",
+      "use": "work"
+    }
+  ],
+  "serviceProvisionCode": [
+    {
+      "coding": [
+        {
+          "code": "free",
+          "system": "http://terminology.hl7.org/CodeSystem/service-provision-conditions",
+          "display": "Free"
+        }
+      ]
+    }
+  ],
+  "communication": [
+    {
+      "coding": [
+        {
+          "code": "de",
+          "system": "urn:ietf:bcp:47",
+          "display": "German"
+        }
+      ]
+    },
+    {
+      "coding": [
+        {
+          "code": "en",
+          "system": "urn:ietf:bcp:47",
+          "display": "English"
+        }
+      ]
+    }
+  ],
+  "appointmentRequired": true,
+  "availableTime": [
+    {
+      "daysOfWeek": [
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri"
+      ],
+      "availableStartTime": "08:00:00",
+      "availableEndTime": "18:00:00"
+    }
+  ],
+  "availabilityExceptions": "An Feiertagen geschlossen",
+  "endpoint": [
+    {
+      "reference": "Endpoint/EndpointExample"
+    }
+  ]
+}

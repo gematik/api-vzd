@@ -1,0 +1,31 @@
+{
+  "resourceType": "Endpoint",
+  "id": "EndpointExample",
+  "meta": {
+    "profile": [
+      "https://gematik.de/fhir/directory/StructureDefinition/EndpointDirectory"
+    ]
+  },
+  "status": "active",
+  "connectionType": {
+    "code": "tim",
+    "system": "https://gematik.de/fhir/directory/CodeSystem/EndpointConnectionType",
+    "display": "TI-Messenger Endpoint"
+  },
+  "name": "Messenger",
+  "managingOrganization": {
+    "reference": "Organization/OrganizationExample"
+  },
+  "payloadType": [
+    {
+      "coding": [
+        {
+          "code": "tim-chat",
+          "system": "https://gematik.de/fhir/directory/CodeSystem/EndpointPayloadType",
+          "display": "TI-Messenger chat"
+        }
+      ]
+    }
+  ],
+  "address": "matrix:u/74c1fecc710ce4c8a8bbe310fbc5954c2a5e1e9ef5f70d651da1bfc4c9abe43f:example-domain.de"
+}

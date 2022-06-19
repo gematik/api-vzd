@@ -8,7 +8,7 @@ organisations specific for german Healthcare and Telematics Infrastructure.
 * id ..1 MS
 * providedBy 1..1 MS
 * specialty MS
-* specialty from OrganizationType
+* specialty from OrganizationTypeVS
 * location MS
 * name MS
 * telecom MS

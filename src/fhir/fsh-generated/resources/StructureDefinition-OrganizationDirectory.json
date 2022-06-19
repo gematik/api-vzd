@@ -140,7 +140,7 @@
         "mustSupport": true,
         "binding": {
           "strength": "required",
-          "valueSet": "https://gematik.de/fhir/directory/ValueSet/OrganizationType"
+          "valueSet": "http://hl7.org/fhir/ValueSet/organization-type"
         }
       },
       {

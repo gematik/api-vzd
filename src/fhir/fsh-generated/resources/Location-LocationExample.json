@@ -1,0 +1,35 @@
+{
+  "resourceType": "Location",
+  "id": "LocationExample",
+  "meta": {
+    "profile": [
+      "https://gematik.de/fhir/directory/StructureDefinition/LocationDirectory"
+    ]
+  },
+  "name": "Praxis am Rathaus",
+  "description": "Praxis für Allgemeinmedizin",
+  "address": {
+    "text": "Hauptstraße 1, 10117 Berlin",
+    "line": [
+      "Hauptstraße 1"
+    ],
+    "city": "Berlin",
+    "state": "Berlin",
+    "postalCode": "10117",
+    "country": "DE"
+  },
+  "hoursOfOperation": [
+    {
+      "daysOfWeek": [
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri"
+      ],
+      "openingTime": "08:00:00",
+      "closingTime": "18:00:00"
+    }
+  ],
+  "availabilityExceptions": "An Feiertagen geschlossen"
+}

@@ -1,0 +1,22 @@
+{
+  "resourceType": "PractitionerRole",
+  "id": "PractitionerRoleExample",
+  "meta": {
+    "profile": [
+      "https://gematik.de/fhir/directory/StructureDefinition/PractitionerRoleDirectory"
+    ]
+  },
+  "practitioner": {
+    "reference": "Practitioner/TIPractitionerExampleDentist"
+  },
+  "location": [
+    {
+      "reference": "Location/LocationExample"
+    }
+  ],
+  "endpoint": [
+    {
+      "reference": "Endpoint/EndpointExample"
+    }
+  ]
+}
