@@ -158,14 +158,6 @@
         "id": "Organization.contact",
         "path": "Organization.contact",
         "mustSupport": true
-      },
-      {
-        "id": "Organization.contact.purpose",
-        "path": "Organization.contact.purpose",
-        "binding": {
-          "strength": "required",
-          "valueSet": "http://terminology.hl7.org/ValueSet/contactentity-type"
-        }
       }
     ]
   }

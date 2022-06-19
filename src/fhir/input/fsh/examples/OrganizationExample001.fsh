@@ -5,10 +5,10 @@ Description: """
 Example TI-Messenger Endpoint
 """
 * status = #active
-* connectionType = EndpointConnectionType#tim
+* connectionType = EndpointDirectoryConnectionType#tim
 * name = "@SystemsEngineering:tim.gematik.de"
 * address = "@SystemsEngineering:tim.gematik.de"
-* payloadType = EndpointPayloadType#tim-chat
+* payloadType = EndpointDirectoryPayloadType#tim-chat
 
 Instance: OrganizationExample001
 InstanceOf: OrganizationDirectory
