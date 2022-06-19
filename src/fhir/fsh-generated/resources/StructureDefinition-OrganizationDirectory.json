@@ -60,7 +60,7 @@
           "discriminator": [
             {
               "type": "pattern",
-              "path": "$this"
+              "path": "system"
             }
           ],
           "rules": "open"
@@ -82,32 +82,22 @@
             ]
           }
         ],
-        "patternIdentifier": {
-          "type": {
-            "coding": [
-              {
-                "code": "PRN",
-                "system": "http://terminology.hl7.org/CodeSystem/v2-0203"
-              }
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.identifier:BSNR",
+        "path": "Organization.identifier",
+        "sliceName": "BSNR",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "Identifier",
+            "profile": [
+              "http://fhir.de/StructureDefinition/identifier-telematik-id"
             ]
           }
-        },
-        "mustSupport": true
-      },
-      {
-        "id": "Organization.identifier:TelematikID.type",
-        "path": "Organization.identifier.type",
-        "min": 1,
-        "mustSupport": true
-      },
-      {
-        "id": "Organization.identifier:TelematikID.system",
-        "path": "Organization.identifier.system",
-        "mustSupport": true
-      },
-      {
-        "id": "Organization.identifier:TelematikID.value",
-        "path": "Organization.identifier.value",
+        ],
         "mustSupport": true
       },
       {
@@ -118,7 +108,7 @@
         "mustSupport": true,
         "binding": {
           "strength": "required",
-          "valueSet": "https://gematik.de/fhir/directory/ValueSet/OrganizationTypeVS"
+          "valueSet": "https://gematik.de/fhir/directory/ValueSet/OrganizationType"
         }
       },
       {

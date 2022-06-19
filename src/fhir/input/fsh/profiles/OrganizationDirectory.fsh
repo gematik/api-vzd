@@ -9,16 +9,14 @@ organisations specific for german Healthcare and Telematics Infrastructure.
 * name 1..1 MS
 * identifier 1..* MS
 * identifier ^slicing.discriminator.type = #pattern
-* identifier ^slicing.discriminator.path = "$this"
+* identifier ^slicing.discriminator.path = "system"
 * identifier ^slicing.rules = #open
 * identifier contains TelematikID 1..1 MS
 * identifier[TelematikID] only $IdentifierTelematikID
-  * ^patternIdentifier.type = $v2-0203#PRN
-  * type 1..1 MS
-  * system 1..1 MS
-  * value 1..1 MS
+* identifier contains BSNR 0..1 MS
+* identifier[BSNR] only $IdentifierTelematikID
 * type 1..1 MS
-* type from OrganizationTypeVS
+* type from OrganizationType
 * name 1..1 MS
 * alias MS
 * contact MS

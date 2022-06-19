@@ -86,7 +86,11 @@
       {
         "id": "Location.address.state",
         "path": "Location.address.state",
-        "mustSupport": true
+        "mustSupport": true,
+        "binding": {
+          "strength": "required",
+          "valueSet": "https://gematik.de/fhir/directory/ValueSet/AddressStateVS"
+        }
       },
       {
         "id": "Location.address.postalCode",

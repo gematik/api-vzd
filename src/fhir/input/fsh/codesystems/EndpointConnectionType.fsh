@@ -1,4 +1,4 @@
-CodeSystem: EndpointConnectionTypeDirectory
+CodeSystem: EndpointConnectionType
 Title: "Codes for Endpoint.connectionType"
 Description: "CodeSystem TI specific connection types assigned to the Endpoints"
 * insert Meta
