@@ -56,14 +56,116 @@
       {
         "id": "Organization.identifier",
         "path": "Organization.identifier",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "value",
+              "path": "system"
+            }
+          ],
+          "rules": "open"
+        },
         "min": 1,
         "mustSupport": true
+      },
+      {
+        "id": "Organization.identifier:TelematikID",
+        "path": "Organization.identifier",
+        "sliceName": "TelematikID",
+        "min": 1,
+        "max": "1",
+        "type": [
+          {
+            "code": "Identifier",
+            "profile": [
+              "http://fhir.de/StructureDefinition/identifier-telematik-id"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.identifier:BSNR",
+        "path": "Organization.identifier",
+        "sliceName": "BSNR",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "Identifier",
+            "profile": [
+              "http://fhir.de/StructureDefinition/identifier-bsnr"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.identifier:KZVA",
+        "path": "Organization.identifier",
+        "sliceName": "KZVA",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "Identifier",
+            "profile": [
+              "http://fhir.de/StructureDefinition/identifier-kzva"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.identifier:IKNR",
+        "path": "Organization.identifier",
+        "sliceName": "IKNR",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "Identifier",
+            "profile": [
+              "http://fhir.de/StructureDefinition/identifier-iknr"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.type",
+        "path": "Organization.type",
+        "min": 1,
+        "max": "1",
+        "mustSupport": true,
+        "binding": {
+          "strength": "required",
+          "valueSet": "https://gematik.de/fhir/directory/ValueSet/OrganizationType"
+        }
       },
       {
         "id": "Organization.name",
         "path": "Organization.name",
         "min": 1,
         "mustSupport": true
+      },
+      {
+        "id": "Organization.alias",
+        "path": "Organization.alias",
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.contact",
+        "path": "Organization.contact",
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.contact.purpose",
+        "path": "Organization.contact.purpose",
+        "binding": {
+          "strength": "required",
+          "valueSet": "http://terminology.hl7.org/ValueSet/contactentity-type"
+        }
       }
     ]
   }
