@@ -20,7 +20,7 @@ organisations specific for german Healthcare and Telematics Infrastructure.
 * identifier contains IKNR 0..1 MS
 * identifier[IKNR] only $IdentifierIKNR
 * type 1..1 MS
-* type from OrganizationType
+* type from OrganizationTypeVS
 * name 1..1 MS
 * alias MS
 * contact MS
