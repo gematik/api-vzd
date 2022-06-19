@@ -9,3 +9,4 @@ Eigene Codesysteme für die IDs um sie unterscheiden zu können
 * practitioner 1..1 MS
 * location MS
 * endpoint MS
+* specialty from PractitionerRoleSpecialtyVS
