@@ -167,7 +167,7 @@ Bei technischen Problemen ist die Absenderadresse bzw. eGK-Usermanagement@bertel
 
 Für sonstige Anfragen zum VZD steht die gematik berechtigten Kartenherausgebern bzw. Anbietern ebenfalls über das Kontaktformular auf gematik.de zur Verfügung.
 
-​​
+
 
 ==== Schritt 2: Schnittstellenbeschreibung herunterladen
 
@@ -177,7 +177,7 @@ Datei: DirectoryAdministration.yaml
 
 https://github.com/gematik/api-vzd/blob/main/src/openapi/DirectoryAdministration.yaml[+++https://github.com/gematik/api-vzd/blob/main/src/openapi/DirectoryAdministration.yaml+++] 
 
-​​
+
 
 ==== Schritt 3: OpenAPI-Entwicklungsumgebung verwenden
 
@@ -244,19 +244,20 @@ Neben der Produktivumgebung gibt es auch eine Instanz des VZD-Services in der Re
 VZD Service URL (TU): https://vzdpflege-test.vzd.ti-dienste.de:9543[+++https://vzdpflege-test.vzd.ti-dienste.de:9543+++] 
 |===
 
-​​
+
 
 ==== DirectoryEntryAdministration
 
+
 Hinweis: In allen Operationen müssen folgende HTTP-Header gesetzt sein:
 
+----
 Accept: application/json
 
 Content-Type: application/json
 
+----
 Zusätzlich müssen alle Strings als UTF-8 kodiert sein.
-
-​​
 
 ===== POST /DirectoryEntries
 
