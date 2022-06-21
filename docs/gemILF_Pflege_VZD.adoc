@@ -19,7 +19,7 @@ image::gematik_logo.svg[gematik,float="right"]
 
 [width="100%",cols="50%,50%",options="header",]
 |===
-|Version: |1.5.2
+|Version: |1.5.3
 |Referenzierung: |gemILF_Pflege_VZD
 |===
 
@@ -1796,39 +1796,39 @@ Das Glossar wird als eigenständiges Dokument (vgl. [gemGlossar]) zur Verfügung
 
 === Abbildungsverzeichnis
 
-Abbildung 1: Systemüberblick, Pflege der Basisdaten 7
+Abbildung 1: Systemüberblick, Pflege der Basisdaten
 
-Abbildung 2: OpenAPI Editor 10
+Abbildung 2: OpenAPI Editor
 
 === Tabellenverzeichnis
 
-Tabelle 1: TAB_VZD_Wertebereiche_der_Attribute 22
+Tabelle 1: TAB_VZD_Wertebereiche_der_Attribute
 
-Tabelle 2: Tab_VZD_Datenbeschreibung_KVen 23
+Tabelle 2: Tab_VZD_Datenbeschreibung_KVen
 
-Tabelle 3: Tab_VZD_Datenbeschreibung_KZVen 26
+Tabelle 3: Tab_VZD_Datenbeschreibung_KZVen
 
-Tabelle 4: Tab_VZD_Datenbeschreibung_Apotheken_SMC-B 29
+Tabelle 4: Tab_VZD_Datenbeschreibung_Apotheken_SMC-B
 
-Tabelle 5: Tab_VZD_Datenbeschreibung_Apotheker 32
+Tabelle 5: Tab_VZD_Datenbeschreibung_Apotheker
 
-Tabelle 6: Tab_VZD_Datenbeschreibung_DKG 36
+Tabelle 6: Tab_VZD_Datenbeschreibung_DKG
 
-Tabelle 7: Tab_VZD_Datenbeschreibung_Psychotherapeuten 39
+Tabelle 7: Tab_VZD_Datenbeschreibung_Psychotherapeuten
 
-Tabelle 8: Tab_VZD_Datenbeschreibung_BÄK 41
+Tabelle 8: Tab_VZD_Datenbeschreibung_BÄK
 
-Tabelle 9: Tab_VZD_Datenbeschreibung_BZÄK 45
+Tabelle 9: Tab_VZD_Datenbeschreibung_BZÄK
 
-Tabelle 10: Tab_VZD_Datenbeschreibung_GKV-SV_SMC-B KTR 48
+Tabelle 10: Tab_VZD_Datenbeschreibung_GKV-SV_SMC-B KTR
 
-Tabelle 11: VZD_Datenbeschreibung_GKV-SV_SM-B_KTR ePA 51
+Tabelle 11: VZD_Datenbeschreibung_GKV-SV_SM-B_KTR ePA
 
-Tabelle 12: Tab_VZD_Datenbeschreibung_der_SMC-B_Org 54
+Tabelle 12: Tab_VZD_Datenbeschreibung_der_SMC-B_Org
 
-Tabelle 13: Tab_VZD_Datenbeschreibung_der_SMC-B_eGBR 57
+Tabelle 13: Tab_VZD_Datenbeschreibung_der_SMC-B_eGBR
 
-Tabelle 14: Tab_VZD_Datenbeschreibung_eGBR_HBA 59
+Tabelle 14: Tab_VZD_Datenbeschreibung_eGBR_HBA
 
 === Referenzierte Dokumente
 
@@ -1873,4 +1873,4 @@ Behebung: wird noch geklärt. 
 *Der Fehler ist im VZD bereits behoben*
 |===
 
-​​
+
