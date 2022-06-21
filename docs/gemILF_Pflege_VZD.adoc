@@ -675,7 +675,8 @@ Westfalen-Lippe +
 Mit der Einführung des E-Rezepts sind auch Bezeichnungen von EU-Ortschaften und EU-Ländern außerhalb Deutschlands möglich.
 |countryCode |Werte gemäß  ISO-3166-1 ALPHA-2 |Wenn nicht im add oder modify Request angegeben, wird vom VZD der Code "DE" eingetragen.
 |===
-
+{empty} +
+{empty} +
 === Kassenärztliche Vereinigungen (SMC-B-Eintrag)
 
 Tabelle 2: Tab_VZD_Datenbeschreibung_KVen
@@ -746,33 +747,19 @@ Enthält die KOM-LE-Version des Clientmoduls der angegebenen "mail" Adresse im A
 Wenn nicht angegeben, wird KOM-LE-Version 1.0 angenommen. +
 Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
 
-* {blank}
-+
-____
-Ein komLeData-Eintrag setzt sich zusammen aus der Mail-Adresse (Attribut "mail") und der zugehörigen KOM-LE Version (Attribut "version"). 
-____
-* {blank}
-+
-____
-Für jede Mail-Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Datenstruktur komLeData geben. Es dürfen in komLeData keine Mail-Adressen referenziert werden, die nicht im übergeordneten "mail" Attribut enthalten sind.
-____
-* {blank}
-+
-____
-Wenn eine Mail-Adresse gelöscht wird, muss auch ihr komLeData-Eintrag gelöscht werden. +
+- Ein komLeData-Eintrag setzt sich zusammen aus der Mail-Adresse (Attribut "mail") und der zugehörigen KOM-LE Version (Attribut "version"). 
+- Für jede Mail-Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Datenstruktur komLeData geben. Es dürfen in komLeData keine Mail-Adressen referenziert werden, die nicht im übergeordneten "mail" Attribut enthalten sind.
+- Wenn eine Mail-Adresse gelöscht wird, muss auch ihr komLeData-Eintrag gelöscht werden. +
  Geschrieben wird immer die gesamte Liste. Für Änderungen muss erst der aktuelle Eintrag gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
-____
-* {blank}
-+
-____
-Beispiel für den Wert eines komLeData-Eintrags: \{"mail": "erik.mustermann@hrstdomain.kim.telematik"; "version": "1.5"}
-____
+- Beispiel für den Wert eines komLeData-Eintrags: \{"mail": "erik.mustermann@hrstdomain.kim.telematik"; "version": "1.5"}
+
 
 Wird vom KOM-LE-Anbieter eingetragen.
 
 |===
 
-​​
+{empty} +
+{empty} +
 
 === Kassenzahnärztliche Vereinigungen (SMC-B Eintrag)
 
@@ -842,33 +829,19 @@ Enthält die KOM-LE-Version des Clientmoduls der angegebenen "mail" Adresse im A
 Wenn nicht angegeben, wird KOM-LE-Version 1.0 angenommen. +
 Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
 
-* {blank}
-+
-____
-Ein komLeData-Eintrag setzt sich zusammen aus der Mail-Adresse (Attribut "mail") und der zugehörigen KOM-LE Version (Attribut "version"). 
-____
-* {blank}
-+
-____
-Für jede Mail-Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Datenstruktur komLeData geben. Es dürfen in komLeData keine Mail-Adressen referenziert werden, die nicht im übergeordneten "mail" Attribut enthalten sind.
-____
-* {blank}
-+
-____
-Wenn eine Mail-Adresse gelöscht wird, muss auch ihr komLeData-Eintrag gelöscht werden. +
+- Ein komLeData-Eintrag setzt sich zusammen aus der Mail-Adresse (Attribut "mail") und der zugehörigen KOM-LE Version (Attribut "version"). 
+- Für jede Mail-Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Datenstruktur komLeData geben. Es dürfen in komLeData keine Mail-Adressen referenziert werden, die nicht im übergeordneten "mail" Attribut enthalten sind.
+- Wenn eine Mail-Adresse gelöscht wird, muss auch ihr komLeData-Eintrag gelöscht werden. +
  Geschrieben wird immer die gesamte Liste. Für Änderungen muss erst der aktuelle Eintrag gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
-____
-* {blank}
-+
-____
-Beispiel für den Wert eines komLeData-Eintrags: \{"mail": "erik.mustermann@hrstdomain.kim.telematik"; "version": "1.5"}
-____
+- Beispiel für den Wert eines komLeData-Eintrags: \{"mail": "erik.mustermann@hrstdomain.kim.telematik"; "version": "1.5"}
+
 
 Wird vom KOM-LE-Anbieter eingetragen.
 
 |===
 
-​​
+{empty} +
+{empty} +
 
 === SMC-B-Eintrag für Apotheken (ABDA, gematik)
 
@@ -941,33 +914,20 @@ Enthält die KOM-LE-Version des Clientmoduls der angegebenen "mail" Adresse im A
 Wenn nicht angegeben, wird KOM-LE-Version 1.0 angenommen. +
 Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
 
-* {blank}
-+
-____
-Ein komLeData-Eintrag setzt sich zusammen aus der Mail-Adresse (Attribut "mail") und der zugehörigen KOM-LE Version (Attribut "version"). 
-____
-* {blank}
-+
-____
-Für jede Mail-Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Datenstruktur komLeData geben. Es dürfen in komLeData keine Mail-Adressen referenziert werden, die nicht im übergeordneten "mail" Attribut enthalten sind.
-____
-* {blank}
-+
-____
-Wenn eine Mail-Adresse gelöscht wird, muss auch ihr komLeData-Eintrag gelöscht werden. +
+
+- Ein komLeData-Eintrag setzt sich zusammen aus der Mail-Adresse (Attribut "mail") und der zugehörigen KOM-LE Version (Attribut "version"). 
+- Für jede Mail-Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Datenstruktur komLeData geben. Es dürfen in komLeData keine Mail-Adressen referenziert werden, die nicht im übergeordneten "mail" Attribut enthalten sind.
+- Wenn eine Mail-Adresse gelöscht wird, muss auch ihr komLeData-Eintrag gelöscht werden. +
  Geschrieben wird immer die gesamte Liste. Für Änderungen muss erst der aktuelle Eintrag gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
-____
-* {blank}
-+
-____
-Beispiel für den Wert eines komLeData-Eintrags: \{"mail": "erik.mustermann@hrstdomain.kim.telematik"; "version": "1.5"}
-____
+- Beispiel für den Wert eines komLeData-Eintrags: \{"mail": "erik.mustermann@hrstdomain.kim.telematik"; "version": "1.5"}
+
 
 Wird vom KOM-LE-Anbieter eingetragen.
 
 |===
 
-​​
+{empty} +
+{empty} +
 
 === HBA-Eintrag für Apotheker (ABDA, gematik)
 
@@ -1044,35 +1004,19 @@ Enthält die KOM-LE-Version des Clientmoduls der angegebenen "mail" Adresse im A
 Wenn nicht angegeben, wird KOM-LE-Version 1.0 angenommen. +
 Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
 
-* {blank}
-+
-____
-Ein komLeData-Eintrag setzt sich zusammen aus der Mail-Adresse (Attribut "mail") und der zugehörigen KOM-LE Version (Attribut "version"). 
-____
-* {blank}
-+
-____
-Für jede Mail-Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Datenstruktur komLeData geben. Es dürfen in komLeData keine Mail-Adressen referenziert werden, die nicht im übergeordneten "mail" Attribut enthalten sind.
-____
-* {blank}
-+
-____
-Wenn eine Mail-Adresse gelöscht wird, muss auch ihr komLeData-Eintrag gelöscht werden. +
+
+- Ein komLeData-Eintrag setzt sich zusammen aus der Mail-Adresse (Attribut "mail") und der zugehörigen KOM-LE Version (Attribut "version"). 
+- Für jede Mail-Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Datenstruktur komLeData geben. Es dürfen in komLeData keine Mail-Adressen referenziert werden, die nicht im übergeordneten "mail" Attribut enthalten sind.
+- Wenn eine Mail-Adresse gelöscht wird, muss auch ihr komLeData-Eintrag gelöscht werden. +
  Geschrieben wird immer die gesamte Liste. Für Änderungen muss erst der aktuelle Eintrag gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
-____
-* {blank}
-+
-____
-Beispiel für den Wert eines komLeData-Eintrags: \{"mail": "erik.mustermann@hrstdomain.kim.telematik"; "version": "1.5"}
-____
+- Beispiel für den Wert eines komLeData-Eintrags: \{"mail": "erik.mustermann@hrstdomain.kim.telematik"; "version": "1.5"}
 
 Wird vom KOM-LE-Anbieter eingetragen.
 
 |===
 
-​​
-
-​​
+{empty} +
+{empty} +
 
 === DKG (SMC-B-Eintrag)
 
@@ -1147,33 +1091,19 @@ Enthält die KOM-LE-Version des Clientmoduls der angegebenen "mail" Adresse im A
 Wenn nicht angegeben, wird KOM-LE-Version 1.0 angenommen. +
 Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
 
-* {blank}
-+
-____
-Ein komLeData-Eintrag setzt sich zusammen aus der Mail-Adresse (Attribut "mail") und der zugehörigen KOM-LE Version (Attribut "version"). 
-____
-* {blank}
-+
-____
-Für jede Mail-Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Datenstruktur komLeData geben. Es dürfen in komLeData keine Mail-Adressen referenziert werden, die nicht im übergeordneten "mail" Attribut enthalten sind.
-____
-* {blank}
-+
-____
-Wenn eine Mail-Adresse gelöscht wird, muss auch ihr komLeData-Eintrag gelöscht werden. +
+
+- Ein komLeData-Eintrag setzt sich zusammen aus der Mail-Adresse (Attribut "mail") und der zugehörigen KOM-LE Version (Attribut "version"). 
+- Für jede Mail-Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Datenstruktur komLeData geben. Es dürfen in komLeData keine Mail-Adressen referenziert werden, die nicht im übergeordneten "mail" Attribut enthalten sind.
+- Wenn eine Mail-Adresse gelöscht wird, muss auch ihr komLeData-Eintrag gelöscht werden. +
  Geschrieben wird immer die gesamte Liste. Für Änderungen muss erst der aktuelle Eintrag gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
-____
-* {blank}
-+
-____
-Beispiel für den Wert eines komLeData-Eintrags: \{"mail": "erik.mustermann@hrstdomain.kim.telematik"; "version": "1.5"}
-____
+- Beispiel für den Wert eines komLeData-Eintrags: \{"mail": "erik.mustermann@hrstdomain.kim.telematik"; "version": "1.5"}
 
 Wird vom KOM-LE-Anbieter eingetragen.
 
 |===
 
-​​
+{empty} +
+{empty} +
 
 === Psychotherapeuten (HBA-Eintrag)
 
@@ -1251,33 +1181,19 @@ Enthält die KOM-LE-Version des Clientmoduls der angegebenen "mail" Adresse im A
 Wenn nicht angegeben, wird KOM-LE-Version 1.0 angenommen. +
 Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
 
-* {blank}
-+
-____
-Ein komLeData-Eintrag setzt sich zusammen aus der Mail-Adresse (Attribut "mail") und der zugehörigen KOM-LE Version (Attribut "version"). 
-____
-* {blank}
-+
-____
-Für jede Mail-Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Datenstruktur komLeData geben. Es dürfen in komLeData keine Mail-Adressen referenziert werden, die nicht im übergeordneten "mail" Attribut enthalten sind.
-____
-* {blank}
-+
-____
-Wenn eine Mail-Adresse gelöscht wird, muss auch ihr komLeData-Eintrag gelöscht werden. +
+
+- Ein komLeData-Eintrag setzt sich zusammen aus der Mail-Adresse (Attribut "mail") und der zugehörigen KOM-LE Version (Attribut "version"). 
+- Für jede Mail-Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Datenstruktur komLeData geben. Es dürfen in komLeData keine Mail-Adressen referenziert werden, die nicht im übergeordneten "mail" Attribut enthalten sind.
+- Wenn eine Mail-Adresse gelöscht wird, muss auch ihr komLeData-Eintrag gelöscht werden. +
  Geschrieben wird immer die gesamte Liste. Für Änderungen muss erst der aktuelle Eintrag gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
-____
-* {blank}
-+
-____
-Beispiel für den Wert eines komLeData-Eintrags: \{"mail": "erik.mustermann@hrstdomain.kim.telematik"; "version": "1.5"}
-____
+- Beispiel für den Wert eines komLeData-Eintrags: \{"mail": "erik.mustermann@hrstdomain.kim.telematik"; "version": "1.5"}
 
 Wird vom KOM-LE-Anbieter eingetragen.
 
 |===
 
-​​
+{empty} +
+{empty} +
 
 === Ärzte-Kammern (HBA-Eintrag)
 
@@ -1354,33 +1270,19 @@ Enthält die KOM-LE-Version des Clientmoduls der angegebenen "mail" Adresse im A
 Wenn nicht angegeben, wird KOM-LE-Version 1.0 angenommen. +
 Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
 
-* {blank}
-+
-____
-Ein komLeData-Eintrag setzt sich zusammen aus der Mail-Adresse (Attribut "mail") und der zugehörigen KOM-LE Version (Attribut "version"). 
-____
-* {blank}
-+
-____
-Für jede Mail-Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Datenstruktur komLeData geben. Es dürfen in komLeData keine Mail-Adressen referenziert werden, die nicht im übergeordneten "mail" Attribut enthalten sind.
-____
-* {blank}
-+
-____
-Wenn eine Mail-Adresse gelöscht wird, muss auch ihr komLeData-Eintrag gelöscht werden. +
+
+- Ein komLeData-Eintrag setzt sich zusammen aus der Mail-Adresse (Attribut "mail") und der zugehörigen KOM-LE Version (Attribut "version"). 
+- Für jede Mail-Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Datenstruktur komLeData geben. Es dürfen in komLeData keine Mail-Adressen referenziert werden, die nicht im übergeordneten "mail" Attribut enthalten sind.
+- Wenn eine Mail-Adresse gelöscht wird, muss auch ihr komLeData-Eintrag gelöscht werden. +
  Geschrieben wird immer die gesamte Liste. Für Änderungen muss erst der aktuelle Eintrag gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
-____
-* {blank}
-+
-____
-Beispiel für den Wert eines komLeData-Eintrags: \{"mail": "erik.mustermann@hrstdomain.kim.telematik"; "version": "1.5"}
-____
+- Beispiel für den Wert eines komLeData-Eintrags: \{"mail": "erik.mustermann@hrstdomain.kim.telematik"; "version": "1.5"}
 
 Wird vom KOM-LE-Anbieter eingetragen.
 
 |===
 
-​​
+{empty} +
+{empty} +
 
 === Zahnärzte-Kammern (HBA-Eintrag)
 
@@ -1457,33 +1359,19 @@ Enthält die KOM-LE-Version des Clientmoduls der angegebenen "mail" Adresse im A
 Wenn nicht angegeben, wird KOM-LE-Version 1.0 angenommen. +
 Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
 
-* {blank}
-+
-____
-Ein komLeData-Eintrag setzt sich zusammen aus der Mail-Adresse (Attribut "mail") und der zugehörigen KOM-LE Version (Attribut "version"). 
-____
-* {blank}
-+
-____
-Für jede Mail-Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Datenstruktur komLeData geben. Es dürfen in komLeData keine Mail-Adressen referenziert werden, die nicht im übergeordneten "mail" Attribut enthalten sind.
-____
-* {blank}
-+
-____
-Wenn eine Mail-Adresse gelöscht wird, muss auch ihr komLeData-Eintrag gelöscht werden. +
+
+- Ein komLeData-Eintrag setzt sich zusammen aus der Mail-Adresse (Attribut "mail") und der zugehörigen KOM-LE Version (Attribut "version"). 
+- Für jede Mail-Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Datenstruktur komLeData geben. Es dürfen in komLeData keine Mail-Adressen referenziert werden, die nicht im übergeordneten "mail" Attribut enthalten sind.
+- Wenn eine Mail-Adresse gelöscht wird, muss auch ihr komLeData-Eintrag gelöscht werden. +
  Geschrieben wird immer die gesamte Liste. Für Änderungen muss erst der aktuelle Eintrag gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
-____
-* {blank}
-+
-____
-Beispiel für den Wert eines komLeData-Eintrags: \{"mail": "erik.mustermann@hrstdomain.kim.telematik"; "version": "1.5"}
-____
+- Beispiel für den Wert eines komLeData-Eintrags: \{"mail": "erik.mustermann@hrstdomain.kim.telematik"; "version": "1.5"}
 
 Wird vom KOM-LE-Anbieter eingetragen.
 
 |===
 
-​​
+{empty} +
+{empty} +
 
 === GKV-SV (SMC-B-Eintrag)
 
@@ -1555,27 +1443,12 @@ Enthält die KOM-LE-Version des Clientmoduls der angegebenen "mail" Adresse im A
 Wenn nicht angegeben, wird KOM-LE-Version 1.0 angenommen. +
 Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
 
-* {blank}
-+
-____
-Ein komLeData-Eintrag setzt sich zusammen aus der Mail-Adresse (Attribut "mail") und der zugehörigen KOM-LE Version (Attribut "version"). 
-____
-* {blank}
-+
-____
-Für jede Mail-Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Datenstruktur komLeData geben. Es dürfen in komLeData keine Mail-Adressen referenziert werden, die nicht im übergeordneten "mail" Attribut enthalten sind.
-____
-* {blank}
-+
-____
-Wenn eine Mail-Adresse gelöscht wird, muss auch ihr komLeData-Eintrag gelöscht werden. +
+
+- Ein komLeData-Eintrag setzt sich zusammen aus der Mail-Adresse (Attribut "mail") und der zugehörigen KOM-LE Version (Attribut "version"). 
+- Für jede Mail-Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Datenstruktur komLeData geben. Es dürfen in komLeData keine Mail-Adressen referenziert werden, die nicht im übergeordneten "mail" Attribut enthalten sind.
+- Wenn eine Mail-Adresse gelöscht wird, muss auch ihr komLeData-Eintrag gelöscht werden. +
  Geschrieben wird immer die gesamte Liste. Für Änderungen muss erst der aktuelle Eintrag gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
-____
-* {blank}
-+
-____
-Beispiel für den Wert eines komLeData-Eintrags: \{"mail": "erik.mustermann@hrstdomain.kim.telematik"; "version": "1.5"}
-____
+- Beispiel für den Wert eines komLeData-Eintrags: \{"mail": "erik.mustermann@hrstdomain.kim.telematik"; "version": "1.5"}
 
 Wird vom KOM-LE-Anbieter eingetragen.
 
@@ -1591,9 +1464,12 @@ Wird vom VZD automatisch eingetragen.
 Dieses Attribut ermöglicht, das Zertifikat zu beschreiben, um die Administration des VZD-Eintrags zu vereinfachen. +
 Wird derzeit nicht verwendet.
 |*specialization* |optional |Wird für SMC-B KTR nicht verwendet.
+
+
 |===
 
-​​
+{empty} +
+{empty} +
 
 Tabelle 11: VZD_Datenbeschreibung_GKV-SV_SM-B_KTR ePA
 
@@ -1665,7 +1541,8 @@ Wird derzeit nicht verwendet.
 |*specialization* |optional |Wird für SMC-B KTR ePA nicht verwendet.
 |===
 
-​​
+{empty} +
+{empty} +
 
 === SMC-B-Org-Eintrag (gematik)
 
@@ -1726,33 +1603,19 @@ Enthält die KOM-LE-Version des Clientmoduls der angegebenen "mail" Adresse im A
 Wenn nicht angegeben, wird KOM-LE-Version 1.0 angenommen. +
 Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
 
-* {blank}
-+
-____
-Ein komLeData-Eintrag setzt sich zusammen aus der Mail-Adresse (Attribut "mail") und der zugehörigen KOM-LE Version (Attribut "version"). 
-____
-* {blank}
-+
-____
-Für jede Mail-Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Datenstruktur komLeData geben. Es dürfen in komLeData keine Mail-Adressen referenziert werden, die nicht im übergeordneten "mail" Attribut enthalten sind.
-____
-* {blank}
-+
-____
-Wenn eine Mail-Adresse gelöscht wird, muss auch ihr komLeData-Eintrag gelöscht werden. +
+
+- Ein komLeData-Eintrag setzt sich zusammen aus der Mail-Adresse (Attribut "mail") und der zugehörigen KOM-LE Version (Attribut "version"). 
+- Für jede Mail-Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Datenstruktur komLeData geben. Es dürfen in komLeData keine Mail-Adressen referenziert werden, die nicht im übergeordneten "mail" Attribut enthalten sind.
+- Wenn eine Mail-Adresse gelöscht wird, muss auch ihr komLeData-Eintrag gelöscht werden. +
  Geschrieben wird immer die gesamte Liste. Für Änderungen muss erst der aktuelle Eintrag gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
-____
-* {blank}
-+
-____
-Beispiel für den Wert eines komLeData-Eintrags: \{"mail": "erik.mustermann@hrstdomain.kim.telematik"; "version": "1.5"}
-____
+- Beispiel für den Wert eines komLeData-Eintrags: \{"mail": "erik.mustermann@hrstdomain.kim.telematik"; "version": "1.5"}
 
 Wird vom KOM-LE-Anbieter eingetragen.
 
 |===
 
-​​
+{empty} +
+{empty} +
 
 === eGBR – Nichtärztliche Institutionen (SMC-B-Eintrag)
 
@@ -1818,33 +1681,19 @@ Enthält die KOM-LE-Version des Clientmoduls der angegebenen "mail" Adresse im A
 Wenn nicht angegeben, wird KOM-LE-Version 1.0 angenommen. +
 Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
 
-* {blank}
-+
-____
-Ein komLeData-Eintrag setzt sich zusammen aus der Mail-Adresse (Attribut "mail") und der zugehörigen KOM-LE Version (Attribut "version"). 
-____
-* {blank}
-+
-____
-Für jede Mail-Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Datenstruktur komLeData geben. Es dürfen in komLeData keine Mail-Adressen referenziert werden, die nicht im übergeordneten "mail" Attribut enthalten sind.
-____
-* {blank}
-+
-____
-Wenn eine Mail-Adresse gelöscht wird, muss auch ihr komLeData-Eintrag gelöscht werden. +
+
+- Ein komLeData-Eintrag setzt sich zusammen aus der Mail-Adresse (Attribut "mail") und der zugehörigen KOM-LE Version (Attribut "version"). 
+- Für jede Mail-Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Datenstruktur komLeData geben. Es dürfen in komLeData keine Mail-Adressen referenziert werden, die nicht im übergeordneten "mail" Attribut enthalten sind.
+- Wenn eine Mail-Adresse gelöscht wird, muss auch ihr komLeData-Eintrag gelöscht werden. +
  Geschrieben wird immer die gesamte Liste. Für Änderungen muss erst der aktuelle Eintrag gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
-____
-* {blank}
-+
-____
-Beispiel für den Wert eines komLeData-Eintrags: \{"mail": "erik.mustermann@hrstdomain.kim.telematik"; "version": "1.5"}
-____
+- Beispiel für den Wert eines komLeData-Eintrags: \{"mail": "erik.mustermann@hrstdomain.kim.telematik"; "version": "1.5"}
 
 Wird vom KOM-LE-Anbieter eingetragen.
 
 |===
 
-​​
+{empty} +
+{empty} +
 
 === eGBR – Weitere Gesundheitsfachberufe (HBA-Eintrag)
 
@@ -1913,35 +1762,20 @@ Enthält die KOM-LE-Version des Clientmoduls der angegebenen "mail" Adresse im A
 Wenn nicht angegeben, wird KOM-LE-Version 1.0 angenommen. +
 Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
 
-* {blank}
-+
-____
-Ein komLeData-Eintrag setzt sich zusammen aus der Mail-Adresse (Attribut "mail") und der zugehörigen KOM-LE Version (Attribut "version"). 
-____
-* {blank}
-+
-____
-Für jede Mail-Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Datenstruktur komLeData geben. Es dürfen in komLeData keine Mail-Adressen referenziert werden, die nicht im übergeordneten "mail" Attribut enthalten sind.
-____
-* {blank}
-+
-____
-Wenn eine Mail-Adresse gelöscht wird, muss auch ihr komLeData-Eintrag gelöscht werden. +
+
+- Ein komLeData-Eintrag setzt sich zusammen aus der Mail-Adresse (Attribut "mail") und der zugehörigen KOM-LE Version (Attribut "version"). 
+- Für jede Mail-Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Datenstruktur komLeData geben. Es dürfen in komLeData keine Mail-Adressen referenziert werden, die nicht im übergeordneten "mail" Attribut enthalten sind.
+- Wenn eine Mail-Adresse gelöscht wird, muss auch ihr komLeData-Eintrag gelöscht werden. +
  Geschrieben wird immer die gesamte Liste. Für Änderungen muss erst der aktuelle Eintrag gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
-____
-* {blank}
-+
-____
-Beispiel für den Wert eines komLeData-Eintrags: \{"mail": "erik.mustermann@hrstdomain.kim.telematik"; "version": "1.5"}
-____
+- Beispiel für den Wert eines komLeData-Eintrags: \{"mail": "erik.mustermann@hrstdomain.kim.telematik"; "version": "1.5"}
 
 Wird vom KOM-LE-Anbieter eingetragen.
 
 |===
 
-​​
-
-​​
+{empty} +
+{empty} +
+{empty} +
 
 == Anhang A – Verzeichnisse
 
