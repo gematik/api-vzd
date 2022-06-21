@@ -1,6 +1,7 @@
 = Implementierungsleitfaden zur Pflege der Daten des Verzeichnisdienstes
 gematik, Systems Engineering
 :source-highlighter: rouge
+:icons:
 :title-page:
 :imagesdir: /images/
 ifdef::env-github[]
@@ -12,7 +13,7 @@ endif::[]
 :toclevels: 3
 :toc-title: Inhaltsverzeichnis
 //:sectnums:
-:icons:
+
 
 image::gematik_logo.svg[gematik,float="right"]
 
@@ -611,10 +612,10 @@ Der Kartenherausgeber registriert sich beim VZD für die Schnittstelle I_Directo
  
 
 
-Hinweis: Das Eintragen von Zertifikaten in den VZD wird durch das „holder“ Attribut nicht beschränkt, das Zertifikat muss aber immer zur TelematikID des VZD Basisdatensatzes passen und gültig sein. Unter gültige Zertifikate fallen 
+NOTE: Das Eintragen von Zertifikaten in den VZD wird durch das „holder“ Attribut nicht beschränkt, das Zertifikat muss aber immer zur TelematikID des VZD Basisdatensatzes passen und gültig sein. Unter gültige Zertifikate fallen +
+ - ausgestellte, aber nicht aktivierte Zertifikate und +
+ - vollständig gültige Zertifikate (prüfbar über OCSP).
 
-- ausgestellte, aber nicht aktivierte Zertifikate und
-- vollständig gültige Zertifikate (prüfbar über OCSP).
 
 
 
@@ -643,6 +644,8 @@ Versehentlich fehlerhaft eingetragene Berechtigungen müssen durch einen aktuell
 
 {empty} +
 {empty} +
+
+
 == Attributtabellen
 
 In den folgenden Abschnitten werden für die Kartenherausgeber spezifische Festlegungen zu den Attributen des VZD getroffen.
