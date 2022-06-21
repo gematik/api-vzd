@@ -288,6 +288,7 @@ Um genau einen Eintrag zu finden, wird empfohlen, nach der telematikID (mittels 
 
 Beispiel
 
+----
 GET /DirectoryEntries?telematikID=SomeTelematikID HTTP/1.1
 
 Authorization: Bearer ey**-g
@@ -303,6 +304,7 @@ Host: https://vzdpflege-ref.vzd.ti-dienste.de:9543[+++https://vzdpflege-ref.vzd.
 Connection: Keep-Alive
 
 Accept-Encoding: gzip
+----
 
 ===== GET /DirectoryEntriesSync
 
@@ -359,6 +361,7 @@ Wenn mehr als 100 Einträge gefunden werden, dann wird das in der Response zurü
 
 Beispiel
 
+----
 GET /DirectoryEntries/Certificates?telematikID=SomeTelematikID HTTP/1.1
 
 Authorization: Bearer ey**g
@@ -374,6 +377,7 @@ Host: https://vzdpflege-ref.vzd.ti-dienste.de:9543[+++https://vzdpflege-ref.vzd.
 Connection: Keep-Alive
 
 Accept-Encoding: gzip
+----
 
 ==== DirectoryEntrySynchronization
 
@@ -385,81 +389,89 @@ Analog zu read_Directory_Entry werden alle zum Filter passenden Verzeichniseintr
 
 *Query parameters*
 
-*uid (optional)* +
-_Query Parameter_ — ID von dem Verzeichniseintrag (distinguishedName.uid) +
-*givenName (optional)* +
-_Query Parameter_ — Erlaubt die Suche mit Hilfe des Attributs givenName. +
-*sn (optional)* +
-_Query Parameter_ — Erlaubt die Suche mit Hilfe des Attributs sn. +
-*cn (optional)* +
-_Query Parameter_ — Erlaubt die Suche mit Hilfe des Attributs cn. +
-*displayName (optional)* +
-_Query Parameter_ — Erlaubt die Suche mit Hilfe des Attributs displayName. +
-*streetAddress (optional)* +
-_Query Parameter_ — Erlaubt die Suche mit Hilfe des Attributs streetAddress. +
-*postalCode (optional)* +
-_Query Parameter_ — Erlaubt die Suche mit Hilfe des Attributs postalCode. +
-*countryCode (optional)* +
-_Query Parameter_ — Erlaubt die Suche mit Hilfe des Attributs countryCode. +
-*localityName (optional)* +
-_Query Parameter_ — Erlaubt die Suche mit Hilfe des Attributs localityName. +
-*stateOrProvinceName (optional)* +
-_Query Parameter_ — Erlaubt die Suche mit Hilfe des Attributs stateOrProvinceName. +
-*title (optional)* +
-_Query Parameter_ — Erlaubt die Suche mit Hilfe des Attributs title. +
-*organization (optional)* +
-_Query Parameter_ — Erlaubt die Suche mit Hilfe des Attributs organization. +
-*otherName (optional)* +
-_Query Parameter_ — Erlaubt die Suche mit Hilfe des Attributs otherName. +
-*telematikID (optional)* +
-_Query Parameter_ — Erlaubt die Suche mit Hilfe des Attributs telematikID (die telematikID in den Basisdaten). +
-*telematikID-SubStr (optional)* +
-_Query Parameter_ — Erlaubt die Suche nach einem Substring am Anfang der telematikID (die telematikID in den Basisdaten). Entspricht der LDAP Filters Substring Assertion vom Typ &quot;subInitial Component&quot;. +
-*specialization (optional)* +
-_Query Parameter_ — Erlaubt die Suche mit Hilfe des Attributs specialization. Der Verzeichniseintrag wird selektiert, wenn die angegebene domainID im Attribut domainID (array) des Verzeichniseintrags enthalten ist. +
-*domainID (optional)* +
-_Query Parameter_ — Erlaubt die Suche mit Hilfe des Attributs domainID. Der Verzeichniseintrag wird selektiert, wenn die angegebene domainID im Attribut domainID (array) des Verzeichniseintrags enthalten ist. +
-*holder (optional)* +
-_Query Parameter_ — Erlaubt die Suche mit Hilfe des Attributs holder. Der Verzeichniseintrag wird selektiert, wenn der angegebene holder im Attribut holder (array) des Verzeichniseintrags enthalten ist. Wenn der Parameter mit dem eigenen Wert des Clients belegt wird, werden alle gefundenen Einträge zurückgegeben (für eigene Einträge gilt das Limit von 100 Ergebnissen nicht). Zur Suche nach Einträge ohne holder ist der Parameter mit dem einem leeren String &quot;&quot; zu belegen. Auch in diesem Fall werden alle gefundenen Einträge zurückgegeben (für Einträge ohne holder gilt das Limit von 100 Ergebnissen nicht). +
-*personalEntry (optional)* +
-_Query Parameter_ — Erlaubt die Suche mit Hilfe des Attributs personalEntry. +
-*dataFromAuthority (optional)* +
+*uid (optional)* ::
+_Query Parameter_ — ID von dem Verzeichniseintrag (distinguishedName.uid) 
+
+*givenName (optional)*  ::
+_Query Parameter_ — Erlaubt die Suche mit Hilfe des Attributs givenName. 
+
+*sn (optional)*  ::
+_Query Parameter_ — Erlaubt die Suche mit Hilfe des Attributs sn. 
+
+*cn (optional)*  ::
+_Query Parameter_ — Erlaubt die Suche mit Hilfe des Attributs cn. 
+
+*displayName (optional)*  ::
+_Query Parameter_ — Erlaubt die Suche mit Hilfe des Attributs displayName. 
+
+*streetAddress (optional)*  ::
+_Query Parameter_ — Erlaubt die Suche mit Hilfe des Attributs streetAddress. 
+
+*postalCode (optional)*  ::
+_Query Parameter_ — Erlaubt die Suche mit Hilfe des Attributs postalCode. 
+
+*countryCode (optional)*  ::
+_Query Parameter_ — Erlaubt die Suche mit Hilfe des Attributs countryCode. 
+
+*localityName (optional)*  ::
+_Query Parameter_ — Erlaubt die Suche mit Hilfe des Attributs localityName. 
+
+*stateOrProvinceName (optional)*  ::
+_Query Parameter_ — Erlaubt die Suche mit Hilfe des Attributs stateOrProvinceName. 
+
+*title (optional)*  ::
+_Query Parameter_ — Erlaubt die Suche mit Hilfe des Attributs title. 
+
+*organization (optional)*  ::
+_Query Parameter_ — Erlaubt die Suche mit Hilfe des Attributs organization. 
+
+*otherName (optional)*  ::
+_Query Parameter_ — Erlaubt die Suche mit Hilfe des Attributs otherName. 
+
+*telematikID (optional)*  ::
+_Query Parameter_ — Erlaubt die Suche mit Hilfe des Attributs telematikID (die telematikID in den Basisdaten). 
+
+*telematikID-SubStr (optional)*  ::
+_Query Parameter_ — Erlaubt die Suche nach einem Substring am Anfang der telematikID (die telematikID in den Basisdaten). Entspricht der LDAP Filters Substring Assertion vom Typ &quot;subInitial Component&quot;. 
+
+*specialization (optional)*  ::
+_Query Parameter_ — Erlaubt die Suche mit Hilfe des Attributs specialization. Der Verzeichniseintrag wird selektiert, wenn die angegebene domainID im Attribut domainID (array) des Verzeichniseintrags enthalten ist. 
+
+*domainID (optional)*  ::
+_Query Parameter_ — Erlaubt die Suche mit Hilfe des Attributs domainID. Der Verzeichniseintrag wird selektiert, wenn die angegebene domainID im Attribut domainID (array) des Verzeichniseintrags enthalten ist. 
+
+*holder (optional)*  ::
+_Query Parameter_ — Erlaubt die Suche mit Hilfe des Attributs holder. Der Verzeichniseintrag wird selektiert, wenn der angegebene holder im Attribut holder (array) des Verzeichniseintrags enthalten ist. Wenn der Parameter mit dem eigenen Wert des Clients belegt wird, werden alle gefundenen Einträge zurückgegeben (für eigene Einträge gilt das Limit von 100 Ergebnissen nicht). Zur Suche nach Einträge ohne holder ist der Parameter mit dem einem leeren String &quot;&quot; zu belegen. Auch in diesem Fall werden alle gefundenen Einträge zurückgegeben (für Einträge ohne holder gilt das Limit von 100 Ergebnissen nicht). 
+
+*personalEntry (optional)*  ::
+_Query Parameter_ — Erlaubt die Suche mit Hilfe des Attributs personalEntry. 
+
+*dataFromAuthority (optional)*  ::
 _Query Parameter_ — Erlaubt die Suche mit Hilfe des Attributs dataFromAuthority.
 
-*professionOID (optional)*
-
+*professionOID (optional)*  ::
 _Query Parameter_ — Erlaubt die Suche mit Hilfe des Attributs professionOID. Selektiert der Verzeichniseintrag, wenn der angegebene Wert in den professionOID's (array) des Basiseintrags vorhanden ist.
 
-*entryType (optional)*
-
+*entryType (optional)*  ::
 _Query Parameter_ — Erlaubt die Suche mit Hilfe des Attributs entryType. Selektiert der Verzeichniseintrag, wenn der angegebene Wert in den entryType's (array) des Basiseintrags vorhanden ist.
 
-*maxKOMLEadr (optional)*
-
+*maxKOMLEadr (optional)*  ::
 _Query Parameter_ — Erlaubt die Suche mit Hilfe des Attributs maxKOMLEadr.
 
-*changeDateTimeFrom (optional)*
-
-_Query Parameter_ — Erlaubt die Suche mit Hilfe des Attributs changeDateTime. 
-
-____
+*changeDateTimeFrom (optional)*  ::
+_Query Parameter_ — Erlaubt die Suche mit Hilfe des Attributs changeDateTime. +
 Selektiert alle Datensätze mit changeDateTime >= changeDateTimeTo
-____
 
-*changeDateTimeTo (optional)*
 
-_Query Parameter_ — Erlaubt die Suche mit Hilfe des Attributs changeDateTime. 
+*changeDateTimeTo (optional)*  ::
+_Query Parameter_ — Erlaubt die Suche mit Hilfe des Attributs changeDateTime. +
+Selektiert alle Datensätze mit changeDateTime \<= changeDateTimeTo 
 
-____
-Selektiert alle Datensätze mit changeDateTime <= changeDateTimeTo +
-​​
-____
-
-*baseEntryOnly (optional)* +
+*baseEntryOnly (optional)*  ::
 _Query Parameter_ — Mit baseEntryOnly = &quot;true&quot; wird nur der Basiseintrag (baseDirectoryEntry) im Response zurückgegeben. Falls nicht angegeben oder mit &quot;false&quot; belegt, wird der gesamte Verzeichniseintrag mit Zertifikaten und Fachdaten im Response zurückgegeben.
 
-​​
-
+{empty} +
+{empty} +
 Der VZD unterstützt für die Leseoperationen read_Directory_Entry und read_Directory_Entry_for_Sync der Schnittstellen I_Directory_Administration und I_Directory_Application_Maintenance die folgenden Filtermöglichkeiten:
 
 
