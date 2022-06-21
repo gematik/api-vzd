@@ -630,26 +630,16 @@ Versehentlich fehlerhaft eingetragene Berechtigungen müssen durch einen aktuell
 
 In den folgenden Abschnitten werden für die Kartenherausgeber spezifische Festlegungen zu den Attributen des VZD getroffen.
 
-Tabelle 1: Legende für Tab_VZD_Datenbeschreibung_*
-
-[width="100%",cols="22%,78%",]
-|===
-|a^👩[zert-kh]^[[zert-kh]] |Das Attribut muss von der pflegenden Stelle (Kartenherausgeber oder vom Kartenherausgeber berechtigte Organisationen wie z. B. TSP) aus dem Zertifikat ermittelt und über die Schnittstelle I_Directory_Administration an den VZD übergeben werden.
-|rot |Wird vom VZD eingetragen.
-|blau |Das Attribut muss von der pflegenden Stelle über die Schnittstelle I_Directory_Administration an den VZD übergeben werden.
-|schwarz |Das Attribut wird vom Fachdienst gepflegt. Der Fachdienst ist für die Korrektheit des Wertes verantwortlich.
-|grün |Das Attribut wird nicht gepflegt.
-|===
 
 === Wertebereiche der Attribute
 
-Tabelle 2: TAB_VZD_Wertebereiche_der_Attribute
+Tabelle 1: TAB_VZD_Wertebereiche_der_Attribute
 
 [width="100%",cols="24%,40%,36%",options="header",]
 |===
 |*Attribut* |*gültige Werte* |*Beschreibung*
 |stateOrProvinceName |Baden-Württemberg +
-Bayern^👩‍<<zert-kh>>^ +
+Bayern +
 Berlin +
 Brandenburg +
 Bremen +
@@ -676,7 +666,7 @@ Mit der Einführung des E-Rezepts sind auch Bezeichnungen von EU-Ortschaften und
 
 === Kassenärztliche Vereinigungen (SMC-B-Eintrag)
 
-Tabelle 3: Tab_VZD_Datenbeschreibung_KVen
+Tabelle 2: Tab_VZD_Datenbeschreibung_KVen
 
 [width="100%",cols="18%,10%,72%",options="header",]
 |===
@@ -774,7 +764,7 @@ Wird vom KOM-LE-Anbieter eingetragen.
 
 === Kassenzahnärztliche Vereinigungen (SMC-B Eintrag)
 
-Tabelle 4: Tab_VZD_Datenbeschreibung_KZVen
+Tabelle 3: Tab_VZD_Datenbeschreibung_KZVen
 
 [width="100%",cols="18%,10%,72%",options="header",]
 |===
@@ -870,7 +860,7 @@ Wird vom KOM-LE-Anbieter eingetragen.
 
 === SMC-B-Eintrag für Apotheken (ABDA, gematik)
 
-Tabelle 5: Tab_VZD_Datenbeschreibung_Apotheken_SMC-B
+Tabelle 4: Tab_VZD_Datenbeschreibung_Apotheken_SMC-B
 
 [width="100%",cols="18%,10%,72%",options="header",]
 |===
@@ -969,7 +959,7 @@ Wird vom KOM-LE-Anbieter eingetragen.
 
 === HBA-Eintrag für Apotheker (ABDA, gematik)
 
-Tabelle 6: Tab_VZD_Datenbeschreibung_Apotheker
+Tabelle 5: Tab_VZD_Datenbeschreibung_Apotheker
 
 [width="100%",cols="18%,9%,73%",options="header",]
 |===
@@ -1074,7 +1064,7 @@ Wird vom KOM-LE-Anbieter eingetragen.
 
 === DKG (SMC-B-Eintrag)
 
-Tabelle 7: Tab_VZD_Datenbeschreibung_DKG
+Tabelle 6: Tab_VZD_Datenbeschreibung_DKG
 
 [width="100%",cols="18%,10%,72%",options="header",]
 |===
@@ -1175,7 +1165,7 @@ Wird vom KOM-LE-Anbieter eingetragen.
 
 === Psychotherapeuten (HBA-Eintrag)
 
-Tabelle 8: Tab_VZD_Datenbeschreibung_Psychotherapeuten
+Tabelle 7: Tab_VZD_Datenbeschreibung_Psychotherapeuten
 
 [width="100%",cols="19%,10%,71%",options="header",]
 |===
@@ -1279,7 +1269,7 @@ Wird vom KOM-LE-Anbieter eingetragen.
 
 === Ärzte-Kammern (HBA-Eintrag)
 
-Tabelle 9: Tab_VZD_Datenbeschreibung_BÄK
+Tabelle 8: Tab_VZD_Datenbeschreibung_BÄK
 
 [width="100%",cols="17%,9%,74%",options="header",]
 |===
@@ -1382,7 +1372,7 @@ Wird vom KOM-LE-Anbieter eingetragen.
 
 === Zahnärzte-Kammern (HBA-Eintrag)
 
-Tabelle 10: Tab_VZD_Datenbeschreibung_BZÄK
+Tabelle 9: Tab_VZD_Datenbeschreibung_BZÄK
 
 [width="100%",cols="19%,10%,71%",options="header",]
 |===
@@ -1487,7 +1477,7 @@ Wird vom KOM-LE-Anbieter eingetragen.
 
 Hinweis: Wenn die Suche ausschließlichen nach der Domain-ID erfolgt, kann das Ergebnis mehrere Einträge umfassen. Daher sollte immer der entryType bei der Suche mit angegeben werden.
 
-Tabelle 11: Tab_VZD_Datenbeschreibung_GKV-SV_SMC-B KTR
+Tabelle 10: Tab_VZD_Datenbeschreibung_GKV-SV_SMC-B KTR
 
 [width="100%",cols="24%,12%,64%",options="header",]
 |===
@@ -1593,7 +1583,7 @@ Wird derzeit nicht verwendet.
 
 ​​
 
-Tabelle 12: VZD_Datenbeschreibung_GKV-SV_SM-B_KTR ePA
+Tabelle 11: VZD_Datenbeschreibung_GKV-SV_SM-B_KTR ePA
 
 [width="100%",cols="24%,12%,64%",options="header",]
 |===
@@ -1667,7 +1657,7 @@ Wird derzeit nicht verwendet.
 
 === SMC-B-Org-Eintrag (gematik)
 
-Tabelle 13: Tab_VZD_Datenbeschreibung_der_SMC-B_Org
+Tabelle 12: Tab_VZD_Datenbeschreibung_der_SMC-B_Org
 
 [width="100%",cols="23%,15%,62%",options="header",]
 |===
@@ -1754,7 +1744,7 @@ Wird vom KOM-LE-Anbieter eingetragen.
 
 === eGBR – Nichtärztliche Institutionen (SMC-B-Eintrag)
 
-Tabelle 14: Tab_VZD_Datenbeschreibung_der_SMC-B_eGBR
+Tabelle 13: Tab_VZD_Datenbeschreibung_der_SMC-B_eGBR
 
 [width="100%",cols="18%,12%,70%",options="header",]
 |===
@@ -1846,7 +1836,7 @@ Wird vom KOM-LE-Anbieter eingetragen.
 
 === eGBR – Weitere Gesundheitsfachberufe (HBA-Eintrag)
 
-Tabelle 15: Tab_VZD_Datenbeschreibung_eGBR_HBA
+Tabelle 14: Tab_VZD_Datenbeschreibung_eGBR_HBA
 
 [width="100%",cols="18%,10%,72%",options="header",]
 |===
@@ -1943,15 +1933,6 @@ Wird vom KOM-LE-Anbieter eingetragen.
 
 == Anhang A – Verzeichnisse
 
-=== Abkürzungen
-
-[width="100%",cols="17%,83%",options="header",]
-|===
-|*Kürzel* |*Erläuterung*
-|​ |​
-|​ |​
-|===
-
 === Glossar
 
 Das Glossar wird als eigenständiges Dokument (vgl. [gemGlossar]) zur Verfügung gestellt.
@@ -1964,35 +1945,33 @@ Abbildung 2: OpenAPI Editor 10
 
 === Tabellenverzeichnis
 
-Tabelle 1: Legende für Tab_VZD_Datenbeschreibung_* 22
+Tabelle 1: TAB_VZD_Wertebereiche_der_Attribute 22
 
-Tabelle 2: TAB_VZD_Wertebereiche_der_Attribute 22
+Tabelle 2: Tab_VZD_Datenbeschreibung_KVen 23
 
-Tabelle 3: Tab_VZD_Datenbeschreibung_KVen 23
+Tabelle 3: Tab_VZD_Datenbeschreibung_KZVen 26
 
-Tabelle 4: Tab_VZD_Datenbeschreibung_KZVen 26
+Tabelle 4: Tab_VZD_Datenbeschreibung_Apotheken_SMC-B 29
 
-Tabelle 5: Tab_VZD_Datenbeschreibung_Apotheken_SMC-B 29
+Tabelle 5: Tab_VZD_Datenbeschreibung_Apotheker 32
 
-Tabelle 6: Tab_VZD_Datenbeschreibung_Apotheker 32
+Tabelle 6: Tab_VZD_Datenbeschreibung_DKG 36
 
-Tabelle 7: Tab_VZD_Datenbeschreibung_DKG 36
+Tabelle 7: Tab_VZD_Datenbeschreibung_Psychotherapeuten 39
 
-Tabelle 8: Tab_VZD_Datenbeschreibung_Psychotherapeuten 39
+Tabelle 8: Tab_VZD_Datenbeschreibung_BÄK 41
 
-Tabelle 9: Tab_VZD_Datenbeschreibung_BÄK 41
+Tabelle 9: Tab_VZD_Datenbeschreibung_BZÄK 45
 
-Tabelle 10: Tab_VZD_Datenbeschreibung_BZÄK 45
+Tabelle 10: Tab_VZD_Datenbeschreibung_GKV-SV_SMC-B KTR 48
 
-Tabelle 11: Tab_VZD_Datenbeschreibung_GKV-SV_SMC-B KTR 48
+Tabelle 11: VZD_Datenbeschreibung_GKV-SV_SM-B_KTR ePA 51
 
-Tabelle 12: VZD_Datenbeschreibung_GKV-SV_SM-B_KTR ePA 51
+Tabelle 12: Tab_VZD_Datenbeschreibung_der_SMC-B_Org 54
 
-Tabelle 13: Tab_VZD_Datenbeschreibung_der_SMC-B_Org 54
+Tabelle 13: Tab_VZD_Datenbeschreibung_der_SMC-B_eGBR 57
 
-Tabelle 14: Tab_VZD_Datenbeschreibung_der_SMC-B_eGBR 57
-
-Tabelle 15: Tab_VZD_Datenbeschreibung_eGBR_HBA 59
+Tabelle 14: Tab_VZD_Datenbeschreibung_eGBR_HBA 59
 
 === Referenzierte Dokumente
 
