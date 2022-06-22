@@ -5,6 +5,52 @@
 === Altenpfleger/-in
 
 link:oid_altenpfleger-hpc/[]
+==== Basiseintrag
+[source,json]
+----
+{
+    "telematikID": "10-HBA-Testkarte-883110000138419",
+    "displayName": "Konstantin Niño GômezTEST-ONLY",
+    "cn": "Konstantin Niño GômezTEST-ONLY",
+    "givenName": "Konstantin",
+    "sn": "Niño",
+    "streetAddress": "Gotzkowskystraße 86",
+    "postalCode": "47445",
+    "localityName": "Moers",
+    "stateOrProvinceName": "Nordrhein-Westfalen",
+    "countryCode": "DE"
+}
+----
+
+==== Zertifikatsinformation
+[source,yaml]
+----
+subject: 'SURNAME=Niño Gômez + GIVENNAME=Konstantin y + SERIALNUMBER=00.80276883110000138419 + CN=Konstantin Niño GômezTEST-ONLY, C=DE'
+subjectInfo:
+  cn: 'Konstantin Niño GômezTEST-ONLY'
+  givenName: Konstantin y
+  sn: Niño Gômez
+  serialNumber: 00.80276883110000138419
+  countryCode: DE
+issuer: 'CN=GEM.HBA-CA41 TEST-ONLY,OU=Heilberufsausweis-CA der Telematikinfrastruktur,O=gematik GmbH NOT-VALID,C=DE'
+signatureAlgorithm: SHA256withRSA
+publicKeyAlgorithm: RSA
+serialNumber: 1108610140691370
+keyUsage:
+  - keyEncipherment
+  - dataEncipherment
+notBefore: '2022-05-27T02:00:00'
+notAfter: '2027-05-27T01:59:59'
+admissionStatement:
+  admissionAuthority: C=DE,O=gematik Berlin
+  professionItems:
+    - 'Altenpfleger/-in'
+  professionOids:
+    - 1.2.276.0.76.4.233
+  registrationNumber: '10-HBA-Testkarte-883110000138419'
+certData: 'MIIE3TCCA8WgAwIBAgIHA/BGaaFbqjANBgkqhkiG9w0BAQsFADCBiTELMAkGA1UEBhMCREUxHzAdBgNVBAoMFmdlbWF0aWsgR21iSCBOT1QtVkFMSUQxODA2BgNVBAsML0hlaWxiZXJ1ZnNhdXN3ZWlzLUNBIGRlciBUZWxlbWF0aWtpbmZyYXN0cnVrdHVyMR8wHQYDVQQDDBZHRU0uSEJBLUNBNDEgVEVTVC1PTkxZMB4XDTIyMDUyNzAwMDAwMFoXDTI3MDUyNjIzNTk1OVowgYIxCzAJBgNVBAYTAkRFMXMwEwYDVQQEDAxOacOxbyBHw7RtZXowEwYDVQQqDAxLb25zdGFudGluIHkwHgYDVQQFExcwMC44MDI3Njg4MzExMDAwMDEzODQxOTAnBgNVBAMMIEtvbnN0YW50aW4gTmnDsW8gR8O0bWV6VEVTVC1PTkxZMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmiI2nEf4gFGn41FXSQSXiq9eQGiuRd+86g8uCM9PvwBbis2qvOr3pV828/r7plER0pHAhSdMqoJoqqOTWI9cbFx6rfVn/lAPycKQNqJw/cdeyo1B0f+CLpF1rFlWwP8RU5eH42ZjcNAQeQJiyKUElVq5uZpvKiodqcxmS6MHVpq66SQQvS8tzWhlePJBXaod//T5vCWO8Gs3grDJcdhXlFVqBJQnLrdqySDCtogFR27bE8Ew/kI71Ejr4idVRro7Fpofy9Xa36OHBBVWYRaH6dmNCELEXaFE6/CvoJrigbzHa5sT9iWtDEEPtkx/8V487Z9pBbveaP286rdKw2IOJQIDAQABo4IBTTCCAUkwHQYDVR0OBBYEFM17mMmogXRSHssrebV5DxjGPBp5MA4GA1UdDwEB/wQEAwIEMDAuBgNVHSAEJzAlMAkGByqCFABMBEowCgYIKoIUAEwEgREwDAYKKwYBBAGCzTMBATA4BggrBgEFBQcBAQQsMCowKAYIKwYBBQUHMAGGHGh0dHA6Ly9laGNhLmdlbWF0aWsuZGUvb2NzcC8wDAYDVR0TAQH/BAIwADAfBgNVHSMEGDAWgBRNc3VmFL6GGQWS3DrvvvfmYeSE7zB/BgUrJAgDAwR2MHSkKDAmMQswCQYDVQQGEwJERTEXMBUGA1UECgwOZ2VtYXRpayBCZXJsaW4wSDBGMEQwQjASDBBBbHRlbnBmbGVnZXIvLWluMAoGCCqCFABMBIFpEyAxMC1IQkEtVGVzdGthcnRlLTg4MzExMDAwMDEzODQxOTANBgkqhkiG9w0BAQsFAAOCAQEASw9P4SJBymcTTjtEDg8SMIADSKa0Nyp+DLjyNNmIXeB6R3UPv5vxNRg+GnDibUq/dlsnBIBvbqRg3ZZYyEYkNQ4i+SrTcq+2E1OvpVliSrjWaQubm2/NaLoIzvkgtWZLnX1K90hbU11W+nFQRx97sfPv3RKnBtVQUKKbXhQyITT3RlgU8gVt3M0Ab+qsUTIjuroa5Xhjo1tTD9JflZIn0k2HyiybkreIVO9dhL5QUnm+0LjnjjhUKkgb6OAQroSRHAqE5xZ/6iEeFnCDrESZZnHNurZxKscyGGQ6PMoskBjiptaWr8M+uzatKewzpiBsOVDue+Ukkuvgiyd2K9dzhA=='
+ocspReponderURL: 'http://ehca.gematik.de/ocsp/'
+----
 
 === Hebamme
 
@@ -80,7 +126,30 @@ link:oid_pflegefachkraft-hpc/[]
 ==== Zertifikatsinformation
 [source,yaml]
 ----
-
+subject: 'SURNAME=Müller + GIVENNAME=Rolf von + CN=Rolf MüllerTEST-ONLY + SERIALNUMBER=00.80276883110000138417, C=DE'
+subjectInfo:
+  cn: 'Rolf MüllerTEST-ONLY'
+  givenName: Rolf von
+  sn: Müller
+  serialNumber: 00.80276883110000138417
+  countryCode: DE
+issuer: 'CN=GEM.HBA-CA51 TEST-ONLY,OU=Heilberufsausweis-CA der Telematikinfrastruktur,O=gematik GmbH NOT-VALID,C=DE'
+signatureAlgorithm: SHA256withECDSA
+publicKeyAlgorithm: EC
+serialNumber: 253391697527135
+keyUsage:
+  - keyAgreement
+notBefore: '2022-05-27T02:00:00'
+notAfter: '2027-05-27T01:59:59'
+admissionStatement:
+  admissionAuthority: C=DE,O=gematik Berlin
+  professionItems:
+    - Pflegefachfrauen und Pflegefachmänner
+  professionOids:
+    - 1.2.276.0.76.4.234
+  registrationNumber: '10-HBA-Testkarte-883110000138417'
+certData: 'MIIDVTCCAvygAwIBAgIHAOZ1Wh7BXzAKBggqhkjOPQQDAjCBiTELMAkGA1UEBhMCREUxHzAdBgNVBAoMFmdlbWF0aWsgR21iSCBOT1QtVkFMSUQxODA2BgNVBAsML0hlaWxiZXJ1ZnNhdXN3ZWlzLUNBIGRlciBUZWxlbWF0aWtpbmZyYXN0cnVrdHVyMR8wHQYDVQQDDBZHRU0uSEJBLUNBNTEgVEVTVC1PTkxZMB4XDTIyMDUyNzAwMDAwMFoXDTI3MDUyNjIzNTk1OVowbjELMAkGA1UEBhMCREUxXzAOBgNVBAQMB03DvGxsZXIwDwYDVQQqDAhSb2xmIHZvbjAcBgNVBAMMFVJvbGYgTcO8bGxlclRFU1QtT05MWTAeBgNVBAUTFzAwLjgwMjc2ODgzMTEwMDAwMTM4NDE3MFowFAYHKoZIzj0CAQYJKyQDAwIIAQEHA0IABKGlKyi3MviAn5jjzlwDVLevwEbs91vsPGu9JUOpwdKolRXkziWayDzj8H1MFsld9BnaI68ViMvMqwOWm9xGbwGjggFmMIIBYjAfBgNVHSMEGDAWgBQNP7CekIIhwVeC14/LiQO0VSpNHzAOBgNVHQ8BAf8EBAMCAwgwLgYDVR0gBCcwJTAJBgcqghQATARKMAoGCCqCFABMBIERMAwGCisGAQQBgs0zAQEwHQYDVR0OBBYEFMmY+Zpmh6gDNNClAQ3CWJCui0ODMAwGA1UdEwEB/wQCMAAwOAYIKwYBBQUHAQEELDAqMCgGCCsGAQUFBzABhhxodHRwOi8vZWhjYS5nZW1hdGlrLmRlL29jc3AvMIGXBgUrJAgDAwSBjTCBiqQoMCYxCzAJBgNVBAYTAkRFMRcwFQYDVQQKDA5nZW1hdGlrIEJlcmxpbjBeMFwwWjBYMCgMJlBmbGVnZWZhY2hmcmF1ZW4gdW5kIFBmbGVnZWZhY2htw6RubmVyMAoGCCqCFABMBIFqEyAxMC1IQkEtVGVzdGthcnRlLTg4MzExMDAwMDEzODQxNzAKBggqhkjOPQQDAgNHADBEAiBi7ar2W6nxFJv1LC08h5SWw4IUNlAv2Td1aSuajXtA0gIgG2MzPRISn1eOLqdbI4tPIv0kkctdnRXhS7+l1jFIznM='
+ocspReponderURL: 'http://ehca.gematik.de/ocsp/'
 ----
 
 === Gesundheits- und Krankenpfleger/-in, Gesundheits- und Kinderkrankenpfleger/-in
@@ -107,7 +176,30 @@ link:oid_pfleger-hpc/[]
 ==== Zertifikatsinformation
 [source,yaml]
 ----
-
+subject: 'SURNAME=Otís + GIVENNAME=Lukas + CN=Lukas OtísTEST-ONLY + SERIALNUMBER=00.80276883110000138418, C=DE'
+subjectInfo:
+  cn: 'Lukas OtísTEST-ONLY'
+  givenName: Lukas
+  sn: Otís
+  serialNumber: 00.80276883110000138418
+  countryCode: DE
+issuer: 'CN=GEM.HBA-CA51 TEST-ONLY,OU=Heilberufsausweis-CA der Telematikinfrastruktur,O=gematik GmbH NOT-VALID,C=DE'
+signatureAlgorithm: SHA256withECDSA
+publicKeyAlgorithm: EC
+serialNumber: 212213609071635
+keyUsage:
+  - keyAgreement
+notBefore: '2022-05-27T02:00:00'
+notAfter: '2027-05-27T01:59:59'
+admissionStatement:
+  admissionAuthority: C=DE,O=gematik Berlin
+  professionItems:
+    - 'Gesundheits- und Krankenpfleger/in, Gesundheits- und Kinderkrankenpfleger/-in'
+  professionOids:
+    - 1.2.276.0.76.4.232
+  registrationNumber: '10-HBA-Testkarte-883110000138418'
+certData: 'MIIDeTCCAyCgAwIBAgIHAMEB1MkEEzAKBggqhkjOPQQDAjCBiTELMAkGA1UEBhMCREUxHzAdBgNVBAoMFmdlbWF0aWsgR21iSCBOT1QtVkFMSUQxODA2BgNVBAsML0hlaWxiZXJ1ZnNhdXN3ZWlzLUNBIGRlciBUZWxlbWF0aWtpbmZyYXN0cnVrdHVyMR8wHQYDVQQDDBZHRU0uSEJBLUNBNTEgVEVTVC1PTkxZMB4XDTIyMDUyNzAwMDAwMFoXDTI3MDUyNjIzNTk1OVowaDELMAkGA1UEBhMCREUxWTAMBgNVBAQMBU90w61zMAwGA1UEKgwFTHVrYXMwGwYDVQQDDBRMdWthcyBPdMOtc1RFU1QtT05MWTAeBgNVBAUTFzAwLjgwMjc2ODgzMTEwMDAwMTM4NDE4MFowFAYHKoZIzj0CAQYJKyQDAwIIAQEHA0IABHGkXKflXyOSxcZpHdyM37RazqivPtCK8iBxiLzqXLTKRsn8mqxyf2dZr8doxjZUqdi8qMRShHesKe9tVi5jEhWjggGQMIIBjDAfBgNVHSMEGDAWgBQNP7CekIIhwVeC14/LiQO0VSpNHzAOBgNVHQ8BAf8EBAMCAwgwLgYDVR0gBCcwJTAJBgcqghQATARKMAoGCCqCFABMBIERMAwGCisGAQQBgs0zAQEwHQYDVR0OBBYEFGK2fPVL/plUKp6GUaeVr1kRsDX9MAwGA1UdEwEB/wQCMAAwOAYIKwYBBQUHAQEELDAqMCgGCCsGAQUFBzABhhxodHRwOi8vZWhjYS5nZW1hdGlrLmRlL29jc3AvMIHBBgUrJAgDAwSBtzCBtKQoMCYxCzAJBgNVBAYTAkRFMRcwFQYDVQQKDA5nZW1hdGlrIEJlcmxpbjCBhzCBhDCBgTB/ME8MTUdlc3VuZGhlaXRzLSB1bmQgS3JhbmtlbnBmbGVnZXIvaW4sIEdlc3VuZGhlaXRzLSB1bmQgS2luZGVya3JhbmtlbnBmbGVnZXIvLWluMAoGCCqCFABMBIFoEyAxMC1IQkEtVGVzdGthcnRlLTg4MzExMDAwMDEzODQxODAKBggqhkjOPQQDAgNHADBEAiBxXNV/J3cY1eRINwJT/hETwCa0cmmSJ3R2DlLuoZ8OIgIgM9MYxhJzwfeSuNbbL2BiPO3jOKUyH5Wdwz+pfRAYn9Q='
+ocspReponderURL: 'http://ehca.gematik.de/ocsp/'
 ----
 
 === Physiotherapeut/-in
@@ -134,7 +226,30 @@ link:oid_physiotherapeut-hpc/[]
 ==== Zertifikatsinformation
 [source,yaml]
 ----
-
+subject: 'SURNAME=Tangerðal + GIVENNAME=Martin Graf + SERIALNUMBER=00.80276883110000138421 + CN=Martin TangerðalTEST-ONLY, C=DE'
+subjectInfo:
+  cn: 'Martin TangerðalTEST-ONLY'
+  givenName: Martin Graf
+  sn: Tangerðal
+  serialNumber: 00.80276883110000138421
+  countryCode: DE
+issuer: 'CN=GEM.HBA-CA51 TEST-ONLY,OU=Heilberufsausweis-CA der Telematikinfrastruktur,O=gematik GmbH NOT-VALID,C=DE'
+signatureAlgorithm: SHA256withECDSA
+publicKeyAlgorithm: EC
+serialNumber: 1114010713044346
+keyUsage:
+  - keyAgreement
+notBefore: '2022-05-27T02:00:00'
+notAfter: '2027-05-27T01:59:59'
+admissionStatement:
+  admissionAuthority: C=DE,O=gematik Berlin
+  professionItems:
+    - 'Physiotherapeut/-in'
+  professionOids:
+    - 1.2.276.0.76.4.236
+  registrationNumber: '10-HBA-Testkarte-883110000138421'
+certData: 'MIIDTDCCAvKgAwIBAgIHA/Uv1NO1ejAKBggqhkjOPQQDAjCBiTELMAkGA1UEBhMCREUxHzAdBgNVBAoMFmdlbWF0aWsgR21iSCBOT1QtVkFMSUQxODA2BgNVBAsML0hlaWxiZXJ1ZnNhdXN3ZWlzLUNBIGRlciBUZWxlbWF0aWtpbmZyYXN0cnVrdHVyMR8wHQYDVQQDDBZHRU0uSEJBLUNBNTEgVEVTVC1PTkxZMB4XDTIyMDUyNzAwMDAwMFoXDTI3MDUyNjIzNTk1OVoweTELMAkGA1UEBhMCREUxajARBgNVBAQMClRhbmdlcsOwYWwwEgYDVQQqDAtNYXJ0aW4gR3JhZjAeBgNVBAUTFzAwLjgwMjc2ODgzMTEwMDAwMTM4NDIxMCEGA1UEAwwaTWFydGluIFRhbmdlcsOwYWxURVNULU9OTFkwWjAUBgcqhkjOPQIBBgkrJAMDAggBAQcDQgAEWM11BfXU286Zmry+T/a7efT+7CnoRVc4Vt46bO9AT1BPzu5ar/MS1X3q0GVQ0cIj78u/zJBnungCW+8zkC2QcaOCAVEwggFNMB8GA1UdIwQYMBaAFA0/sJ6QgiHBV4LXj8uJA7RVKk0fMA4GA1UdDwEB/wQEAwIDCDAuBgNVHSAEJzAlMAkGByqCFABMBEowCgYIKoIUAEwEgREwDAYKKwYBBAGCzTMBATAdBgNVHQ4EFgQUJGEjHRoGjpRiVNIz8J2bjfioVWowDAYDVR0TAQH/BAIwADA4BggrBgEFBQcBAQQsMCowKAYIKwYBBQUHMAGGHGh0dHA6Ly9laGNhLmdlbWF0aWsuZGUvb2NzcC8wgYIGBSskCAMDBHkwd6QoMCYxCzAJBgNVBAYTAkRFMRcwFQYDVQQKDA5nZW1hdGlrIEJlcmxpbjBLMEkwRzBFMBUME1BoeXNpb3RoZXJhcGV1dC8taW4wCgYIKoIUAEwEgWwTIDEwLUhCQS1UZXN0a2FydGUtODgzMTEwMDAwMTM4NDIxMAoGCCqGSM49BAMCA0gAMEUCIHLpLX32FTadGENBQV6+KzWg7YQ8IcPiWT7wNtTHyzkwAiEAkOSI6VvMt7pTZnejtXXbdE0q64lgYX6s0fjAhgLzhXo='
+ocspReponderURL: 'http://ehca.gematik.de/ocsp/'
 ----
 
 == Institutionen der weitere Gesundheitsfachberufe (eGBR)
@@ -164,7 +279,28 @@ link:oid_institution-geburtshilfe/[]
 ==== Zertifikatsinformation
 [source,yaml]
 ----
-
+subject: 'CN=Betriebsstätte Geburtshilfe Siegfried Freiherr SzymanskTEST-ONLY, SERIALNUMBER=00.80276883110000138394, O=Betriebsstätte Geburtshilfe Siegfried Freiherr SzymanskNOT-VALID, C=DE'
+subjectInfo:
+  cn: 'Betriebsstätte Geburtshilfe Siegfried Freiherr SzymanskTEST-ONLY'
+  serialNumber: 00.80276883110000138394
+  countryCode: DE
+issuer: 'CN=GEM.SMCB-CA51 TEST-ONLY,OU=Institution des Gesundheitswesens-CA der Telematikinfrastruktur,O=gematik GmbH NOT-VALID,C=DE'
+signatureAlgorithm: SHA256withECDSA
+publicKeyAlgorithm: EC
+serialNumber: 641982986169463
+keyUsage:
+  - keyAgreement
+notBefore: '2022-05-25T02:00:00'
+notAfter: '2027-05-25T01:59:59'
+admissionStatement:
+  admissionAuthority: C=DE,O=gematik Berlin
+  professionItems:
+    - Betriebsstätte Geburtshilfe
+  professionOids:
+    - 1.2.276.0.76.4.246
+  registrationNumber: '11-SMC-B-Testkarte-883110000138394'
+certData: 'MIIDqjCCA1GgAwIBAgIHAkfhT9esdzAKBggqhkjOPQQDAjCBmjELMAkGA1UEBhMCREUxHzAdBgNVBAoMFmdlbWF0aWsgR21iSCBOT1QtVkFMSUQxSDBGBgNVBAsMP0luc3RpdHV0aW9uIGRlcyBHZXN1bmRoZWl0c3dlc2Vucy1DQSBkZXIgVGVsZW1hdGlraW5mcmFzdHJ1a3R1cjEgMB4GA1UEAwwXR0VNLlNNQ0ItQ0E1MSBURVNULU9OTFkwHhcNMjIwNTI1MDAwMDAwWhcNMjcwNTI0MjM1OTU5WjCBxzELMAkGA1UEBhMCREUxSjBIBgNVBAoMQUJldHJpZWJzc3TDpHR0ZSBHZWJ1cnRzaGlsZmUgU2llZ2ZyaWVkIEZyZWloZXJyIFN6eW1hbnNrTk9ULVZBTElEMSAwHgYDVQQFExcwMC44MDI3Njg4MzExMDAwMDEzODM5NDFKMEgGA1UEAwxBQmV0cmllYnNzdMOkdHRlIEdlYnVydHNoaWxmZSBTaWVnZnJpZWQgRnJlaWhlcnIgU3p5bWFuc2tURVNULU9OTFkwWjAUBgcqhkjOPQIBBgkrJAMDAggBAQcDQgAEbVAvHrnvI3gY48d4B+zzZzepAnUmcSH8yGCuDXjJEp9omxYLJxLf2ea/9L6cwvhrTXzdbkzzk4ac6a9bY0OlRqOCAVAwggFMMB0GA1UdDgQWBBRznncCMUEkwls2udXcj+n8jEKIMjAMBgNVHRMBAf8EAjAAMDgGCCsGAQUFBwEBBCwwKjAoBggrBgEFBQcwAYYcaHR0cDovL2VoY2EuZ2VtYXRpay5kZS9vY3NwLzAfBgNVHSMEGDAWgBQGmOkCVf/Jn1yjZQ7xXeIg9YT7kzAgBgNVHSAEGTAXMAoGCCqCFABMBIEjMAkGByqCFABMBEwwDgYDVR0PAQH/BAQDAgMIMIGPBgUrJAgDAwSBhTCBgqQoMCYxCzAJBgNVBAYTAkRFMRcwFQYDVQQKDA5nZW1hdGlrIEJlcmxpbjBWMFQwUjBQMB4MHEJldHJpZWJzc3TDpHR0ZSBHZWJ1cnRzaGlsZmUwCgYIKoIUAEwEgXYTIjExLVNNQy1CLVRlc3RrYXJ0ZS04ODMxMTAwMDAxMzgzOTQwCgYIKoZIzj0EAwIDRwAwRAIgJilUoNpYyillIQD2wBbGdLH3lbsTnXWHwWfkTcwTeyUCIE+C+G2gpX3en1ha2PRTok8PyWr4mjUfD+sAj8SNtC+9'
+ocspReponderURL: 'http://ehca.gematik.de/ocsp/'
 ----
 
 === Betriebsstätte Gesundheits-, Kranken- und Altenpflege
@@ -189,7 +325,29 @@ link:oid_institution-pflege/[]
 ==== Zertifikatsinformation
 [source,yaml]
 ----
-
+subject: 'CN=Betriebsstätte Gesundheits- Kranken- und Altenpflege JTEST-ONLY, SERIALNUMBER=00.80276883110000138397, O=Betriebsstätte Gesundheits- Kranken- und Altenpflege JNOT-VALID, C=DE'
+subjectInfo:
+  cn: 'Betriebsstätte Gesundheits- Kranken- und Altenpflege JTEST-ONLY'
+  serialNumber: 00.80276883110000138397
+  countryCode: DE
+issuer: 'CN=GEM.SMCB-CA41 TEST-ONLY,OU=Institution des Gesundheitswesens-CA der Telematikinfrastruktur,O=gematik GmbH NOT-VALID,C=DE'
+signatureAlgorithm: SHA256withRSA
+publicKeyAlgorithm: RSA
+serialNumber: 1097690616486514
+keyUsage:
+  - keyEncipherment
+  - dataEncipherment
+notBefore: '2022-05-27T02:00:00'
+notAfter: '2027-05-27T01:59:59'
+admissionStatement:
+  admissionAuthority: C=DE,O=gematik Berlin
+  professionItems:
+    - 'Betriebsstätte Gesundheits-, Kranken- und Altenpflege'
+  professionOids:
+    - 1.2.276.0.76.4.235
+  registrationNumber: '11-SMC-B-Testkarte-883110000138397'
+certData: 'MIIFTjCCBDagAwIBAgIHA+ZYA0TacjANBgkqhkiG9w0BAQsFADCBmjELMAkGA1UEBhMCREUxHzAdBgNVBAoMFmdlbWF0aWsgR21iSCBOT1QtVkFMSUQxSDBGBgNVBAsMP0luc3RpdHV0aW9uIGRlcyBHZXN1bmRoZWl0c3dlc2Vucy1DQSBkZXIgVGVsZW1hdGlraW5mcmFzdHJ1a3R1cjEgMB4GA1UEAwwXR0VNLlNNQ0ItQ0E0MSBURVNULU9OTFkwHhcNMjIwNTI3MDAwMDAwWhcNMjcwNTI2MjM1OTU5WjCBxTELMAkGA1UEBhMCREUxSTBHBgNVBAoMQEJldHJpZWJzc3TDpHR0ZSBHZXN1bmRoZWl0cy0gS3Jhbmtlbi0gdW5kIEFsdGVucGZsZWdlIEpOT1QtVkFMSUQxIDAeBgNVBAUTFzAwLjgwMjc2ODgzMTEwMDAwMTM4Mzk3MUkwRwYDVQQDDEBCZXRyaWVic3N0w6R0dGUgR2VzdW5kaGVpdHMtIEtyYW5rZW4tIHVuZCBBbHRlbnBmbGVnZSBKVEVTVC1PTkxZMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAp8z86G0IzzKsCF88GXM1sD1lYIoj85vRjk1ntOxoPgyPdlbuHlvWvcVSi01E7Ja4fAJHkuw7dilS+eLN0fF0Z2bcem5PZJDETuGszUOIRjkseNNVFssHIZWnRkNkibsAGXWcLrfia61HLtAiMSIq0GWlwH+ecAZJUGoOm5NJfVTOn3SYwAGndvTF3op36uToOHB9+7u2WuwuY6pVZILuJIPfXPIGQ4RJf+QHoM99vsrgJn+fuLM5YA41wtMB4pskZVGOkfdvXN828sImOJjQnNxTc/0Q9BiDJ0ZgWh+HUqy6/fIEE6ajVJhGfs0T7xT8vz2OA8ugcF1Gkvn73l4smQIDAQABo4IBajCCAWYwHwYDVR0jBBgwFoAUuvg6WBH2huoEom3Eeuu5s/pLb8IwDgYDVR0PAQH/BAQDAgQwMCAGA1UdIAQZMBcwCgYIKoIUAEwEgSMwCQYHKoIUAEwETDAMBgNVHRMBAf8EAjAAMDgGCCsGAQUFBwEBBCwwKjAoBggrBgEFBQcwAYYcaHR0cDovL2VoY2EuZ2VtYXRpay5kZS9vY3NwLzAdBgNVHQ4EFgQUekXQlIquuP0COyvhwC+X1bxVAKIwgakGBSskCAMDBIGfMIGcpCgwJjELMAkGA1UEBhMCREUxFzAVBgNVBAoMDmdlbWF0aWsgQmVybGluMHAwbjBsMGowOAw2QmV0cmllYnNzdMOkdHRlIEdlc3VuZGhlaXRzLSwgS3Jhbmtlbi0gdW5kIEFsdGVucGZsZWdlMAoGCCqCFABMBIFrEyIxMS1TTUMtQi1UZXN0a2FydGUtODgzMTEwMDAwMTM4Mzk3MA0GCSqGSIb3DQEBCwUAA4IBAQAjIzcq8uGQtVnQdJcTkbc/vP6zD7Fl0BvjSI/EBBWXty+j1Ovlta/AaSd01WEbK/LsxAVqPWg+nlqzsAU15ujnN+Svz/YED8Gu8VvoKMZKBqMAOZWy0j1eStYibF/O448u7RDakND31+ZHKjFwt6DOXW4hNgrvsnzz54+BGCywSbh4QMStvrWzuvpPU5HGHb5yKJdWgA7Q9dvUrAM0BGlWjUdEF9h7/22J5D06GPw71H3LAMxebyAdJI0g/V2qmwVlAp3ZUFzANQS4MKBUcW/uFCDkDcr0gVLrE+O/4Odz+O5vVFHA+tGI876g8r78Mkws01r0E+rpR8NuTUY0ynQh'
+ocspReponderURL: 'http://ehca.gematik.de/ocsp/'
 ----
 
 === Betriebsstätte Physiotherapie
@@ -214,12 +372,38 @@ link:oid_praxis-physiotherapeut/[]
 ==== Zertifikatsinformation
 [source,yaml]
 ----
-
+subject: 'CN=Betriebsstätte Physiotherapie Dr. Jörg-Dietrich DåvidTEST-ONLY, SERIALNUMBER=00.80276883110000138398, O=Betriebsstätte Physiotherapie Dr. Jörg-Dietrich DåvidNOT-VALID, C=DE'
+subjectInfo:
+  cn: 'Betriebsstätte Physiotherapie Dr. Jörg-Dietrich DåvidTEST-ONLY'
+  serialNumber: 00.80276883110000138398
+  countryCode: DE
+issuer: 'CN=GEM.SMCB-CA41 TEST-ONLY,OU=Institution des Gesundheitswesens-CA der Telematikinfrastruktur,O=gematik GmbH NOT-VALID,C=DE'
+signatureAlgorithm: SHA256withRSA
+publicKeyAlgorithm: RSA
+serialNumber: 321664906271747
+keyUsage:
+  - keyEncipherment
+  - dataEncipherment
+notBefore: '2022-05-27T02:00:00'
+notAfter: '2027-05-27T01:59:59'
+admissionStatement:
+  admissionAuthority: C=DE,O=gematik Berlin
+  professionItems:
+    - Betriebsstätte Physiotherapie
+  professionOids:
+    - 1.2.276.0.76.4.247
+  registrationNumber: '11-SMC-B-Testkarte-883110000138398'
+certData: 'MIIFODCCBCCgAwIBAgIHASSNcnmcAzANBgkqhkiG9w0BAQsFADCBmjELMAkGA1UEBhMCREUxHzAdBgNVBAoMFmdlbWF0aWsgR21iSCBOT1QtVkFMSUQxSDBGBgNVBAsMP0luc3RpdHV0aW9uIGRlcyBHZXN1bmRoZWl0c3dlc2Vucy1DQSBkZXIgVGVsZW1hdGlraW5mcmFzdHJ1a3R1cjEgMB4GA1UEAwwXR0VNLlNNQ0ItQ0E0MSBURVNULU9OTFkwHhcNMjIwNTI3MDAwMDAwWhcNMjcwNTI2MjM1OTU5WjCBxzELMAkGA1UEBhMCREUxSjBIBgNVBAoMQUJldHJpZWJzc3TDpHR0ZSBQaHlzaW90aGVyYXBpZSBEci4gSsO2cmctRGlldHJpY2ggRMOldmlkTk9ULVZBTElEMSAwHgYDVQQFExcwMC44MDI3Njg4MzExMDAwMDEzODM5ODFKMEgGA1UEAwxBQmV0cmllYnNzdMOkdHRlIFBoeXNpb3RoZXJhcGllIERyLiBKw7ZyZy1EaWV0cmljaCBEw6V2aWRURVNULU9OTFkwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCUGWGf7Dr7sSQabXvA9NpVNYdlwVIPaegxlFcUpAyKVEYVQSwOdMtctOXCg8RfEy42AFpWZyYcDoavNC/tjwvHz7rJRpp93erPLzNaHxU9gt0ZFPbiW2XOQAcC6GhGR8E/GJ1QZlKplc65PqNf0X34w7OANUEcZv/d7QKu/GKYyvzyspURfn+SiYskf9SOi0YwyCnhAI8qeXXUv04gOBCX0DJdVQ8tGlkiD6fJxwVopnKM4hKA7IlmaNwaSQXenWa7ksvhx47w+bo4uJzg0ICajce05zbI6v8xY4RLYYWFIUzZE4mKlqVWxnFfUAUhvnPyE+ooqHnWjPaU2BCxeupxAgMBAAGjggFSMIIBTjAfBgNVHSMEGDAWgBS6+DpYEfaG6gSibcR667mz+ktvwjAOBgNVHQ8BAf8EBAMCBDAwIAYDVR0gBBkwFzAKBggqghQATASBIzAJBgcqghQATARMMAwGA1UdEwEB/wQCMAAwOAYIKwYBBQUHAQEELDAqMCgGCCsGAQUFBzABhhxodHRwOi8vZWhjYS5nZW1hdGlrLmRlL29jc3AvMB0GA1UdDgQWBBRGV7d9d7sl+1m+g9kVBYmI6VyeODCBkQYFKyQIAwMEgYcwgYSkKDAmMQswCQYDVQQGEwJERTEXMBUGA1UECgwOZ2VtYXRpayBCZXJsaW4wWDBWMFQwUjAgDB5CZXRyaWVic3N0w6R0dGUgUGh5c2lvdGhlcmFwaWUwCgYIKoIUAEwEgXcTIjExLVNNQy1CLVRlc3RrYXJ0ZS04ODMxMTAwMDAxMzgzOTgwDQYJKoZIhvcNAQELBQADggEBAFduo4RbxpIoTEQL7RwDONI0bRkByzlW5AwqEaivxy8jTqJY+AM1HG7cB7ZfVCcAq57mz2oFvGkB0jcgwbxgUQNi+2ENNEjGHTZYcNRqmof2y00g50i7sV+UcAzkkc7dTwfiSalcWoZdMWh5PN3ELRda3OgrLBxzhjF6rf2NPnkxwCYfTNQ5E0NrvCp0O9WRYZyk6YwecSINoGX5n5Z2AopwjLkoAYUznctmnNGvNrdrPgnMuj806F2/AZXV8ZN9afj4F9GLNPQ8xD7poHHkgtT6DHTPE3BI+4Lc7WxIS5GuleG6863uBXe2lOoEkAp05ukkEFlcBFJFJ/tV/myoVeQ='
+ocspReponderURL: 'http://ehca.gematik.de/ocsp/'
 ----
 
 == `vzd-cli` Beispiele
-Download die neuste Version von `vzd-cli` hier: https://github.com/gematik/app-vzd-cli[https://github.com/gematik/app-vzd-cli]
+
+Zum Ausführen der Beispiele wird die neuste Version von `vzd-cli` benötigt: https://github.com/gematik/app-vzd-cli[https://github.com/gematik/app-vzd-cli]
+[source,bash]
 ----
+# Neuen Basiseintrag erstellen
 vzd-cli admin add-base -f 9-SMC-B-Testkarte-883110000138416.json
+# Alle Zertifikate an den Basiseintrag anhängen
 vzd-cli admin add-cert 9-SMC-B-Testkarte-883110000138416*.der
 ----

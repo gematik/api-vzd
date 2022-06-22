@@ -2,12 +2,11 @@
     "telematikID": "10-HBA-Testkarte-883110000138419",
     "displayName": "Konstantin Niño GômezTEST-ONLY",
     "cn": "Konstantin Niño GômezTEST-ONLY",
-    "givenName": "Konstantin y",
-    "sn": "Konstantin y",
-    "title": null,
-    "streetAddress": null,
-    "postalCode": null,
-    "localityName": null,
-    "stateOrProvinceName": null,
+    "givenName": "Konstantin",
+    "sn": "Niño",
+    "streetAddress": "Gotzkowskystraße 86",
+    "postalCode": "47445",
+    "localityName": "Moers",
+    "stateOrProvinceName": "Nordrhein-Westfalen",
     "countryCode": "DE"
 }
