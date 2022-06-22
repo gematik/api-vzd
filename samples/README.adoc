@@ -5,6 +5,7 @@
 === Altenpfleger/-in
 
 link:oid_altenpfleger-hpc/[]
+
 ==== Basiseintrag
 [source,json]
 ----
@@ -254,7 +255,12 @@ ocspReponderURL: 'http://ehca.gematik.de/ocsp/'
 
 == Institutionen der weitere Gesundheitsfachberufe (eGBR)
 
+n/a
+
 == Gesundheitshandwerker
+
+n/a
+
 == Institutionen der Gesundheitshandwerker
 
 === Betriebsstätte Geburtshilfe
