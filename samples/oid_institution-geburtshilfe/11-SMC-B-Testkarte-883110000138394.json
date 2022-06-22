@@ -2,12 +2,9 @@
     "telematikID": "11-SMC-B-Testkarte-883110000138394",
     "displayName": "Betriebsstätte Geburtshilfe Siegfried Freiherr SzymanskTEST-ONLY",
     "cn": "Betriebsstätte Geburtshilfe Siegfried Freiherr SzymanskTEST-ONLY",
-    "givenName": null,
-    "sn": null,
-    "title": null,
-    "streetAddress": null,
-    "postalCode": null,
-    "localityName": null,
-    "stateOrProvinceName": null,
+    "streetAddress": "Esplanade 99",
+    "postalCode": "97823",
+    "localityName": "Marktheidenfeld",
+    "stateOrProvinceName": "Bayern",
     "countryCode": "DE"
 }

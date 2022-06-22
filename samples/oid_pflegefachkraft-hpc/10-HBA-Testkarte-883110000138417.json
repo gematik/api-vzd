@@ -4,10 +4,9 @@
     "cn": "Rolf MüllerTEST-ONLY",
     "givenName": "Rolf von",
     "sn": "Rolf von",
-    "title": null,
-    "streetAddress": null,
-    "postalCode": null,
-    "localityName": null,
-    "stateOrProvinceName": null,
+    "streetAddress": "Leopoldstraße 24",
+    "postalCode": "12305",
+    "localityName": "Berlin",
+    "stateOrProvinceName": "Berlin",
     "countryCode": "DE"
 }

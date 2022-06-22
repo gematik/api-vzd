@@ -2,12 +2,9 @@
     "telematikID": "11-SMC-B-Testkarte-883110000138397",
     "displayName": "Betriebsstätte Gesundheits- Kranken- und Altenpflege JTEST-ONLY",
     "cn": "Betriebsstätte Gesundheits- Kranken- und Altenpflege JTEST-ONLY",
-    "givenName": null,
-    "sn": null,
-    "title": null,
-    "streetAddress": null,
-    "postalCode": null,
-    "localityName": null,
-    "stateOrProvinceName": null,
+    "streetAddress": "Pohlstrasse 85",
+    "postalCode": "38640",
+    "localityName": "Goslar",
+    "stateOrProvinceName": "Niedersachsen",
     "countryCode": "DE"
 }

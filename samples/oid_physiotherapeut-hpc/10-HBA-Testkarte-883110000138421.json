@@ -4,10 +4,9 @@
     "cn": "Martin TangerðalTEST-ONLY",
     "givenName": "Martin Graf",
     "sn": "Martin Graf",
-    "title": null,
-    "streetAddress": null,
-    "postalCode": null,
-    "localityName": null,
-    "stateOrProvinceName": null,
+    "streetAddress": "An der Schillingbrucke 51",
+    "postalCode": "88456",
+    "localityName": "Ingoldingen",
+    "stateOrProvinceName": "Baden-Württemberg",
     "countryCode": "DE"
 }

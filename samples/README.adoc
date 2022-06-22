@@ -19,7 +19,6 @@ link:oid_hebamme-hpc/[]
     "cn": "Alexander ØzTEST-ONLY",
     "givenName": "Alexander Graf von",
     "sn": "Alexander Graf von",
-    "title": null,
     "streetAddress": "Alt-Moabit 59",
     "postalCode": "04574",
     "localityName": "Breunsdorf",
@@ -61,13 +60,82 @@ ocspReponderURL: 'http://ehca.gematik.de/ocsp/'
 
 link:oid_pflegefachkraft-hpc/[]
 
+==== Basiseintrag
+[source,json]
+----
+{
+    "telematikID": "10-HBA-Testkarte-883110000138417",
+    "displayName": "Rolf MüllerTEST-ONLY",
+    "cn": "Rolf MüllerTEST-ONLY",
+    "givenName": "Rolf von",
+    "sn": "Rolf von",
+    "streetAddress": "Leopoldstraße 24",
+    "postalCode": "12305",
+    "localityName": "Berlin",
+    "stateOrProvinceName": "Berlin",
+    "countryCode": "DE"
+}
+----
+
+==== Zertifikatsinformation
+[source,yaml]
+----
+
+----
+
 === Gesundheits- und Krankenpfleger/-in, Gesundheits- und Kinderkrankenpfleger/-in
 
 link:oid_pfleger-hpc/[]
 
+==== Basiseintrag
+[source,json]
+----
+{
+    "telematikID": "10-HBA-Testkarte-883110000138418",
+    "displayName": "Lukas OtísTEST-ONLY",
+    "cn": "Lukas OtísTEST-ONLY",
+    "givenName": "Lukas",
+    "sn": "Lukas",
+    "streetAddress": "Güntzelstrasse 5",
+    "postalCode": "54346",
+    "localityName": "Mehring",
+    "stateOrProvinceName": "Rheinland-Pfalz",
+    "countryCode": "DE"
+}
+----
+
+==== Zertifikatsinformation
+[source,yaml]
+----
+
+----
+
 === Physiotherapeut/-in
 
 link:oid_physiotherapeut-hpc/[]
+
+==== Basiseintrag
+[source,json]
+----
+{
+    "telematikID": "10-HBA-Testkarte-883110000138421",
+    "displayName": "Martin TangerðalTEST-ONLY",
+    "cn": "Martin TangerðalTEST-ONLY",
+    "givenName": "Martin Graf",
+    "sn": "Martin Graf",
+    "streetAddress": "An der Schillingbrucke 51",
+    "postalCode": "88456",
+    "localityName": "Ingoldingen",
+    "stateOrProvinceName": "Baden-Württemberg",
+    "countryCode": "DE"
+}
+----
+
+==== Zertifikatsinformation
+[source,yaml]
+----
+
+----
 
 == Institutionen der weitere Gesundheitsfachberufe (eGBR)
 
@@ -78,13 +146,76 @@ link:oid_physiotherapeut-hpc/[]
 
 link:oid_institution-geburtshilfe/[]
 
+==== Basiseintrag
+[source,json]
+----
+{
+    "telematikID": "11-SMC-B-Testkarte-883110000138394",
+    "displayName": "Betriebsstätte Geburtshilfe Siegfried Freiherr SzymanskTEST-ONLY",
+    "cn": "Betriebsstätte Geburtshilfe Siegfried Freiherr SzymanskTEST-ONLY",
+    "streetAddress": "Esplanade 99",
+    "postalCode": "97823",
+    "localityName": "Marktheidenfeld",
+    "stateOrProvinceName": "Bayern",
+    "countryCode": "DE"
+}
+----
+
+==== Zertifikatsinformation
+[source,yaml]
+----
+
+----
+
 === Betriebsstätte Gesundheits-, Kranken- und Altenpflege
 
 link:oid_institution-pflege/[]
 
+==== Basiseintrag
+[source,json]
+----
+{
+    "telematikID": "11-SMC-B-Testkarte-883110000138397",
+    "displayName": "Betriebsstätte Gesundheits- Kranken- und Altenpflege JTEST-ONLY",
+    "cn": "Betriebsstätte Gesundheits- Kranken- und Altenpflege JTEST-ONLY",
+    "streetAddress": "Pohlstrasse 85",
+    "postalCode": "38640",
+    "localityName": "Goslar",
+    "stateOrProvinceName": "Niedersachsen",
+    "countryCode": "DE"
+}
+----
+
+==== Zertifikatsinformation
+[source,yaml]
+----
+
+----
+
 === Betriebsstätte Physiotherapie
 
 link:oid_praxis-physiotherapeut/[]
+
+==== Basiseintrag
+[source,json]
+----
+{
+    "telematikID": "11-SMC-B-Testkarte-883110000138398",
+    "displayName": "Betriebsstätte Physiotherapie Dr. Jörg-Dietrich DåvidTEST-ONLY",
+    "cn": "Betriebsstätte Physiotherapie Dr. Jörg-Dietrich DåvidTEST-ONLY",
+    "streetAddress": "An Der Urania 92",
+    "postalCode": "25770",
+    "localityName": "Hemmingstedt",
+    "stateOrProvinceName": "Schleswig-Holstein",
+    "countryCode": "DE"
+}
+----
+
+==== Zertifikatsinformation
+[source,yaml]
+----
+
+----
 
 == `vzd-cli` Beispiele
 Download die neuste Version von `vzd-cli` hier: https://github.com/gematik/app-vzd-cli[https://github.com/gematik/app-vzd-cli]
