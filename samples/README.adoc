@@ -1,0 +1,47 @@
+= Testdaten für Verzeichnisdienst
+
+== Weitere Gesundheitsfachberufe (eGBR)
+
+=== Altenpfleger/-in
+
+link:oid_altenpfleger-hpc/[]
+
+=== Hebamme
+
+link:oid_hebamme-hpc/[]
+
+=== Pflegefachfrauen und Pflegefachmänner
+
+link:oid_pflegefachkraft-hpc/[]
+
+=== Gesundheits- und Krankenpfleger/-in, Gesundheits- und Kinderkrankenpfleger/-in
+
+link:oid_pfleger-hpc/[]
+
+=== Physiotherapeut/-in
+
+link:oid_physiotherapeut-hpc/[]
+
+== Institutionen der weitere Gesundheitsfachberufe (eGBR)
+
+== Gesundheitshandwerker
+== Institutionen der Gesundheitshandwerker
+
+=== Betriebsstätte Geburtshilfe
+
+link:oid_institution-geburtshilfe/[]
+
+=== Betriebsstätte Gesundheits-, Kranken- und Altenpflege
+
+link:oid_institution-pflege/[]
+
+=== Betriebsstätte Physiotherapie
+
+link:oid_praxis-physiotherapeut/[]
+
+== `vzd-cli` Beispiele
+Download die neuste Version von `vzd-cli` hier: https://github.com/gematik/app-vzd-cli[https://github.com/gematik/app-vzd-cli]
+----
+vzd-cli admin add-base -f 9-SMC-B-Testkarte-883110000138416.json
+vzd-cli admin add-cert 9-SMC-B-Testkarte-883110000138416*.der
+----
