@@ -1036,9 +1036,9 @@ Tabelle 6: Tab_VZD_Datenbeschreibung_DKG
 [width="100%",cols="18%,10%,72%",options="header",]
 |===
 |*LDAP-Directory Attribut* +
-* |*Pflichtfeld aus Sicht Pflege und Nutzung?* +
-* |*Erläuterung* +
-*
+ |*Pflichtfeld aus Sicht Pflege und Nutzung?* +
+ |*Erläuterung* +
+
 |givenName |optional |Wird für SMC-B nicht verwendet.
 |*sn* |optional |Wird vom VZD als Kopie von displayName automatisch eingetragen. +
 Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet.
