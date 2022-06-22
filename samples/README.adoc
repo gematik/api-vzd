@@ -10,9 +10,25 @@ link:oid_altenpfleger-hpc/[]
 
 link:oid_hebamme-hpc/[]
 
+==== Basiseintrag
+[source,json]
+----
+{
+    "telematikID": "10-HBA-Testkarte-883110000138420",
+    "displayName": "Alexander ØzTEST-ONLY",
+    "cn": "Alexander ØzTEST-ONLY",
+    "givenName": "Alexander Graf von",
+    "sn": "Alexander Graf von",
+    "title": null,
+    "streetAddress": "Alt-Moabit 59",
+    "postalCode": "04574",
+    "localityName": "Breunsdorf",
+    "stateOrProvinceName": "Sachsen",
+    "countryCode": "DE"
+}
+----
 
-
-==== Zertifikat
+==== Zertifikatsinformation
 [source,yaml]
 ----
 subject: 'SURNAME=Øz + GIVENNAME=Alexander Graf von + CN=Alexander ØzTEST-ONLY + SERIALNUMBER=00.80276883110000138420, C=DE'
