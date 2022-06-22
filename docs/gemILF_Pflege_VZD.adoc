@@ -12,7 +12,7 @@ ifndef::env-github[]
 endif::[]
 :toclevels: 3
 :toc-title: Inhaltsverzeichnis
-//:sectnums:
+:sectnums:
 
 
 image::gematik_logo.svg[gematik,float="right"]
