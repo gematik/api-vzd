@@ -5,9 +5,9 @@
     "givenName": "Alexander Graf von",
     "sn": "Alexander Graf von",
     "title": null,
-    "streetAddress": null,
-    "postalCode": null,
-    "localityName": null,
-    "stateOrProvinceName": null,
+    "streetAddress": "Alt-Moabit 59",
+    "postalCode": "04574",
+    "localityName": "Breunsdorf",
+    "stateOrProvinceName": "Sachsen",
     "countryCode": "DE"
 }
