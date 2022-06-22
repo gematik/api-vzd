@@ -10,6 +10,37 @@ link:oid_altenpfleger-hpc/[]
 
 link:oid_hebamme-hpc/[]
 
+
+
+==== Zertifikat
+[source,yaml]
+----
+subject: 'SURNAME=Øz + GIVENNAME=Alexander Graf von + CN=Alexander ØzTEST-ONLY + SERIALNUMBER=00.80276883110000138420, C=DE'
+subjectInfo:
+  cn: 'Alexander ØzTEST-ONLY'
+  givenName: Alexander Graf von
+  sn: Øz
+  serialNumber: 00.80276883110000138420
+  countryCode: DE
+issuer: 'CN=GEM.HBA-CA51 TEST-ONLY,OU=Heilberufsausweis-CA der Telematikinfrastruktur,O=gematik GmbH NOT-VALID,C=DE'
+signatureAlgorithm: SHA256withECDSA
+publicKeyAlgorithm: EC
+serialNumber: 573964213179619
+keyUsage:
+  - keyAgreement
+notBefore: '2022-05-27T02:00:00'
+notAfter: '2027-05-27T01:59:59'
+admissionStatement:
+  admissionAuthority: C=DE,O=gematik Berlin
+  professionItems:
+    - Hebamme
+  professionOids:
+    - 1.2.276.0.76.4.235
+  registrationNumber: '10-HBA-Testkarte-883110000138420'
+certData: 'MIIDOjCCAuGgAwIBAgIHAgoEdQpU4zAKBggqhkjOPQQDAjCBiTELMAkGA1UEBhMCREUxHzAdBgNVBAoMFmdlbWF0aWsgR21iSCBOT1QtVkFMSUQxODA2BgNVBAsML0hlaWxiZXJ1ZnNhdXN3ZWlzLUNBIGRlciBUZWxlbWF0aWtpbmZyYXN0cnVrdHVyMR8wHQYDVQQDDBZHRU0uSEJBLUNBNTEgVEVTVC1PTkxZMB4XDTIyMDUyNzAwMDAwMFoXDTI3MDUyNjIzNTk1OVowdTELMAkGA1UEBhMCREUxZjAKBgNVBAQMA8OYejAZBgNVBCoMEkFsZXhhbmRlciBHcmFmIHZvbjAdBgNVBAMMFkFsZXhhbmRlciDDmHpURVNULU9OTFkwHgYDVQQFExcwMC44MDI3Njg4MzExMDAwMDEzODQyMDBaMBQGByqGSM49AgEGCSskAwMCCAEBBwNCAAQRD50bITVjUq9Xa2dR5fswC0EiC49+EIRzCnhuXixCV4psOQqb76dwIbHUPUhd3l8QkoNHu+qcJswsB1d/tHvNo4IBRDCCAUAwHwYDVR0jBBgwFoAUDT+wnpCCIcFXgtePy4kDtFUqTR8wDgYDVR0PAQH/BAQDAgMIMC4GA1UdIAQnMCUwCQYHKoIUAEwESjAKBggqghQATASBETAMBgorBgEEAYLNMwEBMB0GA1UdDgQWBBQOSW9Lz2FR3aOsy0LrwCXcYRg/cTAMBgNVHRMBAf8EAjAAMDgGCCsGAQUFBwEBBCwwKjAoBggrBgEFBQcwAYYcaHR0cDovL2VoY2EuZ2VtYXRpay5kZS9vY3NwLzB2BgUrJAgDAwRtMGukKDAmMQswCQYDVQQGEwJERTEXMBUGA1UECgwOZ2VtYXRpayBCZXJsaW4wPzA9MDswOTAJDAdIZWJhbW1lMAoGCCqCFABMBIFrEyAxMC1IQkEtVGVzdGthcnRlLTg4MzExMDAwMDEzODQyMDAKBggqhkjOPQQDAgNHADBEAiA6yiQKsBAIeq76VoL/1Lepym6qJ3YBpRLqGisKx46WKwIgVg5YRlLOpSZgphylTUuYd86sSPz4tzTB6Fz17E40xwA='
+ocspReponderURL: 'http://ehca.gematik.de/ocsp/'
+----
+
 === Pflegefachfrauen und Pflegefachmänner
 
 link:oid_pflegefachkraft-hpc/[]
