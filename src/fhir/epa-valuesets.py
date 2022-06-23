@@ -43,3 +43,12 @@ Description: "ValueSet for `PractitonerRole.specialty`"
 * insert Meta
 * include codes from system PractitionerProfessionOID"""
 )
+
+generate_value_set(
+  url=f"https://raw.githubusercontent.com/gematik/api-ePA/{VERSION}/src/vocabulary/value_sets/vs-author-specialty.xml",
+  output_file="input/fsh/valuesets/PractitionerQualificationVS.fsh",
+  template="""ValueSet: PractitionerQualificationVS
+Description: "ValueSet for `Practitoner.qualification`"
+* insert Meta
+* include codes from system PractitionerProfessionOID"""
+)
