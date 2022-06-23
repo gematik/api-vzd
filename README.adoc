@@ -25,7 +25,7 @@ image:https://shields.io/badge/App API-latest-green?logo=swagger[link="src/opena
 
 == Aktuelles
 
-* *23.06.2022* link:https://github.com/gematik/api-vzd/blob/gemILF_Pflege_VZD/1.5.3/docs/gemILF_Pflege_VZD.adoc[Implementierungsleitfaden v1.5.3]. AB dieser Version wird das Dokument über github.com veröffentlicht. 
+* *23.06.2022* 📄 link:https://github.com/gematik/api-vzd/blob/gemILF_Pflege_VZD/1.5.3/docs/gemILF_Pflege_VZD.adoc[Implementierungsleitfaden v1.5.3]. AB dieser Version wird das Dokument über github.com veröffentlicht. 
 * *31.05.2022* link:CHANGELOG.adoc[Produktrelease v3.1.0-14]
 * *8.04.2022* 👨‍💻 https://github.com/gematik/api-vzd/blob/I_Directory_Application_Maintenance/1.1.4/src/openapi/DirectoryApplicationMaintenance.yaml[Directory Application Maintenance API v1.1.4]
 * *8.04.2022* 👨‍💻 https://github.com/gematik/api-vzd/blob/I_Directory_Administration/1.8.1/src/openapi/DirectoryAdministration.yaml[Directory Administration API v1.8.1]
