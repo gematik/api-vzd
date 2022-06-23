@@ -37,15 +37,6 @@ Description: "ValueSet for `Organization.type`"
 
 generate_value_set(
   url=f"https://raw.githubusercontent.com/gematik/api-ePA/{VERSION}/src/vocabulary/value_sets/vs-author-specialty.xml",
-  output_file="input/fsh/valuesets/PractitionerRoleSpecialtyVS.fsh",
-  template="""ValueSet: PractitionerRoleSpecialtyVS
-Description: "ValueSet for `PractitonerRole.specialty`"
-* insert Meta
-* include codes from system PractitionerProfessionOID"""
-)
-
-generate_value_set(
-  url=f"https://raw.githubusercontent.com/gematik/api-ePA/{VERSION}/src/vocabulary/value_sets/vs-author-specialty.xml",
   output_file="input/fsh/valuesets/PractitionerQualificationVS.fsh",
   template="""ValueSet: PractitionerQualificationVS
 Description: "ValueSet for `Practitoner.qualification`"
