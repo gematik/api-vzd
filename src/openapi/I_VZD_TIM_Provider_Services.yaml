@@ -6,6 +6,8 @@ info:
   # version 1.1.3
   #  - removed operation getPASSporTCertificates
   #  - added /localization operation whereIs
+  #  - removed schema schemaPASSporTCertificates
+  #  - added attribute isInsurance in schema Domain
   #
   # version 1.1.2
   #  - error handling improved:
@@ -444,8 +446,7 @@ components:
              type: boolean
              example: false
 
-
-    schemaPASSporTCertificates:
+    Domain:
       type: object
       properties:
         domain:
@@ -456,19 +457,9 @@ components:
           type: string
         isInsurance:
           description: |
-              Indicates if it is a domain of an health insurance for insured persons
+               Indicates if it is a domain of an health insurance for insured persons
           type: boolean
           example: false
-
-    Domain:
-      type: object
-      properties:
-        domain:
-          description: The TI-Messenger domain
-          type: string
-        telematikID:
-          description: The telematikID of the organization that uses the TI-Messenger domain
-          type: string
 
     Error:
       type: object
