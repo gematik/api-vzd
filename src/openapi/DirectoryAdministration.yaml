@@ -3,7 +3,12 @@ info:
   title: I_Directory_Administration
   description: REST Schnittstelle zur Pflege der Verzeichniseinträge.
               Über diese Schnittstelle können Verzeichniseinträge inklusive Zertifikaten erzeugt, aktualisiert und gelöscht werden. Die Administration von Fachdaten erfolgt über Schnittstelle I_Directory_Application_Maintenance und wird durch die Fachanwendungen durchgeführt. Lesender Zugriff auf die Fachdaten ist mit Operation getDirectoryEntries in vorliegender Schnittstelle möglich.
-  version: 1.8.2
+  version: 1.8.3
+  # Änderungen in Version 1.8.3
+  #  - Suchparameter professionOID und entryType ergänzt in Operationen
+  #    o read_Directory_Entry_for_Sync
+  #    o read_Directory_Entry_for_Sync_paging
+  #
   # Änderungen in Version 1.8.2
   #  - Fehlerbehandlung verbessert:
   #    o Schema Error: Optionale Fehlernachricht hinzugefügt
@@ -687,6 +692,20 @@ paths:
         description: Erlaubt die Suche mit Hilfe des Attributs dataFromAuthority. 
         schema:
           type: string  
+      - name: professionOID
+        in: query
+        description: |
+         Erlaubt die Suche mit Hilfe des Attributs professionOID. 
+         Selektiert der Verzeichniseintrag, wenn der angegebene Wert in den professionOID's (array) des Basiseintrags vorhanden ist. 
+        schema:
+          type: string  
+      - name: entryType
+        in: query
+        description: |
+         Erlaubt die Suche mit Hilfe des Attributs entryType. 
+         Selektiert der Verzeichniseintrag, wenn der angegebene Wert in den entryType's (array) des Basiseintrags vorhanden ist. 
+        schema:
+          type: string 
       - name: maxKOMLEadr
         in: query
         description: Erlaubt die Suche mit Hilfe des Attributs maxKOMLEadr. 
@@ -930,6 +949,20 @@ paths:
         description: Erlaubt die Suche mit Hilfe des Attributs dataFromAuthority. 
         schema:
           type: string  
+      - name: professionOID
+        in: query
+        description: |
+         Erlaubt die Suche mit Hilfe des Attributs professionOID. 
+         Selektiert der Verzeichniseintrag, wenn der angegebene Wert in den professionOID's (array) des Basiseintrags vorhanden ist. 
+        schema:
+          type: string  
+      - name: entryType
+        in: query
+        description: |
+         Erlaubt die Suche mit Hilfe des Attributs entryType. 
+         Selektiert der Verzeichniseintrag, wenn der angegebene Wert in den entryType's (array) des Basiseintrags vorhanden ist. 
+        schema:
+          type: string 
       - name: maxKOMLEadr
         in: query
         description: Erlaubt die Suche mit Hilfe des Attributs maxKOMLEadr. 
