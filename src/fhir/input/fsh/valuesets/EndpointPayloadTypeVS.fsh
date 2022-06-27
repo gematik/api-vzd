@@ -1,4 +1,4 @@
 ValueSet: EndpointPayloadTypeVS
 Description: "ValueSet for `Endpoint.payloadType`"
 * insert Meta
-* include codes from system EndpointPayloadTypeDirectory
+* include codes from system EndpointDirectoryPayloadType

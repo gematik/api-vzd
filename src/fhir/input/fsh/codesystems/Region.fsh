@@ -1,6 +1,8 @@
-CodeSystem: GermanRegion
-Title: "Codes for gregions in german healthcare system"
+CodeSystem: Region
+Title: "Codes for regions in german healthcare system."
 Description: """
+Additionally to german Bundeslander there are 2 sub-provinces 
+`Nordrhein` and `Westfalen-Lippe`.
 """
 * insert Meta
 * ^content = #complete

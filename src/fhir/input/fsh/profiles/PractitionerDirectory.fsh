@@ -4,27 +4,15 @@ Title: "Practitioner in gematik Directory"
 * insert Meta
 * id MS
 * identifier 1..* MS
-  * ^slicing.discriminator.type = #pattern
-  * ^slicing.discriminator.path = "$this"
+  * ^slicing.discriminator.type = #value
+  * ^slicing.discriminator.path = "system"
   * ^slicing.rules = #open
 * identifier contains TelematikID 1.. MS
 * identifier[TelematikID] only $IdentifierTelematikID
-  * ^patternIdentifier.type = $v2-0203#PRN
-  * type 1.. MS
-  * system 1.. MS
-  * value 1.. MS
-* identifier contains LebenslangeArztNummer 0.. MS
-* identifier[LebenslangeArztNummer] only $IdentifierLebenslangeArztNummer
-  * ^patternIdentifier.type = $v2-0203#PRN
-  * type 1.. MS
-  * system 1.. MS
-  * value 1.. MS
-* identifier contains LebenslangeZahnarztNummer 0.. MS
-* identifier[LebenslangeZahnarztNummer] only $IdentifierLebenslangeZahnarztNummer
-  * ^patternIdentifier.type = $v2-0203#PRN
-  * type 1.. MS
-  * system 1.. MS
-  * value 1.. MS
+* identifier contains LANR 0.. MS
+* identifier[LANR] only $IdentifierLANR
+* identifier contains ZANR 0.. MS
+* identifier[ZANR] only $IdentifierZANR
 * name 1..1 MS
   * text 1..1 MS
   * family 1..1 MS

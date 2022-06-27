@@ -8,16 +8,12 @@
   },
   "identifier": [
     {
-      "type": {
-        "coding": [
-          {
-            "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
-            "code": "PRN"
-          }
-        ]
-      },
-      "system": "http://fhir.de/StructureDefinition/identifier-telematik-id",
-      "value": "3-2.58.00000040"
+      "system": "https://gematik.de/fhir/sid/telematik-id",
+      "value": "1-1.58.00000040"
+    },
+    {
+      "system": "https://fhir.kbv.de/NamingSystem/KBV_NS_Base_ANR",
+      "value": "123456789"
     }
   ],
   "qualification": [

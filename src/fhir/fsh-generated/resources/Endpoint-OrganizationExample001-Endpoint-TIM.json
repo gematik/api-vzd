@@ -9,7 +9,7 @@
   "status": "active",
   "connectionType": {
     "code": "tim",
-    "system": "https://gematik.de/fhir/directory/CodeSystem/EndpointConnectionTypeDirectory"
+    "system": "https://gematik.de/fhir/directory/CodeSystem/EndpointDirectoryConnectionType"
   },
   "name": "@SystemsEngineering:tim.gematik.de",
   "address": "@SystemsEngineering:tim.gematik.de",
@@ -18,7 +18,7 @@
       "coding": [
         {
           "code": "tim-chat",
-          "system": "https://gematik.de/fhir/directory/CodeSystem/EndpointPayloadTypeDirectory"
+          "system": "https://gematik.de/fhir/directory/CodeSystem/EndpointDirectoryPayloadType"
         }
       ]
     }

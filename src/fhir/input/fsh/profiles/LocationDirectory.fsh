@@ -15,6 +15,7 @@ organisations specific for german Healthcare and Telematics Infrastructure.
   * city MS
   * district MS
   * state MS
+  * state from AddressStateVS
   * postalCode MS
   * country MS
 * position MS

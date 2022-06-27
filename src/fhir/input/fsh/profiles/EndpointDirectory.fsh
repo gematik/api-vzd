@@ -1,4 +1,5 @@
 Profile: EndpointDirectory
+//Id: gem-dir-endpoint
 Parent: Endpoint
 Title: "Endpoint in gematik Directory"
 Description: "Endpoints for applications in the gematik Directory"
