@@ -255,6 +255,8 @@ ocspReponderURL: 'http://ehca.gematik.de/ocsp/'
 
 == Institutionen der weitere Gesundheitsfachberufe (eGBR)
 
+WARNING: Die Prefixe `11-` sind noch nicht spezifikationskonform und werden auf `10-` geändert
+
 === Betriebsstätte Geburtshilfe
 
 link:oid_institution-geburtshilfe/[]
