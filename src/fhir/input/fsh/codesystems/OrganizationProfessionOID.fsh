@@ -18,7 +18,7 @@ The codes for Organizations based on Profession OIDs defined in [gemSpec_OID](ht
 * #1.2.276.0.76.4.59 "Betriebsstätte Kostenträger"
 * #1.2.276.0.76.4.187 "Betriebsstätte Leistungserbringerorganisation Vertragszahnärzte"
 * #1.2.276.0.76.4.190 "AdV-Umgebung bei Kostenträger"
-* #1.2.276.0.76.4.210 "Betriebsstätte Leistungserbringerorganisation Kassenärztliche Vereinigung "
+* #1.2.276.0.76.4.210 "Betriebsstätte Leistungserbringerorganisation Kassenärztliche Vereinigung"
 * #1.2.276.0.76.4.223 "Betriebsstätte GKV-Spitzenverband"
 * #1.2.276.0.76.4.226 "Betriebsstätte Mitgliedsverband der Krankenhäuser"
 * #1.2.276.0.76.4.227 "Betriebsstätte der Deutsche Krankenhaus TrustCenter und Informationsverarbeitung GmbH"
