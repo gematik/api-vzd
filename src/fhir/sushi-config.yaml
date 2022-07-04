@@ -1,7 +1,6 @@
-#id: de.gematik.fhir.directory
 canonical: https://gematik.de/fhir/directory
-#name: gematik Directory
-#status: draft # draft | active | retired | unknown
+name: gematik Directory
+status: draft # draft | active | retired | unknown
 version: 0.8.0-beta5
 fhirVersion: 4.0.1
 dependencies:
