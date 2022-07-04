@@ -12,7 +12,7 @@
     }
   ],
   "url": "https://gematik.de/fhir/directory/StructureDefinition/HealthcareServiceDirectory",
-  "version": "0.8.0-wip",
+  "version": "0.8.0-beta5",
   "name": "HealthcareServiceDirectory",
   "title": "HealthcareService in gematik Directory",
   "status": "draft",
@@ -54,7 +54,7 @@
         "path": "HealthcareService.specialty",
         "mustSupport": true,
         "binding": {
-          "strength": "required",
+          "strength": "extensible",
           "valueSet": "https://gematik.de/fhir/directory/ValueSet/OrganizationTypeVS"
         }
       },

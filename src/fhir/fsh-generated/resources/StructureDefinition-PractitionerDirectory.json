@@ -12,7 +12,7 @@
     }
   ],
   "url": "https://gematik.de/fhir/directory/StructureDefinition/PractitionerDirectory",
-  "version": "0.8.0-wip",
+  "version": "0.8.0-beta5",
   "name": "PractitionerDirectory",
   "title": "Practitioner in gematik Directory",
   "status": "draft",
@@ -194,7 +194,7 @@
         "id": "Practitioner.qualification.code",
         "path": "Practitioner.qualification.code",
         "binding": {
-          "strength": "required",
+          "strength": "extensible",
           "valueSet": "https://gematik.de/fhir/directory/ValueSet/PractitionerQualificationVS"
         }
       },
