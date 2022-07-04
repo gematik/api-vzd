@@ -152,5 +152,6 @@
     }
   ],
   "publisher": "gematik GmbH",
+  "caseSensitive": false,
   "count": 35
 }

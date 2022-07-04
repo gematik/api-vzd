@@ -26,5 +26,6 @@
     }
   ],
   "publisher": "gematik GmbH",
+  "caseSensitive": false,
   "count": 4
 }

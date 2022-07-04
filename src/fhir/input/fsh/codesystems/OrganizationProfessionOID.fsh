@@ -5,6 +5,7 @@ The codes for Organizations based on Profession OIDs defined in [gemSpec_OID](ht
 """
 * insert Meta
 * ^content = #complete
+* ^caseSensitive = false
 * #1.2.276.0.76.4.50 "Betriebsstätte Arzt"
 * #1.2.276.0.76.4.51 "Zahnarztpraxis"
 * #1.2.276.0.76.4.52 "Betriebsstätte Psychotherapeut"

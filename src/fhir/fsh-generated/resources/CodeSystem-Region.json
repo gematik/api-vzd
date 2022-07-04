@@ -83,5 +83,6 @@
     }
   ],
   "publisher": "gematik GmbH",
+  "caseSensitive": false,
   "count": 18
 }
