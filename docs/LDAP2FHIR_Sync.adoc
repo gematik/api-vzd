@@ -78,7 +78,7 @@ specialty.coding.display = <added by FHIR-Proxy> |
 https://simplifier.net/vzd-fhir-directory/tiorganizationtypevs
 https://simplifier.net/vzd-fhir-directory/tipractitionerrolevs
 
-.2+|domainID |HBA |- | - | - |DomainID wird bei Personen nicht benötigt (wird also nicht berücksichtigt).
+.2+|domainID |HBA |spezifisches Kennzeichen des Sektors | jeweilige Resource | identifier |Bezeichner: domänenspezifisches Kennzeichen des Eintrags. kann mehrfach vorkommen (0..100)
 |SMC-B |Bezeichner: domänenspezifisches Kennzeichen des Eintrags. kann mehrfach vorkommen (0..100)
 | Organization | identifier|
 Es wird ein "genereller" Identifier Type für diese domainID verwendet. 
@@ -124,18 +124,15 @@ type.coding.display = display aus https://simplifier.net/vzd-fhir-directory/tior
 | - | - |
 
 |mail |HBA und SMC-B | 
-| - | - | KIM Informationen werden als Endpoint kodiert, s.
+| Endpoint | address | KIM Informationen werden als Endpoint kodiert, s.
 https://simplifier.net/vzd-fhir-directory/endpointdirectory
 
-KIM-Daten werden aktuell nicht mit übertragen, da nur TIM-UserCase betrachtet wird.
 
 |KOM-LE-Version |HBA und SMC-B | 
-| - | - | KIM Informationen werden als Endpoint kodiert, s.
+| Endpoint | connectionType | KIM Informationen werden als Endpoint kodiert, s.
 https://simplifier.net/vzd-fhir-directory/endpointdirectory
 
-KIM-Daten werden aktuell nicht mit übertragen, da nur TIM-UserCase betrachtet wird.
-
 |changeDateTime |HBA und SMC-B | 
-| - | - | wird über FHIR Bordmittel realisiert
+| jeweilige Resource | Meta | wird in die FHIR Meta Daten übernommen
 
 |============================
