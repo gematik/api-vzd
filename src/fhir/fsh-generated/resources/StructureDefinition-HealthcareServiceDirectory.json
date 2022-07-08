@@ -55,7 +55,7 @@
         "mustSupport": true,
         "binding": {
           "strength": "extensible",
-          "valueSet": "https://gematik.de/fhir/directory/ValueSet/OrganizationTypeVS"
+          "valueSet": "https://gematik.de/fhir/directory/ValueSet/HealthcareServiceSpecialtyVS"
         }
       },
       {

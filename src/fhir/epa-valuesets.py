@@ -27,12 +27,10 @@ def generate_value_set(url, output_file, template):
 
 generate_value_set(
   url=f"https://raw.githubusercontent.com/gematik/api-ePA/{VERSION}/src/vocabulary/value_sets/vs-practice-setting-code.xml",
-  output_file="input/fsh/valuesets/OrganizationTypeVS.fsh",
-  template="""ValueSet: OrganizationTypeVS
-Description: "ValueSet for `Organization.type`"
-* insert Meta
-* include codes from system OrganizationProfessionOID
-* include codes from system OrganizationProviderType"""
+  output_file="input/fsh/valuesets/HealthcareServiceSpecialtyVS.fsh",
+  template="""ValueSet: HealthcareServiceSpecialtyVS
+Description: "ValueSet for `HealthcareService.specialty`"
+* insert Meta"""
 )
 
 generate_value_set(
