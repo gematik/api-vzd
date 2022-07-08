@@ -6,6 +6,7 @@ Additionally to german Bundeslander there are 2 sub-provinces
 """
 * insert Meta
 * ^content = #complete
+* ^caseSensitive = false
 * #Baden-Württemberg "Baden-Württemberg"
 * #Bayern "Bayern"
 * #Berlin "Berlin"

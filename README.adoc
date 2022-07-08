@@ -19,7 +19,7 @@ endif::[]
 
 image:https://shields.io/badge/gem Spec VZD-v1.14.0-blue[link="https://fachportal.gematik.de/fachportal-import/files/gemSpec_VZD_V1.14.0.pdf"]
 image:https://shields.io/badge/gemILF_Pflege_VZD-v1.5.3-green[link="https://github.com/gematik/api-vzd/blob/gemILF_Pflege_VZD/1.5.3/docs/gemILF_Pflege_VZD.adoc"]
-image:https://shields.io/badge/simplifier.net-latest-red[link="https://simplifier.net/vzd-fhir-directory"] +
+image:https://shields.io/badge/simplifier.net-0.8.0beta6-red[link="https://simplifier.net/vzd-fhir-directory"] +
 image:https://shields.io/badge/Admin API-latest-green?logo=swagger[link="src/openapi/DirectoryAdministration.yaml"]
 image:https://shields.io/badge/App API-latest-green?logo=swagger[link="src/openapi/DirectoryApplicationMaintenance.yaml"]
 
@@ -49,18 +49,8 @@ Verzeichnisdienst bittet folgende Außenschnittstellen an (s Nummerierung in der
 5. Für die Suche der Apotheken, z.B. in der gematik eRezept APP, existiert ein dediziertes Apothekenverzeichnis (ApoVZD). ApoVZD synchronisiert regelmäßig die Daten aus dem VZD und ergänzt diese um weitere Inhalte (z.B. um Geolokalisierung und Öffnungszeiten der Apotheken). Schnittstelle `I_Directory_Administration`, analog zu p.3.
 6. Für die Suche der Leistungserbringer-Institutionen im Rahmen der Berechtigungsvergabe in der elektronischen Patientenakte (ePA),vermittelt das ePA-Aktensystem die Kommunikation zwischen VZD und ePA-Frontend. Schnittstelle `I_Directory_Query`, zentral.
 7. _In Entwicklung_: TIM Anbieter registrieren sich und verifizieren sich gegenseitig mit Hilfe von VZD. Schnittstelle. `I_Directory_TIM_Provider_Services`
-8. _In Entwicklung_: VZD bietet direkten Zugriff zur den Daten über FHIR REST Schnittstellen für die TIM Clients und perspektivisch anderen registrierten Clients. Schnittstelle `I_Directory_FHIR#tim-search`.
+8. _In Entwicklung_: VZD bietet direkten Zugriff zur den Daten über FHIR REST Schnittstellen für die TIM Clients und perspektivisch anderen registrierten Clients. Schnittstelle `I_Directory_FHIR#search`.
 9. _In Entwicklung_: Die Leistungserbringer können ihre Daten selbstständig administrieren, um z.B. die Organisationsstrukturen und Standorte zur erfassen. Schnittstelle `I_Directory_FHIR#owner`.
-
-Die Schnittstellen des Verzeichnisdienstes sind in Spezifikationen der gematik definiert:
-
-* https://fachportal.gematik.de/fachportal-import/files/gemSpec_VZD_V1.13.1.pdf[gemSpec_VZD_V1.13.1.pdf]
-
-Die Daten des LDAP-Directories sind im Implementierungsleitfaden zur Pflege der Daten des Verzeichnisdienstes beschrieben.
-Die Dokumente können im Fachportal der gematik gefunden werden:
-
-* https://fachportal.gematik.de/fileadmin/Fachportal/Downloadcenter/Implementierungsleitfaeden/gemILF_Pflege_VZD_V1.5.2.pdf[gemILF_Pflege_VZD_V1.5.2.pdf]
-
 
 == Systemarchitektur
 
