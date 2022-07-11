@@ -1783,7 +1783,7 @@ Wird vom KOM-LE-Anbieter eingetragen.
 
 === eGBR – Nichtärztliche Institutionen (SMC-B-Eintrag)
 
-eGBR Einträge werden im Verzeichnisdienst durch den TSP angelegt. Der TSP trägt in das Attribut "holder" der Wert "eGBR" und seine eigene clientID ein. Damit sind diese Einträge durch eGBR Clients und die Clients des TSPs änderbar.
+eGBR Einträge werden im Verzeichnisdienst durch den TSP angelegt. Der TSP trägt in das Attribut `holder` der Wert `egbr` und seine eigene clientID ein. Damit sind diese Einträge durch eGBR Clients und die Clients des TSPs änderbar.
 
 Tabelle 13: Tab_VZD_Datenbeschreibung_der_SMC-B_eGBR
 
