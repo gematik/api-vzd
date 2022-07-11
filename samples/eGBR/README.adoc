@@ -53,7 +53,7 @@ Darf nicht länger als 8 Stellen sein. Wird bei Bedarf mit Nullen aufgefüllt.
 [source,json]
 ----
 {
-  "telematikID": "10.245.91000001",
+  "telematikID": "10-67.245.91000001",
   "holder": [ "egbr", "dtrust" ],
   "displayName": "Pflegestation Marktheidenfeld",
   "cn": "Pflegestation Marktheidenfeld",
@@ -68,7 +68,7 @@ Darf nicht länger als 8 Stellen sein. Wird bei Bedarf mit Nullen aufgefüllt.
 [source,json]
 ----
 {
-  "telematikID": "10.245.91000002",
+  "telematikID": "10-67.245.91000002",
   "holder": [ "egbr", "dtrust" ],
   "displayName": "Moers Care GmbH",
   "cn": "Moers Care GmbH",
@@ -85,7 +85,7 @@ Darf nicht länger als 8 Stellen sein. Wird bei Bedarf mit Nullen aufgefüllt.
 [source,json]
 ----
 {
-  "telematikID": "10.246.91000001",
+  "telematikID": "10-67.246.91000001",
   "holder": [ "egbr", "dtrust" ],
   "displayName": "Frauenheilkunde und Geburtshilfe Breunsdorf",
   "cn": "Frauenheilkunde und Geburtshilfe Breunsdorf",
@@ -100,7 +100,7 @@ Darf nicht länger als 8 Stellen sein. Wird bei Bedarf mit Nullen aufgefüllt.
 [source,json]
 ----
 {
-  "telematikID": "10.246.91000002",
+  "telematikID": "10-67.246.91000002",
   "holder": [ "egbr", "dtrust" ],
   "displayName": "Geburtsklinik am Leopoldsee",
   "cn": "Geburtsklinik am Leopoldsee",
@@ -116,7 +116,7 @@ Darf nicht länger als 8 Stellen sein. Wird bei Bedarf mit Nullen aufgefüllt.
 [source,json]
 ----
 {
-  "telematikID": "10.247.91000001",
+  "telematikID": "10-67.247.91000001",
   "holder": [ "egbr", "dtrust" ],
   "displayName": "Praxis Lukas Otís",
   "cn": "Praxis Lukas Otís",
@@ -131,7 +131,7 @@ Darf nicht länger als 8 Stellen sein. Wird bei Bedarf mit Nullen aufgefüllt.
 [source,json]
 ----
 {
-  "telematikID": "10.247.91000002",
+  "telematikID": "10-67.247.91000002",
   "holder": [ "egbr", "dtrust" ],
   "displayName": "Physiotherapie Martin Tangerðal",
   "cn": "Physiotherapie Martin Tangerðal",
