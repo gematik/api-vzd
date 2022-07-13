@@ -5,6 +5,9 @@ info:
   version: 1.1.4
   # version 1.1.4
   #  - getFederationList changed: Changed from JSON response to file download
+  #  - schema: schemaFederationList and DomainList removed
+  #  - schema Domain: added required attributes (domain, telematikID) and default value for isInsurance
+  #  - added comments for domainAdministration operations about error messages
   #
   # version 1.1.3
   #  - removed operation getPASSporTCertificates
@@ -161,6 +164,7 @@ paths:
       - domainAdministration
       summary: Add a domain to the TI-Messenger federation
       description: A new domain in the TI-Messenger federation.
+            # domain will be only created, if the organization which belongs to the telematikID is active
       operationId: addTiMessengerDomain
       requestBody:
         content:
@@ -177,6 +181,8 @@ paths:
 
         400:
           description: Bad Request
+               # Examples for errors:
+               # message "organization which belongs to the telematikID is not active"
           content:
             application/json:
               schema:
@@ -291,6 +297,7 @@ paths:
                 $ref: '#/components/schemas/Error'
         403:
           description: Forbidden
+             # domain will be only changed, if assigned to requesting client (TI-Messenger provider)
           content:
             application/json:
               schema:
@@ -333,6 +340,7 @@ paths:
                 $ref: '#/components/schemas/Error'
         403:
           description: Forbidden
+            # domain will be only deleted, if assigned to requesting client (TI-Messenger provider)
           content:
             application/json:
               schema:
@@ -397,40 +405,11 @@ components:
 
   schemas:
 
-    schemaFederationList:
-      type: object
-      readOnly: true
-      properties:
-        version:
-          description: The version of the federation list
-          type: integer
-          readOnly: true
-        hashAlgorithm:
-          description: The hash algorithm that was used to create the hashes. Currently only SHA-256 is supported.
-          type: string
-          readOnly: true
-        domainList:
-          description: The list of hashed TI-Messenger domain names
-          type: array
-          items:
-            $ref: '#/components/schemas/DomainList'
-
-    DomainList:
-        description: The list of hashed TI-Messenger domain names
-        type: object
-        properties:
-           domain:
-             type: string
-             description: |
-               hashed TI-Messenger domain name
-           isInsurance:
-             description: |
-               Indicates if it is a domain of an health insurance for insured persons
-             type: boolean
-             example: false
-
     Domain:
       type: object
+      required:
+          - domain
+          - telematikID
       properties:
         domain:
           description: The TI-Messenger domain
@@ -442,6 +421,7 @@ components:
           description: |
                Indicates if it is a domain of an health insurance for insured persons
           type: boolean
+          default: false
           example: false
 
     Error:
