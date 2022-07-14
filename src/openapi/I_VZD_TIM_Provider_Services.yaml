@@ -2,8 +2,8 @@ openapi: 3.0.1
 info:
   title: I_VZD_TIM_Provider_Services
   description: REST interface to retrieve the TI-Messenger federation list.
-  version: 1.1.4
-  # version 1.1.4
+  version: 1.2.0
+  # version 1.2.0
   #  - getFederationList changed: Changed from JSON response to file download
   #  - schema: schemaFederationList and DomainList removed
   #  - schema Domain: added required attributes (domain, telematikID) and default value for isInsurance
