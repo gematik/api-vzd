@@ -25,10 +25,12 @@ spec:
   - name: Administration
     provides:
       - name: I_Directory_Administration
+        openapi: ../openapi/DirectoryAdministration.yaml
         description: |
-          ## REST Schnittstelle für Administration der Daten
+          ## REST Schnittstelle für Administration der Basisdaten und Zertifikate
   - name: ApplicationMaintenance
     provides:
       - name: I_Directory_Application_Maintenance
+        openapi: ../openapi/DirectoryApplicationMaintenance.yaml
         description: |
-          ## REST Schnittstelle für Administration der Daten
+          ## REST Schnittstelle für Administration der Fachanwendungsdaten
