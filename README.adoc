@@ -20,7 +20,7 @@ endif::[]
 image:https://shields.io/badge/gem Spec VZD-v1.14.0-blue[link="https://fachportal.gematik.de/fachportal-import/files/gemSpec_VZD_V1.14.0.pdf"]
 image:https://shields.io/badge/gemILF_Pflege_VZD-v1.5.3-green[link="https://github.com/gematik/api-vzd/blob/gemILF_Pflege_VZD/1.5.3/docs/gemILF_Pflege_VZD.adoc"]
 image:https://shields.io/badge/simplifier.net-0.8.0beta6-red[link="https://simplifier.net/vzd-fhir-directory"] +
-image:https://shields.io/badge/Admin API-latest-green?logo=swagger[link="src/openapi/DirectoryAdministration.yaml"]
+image:https://shields.io/badge/Admin API-1.8.1-green?logo=swagger[link="https://github.com/gematik/api-vzd/blob/I_Directory_Administration/1.8.1/src/openapi/DirectoryAdministration.yaml"]
 image:https://shields.io/badge/App API-latest-green?logo=swagger[link="src/openapi/DirectoryApplicationMaintenance.yaml"]
 
 == Aktuelles
