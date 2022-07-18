@@ -14,23 +14,19 @@ spec:
   - name: LDAPView
     provides:
       - name: I_Directory_Query
-        description: |
-          ## LDAP Query Schnittstelle
+        description: LDAP Query Schnittstelle
   - name: LDAPCore
     provides:
       - name: I_Directory_Write
         visibility: private
-        description: |
-          ## Interne LDAP Schnittstelle
+        description: Interne LDAP Schnittstelle
   - name: Administration
     provides:
       - name: I_Directory_Administration
         openapi: ../openapi/DirectoryAdministration.yaml
-        description: |
-          ## REST Schnittstelle für Administration der Basisdaten und Zertifikate
+        description: REST Schnittstelle für Administration der Basisdaten und Zertifikate
   - name: ApplicationMaintenance
     provides:
       - name: I_Directory_Application_Maintenance
         openapi: ../openapi/DirectoryApplicationMaintenance.yaml
-        description: |
-          ## REST Schnittstelle für Administration der Fachanwendungsdaten
+        description: REST Schnittstelle für Administration der Fachanwendungsdaten
