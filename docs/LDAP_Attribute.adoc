@@ -327,7 +327,7 @@ Enthält eine Liste von Organisationen, die für die Administration dieses Daten
 Enthält `TRUE` wenn die Daten durch einen Kartenherausgeber eingestellt wurden.
 
 === personalEntry
-Enthält `TRUE` wenn Eintrag eine natürliche Person beschreibt (einen Leistungsebringer)
+Enthält `TRUE` wenn Eintrag eine natürliche Person beschreibt (einen Leistungsebringer) - d.h. einen HBA Empfänger. Enthält `FALSE` wenn es um einen Eintrag deiner Institution handelt, d.h. SMC-B Empfänger. 
 
 === changeDateTime
 Zeitstempel der letzten Änderung. Wert wird bei jeder Aktualisierung durch VZD auf aktuelle Systemzeit gesetzt.
