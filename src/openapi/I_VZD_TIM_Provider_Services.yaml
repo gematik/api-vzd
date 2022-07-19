@@ -2,7 +2,11 @@ openapi: 3.0.1
 info:
   title: I_VZD_TIM_Provider_Services
   description: REST interface to retrieve the TI-Messenger federation list and the PASSporT signing certificate.
-  version: 1.1.3
+  version: 1.1.4
+  
+  # version 1.1.4
+  #  - added HTTP status code 409 for operation addTiMessengerDomain
+  #
   # version 1.1.3
   #  - removed operation getPASSporTCertificates
   #  - added /localization operation whereIs
@@ -207,6 +211,13 @@ paths:
                 $ref: '#/components/schemas/Error'
         403:
           description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        409:
+          description: Conflict
+              # domain already exists
           content:
             application/json:
               schema:
