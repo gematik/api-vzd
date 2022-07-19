@@ -6,6 +6,7 @@ info:
   
   # version 1.1.4
   #  - added HTTP status code 409 for operation addTiMessengerDomain
+  #  - renamed schema schemaFederationList to FederationList
   #
   # version 1.1.3
   #  - removed operation getPASSporTCertificates
@@ -97,7 +98,7 @@ paths:
           content:
             application/json:
               schema:
-                  $ref: '#/components/schemas/schemaFederationList'
+                  $ref: '#/components/schemas/FederationList'
         204:
           description: No Content
                     # if the version of the list is less than or equal to the version parameter of the request
@@ -425,7 +426,7 @@ components:
 
   schemas:
 
-    schemaFederationList:
+    FederationList:
       type: object
       readOnly: true
       properties:
