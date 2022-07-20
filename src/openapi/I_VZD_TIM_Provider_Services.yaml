@@ -2,8 +2,13 @@ openapi: 3.0.1
 info:
   title: I_VZD_TIM_Provider_Services
   description: REST interface to retrieve the TI-Messenger federation list and the PASSporT signing certificate.
-  version: 1.1.4
+  version: 1.1.5
   
+  # version 1.1.5
+  #  Operation whereIs:
+  #  - renamed parameter hash to mxid
+  #  - added HTTP status code 404 Not Found
+  #
   # version 1.1.4
   #  - added HTTP status code 409 for operation addTiMessengerDomain
   #  - renamed schema schemaFederationList to FederationList
@@ -133,12 +138,12 @@ paths:
       tags:
       - whereIs
       summary: Checks in which directory part the MXID is located.
-      description: This operation returns the directory part, to which the hash of the MXId in the request belongs.
+      description: This operation returns the directory part, to which MXId in the request belongs.
       operationId: whereIs
       parameters:
-      - name: hash
+      - name: mxid
         in: query
-        description: hash of the MXID (MXID in URL Form)
+        description: MXID (MXID in URL Form)
         schema:
           type: string
 
@@ -172,6 +177,13 @@ paths:
                 $ref: '#/components/schemas/Error'
         403:
           description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        404:
+          description: Not Found
+                   #  MXID not found in FHIR VZD
           content:
             application/json:
               schema:
