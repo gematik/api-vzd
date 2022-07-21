@@ -1506,6 +1506,13 @@ paths:
                  add_Directory_FA-Attributes, 
                  modify_Directory_FA-Attributes, 
                  delete_Directory_FA-Attributes]
+      - name: noDataChanged
+        in: query
+        description: Erlaubt die Suche nach Log Daten für Schreiboperationen, die keine Daten geändert haben. 
+          (noDataChanged=true -> durch diese Operation wurden keine Daten geändert)
+        schema:
+          type: boolean  
+          example: flase
 
       responses:
         200:
@@ -1890,6 +1897,13 @@ components:
                  delete_Directory_FA-Attributes]
           readOnly: true
           example: modify_Directory_Entry
+        noDataChanged:
+          description: Zeigt an, ob die Schreiboperation den Datensatz mit ungeänderten Daten überschieben hat (also keine Daten geändert hat)
+            noDataChanged=true -> durch diese Operation wurden keine Daten geändert.
+          type: boolean
+          readOnly: true
+          example: false
+
         # die folgenden Daten enthalten den vollständigen VZD Datensatz nach Ausführung der Schreiboperation
         DirectoryEntryBase:
           $ref: '#/components/schemas/baseDirectoryEntry'
