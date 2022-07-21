@@ -281,8 +281,8 @@ paths:
       summary: Gesamten Verzeichniseintrag lesen
       description: Liefert alle zum Filter passenden Verzeichniseinträge (maximal 100 Einträge). Die angegebenen Parameter werden mit logischen UND verknüpft.
 #
-# Für die Leseoperationen read_Directory_Entry, read_Directory_Entry_for_Sync und
-# read_Directory_Entry_for_Sync_paging der Schnittstellen I_Directory_Administration 
+# Für die Leseoperationen read_Directory_Entry, read_Directory_Entry_for_Sync,
+# read_Directory_Entry_for_Sync_paging und readLog der Schnittstellen I_Directory_Administration 
 # und I_Directory_Application_Maintenance
 # werden die folgenden Filtermöglichkeiten unterstützt: 
 #     o Suche mit Wildcard "*" in den Parametern
@@ -1420,6 +1420,20 @@ paths:
       summary: Log von Verzeichniseinträgen lesen
       description: Liefert die Log Daten alle zum Filter passenden Verzeichniseinträge. Die angegebenen Parameter werden mit logischen UND verknüpft.
       operationId: readLog
+# Für die Leseoperationen read_Directory_Entry, read_Directory_Entry_for_Sync,
+# read_Directory_Entry_for_Sync_paging und readLog der Schnittstellen I_Directory_Administration 
+# und I_Directory_Application_Maintenance
+# werden die folgenden Filtermöglichkeiten unterstützt: 
+#     o Suche mit Wildcard "*" in den Parametern
+#           - telematikID
+#           - holder
+#           - professionOID
+#       Wildcard ist am Ende und am Anfang nutzbar:
+#           - *Mustermann* - "contains" 
+#           - "Dr. Manfred*" - "startsWith"
+#           - "* MBA" - "endsWith"
+#           treffen alle "Dr. Manfred Mustermann MBA".
+#
       parameters:
       - name: uid
         in: query
@@ -1429,12 +1443,6 @@ paths:
       - name: telematikID
         in: query
         description: Erlaubt die Suche mit Hilfe des Attributs telematikID (die telematikID in den Basisdaten).
-        schema:
-          type: string  
-      - name: telematikID-SubStr
-        in: query
-        description: Erlaubt die Suche nach einem Substring am Anfang der telematikID (die telematikID in den Basisdaten).
-                      Entspricht der LDAP Filters Substring Assertion vom Typ "subInitial Component".
         schema:
           type: string  
       - name: domainID
