@@ -668,10 +668,10 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
 
-  /Logging:
+  /Log:
     get:
       tags:
-      - Logging
+      - Log
       summary: Log von Verzeichniseinträgen lesen
       description: Liefert die Log Daten alle zum Filter passenden Verzeichniseinträge. Die angegebenen Parameter werden mit logischen UND verknüpft.
       operationId: readLog
