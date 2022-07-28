@@ -683,7 +683,7 @@ components:
                 example: 1.5
                 description: 'Die höchste KOM-LE_Version der KIM Clientmodule für die KIM Mail Adresse'
             description: |              
-              Für jede Mail Adresse aus dem `mail` Attribut darf es nur einen Eintrag in der Liste `komLeData` existieren. 
+              Für jede Mail Adresse aus dem `mail` Attribut darf es nur einen Element in der Liste `komLeData` existieren. 
               Es dürfen in der Liste `komLeData` keine Mail Adressen referenziert werden, die nicht im zugehörigen `mail` Attribut enthalten sind.
               Wenn eine Mail Adresse gelöscht wird, muss auch ihre `komLeData`-Element gelöscht werden.
               Geschrieben wird immer die gesamte Liste. 
