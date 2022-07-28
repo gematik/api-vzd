@@ -220,9 +220,21 @@
     {
       "code": "1.2.276.0.76.4.281",
       "display": "Ernährungstherapeutische Praxis"
+    },
+    {
+      "code": "1.2.276.0.76.4.284",
+      "display": "Betriebsstätte Weitere Kostenträger im Gesundheitswesen"
+    },
+    {
+      "code": "1.2.276.0.76.4.285",
+      "display": "Weitere Organisationen der Gesundheitsversorgung"
+    },
+    {
+      "code": "1.2.276.0.76.4.286",
+      "display": "KIM-Hersteller und -Anbieter"
     }
   ],
   "publisher": "gematik GmbH",
   "caseSensitive": false,
-  "count": 53
+  "count": 56
 }
