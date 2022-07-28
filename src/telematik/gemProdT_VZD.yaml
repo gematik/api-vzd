@@ -1,23 +1,28 @@
+# #yaml-language-server: $schema=../../../api-tools/schema/ApprovalObject.schema.yaml
+# yaml-language-server: $schema=../../../api-tools/schema/ApprovalObject.schema.json
+# #yaml-language-server: $schema=https://raw.githubusercontent.com/spilikin/api-tools/main/schema/ApprovalObject.schema.json
 apiVersion: v1
 kind: ApprovalObject
 meta:
   name: gemProdT_VZD
-  title: Zentraler Verzeichnisdienst der TI
-  version: 1.6.1
-  description: |
-    ## Markdown title
-    Test *beginnt* _hier_:
-    * Bullet 1 
-    * Bullet 2
+  version: 1.7.0
 spec:
+  # define the interfaces required by the whole product
+  requires:
+    - providedBy: gemProdT_X509_TSP_nonQES_HBA
+      interfaceName: I_OCSP
+    - providedBy: gemProdT_X509_TSP_nonQES_SMC-B
+      interfaceName: I_OCSP
+      fromVersion: 1.0.0
   components:
   - name: LDAPView
-    provides:
+    provides:      
       - name: I_Directory_Query
         description: LDAP Query Schnittstelle
   - name: LDAPCore
     provides:
       - name: I_Directory_Write
+        version: 1.3.4
         visibility: private
         description: Interne LDAP Schnittstelle
   - name: Administration
