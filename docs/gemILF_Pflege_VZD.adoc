@@ -432,7 +432,7 @@ _Query Parameter_ — Erlaubt die Suche mit Hilfe des Attributs telematikID (di
 _Query Parameter_ — Erlaubt die Suche nach einem Substring am Anfang der telematikID (die telematikID in den Basisdaten). Entspricht der LDAP Filters Substring Assertion vom Typ &quot;subInitial Component&quot;. 
 
 *specialization (optional)*  ::
-_Query Parameter_ — Erlaubt die Suche mit Hilfe des Attributs specialization. Der Verzeichniseintrag wird selektiert, wenn die angegebene domainID im Attribut domainID (array) des Verzeichniseintrags enthalten ist. 
+_Query Parameter_ — Erlaubt die Suche mit Hilfe des Attributs specialization. Der Verzeichniseintrag wird selektiert, wenn die angegebene specialization im Attribut specialization (array) des Verzeichniseintrags enthalten ist. 
 
 *domainID (optional)*  ::
 _Query Parameter_ — Erlaubt die Suche mit Hilfe des Attributs domainID. Der Verzeichniseintrag wird selektiert, wenn die angegebene domainID im Attribut domainID (array) des Verzeichniseintrags enthalten ist. 
