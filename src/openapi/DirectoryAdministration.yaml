@@ -5,6 +5,7 @@ info:
               Über diese Schnittstelle können Verzeichniseinträge inklusive Zertifikaten erzeugt, aktualisiert und gelöscht werden. Die Administration von Fachdaten erfolgt über Schnittstelle I_Directory_Application_Maintenance und wird durch die Fachanwendungen durchgeführt. Lesender Zugriff auf die Fachdaten ist mit Operation getDirectoryEntries in vorliegender Schnittstelle möglich.
   version: 1.8.3
   # Änderungen in Version 1.8.3
+  #  - Operation readLog hinzugefügt
   #  - Suchparameter professionOID und entryType ergänzt in Operationen
   #    o read_Directory_Entry_for_Sync
   #    o read_Directory_Entry_for_Sync_paging
@@ -18,6 +19,7 @@ info:
   # Änderungen in Version 1.8.1
   #  - Attribute "KOM-LE-Version" in eine Liste geändert 
   #  - Attribut "active" für Zertifikate aufgenommen
+  #
   # Änderungen in Version 1.8.0
   #  - Operation read_Directory_Entry_for_Sync: Zur Kompatibilität mit existierenden Clients wurde 
   #    read_Directory_Entry_for_Sync in der Version ohne Paging wieder aufgenommen.
@@ -106,6 +108,7 @@ info:
   #   - /DirectoryEntries
   #       read_Directory_Entry: 
   #          Suchparameter "baseEntryOnly" ergänzt
+  #
   # Änderungen in Version 1.2.0
   #   - /DirectoryEntries
   #       read_Directory_Entry: 
@@ -272,8 +275,8 @@ paths:
       summary: Gesamten Verzeichniseintrag lesen
       description: Liefert alle zum Filter passenden Verzeichniseinträge (maximal 100 Einträge). Die angegebenen Parameter werden mit logischen UND verknüpft.
 #
-# Für die Leseoperationen read_Directory_Entry, read_Directory_Entry_for_Sync und
-# read_Directory_Entry_for_Sync_paging der Schnittstellen I_Directory_Administration 
+# Für die Leseoperationen read_Directory_Entry, read_Directory_Entry_for_Sync,
+# read_Directory_Entry_for_Sync_paging und readLog der Schnittstellen I_Directory_Administration 
 # und I_Directory_Application_Maintenance
 # werden die folgenden Filtermöglichkeiten unterstützt: 
 #     o Suche mit Wildcard "*" in den Parametern
@@ -421,7 +424,7 @@ paths:
         description: Erlaubt die Suche mit Hilfe des Attributs holder. 
                      Der Verzeichniseintrag wird selektiert, wenn der angegebene holder im Attribut holder (array) des Verzeichniseintrags enthalten ist.
                      Wenn der Parameter mit dem eigenen Wert des Clients belegt wird, werden alle gefundenen Einträge zurückgegeben (maximal 100 Einträge).
-                     Zur Suche nach Einträge ohne holder ist der Parameter mit dem einem leeren String "" zu belegen. Auch in diesem Fall werden alle gefundenen Einträge zurückgegeben (maximal 100 Einträge).
+                     Zur Suche nach Einträge ohne holder ist der Parameter mit einem leeren String "" zu belegen. Auch in diesem Fall werden alle gefundenen Einträge zurückgegeben (maximal 100 Einträge).
         schema:
           type: string  
       - name: personalEntry
@@ -437,13 +440,13 @@ paths:
       - name: professionOID
         in: query
         description: Erlaubt die Suche mit Hilfe des Attributs professionOID. 
-                     Selektiert der Verzeichniseintrag, wenn der angegebene Wert in den professionOID's (array) des Basiseintrags vorhanden ist. 
+                     Selektiert den Verzeichniseintrag, wenn der angegebene Wert in den professionOID's (array) des Basiseintrags vorhanden ist. 
         schema:
           type: string  
       - name: entryType
         in: query
         description: Erlaubt die Suche mit Hilfe des Attributs entryType. 
-                     Selektiert der Verzeichniseintrag, wenn der angegebene Wert in den entryType's (array) des Basiseintrags vorhanden ist. 
+                     Selektiert den Verzeichniseintrag, wenn der angegebene Wert in den entryType's (array) des Basiseintrags vorhanden ist. 
         schema:
           type: string  
       - name: maxKOMLEadr
@@ -1339,12 +1342,147 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+
+  /Log:
+    get:
+      tags:
+      - Log
+      summary: Log von Verzeichniseinträgen lesen
+      description: Liefert die Log Daten alle zum Filter passenden Verzeichniseinträge. Die angegebenen Parameter werden mit logischen UND verknüpft.
+      operationId: readLog
+# Für die Leseoperationen read_Directory_Entry, read_Directory_Entry_for_Sync,
+# read_Directory_Entry_for_Sync_paging und readLog der Schnittstellen I_Directory_Administration 
+# und I_Directory_Application_Maintenance
+# werden die folgenden Filtermöglichkeiten unterstützt: 
+#     o Suche mit Wildcard "*" in den Parametern
+#           - telematikID
+#           - holder
+#           - professionOID
+#       Wildcard ist am Ende und am Anfang nutzbar:
+#           - *Mustermann* - "contains" 
+#           - "Dr. Manfred*" - "startsWith"
+#           - "* MBA" - "endsWith"
+#           treffen alle "Dr. Manfred Mustermann MBA".
+#
+      parameters:
+      - name: uid
+        in: query
+        description: ID von dem Verzeichniseintrag (distinguishedName.uid)
+        schema:
+          type: string  
+      - name: telematikID
+        in: query
+        description: Erlaubt die Suche mit Hilfe des Attributs telematikID (die telematikID in den Basisdaten).
+        schema:
+          type: string  
+      - name: domainID
+        in: query
+        description: Erlaubt die Suche mit Hilfe des Attributs domainID. 
+                     Der Verzeichniseintrag wird selektiert, wenn die angegebene domainID im Attribut domainID (array) des Verzeichniseintrags enthalten ist.
+        schema:
+          type: string  
+      - name: holder
+        in: query
+        description: Erlaubt die Suche mit Hilfe des Attributs holder. 
+                     Der Verzeichniseintrag wird selektiert, wenn der angegebene holder im Attribut holder (array) des Verzeichniseintrags enthalten ist.
+                     Zur Suche nach Einträge ohne holder ist der Parameter mit einem leeren String "" zu belegen. Auch in diesem Fall werden alle gefundenen Logdaten der Einträge zurückgegeben.
+        schema:
+          type: string  
+      - name: personalEntry
+        in: query
+        description: Erlaubt die Suche mit Hilfe des Attributs personalEntry. 
+        schema:
+          type: string  
+      - name: professionOID
+        in: query
+        description: Erlaubt die Suche mit Hilfe des Attributs professionOID. 
+                     Selektiert den Verzeichniseintrag, wenn der angegebene Wert in den professionOID's (array) des Basiseintrags vorhanden ist. 
+        schema:
+          type: string  
+      - name: entryType
+        in: query
+        description: Erlaubt die Suche mit Hilfe des Attributs entryType. 
+                     Selektiert den Verzeichniseintrag, wenn der angegebene Wert in den entryType's (array) des Basiseintrags vorhanden ist. 
+        schema:
+          type: string  
+      - name: changeDateTimeFrom
+        in: query
+        description: Erlaubt die Suche mit Hilfe des Attributs changeDateTime. 
+                  #  Selektiert alle Datensätze mit 
+                  #  changeDateTime >= changeDateTimeFrom
+        schema:
+          type: string  
+          # format: date-time
+          example: "2017-07-21T17:32:28Z"          
+      - name: changeDateTimeTo
+        in: query
+        description: Erlaubt die Suche mit Hilfe des Attributs changeDateTime. 
+                  #  Selektiert alle Datensätze mit 
+                  #  changeDateTime <= changeDateTimeTo
+        schema:
+          type: string  
+          # format: date-time
+          example: "2018-07-21T17:32:28Z"
+      - name: operation
+        in: query
+        description: Erlaubt die Suche anhand der ausgeführten Operation
+        schema:
+          type: string
+          enum: [add_Directory_Entry, 
+                 modify_Directory_Entry, 
+                 delete_Directory_Entry, 
+                 add_Directory_Entry_Certificate, 
+                 delete_Directory_Entry_Certificate, 
+                 add_Directory_FA-Attributes, 
+                 modify_Directory_FA-Attributes, 
+                 delete_Directory_FA-Attributes]
+      - name: noDataChanged
+        in: query
+        description: Erlaubt die Suche nach Log Daten für Schreiboperationen, die keine Daten geändert haben. 
+          (noDataChanged=true -> durch diese Operation wurden keine Daten geändert)
+        schema:
+          type: boolean  
+          example: flase
+
+      responses:
+        200:
+          description: OK
+                    #  Es werden die Logdaten aller zu dem Filter Parametern passenden Verzeichniseinträgen zurückgegeben.
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/LogEntries'
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        401:
+          description: Unauthorized
+                    #  Der WWW-Authenticate Header im Response wird auf OAuth gesetzt.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        403:
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   
 
 components:
 
   schemas:
-  
+
     userCertificate:
       description: Jeder Verzeichniseintrag muss mindestens ein Zertifikat enthalten.
       type: object
@@ -1657,6 +1795,63 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/DirectoryEntry'
+
+    LogEntries:
+      type: array
+      items:
+        $ref: '#/components/schemas/LogEntry'
+
+    LogEntry:
+      type: object
+      properties:
+        clientID:
+          description: clientID von dem Client, der die Datenänderung ausgeführt hat
+          type: string
+          readOnly: true
+          example: Client123
+        changeDateTime:
+          type: string
+#          format: date-time 
+          description: Zeitpunkt der Schreiboperation für den Datensatz. Format entsprechend RFC 3339, section 5.6.
+          readOnly: true
+          example: "2017-07-21T17:32:28Z"
+        operation:
+          description: Ausgeführte Operation
+          type: string
+          enum: [add_Directory_Entry, 
+                 modify_Directory_Entry, 
+                 delete_Directory_Entry, 
+                 add_Directory_Entry_Certificate, 
+                 delete_Directory_Entry_Certificate, 
+                 add_Directory_FA-Attributes, 
+                 modify_Directory_FA-Attributes, 
+                 delete_Directory_FA-Attributes]
+          readOnly: true
+          example: modify_Directory_Entry
+        noDataChanged:
+          description: Zeigt an, ob die Schreiboperation den Datensatz mit ungeänderten Daten überschieben hat (also keine Daten geändert hat)
+            noDataChanged=true -> durch diese Operation wurden keine Daten geändert.
+          type: boolean
+          readOnly: true
+          example: false
+
+        # die folgenden Daten enthalten den vollständigen VZD Datensatz nach Ausführung der Schreiboperation
+        DirectoryEntryBase:
+          $ref: '#/components/schemas/baseDirectoryEntry'
+        userCertificates:
+          maxItems: 50
+          minItems: 0
+          type: array
+          items:
+            $ref: '#/components/schemas/userCertificate'
+        Fachdaten:
+          maxItems: 50
+          minItems: 0
+          type: array
+          items:
+            $ref: '#/components/schemas/Fachdaten'
+      
+    
 
             
     Error:
