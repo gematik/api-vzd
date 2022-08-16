@@ -12,7 +12,7 @@
     }
   ],
   "url": "https://gematik.de/fhir/directory/StructureDefinition/PractitionerRoleDirectory",
-  "version": "0.8.0-wip",
+  "version": "0.8.0-beta6",
   "name": "PractitionerRoleDirectory",
   "title": "PractitionerRole in gematik Directory",
   "status": "draft",

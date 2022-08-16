@@ -27,5 +27,5 @@ Title: "Practitioner in gematik Directory"
 * birthDate MS
 * photo MS
 * qualification MS
-* qualification.code from PractitionerQualificationVS
+* qualification.code from PractitionerQualificationVS (extensible)
 * communication MS

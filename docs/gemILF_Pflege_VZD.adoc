@@ -19,7 +19,7 @@ image::gematik_logo.svg[gematik,float="right"]
 
 [width="100%",cols="50%,50%",options="header",]
 |===
-|Version: |1.5.3
+|Version: |1.5.4
 |Referenzierung: |gemILF_Pflege_VZD
 |===
 
@@ -75,7 +75,8 @@ Verwendung der client_id (vorher claim scope) besser erläutert +
  +
 Update zum SMC-B ORG-Eintrag der gematik +
 Neu für eGBR HBA und SMC-B |gematik
-|1.5.3 |​ |3.6, 3.3.1.3 |Rückverfolgbarkeit der Einträge (Holder-Attribute) - C_11048 |gematik
+|1.5.3 | |3.6, 3.3.1.3 |Rückverfolgbarkeit der Einträge (Holder-Attribute) - C_11048 |gematik
+|1.5.4 | |4.* |Attribut userCertificate.active ergänzt |gematik
 |===
 
 == Einordnung des Dokumentes
@@ -432,7 +433,7 @@ _Query Parameter_ — Erlaubt die Suche mit Hilfe des Attributs telematikID (di
 _Query Parameter_ — Erlaubt die Suche nach einem Substring am Anfang der telematikID (die telematikID in den Basisdaten). Entspricht der LDAP Filters Substring Assertion vom Typ &quot;subInitial Component&quot;. 
 
 *specialization (optional)*  ::
-_Query Parameter_ — Erlaubt die Suche mit Hilfe des Attributs specialization. Der Verzeichniseintrag wird selektiert, wenn die angegebene domainID im Attribut domainID (array) des Verzeichniseintrags enthalten ist. 
+_Query Parameter_ — Erlaubt die Suche mit Hilfe des Attributs specialization. Der Verzeichniseintrag wird selektiert, wenn die angegebene specialization im Attribut specialization (array) des Verzeichniseintrags enthalten ist. 
 
 *domainID (optional)*  ::
 _Query Parameter_ — Erlaubt die Suche mit Hilfe des Attributs domainID. Der Verzeichniseintrag wird selektiert, wenn die angegebene domainID im Attribut domainID (array) des Verzeichniseintrags enthalten ist. 
@@ -726,6 +727,11 @@ Kann mehrfach vorkommen (0..50) +
 Format: DER, Base64 kodiert +
 Die pflegende Stelle erhält das Zertifikat vom TSP. +
 Es können Einträge ohne Zertifikat angelegt werden. Diese Einträge werden jedoch nicht über die LDAP-Abfrageschnittstelle gefunden.
+
+|*userCertificate.active* |obligatorisch |Wird vom VZD eingetragen. +
+Wert == TRUE, wenn das userCertificate gemäß OCSP gültig ist (OCSP Response Status "good"), Wert == FALSE bei Zertifikaten von noch nicht freigeschalteten Karten (OCSP Response Status "unknown"). +
+Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in die flache Liste übernommen.
+
 |maxKOMLEadr |optional |Maximale Anzahl von Mail-Adressen in den KOM-LE-Fachdaten.  +
 Falls kein Wert eingetragen wurde, können beliebig viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden. +
 Falls ein Wert eingetragen wurde, können maximal so viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden.
@@ -808,6 +814,9 @@ Kann mehrfach vorkommen (0..50) +
 Format: DER, Base64 kodiert +
 Die pflegende Stelle erhält das Zertifikat vom TSP. +
 Es können Einträge ohne Zertifikat angelegt werden. Diese Einträge werden jedoch nicht über die LDAP-Abfrageschnittstelle gefunden.
+|*userCertificate.active* |obligatorisch |Wird vom VZD eingetragen. +
+Wert == TRUE, wenn das userCertificate gemäß OCSP gültig ist (OCSP Response Status "good"), Wert == FALSE bei Zertifikaten von noch nicht freigeschalteten Karten (OCSP Response Status "unknown"). +
+Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in die flache Liste übernommen.
 |*maxKOMLEadr* |optional |Maximale Anzahl von Mail-Adressen in den KOM-LE-Fachdaten.  +
 Falls kein Wert eingetragen wurde, können beliebig viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden. +
 Falls ein Wert eingetragen wurde, können maximal so viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden.
@@ -896,6 +905,9 @@ Kann mehrfach vorkommen (0..50). +
 Format: DER, Base64 kodiert +
 Die pflegende Stelle erhält das Zertifikat vom TSP. +
 Es können Einträge ohne Zertifikat angelegt werden. Diese Einträge werden jedoch nicht über die LDAP-Abfrageschnittstelle gefunden.
+|*userCertificate.active* |obligatorisch |Wird vom VZD eingetragen. +
+Wert == TRUE, wenn das userCertificate gemäß OCSP gültig ist (OCSP Response Status "good"), Wert == FALSE bei Zertifikaten von noch nicht freigeschalteten Karten (OCSP Response Status "unknown"). +
+Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in die flache Liste übernommen.
 |*personalEntry* |obligatorisch |Wird vom VZD eingetragen. +
 Wert == TRUE, wenn alle zum Eintrag gehörenden Zertifikate den entryType 1 haben (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID).
 |*entryType* |obligatorisch |Bezeichner: Eintragstyp +
@@ -985,6 +997,9 @@ Neue Einträge können nur mit Zertifikat angelegt werden. +
 Format: DER, Base64 kodiert +
 Die pflegende Stelle erhält das Zertifikat vom TSP. +
 Es können Einträge ohne Zertifikat angelegt werden. Diese Einträge werden jedoch nicht über die LDAP-Abfrageschnittstelle gefunden.
+|*userCertificate.active* |obligatorisch |Wird vom VZD eingetragen. +
+Wert == TRUE, wenn das userCertificate gemäß OCSP gültig ist (OCSP Response Status "good"), Wert == FALSE bei Zertifikaten von noch nicht freigeschalteten Karten (OCSP Response Status "unknown"). +
+Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in die flache Liste übernommen.
 |*personalEntry* |obligatorisch |Wird vom VZD eingetragen +
 Wert == TRUE, wenn alle zum Eintrag gehörenden Zertifikate den entryType 1 haben (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID).
 |*entryType* |obligatorisch |Bezeichner: Eintragstyp +
@@ -1073,6 +1088,9 @@ Kann mehrfach vorkommen (0..50) +
 Format: DER, Base64 kodiert +
 Die pflegende Stelle erhält das Zertifikat vom TSP. +
 Es können Einträge ohne Zertifikat angelegt werden. Diese Einträge werden jedoch nicht über die LDAP-Abfrageschnittstelle gefunden.
+|*userCertificate.active* |obligatorisch |Wird vom VZD eingetragen. +
+Wert == TRUE, wenn das userCertificate gemäß OCSP gültig ist (OCSP Response Status "good"), Wert == FALSE bei Zertifikaten von noch nicht freigeschalteten Karten (OCSP Response Status "unknown"). +
+Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in die flache Liste übernommen.
 |*personalEntry* |obligatorisch |Wird vom VZD eingetragen +
 Wert == TRUE, wenn alle zum Eintrag gehörenden Zertifikate den entryType 1 haben (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID).
 |*entryType* |obligatorisch |Bezeichner: Eintragstyp +
@@ -1162,6 +1180,9 @@ Kann mehrfach vorkommen (0..50). +
 Format: DER, Base64 kodiert +
 Die pflegende Stelle erhält das Zertifikat vom TSP. +
 Es können Einträge ohne Zertifikat angelegt werden. Diese Einträge werden jedoch nicht über die LDAP-Abfrageschnittstelle gefunden.
+|*userCertificate.active* |obligatorisch |Wird vom VZD eingetragen. +
+Wert == TRUE, wenn das userCertificate gemäß OCSP gültig ist (OCSP Response Status "good"), Wert == FALSE bei Zertifikaten von noch nicht freigeschalteten Karten (OCSP Response Status "unknown"). +
+Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in die flache Liste übernommen.
 |*personalEntry* |obligatorisch |Wird vom VZD eingetragen. +
 Wert == TRUE, wenn alle zum Eintrag gehörenden Zertifikate den entryType 1 haben (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID).
 |*entryType* |obligatorisch |Bezeichner: Eintragstyp +
@@ -1251,6 +1272,9 @@ Neue Einträge können nur mit Zertifikat angelegt werden. +
 Format: DER, Base64 kodiert +
 Die pflegende Stelle erhält das Zertifikat vom TSP. +
 Es können Einträge ohne Zertifikat angelegt werden. Diese Einträge werden jedoch nicht über die LDAP-Abfrageschnittstelle gefunden.
+|*userCertificate.active* |obligatorisch |Wird vom VZD eingetragen. +
+Wert == TRUE, wenn das userCertificate gemäß OCSP gültig ist (OCSP Response Status "good"), Wert == FALSE bei Zertifikaten von noch nicht freigeschalteten Karten (OCSP Response Status "unknown"). +
+Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in die flache Liste übernommen.
 |*personalEntry* |obligatorisch |Wird vom VZD eingetragen +
 Wert == TRUE, wenn alle zum Eintrag gehörenden Zertifikate den entryType 1 haben (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID).
 |*entryType* |obligatorisch |Bezeichner: Eintragstyp +
@@ -1340,6 +1364,9 @@ Neue Einträge können nur mit Zertifikat angelegt werden. +
 Format: DER, Base64 kodiert +
 Die pflegende Stelle erhält das Zertifikat vom TSP. +
 Es können Einträge ohne Zertifikat angelegt werden. Diese Einträge werden jedoch nicht über die LDAP-Abfrageschnittstelle gefunden.
+|*userCertificate.active* |obligatorisch |Wird vom VZD eingetragen. +
+Wert == TRUE, wenn das userCertificate gemäß OCSP gültig ist (OCSP Response Status "good"), Wert == FALSE bei Zertifikaten von noch nicht freigeschalteten Karten (OCSP Response Status "unknown"). +
+Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in die flache Liste übernommen.
 |*personalEntry* |obligatorisch |Wird vom VZD eingetragen +
 Wert == TRUE, wenn alle zum Eintrag gehörenden Zertifikate den entryType 1 haben (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID).
 |*entryType* |obligatorisch |Bezeichner: Eintragstyp +
@@ -1420,6 +1447,9 @@ Kann mehrfach vorkommen (0..50). +
 Format: DER, Base64 kodiert +
 Das Zertifikat wird von der pflegenden Stelle (TSP) eingetragen. +
 Es können Einträge ohne Zertifikat angelegt werden. Diese Einträge werden jedoch nicht über die LDAP-Abfrageschnittstelle gefunden.
+|*userCertificate.active* |obligatorisch |Wird vom VZD eingetragen. +
+Wert == TRUE, wenn das userCertificate gemäß OCSP gültig ist (OCSP Response Status "good"), Wert == FALSE bei Zertifikaten von noch nicht freigeschalteten Karten (OCSP Response Status "unknown"). +
+Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in die flache Liste übernommen.
 |*otherName* |optional |Das Attribut otherName ist veraltet und wird in einer zukünftigen Version aus dem Datenmodell entfernt. +
  +
 Bezeichner: Anderer Name +
@@ -1511,6 +1541,9 @@ Kann mehrfach vorkommen (0..50). +
 Format: DER, Base64 kodiert +
 Das Zertifikat wird von der pflegenden Stelle (TSP) eingetragen. +
 Es können Einträge ohne Zertifikat angelegt werden. Diese Einträge werden jedoch nicht über die LDAP-Abfrageschnittstelle gefunden.
+|*userCertificate.active* |obligatorisch |Wird vom VZD eingetragen. +
+Wert == TRUE, wenn das userCertificate gemäß OCSP gültig ist (OCSP Response Status "good"), Wert == FALSE bei Zertifikaten von noch nicht freigeschalteten Karten (OCSP Response Status "unknown"). +
+Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in die flache Liste übernommen.
 |*otherName* |optional |Das Attribut otherName ist veraltet und wird in einer zukünftigen Version aus dem Datenmodell entfernt. +
  +
 Bezeichner: Anderer Name +
@@ -1588,6 +1621,9 @@ Kann mehrfach vorkommen (0..50) +
 Format: DER, Base64 kodiert +
 Die pflegende Stelle erhält das Zertifikat vom TSP. +
 Es können Einträge ohne Zertifikat angelegt werden. Diese Einträge werden jedoch nicht über die LDAP-Abfrageschnittstelle gefunden.
+|*userCertificate.active* |obligatorisch |Wird vom VZD eingetragen. +
+Wert == TRUE, wenn das userCertificate gemäß OCSP gültig ist (OCSP Response Status "good"), Wert == FALSE bei Zertifikaten von noch nicht freigeschalteten Karten (OCSP Response Status "unknown"). +
+Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in die flache Liste übernommen.
 |*personalEntry* |obligatorisch |Wird vom VZD eingetragen. +
 Wert == TRUE, wenn alle zum Eintrag gehörenden Zertifikate den entryType 1 haben (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID).
 |*entryType* |obligatorisch |Bezeichner: Eintragstyp +
@@ -1666,6 +1702,9 @@ Kann mehrfach vorkommen (0..50) +
 Format: DER, Base64 kodiert +
 Die pflegende Stelle erhält das Zertifikat vom TSP. +
 Es können Einträge ohne Zertifikat angelegt werden. Diese Einträge werden jedoch nicht über die LDAP-Abfrageschnittstelle gefunden.
+|*userCertificate.active* |obligatorisch |Wird vom VZD eingetragen. +
+Wert == TRUE, wenn das userCertificate gemäß OCSP gültig ist (OCSP Response Status "good"), Wert == FALSE bei Zertifikaten von noch nicht freigeschalteten Karten (OCSP Response Status "unknown"). +
+Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in die flache Liste übernommen.
 |*personalEntry* |obligatorisch |Wird vom VZD eingetragen. +
 Wert == TRUE, wenn alle zum Eintrag gehörenden Zertifikate den entryType 1 haben (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID).
 |*entryType* |obligatorisch |Bezeichner: Eintragstyp +
@@ -1743,6 +1782,9 @@ Neue Einträge können nur mit Zertifikat angelegt werden. +
 Format: DER, Base64 kodiert +
 Die pflegende Stelle erhält das Zertifikat vom TSP. +
 Es können Einträge ohne Zertifikat angelegt werden. Diese Einträge werden jedoch nicht über die LDAP-Abfrageschnittstelle gefunden.
+|*userCertificate.active* |obligatorisch |Wird vom VZD eingetragen. +
+Wert == TRUE, wenn das userCertificate gemäß OCSP gültig ist (OCSP Response Status "good"), Wert == FALSE bei Zertifikaten von noch nicht freigeschalteten Karten (OCSP Response Status "unknown"). +
+Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in die flache Liste übernommen.
 |*personalEntry* |obligatorisch |Wird vom VZD eingetragen +
 Wert == TRUE, wenn alle zum Eintrag gehörenden Zertifikate den entryType 1 haben (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID).
 |*entryType* |obligatorisch |Bezeichner: Eintragstyp +

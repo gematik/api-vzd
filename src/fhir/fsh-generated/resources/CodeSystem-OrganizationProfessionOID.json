@@ -6,7 +6,7 @@
   "id": "OrganizationProfessionOID",
   "title": "CodeSystem for ProfessionOID of Institutions",
   "description": "The codes for Organizations based on Profession OIDs defined in [gemSpec_OID](https://fachportal.gematik.de/fachportal-import/files/gemSpec_OID_V3.10.0.pdf)",
-  "version": "0.8.0-wip",
+  "version": "0.8.0-beta6",
   "url": "https://gematik.de/fhir/directory/CodeSystem/OrganizationProfessionOID",
   "concept": [
     {
@@ -59,7 +59,7 @@
     },
     {
       "code": "1.2.276.0.76.4.210",
-      "display": "Betriebsstätte Leistungserbringerorganisation Kassenärztliche Vereinigung "
+      "display": "Betriebsstätte Leistungserbringerorganisation Kassenärztliche Vereinigung"
     },
     {
       "code": "1.2.276.0.76.4.223",
@@ -220,8 +220,21 @@
     {
       "code": "1.2.276.0.76.4.281",
       "display": "Ernährungstherapeutische Praxis"
+    },
+    {
+      "code": "1.2.276.0.76.4.284",
+      "display": "Betriebsstätte Weitere Kostenträger im Gesundheitswesen"
+    },
+    {
+      "code": "1.2.276.0.76.4.285",
+      "display": "Weitere Organisationen der Gesundheitsversorgung"
+    },
+    {
+      "code": "1.2.276.0.76.4.286",
+      "display": "KIM-Hersteller und -Anbieter"
     }
   ],
   "publisher": "gematik GmbH",
-  "count": 53
+  "caseSensitive": false,
+  "count": 56
 }
