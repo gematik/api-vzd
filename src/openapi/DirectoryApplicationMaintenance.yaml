@@ -4,8 +4,9 @@ info:
   description: |
    # REST Schnittstelle zur Pflege der Fachanwendungsdaten der Verzeichniseinträge
      Über diese Schnittstelle können Fachanwendungsdaten der Verzeichniseinträge erzeugt, aktualisiert und gelöscht werden. 
-  version: 1.1.7
-    # Änderungen in Version 1.1.7
+
+version: 1.1.7
+  # Änderungen in Version 1.1.7
   #  - Operation readLog hinzugefügt
 
   # Änderungen in Version 1.1.6
@@ -23,11 +24,13 @@ info:
   #  - KOM-LE_Version wurde durch komLeData ersetzt. Dies erlaubt die Angabe von KIM-Versionen für einzelne KIM-Adressen. 
   #  - Die Client Authentisierung wurde auf mutualTLS angepasst (OAuth2 wurde gestrichen)
   #  - Server URLs hinzugefügt  
+  #
   # Änderungen in Version 1.1.3
   #  - Filtermöglichkeiten in Leseoperationen read_Directory_Entry 
   #    (Wildcard "*" & Vorhandensein \00) aufgenommen.
   #  - Suchparameter in Leseoperationen read_Directory_Entry aufgenommen:
   #    maxKOMLEadr, changeDateTimeFrom, changeDateTimeTo
+  #
   # Änderungen in Version 1.1.2
   #  - Fehlerbehandlung für Operation modify_Directory_FA-Attributes in den Kommentaren dieser Operation ausführlicher beschrieben.
   #  - Im Datenmodell für DirectoryEntry Attribut "userCertificates" maxItems auf 50 gesetzt
@@ -80,16 +83,10 @@ paths:
                   $ref: '#/components/schemas/InfoObject'
         401:
           description: Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          content: {}
         403:
           description: Forbidden
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          content: {}
 
 
   /DirectoryEntries:
@@ -311,31 +308,16 @@ paths:
             application/json:
               schema:
                   $ref: '#/components/schemas/DirectoryEntries'
-        400:
-          description: Bad Request
-                    #  Invalid uid supplied
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
+
         401:
           description: Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          content: {}
         403:
           description: Forbidden
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          content: {}
         404:
           description: Not Found
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          content: {}
 
   /DirectoryEntries/Certificates:
   
@@ -396,34 +378,19 @@ paths:
             application/json:
               schema:
                   $ref: '#/components/schemas/userCertificates'
-        400:
-          description: Bad Request
-                # Allgemeiner Fehler im Request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
+
         401:
           description: |
            Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          content: {}
         403:
           description: Forbidden
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          content: {}
         404:
           description: |
            Not Found
            Certificate not found
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          content: {}
 
   /DirectoryEntries/{telematikID}/KOM-LE_Fachdaten:
     post:
@@ -433,6 +400,11 @@ paths:
       description: Erzeugt einen neuen Fachdateneintrag
       operationId: add_Directory_FA-Attributes
       parameters:
+       - name: fad
+         in: query
+         description: Identifikator vom anfragenden Fachdienstanbieter.
+         schema:
+          type: string
        - name: telematikID
          in: path
          description: telematikID von dem Verzeichniseintrag 
@@ -461,23 +433,14 @@ paths:
               $ref: '#/components/schemas/Error'
         401:
           description: Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          content: {}
         403:
           description: Forbidden
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          content: {}
         404:
           description: Not Found
                     #  telematikID not found
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          content: {}
 
 
   /DirectoryEntries/{telematikID}/KOM-LE_Fachdaten/{fad}:
@@ -511,32 +474,17 @@ paths:
             application/json:
               schema:
                   $ref: '#/components/schemas/FAD1'
-        400:
-          description: Bad Request
-                # Allgemeiner Fehler im Request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
+
         401:
           description: Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          content: {}
         403:
           description: Forbidden
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          content: {}
         404:
           description: Not Found
                     #  telematikID not found
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          content: {}
 
     put:
       tags:
@@ -597,23 +545,14 @@ paths:
               $ref: '#/components/schemas/Error'
         401:
           description: Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          content: {}
         403:
           description: Forbidden
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          content: {}
         404:
           description: Not Found
                     #  telematikID not found
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          content: {}
 
 
     delete:
@@ -650,23 +589,14 @@ paths:
               $ref: '#/components/schemas/Error'
         401:
           description: Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          content: {}
         403:
           description: Forbidden
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          content: {}
         404:
           description: Not Found
                     #  telematikID not found
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          content: {}
 
   /Log:
     get:
@@ -882,6 +812,8 @@ components:
             $ref: '#/components/schemas/FAD1'
 
     FAD1:
+      required:
+      - dn
       type: object
       properties:
         dn:
@@ -902,11 +834,14 @@ components:
               version:
                 type: string
                 example: 1.5
-                description: |
-                 Die höchste KOM-LE_Version der KIM Clientmodule für die KIM Mail Adresse
-                 Für jede Mail Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Attribut KOM-LE_Version geben. Es dürfen in KOM-LE_Version keine Mail Adressen referenziert werden, die nicht im zugehörigen "mail" Attribut enthalten sind.
-                 Wenn eine Mail Adresse gelöscht wird, muss auch ihre KOM-LE_Version gelöscht werden.
-                 Geschrieben wird immer die gesamte Liste. Für Änderungen muss erst der aktuelle Eintrag gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
+                description: 'Die höchste Version der KIM Clientmodule für diese KIM-Mail-Adresse'
+            description: |
+              Liste von KIM-Adressen mit der zugehörigen KIM-Version. 
+              Für jede Mail Adresse aus dem `mail` Attribut darf es nur einen Element in der Liste `komLeData` existieren. 
+              Es dürfen in der Liste `komLeData` keine Mail Adressen referenziert werden, die nicht im zugehörigen `mail` Attribut enthalten sind.
+              Wenn eine Mail Adresse gelöscht wird, muss auch ihre `komLeData`-Element gelöscht werden.
+              Geschrieben wird immer die gesamte Liste. 
+              Für Änderungen muss erst der aktuelle Eintrag gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
 
 
     distinguishedName:
@@ -1190,19 +1125,8 @@ components:
       
     Error:
       type: object
-      properties:
-        message: 
-          type: string
-          description: (optionale) Fehlernachricht
-        errors:
-          maxItems: 50
-          minItems: 0
-          type: array
-          items:
-            $ref: '#/components/schemas/InnerError'
-
-    InnerError:
-      type: object
+      maxItems: 50
+      minItems: 0
       properties:
         attributeName:
           description: Name des Attributs, in dem ein Fehler erkannt wurde
