@@ -6,6 +6,21 @@ info:
   version: 1.9.0
   # Änderungen in Version 1.9.0
   #  - VZD:DirectoryRead Scope für Lesezugriff hinzugefügt und Scopes für jede Operation definiert
+  #  - baseDirectoryEntry.entryType ist ein Wert (kein array mehr)
+  #  - baseDirectoryEntry.entryType kann über die Schnittstelle modifiziert werden,
+  #    wenn keine Zertifikate vorhanden sind
+  #  - add_Directory_Entry, modify_Directory_Entry: HTTP Status Kode 400
+  #    ergänzt/erweitert für Fehlerbehandlung von entryType Konflikten
+  #  - Attribute in Schema baseDirectoryEntry und als Suchparameter 
+  #    in Operation read_Directory_Entry ergänzt:
+  #      active, meta 
+  #  - Attribute im Schema userCertificate und als Suchparameter 
+  #    in Operation read_Directory_Certificates ergänzt:
+  #      serialNumber, issuer, publicKeyAlgorithm
+  #  - Attribute im Schema userCertificate ergänzt:
+  #      notBefore, notAfter
+  #  - Attribute in Schema baseDirectoryEntry änderbar definiert:
+  #      givenName, sn, cn
   #
   # Änderungen in Version 1.8.3
   #  - Operation readLog hinzugefügt
@@ -492,6 +507,19 @@ paths:
         schema:
           type: boolean
           example: true
+      - name: active
+        in: query
+        description: Erlaubt die Suche mit Hilfe des Attributs baseDirectoryEntry.active.
+        schema:
+          type: boolean
+      - name: meta
+        in: query
+        description: |
+          Erlaubt die Suche mit Hilfe des Attributs baseDirectoryEntry.meta
+          
+          Selektiert alle Datensätze, deren Attribut meta den angegebenen String in einem Wert des arry's enthält.
+        schema:
+          type: string  
 
         
       responses:
@@ -1098,7 +1126,11 @@ paths:
         400:
           description: Bad Request
                      # Invalid ID supplied
-          content: {}
+                     # Fehler/Inkonsistenz in Attributen
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         401:
           description: Unauthorized
                      # Der WWW-Authenticate Header im Response muss auf OAuth gesetzt werden.
@@ -1211,6 +1243,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/distinguishedName'
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         401:
           description: Unauthorized
                     #  Der WWW-Authenticate Header im Response muss auf OAuth gesetzt werden.
@@ -1292,6 +1330,26 @@ paths:
         in: query
         description: Erlaubt die Suche mit Hilfe des Attributs usage. 
                      Der Verzeichniseintrag wird selektiert, wenn die angegebene usage im Attribut usage (array) des Zertifikatseintrags enthalten ist.
+        schema:
+          type: string  
+      - name: active
+        in: query
+        description: Erlaubt die Suche mit Hilfe des Attributs userCertificate.active. 
+        schema:
+          type: boolean  
+      - name: serialNumber
+        in: query
+        description: Erlaubt die Suche mit Hilfe des Attributs userCertificate.serialNumber. 
+        schema:
+          type: string  
+      - name: issuer
+        in: query
+        description: Erlaubt die Suche mit Hilfe des Attributs userCertificate.issuer. 
+        schema:
+          type: string  
+      - name: publicKeyAlgorithm
+        in: query
+        description: Erlaubt die Suche mit Hilfe des Attributs userCertificate.publicKeyAlgorithm. 
         schema:
           type: string  
 
@@ -1578,7 +1636,39 @@ components:
           readOnly: true
           example: true
           description: Dieses Attribut eigt an, ob das Zertifikat aktiv ist oder nicht (true oder false).
-             
+        notBefore:
+          type: string
+          description: |
+            Wert wird vom VZD aus dem Zertifikat Feld "notBefore" entnommen und in dieses Attribut ohne Formatänderung eingetragen.
+            Wird vom VZD für die periodische Auswertung der Zertifikats-Gültigkeit genutzt.
+          readOnly: true
+          example: '2017-12-04T01:00:00'
+        notAfter:
+          type: string
+          description: |
+            Wert wird vom VZD aus dem Zertifikat Feld "notAfter" entnommen und in dieses Attribut ohne Formatänderung eingetragen.
+            Wird vom VZD für die periodische Auswertung der Zertifikats-Gültigkeit genutzt.
+          readOnly: true
+          example: '2022-12-04T00:59:59'
+        serialNumber:
+          type: string
+          description: |
+            Wert wird vom VZD aus dem Zertifikat Feld "serialNumber" entnommen und in dieses Attribut ohne Formatänderung eingetragen.
+          readOnly: true
+          example: 80276883110000092581
+        issuer:
+          type: string
+          description: |
+            Wert wird vom VZD aus dem Zertifikat Feld "issuer" entnommen und in dieses Attribut ohne Formatänderung eingetragen.
+          readOnly: true
+          example: 'CN=GEM.SMCB-CA8 TEST-ONLY,OU=Institution des Gesundheitswesens-CA der Telematikinfrastruktur,O=gematik GmbH NOT-VALID,C=DE'
+        publicKeyAlgorithm:
+          type: string
+          description: |
+            Wert wird vom VZD aus dem Zertifikat Feld "publicKeyAlgorithm" entnommen und in dieses Attribut ohne Formatänderung eingetragen.
+          readOnly: true
+          example: RSA
+
     userCertificates:
       type: array
       items:
@@ -1662,19 +1752,16 @@ components:
           type: string
           description: 'HBA: Vorname, obligatorisch, wird aus dem Zertifikat
             übernommen / SMC-B: nicht verwendet'
-          readOnly: true
           example:  Vorname
         sn:
           type: string
           description: 'HBA: Name, obligatorisch, wird aus dem Zertifikat
             übernommen / SMC-B: nicht verwendet'
-          readOnly: true
           example:  Nachname
         cn:
           type: string
           description: 'HBA: Vorname und Nachname / SMC-B: Bezeichner:
             Name Wird vom VZD aus dem Zertifikatsattribut commonName übernommen.'
-          readOnly: true
           example:  Vorname Nachname  
         displayName:
           type: string
@@ -1745,19 +1832,20 @@ components:
         holder:
           maxItems: 100
           type: array
-          description: Identifiziert den Eigentümer dieses Verzeichniseintrags, der Änderungen an ihm vornehmen darf.
+          description: |
+            Identifiziert den Eigentümer dieses Verzeichniseintrags, der Änderungen an ihm vornehmen darf.
             Hat keinen Einfluss auf Fachdaten und Zertifikatsdaten.
             Beim Anlegen eines neuen Verzeichniseintrags (add_Directory_Entry)
               - Ist im add_Directory_Entry Request das Attribut "holder" nicht vorhanden oder enthält keine Werte
-                 o Wird vom VZD in dieses Attribut kein Wert (leeres Attribut) eingetragen. 
+                 - Wird vom VZD in dieses Attribut kein Wert (leeres Attribut) eingetragen. 
               - Ist im add_Directory_Entry Request das Attribut "holder" vorhanden und mit Inhalten gefüllt
-                 o Ist ein Wert aus dem Request Attribut "holder" nicht gültig, MUSS der VZD die Operation mit 
+                 - Ist ein Wert aus dem Request Attribut "holder" nicht gültig, MUSS der VZD die Operation mit 
                  HTTP-Status-Code 422 abweisen und die weitere Verarbeitung von diesem Request abbrechen.
-                 o Sind alle Werte aus dem Request Attribut "holder" gültig, MUSS der VZD die Werte aus dem Request 
+                 - Sind alle Werte aus dem Request Attribut "holder" gültig, MUSS der VZD die Werte aus dem Request 
                  entnehmen und sie in das "holder" Attribut des Verzeichniseintrags übernehmen.
             Beim Ändern eines neuen Verzeichniseintrags (modify_Directory_Entry)
               - Ist im modify_Directory_Entry Request das Attribut "holder" nicht vorhanden oder enthält keine Werte
-                 o Die Werte im aktuellen "holder" Attribut des Verzeichniseintrags bleiben erhalten.
+                 - Die Werte im aktuellen "holder" Attribut des Verzeichniseintrags bleiben erhalten.
           items:
             type: string
             example: KartenHerausgeberABC
@@ -1767,8 +1855,10 @@ components:
           example: 1
         personalEntry:
           type: boolean
-          description: Wird vom VZD eingetragen / Wert == TRUE, wenn alle Zertifikate
-            den entryType 1 haben (Berufsgruppe), Wert == FALSE sonst
+          description: |
+            - Wird vom VZD eingetragen 
+            - Wird auf Basis von entryType bei jeder relevanten Operation neu ermittelt
+            - Wert == TRUE, wenn entryType den Wert 1 hat (Berufsgruppe), Wert == FALSE sonst
           readOnly: true
           example: true
         dataFromAuthority:
@@ -1792,14 +1882,40 @@ components:
             description: Wird vom VZD beim Hinzufügen eines Zertifikatseintrags (userCertificate) ebenfalls hier in den Basiseintrag eingefügt, wenn der Wert von professionOID noch nicht hier in den Basisdaten vorhanden ist.
               Beim Löschen eines Zertifikatseintrags werden die professionOID's dieses Zertifikatseintrags auch in den Basisdaten entfernt, falls sie nicht in anderen (noch gültigen und verlinkten) Zertifikatseinträgen vorhanden sind.
         entryType:
-          maxItems: 10
+            type: string
+            description: |
+             - Wird vom VZD beim Hinzufügen eines Zertifikatseintrags (userCertificate) ebenfalls hier in den Basiseintrag eingefügt, wenn der Wert von entryType noch nicht hier in den Basisdaten vorhanden ist.
+              - Mit Operationen add_Directory_Entry und modify_Directory_Entry ist  Setzen/Ändern von Attribut entryType möglich. Der Wert von Attribut entryType muss konform zu den Zertifikaten des Eintrags sein. Bei Abweichungen wird die Operation mit HTTP Status Kode 400 abgelehnt.
+                - Wird in Operationen add_Directory_Entry ein Zertifikat angegeben wird, muss ein eventuell angegebener Parameter entryType mit dem Wert aus dem Zertifikat übereinstimmen. Bei nicht angegebenem Parameter entryType wird das Attribut entryType entsprechend dem Zertifikat gesetzt.
+                - Mit Operation modify_Directory_Entry kann über Request Parameter entryType das Attribut im VZD geändert werden, solange kein Zertifikat im VZD enthalten ist (welches dann einen abweichenden Wert gegenüber dem Request Parameter entryType enthalten würde).
+             - Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzu gefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit Fehler (HTTP Status Kode 400).
+             - Beim Löschen von Zertifikaten bleibt der Wert im Attribut entryType erhalten
+        active:
+            type: boolean
+            example: true
+            default: true
+            description: |
+              Das Attribut "active" steuert die Sichtbarkeit des gesamten VZD Eintrags.
+              Bei FALSE wird der Eintrag aus der flachen Liste entfernt bzw. nicht übertragen. Default = TRUE
+              
+              Dieses Attribut wird nicht in die flache Liste synchronisiert. 
+        meta:
+          maxItems: 100
           minItems: 0
           type: array
-          readOnly: true
           items:
             type: string
-            description: Wird vom VZD beim Hinzufügen eines Zertifikatseintrags (userCertificate) ebenfalls hier in den Basiseintrag eingefügt, wenn der Wert von entryType noch nicht hier in den Basisdaten vorhanden ist.
-              Beim Löschen eines Zertifikatseintrags wird der entryType dieses Zertifikatseintrags auch in den Basisdaten entfernt, falls er nicht in anderen (noch gültigen und verlinkten) Zertifikatseinträgen vorhanden ist.
+            description: |
+              Dieses Attribut kann vom Kartenherausgeber und TSP für die Koordinierung ihrer Arbeit genutzt werden.
+              Beispiel für die Nutzung:
+               - TSP erzeugt einen VZD Eintrag.
+               - TSP setzt das Attribut "meta" auf "state_1"
+               - Kartenherausgeber prüft periodisch auf Einträge mit meta="state_1" und ergänzt Basisdaten
+              Der konkrete Ablauf und die Werte werden durch die beteiligten Kartenherausgeber und TSPs festgelegt.
+              
+              Wird vom VZD nicht ausgewertet.
+              Dieses Attribut wird nicht in die flache Liste synchronisiert. 
+  
 
     DirectoryEntry:
       type: object
@@ -2033,9 +2149,9 @@ components:
         clientCredentials:
           tokenUrl: '#umgebungsspezifisch'
           scopes:
-            VZD:DirectoryAdministration: I_Directory_Administration Client Scope
+            'VZD:DirectoryAdministration': I_Directory_Administration Client Scope
               Als Clients dieser Schnittstelle sind nur Systeme der TI Kartenherausgeber und von ihnen beauftragte Organisationen (z.B. TSPs) zulässig.
               Sie dürfen alle Operationen zur Administration der Verzeichniseinträge nutzen.
               Das AccessToken enthält im 'sub' claim den Identifier des Clients, der auf die Einträge zugreift. Dieser Identifier wird im Log abgelegt, welcher die Zugriffe über diese Schnittstelle protokolliert.
-            VZD:DirectoryRead: I_Directory_Administration Client Scope
+            'VZD:DirectoryRead': I_Directory_Administration Client Scope
               Lesender Zugriff auf den VZD (ohne Sync Operationen)
