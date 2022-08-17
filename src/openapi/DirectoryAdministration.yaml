@@ -3,7 +3,10 @@ info:
   title: I_Directory_Administration
   description: REST Schnittstelle zur Pflege der Verzeichniseinträge.
               Über diese Schnittstelle können Verzeichniseinträge inklusive Zertifikaten erzeugt, aktualisiert und gelöscht werden. Die Administration von Fachdaten erfolgt über Schnittstelle I_Directory_Application_Maintenance und wird durch die Fachanwendungen durchgeführt. Lesender Zugriff auf die Fachdaten ist mit Operation getDirectoryEntries in vorliegender Schnittstelle möglich.
-  version: 1.8.3
+  version: 1.9.0
+  # Änderungen in Version 1.9.0
+  #  - VZD:DirectoryRead Scope für Lesezugriff hinzugefügt und Scopes für jede Operation definiert
+  #
   # Änderungen in Version 1.8.3
   #  - Operation readLog hinzugefügt
   #  - Suchparameter professionOID und entryType ergänzt in Operationen
@@ -152,6 +155,10 @@ paths:
       tags:
       - getInfo DirectoryEntry Administration
       summary: Diese Operation liefert Metadaten über diese Schnittstelle
+      security:
+       - OAuth2: 
+         - 'VZD:DirectoryAdministration'
+         - 'VZD:DirectoryRead'
       description: Liefert die Metadaten aus dem Info Object diese OpenAPI Spezifikation und ergänzt sie.
       operationId: getInfo
       responses:
@@ -175,6 +182,9 @@ paths:
       tags:
       - DirectoryEntry Administration
       summary: Einen Eintrag zum Verzeichnisdienst hinzufügen
+      security:
+       - OAuth2:
+         - 'VZD:DirectoryAdministration'
       operationId: add_Directory_Entry
       requestBody:
         description: Datensatz für den neuen Eintrag. Die Attribute müssen wie folgt belegt sein
@@ -273,6 +283,10 @@ paths:
       tags:
       - DirectoryEntry Administration
       summary: Gesamten Verzeichniseintrag lesen
+      security:
+       - OAuth2:
+         - 'VZD:DirectoryAdministration'
+         - 'VZD:DirectoryRead'
       description: Liefert alle zum Filter passenden Verzeichniseinträge (maximal 100 Einträge). Die angegebenen Parameter werden mit logischen UND verknüpft.
 #
 # Für die Leseoperationen read_Directory_Entry, read_Directory_Entry_for_Sync,
@@ -506,6 +520,9 @@ paths:
       tags:
       - DirectoryEntry Synchronization
       summary: Synchronisation der Verzeichniseinträge zwischen VZD und Herausgeber
+      security:
+       - OAuth2:
+         - 'VZD:DirectoryAdministration'
       description: Liefert - analog zu read_Directory_Entry - alle zum Filter passenden Verzeichniseinträge. Im Unterschied zu read_Directory_Entry wird die Limitierung auf 100 Suchergebnisse aufgehoben. Die parallele Ausführung dieser Operation wird vom Server aus Performancegründen eingeschränkt.
         Diese Operation soll nur genutzt werden, wenn mehr als 100 Suchergebnisse benötigt werden. Für alle anderen Suchanfragen soll Operation read_Directory_Entry genutzt werden.
 #
@@ -745,6 +762,9 @@ paths:
       tags:
       - DirectoryEntry Synchronization
       summary: Synchronisation der Verzeichniseinträge zwischen VZD und Herausgeber
+      security:
+       - OAuth2:
+         - 'VZD:DirectoryAdministration'
       description: Liefert - analog zu read_Directory_Entry - alle zum Filter passenden Verzeichniseinträge. Im Unterschied zu read_Directory_Entry wird die Limitierung auf 100 Suchergebnisse aufgehoben. Die parallele Ausführung dieser Operation wird vom Server aus Performancegründen eingeschränkt.
         Diese Operation soll nur genutzt werden, wenn mehr als 100 Suchergebnisse benötigt werden. Für alle anderen Suchanfragen soll Operation read_Directory_Entry genutzt werden.
 #
@@ -1007,6 +1027,9 @@ paths:
       tags:
       - DirectoryEntry Administration
       summary: Der Verzeichniseintrag (ohne Zertifikate und Fachdaten) wird mit den übergebenen Daten aktualisiert. 
+      security:
+       - OAuth2:
+         - 'VZD:DirectoryAdministration'
       operationId: modify_Directory_Entry
       parameters:
       - name: uid
@@ -1108,6 +1131,9 @@ paths:
       tags:
       - DirectoryEntry Administration
       summary: Gesamten Verzeichniseintrag löschen
+      security:
+       - OAuth2:
+         - 'VZD:DirectoryAdministration'
       operationId: delete_Directory_Entry
       parameters:
       - name: uid
@@ -1143,6 +1169,9 @@ paths:
       tags:
       - Certificate Administration
       summary: Der Zertifikatseintrag wird im Verzeichnisdienst hinzugefügt und ist logisch über dn.uid mit dem übergeordneten Verzeichniseintrag verknüpft.  
+      security:
+       - OAuth2:
+         - 'VZD:DirectoryAdministration'
       operationId: add_Directory_Entry_Certificate
       parameters:
       - name: uid
@@ -1224,6 +1253,10 @@ paths:
       - Certificate Administration
       summary: Zertifikat lesen
       description: Liefert alle Zertifikate, die dem Filter (siehe 'parameters') entsprechen.
+      security:
+       - OAuth2:
+         - 'VZD:DirectoryAdministration'
+         - 'VZD:DirectoryRead'
       operationId: read_Directory_Certificates
       parameters:
       - name: uid
@@ -1290,6 +1323,9 @@ paths:
       - Certificate Administration
       summary: Zertifikatseintrag löschen
             Dem Verzeichniseintrag muss immer mindestens ein Zertifikat zugeordnet sein. Wenn nach dem Löschen kein Zertifikat mehr dem Verzeichniseintrag zugeordnet wäre, muss die delete Operation abgelehnt werden. 
+      security:
+       - OAuth2:
+         - 'VZD:DirectoryAdministration'
       operationId: delete_Directory_Entry_Certificate
       parameters:
       - name: uid
@@ -1348,6 +1384,10 @@ paths:
       tags:
       - Log
       summary: Log von Verzeichniseinträgen lesen
+      security:
+       - OAuth2:
+         - 'VZD:DirectoryAdministration'
+         - 'VZD:DirectoryRead'
       description: Liefert die Log Daten alle zum Filter passenden Verzeichniseinträge. Die angegebenen Parameter werden mit logischen UND verknüpft.
       operationId: readLog
 # Für die Leseoperationen read_Directory_Entry, read_Directory_Entry_for_Sync,
@@ -1997,7 +2037,5 @@ components:
               Als Clients dieser Schnittstelle sind nur Systeme der TI Kartenherausgeber und von ihnen beauftragte Organisationen (z.B. TSPs) zulässig.
               Sie dürfen alle Operationen zur Administration der Verzeichniseinträge nutzen.
               Das AccessToken enthält im 'sub' claim den Identifier des Clients, der auf die Einträge zugreift. Dieser Identifier wird im Log abgelegt, welcher die Zugriffe über diese Schnittstelle protokolliert.
-
-security:
-  - OAuth2:
-      - VZD:DirectoryAdministration
+            VZD:DirectoryRead: I_Directory_Administration Client Scope
+              Lesender Zugriff auf den VZD (ohne Sync Operationen)
