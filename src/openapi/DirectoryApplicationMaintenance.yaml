@@ -484,11 +484,6 @@ paths:
       description: Erzeugt einen neuen Fachdateneintrag
       operationId: add_Directory_FA-Attributes
       parameters:
-       - name: fad
-         in: query
-         description: Identifikator vom anfragenden Fachdienstanbieter.
-         schema:
-          type: string
        - name: telematikID
          in: path
          description: telematikID von dem Verzeichniseintrag 
