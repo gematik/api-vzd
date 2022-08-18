@@ -505,7 +505,30 @@ paths:
         400:
           description: |
            Bad Request
+           
            Fehler in dem Request Body
+           
+             - Anzahl der zulässigen Mail Adressen (maxKOMLEadr) überschritten 
+               Ein Response mit HTTP Status Kode 400 und folgenden Werten im Body wird zurück gegeben
+               ```
+                {
+                    "attributeName": "mail",
+                    "attributeError": "maxKOMLEadr wurde überschritten"
+                  }
+            - Unzulässiger Wert von Attribut KOM-LE_Version im Request
+              Ein Response mit HTTP Status Kode 400 und folgenden Werten im Body wird zurück gegeben
+              ```
+                 {
+                    "attributeName": "version",
+                    "attributeError": "Unzulässiger Wert"
+                   }
+            - Liste von Mail Adressen in FAD1.mail und FAD1.komLeData.mail inkonsistent
+              Ein Response mit HTTP Status Kode 400 und folgenden Werten im Body wird zurück gegeben
+              ```
+                 {
+                    "attributeName": "mail",
+                    "attributeError": "Inkonsistenz zwischen FAD1.mail und FAD1.komLeData.mail"
+                   }
           content: 
             application/json:
              schema:
@@ -639,8 +662,15 @@ paths:
               Ein Response mit HTTP Status Kode 400 und folgenden Werten im Body wird zurück gegeben
               ```
                  {
-                    "attributeName": "KOM-LE_Version",
+                    "attributeName": "version",
                     "attributeError": "Unzulässiger Wert"
+                   }
+            - Liste von Mail Adressen in FAD1.mail und FAD1.komLeData.mail inkonsistent
+              Ein Response mit HTTP Status Kode 400 und folgenden Werten im Body wird zurück gegeben
+              ```
+                 {
+                    "attributeName": "mail",
+                    "attributeError": "Inkonsistenz zwischen FAD1.mail und FAD1.komLeData.mail"
                    }
                        
           content: 
