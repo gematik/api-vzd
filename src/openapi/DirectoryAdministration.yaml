@@ -21,6 +21,7 @@ info:
   #      notBefore, notAfter
   #  - Attribute in Schema baseDirectoryEntry änderbar definiert:
   #      givenName, sn, cn
+  #  - Operation stateSwitch_Directory_Entry hinzu gefügt
   #
   # Änderungen in Version 1.8.3
   #  - Operation readLog hinzugefügt
@@ -1196,6 +1197,69 @@ paths:
           description: Not Found
           content: {}
 
+/DirectoryEntries/{uid}/active:
+
+    put:
+      tags:
+      - DirectoryEntry Administration
+      summary: |
+        Status Verzeichniseintrag ändern.
+        
+        Mit dieser Operation kann das Attribut "baseDirectoryEntry.active" des Verzeichniseintrags geändert werden. Dazu muss in der Operation nur das Attribut "active" des Basisdatensatzes angegeben werden. Alle anderen Attribute des VZD Eintrags bleiben ungeändert.
+      security:
+       - OAuth2:
+         - 'VZD:DirectoryAdministration'
+      operationId: stateSwitch_Directory_Entry
+      parameters:
+      - name: uid
+        in: path
+        description: ID von dem Verzeichniseintrag
+        required: true
+        schema:
+          type: string
+      - name: active
+        in: query
+        description: Wert für das Attribut "baseDirectoryEntry.active"
+        schema:
+          type: boolean
+        required: true  
+        example: true
+          
+      responses:
+        204:
+          description: No Content
+           # Die Anfrage wurde erfolgreich durchgeführt
+          content:
+            application/json:
+                schema: {}
+        400:
+          description: Bad Request
+                     # Invalid Value 
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        401:
+          description: Unauthorized
+                    #  Der WWW-Authenticate Header im Response muss auf OAuth gesetzt werden.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        403:
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+
   /DirectoryEntries/{uid}/Certificates:
     post:
       tags:
@@ -2006,10 +2070,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Fachdaten'
-      
-    
 
-            
     Error:
       type: object
       properties:
