@@ -1873,8 +1873,6 @@ components:
             $ref: '#/components/schemas/FAD1'
 
     FAD1:
-      required:
-      - dn
       type: object
       properties:
         dn:
