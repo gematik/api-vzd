@@ -98,10 +98,16 @@ paths:
                   $ref: '#/components/schemas/InfoObject'
         401:
           description: Unauthorized
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         403:
           description: Forbidden
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
 
 
   /DirectoryEntries:
@@ -336,16 +342,31 @@ paths:
             application/json:
               schema:
                   $ref: '#/components/schemas/DirectoryEntries'
-
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         401:
           description: Unauthorized
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         403:
           description: Forbidden
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         404:
           description: Not Found
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
 
   /DirectoryEntries/Certificates:
   
@@ -427,18 +448,33 @@ paths:
               schema:
                   $ref: '#/components/schemas/userCertificates'
 
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'				
         401:
           description: |
            Unauthorized
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         403:
           description: Forbidden
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         404:
           description: |
            Not Found
            Certificate not found
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
 
   /DirectoryEntries/{telematikID}/KOM-LE_Fachdaten:
     post:
@@ -481,14 +517,23 @@ paths:
               $ref: '#/components/schemas/Error'
         401:
           description: Unauthorized
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'				
         403:
           description: Forbidden
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'				
         404:
           description: Not Found
                     #  telematikID not found
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'				
 
 
   /DirectoryEntries/{telematikID}/KOM-LE_Fachdaten/{fad}:
@@ -522,17 +567,33 @@ paths:
             application/json:
               schema:
                   $ref: '#/components/schemas/FAD1'
-
+        400:
+          description: Bad Request
+                # Allgemeiner Fehler im Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         401:
           description: Unauthorized
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'				
         403:
           description: Forbidden
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'				
         404:
           description: Not Found
                     #  telematikID not found
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'				
+
 
     put:
       tags:
@@ -593,14 +654,23 @@ paths:
               $ref: '#/components/schemas/Error'
         401:
           description: Unauthorized
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         403:
           description: Forbidden
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         404:
           description: Not Found
                     #  telematikID not found
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
 
 
     delete:
@@ -637,14 +707,23 @@ paths:
               $ref: '#/components/schemas/Error'
         401:
           description: Unauthorized
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         403:
           description: Forbidden
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         404:
           description: Not Found
                     #  telematikID not found
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
 
   /Log:
     get:
@@ -776,6 +855,7 @@ paths:
                 $ref: '#/components/schemas/Error'
         404:
           description: Not Found
+                    #  telematikID not found          
           content:
             application/json:
               schema:
@@ -897,8 +977,6 @@ components:
             $ref: '#/components/schemas/FAD1'
 
     FAD1:
-      required:
-      - dn
       type: object
       properties:
         dn:
@@ -1208,8 +1286,19 @@ components:
       
     Error:
       type: object
-      maxItems: 50
-      minItems: 0
+      properties:
+        message: 
+          type: string
+          description: (optionale) Fehlernachricht
+        errors:
+          maxItems: 50
+          minItems: 0
+          type: array
+          items:
+            $ref: '#/components/schemas/InnerError'
+
+    InnerError:
+      type: object
       properties:
         attributeName:
           description: Name des Attributs, in dem ein Fehler erkannt wurde
