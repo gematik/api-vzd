@@ -19,7 +19,7 @@ image::gematik_logo.svg[gematik,float="right"]
 
 [width="100%",cols="50%,50%",options="header",]
 |===
-|Version: |1.5.3
+|Version: |1.5.4
 |Referenzierung: |gemILF_Pflege_VZD
 |===
 
@@ -75,7 +75,17 @@ Verwendung der client_id (vorher claim scope) besser erläutert +
  +
 Update zum SMC-B ORG-Eintrag der gematik +
 Neu für eGBR HBA und SMC-B |gematik
-|1.5.3 |​ |3.6, 3.3.1.3 |Rückverfolgbarkeit der Einträge (Holder-Attribute) - C_11048 |gematik
+
+|1.5.3 |23.06.2022 |3.6, 3.3.1.3 |Rückverfolgbarkeit der Einträge (Holder-Attribute) - C_11048 |gematik
+|1.5.4 |15.07.2022 |4 |
+Verwendung des holder Attributs für eGBR Einträge ergänzt +
+Optimierung der komLeData Datenstruktur - C_11165 +
+Fehlende Attribute "holder" und "dataFromAuthority" in den Attributtabellen ergänzt +
+Attribut userCertificate.active ergänzt +
+"4.14 gematik - Weitere ärztliche Institutionen (SMC-B-Eintrag)" ergänzt
+
+|gematik
+
 |===
 
 == Einordnung des Dokumentes
@@ -726,6 +736,11 @@ Kann mehrfach vorkommen (0..50) +
 Format: DER, Base64 kodiert +
 Die pflegende Stelle erhält das Zertifikat vom TSP. +
 Es können Einträge ohne Zertifikat angelegt werden. Diese Einträge werden jedoch nicht über die LDAP-Abfrageschnittstelle gefunden.
+
+|*userCertificate.active* |obligatorisch |Wird vom VZD eingetragen. +
+Wert == TRUE, wenn das userCertificate gemäß OCSP gültig ist (OCSP Response Status "good"), Wert == FALSE bei Zertifikaten von noch nicht freigeschalteten Karten (OCSP Response Status "unknown"). +
+Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in die flache Liste übernommen.
+
 |maxKOMLEadr |optional |Maximale Anzahl von Mail-Adressen in den KOM-LE-Fachdaten.  +
 Falls kein Wert eingetragen wurde, können beliebig viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden. +
 Falls ein Wert eingetragen wurde, können maximal so viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden.
@@ -735,6 +750,12 @@ Wert == TRUE, wenn alle zum Eintrag gehörenden Zertifikate den entryType 1 habe
 Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403.
 |*telematikID* |obligatorisch |Bezeichner: TelematikID +
 Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
+|*dataFromAuthority* |optional |Wird vom VZD eingetragen +
+Gibt an, ob die Daten vom Kartenherausgeber stammen. +
+Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
+  +
+Wenn der Wert TRUE ist, können die Daten nicht mehr über die Schnittstelle I_Directory_Maintenance bearbeitet werden. Die Schnittstelle I_Directory_Maintenance wird von KOM-LE-Anbietern verwendet.
+|*holder* |optional |Legt fest, wer Änderungen an den Basisdaten des Eintrags vornehmen darf. Hat keinen Einfluss auf Fachdaten und Zertifikatsdaten.
 |*professionOID* |obligatorisch |Bezeichner: Profession OID +
 Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und dem Mapping in ab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
 Kann mehrfach vorkommen (0..100)
@@ -756,8 +777,17 @@ Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
 - Für jede Mail-Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Datenstruktur komLeData geben. Es dürfen in komLeData keine Mail-Adressen referenziert werden, die nicht im übergeordneten "mail" Attribut enthalten sind.
 - Wenn eine Mail-Adresse gelöscht wird, muss auch ihr komLeData-Eintrag gelöscht werden. +
  Geschrieben wird immer die gesamte Liste. Für Änderungen muss erst der aktuelle Eintrag gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
-- Beispiel für den Wert eines komLeData-Eintrags: \{"mail": "erik.mustermann@hrstdomain.kim.telematik"; "version": "1.5"}
-
+- Beispiel für den Wert eines komLeData-Eintrags in der flachen Liste (LDAP): +
+[source, c]
+----
+ "komLeData": [
+        "1.0,xx-01@hersteller01.kim.telematik-test",
+        "1.0,xx-02@hersteller01.kim.telematik-test",
+        "1.0,xx-03@hersteller02.kim.telematik-test",
+        "1.0,xx-04@hersteller02.kim.telematik-test",
+        "1.0,xx-05@hersteller02.kim.telematik-test"
+        ]
+----
 
 Wird vom KOM-LE-Anbieter eingetragen.
 
@@ -808,6 +838,9 @@ Kann mehrfach vorkommen (0..50) +
 Format: DER, Base64 kodiert +
 Die pflegende Stelle erhält das Zertifikat vom TSP. +
 Es können Einträge ohne Zertifikat angelegt werden. Diese Einträge werden jedoch nicht über die LDAP-Abfrageschnittstelle gefunden.
+|*userCertificate.active* |obligatorisch |Wird vom VZD eingetragen. +
+Wert == TRUE, wenn das userCertificate gemäß OCSP gültig ist (OCSP Response Status "good"), Wert == FALSE bei Zertifikaten von noch nicht freigeschalteten Karten (OCSP Response Status "unknown"). +
+Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in die flache Liste übernommen.
 |*maxKOMLEadr* |optional |Maximale Anzahl von Mail-Adressen in den KOM-LE-Fachdaten.  +
 Falls kein Wert eingetragen wurde, können beliebig viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden. +
 Falls ein Wert eingetragen wurde, können maximal so viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden.
@@ -817,6 +850,12 @@ Wert == TRUE, wenn alle zum Eintrag gehörenden Zertifikate den entryType 1 habe
 Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403.
 |*telematikID* |obligatorisch |Bezeichner: TelematikID +
 Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
+|*dataFromAuthority* |optional |Wird vom VZD eingetragen +
+Gibt an, ob die Daten vom Kartenherausgeber stammen. +
+Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
+  +
+Wenn der Wert TRUE ist, können die Daten nicht mehr über die Schnittstelle I_Directory_Maintenance bearbeitet werden. Die Schnittstelle I_Directory_Maintenance wird von KOM-LE-Anbietern verwendet.
+|*holder* |optional |Legt fest, wer Änderungen an den Basisdaten des Eintrags vornehmen darf. Hat keinen Einfluss auf Fachdaten und Zertifikatsdaten.
 |*professionOID* |obligatorisch |Bezeichner: Profession OID +
 Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und dem Mapping in ab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
 Kann mehrfach vorkommen (0..100).
@@ -838,7 +877,17 @@ Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
 - Für jede Mail-Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Datenstruktur komLeData geben. Es dürfen in komLeData keine Mail-Adressen referenziert werden, die nicht im übergeordneten "mail" Attribut enthalten sind.
 - Wenn eine Mail-Adresse gelöscht wird, muss auch ihr komLeData-Eintrag gelöscht werden. +
  Geschrieben wird immer die gesamte Liste. Für Änderungen muss erst der aktuelle Eintrag gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
-- Beispiel für den Wert eines komLeData-Eintrags: \{"mail": "erik.mustermann@hrstdomain.kim.telematik"; "version": "1.5"}
+- Beispiel für den Wert eines komLeData-Eintrags in der flachen Liste (LDAP): +
+[source, c]
+----
+ "komLeData": [
+        "1.0,xx-01@hersteller01.kim.telematik-test",
+        "1.0,xx-02@hersteller01.kim.telematik-test",
+        "1.0,xx-03@hersteller02.kim.telematik-test",
+        "1.0,xx-04@hersteller02.kim.telematik-test",
+        "1.0,xx-05@hersteller02.kim.telematik-test"
+        ]
+----
 
 
 Wird vom KOM-LE-Anbieter eingetragen.
@@ -896,12 +945,21 @@ Kann mehrfach vorkommen (0..50). +
 Format: DER, Base64 kodiert +
 Die pflegende Stelle erhält das Zertifikat vom TSP. +
 Es können Einträge ohne Zertifikat angelegt werden. Diese Einträge werden jedoch nicht über die LDAP-Abfrageschnittstelle gefunden.
+|*userCertificate.active* |obligatorisch |Wird vom VZD eingetragen. +
+Wert == TRUE, wenn das userCertificate gemäß OCSP gültig ist (OCSP Response Status "good"), Wert == FALSE bei Zertifikaten von noch nicht freigeschalteten Karten (OCSP Response Status "unknown"). +
+Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in die flache Liste übernommen.
 |*personalEntry* |obligatorisch |Wird vom VZD eingetragen. +
 Wert == TRUE, wenn alle zum Eintrag gehörenden Zertifikate den entryType 1 haben (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID).
 |*entryType* |obligatorisch |Bezeichner: Eintragstyp +
 Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403.
 |*telematikID* |obligatorisch |Bezeichner: TelematikID +
 Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
+|*dataFromAuthority* |optional |Wird vom VZD eingetragen +
+Gibt an, ob die Daten vom Kartenherausgeber stammen. +
+Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
+  +
+Wenn der Wert TRUE ist, können die Daten nicht mehr über die Schnittstelle I_Directory_Maintenance bearbeitet werden. Die Schnittstelle I_Directory_Maintenance wird von KOM-LE-Anbietern verwendet.
+|*holder* |optional |Legt fest, wer Änderungen an den Basisdaten des Eintrags vornehmen darf. Hat keinen Einfluss auf Fachdaten und Zertifikatsdaten.
 |*professionOID* |obligatorisch |Bezeichner: Profession OID  +
 Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und dem Mapping in ab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
 Kann mehrfach vorkommen (0..100).
@@ -924,7 +982,17 @@ Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
 - Für jede Mail-Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Datenstruktur komLeData geben. Es dürfen in komLeData keine Mail-Adressen referenziert werden, die nicht im übergeordneten "mail" Attribut enthalten sind.
 - Wenn eine Mail-Adresse gelöscht wird, muss auch ihr komLeData-Eintrag gelöscht werden. +
  Geschrieben wird immer die gesamte Liste. Für Änderungen muss erst der aktuelle Eintrag gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
-- Beispiel für den Wert eines komLeData-Eintrags: \{"mail": "erik.mustermann@hrstdomain.kim.telematik"; "version": "1.5"}
+- Beispiel für den Wert eines komLeData-Eintrags in der flachen Liste (LDAP): +
+[source, c]
+----
+ "komLeData": [
+        "1.0,xx-01@hersteller01.kim.telematik-test",
+        "1.0,xx-02@hersteller01.kim.telematik-test",
+        "1.0,xx-03@hersteller02.kim.telematik-test",
+        "1.0,xx-04@hersteller02.kim.telematik-test",
+        "1.0,xx-05@hersteller02.kim.telematik-test"
+        ]
+----
 
 
 Wird vom KOM-LE-Anbieter eingetragen.
@@ -985,12 +1053,21 @@ Neue Einträge können nur mit Zertifikat angelegt werden. +
 Format: DER, Base64 kodiert +
 Die pflegende Stelle erhält das Zertifikat vom TSP. +
 Es können Einträge ohne Zertifikat angelegt werden. Diese Einträge werden jedoch nicht über die LDAP-Abfrageschnittstelle gefunden.
+|*userCertificate.active* |obligatorisch |Wird vom VZD eingetragen. +
+Wert == TRUE, wenn das userCertificate gemäß OCSP gültig ist (OCSP Response Status "good"), Wert == FALSE bei Zertifikaten von noch nicht freigeschalteten Karten (OCSP Response Status "unknown"). +
+Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in die flache Liste übernommen.
 |*personalEntry* |obligatorisch |Wird vom VZD eingetragen +
 Wert == TRUE, wenn alle zum Eintrag gehörenden Zertifikate den entryType 1 haben (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID).
 |*entryType* |obligatorisch |Bezeichner: Eintragstyp +
 Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403.
 |*telematikID* |obligatorisch |Bezeichner: TelematikID +
 Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
+|*dataFromAuthority* |optional |Wird vom VZD eingetragen +
+Gibt an, ob die Daten vom Kartenherausgeber stammen. +
+Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
+  +
+Wenn der Wert TRUE ist, können die Daten nicht mehr über die Schnittstelle I_Directory_Maintenance bearbeitet werden. Die Schnittstelle I_Directory_Maintenance wird von KOM-LE-Anbietern verwendet.
+|*holder* |optional |Legt fest, wer Änderungen an den Basisdaten des Eintrags vornehmen darf. Hat keinen Einfluss auf Fachdaten und Zertifikatsdaten.
 |*professionOID* |obligatorisch |Bezeichner: Profession OID +
 Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und dem Mapping in ab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
 Kann mehrfach vorkommen (0..100).
@@ -1014,7 +1091,17 @@ Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
 - Für jede Mail-Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Datenstruktur komLeData geben. Es dürfen in komLeData keine Mail-Adressen referenziert werden, die nicht im übergeordneten "mail" Attribut enthalten sind.
 - Wenn eine Mail-Adresse gelöscht wird, muss auch ihr komLeData-Eintrag gelöscht werden. +
  Geschrieben wird immer die gesamte Liste. Für Änderungen muss erst der aktuelle Eintrag gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
-- Beispiel für den Wert eines komLeData-Eintrags: \{"mail": "erik.mustermann@hrstdomain.kim.telematik"; "version": "1.5"}
+- Beispiel für den Wert eines komLeData-Eintrags in der flachen Liste (LDAP): +
+[source, c]
+----
+ "komLeData": [
+        "1.0,xx-01@hersteller01.kim.telematik-test",
+        "1.0,xx-02@hersteller01.kim.telematik-test",
+        "1.0,xx-03@hersteller02.kim.telematik-test",
+        "1.0,xx-04@hersteller02.kim.telematik-test",
+        "1.0,xx-05@hersteller02.kim.telematik-test"
+        ]
+----
 
 Wird vom KOM-LE-Anbieter eingetragen.
 
@@ -1033,12 +1120,10 @@ Tabelle 6: Tab_VZD_Datenbeschreibung_DKG
  |*Pflichtfeld aus Sicht Pflege und Nutzung?* +
  |*Erläuterung* +
 
-|givenName |optional |Wird für SMC-B nicht verwendet.
+|*givenName* |optional |Wird für SMC-B nicht verwendet.
 |*sn* |optional |Wird vom VZD als Kopie von displayName automatisch eingetragen. +
 Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet.
-|*cn* +
-* * +
-  |obligatorisch |Bezeichner: Name +
+|*cn* |obligatorisch |Bezeichner: Name +
 Wird vom VZD als Kopie des Attributs displayName übernommen. +
 Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet.
 |*otherName* |optional |Das Attribut otherName ist veraltet und wird in einer zukünftigen Version aus dem Datenmodell entfernt. +
@@ -1073,12 +1158,21 @@ Kann mehrfach vorkommen (0..50) +
 Format: DER, Base64 kodiert +
 Die pflegende Stelle erhält das Zertifikat vom TSP. +
 Es können Einträge ohne Zertifikat angelegt werden. Diese Einträge werden jedoch nicht über die LDAP-Abfrageschnittstelle gefunden.
+|*userCertificate.active* |obligatorisch |Wird vom VZD eingetragen. +
+Wert == TRUE, wenn das userCertificate gemäß OCSP gültig ist (OCSP Response Status "good"), Wert == FALSE bei Zertifikaten von noch nicht freigeschalteten Karten (OCSP Response Status "unknown"). +
+Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in die flache Liste übernommen.
 |*personalEntry* |obligatorisch |Wird vom VZD eingetragen +
 Wert == TRUE, wenn alle zum Eintrag gehörenden Zertifikate den entryType 1 haben (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID).
 |*entryType* |obligatorisch |Bezeichner: Eintragstyp +
 Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403.
 |*telematikID* |obligatorisch |Bezeichner: TelematikID +
 Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
+|*dataFromAuthority* |optional |Wird vom VZD eingetragen +
+Gibt an, ob die Daten vom Kartenherausgeber stammen. +
+Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
+  +
+Wenn der Wert TRUE ist, können die Daten nicht mehr über die Schnittstelle I_Directory_Maintenance bearbeitet werden. Die Schnittstelle I_Directory_Maintenance wird von KOM-LE-Anbietern verwendet.
+|*holder* |optional |Legt fest, wer Änderungen an den Basisdaten des Eintrags vornehmen darf. Hat keinen Einfluss auf Fachdaten und Zertifikatsdaten.
 |*professionOID* |obligatorisch |Bezeichner: Profession OID +
 Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und dem Mapping in ab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
 Kann mehrfach vorkommen (0..100).
@@ -1101,7 +1195,17 @@ Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
 - Für jede Mail-Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Datenstruktur komLeData geben. Es dürfen in komLeData keine Mail-Adressen referenziert werden, die nicht im übergeordneten "mail" Attribut enthalten sind.
 - Wenn eine Mail-Adresse gelöscht wird, muss auch ihr komLeData-Eintrag gelöscht werden. +
  Geschrieben wird immer die gesamte Liste. Für Änderungen muss erst der aktuelle Eintrag gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
-- Beispiel für den Wert eines komLeData-Eintrags: \{"mail": "erik.mustermann@hrstdomain.kim.telematik"; "version": "1.5"}
+- Beispiel für den Wert eines komLeData-Eintrags in der flachen Liste (LDAP): +
+[source, c]
+----
+ "komLeData": [
+        "1.0,xx-01@hersteller01.kim.telematik-test",
+        "1.0,xx-02@hersteller01.kim.telematik-test",
+        "1.0,xx-03@hersteller02.kim.telematik-test",
+        "1.0,xx-04@hersteller02.kim.telematik-test",
+        "1.0,xx-05@hersteller02.kim.telematik-test"
+        ]
+----
 
 Wird vom KOM-LE-Anbieter eingetragen.
 
@@ -1162,12 +1266,21 @@ Kann mehrfach vorkommen (0..50). +
 Format: DER, Base64 kodiert +
 Die pflegende Stelle erhält das Zertifikat vom TSP. +
 Es können Einträge ohne Zertifikat angelegt werden. Diese Einträge werden jedoch nicht über die LDAP-Abfrageschnittstelle gefunden.
+|*userCertificate.active* |obligatorisch |Wird vom VZD eingetragen. +
+Wert == TRUE, wenn das userCertificate gemäß OCSP gültig ist (OCSP Response Status "good"), Wert == FALSE bei Zertifikaten von noch nicht freigeschalteten Karten (OCSP Response Status "unknown"). +
+Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in die flache Liste übernommen.
 |*personalEntry* |obligatorisch |Wird vom VZD eingetragen. +
 Wert == TRUE, wenn alle zum Eintrag gehörenden Zertifikate den entryType 1 haben (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID).
 |*entryType* |obligatorisch |Bezeichner: Eintragstyp +
 Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403.
 |*telematikID* |obligatorisch |Bezeichner: TelematikID +
 Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
+|*dataFromAuthority* |optional |Wird vom VZD eingetragen +
+Gibt an, ob die Daten vom Kartenherausgeber stammen. +
+Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
+  +
+Wenn der Wert TRUE ist, können die Daten nicht mehr über die Schnittstelle I_Directory_Maintenance bearbeitet werden. Die Schnittstelle I_Directory_Maintenance wird von KOM-LE-Anbietern verwendet.
+|*holder* |optional |Legt fest, wer Änderungen an den Basisdaten des Eintrags vornehmen darf. Hat keinen Einfluss auf Fachdaten und Zertifikatsdaten.
 |*professionOID* |obligatorisch |Bezeichner: Profession OID +
 Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und dem Mapping in ab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
 Kann mehrfach vorkommen (0..100).
@@ -1191,7 +1304,17 @@ Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
 - Für jede Mail-Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Datenstruktur komLeData geben. Es dürfen in komLeData keine Mail-Adressen referenziert werden, die nicht im übergeordneten "mail" Attribut enthalten sind.
 - Wenn eine Mail-Adresse gelöscht wird, muss auch ihr komLeData-Eintrag gelöscht werden. +
  Geschrieben wird immer die gesamte Liste. Für Änderungen muss erst der aktuelle Eintrag gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
-- Beispiel für den Wert eines komLeData-Eintrags: \{"mail": "erik.mustermann@hrstdomain.kim.telematik"; "version": "1.5"}
+- Beispiel für den Wert eines komLeData-Eintrags in der flachen Liste (LDAP): +
+[source, c]
+----
+ "komLeData": [
+        "1.0,xx-01@hersteller01.kim.telematik-test",
+        "1.0,xx-02@hersteller01.kim.telematik-test",
+        "1.0,xx-03@hersteller02.kim.telematik-test",
+        "1.0,xx-04@hersteller02.kim.telematik-test",
+        "1.0,xx-05@hersteller02.kim.telematik-test"
+        ]
+----
 
 Wird vom KOM-LE-Anbieter eingetragen.
 
@@ -1251,12 +1374,21 @@ Neue Einträge können nur mit Zertifikat angelegt werden. +
 Format: DER, Base64 kodiert +
 Die pflegende Stelle erhält das Zertifikat vom TSP. +
 Es können Einträge ohne Zertifikat angelegt werden. Diese Einträge werden jedoch nicht über die LDAP-Abfrageschnittstelle gefunden.
+|*userCertificate.active* |obligatorisch |Wird vom VZD eingetragen. +
+Wert == TRUE, wenn das userCertificate gemäß OCSP gültig ist (OCSP Response Status "good"), Wert == FALSE bei Zertifikaten von noch nicht freigeschalteten Karten (OCSP Response Status "unknown"). +
+Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in die flache Liste übernommen.
 |*personalEntry* |obligatorisch |Wird vom VZD eingetragen +
 Wert == TRUE, wenn alle zum Eintrag gehörenden Zertifikate den entryType 1 haben (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID).
 |*entryType* |obligatorisch |Bezeichner: Eintragstyp +
 Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403.
 |*telematikID* |obligatorisch |Bezeichner: TelematikID +
 Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
+|*dataFromAuthority* |optional |Wird vom VZD eingetragen +
+Gibt an, ob die Daten vom Kartenherausgeber stammen. +
+Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
+  +
+Wenn der Wert TRUE ist, können die Daten nicht mehr über die Schnittstelle I_Directory_Maintenance bearbeitet werden. Die Schnittstelle I_Directory_Maintenance wird von KOM-LE-Anbietern verwendet.
+|*holder* |optional |Legt fest, wer Änderungen an den Basisdaten des Eintrags vornehmen darf. Hat keinen Einfluss auf Fachdaten und Zertifikatsdaten.
 |*professionOID* |obligatorisch |Bezeichner: Profession OID +
 Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und dem Mapping in ab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
 Kann mehrfach vorkommen (0..100).
@@ -1280,7 +1412,17 @@ Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
 - Für jede Mail-Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Datenstruktur komLeData geben. Es dürfen in komLeData keine Mail-Adressen referenziert werden, die nicht im übergeordneten "mail" Attribut enthalten sind.
 - Wenn eine Mail-Adresse gelöscht wird, muss auch ihr komLeData-Eintrag gelöscht werden. +
  Geschrieben wird immer die gesamte Liste. Für Änderungen muss erst der aktuelle Eintrag gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
-- Beispiel für den Wert eines komLeData-Eintrags: \{"mail": "erik.mustermann@hrstdomain.kim.telematik"; "version": "1.5"}
+- Beispiel für den Wert eines komLeData-Eintrags in der flachen Liste (LDAP): +
+[source, c]
+----
+ "komLeData": [
+        "1.0,xx-01@hersteller01.kim.telematik-test",
+        "1.0,xx-02@hersteller01.kim.telematik-test",
+        "1.0,xx-03@hersteller02.kim.telematik-test",
+        "1.0,xx-04@hersteller02.kim.telematik-test",
+        "1.0,xx-05@hersteller02.kim.telematik-test"
+        ]
+----
 
 Wird vom KOM-LE-Anbieter eingetragen.
 
@@ -1340,12 +1482,21 @@ Neue Einträge können nur mit Zertifikat angelegt werden. +
 Format: DER, Base64 kodiert +
 Die pflegende Stelle erhält das Zertifikat vom TSP. +
 Es können Einträge ohne Zertifikat angelegt werden. Diese Einträge werden jedoch nicht über die LDAP-Abfrageschnittstelle gefunden.
+|*userCertificate.active* |obligatorisch |Wird vom VZD eingetragen. +
+Wert == TRUE, wenn das userCertificate gemäß OCSP gültig ist (OCSP Response Status "good"), Wert == FALSE bei Zertifikaten von noch nicht freigeschalteten Karten (OCSP Response Status "unknown"). +
+Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in die flache Liste übernommen.
 |*personalEntry* |obligatorisch |Wird vom VZD eingetragen +
 Wert == TRUE, wenn alle zum Eintrag gehörenden Zertifikate den entryType 1 haben (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID).
 |*entryType* |obligatorisch |Bezeichner: Eintragstyp +
 Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403.
 |*telematikID* |obligatorisch |Bezeichner: TelematikID +
 Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
+|*dataFromAuthority* |optional |Wird vom VZD eingetragen +
+Gibt an, ob die Daten vom Kartenherausgeber stammen. +
+Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
+  +
+Wenn der Wert TRUE ist, können die Daten nicht mehr über die Schnittstelle I_Directory_Maintenance bearbeitet werden. Die Schnittstelle I_Directory_Maintenance wird von KOM-LE-Anbietern verwendet.
+|*holder* |optional |Legt fest, wer Änderungen an den Basisdaten des Eintrags vornehmen darf. Hat keinen Einfluss auf Fachdaten und Zertifikatsdaten.
 |*professionOID* |obligatorisch |Bezeichner: Profession OID +
 Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und dem Mapping in ab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
 Kann mehrfach vorkommen (0..100).
@@ -1369,7 +1520,17 @@ Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
 - Für jede Mail-Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Datenstruktur komLeData geben. Es dürfen in komLeData keine Mail-Adressen referenziert werden, die nicht im übergeordneten "mail" Attribut enthalten sind.
 - Wenn eine Mail-Adresse gelöscht wird, muss auch ihr komLeData-Eintrag gelöscht werden. +
  Geschrieben wird immer die gesamte Liste. Für Änderungen muss erst der aktuelle Eintrag gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
-- Beispiel für den Wert eines komLeData-Eintrags: \{"mail": "erik.mustermann@hrstdomain.kim.telematik"; "version": "1.5"}
+- Beispiel für den Wert eines komLeData-Eintrags in der flachen Liste (LDAP): +
+[source, c]
+----
+ "komLeData": [
+        "1.0,xx-01@hersteller01.kim.telematik-test",
+        "1.0,xx-02@hersteller01.kim.telematik-test",
+        "1.0,xx-03@hersteller02.kim.telematik-test",
+        "1.0,xx-04@hersteller02.kim.telematik-test",
+        "1.0,xx-05@hersteller02.kim.telematik-test"
+        ]
+----
 
 Wird vom KOM-LE-Anbieter eingetragen.
 
@@ -1420,6 +1581,9 @@ Kann mehrfach vorkommen (0..50). +
 Format: DER, Base64 kodiert +
 Das Zertifikat wird von der pflegenden Stelle (TSP) eingetragen. +
 Es können Einträge ohne Zertifikat angelegt werden. Diese Einträge werden jedoch nicht über die LDAP-Abfrageschnittstelle gefunden.
+|*userCertificate.active* |obligatorisch |Wird vom VZD eingetragen. +
+Wert == TRUE, wenn das userCertificate gemäß OCSP gültig ist (OCSP Response Status "good"), Wert == FALSE bei Zertifikaten von noch nicht freigeschalteten Karten (OCSP Response Status "unknown"). +
+Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in die flache Liste übernommen.
 |*otherName* |optional |Das Attribut otherName ist veraltet und wird in einer zukünftigen Version aus dem Datenmodell entfernt. +
  +
 Bezeichner: Anderer Name +
@@ -1431,6 +1595,7 @@ Wert == FALSE für SMC-B KTR
 Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403.
 |*telematikID* |obligatorisch |Bezeichner: TelematikID +
 Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
+|*holder* |optional |Legt fest, wer Änderungen an den Basisdaten des Eintrags vornehmen darf. Hat keinen Einfluss auf Fachdaten und Zertifikatsdaten.
 |*professionOID* |obligatorisch |Bezeichner: Profession OID +
 Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und dem Mapping in ab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
 Kann mehrfach vorkommen (0..100).
@@ -1453,7 +1618,17 @@ Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
 - Für jede Mail-Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Datenstruktur komLeData geben. Es dürfen in komLeData keine Mail-Adressen referenziert werden, die nicht im übergeordneten "mail" Attribut enthalten sind.
 - Wenn eine Mail-Adresse gelöscht wird, muss auch ihr komLeData-Eintrag gelöscht werden. +
  Geschrieben wird immer die gesamte Liste. Für Änderungen muss erst der aktuelle Eintrag gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
-- Beispiel für den Wert eines komLeData-Eintrags: \{"mail": "erik.mustermann@hrstdomain.kim.telematik"; "version": "1.5"}
+- Beispiel für den Wert eines komLeData-Eintrags in der flachen Liste (LDAP): +
+[source, c]
+----
+ "komLeData": [
+        "1.0,xx-01@hersteller01.kim.telematik-test",
+        "1.0,xx-02@hersteller01.kim.telematik-test",
+        "1.0,xx-03@hersteller02.kim.telematik-test",
+        "1.0,xx-04@hersteller02.kim.telematik-test",
+        "1.0,xx-05@hersteller02.kim.telematik-test"
+        ]
+----
 
 Wird vom KOM-LE-Anbieter eingetragen.
 
@@ -1511,6 +1686,9 @@ Kann mehrfach vorkommen (0..50). +
 Format: DER, Base64 kodiert +
 Das Zertifikat wird von der pflegenden Stelle (TSP) eingetragen. +
 Es können Einträge ohne Zertifikat angelegt werden. Diese Einträge werden jedoch nicht über die LDAP-Abfrageschnittstelle gefunden.
+|*userCertificate.active* |obligatorisch |Wird vom VZD eingetragen. +
+Wert == TRUE, wenn das userCertificate gemäß OCSP gültig ist (OCSP Response Status "good"), Wert == FALSE bei Zertifikaten von noch nicht freigeschalteten Karten (OCSP Response Status "unknown"). +
+Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in die flache Liste übernommen.
 |*otherName* |optional |Das Attribut otherName ist veraltet und wird in einer zukünftigen Version aus dem Datenmodell entfernt. +
  +
 Bezeichner: Anderer Name +
@@ -1522,6 +1700,7 @@ Wert == FALSE für SMC-B KTR ePA
 Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403.
 |*telematikID* |obligatorisch |Bezeichner: TelematikID +
 Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
+|*holder* |optional |Legt fest, wer Änderungen an den Basisdaten des Eintrags vornehmen darf. Hat keinen Einfluss auf Fachdaten und Zertifikatsdaten.
 |*professionOID* |obligatorisch |Bezeichner: Profession OID +
 Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und dem Mapping in ab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
 Kann mehrfach vorkommen (0..100).
@@ -1588,12 +1767,21 @@ Kann mehrfach vorkommen (0..50) +
 Format: DER, Base64 kodiert +
 Die pflegende Stelle erhält das Zertifikat vom TSP. +
 Es können Einträge ohne Zertifikat angelegt werden. Diese Einträge werden jedoch nicht über die LDAP-Abfrageschnittstelle gefunden.
+|*userCertificate.active* |obligatorisch |Wird vom VZD eingetragen. +
+Wert == TRUE, wenn das userCertificate gemäß OCSP gültig ist (OCSP Response Status "good"), Wert == FALSE bei Zertifikaten von noch nicht freigeschalteten Karten (OCSP Response Status "unknown"). +
+Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in die flache Liste übernommen.
 |*personalEntry* |obligatorisch |Wird vom VZD eingetragen. +
 Wert == TRUE, wenn alle zum Eintrag gehörenden Zertifikate den entryType 1 haben (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID).
 |*entryType* |obligatorisch |Bezeichner: Eintragstyp +
 Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403.
 |*telematikID* |obligatorisch |Bezeichner: TelematikID +
 Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
+|*dataFromAuthority* |optional |Wird vom VZD eingetragen +
+Gibt an, ob die Daten vom Kartenherausgeber stammen. +
+Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
+  +
+Wenn der Wert TRUE ist, können die Daten nicht mehr über die Schnittstelle I_Directory_Maintenance bearbeitet werden. Die Schnittstelle I_Directory_Maintenance wird von KOM-LE-Anbietern verwendet.
+|*holder* |optional |Legt fest, wer Änderungen an den Basisdaten des Eintrags vornehmen darf. Hat keinen Einfluss auf Fachdaten und Zertifikatsdaten.
 |*professionOID* |obligatorisch |Bezeichner: Profession OID +
 Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und dem Mapping in ab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
 Kann mehrfach vorkommen (0..100).
@@ -1613,7 +1801,17 @@ Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
 - Für jede Mail-Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Datenstruktur komLeData geben. Es dürfen in komLeData keine Mail-Adressen referenziert werden, die nicht im übergeordneten "mail" Attribut enthalten sind.
 - Wenn eine Mail-Adresse gelöscht wird, muss auch ihr komLeData-Eintrag gelöscht werden. +
  Geschrieben wird immer die gesamte Liste. Für Änderungen muss erst der aktuelle Eintrag gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
-- Beispiel für den Wert eines komLeData-Eintrags: \{"mail": "erik.mustermann@hrstdomain.kim.telematik"; "version": "1.5"}
+- Beispiel für den Wert eines komLeData-Eintrags in der flachen Liste (LDAP): +
+[source, c]
+----
+ "komLeData": [
+        "1.0,xx-01@hersteller01.kim.telematik-test",
+        "1.0,xx-02@hersteller01.kim.telematik-test",
+        "1.0,xx-03@hersteller02.kim.telematik-test",
+        "1.0,xx-04@hersteller02.kim.telematik-test",
+        "1.0,xx-05@hersteller02.kim.telematik-test"
+        ]
+----
 
 Wird vom KOM-LE-Anbieter eingetragen.
 
@@ -1623,6 +1821,8 @@ Wird vom KOM-LE-Anbieter eingetragen.
 {empty} +
 
 === eGBR – Nichtärztliche Institutionen (SMC-B-Eintrag)
+
+eGBR Einträge werden im Verzeichnisdienst durch den TSP angelegt. Der TSP trägt in das Attribut `holder` der Wert `egbr` und seine eigene clientID ein. Damit sind diese Einträge durch eGBR Clients und die Clients des TSPs änderbar.
 
 Tabelle 13: Tab_VZD_Datenbeschreibung_der_SMC-B_eGBR
 
@@ -1666,12 +1866,21 @@ Kann mehrfach vorkommen (0..50) +
 Format: DER, Base64 kodiert +
 Die pflegende Stelle erhält das Zertifikat vom TSP. +
 Es können Einträge ohne Zertifikat angelegt werden. Diese Einträge werden jedoch nicht über die LDAP-Abfrageschnittstelle gefunden.
+|*userCertificate.active* |obligatorisch |Wird vom VZD eingetragen. +
+Wert == TRUE, wenn das userCertificate gemäß OCSP gültig ist (OCSP Response Status "good"), Wert == FALSE bei Zertifikaten von noch nicht freigeschalteten Karten (OCSP Response Status "unknown"). +
+Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in die flache Liste übernommen.
 |*personalEntry* |obligatorisch |Wird vom VZD eingetragen. +
 Wert == TRUE, wenn alle zum Eintrag gehörenden Zertifikate den entryType 1 haben (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID).
 |*entryType* |obligatorisch |Bezeichner: Eintragstyp +
 Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403.
 |*telematikID* |obligatorisch |Bezeichner: TelematikID +
 Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
+|*dataFromAuthority* |optional |Wird vom VZD eingetragen +
+Gibt an, ob die Daten vom Kartenherausgeber stammen. +
+Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
+  +
+Wenn der Wert TRUE ist, können die Daten nicht mehr über die Schnittstelle I_Directory_Maintenance bearbeitet werden. Die Schnittstelle I_Directory_Maintenance wird von KOM-LE-Anbietern verwendet.
+|*holder* |optional |Legt fest, wer Änderungen an den Basisdaten des Eintrags vornehmen darf. Hat keinen Einfluss auf Fachdaten und Zertifikatsdaten.
 |*professionOID* |obligatorisch |Bezeichner: Profession OID +
 Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und dem Mapping in ab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
 Kann mehrfach vorkommen (0..100).
@@ -1691,7 +1900,17 @@ Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
 - Für jede Mail-Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Datenstruktur komLeData geben. Es dürfen in komLeData keine Mail-Adressen referenziert werden, die nicht im übergeordneten "mail" Attribut enthalten sind.
 - Wenn eine Mail-Adresse gelöscht wird, muss auch ihr komLeData-Eintrag gelöscht werden. +
  Geschrieben wird immer die gesamte Liste. Für Änderungen muss erst der aktuelle Eintrag gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
-- Beispiel für den Wert eines komLeData-Eintrags: \{"mail": "erik.mustermann@hrstdomain.kim.telematik"; "version": "1.5"}
+- Beispiel für den Wert eines komLeData-Eintrags in der flachen Liste (LDAP): +
+[source, c]
+----
+ "komLeData": [
+        "1.0,xx-01@hersteller01.kim.telematik-test",
+        "1.0,xx-02@hersteller01.kim.telematik-test",
+        "1.0,xx-03@hersteller02.kim.telematik-test",
+        "1.0,xx-04@hersteller02.kim.telematik-test",
+        "1.0,xx-05@hersteller02.kim.telematik-test"
+        ]
+----
 
 Wird vom KOM-LE-Anbieter eingetragen.
 
@@ -1701,6 +1920,7 @@ Wird vom KOM-LE-Anbieter eingetragen.
 {empty} +
 
 === eGBR – Weitere Gesundheitsfachberufe (HBA-Eintrag)
+eGBR Einträge werden im Verzeichnisdienst durch den TSP angelegt. Der TSP trägt in das Attribut "holder" der Wert "eGBR" und seine eigene clientID ein. Damit sind diese Einträge durch eGBR Clients und die Clients des TSPs änderbar.
 
 Tabelle 14: Tab_VZD_Datenbeschreibung_eGBR_HBA
 
@@ -1743,12 +1963,21 @@ Neue Einträge können nur mit Zertifikat angelegt werden. +
 Format: DER, Base64 kodiert +
 Die pflegende Stelle erhält das Zertifikat vom TSP. +
 Es können Einträge ohne Zertifikat angelegt werden. Diese Einträge werden jedoch nicht über die LDAP-Abfrageschnittstelle gefunden.
+|*userCertificate.active* |obligatorisch |Wird vom VZD eingetragen. +
+Wert == TRUE, wenn das userCertificate gemäß OCSP gültig ist (OCSP Response Status "good"), Wert == FALSE bei Zertifikaten von noch nicht freigeschalteten Karten (OCSP Response Status "unknown"). +
+Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in die flache Liste übernommen.
 |*personalEntry* |obligatorisch |Wird vom VZD eingetragen +
 Wert == TRUE, wenn alle zum Eintrag gehörenden Zertifikate den entryType 1 haben (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID).
 |*entryType* |obligatorisch |Bezeichner: Eintragstyp +
 Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403.
 |*telematikID* |obligatorisch |Bezeichner: TelematikID +
 Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
+|*dataFromAuthority* |optional |Wird vom VZD eingetragen +
+Gibt an, ob die Daten vom Kartenherausgeber stammen. +
+Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
+  +
+Wenn der Wert TRUE ist, können die Daten nicht mehr über die Schnittstelle I_Directory_Maintenance bearbeitet werden. Die Schnittstelle I_Directory_Maintenance wird von KOM-LE-Anbietern verwendet.
+|*holder* |optional |Legt fest, wer Änderungen an den Basisdaten des Eintrags vornehmen darf. Hat keinen Einfluss auf Fachdaten und Zertifikatsdaten.
 |*professionOID* |obligatorisch |Bezeichner: Profession OID +
 Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und dem Mapping in ab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
 Kann mehrfach vorkommen (0..100).
@@ -1772,7 +2001,120 @@ Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
 - Für jede Mail-Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Datenstruktur komLeData geben. Es dürfen in komLeData keine Mail-Adressen referenziert werden, die nicht im übergeordneten "mail" Attribut enthalten sind.
 - Wenn eine Mail-Adresse gelöscht wird, muss auch ihr komLeData-Eintrag gelöscht werden. +
  Geschrieben wird immer die gesamte Liste. Für Änderungen muss erst der aktuelle Eintrag gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
-- Beispiel für den Wert eines komLeData-Eintrags: \{"mail": "erik.mustermann@hrstdomain.kim.telematik"; "version": "1.5"}
+- Beispiel für den Wert eines komLeData-Eintrags in der flachen Liste (LDAP): +
+[source, c]
+----
+ "komLeData": [
+        "1.0,xx-01@hersteller01.kim.telematik-test",
+        "1.0,xx-02@hersteller01.kim.telematik-test",
+        "1.0,xx-03@hersteller02.kim.telematik-test",
+        "1.0,xx-04@hersteller02.kim.telematik-test",
+        "1.0,xx-05@hersteller02.kim.telematik-test"
+        ]
+----
+
+Wird vom KOM-LE-Anbieter eingetragen.
+
+|===
+
+{empty} +
+{empty} +
+
+=== gematik - Weitere ärztliche Institutionen (SMC-B-Eintrag)
+
+Tabelle 15: Tab_VZD_Datenbeschreibung_der_SMC-B_eGBR
+
+[width="100%",cols="18%,12%,70%",options="header",]
+|===
+|*LDAP-Directory Attribut* |*Pflichtfeld aus Sicht Pflege und Nutzung?* |*Erläuterung*
+|*givenName* |optional |Wird für SMC-B nicht verwendet.
+|*sn* |optional |Wird vom VZD als Kopie von displayName automatisch eingetragen. +
+Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet.
+|*cn* |obligatorisch |Bezeichner: Name +
+Wird vom VZD als Kopie des Attributs displayName übernommen. +
+Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet.
+|*otherName* |optional |Das Attribut otherName ist veraltet und wird in einer zukünftigen Version aus dem Datenmodell entfernt. +
+ +
+Bezeichner: Anderer Name +
+Wird vom VZD aus dem Zertifikatsattribut otherName übernommen.
+|*displayName* |obligatorisch |Bezeichner: Anzeigename +
+Dieses Attribut wird genutzt, um den Namen der Leistungserbringerinstitution gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut um die Suche einzuschränken und bei der Darstellung des Ergebnisses).
+|*streetAddress* |obligatorisch |Bezeichner: Straße und Hausnummer (wenn verfügbar) der Leistungserbringerinstitution
+|*postalCode* |obligatorisch |Bezeichner: Postleitzahl der Leistungserbringerinstitution
+|*localityName* |obligatorisch |Bezeichner: Ort der Leistungserbringerinstitution
+|*stateOrProvinceName* |obligatorisch |Bezeichner: Bundesland der Leistungserbringerinstitution
+|*countryCode* |optional |Siehe TAB_VZD_Wertebereiche_der_Attribute
+|*changeDateTime* |optional |Bezeichner: Änderungszeitstempel +
+Wird vom VZD automatisch eingetragen.
+|*organization* |optional |Bezeichner: Organisation +
+Dieses Attribut ist ein optionales zweites Namensattribut und wird befüllt bei Bedarf. Ebenso wie displayName ist es geeignet, um nach einem Namen zu filtern und ihn im Suchergebnis anzuzeigen.
+|*domainID* |obligatorisch |nicht belegt
+|*specialization* |obligatorisch |Bezeichner: Fachgebiet +
+Kann mehrfach vorkommen (1..100). +
+Der Wertebereich entspricht den in HL7 definierten und für ePA festgelegten Werten ( https://wiki.hl7.de/index.php?title=IG:Value_Sets_f%C3%BCr_XDS#DocumentEntry.practiceSettingCode[+++https://wiki.hl7.de/index.php?title=IG:Value_Sets_f%C3%BCr_XDS#DocumentEntry.practiceSettingCode+++]). +
+
+urn:psc:<OID Codesystem:Code> +
+ +
+Beispiel für Arbeitsmedizin:
+urn:psc:1.3.6.1.4.1.19376.3.276.1.5.4:ARBE +
+Beispiel für öffentlichen Gesundheitsdienst:
+urn:psc:1.3.6.1.4.1.19376.3.276.1.5.4:GESU +
+Beispiel für Zahnmedizin: urn:psc:1.3.6.1.4.1.19376.3.276.1.5.4:MKZH +
+Beispiel für Allgemeinmedizin: urn:psc:1.3.6.1.4.1.19376.3.276.1.5.4:ALLG +
+|*usage* |optional |Das Attribut usage wird nicht verwendet.
+|*maxKOMLEadr* |optional |Maximale Anzahl von Mail-Adressen in den KOM-LE-Fachdaten. +
+Falls kein Wert eingetragen wurde, können beliebig viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden. +
+Falls ein Wert eingetragen wurde, können maximal so viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden.
+|*userCertificate* |obligatorisch |Bezeichner: Enc-Zertifikat der SMC-B +
+Kann mehrfach vorkommen (0..50) +
+Format: DER, Base64 kodiert +
+Die pflegende Stelle erhÃ¤lt das Zertifikat vom TSP. +
+Es können EintrÃ¤ge ohne Zertifikat angelegt werden. Diese Einträge werden jedoch nicht über die LDAP-Abfrageschnittstelle gefunden.
+|*userCertificate.active* |obligatorisch |Wird vom VZD eingetragen. +
+Wert == TRUE, wenn das userCertificate gemäß OCSP gültig ist (OCSP Response Status "good"), Wert == FALSE bei Zertifikaten von noch nicht freigeschalteten Karten (OCSP Response Status "unknown"). +
+Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in die flache Liste übernommen.
+|*personalEntry* |obligatorisch |Wird vom VZD eingetragen. +
+Wert == TRUE, wenn alle zum Eintrag gehörenden Zertifikate den entryType 1 haben (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID).
+|*entryType* |obligatorisch |Bezeichner: Eintragstyp +
+Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403.
+|*telematikID* |obligatorisch |Bezeichner: TelematikID +
+Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
+|*dataFromAuthority* |optional |Wird vom VZD eingetragen +
+Gibt an, ob die Daten vom Kartenherausgeber stammen. +
+Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
+ +
+Wenn der Wert TRUE ist, können die Daten nicht mehr über die Schnittstelle I_Directory_Maintenance bearbeitet werden. Die Schnittstelle I_Directory_Maintenance wird von KOM-LE-Anbietern verwendet.
+|*holder* |optional |Legt fest, wer Änderungen an den Basisdaten des Eintrags vornehmen darf. Hat keinen Einfluss auf Fachdaten und Zertifikatsdaten.
+|*professionOID* |obligatorisch |Bezeichner: Profession OID +
+Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und dem Mapping in ab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
+Kann mehrfach vorkommen (0..100).
+|*title* |optional |Wird für SMC-B nicht verwendet.
+|*description* |optional |Wird derzeit nicht verwendet.
+|*mail* |optional |Bezeichner: E-Mail-Adresse +
+Kann mehrfach vorkommen (0..100). +
+Wird vom KOM-LE-Anbieter eingetragen.
+|*komLeData* |optional a|
+Bezeichner: komLeData +
+Enthält die KOM-LE-Version des Clientmoduls der angegebenen "mail" Adresse im Attribut "version". Anhand dieser Version erkennt das sendende Clientmodul, welche KOM-LE-Version vom Empfänger-Clientmodul unterstützt wird und in welchem Format die Mail an diesen EmpfÃ¤nger versandt wird. +
+Wenn nicht angegeben, wird KOM-LE-Version 1.0 angenommen. +
+Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
+
+
+- Ein komLeData-Eintrag setzt sich zusammen aus der Mail-Adresse (Attribut "mail") und der zugehörigen KOM-LE Version (Attribut "version"). 
+- Für jede Mail-Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Datenstruktur komLeData geben. Es dürfen in komLeData keine Mail-Adressen referenziert werden, die nicht im übergeordneten "mail" Attribut enthalten sind.
+- Wenn eine Mail-Adresse gelöscht wird, muss auch ihr komLeData-Eintrag gelöscht werden. +
+ Geschrieben wird immer die gesamte Liste. Für Änderungen muss erst der aktuelle Eintrag gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
+- Beispiel für den Wert eines komLeData-Eintrags in der flachen Liste (LDAP): +
+[source, c]
+----
+ "komLeData": [
+        "1.0,xx-01@hersteller01.kim.telematik-test",
+        "1.0,xx-02@hersteller01.kim.telematik-test",
+        "1.0,xx-03@hersteller02.kim.telematik-test",
+        "1.0,xx-04@hersteller02.kim.telematik-test",
+        "1.0,xx-05@hersteller02.kim.telematik-test"
+        ]
+----
 
 Wird vom KOM-LE-Anbieter eingetragen.
 
@@ -1830,7 +2172,7 @@ Tabelle 14: Tab_VZD_Datenbeschreibung_eGBR_HBA
 
 Die nachfolgende Tabelle enthält die Bezeichnung der in dem vorliegenden Dokument referenzierten Dokumente der gematik zur Telematikinfrastruktur. Der mit der vorliegenden Version korrelierende Entwicklungsstand dieser Konzepte und Spezifikationen wird pro Release in einer Dokumentenlandkarte definiert; Version und Stand der referenzierten Dokumente sind daher in der nachfolgenden Tabelle nicht aufgeführt. Deren zu diesem Dokument jeweils gültige Versionsnummern sind in der aktuellen, von der gematik veröffentlichten Dokumentenlandkarte enthalten, in der die vorliegende Version aufgeführt wird.
 
-​​
+
 
 [width="100%",cols="23%,77%",options="header",]
 |===
@@ -1844,8 +2186,8 @@ Die nachfolgende Tabelle enthält die Bezeichnung der in dem vorliegenden Dokume
 [width="100%",cols="21%,79%",options="header",]
 |===
 |*[Quelle]* |*Herausgeber (Erscheinungsdatum): Titel*
-|​ |​
-|​ |​
+| |
+| |
 |===
 
 === Bekannte Fehler
@@ -1866,5 +2208,4 @@ Behebung: wird noch geklärt. 
  +
 *Der Fehler ist im VZD bereits behoben*
 |===
-
 
