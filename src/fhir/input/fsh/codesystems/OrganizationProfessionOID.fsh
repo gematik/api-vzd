@@ -59,3 +59,6 @@ The codes for Organizations based on Profession OIDs defined in [gemSpec_OID](ht
 * #1.2.276.0.76.4.279 "Logopaedische Praxis"
 * #1.2.276.0.76.4.280 "Podologiepraxis"
 * #1.2.276.0.76.4.281 "Ernährungstherapeutische Praxis"
+* #1.2.276.0.76.4.284 "Betriebsstätte Weitere Kostenträger im Gesundheitswesen"
+* #1.2.276.0.76.4.285 "Weitere Organisationen der Gesundheitsversorgung"
+* #1.2.276.0.76.4.286 "KIM-Hersteller und -Anbieter"
