@@ -33,20 +33,20 @@ image::gematik_logo.svg[gematik,float="right"]
  |*Grund der Änderung, besondere Hinweise** +
  |*Bearbeitung* +
 
-|1.0.0 |10.12.19 |​ |Ersterstellung |gematik
-|1.1.0 |29.03.20 |​ |Anpassung Kapitel 3.3.1.1, diverse Ergänzungen und Klarstellungen |gematik
-|1.2.0 |13.07.20 |​ |Anpassungen in Kapitel 3.1.1, Prozessbeschreibung zur Registrierung ausgearbeitet, +
+|1.0.0 |10.12.19 | |Ersterstellung |gematik
+|1.1.0 |29.03.20 | |Anpassung Kapitel 3.3.1.1, diverse Ergänzungen und Klarstellungen |gematik
+|1.2.0 |13.07.20 | |Anpassungen in Kapitel 3.1.1, Prozessbeschreibung zur Registrierung ausgearbeitet, +
 Anpassungen in Kapitel 4, Link auf aktualisierte DirectoryAdministration.yaml, RU-URLs für die Schnittstellen |gematik
-|1.3.0 |31.08.20 |​ |Prozessbeschreibung zur Registrierung angepasst, Link auf gematik-VZD-Client ergänzt, behobene Fehler dokumentiert, Beispiele für GET Requests ergänzt |gematik
-|1.3.1 |21.09.2020 |​ |Änderung des Verhaltens, wenn mehr als 100 Einträge gefunden werden. Es werden nun 100 Einträge in der Antwort übergeben. |gematik
-|1.3.2 |11.11.2020 |​ |Korrektur des links zur yaml-Datei Version 1.1.2 |gematik
-|1.3.3 |25.11.2020 |​ |Wertebereich für das Attribut stateOrProvinceName ergänzt |gematik
-|1.4.0 |16.12.2020 |​ |Alle gefundenen Daten werden in der Response zurückgeliefert (bisher 100). Der GET-Request wurde um einen Parameter erweitert, der es ermöglicht, die Zertifikatsdaten in der Response nicht zu erhalten. Dadurch kann die Datenmenge der Response bei sehr vielen gefundenen Einträgen stark reduziert werden. +
+|1.3.0 |31.08.20 | |Prozessbeschreibung zur Registrierung angepasst, Link auf gematik-VZD-Client ergänzt, behobene Fehler dokumentiert, Beispiele für GET Requests ergänzt |gematik
+|1.3.1 |21.09.2020 | |Änderung des Verhaltens, wenn mehr als 100 Einträge gefunden werden. Es werden nun 100 Einträge in der Antwort übergeben. |gematik
+|1.3.2 |11.11.2020 | |Korrektur des links zur yaml-Datei Version 1.1.2 |gematik
+|1.3.3 |25.11.2020 | |Wertebereich für das Attribut stateOrProvinceName ergänzt |gematik
+|1.4.0 |16.12.2020 | |Alle gefundenen Daten werden in der Response zurückgeliefert (bisher 100). Der GET-Request wurde um einen Parameter erweitert, der es ermöglicht, die Zertifikatsdaten in der Response nicht zu erhalten. Dadurch kann die Datenmenge der Response bei sehr vielen gefundenen Einträgen stark reduziert werden. +
 Die Telematik-ID wurde zusätzlich in den Basisdaten aufgenommen. Dadurch kann direkt nach der Telematik-ID gesucht werden, ohne erst über die Zertifikate zu suchen. +
 Das holder-Attribut wurde eingeführt; wird jedoch noch nicht in diesem Change vom VZD ausgewertet. Es wird aber bereits im yaml-File als Parameter aufgeführt, damit Client-Entwickler schon jetzt passenden Client-Code entwickeln können. Für die Umsetzung im VZD wird es einen separaten Change geben. +
 Es wurde ein Ländercode-Attribut (countryCode) ins Datenmodell aufgenommen. +
 Es wurde ein Attribut changeDateTime ins Datenmodell aufgenommen, das den Zeitpunkt der letzten Änderung an den Basisdaten angibt. |gematik
-|1.4.1 |​ |3.1.1 |Konkretisierung: Credentials-Vergabe auf Organisationsebene. Anpassung des Ansprechpartners bei Arvato für Störungen an der Schnittstelle. |gematik
+|1.4.1 | |3.1.1 |Konkretisierung: Credentials-Vergabe auf Organisationsebene. Anpassung des Ansprechpartners bei Arvato für Störungen an der Schnittstelle. |gematik
 |1.5.0 |02.06.2021 |4.1 +
 4.4 +
 4.5 |- Erweiterung des Wertebereichs stateOrProvinceName für EU-Versandapotheken in Vorbereitung auf das E-Rezept +
@@ -741,7 +741,7 @@ Es können Einträge ohne Zertifikat angelegt werden. Diese Einträge werden jed
 Wert == TRUE, wenn das userCertificate gemäß OCSP gültig ist (OCSP Response Status "good"), Wert == FALSE bei Zertifikaten von noch nicht freigeschalteten Karten (OCSP Response Status "unknown"). +
 Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in die flache Liste übernommen.
 
-|maxKOMLEadr |optional |Maximale Anzahl von Mail-Adressen in den KOM-LE-Fachdaten.  +
+|*maxKOMLEadr* |optional |Maximale Anzahl von Mail-Adressen in den KOM-LE-Fachdaten.  +
 Falls kein Wert eingetragen wurde, können beliebig viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden. +
 Falls ein Wert eingetragen wurde, können maximal so viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden.
 |*personalEntry* |obligatorisch |Wird vom VZD eingetragen. +
