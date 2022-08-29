@@ -78,12 +78,12 @@ Neu für eGBR HBA und SMC-B |gematik
 
 |1.5.3 |23.06.2022 |3.6, 3.3.1.3 |Rückverfolgbarkeit der Einträge (Holder-Attribute) - C_11048 |gematik
 |1.5.4 |15.07.2022 |4 |
-Verwendung des holder Attributs für eGBR Einträge ergänzt +
-Optimierung der komLeData Datenstruktur - C_11165 +
-Fehlende Attribute "holder" und "dataFromAuthority" in den Attributtabellen ergänzt +
-Attribut userCertificate.active ergänzt +
-"4.14 gematik - Weitere ärztliche Institutionen (SMC-B-Eintrag)" ergänzt +
-Datenerfassung für Apotheken erweitert
+- Verwendung des holder Attributs für eGBR Einträge ergänzt +
+- Optimierung der komLeData Datenstruktur - C_11165 +
+- Fehlende Attribute "holder" und "dataFromAuthority" in den Attributtabellen ergänzt +
+- Attribut userCertificate.active ergänzt +
+- "4.14 gematik - Weitere ärztliche Institutionen (SMC-B-Eintrag)" ergänzt +
+- Datenerfassung für Apotheken erweitert
 |gematik
 
 |===
