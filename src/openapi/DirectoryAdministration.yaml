@@ -22,6 +22,7 @@ info:
   #  - Attribute in Schema baseDirectoryEntry änderbar definiert:
   #      givenName, sn, cn
   #  - Operation stateSwitch_Directory_Entry hinzu gefügt
+  #  - Operation readLog vereinfacht 
   #
   # Änderungen in Version 1.8.3
   #  - Operation readLog hinzugefügt
@@ -1657,12 +1658,6 @@ paths:
         description: Erlaubt die Suche mit Hilfe des Attributs telematikID (die telematikID in den Basisdaten).
         schema:
           type: string  
-      - name: domainID
-        in: query
-        description: Erlaubt die Suche mit Hilfe des Attributs domainID. 
-                     Der Verzeichniseintrag wird selektiert, wenn die angegebene domainID im Attribut domainID (array) des Verzeichniseintrags enthalten ist.
-        schema:
-          type: string  
       - name: holder
         in: query
         description: Erlaubt die Suche mit Hilfe des Attributs holder. 
@@ -1670,37 +1665,20 @@ paths:
                      Zur Suche nach Einträge ohne holder ist der Parameter mit einem leeren String "" zu belegen. Auch in diesem Fall werden alle gefundenen Logdaten der Einträge zurückgegeben.
         schema:
           type: string  
-      - name: personalEntry
+      - name: logTimeFrom
         in: query
-        description: Erlaubt die Suche mit Hilfe des Attributs personalEntry. 
-        schema:
-          type: string  
-      - name: professionOID
-        in: query
-        description: Erlaubt die Suche mit Hilfe des Attributs professionOID. 
-                     Selektiert den Verzeichniseintrag, wenn der angegebene Wert in den professionOID's (array) des Basiseintrags vorhanden ist. 
-        schema:
-          type: string  
-      - name: entryType
-        in: query
-        description: Erlaubt die Suche mit Hilfe des Attributs entryType. 
-                     Selektiert den Verzeichniseintrag, wenn der angegebene Wert in den entryType's (array) des Basiseintrags vorhanden ist. 
-        schema:
-          type: string  
-      - name: changeDateTimeFrom
-        in: query
-        description: Erlaubt die Suche mit Hilfe des Attributs changeDateTime. 
+        description: Erlaubt die Suche mit Hilfe des Attributs logTime. 
                   #  Selektiert alle Datensätze mit 
-                  #  changeDateTime >= changeDateTimeFrom
+                  #  logTime >= logTimeFrom
         schema:
           type: string  
           # format: date-time
           example: "2017-07-21T17:32:28Z"          
-      - name: changeDateTimeTo
+      - name: logTimeTo
         in: query
-        description: Erlaubt die Suche mit Hilfe des Attributs changeDateTime. 
+        description: Erlaubt die Suche mit Hilfe des Attributs logTime. 
                   #  Selektiert alle Datensätze mit 
-                  #  changeDateTime <= changeDateTimeTo
+                  #  logTime <= logTimeTo
         schema:
           type: string  
           # format: date-time
@@ -2051,7 +2029,7 @@ components:
         changeDateTime:
           type: string
 #          format: date-time Mit dieser Format Vorgabe ist kein Code mehr generierbar, deshalb auskommentiert. Es soll sich aber weiterhin an das Format gehalten werden.
-          description: Der VZD setzt dieses Attribut bei jeder Schreiboperation für den Datensatz (Basisdaten) auf die aktuelle Zeit. Format entsprechend RFC 3339, section 5.6.
+          description: Der VZD setzt dieses Attribut bei jeder Schreiboperation für den Datensatz (Basisdaten) und die zugeordneten Zertifikate auf die aktuelle Zeit. Format entsprechend RFC 3339, section 5.6.
           readOnly: true
           example: "2017-07-21T17:32:28Z"
         professionOID:
@@ -2147,12 +2125,18 @@ components:
           type: string
           readOnly: true
           example: Client123
-        changeDateTime:
+        logTime:
           type: string
 #          format: date-time 
           description: Zeitpunkt der Schreiboperation für den Datensatz. Format entsprechend RFC 3339, section 5.6.
           readOnly: true
           example: "2017-07-21T17:32:28Z"
+        uid:
+          type: string
+          description: Name/ID, den den Eintrag eindeutig identifiziert. 
+        telematikID:
+          type: string
+          description: telematikID von dem geänderten VZD Eintrag
         operation:
           description: Ausgeführte Operation
           type: string
@@ -2173,21 +2157,6 @@ components:
           readOnly: true
           example: false
 
-        # die folgenden Daten enthalten den vollständigen VZD Datensatz nach Ausführung der Schreiboperation
-        DirectoryEntryBase:
-          $ref: '#/components/schemas/baseDirectoryEntry'
-        userCertificates:
-          maxItems: 50
-          minItems: 0
-          type: array
-          items:
-            $ref: '#/components/schemas/userCertificate'
-        Fachdaten:
-          maxItems: 50
-          minItems: 0
-          type: array
-          items:
-            $ref: '#/components/schemas/Fachdaten'
 
     Error:
       type: object
