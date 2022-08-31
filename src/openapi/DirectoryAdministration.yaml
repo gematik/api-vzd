@@ -3,7 +3,10 @@ info:
   title: I_Directory_Administration
   description: REST Schnittstelle zur Pflege der Verzeichniseinträge.
               Über diese Schnittstelle können Verzeichniseinträge inklusive Zertifikaten erzeugt, aktualisiert und gelöscht werden. Die Administration von Fachdaten erfolgt über Schnittstelle I_Directory_Application_Maintenance und wird durch die Fachanwendungen durchgeführt. Lesender Zugriff auf die Fachdaten ist mit Operation getDirectoryEntries in vorliegender Schnittstelle möglich.
-  version: 1.9.0
+  version: 1.9.1
+  # Änderungen in Version 1.9.1
+  #  - Operation readLog vereinfacht 
+  # 
   # Änderungen in Version 1.9.0
   #  - VZD:DirectoryRead Scope für Lesezugriff hinzugefügt und Scopes für jede Operation definiert
   #  - baseDirectoryEntry.entryType ist ein Wert (kein array mehr)
@@ -22,7 +25,6 @@ info:
   #  - Attribute in Schema baseDirectoryEntry änderbar definiert:
   #      givenName, sn, cn
   #  - Operation stateSwitch_Directory_Entry hinzu gefügt
-  #  - Operation readLog vereinfacht 
   #
   # Änderungen in Version 1.8.3
   #  - Operation readLog hinzugefügt
