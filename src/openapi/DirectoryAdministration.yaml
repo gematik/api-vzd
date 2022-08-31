@@ -2145,6 +2145,7 @@ components:
           enum: [add_Directory_Entry, 
                  modify_Directory_Entry, 
                  delete_Directory_Entry, 
+                 stateSwitch_Directory_Entry,
                  add_Directory_Entry_Certificate, 
                  delete_Directory_Entry_Certificate, 
                  add_Directory_FA-Attributes, 
