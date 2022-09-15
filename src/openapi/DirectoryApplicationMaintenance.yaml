@@ -6,8 +6,11 @@ info:
    # REST Schnittstelle zur Pflege der Fachanwendungsdaten der Verzeichniseinträge
      Über diese Schnittstelle können Fachanwendungsdaten der Verzeichniseinträge erzeugt, aktualisiert und gelöscht werden. 
 
-  version: 1.2.0
+  version: 1.2.1
   
+  # Änderungen in Version 1.2.1
+  #  - Operation readLog vereinfacht 
+  # 
   # Änderungen in Version 1.2.0
   #  - baseDirectoryEntry.entryType ist ein Wert (kein array mehr)
   #  - Attribute in Schema baseDirectoryEntry und als Suchparameter 
@@ -782,12 +785,6 @@ paths:
         description: Erlaubt die Suche mit Hilfe des Attributs telematikID (die telematikID in den Basisdaten).
         schema:
           type: string  
-      - name: domainID
-        in: query
-        description: Erlaubt die Suche mit Hilfe des Attributs domainID. 
-                     Der Verzeichniseintrag wird selektiert, wenn die angegebene domainID im Attribut domainID (array) des Verzeichniseintrags enthalten ist.
-        schema:
-          type: string  
       - name: holder
         in: query
         description: Erlaubt die Suche mit Hilfe des Attributs holder. 
@@ -795,37 +792,20 @@ paths:
                      Zur Suche nach Einträge ohne holder ist der Parameter mit einem leeren String "" zu belegen. Auch in diesem Fall werden alle gefundenen Logdaten der Einträge zurückgegeben.
         schema:
           type: string  
-      - name: personalEntry
+      - name: logTimeFrom
         in: query
-        description: Erlaubt die Suche mit Hilfe des Attributs personalEntry. 
-        schema:
-          type: string  
-      - name: professionOID
-        in: query
-        description: Erlaubt die Suche mit Hilfe des Attributs professionOID. 
-                     Selektiert den Verzeichniseintrag, wenn der angegebene Wert in den professionOID's (array) des Basiseintrags vorhanden ist. 
-        schema:
-          type: string  
-      - name: entryType
-        in: query
-        description: Erlaubt die Suche mit Hilfe des Attributs entryType. 
-                     Selektiert den Verzeichniseintrag, wenn der angegebene Wert in den entryType's (array) des Basiseintrags vorhanden ist. 
-        schema:
-          type: string  
-      - name: changeDateTimeFrom
-        in: query
-        description: Erlaubt die Suche mit Hilfe des Attributs changeDateTime. 
+        description: Erlaubt die Suche mit Hilfe des Attributs logTime. 
                   #  Selektiert alle Datensätze mit 
-                  #  changeDateTime >= changeDateTimeFrom
+                  #  logTime >= logTimeFrom
         schema:
           type: string  
           # format: date-time
           example: "2017-07-21T17:32:28Z"          
-      - name: changeDateTimeTo
+      - name: logTimeTo
         in: query
-        description: Erlaubt die Suche mit Hilfe des Attributs changeDateTime. 
+        description: Erlaubt die Suche mit Hilfe des Attributs logTime. 
                   #  Selektiert alle Datensätze mit 
-                  #  changeDateTime <= changeDateTimeTo
+                  #  logTime <= logTimeTo
         schema:
           type: string  
           # format: date-time
@@ -880,7 +860,6 @@ paths:
                 $ref: '#/components/schemas/Error'
         404:
           description: Not Found
-                    #  telematikID not found          
           content:
             application/json:
               schema:
@@ -1267,18 +1246,25 @@ components:
           type: string
           readOnly: true
           example: Client123
-        changeDateTime:
+        logTime:
           type: string
 #          format: date-time 
           description: Zeitpunkt der Schreiboperation für den Datensatz. Format entsprechend RFC 3339, section 5.6.
           readOnly: true
           example: "2017-07-21T17:32:28Z"
+        uid:
+          type: string
+          description: Name/ID, den den Eintrag eindeutig identifiziert. 
+        telematikID:
+          type: string
+          description: telematikID von dem geänderten VZD Eintrag
         operation:
           description: Ausgeführte Operation
           type: string
           enum: [add_Directory_Entry, 
                  modify_Directory_Entry, 
                  delete_Directory_Entry, 
+                 stateSwitch_Directory_Entry,
                  add_Directory_Entry_Certificate, 
                  delete_Directory_Entry_Certificate, 
                  add_Directory_FA-Attributes, 
@@ -1292,22 +1278,6 @@ components:
           type: boolean
           readOnly: true
           example: false
-          
-        # die folgenden Daten enthalten den vollständigen VZD Datensatz nach Ausführung der Schreiboperation
-        DirectoryEntryBase:
-          $ref: '#/components/schemas/baseDirectoryEntry'
-        userCertificates:
-          maxItems: 50
-          minItems: 0
-          type: array
-          items:
-            $ref: '#/components/schemas/userCertificate'
-        Fachdaten:
-          maxItems: 50
-          minItems: 0
-          type: array
-          items:
-            $ref: '#/components/schemas/Fachdaten'
       
     Error:
       type: object
