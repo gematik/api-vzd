@@ -82,7 +82,8 @@ Verwendung des holder Attributs für eGBR Einträge ergänzt +
 Optimierung der komLeData Datenstruktur - C_11165 +
 Fehlende Attribute "holder" und "dataFromAuthority" in den Attributtabellen ergänzt +
 Attribut userCertificate.active ergänzt +
-"4.14 gematik - Weitere ärztliche Institutionen (SMC-B-Eintrag)" ergänzt
+"4.14 gematik - Weitere ärztliche Institutionen (SMC-B-Eintrag)" ergänzt +
+„read only“ Zugang aufgenommen (Kap. 3.1.1, 3.2) 
 
 |gematik
 
@@ -162,6 +163,8 @@ Der Antrag muss folgende Informationen enthalten um weiter bearbeitet werden zu 
 
 - gewünschte Bezeichnung im OAuth2-Server ID_TOKEN client_id (bzw. VZD "holder" Attribut)
 
+- gewünschte Nutzerrolle (nur lesen; schreiben und lesen)
+
 
 Nach Prüfung der Angaben, werden die Zugangsdaten direkt vom Anbieter Zentrale Plattformdienste (vgl. gemKPT_Betr) an die gewünschte E-Mail-Adresse übermittelt.
 
@@ -212,7 +215,10 @@ Um einen Eintrag anzulegen oder zu ändern, wird empfohlen wie folgt vorzugehen:
 
 === Authentifizierung
 
-Als Clients dieser Schnittstelle sind nur Systeme der TI-Kartenherausgeber und von ihnen berechtigte Organisationen (z. B. TSPs) zulässig. Sie dürfen alle Operationen zur Administration der Verzeichniseinträge nutzen.
+Als Clients dieser Schnittstelle sind nur Systeme der TI-Kartenherausgeber und von ihnen berechtigte Organisationen (z. B. TSPs) zulässig. Sie dürfen entsprechend der Nutzerrolle
+
+- alle Operationen zur Administration der Verzeichniseinträge nutzen, oder
+- nur lesend auf die Verzeichniseinträge zugreifen.
 
 Das verwendete Authentifizierungsverfahren ist OAuth2. Die Authentifizierung des Nutzers an der Schnittstelle erfolgt mittels eines Access Tokens (Authorization Grant Client Credentials https://tools.ietf.org/html/rfc6749#section-1.3.4[+++RFC6749#section-1.3.4+++]). Um einen Access Token erhalten zu können, muss zuvor eine Registrierung erfolgen. Nach erfolgreicher Registrierung erhält der Nutzer Client Credentials bestehend aus [client_id] und [client_secret]. Der Client sendet einen Request mit den Client Credentials an den OAuth2-Server, um einen Access Token zu erhalten. 
 
