@@ -87,7 +87,7 @@ Neu für eGBR HBA und SMC-B |gematik
 |gematik
 
 |1.5.5 |30.09.2022 |4 |
-- „read only“ Zugang aufgenommen (Kap. 3.1.1, 3.2) - C_11187
+- „read only“ Zugang aufgenommen (Kap. 3.1.1, 3.2) - C_11187 +
 - Pflege von Attribut personalEntry optimiert - C_11227
 
 |gematik
@@ -756,9 +756,15 @@ Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in 
 Falls kein Wert eingetragen wurde, können beliebig viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden. +
 Falls ein Wert eingetragen wurde, können maximal so viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden.
 |*personalEntry* |obligatorisch |Wird vom VZD eingetragen. +
-Wert == TRUE, wenn alle zum Eintrag gehörenden Zertifikate den entryType 1 haben (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID).
+Wert == TRUE, wenn baseDirectoryEntry.entryType den Wert 1 hat (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID). +
+Nach Löschung aller Zertifikate bleibt der Wert dieses Attributs "personalEntry" erhalten.
 |*entryType* |obligatorisch |Bezeichner: Eintragstyp +
-Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403.
+Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
+ +
+entryType kann über Operationen add_Directory_Entry und modify_Directory_Entry gesetzt werden. +
+Wird in Operationen add_Directory_Entry ein Zertifikat angegeben wird, muss ein eventuell angegebener Parameter entryType mit dem Wert aus dem Zertifikat übereinstimmen. Bei nicht angegebenem Parameter entryType wird das Attribut entryType entsprechend dem Zertifikat gesetzt. +
+Mit Operation modify_Directory_Entry kann über Request Parameter entryType das Attribut im VZD geändert werden, solange kein Zertifikat im VZD enthalten ist (welches dann einen abweichenden Wert gegenüber dem Request Parameter entryType enthalten würde). +
+Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit einem Fehler. 
 |*telematikID* |obligatorisch |Bezeichner: TelematikID +
 Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
 |*dataFromAuthority* |optional |Wird vom VZD eingetragen +
@@ -856,9 +862,15 @@ Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in 
 Falls kein Wert eingetragen wurde, können beliebig viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden. +
 Falls ein Wert eingetragen wurde, können maximal so viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden.
 |*personalEntry* |obligatorisch |Wird vom VZD eingetragen. +
-Wert == TRUE, wenn alle zum Eintrag gehörenden Zertifikate den entryType 1 haben (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID).
+Wert == TRUE, wenn baseDirectoryEntry.entryType den Wert 1 hat (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID). +
+Nach Löschung aller Zertifikate bleibt der Wert dieses Attributs "personalEntry" erhalten.
 |*entryType* |obligatorisch |Bezeichner: Eintragstyp +
-Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403.
+Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
+ +
+entryType kann über Operationen add_Directory_Entry und modify_Directory_Entry gesetzt werden. +
+Wird in Operationen add_Directory_Entry ein Zertifikat angegeben wird, muss ein eventuell angegebener Parameter entryType mit dem Wert aus dem Zertifikat übereinstimmen. Bei nicht angegebenem Parameter entryType wird das Attribut entryType entsprechend dem Zertifikat gesetzt. +
+Mit Operation modify_Directory_Entry kann über Request Parameter entryType das Attribut im VZD geändert werden, solange kein Zertifikat im VZD enthalten ist (welches dann einen abweichenden Wert gegenüber dem Request Parameter entryType enthalten würde). +
+Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit einem Fehler. 
 |*telematikID* |obligatorisch |Bezeichner: TelematikID +
 Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
 |*dataFromAuthority* |optional |Wird vom VZD eingetragen +
@@ -956,9 +968,15 @@ Es können Einträge ohne Zertifikat angelegt werden. Diese Einträge werden jed
 Wert == TRUE, wenn das userCertificate gemäß OCSP gültig ist (OCSP Response Status "good"), Wert == FALSE bei Zertifikaten von noch nicht freigeschalteten Karten (OCSP Response Status "unknown"). +
 Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in die flache Liste übernommen.
 |*personalEntry* |obligatorisch |Wird vom VZD eingetragen. +
-Wert == TRUE, wenn alle zum Eintrag gehörenden Zertifikate den entryType 1 haben (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID).
+Wert == TRUE, wenn baseDirectoryEntry.entryType den Wert 1 hat (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID). +
+Nach Löschung aller Zertifikate bleibt der Wert dieses Attributs "personalEntry" erhalten.
 |*entryType* |obligatorisch |Bezeichner: Eintragstyp +
-Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403.
+Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
+ +
+entryType kann über Operationen add_Directory_Entry und modify_Directory_Entry gesetzt werden. +
+Wird in Operationen add_Directory_Entry ein Zertifikat angegeben wird, muss ein eventuell angegebener Parameter entryType mit dem Wert aus dem Zertifikat übereinstimmen. Bei nicht angegebenem Parameter entryType wird das Attribut entryType entsprechend dem Zertifikat gesetzt. +
+Mit Operation modify_Directory_Entry kann über Request Parameter entryType das Attribut im VZD geändert werden, solange kein Zertifikat im VZD enthalten ist (welches dann einen abweichenden Wert gegenüber dem Request Parameter entryType enthalten würde). +
+Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit einem Fehler. 
 |*telematikID* |obligatorisch |Bezeichner: TelematikID +
 Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
 |*dataFromAuthority* |optional |Wird vom VZD eingetragen +
@@ -1063,10 +1081,16 @@ Es können Einträge ohne Zertifikat angelegt werden. Diese Einträge werden jed
 |*userCertificate.active* |obligatorisch |Wird vom VZD eingetragen. +
 Wert == TRUE, wenn das userCertificate gemäß OCSP gültig ist (OCSP Response Status "good"), Wert == FALSE bei Zertifikaten von noch nicht freigeschalteten Karten (OCSP Response Status "unknown"). +
 Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in die flache Liste übernommen.
-|*personalEntry* |obligatorisch |Wird vom VZD eingetragen +
-Wert == TRUE, wenn alle zum Eintrag gehörenden Zertifikate den entryType 1 haben (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID).
+|*personalEntry* |obligatorisch |Wird vom VZD eingetragen. +
+Wert == TRUE, wenn baseDirectoryEntry.entryType den Wert 1 hat (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID). +
+Nach Löschung aller Zertifikate bleibt der Wert dieses Attributs "personalEntry" erhalten.
 |*entryType* |obligatorisch |Bezeichner: Eintragstyp +
-Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403.
+Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
+ +
+entryType kann über Operationen add_Directory_Entry und modify_Directory_Entry gesetzt werden. +
+Wird in Operationen add_Directory_Entry ein Zertifikat angegeben wird, muss ein eventuell angegebener Parameter entryType mit dem Wert aus dem Zertifikat übereinstimmen. Bei nicht angegebenem Parameter entryType wird das Attribut entryType entsprechend dem Zertifikat gesetzt. +
+Mit Operation modify_Directory_Entry kann über Request Parameter entryType das Attribut im VZD geändert werden, solange kein Zertifikat im VZD enthalten ist (welches dann einen abweichenden Wert gegenüber dem Request Parameter entryType enthalten würde). +
+Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit einem Fehler. 
 |*telematikID* |obligatorisch |Bezeichner: TelematikID +
 Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
 |*dataFromAuthority* |optional |Wird vom VZD eingetragen +
@@ -1168,10 +1192,16 @@ Es können Einträge ohne Zertifikat angelegt werden. Diese Einträge werden jed
 |*userCertificate.active* |obligatorisch |Wird vom VZD eingetragen. +
 Wert == TRUE, wenn das userCertificate gemäß OCSP gültig ist (OCSP Response Status "good"), Wert == FALSE bei Zertifikaten von noch nicht freigeschalteten Karten (OCSP Response Status "unknown"). +
 Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in die flache Liste übernommen.
-|*personalEntry* |obligatorisch |Wird vom VZD eingetragen +
-Wert == TRUE, wenn alle zum Eintrag gehörenden Zertifikate den entryType 1 haben (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID).
+|*personalEntry* |obligatorisch |Wird vom VZD eingetragen. +
+Wert == TRUE, wenn baseDirectoryEntry.entryType den Wert 1 hat (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID). +
+Nach Löschung aller Zertifikate bleibt der Wert dieses Attributs "personalEntry" erhalten.
 |*entryType* |obligatorisch |Bezeichner: Eintragstyp +
-Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403.
+Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
+ +
+entryType kann über Operationen add_Directory_Entry und modify_Directory_Entry gesetzt werden. +
+Wird in Operationen add_Directory_Entry ein Zertifikat angegeben wird, muss ein eventuell angegebener Parameter entryType mit dem Wert aus dem Zertifikat übereinstimmen. Bei nicht angegebenem Parameter entryType wird das Attribut entryType entsprechend dem Zertifikat gesetzt. +
+Mit Operation modify_Directory_Entry kann über Request Parameter entryType das Attribut im VZD geändert werden, solange kein Zertifikat im VZD enthalten ist (welches dann einen abweichenden Wert gegenüber dem Request Parameter entryType enthalten würde). +
+Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit einem Fehler. 
 |*telematikID* |obligatorisch |Bezeichner: TelematikID +
 Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
 |*dataFromAuthority* |optional |Wird vom VZD eingetragen +
@@ -1277,9 +1307,15 @@ Es können Einträge ohne Zertifikat angelegt werden. Diese Einträge werden jed
 Wert == TRUE, wenn das userCertificate gemäß OCSP gültig ist (OCSP Response Status "good"), Wert == FALSE bei Zertifikaten von noch nicht freigeschalteten Karten (OCSP Response Status "unknown"). +
 Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in die flache Liste übernommen.
 |*personalEntry* |obligatorisch |Wird vom VZD eingetragen. +
-Wert == TRUE, wenn alle zum Eintrag gehörenden Zertifikate den entryType 1 haben (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID).
+Wert == TRUE, wenn baseDirectoryEntry.entryType den Wert 1 hat (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID). +
+Nach Löschung aller Zertifikate bleibt der Wert dieses Attributs "personalEntry" erhalten.
 |*entryType* |obligatorisch |Bezeichner: Eintragstyp +
-Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403.
+Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
+ +
+entryType kann über Operationen add_Directory_Entry und modify_Directory_Entry gesetzt werden. +
+Wird in Operationen add_Directory_Entry ein Zertifikat angegeben wird, muss ein eventuell angegebener Parameter entryType mit dem Wert aus dem Zertifikat übereinstimmen. Bei nicht angegebenem Parameter entryType wird das Attribut entryType entsprechend dem Zertifikat gesetzt. +
+Mit Operation modify_Directory_Entry kann über Request Parameter entryType das Attribut im VZD geändert werden, solange kein Zertifikat im VZD enthalten ist (welches dann einen abweichenden Wert gegenüber dem Request Parameter entryType enthalten würde). +
+Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit einem Fehler. 
 |*telematikID* |obligatorisch |Bezeichner: TelematikID +
 Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
 |*dataFromAuthority* |optional |Wird vom VZD eingetragen +
@@ -1384,10 +1420,16 @@ Es können Einträge ohne Zertifikat angelegt werden. Diese Einträge werden jed
 |*userCertificate.active* |obligatorisch |Wird vom VZD eingetragen. +
 Wert == TRUE, wenn das userCertificate gemäß OCSP gültig ist (OCSP Response Status "good"), Wert == FALSE bei Zertifikaten von noch nicht freigeschalteten Karten (OCSP Response Status "unknown"). +
 Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in die flache Liste übernommen.
-|*personalEntry* |obligatorisch |Wird vom VZD eingetragen +
-Wert == TRUE, wenn alle zum Eintrag gehörenden Zertifikate den entryType 1 haben (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID).
+|*personalEntry* |obligatorisch |Wird vom VZD eingetragen. +
+Wert == TRUE, wenn baseDirectoryEntry.entryType den Wert 1 hat (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID). +
+Nach Löschung aller Zertifikate bleibt der Wert dieses Attributs "personalEntry" erhalten.
 |*entryType* |obligatorisch |Bezeichner: Eintragstyp +
-Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403.
+Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
+ +
+entryType kann über Operationen add_Directory_Entry und modify_Directory_Entry gesetzt werden. +
+Wird in Operationen add_Directory_Entry ein Zertifikat angegeben wird, muss ein eventuell angegebener Parameter entryType mit dem Wert aus dem Zertifikat übereinstimmen. Bei nicht angegebenem Parameter entryType wird das Attribut entryType entsprechend dem Zertifikat gesetzt. +
+Mit Operation modify_Directory_Entry kann über Request Parameter entryType das Attribut im VZD geändert werden, solange kein Zertifikat im VZD enthalten ist (welches dann einen abweichenden Wert gegenüber dem Request Parameter entryType enthalten würde). +
+Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit einem Fehler. 
 |*telematikID* |obligatorisch |Bezeichner: TelematikID +
 Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
 |*dataFromAuthority* |optional |Wird vom VZD eingetragen +
@@ -1492,10 +1534,16 @@ Es können Einträge ohne Zertifikat angelegt werden. Diese Einträge werden jed
 |*userCertificate.active* |obligatorisch |Wird vom VZD eingetragen. +
 Wert == TRUE, wenn das userCertificate gemäß OCSP gültig ist (OCSP Response Status "good"), Wert == FALSE bei Zertifikaten von noch nicht freigeschalteten Karten (OCSP Response Status "unknown"). +
 Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in die flache Liste übernommen.
-|*personalEntry* |obligatorisch |Wird vom VZD eingetragen +
-Wert == TRUE, wenn alle zum Eintrag gehörenden Zertifikate den entryType 1 haben (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID).
+|*personalEntry* |obligatorisch |Wird vom VZD eingetragen. +
+Wert == TRUE, wenn baseDirectoryEntry.entryType den Wert 1 hat (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID). +
+Nach Löschung aller Zertifikate bleibt der Wert dieses Attributs "personalEntry" erhalten.
 |*entryType* |obligatorisch |Bezeichner: Eintragstyp +
-Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403.
+Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
+ +
+entryType kann über Operationen add_Directory_Entry und modify_Directory_Entry gesetzt werden. +
+Wird in Operationen add_Directory_Entry ein Zertifikat angegeben wird, muss ein eventuell angegebener Parameter entryType mit dem Wert aus dem Zertifikat übereinstimmen. Bei nicht angegebenem Parameter entryType wird das Attribut entryType entsprechend dem Zertifikat gesetzt. +
+Mit Operation modify_Directory_Entry kann über Request Parameter entryType das Attribut im VZD geändert werden, solange kein Zertifikat im VZD enthalten ist (welches dann einen abweichenden Wert gegenüber dem Request Parameter entryType enthalten würde). +
+Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit einem Fehler. 
 |*telematikID* |obligatorisch |Bezeichner: TelematikID +
 Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
 |*dataFromAuthority* |optional |Wird vom VZD eingetragen +
@@ -1595,11 +1643,16 @@ Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in 
  +
 Bezeichner: Anderer Name +
 Wird vom VZD aus dem Zertifikatsattribut otherName übernommen.
-|*personalEntry* |obligatorisch |Wird vom VZD eingetragen +
-Wert == TRUE, wenn alle zum Eintrag gehörenden Zertifikate den entryType 1 haben (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID). +
-Wert == FALSE für SMC-B KTR
+|*personalEntry* |obligatorisch |Wird vom VZD eingetragen. +
+Wert == TRUE, wenn baseDirectoryEntry.entryType den Wert 1 hat (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID). +
+Nach Löschung aller Zertifikate bleibt der Wert dieses Attributs "personalEntry" erhalten.
 |*entryType* |obligatorisch |Bezeichner: Eintragstyp +
-Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403.
+Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
+ +
+entryType kann über Operationen add_Directory_Entry und modify_Directory_Entry gesetzt werden. +
+Wird in Operationen add_Directory_Entry ein Zertifikat angegeben wird, muss ein eventuell angegebener Parameter entryType mit dem Wert aus dem Zertifikat übereinstimmen. Bei nicht angegebenem Parameter entryType wird das Attribut entryType entsprechend dem Zertifikat gesetzt. +
+Mit Operation modify_Directory_Entry kann über Request Parameter entryType das Attribut im VZD geändert werden, solange kein Zertifikat im VZD enthalten ist (welches dann einen abweichenden Wert gegenüber dem Request Parameter entryType enthalten würde). +
+Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit einem Fehler. 
 |*telematikID* |obligatorisch |Bezeichner: TelematikID +
 Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
 |*holder* |optional |Legt fest, wer Änderungen an den Basisdaten des Eintrags vornehmen darf. Hat keinen Einfluss auf Fachdaten und Zertifikatsdaten.
@@ -1700,11 +1753,17 @@ Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in 
  +
 Bezeichner: Anderer Name +
 Wird vom VZD aus dem Zertifikatsattribut otherName übernommen.
-|*personalEntry* |obligatorisch |Wird vom VZD eingetragen +
-Wert == TRUE, wenn alle zum Eintrag gehörenden Zertifikate den entryType 1 haben (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID). +
-Wert == FALSE für SMC-B KTR ePA
+|*personalEntry* |obligatorisch |Wird vom VZD eingetragen. +
+Wert == TRUE, wenn baseDirectoryEntry.entryType den Wert 1 hat (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID). +
+Wert == FALSE für SMC-B KTR ePA +
+Nach Löschung aller Zertifikate bleibt der Wert dieses Attributs "personalEntry" erhalten.
 |*entryType* |obligatorisch |Bezeichner: Eintragstyp +
-Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403.
+Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
+ +
+entryType kann über Operationen add_Directory_Entry und modify_Directory_Entry gesetzt werden. +
+Wird in Operationen add_Directory_Entry ein Zertifikat angegeben wird, muss ein eventuell angegebener Parameter entryType mit dem Wert aus dem Zertifikat übereinstimmen. Bei nicht angegebenem Parameter entryType wird das Attribut entryType entsprechend dem Zertifikat gesetzt. +
+Mit Operation modify_Directory_Entry kann über Request Parameter entryType das Attribut im VZD geändert werden, solange kein Zertifikat im VZD enthalten ist (welches dann einen abweichenden Wert gegenüber dem Request Parameter entryType enthalten würde). +
+Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit einem Fehler. 
 |*telematikID* |obligatorisch |Bezeichner: TelematikID +
 Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
 |*holder* |optional |Legt fest, wer Änderungen an den Basisdaten des Eintrags vornehmen darf. Hat keinen Einfluss auf Fachdaten und Zertifikatsdaten.
@@ -1778,9 +1837,15 @@ Es können Einträge ohne Zertifikat angelegt werden. Diese Einträge werden jed
 Wert == TRUE, wenn das userCertificate gemäß OCSP gültig ist (OCSP Response Status "good"), Wert == FALSE bei Zertifikaten von noch nicht freigeschalteten Karten (OCSP Response Status "unknown"). +
 Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in die flache Liste übernommen.
 |*personalEntry* |obligatorisch |Wird vom VZD eingetragen. +
-Wert == TRUE, wenn alle zum Eintrag gehörenden Zertifikate den entryType 1 haben (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID).
+Wert == TRUE, wenn baseDirectoryEntry.entryType den Wert 1 hat (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID). +
+Nach Löschung aller Zertifikate bleibt der Wert dieses Attributs "personalEntry" erhalten.
 |*entryType* |obligatorisch |Bezeichner: Eintragstyp +
-Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403.
+Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
+ +
+entryType kann über Operationen add_Directory_Entry und modify_Directory_Entry gesetzt werden. +
+Wird in Operationen add_Directory_Entry ein Zertifikat angegeben wird, muss ein eventuell angegebener Parameter entryType mit dem Wert aus dem Zertifikat übereinstimmen. Bei nicht angegebenem Parameter entryType wird das Attribut entryType entsprechend dem Zertifikat gesetzt. +
+Mit Operation modify_Directory_Entry kann über Request Parameter entryType das Attribut im VZD geändert werden, solange kein Zertifikat im VZD enthalten ist (welches dann einen abweichenden Wert gegenüber dem Request Parameter entryType enthalten würde). +
+Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit einem Fehler. 
 |*telematikID* |obligatorisch |Bezeichner: TelematikID +
 Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
 |*dataFromAuthority* |optional |Wird vom VZD eingetragen +
@@ -1877,9 +1942,15 @@ Es können Einträge ohne Zertifikat angelegt werden. Diese Einträge werden jed
 Wert == TRUE, wenn das userCertificate gemäß OCSP gültig ist (OCSP Response Status "good"), Wert == FALSE bei Zertifikaten von noch nicht freigeschalteten Karten (OCSP Response Status "unknown"). +
 Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in die flache Liste übernommen.
 |*personalEntry* |obligatorisch |Wird vom VZD eingetragen. +
-Wert == TRUE, wenn alle zum Eintrag gehörenden Zertifikate den entryType 1 haben (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID).
+Wert == TRUE, wenn baseDirectoryEntry.entryType den Wert 1 hat (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID). +
+Nach Löschung aller Zertifikate bleibt der Wert dieses Attributs "personalEntry" erhalten.
 |*entryType* |obligatorisch |Bezeichner: Eintragstyp +
-Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403.
+Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
+ +
+entryType kann über Operationen add_Directory_Entry und modify_Directory_Entry gesetzt werden. +
+Wird in Operationen add_Directory_Entry ein Zertifikat angegeben wird, muss ein eventuell angegebener Parameter entryType mit dem Wert aus dem Zertifikat übereinstimmen. Bei nicht angegebenem Parameter entryType wird das Attribut entryType entsprechend dem Zertifikat gesetzt. +
+Mit Operation modify_Directory_Entry kann über Request Parameter entryType das Attribut im VZD geändert werden, solange kein Zertifikat im VZD enthalten ist (welches dann einen abweichenden Wert gegenüber dem Request Parameter entryType enthalten würde). +
+Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit einem Fehler. 
 |*telematikID* |obligatorisch |Bezeichner: TelematikID +
 Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
 |*dataFromAuthority* |optional |Wird vom VZD eingetragen +
@@ -1973,10 +2044,16 @@ Es können Einträge ohne Zertifikat angelegt werden. Diese Einträge werden jed
 |*userCertificate.active* |obligatorisch |Wird vom VZD eingetragen. +
 Wert == TRUE, wenn das userCertificate gemäß OCSP gültig ist (OCSP Response Status "good"), Wert == FALSE bei Zertifikaten von noch nicht freigeschalteten Karten (OCSP Response Status "unknown"). +
 Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in die flache Liste übernommen.
-|*personalEntry* |obligatorisch |Wird vom VZD eingetragen +
-Wert == TRUE, wenn alle zum Eintrag gehörenden Zertifikate den entryType 1 haben (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID).
+|*personalEntry* |obligatorisch |Wird vom VZD eingetragen. +
+Wert == TRUE, wenn baseDirectoryEntry.entryType den Wert 1 hat (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID). +
+Nach Löschung aller Zertifikate bleibt der Wert dieses Attributs "personalEntry" erhalten.
 |*entryType* |obligatorisch |Bezeichner: Eintragstyp +
-Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403.
+Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
+ +
+entryType kann über Operationen add_Directory_Entry und modify_Directory_Entry gesetzt werden. +
+Wird in Operationen add_Directory_Entry ein Zertifikat angegeben wird, muss ein eventuell angegebener Parameter entryType mit dem Wert aus dem Zertifikat übereinstimmen. Bei nicht angegebenem Parameter entryType wird das Attribut entryType entsprechend dem Zertifikat gesetzt. +
+Mit Operation modify_Directory_Entry kann über Request Parameter entryType das Attribut im VZD geändert werden, solange kein Zertifikat im VZD enthalten ist (welches dann einen abweichenden Wert gegenüber dem Request Parameter entryType enthalten würde). +
+Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit einem Fehler. 
 |*telematikID* |obligatorisch |Bezeichner: TelematikID +
 Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
 |*dataFromAuthority* |optional |Wird vom VZD eingetragen +
@@ -2081,9 +2158,15 @@ Es können EintrÃ¤ge ohne Zertifikat angelegt werden. Diese Einträge werden j
 Wert == TRUE, wenn das userCertificate gemäß OCSP gültig ist (OCSP Response Status "good"), Wert == FALSE bei Zertifikaten von noch nicht freigeschalteten Karten (OCSP Response Status "unknown"). +
 Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in die flache Liste übernommen.
 |*personalEntry* |obligatorisch |Wird vom VZD eingetragen. +
-Wert == TRUE, wenn alle zum Eintrag gehörenden Zertifikate den entryType 1 haben (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID).
+Wert == TRUE, wenn baseDirectoryEntry.entryType den Wert 1 hat (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID). +
+Nach Löschung aller Zertifikate bleibt der Wert dieses Attributs "personalEntry" erhalten.
 |*entryType* |obligatorisch |Bezeichner: Eintragstyp +
-Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403.
+Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
+ +
+entryType kann über Operationen add_Directory_Entry und modify_Directory_Entry gesetzt werden. +
+Wird in Operationen add_Directory_Entry ein Zertifikat angegeben wird, muss ein eventuell angegebener Parameter entryType mit dem Wert aus dem Zertifikat übereinstimmen. Bei nicht angegebenem Parameter entryType wird das Attribut entryType entsprechend dem Zertifikat gesetzt. +
+Mit Operation modify_Directory_Entry kann über Request Parameter entryType das Attribut im VZD geändert werden, solange kein Zertifikat im VZD enthalten ist (welches dann einen abweichenden Wert gegenüber dem Request Parameter entryType enthalten würde). +
+Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit einem Fehler. 
 |*telematikID* |obligatorisch |Bezeichner: TelematikID +
 Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
 |*dataFromAuthority* |optional |Wird vom VZD eingetragen +
