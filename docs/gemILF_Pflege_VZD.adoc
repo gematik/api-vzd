@@ -78,12 +78,12 @@ Neu für eGBR HBA und SMC-B |gematik
 
 |1.5.3 |23.06.2022 |3.6, 3.3.1.3 |Rückverfolgbarkeit der Einträge (Holder-Attribute) - C_11048 |gematik
 |1.5.4 |15.07.2022 |4 |
-Verwendung des holder Attributs für eGBR Einträge ergänzt +
-Optimierung der komLeData Datenstruktur - C_11165 +
-Fehlende Attribute "holder" und "dataFromAuthority" in den Attributtabellen ergänzt +
-Attribut userCertificate.active ergänzt +
-"4.14 gematik - Weitere ärztliche Institutionen (SMC-B-Eintrag)" ergänzt
-
+- Verwendung des holder Attributs für eGBR Einträge ergänzt +
+- Optimierung der komLeData Datenstruktur - C_11165 +
+- Fehlende Attribute "holder" und "dataFromAuthority" in den Attributtabellen ergänzt +
+- Attribut userCertificate.active ergänzt +
+- "4.14 gematik - Weitere ärztliche Institutionen (SMC-B-Eintrag)" ergänzt +
+- Datenerfassung für Apotheken erweitert
 |gematik
 
 |===
@@ -898,6 +898,9 @@ Wird vom KOM-LE-Anbieter eingetragen.
 {empty} +
 
 === SMC-B-Eintrag für Apotheken (ABDA, gematik)
+ 
+NOTE: Die ENC Zertifikate von allen aktiven Karten müssen dauerhaft gepflegt werden.
+ 
 
 Tabelle 4: Tab_VZD_Datenbeschreibung_Apotheken_SMC-B
 
@@ -926,8 +929,11 @@ Wird vom VZD automatisch eingetragen.
 |*organization* |optional |Bezeichner: Organisation +
 Dieses Attribut ist ein optionales zweites Namensattribut und wird befüllt bei Bedarf. Ebenso wie displayName ist es geeignet um nach einem Namen zu filtern und ihn im Suchergebnis anzuzeigen. +
 Für EU-Versandapotheken: EU-Versandapotheke
-|*domainID* |optional |Wird für Apotheken nicht verwendet.
-|*specialization* |optional |Wird für Apotheken nicht verwendet. +
+|*domainID* |optional |Im Attribut domainID kann der Verweis auf die Mutter-Apotheke erfasst werden. +
+Die Inhalte werden durch die Kartenherausgeber gepflegt. +
+
+|*specialization* |optional |Im Attribut specialization werden die ApothekenTypen (OffizinApo, Versand etc) und "offen" "beschränkt erfasst. Hierfür werden die dafür definierten CodeSysteme genutzt. Die Inhalte werden durch die Kartenherausgeber gepflegt. +
+Default für das Attribut ist LEER. LEER wird in der eRezept Anwendung gleich behandelt wie "Sonstige_offen". +
  +
 Bezeichner: Fachgebiet +
 Kann mehrfach vorkommen (0..100). +
@@ -1003,6 +1009,9 @@ Wird vom KOM-LE-Anbieter eingetragen.
 {empty} +
 
 === HBA-Eintrag für Apotheker (ABDA, gematik)
+
+NOTE: Die HBAs der Apotheker - inklusive ihrer Zertifikate - müssen im VZD erfasst und gepflegt werden.
+
 
 Tabelle 5: Tab_VZD_Datenbeschreibung_Apotheker
 
