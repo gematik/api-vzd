@@ -10,6 +10,7 @@ python = "^3.10"
 requests = "^2.28.1"
 pydantic = "^1.10.2"
 rich = "^12.5.1"
+python-jose = "^3.3.0"
 PyJWT = "^2.5.0"
 
 [tool.poetry.dev-dependencies]
@@ -22,3 +23,4 @@ build-backend = "poetry.core.masonry.api"
 [tool.poetry.scripts]
 search_api_matrix = "fhir_search.search_api_matrix:main"
 tim_provider_api = "fhir_search.tim_provider_api:main"
+search_api_idp = "fhir_search.search_api_idp:main"

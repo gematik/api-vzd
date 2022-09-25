@@ -22,3 +22,26 @@ export TIM_PROVIDER_AUTH_URL=https://auth-test.vzd.ti-dienste.de:9443/auth/realm
 export TIM_PROVIDER_AUTH_CLIENT_ID=<clientid>
 export TIM_PROVIDER_AUTH_SECRET=<secret>
 ----
+
+== Run samples
+
+=== Run once to create virtualenv and install the dependencies
+
+[source,bash]
+----
+poetry install 
+----
+
+=== Run TIM-Provider API sample
+
+[source,bash]
+----
+poetry run tim_provider_api 
+----
+
+=== Run Search API sample
+
+[source,bash]
+----
+poetry run search_api_matrix 
+----

@@ -1,8 +1,8 @@
-from typing import Mapping
+from typing import Mapping, Union
 from requests import (PreparedRequest, Response)
 from requests.exceptions import (JSONDecodeError)
 from json import (loads, dumps)
-from jwt.utils import base64url_decode
+from base64 import (urlsafe_b64decode, urlsafe_b64encode)
 
 
 def request_to_curl(
@@ -34,7 +34,7 @@ def response_to_text(
     try:
         str = str + "\n" + dumps(response.json(), indent=2)
     except JSONDecodeError:
-        str = str + "\n" + response.raw.read().decode("utf-8")
+        str = str + "\n" + response.text
 
     return str
 
@@ -46,3 +46,19 @@ def jwt_to_text(token: str) -> str:
     payload = loads(payload.decode("utf-8"))
 
     return dumps(header, indent=4) + "\n" + dumps(payload, indent=4)
+
+
+def base64url_decode(input: Union[str, bytes]) -> bytes:
+    if isinstance(input, str):
+        input = input.encode("ascii")
+
+    rem = len(input) % 4
+
+    if rem > 0:
+        input += b"=" * (4 - rem)
+
+    return urlsafe_b64decode(input)
+
+
+def base64url_encode(input: bytes) -> bytes:
+    return urlsafe_b64encode(input).replace(b"=", b"")

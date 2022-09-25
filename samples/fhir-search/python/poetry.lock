@@ -29,6 +29,21 @@ python-versions = "*"
 test = ["hypothesis (==3.55.3)", "flake8 (==3.7.8)"]
 
 [[package]]
+name = "ecdsa"
+version = "0.18.0"
+description = "ECDSA cryptographic signature library (pure python)"
+category = "main"
+optional = false
+python-versions = ">=2.6, !=3.0.*, !=3.1.*, !=3.2.*"
+
+[package.dependencies]
+six = ">=1.9.0"
+
+[package.extras]
+gmpy = ["gmpy"]
+gmpy2 = ["gmpy2"]
+
+[[package]]
 name = "flake8"
 version = "5.0.4"
 description = "the modular source code checker: pep8 pyflakes and co"
@@ -56,6 +71,14 @@ description = "McCabe checker, plugin for flake8"
 category = "dev"
 optional = false
 python-versions = ">=3.6"
+
+[[package]]
+name = "pyasn1"
+version = "0.4.8"
+description = "ASN.1 types and codecs"
+category = "main"
+optional = false
+python-versions = "*"
 
 [[package]]
 name = "pycodestyle"
@@ -114,6 +137,24 @@ docs = ["sphinx (>=4.5.0,<5.0.0)", "sphinx-rtd-theme", "zope.interface"]
 tests = ["pytest (>=6.0.0,<7.0.0)", "coverage[toml] (==5.0.4)"]
 
 [[package]]
+name = "python-jose"
+version = "3.3.0"
+description = "JOSE implementation in Python"
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+ecdsa = "!=0.15"
+pyasn1 = "*"
+rsa = "*"
+
+[package.extras]
+cryptography = ["cryptography (>=3.4.0)"]
+pycrypto = ["pycrypto (>=2.6.0,<2.7.0)", "pyasn1"]
+pycryptodome = ["pycryptodome (>=3.3.1,<4.0.0)", "pyasn1"]
+
+[[package]]
 name = "requests"
 version = "2.28.1"
 description = "Python HTTP for Humans."
@@ -147,6 +188,25 @@ pygments = ">=2.6.0,<3.0.0"
 jupyter = ["ipywidgets (>=7.5.1,<8.0.0)"]
 
 [[package]]
+name = "rsa"
+version = "4.9"
+description = "Pure-Python RSA implementation"
+category = "main"
+optional = false
+python-versions = ">=3.6,<4"
+
+[package.dependencies]
+pyasn1 = ">=0.1.3"
+
+[[package]]
+name = "six"
+version = "1.16.0"
+description = "Python 2 and 3 compatibility utilities"
+category = "main"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*"
+
+[[package]]
 name = "typing-extensions"
 version = "4.3.0"
 description = "Backported and Experimental Type Hints for Python 3.7+"
@@ -170,21 +230,29 @@ socks = ["PySocks (>=1.5.6,!=1.5.7,<2.0)"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "4573dd8fb59d86c38aeb5111be4b85a6b6e669a97c62c258af013b52b70b1094"
+content-hash = "aba5d5c8de10eaf1a70d87f254f46e8c0cf1cafb22b8a22c6a481afc3acb5095"
 
 [metadata.files]
 certifi = []
 charset-normalizer = []
 commonmark = []
+ecdsa = []
 flake8 = []
 idna = []
 mccabe = []
+pyasn1 = []
 pycodestyle = []
 pydantic = []
 pyflakes = []
 pygments = []
 pyjwt = []
+python-jose = []
 requests = []
 rich = []
+rsa = []
+six = [
+    {file = "six-1.16.0-py2.py3-none-any.whl", hash = "sha256:8abb2f1d86890a2dfb989f9a77cfcfd3e47c2a354b01111771326f8aa26e0254"},
+    {file = "six-1.16.0.tar.gz", hash = "sha256:1e61c37477a1626458e36f7b1d82aa5c9b094fa4802892072e49de9c60c4c926"},
+]
 typing-extensions = []
 urllib3 = []
