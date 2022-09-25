@@ -1,0 +1,24 @@
+= Python samples to access the FHIR-Directory APIs
+
+== Prerequisites
+
+* Python 3.10
+* Package manager https://python-poetry.org[Poetry]
+
+== Configuration
+
+The credentials and URLs must be set using the envornment variables.
+
+NOTE: Matrix Homeserver must be registered in the TI-Messenger Federation. The TI-Provider credentials must be obtained from the gematik
+
+[source,bash]
+----
+export FHIR_DIRECTORY_BASE_URL=https://fhir-directory-test.vzd.ti-dienste.de/
+
+export MATRIX_ID=@username:matrix.example.com
+export MATRIX_PASSWORD=password
+ 
+export TIM_PROVIDER_AUTH_URL=https://auth-test.vzd.ti-dienste.de:9443/auth/realms/TI-Provider/protocol/openid-connect/token
+export TIM_PROVIDER_AUTH_CLIENT_ID=<clientid>
+export TIM_PROVIDER_AUTH_SECRET=<secret>
+----
