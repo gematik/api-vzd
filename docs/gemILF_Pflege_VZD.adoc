@@ -77,7 +77,7 @@ Update zum SMC-B ORG-Eintrag der gematik +
 Neu für eGBR HBA und SMC-B |gematik
 
 |1.5.3 |23.06.2022 |3.6, 3.3.1.3 |Rückverfolgbarkeit der Einträge (Holder-Attribute) - C_11048 |gematik
-|1.5.4 |15.07.2022 |4 |
+|1.5.4 |26.09.2022 |4 |
 - Verwendung des holder Attributs für eGBR Einträge ergänzt +
 - Optimierung der komLeData Datenstruktur - C_11165 +
 - Fehlende Attribute "holder" und "dataFromAuthority" in den Attributtabellen ergänzt +
@@ -899,7 +899,12 @@ Wird vom KOM-LE-Anbieter eingetragen.
 
 === SMC-B-Eintrag für Apotheken (ABDA, gematik)
  
-NOTE: Die ENC Zertifikate von allen aktiven Karten müssen dauerhaft gepflegt werden.
+NOTE: Die ENC Zertifikate von allen aktiven Karten müssen dauerhaft gepflegt werden. +
+Dafür müssen die ENC Zertifikate aller neuen SMC-B Karten in Attribut Certificate.userCertificate eingetragen werden. +
+-	Abgelaufene Zertifikate entfernt der VZD automatisch. +
+- Noch nicht aktivierte Zertifikate werden in der VZD I_Directory_Query Schnittstelle erst nach Aktivierung sichtbar. +
+ +
+Alle anderen - durch Kartenherausgeber gepflegte - Daten müssen bei Änderungen (z.B. Änderung der Adresse, Spezialisierung,...) aktualisiert werden.
  
 
 Tabelle 4: Tab_VZD_Datenbeschreibung_Apotheken_SMC-B
@@ -919,7 +924,10 @@ Bezeichner: Anderer Name +
 Wird vom VZD aus dem Zertifikatsattribut otherName übernommen.
 |*displayName* |obligatorisch |Bezeichner: Anzeigename +
 Dieses Attribut wird genutzt um den Namen der Apotheke gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut um die Suche einzuschränken und bei der Darstellung des Ergebnisses).
-|*streetAddress* |obligatorisch |Bezeichner: Straße und Hausnummer der Apotheke
+|*streetAddress* |obligatorisch |Bezeichner: Straße und Hausnummer der Apotheke +
+ +
+Aus dieser Adresse (zusammen mit postalCode, localityName, stateOrProvinceName und countryCode) werden die Geokoordinaten der Apotheke berechnet. +
+Deshalb wird die Prüfung dieser Adresse mittels einer Kartenseite (GMaps, BingMaps, OSM, …) oder eines Adress-Validators vor dem Eintragen in den VZD empfohlen.
 |*postalCode* |obligatorisch |Bezeichner: Postleitzahl der Apotheke
 |*localityName * |obligatorisch |Bezeichner: Ort der Apotheke
 |*stateOrProvinceName * |optional |Bezeichner: Bundesland der Apotheke
@@ -971,7 +979,9 @@ Bezeichner: Beschreibung +
 Dieses Attribut ermöglicht, das Zertifikat zu beschreiben, um die Administration des VZD-Eintrags zu vereinfachen.
 |*mail* |optional |Bezeichner: E-Mail-Adresse +
 kann mehrfach vorkommen (0..100). +
-Wird vom KOM-LE-Anbieter eingetragen.
+Wird vom KOM-LE-Anbieter eingetragen. +
+ +
+Hinweis: Diese Adressen werden auch für die Direktzuweisung (z.B. Zytostatika) durch Ärzte genutzt. 
 |*komLeData* |optional a|
 Bezeichner: komLeData +
 Enthält die KOM-LE-Version des Clientmoduls der angegebenen "mail" Adresse im Attribut "version". Anhand dieser Version erkennt das sendende Clientmodul, welche KOM-LE-Version vom Empfänger-Clientmodul unterstützt wird und in welchem Format die Mail an diesen Empfänger versandt wird. +
@@ -996,7 +1006,9 @@ Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
 ----
 
 
-Wird vom KOM-LE-Anbieter eingetragen.
+Wird vom KOM-LE-Anbieter eingetragen. +
+ +
+Hinweis: Für KOM-LE wird in der externen Darstellung die Bezeichnung "KIM" genutzt. In den Spezifikationen wird aber noch der Begriff KOM-LE genutzt. 
 
 |===
 
@@ -1005,7 +1017,12 @@ Wird vom KOM-LE-Anbieter eingetragen.
 
 === HBA-Eintrag für Apotheker (ABDA, gematik)
 
-NOTE: Die HBAs der Apotheker - inklusive ihrer Zertifikate - müssen im VZD erfasst und gepflegt werden.
+NOTE: Die HBAs der Apotheker - inklusive ihrer Zertifikate - müssen im VZD erfasst und gepflegt werden. +
+Dafür müssen die ENC Zertifikate aller neuen HBA Karten in Attribut Certificate.userCertificate eingetragen werden.
+- Abgelaufene Zertifikate entfernt der VZD automatisch.
+- Noch nicht aktivierte Zertifikate werden in der VZD I_Directory_Query Schnittstelle erst nach Aktivierung sichtbar. +
+ +
+Alle anderen - durch Kartenherausgeber gepflegte - Daten müssen bei Änderungen (z.B. Änderung der Adresse, Spezialisierung,...) aktualisiert werden.
 
 
 Tabelle 5: Tab_VZD_Datenbeschreibung_Apotheker
