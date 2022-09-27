@@ -88,7 +88,8 @@ Neu für eGBR HBA und SMC-B |gematik
 
 |1.5.5 |30.09.2022 |4 |
 - „read only“ Zugang aufgenommen (Kap. 3.1.1, 3.2) - C_11187 +
-- Pflege von Attribut personalEntry optimiert - C_11227
+- Pflege von Attribut personalEntry optimiert - C_11227 +
+- Attribute active und meta	aufgenommen in Attributtabellen - C_11183
 
 |gematik
 
@@ -739,8 +740,6 @@ Der Wertebereich entspricht den in hl7 definierten und für ePA festgelegten W
 urn:psc:<OID Codesystem:Code> +
 Beispiel für Allgemeinmedizin: urn:psc:1.3.6.1.4.1.19376.3.276.1.5.4:ALLG
 |*countryCode* |optional |Siehe TAB_VZD_Wertebereiche_der_Attribute
-|*changeDateTime* |optional |Bezeichner: Änderungszeitstempel +
-Wird vom VZD automatisch eingetragen.
 |*usage* |optional |Das Attribut usage wird nicht verwendet.
 |*userCertificate* |optional |Bezeichner: Enc-Zertifikat der SMC-B +
 Kann mehrfach vorkommen (0..50) +
@@ -808,6 +807,17 @@ Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
 
 Wird vom KOM-LE-Anbieter eingetragen.
 
+|*active* |obligatorisch | Mit diesem Attribut im Basiseintrag kann der Client (Kartenherausgeber, TSP) die Aufnahme des VZD Eintrags in die flache Liste steuern. Wenn das Attribut beim Anlegen eines VZD Eintrags mit Zertifikat nicht angegeben wird, setzt der VZD das Attribut  active auf TRUE (Default-Wert). +
+Wenn der VZD Eintrag ohne Zertifikat angelegt wird, setzt der VZD active = FALSE. +
+Bei FALSE wird der Eintrag vom VZD aus der flachen Liste entfernt bzw. nicht übertragen. +
+Dieses Attribut ist nicht in der flachen Liste enthalten.
+|*meta* |optional | Kann von den pflegenden Clients zur Abstimmung der Prozesse zwischen z.B. Kartenherausgeber und TSP genutzt werden. Dieses Attribut wird durch den VZD nicht ausgewertet. Die Werte für dieses Attribut müssen von den pflegenden Organisationen festgelegt und abgestimmt werden. +
+Array von Strings (wird in LDAP auf <String, String> gemappt). es erfolgt keine Synchronisierung in die flache Liste. +
+Dieses Attribut ist nicht in der flachen Liste enthalten. +
+Kann mehrfach vorkommen (0..100).
+|*changeDateTime* |obligatorisch |Bezeichner: Änderungszeitstempel +
+Der VZD setzt dieses Attribut bei jeder Schreiboperation für den Datensatz (Basisdaten und Zertifikate) auf die aktuelle Zeit. Format entsprechend RFC 3339, section 5.6. +
+Wird vom VZD automatisch eingetragen.
 |===
 
 {empty} +
@@ -837,8 +847,6 @@ Dieses Attribut wird genutzt, um den Namen der Zahnarztpraxis gegenüber dem Anw
 |*localityName * |obligatorisch |Bezeichner: Ort
 |*stateOrProvinceName * |optional |Bezeichner: Bundesland der Betriebsstätte oder KZV-Region
 |*countryCode* |optional |Siehe TAB_VZD_Wertebereiche_der_Attribute 
-|*changeDateTime* |optional |Bezeichner: Änderungszeitstempel +
-Wird vom VZD automatisch eingetragen.
 |*organization* |optional |Bezeichner: Organisation +
 Dieses Attribut ist ein optionales zweites Namensattribut und wird befüllt bei Bedarf. Ebenso wie displayName ist es geeignet, um nach einem Namen zu filtern und ihn im Suchergebnis anzuzeigen.
 |*domainID* |optional |Ärzte: Bezeichner: Abrechnungsnummer +
@@ -915,6 +923,17 @@ Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
 
 Wird vom KOM-LE-Anbieter eingetragen.
 
+|*active* |obligatorisch | Mit diesem Attribut im Basiseintrag kann der Client (Kartenherausgeber, TSP) die Aufnahme des VZD Eintrags in die flache Liste steuern. Wenn das Attribut beim Anlegen eines VZD Eintrags mit Zertifikat nicht angegeben wird, setzt der VZD das Attribut  active auf TRUE (Default-Wert). +
+Wenn der VZD Eintrag ohne Zertifikat angelegt wird, setzt der VZD active = FALSE. +
+Bei FALSE wird der Eintrag vom VZD aus der flachen Liste entfernt bzw. nicht übertragen. +
+Dieses Attribut ist nicht in der flachen Liste enthalten.
+|*meta* |optional | Kann von den pflegenden Clients zur Abstimmung der Prozesse zwischen z.B. Kartenherausgeber und TSP genutzt werden. Dieses Attribut wird durch den VZD nicht ausgewertet. Die Werte für dieses Attribut müssen von den pflegenden Organisationen festgelegt und abgestimmt werden. +
+Array von Strings (wird in LDAP auf <String, String> gemappt). es erfolgt keine Synchronisierung in die flache Liste. +
+Dieses Attribut ist nicht in der flachen Liste enthalten. +
+Kann mehrfach vorkommen (0..100).
+|*changeDateTime* |obligatorisch |Bezeichner: Änderungszeitstempel +
+Der VZD setzt dieses Attribut bei jeder Schreiboperation für den Datensatz (Basisdaten und Zertifikate) auf die aktuelle Zeit. Format entsprechend RFC 3339, section 5.6. +
+Wird vom VZD automatisch eingetragen.
 |===
 
 {empty} +
@@ -944,8 +963,6 @@ Dieses Attribut wird genutzt um den Namen der Apotheke gegenüber dem Anwender d
 |*localityName * |obligatorisch |Bezeichner: Ort der Apotheke
 |*stateOrProvinceName * |optional |Bezeichner: Bundesland der Apotheke
 |*countryCode* |optional |Siehe TAB_VZD_Wertebereiche_der_Attribute
-|*changeDateTime* |optional |Bezeichner: Änderungszeitstempel +
-Wird vom VZD automatisch eingetragen.
 |*organization* |optional |Bezeichner: Organisation +
 Dieses Attribut ist ein optionales zweites Namensattribut und wird befüllt bei Bedarf. Ebenso wie displayName ist es geeignet um nach einem Namen zu filtern und ihn im Suchergebnis anzuzeigen. +
 Für EU-Versandapotheken: EU-Versandapotheke
@@ -1021,7 +1038,17 @@ Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
 
 
 Wird vom KOM-LE-Anbieter eingetragen.
-
+|*active* |obligatorisch | Mit diesem Attribut im Basiseintrag kann der Client (Kartenherausgeber, TSP) die Aufnahme des VZD Eintrags in die flache Liste steuern. Wenn das Attribut beim Anlegen eines VZD Eintrags mit Zertifikat nicht angegeben wird, setzt der VZD das Attribut  active auf TRUE (Default-Wert). +
+Wenn der VZD Eintrag ohne Zertifikat angelegt wird, setzt der VZD active = FALSE. +
+Bei FALSE wird der Eintrag vom VZD aus der flachen Liste entfernt bzw. nicht übertragen. +
+Dieses Attribut ist nicht in der flachen Liste enthalten.
+|*meta* |optional | Kann von den pflegenden Clients zur Abstimmung der Prozesse zwischen z.B. Kartenherausgeber und TSP genutzt werden. Dieses Attribut wird durch den VZD nicht ausgewertet. Die Werte für dieses Attribut müssen von den pflegenden Organisationen festgelegt und abgestimmt werden. +
+Array von Strings (wird in LDAP auf <String, String> gemappt). es erfolgt keine Synchronisierung in die flache Liste. +
+Dieses Attribut ist nicht in der flachen Liste enthalten. +
+Kann mehrfach vorkommen (0..100).
+|*changeDateTime* |obligatorisch |Bezeichner: Änderungszeitstempel +
+Der VZD setzt dieses Attribut bei jeder Schreiboperation für den Datensatz (Basisdaten und Zertifikate) auf die aktuelle Zeit. Format entsprechend RFC 3339, section 5.6. +
+Wird vom VZD automatisch eingetragen.
 |===
 
 {empty} +
@@ -1055,8 +1082,6 @@ Der Wert wird von der pflegenden Stelle festgelegt.
 |*stateOrProvinceName * |optional |Bezeichner: Bundesland  (berufliche Adresse) +
 Der Wert wird von der pflegenden Stelle festgelegt.
 |*countryCode* |optional |Siehe TAB_VZD_Wertebereiche_der_Attribute
-|*changeDateTime* |optional |Bezeichner: Änderungszeitstempel +
-Wird vom VZD automatisch eingetragen.
 |*organization* |optional |Bezeichner: Organisation +
 Dieses Attribut wird genutzt, um den Namen der Betriebsstätte gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut, um die Suche einzuschränken, und bei der Darstellung des Ergebnisses)
 |*domainID* |optional |Bezeichner: spezifisches Kennzeichen der Apotheker +
@@ -1135,7 +1160,17 @@ Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
 ----
 
 Wird vom KOM-LE-Anbieter eingetragen.
-
+|*active* |obligatorisch | Mit diesem Attribut im Basiseintrag kann der Client (Kartenherausgeber, TSP) die Aufnahme des VZD Eintrags in die flache Liste steuern. Wenn das Attribut beim Anlegen eines VZD Eintrags mit Zertifikat nicht angegeben wird, setzt der VZD das Attribut  active auf TRUE (Default-Wert). +
+Wenn der VZD Eintrag ohne Zertifikat angelegt wird, setzt der VZD active = FALSE. +
+Bei FALSE wird der Eintrag vom VZD aus der flachen Liste entfernt bzw. nicht übertragen. +
+Dieses Attribut ist nicht in der flachen Liste enthalten.
+|*meta* |optional | Kann von den pflegenden Clients zur Abstimmung der Prozesse zwischen z.B. Kartenherausgeber und TSP genutzt werden. Dieses Attribut wird durch den VZD nicht ausgewertet. Die Werte für dieses Attribut müssen von den pflegenden Organisationen festgelegt und abgestimmt werden. +
+Array von Strings (wird in LDAP auf <String, String> gemappt). es erfolgt keine Synchronisierung in die flache Liste. +
+Dieses Attribut ist nicht in der flachen Liste enthalten. +
+Kann mehrfach vorkommen (0..100).
+|*changeDateTime* |obligatorisch |Bezeichner: Änderungszeitstempel +
+Der VZD setzt dieses Attribut bei jeder Schreiboperation für den Datensatz (Basisdaten und Zertifikate) auf die aktuelle Zeit. Format entsprechend RFC 3339, section 5.6. +
+Wird vom VZD automatisch eingetragen.
 |===
 
 {empty} +
@@ -1168,8 +1203,6 @@ Dieses Attribut wird genutzt um den Namen der Betriebsstätte gegenüber dem Anw
 |*localityName * |obligatorisch |Bezeichner: Ort des Krankenhauses
 |*stateOrProvinceName * |optional |Bezeichner: Bundesland des Krankenhauses
 |*countryCode* |optional |Siehe TAB_VZD_Wertebereiche_der_Attribute
-|*changeDateTime* |optional |Bezeichner: Änderungszeitstempel +
-Wird vom VZD automatisch eingetragen.
 |*organization* |optional |Bezeichner: Organisation +
 Dieses Attribut ist ein optionales zweites Namensattribut und wird befüllt bei Bedarf. Ebenso wie displayName ist es geeignet, um nach einem Namen zu filtern und ihn im Suchergebnis anzuzeigen.
 |*domainID* |optional |Bezeichner: Betriebsstättennummer des Krankenhauses +
@@ -1245,7 +1278,17 @@ Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
 ----
 
 Wird vom KOM-LE-Anbieter eingetragen.
-
+|*active* |obligatorisch | Mit diesem Attribut im Basiseintrag kann der Client (Kartenherausgeber, TSP) die Aufnahme des VZD Eintrags in die flache Liste steuern. Wenn das Attribut beim Anlegen eines VZD Eintrags mit Zertifikat nicht angegeben wird, setzt der VZD das Attribut  active auf TRUE (Default-Wert). +
+Wenn der VZD Eintrag ohne Zertifikat angelegt wird, setzt der VZD active = FALSE. +
+Bei FALSE wird der Eintrag vom VZD aus der flachen Liste entfernt bzw. nicht übertragen. +
+Dieses Attribut ist nicht in der flachen Liste enthalten.
+|*meta* |optional | Kann von den pflegenden Clients zur Abstimmung der Prozesse zwischen z.B. Kartenherausgeber und TSP genutzt werden. Dieses Attribut wird durch den VZD nicht ausgewertet. Die Werte für dieses Attribut müssen von den pflegenden Organisationen festgelegt und abgestimmt werden. +
+Array von Strings (wird in LDAP auf <String, String> gemappt). es erfolgt keine Synchronisierung in die flache Liste. +
+Dieses Attribut ist nicht in der flachen Liste enthalten. +
+Kann mehrfach vorkommen (0..100).
+|*changeDateTime* |obligatorisch |Bezeichner: Änderungszeitstempel +
+Der VZD setzt dieses Attribut bei jeder Schreiboperation für den Datensatz (Basisdaten und Zertifikate) auf die aktuelle Zeit. Format entsprechend RFC 3339, section 5.6. +
+Wird vom VZD automatisch eingetragen.
 |===
 
 {empty} +
@@ -1275,8 +1318,6 @@ Dieses Attribut wird genutzt, um den Namen der Person gegenüber dem Anwender da
 |*localityName * |obligatorisch |Bezeichner: Ort  (Adresse der Betriebsstätte)
 |*stateOrProvinceName * |optional |Bezeichner: Bundesland  (Adresse der Betriebsstätte)
 |*countryCode* |optional |Siehe TAB_VZD_Wertebereiche_der_Attribute
-|*changeDateTime* |optional |Bezeichner: Änderungszeitstempel +
-Wird vom VZD automatisch eingetragen.
 |*organization* |optional |Bezeichner: Organisation +
 Dieses Attribut wird genutzt um den Namen der Betriebsstätte gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut, um die Suche einzuschränken, und bei der Darstellung des Ergebnisses).
 |*domainID* |optional |Bezeichner: spezifisches Kennzeichen der Psychotherapeuten +
@@ -1360,7 +1401,17 @@ Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
 ----
 
 Wird vom KOM-LE-Anbieter eingetragen.
-
+|*active* |obligatorisch | Mit diesem Attribut im Basiseintrag kann der Client (Kartenherausgeber, TSP) die Aufnahme des VZD Eintrags in die flache Liste steuern. Wenn das Attribut beim Anlegen eines VZD Eintrags mit Zertifikat nicht angegeben wird, setzt der VZD das Attribut  active auf TRUE (Default-Wert). +
+Wenn der VZD Eintrag ohne Zertifikat angelegt wird, setzt der VZD active = FALSE. +
+Bei FALSE wird der Eintrag vom VZD aus der flachen Liste entfernt bzw. nicht übertragen. +
+Dieses Attribut ist nicht in der flachen Liste enthalten.
+|*meta* |optional | Kann von den pflegenden Clients zur Abstimmung der Prozesse zwischen z.B. Kartenherausgeber und TSP genutzt werden. Dieses Attribut wird durch den VZD nicht ausgewertet. Die Werte für dieses Attribut müssen von den pflegenden Organisationen festgelegt und abgestimmt werden. +
+Array von Strings (wird in LDAP auf <String, String> gemappt). es erfolgt keine Synchronisierung in die flache Liste. +
+Dieses Attribut ist nicht in der flachen Liste enthalten. +
+Kann mehrfach vorkommen (0..100).
+|*changeDateTime* |obligatorisch |Bezeichner: Änderungszeitstempel +
+Der VZD setzt dieses Attribut bei jeder Schreiboperation für den Datensatz (Basisdaten und Zertifikate) auf die aktuelle Zeit. Format entsprechend RFC 3339, section 5.6. +
+Wird vom VZD automatisch eingetragen.
 |===
 
 {empty} +
@@ -1394,8 +1445,6 @@ Der Wert wird von der pflegenden Stelle festgelegt.
 |*stateOrProvinceName * |optional |Bezeichner: Bundesland  (berufliche Adresse) +
 Der Wert wird von der pflegenden Stelle festgelegt.
 |*countryCode* |optional |Siehe TAB_VZD_Wertebereiche_der_Attribute
-|*changeDateTime* |optional |Bezeichner: Änderungszeitstempel +
-Wird vom VZD automatisch eingetragen.
 |*organization* |optional |Bezeichner: Organisation +
 Dieses Attribut wird genutzt, um den Namen der Betriebsstätte gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut, um die Suche einzuschränken, und bei der Darstellung des Ergebnisses)
 |*domainID* |optional |Bezeichner: spezifisches Kennzeichen der Ärzte +
@@ -1474,7 +1523,17 @@ Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
 ----
 
 Wird vom KOM-LE-Anbieter eingetragen.
-
+|*active* |obligatorisch | Mit diesem Attribut im Basiseintrag kann der Client (Kartenherausgeber, TSP) die Aufnahme des VZD Eintrags in die flache Liste steuern. Wenn das Attribut beim Anlegen eines VZD Eintrags mit Zertifikat nicht angegeben wird, setzt der VZD das Attribut  active auf TRUE (Default-Wert). +
+Wenn der VZD Eintrag ohne Zertifikat angelegt wird, setzt der VZD active = FALSE. +
+Bei FALSE wird der Eintrag vom VZD aus der flachen Liste entfernt bzw. nicht übertragen. +
+Dieses Attribut ist nicht in der flachen Liste enthalten.
+|*meta* |optional | Kann von den pflegenden Clients zur Abstimmung der Prozesse zwischen z.B. Kartenherausgeber und TSP genutzt werden. Dieses Attribut wird durch den VZD nicht ausgewertet. Die Werte für dieses Attribut müssen von den pflegenden Organisationen festgelegt und abgestimmt werden. +
+Array von Strings (wird in LDAP auf <String, String> gemappt). es erfolgt keine Synchronisierung in die flache Liste. +
+Dieses Attribut ist nicht in der flachen Liste enthalten. +
+Kann mehrfach vorkommen (0..100).
+|*changeDateTime* |obligatorisch |Bezeichner: Änderungszeitstempel +
+Der VZD setzt dieses Attribut bei jeder Schreiboperation für den Datensatz (Basisdaten und Zertifikate) auf die aktuelle Zeit. Format entsprechend RFC 3339, section 5.6. +
+Wird vom VZD automatisch eingetragen.
 |===
 
 {empty} +
@@ -1508,8 +1567,6 @@ Der Wert wird von der pflegenden Stelle festgelegt.
 |*stateOrProvinceName * |optional |Bezeichner: Bundesland  (berufliche Adresse) +
 Der Wert wird von der pflegenden Stelle festgelegt.
 |*countryCode* |optional |Siehe TAB_VZD_Wertebereiche_der_Attribute
-|*changeDateTime* |optional |Bezeichner: Änderungszeitstempel +
-Wird vom VZD automatisch eingetragen.
 |*organization* |optional |Bezeichner: Organisation +
 Dieses Attribut wird genutzt, um den Namen der Betriebsstätte gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut, um die Suche einzuschränken, und bei der Darstellung des Ergebnisses).
 |*domainID* |optional |Bezeichner: spezifisches Kennzeichen der Zahnärzte +
@@ -1588,7 +1645,17 @@ Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
 ----
 
 Wird vom KOM-LE-Anbieter eingetragen.
-
+|*active* |obligatorisch | Mit diesem Attribut im Basiseintrag kann der Client (Kartenherausgeber, TSP) die Aufnahme des VZD Eintrags in die flache Liste steuern. Wenn das Attribut beim Anlegen eines VZD Eintrags mit Zertifikat nicht angegeben wird, setzt der VZD das Attribut  active auf TRUE (Default-Wert). +
+Wenn der VZD Eintrag ohne Zertifikat angelegt wird, setzt der VZD active = FALSE. +
+Bei FALSE wird der Eintrag vom VZD aus der flachen Liste entfernt bzw. nicht übertragen. +
+Dieses Attribut ist nicht in der flachen Liste enthalten.
+|*meta* |optional | Kann von den pflegenden Clients zur Abstimmung der Prozesse zwischen z.B. Kartenherausgeber und TSP genutzt werden. Dieses Attribut wird durch den VZD nicht ausgewertet. Die Werte für dieses Attribut müssen von den pflegenden Organisationen festgelegt und abgestimmt werden. +
+Array von Strings (wird in LDAP auf <String, String> gemappt). es erfolgt keine Synchronisierung in die flache Liste. +
+Dieses Attribut ist nicht in der flachen Liste enthalten. +
+Kann mehrfach vorkommen (0..100).
+|*changeDateTime* |obligatorisch |Bezeichner: Änderungszeitstempel +
+Der VZD setzt dieses Attribut bei jeder Schreiboperation für den Datensatz (Basisdaten und Zertifikate) auf die aktuelle Zeit. Format entsprechend RFC 3339, section 5.6. +
+Wird vom VZD automatisch eingetragen.
 |===
 
 {empty} +
@@ -1696,8 +1763,6 @@ Wird vom KOM-LE-Anbieter eingetragen.
   +
 Der Wert wird für SMC-B KTR nicht verwendet.
 |*countryCode* |optional |Siehe TAB_VZD_Wertebereiche_der_Attribute
-|*changeDateTime* |optional |Bezeichner: Änderungszeitstempel +
-Wird vom VZD automatisch eingetragen.
 |*title* |optional |Wird für SMC-B nicht verwendet.
 |*usage* |optional |Das Attribut usage wird nicht verwendet.
 |*description* |optional |Bezeichner: Beschreibung +
@@ -1705,7 +1770,17 @@ Dieses Attribut ermöglicht, das Zertifikat zu beschreiben, um die Administratio
 Wird derzeit nicht verwendet.
 |*specialization* |optional |Wird für SMC-B KTR nicht verwendet.
 
-
+|*active* |obligatorisch | Mit diesem Attribut im Basiseintrag kann der Client (Kartenherausgeber, TSP) die Aufnahme des VZD Eintrags in die flache Liste steuern. Wenn das Attribut beim Anlegen eines VZD Eintrags mit Zertifikat nicht angegeben wird, setzt der VZD das Attribut  active auf TRUE (Default-Wert). +
+Wenn der VZD Eintrag ohne Zertifikat angelegt wird, setzt der VZD active = FALSE. +
+Bei FALSE wird der Eintrag vom VZD aus der flachen Liste entfernt bzw. nicht übertragen. +
+Dieses Attribut ist nicht in der flachen Liste enthalten.
+|*meta* |optional | Kann von den pflegenden Clients zur Abstimmung der Prozesse zwischen z.B. Kartenherausgeber und TSP genutzt werden. Dieses Attribut wird durch den VZD nicht ausgewertet. Die Werte für dieses Attribut müssen von den pflegenden Organisationen festgelegt und abgestimmt werden. +
+Array von Strings (wird in LDAP auf <String, String> gemappt). es erfolgt keine Synchronisierung in die flache Liste. +
+Dieses Attribut ist nicht in der flachen Liste enthalten. +
+Kann mehrfach vorkommen (0..100).
+|*changeDateTime* |obligatorisch |Bezeichner: Änderungszeitstempel +
+Der VZD setzt dieses Attribut bei jeder Schreiboperation für den Datensatz (Basisdaten und Zertifikate) auf die aktuelle Zeit. Format entsprechend RFC 3339, section 5.6. +
+Wird vom VZD automatisch eingetragen.
 |===
 
 {empty} +
@@ -1781,14 +1856,23 @@ Wenn der Wert TRUE ist, können die Daten nicht mehr über die Schnittstelle I_D
   +
 Der Wert wird für SMC-B KTR ePA nicht verwendet.
 |*countryCode* |optional |Siehe TAB_VZD_Wertebereiche_der_Attribute
-|*changeDateTime* |optional |Bezeichner: Änderungszeitstempel +
-Wird vom VZD automatisch eingetragen.
 |*title* |optional |Wird für SMC-B nicht verwendet.
 |*usage* |optional |Das Attribut usage wird nicht verwendet.
 |*description* |optional |Bezeichner: Beschreibung +
 Dieses Attribut ermöglicht, das Zertifikat zu beschreiben, um die Administration des VZD-Eintrags zu vereinfachen. +
 Wird derzeit nicht verwendet.
 |*specialization* |optional |Wird für SMC-B KTR ePA nicht verwendet.
+|*active* |obligatorisch | Mit diesem Attribut im Basiseintrag kann der Client (Kartenherausgeber, TSP) die Aufnahme des VZD Eintrags in die flache Liste steuern. Wenn das Attribut beim Anlegen eines VZD Eintrags mit Zertifikat nicht angegeben wird, setzt der VZD das Attribut  active auf TRUE (Default-Wert). +
+Wenn der VZD Eintrag ohne Zertifikat angelegt wird, setzt der VZD active = FALSE. +
+Bei FALSE wird der Eintrag vom VZD aus der flachen Liste entfernt bzw. nicht übertragen. +
+Dieses Attribut ist nicht in der flachen Liste enthalten.
+|*meta* |optional | Kann von den pflegenden Clients zur Abstimmung der Prozesse zwischen z.B. Kartenherausgeber und TSP genutzt werden. Dieses Attribut wird durch den VZD nicht ausgewertet. Die Werte für dieses Attribut müssen von den pflegenden Organisationen festgelegt und abgestimmt werden. +
+Array von Strings (wird in LDAP auf <String, String> gemappt). es erfolgt keine Synchronisierung in die flache Liste. +
+Dieses Attribut ist nicht in der flachen Liste enthalten. +
+Kann mehrfach vorkommen (0..100).
+|*changeDateTime* |obligatorisch |Bezeichner: Änderungszeitstempel +
+Der VZD setzt dieses Attribut bei jeder Schreiboperation für den Datensatz (Basisdaten und Zertifikate) auf die aktuelle Zeit. Format entsprechend RFC 3339, section 5.6. +
+Wird vom VZD automatisch eingetragen.
 |===
 
 {empty} +
@@ -1818,8 +1902,6 @@ Dieses Attribut wird genutzt, um den Namen der Organisation gegenüber dem Anwen
 |*localityName * |obligatorisch |Bezeichner: Ort der Organisation 
 |*stateOrProvinceName * |optional |Bezeichner: Bundesland der Organisation 
 |*countryCode* |optional |Siehe TAB_VZD_Wertebereiche_der_Attribute
-|*changeDateTime* |optional |Bezeichner: Änderungszeitstempel +
-Wird vom VZD automatisch eingetragen.
 |*organization* |optional |Bezeichner: Organisation +
 Dieses Attribut ist ein optionales zweites Namensattribut und wird befüllt bei Bedarf. Ebenso wie displayName ist es geeignet, um nach einem Namen zu filtern und ihn im Suchergebnis anzuzeigen.
 |*domainID* |optional |nicht belegt
@@ -1886,7 +1968,17 @@ Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
 ----
 
 Wird vom KOM-LE-Anbieter eingetragen.
-
+|*active* |obligatorisch | Mit diesem Attribut im Basiseintrag kann der Client (Kartenherausgeber, TSP) die Aufnahme des VZD Eintrags in die flache Liste steuern. Wenn das Attribut beim Anlegen eines VZD Eintrags mit Zertifikat nicht angegeben wird, setzt der VZD das Attribut  active auf TRUE (Default-Wert). +
+Wenn der VZD Eintrag ohne Zertifikat angelegt wird, setzt der VZD active = FALSE. +
+Bei FALSE wird der Eintrag vom VZD aus der flachen Liste entfernt bzw. nicht übertragen. +
+Dieses Attribut ist nicht in der flachen Liste enthalten.
+|*meta* |optional | Kann von den pflegenden Clients zur Abstimmung der Prozesse zwischen z.B. Kartenherausgeber und TSP genutzt werden. Dieses Attribut wird durch den VZD nicht ausgewertet. Die Werte für dieses Attribut müssen von den pflegenden Organisationen festgelegt und abgestimmt werden. +
+Array von Strings (wird in LDAP auf <String, String> gemappt). es erfolgt keine Synchronisierung in die flache Liste. +
+Dieses Attribut ist nicht in der flachen Liste enthalten. +
+Kann mehrfach vorkommen (0..100).
+|*changeDateTime* |obligatorisch |Bezeichner: Änderungszeitstempel +
+Der VZD setzt dieses Attribut bei jeder Schreiboperation für den Datensatz (Basisdaten und Zertifikate) auf die aktuelle Zeit. Format entsprechend RFC 3339, section 5.6. +
+Wird vom VZD automatisch eingetragen.
 |===
 
 {empty} +
@@ -1918,8 +2010,6 @@ Dieses Attribut wird genutzt, um den Namen der Leistungserbringerinstitution ge
 |*localityName * |obligatorisch |Bezeichner: Ort der Leistungserbringerinstitution
 |*stateOrProvinceName * |obligatorisch |Bezeichner: Bundesland der Leistungserbringerinstitution
 |*countryCode* |optional |Siehe TAB_VZD_Wertebereiche_der_Attribute
-|*changeDateTime* |optional |Bezeichner: Änderungszeitstempel +
-Wird vom VZD automatisch eingetragen.
 |*organization* |optional |Bezeichner: Organisation +
 Dieses Attribut ist ein optionales zweites Namensattribut und wird befüllt bei Bedarf. Ebenso wie displayName ist es geeignet, um nach einem Namen zu filtern und ihn im Suchergebnis anzuzeigen.
 |*domainID* |obligatorisch |Bezeichner: IK-Nummer der Leistungserbringerinstitution +
@@ -1991,7 +2081,17 @@ Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
 ----
 
 Wird vom KOM-LE-Anbieter eingetragen.
-
+|*active* |obligatorisch | Mit diesem Attribut im Basiseintrag kann der Client (Kartenherausgeber, TSP) die Aufnahme des VZD Eintrags in die flache Liste steuern. Wenn das Attribut beim Anlegen eines VZD Eintrags mit Zertifikat nicht angegeben wird, setzt der VZD das Attribut  active auf TRUE (Default-Wert). +
+Wenn der VZD Eintrag ohne Zertifikat angelegt wird, setzt der VZD active = FALSE. +
+Bei FALSE wird der Eintrag vom VZD aus der flachen Liste entfernt bzw. nicht übertragen. +
+Dieses Attribut ist nicht in der flachen Liste enthalten.
+|*meta* |optional | Kann von den pflegenden Clients zur Abstimmung der Prozesse zwischen z.B. Kartenherausgeber und TSP genutzt werden. Dieses Attribut wird durch den VZD nicht ausgewertet. Die Werte für dieses Attribut müssen von den pflegenden Organisationen festgelegt und abgestimmt werden. +
+Array von Strings (wird in LDAP auf <String, String> gemappt). es erfolgt keine Synchronisierung in die flache Liste. +
+Dieses Attribut ist nicht in der flachen Liste enthalten. +
+Kann mehrfach vorkommen (0..100).
+|*changeDateTime* |obligatorisch |Bezeichner: Änderungszeitstempel +
+Der VZD setzt dieses Attribut bei jeder Schreiboperation für den Datensatz (Basisdaten und Zertifikate) auf die aktuelle Zeit. Format entsprechend RFC 3339, section 5.6. +
+Wird vom VZD automatisch eingetragen.
 |===
 
 {empty} +
@@ -2022,8 +2122,6 @@ Dieses Attribut wird genutzt, um den Namen der Person gegenüber dem Anwender da
 |*localityName * |optional |Nicht belegt.
 |*stateOrProvinceName * |optional |Nicht belegt.
 |*countryCode* |optional |Siehe TAB_VZD_Wertebereiche_der_Attribute
-|*changeDateTime* |optional |Bezeichner: Änderungszeitstempel +
-Wird vom VZD automatisch eingetragen.
 |*organization* |optional |Nicht belegt.
 |*domainID* |optional |Nicht belegt.
 |*specialization* |obligatorisch |Bezeichner: Fachgebiet +
@@ -2098,7 +2196,17 @@ Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
 ----
 
 Wird vom KOM-LE-Anbieter eingetragen.
-
+|*active* |obligatorisch | Mit diesem Attribut im Basiseintrag kann der Client (Kartenherausgeber, TSP) die Aufnahme des VZD Eintrags in die flache Liste steuern. Wenn das Attribut beim Anlegen eines VZD Eintrags mit Zertifikat nicht angegeben wird, setzt der VZD das Attribut  active auf TRUE (Default-Wert). +
+Wenn der VZD Eintrag ohne Zertifikat angelegt wird, setzt der VZD active = FALSE. +
+Bei FALSE wird der Eintrag vom VZD aus der flachen Liste entfernt bzw. nicht übertragen. +
+Dieses Attribut ist nicht in der flachen Liste enthalten.
+|*meta* |optional | Kann von den pflegenden Clients zur Abstimmung der Prozesse zwischen z.B. Kartenherausgeber und TSP genutzt werden. Dieses Attribut wird durch den VZD nicht ausgewertet. Die Werte für dieses Attribut müssen von den pflegenden Organisationen festgelegt und abgestimmt werden. +
+Array von Strings (wird in LDAP auf <String, String> gemappt). es erfolgt keine Synchronisierung in die flache Liste. +
+Dieses Attribut ist nicht in der flachen Liste enthalten. +
+Kann mehrfach vorkommen (0..100).
+|*changeDateTime* |obligatorisch |Bezeichner: Änderungszeitstempel +
+Der VZD setzt dieses Attribut bei jeder Schreiboperation für den Datensatz (Basisdaten und Zertifikate) auf die aktuelle Zeit. Format entsprechend RFC 3339, section 5.6. +
+Wird vom VZD automatisch eingetragen.
 |===
 
 {empty} +
@@ -2128,8 +2236,6 @@ Dieses Attribut wird genutzt, um den Namen der Leistungserbringerinstitution geg
 |*localityName* |obligatorisch |Bezeichner: Ort der Leistungserbringerinstitution
 |*stateOrProvinceName* |obligatorisch |Bezeichner: Bundesland der Leistungserbringerinstitution
 |*countryCode* |optional |Siehe TAB_VZD_Wertebereiche_der_Attribute
-|*changeDateTime* |optional |Bezeichner: Änderungszeitstempel +
-Wird vom VZD automatisch eingetragen.
 |*organization* |optional |Bezeichner: Organisation +
 Dieses Attribut ist ein optionales zweites Namensattribut und wird befüllt bei Bedarf. Ebenso wie displayName ist es geeignet, um nach einem Namen zu filtern und ihn im Suchergebnis anzuzeigen.
 |*domainID* |obligatorisch |nicht belegt
@@ -2207,7 +2313,17 @@ Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
 ----
 
 Wird vom KOM-LE-Anbieter eingetragen.
-
+|*active* |obligatorisch | Mit diesem Attribut im Basiseintrag kann der Client (Kartenherausgeber, TSP) die Aufnahme des VZD Eintrags in die flache Liste steuern. Wenn das Attribut beim Anlegen eines VZD Eintrags mit Zertifikat nicht angegeben wird, setzt der VZD das Attribut  active auf TRUE (Default-Wert). +
+Wenn der VZD Eintrag ohne Zertifikat angelegt wird, setzt der VZD active = FALSE. +
+Bei FALSE wird der Eintrag vom VZD aus der flachen Liste entfernt bzw. nicht übertragen. +
+Dieses Attribut ist nicht in der flachen Liste enthalten.
+|*meta* |optional | Kann von den pflegenden Clients zur Abstimmung der Prozesse zwischen z.B. Kartenherausgeber und TSP genutzt werden. Dieses Attribut wird durch den VZD nicht ausgewertet. Die Werte für dieses Attribut müssen von den pflegenden Organisationen festgelegt und abgestimmt werden. +
+Array von Strings (wird in LDAP auf <String, String> gemappt). es erfolgt keine Synchronisierung in die flache Liste. +
+Dieses Attribut ist nicht in der flachen Liste enthalten. +
+Kann mehrfach vorkommen (0..100).
+|*changeDateTime* |obligatorisch |Bezeichner: Änderungszeitstempel +
+Der VZD setzt dieses Attribut bei jeder Schreiboperation für den Datensatz (Basisdaten und Zertifikate) auf die aktuelle Zeit. Format entsprechend RFC 3339, section 5.6. +
+Wird vom VZD automatisch eingetragen.
 |===
 
 {empty} +
