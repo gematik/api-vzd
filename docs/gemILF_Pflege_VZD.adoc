@@ -90,7 +90,10 @@ Neu für eGBR HBA und SMC-B |gematik
 - „read only“ Zugang aufgenommen (Kap. 3.1.1, 3.2) - C_11187 +
 - Pflege von Attribut personalEntry optimiert - C_11227 +
 - Attribute active und meta	aufgenommen in Attributtabellen - C_11183 +
-- Operation stateSwitch_Directory_Entry in Kap. 3.3.1 aufgenommen - C_11183
+- Operation stateSwitch_Directory_Entry in Kap. 3.3.1 aufgenommen - C_11183 +
+- Operation readLog in Kap. 3.3.4 aufgenommen - C_11221 +
+- Attribut changeDateTime vereinheitlicht (Kap. 4) - C_11183 +
+- Attributtabellen aktualisiert: notBefore, notAfter (Kap. 4) - C_11179
 
 |gematik
 
@@ -542,6 +545,12 @@ Diese Suche findet sowohl Datensätze mit nicht vorhandenem Attribut wie auch vo
 
 Alle Filterparameter einer Leseoperation werden mit einem UND (&) verknüpft. 
 
+==== Log
+
+===== GET /Log
+
+Durch die readLog Operation werden die Log Daten aller zum Filter passenden Verzeichniseinträge geliefert. Die angegebenen Parameter werden mit logischen UND verknüpft.
+
 === Return type
 
 file:///C:/cp/vzd-client-generated-v1.4.0/index.html#DirectoryEntries[+++DirectoryEntries+++]
@@ -818,6 +827,10 @@ Kann mehrfach vorkommen (0..100).
 |*changeDateTime* |obligatorisch |Bezeichner: Änderungszeitstempel +
 Der VZD setzt dieses Attribut bei jeder Schreiboperation für den Datensatz (Basisdaten und Zertifikate) auf die aktuelle Zeit. Format entsprechend RFC 3339, section 5.6. +
 Wird vom VZD automatisch eingetragen.
+|*notBefore* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. Wird vom VZD zur Ermittlung der zeitlich gültigen Zertifikate genutzt. Dieses Attribut ist nicht in der flachen Liste enthalten. +
+Wird vom VZD automatisch eingetragen.
+|*notAfter* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. Wird vom VZD zur Ermittlung der zeitlich gültigen Zertifikate genutzt. Dieses Attribut ist nicht in der flachen Liste enthalten. +
+Wird vom VZD automatisch eingetragen.
 |===
 
 {empty} +
@@ -934,6 +947,10 @@ Kann mehrfach vorkommen (0..100).
 |*changeDateTime* |obligatorisch |Bezeichner: Änderungszeitstempel +
 Der VZD setzt dieses Attribut bei jeder Schreiboperation für den Datensatz (Basisdaten und Zertifikate) auf die aktuelle Zeit. Format entsprechend RFC 3339, section 5.6. +
 Wird vom VZD automatisch eingetragen.
+|*notBefore* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. Wird vom VZD zur Ermittlung der zeitlich gültigen Zertifikate genutzt. Dieses Attribut ist nicht in der flachen Liste enthalten. +
+Wird vom VZD automatisch eingetragen.
+|*notAfter* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. Wird vom VZD zur Ermittlung der zeitlich gültigen Zertifikate genutzt. Dieses Attribut ist nicht in der flachen Liste enthalten. +
+Wird vom VZD automatisch eingetragen.
 |===
 
 {empty} +
@@ -1048,6 +1065,10 @@ Dieses Attribut ist nicht in der flachen Liste enthalten. +
 Kann mehrfach vorkommen (0..100).
 |*changeDateTime* |obligatorisch |Bezeichner: Änderungszeitstempel +
 Der VZD setzt dieses Attribut bei jeder Schreiboperation für den Datensatz (Basisdaten und Zertifikate) auf die aktuelle Zeit. Format entsprechend RFC 3339, section 5.6. +
+Wird vom VZD automatisch eingetragen.
+|*notBefore* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. Wird vom VZD zur Ermittlung der zeitlich gültigen Zertifikate genutzt. Dieses Attribut ist nicht in der flachen Liste enthalten. +
+Wird vom VZD automatisch eingetragen.
+|*notAfter* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. Wird vom VZD zur Ermittlung der zeitlich gültigen Zertifikate genutzt. Dieses Attribut ist nicht in der flachen Liste enthalten. +
 Wird vom VZD automatisch eingetragen.
 |===
 
@@ -1171,6 +1192,10 @@ Kann mehrfach vorkommen (0..100).
 |*changeDateTime* |obligatorisch |Bezeichner: Änderungszeitstempel +
 Der VZD setzt dieses Attribut bei jeder Schreiboperation für den Datensatz (Basisdaten und Zertifikate) auf die aktuelle Zeit. Format entsprechend RFC 3339, section 5.6. +
 Wird vom VZD automatisch eingetragen.
+|*notBefore* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. Wird vom VZD zur Ermittlung der zeitlich gültigen Zertifikate genutzt. Dieses Attribut ist nicht in der flachen Liste enthalten. +
+Wird vom VZD automatisch eingetragen.
+|*notAfter* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. Wird vom VZD zur Ermittlung der zeitlich gültigen Zertifikate genutzt. Dieses Attribut ist nicht in der flachen Liste enthalten. +
+Wird vom VZD automatisch eingetragen.
 |===
 
 {empty} +
@@ -1288,6 +1313,10 @@ Dieses Attribut ist nicht in der flachen Liste enthalten. +
 Kann mehrfach vorkommen (0..100).
 |*changeDateTime* |obligatorisch |Bezeichner: Änderungszeitstempel +
 Der VZD setzt dieses Attribut bei jeder Schreiboperation für den Datensatz (Basisdaten und Zertifikate) auf die aktuelle Zeit. Format entsprechend RFC 3339, section 5.6. +
+Wird vom VZD automatisch eingetragen.
+|*notBefore* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. Wird vom VZD zur Ermittlung der zeitlich gültigen Zertifikate genutzt. Dieses Attribut ist nicht in der flachen Liste enthalten. +
+Wird vom VZD automatisch eingetragen.
+|*notAfter* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. Wird vom VZD zur Ermittlung der zeitlich gültigen Zertifikate genutzt. Dieses Attribut ist nicht in der flachen Liste enthalten. +
 Wird vom VZD automatisch eingetragen.
 |===
 
@@ -1412,6 +1441,10 @@ Kann mehrfach vorkommen (0..100).
 |*changeDateTime* |obligatorisch |Bezeichner: Änderungszeitstempel +
 Der VZD setzt dieses Attribut bei jeder Schreiboperation für den Datensatz (Basisdaten und Zertifikate) auf die aktuelle Zeit. Format entsprechend RFC 3339, section 5.6. +
 Wird vom VZD automatisch eingetragen.
+|*notBefore* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. Wird vom VZD zur Ermittlung der zeitlich gültigen Zertifikate genutzt. Dieses Attribut ist nicht in der flachen Liste enthalten. +
+Wird vom VZD automatisch eingetragen.
+|*notAfter* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. Wird vom VZD zur Ermittlung der zeitlich gültigen Zertifikate genutzt. Dieses Attribut ist nicht in der flachen Liste enthalten. +
+Wird vom VZD automatisch eingetragen.
 |===
 
 {empty} +
@@ -1534,6 +1567,10 @@ Kann mehrfach vorkommen (0..100).
 |*changeDateTime* |obligatorisch |Bezeichner: Änderungszeitstempel +
 Der VZD setzt dieses Attribut bei jeder Schreiboperation für den Datensatz (Basisdaten und Zertifikate) auf die aktuelle Zeit. Format entsprechend RFC 3339, section 5.6. +
 Wird vom VZD automatisch eingetragen.
+|*notBefore* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. Wird vom VZD zur Ermittlung der zeitlich gültigen Zertifikate genutzt. Dieses Attribut ist nicht in der flachen Liste enthalten. +
+Wird vom VZD automatisch eingetragen.
+|*notAfter* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. Wird vom VZD zur Ermittlung der zeitlich gültigen Zertifikate genutzt. Dieses Attribut ist nicht in der flachen Liste enthalten. +
+Wird vom VZD automatisch eingetragen.
 |===
 
 {empty} +
@@ -1655,6 +1692,10 @@ Dieses Attribut ist nicht in der flachen Liste enthalten. +
 Kann mehrfach vorkommen (0..100).
 |*changeDateTime* |obligatorisch |Bezeichner: Änderungszeitstempel +
 Der VZD setzt dieses Attribut bei jeder Schreiboperation für den Datensatz (Basisdaten und Zertifikate) auf die aktuelle Zeit. Format entsprechend RFC 3339, section 5.6. +
+Wird vom VZD automatisch eingetragen.
+|*notBefore* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. Wird vom VZD zur Ermittlung der zeitlich gültigen Zertifikate genutzt. Dieses Attribut ist nicht in der flachen Liste enthalten. +
+Wird vom VZD automatisch eingetragen.
+|*notAfter* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. Wird vom VZD zur Ermittlung der zeitlich gültigen Zertifikate genutzt. Dieses Attribut ist nicht in der flachen Liste enthalten. +
 Wird vom VZD automatisch eingetragen.
 |===
 
@@ -1781,6 +1822,10 @@ Kann mehrfach vorkommen (0..100).
 |*changeDateTime* |obligatorisch |Bezeichner: Änderungszeitstempel +
 Der VZD setzt dieses Attribut bei jeder Schreiboperation für den Datensatz (Basisdaten und Zertifikate) auf die aktuelle Zeit. Format entsprechend RFC 3339, section 5.6. +
 Wird vom VZD automatisch eingetragen.
+|*notBefore* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. Wird vom VZD zur Ermittlung der zeitlich gültigen Zertifikate genutzt. Dieses Attribut ist nicht in der flachen Liste enthalten. +
+Wird vom VZD automatisch eingetragen.
+|*notAfter* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. Wird vom VZD zur Ermittlung der zeitlich gültigen Zertifikate genutzt. Dieses Attribut ist nicht in der flachen Liste enthalten. +
+Wird vom VZD automatisch eingetragen.
 |===
 
 {empty} +
@@ -1872,6 +1917,10 @@ Dieses Attribut ist nicht in der flachen Liste enthalten. +
 Kann mehrfach vorkommen (0..100).
 |*changeDateTime* |obligatorisch |Bezeichner: Änderungszeitstempel +
 Der VZD setzt dieses Attribut bei jeder Schreiboperation für den Datensatz (Basisdaten und Zertifikate) auf die aktuelle Zeit. Format entsprechend RFC 3339, section 5.6. +
+Wird vom VZD automatisch eingetragen.
+|*notBefore* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. Wird vom VZD zur Ermittlung der zeitlich gültigen Zertifikate genutzt. Dieses Attribut ist nicht in der flachen Liste enthalten. +
+Wird vom VZD automatisch eingetragen.
+|*notAfter* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. Wird vom VZD zur Ermittlung der zeitlich gültigen Zertifikate genutzt. Dieses Attribut ist nicht in der flachen Liste enthalten. +
 Wird vom VZD automatisch eingetragen.
 |===
 
@@ -1978,6 +2027,10 @@ Dieses Attribut ist nicht in der flachen Liste enthalten. +
 Kann mehrfach vorkommen (0..100).
 |*changeDateTime* |obligatorisch |Bezeichner: Änderungszeitstempel +
 Der VZD setzt dieses Attribut bei jeder Schreiboperation für den Datensatz (Basisdaten und Zertifikate) auf die aktuelle Zeit. Format entsprechend RFC 3339, section 5.6. +
+Wird vom VZD automatisch eingetragen.
+|*notBefore* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. Wird vom VZD zur Ermittlung der zeitlich gültigen Zertifikate genutzt. Dieses Attribut ist nicht in der flachen Liste enthalten. +
+Wird vom VZD automatisch eingetragen.
+|*notAfter* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. Wird vom VZD zur Ermittlung der zeitlich gültigen Zertifikate genutzt. Dieses Attribut ist nicht in der flachen Liste enthalten. +
 Wird vom VZD automatisch eingetragen.
 |===
 
@@ -2091,6 +2144,10 @@ Dieses Attribut ist nicht in der flachen Liste enthalten. +
 Kann mehrfach vorkommen (0..100).
 |*changeDateTime* |obligatorisch |Bezeichner: Änderungszeitstempel +
 Der VZD setzt dieses Attribut bei jeder Schreiboperation für den Datensatz (Basisdaten und Zertifikate) auf die aktuelle Zeit. Format entsprechend RFC 3339, section 5.6. +
+Wird vom VZD automatisch eingetragen.
+|*notBefore* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. Wird vom VZD zur Ermittlung der zeitlich gültigen Zertifikate genutzt. Dieses Attribut ist nicht in der flachen Liste enthalten. +
+Wird vom VZD automatisch eingetragen.
+|*notAfter* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. Wird vom VZD zur Ermittlung der zeitlich gültigen Zertifikate genutzt. Dieses Attribut ist nicht in der flachen Liste enthalten. +
 Wird vom VZD automatisch eingetragen.
 |===
 
@@ -2206,6 +2263,10 @@ Dieses Attribut ist nicht in der flachen Liste enthalten. +
 Kann mehrfach vorkommen (0..100).
 |*changeDateTime* |obligatorisch |Bezeichner: Änderungszeitstempel +
 Der VZD setzt dieses Attribut bei jeder Schreiboperation für den Datensatz (Basisdaten und Zertifikate) auf die aktuelle Zeit. Format entsprechend RFC 3339, section 5.6. +
+Wird vom VZD automatisch eingetragen.
+|*notBefore* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. Wird vom VZD zur Ermittlung der zeitlich gültigen Zertifikate genutzt. Dieses Attribut ist nicht in der flachen Liste enthalten. +
+Wird vom VZD automatisch eingetragen.
+|*notAfter* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. Wird vom VZD zur Ermittlung der zeitlich gültigen Zertifikate genutzt. Dieses Attribut ist nicht in der flachen Liste enthalten. +
 Wird vom VZD automatisch eingetragen.
 |===
 
@@ -2323,6 +2384,10 @@ Dieses Attribut ist nicht in der flachen Liste enthalten. +
 Kann mehrfach vorkommen (0..100).
 |*changeDateTime* |obligatorisch |Bezeichner: Änderungszeitstempel +
 Der VZD setzt dieses Attribut bei jeder Schreiboperation für den Datensatz (Basisdaten und Zertifikate) auf die aktuelle Zeit. Format entsprechend RFC 3339, section 5.6. +
+Wird vom VZD automatisch eingetragen.
+|*notBefore* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. Wird vom VZD zur Ermittlung der zeitlich gültigen Zertifikate genutzt. Dieses Attribut ist nicht in der flachen Liste enthalten. +
+Wird vom VZD automatisch eingetragen.
+|*notAfter* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. Wird vom VZD zur Ermittlung der zeitlich gültigen Zertifikate genutzt. Dieses Attribut ist nicht in der flachen Liste enthalten. +
 Wird vom VZD automatisch eingetragen.
 |===
 
