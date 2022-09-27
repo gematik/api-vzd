@@ -1644,7 +1644,7 @@ paths:
 # werden die folgenden Filtermöglichkeiten unterstützt: 
 #     o Suche mit Wildcard "*" in den Parametern
 #           - telematikID
-#           - holder
+#           - clientID
 #           - professionOID
 #       Wildcard ist am Ende und am Anfang nutzbar:
 #           - *Mustermann* - "contains" 
