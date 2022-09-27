@@ -901,7 +901,7 @@ Wird vom KOM-LE-Anbieter eingetragen.
  
 NOTE: Die ENC Zertifikate von allen aktiven Karten müssen dauerhaft gepflegt werden. +
 Dafür müssen die ENC Zertifikate aller neuen SMC-B Karten in Attribut Certificate.userCertificate eingetragen werden. +
--	Abgelaufene Zertifikate entfernt der VZD automatisch. +
+-	Abgelaufene und gesperrte Zertifikate entfernt der VZD automatisch. +
 - Noch nicht aktivierte Zertifikate werden in der VZD I_Directory_Query Schnittstelle erst nach Aktivierung sichtbar. +
  +
 Alle anderen - durch Kartenherausgeber gepflegte - Daten müssen bei Änderungen (z.B. Änderung der Adresse, Spezialisierung,...) aktualisiert werden.
@@ -1018,8 +1018,8 @@ Hinweis: Für KOM-LE wird in der externen Darstellung die Bezeichnung "KIM" genu
 === HBA-Eintrag für Apotheker (ABDA, gematik)
 
 NOTE: Die HBAs der Apotheker - inklusive ihrer Zertifikate - müssen im VZD erfasst und gepflegt werden. +
-Dafür müssen die ENC Zertifikate aller neuen HBA Karten in Attribut Certificate.userCertificate eingetragen werden.
-- Abgelaufene Zertifikate entfernt der VZD automatisch.
+Dafür müssen die ENC Zertifikate aller neuen HBA Karten in Attribut Certificate.userCertificate eingetragen werden. +
+- Abgelaufene und gesperrte Zertifikate entfernt der VZD automatisch. +
 - Noch nicht aktivierte Zertifikate werden in der VZD I_Directory_Query Schnittstelle erst nach Aktivierung sichtbar. +
  +
 Alle anderen - durch Kartenherausgeber gepflegte - Daten müssen bei Änderungen (z.B. Änderung der Adresse, Spezialisierung,...) aktualisiert werden.
