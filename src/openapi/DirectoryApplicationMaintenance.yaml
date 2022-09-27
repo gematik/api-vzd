@@ -6,8 +6,11 @@ info:
    # REST Schnittstelle zur Pflege der Fachanwendungsdaten der Verzeichniseinträge
      Über diese Schnittstelle können Fachanwendungsdaten der Verzeichniseinträge erzeugt, aktualisiert und gelöscht werden. 
 
-  version: 1.2.1
+  version: 1.2.2
   
+  # Änderungen in Version 1.2.2
+  #  - Operation readLog: Parameter holder umbenannt in clientID 
+  # 
   # Änderungen in Version 1.2.1
   #  - Operation readLog vereinfacht 
   # 
@@ -766,7 +769,7 @@ paths:
 # werden die folgenden Filtermöglichkeiten unterstützt: 
 #     o Suche mit Wildcard "*" in den Parametern
 #           - telematikID
-#           - holder
+#           - clientID
 #           - professionOID
 #       Wildcard ist am Ende und am Anfang nutzbar:
 #           - *Mustermann* - "contains" 
@@ -785,11 +788,10 @@ paths:
         description: Erlaubt die Suche mit Hilfe des Attributs telematikID (die telematikID in den Basisdaten).
         schema:
           type: string  
-      - name: holder
+      - name: clientID
         in: query
-        description: Erlaubt die Suche mit Hilfe des Attributs holder. 
-                     Der Verzeichniseintrag wird selektiert, wenn der angegebene holder im Attribut holder (array) des Verzeichniseintrags enthalten ist.
-                     Zur Suche nach Einträge ohne holder ist der Parameter mit einem leeren String "" zu belegen. Auch in diesem Fall werden alle gefundenen Logdaten der Einträge zurückgegeben.
+        description: Erlaubt die Suche mit Hilfe des Attributs clientID. 
+                     Der Verzeichniseintrag wird selektiert, wenn die angegebene clientID im Log-Datensatz enthalten ist.
         schema:
           type: string  
       - name: logTimeFrom
