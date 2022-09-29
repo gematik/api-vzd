@@ -93,8 +93,8 @@ Neu für eGBR HBA und SMC-B |gematik
 - Operation stateSwitch_Directory_Entry in Kap. 3.3.1 aufgenommen - C_11183 +
 - Operation readLog in Kap. 3.3.4 aufgenommen - C_11221 +
 - Attribut changeDateTime vereinheitlicht (Kap. 4) - C_11183 +
-- Attributtabellen aktualisiert: notBefore, notAfter (Kap. 4) - C_11179
-
+- Attributtabellen aktualisiert: notBefore, notAfter (Kap. 4) - C_11179 +
+- Beschreibung der Attribute aktualisiert (givenName, sn, cn, displayName, entryType) - DIR-214, DIR-236
 |gematik
 
 |===
@@ -721,19 +721,23 @@ Tabelle 2: Tab_VZD_Datenbeschreibung_KVen
 |===
 |*LDAP-Directory Attribut* |*Pflichtfeld aus Sicht Pflege und Nutzung?* |*Erläuterung*
 |*givenName* |optional |Wird für SMC-B nicht verwendet.
-|*sn* |obligatorisch |Wird vom VZD als Kopie von displayName automatisch eingetragen. +
-Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet.
+|*sn* |obligatorisch | Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
+ +
+Wenn der Client der Schnittstelle I_Directory_Administration keinen Wert für sn angibt, wird sn als Kopie von Attribut displayName gesetzt. Wird sn als Parameter übergeben, wird der angegebene Wert übernommen.
 |*cn* +
 * * +
   |obligatorisch |Bezeichner: Name +
-Wird vom VZD als Kopie des Attributs displayName übernommen. +
-Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet.
+Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
+ +
+Bei Nutzung der Schreiboperationen von Schnittstelle I_Directory_Administration wird cn als Kopie von Attribut displayName gesetzt, wenn cn nicht als Parameter übergeben wird. Wird cn als Parameter übergeben, wird der angegebene Wert übernommen.
 |*otherName* |optional |Das Attribut otherName ist veraltet und wird in einer zukünftigen Version aus dem Datenmodell entfernt. +
  +
 Bezeichner: Anderer Name +
 Wird vom VZD aus dem Zertifikatsattribut otherName übernommen.
-|*displayName* |obligatorisch |Bezeichner: Anzeigename +
-Dieses Attribut wird genutzt, um den Namen der Betriebsstätte gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut, um die Suche einzuschränken, und bei der Darstellung des Ergebnisses).
+|*displayName* |obligatorisch |Bezeichner: Anzeigename +
+Dieses Attribut wird genutzt um den Namen der Betriebsstätte gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut um die Suche einzuschränken und bei der Darstellung des Ergebnisses). +
+ +
+Dieses Attribut wird durch den VZD nicht automatisch aus dem Zertifikat ermittelt. Es kann über die Schreiboperationen von Schnittstelle I_Directory_Administration gesetzt werden. Wird über die Operation  add_Directory_Entry von Schnittstelle I_Directory_Administration für displayName kein Inhalt geliefert, so wird in displayName der Wert "-" gesetzt.
 |*streetAddress* |obligatorisch |Bezeichner: Straße und Hausnummer der Betriebsstätte
 |*postalCode* |obligatorisch |Bezeichner: Postleitzahl der Betriebsstätte
 |*localityName * |obligatorisch |Bezeichner: Ort der Betriebsstätte
@@ -844,17 +848,21 @@ Tabelle 3: Tab_VZD_Datenbeschreibung_KZVen
 |===
 |*LDAP-Directory Attribut* |*Pflichtfeld aus Sicht Pflege und Nutzung?* |*Erläuterung*
 |*givenName* |optional |Wird für SMC-B nicht verwendet.
-|*sn* |optional |Wird vom VZD als Kopie von displayName automatisch eingetragen. +
-Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet.
+|*sn* |optional | Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
+ +
+Wenn der Client der Schnittstelle I_Directory_Administration keinen Wert für sn angibt, wird sn als Kopie von Attribut displayName gesetzt. Wird sn als Parameter übergeben, wird der angegebene Wert übernommen.
 |*cn* |obligatorisch |Bezeichner: Name +
-Wird vom VZD als Kopie des Attributs displayName übernommen. +
-Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet.
+Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
+ +
+Bei Nutzung der Schreiboperationen von Schnittstelle I_Directory_Administration wird cn als Kopie von Attribut displayName gesetzt, wenn cn nicht als Parameter übergeben wird. Wird cn als Parameter übergeben, wird der angegebene Wert übernommen.
 |*otherName* |optional |Das Attribut otherName ist veraltet und wird in einer zukünftigen Version aus dem Datenmodell entfernt. +
  +
 Bezeichner: Anderer Name +
 Wird vom VZD aus dem Zertifikatsattribut otherName übernommen.
-|*displayName* |obligatorisch |Bezeichner: Anzeigename +
-Dieses Attribut wird genutzt, um den Namen der Zahnarztpraxis gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut um die Suche einzuschränken und bei der Darstellung des Ergebnisses).
+|*displayName* |obligatorisch |Bezeichner: Anzeigename +
+Dieses Attribut wird genutzt um den Namen der Betriebsstätte gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut um die Suche einzuschränken und bei der Darstellung des Ergebnisses). +
+ +
+Dieses Attribut wird durch den VZD nicht automatisch aus dem Zertifikat ermittelt. Es kann über die Schreiboperationen von Schnittstelle I_Directory_Administration gesetzt werden. Wird über die Operation  add_Directory_Entry von Schnittstelle I_Directory_Administration für displayName kein Inhalt geliefert, so wird in displayName der Wert "-" gesetzt.
 |*streetAddress* |obligatorisch |Bezeichner: Straße und Hausnummer
 |*postalCode* |obligatorisch |Bezeichner: Postleitzahl
 |*localityName * |obligatorisch |Bezeichner: Ort
@@ -964,17 +972,21 @@ Tabelle 4: Tab_VZD_Datenbeschreibung_Apotheken_SMC-B
 |===
 |*LDAP-Directory Attribut* |*Pflichtfeld aus Sicht Pflege und Nutzung?* |*Erläuterung*
 |*givenName* |optional |Wird für SMC-B nicht verwendet.
-|*sn* |optional |Wird vom VZD als Kopie von displayName automatisch eingetragen. +
-Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet.
-|*cn* |obligatorisch |Bezeichner: Name +
-Wird vom VZD als Kopie des Attributs displayName übernommen. +
-Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet.
+|*sn* |optional | Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
+ +
+Wenn der Client der Schnittstelle I_Directory_Administration keinen Wert für sn angibt, wird sn als Kopie von Attribut displayName gesetzt. Wird sn als Parameter übergeben, wird der angegebene Wert übernommen.
+|*cn* |obligatorisch |Bezeichner: Anzeigename +
+Dieses Attribut wird genutzt um den Namen der Betriebsstätte gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut um die Suche einzuschränken und bei der Darstellung des Ergebnisses). +
+ +
+Dieses Attribut wird durch den VZD nicht automatisch aus dem Zertifikat ermittelt. Es kann über die Schreiboperationen von Schnittstelle I_Directory_Administration gesetzt werden. Wird über die Operation  add_Directory_Entry von Schnittstelle I_Directory_Administration für displayName kein Inhalt geliefert, so wird in displayName der Wert "-" gesetzt.
 |*otherName* |optional |Das Attribut otherName ist veraltet und wird in einer zukünftigen Version aus dem Datenmodell entfernt. +
  +
 Bezeichner: Anderer Name +
 Wird vom VZD aus dem Zertifikatsattribut otherName übernommen.
-|*displayName* |obligatorisch |Bezeichner: Anzeigename +
-Dieses Attribut wird genutzt um den Namen der Apotheke gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut um die Suche einzuschränken und bei der Darstellung des Ergebnisses).
+|*displayName* |obligatorisch |Bezeichner: Anzeigename +
+Dieses Attribut wird genutzt um den Namen der Betriebsstätte gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut um die Suche einzuschränken und bei der Darstellung des Ergebnisses). +
+ +
+Dieses Attribut wird durch den VZD nicht automatisch aus dem Zertifikat ermittelt. Es kann über die Schreiboperationen von Schnittstelle I_Directory_Administration gesetzt werden. Wird über die Operation  add_Directory_Entry von Schnittstelle I_Directory_Administration für displayName kein Inhalt geliefert, so wird in displayName der Wert "-" gesetzt.
 |*streetAddress* |obligatorisch |Bezeichner: Straße und Hausnummer der Apotheke
 |*postalCode* |obligatorisch |Bezeichner: Postleitzahl der Apotheke
 |*localityName * |obligatorisch |Bezeichner: Ort der Apotheke
@@ -1083,17 +1095,30 @@ Tabelle 5: Tab_VZD_Datenbeschreibung_Apotheker
 |===
 |*LDAP-Directory Attribut* |*Pflichtfeld aus Sicht Pflege und Nutzung?* |*Erläuterung*
 |*givenName* |optional |Bezeichner: Vorname +
-Wird vom VZD aus dem Zertifikatsattribut givenName übernommen.
-|*sn* |optional |Bezeichner: Nachname +
-Wird vom VZD aus dem Zertifikatsattribut sn übernommen.
+Wird vom VZD aus dem Zertifikatsattribut givenName übernommen, wenn der Client von Schnittstelle I_Directory_Administration keinen Wert angibt. +
+ +
+Wird über die Schreiboperationen von Schnittstelle I_Directory_Administration für givenName ein Inhalt geliefert, so dieser Wert für das Attribut gesetzt. +
+ +
+Wird dem Verzeichniseintrag ein neues Zertifikat hinzu gefügt, wird der aktuelle Wert des Attributs durch der Wert aus Zertifikatsattribut givenName überschrieben.
+|*sn* |optional |Bezeichner: Nachname +
+Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
+ +
+Bei dem Hinzufügen eines Zertifikats wird sn mit dem Inhalt von Attribut commonName aus dem Zertifikat gefüllt/überschrieben. +
+ +
+Wenn der Client der Schnittstelle I_Directory_Administration keinen Wert für sn angibt, wird sn als Kopie von Attribut displayName gesetzt. Wird sn als Parameter übergeben, wird der angegebene Wert übernommen.
+
 |*cn* |obligatorisch |Bezeichner: Name +
-Wird vom VZD automatisch als Kopie von displayName eingetragen (weil E-Mail-Clients über dieses Attribut suchen; Verwendung als Filter-Attribut, um die Suche einzuschränken, und bei der Darstellung des Ergebnisses).
+Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
+ +
+Bei Nutzung der Schreiboperationen von Schnittstelle I_Directory_Administration wird cn als Kopie von Attribut displayName gesetzt, wenn cn nicht als Parameter übergeben wird. Wird cn als Parameter übergeben, wird der angegebene Wert übernommen.
 |*otherName* |optional |Das Attribut otherName ist veraltet und wird in einer zukünftigen Version aus dem Datenmodell entfernt. +
  +
 Bezeichner: Anderer Name +
 Wird vom VZD aus dem Zertifikatsattribut otherName übernommen.
 |*displayName* |obligatorisch |Bezeichner: Anzeigename +
-Dieses Attribut wird genutzt, um den Namen der Person gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut, um die Suche einzuschränken, und bei der Darstellung des Ergebnisses).
+Dieses Attribut wird genutzt, um den Namen der Person gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut, um die Suche einzuschränken, und bei der Darstellung des Ergebnisses). +
+ +
+Dieses Attribut wird durch den VZD nicht automatisch aus dem Zertifikat ermittelt. Es kann über die Schreiboperationen von Schnittstelle I_Directory_Administration gesetzt werden. Wird über die Operation  add_Directory_Entry von Schnittstelle I_Directory_Administration für displayName kein Inhalt geliefert, so wird in displayName der Wert "-" gesetzt.
 |*streetAddress* |optional |Bezeichner: Straße und Hausnummer (berufliche Adresse) +
 Der Wert wird von der pflegenden Stelle festgelegt.
 |*postalCode* |optional |Bezeichner: Postleitzahl  (berufliche Adresse) +
@@ -1212,17 +1237,23 @@ Tabelle 6: Tab_VZD_Datenbeschreibung_DKG
  |*Erläuterung* +
 
 |*givenName* |optional |Wird für SMC-B nicht verwendet.
-|*sn* |optional |Wird vom VZD als Kopie von displayName automatisch eingetragen. +
-Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet.
-|*cn* |obligatorisch |Bezeichner: Name +
-Wird vom VZD als Kopie des Attributs displayName übernommen. +
-Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet.
+|*sn* |optional | Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
+ +
+Wenn der Client der Schnittstelle I_Directory_Administration keinen Wert für sn angibt, wird sn als Kopie von Attribut displayName gesetzt. Wird sn als Parameter übergeben, wird der angegebene Wert übernommen.
+|*cn* +
+* * +
+  |obligatorisch |Bezeichner: Name +
+Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
+ +
+Bei Nutzung der Schreiboperationen von Schnittstelle I_Directory_Administration wird cn als Kopie von Attribut displayName gesetzt, wenn cn nicht als Parameter übergeben wird. Wird cn als Parameter übergeben, wird der angegebene Wert übernommen.
 |*otherName* |optional |Das Attribut otherName ist veraltet und wird in einer zukünftigen Version aus dem Datenmodell entfernt. +
  +
 Bezeichner: Anderer Name +
 Wird vom VZD aus dem Zertifikatsattribut otherName übernommen.
-|*displayName* |obligatorisch |Bezeichner: Anzeigename +
-Dieses Attribut wird genutzt um den Namen der Betriebsstätte gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut um die Suche einzuschränken und bei der Darstellung des Ergebnisses).
+|*displayName* |obligatorisch |Bezeichner: Anzeigename +
+Dieses Attribut wird genutzt um den Namen der Betriebsstätte gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut um die Suche einzuschränken und bei der Darstellung des Ergebnisses). +
+ +
+Dieses Attribut wird durch den VZD nicht automatisch aus dem Zertifikat ermittelt. Es kann über die Schreiboperationen von Schnittstelle I_Directory_Administration gesetzt werden. Wird über die Operation  add_Directory_Entry von Schnittstelle I_Directory_Administration für displayName kein Inhalt geliefert, so wird in displayName der Wert "-" gesetzt.
 |*streetAddress* |obligatorisch |Bezeichner: Straße und Hausnummer des Krankenhauses
 |*postalCode* |obligatorisch |Bezeichner: Postleitzahl des Krankenhauses
 |*localityName * |obligatorisch |Bezeichner: Ort des Krankenhauses
@@ -1331,17 +1362,30 @@ Tabelle 7: Tab_VZD_Datenbeschreibung_Psychotherapeuten
 |===
 |*LDAP-Directory Attribut* |*Pflichtfeld aus Sicht Pflege und Nutzung?* |*Erläuterung*
 |*givenName* |optional |Bezeichner: Vorname +
-Wird vom VZD aus dem Zertifikatsattribut givenName übernommen.
-|*sn* |optional |Bezeichner: Nachname +
-Wird vom VZD aus dem Zertifikatsattribut sn übernommen.
-|*cn* |obligatorisch |Bezeichner: Name, Vorname +
-Wird vom VZD automatisch als Kopie von displayName eingetragen (weil E-Mail-Clients über dieses Attribut suchen; Verwendung als Filter-Attribut, um die Suche einzuschränken, und bei der Darstellung des Ergebnisses).
+Wird vom VZD aus dem Zertifikatsattribut givenName übernommen, wenn der Client von Schnittstelle I_Directory_Administration keinen Wert angibt. +
+ +
+Wird über die Schreiboperationen von Schnittstelle I_Directory_Administration für givenName ein Inhalt geliefert, so dieser Wert für das Attribut gesetzt. +
+ +
+Wird dem Verzeichniseintrag ein neues Zertifikat hinzu gefügt, wird der aktuelle Wert des Attributs durch der Wert aus Zertifikatsattribut givenName überschrieben.
+|*sn* |optional |Bezeichner: Nachname +
+Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
+ +
+Bei dem Hinzufügen eines Zertifikats wird sn mit dem Inhalt von Attribut commonName aus dem Zertifikat gefüllt/überschrieben. +
+ +
+Wenn der Client der Schnittstelle I_Directory_Administration keinen Wert für sn angibt, wird sn als Kopie von Attribut displayName gesetzt. Wird sn als Parameter übergeben, wird der angegebene Wert übernommen.
+
+|*cn* |obligatorisch |Bezeichner: Name +
+Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
+ +
+Bei Nutzung der Schreiboperationen von Schnittstelle I_Directory_Administration wird cn als Kopie von Attribut displayName gesetzt, wenn cn nicht als Parameter übergeben wird. Wird cn als Parameter übergeben, wird der angegebene Wert übernommen.
 |*otherName* |optional |Das Attribut otherName ist veraltet und wird in einer zukünftigen Version aus dem Datenmodell entfernt. +
  +
 Bezeichner: Anderer Name +
 Wird vom VZD aus dem Zertifikatsattribut otherName übernommen.
 |*displayName* |obligatorisch |Bezeichner: Anzeigename +
-Dieses Attribut wird genutzt, um den Namen der Person gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut, um die Suche einzuschränken, und bei der Darstellung des Ergebnisses).
+Dieses Attribut wird genutzt, um den Namen der Person gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut, um die Suche einzuschränken, und bei der Darstellung des Ergebnisses). +
+ +
+Dieses Attribut wird durch den VZD nicht automatisch aus dem Zertifikat ermittelt. Es kann über die Schreiboperationen von Schnittstelle I_Directory_Administration gesetzt werden. Wird über die Operation  add_Directory_Entry von Schnittstelle I_Directory_Administration für displayName kein Inhalt geliefert, so wird in displayName der Wert "-" gesetzt.
 |*streetAddress* |obligatorisch |Bezeichner: Straße und Hausnummer (Adresse der Betriebsstätte)
 |*postalCode* |obligatorisch |Bezeichner: Postleitzahl  (Adresse der Betriebsstätte)
 |*localityName * |obligatorisch |Bezeichner: Ort  (Adresse der Betriebsstätte)
@@ -1458,17 +1502,30 @@ Tabelle 8: Tab_VZD_Datenbeschreibung_BÄK
 |===
 |LDAP-Directory Attribut |Pflichtfeld aus Sicht Pflege und Nutzung? |Erläuterung
 |*givenName* |optional |Bezeichner: Vorname +
-Wird vom VZD aus dem Zertifikatsattribut givenName übernommen.
-|*sn* |optional |Bezeichner: Nachname +
-Wird vom VZD aus dem Zertifikatsattribut sn übernommen.
+Wird vom VZD aus dem Zertifikatsattribut givenName übernommen, wenn der Client von Schnittstelle I_Directory_Administration keinen Wert angibt. +
+ +
+Wird über die Schreiboperationen von Schnittstelle I_Directory_Administration für givenName ein Inhalt geliefert, so dieser Wert für das Attribut gesetzt. +
+ +
+Wird dem Verzeichniseintrag ein neues Zertifikat hinzu gefügt, wird der aktuelle Wert des Attributs durch der Wert aus Zertifikatsattribut givenName überschrieben.
+|*sn* |optional |Bezeichner: Nachname +
+Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
+ +
+Bei dem Hinzufügen eines Zertifikats wird sn mit dem Inhalt von Attribut commonName aus dem Zertifikat gefüllt/überschrieben. +
+ +
+Wenn der Client der Schnittstelle I_Directory_Administration keinen Wert für sn angibt, wird sn als Kopie von Attribut displayName gesetzt. Wird sn als Parameter übergeben, wird der angegebene Wert übernommen.
+
 |*cn* |obligatorisch |Bezeichner: Name +
-Wird vom VZD automatisch als Kopie von displayName eingetragen (weil E-Mail-Clients über dieses Attribut suchen; Verwendung als Filter-Attribut, um die Suche einzuschränken, und bei der Darstellung des Ergebnisses).
+Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
+ +
+Bei Nutzung der Schreiboperationen von Schnittstelle I_Directory_Administration wird cn als Kopie von Attribut displayName gesetzt, wenn cn nicht als Parameter übergeben wird. Wird cn als Parameter übergeben, wird der angegebene Wert übernommen.
 |*otherName* |optional |Das Attribut otherName ist veraltet und wird in einer zukünftigen Version aus dem Datenmodell entfernt. +
  +
 Bezeichner: Anderer Name +
 Wird vom VZD aus dem Zertifikatsattribut otherName übernommen.
 |*displayName* |obligatorisch |Bezeichner: Anzeigename +
-Dieses Attribut wird genutzt, um den Namen der Person gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut, um die Suche einzuschränken, und bei der Darstellung des Ergebnisses).
+Dieses Attribut wird genutzt, um den Namen der Person gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut, um die Suche einzuschränken, und bei der Darstellung des Ergebnisses). +
+ +
+Dieses Attribut wird durch den VZD nicht automatisch aus dem Zertifikat ermittelt. Es kann über die Schreiboperationen von Schnittstelle I_Directory_Administration gesetzt werden. Wird über die Operation  add_Directory_Entry von Schnittstelle I_Directory_Administration für displayName kein Inhalt geliefert, so wird in displayName der Wert "-" gesetzt.
 |*streetAddress* |optional |Bezeichner: Straße und Hausnummer (berufliche Adresse) +
 Der Wert wird von der pflegenden Stelle festgelegt.
 |*postalCode* |optional |Bezeichner: Postleitzahl  (berufliche Adresse) +
@@ -1584,17 +1641,30 @@ Tabelle 9: Tab_VZD_Datenbeschreibung_BZÄK
 |===
 |LDAP-Directory Attribut |Pflichtfeld aus Sicht Pflege und Nutzung? |Erläuterung
 |*givenName* |optional |Bezeichner: Vorname +
-Wird vom VZD aus dem Zertifikatsattribut givenName übernommen.
-|*sn* |optional |Bezeichner: Nachname +
-Wird vom VZD aus dem Zertifikatsattribut sn übernommen.
+Wird vom VZD aus dem Zertifikatsattribut givenName übernommen, wenn der Client von Schnittstelle I_Directory_Administration keinen Wert angibt. +
+ +
+Wird über die Schreiboperationen von Schnittstelle I_Directory_Administration für givenName ein Inhalt geliefert, so dieser Wert für das Attribut gesetzt. +
+ +
+Wird dem Verzeichniseintrag ein neues Zertifikat hinzu gefügt, wird der aktuelle Wert des Attributs durch der Wert aus Zertifikatsattribut givenName überschrieben.
+|*sn* |optional |Bezeichner: Nachname +
+Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
+ +
+Bei dem Hinzufügen eines Zertifikats wird sn mit dem Inhalt von Attribut commonName aus dem Zertifikat gefüllt/überschrieben. +
+ +
+Wenn der Client der Schnittstelle I_Directory_Administration keinen Wert für sn angibt, wird sn als Kopie von Attribut displayName gesetzt. Wird sn als Parameter übergeben, wird der angegebene Wert übernommen.
+
 |*cn* |obligatorisch |Bezeichner: Name +
-Wird vom VZD automatisch als Kopie von displayName eingetragen (weil E-Mail-Clients über dieses Attribut suchen; Verwendung als Filter-Attribut, um die Suche einzuschränken, und bei der Darstellung des Ergebnisses).
+Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
+ +
+Bei Nutzung der Schreiboperationen von Schnittstelle I_Directory_Administration wird cn als Kopie von Attribut displayName gesetzt, wenn cn nicht als Parameter übergeben wird. Wird cn als Parameter übergeben, wird der angegebene Wert übernommen.
 |*otherName* |optional |Das Attribut otherName ist veraltet und wird in einer zukünftigen Version aus dem Datenmodell entfernt. +
  +
 Bezeichner: Anderer Name +
 Wird vom VZD aus dem Zertifikatsattribut otherName übernommen.
 |*displayName* |obligatorisch |Bezeichner: Anzeigename +
-Dieses Attribut wird genutzt, um den Namen der Person gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut, um die Suche einzuschränken, und bei der Darstellung des Ergebnisses).
+Dieses Attribut wird genutzt, um den Namen der Person gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut, um die Suche einzuschränken, und bei der Darstellung des Ergebnisses). +
+ +
+Dieses Attribut wird durch den VZD nicht automatisch aus dem Zertifikat ermittelt. Es kann über die Schreiboperationen von Schnittstelle I_Directory_Administration gesetzt werden. Wird über die Operation  add_Directory_Entry von Schnittstelle I_Directory_Administration für displayName kein Inhalt geliefert, so wird in displayName der Wert "-" gesetzt.
 |*streetAddress* |optional |Bezeichner: Straße und Hausnummer (berufliche Adresse) +
 Der Wert wird von der pflegenden Stelle festgelegt.
 |*postalCode* |optional |Bezeichner: Postleitzahl  (berufliche Adresse) +
@@ -1712,13 +1782,17 @@ Tabelle 10: Tab_VZD_Datenbeschreibung_GKV-SV_SMC-B KTR
 |===
 |*LDAP-Directory Attribut* |*Pflichtfeld aus Sicht Pflege und Nutzung?* |*Erläuterung*
 |*givenName* |optional |Wird für SMC-B nicht verwendet.
-|*sn* |obligatorisch |Wird vom VZD als Kopie von displayName automatisch eingetragen. +
-Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet.
+|*sn* |obligatorisch | Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
+ +
+Wenn der Client der Schnittstelle I_Directory_Administration keinen Wert für sn angibt, wird sn als Kopie von Attribut displayName gesetzt. Wird sn als Parameter übergeben, wird der angegebene Wert übernommen.
 |*cn* |obligatorisch |Bezeichner: Name +
-Wird vom VZD als Kopie des Attributs displayName übernommen. +
-Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet.
-|*displayName* |obligatorisch |Bezeichner: Anzeigename +
-Dieses Attribut wird genutzt, um den Namen der Organisation gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut, um die Suche einzuschränken, und bei der Darstellung des Ergebnisses). +
+Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
+ +
+Bei Nutzung der Schreiboperationen von Schnittstelle I_Directory_Administration wird cn als Kopie von Attribut displayName gesetzt, wenn cn nicht als Parameter übergeben wird. Wird cn als Parameter übergeben, wird der angegebene Wert übernommen.
+|*displayName* |obligatorisch |Bezeichner: Anzeigename +
+Dieses Attribut wird genutzt um den Namen der Betriebsstätte gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut um die Suche einzuschränken und bei der Darstellung des Ergebnisses). +
+ +
+Dieses Attribut wird durch den VZD nicht automatisch aus dem Zertifikat ermittelt. Es kann über die Schreiboperationen von Schnittstelle I_Directory_Administration gesetzt werden. Wird über die Operation  add_Directory_Entry von Schnittstelle I_Directory_Administration für displayName kein Inhalt geliefert, so wird in displayName der Wert "-" gesetzt. +
   +
 Der Wert wird von der pflegenden Stelle aus dem Zertifikat übernommen (Attribut otherName wenn vorhanden, sonst commonName).
 |*streetAddress* |obligatorisch |Bezeichner: Straßenanschrift und Hausnummer gemäß Krankenkassenhauptsitz +
@@ -1837,13 +1911,17 @@ Tabelle 11: VZD_Datenbeschreibung_GKV-SV_SM-B_KTR ePA
 |===
 |*LDAP-Directory Attribut* |*Pflichtfeld aus Sicht Pflege und Nutzung?* |*Erläuterung*
 |*givenName* |optional |Wird für SMC-B nicht verwendet.
-|*sn* |obligatorisch |Wird vom VZD als Kopie von displayName automatisch eingetragen. +
-Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet.
+|*sn* |obligatorisch | Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
+ +
+Wenn der Client der Schnittstelle I_Directory_Administration keinen Wert für sn angibt, wird sn als Kopie von Attribut displayName gesetzt. Wird sn als Parameter übergeben, wird der angegebene Wert übernommen.
 |*cn* |obligatorisch |Bezeichner: Name +
-Wird vom VZD als Kopie des Attributs displayName übernommen. +
-Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet.
-|*displayName* |obligatorisch |Bezeichner: Anzeigename +
-Dieses Attribut wird genutzt, um den Namen der Organisation gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut, um die Suche einzuschränken, und bei der Darstellung des Ergebnisses). +
+Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
+ +
+Bei Nutzung der Schreiboperationen von Schnittstelle I_Directory_Administration wird cn als Kopie von Attribut displayName gesetzt, wenn cn nicht als Parameter übergeben wird. Wird cn als Parameter übergeben, wird der angegebene Wert übernommen.
+|*displayName* |obligatorisch |Bezeichner: Anzeigename +
+Dieses Attribut wird genutzt um den Namen der Betriebsstätte gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut um die Suche einzuschränken und bei der Darstellung des Ergebnisses). +
+ +
+Dieses Attribut wird durch den VZD nicht automatisch aus dem Zertifikat ermittelt. Es kann über die Schreiboperationen von Schnittstelle I_Directory_Administration gesetzt werden. Wird über die Operation  add_Directory_Entry von Schnittstelle I_Directory_Administration für displayName kein Inhalt geliefert, so wird in displayName der Wert "-" gesetzt. +
   +
 Der Wert wird von der pflegenden Stelle aus dem Zertifikat übernommen (Attribut otherName wenn vorhanden, sonst commonName).
 |*streetAddress* |obligatorisch |Bezeichner: Straßenanschrift und Hausnummer gemäß Krankenkassenhauptsitz +
@@ -1935,17 +2013,25 @@ Tabelle 12: Tab_VZD_Datenbeschreibung_der_SMC-B_Org
 |===
 |*LDAP-Directory Attribut* |*Pflichtfeld aus Sicht Pflege und Nutzung?* |*Erläuterung*
 |*givenName* |optional |Wird für SMC-B nicht verwendet.
-|*sn* |optional |Wird vom VZD als Kopie von displayName automatisch eingetragen. +
-Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet.
+|*sn* |optional | Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
+ +
+Wenn der Client der Schnittstelle I_Directory_Administration keinen Wert für sn angibt, wird sn als Kopie von Attribut displayName gesetzt. Wird sn als Parameter übergeben, wird der angegebene Wert übernommen.
 |*cn* |obligatorisch |Bezeichner: Name +
-Wird vom VZD als Kopie des Attributs displayName übernommen. +
-Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet.
+Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
+ +
+Bei Nutzung der Schreiboperationen von Schnittstelle I_Directory_Administration wird cn als Kopie von Attribut displayName gesetzt, wenn cn nicht als Parameter übergeben wird. Wird cn als Parameter übergeben, wird der angegebene Wert übernommen.
 |*otherName* |optional |Das Attribut otherName ist veraltet und wird in einer zukünftigen Version aus dem Datenmodell entfernt. +
  +
 Bezeichner: Anderer Name +
 Wird vom VZD aus dem Zertifikatsattribut otherName übernommen.
-|*displayName* |obligatorisch |Bezeichner: Anzeigename +
-Dieses Attribut wird genutzt, um den Namen der Organisation gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut um die Suche einzuschränken und bei der Darstellung des Ergebnisses).
+|*displayName* |obligatorisch |Bezeichner: Anzeigename +
+Dieses Attribut wird genutzt um den Namen der Betriebsstätte gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut um die Suche einzuschränken und bei der Darstellung des Ergebnisses). +
+ +
+Dieses Attribut wird durch den VZD nicht automatisch aus dem Zertifikat ermittelt. Es kann über die Schreiboperationen von Schnittstelle I_Directory_Administration gesetzt werden. Wird über die Operation  add_Directory_Entry von Schnittstelle I_Directory_Administration für displayName kein Inhalt geliefert, so wird in displayName der Wert "-" gesetzt.
+|*displayName* |obligatorisch |Bezeichner: Anzeigename +
+Dieses Attribut wird genutzt um den Namen der Betriebsstätte gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut um die Suche einzuschränken und bei der Darstellung des Ergebnisses). +
+ +
+Dieses Attribut wird durch den VZD nicht automatisch aus dem Zertifikat ermittelt. Es kann über die Schreiboperationen von Schnittstelle I_Directory_Administration gesetzt werden. Wird über die Operation  add_Directory_Entry von Schnittstelle I_Directory_Administration für displayName kein Inhalt geliefert, so wird in displayName der Wert "-" gesetzt.
 |*streetAddress* |obligatorisch |Bezeichner: Straße und Hausnummer (wenn verfügbar) der Organisation 
 |*postalCode* |obligatorisch |Bezeichner: Postleitzahl der Organisation 
 |*localityName * |obligatorisch |Bezeichner: Ort der Organisation 
@@ -2047,17 +2133,21 @@ Tabelle 13: Tab_VZD_Datenbeschreibung_der_SMC-B_eGBR
 |===
 |*LDAP-Directory Attribut* |*Pflichtfeld aus Sicht Pflege und Nutzung?* |*Erläuterung*
 |*givenName* |optional |Wird für SMC-B nicht verwendet.
-|*sn* |optional |Wird vom VZD als Kopie von displayName automatisch eingetragen. +
-Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet.
+|*sn* |optional | Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
+ +
+Wenn der Client der Schnittstelle I_Directory_Administration keinen Wert für sn angibt, wird sn als Kopie von Attribut displayName gesetzt. Wird sn als Parameter übergeben, wird der angegebene Wert übernommen.
 |*cn* |obligatorisch |Bezeichner: Name +
-Wird vom VZD als Kopie des Attributs displayName übernommen. +
-Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet.
+Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
+ +
+Bei Nutzung der Schreiboperationen von Schnittstelle I_Directory_Administration wird cn als Kopie von Attribut displayName gesetzt, wenn cn nicht als Parameter übergeben wird. Wird cn als Parameter übergeben, wird der angegebene Wert übernommen.
 |*otherName* |optional |Das Attribut otherName ist veraltet und wird in einer zukünftigen Version aus dem Datenmodell entfernt. +
  +
 Bezeichner: Anderer Name +
 Wird vom VZD aus dem Zertifikatsattribut otherName übernommen.
-|*displayName* |obligatorisch |Bezeichner: Anzeigename +
-Dieses Attribut wird genutzt, um den Namen der Leistungserbringerinstitution gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut um die Suche einzuschränken und bei der Darstellung des Ergebnisses).
+|*displayName* |obligatorisch |Bezeichner: Anzeigename +
+Dieses Attribut wird genutzt um den Namen der Betriebsstätte gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut um die Suche einzuschränken und bei der Darstellung des Ergebnisses). +
+ +
+Dieses Attribut wird durch den VZD nicht automatisch aus dem Zertifikat ermittelt. Es kann über die Schreiboperationen von Schnittstelle I_Directory_Administration gesetzt werden. Wird über die Operation  add_Directory_Entry von Schnittstelle I_Directory_Administration für displayName kein Inhalt geliefert, so wird in displayName der Wert "-" gesetzt.
 |*streetAddress* |obligatorisch |Bezeichner: Straße und Hausnummer (wenn verfügbar) der Leistungserbringerinstitution
 |*postalCode* |obligatorisch |Bezeichner: Postleitzahl der Leistungserbringerinstitution
 |*localityName * |obligatorisch |Bezeichner: Ort der Leistungserbringerinstitution
@@ -2163,17 +2253,30 @@ Tabelle 14: Tab_VZD_Datenbeschreibung_eGBR_HBA
 |===
 |*LDAP-Directory Attribut* |*Pflichtfeld aus Sicht Pflege und Nutzung?* |*Erläuterung*
 |*givenName* |optional |Bezeichner: Vorname +
-Wird vom VZD aus dem Zertifikatsattribut givenName übernommen.
-|*sn* |optional |Bezeichner: Nachname +
-Wird vom VZD aus dem Zertifikatsattribut sn übernommen.
+Wird vom VZD aus dem Zertifikatsattribut givenName übernommen, wenn der Client von Schnittstelle I_Directory_Administration keinen Wert angibt. +
+ +
+Wird über die Schreiboperationen von Schnittstelle I_Directory_Administration für givenName ein Inhalt geliefert, so dieser Wert für das Attribut gesetzt. +
+ +
+Wird dem Verzeichniseintrag ein neues Zertifikat hinzu gefügt, wird der aktuelle Wert des Attributs durch der Wert aus Zertifikatsattribut givenName überschrieben.
+|*sn* |optional |Bezeichner: Nachname +
+Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
+ +
+Bei dem Hinzufügen eines Zertifikats wird sn mit dem Inhalt von Attribut commonName aus dem Zertifikat gefüllt/überschrieben. +
+ +
+Wenn der Client der Schnittstelle I_Directory_Administration keinen Wert für sn angibt, wird sn als Kopie von Attribut displayName gesetzt. Wird sn als Parameter übergeben, wird der angegebene Wert übernommen.
+
 |*cn* |obligatorisch |Bezeichner: Name +
-Wird vom VZD automatisch als Kopie von displayName eingetragen (weil E-Mail-Clients über dieses Attribut suchen; Verwendung als Filter-Attribut, um die Suche einzuschränken, und bei der Darstellung des Ergebnisses).
+Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
+ +
+Bei Nutzung der Schreiboperationen von Schnittstelle I_Directory_Administration wird cn als Kopie von Attribut displayName gesetzt, wenn cn nicht als Parameter übergeben wird. Wird cn als Parameter übergeben, wird der angegebene Wert übernommen.
 |*otherName* |optional |Das Attribut otherName ist veraltet und wird in einer zukünftigen Version aus dem Datenmodell entfernt. +
  +
 Bezeichner: Anderer Name +
 Wird vom VZD aus dem Zertifikatsattribut otherName übernommen.
 |*displayName* |obligatorisch |Bezeichner: Anzeigename +
-Dieses Attribut wird genutzt, um den Namen der Person gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut, um die Suche einzuschränken, und bei der Darstellung des Ergebnisses).
+Dieses Attribut wird genutzt, um den Namen der Person gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut, um die Suche einzuschränken, und bei der Darstellung des Ergebnisses). +
+ +
+Dieses Attribut wird durch den VZD nicht automatisch aus dem Zertifikat ermittelt. Es kann über die Schreiboperationen von Schnittstelle I_Directory_Administration gesetzt werden. Wird über die Operation  add_Directory_Entry von Schnittstelle I_Directory_Administration für displayName kein Inhalt geliefert, so wird in displayName der Wert "-" gesetzt.
 |*streetAddress* |optional |Nicht belegt.
 |*postalCode* |optional |Nicht belegt.
 |*localityName * |optional |Nicht belegt.
@@ -2281,17 +2384,21 @@ Tabelle 15: Tab_VZD_Datenbeschreibung_der_SMC-B_eGBR
 |===
 |*LDAP-Directory Attribut* |*Pflichtfeld aus Sicht Pflege und Nutzung?* |*Erläuterung*
 |*givenName* |optional |Wird für SMC-B nicht verwendet.
-|*sn* |optional |Wird vom VZD als Kopie von displayName automatisch eingetragen. +
-Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet.
+|*sn* |optional | Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
+ +
+Wenn der Client der Schnittstelle I_Directory_Administration keinen Wert für sn angibt, wird sn als Kopie von Attribut displayName gesetzt. Wird sn als Parameter übergeben, wird der angegebene Wert übernommen.
 |*cn* |obligatorisch |Bezeichner: Name +
-Wird vom VZD als Kopie des Attributs displayName übernommen. +
-Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet.
+Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
+ +
+Bei Nutzung der Schreiboperationen von Schnittstelle I_Directory_Administration wird cn als Kopie von Attribut displayName gesetzt, wenn cn nicht als Parameter übergeben wird. Wird cn als Parameter übergeben, wird der angegebene Wert übernommen.
 |*otherName* |optional |Das Attribut otherName ist veraltet und wird in einer zukünftigen Version aus dem Datenmodell entfernt. +
  +
 Bezeichner: Anderer Name +
 Wird vom VZD aus dem Zertifikatsattribut otherName übernommen.
 |*displayName* |obligatorisch |Bezeichner: Anzeigename +
-Dieses Attribut wird genutzt, um den Namen der Leistungserbringerinstitution gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut um die Suche einzuschränken und bei der Darstellung des Ergebnisses).
+Dieses Attribut wird genutzt um den Namen der Betriebsstätte gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut um die Suche einzuschränken und bei der Darstellung des Ergebnisses). +
+ +
+Dieses Attribut wird durch den VZD nicht automatisch aus dem Zertifikat ermittelt. Es kann über die Schreiboperationen von Schnittstelle I_Directory_Administration gesetzt werden. Wird über die Operation  add_Directory_Entry von Schnittstelle I_Directory_Administration für displayName kein Inhalt geliefert, so wird in displayName der Wert "-" gesetzt.
 |*streetAddress* |obligatorisch |Bezeichner: Straße und Hausnummer (wenn verfügbar) der Leistungserbringerinstitution
 |*postalCode* |obligatorisch |Bezeichner: Postleitzahl der Leistungserbringerinstitution
 |*localityName* |obligatorisch |Bezeichner: Ort der Leistungserbringerinstitution
