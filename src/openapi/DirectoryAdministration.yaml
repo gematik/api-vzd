@@ -6,6 +6,7 @@ info:
   version: 1.9.2
   # Änderungen in Version 1.9.2
   #  - Operation readLog: Parameter holder umbenannt in clientID
+  #  - Beschreibung HTTP Status Kode 405 ergänzt
   # 
   # Änderungen in Version 1.9.1
   #  - Operation readLog vereinfacht 
@@ -290,6 +291,7 @@ paths:
                 $ref: '#/components/schemas/Error'
         405:
           description: Method Not Allowed
+                     # Request-Header (Accept, Authorization) nicht valide 
           content:
             application/json:
               schema:
@@ -1222,6 +1224,7 @@ paths:
                 $ref: '#/components/schemas/Error'
         405:
           description: Method Not Allowed
+                     # Request-Header (Accept, Authorization) nicht valide           
           content:
             application/json:
               schema:
@@ -1433,6 +1436,7 @@ paths:
                 $ref: '#/components/schemas/Error'
         405:
           description: Method Not Allowed
+                     # Request-Header (Accept, Authorization) nicht valide 
           content:
             application/json:
               schema:
