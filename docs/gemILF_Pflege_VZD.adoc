@@ -676,6 +676,8 @@ Versehentlich fehlerhaft eingetragene Berechtigungen müssen durch einen aktuell
 
 In den folgenden Abschnitten werden für die Kartenherausgeber spezifische Festlegungen zu den Attributen des VZD getroffen.
 
+NOTE: Für KOM-LE wird in der externen Darstellung die Bezeichnung "KIM" genutzt. In den Spezifikationen wird aber noch der Begriff KOM-LE/komLe genutzt.
+
 
 === Wertebereiche der Attribute
 
@@ -965,6 +967,13 @@ Wird vom VZD automatisch eingetragen.
 {empty} +
 
 === SMC-B-Eintrag für Apotheken (ABDA, gematik)
+	 	
+NOTE: Die ENC Zertifikate von allen aktiven Karten müssen dauerhaft gepflegt werden. +	
+Dafür müssen die ENC Zertifikate aller neuen SMC-B Karten in Attribut Certificate.userCertificate eingetragen werden. +	
+-	Abgelaufene und gesperrte Zertifikate entfernt der VZD automatisch. +	
+- Noch nicht aktivierte Zertifikate werden in der VZD I_Directory_Query Schnittstelle erst nach Aktivierung sichtbar. +	
+ +	
+Alle anderen - durch Kartenherausgeber gepflegte - Daten müssen bei Änderungen (z.B. Änderung der Adresse, Spezialisierung,...) aktualisiert werden.	
 
 Tabelle 4: Tab_VZD_Datenbeschreibung_Apotheken_SMC-B
 
@@ -987,7 +996,10 @@ Wird vom VZD aus dem Zertifikatsattribut otherName übernommen.
 Dieses Attribut wird genutzt um den Namen der Betriebsstätte gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut um die Suche einzuschränken und bei der Darstellung des Ergebnisses). +
  +
 Dieses Attribut wird durch den VZD nicht automatisch aus dem Zertifikat ermittelt. Es kann über die Schreiboperationen von Schnittstelle I_Directory_Administration gesetzt werden. Wird über die Operation  add_Directory_Entry von Schnittstelle I_Directory_Administration für displayName kein Inhalt geliefert, so wird in displayName der Wert "-" gesetzt.
-|*streetAddress* |obligatorisch |Bezeichner: Straße und Hausnummer der Apotheke
+|*streetAddress* |obligatorisch |Bezeichner: Straße und Hausnummer der Apotheke +
+ +
+Aus dieser Adresse (zusammen mit postalCode, localityName, stateOrProvinceName und countryCode) werden die Geokoordinaten der Apotheke berechnet. +
+Deshalb wird die Prüfung dieser Adresse mittels einer Kartenseite (GMaps, BingMaps, OSM, …) oder eines Adress-Validators vor dem Eintragen in den VZD empfohlen.
 |*postalCode* |obligatorisch |Bezeichner: Postleitzahl der Apotheke
 |*localityName * |obligatorisch |Bezeichner: Ort der Apotheke
 |*stateOrProvinceName * |optional |Bezeichner: Bundesland der Apotheke
@@ -995,7 +1007,8 @@ Dieses Attribut wird durch den VZD nicht automatisch aus dem Zertifikat ermittel
 |*organization* |optional |Bezeichner: Organisation +
 Dieses Attribut ist ein optionales zweites Namensattribut und wird befüllt bei Bedarf. Ebenso wie displayName ist es geeignet um nach einem Namen zu filtern und ihn im Suchergebnis anzuzeigen. +
 Für EU-Versandapotheken: EU-Versandapotheke
-|*domainID* |optional |Wird für Apotheken nicht verwendet.
+|*domainID* |optional |Im Attribut domainID kann der Verweis auf die Mutter-Apotheke erfasst werden. +
+Die Inhalte werden durch die Kartenherausgeber gepflegt.
 |*specialization* |optional |Im Attribut specialization werden die ApothekenTypen (OffizinApo, Versand etc) und "offen" "beschränkt erfasst. Hierfür werden die dafür definierten CodeSysteme genutzt. Die Inhalte werden durch die Kartenherausgeber gepflegt. +
 Default für das Attribut ist LEER. LEER wird in der eRezept Anwendung gleich behandelt wie "Sonstige_offen". +
  +
@@ -1041,7 +1054,9 @@ Bezeichner: Beschreibung +
 Dieses Attribut ermöglicht, das Zertifikat zu beschreiben, um die Administration des VZD-Eintrags zu vereinfachen.
 |*mail* |optional |Bezeichner: E-Mail-Adresse +
 kann mehrfach vorkommen (0..100). +
-Wird vom KOM-LE-Anbieter eingetragen.
+Wird vom KOM-LE-Anbieter eingetragen. +
+ +
+Hinweis: Diese Adressen werden auch für die Direktzuweisung (z.B. Zytostatika) durch Ärzte genutzt. 
 |*komLeData* |optional a|
 Bezeichner: komLeData +
 Enthält die KOM-LE-Version des Clientmoduls der angegebenen "mail" Adresse im Attribut "version". Anhand dieser Version erkennt das sendende Clientmodul, welche KOM-LE-Version vom Empfänger-Clientmodul unterstützt wird und in welchem Format die Mail an diesen Empfänger versandt wird. +
@@ -1088,6 +1103,13 @@ Wird vom VZD automatisch eingetragen.
 {empty} +
 
 === HBA-Eintrag für Apotheker (ABDA, gematik)
+
+NOTE: Die HBAs der Apotheker - inklusive ihrer Zertifikate - müssen im VZD erfasst und gepflegt werden. +
+Dafür müssen die ENC Zertifikate aller neuen HBA Karten in Attribut Certificate.userCertificate eingetragen werden. +
+- Abgelaufene und gesperrte Zertifikate entfernt der VZD automatisch. +
+- Noch nicht aktivierte Zertifikate werden in der VZD I_Directory_Query Schnittstelle erst nach Aktivierung sichtbar. +
+ +
+Alle anderen - durch Kartenherausgeber gepflegte - Daten müssen bei Änderungen (z.B. Änderung der Adresse, Spezialisierung,...) aktualisiert werden.
 
 Tabelle 5: Tab_VZD_Datenbeschreibung_Apotheker
 
