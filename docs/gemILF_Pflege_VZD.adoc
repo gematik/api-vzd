@@ -943,20 +943,21 @@ Für EU-Versandapotheken: EU-Versandapotheke
 |*domainID* |optional |Im Attribut domainID kann der Verweis auf die Mutter-Apotheke erfasst werden. +
 Die Inhalte werden durch die Kartenherausgeber gepflegt. +
 
-|*specialization* |optional |Im Attribut specialization werden die ApothekenTypen (OffizinApo, Versand etc) erfasst. Hierfür wird das dafür definierte CodeSystem genutzt. Die Inhalte werden durch die Kartenherausgeber gepflegt. +
-Default für das Attribut ist LEER bzw. nicht vorhanden, was in der eRezept Anwendung gleich behandelt wird wie "Offizin-Apotheke". +
+|*specialization* |obligatorisch |Im Attribut specialization werden die ApothekenTypen (OffizinApo, Versand etc) erfasst. Hierfür wird das dafür definierte CodeSystem genutzt. Die Inhalte werden durch die Kartenherausgeber gepflegt. +
+Default für das Attribut ist "Offizin-Apotheke", was in der eRezept Anwendung als ApothekenTyp angenommen wird falls das Attribut LEER bzw. nicht vorhanden ist. +
  +
-Bezeichner: Fachgebiet +
 Optionales Attribut, kann maximal einmal vorkommen (0..1).
 |*usage* |optional |Das Attribut usage wird nicht verwendet.
 |*maxKOMLEadr* |optional |Maximale Anzahl von Mail-Adressen in den KOM-LE-Fachdaten.  +
 Falls kein Wert eingetragen wurde, können beliebig viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden. +
 Falls ein Wert eingetragen wurde, können maximal so viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden.
-|*userCertificate* |optional |Bezeichner: Enc-Zertifikat der SMC-B +
+|*userCertificate* |obligatorisch |Bezeichner: Enc-Zertifikat der SMC-B +
 Kann mehrfach vorkommen (0..50). +
 Format: DER, Base64 kodiert +
 Die pflegende Stelle erhält das Zertifikat vom TSP. +
-Es können Einträge ohne Zertifikat angelegt werden. Diese Einträge werden jedoch nicht über die LDAP-Abfrageschnittstelle gefunden.
+ +
+Damit der SMC-B Eintrag der Apotheke korrekt durch die Anwendungen (z.B. KIM und eRezept) verarbeitet werden kann, muss das userCertificate eingetragen werden (Pflichtfeld=obligatorisch). +
+Der VZD lässt jedoch auch Einträge ohne userCertificate zu, da dies vom Ablauf her in anderen Sektoren benötigt wird.
 |*userCertificate.active* |obligatorisch |Wird vom VZD eingetragen. +
 Wert == TRUE, wenn das userCertificate gemäß OCSP gültig ist (OCSP Response Status "good"), Wert == FALSE bei Zertifikaten von noch nicht freigeschalteten Karten (OCSP Response Status "unknown"). +
 Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in die flache Liste übernommen.
