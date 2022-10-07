@@ -943,10 +943,10 @@ Für EU-Versandapotheken: EU-Versandapotheke
 |*domainID* |optional |Im Attribut domainID kann der Verweis auf die Mutter-Apotheke erfasst werden. +
 Die Inhalte werden durch die Kartenherausgeber gepflegt. +
 
-|*specialization* |obligatorisch |Im Attribut specialization werden die ApothekenTypen (OffizinApo, Versand etc) erfasst. Hierfür wird das dafür definierte CodeSystem genutzt. Die Inhalte werden durch die Kartenherausgeber gepflegt. +
-Default für das Attribut ist "Offizin-Apotheke", was in der eRezept Anwendung als ApothekenTyp angenommen wird falls das Attribut LEER bzw. nicht vorhanden ist. +
+|*specialization* |obligatorisch |Im Attribut specialization werden die ApothekenTypen erfasst. Hierfür wird das dafür definierte CodeSystem genutzt: https://simplifier.net/vzd-fhir-directory/pharmacytypecs +
+Die Inhalte werden durch die Kartenherausgeber gepflegt. +
  +
-Optionales Attribut, kann maximal einmal vorkommen (0..1).
+Obligatorisches Attribut, kommt einmal vor (1..1).
 |*usage* |optional |Das Attribut usage wird nicht verwendet.
 |*maxKOMLEadr* |optional |Maximale Anzahl von Mail-Adressen in den KOM-LE-Fachdaten.  +
 Falls kein Wert eingetragen wurde, können beliebig viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden. +
