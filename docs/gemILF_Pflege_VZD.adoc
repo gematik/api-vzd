@@ -952,7 +952,7 @@ Obligatorisches Attribut, kommt einmal vor (1..1).
 Falls kein Wert eingetragen wurde, können beliebig viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden. +
 Falls ein Wert eingetragen wurde, können maximal so viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden.
 |*userCertificate* |obligatorisch |Bezeichner: Enc-Zertifikat der SMC-B +
-Kann mehrfach vorkommen (0..50). +
+Kann mehrfach vorkommen (1..50). +
 Format: DER, Base64 kodiert +
 Die pflegende Stelle erhält das Zertifikat vom TSP. +
  +
