@@ -90,6 +90,9 @@ Neu für eGBR HBA und SMC-B |gematik
 
 == Einordnung des Dokumentes
 
+NOTE: Seit März 2020 verwendet die gematik die Bezeichnung „*KIM – Kommunikation im Medizinwesen*“ für die Anwendung *KOM-LE*. Diese neue Benennung findet sich insbesondere in Informationsmaterialien für die Zielgruppe Leistungserbringer sowie in Presseveröffentlichungen. Eine Umbenennung in den technisch-normativen Dokumenten wie Spezifikationen, Konzepten, Zulassungsdokumenten etc. mit Ausnahme von Angaben zu Domänen, E-Mail-Adressen, technischen Schnittstellen, Parametern u.ä. ist mit Stand Release KIM 1.x nicht geplant. 
+
+
 === Zielsetzung
 
 Das vorliegende Dokument beschreibt, wie die Schnittstelle zur Pflege der Daten des Verzeichnisdienstes der TI clientseitig implementiert und genutzt werden kann.
@@ -940,20 +943,21 @@ Für EU-Versandapotheken: EU-Versandapotheke
 |*domainID* |optional |Im Attribut domainID kann der Verweis auf die Mutter-Apotheke erfasst werden. +
 Die Inhalte werden durch die Kartenherausgeber gepflegt. +
 
-|*specialization* |optional |Im Attribut specialization werden die ApothekenTypen (OffizinApo, Versand etc) und "offen" "beschränkt erfasst. Hierfür werden die dafür definierten CodeSysteme genutzt. Die Inhalte werden durch die Kartenherausgeber gepflegt. +
-Default für das Attribut ist LEER. LEER wird in der eRezept Anwendung gleich behandelt wie "Sonstige_offen". +
+|*specialization* |obligatorisch |Im Attribut specialization werden die ApothekenTypen erfasst. Hierfür wird das dafür definierte CodeSystem genutzt: https://simplifier.net/vzd-fhir-directory/pharmacytypecs +
+Die Inhalte werden durch die Kartenherausgeber gepflegt. +
  +
-Bezeichner: Fachgebiet +
-Kann mehrfach vorkommen (0..100).
+Obligatorisches Attribut, kommt einmal vor (1..1).
 |*usage* |optional |Das Attribut usage wird nicht verwendet.
 |*maxKOMLEadr* |optional |Maximale Anzahl von Mail-Adressen in den KOM-LE-Fachdaten.  +
 Falls kein Wert eingetragen wurde, können beliebig viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden. +
 Falls ein Wert eingetragen wurde, können maximal so viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden.
-|*userCertificate* |optional |Bezeichner: Enc-Zertifikat der SMC-B +
-Kann mehrfach vorkommen (0..50). +
+|*userCertificate* |obligatorisch |Bezeichner: Enc-Zertifikat der SMC-B +
+Kann mehrfach vorkommen (1..50). +
 Format: DER, Base64 kodiert +
 Die pflegende Stelle erhält das Zertifikat vom TSP. +
-Es können Einträge ohne Zertifikat angelegt werden. Diese Einträge werden jedoch nicht über die LDAP-Abfrageschnittstelle gefunden.
+ +
+Damit der SMC-B Eintrag der Apotheke korrekt durch die Anwendungen (z.B. KIM und eRezept) verarbeitet werden kann, muss das userCertificate eingetragen werden (Pflichtfeld=obligatorisch). +
+Der VZD lässt jedoch auch Einträge ohne userCertificate zu, da dies vom Ablauf her in anderen Sektoren benötigt wird.
 |*userCertificate.active* |obligatorisch |Wird vom VZD eingetragen. +
 Wert == TRUE, wenn das userCertificate gemäß OCSP gültig ist (OCSP Response Status "good"), Wert == FALSE bei Zertifikaten von noch nicht freigeschalteten Karten (OCSP Response Status "unknown"). +
 Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in die flache Liste übernommen.
@@ -1006,11 +1010,10 @@ Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
 ----
 
 
-Wird vom KOM-LE-Anbieter eingetragen. +
- +
-Hinweis: Für KOM-LE wird in der externen Darstellung die Bezeichnung "KIM" genutzt. In den Spezifikationen wird aber noch der Begriff KOM-LE genutzt. 
+Wird vom KOM-LE-Anbieter eingetragen.
 
 |===
+
 
 {empty} +
 {empty} +
@@ -1058,8 +1061,8 @@ Dieses Attribut wird genutzt, um den Namen der Betriebsstätte gegenüber dem An
 |*domainID* |optional |Bezeichner: spezifisches Kennzeichen der Apotheker +
 Kann mehrfach vorkommen (0..100). +
 Der Wert wird von der pflegenden Stelle festgelegt.
-|*specialization* |obligatorisch |Bezeichner: Fachgebiet +
-Kann mehrfach vorkommen (1..100). +
+|*specialization* |optional |Bezeichner: Fachgebiet +
+Kann mehrfach vorkommen (0..100). +
 *Für Einträge der Leistungserbringer (HBA-Eintrag)* +
 Der Wertebereich entspricht den in hl7 definierten Werten ( https://wiki.hl7.de/index.php?title=IG:Value_Sets_f%C3%BCr_XDS#DocumentEntry.authorSpecialty[+++https://wiki.hl7.de/index.php?title=IG:Value_Sets_f%C3%BCr_XDS#DocumentEntry.authorSpecialty+++]). +
 urn:as:<OID Codesystem:Code> +
