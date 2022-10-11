@@ -12,7 +12,7 @@ def request_to_curl(
     lines = []
     lines.append(f'curl -X {request.method} "{request.url}"')
 
-    relevant_headers = {k: v for k, v in request.headers.items() if k in ["Authorization", "Content-Type"] or k.startswith("X-")}
+    relevant_headers = {k: v for k, v in request.headers.items() if k in ["Authorization", "Content-Type", "SOAPAction"] or k.startswith("X-")}
     for key, value in relevant_headers.items():
         lines.append(f'-H "{key}: {request.headers[key]}"')
 

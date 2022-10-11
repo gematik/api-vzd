@@ -15,6 +15,8 @@ def main():
     print(fhir_directory_config)
 
     session = Session()
+
+    print("Requesting PROVIDER_ACCESS_TOKEN from ProviderAuthorizationSertvice")
     response = session.post(
         tim_provider_auth_config.url,
         data={"grant_type": "client_credentials"},

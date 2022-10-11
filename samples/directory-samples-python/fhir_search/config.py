@@ -30,11 +30,11 @@ class FHIRDirectoryConfig(BaseSettings):
 
     @property
     def federation_list_url(self):
-        return urljoin(self.base_url, "/ServiceProvider/tim-provider-services/FederationList")
+        return urljoin(self.base_url, "/tim-provider-services/FederationList")
 
     @property
     def federation_url(self):
-        return urljoin(self.base_url, "/ServiceProvider/tim-provider-services/federation/")
+        return urljoin(self.base_url, "/tim-provider-services/federation/")
 
     class Config:
         env_prefix = "FHIR_DIRECTORY_"
