@@ -21,12 +21,14 @@ import org.jose4j.jwt.JwtClaims;
 import org.jose4j.jwt.consumer.JwtConsumer;
 import org.jose4j.jwt.consumer.JwtConsumerBuilder;
 import org.jose4j.jwt.consumer.JwtContext;
+import org.jose4j.jwx.JsonWebStructure;
 import org.jose4j.keys.resolvers.HttpsJwksVerificationKeyResolver;
 import org.junit.Assert;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.ByteArrayInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URI;
@@ -44,6 +46,7 @@ import java.security.spec.PKCS8EncodedKeySpec;
 import java.time.Duration;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -91,16 +94,26 @@ public class OwnerSignInSample {
                 .build();
 
 
-
-        JwtConsumer openidConfigurationConsumer = new JwtConsumerBuilder()
-                .setSkipSignatureVerification()
-                .build();
-        JwtContext openidConfiguration = openidConfigurationConsumer.process(loadStringFromURI(openidConfigurationURI));
-
-        logger.debug("openid_configuration:\n{}", new JsonPath(openidConfiguration.getJwtClaims().toJson()).prettify());
+        String openidConfigurationJWT = loadStringFromURI(openidConfigurationURI);
 
         logger.debug("== Step 1b: Verify OpenID configuration manifest signature");
-        logger.error("Signature verification is not implemented");
+
+        // extract X509 signer certificate
+        JsonWebStructure openidConfigurationJWS = JsonWebStructure.fromCompactSerialization(openidConfigurationJWT);
+        Assert.assertNotNull(openidConfigurationJWS.getHeaders().getObjectHeaderValue("x5c"));
+        @SuppressWarnings("unchecked") List<String> openidConfigurationX5CHeader = (List<String>) openidConfigurationJWS.getHeaders().getObjectHeaderValue("x5c");
+        byte[] openidConfigurationCertBytes = Base64.decode(openidConfigurationX5CHeader.stream().findFirst().orElseThrow());
+        X509Certificate openidConfigurationCert = (X509Certificate) CertificateFactory.getInstance("X.509")
+                .generateCertificate(new ByteArrayInputStream(openidConfigurationCertBytes));
+
+        logger.error("Certificate validation is not implemented");
+
+        // Parse JWT and verify the signature
+        JwtConsumer openidConfigurationConsumer = new JwtConsumerBuilder()
+                .setVerificationKey(openidConfigurationCert.getPublicKey())
+                .build();
+        JwtContext openidConfiguration = openidConfigurationConsumer.process(openidConfigurationJWT);
+        logger.debug("openid_configuration:\n{}", new JsonPath(openidConfiguration.getJwtClaims().toJson()).prettify());
 
         logger.debug("== Step 1c: Retrieve configuration values");
 
@@ -179,16 +192,13 @@ public class OwnerSignInSample {
         JsonPath challengeClaims = new JsonPath(challengeJWS.getPayload());
         logger.debug("Challenge signature is valid: {}", challengeClaims);
 
-
         logger.debug("== Step 3b: Sign challenge");
         KeyFactory keyFactory = KeyFactory.getInstance("RSA");
-
 
         PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(new FileInputStream(OWNER_KEY_FILENAME_DER).readAllBytes());
         JsonWebKey ownerKey = JsonWebKey.Factory.newJwk(keyFactory.generatePrivate(keySpec));
 
-        CertificateFactory fact = CertificateFactory.getInstance("X.509");
-        X509Certificate ownerCertificate = (X509Certificate) fact.generateCertificate(new FileInputStream(OWNER_CERT_FILENAME_DER));
+        X509Certificate ownerCertificate = (X509Certificate) CertificateFactory.getInstance("X.509").generateCertificate(new FileInputStream(OWNER_CERT_FILENAME_DER));
 
         JwtClaims challengeResponsePayload = new JwtClaims();
         challengeResponsePayload.setClaim("njwt", challenge);
@@ -218,7 +228,6 @@ public class OwnerSignInSample {
         logger.debug("Signed and encrypted challenge response:\n{}", challengeResponse);
 
         logger.debug("== Step 3c: Post challenge response to IDP");
-
 
         Map<String, String> challengeResponseParameters = new HashMap<>() {{
             put("signed_challenge", challengeResponse);
@@ -270,7 +279,6 @@ public class OwnerSignInSample {
             put("client_id", CLIENT_ID);
             put("redirect_uri", REDIRECT_URI);
             put("code", code);
-            //put("code_verifier", pkceCodeVerifier); SOmpe implementation on the internet send code_verifier unencrypted!
             put("key_verifier", keyVerifierJWE.getCompactSerialization());
         }};
 
