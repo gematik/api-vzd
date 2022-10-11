@@ -270,7 +270,7 @@ public class OwnerSignInSample {
             put("client_id", CLIENT_ID);
             put("redirect_uri", REDIRECT_URI);
             put("code", code);
-            put("code_verifier", pkceCodeVerifier);
+            //put("code_verifier", pkceCodeVerifier); SOmpe implementation on the internet send code_verifier unencrypted!
             put("key_verifier", keyVerifierJWE.getCompactSerialization());
         }};
 
@@ -307,12 +307,11 @@ public class OwnerSignInSample {
         encryptedTokenReceiver.setCompactSerialization(encryptedIdToken);
         String idToken = new JsonPath(encryptedTokenReceiver.getPlaintextString()).getString("njwt");
 
-
         logger.debug("access_token: {}", accessToken);
         logger.debug("id_token: {}", idToken);
 
         // Step 5
-        logger.debug("= Step 5: Verify token signature");
+        logger.debug("= Step 5: Service verifies the tokens");
 
         HttpsJwks httpsJkws = new HttpsJwks(openidConfiguration.getJwtClaims().getClaimValueAsString("jwks_uri"));
         HttpsJwksVerificationKeyResolver httpsJwksKeyResolver = new HttpsJwksVerificationKeyResolver(httpsJkws);
