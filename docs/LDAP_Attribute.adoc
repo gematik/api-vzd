@@ -256,8 +256,8 @@ Spezifiziert in https://fachportal.gematik.de/fachportal-import/files/gemSpec_OI
 
 Wertebereiche:
 
-* https://github.com/gematik/api-vzd/blob/master/src/fhir/input/fsh/codesystems/TIPractitionerProfessionOidCS.fsh[für Personen (HBA)]
-* https://github.com/gematik/api-vzd/blob/master/src/fhir/input/fsh/codesystems/TIInstitutionTypeOidCS.fsh[für Institutionen (SMC-B)]
+* https://github.com/gematik/api-vzd/blob/master/src/fhir/input/fsh/codesystems/PractitionerProfessionOID.fsh[für Personen (HBA)]
+* https://github.com/gematik/api-vzd/blob/master/src/fhir/input/fsh/codesystems/OrganizationProfessionOID.fsh[für Institutionen (SMC-B)]
 
 === specialization
 
