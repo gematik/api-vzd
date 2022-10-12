@@ -34,19 +34,19 @@ image::gematik_logo.svg[gematik,float="right"]
  |*Bearbeitung* +
 
 |1.0.0 |10.12.19 |​ |Ersterstellung |gematik
-|1.1.0 |29.03.20 | |Anpassung Kapitel 3.3.1.1, diverse Ergänzungen und Klarstellungen |gematik
-|1.2.0 |13.07.20 | |Anpassungen in Kapitel 3.1.1, Prozessbeschreibung zur Registrierung ausgearbeitet, +
+|1.1.0 |29.03.20 |​ |Anpassung Kapitel 3.3.1.1, diverse Ergänzungen und Klarstellungen |gematik
+|1.2.0 |13.07.20 |​ |Anpassungen in Kapitel 3.1.1, Prozessbeschreibung zur Registrierung ausgearbeitet, +
 Anpassungen in Kapitel 4, Link auf aktualisierte DirectoryAdministration.yaml, RU-URLs für die Schnittstellen |gematik
-|1.3.0 |31.08.20 | |Prozessbeschreibung zur Registrierung angepasst, Link auf gematik-VZD-Client ergänzt, behobene Fehler dokumentiert, Beispiele für GET Requests ergänzt |gematik
-|1.3.1 |21.09.2020 | |Änderung des Verhaltens, wenn mehr als 100 Einträge gefunden werden. Es werden nun 100 Einträge in der Antwort übergeben. |gematik
-|1.3.2 |11.11.2020 | |Korrektur des links zur yaml-Datei Version 1.1.2 |gematik
-|1.3.3 |25.11.2020 | |Wertebereich für das Attribut stateOrProvinceName ergänzt |gematik
-|1.4.0 |16.12.2020 | |Alle gefundenen Daten werden in der Response zurückgeliefert (bisher 100). Der GET-Request wurde um einen Parameter erweitert, der es ermöglicht, die Zertifikatsdaten in der Response nicht zu erhalten. Dadurch kann die Datenmenge der Response bei sehr vielen gefundenen Einträgen stark reduziert werden. +
+|1.3.0 |31.08.20 |​ |Prozessbeschreibung zur Registrierung angepasst, Link auf gematik-VZD-Client ergänzt, behobene Fehler dokumentiert, Beispiele für GET Requests ergänzt |gematik
+|1.3.1 |21.09.2020 |​ |Änderung des Verhaltens, wenn mehr als 100 Einträge gefunden werden. Es werden nun 100 Einträge in der Antwort übergeben. |gematik
+|1.3.2 |11.11.2020 |​ |Korrektur des links zur yaml-Datei Version 1.1.2 |gematik
+|1.3.3 |25.11.2020 |​ |Wertebereich für das Attribut stateOrProvinceName ergänzt |gematik
+|1.4.0 |16.12.2020 |​ |Alle gefundenen Daten werden in der Response zurückgeliefert (bisher 100). Der GET-Request wurde um einen Parameter erweitert, der es ermöglicht, die Zertifikatsdaten in der Response nicht zu erhalten. Dadurch kann die Datenmenge der Response bei sehr vielen gefundenen Einträgen stark reduziert werden. +
 Die Telematik-ID wurde zusätzlich in den Basisdaten aufgenommen. Dadurch kann direkt nach der Telematik-ID gesucht werden, ohne erst über die Zertifikate zu suchen. +
 Das holder-Attribut wurde eingeführt; wird jedoch noch nicht in diesem Change vom VZD ausgewertet. Es wird aber bereits im yaml-File als Parameter aufgeführt, damit Client-Entwickler schon jetzt passenden Client-Code entwickeln können. Für die Umsetzung im VZD wird es einen separaten Change geben. +
 Es wurde ein Ländercode-Attribut (countryCode) ins Datenmodell aufgenommen. +
 Es wurde ein Attribut changeDateTime ins Datenmodell aufgenommen, das den Zeitpunkt der letzten Änderung an den Basisdaten angibt. |gematik
-|1.4.1 | |3.1.1 |Konkretisierung: Credentials-Vergabe auf Organisationsebene. Anpassung des Ansprechpartners bei Arvato für Störungen an der Schnittstelle. |gematik
+|1.4.1 |​ |3.1.1 |Konkretisierung: Credentials-Vergabe auf Organisationsebene. Anpassung des Ansprechpartners bei Arvato für Störungen an der Schnittstelle. |gematik
 |1.5.0 |02.06.2021 |4.1 +
 4.4 +
 4.5 |- Erweiterung des Wertebereichs stateOrProvinceName für EU-Versandapotheken in Vorbereitung auf das E-Rezept +
@@ -75,24 +75,16 @@ Verwendung der client_id (vorher claim scope) besser erläutert +
  +
 Update zum SMC-B ORG-Eintrag der gematik +
 Neu für eGBR HBA und SMC-B |gematik
+
 |1.5.3 |23.06.2022 |3.6, 3.3.1.3 |Rückverfolgbarkeit der Einträge (Holder-Attribute) - C_11048 |gematik
-|1.5.4 |26.09.2022 |4 |
-- Verwendung des holder Attributs für eGBR Einträge ergänzt +
-- Optimierung der komLeData Datenstruktur - C_11165 +
-- Fehlende Attribute "holder" und "dataFromAuthority" in den Attributtabellen ergänzt +
-- Attribut userCertificate.active ergänzt +
-- "4.14 gematik - Weitere ärztliche Institutionen (SMC-B-Eintrag)" ergänzt +
-- Datenerfassung für Apotheken erweitert
-|gematik
-|1.5.5 |30.09.2022  |4.* |- Beschreibung der Attribute aktualisiert (givenName, sn, cn, displayName, entryType) - DIR-214, DIR-236 +
-- „read only“ Zugang aufgenommen (Kap. 3.1.1, 3.2) - C_11187, DIR-83 +
-- Beschreibung von Attribut personalEntry aktualisiert - C_11227, DIR-174 +
-- Attribute active und meta und Operation stateSwitch_Directory_Entry aufgenommen - C_11183 DIR-119 +
-- Operation readLog aufgenommen - C_11221, DIR-6 +
-- Beschreibung Attribut changeDateTime aktualisiert - C_11183, DIR-80 +
-- Attribute notBefore, notAfter aufgenommen - C_11179, DIR-203
+|1.5.4 |15.07.2022 |4 |
+Verwendung des holder Attributs für eGBR Einträge ergänzt +
+Optimierung der komLeData Datenstruktur - C_11165 +
+Fehlende Attribute "holder" und "dataFromAuthority" in den Attributtabellen ergänzt +
+Attribut userCertificate.active ergänzt
 
 |gematik
+
 |===
 
 == Einordnung des Dokumentes
@@ -707,23 +699,19 @@ Tabelle 2: Tab_VZD_Datenbeschreibung_KVen
 |===
 |*LDAP-Directory Attribut* |*Pflichtfeld aus Sicht Pflege und Nutzung?* |*Erläuterung*
 |*givenName* |optional |Wird für SMC-B nicht verwendet.
-|*sn* |obligatorisch | Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
- +
-Wenn der Client der Schnittstelle I_Directory_Administration keinen Wert für sn angibt, wird sn als Kopie von Attribut displayName gesetzt. Wird sn als Parameter übergeben, wird der angegebene Wert übernommen.
+|*sn* |obligatorisch |Wird vom VZD als Kopie von displayName automatisch eingetragen. +
+Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet.
 |*cn* +
 * * +
   |obligatorisch |Bezeichner: Name +
-Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
- +
-Bei Nutzung der Schreiboperationen von Schnittstelle I_Directory_Administration wird cn als Kopie von Attribut displayName gesetzt, wenn cn nicht als Parameter übergeben wird. Wird cn als Parameter übergeben, wird der angegebene Wert übernommen.
+Wird vom VZD als Kopie des Attributs displayName übernommen. +
+Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet.
 |*otherName* |optional |Das Attribut otherName ist veraltet und wird in einer zukünftigen Version aus dem Datenmodell entfernt. +
  +
 Bezeichner: Anderer Name +
 Wird vom VZD aus dem Zertifikatsattribut otherName übernommen.
-|*displayName* |obligatorisch |Bezeichner: Anzeigename +
-Dieses Attribut wird genutzt um den Namen der Betriebsstätte gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut um die Suche einzuschränken und bei der Darstellung des Ergebnisses). +
- +
-Dieses Attribut wird durch den VZD nicht automatisch aus dem Zertifikat ermittelt. Es kann über die Schreiboperationen von Schnittstelle I_Directory_Administration gesetzt werden. Wird über die Operation  add_Directory_Entry von Schnittstelle I_Directory_Administration für displayName kein Inhalt geliefert, so wird in displayName der Wert "-" gesetzt.
+|*displayName* |obligatorisch |Bezeichner: Anzeigename +
+Dieses Attribut wird genutzt, um den Namen der Betriebsstätte gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut, um die Suche einzuschränken, und bei der Darstellung des Ergebnisses).
 |*streetAddress* |obligatorisch |Bezeichner: Straße und Hausnummer der Betriebsstätte
 |*postalCode* |obligatorisch |Bezeichner: Postleitzahl der Betriebsstätte
 |*localityName * |obligatorisch |Bezeichner: Ort der Betriebsstätte
@@ -756,21 +744,17 @@ Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in 
 Falls kein Wert eingetragen wurde, können beliebig viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden. +
 Falls ein Wert eingetragen wurde, können maximal so viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden.
 |*personalEntry* |obligatorisch |Wird vom VZD eingetragen. +
-Wert == TRUE, wenn alle zum Eintrag gehörenden Zertifikate den entryType 1 haben (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID). +
- +
-Nach Löschung aller Zertifikate bleibt der Wert dieses Attributs `personalEntry` erhalten.
+Wert == TRUE, wenn alle zum Eintrag gehörenden Zertifikate den entryType 1 haben (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID).
 |*entryType* |obligatorisch |Bezeichner: Eintragstyp +
-Wird vom VZD anhand der im Zertifikat enthaltenen OID (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
- +
-entryType kann über Operationen add_Directory_Entry und modify_Directory_Entry gesetzt werden. +
- +
-Wird in Operationen add_Directory_Entry ein Zertifikat angegeben wird, muss ein eventuell angegebener Parameter entryType mit dem Wert aus dem Zertifikat übereinstimmen. Bei nicht angegebenem Parameter entryType wird das Attribut entryType entsprechend dem Zertifikat gesetzt. +
- +
-Mit Operation modify_Directory_Entry kann über Request Parameter entryType das Attribut im VZD geändert werden, solange kein Zertifikat im VZD enthalten ist (welches dann einen abweichenden Wert gegenüber dem Request Parameter entryType enthalten würde). +
- +
-Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit einem Fehler. 
+Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403.
 |*telematikID* |obligatorisch |Bezeichner: TelematikID +
 Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
+|*dataFromAuthority* |optional |Wird vom VZD eingetragen +
+Gibt an, ob die Daten vom Kartenherausgeber stammen. +
+Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
+  +
+Wenn der Wert TRUE ist, können die Daten nicht mehr über die Schnittstelle I_Directory_Maintenance bearbeitet werden. Die Schnittstelle I_Directory_Maintenance wird von KOM-LE-Anbietern verwendet.
+|*holder* |optional |Legt fest, wer Änderungen an den Basisdaten des Eintrags vornehmen darf. Hat keinen Einfluss auf Fachdaten und Zertifikatsdaten.
 |*professionOID* |obligatorisch |Bezeichner: Profession OID +
 Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und dem Mapping in ab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
 Kann mehrfach vorkommen (0..100)
@@ -792,8 +776,17 @@ Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
 - Für jede Mail-Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Datenstruktur komLeData geben. Es dürfen in komLeData keine Mail-Adressen referenziert werden, die nicht im übergeordneten "mail" Attribut enthalten sind.
 - Wenn eine Mail-Adresse gelöscht wird, muss auch ihr komLeData-Eintrag gelöscht werden. +
  Geschrieben wird immer die gesamte Liste. Für Änderungen muss erst der aktuelle Eintrag gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
-- Beispiel für den Wert eines komLeData-Eintrags: \{"mail": "erik.mustermann@hrstdomain.kim.telematik"; "version": "1.5"}
-
+- Beispiel für den Wert eines komLeData-Eintrags in der flachen Liste (LDAP): +
+[source, c]
+----
+ "komLeData": [
+        "1.0,xx-01@hersteller01.kim.telematik-test",
+        "1.0,xx-02@hersteller01.kim.telematik-test",
+        "1.0,xx-03@hersteller02.kim.telematik-test",
+        "1.0,xx-04@hersteller02.kim.telematik-test",
+        "1.0,xx-05@hersteller02.kim.telematik-test"
+        ]
+----
 
 Wird vom KOM-LE-Anbieter eingetragen.
 
@@ -810,21 +803,17 @@ Tabelle 3: Tab_VZD_Datenbeschreibung_KZVen
 |===
 |*LDAP-Directory Attribut* |*Pflichtfeld aus Sicht Pflege und Nutzung?* |*Erläuterung*
 |*givenName* |optional |Wird für SMC-B nicht verwendet.
-|*sn* |optional | Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
- +
-Wenn der Client der Schnittstelle I_Directory_Administration keinen Wert für sn angibt, wird sn als Kopie von Attribut displayName gesetzt. Wird sn als Parameter übergeben, wird der angegebene Wert übernommen.
+|*sn* |optional |Wird vom VZD als Kopie von displayName automatisch eingetragen. +
+Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet.
 |*cn* |obligatorisch |Bezeichner: Name +
-Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
- +
-Bei Nutzung der Schreiboperationen von Schnittstelle I_Directory_Administration wird cn als Kopie von Attribut displayName gesetzt, wenn cn nicht als Parameter übergeben wird. Wird cn als Parameter übergeben, wird der angegebene Wert übernommen.
+Wird vom VZD als Kopie des Attributs displayName übernommen. +
+Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet.
 |*otherName* |optional |Das Attribut otherName ist veraltet und wird in einer zukünftigen Version aus dem Datenmodell entfernt. +
  +
 Bezeichner: Anderer Name +
 Wird vom VZD aus dem Zertifikatsattribut otherName übernommen.
-|*displayName* |obligatorisch |Bezeichner: Anzeigename +
-Dieses Attribut wird genutzt um den Namen der Betriebsstätte gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut um die Suche einzuschränken und bei der Darstellung des Ergebnisses). +
- +
-Dieses Attribut wird durch den VZD nicht automatisch aus dem Zertifikat ermittelt. Es kann über die Schreiboperationen von Schnittstelle I_Directory_Administration gesetzt werden. Wird über die Operation  add_Directory_Entry von Schnittstelle I_Directory_Administration für displayName kein Inhalt geliefert, so wird in displayName der Wert "-" gesetzt.
+|*displayName* |obligatorisch |Bezeichner: Anzeigename +
+Dieses Attribut wird genutzt, um den Namen der Zahnarztpraxis gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut um die Suche einzuschränken und bei der Darstellung des Ergebnisses).
 |*streetAddress* |obligatorisch |Bezeichner: Straße und Hausnummer
 |*postalCode* |obligatorisch |Bezeichner: Postleitzahl
 |*localityName * |obligatorisch |Bezeichner: Ort
@@ -855,21 +844,17 @@ Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in 
 Falls kein Wert eingetragen wurde, können beliebig viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden. +
 Falls ein Wert eingetragen wurde, können maximal so viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden.
 |*personalEntry* |obligatorisch |Wird vom VZD eingetragen. +
-Wert == TRUE, wenn alle zum Eintrag gehörenden Zertifikate den entryType 1 haben (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID). +
- +
-Nach Löschung aller Zertifikate bleibt der Wert dieses Attributs `personalEntry` erhalten.
+Wert == TRUE, wenn alle zum Eintrag gehörenden Zertifikate den entryType 1 haben (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID).
 |*entryType* |obligatorisch |Bezeichner: Eintragstyp +
-Wird vom VZD anhand der im Zertifikat enthaltenen OID (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
- +
-entryType kann über Operationen add_Directory_Entry und modify_Directory_Entry gesetzt werden. +
- +
-Wird in Operationen add_Directory_Entry ein Zertifikat angegeben wird, muss ein eventuell angegebener Parameter entryType mit dem Wert aus dem Zertifikat übereinstimmen. Bei nicht angegebenem Parameter entryType wird das Attribut entryType entsprechend dem Zertifikat gesetzt. +
- +
-Mit Operation modify_Directory_Entry kann über Request Parameter entryType das Attribut im VZD geändert werden, solange kein Zertifikat im VZD enthalten ist (welches dann einen abweichenden Wert gegenüber dem Request Parameter entryType enthalten würde). +
- +
-Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit einem Fehler. 
+Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403.
 |*telematikID* |obligatorisch |Bezeichner: TelematikID +
 Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
+|*dataFromAuthority* |optional |Wird vom VZD eingetragen +
+Gibt an, ob die Daten vom Kartenherausgeber stammen. +
+Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
+  +
+Wenn der Wert TRUE ist, können die Daten nicht mehr über die Schnittstelle I_Directory_Maintenance bearbeitet werden. Die Schnittstelle I_Directory_Maintenance wird von KOM-LE-Anbietern verwendet.
+|*holder* |optional |Legt fest, wer Änderungen an den Basisdaten des Eintrags vornehmen darf. Hat keinen Einfluss auf Fachdaten und Zertifikatsdaten.
 |*professionOID* |obligatorisch |Bezeichner: Profession OID +
 Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und dem Mapping in ab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
 Kann mehrfach vorkommen (0..100).
@@ -891,7 +876,17 @@ Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
 - Für jede Mail-Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Datenstruktur komLeData geben. Es dürfen in komLeData keine Mail-Adressen referenziert werden, die nicht im übergeordneten "mail" Attribut enthalten sind.
 - Wenn eine Mail-Adresse gelöscht wird, muss auch ihr komLeData-Eintrag gelöscht werden. +
  Geschrieben wird immer die gesamte Liste. Für Änderungen muss erst der aktuelle Eintrag gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
-- Beispiel für den Wert eines komLeData-Eintrags: \{"mail": "erik.mustermann@hrstdomain.kim.telematik"; "version": "1.5"}
+- Beispiel für den Wert eines komLeData-Eintrags in der flachen Liste (LDAP): +
+[source, c]
+----
+ "komLeData": [
+        "1.0,xx-01@hersteller01.kim.telematik-test",
+        "1.0,xx-02@hersteller01.kim.telematik-test",
+        "1.0,xx-03@hersteller02.kim.telematik-test",
+        "1.0,xx-04@hersteller02.kim.telematik-test",
+        "1.0,xx-05@hersteller02.kim.telematik-test"
+        ]
+----
 
 
 Wird vom KOM-LE-Anbieter eingetragen.
@@ -909,21 +904,17 @@ Tabelle 4: Tab_VZD_Datenbeschreibung_Apotheken_SMC-B
 |===
 |*LDAP-Directory Attribut* |*Pflichtfeld aus Sicht Pflege und Nutzung?* |*Erläuterung*
 |*givenName* |optional |Wird für SMC-B nicht verwendet.
-|*sn* |optional | Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
- +
-Wenn der Client der Schnittstelle I_Directory_Administration keinen Wert für sn angibt, wird sn als Kopie von Attribut displayName gesetzt. Wird sn als Parameter übergeben, wird der angegebene Wert übernommen.
-|*cn* |obligatorisch |Bezeichner: Anzeigename +
-Dieses Attribut wird genutzt um den Namen der Betriebsstätte gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut um die Suche einzuschränken und bei der Darstellung des Ergebnisses). +
- +
-Dieses Attribut wird durch den VZD nicht automatisch aus dem Zertifikat ermittelt. Es kann über die Schreiboperationen von Schnittstelle I_Directory_Administration gesetzt werden. Wird über die Operation  add_Directory_Entry von Schnittstelle I_Directory_Administration für displayName kein Inhalt geliefert, so wird in displayName der Wert "-" gesetzt.
+|*sn* |optional |Wird vom VZD als Kopie von displayName automatisch eingetragen. +
+Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet.
+|*cn* |obligatorisch |Bezeichner: Name +
+Wird vom VZD als Kopie des Attributs displayName übernommen. +
+Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet.
 |*otherName* |optional |Das Attribut otherName ist veraltet und wird in einer zukünftigen Version aus dem Datenmodell entfernt. +
  +
 Bezeichner: Anderer Name +
 Wird vom VZD aus dem Zertifikatsattribut otherName übernommen.
-|*displayName* |obligatorisch |Bezeichner: Anzeigename +
-Dieses Attribut wird genutzt um den Namen der Betriebsstätte gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut um die Suche einzuschränken und bei der Darstellung des Ergebnisses). +
- +
-Dieses Attribut wird durch den VZD nicht automatisch aus dem Zertifikat ermittelt. Es kann über die Schreiboperationen von Schnittstelle I_Directory_Administration gesetzt werden. Wird über die Operation  add_Directory_Entry von Schnittstelle I_Directory_Administration für displayName kein Inhalt geliefert, so wird in displayName der Wert "-" gesetzt.
+|*displayName* |obligatorisch |Bezeichner: Anzeigename +
+Dieses Attribut wird genutzt um den Namen der Apotheke gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut um die Suche einzuschränken und bei der Darstellung des Ergebnisses).
 |*streetAddress* |obligatorisch |Bezeichner: Straße und Hausnummer der Apotheke
 |*postalCode* |obligatorisch |Bezeichner: Postleitzahl der Apotheke
 |*localityName * |obligatorisch |Bezeichner: Ort der Apotheke
@@ -957,21 +948,17 @@ Es können Einträge ohne Zertifikat angelegt werden. Diese Einträge werden jed
 Wert == TRUE, wenn das userCertificate gemäß OCSP gültig ist (OCSP Response Status "good"), Wert == FALSE bei Zertifikaten von noch nicht freigeschalteten Karten (OCSP Response Status "unknown"). +
 Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in die flache Liste übernommen.
 |*personalEntry* |obligatorisch |Wird vom VZD eingetragen. +
-Wert == TRUE, wenn alle zum Eintrag gehörenden Zertifikate den entryType 1 haben (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID). +
- +
-Nach Löschung aller Zertifikate bleibt der Wert dieses Attributs `personalEntry` erhalten.
+Wert == TRUE, wenn alle zum Eintrag gehörenden Zertifikate den entryType 1 haben (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID).
 |*entryType* |obligatorisch |Bezeichner: Eintragstyp +
-Wird vom VZD anhand der im Zertifikat enthaltenen OID (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
- +
-entryType kann über Operationen add_Directory_Entry und modify_Directory_Entry gesetzt werden. +
- +
-Wird in Operationen add_Directory_Entry ein Zertifikat angegeben wird, muss ein eventuell angegebener Parameter entryType mit dem Wert aus dem Zertifikat übereinstimmen. Bei nicht angegebenem Parameter entryType wird das Attribut entryType entsprechend dem Zertifikat gesetzt. +
- +
-Mit Operation modify_Directory_Entry kann über Request Parameter entryType das Attribut im VZD geändert werden, solange kein Zertifikat im VZD enthalten ist (welches dann einen abweichenden Wert gegenüber dem Request Parameter entryType enthalten würde). +
- +
-Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit einem Fehler. 
+Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403.
 |*telematikID* |obligatorisch |Bezeichner: TelematikID +
 Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
+|*dataFromAuthority* |optional |Wird vom VZD eingetragen +
+Gibt an, ob die Daten vom Kartenherausgeber stammen. +
+Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
+  +
+Wenn der Wert TRUE ist, können die Daten nicht mehr über die Schnittstelle I_Directory_Maintenance bearbeitet werden. Die Schnittstelle I_Directory_Maintenance wird von KOM-LE-Anbietern verwendet.
+|*holder* |optional |Legt fest, wer Änderungen an den Basisdaten des Eintrags vornehmen darf. Hat keinen Einfluss auf Fachdaten und Zertifikatsdaten.
 |*professionOID* |obligatorisch |Bezeichner: Profession OID  +
 Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und dem Mapping in ab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
 Kann mehrfach vorkommen (0..100).
@@ -994,7 +981,17 @@ Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
 - Für jede Mail-Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Datenstruktur komLeData geben. Es dürfen in komLeData keine Mail-Adressen referenziert werden, die nicht im übergeordneten "mail" Attribut enthalten sind.
 - Wenn eine Mail-Adresse gelöscht wird, muss auch ihr komLeData-Eintrag gelöscht werden. +
  Geschrieben wird immer die gesamte Liste. Für Änderungen muss erst der aktuelle Eintrag gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
-- Beispiel für den Wert eines komLeData-Eintrags: \{"mail": "erik.mustermann@hrstdomain.kim.telematik"; "version": "1.5"}
+- Beispiel für den Wert eines komLeData-Eintrags in der flachen Liste (LDAP): +
+[source, c]
+----
+ "komLeData": [
+        "1.0,xx-01@hersteller01.kim.telematik-test",
+        "1.0,xx-02@hersteller01.kim.telematik-test",
+        "1.0,xx-03@hersteller02.kim.telematik-test",
+        "1.0,xx-04@hersteller02.kim.telematik-test",
+        "1.0,xx-05@hersteller02.kim.telematik-test"
+        ]
+----
 
 
 Wird vom KOM-LE-Anbieter eingetragen.
@@ -1012,30 +1009,17 @@ Tabelle 5: Tab_VZD_Datenbeschreibung_Apotheker
 |===
 |*LDAP-Directory Attribut* |*Pflichtfeld aus Sicht Pflege und Nutzung?* |*Erläuterung*
 |*givenName* |optional |Bezeichner: Vorname +
-Wird vom VZD aus dem Zertifikatsattribut givenName übernommen, wenn der Client von Schnittstelle I_Directory_Administration keinen Wert angibt. +
- +
-Wird über die Schreiboperationen von Schnittstelle I_Directory_Administration für givenName ein Inhalt geliefert, so dieser Wert für das Attribut gesetzt. +
- +
-Wird dem Verzeichniseintrag ein neues Zertifikat hinzu gefügt, wird der aktuelle Wert des Attributs durch der Wert aus Zertifikatsattribut givenName überschrieben.
-|*sn* |optional |Bezeichner: Nachname +
-Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
- +
-Bei dem Hinzufügen eines Zertifikats wird sn mit dem Inhalt von Attribut commonName aus dem Zertifikat gefüllt/überschrieben. +
- +
-Wenn der Client der Schnittstelle I_Directory_Administration keinen Wert für sn angibt, wird sn als Kopie von Attribut displayName gesetzt. Wird sn als Parameter übergeben, wird der angegebene Wert übernommen.
-
+Wird vom VZD aus dem Zertifikatsattribut givenName übernommen.
+|*sn* |optional |Bezeichner: Nachname +
+Wird vom VZD aus dem Zertifikatsattribut sn übernommen.
 |*cn* |obligatorisch |Bezeichner: Name +
-Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
- +
-Bei Nutzung der Schreiboperationen von Schnittstelle I_Directory_Administration wird cn als Kopie von Attribut displayName gesetzt, wenn cn nicht als Parameter übergeben wird. Wird cn als Parameter übergeben, wird der angegebene Wert übernommen.
+Wird vom VZD automatisch als Kopie von displayName eingetragen (weil E-Mail-Clients über dieses Attribut suchen; Verwendung als Filter-Attribut, um die Suche einzuschränken, und bei der Darstellung des Ergebnisses).
 |*otherName* |optional |Das Attribut otherName ist veraltet und wird in einer zukünftigen Version aus dem Datenmodell entfernt. +
  +
 Bezeichner: Anderer Name +
 Wird vom VZD aus dem Zertifikatsattribut otherName übernommen.
 |*displayName* |obligatorisch |Bezeichner: Anzeigename +
-Dieses Attribut wird genutzt, um den Namen der Person gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut, um die Suche einzuschränken, und bei der Darstellung des Ergebnisses). +
- +
-Dieses Attribut wird durch den VZD nicht automatisch aus dem Zertifikat ermittelt. Es kann über die Schreiboperationen von Schnittstelle I_Directory_Administration gesetzt werden. Wird über die Operation  add_Directory_Entry von Schnittstelle I_Directory_Administration für displayName kein Inhalt geliefert, so wird in displayName der Wert "-" gesetzt.
+Dieses Attribut wird genutzt, um den Namen der Person gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut, um die Suche einzuschränken, und bei der Darstellung des Ergebnisses).
 |*streetAddress* |optional |Bezeichner: Straße und Hausnummer (berufliche Adresse) +
 Der Wert wird von der pflegenden Stelle festgelegt.
 |*postalCode* |optional |Bezeichner: Postleitzahl  (berufliche Adresse) +
@@ -1071,22 +1055,18 @@ Es können Einträge ohne Zertifikat angelegt werden. Diese Einträge werden jed
 |*userCertificate.active* |obligatorisch |Wird vom VZD eingetragen. +
 Wert == TRUE, wenn das userCertificate gemäß OCSP gültig ist (OCSP Response Status "good"), Wert == FALSE bei Zertifikaten von noch nicht freigeschalteten Karten (OCSP Response Status "unknown"). +
 Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in die flache Liste übernommen.
-|*personalEntry* |obligatorisch |Wird vom VZD eingetragen. +
-Wert == TRUE, wenn alle zum Eintrag gehörenden Zertifikate den entryType 1 haben (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID). +
- +
-Nach Löschung aller Zertifikate bleibt der Wert dieses Attributs `personalEntry` erhalten.
+|*personalEntry* |obligatorisch |Wird vom VZD eingetragen +
+Wert == TRUE, wenn alle zum Eintrag gehörenden Zertifikate den entryType 1 haben (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID).
 |*entryType* |obligatorisch |Bezeichner: Eintragstyp +
-Wird vom VZD anhand der im Zertifikat enthaltenen OID (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
- +
-entryType kann über Operationen add_Directory_Entry und modify_Directory_Entry gesetzt werden. +
- +
-Wird in Operationen add_Directory_Entry ein Zertifikat angegeben wird, muss ein eventuell angegebener Parameter entryType mit dem Wert aus dem Zertifikat übereinstimmen. Bei nicht angegebenem Parameter entryType wird das Attribut entryType entsprechend dem Zertifikat gesetzt. +
- +
-Mit Operation modify_Directory_Entry kann über Request Parameter entryType das Attribut im VZD geändert werden, solange kein Zertifikat im VZD enthalten ist (welches dann einen abweichenden Wert gegenüber dem Request Parameter entryType enthalten würde). +
- +
-Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit einem Fehler. 
+Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403.
 |*telematikID* |obligatorisch |Bezeichner: TelematikID +
 Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
+|*dataFromAuthority* |optional |Wird vom VZD eingetragen +
+Gibt an, ob die Daten vom Kartenherausgeber stammen. +
+Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
+  +
+Wenn der Wert TRUE ist, können die Daten nicht mehr über die Schnittstelle I_Directory_Maintenance bearbeitet werden. Die Schnittstelle I_Directory_Maintenance wird von KOM-LE-Anbietern verwendet.
+|*holder* |optional |Legt fest, wer Änderungen an den Basisdaten des Eintrags vornehmen darf. Hat keinen Einfluss auf Fachdaten und Zertifikatsdaten.
 |*professionOID* |obligatorisch |Bezeichner: Profession OID +
 Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und dem Mapping in ab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
 Kann mehrfach vorkommen (0..100).
@@ -1110,7 +1090,17 @@ Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
 - Für jede Mail-Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Datenstruktur komLeData geben. Es dürfen in komLeData keine Mail-Adressen referenziert werden, die nicht im übergeordneten "mail" Attribut enthalten sind.
 - Wenn eine Mail-Adresse gelöscht wird, muss auch ihr komLeData-Eintrag gelöscht werden. +
  Geschrieben wird immer die gesamte Liste. Für Änderungen muss erst der aktuelle Eintrag gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
-- Beispiel für den Wert eines komLeData-Eintrags: \{"mail": "erik.mustermann@hrstdomain.kim.telematik"; "version": "1.5"}
+- Beispiel für den Wert eines komLeData-Eintrags in der flachen Liste (LDAP): +
+[source, c]
+----
+ "komLeData": [
+        "1.0,xx-01@hersteller01.kim.telematik-test",
+        "1.0,xx-02@hersteller01.kim.telematik-test",
+        "1.0,xx-03@hersteller02.kim.telematik-test",
+        "1.0,xx-04@hersteller02.kim.telematik-test",
+        "1.0,xx-05@hersteller02.kim.telematik-test"
+        ]
+----
 
 Wird vom KOM-LE-Anbieter eingetragen.
 
@@ -1129,24 +1119,18 @@ Tabelle 6: Tab_VZD_Datenbeschreibung_DKG
  |*Pflichtfeld aus Sicht Pflege und Nutzung?* +
  |*Erläuterung* +
 
-|givenName |optional |Wird für SMC-B nicht verwendet.
-|*sn* |optional | Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
- +
-Wenn der Client der Schnittstelle I_Directory_Administration keinen Wert für sn angibt, wird sn als Kopie von Attribut displayName gesetzt. Wird sn als Parameter übergeben, wird der angegebene Wert übernommen.
-|*cn* +
-* * +
-  |obligatorisch |Bezeichner: Name +
-Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
- +
-Bei Nutzung der Schreiboperationen von Schnittstelle I_Directory_Administration wird cn als Kopie von Attribut displayName gesetzt, wenn cn nicht als Parameter übergeben wird. Wird cn als Parameter übergeben, wird der angegebene Wert übernommen.
+|*givenName* |optional |Wird für SMC-B nicht verwendet.
+|*sn* |optional |Wird vom VZD als Kopie von displayName automatisch eingetragen. +
+Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet.
+|*cn* |obligatorisch |Bezeichner: Name +
+Wird vom VZD als Kopie des Attributs displayName übernommen. +
+Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet.
 |*otherName* |optional |Das Attribut otherName ist veraltet und wird in einer zukünftigen Version aus dem Datenmodell entfernt. +
  +
 Bezeichner: Anderer Name +
 Wird vom VZD aus dem Zertifikatsattribut otherName übernommen.
-|*displayName* |obligatorisch |Bezeichner: Anzeigename +
-Dieses Attribut wird genutzt um den Namen der Betriebsstätte gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut um die Suche einzuschränken und bei der Darstellung des Ergebnisses). +
- +
-Dieses Attribut wird durch den VZD nicht automatisch aus dem Zertifikat ermittelt. Es kann über die Schreiboperationen von Schnittstelle I_Directory_Administration gesetzt werden. Wird über die Operation  add_Directory_Entry von Schnittstelle I_Directory_Administration für displayName kein Inhalt geliefert, so wird in displayName der Wert "-" gesetzt.
+|*displayName* |obligatorisch |Bezeichner: Anzeigename +
+Dieses Attribut wird genutzt um den Namen der Betriebsstätte gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut um die Suche einzuschränken und bei der Darstellung des Ergebnisses).
 |*streetAddress* |obligatorisch |Bezeichner: Straße und Hausnummer des Krankenhauses
 |*postalCode* |obligatorisch |Bezeichner: Postleitzahl des Krankenhauses
 |*localityName * |obligatorisch |Bezeichner: Ort des Krankenhauses
@@ -1176,22 +1160,18 @@ Es können Einträge ohne Zertifikat angelegt werden. Diese Einträge werden jed
 |*userCertificate.active* |obligatorisch |Wird vom VZD eingetragen. +
 Wert == TRUE, wenn das userCertificate gemäß OCSP gültig ist (OCSP Response Status "good"), Wert == FALSE bei Zertifikaten von noch nicht freigeschalteten Karten (OCSP Response Status "unknown"). +
 Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in die flache Liste übernommen.
-|*personalEntry* |obligatorisch |Wird vom VZD eingetragen. +
-Wert == TRUE, wenn alle zum Eintrag gehörenden Zertifikate den entryType 1 haben (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID). +
- +
-Nach Löschung aller Zertifikate bleibt der Wert dieses Attributs `personalEntry` erhalten.
+|*personalEntry* |obligatorisch |Wird vom VZD eingetragen +
+Wert == TRUE, wenn alle zum Eintrag gehörenden Zertifikate den entryType 1 haben (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID).
 |*entryType* |obligatorisch |Bezeichner: Eintragstyp +
-Wird vom VZD anhand der im Zertifikat enthaltenen OID (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
- +
-entryType kann über Operationen add_Directory_Entry und modify_Directory_Entry gesetzt werden. +
- +
-Wird in Operationen add_Directory_Entry ein Zertifikat angegeben wird, muss ein eventuell angegebener Parameter entryType mit dem Wert aus dem Zertifikat übereinstimmen. Bei nicht angegebenem Parameter entryType wird das Attribut entryType entsprechend dem Zertifikat gesetzt. +
- +
-Mit Operation modify_Directory_Entry kann über Request Parameter entryType das Attribut im VZD geändert werden, solange kein Zertifikat im VZD enthalten ist (welches dann einen abweichenden Wert gegenüber dem Request Parameter entryType enthalten würde). +
- +
-Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit einem Fehler. 
+Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403.
 |*telematikID* |obligatorisch |Bezeichner: TelematikID +
 Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
+|*dataFromAuthority* |optional |Wird vom VZD eingetragen +
+Gibt an, ob die Daten vom Kartenherausgeber stammen. +
+Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
+  +
+Wenn der Wert TRUE ist, können die Daten nicht mehr über die Schnittstelle I_Directory_Maintenance bearbeitet werden. Die Schnittstelle I_Directory_Maintenance wird von KOM-LE-Anbietern verwendet.
+|*holder* |optional |Legt fest, wer Änderungen an den Basisdaten des Eintrags vornehmen darf. Hat keinen Einfluss auf Fachdaten und Zertifikatsdaten.
 |*professionOID* |obligatorisch |Bezeichner: Profession OID +
 Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und dem Mapping in ab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
 Kann mehrfach vorkommen (0..100).
@@ -1214,7 +1194,17 @@ Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
 - Für jede Mail-Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Datenstruktur komLeData geben. Es dürfen in komLeData keine Mail-Adressen referenziert werden, die nicht im übergeordneten "mail" Attribut enthalten sind.
 - Wenn eine Mail-Adresse gelöscht wird, muss auch ihr komLeData-Eintrag gelöscht werden. +
  Geschrieben wird immer die gesamte Liste. Für Änderungen muss erst der aktuelle Eintrag gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
-- Beispiel für den Wert eines komLeData-Eintrags: \{"mail": "erik.mustermann@hrstdomain.kim.telematik"; "version": "1.5"}
+- Beispiel für den Wert eines komLeData-Eintrags in der flachen Liste (LDAP): +
+[source, c]
+----
+ "komLeData": [
+        "1.0,xx-01@hersteller01.kim.telematik-test",
+        "1.0,xx-02@hersteller01.kim.telematik-test",
+        "1.0,xx-03@hersteller02.kim.telematik-test",
+        "1.0,xx-04@hersteller02.kim.telematik-test",
+        "1.0,xx-05@hersteller02.kim.telematik-test"
+        ]
+----
 
 Wird vom KOM-LE-Anbieter eingetragen.
 
@@ -1231,30 +1221,17 @@ Tabelle 7: Tab_VZD_Datenbeschreibung_Psychotherapeuten
 |===
 |*LDAP-Directory Attribut* |*Pflichtfeld aus Sicht Pflege und Nutzung?* |*Erläuterung*
 |*givenName* |optional |Bezeichner: Vorname +
-Wird vom VZD aus dem Zertifikatsattribut givenName übernommen, wenn der Client von Schnittstelle I_Directory_Administration keinen Wert angibt. +
- +
-Wird über die Schreiboperationen von Schnittstelle I_Directory_Administration für givenName ein Inhalt geliefert, so dieser Wert für das Attribut gesetzt. +
- +
-Wird dem Verzeichniseintrag ein neues Zertifikat hinzu gefügt, wird der aktuelle Wert des Attributs durch der Wert aus Zertifikatsattribut givenName überschrieben.
-|*sn* |optional |Bezeichner: Nachname +
-Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
- +
-Bei dem Hinzufügen eines Zertifikats wird sn mit dem Inhalt von Attribut commonName aus dem Zertifikat gefüllt/überschrieben. +
- +
-Wenn der Client der Schnittstelle I_Directory_Administration keinen Wert für sn angibt, wird sn als Kopie von Attribut displayName gesetzt. Wird sn als Parameter übergeben, wird der angegebene Wert übernommen.
-
-|*cn* |obligatorisch |Bezeichner: Name +
-Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
- +
-Bei Nutzung der Schreiboperationen von Schnittstelle I_Directory_Administration wird cn als Kopie von Attribut displayName gesetzt, wenn cn nicht als Parameter übergeben wird. Wird cn als Parameter übergeben, wird der angegebene Wert übernommen.
+Wird vom VZD aus dem Zertifikatsattribut givenName übernommen.
+|*sn* |optional |Bezeichner: Nachname +
+Wird vom VZD aus dem Zertifikatsattribut sn übernommen.
+|*cn* |obligatorisch |Bezeichner: Name, Vorname +
+Wird vom VZD automatisch als Kopie von displayName eingetragen (weil E-Mail-Clients über dieses Attribut suchen; Verwendung als Filter-Attribut, um die Suche einzuschränken, und bei der Darstellung des Ergebnisses).
 |*otherName* |optional |Das Attribut otherName ist veraltet und wird in einer zukünftigen Version aus dem Datenmodell entfernt. +
  +
 Bezeichner: Anderer Name +
 Wird vom VZD aus dem Zertifikatsattribut otherName übernommen.
 |*displayName* |obligatorisch |Bezeichner: Anzeigename +
-Dieses Attribut wird genutzt, um den Namen der Person gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut, um die Suche einzuschränken, und bei der Darstellung des Ergebnisses). +
- +
-Dieses Attribut wird durch den VZD nicht automatisch aus dem Zertifikat ermittelt. Es kann über die Schreiboperationen von Schnittstelle I_Directory_Administration gesetzt werden. Wird über die Operation  add_Directory_Entry von Schnittstelle I_Directory_Administration für displayName kein Inhalt geliefert, so wird in displayName der Wert "-" gesetzt.
+Dieses Attribut wird genutzt, um den Namen der Person gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut, um die Suche einzuschränken, und bei der Darstellung des Ergebnisses).
 |*streetAddress* |obligatorisch |Bezeichner: Straße und Hausnummer (Adresse der Betriebsstätte)
 |*postalCode* |obligatorisch |Bezeichner: Postleitzahl  (Adresse der Betriebsstätte)
 |*localityName * |obligatorisch |Bezeichner: Ort  (Adresse der Betriebsstätte)
@@ -1292,21 +1269,17 @@ Es können Einträge ohne Zertifikat angelegt werden. Diese Einträge werden jed
 Wert == TRUE, wenn das userCertificate gemäß OCSP gültig ist (OCSP Response Status "good"), Wert == FALSE bei Zertifikaten von noch nicht freigeschalteten Karten (OCSP Response Status "unknown"). +
 Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in die flache Liste übernommen.
 |*personalEntry* |obligatorisch |Wird vom VZD eingetragen. +
-Wert == TRUE, wenn alle zum Eintrag gehörenden Zertifikate den entryType 1 haben (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID). +
- +
-Nach Löschung aller Zertifikate bleibt der Wert dieses Attributs `personalEntry` erhalten.
+Wert == TRUE, wenn alle zum Eintrag gehörenden Zertifikate den entryType 1 haben (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID).
 |*entryType* |obligatorisch |Bezeichner: Eintragstyp +
-Wird vom VZD anhand der im Zertifikat enthaltenen OID (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
- +
-entryType kann über Operationen add_Directory_Entry und modify_Directory_Entry gesetzt werden. +
- +
-Wird in Operationen add_Directory_Entry ein Zertifikat angegeben wird, muss ein eventuell angegebener Parameter entryType mit dem Wert aus dem Zertifikat übereinstimmen. Bei nicht angegebenem Parameter entryType wird das Attribut entryType entsprechend dem Zertifikat gesetzt. +
- +
-Mit Operation modify_Directory_Entry kann über Request Parameter entryType das Attribut im VZD geändert werden, solange kein Zertifikat im VZD enthalten ist (welches dann einen abweichenden Wert gegenüber dem Request Parameter entryType enthalten würde). +
- +
-Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit einem Fehler. 
+Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403.
 |*telematikID* |obligatorisch |Bezeichner: TelematikID +
 Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
+|*dataFromAuthority* |optional |Wird vom VZD eingetragen +
+Gibt an, ob die Daten vom Kartenherausgeber stammen. +
+Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
+  +
+Wenn der Wert TRUE ist, können die Daten nicht mehr über die Schnittstelle I_Directory_Maintenance bearbeitet werden. Die Schnittstelle I_Directory_Maintenance wird von KOM-LE-Anbietern verwendet.
+|*holder* |optional |Legt fest, wer Änderungen an den Basisdaten des Eintrags vornehmen darf. Hat keinen Einfluss auf Fachdaten und Zertifikatsdaten.
 |*professionOID* |obligatorisch |Bezeichner: Profession OID +
 Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und dem Mapping in ab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
 Kann mehrfach vorkommen (0..100).
@@ -1330,7 +1303,17 @@ Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
 - Für jede Mail-Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Datenstruktur komLeData geben. Es dürfen in komLeData keine Mail-Adressen referenziert werden, die nicht im übergeordneten "mail" Attribut enthalten sind.
 - Wenn eine Mail-Adresse gelöscht wird, muss auch ihr komLeData-Eintrag gelöscht werden. +
  Geschrieben wird immer die gesamte Liste. Für Änderungen muss erst der aktuelle Eintrag gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
-- Beispiel für den Wert eines komLeData-Eintrags: \{"mail": "erik.mustermann@hrstdomain.kim.telematik"; "version": "1.5"}
+- Beispiel für den Wert eines komLeData-Eintrags in der flachen Liste (LDAP): +
+[source, c]
+----
+ "komLeData": [
+        "1.0,xx-01@hersteller01.kim.telematik-test",
+        "1.0,xx-02@hersteller01.kim.telematik-test",
+        "1.0,xx-03@hersteller02.kim.telematik-test",
+        "1.0,xx-04@hersteller02.kim.telematik-test",
+        "1.0,xx-05@hersteller02.kim.telematik-test"
+        ]
+----
 
 Wird vom KOM-LE-Anbieter eingetragen.
 
@@ -1347,30 +1330,17 @@ Tabelle 8: Tab_VZD_Datenbeschreibung_BÄK
 |===
 |LDAP-Directory Attribut |Pflichtfeld aus Sicht Pflege und Nutzung? |Erläuterung
 |*givenName* |optional |Bezeichner: Vorname +
-Wird vom VZD aus dem Zertifikatsattribut givenName übernommen, wenn der Client von Schnittstelle I_Directory_Administration keinen Wert angibt. +
- +
-Wird über die Schreiboperationen von Schnittstelle I_Directory_Administration für givenName ein Inhalt geliefert, so dieser Wert für das Attribut gesetzt. +
- +
-Wird dem Verzeichniseintrag ein neues Zertifikat hinzu gefügt, wird der aktuelle Wert des Attributs durch der Wert aus Zertifikatsattribut givenName überschrieben.
-|*sn* |optional |Bezeichner: Nachname +
-Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
- +
-Bei dem Hinzufügen eines Zertifikats wird sn mit dem Inhalt von Attribut commonName aus dem Zertifikat gefüllt/überschrieben. +
- +
-Wenn der Client der Schnittstelle I_Directory_Administration keinen Wert für sn angibt, wird sn als Kopie von Attribut displayName gesetzt. Wird sn als Parameter übergeben, wird der angegebene Wert übernommen.
-
+Wird vom VZD aus dem Zertifikatsattribut givenName übernommen.
+|*sn* |optional |Bezeichner: Nachname +
+Wird vom VZD aus dem Zertifikatsattribut sn übernommen.
 |*cn* |obligatorisch |Bezeichner: Name +
-Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
- +
-Bei Nutzung der Schreiboperationen von Schnittstelle I_Directory_Administration wird cn als Kopie von Attribut displayName gesetzt, wenn cn nicht als Parameter übergeben wird. Wird cn als Parameter übergeben, wird der angegebene Wert übernommen.
+Wird vom VZD automatisch als Kopie von displayName eingetragen (weil E-Mail-Clients über dieses Attribut suchen; Verwendung als Filter-Attribut, um die Suche einzuschränken, und bei der Darstellung des Ergebnisses).
 |*otherName* |optional |Das Attribut otherName ist veraltet und wird in einer zukünftigen Version aus dem Datenmodell entfernt. +
  +
 Bezeichner: Anderer Name +
 Wird vom VZD aus dem Zertifikatsattribut otherName übernommen.
 |*displayName* |obligatorisch |Bezeichner: Anzeigename +
-Dieses Attribut wird genutzt, um den Namen der Person gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut, um die Suche einzuschränken, und bei der Darstellung des Ergebnisses). +
- +
-Dieses Attribut wird durch den VZD nicht automatisch aus dem Zertifikat ermittelt. Es kann über die Schreiboperationen von Schnittstelle I_Directory_Administration gesetzt werden. Wird über die Operation  add_Directory_Entry von Schnittstelle I_Directory_Administration für displayName kein Inhalt geliefert, so wird in displayName der Wert "-" gesetzt.
+Dieses Attribut wird genutzt, um den Namen der Person gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut, um die Suche einzuschränken, und bei der Darstellung des Ergebnisses).
 |*streetAddress* |optional |Bezeichner: Straße und Hausnummer (berufliche Adresse) +
 Der Wert wird von der pflegenden Stelle festgelegt.
 |*postalCode* |optional |Bezeichner: Postleitzahl  (berufliche Adresse) +
@@ -1406,22 +1376,18 @@ Es können Einträge ohne Zertifikat angelegt werden. Diese Einträge werden jed
 |*userCertificate.active* |obligatorisch |Wird vom VZD eingetragen. +
 Wert == TRUE, wenn das userCertificate gemäß OCSP gültig ist (OCSP Response Status "good"), Wert == FALSE bei Zertifikaten von noch nicht freigeschalteten Karten (OCSP Response Status "unknown"). +
 Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in die flache Liste übernommen.
-|*personalEntry* |obligatorisch |Wird vom VZD eingetragen. +
-Wert == TRUE, wenn alle zum Eintrag gehörenden Zertifikate den entryType 1 haben (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID). +
- +
-Nach Löschung aller Zertifikate bleibt der Wert dieses Attributs `personalEntry` erhalten.
+|*personalEntry* |obligatorisch |Wird vom VZD eingetragen +
+Wert == TRUE, wenn alle zum Eintrag gehörenden Zertifikate den entryType 1 haben (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID).
 |*entryType* |obligatorisch |Bezeichner: Eintragstyp +
-Wird vom VZD anhand der im Zertifikat enthaltenen OID (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
- +
-entryType kann über Operationen add_Directory_Entry und modify_Directory_Entry gesetzt werden. +
- +
-Wird in Operationen add_Directory_Entry ein Zertifikat angegeben wird, muss ein eventuell angegebener Parameter entryType mit dem Wert aus dem Zertifikat übereinstimmen. Bei nicht angegebenem Parameter entryType wird das Attribut entryType entsprechend dem Zertifikat gesetzt. +
- +
-Mit Operation modify_Directory_Entry kann über Request Parameter entryType das Attribut im VZD geändert werden, solange kein Zertifikat im VZD enthalten ist (welches dann einen abweichenden Wert gegenüber dem Request Parameter entryType enthalten würde). +
- +
-Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit einem Fehler. 
+Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403.
 |*telematikID* |obligatorisch |Bezeichner: TelematikID +
 Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
+|*dataFromAuthority* |optional |Wird vom VZD eingetragen +
+Gibt an, ob die Daten vom Kartenherausgeber stammen. +
+Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
+  +
+Wenn der Wert TRUE ist, können die Daten nicht mehr über die Schnittstelle I_Directory_Maintenance bearbeitet werden. Die Schnittstelle I_Directory_Maintenance wird von KOM-LE-Anbietern verwendet.
+|*holder* |optional |Legt fest, wer Änderungen an den Basisdaten des Eintrags vornehmen darf. Hat keinen Einfluss auf Fachdaten und Zertifikatsdaten.
 |*professionOID* |obligatorisch |Bezeichner: Profession OID +
 Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und dem Mapping in ab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
 Kann mehrfach vorkommen (0..100).
@@ -1445,7 +1411,17 @@ Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
 - Für jede Mail-Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Datenstruktur komLeData geben. Es dürfen in komLeData keine Mail-Adressen referenziert werden, die nicht im übergeordneten "mail" Attribut enthalten sind.
 - Wenn eine Mail-Adresse gelöscht wird, muss auch ihr komLeData-Eintrag gelöscht werden. +
  Geschrieben wird immer die gesamte Liste. Für Änderungen muss erst der aktuelle Eintrag gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
-- Beispiel für den Wert eines komLeData-Eintrags: \{"mail": "erik.mustermann@hrstdomain.kim.telematik"; "version": "1.5"}
+- Beispiel für den Wert eines komLeData-Eintrags in der flachen Liste (LDAP): +
+[source, c]
+----
+ "komLeData": [
+        "1.0,xx-01@hersteller01.kim.telematik-test",
+        "1.0,xx-02@hersteller01.kim.telematik-test",
+        "1.0,xx-03@hersteller02.kim.telematik-test",
+        "1.0,xx-04@hersteller02.kim.telematik-test",
+        "1.0,xx-05@hersteller02.kim.telematik-test"
+        ]
+----
 
 Wird vom KOM-LE-Anbieter eingetragen.
 
@@ -1462,30 +1438,17 @@ Tabelle 9: Tab_VZD_Datenbeschreibung_BZÄK
 |===
 |LDAP-Directory Attribut |Pflichtfeld aus Sicht Pflege und Nutzung? |Erläuterung
 |*givenName* |optional |Bezeichner: Vorname +
-Wird vom VZD aus dem Zertifikatsattribut givenName übernommen, wenn der Client von Schnittstelle I_Directory_Administration keinen Wert angibt. +
- +
-Wird über die Schreiboperationen von Schnittstelle I_Directory_Administration für givenName ein Inhalt geliefert, so dieser Wert für das Attribut gesetzt. +
- +
-Wird dem Verzeichniseintrag ein neues Zertifikat hinzu gefügt, wird der aktuelle Wert des Attributs durch der Wert aus Zertifikatsattribut givenName überschrieben.
-|*sn* |optional |Bezeichner: Nachname +
-Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
- +
-Bei dem Hinzufügen eines Zertifikats wird sn mit dem Inhalt von Attribut commonName aus dem Zertifikat gefüllt/überschrieben. +
- +
-Wenn der Client der Schnittstelle I_Directory_Administration keinen Wert für sn angibt, wird sn als Kopie von Attribut displayName gesetzt. Wird sn als Parameter übergeben, wird der angegebene Wert übernommen.
-
+Wird vom VZD aus dem Zertifikatsattribut givenName übernommen.
+|*sn* |optional |Bezeichner: Nachname +
+Wird vom VZD aus dem Zertifikatsattribut sn übernommen.
 |*cn* |obligatorisch |Bezeichner: Name +
-Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
- +
-Bei Nutzung der Schreiboperationen von Schnittstelle I_Directory_Administration wird cn als Kopie von Attribut displayName gesetzt, wenn cn nicht als Parameter übergeben wird. Wird cn als Parameter übergeben, wird der angegebene Wert übernommen.
+Wird vom VZD automatisch als Kopie von displayName eingetragen (weil E-Mail-Clients über dieses Attribut suchen; Verwendung als Filter-Attribut, um die Suche einzuschränken, und bei der Darstellung des Ergebnisses).
 |*otherName* |optional |Das Attribut otherName ist veraltet und wird in einer zukünftigen Version aus dem Datenmodell entfernt. +
  +
 Bezeichner: Anderer Name +
 Wird vom VZD aus dem Zertifikatsattribut otherName übernommen.
 |*displayName* |obligatorisch |Bezeichner: Anzeigename +
-Dieses Attribut wird genutzt, um den Namen der Person gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut, um die Suche einzuschränken, und bei der Darstellung des Ergebnisses). +
- +
-Dieses Attribut wird durch den VZD nicht automatisch aus dem Zertifikat ermittelt. Es kann über die Schreiboperationen von Schnittstelle I_Directory_Administration gesetzt werden. Wird über die Operation  add_Directory_Entry von Schnittstelle I_Directory_Administration für displayName kein Inhalt geliefert, so wird in displayName der Wert "-" gesetzt.
+Dieses Attribut wird genutzt, um den Namen der Person gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut, um die Suche einzuschränken, und bei der Darstellung des Ergebnisses).
 |*streetAddress* |optional |Bezeichner: Straße und Hausnummer (berufliche Adresse) +
 Der Wert wird von der pflegenden Stelle festgelegt.
 |*postalCode* |optional |Bezeichner: Postleitzahl  (berufliche Adresse) +
@@ -1521,22 +1484,18 @@ Es können Einträge ohne Zertifikat angelegt werden. Diese Einträge werden jed
 |*userCertificate.active* |obligatorisch |Wird vom VZD eingetragen. +
 Wert == TRUE, wenn das userCertificate gemäß OCSP gültig ist (OCSP Response Status "good"), Wert == FALSE bei Zertifikaten von noch nicht freigeschalteten Karten (OCSP Response Status "unknown"). +
 Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in die flache Liste übernommen.
-|*personalEntry* |obligatorisch |Wird vom VZD eingetragen. +
-Wert == TRUE, wenn alle zum Eintrag gehörenden Zertifikate den entryType 1 haben (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID). +
- +
-Nach Löschung aller Zertifikate bleibt der Wert dieses Attributs `personalEntry` erhalten.
+|*personalEntry* |obligatorisch |Wird vom VZD eingetragen +
+Wert == TRUE, wenn alle zum Eintrag gehörenden Zertifikate den entryType 1 haben (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID).
 |*entryType* |obligatorisch |Bezeichner: Eintragstyp +
-Wird vom VZD anhand der im Zertifikat enthaltenen OID (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
- +
-entryType kann über Operationen add_Directory_Entry und modify_Directory_Entry gesetzt werden. +
- +
-Wird in Operationen add_Directory_Entry ein Zertifikat angegeben wird, muss ein eventuell angegebener Parameter entryType mit dem Wert aus dem Zertifikat übereinstimmen. Bei nicht angegebenem Parameter entryType wird das Attribut entryType entsprechend dem Zertifikat gesetzt. +
- +
-Mit Operation modify_Directory_Entry kann über Request Parameter entryType das Attribut im VZD geändert werden, solange kein Zertifikat im VZD enthalten ist (welches dann einen abweichenden Wert gegenüber dem Request Parameter entryType enthalten würde). +
- +
-Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit einem Fehler. 
+Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403.
 |*telematikID* |obligatorisch |Bezeichner: TelematikID +
 Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
+|*dataFromAuthority* |optional |Wird vom VZD eingetragen +
+Gibt an, ob die Daten vom Kartenherausgeber stammen. +
+Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
+  +
+Wenn der Wert TRUE ist, können die Daten nicht mehr über die Schnittstelle I_Directory_Maintenance bearbeitet werden. Die Schnittstelle I_Directory_Maintenance wird von KOM-LE-Anbietern verwendet.
+|*holder* |optional |Legt fest, wer Änderungen an den Basisdaten des Eintrags vornehmen darf. Hat keinen Einfluss auf Fachdaten und Zertifikatsdaten.
 |*professionOID* |obligatorisch |Bezeichner: Profession OID +
 Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und dem Mapping in ab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
 Kann mehrfach vorkommen (0..100).
@@ -1560,7 +1519,17 @@ Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
 - Für jede Mail-Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Datenstruktur komLeData geben. Es dürfen in komLeData keine Mail-Adressen referenziert werden, die nicht im übergeordneten "mail" Attribut enthalten sind.
 - Wenn eine Mail-Adresse gelöscht wird, muss auch ihr komLeData-Eintrag gelöscht werden. +
  Geschrieben wird immer die gesamte Liste. Für Änderungen muss erst der aktuelle Eintrag gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
-- Beispiel für den Wert eines komLeData-Eintrags: \{"mail": "erik.mustermann@hrstdomain.kim.telematik"; "version": "1.5"}
+- Beispiel für den Wert eines komLeData-Eintrags in der flachen Liste (LDAP): +
+[source, c]
+----
+ "komLeData": [
+        "1.0,xx-01@hersteller01.kim.telematik-test",
+        "1.0,xx-02@hersteller01.kim.telematik-test",
+        "1.0,xx-03@hersteller02.kim.telematik-test",
+        "1.0,xx-04@hersteller02.kim.telematik-test",
+        "1.0,xx-05@hersteller02.kim.telematik-test"
+        ]
+----
 
 Wird vom KOM-LE-Anbieter eingetragen.
 
@@ -1579,17 +1548,13 @@ Tabelle 10: Tab_VZD_Datenbeschreibung_GKV-SV_SMC-B KTR
 |===
 |*LDAP-Directory Attribut* |*Pflichtfeld aus Sicht Pflege und Nutzung?* |*Erläuterung*
 |*givenName* |optional |Wird für SMC-B nicht verwendet.
-|*sn* |obligatorisch | Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
- +
-Wenn der Client der Schnittstelle I_Directory_Administration keinen Wert für sn angibt, wird sn als Kopie von Attribut displayName gesetzt. Wird sn als Parameter übergeben, wird der angegebene Wert übernommen.
+|*sn* |obligatorisch |Wird vom VZD als Kopie von displayName automatisch eingetragen. +
+Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet.
 |*cn* |obligatorisch |Bezeichner: Name +
-Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
- +
-Bei Nutzung der Schreiboperationen von Schnittstelle I_Directory_Administration wird cn als Kopie von Attribut displayName gesetzt, wenn cn nicht als Parameter übergeben wird. Wird cn als Parameter übergeben, wird der angegebene Wert übernommen.
-|*displayName* |obligatorisch |Bezeichner: Anzeigename +
-Dieses Attribut wird genutzt um den Namen der Betriebsstätte gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut um die Suche einzuschränken und bei der Darstellung des Ergebnisses). +
- +
-Dieses Attribut wird durch den VZD nicht automatisch aus dem Zertifikat ermittelt. Es kann über die Schreiboperationen von Schnittstelle I_Directory_Administration gesetzt werden. Wird über die Operation  add_Directory_Entry von Schnittstelle I_Directory_Administration für displayName kein Inhalt geliefert, so wird in displayName der Wert "-" gesetzt. +
+Wird vom VZD als Kopie des Attributs displayName übernommen. +
+Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet.
+|*displayName* |obligatorisch |Bezeichner: Anzeigename +
+Dieses Attribut wird genutzt, um den Namen der Organisation gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut, um die Suche einzuschränken, und bei der Darstellung des Ergebnisses). +
   +
 Der Wert wird von der pflegenden Stelle aus dem Zertifikat übernommen (Attribut otherName wenn vorhanden, sonst commonName).
 |*streetAddress* |obligatorisch |Bezeichner: Straßenanschrift und Hausnummer gemäß Krankenkassenhauptsitz +
@@ -1622,22 +1587,14 @@ Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in 
  +
 Bezeichner: Anderer Name +
 Wird vom VZD aus dem Zertifikatsattribut otherName übernommen.
-|*personalEntry* |obligatorisch |Wird vom VZD eingetragen. +
+|*personalEntry* |obligatorisch |Wird vom VZD eingetragen +
 Wert == TRUE, wenn alle zum Eintrag gehörenden Zertifikate den entryType 1 haben (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID). +
- +
-Nach Löschung aller Zertifikate bleibt der Wert dieses Attributs `personalEntry` erhalten.
+Wert == FALSE für SMC-B KTR
 |*entryType* |obligatorisch |Bezeichner: Eintragstyp +
-Wird vom VZD anhand der im Zertifikat enthaltenen OID (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
- +
-entryType kann über Operationen add_Directory_Entry und modify_Directory_Entry gesetzt werden. +
- +
-Wird in Operationen add_Directory_Entry ein Zertifikat angegeben wird, muss ein eventuell angegebener Parameter entryType mit dem Wert aus dem Zertifikat übereinstimmen. Bei nicht angegebenem Parameter entryType wird das Attribut entryType entsprechend dem Zertifikat gesetzt. +
- +
-Mit Operation modify_Directory_Entry kann über Request Parameter entryType das Attribut im VZD geändert werden, solange kein Zertifikat im VZD enthalten ist (welches dann einen abweichenden Wert gegenüber dem Request Parameter entryType enthalten würde). +
- +
-Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit einem Fehler. 
+Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403.
 |*telematikID* |obligatorisch |Bezeichner: TelematikID +
 Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
+|*holder* |optional |Legt fest, wer Änderungen an den Basisdaten des Eintrags vornehmen darf. Hat keinen Einfluss auf Fachdaten und Zertifikatsdaten.
 |*professionOID* |obligatorisch |Bezeichner: Profession OID +
 Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und dem Mapping in ab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
 Kann mehrfach vorkommen (0..100).
@@ -1660,7 +1617,17 @@ Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
 - Für jede Mail-Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Datenstruktur komLeData geben. Es dürfen in komLeData keine Mail-Adressen referenziert werden, die nicht im übergeordneten "mail" Attribut enthalten sind.
 - Wenn eine Mail-Adresse gelöscht wird, muss auch ihr komLeData-Eintrag gelöscht werden. +
  Geschrieben wird immer die gesamte Liste. Für Änderungen muss erst der aktuelle Eintrag gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
-- Beispiel für den Wert eines komLeData-Eintrags: \{"mail": "erik.mustermann@hrstdomain.kim.telematik"; "version": "1.5"}
+- Beispiel für den Wert eines komLeData-Eintrags in der flachen Liste (LDAP): +
+[source, c]
+----
+ "komLeData": [
+        "1.0,xx-01@hersteller01.kim.telematik-test",
+        "1.0,xx-02@hersteller01.kim.telematik-test",
+        "1.0,xx-03@hersteller02.kim.telematik-test",
+        "1.0,xx-04@hersteller02.kim.telematik-test",
+        "1.0,xx-05@hersteller02.kim.telematik-test"
+        ]
+----
 
 Wird vom KOM-LE-Anbieter eingetragen.
 
@@ -1689,17 +1656,13 @@ Tabelle 11: VZD_Datenbeschreibung_GKV-SV_SM-B_KTR ePA
 |===
 |*LDAP-Directory Attribut* |*Pflichtfeld aus Sicht Pflege und Nutzung?* |*Erläuterung*
 |*givenName* |optional |Wird für SMC-B nicht verwendet.
-|*sn* |obligatorisch | Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
- +
-Wenn der Client der Schnittstelle I_Directory_Administration keinen Wert für sn angibt, wird sn als Kopie von Attribut displayName gesetzt. Wird sn als Parameter übergeben, wird der angegebene Wert übernommen.
+|*sn* |obligatorisch |Wird vom VZD als Kopie von displayName automatisch eingetragen. +
+Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet.
 |*cn* |obligatorisch |Bezeichner: Name +
-Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
- +
-Bei Nutzung der Schreiboperationen von Schnittstelle I_Directory_Administration wird cn als Kopie von Attribut displayName gesetzt, wenn cn nicht als Parameter übergeben wird. Wird cn als Parameter übergeben, wird der angegebene Wert übernommen.
-|*displayName* |obligatorisch |Bezeichner: Anzeigename +
-Dieses Attribut wird genutzt um den Namen der Betriebsstätte gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut um die Suche einzuschränken und bei der Darstellung des Ergebnisses). +
- +
-Dieses Attribut wird durch den VZD nicht automatisch aus dem Zertifikat ermittelt. Es kann über die Schreiboperationen von Schnittstelle I_Directory_Administration gesetzt werden. Wird über die Operation  add_Directory_Entry von Schnittstelle I_Directory_Administration für displayName kein Inhalt geliefert, so wird in displayName der Wert "-" gesetzt. +
+Wird vom VZD als Kopie des Attributs displayName übernommen. +
+Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet.
+|*displayName* |obligatorisch |Bezeichner: Anzeigename +
+Dieses Attribut wird genutzt, um den Namen der Organisation gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut, um die Suche einzuschränken, und bei der Darstellung des Ergebnisses). +
   +
 Der Wert wird von der pflegenden Stelle aus dem Zertifikat übernommen (Attribut otherName wenn vorhanden, sonst commonName).
 |*streetAddress* |obligatorisch |Bezeichner: Straßenanschrift und Hausnummer gemäß Krankenkassenhauptsitz +
@@ -1729,22 +1692,14 @@ Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in 
  +
 Bezeichner: Anderer Name +
 Wird vom VZD aus dem Zertifikatsattribut otherName übernommen.
-|*personalEntry* |obligatorisch |Wird vom VZD eingetragen. +
+|*personalEntry* |obligatorisch |Wird vom VZD eingetragen +
 Wert == TRUE, wenn alle zum Eintrag gehörenden Zertifikate den entryType 1 haben (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID). +
- +
-Nach Löschung aller Zertifikate bleibt der Wert dieses Attributs `personalEntry` erhalten.
+Wert == FALSE für SMC-B KTR ePA
 |*entryType* |obligatorisch |Bezeichner: Eintragstyp +
-Wird vom VZD anhand der im Zertifikat enthaltenen OID (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
- +
-entryType kann über Operationen add_Directory_Entry und modify_Directory_Entry gesetzt werden. +
- +
-Wird in Operationen add_Directory_Entry ein Zertifikat angegeben wird, muss ein eventuell angegebener Parameter entryType mit dem Wert aus dem Zertifikat übereinstimmen. Bei nicht angegebenem Parameter entryType wird das Attribut entryType entsprechend dem Zertifikat gesetzt. +
- +
-Mit Operation modify_Directory_Entry kann über Request Parameter entryType das Attribut im VZD geändert werden, solange kein Zertifikat im VZD enthalten ist (welches dann einen abweichenden Wert gegenüber dem Request Parameter entryType enthalten würde). +
- +
-Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit einem Fehler. 
+Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403.
 |*telematikID* |obligatorisch |Bezeichner: TelematikID +
 Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
+|*holder* |optional |Legt fest, wer Änderungen an den Basisdaten des Eintrags vornehmen darf. Hat keinen Einfluss auf Fachdaten und Zertifikatsdaten.
 |*professionOID* |obligatorisch |Bezeichner: Profession OID +
 Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und dem Mapping in ab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
 Kann mehrfach vorkommen (0..100).
@@ -1780,21 +1735,17 @@ Tabelle 12: Tab_VZD_Datenbeschreibung_der_SMC-B_Org
 |===
 |*LDAP-Directory Attribut* |*Pflichtfeld aus Sicht Pflege und Nutzung?* |*Erläuterung*
 |*givenName* |optional |Wird für SMC-B nicht verwendet.
-|*sn* |optional | Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
- +
-Wenn der Client der Schnittstelle I_Directory_Administration keinen Wert für sn angibt, wird sn als Kopie von Attribut displayName gesetzt. Wird sn als Parameter übergeben, wird der angegebene Wert übernommen.
+|*sn* |optional |Wird vom VZD als Kopie von displayName automatisch eingetragen. +
+Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet.
 |*cn* |obligatorisch |Bezeichner: Name +
-Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
- +
-Bei Nutzung der Schreiboperationen von Schnittstelle I_Directory_Administration wird cn als Kopie von Attribut displayName gesetzt, wenn cn nicht als Parameter übergeben wird. Wird cn als Parameter übergeben, wird der angegebene Wert übernommen.
+Wird vom VZD als Kopie des Attributs displayName übernommen. +
+Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet.
 |*otherName* |optional |Das Attribut otherName ist veraltet und wird in einer zukünftigen Version aus dem Datenmodell entfernt. +
  +
 Bezeichner: Anderer Name +
 Wird vom VZD aus dem Zertifikatsattribut otherName übernommen.
-|*displayName* |obligatorisch |Bezeichner: Anzeigename +
-Dieses Attribut wird genutzt um den Namen der Betriebsstätte gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut um die Suche einzuschränken und bei der Darstellung des Ergebnisses). +
- +
-Dieses Attribut wird durch den VZD nicht automatisch aus dem Zertifikat ermittelt. Es kann über die Schreiboperationen von Schnittstelle I_Directory_Administration gesetzt werden. Wird über die Operation  add_Directory_Entry von Schnittstelle I_Directory_Administration für displayName kein Inhalt geliefert, so wird in displayName der Wert "-" gesetzt.
+|*displayName* |obligatorisch |Bezeichner: Anzeigename +
+Dieses Attribut wird genutzt, um den Namen der Organisation gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut um die Suche einzuschränken und bei der Darstellung des Ergebnisses).
 |*streetAddress* |obligatorisch |Bezeichner: Straße und Hausnummer (wenn verfügbar) der Organisation 
 |*postalCode* |obligatorisch |Bezeichner: Postleitzahl der Organisation 
 |*localityName * |obligatorisch |Bezeichner: Ort der Organisation 
@@ -1819,21 +1770,17 @@ Es können Einträge ohne Zertifikat angelegt werden. Diese Einträge werden jed
 Wert == TRUE, wenn das userCertificate gemäß OCSP gültig ist (OCSP Response Status "good"), Wert == FALSE bei Zertifikaten von noch nicht freigeschalteten Karten (OCSP Response Status "unknown"). +
 Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in die flache Liste übernommen.
 |*personalEntry* |obligatorisch |Wird vom VZD eingetragen. +
-Wert == TRUE, wenn alle zum Eintrag gehörenden Zertifikate den entryType 1 haben (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID). +
- +
-Nach Löschung aller Zertifikate bleibt der Wert dieses Attributs `personalEntry` erhalten.
+Wert == TRUE, wenn alle zum Eintrag gehörenden Zertifikate den entryType 1 haben (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID).
 |*entryType* |obligatorisch |Bezeichner: Eintragstyp +
-Wird vom VZD anhand der im Zertifikat enthaltenen OID (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
- +
-entryType kann über Operationen add_Directory_Entry und modify_Directory_Entry gesetzt werden. +
- +
-Wird in Operationen add_Directory_Entry ein Zertifikat angegeben wird, muss ein eventuell angegebener Parameter entryType mit dem Wert aus dem Zertifikat übereinstimmen. Bei nicht angegebenem Parameter entryType wird das Attribut entryType entsprechend dem Zertifikat gesetzt. +
- +
-Mit Operation modify_Directory_Entry kann über Request Parameter entryType das Attribut im VZD geändert werden, solange kein Zertifikat im VZD enthalten ist (welches dann einen abweichenden Wert gegenüber dem Request Parameter entryType enthalten würde). +
- +
-Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit einem Fehler. 
+Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403.
 |*telematikID* |obligatorisch |Bezeichner: TelematikID +
 Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
+|*dataFromAuthority* |optional |Wird vom VZD eingetragen +
+Gibt an, ob die Daten vom Kartenherausgeber stammen. +
+Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
+  +
+Wenn der Wert TRUE ist, können die Daten nicht mehr über die Schnittstelle I_Directory_Maintenance bearbeitet werden. Die Schnittstelle I_Directory_Maintenance wird von KOM-LE-Anbietern verwendet.
+|*holder* |optional |Legt fest, wer Änderungen an den Basisdaten des Eintrags vornehmen darf. Hat keinen Einfluss auf Fachdaten und Zertifikatsdaten.
 |*professionOID* |obligatorisch |Bezeichner: Profession OID +
 Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und dem Mapping in ab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
 Kann mehrfach vorkommen (0..100).
@@ -1853,7 +1800,17 @@ Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
 - Für jede Mail-Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Datenstruktur komLeData geben. Es dürfen in komLeData keine Mail-Adressen referenziert werden, die nicht im übergeordneten "mail" Attribut enthalten sind.
 - Wenn eine Mail-Adresse gelöscht wird, muss auch ihr komLeData-Eintrag gelöscht werden. +
  Geschrieben wird immer die gesamte Liste. Für Änderungen muss erst der aktuelle Eintrag gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
-- Beispiel für den Wert eines komLeData-Eintrags: \{"mail": "erik.mustermann@hrstdomain.kim.telematik"; "version": "1.5"}
+- Beispiel für den Wert eines komLeData-Eintrags in der flachen Liste (LDAP): +
+[source, c]
+----
+ "komLeData": [
+        "1.0,xx-01@hersteller01.kim.telematik-test",
+        "1.0,xx-02@hersteller01.kim.telematik-test",
+        "1.0,xx-03@hersteller02.kim.telematik-test",
+        "1.0,xx-04@hersteller02.kim.telematik-test",
+        "1.0,xx-05@hersteller02.kim.telematik-test"
+        ]
+----
 
 Wird vom KOM-LE-Anbieter eingetragen.
 
@@ -1864,27 +1821,25 @@ Wird vom KOM-LE-Anbieter eingetragen.
 
 === eGBR – Nichtärztliche Institutionen (SMC-B-Eintrag)
 
+eGBR Einträge werden im Verzeichnisdienst durch den TSP angelegt. Der TSP trägt in das Attribut `holder` der Wert `egbr` und seine eigene clientID ein. Damit sind diese Einträge durch eGBR Clients und die Clients des TSPs änderbar.
+
 Tabelle 13: Tab_VZD_Datenbeschreibung_der_SMC-B_eGBR
 
 [width="100%",cols="18%,12%,70%",options="header",]
 |===
 |*LDAP-Directory Attribut* |*Pflichtfeld aus Sicht Pflege und Nutzung?* |*Erläuterung*
 |*givenName* |optional |Wird für SMC-B nicht verwendet.
-|*sn* |optional | Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
- +
-Wenn der Client der Schnittstelle I_Directory_Administration keinen Wert für sn angibt, wird sn als Kopie von Attribut displayName gesetzt. Wird sn als Parameter übergeben, wird der angegebene Wert übernommen.
+|*sn* |optional |Wird vom VZD als Kopie von displayName automatisch eingetragen. +
+Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet.
 |*cn* |obligatorisch |Bezeichner: Name +
-Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
- +
-Bei Nutzung der Schreiboperationen von Schnittstelle I_Directory_Administration wird cn als Kopie von Attribut displayName gesetzt, wenn cn nicht als Parameter übergeben wird. Wird cn als Parameter übergeben, wird der angegebene Wert übernommen.
+Wird vom VZD als Kopie des Attributs displayName übernommen. +
+Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet.
 |*otherName* |optional |Das Attribut otherName ist veraltet und wird in einer zukünftigen Version aus dem Datenmodell entfernt. +
  +
 Bezeichner: Anderer Name +
 Wird vom VZD aus dem Zertifikatsattribut otherName übernommen.
-|*displayName* |obligatorisch |Bezeichner: Anzeigename +
-Dieses Attribut wird genutzt um den Namen der Betriebsstätte gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut um die Suche einzuschränken und bei der Darstellung des Ergebnisses). +
- +
-Dieses Attribut wird durch den VZD nicht automatisch aus dem Zertifikat ermittelt. Es kann über die Schreiboperationen von Schnittstelle I_Directory_Administration gesetzt werden. Wird über die Operation  add_Directory_Entry von Schnittstelle I_Directory_Administration für displayName kein Inhalt geliefert, so wird in displayName der Wert "-" gesetzt.
+|*displayName* |obligatorisch |Bezeichner: Anzeigename +
+Dieses Attribut wird genutzt, um den Namen der Leistungserbringerinstitution gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut um die Suche einzuschränken und bei der Darstellung des Ergebnisses).
 |*streetAddress* |obligatorisch |Bezeichner: Straße und Hausnummer (wenn verfügbar) der Leistungserbringerinstitution
 |*postalCode* |obligatorisch |Bezeichner: Postleitzahl der Leistungserbringerinstitution
 |*localityName * |obligatorisch |Bezeichner: Ort der Leistungserbringerinstitution
@@ -1914,21 +1869,17 @@ Es können Einträge ohne Zertifikat angelegt werden. Diese Einträge werden jed
 Wert == TRUE, wenn das userCertificate gemäß OCSP gültig ist (OCSP Response Status "good"), Wert == FALSE bei Zertifikaten von noch nicht freigeschalteten Karten (OCSP Response Status "unknown"). +
 Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in die flache Liste übernommen.
 |*personalEntry* |obligatorisch |Wird vom VZD eingetragen. +
-Wert == TRUE, wenn alle zum Eintrag gehörenden Zertifikate den entryType 1 haben (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID). +
- +
-Nach Löschung aller Zertifikate bleibt der Wert dieses Attributs `personalEntry` erhalten.
+Wert == TRUE, wenn alle zum Eintrag gehörenden Zertifikate den entryType 1 haben (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID).
 |*entryType* |obligatorisch |Bezeichner: Eintragstyp +
-Wird vom VZD anhand der im Zertifikat enthaltenen OID (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
- +
-entryType kann über Operationen add_Directory_Entry und modify_Directory_Entry gesetzt werden. +
- +
-Wird in Operationen add_Directory_Entry ein Zertifikat angegeben wird, muss ein eventuell angegebener Parameter entryType mit dem Wert aus dem Zertifikat übereinstimmen. Bei nicht angegebenem Parameter entryType wird das Attribut entryType entsprechend dem Zertifikat gesetzt. +
- +
-Mit Operation modify_Directory_Entry kann über Request Parameter entryType das Attribut im VZD geändert werden, solange kein Zertifikat im VZD enthalten ist (welches dann einen abweichenden Wert gegenüber dem Request Parameter entryType enthalten würde). +
- +
-Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit einem Fehler. 
+Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403.
 |*telematikID* |obligatorisch |Bezeichner: TelematikID +
 Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
+|*dataFromAuthority* |optional |Wird vom VZD eingetragen +
+Gibt an, ob die Daten vom Kartenherausgeber stammen. +
+Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
+  +
+Wenn der Wert TRUE ist, können die Daten nicht mehr über die Schnittstelle I_Directory_Maintenance bearbeitet werden. Die Schnittstelle I_Directory_Maintenance wird von KOM-LE-Anbietern verwendet.
+|*holder* |optional |Legt fest, wer Änderungen an den Basisdaten des Eintrags vornehmen darf. Hat keinen Einfluss auf Fachdaten und Zertifikatsdaten.
 |*professionOID* |obligatorisch |Bezeichner: Profession OID +
 Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und dem Mapping in ab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
 Kann mehrfach vorkommen (0..100).
@@ -1948,7 +1899,17 @@ Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
 - Für jede Mail-Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Datenstruktur komLeData geben. Es dürfen in komLeData keine Mail-Adressen referenziert werden, die nicht im übergeordneten "mail" Attribut enthalten sind.
 - Wenn eine Mail-Adresse gelöscht wird, muss auch ihr komLeData-Eintrag gelöscht werden. +
  Geschrieben wird immer die gesamte Liste. Für Änderungen muss erst der aktuelle Eintrag gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
-- Beispiel für den Wert eines komLeData-Eintrags: \{"mail": "erik.mustermann@hrstdomain.kim.telematik"; "version": "1.5"}
+- Beispiel für den Wert eines komLeData-Eintrags in der flachen Liste (LDAP): +
+[source, c]
+----
+ "komLeData": [
+        "1.0,xx-01@hersteller01.kim.telematik-test",
+        "1.0,xx-02@hersteller01.kim.telematik-test",
+        "1.0,xx-03@hersteller02.kim.telematik-test",
+        "1.0,xx-04@hersteller02.kim.telematik-test",
+        "1.0,xx-05@hersteller02.kim.telematik-test"
+        ]
+----
 
 Wird vom KOM-LE-Anbieter eingetragen.
 
@@ -1958,6 +1919,7 @@ Wird vom KOM-LE-Anbieter eingetragen.
 {empty} +
 
 === eGBR – Weitere Gesundheitsfachberufe (HBA-Eintrag)
+eGBR Einträge werden im Verzeichnisdienst durch den TSP angelegt. Der TSP trägt in das Attribut "holder" der Wert "eGBR" und seine eigene clientID ein. Damit sind diese Einträge durch eGBR Clients und die Clients des TSPs änderbar.
 
 Tabelle 14: Tab_VZD_Datenbeschreibung_eGBR_HBA
 
@@ -1965,30 +1927,17 @@ Tabelle 14: Tab_VZD_Datenbeschreibung_eGBR_HBA
 |===
 |*LDAP-Directory Attribut* |*Pflichtfeld aus Sicht Pflege und Nutzung?* |*Erläuterung*
 |*givenName* |optional |Bezeichner: Vorname +
-Wird vom VZD aus dem Zertifikatsattribut givenName übernommen, wenn der Client von Schnittstelle I_Directory_Administration keinen Wert angibt. +
- +
-Wird über die Schreiboperationen von Schnittstelle I_Directory_Administration für givenName ein Inhalt geliefert, so dieser Wert für das Attribut gesetzt. +
- +
-Wird dem Verzeichniseintrag ein neues Zertifikat hinzu gefügt, wird der aktuelle Wert des Attributs durch der Wert aus Zertifikatsattribut givenName überschrieben.
-|*sn* |optional |Bezeichner: Nachname +
-Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
- +
-Bei dem Hinzufügen eines Zertifikats wird sn mit dem Inhalt von Attribut commonName aus dem Zertifikat gefüllt/überschrieben. +
- +
-Wenn der Client der Schnittstelle I_Directory_Administration keinen Wert für sn angibt, wird sn als Kopie von Attribut displayName gesetzt. Wird sn als Parameter übergeben, wird der angegebene Wert übernommen.
-
+Wird vom VZD aus dem Zertifikatsattribut givenName übernommen.
+|*sn* |optional |Bezeichner: Nachname +
+Wird vom VZD aus dem Zertifikatsattribut sn übernommen.
 |*cn* |obligatorisch |Bezeichner: Name +
-Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
- +
-Bei Nutzung der Schreiboperationen von Schnittstelle I_Directory_Administration wird cn als Kopie von Attribut displayName gesetzt, wenn cn nicht als Parameter übergeben wird. Wird cn als Parameter übergeben, wird der angegebene Wert übernommen.
+Wird vom VZD automatisch als Kopie von displayName eingetragen (weil E-Mail-Clients über dieses Attribut suchen; Verwendung als Filter-Attribut, um die Suche einzuschränken, und bei der Darstellung des Ergebnisses).
 |*otherName* |optional |Das Attribut otherName ist veraltet und wird in einer zukünftigen Version aus dem Datenmodell entfernt. +
  +
 Bezeichner: Anderer Name +
 Wird vom VZD aus dem Zertifikatsattribut otherName übernommen.
 |*displayName* |obligatorisch |Bezeichner: Anzeigename +
-Dieses Attribut wird genutzt, um den Namen der Person gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut, um die Suche einzuschränken, und bei der Darstellung des Ergebnisses). +
- +
-Dieses Attribut wird durch den VZD nicht automatisch aus dem Zertifikat ermittelt. Es kann über die Schreiboperationen von Schnittstelle I_Directory_Administration gesetzt werden. Wird über die Operation  add_Directory_Entry von Schnittstelle I_Directory_Administration für displayName kein Inhalt geliefert, so wird in displayName der Wert "-" gesetzt.
+Dieses Attribut wird genutzt, um den Namen der Person gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut, um die Suche einzuschränken, und bei der Darstellung des Ergebnisses).
 |*streetAddress* |optional |Nicht belegt.
 |*postalCode* |optional |Nicht belegt.
 |*localityName * |optional |Nicht belegt.
@@ -2016,22 +1965,18 @@ Es können Einträge ohne Zertifikat angelegt werden. Diese Einträge werden jed
 |*userCertificate.active* |obligatorisch |Wird vom VZD eingetragen. +
 Wert == TRUE, wenn das userCertificate gemäß OCSP gültig ist (OCSP Response Status "good"), Wert == FALSE bei Zertifikaten von noch nicht freigeschalteten Karten (OCSP Response Status "unknown"). +
 Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in die flache Liste übernommen.
-|*personalEntry* |obligatorisch |Wird vom VZD eingetragen. +
-Wert == TRUE, wenn alle zum Eintrag gehörenden Zertifikate den entryType 1 haben (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID). +
- +
-Nach Löschung aller Zertifikate bleibt der Wert dieses Attributs `personalEntry` erhalten.
+|*personalEntry* |obligatorisch |Wird vom VZD eingetragen +
+Wert == TRUE, wenn alle zum Eintrag gehörenden Zertifikate den entryType 1 haben (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID).
 |*entryType* |obligatorisch |Bezeichner: Eintragstyp +
-Wird vom VZD anhand der im Zertifikat enthaltenen OID (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
- +
-entryType kann über Operationen add_Directory_Entry und modify_Directory_Entry gesetzt werden. +
- +
-Wird in Operationen add_Directory_Entry ein Zertifikat angegeben wird, muss ein eventuell angegebener Parameter entryType mit dem Wert aus dem Zertifikat übereinstimmen. Bei nicht angegebenem Parameter entryType wird das Attribut entryType entsprechend dem Zertifikat gesetzt. +
- +
-Mit Operation modify_Directory_Entry kann über Request Parameter entryType das Attribut im VZD geändert werden, solange kein Zertifikat im VZD enthalten ist (welches dann einen abweichenden Wert gegenüber dem Request Parameter entryType enthalten würde). +
- +
-Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit einem Fehler. 
+Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403.
 |*telematikID* |obligatorisch |Bezeichner: TelematikID +
 Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
+|*dataFromAuthority* |optional |Wird vom VZD eingetragen +
+Gibt an, ob die Daten vom Kartenherausgeber stammen. +
+Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
+  +
+Wenn der Wert TRUE ist, können die Daten nicht mehr über die Schnittstelle I_Directory_Maintenance bearbeitet werden. Die Schnittstelle I_Directory_Maintenance wird von KOM-LE-Anbietern verwendet.
+|*holder* |optional |Legt fest, wer Änderungen an den Basisdaten des Eintrags vornehmen darf. Hat keinen Einfluss auf Fachdaten und Zertifikatsdaten.
 |*professionOID* |obligatorisch |Bezeichner: Profession OID +
 Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und dem Mapping in ab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
 Kann mehrfach vorkommen (0..100).
@@ -2055,7 +2000,17 @@ Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
 - Für jede Mail-Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Datenstruktur komLeData geben. Es dürfen in komLeData keine Mail-Adressen referenziert werden, die nicht im übergeordneten "mail" Attribut enthalten sind.
 - Wenn eine Mail-Adresse gelöscht wird, muss auch ihr komLeData-Eintrag gelöscht werden. +
  Geschrieben wird immer die gesamte Liste. Für Änderungen muss erst der aktuelle Eintrag gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
-- Beispiel für den Wert eines komLeData-Eintrags: \{"mail": "erik.mustermann@hrstdomain.kim.telematik"; "version": "1.5"}
+- Beispiel für den Wert eines komLeData-Eintrags in der flachen Liste (LDAP): +
+[source, c]
+----
+ "komLeData": [
+        "1.0,xx-01@hersteller01.kim.telematik-test",
+        "1.0,xx-02@hersteller01.kim.telematik-test",
+        "1.0,xx-03@hersteller02.kim.telematik-test",
+        "1.0,xx-04@hersteller02.kim.telematik-test",
+        "1.0,xx-05@hersteller02.kim.telematik-test"
+        ]
+----
 
 Wird vom KOM-LE-Anbieter eingetragen.
 
@@ -2127,8 +2082,8 @@ Die nachfolgende Tabelle enthält die Bezeichnung der in dem vorliegenden Dokume
 [width="100%",cols="21%,79%",options="header",]
 |===
 |*[Quelle]* |*Herausgeber (Erscheinungsdatum): Titel*
-| |
-| |
+|​ |​
+|​ |​
 |===
 
 === Bekannte Fehler
@@ -2149,5 +2104,4 @@ Behebung: wird noch geklärt. 
  +
 *Der Fehler ist im VZD bereits behoben*
 |===
-
 
