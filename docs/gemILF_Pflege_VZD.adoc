@@ -33,20 +33,20 @@ image::gematik_logo.svg[gematik,float="right"]
  |*Grund der Änderung, besondere Hinweise** +
  |*Bearbeitung* +
 
-|1.0.0 |10.12.19 |​ |Ersterstellung |gematik
-|1.1.0 |29.03.20 |​ |Anpassung Kapitel 3.3.1.1, diverse Ergänzungen und Klarstellungen |gematik
-|1.2.0 |13.07.20 |​ |Anpassungen in Kapitel 3.1.1, Prozessbeschreibung zur Registrierung ausgearbeitet, +
+|1.0.0 |10.12.19 | |Ersterstellung |gematik
+|1.1.0 |29.03.20 | |Anpassung Kapitel 3.3.1.1, diverse Ergänzungen und Klarstellungen |gematik
+|1.2.0 |13.07.20 | |Anpassungen in Kapitel 3.1.1, Prozessbeschreibung zur Registrierung ausgearbeitet, +
 Anpassungen in Kapitel 4, Link auf aktualisierte DirectoryAdministration.yaml, RU-URLs für die Schnittstellen |gematik
-|1.3.0 |31.08.20 |​ |Prozessbeschreibung zur Registrierung angepasst, Link auf gematik-VZD-Client ergänzt, behobene Fehler dokumentiert, Beispiele für GET Requests ergänzt |gematik
-|1.3.1 |21.09.2020 |​ |Änderung des Verhaltens, wenn mehr als 100 Einträge gefunden werden. Es werden nun 100 Einträge in der Antwort übergeben. |gematik
-|1.3.2 |11.11.2020 |​ |Korrektur des links zur yaml-Datei Version 1.1.2 |gematik
-|1.3.3 |25.11.2020 |​ |Wertebereich für das Attribut stateOrProvinceName ergänzt |gematik
-|1.4.0 |16.12.2020 |​ |Alle gefundenen Daten werden in der Response zurückgeliefert (bisher 100). Der GET-Request wurde um einen Parameter erweitert, der es ermöglicht, die Zertifikatsdaten in der Response nicht zu erhalten. Dadurch kann die Datenmenge der Response bei sehr vielen gefundenen Einträgen stark reduziert werden. +
+|1.3.0 |31.08.20 | |Prozessbeschreibung zur Registrierung angepasst, Link auf gematik-VZD-Client ergänzt, behobene Fehler dokumentiert, Beispiele für GET Requests ergänzt |gematik
+|1.3.1 |21.09.2020 | |Änderung des Verhaltens, wenn mehr als 100 Einträge gefunden werden. Es werden nun 100 Einträge in der Antwort übergeben. |gematik
+|1.3.2 |11.11.2020 | |Korrektur des links zur yaml-Datei Version 1.1.2 |gematik
+|1.3.3 |25.11.2020 | |Wertebereich für das Attribut stateOrProvinceName ergänzt |gematik
+|1.4.0 |16.12.2020 | |Alle gefundenen Daten werden in der Response zurückgeliefert (bisher 100). Der GET-Request wurde um einen Parameter erweitert, der es ermöglicht, die Zertifikatsdaten in der Response nicht zu erhalten. Dadurch kann die Datenmenge der Response bei sehr vielen gefundenen Einträgen stark reduziert werden. +
 Die Telematik-ID wurde zusätzlich in den Basisdaten aufgenommen. Dadurch kann direkt nach der Telematik-ID gesucht werden, ohne erst über die Zertifikate zu suchen. +
 Das holder-Attribut wurde eingeführt; wird jedoch noch nicht in diesem Change vom VZD ausgewertet. Es wird aber bereits im yaml-File als Parameter aufgeführt, damit Client-Entwickler schon jetzt passenden Client-Code entwickeln können. Für die Umsetzung im VZD wird es einen separaten Change geben. +
 Es wurde ein Ländercode-Attribut (countryCode) ins Datenmodell aufgenommen. +
 Es wurde ein Attribut changeDateTime ins Datenmodell aufgenommen, das den Zeitpunkt der letzten Änderung an den Basisdaten angibt. |gematik
-|1.4.1 |​ |3.1.1 |Konkretisierung: Credentials-Vergabe auf Organisationsebene. Anpassung des Ansprechpartners bei Arvato für Störungen an der Schnittstelle. |gematik
+|1.4.1 | |3.1.1 |Konkretisierung: Credentials-Vergabe auf Organisationsebene. Anpassung des Ansprechpartners bei Arvato für Störungen an der Schnittstelle. |gematik
 |1.5.0 |02.06.2021 |4.1 +
 4.4 +
 4.5 |- Erweiterung des Wertebereichs stateOrProvinceName für EU-Versandapotheken in Vorbereitung auf das E-Rezept +
@@ -77,17 +77,22 @@ Update zum SMC-B ORG-Eintrag der gematik +
 Neu für eGBR HBA und SMC-B |gematik
 
 |1.5.3 |23.06.2022 |3.6, 3.3.1.3 |Rückverfolgbarkeit der Einträge (Holder-Attribute) - C_11048 |gematik
-|1.5.4 |15.07.2022 |4 |
-Verwendung des holder Attributs für eGBR Einträge ergänzt +
-Optimierung der komLeData Datenstruktur - C_11165 +
-Fehlende Attribute "holder" und "dataFromAuthority" in den Attributtabellen ergänzt +
-Attribut userCertificate.active ergänzt
+|1.5.4 |26.09.2022 |4 |
+- Verwendung des holder Attributs für eGBR Einträge ergänzt +
+- Optimierung der komLeData Datenstruktur - C_11165 +
+- Fehlende Attribute "holder" und "dataFromAuthority" in den Attributtabellen ergänzt +
+- Attribut userCertificate.active ergänzt +
+- "4.14 gematik - Weitere ärztliche Institutionen (SMC-B-Eintrag)" ergänzt +
+- Datenerfassung für Apotheken erweitert
 
 |gematik
 
 |===
 
 == Einordnung des Dokumentes
+
+NOTE: Seit März 2020 verwendet die gematik die Bezeichnung „*KIM – Kommunikation im Medizinwesen*“ für die Anwendung *KOM-LE*. Diese neue Benennung findet sich insbesondere in Informationsmaterialien für die Zielgruppe Leistungserbringer sowie in Presseveröffentlichungen. Eine Umbenennung in den technisch-normativen Dokumenten wie Spezifikationen, Konzepten, Zulassungsdokumenten etc. mit Ausnahme von Angaben zu Domänen, E-Mail-Adressen, technischen Schnittstellen, Parametern u.ä. ist mit Stand Release KIM 1.x nicht geplant. 
+
 
 === Zielsetzung
 
@@ -740,7 +745,7 @@ Es können Einträge ohne Zertifikat angelegt werden. Diese Einträge werden jed
 Wert == TRUE, wenn das userCertificate gemäß OCSP gültig ist (OCSP Response Status "good"), Wert == FALSE bei Zertifikaten von noch nicht freigeschalteten Karten (OCSP Response Status "unknown"). +
 Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in die flache Liste übernommen.
 
-|maxKOMLEadr |optional |Maximale Anzahl von Mail-Adressen in den KOM-LE-Fachdaten.  +
+|*maxKOMLEadr* |optional |Maximale Anzahl von Mail-Adressen in den KOM-LE-Fachdaten.  +
 Falls kein Wert eingetragen wurde, können beliebig viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden. +
 Falls ein Wert eingetragen wurde, können maximal so viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden.
 |*personalEntry* |obligatorisch |Wird vom VZD eingetragen. +
@@ -897,6 +902,14 @@ Wird vom KOM-LE-Anbieter eingetragen.
 {empty} +
 
 === SMC-B-Eintrag für Apotheken (ABDA, gematik)
+ 
+NOTE: Die ENC Zertifikate von allen aktiven Karten müssen dauerhaft gepflegt werden. +
+Dafür müssen die ENC Zertifikate aller neuen SMC-B Karten in Attribut Certificate.userCertificate eingetragen werden. +
+-	Abgelaufene und gesperrte Zertifikate entfernt der VZD automatisch. +
+- Noch nicht aktivierte Zertifikate werden in der VZD I_Directory_Query Schnittstelle erst nach Aktivierung sichtbar. +
+ +
+Alle anderen - durch Kartenherausgeber gepflegte - Daten müssen bei Änderungen (z.B. Änderung der Adresse, Spezialisierung,...) aktualisiert werden.
+ 
 
 Tabelle 4: Tab_VZD_Datenbeschreibung_Apotheken_SMC-B
 
@@ -915,7 +928,10 @@ Bezeichner: Anderer Name +
 Wird vom VZD aus dem Zertifikatsattribut otherName übernommen.
 |*displayName* |obligatorisch |Bezeichner: Anzeigename +
 Dieses Attribut wird genutzt um den Namen der Apotheke gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut um die Suche einzuschränken und bei der Darstellung des Ergebnisses).
-|*streetAddress* |obligatorisch |Bezeichner: Straße und Hausnummer der Apotheke
+|*streetAddress* |obligatorisch |Bezeichner: Straße und Hausnummer der Apotheke +
+ +
+Aus dieser Adresse (zusammen mit postalCode, localityName, stateOrProvinceName und countryCode) werden die Geokoordinaten der Apotheke berechnet. +
+Deshalb wird die Prüfung dieser Adresse mittels einer Kartenseite (GMaps, BingMaps, OSM, …) oder eines Adress-Validators vor dem Eintragen in den VZD empfohlen.
 |*postalCode* |obligatorisch |Bezeichner: Postleitzahl der Apotheke
 |*localityName * |obligatorisch |Bezeichner: Ort der Apotheke
 |*stateOrProvinceName * |optional |Bezeichner: Bundesland der Apotheke
@@ -925,25 +941,24 @@ Wird vom VZD automatisch eingetragen.
 |*organization* |optional |Bezeichner: Organisation +
 Dieses Attribut ist ein optionales zweites Namensattribut und wird befüllt bei Bedarf. Ebenso wie displayName ist es geeignet um nach einem Namen zu filtern und ihn im Suchergebnis anzuzeigen. +
 Für EU-Versandapotheken: EU-Versandapotheke
-|*domainID* |optional |Wird für Apotheken nicht verwendet.
-|*specialization* |optional |Wird für Apotheken nicht verwendet. +
+|*domainID* |optional |Im Attribut domainID kann der Verweis auf die Mutter-Apotheke erfasst werden. +
+Die Inhalte werden durch die Kartenherausgeber gepflegt. +
+
+|*specialization* |obligatorisch |Im Attribut specialization werden die ApothekenTypen erfasst. Hierfür wird das dafür definierte CodeSystem genutzt: https://simplifier.net/vzd-fhir-directory/pharmacytypecs +
+Die Inhalte werden durch die Kartenherausgeber gepflegt. +
  +
-Bezeichner: Fachgebiet +
-Kann mehrfach vorkommen (0..100). +
-*Für Einträge der Leistungserbringer-Organisationen (SMC-B Eintrag)* +
-Der Wertebereich entspricht den in hl7 definierten und für ePA festgelegten Werten ( https://wiki.hl7.de/index.php?title=IG:Value_Sets_f%C3%BCr_XDS#DocumentEntry.practiceSettingCode[+++https://wiki.hl7.de/index.php?title=IG:Value_Sets_f%C3%BCr_XDS#DocumentEntry.practiceSettingCode+++]). +
-urn:psc:<OID Codesystem:Code> +
-Beispiel für Apotheke: urn:psc:1.3.6.1.4.1.19376.3.276.1.5.5:PHZ +
-Für EU-Versandapotheken: urn:psc:1.3.6.1.4.1.19376.3.276.1.5.5:PHZ
+Obligatorisches Attribut, kommt einmal vor (1..1).
 |*usage* |optional |Das Attribut usage wird nicht verwendet.
 |*maxKOMLEadr* |optional |Maximale Anzahl von Mail-Adressen in den KOM-LE-Fachdaten.  +
 Falls kein Wert eingetragen wurde, können beliebig viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden. +
 Falls ein Wert eingetragen wurde, können maximal so viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden.
-|*userCertificate* |optional |Bezeichner: Enc-Zertifikat der SMC-B +
-Kann mehrfach vorkommen (0..50). +
+|*userCertificate* |obligatorisch |Bezeichner: Enc-Zertifikat der SMC-B +
+Kann mehrfach vorkommen (1..50). +
 Format: DER, Base64 kodiert +
 Die pflegende Stelle erhält das Zertifikat vom TSP. +
-Es können Einträge ohne Zertifikat angelegt werden. Diese Einträge werden jedoch nicht über die LDAP-Abfrageschnittstelle gefunden.
+ +
+Damit der SMC-B Eintrag der Apotheke korrekt durch die Anwendungen (z.B. KIM und eRezept) verarbeitet werden kann, muss das userCertificate eingetragen werden (Pflichtfeld=obligatorisch). +
+Der VZD lässt jedoch auch Einträge ohne userCertificate zu, da dies vom Ablauf her in anderen Sektoren benötigt wird.
 |*userCertificate.active* |obligatorisch |Wird vom VZD eingetragen. +
 Wert == TRUE, wenn das userCertificate gemäß OCSP gültig ist (OCSP Response Status "good"), Wert == FALSE bei Zertifikaten von noch nicht freigeschalteten Karten (OCSP Response Status "unknown"). +
 Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in die flache Liste übernommen.
@@ -969,7 +984,9 @@ Bezeichner: Beschreibung +
 Dieses Attribut ermöglicht, das Zertifikat zu beschreiben, um die Administration des VZD-Eintrags zu vereinfachen.
 |*mail* |optional |Bezeichner: E-Mail-Adresse +
 kann mehrfach vorkommen (0..100). +
-Wird vom KOM-LE-Anbieter eingetragen.
+Wird vom KOM-LE-Anbieter eingetragen. +
+ +
+Hinweis: Diese Adressen werden auch für die Direktzuweisung (z.B. Zytostatika) durch Ärzte genutzt. 
 |*komLeData* |optional a|
 Bezeichner: komLeData +
 Enthält die KOM-LE-Version des Clientmoduls der angegebenen "mail" Adresse im Attribut "version". Anhand dieser Version erkennt das sendende Clientmodul, welche KOM-LE-Version vom Empfänger-Clientmodul unterstützt wird und in welchem Format die Mail an diesen Empfänger versandt wird. +
@@ -998,10 +1015,19 @@ Wird vom KOM-LE-Anbieter eingetragen.
 
 |===
 
+
 {empty} +
 {empty} +
 
 === HBA-Eintrag für Apotheker (ABDA, gematik)
+
+NOTE: Die HBAs der Apotheker - inklusive ihrer Zertifikate - müssen im VZD erfasst und gepflegt werden. +
+Dafür müssen die ENC Zertifikate aller neuen HBA Karten in Attribut Certificate.userCertificate eingetragen werden. +
+- Abgelaufene und gesperrte Zertifikate entfernt der VZD automatisch. +
+- Noch nicht aktivierte Zertifikate werden in der VZD I_Directory_Query Schnittstelle erst nach Aktivierung sichtbar. +
+ +
+Alle anderen - durch Kartenherausgeber gepflegte - Daten müssen bei Änderungen (z.B. Änderung der Adresse, Spezialisierung,...) aktualisiert werden.
+
 
 Tabelle 5: Tab_VZD_Datenbeschreibung_Apotheker
 
@@ -1036,8 +1062,8 @@ Dieses Attribut wird genutzt, um den Namen der Betriebsstätte gegenüber dem An
 |*domainID* |optional |Bezeichner: spezifisches Kennzeichen der Apotheker +
 Kann mehrfach vorkommen (0..100). +
 Der Wert wird von der pflegenden Stelle festgelegt.
-|*specialization* |obligatorisch |Bezeichner: Fachgebiet +
-Kann mehrfach vorkommen (1..100). +
+|*specialization* |optional |Bezeichner: Fachgebiet +
+Kann mehrfach vorkommen (0..100). +
 *Für Einträge der Leistungserbringer (HBA-Eintrag)* +
 Der Wertebereich entspricht den in hl7 definierten Werten ( https://wiki.hl7.de/index.php?title=IG:Value_Sets_f%C3%BCr_XDS#DocumentEntry.authorSpecialty[+++https://wiki.hl7.de/index.php?title=IG:Value_Sets_f%C3%BCr_XDS#DocumentEntry.authorSpecialty+++]). +
 urn:as:<OID Codesystem:Code> +
@@ -2018,6 +2044,109 @@ Wird vom KOM-LE-Anbieter eingetragen.
 
 {empty} +
 {empty} +
+
+=== gematik - Weitere ärztliche Institutionen (SMC-B-Eintrag)
+
+Tabelle 15: Tab_VZD_Datenbeschreibung_der_SMC-B_eGBR
+
+[width="100%",cols="18%,12%,70%",options="header",]
+|===
+|*LDAP-Directory Attribut* |*Pflichtfeld aus Sicht Pflege und Nutzung?* |*Erläuterung*
+|*givenName* |optional |Wird für SMC-B nicht verwendet.
+|*sn* |optional |Wird vom VZD als Kopie von displayName automatisch eingetragen. +
+Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet.
+|*cn* |obligatorisch |Bezeichner: Name +
+Wird vom VZD als Kopie des Attributs displayName übernommen. +
+Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet.
+|*otherName* |optional |Das Attribut otherName ist veraltet und wird in einer zukünftigen Version aus dem Datenmodell entfernt. +
+ +
+Bezeichner: Anderer Name +
+Wird vom VZD aus dem Zertifikatsattribut otherName übernommen.
+|*displayName* |obligatorisch |Bezeichner: Anzeigename +
+Dieses Attribut wird genutzt, um den Namen der Leistungserbringerinstitution gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut um die Suche einzuschränken und bei der Darstellung des Ergebnisses).
+|*streetAddress* |obligatorisch |Bezeichner: Straße und Hausnummer (wenn verfügbar) der Leistungserbringerinstitution
+|*postalCode* |obligatorisch |Bezeichner: Postleitzahl der Leistungserbringerinstitution
+|*localityName* |obligatorisch |Bezeichner: Ort der Leistungserbringerinstitution
+|*stateOrProvinceName* |obligatorisch |Bezeichner: Bundesland der Leistungserbringerinstitution
+|*countryCode* |optional |Siehe TAB_VZD_Wertebereiche_der_Attribute
+|*changeDateTime* |optional |Bezeichner: Änderungszeitstempel +
+Wird vom VZD automatisch eingetragen.
+|*organization* |optional |Bezeichner: Organisation +
+Dieses Attribut ist ein optionales zweites Namensattribut und wird befüllt bei Bedarf. Ebenso wie displayName ist es geeignet, um nach einem Namen zu filtern und ihn im Suchergebnis anzuzeigen.
+|*domainID* |obligatorisch |nicht belegt
+|*specialization* |obligatorisch |Bezeichner: Fachgebiet +
+Kann mehrfach vorkommen (1..100). +
+Der Wertebereich entspricht den in HL7 definierten und für ePA festgelegten Werten ( https://wiki.hl7.de/index.php?title=IG:Value_Sets_f%C3%BCr_XDS#DocumentEntry.practiceSettingCode[+++https://wiki.hl7.de/index.php?title=IG:Value_Sets_f%C3%BCr_XDS#DocumentEntry.practiceSettingCode+++]). +
+
+urn:psc:<OID Codesystem:Code> +
+ +
+Beispiel für Arbeitsmedizin:
+urn:psc:1.3.6.1.4.1.19376.3.276.1.5.4:ARBE +
+Beispiel für öffentlichen Gesundheitsdienst:
+urn:psc:1.3.6.1.4.1.19376.3.276.1.5.4:GESU +
+Beispiel für Zahnmedizin: urn:psc:1.3.6.1.4.1.19376.3.276.1.5.4:MKZH +
+Beispiel für Allgemeinmedizin: urn:psc:1.3.6.1.4.1.19376.3.276.1.5.4:ALLG +
+|*usage* |optional |Das Attribut usage wird nicht verwendet.
+|*maxKOMLEadr* |optional |Maximale Anzahl von Mail-Adressen in den KOM-LE-Fachdaten. +
+Falls kein Wert eingetragen wurde, können beliebig viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden. +
+Falls ein Wert eingetragen wurde, können maximal so viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden.
+|*userCertificate* |obligatorisch |Bezeichner: Enc-Zertifikat der SMC-B +
+Kann mehrfach vorkommen (0..50) +
+Format: DER, Base64 kodiert +
+Die pflegende Stelle erhÃ¤lt das Zertifikat vom TSP. +
+Es können EintrÃ¤ge ohne Zertifikat angelegt werden. Diese Einträge werden jedoch nicht über die LDAP-Abfrageschnittstelle gefunden.
+|*userCertificate.active* |obligatorisch |Wird vom VZD eingetragen. +
+Wert == TRUE, wenn das userCertificate gemäß OCSP gültig ist (OCSP Response Status "good"), Wert == FALSE bei Zertifikaten von noch nicht freigeschalteten Karten (OCSP Response Status "unknown"). +
+Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in die flache Liste übernommen.
+|*personalEntry* |obligatorisch |Wird vom VZD eingetragen. +
+Wert == TRUE, wenn alle zum Eintrag gehörenden Zertifikate den entryType 1 haben (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID).
+|*entryType* |obligatorisch |Bezeichner: Eintragstyp +
+Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403.
+|*telematikID* |obligatorisch |Bezeichner: TelematikID +
+Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
+|*dataFromAuthority* |optional |Wird vom VZD eingetragen +
+Gibt an, ob die Daten vom Kartenherausgeber stammen. +
+Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
+ +
+Wenn der Wert TRUE ist, können die Daten nicht mehr über die Schnittstelle I_Directory_Maintenance bearbeitet werden. Die Schnittstelle I_Directory_Maintenance wird von KOM-LE-Anbietern verwendet.
+|*holder* |optional |Legt fest, wer Änderungen an den Basisdaten des Eintrags vornehmen darf. Hat keinen Einfluss auf Fachdaten und Zertifikatsdaten.
+|*professionOID* |obligatorisch |Bezeichner: Profession OID +
+Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und dem Mapping in ab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
+Kann mehrfach vorkommen (0..100).
+|*title* |optional |Wird für SMC-B nicht verwendet.
+|*description* |optional |Wird derzeit nicht verwendet.
+|*mail* |optional |Bezeichner: E-Mail-Adresse +
+Kann mehrfach vorkommen (0..100). +
+Wird vom KOM-LE-Anbieter eingetragen.
+|*komLeData* |optional a|
+Bezeichner: komLeData +
+Enthält die KOM-LE-Version des Clientmoduls der angegebenen "mail" Adresse im Attribut "version". Anhand dieser Version erkennt das sendende Clientmodul, welche KOM-LE-Version vom Empfänger-Clientmodul unterstützt wird und in welchem Format die Mail an diesen EmpfÃ¤nger versandt wird. +
+Wenn nicht angegeben, wird KOM-LE-Version 1.0 angenommen. +
+Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
+
+
+- Ein komLeData-Eintrag setzt sich zusammen aus der Mail-Adresse (Attribut "mail") und der zugehörigen KOM-LE Version (Attribut "version"). 
+- Für jede Mail-Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Datenstruktur komLeData geben. Es dürfen in komLeData keine Mail-Adressen referenziert werden, die nicht im übergeordneten "mail" Attribut enthalten sind.
+- Wenn eine Mail-Adresse gelöscht wird, muss auch ihr komLeData-Eintrag gelöscht werden. +
+ Geschrieben wird immer die gesamte Liste. Für Änderungen muss erst der aktuelle Eintrag gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
+- Beispiel für den Wert eines komLeData-Eintrags in der flachen Liste (LDAP): +
+[source, c]
+----
+ "komLeData": [
+        "1.0,xx-01@hersteller01.kim.telematik-test",
+        "1.0,xx-02@hersteller01.kim.telematik-test",
+        "1.0,xx-03@hersteller02.kim.telematik-test",
+        "1.0,xx-04@hersteller02.kim.telematik-test",
+        "1.0,xx-05@hersteller02.kim.telematik-test"
+        ]
+----
+
+Wird vom KOM-LE-Anbieter eingetragen.
+
+|===
+
+{empty} +
+{empty} +
 {empty} +
 
 == Anhang A – Verzeichnisse
@@ -2068,7 +2197,7 @@ Tabelle 14: Tab_VZD_Datenbeschreibung_eGBR_HBA
 
 Die nachfolgende Tabelle enthält die Bezeichnung der in dem vorliegenden Dokument referenzierten Dokumente der gematik zur Telematikinfrastruktur. Der mit der vorliegenden Version korrelierende Entwicklungsstand dieser Konzepte und Spezifikationen wird pro Release in einer Dokumentenlandkarte definiert; Version und Stand der referenzierten Dokumente sind daher in der nachfolgenden Tabelle nicht aufgeführt. Deren zu diesem Dokument jeweils gültige Versionsnummern sind in der aktuellen, von der gematik veröffentlichten Dokumentenlandkarte enthalten, in der die vorliegende Version aufgeführt wird.
 
-​​
+
 
 [width="100%",cols="23%,77%",options="header",]
 |===
@@ -2082,8 +2211,8 @@ Die nachfolgende Tabelle enthält die Bezeichnung der in dem vorliegenden Dokume
 [width="100%",cols="21%,79%",options="header",]
 |===
 |*[Quelle]* |*Herausgeber (Erscheinungsdatum): Titel*
-|​ |​
-|​ |​
+| |
+| |
 |===
 
 === Bekannte Fehler
@@ -2104,5 +2233,4 @@ Behebung: wird noch geklärt. 
  +
 *Der Fehler ist im VZD bereits behoben*
 |===
-
 
