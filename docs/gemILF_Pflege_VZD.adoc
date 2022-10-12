@@ -2140,6 +2140,7 @@ Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
         ]
 ----
 
+
 Wird vom KOM-LE-Anbieter eingetragen.
 
 |===
