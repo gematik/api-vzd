@@ -3,7 +3,11 @@ info:
   title: I_Directory_Administration
   description: REST Schnittstelle zur Pflege der Verzeichniseinträge.
               Über diese Schnittstelle können Verzeichniseinträge inklusive Zertifikaten erzeugt, aktualisiert und gelöscht werden. Die Administration von Fachdaten erfolgt über Schnittstelle I_Directory_Application_Maintenance und wird durch die Fachanwendungen durchgeführt. Lesender Zugriff auf die Fachdaten ist mit Operation getDirectoryEntries in vorliegender Schnittstelle möglich.
-  version: 1.9.2
+  version: 1.9.3
+  # Änderungen in Version 1.9.3
+  #  - Attribut usage aus Schema userCertificate und Operationen entfernt
+  #    (wurde nicht mehr genutzt)
+  # 
   # Änderungen in Version 1.9.2
   #  - Operation readLog: Parameter holder umbenannt in clientID
   #  - Beschreibung HTTP Status Kode 405 ergänzt
@@ -252,7 +256,6 @@ paths:
                           Bei unterschiedlichen telematikID wird die Operation mit Fehlercode 422 abgelehnt.
                         entryType     Nicht vorhanden (wird vom Verzeichnisdienst belegt)
                         professionOID Nicht vorhanden (wird vom Verzeichnisdienst belegt)
-                        usage         Kann optional belegt werden.
                         userCertificate   Kann optional belegt werden (Format DER, Base64 kodiert)
                         description   Kann optional belegt werden.
                         Entsprechend gemSpec_VZD wird ein Teil der Attribute durch den Verzeichnisdienst automatisch mit Werten aus dem Zertifikat gefüllt. Wenn in dieser Operation Attribute - für die dies erlaubt ist - mit einem Wert belegt werden, wird dieser Wert im Verzeichniseintrag gespeichert (auch wenn der Wert durch den Verzeichnisdienst aus dem Zertifikat entnommen werden kann).   
@@ -1399,7 +1402,6 @@ paths:
                             Bei unterschiedlichen telematikIDs wird die Operation mit Fehlercode 422 abgelehnt.
                       entryType         Nicht vorhanden (wird vom Verzeichnisdienst belegt)        
                       professionOID     Nicht vorhanden (wird vom Verzeichnisdienst belegt)      
-                      usage             Kann optional belegt werden 
                       userCertificate   Muss vorhanden sein      
                       description       Kann optional belegt werden 
         content:
@@ -1503,12 +1505,6 @@ paths:
         in: query
         description: Erlaubt die Suche mit Hilfe des Attributs professionOID. 
                      Der Verzeichniseintrag wird selektiert, wenn die angegebene professionOID im Attribut professionOID (array) des Zertifikatseintrags enthalten ist.
-        schema:
-          type: string  
-      - name: usage
-        in: query
-        description: Erlaubt die Suche mit Hilfe des Attributs usage. 
-                     Der Verzeichniseintrag wird selektiert, wenn die angegebene usage im Attribut usage (array) des Zertifikatseintrags enthalten ist.
         schema:
           type: string  
       - name: active
@@ -1781,18 +1777,6 @@ components:
               und dem Mapping in ab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch
               eingetragen. Siehe [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. / kann
               mehrfach vorkommen (0..100)'
-        usage:
-          maxItems: 100
-          minItems: 0
-          type: array
-          description: 'Nutzungskennzeichnung kann pro Zertifikat mehrfach
-            vergeben werden. Vorgegebener Wertebereich [KOM-LE, ePA].
-            Obligatorisch für LEI und KTR mit vorgegebenem Wert usage=ePA'
-          items:
-            type: string
-            enum:
-            - KOM-LE
-            - ePA
         userCertificate:
           type: string
           description: 'Zertifikat im DER Format. Base64 kodiert.
