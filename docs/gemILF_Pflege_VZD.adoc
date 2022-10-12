@@ -84,6 +84,7 @@ Neu für eGBR HBA und SMC-B |gematik
 - Attribut userCertificate.active ergänzt +
 - "4.14 gematik - Weitere ärztliche Institutionen (SMC-B-Eintrag)" ergänzt +
 - Datenerfassung für Apotheken erweitert
+
 |gematik
 
 |===
@@ -2139,7 +2140,6 @@ Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
         "1.0,xx-05@hersteller02.kim.telematik-test"
         ]
 ----
-
 
 Wird vom KOM-LE-Anbieter eingetragen.
 
