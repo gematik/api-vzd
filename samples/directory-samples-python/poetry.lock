@@ -63,7 +63,7 @@ test = ["hypothesis (==3.55.3)", "flake8 (==3.7.8)"]
 
 [[package]]
 name = "cryptography"
-version = "38.0.1"
+version = "38.0.2"
 description = "cryptography is a package which provides cryptographic recipes and primitives to Python developers."
 category = "main"
 optional = false
@@ -143,7 +143,7 @@ deprecated = "*"
 type = "git"
 url = "https://github.com/spilikin/jwcrypto.git"
 reference = "master"
-resolved_reference = "d1ed86620fe7f175ca862f498cea47bc4c9079a4"
+resolved_reference = "55458fa847094558d66dc91bd17bc0bd7fd0f234"
 
 [[package]]
 name = "lxml"

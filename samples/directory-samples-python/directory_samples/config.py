@@ -55,3 +55,11 @@ class MatrixConfig(BaseSettings):
 
     class Config:
         env_prefix = "MATRIX_"
+
+class OwnerSoftCertConfig(BaseSettings):
+    """Srttings for soft-certificate based OwnerAPI authentication‚"""
+    cert_filename_der: str
+    key_filename_der: str
+
+    class Config:
+        env_prefix = "OWNER_"

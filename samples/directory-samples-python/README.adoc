@@ -23,6 +23,14 @@ export TIM_PROVIDER_AUTH_CLIENT_ID=<clientid>
 export TIM_PROVIDER_AUTH_SECRET=<secret>
 ----
 
+Additional variables for OwnerAPI using the soft-certificates (Soft-certificates must be obtained from gematik).
+
+[source,bash]
+----
+export OWNER_CERT_FILENAME_DER=<path>/C.HCI.AUT.R2048.der
+export OWNER_KEY_FILENAME_DER=<path>/PrK.HCI.AUT.R2048.der
+----
+
 == Run samples
 
 === Run once to create virtualenv and install the dependencies

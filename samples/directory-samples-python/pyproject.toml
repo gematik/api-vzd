@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "fhir_search"
+name = "directory_samples"
 version = "0.1.0"
 description = "Samples how to use the FHIR Directory Search API"
 authors = ["Sergej Suskov <sergej.suskov@gematik.de>"]
@@ -22,7 +22,7 @@ requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
-search_api_matrix = "fhir_search.search_api_matrix:main"
-tim_provider_api = "fhir_search.tim_provider_api:main"
-search_api_idp = "fhir_search.search_api_idp:main"
-verify_certificate = "fhir_search.verify_certificate:main"
+search_api_matrix = "directory_samples.search_api_matrix:main"
+tim_provider_api = "directory_samples.tim_provider_api:main"
+search_api_idp = "directory_samples.search_api_idp:main"
+verify_certificate = "directory_samples.verify_certificate:main"

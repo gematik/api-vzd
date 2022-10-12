@@ -17,7 +17,13 @@ from .koap import (
   last_soap_request,
   last_soap_response,
 )
-
+from .config import OwnerSoftCertConfig
+from cryptography.hazmat.primitives.serialization import (
+  load_der_private_key, 
+  PrivateFormat,
+  Encoding,
+  NoEncryption,
+)
 
 card_handle = 'SMC-B-5'
 
@@ -139,11 +145,25 @@ def main():
     print(signed_token, soft_wrap=True)
 
     # sign using software certificate
-    smcb_key = jwk.JWK.from_pem(open("PrK.HCI.AUT.R2048.pem", "rb").read())
-    print(smcb_key.export())
+    owner_soft_cert_config = OwnerSoftCertConfig()
 
-    smcb_cert = x509.load_pem_x509_certificate(open("C.HCI.AUT.R2048.pem", "rb").read())
-    cert_base64 = b64encode(smcb_cert.public_bytes(serialization.Encoding.DER)).decode("ascii")
+    owner_key = load_der_private_key(
+        open(owner_soft_cert_config.key_filename_der, "rb").read(),
+        password=None
+    )
+
+    owner_key_pem = owner_key.private_bytes(
+        Encoding.PEM,
+        PrivateFormat.TraditionalOpenSSL,
+        encryption_algorithm=NoEncryption()
+    )
+
+    smcb_key = jwk.JWK.from_pem(owner_key_pem)
+
+    print("SMC-B Soft-Key", smcb_key.export())
+
+    smcb_cert_bytes = open(owner_soft_cert_config.cert_filename_der, "rb").read()
+    cert_base64 = b64encode(smcb_cert_bytes).decode("ascii")
 
     payload = {
       "njwt": challenge
