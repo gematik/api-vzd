@@ -182,7 +182,7 @@ Only resources with the status "active" may be displayed. For this reason, the [
 - GET [baseUrl]/search/HealthcareService?organization.active=true
 - GET [baseUrl]/search/PractitionerRole?practitioner.active=true
 
-As result, the client receives a FHIR http://hl7.org/fhir/bundle.html[Bundle]resource with the search result. +
+As result, the client receives a FHIR http://hl7.org/fhir/bundle.html[Bundle] resource with the search result. +
  +
 
 ==== FHIR Search Organizations
@@ -212,10 +212,10 @@ For each resource the is a "Search Parameters" section. For example +
 - for organizations https://www.hl7.org/fhir/organization.html#search
 - for endpoints https://www.hl7.org/fhir/endpoint.html#search
 
-An overview about all resources with its search parameters can be found here: +
+An overview about all resources with its search parameters can be found here: 
 https://www.hl7.org/fhir/searchparameter-registry.html +
  +
-The behavior of the search parameter depends from the parameter type and is documented here https://www.hl7.org/fhir/search.html#ptypes +
+The behavior of the search parameter depends from the parameter type and is documented here: https://www.hl7.org/fhir/search.html#ptypes +
  +
 
 ==== FHIR VZD Examples
