@@ -1,0 +1,234 @@
+= FHIR VZD implementation guide
+:source-highlighter: rouge
+:icons:
+:title-page:
+:imagesdir: /images/
+ifdef::env-github[]
+:toc: preamble
+endif::[]
+ifndef::env-github[]
+:toc: left
+endif::[]
+:toclevels: 3
+:toc-title: Table of Contents
+:sectnums:
+
+
+image::gematik_logo.svg[gematik,float="right"]
+
+[width="100%",cols="50%,50%",options="header",]
+|===
+|Version: |1.5.4
+|Referencing: |gemILF_FHIR_VZD
+|===
+
+[big]*Document history*
+
+[width="100%",cols="11%,11%,7%,58%,13%",options="header",]
+|===
+|*Version* +
+ |*Stand* +
+ |*Chap./ Page* +
+ |*Change reason, special instructions* +
+ |*Editing* +
+
+|1.0.0 |28.10.22 | |Initial document |gematik
+
+|===
+
+== Classification of the document
+=== Objective
+This document describes how the interfaces of the FHIR directory service can be implemented and used on the client side.
+
+=== Target group
+
+The document is aimed at software developers who are involved in implementing a client of the FHIR directory service.
+
+=== Scope
+
+*Intellectual property/patent notice*
+
+_The following specification was created by gematik solely from a technical point of view. In individual cases, it cannot be ruled out that the implementation of the specification will interfere with the technical property rights of third parties. It is solely up to the supplier or manufacturer to take suitable measures to ensure that the products and/or services offered by him on the basis of the specification do not infringe third-party property rights and, if necessary, to obtain the necessary permits/licenses from the property right holders concerned. In this respect, gematik GmbH assumes no liability whatsoever._
+
+
+== API Documentation
+=== FHIRDirectorySearchAPI: Search for Practitioners and Organizations
+==== Authentication
+To use the search operation, a corresponding access token from the FHIRDirectoryAuthorizationService must be available. +
+ +
+With the following procedure an access token can be obtained:
+ 
+*Get  authentication methods supported by the Matrix homeserver*
+[source]
+----
+ curl -X GET "[Matrix homeserver url]/_matrix/client/r0/login"
+----
+This operation returns the supported authentication methods. For example:
+[source]
+----
+200
+{
+  "flows": [
+    {
+      "type": "m.login.password"
+    },
+    {
+      "type": "m.login.application_service"
+    },
+    {
+      "type": "uk.half-shot.msc2778.login.application_service"
+    }
+  ]
+}
+----
+
+*Perform login and get Matrix Access Token*
+The login operation depends from the selected authentication methods which can be dependent from the used environment.
+
+[source]
+----
+curl -X POST "[Matrix homeserver url]/_matrix/client/r0/login" \
+    -H "Content-Type: application/json" \
+    -d @- << EOF
+{
+  "type": "m.login.password",
+  "user": "username",
+  "password": "password of the user"
+}
+EOF
+----
+This operation returns a matrix access_token. For example:
+[source]
+----
+200
+{
+  "user_id": "username",
+  "access_token": "syt_ZXR0cjAy_JVJehocKZFlYyRbtTdiz_18uj52",
+  "home_server": "matix.home.server.de",
+  "device_id": "ABCDEFGHIJ"
+}
+----
+
+*Request Matrix OpenID Token*
+[source]
+----
+curl -X POST "[Matrix homeserver url]/_matrix/client/v3/user/username/openid/request_token?access_token=syt_ZXR0cjAy_JVJehocKZFlYyRbtTdiz_18uj52" \
+    -H "Content-Type: application/json" \
+    -d @- << EOF
+{}
+EOF
+----
+In this operation the "username" has to be replaced by the username used in the operations above. +
+For the access_token parameter the access_token returen in the last operation has to be used as value. +
+ +
+This operation returns a matrix access_token. For example:
+[source]
+----
+200
+{
+  "access_token": "zbKsYFDoZBWcKJMylLjCcMcR",
+  "token_type": "Bearer",
+  "matrix_server_name": "matix.home.server.de",
+  "expires_in": 3600
+}
+----
+
+*Get the access token from the FHIR-Directory*
+[source]
+----
+curl -X GET "[FHIRbaseUrl]/tim-authenticate?mxId=matrix.dev.service-ti.de" \
+    -H "X-Matrix-OpenID-Token: zbKsYFDoZBWcKJMylLjCcMcR"
+----
+For the X-Matrix-OpenID-Token parameter the access_token returen in the last operation has to be used as value. +
+ +
+This operation returns a access toke from the FHIR-Directory. For example:
+[source]
+----
+200
+{
+  "jwt":
+"eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiJ9.e5Jpc3MiOiJodHRwczovL2ZoaXItZGlyZWN0b3J5LXRlc3QudnpkLnRpLWRpZW5zdGUuZGUvdGltLWF1dGhlbnRpY2F0ZSIsImF1ZCI6Imh0dHBzOi8vZmhpci1kaXJlY3RvcnktdGVzdC52emQudGktZGllbnN0ZS5kZS9zZWGyY2giLCJzdWIiOiJAZXR0cjAyOm1hdHJpeC5kZXYuc2VydmljZS10aS5kZSIsImlhdCI6MTY2NDEyMjY3MywiZXhwIjoxNjY0MjA5MDczfQ.CoTwrZmZJyfVYVJFD068QJNFo0YLemhfPVER_lW5h3MU2hgoiSj1lkD6yDHPDQAs4JJ6PlBWIUHtoGoYAwVOVw",
+  "token_type": "bearer",
+  "expires_in": 86400
+}
+----
+
+
+*Perform a FHIR-Search*
+[source]
+----
+curl -X GET "https://fhir-directory-test.vzd.ti-dienste.de/search/HealthcareService?organization.active=true&_count=1" \
+    -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiJ9.e5Jpc3MiOiJodHRwczovL2ZoaXItZGlyZWN0b3J5LXRlc3QudnpkLnRpLWRpZW5zdGUuZGUvdGltLWF1dGhlbnRpY2F0ZSIsImF1ZCI6Imh0dHBzOi8vZmhpci1kaXJlY3RvcnktdGVzdC52emQudGktZGllbnN0ZS5kZS9zZWGyY2giLCJzdWIiOiJAZXR0cjAyOm1hdHJpeC5kZXYuc2VydmljZS10aS5kZSIsImlhdCI6MTY2NDEyMjY3MywiZXhwIjoxNjY0MjA5MDczfQ.CoTwrZmZJyfVYVJFD068QJNFo0YLemhfPVER_lW5h3MU2hgoiSj1lkD6yDHPDQAs4JJ6PlBWIUHtoGoYAwVOVw
+----
+For the "Authorization" parameter the access_token returend from the FHIR-Directory in the last operation has to be used as value. +
+ +
+
+==== FHIR Search Basics
+The REST interface /search allows you to search for practitioners and organizations. 
+The standard FHIR search operation is used https://build.fhir.org/search.html +
+
+GET [baseUrl]/[resourceType]?[optional parameters] +
+ +
+As resourceType are supported
+
+- HealthcareService (search for organizations)
+- PractitionerRole (search for practitioners)
+
+The overview about the supported data model can be found here: 
+https://simplifier.net/vzd-fhir-directory
+
+Only resources with the status "active" may be displayed. For this reason, the [resource].active=true parameter must be specified for all search operations. The minimal variant of the search operations thus looks like this:
+
+- GET [baseUrl]/search/HealthcareService?organization.active=true
+- GET [baseUrl]/search/PractitionerRole?practitioner.active=true
+
+As result, the client receives a FHIR http://hl7.org/fhir/bundle.html[Bundle]resource with the search result. +
+ +
+
+==== FHIR Search Organizations
+
+To search for organizations, use "HealthcareService" as the resource type and at least "organization.active=true" as the parameter:
+[source]
+--
+GET [baseUrl]/search/HealthcareService?organization.active=true
+--
+Additional parameters can be added to refine the search. +
+ +
+
+==== FHIR Search Practitioners
+To search for people, use "PractitionerRole" as the resource type and at least "practitioner.active=true" as the parameter:
+[source]
+--
+GET [baseUrl]/search/PractitionerRole?practitioner.active=true
+--
+Additional parameters can be added to refine the search.
+ +
+ 
+==== FHIR Search Parameters
+FHIR defines which search parameters can be used for each resource. 
+For each resource the is a "Search Parameters" section. For example +
+
+- for practitioners https://www.hl7.org/fhir/practitioner.html#search
+- for organizations https://www.hl7.org/fhir/organization.html#search
+- for endpoints https://www.hl7.org/fhir/endpoint.html#search
+
+An overview about all resources with its search parameters can be found here: +
+https://www.hl7.org/fhir/searchparameter-registry.html +
+ +
+The behavior of the search parameter depends from the parameter type and is documented here https://www.hl7.org/fhir/search.html#ptypes +
+ +
+
+==== FHIR VZD Examples
+To search for people, use "PractitionerRole" as the resource type and at least "practitioner.active=true" as the parameter:
+[source]
+--
+GET [baseUrl]/search/PractitionerRole?practitioner.active=true
+--
+
+[baseUrl]/search/PractitionerRole?_include=PractitionerRole:practitioner&_include=PractitionerRole:location&_include=PractitionerRole:endpoint&practitioner.name=Moritz Wetzel&practitioner.active=true
+ +
+_include -> Welche Resourcen zurück gegeben werden +
+ +
+ 
+
+
