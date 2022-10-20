@@ -206,11 +206,12 @@ Additional parameters can be added to refine the search.
  
 ==== FHIR Search Parameters
 FHIR defines which search parameters can be used for each resource. 
-For each resource the is a "Search Parameters" section. For example +
+For each resource the is a "Search Parameters" section. Examples: +
 
-- for practitioners https://www.hl7.org/fhir/practitioner.html#search
-- for organizations https://www.hl7.org/fhir/organization.html#search
-- for endpoints https://www.hl7.org/fhir/endpoint.html#search
+- For practitioners https://www.hl7.org/fhir/practitioner.html#search
+- For organizations https://www.hl7.org/fhir/organization.html#search
+- For endpoints https://www.hl7.org/fhir/endpoint.html#search
+- For locations https://www.hl7.org/fhir/location.html#search
 
 An overview about all resources with its search parameters can be found here: 
 https://www.hl7.org/fhir/searchparameter-registry.html +
