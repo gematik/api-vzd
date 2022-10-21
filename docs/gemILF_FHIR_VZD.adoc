@@ -246,6 +246,8 @@ link:../samples/FHIRseach/Search_PractitionerRole_name.adoc[Search_PractitionerR
 ==== FHIR VZD Search results
 The Client can manage the content of the FHIR search response with several parameters. In this section some examples are shown. The full list of parameters for managing search results can be found here: https://www.hl7.org/fhir/search.html#return +
  +
+ 
+===== _include Parameter + 
 The response of the 'FHIR VZD Search with "name" attribute' contains only resources of type "PractitionerRole". +
 With the link:https://www.hl7.org/fhir/search.html#revinclude["_include"] parameter also resources linked with the search result resources are returned: +
  +
@@ -282,5 +284,28 @@ GET [baseUrl]/search/PractitionerRole?practitioner.active=true&practitioner.name
 Response of this Request: 
 link:../samples/FHIRseach/Search_PractitionerRole_name_include.adoc[Search_PractitionerRole_name_include].
  +
+ +
 
+===== _summary Parameter - count the results +  
+Using the parameter link:https://www.hl7.org/fhir/search.html#summary[_summary] the client can request the server to return only a portion of the resources:
+[source]
+--
+GET [baseUrl]/search/PractitionerRole?practitioner.active=true&_summary=count
+--
+
+
+.Table Used search parameters
+|===
+|FHIR search parameter |Parameter Value | Explanation
+
+|_summary
+|count
+|only the number of the matching resources is returned   
+
+|===
+ 
+ 
+Response of this Request: 
+link:../samples/FHIRseach/Search_Result_count.adoc[Search_Result_count].
+ +
 
