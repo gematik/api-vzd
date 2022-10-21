@@ -220,7 +220,7 @@ The behavior of the search parameter depends from the parameter type and is docu
  +
 
 
-==== FHIR VZD Search with "name" attribute
+==== FHIR VZD Search - "name" attribute
 Use the "name" attribute of the resource in the search operation:
 [source]
 --
