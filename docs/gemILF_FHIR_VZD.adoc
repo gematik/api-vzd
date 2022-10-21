@@ -219,19 +219,28 @@ https://www.hl7.org/fhir/searchparameter-registry.html +
 The behavior of the search parameter depends from the parameter type and is documented here: https://www.hl7.org/fhir/search.html#ptypes +
  +
 
-==== FHIR VZD Examples
-To search for people, use "PractitionerRole" as the resource type and at least "practitioner.active=true" as the parameter:
+==== FHIR VZD Search Examples
+===== FHIR VZD Search with "name" attribute
+Use the "name" attribute of the resource in the search operation:
 [source]
 --
-GET [baseUrl]/search/PractitionerRole?practitioner.active=true
+GET [baseUrl]/search/search/PractitionerRole?practitioner.active=true&practitioner.name=Timjamin
 --
 
-[baseUrl]/search/PractitionerRole?_include=PractitionerRole:practitioner&_include=PractitionerRole:location&_include=PractitionerRole:endpoint&practitioner.name=Moritz Wetzel&practitioner.active=true
- +
-_include -> Welche Resourcen zurück gegeben werden +
- +
-Refer to 
-link:../src/plantuml/ClassDiagram.HealthcareService.puml[Example1]
-for more information.
 
+.Table Used search parameters
+|===
+|FHIR search parameter |Parameter Value | Explanation
+
+|practitioner.name
+|Timjamin
+|The string "Timjamin" is searched for attribute "name" of the "practitioner" resource.   
+
+|===
+ 
+ 
+Response of this Request: 
+link:../samples/FHIRseach/Search_PractitionerRole_name.adoc[Search_PractitionerRole_name].
+ +
+The response of this FHIR search request contains only resource of type "PractitionerRole". If you also want the get  
 
