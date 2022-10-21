@@ -204,7 +204,7 @@ GET [baseUrl]/search/PractitionerRole?practitioner.active=true
 Additional parameters can be added to refine the search.
  +
  
-==== FHIR Search Parameters
+==== FHIR Search Parameters - Overview
 FHIR defines which search parameters can be used for each resource. 
 For each resource the is a "Search Parameters" section. Examples: +
 
