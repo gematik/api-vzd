@@ -219,8 +219,8 @@ https://www.hl7.org/fhir/searchparameter-registry.html +
 The behavior of the search parameter depends from the parameter type and is documented here: https://www.hl7.org/fhir/search.html#ptypes +
  +
 
-==== FHIR VZD Search Examples
-===== FHIR VZD Search with "name" attribute
+
+==== FHIR VZD Search with "name" attribute
 Use the "name" attribute of the resource in the search operation:
 [source]
 --
@@ -242,8 +242,12 @@ GET [baseUrl]/search/search/PractitionerRole?practitioner.active=true&practition
 Response of this Request: 
 link:../samples/FHIRseach/Search_PractitionerRole_name.adoc[Search_PractitionerRole_name]. +
  +
-The response of this FHIR search request contains only resource of type "PractitionerRole". +
-With the "_include" parameter also resources linked with the search result resources are returned: +
+ 
+==== FHIR VZD Search results
+The Client can manage the content of the FHIR search response with several parameters. In this section some examples are shown. The full list of parameters for managing search results can be found here: https://www.hl7.org/fhir/search.html#return +
+ +
+The response of the 'FHIR VZD Search with "name" attribute' contains only resources of type "PractitionerRole". +
+With the link:https://www.hl7.org/fhir/search.html#revinclude["_include"] parameter also resources linked with the search result resources are returned: +
  +
  
 [source]
