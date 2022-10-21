@@ -240,7 +240,43 @@ GET [baseUrl]/search/search/PractitionerRole?practitioner.active=true&practition
  
  
 Response of this Request: 
-link:../samples/FHIRseach/Search_PractitionerRole_name.adoc[Search_PractitionerRole_name].
+link:../samples/FHIRseach/Search_PractitionerRole_name.adoc[Search_PractitionerRole_name]. +
  +
-The response of this FHIR search request contains only resource of type "PractitionerRole". If you also want the get  
+The response of this FHIR search request contains only resource of type "PractitionerRole". +
+With the "_include" parameter also resources linked with the search result resources are returned: +
+ +
+ 
+[source]
+--
+GET [baseUrl]/search/PractitionerRole?practitioner.active=true&practitioner.name=Timjamin&_include=PractitionerRole:practitioner&_include=PractitionerRole:location&_include=PractitionerRole:endpoint
+--
+
+
+.Table Used search parameters
+|===
+|FHIR search parameter |Parameter Value | Explanation
+
+|practitioner.name
+|Timjamin
+|The string "Timjamin" is searched for attribute "name" of the "practitioner" resource.   
+
+|_include
+|PractitionerRole:practitioner
+|"practitioner" resources, linked to the "PractitionerRole" resources of the search request are included in the search response.   
+
+|_include
+|PractitionerRole:location
+|"location" resources, linked to the "PractitionerRole" resources of the search request are included in the search response.   
+
+|_include
+|PractitionerRole:endpoint
+|"endpoint" resources, linked to the "PractitionerRole" resources of the search request are included in the search response.   
+
+|===
+ 
+ 
+Response of this Request: 
+link:../samples/FHIRseach/Search_PractitionerRole_name_include.adoc[Search_PractitionerRole_name_include].
+ +
+
 
