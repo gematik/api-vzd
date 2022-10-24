@@ -243,7 +243,7 @@ Response of this Request:
 link:../samples/FHIRseach/Search_PractitionerRole_name.adoc[Search_PractitionerRole_name]. +
  +
  
-==== FHIR VZD Search - "endpoint.payload-type" attribute
+==== FHIR VZD Search - "endpoint.payload-type" attribute (code based search)
 To search a resource which supports a defined type of communication the "endpoint.payload-type" attribute can be used in the search operation:
 [source]
 --
@@ -277,6 +277,43 @@ GET [baseUrl]/search/PractitionerRole?practitioner.active=true&_include=Practiti
  
 Response of this Request: 
 link:../samples/FHIRseach/Search_PractitionerRole_payload-type.adoc[Search_PractitionerRole_payload-type]. +
+ +
+ 
+==== FHIR VZD Search - "endpoint.payload-type" attribute (display text based search)
+For the display text of a coded attribute can be searched with the modifier ":text":
+
+[source]
+--
+GET [baseUrl]/search/PractitionerRole?practitioner.active=true&_include=PractitionerRole:practitioner&_include=PractitionerRole:location&_include=PractitionerRole:endpoint&endpoint.payload-type:text=TI-Messenger chat
+--
+
+
+.Table Used search parameters
+|===
+|FHIR search parameter |Parameter Value | Explanation
+
+|endpoint.payload-type:text
+|TI-Messenger chat
+|The link:https://hl7.org/fhir/endpoint.html#search["payload-type"] is used to searched for resources, supporting the TI-Messenger chat communication. 
+ The definition of the link:https://hl7.org/fhir/endpoint.html["endpoint"] is refined in simplifier for the link:https://simplifier.net/vzd-fhir-directory/["FHIR VZD"]. For the payloadType the link:https://simplifier.net/vzd-fhir-directory/endpointpayloadtypevs["ValueSet EndpointPayloadTypeVS"] imports all values from link:https://simplifier.net/vzd-fhir-directory/endpointdirectorypayloadtype["EndpointDirectoryPayloadType"].
+
+|_include
+|PractitionerRole:practitioner
+|"practitioner" resources, linked to the "PractitionerRole" resources of the search request are included in the search response.   
+
+|_include
+|PractitionerRole:location
+|"location" resources, linked to the "PractitionerRole" resources of the search request are included in the search response.   
+
+|_include
+|PractitionerRole:endpoint
+|"endpoint" resources, linked to the "PractitionerRole" resources of the search request are included in the search response.   
+
+|===
+ 
+ 
+Response of this Request: 
+link:../samples/FHIRseach/Search_PractitionerRole_payload-type_text.adoc[Search_PractitionerRole_payload-type:text]. +
  +
  
  
