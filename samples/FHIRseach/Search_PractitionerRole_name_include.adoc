@@ -1,7 +1,7 @@
 *FHIR search request*
 [source]
 ----
-https://fhir-directory-test.vzd.ti-dienste.de/search/PractitionerRole?practitioner.active=true&practitioner.name=Timjamin&_include=PractitionerRole:practitioner&_include=PractitionerRole:location&_include=PractitionerRole:endpoint
+https://fhir-directory-test.vzd.ti-dienste.de/search/PractitionerRole?practitioner.active=true&practitioner.name=Timjamin&_include=PractitionerRole:practitioner&_include=PractitionerRole:location&_include=PractitionerRole:endpoint&endpoint.status=active
 ----
 *FHIR search response*
 [source]
