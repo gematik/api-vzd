@@ -240,7 +240,7 @@ GET [baseUrl]/search/search/PractitionerRole?practitioner.active=true&practition
  
  
 Response of this Request: 
-link:../samples/FHIRseach/Search_PractitionerRole_name.adoc[Search_PractitionerRole_name]. +
+link:../samples/FHIRseach/Search_PractitionerRole_name.adoc[Search_PractitionerRole_name] +
  +
  
 ==== FHIR VZD Search - "endpoint.payload-type" attribute (code based search)
@@ -276,11 +276,12 @@ GET [baseUrl]/search/PractitionerRole?practitioner.active=true&_include=Practiti
  
  
 Response of this Request: 
-link:../samples/FHIRseach/Search_PractitionerRole_payload-type.adoc[Search_PractitionerRole_payload-type]. +
+link:../samples/FHIRseach/Search_PractitionerRole_payload-type.adoc[Search_PractitionerRole_payload-type] +
  +
+
  
 ==== FHIR VZD Search - "endpoint.payload-type" attribute (display text based search)
-For the display text of a coded attribute can be searched with the modifier ":text":
+For the display text of a coded attribute can be searched with the modifier link:https://hl7.org/fhir/search.html#modifiers[":text"]:
 
 [source]
 --
@@ -313,10 +314,60 @@ GET [baseUrl]/search/PractitionerRole?practitioner.active=true&_include=Practiti
  
  
 Response of this Request: 
-link:../samples/FHIRseach/Search_PractitionerRole_payload-type_text.adoc[Search_PractitionerRole_payload-type:text]. +
+link:../samples/FHIRseach/Search_PractitionerRole_payload-type_text.adoc[Search_PractitionerRole_payload-type:text] +
  +
  
+==== FHIR VZD Search - complex search request
+Search in a city for a practitioner with a defined qualification and offers the communication via TI-Messenger:
+
+[source]
+--
+GET [baseUrl]/search/PractitionerRole?practitioner.active=true&_include=PractitionerRole:practitioner&_include=PractitionerRole:location&_include=PractitionerRole:endpoint&location.address-city=Gelsenkirchen&location.address=45884&practitioner.qualification=1.2.276.0.76.4.241&endpoint.payload-type=tim-chat
+--
+
+
+.Table Used search parameters
+|===
+|FHIR search parameter |Parameter Value | Explanation
+
+|_include
+|PractitionerRole:practitioner
+|"practitioner" resources, linked to the "PractitionerRole" resources of the search request are included in the search response.   
+
+|_include
+|PractitionerRole:location
+|"location" resources, linked to the "PractitionerRole" resources of the search request are included in the search response.   
+
+|_include
+|PractitionerRole:endpoint
+|"endpoint" resources, linked to the "PractitionerRole" resources of the search request are included in the search response.   
+
+|location.address-city
+|Gelsenkirchen
+|Search for practitioners with search parameter link:https://www.hl7.org/fhir/location.html#search["address-city"] in the city "Gelsenkirchen". "address-city" limits the search to the address attribute "city", search parameter "address" searches all address attributes for the string.
+
+|location.address
+|45884
+|Search for practitioners with search parameter link:https://www.hl7.org/fhir/location.html#search["address"] in all address attributes for "45884". 
+
+|practitioner.qualification
+|1.2.276.0.76.4.241
+|Search for practitioners with search parameter "qualification" for qualification code "1.2.276.0.76.4.241". +
+Note: For humans a readable text should be used for selection and display of coded attributes.
+
+|endpoint.payload-type
+|tim-chat
+|The link:https://hl7.org/fhir/endpoint.html#search["payload-type"] is used to searched for resources, supporting the TI-Messenger chat communication. 
+ The definition of the link:https://hl7.org/fhir/endpoint.html["endpoint"] is refined in simplifier for the link:https://simplifier.net/vzd-fhir-directory/["FHIR VZD"]. For the payloadType the link:https://simplifier.net/vzd-fhir-directory/endpointpayloadtypevs["ValueSet EndpointPayloadTypeVS"] imports all values from link:https://simplifier.net/vzd-fhir-directory/endpointdirectorypayloadtype["EndpointDirectoryPayloadType"].
+
+|===
  
+ 
+Response of this Request: 
+link:../samples/FHIRseach/Search_PractitionerRole_complex.adoc[Search_PractitionerRole_complex] +
+ +
+ 
+
 ==== FHIR VZD Search results
 The Client can manage the content of the FHIR search response with several parameters. In this section some examples are shown. The full list of parameters for managing search results can be found here: https://www.hl7.org/fhir/search.html#return +
  +
@@ -356,7 +407,7 @@ GET [baseUrl]/search/PractitionerRole?practitioner.active=true&practitioner.name
  
  
 Response of this Request: 
-link:../samples/FHIRseach/Search_PractitionerRole_name_include.adoc[Search_PractitionerRole_name_include].
+link:../samples/FHIRseach/Search_PractitionerRole_name_include.adoc[Search_PractitionerRole_name_include]
  +
  +
 
@@ -380,6 +431,6 @@ GET [baseUrl]/search/PractitionerRole?practitioner.active=true&_summary=count
  
  
 Response of this Request: 
-link:../samples/FHIRseach/Search_Result_count.adoc[Search_Result_count].
+link:../samples/FHIRseach/Search_Result_count.adoc[Search_Result_count]
  +
 
