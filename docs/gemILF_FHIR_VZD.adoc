@@ -247,7 +247,7 @@ link:../samples/FHIRseach/Search_PractitionerRole_name.adoc[Search_PractitionerR
 To search a resource which supports a defined type of communication the "endpoint.payload-type" attribute can be used in the search operation:
 [source]
 --
-GET [baseUrl]/search/PractitionerRole?practitioner.active=true&_include=PractitionerRole:practitioner&_include=PractitionerRole:location&_include=PractitionerRole:endpoint&endpoint.payload-type=tim-chat
+GET [baseUrl]/search/PractitionerRole?practitioner.active=true&_include=PractitionerRole:practitioner&_include=PractitionerRole:location&_include=PractitionerRole:endpoint&endpoint.payload-type=tim-chat&endpoint.status=active
 --
 
 
@@ -272,6 +272,10 @@ GET [baseUrl]/search/PractitionerRole?practitioner.active=true&_include=Practiti
 |PractitionerRole:endpoint
 |"endpoint" resources, linked to the "PractitionerRole" resources of the search request are included in the search response.   
 
+|endpoint.status
+|active
+|The search parameter link:https://hl7.org/fhir/endpoint.html#search["status"] ensures, that only active endpoints are returned. 
+
 |===
  
  
@@ -285,7 +289,7 @@ For the display text of a coded attribute can be searched with the modifier link
 
 [source]
 --
-GET [baseUrl]/search/PractitionerRole?practitioner.active=true&_include=PractitionerRole:practitioner&_include=PractitionerRole:location&_include=PractitionerRole:endpoint&endpoint.payload-type:text=TI-Messenger chat
+GET [baseUrl]/search/PractitionerRole?practitioner.active=true&_include=PractitionerRole:practitioner&_include=PractitionerRole:location&_include=PractitionerRole:endpoint&endpoint.payload-type:text=TI-Messenger chat&endpoint.status=active
 --
 
 
@@ -310,6 +314,10 @@ GET [baseUrl]/search/PractitionerRole?practitioner.active=true&_include=Practiti
 |PractitionerRole:endpoint
 |"endpoint" resources, linked to the "PractitionerRole" resources of the search request are included in the search response.   
 
+|endpoint.status
+|active
+|The search parameter link:https://hl7.org/fhir/endpoint.html#search["status"] ensures, that only active endpoints are returned. 
+
 |===
  
  
@@ -322,7 +330,7 @@ Search in a city for a practitioner with a defined qualification and offers the 
 
 [source]
 --
-GET [baseUrl]/search/PractitionerRole?practitioner.active=true&_include=PractitionerRole:practitioner&_include=PractitionerRole:location&_include=PractitionerRole:endpoint&location.address-city=Gelsenkirchen&location.address=45884&practitioner.qualification=1.2.276.0.76.4.241&endpoint.payload-type=tim-chat
+GET [baseUrl]/search/PractitionerRole?practitioner.active=true&_include=PractitionerRole:practitioner&_include=PractitionerRole:location&_include=PractitionerRole:endpoint&location.address-city=Gelsenkirchen&location.address=45884&practitioner.qualification=1.2.276.0.76.4.241&endpoint.payload-type=tim-chat&endpoint.status=active
 --
 
 
@@ -359,6 +367,10 @@ Note: For humans a readable text should be used for selection and display of cod
 |tim-chat
 |The link:https://hl7.org/fhir/endpoint.html#search["payload-type"] is used to searched for resources, supporting the TI-Messenger chat communication. 
  The definition of the link:https://hl7.org/fhir/endpoint.html["endpoint"] is refined in simplifier for the link:https://simplifier.net/vzd-fhir-directory/["FHIR VZD"]. For the payloadType the link:https://simplifier.net/vzd-fhir-directory/endpointpayloadtypevs["ValueSet EndpointPayloadTypeVS"] imports all values from link:https://simplifier.net/vzd-fhir-directory/endpointdirectorypayloadtype["EndpointDirectoryPayloadType"].
+
+|endpoint.status
+|active
+|The search parameter link:https://hl7.org/fhir/endpoint.html#search["status"] ensures, that only active endpoints are returned. 
 
 |===
  
