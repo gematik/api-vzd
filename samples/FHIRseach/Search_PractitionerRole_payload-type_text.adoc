@@ -1,7 +1,7 @@
 *FHIR search request*
 [source]
 ----
-https://fhir-directory-test.vzd.ti-dienste.de/search/PractitionerRole?practitioner.active=true&_include=PractitionerRole:practitioner&_include=PractitionerRole:location&_include=PractitionerRole:endpoint&endpoint.payload-type:text=TI-Messenger chat
+https://fhir-directory-test.vzd.ti-dienste.de/search/PractitionerRole?practitioner.active=true&_include=PractitionerRole:practitioner&_include=PractitionerRole:location&_include=PractitionerRole:endpoint&endpoint.payload-type:text=TI-Messenger chat&endpoint.status=active
 ----
 *FHIR search response*
 [source]
