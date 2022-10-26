@@ -275,6 +275,8 @@ GET [baseUrl]/search/PractitionerRole?practitioner.active=true&_include=Practiti
 |endpoint.status
 |active
 |The search parameter link:https://hl7.org/fhir/endpoint.html#search["status"] ensures, that only active endpoints are returned. 
+If endpoints are needed, then only active endpoints have to be used/displayed. This has to be ensured by all clients.
+Please note that with this parameter resources with no active endpoints are not returned.
 
 |===
  
@@ -317,6 +319,8 @@ GET [baseUrl]/search/PractitionerRole?practitioner.active=true&_include=Practiti
 |endpoint.status
 |active
 |The search parameter link:https://hl7.org/fhir/endpoint.html#search["status"] ensures, that only active endpoints are returned. 
+If endpoints are needed, then only active endpoints have to be used/displayed. This has to be ensured by all clients.
+Please note that with this parameter resources with no active endpoints are not returned.
 
 |===
  
@@ -371,6 +375,8 @@ Note: For humans a readable text should be used for selection and display of cod
 |endpoint.status
 |active
 |The search parameter link:https://hl7.org/fhir/endpoint.html#search["status"] ensures, that only active endpoints are returned. 
+If endpoints are needed, then only active endpoints have to be used/displayed. This has to be ensured by all clients.
+Please note that with this parameter resources with no active endpoints are not returned.
 
 |===
  
@@ -391,7 +397,7 @@ With the link:https://www.hl7.org/fhir/search.html#revinclude["_include"] parame
  
 [source]
 --
-GET [baseUrl]/search/PractitionerRole?practitioner.active=true&practitioner.name=Timjamin&_include=PractitionerRole:practitioner&_include=PractitionerRole:location&_include=PractitionerRole:endpoint
+GET [baseUrl]/search/PractitionerRole?practitioner.active=true&practitioner.name=Timjamin&_include=PractitionerRole:practitioner&_include=PractitionerRole:location&_include=PractitionerRole:endpoint&endpoint.status=active
 --
 
 
@@ -414,6 +420,12 @@ GET [baseUrl]/search/PractitionerRole?practitioner.active=true&practitioner.name
 |_include
 |PractitionerRole:endpoint
 |"endpoint" resources, linked to the "PractitionerRole" resources of the search request are included in the search response.   
+
+|endpoint.status
+|active
+|The search parameter link:https://hl7.org/fhir/endpoint.html#search["status"] ensures, that only active endpoints are returned. 
+If endpoints are needed, then only active endpoints have to be used/displayed. This has to be ensured by all clients.
+Please note that with this parameter resources with no active endpoints are not returned.
 
 |===
  
