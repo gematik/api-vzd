@@ -385,6 +385,40 @@ Response of this Request:
 link:../samples/FHIRseach/Search_PractitionerRole_complex.adoc[Search_PractitionerRole_complex] +
  +
  
+==== FHIR VZD Search - HealtcareService by telematikID
+Search an organization with a telematikID:
+
+[source]
+--
+GET [baseUrl]/search/HealthcareService?organization.active=true&_include=*&endpoint.status=active&organization.identifier=1-2arvtst-ap000052
+--
+
+
+.Table Used search parameters
+|===
+|FHIR search parameter |Parameter Value | Explanation
+
+|_include
+*
+|All resources, linked to the "HealthcareService" resources of the search request are included in the search response.   
+
+|endpoint.status
+|active
+|The search parameter link:https://hl7.org/fhir/endpoint.html#search["status"] ensures, that only active endpoints are returned. 
+If endpoints are needed, then only active endpoints have to be used/displayed. This has to be ensured by all clients.
+Please note that with this parameter resources with no active endpoints are not returned.
+
+|organization.identifier
+|1-2arvtst-ap000052
+|Search for the organization with search parameter "identifier" for telematikID "1-2arvtst-ap000052". +
+Note: A resourcew may contain several values in the "identifier". This request searches in all identifier values, independent from the identifier coding system.
+
+|===
+ 
+Response of this Request: 
+link:../samples/FHIRseach/Search_HealthcareService_telematikID.adoc[Search_HealthcareService_telematikID] +
+ +
+ 
 
 ==== FHIR VZD Search results
 The Client can manage the content of the FHIR search response with several parameters. In this section some examples are shown. The full list of parameters for managing search results can be found here: https://www.hl7.org/fhir/search.html#return +
