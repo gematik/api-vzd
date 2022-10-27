@@ -8,9 +8,9 @@ https://fhir-directory-test.vzd.ti-dienste.de/search/PractitionerRole?practition
 ----
 {
     "resourceType": "Bundle",
-    "id": "ecaff2bc-05d0-4944-9e00-50e551986936",
+    "id": "4c911946-c195-46b7-a465-c54b226e8b9d",
     "meta": {
-        "lastUpdated": "2022-10-21T14:28:50.169+02:00"
+        "lastUpdated": "2022-10-27T14:30:18.998+02:00"
     },
     "type": "searchset",
     "total": 83,
