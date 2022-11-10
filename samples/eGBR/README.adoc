@@ -1,0 +1,144 @@
+= Testdaten für Verzeichnisdienst
+
+== eGBR
+
+=== Bildung der Telematik-ID
+
+Die Telematik-ID im eGBR wird wie folgt gebildet:
+
+`<Sektorales Kennzeichen>-<Herausgeber>.<Kartentyp>.<eGBR-ID>`
+
+==== Sektorales Kennzeichen
+
+Zugehörigkeit des Karteninhabers zu einem Sektor, hier: `10` für _Weitere Leistungserbringer des Gesundheitswesens und deren Institutionen_ gem. gemSpec_PKI der gematik
+
+==== Herausgeber
+
+Zweistelliges Kennzeichen der ausstellenden Institution (Herausgeber)
+
+`eGBR = 67`
+
+==== Kartentyp
+
+Dreistelliges Kennzeichen für den Kartentyp:
+
+*Institutionskarte (SMC-B)*
+
+* `245` Betriebsstätte Gesundheits-, Kranken- und Altenpflege
+* `246` Betriebsstätte Geburtshilfe
+* `247` Betriebsstätte Physiotherapie
+
+*Heilberufeausweis (eHBA)*
+
+* `232` Gesundheits- und Krankenpfleger/-in, Gesundheits- und Kinderkrankenpfleger/-in
+* `233` Altenpfleger/-in
+* `234` Pflegefachfrauen und Pflegefachmänner
+* `235` Hebamme
+* `236` Physiotherapeut/-in
+ 
+==== eGBR-ID
+
+eGBR-interner, eindeutiger Bezeichner (Länge 8 Zeichen); z. B. laufende Nummer.
+
+Muss aus Zeichen der Wertemenge {0123456789-.} bestehen.
+
+Darf nicht länger als 8 Stellen sein. Wird bei Bedarf mit Nullen aufgefüllt.
+
+.Beispiel
+----
+10-67.246.80001234
+----
+
+=== Beispiele Betriebsstätte Gesundheits-, Kranken- und Altenpflege
+[source,json]
+----
+{
+  "telematikID": "10-67.245.91000001",
+  "holder": [ "egbr", "dtrust" ],
+  "displayName": "Pflegestation Marktheidenfeld",
+  "cn": "Pflegestation Marktheidenfeld",
+  "streetAddress": "Esplanade 99",
+  "postalCode": "97823",
+  "localityName": "Marktheidenfeld",
+  "stateOrProvinceName": "Bayern",
+  "countryCode": "DE"
+}
+----
+
+[source,json]
+----
+{
+  "telematikID": "10-67.245.91000002",
+  "holder": [ "egbr", "dtrust" ],
+  "displayName": "Moers Care GmbH",
+  "cn": "Moers Care GmbH",
+  "streetAddress": "Gotzkowskystraße 86",
+  "postalCode": "47445",
+  "localityName": "Moers",
+  "stateOrProvinceName": "Nordrhein-Westfalen",
+  "countryCode": "DE"
+}
+----
+
+=== Beispiele Betriebsstätte Geburtshilfe
+
+[source,json]
+----
+{
+  "telematikID": "10-67.246.91000001",
+  "holder": [ "egbr", "dtrust" ],
+  "displayName": "Frauenheilkunde und Geburtshilfe Breunsdorf",
+  "cn": "Frauenheilkunde und Geburtshilfe Breunsdorf",
+  "streetAddress": "Alt-Moabit 59",
+  "postalCode": "04574",
+  "localityName": "Breunsdorf",
+  "stateOrProvinceName": "Sachsen",
+  "countryCode": "DE"
+}
+----
+
+[source,json]
+----
+{
+  "telematikID": "10-67.246.91000002",
+  "holder": [ "egbr", "dtrust" ],
+  "displayName": "Geburtsklinik am Leopoldsee",
+  "cn": "Geburtsklinik am Leopoldsee",
+  "streetAddress": "Leopoldstraße 24",
+  "postalCode": "12305",
+  "localityName": "Berlin",
+  "stateOrProvinceName": "Berlin",
+  "countryCode": "DE"
+}
+----
+
+=== Beispiele Betriebsstätte Physiotherapie
+[source,json]
+----
+{
+  "telematikID": "10-67.247.91000001",
+  "holder": [ "egbr", "dtrust" ],
+  "displayName": "Praxis Lukas Otís",
+  "cn": "Praxis Lukas Otís",
+  "streetAddress": "Güntzelstrasse 5",
+  "postalCode": "54346",
+  "localityName": "Mehring",
+  "stateOrProvinceName": "Rheinland-Pfalz",
+  "countryCode": "DE"
+}
+----
+
+[source,json]
+----
+{
+  "telematikID": "10-67.247.91000002",
+  "holder": [ "egbr", "dtrust" ],
+  "displayName": "Physiotherapie Martin Tangerðal",
+  "cn": "Physiotherapie Martin Tangerðal",
+  "streetAddress": "An der Schillingbrucke 51",
+  "postalCode": "88456",
+  "localityName": "Ingoldingen",
+  "stateOrProvinceName": "Baden-Württemberg",
+  "countryCode": "DE"
+}
+----
