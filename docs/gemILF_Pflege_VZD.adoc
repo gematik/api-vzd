@@ -86,7 +86,7 @@ Neu für eGBR HBA und SMC-B |gematik
 - Datenerfassung für Apotheken erweitert
 |gematik
 
-|1.5.5 |30.09.2022 |4 |
+|1.5.5 |10.11.2022 |4 |
 - „read only“ Zugang aufgenommen (Kap. 3.1.1, 3.2) - C_11187 +
 - Pflege von Attribut personalEntry optimiert - C_11227 +
 - Attribute active und meta	aufgenommen in Attributtabellen - C_11183 +
@@ -94,7 +94,10 @@ Neu für eGBR HBA und SMC-B |gematik
 - Operation readLog in Kap. 3.3.4 aufgenommen - C_11221 +
 - Attribut changeDateTime vereinheitlicht (Kap. 4) - C_11183 +
 - Attributtabellen aktualisiert: notBefore, notAfter (Kap. 4) - C_11179 +
-- Beschreibung der Attribute aktualisiert (givenName, sn, cn, displayName, entryType) - DIR-214, DIR-236
+- Beschreibung der Attribute aktualisiert +
+  (givenName, sn, cn, displayName, entryType) - DIR-214, DIR-236 +
+- Ergänzungen von dktig in Kap. 4.6 - DIR-339 +
+- Anpassungen in Kap. 4.14 - DIR-339
 |gematik
 
 |===
@@ -1248,9 +1251,9 @@ Wird vom VZD automatisch eingetragen.
 {empty} +
 {empty} +
 
-=== DKG (SMC-B-Eintrag)
+=== DKTIG (i.A.d.DKG) - Krankenhaus, Krankenhausapotheke, Vorsorge-und Rehabilitationseinrichtungen (SMC-B-Eintrag)
 
-Tabelle 6: Tab_VZD_Datenbeschreibung_DKG
+Tabelle 6: Tab_VZD_Datenbeschreibung_DKTIG (DKG)
 
 [width="100%",cols="18%,10%,72%",options="header",]
 |===
@@ -1273,18 +1276,18 @@ Bei Nutzung der Schreiboperationen von Schnittstelle I_Directory_Administration 
 Bezeichner: Anderer Name +
 Wird vom VZD aus dem Zertifikatsattribut otherName übernommen.
 |*displayName* |obligatorisch |Bezeichner: Anzeigename +
-Dieses Attribut wird genutzt um den Namen der Betriebsstätte gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut um die Suche einzuschränken und bei der Darstellung des Ergebnisses). +
+Dieses Attribut wird genutzt um den Namen der Institution gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut um die Suche einzuschränken und bei der Darstellung des Ergebnisses). +
  +
 Dieses Attribut wird durch den VZD nicht automatisch aus dem Zertifikat ermittelt. Es kann über die Schreiboperationen von Schnittstelle I_Directory_Administration gesetzt werden. Wird über die Operation  add_Directory_Entry von Schnittstelle I_Directory_Administration für displayName kein Inhalt geliefert, so wird in displayName der Wert "-" gesetzt.
-|*streetAddress* |obligatorisch |Bezeichner: Straße und Hausnummer des Krankenhauses
-|*postalCode* |obligatorisch |Bezeichner: Postleitzahl des Krankenhauses
-|*localityName * |obligatorisch |Bezeichner: Ort des Krankenhauses
-|*stateOrProvinceName * |optional |Bezeichner: Bundesland des Krankenhauses
+|*streetAddress* |obligatorisch |Bezeichner: Straße und Hausnummer der Institution
+|*postalCode* |obligatorisch |Bezeichner: Postleitzahl der Institution
+|*localityName * |obligatorisch |Bezeichner: Ort der Institution
+|*stateOrProvinceName * |optional |Bezeichner: Bundesland der Institution
 |*countryCode* |optional |Siehe TAB_VZD_Wertebereiche_der_Attribute
 |*organization* |optional |Bezeichner: Organisation +
 Dieses Attribut ist ein optionales zweites Namensattribut und wird befüllt bei Bedarf. Ebenso wie displayName ist es geeignet, um nach einem Namen zu filtern und ihn im Suchergebnis anzuzeigen.
-|*domainID* |optional |Bezeichner: Betriebsstättennummer des Krankenhauses +
-Das Attribut kann nur einmal vorkommen. Der Wert wird von der DKG vergeben.
+|*domainID* |optional |Bezeichner: Institutionskennzeichen +
+Das Attribut kann nur einmal vorkommen. Der Wert wird von der Arge IK (Sankt Augustin) vergebenen.
 |*specialization* |obligatorisch |Bezeichner: Fachgebiet +
 Kann mehrfach vorkommen (1..100). +
 *Für Einträge der Leistungserbringer-Organisationen (SMC-B Eintrag)* +
@@ -2424,23 +2427,33 @@ Dieses Attribut wird durch den VZD nicht automatisch aus dem Zertifikat ermittel
 |*streetAddress* |obligatorisch |Bezeichner: Straße und Hausnummer (wenn verfügbar) der Leistungserbringerinstitution
 |*postalCode* |obligatorisch |Bezeichner: Postleitzahl der Leistungserbringerinstitution
 |*localityName* |obligatorisch |Bezeichner: Ort der Leistungserbringerinstitution
-|*stateOrProvinceName* |obligatorisch |Bezeichner: Bundesland der Leistungserbringerinstitution
+|*stateOrProvinceName* |optional |Bezeichner: Bundesland der Leistungserbringerinstitution
 |*countryCode* |optional |Siehe TAB_VZD_Wertebereiche_der_Attribute
 |*organization* |optional |Bezeichner: Organisation +
 Dieses Attribut ist ein optionales zweites Namensattribut und wird befüllt bei Bedarf. Ebenso wie displayName ist es geeignet, um nach einem Namen zu filtern und ihn im Suchergebnis anzuzeigen.
-|*domainID* |obligatorisch |nicht belegt
+|*domainID* |optional |nicht belegt
 |*specialization* |obligatorisch |Bezeichner: Fachgebiet +
 Kann mehrfach vorkommen (1..100). +
 Der Wertebereich entspricht den in HL7 definierten und für ePA festgelegten Werten ( https://wiki.hl7.de/index.php?title=IG:Value_Sets_f%C3%BCr_XDS#DocumentEntry.practiceSettingCode[+++https://wiki.hl7.de/index.php?title=IG:Value_Sets_f%C3%BCr_XDS#DocumentEntry.practiceSettingCode+++]). +
 
 urn:psc:<OID Codesystem:Code> +
  +
-Beispiel für Arbeitsmedizin:
+Standardbelegung: +
+Betriebsstätte Arbeits- und Betriebsmedizin: +
 urn:psc:1.3.6.1.4.1.19376.3.276.1.5.4:ARBE +
-Beispiel für öffentlichen Gesundheitsdienst:
+Betriebsstätte Öffentlicher Gesundheitsdienst: +
 urn:psc:1.3.6.1.4.1.19376.3.276.1.5.4:GESU +
-Beispiel für Zahnmedizin: urn:psc:1.3.6.1.4.1.19376.3.276.1.5.4:MKZH +
-Beispiel für Allgemeinmedizin: urn:psc:1.3.6.1.4.1.19376.3.276.1.5.4:ALLG +
+Betriebsstätte Privat-Arzt: +
+urn:psc:1.3.6.1.4.1.19376.3.276.1.5.4:CHIR +
+Betriebsstätte Privat-Zahnarzt: +
+urn:psc:1.3.6.1.4.1.19376.3.276.1.5.4:MKZH +
+Betriebsstätte Privat-Psychotherapeut: +
+urn:psc:1.3.6.1.4.1.19376.3.276.1.5.4:PST +
+Betriebsstätte Eigeneinrichtung $140 SGB V: +
+urn:psc:1.3.6.1.4.1.19376.3.276.1.5.4:ALLG +
+Betriebsstätte Sanitätsdienst Bundeswehr: +
+urn:psc:1.3.6.1.4.1.19376.3.276.1.5.4:ALLG
+
 |*usage* |optional |Das Attribut usage wird nicht verwendet.
 |*maxKOMLEadr* |optional |Maximale Anzahl von Mail-Adressen in den KOM-LE-Fachdaten. +
 Falls kein Wert eingetragen wurde, können beliebig viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden. +
