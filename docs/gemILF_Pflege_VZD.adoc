@@ -84,6 +84,7 @@ Neu für eGBR HBA und SMC-B |gematik
 - Attribut userCertificate.active ergänzt +
 - "4.14 gematik - Weitere ärztliche Institutionen (SMC-B-Eintrag)" ergänzt +
 - Datenerfassung für Apotheken erweitert
+
 |gematik
 
 |===
