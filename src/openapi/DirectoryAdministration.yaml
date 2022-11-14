@@ -3,7 +3,10 @@ info:
   title: I_Directory_Administration
   description: REST Schnittstelle zur Pflege der Verzeichniseinträge.
               Über diese Schnittstelle können Verzeichniseinträge inklusive Zertifikaten erzeugt, aktualisiert und gelöscht werden. Die Administration von Fachdaten erfolgt über Schnittstelle I_Directory_Application_Maintenance und wird durch die Fachanwendungen durchgeführt. Lesender Zugriff auf die Fachdaten ist mit Operation getDirectoryEntries in vorliegender Schnittstelle möglich.
-  version: 1.9.3
+  version: 1.9.4
+  # Änderungen in Version 1.9.4
+  #  - Attribute active und meta in Operationen read_Directory_Entry_for_Sync und read_Directory_Entry_for_Sync_paging ergänzt
+  #
   # Änderungen in Version 1.9.3
   #  - "description" der Operationen mit Beschreibung der Attributbelegung überarbeitet 
   #  - Attribut usage aus Schema userCertificate und Operationen entfernt
@@ -780,6 +783,19 @@ paths:
         schema:
           type: boolean
           example: true
+      - name: active
+        in: query
+        description: Erlaubt die Suche mit Hilfe des Attributs baseDirectoryEntry.active.
+        schema:
+          type: boolean
+      - name: meta
+        in: query
+        description: |
+          Erlaubt die Suche mit Hilfe des Attributs baseDirectoryEntry.meta
+          
+          Selektiert alle Datensätze, deren Attribut meta den angegebenen String in einem Wert des arry's enthält.
+        schema:
+          type: string  
 
       responses:
         200:
@@ -1048,6 +1064,20 @@ paths:
         schema:
           type: boolean
           example: true
+      - name: active
+        in: query
+        description: Erlaubt die Suche mit Hilfe des Attributs baseDirectoryEntry.active.
+        schema:
+          type: boolean
+      - name: meta
+        in: query
+        description: |
+          Erlaubt die Suche mit Hilfe des Attributs baseDirectoryEntry.meta
+          
+          Selektiert alle Datensätze, deren Attribut meta den angegebenen String in einem Wert des arry's enthält.
+        schema:
+          type: string  
+
     # Paging Parameter entsprechend https://tools.ietf.org/html/rfc2696
     # Paging ist nur für eigene Verzeichniseinträge erlaubt. Deshalb muss bei
     # Verwendung des Pagings zwingend der "holder" Suchparameter angegeben werden 
