@@ -1,5 +1,5 @@
-CodeSystem: HealthcareServiceTypeCS
-Id: HealthcareServiceTypeCS
+CodeSystem: PharmacyHealthcareServiceTypeCS
+Id: PharmacyHealthcareServiceTypeCS
 Title: "HealthcareService Type"
 Description: "Type codes of HealthcareServices"
 * insert Meta
