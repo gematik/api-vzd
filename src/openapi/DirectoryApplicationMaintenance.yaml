@@ -11,6 +11,7 @@ info:
   # Änderungen in Version 1.2.3
   #  - Attribut usage aus Schema userCertificate und Operationen entfernt
   #    (wurde nicht mehr genutzt)
+  #  - Operation readLog: Erlaubte Parameter für Suchanfragen in Kommentaren erläutert
   # 
   # Änderungen in Version 1.2.2
   #  - Operation readLog: Parameter holder umbenannt in clientID 
@@ -761,6 +762,18 @@ paths:
       summary: Log von Verzeichniseinträgen lesen
       description: Liefert die Log Daten alle zum Filter passenden Verzeichniseinträge. Die angegebenen Parameter werden mit logischen UND verknüpft.
       operationId: readLog
+#
+# Für Operation readLog werden folgende Kombinationen der Suchparameter erlaubt:
+#      - UID + logTimeFrom (optional) +logTimeTo (optional)
+#      - *telematikID* + logTimeFrom (optional) +logTimeTo (optional)
+#      - *clientID* + logTimeFrom (optional) +logTimeTo (optional)
+#      - operation + logTimeFrom (optional) +logTimeTo (optional)
+#      - noDataChanged + logTimeFrom (optional) +logTimeTo (optional)
+#      - logTimeFrom +logTimeTo
+#      - logTimeFrom
+#      - logTimeTo
+#   Andere Kombinationen der Suchparameter werden mit 400 bad request beantwortet.
+#
 # Für die Leseoperationen read_Directory_Entry, read_Directory_Entry_for_Sync,
 # read_Directory_Entry_for_Sync_paging und readLog der Schnittstellen I_Directory_Administration 
 # und I_Directory_Application_Maintenance
@@ -841,6 +854,7 @@ paths:
                   $ref: '#/components/schemas/LogEntries'
         400:
           description: Bad Request
+                    # z.B. Kombinationen der Suchparameter nicht erlaubt
           content:
             application/json:
               schema:
