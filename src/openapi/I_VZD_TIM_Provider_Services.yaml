@@ -2,6 +2,7 @@ openapi: 3.0.1
 info:
   title: I_VZD_TIM_Provider_Services
   description: REST interface to retrieve the TI-Messenger federation list and to administrate the TI-Messenger domains.
+
   version: 1.2.0
 
   # version 1.2.0
@@ -117,6 +118,7 @@ paths:
             schema:
              type: string
              format: binary
+
         204:
           description: No Content
                     # if the version of the list is less than or equal to the version parameter of the request
@@ -151,12 +153,12 @@ paths:
       tags:
       - whereIs
       summary: Checks in which directory part the MXID is located.
-      description: This operation returns the directory part, to which the hash of the MXId in the request belongs.
+      description: This operation returns the directory part, to which MXId in the request belongs.
       operationId: whereIs
       parameters:
-      - name: hash
+      - name: mxid
         in: query
-        description: hash of the MXID (MXID in URL Form)
+        description: MXID (MXID in URL Form)
         schema:
           type: string
 
