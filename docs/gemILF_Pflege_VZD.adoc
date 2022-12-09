@@ -864,7 +864,7 @@ Tabelle 3: Tab_VZD_Datenbeschreibung_KZVen
 |===
 |*LDAP-Directory Attribut* |*Pflichtfeld aus Sicht Pflege und Nutzung?* |*Erläuterung*
 |*givenName* |optional |Wird für SMC-B nicht verwendet.
-|*sn* |optional | Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
+|*sn* |optional a| Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
  +
 Verhalten der Befüllung des Attributs bei Nutzung der Operationen
 
@@ -1012,7 +1012,7 @@ Tabelle 4: Tab_VZD_Datenbeschreibung_Apotheken_SMC-B
 |===
 |*LDAP-Directory Attribut* |*Pflichtfeld aus Sicht Pflege und Nutzung?* |*Erläuterung*
 |*givenName* |optional |Wird für SMC-B nicht verwendet.
-|*sn* |optional | Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
+|*sn* |optional a| Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
  +
 Verhalten der Befüllung des Attributs bei Nutzung der Operationen
 
@@ -1163,7 +1163,7 @@ Wird vom VZD aus dem Zertifikatsattribut givenName übernommen, wenn der Client 
 Wird über die Schreiboperationen von Schnittstelle I_Directory_Administration für givenName ein Inhalt geliefert, so dieser Wert für das Attribut gesetzt. +
  +
 Wird dem Verzeichniseintrag ein neues Zertifikat hinzu gefügt, wird der aktuelle Wert des Attributs durch der Wert aus Zertifikatsattribut givenName überschrieben.
-|*sn* |optional |Bezeichner: Nachname +
+|*sn* |optional a|Bezeichner: Nachname +
 Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
  +
 Verhalten der Befüllung des Attributs bei Nutzung der Operationen
@@ -1307,7 +1307,7 @@ Tabelle 6: Tab_VZD_Datenbeschreibung_DKTIG (DKG)
  |*Erläuterung* +
 
 |*givenName* |optional |Wird für SMC-B nicht verwendet.
-|*sn* |optional | Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
+|*sn* |optional a| Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
  +
 Verhalten der Befüllung des Attributs bei Nutzung der Operationen
 
@@ -1447,7 +1447,7 @@ Wird vom VZD aus dem Zertifikatsattribut givenName übernommen, wenn der Client 
 Wird über die Schreiboperationen von Schnittstelle I_Directory_Administration für givenName ein Inhalt geliefert, so dieser Wert für das Attribut gesetzt. +
  +
 Wird dem Verzeichniseintrag ein neues Zertifikat hinzu gefügt, wird der aktuelle Wert des Attributs durch der Wert aus Zertifikatsattribut givenName überschrieben.
-|*sn* |optional |Bezeichner: Nachname +
+|*sn* |optional a|Bezeichner: Nachname +
 Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
  +
 Verhalten der Befüllung des Attributs bei Nutzung der Operationen
@@ -1594,7 +1594,7 @@ Wird vom VZD aus dem Zertifikatsattribut givenName übernommen, wenn der Client 
 Wird über die Schreiboperationen von Schnittstelle I_Directory_Administration für givenName ein Inhalt geliefert, so dieser Wert für das Attribut gesetzt. +
  +
 Wird dem Verzeichniseintrag ein neues Zertifikat hinzu gefügt, wird der aktuelle Wert des Attributs durch der Wert aus Zertifikatsattribut givenName überschrieben.
-|*sn* |optional |Bezeichner: Nachname +
+|*sn* |optional a|Bezeichner: Nachname +
 Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
  +
 Verhalten der Befüllung des Attributs bei Nutzung der Operationen
@@ -1740,7 +1740,7 @@ Wird vom VZD aus dem Zertifikatsattribut givenName übernommen, wenn der Client 
 Wird über die Schreiboperationen von Schnittstelle I_Directory_Administration für givenName ein Inhalt geliefert, so dieser Wert für das Attribut gesetzt. +
  +
 Wird dem Verzeichniseintrag ein neues Zertifikat hinzu gefügt, wird der aktuelle Wert des Attributs durch der Wert aus Zertifikatsattribut givenName überschrieben.
-|*sn* |optional |Bezeichner: Nachname +
+|*sn* |optional a|Bezeichner: Nachname +
 Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
  +
 Verhalten der Befüllung des Attributs bei Nutzung der Operationen
@@ -2134,7 +2134,7 @@ Tabelle 12: Tab_VZD_Datenbeschreibung_der_SMC-B_Org
 |===
 |*LDAP-Directory Attribut* |*Pflichtfeld aus Sicht Pflege und Nutzung?* |*Erläuterung*
 |*givenName* |optional |Wird für SMC-B nicht verwendet.
-|*sn* |optional | Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
+|*sn* |optional a| Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
  +
 Verhalten der Befüllung des Attributs bei Nutzung der Operationen
 
@@ -2264,7 +2264,7 @@ Tabelle 13: Tab_VZD_Datenbeschreibung_der_SMC-B_eGBR
 |===
 |*LDAP-Directory Attribut* |*Pflichtfeld aus Sicht Pflege und Nutzung?* |*Erläuterung*
 |*givenName* |optional |Wird für SMC-B nicht verwendet.
-|*sn* |optional | Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
+|*sn* |optional a| Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
  +
 Verhalten der Befüllung des Attributs bei Nutzung der Operationen
 
@@ -2399,7 +2399,7 @@ Wird vom VZD aus dem Zertifikatsattribut givenName übernommen, wenn der Client 
 Wird über die Schreiboperationen von Schnittstelle I_Directory_Administration für givenName ein Inhalt geliefert, so dieser Wert für das Attribut gesetzt. +
  +
 Wird dem Verzeichniseintrag ein neues Zertifikat hinzu gefügt, wird der aktuelle Wert des Attributs durch der Wert aus Zertifikatsattribut givenName überschrieben.
-|*sn* |optional |Bezeichner: Nachname +
+|*sn* |optional a|Bezeichner: Nachname +
 Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
  +
 Verhalten der Befüllung des Attributs bei Nutzung der Operationen
@@ -2533,7 +2533,7 @@ Tabelle 15: Tab_VZD_Datenbeschreibung_der_SMC-B_eGBR
 |===
 |*LDAP-Directory Attribut* |*Pflichtfeld aus Sicht Pflege und Nutzung?* |*Erläuterung*
 |*givenName* |optional |Wird für SMC-B nicht verwendet.
-|*sn* |optional | Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
+|*sn* |optional a| Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
  +
 Verhalten der Befüllung des Attributs bei Nutzung der Operationen
 
