@@ -3,8 +3,13 @@ info:
   title: I_Directory_Administration
   description: REST Schnittstelle zur Pflege der Verzeichniseinträge.
               Über diese Schnittstelle können Verzeichniseinträge inklusive Zertifikaten erzeugt, aktualisiert und gelöscht werden. Die Administration von Fachdaten erfolgt über Schnittstelle I_Directory_Application_Maintenance und wird durch die Fachanwendungen durchgeführt. Lesender Zugriff auf die Fachdaten ist mit Operation getDirectoryEntries in vorliegender Schnittstelle möglich.
-  version: 1.9.3
+  version: 1.9.4
+  # Änderungen in Version 1.9.4
+  #  - Attribute active und meta in Operationen read_Directory_Entry_for_Sync und read_Directory_Entry_for_Sync_paging ergänzt
+  #  - Operation readLog: Erlaubte Parameter für Suchanfragen in Kommentaren erläutert
+  #
   # Änderungen in Version 1.9.3
+  #  - "description" der Operationen mit Beschreibung der Attributbelegung überarbeitet 
   #  - Attribut usage aus Schema userCertificate und Operationen entfernt
   #    (wurde nicht mehr genutzt)
   # 
@@ -220,45 +225,20 @@ paths:
          - 'VZD:DirectoryAdministration'
       operationId: add_Directory_Entry
       requestBody:
-        description: Datensatz für den neuen Eintrag. Die Attribute müssen wie folgt belegt sein
-                       dn.*          Leer/nicht vorhanden (wird vom Verzeichnisdienst belegt)
-                       givenName     Nicht vorhanden (wird vom Verzeichnisdienst belegt)
-                       sn            Nicht vorhanden (wird vom Verzeichnisdienst belegt)
-                       cn            Nicht vorhanden (wird vom Verzeichnisdienst belegt)
-                       displayName   Kann optional belegt werden.
-                       streetAddress Kann optional belegt werden.
-                       postalCode    Kann optional belegt werden.
-                       countryCode   Kann optional belegt werden.
-                                     Falls nicht belegt, ergänzt der VZD den Code für Deutschland (Defaultwert).
-                       localityName  Kann optional belegt werden.
-                       stateOrProvinceName  Kann optional belegt werden.
-                       title         Kann optional belegt werden.
-                       organization  Kann optional belegt werden.
-                       otherName     Kann optional belegt werden.
-                       telematikID Kann optional belegt werden.
-                          Das ist die telematikID in den Basisdaten (baseDirectoryEntry).
-                          Wird diese telematikID und userCertificate bzw. die telematikID in userCertificate angegeben, dann müssen diese telematikIDs übereinstimmen.
-                          Bei unterschiedlichen telematikID wird die Operation mit Fehlercode 422 abgelehnt.
-
-                       specialization  Kann optional belegt werden.
-                       domainID      Kann optional belegt werden.
-                       holder         Kann optional belegt werden.
-                       maxKOMLEadr   Kann optional belegt werden.
-                       personalEntry Nicht vorhanden (wird vom Verzeichnisdienst belegt)
-                       dataFromAuthority Nicht vorhanden (wird vom Verzeichnisdienst belegt)
-                       userCertificates  Kann optional belegt werden.
-                        dn.uid        Leer/nicht vorhanden (wird vom Verzeichnisdienst belegt)
-                        dn.dc         Leer/nicht vorhanden (wird vom Verzeichnisdienst belegt)
-                        dn.ou         Leer/nicht vorhanden (wird vom Verzeichnisdienst  belegt)
-                        dn.cn         Leer/nicht vorhanden (wird vom Verzeichnisdienst belegt)
-                        telematikID   Kann optional belegt werden.
-                          Wird telematikID und userCertificate angegeben, dann muss diese telematikID mit der telematikID im userCertificate übereinstimmen.
-                          Bei unterschiedlichen telematikID wird die Operation mit Fehlercode 422 abgelehnt.
-                        entryType     Nicht vorhanden (wird vom Verzeichnisdienst belegt)
-                        professionOID Nicht vorhanden (wird vom Verzeichnisdienst belegt)
-                        userCertificate   Kann optional belegt werden (Format DER, Base64 kodiert)
-                        description   Kann optional belegt werden.
-                        Entsprechend gemSpec_VZD wird ein Teil der Attribute durch den Verzeichnisdienst automatisch mit Werten aus dem Zertifikat gefüllt. Wenn in dieser Operation Attribute - für die dies erlaubt ist - mit einem Wert belegt werden, wird dieser Wert im Verzeichniseintrag gespeichert (auch wenn der Wert durch den Verzeichnisdienst aus dem Zertifikat entnommen werden kann).   
+        description: |
+                  Datensatz für den neuen Eintrag. \
+                  Die Attribute müssen entsprechend der
+                  Definition in "schemas" (siehe unten) und den sektorspezifischen Festlegungen
+                  im "Implementierungsleitfaden zur Pflege der Daten des Verzeichnisdienstes"
+                  (https://github.com/gematik/api-vzd/ Dokument docs/gemILF_Pflege_VZD.adoc)
+                  belegt werden. \
+                  
+                  Entsprechend gemSpec_VZD wird ein Teil der Attribute durch den
+                  Verzeichnisdienst automatisch mit Werten aus dem Zertifikat gefüllt. 
+                  Wenn in dieser Operation Attribute - für die dies erlaubt ist - mit einem
+                  Wert belegt werden, wird dieser Wert im Verzeichniseintrag gespeichert 
+                  (auch wenn der Wert durch den Verzeichnisdienst aus dem Zertifikat entnommen 
+                  werden kann). 
         content:
           application/json:
             schema:
@@ -590,8 +570,15 @@ paths:
       security:
        - OAuth2:
          - 'VZD:DirectoryAdministration'
-      description: Liefert - analog zu read_Directory_Entry - alle zum Filter passenden Verzeichniseinträge. Im Unterschied zu read_Directory_Entry wird die Limitierung auf 100 Suchergebnisse aufgehoben. Die parallele Ausführung dieser Operation wird vom Server aus Performancegründen eingeschränkt.
-        Diese Operation soll nur genutzt werden, wenn mehr als 100 Suchergebnisse benötigt werden. Für alle anderen Suchanfragen soll Operation read_Directory_Entry genutzt werden.
+      description: |
+       Liefert - analog zu read_Directory_Entry - alle zum Filter passenden 
+       Verzeichniseinträge. \
+       Im Unterschied zu read_Directory_Entry wird die Limitierung auf 100 Suchergebnisse
+       aufgehoben. Die parallele Ausführung dieser Operation wird vom Server aus
+       Performancegründen eingeschränkt.
+       Diese Operation soll nur genutzt werden, wenn mehr als 100 Suchergebnisse benötigt 
+       werden. 
+       Für alle anderen Suchanfragen soll Operation read_Directory_Entry genutzt werden.
 #
 # Für die Leseoperationen read_Directory_Entry, read_Directory_Entry_for_Sync und
 # read_Directory_Entry_for_Sync_paging der Schnittstellen I_Directory_Administration 
@@ -764,7 +751,7 @@ paths:
       - name: entryType
         in: query
         description: |
-         Erlaubt die Suche mit Hilfe des Attributs entryType. 
+         Erlaubt die Suche mit Hilfe des Attributs entryType. \
          Selektiert der Verzeichniseintrag, wenn der angegebene Wert in den entryType's (array) des Basiseintrags vorhanden ist. 
         schema:
           type: string 
@@ -797,6 +784,19 @@ paths:
         schema:
           type: boolean
           example: true
+      - name: active
+        in: query
+        description: Erlaubt die Suche mit Hilfe des Attributs baseDirectoryEntry.active.
+        schema:
+          type: boolean
+      - name: meta
+        in: query
+        description: |
+          Erlaubt die Suche mit Hilfe des Attributs baseDirectoryEntry.meta
+          
+          Selektiert alle Datensätze, deren Attribut meta den angegebenen String in einem Wert des arry's enthält.
+        schema:
+          type: string  
 
       responses:
         200:
@@ -850,8 +850,16 @@ paths:
       security:
        - OAuth2:
          - 'VZD:DirectoryAdministration'
-      description: Liefert - analog zu read_Directory_Entry - alle zum Filter passenden Verzeichniseinträge. Im Unterschied zu read_Directory_Entry wird die Limitierung auf 100 Suchergebnisse aufgehoben. Die parallele Ausführung dieser Operation wird vom Server aus Performancegründen eingeschränkt.
-        Diese Operation soll nur genutzt werden, wenn mehr als 100 Suchergebnisse benötigt werden. Für alle anderen Suchanfragen soll Operation read_Directory_Entry genutzt werden.
+      description: |
+       Liefert - analog zu read_Directory_Entry - alle zum Filter passenden 
+       Verzeichniseinträge. \
+       Im Unterschied zu read_Directory_Entry wird die Limitierung auf 100 Suchergebnisse 
+       aufgehoben. 
+       Die parallele Ausführung dieser Operation wird vom Server aus Performancegründen 
+       eingeschränkt.
+       Diese Operation soll nur genutzt werden, wenn mehr als 100 Suchergebnisse benötigt 
+       werden. 
+       Für alle anderen Suchanfragen soll Operation read_Directory_Entry genutzt werden.
 #
 # Für die Leseoperationen read_Directory_Entry, read_Directory_Entry_for_Sync und
 # read_Directory_Entry_for_Sync_paging der Schnittstellen I_Directory_Administration 
@@ -1057,6 +1065,20 @@ paths:
         schema:
           type: boolean
           example: true
+      - name: active
+        in: query
+        description: Erlaubt die Suche mit Hilfe des Attributs baseDirectoryEntry.active.
+        schema:
+          type: boolean
+      - name: meta
+        in: query
+        description: |
+          Erlaubt die Suche mit Hilfe des Attributs baseDirectoryEntry.meta
+          
+          Selektiert alle Datensätze, deren Attribut meta den angegebenen String in einem Wert des arry's enthält.
+        schema:
+          type: string  
+
     # Paging Parameter entsprechend https://tools.ietf.org/html/rfc2696
     # Paging ist nur für eigene Verzeichniseinträge erlaubt. Deshalb muss bei
     # Verwendung des Pagings zwingend der "holder" Suchparameter angegeben werden 
@@ -1142,34 +1164,13 @@ paths:
         schema:
           type: string
       requestBody:
-        description: Datensatz für die Aktualisierung des Eintrags
-
-                     Die Attribute müssen wie folgt belegt sein
-
-                      dn.*          Nicht vorhanden (Adressierung erfolgt über uid in Path).
-                      givenName     Nicht vorhanden. 
-                      sn            Nicht vorhanden.
-                      cn            Nicht vorhanden.
-                      displayName   Kann optional belegt werden.
-                      streetAddress Kann optional belegt werden.
-                      postalCode    Kann optional belegt werden.
-                      countryCode   Kann optional belegt werden.
-                      localityName  Kann optional belegt werden.
-                      stateOrProvinceName  Kann optional belegt werden.
-                      title         Kann optional belegt werden.
-                      organization  Kann optional belegt werden.
-                      otherName     Nicht vorhanden.
-                      telematikID   Kann optional belegt werden.
-                          Das ist die telematikID in den Basisdaten (baseDirectoryEntry).
-                          Sind Zertifikateseinträge (userCertificate) vorhanden, dann müssen die telematikIDs übereinstimmen.
-                          Bei unterschiedlichen telematikID wird die Operation mit Fehlercode 422 abgelehnt.
-
-                      specialization  Kann optional belegt werden.
-                      domainID      Kann optional belegt werden.
-                      holder         Kann optional belegt werden.
-                      maxKOMLEadr   Kann optional belegt werden.
-                      personalEntry Nicht vorhanden.
-                      dataFromAuthority Nicht vorhanden
+        description: |
+         Datensatz für die Aktualisierung des Eintrags. \
+         Die Attribute müssen entsprechend der Definition in "schemas" (siehe unten) und den 
+         sektorspezifischen Festlegungen im "Implementierungsleitfaden zur Pflege der Daten 
+         des Verzeichnisdienstes"
+         (https://github.com/gematik/api-vzd/ Dokument docs/gemILF_Pflege_VZD.adoc)
+          belegt werden.
 
         content:
           application/json:
@@ -1255,8 +1256,10 @@ paths:
       parameters:
       - name: uid
         in: path
-        description: ID von dem zu löschenden Verzeichniseintrag
-                     Gelöscht werden der Basis Verzeichniseintrag sowie alle dazugehörenden Zertifikate und Fachdaten.
+        description: |
+         ID von dem zu löschenden Verzeichniseintrag. \
+         Gelöscht werden der Basis Verzeichniseintrag sowie alle dazugehörenden Zertifikate und
+         Fachdaten.
         required: true
         schema:
           type: string
@@ -1569,8 +1572,11 @@ paths:
     delete:
       tags:
       - Certificate Administration
-      summary: Zertifikatseintrag löschen
-            Dem Verzeichniseintrag muss immer mindestens ein Zertifikat zugeordnet sein. Wenn nach dem Löschen kein Zertifikat mehr dem Verzeichniseintrag zugeordnet wäre, muss die delete Operation abgelehnt werden. 
+      summary: |
+       Zertifikatseintrag löschen. \
+       Dem Verzeichniseintrag muss immer mindestens ein Zertifikat zugeordnet sein. Wenn nach 
+       dem Löschen kein Zertifikat mehr dem Verzeichniseintrag zugeordnet wäre, muss die delete
+       Operation abgelehnt werden. 
       security:
        - OAuth2:
          - 'VZD:DirectoryAdministration'
@@ -1636,8 +1642,22 @@ paths:
        - OAuth2:
          - 'VZD:DirectoryAdministration'
          - 'VZD:DirectoryRead'
-      description: Liefert die Log Daten alle zum Filter passenden Verzeichniseinträge. Die angegebenen Parameter werden mit logischen UND verknüpft.
+      description: |
+       Liefert die Log Daten alle zum Filter passenden Verzeichniseinträge. \
+       Die angegebenen Parameter werden mit logischen UND verknüpft.
       operationId: readLog
+#
+# Für Operation readLog werden folgende Kombinationen der Suchparameter erlaubt:
+#      - UID + logTimeFrom (optional) +logTimeTo (optional)
+#      - *telematikID* + logTimeFrom (optional) +logTimeTo (optional)
+#      - *clientID* + logTimeFrom (optional) +logTimeTo (optional)
+#      - operation + logTimeFrom (optional) +logTimeTo (optional)
+#      - noDataChanged + logTimeFrom (optional) +logTimeTo (optional)
+#      - logTimeFrom +logTimeTo
+#      - logTimeFrom
+#      - logTimeTo
+#   Andere Kombinationen der Suchparameter werden mit 400 bad request beantwortet.
+#
 # Für die Leseoperationen read_Directory_Entry, read_Directory_Entry_for_Sync,
 # read_Directory_Entry_for_Sync_paging und readLog der Schnittstellen I_Directory_Administration 
 # und I_Directory_Application_Maintenance
@@ -1718,6 +1738,7 @@ paths:
                   $ref: '#/components/schemas/LogEntries'
         400:
           description: Bad Request
+            # z.B. Kombinationen der Suchparameter nicht erlaubt
           content:
             application/json:
               schema:

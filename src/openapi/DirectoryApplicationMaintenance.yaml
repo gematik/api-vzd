@@ -6,8 +6,13 @@ info:
    # REST Schnittstelle zur Pflege der Fachanwendungsdaten der Verzeichniseinträge
      Über diese Schnittstelle können Fachanwendungsdaten der Verzeichniseinträge erzeugt, aktualisiert und gelöscht werden. 
 
-  version: 1.2.2
+  version: 1.2.3
   
+  # Änderungen in Version 1.2.3
+  #  - Attribut usage aus Schema userCertificate und Operationen entfernt
+  #    (wurde nicht mehr genutzt)
+  #  - Operation readLog: Erlaubte Parameter für Suchanfragen in Kommentaren erläutert
+  # 
   # Änderungen in Version 1.2.2
   #  - Operation readLog: Parameter holder umbenannt in clientID 
   # 
@@ -415,13 +420,6 @@ paths:
          Der Verzeichniseintrag wird selektiert, wenn die angegebene professionOID im Attribut professionOID (array) des Zertifikatseintrags enthalten ist.
         schema:
           type: string  
-      - name: usage
-        in: query
-        description: |
-         Erlaubt die Suche mit Hilfe des Attributs usage. 
-         Der Verzeichniseintrag wird selektiert, wenn die angegebene usage im Attribut usage (array) des Zertifikatseintrags enthalten ist.
-        schema:
-          type: string  
       - name: active
         in: query
         description: Erlaubt die Suche mit Hilfe des Attributs userCertificate.active. 
@@ -442,6 +440,7 @@ paths:
         description: Erlaubt die Suche mit Hilfe des Attributs userCertificate.publicKeyAlgorithm. 
         schema:
           type: string  
+
 
       responses:
         200:
@@ -763,6 +762,18 @@ paths:
       summary: Log von Verzeichniseinträgen lesen
       description: Liefert die Log Daten alle zum Filter passenden Verzeichniseinträge. Die angegebenen Parameter werden mit logischen UND verknüpft.
       operationId: readLog
+#
+# Für Operation readLog werden folgende Kombinationen der Suchparameter erlaubt:
+#      - UID + logTimeFrom (optional) +logTimeTo (optional)
+#      - *telematikID* + logTimeFrom (optional) +logTimeTo (optional)
+#      - *clientID* + logTimeFrom (optional) +logTimeTo (optional)
+#      - operation + logTimeFrom (optional) +logTimeTo (optional)
+#      - noDataChanged + logTimeFrom (optional) +logTimeTo (optional)
+#      - logTimeFrom +logTimeTo
+#      - logTimeFrom
+#      - logTimeTo
+#   Andere Kombinationen der Suchparameter werden mit 400 bad request beantwortet.
+#
 # Für die Leseoperationen read_Directory_Entry, read_Directory_Entry_for_Sync,
 # read_Directory_Entry_for_Sync_paging und readLog der Schnittstellen I_Directory_Administration 
 # und I_Directory_Application_Maintenance
@@ -843,6 +854,7 @@ paths:
                   $ref: '#/components/schemas/LogEntries'
         400:
           description: Bad Request
+                    # z.B. Kombinationen der Suchparameter nicht erlaubt
           content:
             application/json:
               schema:
@@ -903,19 +915,6 @@ components:
              Profession OID / Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und dem Mapping in ab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen.
              Siehe [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. 
              Kann mehrfach vorkommen (0..100)
-        usage:
-          maxItems: 100
-          minItems: 0
-          type: array
-          description: |
-           Nutzungskennzeichnung kann pro Zertifikat mehrfach
-            vergeben werden. Vorgegebener Wertebereich [KOM-LE, ePA].
-           Obligatorisch für LEI und KTR mit vorgegebenem Wert usage=ePA'
-          items:
-            type: string
-            enum:
-            - KOM-LE
-            - ePA
         userCertificate:
           type: string
           description: |

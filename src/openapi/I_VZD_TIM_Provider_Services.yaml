@@ -2,8 +2,18 @@ openapi: 3.0.1
 info:
   title: I_VZD_TIM_Provider_Services
   description: REST interface to retrieve the TI-Messenger federation list and to administrate the TI-Messenger domains.
-  version: 1.1.5
-  
+
+  version: 1.2.0
+
+  # version 1.2.0
+  #  - getFederationList changed: Changed from JSON response to file download
+  #  - schema: schema FederationList and DomainList removed
+  #  - added comments for domainAdministration operations about error messages
+  #  - Schema Domain: 
+  #      o Mandatory attributes defined ("required")
+  #      o Default value for attribute isInsurance added
+  #  - Operation whereIs: Parameter mxid renamed to hash
+  #
   # version 1.1.5
   #  Operation whereIs:
   #  - renamed parameter hash to mxid
@@ -82,12 +92,12 @@ paths:
                 $ref: '#/components/schemas/Error'
 
 
-  /FederationList:
+  /FederationList/federationList.jws:
     get:
       tags:
       - getFederationList
       summary: This operation is used to get the TI-Messenger federation list.
-      description: Returns the TI-Messenger federation list. If a version parameter is given then the federation list will be only returned if there is a newer version available.
+      description: Returns the JWS signed TI-Messenger federation list (see gemSpec_VZD_FHIR_Directory). If a version parameter is given then the federation list will be only returned if there is a newer version available.
       operationId: getFederationList
       parameters:
       - name: version
@@ -99,11 +109,16 @@ paths:
       responses:
         200:
           description: OK
-                    #  The federation list.
+                    # The federation list.
+                    # The JWS signature has to be checked by the client.
+                    # The structure of the federation list is defined
+                    # in GitHub /src/schema/FederationList.json 
           content:
-            application/json:
-              schema:
-                  $ref: '#/components/schemas/FederationList'
+           application/octet-stream:
+            schema:
+             type: string
+             format: binary
+
         204:
           description: No Content
                     # if the version of the list is less than or equal to the version parameter of the request
@@ -183,7 +198,7 @@ paths:
                 $ref: '#/components/schemas/Error'
         404:
           description: Not Found
-                   #  MXID not found in FHIR VZD
+                   #  hash of the MXID not found in FHIR VZD
           content:
             application/json:
               schema:
@@ -195,6 +210,7 @@ paths:
       - domainAdministration
       summary: Add a domain to the TI-Messenger federation
       description: A new domain in the TI-Messenger federation.
+             # domain will be only created, if the organization which belongs to the telematikID is active
       operationId: addTiMessengerDomain
       requestBody:
         content:
@@ -211,6 +227,8 @@ paths:
 
         400:
           description: Bad Request
+               # Examples for errors:
+               # message "organization which belongs to the telematikID is not active"
           content:
             application/json:
               schema:
@@ -248,7 +266,7 @@ paths:
           description: |
             Domain
             If this parameter is used, then the selected domain is returned.
-            If this parameter is not present, then all domains of the requesting clint are returned.
+            If this parameter is not present, then all domains of the requesting client are returned.
           schema:
             type: string
       responses:
@@ -332,6 +350,7 @@ paths:
                 $ref: '#/components/schemas/Error'
         403:
           description: Forbidden
+             # domain will be only changed, if assigned to requesting client (TI-Messenger provider)
           content:
             application/json:
               schema:
@@ -374,6 +393,7 @@ paths:
                 $ref: '#/components/schemas/Error'
         403:
           description: Forbidden
+             # domain will be only deleted, if assigned to requesting client (TI-Messenger provider)
           content:
             application/json:
               schema:
@@ -438,40 +458,12 @@ components:
 
   schemas:
 
-    FederationList:
-      type: object
-      readOnly: true
-      properties:
-        version:
-          description: The version of the federation list
-          type: integer
-          readOnly: true
-        hashAlgorithm:
-          description: The hash algorithm that was used to create the hashes. Currently only SHA-256 is supported.
-          type: string
-          readOnly: true
-        domainList:
-          description: The list of hashed TI-Messenger domain names
-          type: array
-          items:
-            $ref: '#/components/schemas/DomainList'
-
-    DomainList:
-        description: The list of hashed TI-Messenger domain names
-        type: object
-        properties:
-           domain:
-             type: string
-             description: |
-               hashed TI-Messenger domain name
-           isInsurance:
-             description: |
-               Indicates if it is a domain of an health insurance for insured persons
-             type: boolean
-             example: false
-
     Domain:
       type: object
+      required:
+          - domain
+          - telematikID
+          - isInsurance
       properties:
         domain:
           description: The TI-Messenger domain
@@ -483,6 +475,7 @@ components:
           description: |
                Indicates if it is a domain of an health insurance for insured persons
           type: boolean
+          default: false          
           example: false
 
     Error:

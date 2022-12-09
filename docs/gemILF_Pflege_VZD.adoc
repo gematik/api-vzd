@@ -87,6 +87,7 @@ Neu für eGBR HBA und SMC-B |gematik
 - "4.14 gematik - Weitere ärztliche Institutionen (SMC-B-Eintrag)" ergänzt +
 - Datenerfassung für Apotheken erweitert
 
+
 |gematik
 
 |1.5.5 |10.12.2022 |4 |
@@ -2673,7 +2674,6 @@ Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
         "1.0,xx-05@hersteller02.kim.telematik-test"
         ]
 ----
-
 
 Wird vom KOM-LE-Anbieter eingetragen.
 |*active* |obligatorisch | Mit diesem Attribut im Basiseintrag kann der Client (Kartenherausgeber, TSP) die Aufnahme des VZD Eintrags in die flache Liste steuern. Wenn das Attribut beim Anlegen eines VZD Eintrags mit Zertifikat nicht angegeben wird, setzt der VZD das Attribut  active auf TRUE (Default-Wert). +
