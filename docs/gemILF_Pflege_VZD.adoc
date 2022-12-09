@@ -727,9 +727,19 @@ Tabelle 2: Tab_VZD_Datenbeschreibung_KVen
 |===
 |*LDAP-Directory Attribut* |*Pflichtfeld aus Sicht Pflege und Nutzung?* |*Erläuterung*
 |*givenName* |optional |Wird für SMC-B nicht verwendet.
-|*sn* |obligatorisch | Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
+|*sn* |obligatorisch a| Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
  +
-Wenn der Client der Schnittstelle I_Directory_Administration keinen Wert für sn angibt, wird sn als Kopie von Attribut displayName gesetzt. Wird sn als Parameter übergeben, wird der angegebene Wert übernommen.
+Verhalten der Befüllung des Attributs bei Nutzung der Operationen
+
+* add_Directory_Entry:   
+** Wird sn als Parameter übergeben, wird der angegebene Wert übernommen. 
+** Wird sn nicht als Parameter übergeben, wird sn als Kopie von Parameter displayName gesetzt. 
+** Wird sn und displayName nicht als Parameter übergeben, wird sn auf einen leeren Wert gesetzt ("-" im LDAP-View). 
+* modify_Directory_Entry:
+** Wird sn als Parameter übergeben, wird der angegebene Wert übernommen.
+** Wird sn nicht als Parameter übergeben, wird sn gelöscht ("-" im LDAP-View).
+* add_Directory_Entry_Certificate 
+** Hat keine Auswirkungen auf das sn Attribut.
 |*cn* +
 * * +
   |obligatorisch |Bezeichner: Name +
@@ -827,9 +837,9 @@ Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
 Wird vom KOM-LE-Anbieter eingetragen.
 
 |*active* |obligatorisch | Mit diesem Attribut im Basiseintrag kann der Client (Kartenherausgeber, TSP) die Aufnahme des VZD Eintrags in die flache Liste steuern. Wenn das Attribut beim Anlegen eines VZD Eintrags mit Zertifikat nicht angegeben wird, setzt der VZD das Attribut  active auf TRUE (Default-Wert). +
-Wenn der VZD Eintrag ohne Zertifikat angelegt wird, setzt der VZD active = FALSE. +
 Bei FALSE wird der Eintrag vom VZD aus der flachen Liste entfernt bzw. nicht übertragen. +
-Dieses Attribut ist nicht in der flachen Liste enthalten.
+Dieses Attribut ist nicht in der flachen Liste enthalten. +
+Wenn der VZD beim zeitlichen Ablauf des letzten Zertifikats einen VZD Eintrag aus der flachen Liste entfernt, bleibt das Attribut active unverändert. Beim erneuten Hinzufügen eines Zertifikats wird der VZD Eintrag also wieder in die flache Liste übernommen, wenn dieses Attribut den Wert "true" enthält.
 |*meta* |optional | Kann von den pflegenden Clients zur Abstimmung der Prozesse zwischen z.B. Kartenherausgeber und TSP genutzt werden. Dieses Attribut wird durch den VZD nicht ausgewertet. Die Werte für dieses Attribut müssen von den pflegenden Organisationen festgelegt und abgestimmt werden. +
 Array von Strings (wird in LDAP auf <String, String> gemappt). es erfolgt keine Synchronisierung in die flache Liste. +
 Dieses Attribut ist nicht in der flachen Liste enthalten. +
@@ -856,7 +866,17 @@ Tabelle 3: Tab_VZD_Datenbeschreibung_KZVen
 |*givenName* |optional |Wird für SMC-B nicht verwendet.
 |*sn* |optional | Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
  +
-Wenn der Client der Schnittstelle I_Directory_Administration keinen Wert für sn angibt, wird sn als Kopie von Attribut displayName gesetzt. Wird sn als Parameter übergeben, wird der angegebene Wert übernommen.
+Verhalten der Befüllung des Attributs bei Nutzung der Operationen
+
+* add_Directory_Entry:   
+** Wird sn als Parameter übergeben, wird der angegebene Wert übernommen. 
+** Wird sn nicht als Parameter übergeben, wird sn als Kopie von Parameter displayName gesetzt. 
+** Wird sn und displayName nicht als Parameter übergeben, wird sn auf einen leeren Wert gesetzt ("-" im LDAP-View). 
+* modify_Directory_Entry:
+** Wird sn als Parameter übergeben, wird der angegebene Wert übernommen.
+** Wird sn nicht als Parameter übergeben, wird sn gelöscht ("-" im LDAP-View).
+* add_Directory_Entry_Certificate 
+** Hat keine Auswirkungen auf das sn Attribut.
 |*cn* |obligatorisch |Bezeichner: Name +
 Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
  +
@@ -958,9 +978,9 @@ Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
 Wird vom KOM-LE-Anbieter eingetragen.
 
 |*active* |obligatorisch | Mit diesem Attribut im Basiseintrag kann der Client (Kartenherausgeber, TSP) die Aufnahme des VZD Eintrags in die flache Liste steuern. Wenn das Attribut beim Anlegen eines VZD Eintrags mit Zertifikat nicht angegeben wird, setzt der VZD das Attribut  active auf TRUE (Default-Wert). +
-Wenn der VZD Eintrag ohne Zertifikat angelegt wird, setzt der VZD active = FALSE. +
 Bei FALSE wird der Eintrag vom VZD aus der flachen Liste entfernt bzw. nicht übertragen. +
-Dieses Attribut ist nicht in der flachen Liste enthalten.
+Dieses Attribut ist nicht in der flachen Liste enthalten. +
+Wenn der VZD beim zeitlichen Ablauf des letzten Zertifikats einen VZD Eintrag aus der flachen Liste entfernt, bleibt das Attribut active unverändert. Beim erneuten Hinzufügen eines Zertifikats wird der VZD Eintrag also wieder in die flache Liste übernommen, wenn dieses Attribut den Wert "true" enthält.
 |*meta* |optional | Kann von den pflegenden Clients zur Abstimmung der Prozesse zwischen z.B. Kartenherausgeber und TSP genutzt werden. Dieses Attribut wird durch den VZD nicht ausgewertet. Die Werte für dieses Attribut müssen von den pflegenden Organisationen festgelegt und abgestimmt werden. +
 Array von Strings (wird in LDAP auf <String, String> gemappt). es erfolgt keine Synchronisierung in die flache Liste. +
 Dieses Attribut ist nicht in der flachen Liste enthalten. +
@@ -994,7 +1014,17 @@ Tabelle 4: Tab_VZD_Datenbeschreibung_Apotheken_SMC-B
 |*givenName* |optional |Wird für SMC-B nicht verwendet.
 |*sn* |optional | Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
  +
-Wenn der Client der Schnittstelle I_Directory_Administration keinen Wert für sn angibt, wird sn als Kopie von Attribut displayName gesetzt. Wird sn als Parameter übergeben, wird der angegebene Wert übernommen.
+Verhalten der Befüllung des Attributs bei Nutzung der Operationen
+
+* add_Directory_Entry:   
+** Wird sn als Parameter übergeben, wird der angegebene Wert übernommen. 
+** Wird sn nicht als Parameter übergeben, wird sn als Kopie von Parameter displayName gesetzt. 
+** Wird sn und displayName nicht als Parameter übergeben, wird sn auf einen leeren Wert gesetzt ("-" im LDAP-View). 
+* modify_Directory_Entry:
+** Wird sn als Parameter übergeben, wird der angegebene Wert übernommen.
+** Wird sn nicht als Parameter übergeben, wird sn gelöscht ("-" im LDAP-View).
+* add_Directory_Entry_Certificate 
+** Hat keine Auswirkungen auf das sn Attribut.
 |*cn* |obligatorisch |Bezeichner: Anzeigename +
 Dieses Attribut wird genutzt um den Namen der Betriebsstätte gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut um die Suche einzuschränken und bei der Darstellung des Ergebnisses). +
  +
@@ -1094,9 +1124,9 @@ Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
 
 Wird vom KOM-LE-Anbieter eingetragen.
 |*active* |obligatorisch | Mit diesem Attribut im Basiseintrag kann der Client (Kartenherausgeber, TSP) die Aufnahme des VZD Eintrags in die flache Liste steuern. Wenn das Attribut beim Anlegen eines VZD Eintrags mit Zertifikat nicht angegeben wird, setzt der VZD das Attribut  active auf TRUE (Default-Wert). +
-Wenn der VZD Eintrag ohne Zertifikat angelegt wird, setzt der VZD active = FALSE. +
 Bei FALSE wird der Eintrag vom VZD aus der flachen Liste entfernt bzw. nicht übertragen. +
-Dieses Attribut ist nicht in der flachen Liste enthalten.
+Dieses Attribut ist nicht in der flachen Liste enthalten. +
+Wenn der VZD beim zeitlichen Ablauf des letzten Zertifikats einen VZD Eintrag aus der flachen Liste entfernt, bleibt das Attribut active unverändert. Beim erneuten Hinzufügen eines Zertifikats wird der VZD Eintrag also wieder in die flache Liste übernommen, wenn dieses Attribut den Wert "true" enthält.
 |*meta* |optional | Kann von den pflegenden Clients zur Abstimmung der Prozesse zwischen z.B. Kartenherausgeber und TSP genutzt werden. Dieses Attribut wird durch den VZD nicht ausgewertet. Die Werte für dieses Attribut müssen von den pflegenden Organisationen festgelegt und abgestimmt werden. +
 Array von Strings (wird in LDAP auf <String, String> gemappt). es erfolgt keine Synchronisierung in die flache Liste. +
 Dieses Attribut ist nicht in der flachen Liste enthalten. +
@@ -1136,10 +1166,17 @@ Wird dem Verzeichniseintrag ein neues Zertifikat hinzu gefügt, wird der aktuell
 |*sn* |optional |Bezeichner: Nachname +
 Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
  +
-Bei dem Hinzufügen eines Zertifikats wird sn mit dem Inhalt von Attribut commonName aus dem Zertifikat gefüllt/überschrieben. +
- +
-Wenn der Client der Schnittstelle I_Directory_Administration keinen Wert für sn angibt, wird sn als Kopie von Attribut displayName gesetzt. Wird sn als Parameter übergeben, wird der angegebene Wert übernommen.
+Verhalten der Befüllung des Attributs bei Nutzung der Operationen
 
+* add_Directory_Entry:   
+** Wird sn als Parameter übergeben, wird der angegebene Wert übernommen. 
+** Wird sn nicht als Parameter übergeben, wird sn als Kopie von Parameter displayName gesetzt. 
+** Wird sn und displayName nicht als Parameter übergeben und ein Zertifikat übergeben, wird sn mit dem Inhalt von Attribut surName aus dem Zertifikat gefüllt. 
+* modify_Directory_Entry:
+** Wird sn als Parameter übergeben, wird der angegebene Wert übernommen.
+** Wird sn nicht als Parameter übergeben, wird sn als Kopie von Parameter displayName gesetzt.
+* add_Directory_Entry_Certificate 
+** Bei dem Hinzufügen eines Zertifikats wird sn mit dem Inhalt von Attribut surName aus dem Zertifikat gefüllt/überschrieben. 
 |*cn* |obligatorisch |Bezeichner: Name +
 Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
  +
@@ -1240,9 +1277,9 @@ Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
 
 Wird vom KOM-LE-Anbieter eingetragen.
 |*active* |obligatorisch | Mit diesem Attribut im Basiseintrag kann der Client (Kartenherausgeber, TSP) die Aufnahme des VZD Eintrags in die flache Liste steuern. Wenn das Attribut beim Anlegen eines VZD Eintrags mit Zertifikat nicht angegeben wird, setzt der VZD das Attribut  active auf TRUE (Default-Wert). +
-Wenn der VZD Eintrag ohne Zertifikat angelegt wird, setzt der VZD active = FALSE. +
 Bei FALSE wird der Eintrag vom VZD aus der flachen Liste entfernt bzw. nicht übertragen. +
-Dieses Attribut ist nicht in der flachen Liste enthalten.
+Dieses Attribut ist nicht in der flachen Liste enthalten. +
+Wenn der VZD beim zeitlichen Ablauf des letzten Zertifikats einen VZD Eintrag aus der flachen Liste entfernt, bleibt das Attribut active unverändert. Beim erneuten Hinzufügen eines Zertifikats wird der VZD Eintrag also wieder in die flache Liste übernommen, wenn dieses Attribut den Wert "true" enthält.
 |*meta* |optional | Kann von den pflegenden Clients zur Abstimmung der Prozesse zwischen z.B. Kartenherausgeber und TSP genutzt werden. Dieses Attribut wird durch den VZD nicht ausgewertet. Die Werte für dieses Attribut müssen von den pflegenden Organisationen festgelegt und abgestimmt werden. +
 Array von Strings (wird in LDAP auf <String, String> gemappt). es erfolgt keine Synchronisierung in die flache Liste. +
 Dieses Attribut ist nicht in der flachen Liste enthalten. +
@@ -1272,7 +1309,17 @@ Tabelle 6: Tab_VZD_Datenbeschreibung_DKTIG (DKG)
 |*givenName* |optional |Wird für SMC-B nicht verwendet.
 |*sn* |optional | Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
  +
-Wenn der Client der Schnittstelle I_Directory_Administration keinen Wert für sn angibt, wird sn als Kopie von Attribut displayName gesetzt. Wird sn als Parameter übergeben, wird der angegebene Wert übernommen.
+Verhalten der Befüllung des Attributs bei Nutzung der Operationen
+
+* add_Directory_Entry:   
+** Wird sn als Parameter übergeben, wird der angegebene Wert übernommen. 
+** Wird sn nicht als Parameter übergeben, wird sn als Kopie von Parameter displayName gesetzt. 
+** Wird sn und displayName nicht als Parameter übergeben, wird sn auf einen leeren Wert gesetzt ("-" im LDAP-View). 
+* modify_Directory_Entry:
+** Wird sn als Parameter übergeben, wird der angegebene Wert übernommen.
+** Wird sn nicht als Parameter übergeben, wird sn gelöscht ("-" im LDAP-View).
+* add_Directory_Entry_Certificate 
+** Hat keine Auswirkungen auf das sn Attribut.
 |*cn* +
 * * +
   |obligatorisch |Bezeichner: Name +
@@ -1368,9 +1415,9 @@ Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
 
 Wird vom KOM-LE-Anbieter eingetragen.
 |*active* |obligatorisch | Mit diesem Attribut im Basiseintrag kann der Client (Kartenherausgeber, TSP) die Aufnahme des VZD Eintrags in die flache Liste steuern. Wenn das Attribut beim Anlegen eines VZD Eintrags mit Zertifikat nicht angegeben wird, setzt der VZD das Attribut  active auf TRUE (Default-Wert). +
-Wenn der VZD Eintrag ohne Zertifikat angelegt wird, setzt der VZD active = FALSE. +
 Bei FALSE wird der Eintrag vom VZD aus der flachen Liste entfernt bzw. nicht übertragen. +
-Dieses Attribut ist nicht in der flachen Liste enthalten.
+Dieses Attribut ist nicht in der flachen Liste enthalten. +
+Wenn der VZD beim zeitlichen Ablauf des letzten Zertifikats einen VZD Eintrag aus der flachen Liste entfernt, bleibt das Attribut active unverändert. Beim erneuten Hinzufügen eines Zertifikats wird der VZD Eintrag also wieder in die flache Liste übernommen, wenn dieses Attribut den Wert "true" enthält.
 |*meta* |optional | Kann von den pflegenden Clients zur Abstimmung der Prozesse zwischen z.B. Kartenherausgeber und TSP genutzt werden. Dieses Attribut wird durch den VZD nicht ausgewertet. Die Werte für dieses Attribut müssen von den pflegenden Organisationen festgelegt und abgestimmt werden. +
 Array von Strings (wird in LDAP auf <String, String> gemappt). es erfolgt keine Synchronisierung in die flache Liste. +
 Dieses Attribut ist nicht in der flachen Liste enthalten. +
@@ -1403,10 +1450,17 @@ Wird dem Verzeichniseintrag ein neues Zertifikat hinzu gefügt, wird der aktuell
 |*sn* |optional |Bezeichner: Nachname +
 Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
  +
-Bei dem Hinzufügen eines Zertifikats wird sn mit dem Inhalt von Attribut commonName aus dem Zertifikat gefüllt/überschrieben. +
- +
-Wenn der Client der Schnittstelle I_Directory_Administration keinen Wert für sn angibt, wird sn als Kopie von Attribut displayName gesetzt. Wird sn als Parameter übergeben, wird der angegebene Wert übernommen.
+Verhalten der Befüllung des Attributs bei Nutzung der Operationen
 
+* add_Directory_Entry:   
+** Wird sn als Parameter übergeben, wird der angegebene Wert übernommen. 
+** Wird sn nicht als Parameter übergeben, wird sn als Kopie von Parameter displayName gesetzt. 
+** Wird sn und displayName nicht als Parameter übergeben und ein Zertifikat übergeben, wird sn mit dem Inhalt von Attribut surName aus dem Zertifikat gefüllt. 
+* modify_Directory_Entry:
+** Wird sn als Parameter übergeben, wird der angegebene Wert übernommen.
+** Wird sn nicht als Parameter übergeben, wird sn als Kopie von Parameter displayName gesetzt.
+* add_Directory_Entry_Certificate 
+** Bei dem Hinzufügen eines Zertifikats wird sn mit dem Inhalt von Attribut surName aus dem Zertifikat gefüllt/überschrieben. 
 |*cn* |obligatorisch |Bezeichner: Name +
 Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
  +
@@ -1508,9 +1562,9 @@ Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
 
 Wird vom KOM-LE-Anbieter eingetragen.
 |*active* |obligatorisch | Mit diesem Attribut im Basiseintrag kann der Client (Kartenherausgeber, TSP) die Aufnahme des VZD Eintrags in die flache Liste steuern. Wenn das Attribut beim Anlegen eines VZD Eintrags mit Zertifikat nicht angegeben wird, setzt der VZD das Attribut  active auf TRUE (Default-Wert). +
-Wenn der VZD Eintrag ohne Zertifikat angelegt wird, setzt der VZD active = FALSE. +
 Bei FALSE wird der Eintrag vom VZD aus der flachen Liste entfernt bzw. nicht übertragen. +
-Dieses Attribut ist nicht in der flachen Liste enthalten.
+Dieses Attribut ist nicht in der flachen Liste enthalten. +
+Wenn der VZD beim zeitlichen Ablauf des letzten Zertifikats einen VZD Eintrag aus der flachen Liste entfernt, bleibt das Attribut active unverändert. Beim erneuten Hinzufügen eines Zertifikats wird der VZD Eintrag also wieder in die flache Liste übernommen, wenn dieses Attribut den Wert "true" enthält.
 |*meta* |optional | Kann von den pflegenden Clients zur Abstimmung der Prozesse zwischen z.B. Kartenherausgeber und TSP genutzt werden. Dieses Attribut wird durch den VZD nicht ausgewertet. Die Werte für dieses Attribut müssen von den pflegenden Organisationen festgelegt und abgestimmt werden. +
 Array von Strings (wird in LDAP auf <String, String> gemappt). es erfolgt keine Synchronisierung in die flache Liste. +
 Dieses Attribut ist nicht in der flachen Liste enthalten. +
@@ -1543,10 +1597,17 @@ Wird dem Verzeichniseintrag ein neues Zertifikat hinzu gefügt, wird der aktuell
 |*sn* |optional |Bezeichner: Nachname +
 Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
  +
-Bei dem Hinzufügen eines Zertifikats wird sn mit dem Inhalt von Attribut commonName aus dem Zertifikat gefüllt/überschrieben. +
- +
-Wenn der Client der Schnittstelle I_Directory_Administration keinen Wert für sn angibt, wird sn als Kopie von Attribut displayName gesetzt. Wird sn als Parameter übergeben, wird der angegebene Wert übernommen.
+Verhalten der Befüllung des Attributs bei Nutzung der Operationen
 
+* add_Directory_Entry:   
+** Wird sn als Parameter übergeben, wird der angegebene Wert übernommen. 
+** Wird sn nicht als Parameter übergeben, wird sn als Kopie von Parameter displayName gesetzt. 
+** Wird sn und displayName nicht als Parameter übergeben und ein Zertifikat übergeben, wird sn mit dem Inhalt von Attribut surName aus dem Zertifikat gefüllt. 
+* modify_Directory_Entry:
+** Wird sn als Parameter übergeben, wird der angegebene Wert übernommen.
+** Wird sn nicht als Parameter übergeben, wird sn als Kopie von Parameter displayName gesetzt.
+* add_Directory_Entry_Certificate 
+** Bei dem Hinzufügen eines Zertifikats wird sn mit dem Inhalt von Attribut surName aus dem Zertifikat gefüllt/überschrieben. 
 |*cn* |obligatorisch |Bezeichner: Name +
 Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
  +
@@ -1647,9 +1708,9 @@ Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
 
 Wird vom KOM-LE-Anbieter eingetragen.
 |*active* |obligatorisch | Mit diesem Attribut im Basiseintrag kann der Client (Kartenherausgeber, TSP) die Aufnahme des VZD Eintrags in die flache Liste steuern. Wenn das Attribut beim Anlegen eines VZD Eintrags mit Zertifikat nicht angegeben wird, setzt der VZD das Attribut  active auf TRUE (Default-Wert). +
-Wenn der VZD Eintrag ohne Zertifikat angelegt wird, setzt der VZD active = FALSE. +
 Bei FALSE wird der Eintrag vom VZD aus der flachen Liste entfernt bzw. nicht übertragen. +
-Dieses Attribut ist nicht in der flachen Liste enthalten.
+Dieses Attribut ist nicht in der flachen Liste enthalten. +
+Wenn der VZD beim zeitlichen Ablauf des letzten Zertifikats einen VZD Eintrag aus der flachen Liste entfernt, bleibt das Attribut active unverändert. Beim erneuten Hinzufügen eines Zertifikats wird der VZD Eintrag also wieder in die flache Liste übernommen, wenn dieses Attribut den Wert "true" enthält.
 |*meta* |optional | Kann von den pflegenden Clients zur Abstimmung der Prozesse zwischen z.B. Kartenherausgeber und TSP genutzt werden. Dieses Attribut wird durch den VZD nicht ausgewertet. Die Werte für dieses Attribut müssen von den pflegenden Organisationen festgelegt und abgestimmt werden. +
 Array von Strings (wird in LDAP auf <String, String> gemappt). es erfolgt keine Synchronisierung in die flache Liste. +
 Dieses Attribut ist nicht in der flachen Liste enthalten. +
@@ -1682,10 +1743,17 @@ Wird dem Verzeichniseintrag ein neues Zertifikat hinzu gefügt, wird der aktuell
 |*sn* |optional |Bezeichner: Nachname +
 Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
  +
-Bei dem Hinzufügen eines Zertifikats wird sn mit dem Inhalt von Attribut commonName aus dem Zertifikat gefüllt/überschrieben. +
- +
-Wenn der Client der Schnittstelle I_Directory_Administration keinen Wert für sn angibt, wird sn als Kopie von Attribut displayName gesetzt. Wird sn als Parameter übergeben, wird der angegebene Wert übernommen.
+Verhalten der Befüllung des Attributs bei Nutzung der Operationen
 
+* add_Directory_Entry:   
+** Wird sn als Parameter übergeben, wird der angegebene Wert übernommen. 
+** Wird sn nicht als Parameter übergeben, wird sn als Kopie von Parameter displayName gesetzt. 
+** Wird sn und displayName nicht als Parameter übergeben und ein Zertifikat übergeben, wird sn mit dem Inhalt von Attribut surName aus dem Zertifikat gefüllt. 
+* modify_Directory_Entry:
+** Wird sn als Parameter übergeben, wird der angegebene Wert übernommen.
+** Wird sn nicht als Parameter übergeben, wird sn als Kopie von Parameter displayName gesetzt.
+* add_Directory_Entry_Certificate 
+** Bei dem Hinzufügen eines Zertifikats wird sn mit dem Inhalt von Attribut surName aus dem Zertifikat gefüllt/überschrieben. 
 |*cn* |obligatorisch |Bezeichner: Name +
 Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
  +
@@ -1786,9 +1854,9 @@ Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
 
 Wird vom KOM-LE-Anbieter eingetragen.
 |*active* |obligatorisch | Mit diesem Attribut im Basiseintrag kann der Client (Kartenherausgeber, TSP) die Aufnahme des VZD Eintrags in die flache Liste steuern. Wenn das Attribut beim Anlegen eines VZD Eintrags mit Zertifikat nicht angegeben wird, setzt der VZD das Attribut  active auf TRUE (Default-Wert). +
-Wenn der VZD Eintrag ohne Zertifikat angelegt wird, setzt der VZD active = FALSE. +
 Bei FALSE wird der Eintrag vom VZD aus der flachen Liste entfernt bzw. nicht übertragen. +
-Dieses Attribut ist nicht in der flachen Liste enthalten.
+Dieses Attribut ist nicht in der flachen Liste enthalten. +
+Wenn der VZD beim zeitlichen Ablauf des letzten Zertifikats einen VZD Eintrag aus der flachen Liste entfernt, bleibt das Attribut active unverändert. Beim erneuten Hinzufügen eines Zertifikats wird der VZD Eintrag also wieder in die flache Liste übernommen, wenn dieses Attribut den Wert "true" enthält.
 |*meta* |optional | Kann von den pflegenden Clients zur Abstimmung der Prozesse zwischen z.B. Kartenherausgeber und TSP genutzt werden. Dieses Attribut wird durch den VZD nicht ausgewertet. Die Werte für dieses Attribut müssen von den pflegenden Organisationen festgelegt und abgestimmt werden. +
 Array von Strings (wird in LDAP auf <String, String> gemappt). es erfolgt keine Synchronisierung in die flache Liste. +
 Dieses Attribut ist nicht in der flachen Liste enthalten. +
@@ -1815,9 +1883,19 @@ Tabelle 10: Tab_VZD_Datenbeschreibung_GKV-SV_SMC-B KTR
 |===
 |*LDAP-Directory Attribut* |*Pflichtfeld aus Sicht Pflege und Nutzung?* |*Erläuterung*
 |*givenName* |optional |Wird für SMC-B nicht verwendet.
-|*sn* |obligatorisch | Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
+|*sn* |obligatorisch a| Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
  +
-Wenn der Client der Schnittstelle I_Directory_Administration keinen Wert für sn angibt, wird sn als Kopie von Attribut displayName gesetzt. Wird sn als Parameter übergeben, wird der angegebene Wert übernommen.
+Verhalten der Befüllung des Attributs bei Nutzung der Operationen
+
+* add_Directory_Entry:   
+** Wird sn als Parameter übergeben, wird der angegebene Wert übernommen. 
+** Wird sn nicht als Parameter übergeben, wird sn als Kopie von Parameter displayName gesetzt. 
+** Wird sn und displayName nicht als Parameter übergeben, wird sn auf einen leeren Wert gesetzt ("-" im LDAP-View). 
+* modify_Directory_Entry:
+** Wird sn als Parameter übergeben, wird der angegebene Wert übernommen.
+** Wird sn nicht als Parameter übergeben, wird sn gelöscht ("-" im LDAP-View).
+* add_Directory_Entry_Certificate 
+** Hat keine Auswirkungen auf das sn Attribut.
 |*cn* |obligatorisch |Bezeichner: Name +
 Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
  +
@@ -1919,9 +1997,9 @@ Wird derzeit nicht verwendet.
 |*specialization* |optional |Wird für SMC-B KTR nicht verwendet.
 
 |*active* |obligatorisch | Mit diesem Attribut im Basiseintrag kann der Client (Kartenherausgeber, TSP) die Aufnahme des VZD Eintrags in die flache Liste steuern. Wenn das Attribut beim Anlegen eines VZD Eintrags mit Zertifikat nicht angegeben wird, setzt der VZD das Attribut  active auf TRUE (Default-Wert). +
-Wenn der VZD Eintrag ohne Zertifikat angelegt wird, setzt der VZD active = FALSE. +
 Bei FALSE wird der Eintrag vom VZD aus der flachen Liste entfernt bzw. nicht übertragen. +
-Dieses Attribut ist nicht in der flachen Liste enthalten.
+Dieses Attribut ist nicht in der flachen Liste enthalten. +
+Wenn der VZD beim zeitlichen Ablauf des letzten Zertifikats einen VZD Eintrag aus der flachen Liste entfernt, bleibt das Attribut active unverändert. Beim erneuten Hinzufügen eines Zertifikats wird der VZD Eintrag also wieder in die flache Liste übernommen, wenn dieses Attribut den Wert "true" enthält.
 |*meta* |optional | Kann von den pflegenden Clients zur Abstimmung der Prozesse zwischen z.B. Kartenherausgeber und TSP genutzt werden. Dieses Attribut wird durch den VZD nicht ausgewertet. Die Werte für dieses Attribut müssen von den pflegenden Organisationen festgelegt und abgestimmt werden. +
 Array von Strings (wird in LDAP auf <String, String> gemappt). es erfolgt keine Synchronisierung in die flache Liste. +
 Dieses Attribut ist nicht in der flachen Liste enthalten. +
@@ -1944,9 +2022,19 @@ Tabelle 11: VZD_Datenbeschreibung_GKV-SV_SM-B_KTR ePA
 |===
 |*LDAP-Directory Attribut* |*Pflichtfeld aus Sicht Pflege und Nutzung?* |*Erläuterung*
 |*givenName* |optional |Wird für SMC-B nicht verwendet.
-|*sn* |obligatorisch | Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
+|*sn* |obligatorisch a| Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
  +
-Wenn der Client der Schnittstelle I_Directory_Administration keinen Wert für sn angibt, wird sn als Kopie von Attribut displayName gesetzt. Wird sn als Parameter übergeben, wird der angegebene Wert übernommen.
+Verhalten der Befüllung des Attributs bei Nutzung der Operationen
+
+* add_Directory_Entry:   
+** Wird sn als Parameter übergeben, wird der angegebene Wert übernommen. 
+** Wird sn nicht als Parameter übergeben, wird sn als Kopie von Parameter displayName gesetzt. 
+** Wird sn und displayName nicht als Parameter übergeben, wird sn auf einen leeren Wert gesetzt ("-" im LDAP-View). 
+* modify_Directory_Entry:
+** Wird sn als Parameter übergeben, wird der angegebene Wert übernommen.
+** Wird sn nicht als Parameter übergeben, wird sn gelöscht ("-" im LDAP-View).
+* add_Directory_Entry_Certificate 
+** Hat keine Auswirkungen auf das sn Attribut.
 |*cn* |obligatorisch |Bezeichner: Name +
 Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
  +
@@ -2019,9 +2107,9 @@ Dieses Attribut ermöglicht, das Zertifikat zu beschreiben, um die Administratio
 Wird derzeit nicht verwendet.
 |*specialization* |optional |Wird für SMC-B KTR ePA nicht verwendet.
 |*active* |obligatorisch | Mit diesem Attribut im Basiseintrag kann der Client (Kartenherausgeber, TSP) die Aufnahme des VZD Eintrags in die flache Liste steuern. Wenn das Attribut beim Anlegen eines VZD Eintrags mit Zertifikat nicht angegeben wird, setzt der VZD das Attribut  active auf TRUE (Default-Wert). +
-Wenn der VZD Eintrag ohne Zertifikat angelegt wird, setzt der VZD active = FALSE. +
 Bei FALSE wird der Eintrag vom VZD aus der flachen Liste entfernt bzw. nicht übertragen. +
-Dieses Attribut ist nicht in der flachen Liste enthalten.
+Dieses Attribut ist nicht in der flachen Liste enthalten. +
+Wenn der VZD beim zeitlichen Ablauf des letzten Zertifikats einen VZD Eintrag aus der flachen Liste entfernt, bleibt das Attribut active unverändert. Beim erneuten Hinzufügen eines Zertifikats wird der VZD Eintrag also wieder in die flache Liste übernommen, wenn dieses Attribut den Wert "true" enthält.
 |*meta* |optional | Kann von den pflegenden Clients zur Abstimmung der Prozesse zwischen z.B. Kartenherausgeber und TSP genutzt werden. Dieses Attribut wird durch den VZD nicht ausgewertet. Die Werte für dieses Attribut müssen von den pflegenden Organisationen festgelegt und abgestimmt werden. +
 Array von Strings (wird in LDAP auf <String, String> gemappt). es erfolgt keine Synchronisierung in die flache Liste. +
 Dieses Attribut ist nicht in der flachen Liste enthalten. +
@@ -2048,7 +2136,17 @@ Tabelle 12: Tab_VZD_Datenbeschreibung_der_SMC-B_Org
 |*givenName* |optional |Wird für SMC-B nicht verwendet.
 |*sn* |optional | Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
  +
-Wenn der Client der Schnittstelle I_Directory_Administration keinen Wert für sn angibt, wird sn als Kopie von Attribut displayName gesetzt. Wird sn als Parameter übergeben, wird der angegebene Wert übernommen.
+Verhalten der Befüllung des Attributs bei Nutzung der Operationen
+
+* add_Directory_Entry:   
+** Wird sn als Parameter übergeben, wird der angegebene Wert übernommen. 
+** Wird sn nicht als Parameter übergeben, wird sn als Kopie von Parameter displayName gesetzt. 
+** Wird sn und displayName nicht als Parameter übergeben, wird sn auf einen leeren Wert gesetzt ("-" im LDAP-View). 
+* modify_Directory_Entry:
+** Wird sn als Parameter übergeben, wird der angegebene Wert übernommen.
+** Wird sn nicht als Parameter übergeben, wird sn gelöscht ("-" im LDAP-View).
+* add_Directory_Entry_Certificate 
+** Hat keine Auswirkungen auf das sn Attribut.
 |*cn* |obligatorisch |Bezeichner: Name +
 Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
  +
@@ -2137,9 +2235,9 @@ Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
 
 Wird vom KOM-LE-Anbieter eingetragen.
 |*active* |obligatorisch | Mit diesem Attribut im Basiseintrag kann der Client (Kartenherausgeber, TSP) die Aufnahme des VZD Eintrags in die flache Liste steuern. Wenn das Attribut beim Anlegen eines VZD Eintrags mit Zertifikat nicht angegeben wird, setzt der VZD das Attribut  active auf TRUE (Default-Wert). +
-Wenn der VZD Eintrag ohne Zertifikat angelegt wird, setzt der VZD active = FALSE. +
 Bei FALSE wird der Eintrag vom VZD aus der flachen Liste entfernt bzw. nicht übertragen. +
-Dieses Attribut ist nicht in der flachen Liste enthalten.
+Dieses Attribut ist nicht in der flachen Liste enthalten. +
+Wenn der VZD beim zeitlichen Ablauf des letzten Zertifikats einen VZD Eintrag aus der flachen Liste entfernt, bleibt das Attribut active unverändert. Beim erneuten Hinzufügen eines Zertifikats wird der VZD Eintrag also wieder in die flache Liste übernommen, wenn dieses Attribut den Wert "true" enthält.
 |*meta* |optional | Kann von den pflegenden Clients zur Abstimmung der Prozesse zwischen z.B. Kartenherausgeber und TSP genutzt werden. Dieses Attribut wird durch den VZD nicht ausgewertet. Die Werte für dieses Attribut müssen von den pflegenden Organisationen festgelegt und abgestimmt werden. +
 Array von Strings (wird in LDAP auf <String, String> gemappt). es erfolgt keine Synchronisierung in die flache Liste. +
 Dieses Attribut ist nicht in der flachen Liste enthalten. +
@@ -2168,7 +2266,17 @@ Tabelle 13: Tab_VZD_Datenbeschreibung_der_SMC-B_eGBR
 |*givenName* |optional |Wird für SMC-B nicht verwendet.
 |*sn* |optional | Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
  +
-Wenn der Client der Schnittstelle I_Directory_Administration keinen Wert für sn angibt, wird sn als Kopie von Attribut displayName gesetzt. Wird sn als Parameter übergeben, wird der angegebene Wert übernommen.
+Verhalten der Befüllung des Attributs bei Nutzung der Operationen
+
+* add_Directory_Entry:   
+** Wird sn als Parameter übergeben, wird der angegebene Wert übernommen. 
+** Wird sn nicht als Parameter übergeben, wird sn als Kopie von Parameter displayName gesetzt. 
+** Wird sn und displayName nicht als Parameter übergeben, wird sn auf einen leeren Wert gesetzt ("-" im LDAP-View). 
+* modify_Directory_Entry:
+** Wird sn als Parameter übergeben, wird der angegebene Wert übernommen.
+** Wird sn nicht als Parameter übergeben, wird sn gelöscht ("-" im LDAP-View).
+* add_Directory_Entry_Certificate 
+** Hat keine Auswirkungen auf das sn Attribut.
 |*cn* |obligatorisch |Bezeichner: Name +
 Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
  +
@@ -2258,9 +2366,9 @@ Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
 
 Wird vom KOM-LE-Anbieter eingetragen.
 |*active* |obligatorisch | Mit diesem Attribut im Basiseintrag kann der Client (Kartenherausgeber, TSP) die Aufnahme des VZD Eintrags in die flache Liste steuern. Wenn das Attribut beim Anlegen eines VZD Eintrags mit Zertifikat nicht angegeben wird, setzt der VZD das Attribut  active auf TRUE (Default-Wert). +
-Wenn der VZD Eintrag ohne Zertifikat angelegt wird, setzt der VZD active = FALSE. +
 Bei FALSE wird der Eintrag vom VZD aus der flachen Liste entfernt bzw. nicht übertragen. +
-Dieses Attribut ist nicht in der flachen Liste enthalten.
+Dieses Attribut ist nicht in der flachen Liste enthalten. +
+Wenn der VZD beim zeitlichen Ablauf des letzten Zertifikats einen VZD Eintrag aus der flachen Liste entfernt, bleibt das Attribut active unverändert. Beim erneuten Hinzufügen eines Zertifikats wird der VZD Eintrag also wieder in die flache Liste übernommen, wenn dieses Attribut den Wert "true" enthält.
 |*meta* |optional | Kann von den pflegenden Clients zur Abstimmung der Prozesse zwischen z.B. Kartenherausgeber und TSP genutzt werden. Dieses Attribut wird durch den VZD nicht ausgewertet. Die Werte für dieses Attribut müssen von den pflegenden Organisationen festgelegt und abgestimmt werden. +
 Array von Strings (wird in LDAP auf <String, String> gemappt). es erfolgt keine Synchronisierung in die flache Liste. +
 Dieses Attribut ist nicht in der flachen Liste enthalten. +
@@ -2294,9 +2402,17 @@ Wird dem Verzeichniseintrag ein neues Zertifikat hinzu gefügt, wird der aktuell
 |*sn* |optional |Bezeichner: Nachname +
 Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
  +
-Bei dem Hinzufügen eines Zertifikats wird sn mit dem Inhalt von Attribut commonName aus dem Zertifikat gefüllt/überschrieben. +
- +
-Wenn der Client der Schnittstelle I_Directory_Administration keinen Wert für sn angibt, wird sn als Kopie von Attribut displayName gesetzt. Wird sn als Parameter übergeben, wird der angegebene Wert übernommen.
+Verhalten der Befüllung des Attributs bei Nutzung der Operationen
+
+* add_Directory_Entry:   
+** Wird sn als Parameter übergeben, wird der angegebene Wert übernommen. 
+** Wird sn nicht als Parameter übergeben, wird sn als Kopie von Parameter displayName gesetzt. 
+** Wird sn und displayName nicht als Parameter übergeben und ein Zertifikat übergeben, wird sn mit dem Inhalt von Attribut surName aus dem Zertifikat gefüllt. 
+* modify_Directory_Entry:
+** Wird sn als Parameter übergeben, wird der angegebene Wert übernommen.
+** Wird sn nicht als Parameter übergeben, wird sn als Kopie von Parameter displayName gesetzt.
+* add_Directory_Entry_Certificate 
+** Bei dem Hinzufügen eines Zertifikats wird sn mit dem Inhalt von Attribut surName aus dem Zertifikat gefüllt/überschrieben. 
 
 |*cn* |obligatorisch |Bezeichner: Name +
 Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
@@ -2390,9 +2506,9 @@ Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
 
 Wird vom KOM-LE-Anbieter eingetragen.
 |*active* |obligatorisch | Mit diesem Attribut im Basiseintrag kann der Client (Kartenherausgeber, TSP) die Aufnahme des VZD Eintrags in die flache Liste steuern. Wenn das Attribut beim Anlegen eines VZD Eintrags mit Zertifikat nicht angegeben wird, setzt der VZD das Attribut  active auf TRUE (Default-Wert). +
-Wenn der VZD Eintrag ohne Zertifikat angelegt wird, setzt der VZD active = FALSE. +
 Bei FALSE wird der Eintrag vom VZD aus der flachen Liste entfernt bzw. nicht übertragen. +
-Dieses Attribut ist nicht in der flachen Liste enthalten.
+Dieses Attribut ist nicht in der flachen Liste enthalten. +
+Wenn der VZD beim zeitlichen Ablauf des letzten Zertifikats einen VZD Eintrag aus der flachen Liste entfernt, bleibt das Attribut active unverändert. Beim erneuten Hinzufügen eines Zertifikats wird der VZD Eintrag also wieder in die flache Liste übernommen, wenn dieses Attribut den Wert "true" enthält.
 |*meta* |optional | Kann von den pflegenden Clients zur Abstimmung der Prozesse zwischen z.B. Kartenherausgeber und TSP genutzt werden. Dieses Attribut wird durch den VZD nicht ausgewertet. Die Werte für dieses Attribut müssen von den pflegenden Organisationen festgelegt und abgestimmt werden. +
 Array von Strings (wird in LDAP auf <String, String> gemappt). es erfolgt keine Synchronisierung in die flache Liste. +
 Dieses Attribut ist nicht in der flachen Liste enthalten. +
@@ -2419,8 +2535,17 @@ Tabelle 15: Tab_VZD_Datenbeschreibung_der_SMC-B_eGBR
 |*givenName* |optional |Wird für SMC-B nicht verwendet.
 |*sn* |optional | Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
  +
-Wenn der Client der Schnittstelle I_Directory_Administration keinen Wert für sn angibt, wird sn als Kopie von Attribut displayName gesetzt. Wird sn als Parameter übergeben, wird der angegebene Wert übernommen.
-|*cn* |obligatorisch |Bezeichner: Name +
+Verhalten der Befüllung des Attributs bei Nutzung der Operationen
+
+* add_Directory_Entry:   
+** Wird sn als Parameter übergeben, wird der angegebene Wert übernommen. 
+** Wird sn nicht als Parameter übergeben, wird sn als Kopie von Parameter displayName gesetzt. 
+** Wird sn und displayName nicht als Parameter übergeben, wird sn auf einen leeren Wert gesetzt ("-" im LDAP-View). 
+* modify_Directory_Entry:
+** Wird sn als Parameter übergeben, wird der angegebene Wert übernommen.
+** Wird sn nicht als Parameter übergeben, wird sn gelöscht ("-" im LDAP-View).
+* add_Directory_Entry_Certificate 
+** Hat keine Auswirkungen auf das sn Attribut.|*cn* |obligatorisch |Bezeichner: Name +
 Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
  +
 Bei Nutzung der Schreiboperationen von Schnittstelle I_Directory_Administration wird cn als Kopie von Attribut displayName gesetzt, wenn cn nicht als Parameter übergeben wird. Wird cn als Parameter übergeben, wird der angegebene Wert übernommen.
@@ -2525,9 +2650,9 @@ Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
 
 Wird vom KOM-LE-Anbieter eingetragen.
 |*active* |obligatorisch | Mit diesem Attribut im Basiseintrag kann der Client (Kartenherausgeber, TSP) die Aufnahme des VZD Eintrags in die flache Liste steuern. Wenn das Attribut beim Anlegen eines VZD Eintrags mit Zertifikat nicht angegeben wird, setzt der VZD das Attribut  active auf TRUE (Default-Wert). +
-Wenn der VZD Eintrag ohne Zertifikat angelegt wird, setzt der VZD active = FALSE. +
 Bei FALSE wird der Eintrag vom VZD aus der flachen Liste entfernt bzw. nicht übertragen. +
-Dieses Attribut ist nicht in der flachen Liste enthalten.
+Dieses Attribut ist nicht in der flachen Liste enthalten. +
+Wenn der VZD beim zeitlichen Ablauf des letzten Zertifikats einen VZD Eintrag aus der flachen Liste entfernt, bleibt das Attribut active unverändert. Beim erneuten Hinzufügen eines Zertifikats wird der VZD Eintrag also wieder in die flache Liste übernommen, wenn dieses Attribut den Wert "true" enthält.
 |*meta* |optional | Kann von den pflegenden Clients zur Abstimmung der Prozesse zwischen z.B. Kartenherausgeber und TSP genutzt werden. Dieses Attribut wird durch den VZD nicht ausgewertet. Die Werte für dieses Attribut müssen von den pflegenden Organisationen festgelegt und abgestimmt werden. +
 Array von Strings (wird in LDAP auf <String, String> gemappt). es erfolgt keine Synchronisierung in die flache Liste. +
 Dieses Attribut ist nicht in der flachen Liste enthalten. +
@@ -2629,4 +2754,3 @@ Behebung: wird noch geklärt. 
  +
 *Der Fehler ist im VZD bereits behoben*
 |===
-
