@@ -77,13 +77,16 @@ Update zum SMC-B ORG-Eintrag der gematik +
 Neu für eGBR HBA und SMC-B |gematik
 
 |1.5.3 |23.06.2022 |3.6, 3.3.1.3 |Rückverfolgbarkeit der Einträge (Holder-Attribute) - C_11048 |gematik
-|1.5.4 |15.07.2022 |4 |
+
+|1.5.4 |26.09.2022 |4 |
+
 - Verwendung des holder Attributs für eGBR Einträge ergänzt +
 - Optimierung der komLeData Datenstruktur - C_11165 +
 - Fehlende Attribute "holder" und "dataFromAuthority" in den Attributtabellen ergänzt +
 - Attribut userCertificate.active ergänzt +
 - "4.14 gematik - Weitere ärztliche Institutionen (SMC-B-Eintrag)" ergänzt +
 - Datenerfassung für Apotheken erweitert
+
 |gematik
 
 |1.5.5 |10.12.2022 |4 |
@@ -99,11 +102,15 @@ Neu für eGBR HBA und SMC-B |gematik
 - Ergänzungen von dktig in Kap. 4.6 - DIR-339 +
 - Anpassungen in Kap. 4.14 - DIR-339 +
 - Tab_VZD_Datenbeschreibung_KZVen: Attribut domainID aktualisiert (KZBV Mail 8.12.2022)
+
 |gematik
 
 |===
 
 == Einordnung des Dokumentes
+
+NOTE: Seit März 2020 verwendet die gematik die Bezeichnung „*KIM – Kommunikation im Medizinwesen*“ für die Anwendung *KOM-LE*. Diese neue Benennung findet sich insbesondere in Informationsmaterialien für die Zielgruppe Leistungserbringer sowie in Presseveröffentlichungen. Eine Umbenennung in den technisch-normativen Dokumenten wie Spezifikationen, Konzepten, Zulassungsdokumenten etc. mit Ausnahme von Angaben zu Domänen, E-Mail-Adressen, technischen Schnittstellen, Parametern u.ä. ist mit Stand Release KIM 1.x nicht geplant. 
+
 
 === Zielsetzung
 
@@ -1008,6 +1015,7 @@ Dafür müssen die ENC Zertifikate aller neuen SMC-B Karten in Attribut Certific
  +	
 Alle anderen - durch Kartenherausgeber gepflegte - Daten müssen bei Änderungen (z.B. Änderung der Adresse, Spezialisierung,...) aktualisiert werden.	
 
+
 Tabelle 4: Tab_VZD_Datenbeschreibung_Apotheken_SMC-B
 
 [width="100%",cols="18%,10%,72%",options="header",]
@@ -1035,6 +1043,7 @@ Dieses Attribut wird durch den VZD nicht automatisch aus dem Zertifikat ermittel
  +
 Bezeichner: Anderer Name +
 Wird vom VZD aus dem Zertifikatsattribut otherName übernommen.
+
 |*displayName* |obligatorisch |Bezeichner: Anzeigename +
 Dieses Attribut wird genutzt um den Namen der Betriebsstätte gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut um die Suche einzuschränken und bei der Darstellung des Ergebnisses). +
  +
@@ -1061,11 +1070,13 @@ Kann mehrfach vorkommen (0..100).
 |*maxKOMLEadr* |optional |Maximale Anzahl von Mail-Adressen in den KOM-LE-Fachdaten.  +
 Falls kein Wert eingetragen wurde, können beliebig viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden. +
 Falls ein Wert eingetragen wurde, können maximal so viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden.
-|*userCertificate* |optional |Bezeichner: Enc-Zertifikat der SMC-B +
-Kann mehrfach vorkommen (0..50). +
+|*userCertificate* |obligatorisch |Bezeichner: Enc-Zertifikat der SMC-B +
+Kann mehrfach vorkommen (1..50). +
 Format: DER, Base64 kodiert +
 Die pflegende Stelle erhält das Zertifikat vom TSP. +
-Es können Einträge ohne Zertifikat angelegt werden. Diese Einträge werden jedoch nicht über die LDAP-Abfrageschnittstelle gefunden.
+ +
+Damit der SMC-B Eintrag der Apotheke korrekt durch die Anwendungen (z.B. KIM und eRezept) verarbeitet werden kann, muss das userCertificate eingetragen werden (Pflichtfeld=obligatorisch). +
+Der VZD lässt jedoch auch Einträge ohne userCertificate zu, da dies vom Ablauf her in anderen Sektoren benötigt wird.
 |*userCertificate.active* |obligatorisch |Wird vom VZD eingetragen. +
 Wert == TRUE, wenn das userCertificate gemäß OCSP gültig ist (OCSP Response Status "good"), Wert == FALSE bei Zertifikaten von noch nicht freigeschalteten Karten (OCSP Response Status "unknown"). +
 Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in die flache Liste übernommen.
@@ -1143,6 +1154,7 @@ Wird vom VZD automatisch eingetragen.
 Wird vom VZD automatisch eingetragen.
 |===
 
+
 {empty} +
 {empty} +
 
@@ -1154,6 +1166,7 @@ Dafür müssen die ENC Zertifikate aller neuen HBA Karten in Attribut Certificat
 - Noch nicht aktivierte Zertifikate werden in der VZD I_Directory_Query Schnittstelle erst nach Aktivierung sichtbar. +
  +
 Alle anderen - durch Kartenherausgeber gepflegte - Daten müssen bei Änderungen (z.B. Änderung der Adresse, Spezialisierung,...) aktualisiert werden.
+
 
 Tabelle 5: Tab_VZD_Datenbeschreibung_Apotheker
 
@@ -1206,8 +1219,8 @@ Dieses Attribut wird genutzt, um den Namen der Betriebsstätte gegenüber dem An
 |*domainID* |optional |Bezeichner: spezifisches Kennzeichen der Apotheker +
 Kann mehrfach vorkommen (0..100). +
 Der Wert wird von der pflegenden Stelle festgelegt.
-|*specialization* |obligatorisch |Bezeichner: Fachgebiet +
-Kann mehrfach vorkommen (1..100). +
+|*specialization* |optional |Bezeichner: Fachgebiet +
+Kann mehrfach vorkommen (0..100). +
 *Für Einträge der Leistungserbringer (HBA-Eintrag)* +
 Der Wertebereich entspricht den in hl7 definierten Werten ( https://wiki.hl7.de/index.php?title=IG:Value_Sets_f%C3%BCr_XDS#DocumentEntry.authorSpecialty[+++https://wiki.hl7.de/index.php?title=IG:Value_Sets_f%C3%BCr_XDS#DocumentEntry.authorSpecialty+++]). +
 urn:as:<OID Codesystem:Code> +
@@ -2660,6 +2673,7 @@ Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
         "1.0,xx-05@hersteller02.kim.telematik-test"
         ]
 ----
+
 
 Wird vom KOM-LE-Anbieter eingetragen.
 |*active* |obligatorisch | Mit diesem Attribut im Basiseintrag kann der Client (Kartenherausgeber, TSP) die Aufnahme des VZD Eintrags in die flache Liste steuern. Wenn das Attribut beim Anlegen eines VZD Eintrags mit Zertifikat nicht angegeben wird, setzt der VZD das Attribut  active auf TRUE (Default-Wert). +
