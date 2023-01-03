@@ -1,0 +1,158 @@
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
+:imagesdir: ../images
+:toc: macro
+:toclevels: 5
+:toc-title: Table of Contents
+:numbered:
+
+image:gematik_logo.svg[width=70%]
+
+toc::[]
+
+= Änderuntgen an Spezifikation gemSpec_VZD_FHIR_Directory
+Dieses Dokument informiert über die Änderungen an Spezifikation gemSpec_VZD_FHIR_Directory, welche noch nicht auf dem gematik Fachportal veröffentlicht wurden.
+Vor der Veröffentlichung auf dem Fachportal erfolgen noch Reviews. Folge dieser Reviews können Änderungen bis zur finalen Veröffentlichung bedingen.
+
+== Anwendungsfälle
+=== Eigentümer ändert seinen Eintrag im FHIR-Directory (gemSpec_VZD_FHIR_Directory#5.2)
+*AF_10037 Einträge im VZD-FHIR-Directory ändern*
+
+.AF_10037 Einträge im VZD-FHIR-Directory ändern 
+|===
+|Attribute |Bemerkung
+
+|Beschreibung
+|Organisationen können ihren Eintrag im VZD-FHIR-Directory an die eigenen Strukturen anpassen. 
+Leistungserbringer können z. B. die TI-Messenger-Adresse in ihrem Eintrag hinzufügen. 
+Der Basiseintrag einer Organisation oder eines Leistungserbringers wird wie bisher durch die Kartenherausgeber erstellt. 
+Die Organisation KANN eigene mit dem Basiseintrag verlinkte FHIR-Ressourcen erstellen, um die Struktur der Organisation abzubilden. 
+Zum Beispiel können Krankenhäuser ihre Fachabteilungen als HealthcareService-Einträge abbilden, die mit dem Organization-Eintrag verlinkt sind. 
+Wenn der Org-Admin oder LE kein gültiges owner-accesstoken vom VZD-FHIR-Directory im Client vorliegt, 
+muss die Authentisierung mittels OIDC an einem IDP der TI-IDP-Föderation erfolgen. 
+Nach erfolgreicher Authentisierung ist die durch den IDP bestätigte Telematik-ID des Leistungserbringers oder der Organisation am Auth-Service bekannt. 
+Für den Aufruf der FHIR-Operationen durch den Client stellt der Auth-Service dem Client ein owner-accesstoken aus, 
+dass auch die Telematik-ID des LE oder der Organisation enthält.
+
+|Vorbedingung
+|Die Organisation oder der Leistungserbringer hat bereits einen Basiseintrag im VZD-FHIR-Directory. Eine Authenticator-App des IDP steht zur Verfügung, 
+mit der die Organisations-Identität oder die Leistungserbringer-Identität bei einem IDP der TI-IDP-Föderation bestätigt werden kann. 
+
+|Fehlermeldungen
+|
+
+
+|===
+
+++++
+<p align="left">
+  <img width="75%" src=../images/diagrams/SequenceDiagram.FHIR-Directory.owner.png>
+</p>
+++++
+
+*Akzeptanzkriterien für den Anwendungsfall AF_10037 OrganizationDirectory-Einträge im VZD-FHIR-Directory ändern* +
+ +
+*ML-123873 - Authentifizierung am Endpunkt /owner (VZD-FHIR-Directory, Sicherheitsgutachten)* +
+Am Endpunkt /owner des FHIR-Proxy darf die Authentifizierung nur für Nutzer erfolgreich sein, die ein gültiges Accesstoken vom VZD-FHIR-Directory vorweisen. +
+ +
+*ML-123874 - Nur Einträge mit eigener Telematik-ID verändern (VZD-FHIR-Directory)* +
+Im bei der Authentifizierung verwendeten Accesstoken ist die Telematik-ID des Nutzers enthalten. 
+Nur der Eintrag (PractitionerDirectory oder OrganizationDirectory) mit der eigenen Telematik-ID darf verändert werden. 
+Dabei dürfen nur die Attribute verändert werden, die nicht vom VZD-LDAP-Directory synchronisiert werden. +
+ +
+ 
+IMPORTANT: Folgendes Akzeptanzkriterium wird gestrichen (nur HealthcareServices können mit dem eigenen Organization Eintrag verlinkt werden): +
+*ML-123482 - Selbst angelegte OrganizationDirectory-Einträge MÜSSEN mit dem eigenen Basiseintrag verlinkt sein (VZD-FHIR-Directory)* +
+ +
+
+Neue Akzeptanzkriterien: +
+ +
+*ML-xxxxxx - Token Prüfung (VZD-FHIR-Directory)* +
+Die Accesstoken müssen vom VZD-FHIR-Directory für den Endpunkt /owner geprüft werden: +
+
+- Laden des Zertifikats
+- Prüfung Audience aus dem Token (muss der /owner Schnittstelle entsprechen)
+- Prüfung ProfessionOID aus dem Token (*was wird geprüft?*) 
+- Prüfung Signatur des Tokens gemäß RFC7515.
+
+Zur Prüfung der Signatur ist das X.509-Root-CA Zertifikat der TI erforderlich. 
+Das X.509-Root-CA Zertifikat MUSS im Truststore des VZD-FHIR-Directory gespeichert sein.
+
+Das VZD-FHIR-Directory MUSS wöchentlich prüfen, ob neue X.509-Root-CA-Versionen existieren und Cross-Zertifikate verfügbar sind. 
+Falls dies der Fall ist, so MUSS das VZD-FHIR-Directory diese neue Root-Versionen in seinen Truststore importieren. +
+ +
+Nach der Erzeugung einer neuen Root-Version der X.509-Root-CA der TI werden dessen selbstsigniertes Zertifikat und Cross-Zertifikate 
+auf den Download-Punkt gemäß [ROOT-CA] abgelegt. Automatisiert kann das VZD-FHIR-Directory von dort die Verfügbarkeit neuer Versionen überwachen. 
+Zusätzlich kann der folgende Download-Punkt unter [ROOT-CA-JSON] verwendet werden. 
+Dort werden die aktuellen Root-Zertifikate inkl. deren Cross-Zertifikate gepflegt. 
+Im Regelfall wird alle zwei Jahre eine neue Root-Version erzeugt. Die Dateigröße der heruntergeladenen JSON-Datei kann man als Hashfunktion verwenden. 
+Hiermit kann man beispielsweise mit Hilfe des Tools curl die HTTP-Methode HEAD verwenden und damit erfahren ob die lokale Kopie der JSON-Datei noch aktuell ist. 
+Die JSON-Datei ist ein Array, in dem Associative Arrays als Elemente aufgeführt werden. 
+Diese Elemente enthalten je ein Root-Zertifikat inkl. Cross-Zertifikate für das chronologisch vorhergehende und das nachfolgende Root-Zertifikat. 
+D. h.,  kryptographisch gesehen stellt dies eine doppelt verkettet Liste dar. 
+Die Element im Array sind in chronologischer Ordnung sortiert. Im Folgenden wird ein Beispiel dargestellt. +
+
+--------------------------------------------------------------------------------------------------------
+
+===== Endpoint: /owner
+The */owner* endpoint is provided by the FHIR-Proxy to change directory entries by the owner of the entry. This chapter describes how to use the FHIR-Proxy endpoint.
+
+===== Authentication
+The ways to authenticate differ depending on the entry type (organization / practitioner entry). The https://fachportal.gematik.de/fachportal-import/files/gemSpec_VZD_FHIR_Directory_V1.1.0.pdf[specification of the FHIR-Directory] contains information about the endpoint and authentication methods.
+
+*Organization entry*
+
+The */owner* endpoint requires a valid JSON Web Token (`owner-authenticate-token`) in the Authorization header. To get the token you need a 3rd Party Token from a permitted Registrierungs-Dienst (`registration-service-token`). With this token you can get the `owner-authenticate-token` from the */owner-authenticate* endpoint from the VZD-FHIR-Directory Auth Service. There are two steps necessary:
+
+.*1. Login to the Registrierungs-Dienst as Org-Admin*
+
+This is a proprietary interface. Only healthcare organizations are permitted to take part in the TI-Messenger federation. Each TI-Messenger provider implements a way to authenticate a healthcare organization with OIDC and OAuth2. After the successful authentication the healthcare organization may create Org-Admin Accounts on the Registrierungsdienst.
+
+.*2. Request a 3rd Party Token from the Registrierungs-Dienst*
+
+After login the Org-Admin requests a token from the Registrierungs-Dienst.
+
+Now, the following example shows the call to the */owner-authenticate* endpoint to get the `owner-authenticate-token`.
+
+*REQUEST*
+====
+[source,text]
+----
+GET https://fhir-directory-test.vzd.ti-dienste.de/owner-authenticate
+----
+====
+
+====
+[source,yaml]
+----
+HEADER
+{
+  "User-Agent": "Faraday v2.6.0", 
+  "Content-Type": "application/json", 
+  "X-RegService-Token": "registration-service-token", 
+  "X-Registration-Server-Name": "registration-service.dev.service-ti.de"
+}
+----
+====
+
+*RESPONSE*
+====
+[source,yaml]
+----
+...
+BODY
+{
+  "jwt": "owner-authenticate-token",
+  "token_type": "bearer",
+  "expires_in": 86400
+}
+----
+====
+
+*Practitioner entry*
