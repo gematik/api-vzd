@@ -56,13 +56,20 @@ mit der die Organisations-Identität oder die Leistungserbringer-Identität bei 
 </p>
 ++++
 
-Neue Beschreibung für Anwendungsfall AF_10037: +
- +
-Der Auth-Service des VZD-FHIR-Directory muss übergebene Token entsprechend Akzeptanzkriterium ML-xxxxxx prüfen und bei erfolgreicher Prüfung ein owner-accesstoken ausstellen und zurückgeben. +
-Wird der Auth-Service des VZD-FHIR-Directory ohne Token aufgerufen, muss er die Authentifizierung entsprechend OpenID Connect unterstützen. +
-Der Auth-Service soll die Authentifizierung entsprechend OpenID Connect auch für Zugriffe durch Org-Admins (SMC-B/Organization) - zusätzlich zur Authentifizierung mit RegService-OpenID-Token - unterstützen. +
- +
- +
+Beschreibung für Anwendungsfall AF_10037:
+
+
+----
+Der Auth-Service des VZD-FHIR-Directory muss übergebene Token entsprechend Akzeptanzkriterium ML-xxxxxx prüfen und bei 
+erfolgreicher Prüfung ein owner-accesstoken ausstellen und zurückgeben.
+Wird der Auth-Service des VZD-FHIR-Directory ohne Token aufgerufen, muss er die Authentifizierung entsprechend OpenID Connect 
+unterstützen.
+Der Auth-Service soll die Authentifizierung entsprechend OpenID Connect auch für Zugriffe durch Org-Admins 
+(SMC-B/Organization) - zusätzlich zur Authentifizierung mit RegService-OpenID-Token - unterstützen.
+
+----
+
+
 *Akzeptanzkriterien für den Anwendungsfall "AF_10037 OrganizationDirectory-Einträge im VZD-FHIR-Directory ändern"* +
  +
 *ML-123873 - Authentifizierung am Endpunkt /owner (VZD-FHIR-Directory, Sicherheitsgutachten)* +
@@ -78,10 +85,11 @@ IMPORTANT: Folgendes Akzeptanzkriterium wird gestrichen (nur HealthcareServices 
 *ML-123482 - Selbst angelegte OrganizationDirectory-Einträge MÜSSEN mit dem eigenen Basiseintrag verlinkt sein (VZD-FHIR-Directory)* +
  +
 
-Neue Akzeptanzkriterien: +
- +
-*ML-xxxxxx - Token Prüfung (VZD-FHIR-Directory)* +
-Die Accesstoken müssen vom VZD-FHIR-Directory für den Endpunkt /owner geprüft werden: +
+Neue Akzeptanzkriterien:
+
+----
+ML-xxxxxx - Token Prüfung (VZD-FHIR-Directory)
+Die Accesstoken müssen vom VZD-FHIR-Directory für den Endpunkt /owner geprüft werden:
 
 - Laden des Zertifikats
 - Prüfung Audience aus dem Token (muss der /owner Schnittstelle entsprechen)
@@ -91,17 +99,27 @@ Die Accesstoken müssen vom VZD-FHIR-Directory für den Endpunkt /owner geprüf
 Zur Prüfung der Signatur ist das X.509-Root-CA Zertifikat der TI erforderlich. 
 Das X.509-Root-CA Zertifikat MUSS im Truststore des VZD-FHIR-Directory gespeichert sein.
 
-Das VZD-FHIR-Directory MUSS wöchentlich prüfen, ob neue X.509-Root-CA-Versionen existieren und Cross-Zertifikate verfügbar sind. 
-Falls dies der Fall ist, so MUSS das VZD-FHIR-Directory diese neue Root-Versionen in seinen Truststore importieren. +
- +
-Nach der Erzeugung einer neuen Root-Version der X.509-Root-CA der TI werden dessen selbstsigniertes Zertifikat und Cross-Zertifikate 
-auf den Download-Punkt gemäß [ROOT-CA] abgelegt. Automatisiert kann das VZD-FHIR-Directory von dort die Verfügbarkeit neuer Versionen überwachen. 
+Das VZD-FHIR-Directory MUSS wöchentlich prüfen, ob neue X.509-Root-CA-Versionen existieren 
+und Cross-Zertifikate verfügbar sind. 
+Falls dies der Fall ist, so MUSS das VZD-FHIR-Directory diese neue Root-Versionen in seinen 
+Truststore importieren.
+
+Nach der Erzeugung einer neuen Root-Version der X.509-Root-CA der TI werden dessen 
+selbstsigniertes Zertifikat und Cross-Zertifikate auf den Download-Punkt gemäß [ROOT-CA] 
+abgelegt. Automatisiert kann das VZD-FHIR-Directory von dort die Verfügbarkeit neuer Versionen 
+überwachen. 
 Zusätzlich kann der folgende Download-Punkt unter [ROOT-CA-JSON] verwendet werden. 
 Dort werden die aktuellen Root-Zertifikate inkl. deren Cross-Zertifikate gepflegt. 
-Im Regelfall wird alle zwei Jahre eine neue Root-Version erzeugt. Die Dateigröße der heruntergeladenen JSON-Datei kann man als Hashfunktion verwenden. 
-Hiermit kann man beispielsweise mit Hilfe des Tools curl die HTTP-Methode HEAD verwenden und damit erfahren ob die lokale Kopie der JSON-Datei noch aktuell ist. 
+Im Regelfall wird alle zwei Jahre eine neue Root-Version erzeugt. 
+Die Dateigröße der heruntergeladenen JSON-Datei kann man als Hashfunktion verwenden. 
+Hiermit kann man beispielsweise mit Hilfe des Tools curl die HTTP-Methode HEAD verwenden 
+und damit erfahren ob die lokale Kopie der JSON-Datei noch aktuell ist. 
 Die JSON-Datei ist ein Array, in dem Associative Arrays als Elemente aufgeführt werden. 
-Diese Elemente enthalten je ein Root-Zertifikat inkl. Cross-Zertifikate für das chronologisch vorhergehende und das nachfolgende Root-Zertifikat. 
+Diese Elemente enthalten je ein Root-Zertifikat inkl. Cross-Zertifikate für das 
+chronologisch vorhergehende und das nachfolgende Root-Zertifikat. 
 D. h.,  kryptographisch gesehen stellt dies eine doppelt verkettet Liste dar. 
-Die Element im Array sind in chronologischer Ordnung sortiert. Im Folgenden wird ein Beispiel dargestellt. +
+Die Element im Array sind in chronologischer Ordnung sortiert. 
+Im Folgenden wird ein Beispiel dargestellt.
+
+----
 
