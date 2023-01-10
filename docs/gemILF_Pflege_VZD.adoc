@@ -96,7 +96,7 @@ Neu für eGBR HBA und SMC-B |gematik
 - Operation stateSwitch_Directory_Entry in Kap. 3.3.1 aufgenommen - C_11183 +
 - Operation readLog in Kap. 3.3.4 aufgenommen - C_11221 +
 - Attribut changeDateTime vereinheitlicht (Kap. 4) - C_11183 +
-- Attributtabellen aktualisiert: notBefore, notAfter (Kap. 4) - C_11179 +
+- Attributtabellen aktualisiert: notBefore, notAfter, serialNumber,  issuer, publicKeyAlgorithm (Kap. 4) - C_11179 +
 - Beschreibung der Attribute aktualisiert +
   (givenName, sn, cn, displayName, entryType) - DIR-214, DIR-236 +
 - Ergänzungen von dktig in Kap. 4.6 - DIR-339 +
@@ -859,6 +859,17 @@ Wird vom VZD automatisch eingetragen.
 Wird vom VZD automatisch eingetragen.
 |*notAfter* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. Wird vom VZD zur Ermittlung der zeitlich gültigen Zertifikate genutzt. Dieses Attribut ist nicht in der flachen Liste enthalten. +
 Wird vom VZD automatisch eingetragen.
+
+|*serialNumber* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. +
+Kann zur Suche nach Zertifikaten genutzt werden. +
+Dieses Attribut ist nicht in der flachen Liste enthalten.
+|*issuer* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. +
+Kann zur Suche nach Zertifikaten genutzt werden. +
+Dieses Attribut ist nicht in der flachen Liste enthalten.
+|*publicKeyAlgorithm* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. +
+Kann zur Suche nach Zertifikaten genutzt werden. +
+Dieses Attribut ist nicht in der flachen Liste enthalten.
+
 |===
 
 {empty} +
@@ -1001,6 +1012,17 @@ Wird vom VZD automatisch eingetragen.
 Wird vom VZD automatisch eingetragen.
 |*notAfter* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. Wird vom VZD zur Ermittlung der zeitlich gültigen Zertifikate genutzt. Dieses Attribut ist nicht in der flachen Liste enthalten. +
 Wird vom VZD automatisch eingetragen.
+
+|*serialNumber* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. +
+Kann zur Suche nach Zertifikaten genutzt werden. +
+Dieses Attribut ist nicht in der flachen Liste enthalten.
+|*issuer* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. +
+Kann zur Suche nach Zertifikaten genutzt werden. +
+Dieses Attribut ist nicht in der flachen Liste enthalten.
+|*publicKeyAlgorithm* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. +
+Kann zur Suche nach Zertifikaten genutzt werden. +
+Dieses Attribut ist nicht in der flachen Liste enthalten.
+
 |===
 
 {empty} +
@@ -1152,6 +1174,17 @@ Wird vom VZD automatisch eingetragen.
 Wird vom VZD automatisch eingetragen.
 |*notAfter* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. Wird vom VZD zur Ermittlung der zeitlich gültigen Zertifikate genutzt. Dieses Attribut ist nicht in der flachen Liste enthalten. +
 Wird vom VZD automatisch eingetragen.
+
+|*serialNumber* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. +
+Kann zur Suche nach Zertifikaten genutzt werden. +
+Dieses Attribut ist nicht in der flachen Liste enthalten.
+|*issuer* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. +
+Kann zur Suche nach Zertifikaten genutzt werden. +
+Dieses Attribut ist nicht in der flachen Liste enthalten.
+|*publicKeyAlgorithm* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. +
+Kann zur Suche nach Zertifikaten genutzt werden. +
+Dieses Attribut ist nicht in der flachen Liste enthalten.
+
 |===
 
 
@@ -1308,6 +1341,17 @@ Wird vom VZD automatisch eingetragen.
 Wird vom VZD automatisch eingetragen.
 |*notAfter* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. Wird vom VZD zur Ermittlung der zeitlich gültigen Zertifikate genutzt. Dieses Attribut ist nicht in der flachen Liste enthalten. +
 Wird vom VZD automatisch eingetragen.
+
+|*serialNumber* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. +
+Kann zur Suche nach Zertifikaten genutzt werden. +
+Dieses Attribut ist nicht in der flachen Liste enthalten.
+|*issuer* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. +
+Kann zur Suche nach Zertifikaten genutzt werden. +
+Dieses Attribut ist nicht in der flachen Liste enthalten.
+|*publicKeyAlgorithm* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. +
+Kann zur Suche nach Zertifikaten genutzt werden. +
+Dieses Attribut ist nicht in der flachen Liste enthalten.
+
 |===
 
 {empty} +
@@ -1447,6 +1491,17 @@ Wird vom VZD automatisch eingetragen.
 Wird vom VZD automatisch eingetragen.
 |*notAfter* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. Wird vom VZD zur Ermittlung der zeitlich gültigen Zertifikate genutzt. Dieses Attribut ist nicht in der flachen Liste enthalten. +
 Wird vom VZD automatisch eingetragen.
+
+|*serialNumber* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. +
+Kann zur Suche nach Zertifikaten genutzt werden. +
+Dieses Attribut ist nicht in der flachen Liste enthalten.
+|*issuer* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. +
+Kann zur Suche nach Zertifikaten genutzt werden. +
+Dieses Attribut ist nicht in der flachen Liste enthalten.
+|*publicKeyAlgorithm* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. +
+Kann zur Suche nach Zertifikaten genutzt werden. +
+Dieses Attribut ist nicht in der flachen Liste enthalten.
+
 |===
 
 {empty} +
@@ -1595,6 +1650,17 @@ Wird vom VZD automatisch eingetragen.
 Wird vom VZD automatisch eingetragen.
 |*notAfter* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. Wird vom VZD zur Ermittlung der zeitlich gültigen Zertifikate genutzt. Dieses Attribut ist nicht in der flachen Liste enthalten. +
 Wird vom VZD automatisch eingetragen.
+
+|*serialNumber* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. +
+Kann zur Suche nach Zertifikaten genutzt werden. +
+Dieses Attribut ist nicht in der flachen Liste enthalten.
+|*issuer* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. +
+Kann zur Suche nach Zertifikaten genutzt werden. +
+Dieses Attribut ist nicht in der flachen Liste enthalten.
+|*publicKeyAlgorithm* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. +
+Kann zur Suche nach Zertifikaten genutzt werden. +
+Dieses Attribut ist nicht in der flachen Liste enthalten.
+
 |===
 
 {empty} +
@@ -1742,6 +1808,17 @@ Wird vom VZD automatisch eingetragen.
 Wird vom VZD automatisch eingetragen.
 |*notAfter* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. Wird vom VZD zur Ermittlung der zeitlich gültigen Zertifikate genutzt. Dieses Attribut ist nicht in der flachen Liste enthalten. +
 Wird vom VZD automatisch eingetragen.
+
+|*serialNumber* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. +
+Kann zur Suche nach Zertifikaten genutzt werden. +
+Dieses Attribut ist nicht in der flachen Liste enthalten.
+|*issuer* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. +
+Kann zur Suche nach Zertifikaten genutzt werden. +
+Dieses Attribut ist nicht in der flachen Liste enthalten.
+|*publicKeyAlgorithm* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. +
+Kann zur Suche nach Zertifikaten genutzt werden. +
+Dieses Attribut ist nicht in der flachen Liste enthalten.
+
 |===
 
 {empty} +
@@ -1889,6 +1966,17 @@ Wird vom VZD automatisch eingetragen.
 Wird vom VZD automatisch eingetragen.
 |*notAfter* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. Wird vom VZD zur Ermittlung der zeitlich gültigen Zertifikate genutzt. Dieses Attribut ist nicht in der flachen Liste enthalten. +
 Wird vom VZD automatisch eingetragen.
+
+|*serialNumber* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. +
+Kann zur Suche nach Zertifikaten genutzt werden. +
+Dieses Attribut ist nicht in der flachen Liste enthalten.
+|*issuer* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. +
+Kann zur Suche nach Zertifikaten genutzt werden. +
+Dieses Attribut ist nicht in der flachen Liste enthalten.
+|*publicKeyAlgorithm* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. +
+Kann zur Suche nach Zertifikaten genutzt werden. +
+Dieses Attribut ist nicht in der flachen Liste enthalten.
+
 |===
 
 {empty} +
@@ -2033,6 +2121,17 @@ Wird vom VZD automatisch eingetragen.
 Wird vom VZD automatisch eingetragen.
 |*notAfter* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. Wird vom VZD zur Ermittlung der zeitlich gültigen Zertifikate genutzt. Dieses Attribut ist nicht in der flachen Liste enthalten. +
 Wird vom VZD automatisch eingetragen.
+
+|*serialNumber* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. +
+Kann zur Suche nach Zertifikaten genutzt werden. +
+Dieses Attribut ist nicht in der flachen Liste enthalten.
+|*issuer* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. +
+Kann zur Suche nach Zertifikaten genutzt werden. +
+Dieses Attribut ist nicht in der flachen Liste enthalten.
+|*publicKeyAlgorithm* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. +
+Kann zur Suche nach Zertifikaten genutzt werden. +
+Dieses Attribut ist nicht in der flachen Liste enthalten.
+
 |===
 
 {empty} +
@@ -2144,6 +2243,17 @@ Wird vom VZD automatisch eingetragen.
 Wird vom VZD automatisch eingetragen.
 |*notAfter* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. Wird vom VZD zur Ermittlung der zeitlich gültigen Zertifikate genutzt. Dieses Attribut ist nicht in der flachen Liste enthalten. +
 Wird vom VZD automatisch eingetragen.
+
+|*serialNumber* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. +
+Kann zur Suche nach Zertifikaten genutzt werden. +
+Dieses Attribut ist nicht in der flachen Liste enthalten.
+|*issuer* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. +
+Kann zur Suche nach Zertifikaten genutzt werden. +
+Dieses Attribut ist nicht in der flachen Liste enthalten.
+|*publicKeyAlgorithm* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. +
+Kann zur Suche nach Zertifikaten genutzt werden. +
+Dieses Attribut ist nicht in der flachen Liste enthalten.
+
 |===
 
 {empty} +
@@ -2273,6 +2383,17 @@ Wird vom VZD automatisch eingetragen.
 Wird vom VZD automatisch eingetragen.
 |*notAfter* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. Wird vom VZD zur Ermittlung der zeitlich gültigen Zertifikate genutzt. Dieses Attribut ist nicht in der flachen Liste enthalten. +
 Wird vom VZD automatisch eingetragen.
+
+|*serialNumber* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. +
+Kann zur Suche nach Zertifikaten genutzt werden. +
+Dieses Attribut ist nicht in der flachen Liste enthalten.
+|*issuer* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. +
+Kann zur Suche nach Zertifikaten genutzt werden. +
+Dieses Attribut ist nicht in der flachen Liste enthalten.
+|*publicKeyAlgorithm* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. +
+Kann zur Suche nach Zertifikaten genutzt werden. +
+Dieses Attribut ist nicht in der flachen Liste enthalten.
+
 |===
 
 {empty} +
@@ -2405,6 +2526,17 @@ Wird vom VZD automatisch eingetragen.
 Wird vom VZD automatisch eingetragen.
 |*notAfter* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. Wird vom VZD zur Ermittlung der zeitlich gültigen Zertifikate genutzt. Dieses Attribut ist nicht in der flachen Liste enthalten. +
 Wird vom VZD automatisch eingetragen.
+
+|*serialNumber* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. +
+Kann zur Suche nach Zertifikaten genutzt werden. +
+Dieses Attribut ist nicht in der flachen Liste enthalten.
+|*issuer* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. +
+Kann zur Suche nach Zertifikaten genutzt werden. +
+Dieses Attribut ist nicht in der flachen Liste enthalten.
+|*publicKeyAlgorithm* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. +
+Kann zur Suche nach Zertifikaten genutzt werden. +
+Dieses Attribut ist nicht in der flachen Liste enthalten.
+
 |===
 
 {empty} +
@@ -2546,6 +2678,17 @@ Wird vom VZD automatisch eingetragen.
 Wird vom VZD automatisch eingetragen.
 |*notAfter* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. Wird vom VZD zur Ermittlung der zeitlich gültigen Zertifikate genutzt. Dieses Attribut ist nicht in der flachen Liste enthalten. +
 Wird vom VZD automatisch eingetragen.
+
+|*serialNumber* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. +
+Kann zur Suche nach Zertifikaten genutzt werden. +
+Dieses Attribut ist nicht in der flachen Liste enthalten.
+|*issuer* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. +
+Kann zur Suche nach Zertifikaten genutzt werden. +
+Dieses Attribut ist nicht in der flachen Liste enthalten.
+|*publicKeyAlgorithm* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. +
+Kann zur Suche nach Zertifikaten genutzt werden. +
+Dieses Attribut ist nicht in der flachen Liste enthalten.
+
 |===
 
 {empty} +
@@ -2692,6 +2835,17 @@ Wird vom VZD automatisch eingetragen.
 Wird vom VZD automatisch eingetragen.
 |*notAfter* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. Wird vom VZD zur Ermittlung der zeitlich gültigen Zertifikate genutzt. Dieses Attribut ist nicht in der flachen Liste enthalten. +
 Wird vom VZD automatisch eingetragen.
+
+|*serialNumber* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. +
+Kann zur Suche nach Zertifikaten genutzt werden. +
+Dieses Attribut ist nicht in der flachen Liste enthalten.
+|*issuer* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. +
+Kann zur Suche nach Zertifikaten genutzt werden. +
+Dieses Attribut ist nicht in der flachen Liste enthalten.
+|*publicKeyAlgorithm* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. +
+Kann zur Suche nach Zertifikaten genutzt werden. +
+Dieses Attribut ist nicht in der flachen Liste enthalten.
+
 |===
 
 {empty} +
