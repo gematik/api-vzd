@@ -25,6 +25,8 @@ image:https://shields.io/badge/App API-latest-green?logo=swagger[link="src/opena
 
 == Aktuelles
 
+* *14.12.2022* 📄 https://fachportal.gematik.de/schnelleinstieg/downloadcenter/releases#c6770[Spezifikationen Verzeichnisdienst „VZD FHIR 1.0.0“]
+* *26.09.2022* 👨‍💻 https://github.com/gematik/api-vzd/blob/gemILF_Pflege_VZD/1.5.4/docs/gemILF_Pflege_VZD.adoc[Implementierungsleitfaden v1.5.4]
 * *23.06.2022* 📄 link:https://github.com/gematik/api-vzd/blob/gemILF_Pflege_VZD/1.5.3/docs/gemILF_Pflege_VZD.adoc[Implementierungsleitfaden v1.5.3]. Ab dieser Version wird das Dokument über github.com veröffentlicht. 
 * *31.05.2022* link:CHANGELOG.adoc[Produktrelease v3.1.0-14]
 * *8.04.2022* 👨‍💻 https://github.com/gematik/api-vzd/blob/I_Directory_Application_Maintenance/1.1.4/src/openapi/DirectoryApplicationMaintenance.yaml[Directory Application Maintenance API v1.1.4]
@@ -32,6 +34,14 @@ image:https://shields.io/badge/App API-latest-green?logo=swagger[link="src/opena
 * *25.02.2022* 🔥 https://simplifier.net/packages/de.gematik.fhir.directory/0.6.1/~introduction[FHIR Package 0.6.1]
 * *17.02.2022* 🎁 link:CHANGELOG.adoc[Produktrelease v3.1.0-11]
 * *14.02.2022* 📄 https://fachportal.gematik.de/fileadmin/Fachportal/Downloadcenter/Implementierungsleitfaeden/gemILF_Pflege_VZD_V1.5.2.pdf[Implementierungsleitfaden v1.5.2]
+
+== GitHub Branches
+Der Verzeichnisdienst wird auf verschiedenen GitHub Branches dokumentiert:
+
+- *main* Branch: Enthält die Dokumentation passend für die aktuelle Verzeichnisdienst Produktivumgebung (PU)
+- *develop* Branch: Enthält die Dokumentation passend für den aktuelle in Entwicklung befindlichen Verzeichnisdienst.
+- *feature/** Branches: Diese Branches werden zur Vorbereitung und Diskussion von neuen Themen genutzt, die noch nicht in Entwickung sind. Diese Dokumente können unvollständig sein und sich bis zur Fertigstellung ändern.
+
 
 == Kontextabgrenzung
 
