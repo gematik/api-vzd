@@ -12,7 +12,7 @@
     }
   ],
   "url": "https://gematik.de/fhir/directory/StructureDefinition/PractitionerRoleDirectory",
-  "version": "0.8.0-wip",
+  "version": "0.9.0",
   "name": "PractitionerRoleDirectory",
   "title": "PractitionerRole in gematik Directory",
   "status": "draft",
@@ -57,14 +57,6 @@
         "path": "PractitionerRole.practitioner",
         "min": 1,
         "mustSupport": true
-      },
-      {
-        "id": "PractitionerRole.specialty",
-        "path": "PractitionerRole.specialty",
-        "binding": {
-          "strength": "required",
-          "valueSet": "https://gematik.de/fhir/directory/ValueSet/PractitionerRoleSpecialtyVS"
-        }
       },
       {
         "id": "PractitionerRole.location",

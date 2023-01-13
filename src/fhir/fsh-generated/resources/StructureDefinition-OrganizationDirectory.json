@@ -12,7 +12,7 @@
     }
   ],
   "url": "https://gematik.de/fhir/directory/StructureDefinition/OrganizationDirectory",
-  "version": "0.8.0-wip",
+  "version": "0.9.0",
   "name": "OrganizationDirectory",
   "title": "Organization in gematik Directory",
   "status": "draft",
@@ -140,7 +140,7 @@
         "mustSupport": true,
         "binding": {
           "strength": "required",
-          "valueSet": "http://hl7.org/fhir/ValueSet/organization-type"
+          "valueSet": "https://gematik.de/fhir/directory/ValueSet/OrganizationTypeVS"
         }
       },
       {
@@ -158,14 +158,6 @@
         "id": "Organization.contact",
         "path": "Organization.contact",
         "mustSupport": true
-      },
-      {
-        "id": "Organization.contact.purpose",
-        "path": "Organization.contact.purpose",
-        "binding": {
-          "strength": "required",
-          "valueSet": "http://terminology.hl7.org/ValueSet/contactentity-type"
-        }
       }
     ]
   }

@@ -1,8 +1,9 @@
-CodeSystem: EndpointConnectionType
+CodeSystem: EndpointDirectoryConnectionType
 Title: "Codes for Endpoint.connectionType"
 Description: "CodeSystem TI specific connection types assigned to the Endpoints"
 * insert Meta
 * ^content = #complete
+* ^caseSensitive = false
 * #tim "TI-Messenger Endpoint"
 * #tim-domain "TI-Messenger domain name"
 * #kim-1.0 "KIM 1.0 Endpoint"

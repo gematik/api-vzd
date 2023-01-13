@@ -18,13 +18,14 @@ ifdef::env-github[]
 endif::[]
 
 image:https://shields.io/badge/gem Spec VZD-v1.14.0-blue[link="https://fachportal.gematik.de/fachportal-import/files/gemSpec_VZD_V1.14.0.pdf"]
-image:https://shields.io/badge/gemILF_Pflege_VZD-v1.5.2-green[link="https://fachportal.gematik.de/fileadmin/Fachportal/Downloadcenter/Implementierungsleitfaeden/gemILF_Pflege_VZD_V1.5.2.pdf"]
-image:https://shields.io/badge/simplifier.net-latest-red[link="https://simplifier.net/vzd-fhir-directory"] +
-image:https://shields.io/badge/Admin API-latest-green?logo=swagger[link="src/openapi/DirectoryAdministration.yaml"]
+image:https://shields.io/badge/gemILF_Pflege_VZD-v1.5.4-green[link="https://github.com/gematik/api-vzd/blob/gemILF_Pflege_VZD/1.5.4/docs/gemILF_Pflege_VZD.adoc"]
+image:https://shields.io/badge/simplifier.net-0.8.0beta6-red[link="https://simplifier.net/vzd-fhir-directory"] +
+image:https://shields.io/badge/Admin API-1.8.1-green?logo=swagger[link="https://github.com/gematik/api-vzd/blob/I_Directory_Administration/1.8.1/src/openapi/DirectoryAdministration.yaml"]
 image:https://shields.io/badge/App API-latest-green?logo=swagger[link="src/openapi/DirectoryApplicationMaintenance.yaml"]
 
 == Aktuelles
 
+* *23.06.2022* 📄 link:https://github.com/gematik/api-vzd/blob/gemILF_Pflege_VZD/1.5.3/docs/gemILF_Pflege_VZD.adoc[Implementierungsleitfaden v1.5.3]. Ab dieser Version wird das Dokument über github.com veröffentlicht. 
 * *31.05.2022* link:CHANGELOG.adoc[Produktrelease v3.1.0-14]
 * *8.04.2022* 👨‍💻 https://github.com/gematik/api-vzd/blob/I_Directory_Application_Maintenance/1.1.4/src/openapi/DirectoryApplicationMaintenance.yaml[Directory Application Maintenance API v1.1.4]
 * *8.04.2022* 👨‍💻 https://github.com/gematik/api-vzd/blob/I_Directory_Administration/1.8.1/src/openapi/DirectoryAdministration.yaml[Directory Administration API v1.8.1]
@@ -37,29 +38,19 @@ image:https://shields.io/badge/App API-latest-green?logo=swagger[link="src/opena
 .*Verzeichnisdienst Systemkontext*
 image::VZD_Systemkontext.svg[VZD Systemkontext]
 {zwsp} +
-Verzeichnisdienst der TI verwaltet Einträge von Leistungserbringern und Organisationen/Institutionen mit allen definierten Attributen, die in das Verzeichnis aufgenommen werden sollen. Anhand einer Suchanfrage können diese  Daten abgefragt werden (z. B. Adressdaten, X.509-Zertifikate). Ferner können Einträge des Verzeichnisses durch Kartenherausgeber (Basisdaten) oder berechtigte fachanwendungsspezifische Dienste (Fachanwendungsdaten) geändert, hinzugefügt und gelöscht (Kartenherausgeber vollständige Einträge, fachanwendungsspezifische Dienste nur die jeweiligen Fachdaten) werden.
+Verzeichnisdienst der TI verwaltet Einträge von Leistungserbringern und Organisationen/Institutionen mit allen definierten Attributen, die in das Verzeichnis aufgenommen werden sollen. Anhand einer Suchanfrage können diese Daten abgefragt werden (z. B. Adressdaten, X.509-Zertifikate). Ferner können Einträge des Verzeichnisses durch Kartenherausgeber (Basisdaten) oder berechtigte fachanwendungsspezifische Dienste (Fachanwendungsdaten) geändert, hinzugefügt und gelöscht (Kartenherausgeber vollständige Einträge, fachanwendungsspezifische Dienste nur die jeweiligen Fachdaten) werden.
 
-Verzeichnisdienst bittet folgende Außenschnittstellen an (s Nummerierung in der Abbildung):
+Verzeichnisdienst bietet folgende Außenschnittstellen an (s. Nummerierung in der Abbildung):
 
 1. Über den TI-Konnektor wird dem KIM-Client sowie Primärsystemen eine LDAP Schnittstelle zur Abfrage der Daten bereitgestellt. Schnittstelle `I_Directory_Query`, dezentral.
-2. Die Konnektoren leiten die Anfragen zustandslos über das zentrale Nezt der TI an das Verzeichnisdienst weiter. Über die LDAP Schnittstelle des zentrale betriebenen VZD werden speziell für solche Abfragen aufbereitete und optimierte Daten durchsucht (so genannte flache Liste). Schnittstelle `I_Directory_Query`, zentral.
+2. Die Konnektoren leiten die Anfragen zustandslos über das zentrale Netz der TI an den Verzeichnisdienst weiter. Über die LDAP Schnittstelle des zentrale betriebenen VZD werden speziell für solche Abfragen aufbereitete und optimierte Daten durchsucht (so genannte flache Liste). Schnittstelle `I_Directory_Query`, zentral.
 3. Die Kartenherausgeber (bspw. Landesärztekammer oder Kassenzahnärztliche Vereinigungen) in Kooperation mit Trust Service Provider sind verantwortlich für die Befüllung des VZD mit Basisdaten und Zertifikaten. Hierfür stell VZD eine REST API für die Administration der Daten im Verzeichnisdienst. Schnittstelle `I_Directory_Administration`.
 4. Die KIM Anbieter ergänzen die Basisdaten um eigene Inhalte, insb. um die KIM-EMail-Adressen. Schnittstelle `I_Application_Maintenance`.
 5. Für die Suche der Apotheken, z.B. in der gematik eRezept APP, existiert ein dediziertes Apothekenverzeichnis (ApoVZD). ApoVZD synchronisiert regelmäßig die Daten aus dem VZD und ergänzt diese um weitere Inhalte (z.B. um Geolokalisierung und Öffnungszeiten der Apotheken). Schnittstelle `I_Directory_Administration`, analog zu p.3.
 6. Für die Suche der Leistungserbringer-Institutionen im Rahmen der Berechtigungsvergabe in der elektronischen Patientenakte (ePA),vermittelt das ePA-Aktensystem die Kommunikation zwischen VZD und ePA-Frontend. Schnittstelle `I_Directory_Query`, zentral.
 7. _In Entwicklung_: TIM Anbieter registrieren sich und verifizieren sich gegenseitig mit Hilfe von VZD. Schnittstelle. `I_Directory_TIM_Provider_Services`
-8. _In Entwicklung_: VZD bietet direkten Zugriff zur den Daten über FHIR REST Schnittstellen für die TIM Clients und perspektivisch anderen registrierten Clients. Schnittstelle `I_Directory_FHIR#tim-search`.
+8. _In Entwicklung_: VZD bietet direkten Zugriff zur den Daten über FHIR REST Schnittstellen für die TIM Clients und perspektivisch anderen registrierten Clients. Schnittstelle `I_Directory_FHIR#search`.
 9. _In Entwicklung_: Die Leistungserbringer können ihre Daten selbstständig administrieren, um z.B. die Organisationsstrukturen und Standorte zur erfassen. Schnittstelle `I_Directory_FHIR#owner`.
-
-Die Schnittstellen des Verzeichnisdienstes sind in Spezifikationen der gematik definiert:
-
-* https://fachportal.gematik.de/fachportal-import/files/gemSpec_VZD_V1.13.1.pdf[gemSpec_VZD_V1.13.1.pdf]
-
-Die Daten des LDAP-Directories sind im Implementierungsleitfaden zur Pflege der Daten des Verzeichnisdienstes beschrieben.
-Die Dokumente können im Fachportal der gematik gefunden werden:
-
-* https://fachportal.gematik.de/fileadmin/Fachportal/Downloadcenter/Implementierungsleitfaeden/gemILF_Pflege_VZD_V1.5.2.pdf[gemILF_Pflege_VZD_V1.5.2.pdf]
-
 
 == Systemarchitektur
 
