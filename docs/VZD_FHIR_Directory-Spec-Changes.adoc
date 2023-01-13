@@ -146,8 +146,21 @@ Im Folgenden wird ein Beispiel dargestellt.
 
 ----
 
+== Kapitel "4.2.1.4 Schnittstelle FHIRDirectoryTIMProviderAPI (I_VZD_TIM_Provider_Services.yaml)"
 
-Todo: +
+Am Kapitelende: +
+
+Für die Signaturprüfung der Föderationsliste nach dem Download über Operation getFederationList (GET /FederationList/federationList.json) muss das Signaturzertifikat für den Download durch die Clients auf den folgenden Endpunkten im PEM Format bereitstellen: +  
+
+- In der Produktionsumgebung ist die URL: https://fhir-directory.vzd.ti-dienste.de/federationListSigCert.crt
+- In der Referenzumgebung ist die URL: https://fhir-directory-ref.vzd.ti-dienste.de/federationListSigCert.crt
+- In der Testumgebung ist die URL: https://fhir-directory-test.vzd.ti-dienste.de/federationListSigCert.crt
+ +
+ +
+ 
+ 
+== Offene Punkte 
+
 - Prüfen ob wir die AFOs aus gemSpec_IDP_FD & gemSpec_IDP_Sek FHIR_VZD zuweisen (analog gemProdT_eRp_FD)
 
 
