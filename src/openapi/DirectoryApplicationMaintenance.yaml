@@ -4,18 +4,10 @@ info:
   description: |
    # REST Schnittstelle zur Pflege der Fachanwendungsdaten der Verzeichniseinträge
      Über diese Schnittstelle können Fachanwendungsdaten der Verzeichniseinträge erzeugt, aktualisiert und gelöscht werden. 
-  version: 1.1.6
-  # Änderungen in Version 1.1.6
-  #  - Fehlerbehandlung verbessert:
-  #    o Schema Error: Optionale Fehlernachricht hinzugefügt
-  #                    Struktur angepasst (mehrere Fehlermeldungen ermöglicht)
-  #    o Für alle Fehler HTTP Status Kodes das Error Schema aufgenommen
-  #    o Fehlercode 400 für Operationen read_Directory_Entry, read_Directory_Certificates, get_Directory_FA-Attributes ergänzt
-  #
+  version: 1.1.5
   # Änderungen in Version 1.1.5
-  #  - Parameter "fad" in Operation add_Directory_FA-Attributes gestrichen. Die FAD des Clients wird auf Basis des TLS Client Zertifikats ermittelt.
-  #  - Im Schema FAD1 das "required: - dn" gestrichen, da es Probleme mit einem Code-Generator verursacht hat
-  #
+  #  - Attribut usage aus Schema userCertificate und Operationen entfernt
+  #    (wurde nicht mehr genutzt)
   # Änderungen in Version 1.1.4
   #  - KOM-LE_Version wurde durch komLeData ersetzt. Dies erlaubt die Angabe von KIM-Versionen für einzelne KIM-Adressen. 
   #  - Die Client Authentisierung wurde auf mutualTLS angepasst (OAuth2 wurde gestrichen)
@@ -77,16 +69,10 @@ paths:
                   $ref: '#/components/schemas/InfoObject'
         401:
           description: Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          content: {}
         403:
           description: Forbidden
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          content: {}
 
 
   /DirectoryEntries:
@@ -308,31 +294,16 @@ paths:
             application/json:
               schema:
                   $ref: '#/components/schemas/DirectoryEntries'
-        400:
-          description: Bad Request
-                    #  Invalid uid supplied
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
+
         401:
           description: Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          content: {}
         403:
           description: Forbidden
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          content: {}
         404:
           description: Not Found
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          content: {}
 
   /DirectoryEntries/Certificates:
   
@@ -375,13 +346,6 @@ paths:
          Der Verzeichniseintrag wird selektiert, wenn die angegebene professionOID im Attribut professionOID (array) des Zertifikatseintrags enthalten ist.
         schema:
           type: string  
-      - name: usage
-        in: query
-        description: |
-         Erlaubt die Suche mit Hilfe des Attributs usage. 
-         Der Verzeichniseintrag wird selektiert, wenn die angegebene usage im Attribut usage (array) des Zertifikatseintrags enthalten ist.
-        schema:
-          type: string  
 
       responses:
         200:
@@ -393,34 +357,19 @@ paths:
             application/json:
               schema:
                   $ref: '#/components/schemas/userCertificates'
-        400:
-          description: Bad Request
-                # Allgemeiner Fehler im Request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
+
         401:
           description: |
            Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          content: {}
         403:
           description: Forbidden
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          content: {}
         404:
           description: |
            Not Found
            Certificate not found
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          content: {}
 
   /DirectoryEntries/{telematikID}/KOM-LE_Fachdaten:
     post:
@@ -430,6 +379,11 @@ paths:
       description: Erzeugt einen neuen Fachdateneintrag
       operationId: add_Directory_FA-Attributes
       parameters:
+       - name: fad
+         in: query
+         description: Identifikator vom anfragenden Fachdienstanbieter.
+         schema:
+          type: string
        - name: telematikID
          in: path
          description: telematikID von dem Verzeichniseintrag 
@@ -458,23 +412,14 @@ paths:
               $ref: '#/components/schemas/Error'
         401:
           description: Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          content: {}
         403:
           description: Forbidden
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          content: {}
         404:
           description: Not Found
                     #  telematikID not found
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          content: {}
 
 
   /DirectoryEntries/{telematikID}/KOM-LE_Fachdaten/{fad}:
@@ -508,32 +453,17 @@ paths:
             application/json:
               schema:
                   $ref: '#/components/schemas/FAD1'
-        400:
-          description: Bad Request
-                # Allgemeiner Fehler im Request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
+
         401:
           description: Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          content: {}
         403:
           description: Forbidden
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          content: {}
         404:
           description: Not Found
                     #  telematikID not found
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          content: {}
 
     put:
       tags:
@@ -594,23 +524,14 @@ paths:
               $ref: '#/components/schemas/Error'
         401:
           description: Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          content: {}
         403:
           description: Forbidden
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          content: {}
         404:
           description: Not Found
                     #  telematikID not found
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          content: {}
 
 
     delete:
@@ -647,23 +568,14 @@ paths:
               $ref: '#/components/schemas/Error'
         401:
           description: Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          content: {}
         403:
           description: Forbidden
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          content: {}
         404:
           description: Not Found
                     #  telematikID not found
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          content: {}
 
 components:
 
@@ -700,19 +612,6 @@ components:
              Profession OID / Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und dem Mapping in ab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen.
              Siehe [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. 
              Kann mehrfach vorkommen (0..100)
-        usage:
-          maxItems: 100
-          minItems: 0
-          type: array
-          description: |
-           Nutzungskennzeichnung kann pro Zertifikat mehrfach
-            vergeben werden. Vorgegebener Wertebereich [KOM-LE, ePA].
-           Obligatorisch für LEI und KTR mit vorgegebenem Wert usage=ePA'
-          items:
-            type: string
-            enum:
-            - KOM-LE
-            - ePA
         userCertificate:
           type: string
           description: |
@@ -743,6 +642,8 @@ components:
             $ref: '#/components/schemas/FAD1'
 
     FAD1:
+      required:
+      - dn
       type: object
       properties:
         dn:
@@ -997,19 +898,8 @@ components:
             
     Error:
       type: object
-      properties:
-        message: 
-          type: string
-          description: (optionale) Fehlernachricht
-        errors:
-          maxItems: 50
-          minItems: 0
-          type: array
-          items:
-            $ref: '#/components/schemas/InnerError'
-
-    InnerError:
-      type: object
+      maxItems: 50
+      minItems: 0
       properties:
         attributeName:
           description: Name des Attributs, in dem ein Fehler erkannt wurde

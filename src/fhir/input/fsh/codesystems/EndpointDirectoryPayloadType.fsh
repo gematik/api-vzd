@@ -1,4 +1,4 @@
-CodeSystem: EndpointPayloadType
+CodeSystem: EndpointDirectoryPayloadType
 Title: "Codes for Endpoint.payloadType"
 Description: """CodeSystem TI specific payload types assigned to the Endpoints
 
@@ -8,4 +8,5 @@ New codes can be requested at gematik. There must exist a specification for each
 """
 * insert Meta
 * ^content = #complete
+* ^caseSensitive = false
 * #tim-chat "TI-Messenger chat"

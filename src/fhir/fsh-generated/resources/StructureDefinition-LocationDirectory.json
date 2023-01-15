@@ -12,7 +12,7 @@
     }
   ],
   "url": "https://gematik.de/fhir/directory/StructureDefinition/LocationDirectory",
-  "version": "0.8.0-wip",
+  "version": "0.9.0",
   "name": "LocationDirectory",
   "title": "Location in gematik Directory",
   "status": "draft",
@@ -88,7 +88,7 @@
         "path": "Location.address.state",
         "mustSupport": true,
         "binding": {
-          "strength": "required",
+          "strength": "extensible",
           "valueSet": "https://gematik.de/fhir/directory/ValueSet/AddressStateVS"
         }
       },

@@ -5,6 +5,7 @@ The codes for Practitioners based on Profession OIDs defined in [gemSpec_OID](ht
 """
 * insert Meta
 * ^content = #complete
+* ^caseSensitive = false
 * #1.2.276.0.76.4.30 "Ärztin/Arzt"
 * #1.2.276.0.76.4.31 "Zahnärztin/Zahnarzt" "..."
 * #1.2.276.0.76.4.32 "Apotheker/-in"

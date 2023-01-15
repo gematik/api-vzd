@@ -12,7 +12,7 @@
     }
   ],
   "url": "https://gematik.de/fhir/directory/StructureDefinition/EndpointDirectory",
-  "version": "0.8.0-wip",
+  "version": "0.9.0",
   "name": "EndpointDirectory",
   "title": "Endpoint in gematik Directory",
   "status": "draft",
@@ -52,8 +52,8 @@
         "id": "Endpoint.connectionType.code",
         "path": "Endpoint.connectionType.code",
         "binding": {
-          "strength": "required",
-          "valueSet": "http://hl7.org/fhir/ValueSet/endpoint-connection-type"
+          "strength": "extensible",
+          "valueSet": "https://gematik.de/fhir/directory/ValueSet/EndpointConnectionTypeVS"
         }
       },
       {
@@ -72,8 +72,8 @@
         "path": "Endpoint.payloadType",
         "mustSupport": true,
         "binding": {
-          "strength": "required",
-          "valueSet": "http://hl7.org/fhir/ValueSet/endpoint-payload-type"
+          "strength": "extensible",
+          "valueSet": "https://gematik.de/fhir/directory/ValueSet/EndpointPayloadTypeVS"
         }
       },
       {

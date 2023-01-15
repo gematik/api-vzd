@@ -1,8 +1,7 @@
-id: de.gematik.fhir.directory
 canonical: https://gematik.de/fhir/directory
 name: gematik Directory
 status: draft # draft | active | retired | unknown
-version: 0.8.0-wip
+version: 0.9.0
 fhirVersion: 4.0.1
 dependencies:
   de.basisprofil.r4: 1.3.2

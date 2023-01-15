@@ -2,12 +2,12 @@
   "resourceType": "CodeSystem",
   "status": "draft",
   "content": "complete",
-  "name": "EndpointConnectionType",
-  "id": "EndpointConnectionType",
+  "name": "EndpointDirectoryConnectionType",
+  "id": "EndpointDirectoryConnectionType",
   "title": "Codes for Endpoint.connectionType",
   "description": "CodeSystem TI specific connection types assigned to the Endpoints",
-  "version": "0.8.0-wip",
-  "url": "https://gematik.de/fhir/directory/CodeSystem/EndpointConnectionType",
+  "version": "0.9.0",
+  "url": "https://gematik.de/fhir/directory/CodeSystem/EndpointDirectoryConnectionType",
   "concept": [
     {
       "code": "tim",
@@ -39,5 +39,6 @@
     }
   ],
   "publisher": "gematik GmbH",
+  "caseSensitive": false,
   "count": 7
 }
