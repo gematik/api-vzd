@@ -1,22 +1,62 @@
 openapi: 3.0.1
+
 info:
   title: I_Directory_Application_Maintenance
   description: |
    # REST Schnittstelle zur Pflege der Fachanwendungsdaten der Verzeichniseinträge
      Über diese Schnittstelle können Fachanwendungsdaten der Verzeichniseinträge erzeugt, aktualisiert und gelöscht werden. 
-  version: 1.1.5
-  # Änderungen in Version 1.1.5
+
+  version: 1.2.3
+  
+  # Änderungen in Version 1.2.3
   #  - Attribut usage aus Schema userCertificate und Operationen entfernt
   #    (wurde nicht mehr genutzt)
+  #  - Operation readLog: Erlaubte Parameter für Suchanfragen in Kommentaren erläutert
+  # 
+  # Änderungen in Version 1.2.2
+  #  - Operation readLog: Parameter holder umbenannt in clientID 
+  # 
+  # Änderungen in Version 1.2.1
+  #  - Operation readLog vereinfacht 
+  # 
+  # Änderungen in Version 1.2.0
+  #  - baseDirectoryEntry.entryType ist ein Wert (kein array mehr)
+  #  - Attribute in Schema baseDirectoryEntry und als Suchparameter 
+  #    in Operation read_Directory_Entry ergänzt:
+  #      active, meta 
+  #  - Attribute im Schema userCertificate und als Suchparameter 
+  #    in Operation read_Directory_Certificates ergänzt:
+  #      serialNumber, issuer, publicKeyAlgorithm
+  #  - Attribute im Schema userCertificate ergänzt:
+  #      notBefore, notAfter
+  #  - Attribute in Schema baseDirectoryEntry änderbar definiert:
+  #      givenName, sn, cn
+  
+  # Änderungen in Version 1.1.7
+  #  - Operation readLog hinzugefügt
+
+  # Änderungen in Version 1.1.6
+  #  - Fehlerbehandlung verbessert:
+  #    o Schema Error: Optionale Fehlernachricht hinzugefügt
+  #                    Struktur angepasst (mehrere Fehlermeldungen ermöglicht)
+  #    o Für alle Fehler HTTP Status Kodes das Error Schema aufgenommen
+  #    o Fehlercode 400 für Operationen read_Directory_Entry, read_Directory_Certificates, get_Directory_FA-Attributes ergänzt
+  #
+  # Änderungen in Version 1.1.5
+  #  - Parameter "fad" in Operation add_Directory_FA-Attributes gestrichen. Die FAD des Clients wird auf Basis des TLS Client Zertifikats ermittelt.
+  #  - Im Schema FAD1 das "required: - dn" gestrichen, da es Probleme mit einem Code-Generator verursacht hat
+  #
   # Änderungen in Version 1.1.4
   #  - KOM-LE_Version wurde durch komLeData ersetzt. Dies erlaubt die Angabe von KIM-Versionen für einzelne KIM-Adressen. 
   #  - Die Client Authentisierung wurde auf mutualTLS angepasst (OAuth2 wurde gestrichen)
   #  - Server URLs hinzugefügt  
+  #
   # Änderungen in Version 1.1.3
   #  - Filtermöglichkeiten in Leseoperationen read_Directory_Entry 
   #    (Wildcard "*" & Vorhandensein \00) aufgenommen.
   #  - Suchparameter in Leseoperationen read_Directory_Entry aufgenommen:
   #    maxKOMLEadr, changeDateTimeFrom, changeDateTimeTo
+  #
   # Änderungen in Version 1.1.2
   #  - Fehlerbehandlung für Operation modify_Directory_FA-Attributes in den Kommentaren dieser Operation ausführlicher beschrieben.
   #  - Im Datenmodell für DirectoryEntry Attribut "userCertificates" maxItems auf 50 gesetzt
@@ -69,10 +109,16 @@ paths:
                   $ref: '#/components/schemas/InfoObject'
         401:
           description: Unauthorized
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         403:
           description: Forbidden
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
 
 
   /DirectoryEntries:
@@ -283,6 +329,19 @@ paths:
         schema:
           type: boolean
           example: true
+      - name: active
+        in: query
+        description: Erlaubt die Suche mit Hilfe des Attributs baseDirectoryEntry.active.
+        schema:
+          type: boolean  
+      - name: meta
+        in: query
+        description: |
+          Erlaubt die Suche mit Hilfe des Attributs baseDirectoryEntry.meta
+          
+          Selektiert alle Datensätze, deren Attribut meta den angegebenen String in einem Wert des arry's enthält.
+        schema:
+          type: string  
           
       responses:
         200:
@@ -294,16 +353,31 @@ paths:
             application/json:
               schema:
                   $ref: '#/components/schemas/DirectoryEntries'
-
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         401:
           description: Unauthorized
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         403:
           description: Forbidden
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         404:
           description: Not Found
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
 
   /DirectoryEntries/Certificates:
   
@@ -346,6 +420,27 @@ paths:
          Der Verzeichniseintrag wird selektiert, wenn die angegebene professionOID im Attribut professionOID (array) des Zertifikatseintrags enthalten ist.
         schema:
           type: string  
+      - name: active
+        in: query
+        description: Erlaubt die Suche mit Hilfe des Attributs userCertificate.active. 
+        schema:
+          type: boolean  
+      - name: serialNumber
+        in: query
+        description: Erlaubt die Suche mit Hilfe des Attributs userCertificate.serialNumber. 
+        schema:
+          type: string  
+      - name: issuer
+        in: query
+        description: Erlaubt die Suche mit Hilfe des Attributs userCertificate.issuer. 
+        schema:
+          type: string  
+      - name: publicKeyAlgorithm
+        in: query
+        description: Erlaubt die Suche mit Hilfe des Attributs userCertificate.publicKeyAlgorithm. 
+        schema:
+          type: string  
+
 
       responses:
         200:
@@ -358,18 +453,33 @@ paths:
               schema:
                   $ref: '#/components/schemas/userCertificates'
 
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'				
         401:
           description: |
            Unauthorized
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         403:
           description: Forbidden
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         404:
           description: |
            Not Found
            Certificate not found
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
 
   /DirectoryEntries/{telematikID}/KOM-LE_Fachdaten:
     post:
@@ -379,11 +489,6 @@ paths:
       description: Erzeugt einen neuen Fachdateneintrag
       operationId: add_Directory_FA-Attributes
       parameters:
-       - name: fad
-         in: query
-         description: Identifikator vom anfragenden Fachdienstanbieter.
-         schema:
-          type: string
        - name: telematikID
          in: path
          description: telematikID von dem Verzeichniseintrag 
@@ -405,21 +510,53 @@ paths:
         400:
           description: |
            Bad Request
+           
            Fehler in dem Request Body
+           
+             - Anzahl der zulässigen Mail Adressen (maxKOMLEadr) überschritten 
+               Ein Response mit HTTP Status Kode 400 und folgenden Werten im Body wird zurück gegeben
+               ```
+                {
+                    "attributeName": "mail",
+                    "attributeError": "maxKOMLEadr wurde überschritten"
+                  }
+            - Unzulässiger Wert von Attribut KOM-LE_Version im Request
+              Ein Response mit HTTP Status Kode 400 und folgenden Werten im Body wird zurück gegeben
+              ```
+                 {
+                    "attributeName": "version",
+                    "attributeError": "Unzulässiger Wert"
+                   }
+            - Liste von Mail Adressen in FAD1.mail und FAD1.komLeData.mail inkonsistent
+              Ein Response mit HTTP Status Kode 400 und folgenden Werten im Body wird zurück gegeben
+              ```
+                 {
+                    "attributeName": "mail",
+                    "attributeError": "Inkonsistenz zwischen FAD1.mail und FAD1.komLeData.mail"
+                   }
           content: 
             application/json:
              schema:
               $ref: '#/components/schemas/Error'
         401:
           description: Unauthorized
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'				
         403:
           description: Forbidden
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'				
         404:
           description: Not Found
                     #  telematikID not found
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'				
 
 
   /DirectoryEntries/{telematikID}/KOM-LE_Fachdaten/{fad}:
@@ -453,17 +590,33 @@ paths:
             application/json:
               schema:
                   $ref: '#/components/schemas/FAD1'
-
+        400:
+          description: Bad Request
+                # Allgemeiner Fehler im Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         401:
           description: Unauthorized
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'				
         403:
           description: Forbidden
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'				
         404:
           description: Not Found
                     #  telematikID not found
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'				
+
 
     put:
       tags:
@@ -514,8 +667,15 @@ paths:
               Ein Response mit HTTP Status Kode 400 und folgenden Werten im Body wird zurück gegeben
               ```
                  {
-                    "attributeName": "KOM-LE_Version",
+                    "attributeName": "version",
                     "attributeError": "Unzulässiger Wert"
+                   }
+            - Liste von Mail Adressen in FAD1.mail und FAD1.komLeData.mail inkonsistent
+              Ein Response mit HTTP Status Kode 400 und folgenden Werten im Body wird zurück gegeben
+              ```
+                 {
+                    "attributeName": "mail",
+                    "attributeError": "Inkonsistenz zwischen FAD1.mail und FAD1.komLeData.mail"
                    }
                        
           content: 
@@ -524,14 +684,23 @@ paths:
               $ref: '#/components/schemas/Error'
         401:
           description: Unauthorized
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         403:
           description: Forbidden
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         404:
           description: Not Found
                     #  telematikID not found
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
 
 
     delete:
@@ -568,14 +737,148 @@ paths:
               $ref: '#/components/schemas/Error'
         401:
           description: Unauthorized
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         403:
           description: Forbidden
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         404:
           description: Not Found
                     #  telematikID not found
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /Log:
+    get:
+      tags:
+      - Log
+      summary: Log von Verzeichniseinträgen lesen
+      description: Liefert die Log Daten alle zum Filter passenden Verzeichniseinträge. Die angegebenen Parameter werden mit logischen UND verknüpft.
+      operationId: readLog
+#
+# Für Operation readLog werden folgende Kombinationen der Suchparameter erlaubt:
+#      - UID + logTimeFrom (optional) +logTimeTo (optional)
+#      - *telematikID* + logTimeFrom (optional) +logTimeTo (optional)
+#      - *clientID* + logTimeFrom (optional) +logTimeTo (optional)
+#      - operation + logTimeFrom (optional) +logTimeTo (optional)
+#      - noDataChanged + logTimeFrom (optional) +logTimeTo (optional)
+#      - logTimeFrom +logTimeTo
+#      - logTimeFrom
+#      - logTimeTo
+#   Andere Kombinationen der Suchparameter werden mit 400 bad request beantwortet.
+#
+# Für die Leseoperationen read_Directory_Entry, read_Directory_Entry_for_Sync,
+# read_Directory_Entry_for_Sync_paging und readLog der Schnittstellen I_Directory_Administration 
+# und I_Directory_Application_Maintenance
+# werden die folgenden Filtermöglichkeiten unterstützt: 
+#     o Suche mit Wildcard "*" in den Parametern
+#           - telematikID
+#           - clientID
+#           - professionOID
+#       Wildcard ist am Ende und am Anfang nutzbar:
+#           - *Mustermann* - "contains" 
+#           - "Dr. Manfred*" - "startsWith"
+#           - "* MBA" - "endsWith"
+#           treffen alle "Dr. Manfred Mustermann MBA".
+#
+      parameters:
+      - name: uid
+        in: query
+        description: ID von dem Verzeichniseintrag (distinguishedName.uid)
+        schema:
+          type: string  
+      - name: telematikID
+        in: query
+        description: Erlaubt die Suche mit Hilfe des Attributs telematikID (die telematikID in den Basisdaten).
+        schema:
+          type: string  
+      - name: clientID
+        in: query
+        description: Erlaubt die Suche mit Hilfe des Attributs clientID. 
+                     Der Verzeichniseintrag wird selektiert, wenn die angegebene clientID im Log-Datensatz enthalten ist.
+        schema:
+          type: string  
+      - name: logTimeFrom
+        in: query
+        description: Erlaubt die Suche mit Hilfe des Attributs logTime. 
+                  #  Selektiert alle Datensätze mit 
+                  #  logTime >= logTimeFrom
+        schema:
+          type: string  
+          # format: date-time
+          example: "2017-07-21T17:32:28Z"          
+      - name: logTimeTo
+        in: query
+        description: Erlaubt die Suche mit Hilfe des Attributs logTime. 
+                  #  Selektiert alle Datensätze mit 
+                  #  logTime <= logTimeTo
+        schema:
+          type: string  
+          # format: date-time
+          example: "2018-07-21T17:32:28Z"
+      - name: operation
+        in: query
+        description: Erlaubt die Suche anhand der ausgeführten Operation
+        schema:
+          type: string
+          enum: [add_Directory_Entry, 
+                 modify_Directory_Entry, 
+                 delete_Directory_Entry, 
+                 add_Directory_Entry_Certificate, 
+                 delete_Directory_Entry_Certificate, 
+                 add_Directory_FA-Attributes, 
+                 modify_Directory_FA-Attributes, 
+                 delete_Directory_FA-Attributes]
+      - name: noDataChanged
+        in: query
+        description: Erlaubt die Suche nach Log Daten für Schreiboperationen, die keine Daten geändert haben. 
+          (noDataChanged=true -> durch diese Operation wurden keine Daten geändert)
+        schema:
+          type: boolean  
+          example: flase
+
+      responses:
+        200:
+          description: OK
+                    #  Es werden die Logdaten aller zu dem Filter Parametern passenden Verzeichniseinträgen zurückgegeben.
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/LogEntries'
+        400:
+          description: Bad Request
+                    # z.B. Kombinationen der Suchparameter nicht erlaubt
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        401:
+          description: Unauthorized
+                    #  Der WWW-Authenticate Header im Response wird auf OAuth gesetzt.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        403:
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
 
 components:
 
@@ -621,6 +924,43 @@ components:
           type: string
           description: Dieses Attribut ermöglicht das Zertifikat zu beschreiben, um
              die Administration des VZD Eintrags zu vereinfachen.
+        active:
+          type: boolean
+          readOnly: true
+          example: true
+          description: Dieses Attribut eigt an, ob das Zertifikat aktiv ist oder nicht (true oder false).
+        notBefore:
+          type: string
+          description: |
+            Wert wird vom VZD aus dem Zertifikat Feld "notBefore" entnommen und in dieses Attribut ohne Formatänderung eingetragen.
+            Wird vom VZD für die periodische Auswertung der Zertifikats-Gültigkeit genutzt.
+          readOnly: true
+          example: '2017-12-04T01:00:00'
+        notAfter:
+          type: string
+          description: |
+            Wert wird vom VZD aus dem Zertifikat Feld "notAfter" entnommen und in dieses Attribut ohne Formatänderung eingetragen.
+            Wird vom VZD für die periodische Auswertung der Zertifikats-Gültigkeit genutzt.
+          readOnly: true
+          example: '2022-12-04T00:59:59'
+        serialNumber:
+          type: string
+          description: |
+            Wert wird vom VZD aus dem Zertifikat Feld "serialNumber" entnommen und in dieses Attribut ohne Formatänderung eingetragen.
+          readOnly: true
+          example: 80276883110000092581
+        issuer:
+          type: string
+          description: |
+            Wert wird vom VZD aus dem Zertifikat Feld "issuer" entnommen und in dieses Attribut ohne Formatänderung eingetragen.
+          readOnly: true
+          example: 'CN=GEM.SMCB-CA8 TEST-ONLY,OU=Institution des Gesundheitswesens-CA der Telematikinfrastruktur,O=gematik GmbH NOT-VALID,C=DE'
+        publicKeyAlgorithm:
+          type: string
+          description: |
+            Wert wird vom VZD aus dem Zertifikat Feld "publicKeyAlgorithm" entnommen und in dieses Attribut ohne Formatänderung eingetragen.
+          readOnly: true
+          example: RSA
 
     userCertificates:
       type: array
@@ -642,8 +982,6 @@ components:
             $ref: '#/components/schemas/FAD1'
 
     FAD1:
-      required:
-      - dn
       type: object
       properties:
         dn:
@@ -664,11 +1002,14 @@ components:
               version:
                 type: string
                 example: 1.5
-                description: |
-                 Die höchste KOM-LE_Version der KIM Clientmodule für die KIM Mail Adresse
-                 Für jede Mail Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Attribut KOM-LE_Version geben. Es dürfen in KOM-LE_Version keine Mail Adressen referenziert werden, die nicht im zugehörigen "mail" Attribut enthalten sind.
-                 Wenn eine Mail Adresse gelöscht wird, muss auch ihre KOM-LE_Version gelöscht werden.
-                 Geschrieben wird immer die gesamte Liste. Für Änderungen muss erst der aktuelle Eintrag gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
+                description: 'Die höchste Version der KIM Clientmodule für diese KIM-Mail-Adresse'
+            description: |
+              Liste von KIM-Adressen mit der zugehörigen KIM-Version. 
+              Für jede Mail Adresse aus dem `mail` Attribut darf es nur einen Element in der Liste `komLeData` existieren. 
+              Es dürfen in der Liste `komLeData` keine Mail Adressen referenziert werden, die nicht im zugehörigen `mail` Attribut enthalten sind.
+              Wenn eine Mail Adresse gelöscht wird, muss auch ihre `komLeData`-Element gelöscht werden.
+              Geschrieben wird immer die gesamte Liste. 
+              Für Änderungen muss erst der aktuelle Eintrag gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
 
 
     distinguishedName:
@@ -697,110 +1038,88 @@ components:
           description: Common Name
 
     baseDirectoryEntry:
-      required:
-      - cn
-      - dn
       type: object
       properties:
         dn:
           $ref: '#/components/schemas/distinguishedName'
         givenName:
           type: string
-          description: |
-            HBA: Vorname, obligatorisch, wird aus dem Zertifikat übernommen
-            SMC-B: nicht verwendet
-          readOnly: true
+          description: 'HBA: Vorname, obligatorisch, wird aus dem Zertifikat
+            übernommen / SMC-B: nicht verwendet'
           example:  Vorname
         sn:
           type: string
-          description: |
-            HBA: Name, obligatorisch, wird aus dem Zertifikat übernommen
-            SMC-B: nicht verwendet
-          readOnly: true
+          description: 'HBA: Name, obligatorisch, wird aus dem Zertifikat
+            übernommen / SMC-B: nicht verwendet'
           example:  Nachname
         cn:
           type: string
-          description: |
-           HBA: Vorname und Nachname
-           SMC-B: Bezeichner: Name Wird vom VZD aus dem Zertifikatsattribut commonName übernommen.
-          readOnly: true
+          description: 'HBA: Vorname und Nachname / SMC-B: Bezeichner:
+            Name Wird vom VZD aus dem Zertifikatsattribut commonName übernommen.'
           example:  Vorname Nachname  
         displayName:
           type: string
-          description: |
-           Anzeigename, kann geändert werden. 
-           Dieses Attribut wird genutzt um den Namen der Organisation gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut um die Suche einzuschränken und bei der Darstellung des Ergebnisses).
+          description: 'Anzeigename, kann geändert werden. 
+            Dieses Attribut wird genutzt um den Namen der Organisation gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut um die Suche einzuschränken und bei der Darstellung des Ergebnisses).
               Der Wert wird von der pflegenden Stelle festgelegt.
-              Konvention für HBA Einträge: Name, Vorname
+              Konvention für HBA Einträge: Name, Vorname'
           example:  Name, Vorname
         streetAddress:
           type: string
-          description: |
-           Straße und Hausnummer
-           Der Wert wird von der pflegenden Stelle festgelegt
+          description: 'Straße und Hausnummer
+                        Der Wert wird von der pflegenden Stelle festgelegt'
           example: Friedrichstraße 136
         postalCode:
           type: string
-          description: |
-           Postleitzahl
-           Der Wert wird von der pflegenden Stelle festgelegt'
+          description: 'Postleitzahl
+                        Der Wert wird von der pflegenden Stelle festgelegt'
           example: 10117
         countryCode:
           type: string
           maxLength: 2
-          description: |
-           Ländercode
-           Entsprechend ISO-3166-1 ALPHA-2
-           Falls das Attribut beim Anlegen des Datensatzes nicht beölegt wird, ergänzt der VZD den Code für Deutschland (Defaultwert).
+          description: 'Ländercode
+                        Entsprechend ISO-3166-1 ALPHA-2'
+                    # Falls das Attribut beim Anlegen des Datensatzes nicht beölegt wird, ergänzt der VZD den Code für Deutschland (Defaultwert).
           example: DE        
         localityName:
           type: string
-          description: |
-           Ort
-           Der Wert wird von der pflegenden Stelle festgelegt
+          description: 'Ort
+                        Der Wert wird von der pflegenden Stelle festgelegt'
           example: Berlin
         stateOrProvinceName:
           type: string
-          description: |
-           Bundesland
-           Der Wert wird von der pflegenden Stelle festgelegt
+          description: 'Bundesland
+                        Der Wert wird von der pflegenden Stelle festgelegt'
           example: Berlin
         title:
           type: string
-          description: |
-           HBA: Titel, optional
-           SMC-B: nicht verwendet
+          description: 'HBA: Titel, optional / SMC-B: nicht verwendet'
         organization:
           type: string
           example: 12345670
-          description: |
-           Organisation
-           Der Wert wird von der pflegenden Stelle festgelegt
+          description: 'Organisation
+                        Der Wert wird von der pflegenden Stelle festgelegt'
         otherName:
           type: string
-          description: |
-           Anderer Name 
-           Wird vom VZD aus dem Zertifikatsattribut otherName übernommen.
+          description: 'Anderer Name. 
+                        Wird vom VZD aus dem Zertifikatsattribut otherName übernommen.'
         telematikID:
           type: string
-          description: |
-           Wird beim Anlegen des Eintrags vom VZD aus dem Zertifikat übernommen (Feld registrationNumber der Extension Admission).
-           Falls der Basiseintrag (baseDirectoryEntry) ohne Zertifikat angelegt wird, kann in Operation add_Directory_Entry die telematikID angegeben werden.
-           Damit ist der Verzeichniseintrag bereits über die telematikID im baseDirectoryEntry auffindbar. Diese telematikID muss mit der telematikID aus dem Zertifikatseintrag (userCertificate) übereinstimmen. Simmten die telematikIDs nicht überein, wird die Operation mit Fehlercode 422 abgelehnt
+          description: 'Wird beim Anlegen des Eintrags vom VZD aus dem Zertifikat übernommen (Feld registrationNumber der Extension Admission).
+                    Falls der Basiseintrag (baseDirectoryEntry) ohne Zertifikat angelegt wird, kann in Operation add_Directory_Entry die telematikID angegeben werden.
+            Damit ist der Verzeichniseintrag bereits über die telematikID im baseDirectoryEntry auffindbar. Diese telematikID muss mit der telematikID aus dem Zertifikatseintrag (userCertificate) übereinstimmen. Simmten die telematikIDs nicht überein, wird die Operation mit Fehlercode 422 abgelehnt' 
         specialization:
           maxItems: 100
           type: array
-          description: |
-           Fachgebiet
-           Der Wert wird von der pflegenden Stelle festgelegt
+          description: 'Fachgebiet
+                        Der Wert wird von der pflegenden Stelle festgelegt'
           items:
             type: string
         domainID:
           maxItems: 100
           type: array
-          description: |
-           Ärzte-> Betriebsstättennummer
-           Der Wert wird aus dem Zertifikat übernommen (Attribut organizationName)
+          description: 'Ärzte-> Betriebsstättennummer
+                        Der Wert wird aus dem Zertifikat übernommen (Attribut organizationName)'
           items:
             type: string
             example: 345678975
@@ -808,50 +1127,43 @@ components:
           maxItems: 100
           type: array
           description: |
-           Identifiziert den Eigentümer dieses Verzeichniseintrags, der Änderungen an ihm vornehmen darf.
-           Hat keinen Einfluss auf Fachdaten und Zertifikatsdaten.
-           Beim Anlegen eines neuen Verzeichniseintrags (add_Directory_Entry)
+            Identifiziert den Eigentümer dieses Verzeichniseintrags, der Änderungen an ihm vornehmen darf.
+            Hat keinen Einfluss auf Fachdaten und Zertifikatsdaten.
+            Beim Anlegen eines neuen Verzeichniseintrags (add_Directory_Entry)
               - Ist im add_Directory_Entry Request das Attribut "holder" nicht vorhanden oder enthält keine Werte
-                 o Wird vom VZD aus dem ID_TOKEN claim scope der Wert entnommen und als "holder" in dieses Attribut eingetragen. 
+                 - Wird vom VZD in dieses Attribut kein Wert (leeres Attribut) eingetragen. 
               - Ist im add_Directory_Entry Request das Attribut "holder" vorhanden und mit Inhalten gefüllt
-                 o Übernimmt der VZD die Werte aus dem Request und trägt sie - nach Prüfung ihrer Gültigkeit - in den Verzeuichniseintrag ein. 
-                   Ist ein Wert aus dem Request nicht gültig, weist der VZD die Operation mit HTTP-Status-Code 422 ab.
+                 - Ist ein Wert aus dem Request Attribut "holder" nicht gültig, MUSS der VZD die Operation mit 
+                 HTTP-Status-Code 422 abweisen und die weitere Verarbeitung von diesem Request abbrechen.
+                 - Sind alle Werte aus dem Request Attribut "holder" gültig, MUSS der VZD die Werte aus dem Request 
+                 entnehmen und sie in das "holder" Attribut des Verzeichniseintrags übernehmen.
             Beim Ändern eines neuen Verzeichniseintrags (modify_Directory_Entry)
               - Ist im modify_Directory_Entry Request das Attribut "holder" nicht vorhanden oder enthält keine Werte
-                 o Die Werte im aktuellen "holder" Attribut des Verzeichniseintrags bleiben erhalten.
-              - Ist im add_Directory_Entry Request das Attribut "holder" vorhanden und mit Inhalten gefüllt
-                 o Übernimmt der VZD die Werte aus dem Request und trägt sie - nach Prüfung ihrer Gültigkeit - in den Verzeuichniseintrag ein. 
-                   Ist ein Wert aus dem Request nicht gültig, weist der VZD die Operation mit HTTP-Status-Code 422 ab.
+                 - Die Werte im aktuellen "holder" Attribut des Verzeichniseintrags bleiben erhalten.
           items:
             type: string
             example: KartenHerausgeberABC
         maxKOMLEadr:
           type: string
-          description: |
-           Maximale Anzahl von mail Adressen in den KOM-LE Fachdaten. 
-           Falls kein Wert eingetragen wurde, können beliebig viele mail Adressen in den KOM-LE Fachdaten eingetragen werden. Falls ein Wert eingetragen wurde, können maximal so viele mail Adressen in den KOM-LE Fachdaten eingetragen werden.
+          description: Maximale Anzahl von mail Adressen in den KOM-LE Fachdaten. Falls kein Wert eingetragen wurde, können beliebig viele mail Adressen in den KOM-LE Fachdaten eingetragen werden. Falls ein Wert eingetragen wurde, können maximal so viele mail Adressen in den KOM-LE Fachdaten eingetragen werden.
           example: 1
         personalEntry:
           type: boolean
           description: |
-           Wird vom VZD eingetragen 
-           Wert == TRUE, wenn alle Zertifikate den entryType 1 haben (Berufsgruppe), 
-           Wert == FALSE sonst
+            - Wird vom VZD eingetragen 
+            - Wird auf Basis von entryType bei jeder relevanten Operation neu ermittelt
+            - Wert == TRUE, wenn entryType den Wert 1 hat (Berufsgruppe), Wert == FALSE sonst
           readOnly: true
           example: true
         dataFromAuthority:
           type: boolean
-          description: |
-           Wird vom VZD eingetragen
-           Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, 
-           Wert == FALSE sonst 
+          description: Wird vom VZD eingetragen / Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst 
           readOnly: true
           example: true
         changeDateTime:
           type: string
 #          format: date-time Mit dieser Format Vorgabe ist kein Code mehr generierbar, deshalb auskommentiert. Es soll sich aber weiterhin an das Format gehalten werden.
-          description: |
-           Der VZD setzt dieses Attribut bei jeder Schreiboperation für den Datensatz (Basisdaten) auf die aktuelle Zeit. Format entsprechend RFC 3339, section 5.6.
+          description: Der VZD setzt dieses Attribut bei jeder Schreiboperation für den Datensatz (Basisdaten) auf die aktuelle Zeit. Format entsprechend RFC 3339, section 5.6.
           readOnly: true
           example: "2017-07-21T17:32:28Z"
         professionOID:
@@ -861,15 +1173,42 @@ components:
           readOnly: true
           items:
             type: string
-            description: Erlaubt die Suche nach professionOID (als Kopie des Attributs aus dem Zertifikatseintrags).
+            description: Wird vom VZD beim Hinzufügen eines Zertifikatseintrags (userCertificate) ebenfalls hier in den Basiseintrag eingefügt, wenn der Wert von professionOID noch nicht hier in den Basisdaten vorhanden ist.
+              Beim Löschen eines Zertifikatseintrags werden die professionOID's dieses Zertifikatseintrags auch in den Basisdaten entfernt, falls sie nicht in anderen (noch gültigen und verlinkten) Zertifikatseinträgen vorhanden sind.
         entryType:
-          maxItems: 10
+            type: string
+            description: |
+             - Wird vom VZD beim Hinzufügen eines Zertifikatseintrags (userCertificate) ebenfalls hier in den Basiseintrag eingefügt, wenn der Wert von entryType noch nicht hier in den Basisdaten vorhanden ist.
+              - Mit Operationen add_Directory_Entry und modify_Directory_Entry ist  Setzen/Ändern von Attribut entryType möglich. Der Wert von Attribut entryType muss konform zu den Zertifikaten des Eintrags sein. Bei Abweichungen wird die Operation mit HTTP Status Kode 400 abgelehnt.
+                - Wird in Operationen add_Directory_Entry ein Zertifikat angegeben wird, muss ein eventuell angegebener Parameter entryType mit dem Wert aus dem Zertifikat übereinstimmen. Bei nicht angegebenem Parameter entryType wird das Attribut entryType entsprechend dem Zertifikat gesetzt.
+                - Mit Operation modify_Directory_Entry kann über Request Parameter entryType das Attribut im VZD geändert werden, solange kein Zertifikat im VZD enthalten ist (welches dann einen abweichenden Wert gegenüber dem Request Parameter entryType enthalten würde).
+             - Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzu gefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit Fehler (HTTP Status Kode 400).
+             - Beim Löschen von Zertifikaten bleibt der Wert im Attribut entryType erhalten
+        active:
+            type: boolean
+            example: true
+            default: true
+            description: |
+              Das Attribut "active" steuert die Sichtbarkeit des gesamten VZD Eintrags.
+              Bei FALSE wird der Eintrag aus der flachen Liste entfernt bzw. nicht übertragen. Default = TRUE
+              
+              Dieses Attribut wird nicht in die flache Liste synchronisiert. 
+        meta:
+          maxItems: 100
           minItems: 0
           type: array
-          readOnly: true
           items:
             type: string
-            description: Erlaubt die Suche nach entryType (als Kopie des Attributs aus dem Zertifikatseintrags).
+            description: |
+              Dieses Attribut kann vom Kartenherausgeber und TSP für die Koordinierung ihrer Arbeit genutzt werden.
+              Beispiel für die Nutzung:
+               - TSP erzeugt einen VZD Eintrag.
+               - TSP setzt das Attribut "meta" auf "state_1"
+               - Kartenherausgeber prüft periodisch auf Einträge mit meta="state_1" und ergänzt Basisdaten
+              Der konkrete Ablauf und die Werte werden durch die beteiligten Kartenherausgeber und TSPs festgelegt.
+              
+              Wird vom VZD nicht ausgewertet.
+              Dieses Attribut wird nicht in die flache Liste synchronisiert. 
 
 
     DirectoryEntry:
@@ -895,11 +1234,67 @@ components:
       items:
         $ref: '#/components/schemas/DirectoryEntry'
 
-            
+    LogEntries:
+      type: array
+      items:
+        $ref: '#/components/schemas/LogEntry'
+
+    LogEntry:
+      type: object
+      properties:
+        clientID:
+          description: clientID von dem Client, der die Datenänderung ausgeführt hat
+          type: string
+          readOnly: true
+          example: Client123
+        logTime:
+          type: string
+#          format: date-time 
+          description: Zeitpunkt der Schreiboperation für den Datensatz. Format entsprechend RFC 3339, section 5.6.
+          readOnly: true
+          example: "2017-07-21T17:32:28Z"
+        uid:
+          type: string
+          description: Name/ID, den den Eintrag eindeutig identifiziert. 
+        telematikID:
+          type: string
+          description: telematikID von dem geänderten VZD Eintrag
+        operation:
+          description: Ausgeführte Operation
+          type: string
+          enum: [add_Directory_Entry, 
+                 modify_Directory_Entry, 
+                 delete_Directory_Entry, 
+                 stateSwitch_Directory_Entry,
+                 add_Directory_Entry_Certificate, 
+                 delete_Directory_Entry_Certificate, 
+                 add_Directory_FA-Attributes, 
+                 modify_Directory_FA-Attributes, 
+                 delete_Directory_FA-Attributes]
+          readOnly: true
+          example: modify_Directory_Entry
+        noDataChanged:
+          description: Zeigt an, ob die Schreiboperation den Datensatz mit ungeänderten Daten überschieben hat (also keine Daten geändert hat)
+            noDataChanged=true -> durch diese Operation wurden keine Daten geändert.
+          type: boolean
+          readOnly: true
+          example: false
+      
     Error:
       type: object
-      maxItems: 50
-      minItems: 0
+      properties:
+        message: 
+          type: string
+          description: (optionale) Fehlernachricht
+        errors:
+          maxItems: 50
+          minItems: 0
+          type: array
+          items:
+            $ref: '#/components/schemas/InnerError'
+
+    InnerError:
+      type: object
       properties:
         attributeName:
           description: Name des Attributs, in dem ein Fehler erkannt wurde

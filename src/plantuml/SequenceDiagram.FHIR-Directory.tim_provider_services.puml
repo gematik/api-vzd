@@ -1,0 +1,32 @@
+@startuml I_VZD_TIM_Provider_Services
+skinparam dpi 100
+skinparam WrapWidth 200
+skinparam monochrome true
+
+participant rd as "TI-Messenger-Fachdienst\nRegistrierungsdienst"
+participant oa as "VZD\nOAuth-Server"
+participant fp as "FHIR-Proxy"
+
+rd -> oa: POST /authenticate (client_id, client_secret)
+activate rd
+activate oa
+oa -> oa: prüfe client_id und client_secret
+oa --> rd: provider-accesstoken
+deactivate oa
+group optional
+rd -> fp: FHIR Request /FHIR mit provider-accesstoken\nRessourcen TIOrganization (type: TI-Messenger-Provider),\nEndpoint (tim-domain)
+activate fp
+fp --> rd: HTTP 200 OK Response body FHIR json
+end
+group optional
+rd -> fp: GET /FederationList mit provider-accesstoken
+fp --> rd: HTTP 200 OK Response body domainList json
+end
+group optional
+rd -> fp: GET /localization mit provider-accesstoken und hash der MXID in URL Form
+fp --> rd: HTTP 200 OK Response body <enum: [org, pract, orgPract, none]> json
+end
+
+deactivate fp
+deactivate rd
+@enduml

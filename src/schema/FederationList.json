@@ -1,0 +1,39 @@
+{
+    "$id": "/schemas/FederationList",
+    "title": "Structure of FederationList",
+    "type": "object",
+    "properties":
+    {
+          "version": {
+            "description": "The version of the federation list",
+            "type": "integer",
+            "readOnly": true
+          },
+          "hashAlgorithm": {
+            "description": "The hash algorithm that was used to create the hashes. Currently only SHA-256 is supported.",
+            "type": "string",
+            "readOnly": true
+          },
+          "domainList": {
+            "description": "The list of hashed TI-Messenger domain names",
+            "type": "array",
+            "items": {
+                      "domain": {
+                        "description": "The TI-Messenger domain",
+                        "type": "string"
+                                  },
+                       "telematikID": {
+                         "description": "The telematikID of the organization that uses the TI-Messenger domain",
+                         "type": "string"
+                                       },
+                        "isInsurance": {
+                          "description": "Indicates if it is a domain of an health insurance for insured persons\n",
+                          "type": "boolean",
+                          "default": false,
+                          "example": false
+                                        },
+               "required": ["domain", "telematikID", "isInsurance"]
+            }
+          }
+        }
+    }

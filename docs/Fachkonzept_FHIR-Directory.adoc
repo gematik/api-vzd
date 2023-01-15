@@ -93,9 +93,9 @@ gematik-Nutzer dürfen im Organisationsverzeichnis und im Personenverzeichnis na
 +
 Über den VZD-FHIR-Directory müssen Einträge von Organisationen und Leistungserbringern inklusive ihrer Kontaktdaten auffindbar sein. Dazu bietet der VZD-FHIR-Directory folgende Schnittstellen an:
 
-. FHIR Schnittstelle zur Suche /tim-search
+. FHIR Schnittstelle zur Suche /search
 . FHIR Schnittstelle zur Pflege eigener Einträge /owner
-. REST Schnittstelle zur Pflege eigener TIM Provider Einträge und MXID's der Oragnisationen und Leistungserbringer /tim-provide-services
+. REST Schnittstelle zur Pflege eigener TIM Provider Einträge und selbst betriebener TI-Messenger-Domänen der Oragnisationen /tim-provide-services
 
 * Zuverlässigkeit
 +
@@ -176,22 +176,12 @@ Tabellarische Darstellung der Qualitätsziele mit möglichst konkreten Szenarien
 |===
 
 == Randbedingungen
-uhe
-Inhalt
-Randbedingungen und Vorgaben, die ihre Freiheiten bezüglich Entwurf, Implementierung oder Ihres Entwicklungsprozesses einschränken. Diese Randbedingungen gelten manchmal organisations- oder firmenweit über die Grenzen einzelner Systeme hinweg.
-Motivation
-Für eine tragfähige Architektur sollten Sie genau wissen, wo Ihre Freiheitsgrade bezüglich der Entwurfsentscheidungen liegen und wo Sie Randbedingungen beachten müssen. Sie können Randbedingungen vielleicht noch verhandeln, zunächst sind sie aber da.
-Form
-Einfache Tabellen der Randbedingungen mit Erläuterungen. Bei Bedarf unterscheiden Sie technische, organisatorische und politische Randbedingungen oder übergreifende Konventionen (beispielsweise Programmier- oder Versionierungsrichtlinien, Dokumentations- oder Namenskonvention).
-Siehe Randbedingungen in der online-Dokumentation (auf Englisch!).
-
 Das VZD-FHIR-Directory muss mit dem VZD-LDAP-Directory [gemSpec_VZD] koexistieren. Die Daten aus dem VZD-LDAP-Directory werden in das VZD-FHIR-Directory synchronisiert und können dort ergänzt werden.
 Das VZD-FHIR-Directory muss die nötigen Services für den TI-Messenger bereitstellen [gemSpec_TI-Messenger-Client][gemSpec_TI-Messenger-Dienst][gemSpec_TI-Messenger-FD].
 
 
 ////
 == Kontextabgrenzung
-cp
 Inhalt
 Die Kontextabgrenzung grenzt das System von allen Kommunikationsbeziehungen (Nachbarsystemen und Benutzerrollen) ab. Sie legt damit die externen Schnittstellen fest.
 Differenzieren Sie fachliche (fachliche Ein- und Ausgaben) und technische Kontexte (Kanäle, Protokolle, Hardware), falls nötig.
@@ -218,7 +208,7 @@ Die Abbildung zeigt das FHIR-Directory mit seinen Außen-Schnittstellen und Nutz
 |===
 |Nutzer und Rolle |Beschreibung
 
-|TI-Messenger Nutzer
+|Nutzer
 |TI-Messenger Nutzer können zwei Rollen einnehmen. Alle TI-Messenger Nutzer können im FHIR-Directory über die Schnittstelle (1) nach Einträgen im Organisationsverzeichnis suchen.
 
 |TI-Messenger Nutzer LE
@@ -248,6 +238,7 @@ Die Abbildung zeigt das FHIR-Directory mit seinen Außen-Schnittstellen und Nutz
 === Schnittstellen
 
 Alle Schnittstellen mit Ausnahme (6) sind über das Internet erreichbar. Die Schnittstellen stellen folgende Funktionen bereit:
+
 
 . Für Nutzer des TI-Messengers gibt es eine Schnittstelle zur Suche nach Einträgen im Organisationsverzeichnis und für LE zusätzlich zur Suche im Personenverzeichnis. Die Schnittstelle kann nur nach erfolgreicher Authentisierung genutzt werden. Alle TI-Messenger Nutzer können sich authentisieren und bekommen vom FHIR-Directory ein Accesstoken ausgestellt, dass für die Suchanfragen verwendet wird. Die Suche ermöglicht es komfortabel nach Volltext oder nach bestimmten Werten der einzelnen Attribute über die verlinkten Ressourcen zu suchen. Gefundene Ressourcen werden in einem Bundle von FHIR Ressourcen zurückgeliefert. Das FHIR-Directory ergänzt zu gefundenen TI-Messenger Adressen automatisch ein PASSporT. Es wird Paging unterstützt. Das Datenformat ist json.
 . Für Administratoren der Organisationen des Gesundheitswesens gibt es eine Schnittstelle zur Änderung Ihres Eintrags im Organisationsverzeichnis. Zur Nutzung der Schnittstelle ist eine Authentifizierung mit OIDC Authorization Code Flow erforderlich. Über diese Schnittstelle kann der eigene Eintrag der Organisation über eine Verlinkung um zusätzliche Einträge erweitert werden. TI-Messenger Nutzer die auch LE sind, können diese Schnittstelle nutzen, um ihre TI-Messenger-Adresse in ihrem Eintrag im Personenverzeichnis zu speichern, sodass sie von anderen LE gefunden werden können. Auch hier erfolgt die Authnetifizierung über OIDC. Das FHIR-Datenformat ist json.
