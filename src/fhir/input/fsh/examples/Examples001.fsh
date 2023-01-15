@@ -3,10 +3,10 @@ InstanceOf: EndpointDirectory
 Usage: #example
 Description: "Example of a Endpoint as to be found in gematik FHIR Directory"
 * status = #active "Active"
-* connectionType = EndpointConnectionType#tim "TI-Messenger Endpoint"
+* connectionType = EndpointDirectoryConnectionType#tim "TI-Messenger Endpoint"
 * name = "Messenger"
 * managingOrganization = Reference(OrganizationExample)
-* payloadType = EndpointPayloadType#tim-chat "TI-Messenger chat"
+* payloadType = EndpointDirectoryPayloadType#tim-chat "TI-Messenger chat"
 * address = "matrix:u/74c1fecc710ce4c8a8bbe310fbc5954c2a5e1e9ef5f70d651da1bfc4c9abe43f:example-domain.de"
 
 Instance: PractitionerExampleDentist

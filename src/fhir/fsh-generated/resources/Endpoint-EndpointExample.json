@@ -9,7 +9,7 @@
   "status": "active",
   "connectionType": {
     "code": "tim",
-    "system": "https://gematik.de/fhir/directory/CodeSystem/EndpointConnectionType",
+    "system": "https://gematik.de/fhir/directory/CodeSystem/EndpointDirectoryConnectionType",
     "display": "TI-Messenger Endpoint"
   },
   "name": "Messenger",
@@ -21,7 +21,7 @@
       "coding": [
         {
           "code": "tim-chat",
-          "system": "https://gematik.de/fhir/directory/CodeSystem/EndpointPayloadType",
+          "system": "https://gematik.de/fhir/directory/CodeSystem/EndpointDirectoryPayloadType",
           "display": "TI-Messenger chat"
         }
       ]
