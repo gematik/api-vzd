@@ -4,7 +4,7 @@ reverse link hs1 to l1--><g id="link_hs1_l1"><path codeLine="11" d="M138.93,51.0
 reverse link hs1 to e1--><g id="link_hs1_e1"><path codeLine="12" d="M171.5,56.39 C171.5,71.78 171.5,89.91 171.5,102.87 " fill="none" id="hs1-backto-e1" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="none" points="171.5,43.24,167.5,49.24,171.5,55.24,175.5,49.24,171.5,43.24" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[efa9b71d66255ff164a401775df77538]
 reverse link hs2 to o1--><g id="link_hs2_o1"><path codeLine="13" d="M408.11,50.64 C384.55,67.04 354.2,88.18 333.22,102.79 " fill="none" id="hs2-backto-o1" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="none" points="419.05,43.02,411.8404,43.165,409.2013,49.8759,416.4109,49.7308,419.05,43.02" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[56412f4bf2ca764b2a468698095b441d]
 reverse link hs2 to l2--><g id="link_hs2_l2"><path codeLine="14" d="M443.5,56.39 C443.5,71.78 443.5,89.91 443.5,102.87 " fill="none" id="hs2-backto-l2" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="none" points="443.5,43.24,439.5,49.24,443.5,55.24,447.5,49.24,443.5,43.24" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[fe36076cd34b4d6169ce9a607d4f54a7]
-reverse link hs2 to e2--><g id="link_hs2_e2"><path codeLine="15" d="M476.07,51.09 C497.27,67.43 524.37,88.31 543.16,102.79 " fill="none" id="hs2-backto-e2" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="none" points="465.59,43.02,467.8987,49.8515,475.0927,50.348,472.784,43.5164,465.59,43.02" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[d02e57b43e9379046b89ac253f0dab0a]
+reverse link hs2 to e2--><g id="link_hs2_e2"><path codeLine="15" d="M476.07,51.09 C497.27,67.43 524.37,88.31 543.16,102.79 " fill="none" id="hs2-backto-e2" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="none" points="465.59,43.02,467.8987,49.8515,475.0927,50.348,472.784,43.5164,465.59,43.02" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[4dcba51b1aaf79370d56b8fddf2e8990]
 @startuml ObjectDiagram.HealthcareService
 skinparam monochrome true
 object "HealthcareService 1" as hs1
@@ -24,7 +24,7 @@ hs2 o- - e2
 
 @enduml
 
-PlantUML version 1.2022.5(Sat Apr 30 10:55:52 UTC 2022)
+PlantUML version 1.2022.13(Sat Nov 19 13:22:17 UTC 2022)
 (GPL source distribution)
 Java Runtime: OpenJDK Runtime Environment
 JVM: OpenJDK 64-Bit Server VM
