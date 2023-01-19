@@ -5,9 +5,9 @@
 
 == `1-` Ärzteschaft
 
-=== `1-1`
+=== `1-1` Ärzte
 
-=== `1-20`
+=== `1-20` Arztpraxen, Psychotherapeutenpraxen und weitere ambulante ärztliche und psychotherapeutische Einrichtungen
 
 |===
 |KV Code | Holder Code | KV Name 
