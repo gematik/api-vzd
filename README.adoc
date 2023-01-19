@@ -25,6 +25,8 @@ image:https://shields.io/badge/KIM API-1.2.4-green?logo=swagger[link="https://gi
 
 == Aktuelles
 
+* *18.01.2023* 👨‍💻 https://github.com/gematik/api-vzd/blob/I_Directory_Administration/1.9.5/src/openapi/DirectoryAdministration.yaml[Directory Administration API v1.9.5]
+* *18.01.2023* 👨‍💻 https://github.com/gematik/api-vzd/blob/I_Directory_Application_Maintenance/1.2.4/src/openapi/DirectoryApplicationMaintenance.yaml[Directory Application Maintenance API v1.2.4]
 * *14.12.2022* 📄 https://fachportal.gematik.de/schnelleinstieg/downloadcenter/releases#c6770[Spezifikationen Verzeichnisdienst „VZD FHIR 1.0.0“]
 * *26.09.2022* 👨‍💻 https://github.com/gematik/api-vzd/blob/gemILF_Pflege_VZD/1.5.4/docs/gemILF_Pflege_VZD.adoc[Implementierungsleitfaden v1.5.4]
 * *23.06.2022* 📄 link:https://github.com/gematik/api-vzd/blob/gemILF_Pflege_VZD/1.5.3/docs/gemILF_Pflege_VZD.adoc[Implementierungsleitfaden v1.5.3]. Ab dieser Version wird das Dokument über github.com veröffentlicht. 
