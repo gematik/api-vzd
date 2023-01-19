@@ -7,6 +7,189 @@
 
 === `1-1` Ärzte
 
+|===
+|Sektorkennzeichen |Kartenzuordnung |Kammercode | Holder Code | Ärztekammer |Beispiel
+
+|`1`
+|`1` (HBA)
+|`010`
+|``
+|ÄK Schleswig-Holstein
+|`1-10100010006848`
+
+|`1`
+|`1` (HBA)
+|`020`
+|``
+|ÄK Hamburg
+|
+
+|`1`
+|`1` (HBA)
+|`030`
+|``
+|ÄK Niedersachsen
+|
+
+|`1`
+|`1` (HBA)
+|`040`
+|``
+|ÄK Bremen
+|
+
+|`1`
+|`1` (HBA)
+|`051`
+|``
+|ÄK Nordrhein
+|
+
+|`1`
+|`1` (HBA)
+|`055`
+|``
+|ÄK Westfalen-Lippe
+|
+
+|`1`
+|`1` (HBA)
+|`060`
+|``
+|LÄK Hessen
+|
+
+|`1`
+|`1` (HBA)
+|`070`
+|``
+|LÄK Rheinland-Pfalz
+|
+
+|`1`
+|`1` (HBA)
+|`080`
+|``
+|LÄK Baden-Württemberg
+|
+
+|`1`
+|`1` (HBA)
+|`076`
+|``
+|Bezirksärztekammer Nordwürttemberg
+|
+
+|`1`
+|`1` (HBA)
+|`077`
+|``
+|Bezirksärztekammer Südwürttemberg
+|
+
+|`1`
+|`1` (HBA)
+|`078`
+|``
+|Bezirksärztekammer Nordbaden
+|
+
+|`1`
+|`1` (HBA)
+|`079`
+|``
+|Bezirksärztekammer Südbaden
+|
+
+|`1`
+|`1` (HBA)
+|`090`
+|``
+|Bayerische LÄK
+|`1-10900100014283`
+
+|`1`
+|`1` (HBA)
+|`100`
+|``
+|ÄK Saarland
+|`1-11000000001369`
+
+|`1`
+|`1` (HBA)
+|`110`
+|``
+|ÄK Berlin
+|
+
+|`1`
+|`1` (HBA)
+|`120`
+|``
+|ÄK Mecklenburg-Vorpommern
+|
+
+|`1`
+|`1` (HBA)
+|`130`
+|``
+|LÄK Brandenburg
+|
+
+|`1`
+|`1` (HBA)
+|`140`
+|``
+|ÄK Sachsen-Anhalt
+|
+
+|`1`
+|`1` (HBA)
+|`150`
+|``
+|LÄK Thüringen
+|
+
+|`1`
+|`1` (HBA)
+|`160`
+|``
+|Sächsische LÄK
+|
+
+|`1`
+|`1` (HBA)
+|`67`
+|``
+|Bezirksärztekammer Rheinhessen
+|
+
+|`1`
+|`1` (HBA)
+|`68`
+|``
+|Bezirksärztekammer Pfalz
+|
+
+|`1`
+|`1` (HBA)
+|`69`
+|``
+|Bezirksärztekammer Trier
+|
+
+|`1`
+|`1` (HBA)
+|`66`
+|``
+|Bezirksärztekammer Koblenz
+|
+
+
+
+|===
+
+
 === `1-20` Arztpraxen, Psychotherapeutenpraxen und weitere ambulante ärztliche und psychotherapeutische Einrichtungen
 
 |===
