@@ -1,0 +1,27 @@
+= TelematikID
+:toc: 
+:toc-title: Übersicht
+
+
+== `1-` Ärzteschaft
+
+=== `1-1`
+
+=== `1-20`
+
+|===
+|KV Code | Holder Code | KV Name 
+
+|`01`
+|`kvsh`
+|KV Schleswig Holstein
+
+
+|===
+
+
+== `2-` Zahnärzteschaft
+
+== `3-` Apothekerschaft
+
+== `...` Xxx
