@@ -1,0 +1,254 @@
+{
+  "resourceType": "CodeSystem",
+  "status": "active",
+  "content": "complete",
+  "name": "KimDienstkennungCS",
+  "id": "kim-dienstkennung-cs",
+  "title": "Kim Dienstkennung CS",
+  "description": "Dienstkennungen von KIM für FHIR-Nachrichten",
+  "version": "0.9.0",
+  "url": "https://gematik.de/fhir/directory/CodeSystem/kim-dienstkennung-cs",
+  "concept": [
+    {
+      "code": "eEB_Anfrage_1.0",
+      "display": "eEB;Anfrage;V1.0"
+    },
+    {
+      "code": "eEB_Bescheinigung_1.0",
+      "display": "eEB;Bescheinigung;V1.0"
+    },
+    {
+      "code": "eEB_Fehler_1.0",
+      "display": "eEB;Fehler;V1.0"
+    },
+    {
+      "code": "KIM-Mail_Default_1.0",
+      "display": "KIM-Mail;Default;V1.0"
+    },
+    {
+      "code": "KIM-Mail_Abwesend_1.0",
+      "display": "KIM-Mail;Abwesend;V1.0"
+    },
+    {
+      "code": "DALE-UV_Einsendung_1.0",
+      "display": "DALE-UV;Einsendung;V1.0"
+    },
+    {
+      "code": "DALE-UV_Quittung_1.0",
+      "display": "DALE-UV;Quittung;V1.0"
+    },
+    {
+      "code": "DiMus_Lieferung_1.0",
+      "display": "DiMus;Lieferung;V1.0"
+    },
+    {
+      "code": "DiMus_EingangsBestaetigung_1.0",
+      "display": "DiMus;Eingangsbestaetigung;V1.0"
+    },
+    {
+      "code": "DiMus_Rueckmeldung_1.0",
+      "display": "DiMus;Rueckmeldung;V1.0"
+    },
+    {
+      "code": "eRezept_Zuweisung_1.0",
+      "display": "eRezept;Zuweisung;V1.0"
+    },
+    {
+      "code": "eRezept_Kommunikation_1.0",
+      "display": "eRezept;Kommunikation;V1.0"
+    },
+    {
+      "code": "eAU_Lieferung_1.0",
+      "display": "eAU;Lieferung;V1.0"
+    },
+    {
+      "code": "eAU_Storno-Arzt_1.0",
+      "display": "eAU;Storno-Arzt;V1.0"
+    },
+    {
+      "code": "eAU_Fehler-Kasse_1.0",
+      "display": "eAU;Fehler-Kasse;V1.0"
+    },
+    {
+      "code": "Arztbrief_VHitG-Versand_1.0",
+      "display": "Arztbrief;VHitG-Versand;V1.0"
+    },
+    {
+      "code": "Arztbrief_VHitG-Versand_1.2",
+      "display": "Arztbrief;VHitG-Versand;V1.2"
+    },
+    {
+      "code": "Arztbrief_Eingangsbestaetigung_1.0",
+      "display": "Arztbrief;Eingangsbestaetigung;V1.0"
+    },
+    {
+      "code": "Arztbrief_Eingangsbestaetigung_1.2",
+      "display": "Arztbrief;Eingangsbestaetigung;V1.2"
+    },
+    {
+      "code": "EBZ_PAR_1.4.0",
+      "display": "EBZ;PAR;1.4.0"
+    },
+    {
+      "code": "EBZ_ZER_1.4.0",
+      "display": "EBZ;ZER;1.4.0"
+    },
+    {
+      "code": "EBZ_KGL_1.4.0",
+      "display": "EBZ;KGL;1.4.0"
+    },
+    {
+      "code": "EBZ_KBR_1.4.0",
+      "display": "EBZ;KBR;1.4.0"
+    },
+    {
+      "code": "EBZ_KFO_1.4.0",
+      "display": "EBZ;KFO;1.4.0"
+    },
+    {
+      "code": "EBZ_ANW_1.4.0",
+      "display": "EBZ;ANW;1.4.0"
+    },
+    {
+      "code": "EBZ_FEH_1.4.0",
+      "display": "EBZ;FEH;1.4.0"
+    },
+    {
+      "code": "EBZ_MIT_1.4.0",
+      "display": "EBZ;MIT;1.4.0"
+    },
+    {
+      "code": "EBZ_PMB_1.4.0",
+      "display": "EBZ;PMB;1.4.0"
+    },
+    {
+      "code": "eDMP_Einsendung_1.0",
+      "display": "eDMP;Einsendung;V1.0"
+    },
+    {
+      "code": "eDMP_Quittung_1.0",
+      "display": "eDMP;Quittung;V1.0"
+    },
+    {
+      "code": "eDokumentation_Lieferung_2.0",
+      "display": "eDokumentation-<Typ>;Lieferung;V2.0"
+    },
+    {
+      "code": "eDokumentation_Status_2.0",
+      "display": "eDokumentation-<Typ>;Status;V2.0"
+    },
+    {
+      "code": "eDokumentation_Eingangsbestaetigung_2.0",
+      "display": "eDokumentation-<Typ>;Eingangsbestaetigung;V2.0"
+    },
+    {
+      "code": "abD-eHKSEinsendung_1.0",
+      "display": "abD-eHKS;Einsendung;V1.0"
+    },
+    {
+      "code": "abD-eHKSQuittung_1.0",
+      "display": "abD-eHKS;Quittung;V1.0"
+    },
+    {
+      "code": "eNachricht_Lieferung_2.1",
+      "display": "eNachricht;Lieferung;V2.1"
+    },
+    {
+      "code": "eNachricht_Eingangsbestaetigung_2.1",
+      "display": "eNachricht;Eingangsbestaetigung;V2.1"
+    },
+    {
+      "code": "KZVAbr_Lieferung_1.0",
+      "display": "KZVAbr;Lieferung;V1.0"
+    },
+    {
+      "code": "KZVAbr_Rueckmeldung_1.0",
+      "display": "KZVAbr;Rueckmeldung;V1.0"
+    },
+    {
+      "code": "LDT-Auftrag_Lieferung_1.0",
+      "display": "LDT-Auftrag;Lieferung;V1.0"
+    },
+    {
+      "code": "LDT-Auftrag_Status_1.0",
+      "display": "LDT-Auftrag;Status;V1.0"
+    },
+    {
+      "code": "LDT-Auftrag_Eingangsbestaetigung_1.0",
+      "display": "LDT-Auftrag;Eingangsbestaetigung;V1.0"
+    },
+    {
+      "code": "LDT-Befund_Lieferung_1.0",
+      "display": "LDT-Befund;Lieferung;V1.0"
+    },
+    {
+      "code": "LDT-Befund_Trigger_1.0",
+      "display": "LDT-Befund;Trigger;V1.0"
+    },
+    {
+      "code": "LDT-Befund_Status_1.0",
+      "display": "LDT-Befund;Status;V1.0"
+    },
+    {
+      "code": "LDT-Befund_Eingangsbestaetigung_1.0",
+      "display": "LDT-Befund;Eingangsbestaetigung;V1.0"
+    },
+    {
+      "code": "MIO_Lieferung_1.0",
+      "display": "MIO;Lieferung;V1.0"
+    },
+    {
+      "code": "MIO_Rueckmeldung_1.0",
+      "display": "MIO;Rueckmeldung;V1.0"
+    },
+    {
+      "code": "QSPB_Empfangsbestaetigung_2.0",
+      "display": "QSPB;Empfangsbestaetigung;V2.0"
+    },
+    {
+      "code": "QSPB_Empfangsbestaetigung_RM_2.0",
+      "display": "QSPB;Empfangsbestaetigung_RM;V2.0"
+    },
+    {
+      "code": "QSPB_Miniprotokoll_2.0",
+      "display": "QSPB;Miniprotokoll;V2.0"
+    },
+    {
+      "code": "QSPB_Lieferung_2.0",
+      "display": "QSPB;Lieferung;V2.0"
+    },
+    {
+      "code": "QSPB_Datenflussprotokoll_2.0",
+      "display": "QSPB;Datenflussprotokoll;V2.0"
+    },
+    {
+      "code": "QSPB_Rueckmeldebericht_2.0",
+      "display": "QSPB;Rueckmeldebericht;V2.0"
+    },
+    {
+      "code": "UTeilnahme_Lieferung_1.0",
+      "display": "UTeilnahme;Lieferung;V1.0"
+    },
+    {
+      "code": "UTeilnahme_Quittung_1.0",
+      "display": "UTeilnahme;Quittung;V1.0"
+    },
+    {
+      "code": "Selbsttest_Lieferung_1.0",
+      "display": "Selbsttest;Lieferung;V1.0"
+    },
+    {
+      "code": "1ClickAbrechnung_Lieferung_2.0",
+      "display": "1ClickAbrechnung;Lieferung;V2.0"
+    },
+    {
+      "code": "1ClickAbrechnung_Eingangsbestaetigung_2.0",
+      "display": "1ClickAbrechnung;Eingangsbestaetigung;V2.0"
+    },
+    {
+      "code": "1ClickAbrechnung_Rueckmeldung_2.0",
+      "display": "1ClickAbrechnung;Rueckmeldung;V2.0"
+    }
+  ],
+  "count": 60
+}
