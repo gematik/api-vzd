@@ -319,6 +319,266 @@
 
 
 == `2-` Zahnärzteschaft
+=== `2-1` Zahnärzte
+
+|===
+|Sektorkennzeichen |Kartenzuordnung |Kammercode | Holder Code | Ärztekammer |Beispiel
+
+|`2`
+|`1` (HBA)
+|`01`
+|``
+|Landeszahnärztekammer Baden-Württemberg
+|
+
+|`2`
+|`1` (HBA)
+|`02`
+|``
+|Bayerische Landeszahnärztekammer
+|
+
+|`2`
+|`1` (HBA)
+|`03`
+|``
+|Zahnärztekammer Berlin
+|
+
+|`2`
+|`1` (HBA)
+|`04`
+|``
+|Landeszahnärztekammer Brandenburg
+|
+
+|`2`
+|`1` (HBA)
+|`05`
+|``
+|Zahnärztekammer Bremen
+|
+
+|`2`
+|`1` (HBA)
+|`06`
+|``
+|Zahnärztekammer Hamburg
+|
+
+|`2`
+|`1` (HBA)
+|`07`
+|``
+|Landeszahnärztekammer Hessen
+|
+
+|`2`
+|`1` (HBA)
+|`08`
+|``
+|Zahnärztekammer Mecklenburg-Vorpommern
+|
+
+|`2`
+|`1` (HBA)
+|`09`
+|``
+|Zahnärztekammer Niedersachsen
+|
+
+|`2`
+|`1` (HBA)
+|`10`
+|``
+|Zahnärztekammer Nordrhein
+|
+
+|`2`
+|`1` (HBA)
+|`11`
+|``
+|Landeszahnärztekammer Rheinland-Pfalz
+|
+
+|`2`
+|`1` (HBA)
+|`12`
+|`zaeksaar`
+|Ärztekammer des Saarlandes - Abteilung Zahnärzte
+|
+
+|`2`
+|`1` (HBA)
+|`13`
+|``
+|Landeszahnärztekammer Sachsen
+|
+
+|`2`
+|`1` (HBA)
+|`14`
+|``
+|Zahnärztekammer Sachsen-Anhalt
+|
+
+|`2`
+|`1` (HBA)
+|`15`
+|``
+|Zahnärztekammer Schleswig-Holstein
+|
+
+|`2`
+|`1` (HBA)
+|`16`
+|``
+|Landeszahnärztekammer Thüringen
+|
+
+|`2`
+|`1` (HBA)
+|`17`
+|``
+|Zahnärztekammer Westfalen-Lippe
+|
+
+
+|===
+
+=== `2-2` Zahnarztpraxen
+
+|===
+|Sektorkennzeichen |Kartenzuordnung |Kammercode | Holder Code | Ärztekammer |Beispiel
+
+|`2`
+|`2` (SMC-B)
+|`02`
+|``
+|KZV Baden-Württemberg
+|
+
+|`2`
+|`2` (SMC-B)
+|`04`
+|``
+|KZV Niedersachsen
+|
+
+|`2`
+|`2` (SMC-B)
+|`06`
+|``
+|KZV Rheinland-Pfalz
+|
+
+|`2`
+|`2` (SMC-B)
+|`11`
+|``
+|KZV Bayerns
+|
+
+|`2`
+|`2` (SMC-B)
+|`13`
+|``
+|KZV Nordrhein
+|
+
+|`2`
+|`2` (SMC-B)
+|`20`
+|``
+|KZV Hessen
+|
+
+|`2`
+|`2` (SMC-B)
+|`30`
+|``
+|KZV Berlin
+|
+
+|`2`
+|`2` (SMC-B)
+|`31`
+|``
+|KZV Bremen
+|
+
+|`2`
+|`2` (SMC-B)
+|`32`
+|``
+|KZV Hamburg
+|
+
+|`2`
+|`2` (SMC-B)
+|`35`
+|``
+|KZV Saarland
+|
+
+|`2`
+|`2` (SMC-B)
+|`36`
+|``
+|KZV Schleswig-Holstein
+|
+
+|`2`
+|`2` (SMC-B)
+|`37`
+|``
+|KZV Westfalen-Lippe
+|
+
+|`2`
+|`2` (SMC-B)
+|`52`
+|``
+|KZV Mecklenburg-Vorpommern
+|
+
+|`2`
+|`2` (SMC-B)
+|`53`
+|``
+|KZV Brandenburg
+|
+
+|`2`
+|`2` (SMC-B)
+|`54`
+|``
+|KZV Sachsen-Anhalt
+|
+
+|`2`
+|`2` (SMC-B)
+|`55`
+|``
+|KZV Thüringen
+|
+
+|`2`
+|`2` (SMC-B)
+|`56`
+|``
+|KZV Sachsen
+|
+
+|`2`
+|`2` (SMC-B)
+|`99`
+|``
+|KZBV
+|
+
+|===
+
 
 == `3-` Apothekerschaft
 
