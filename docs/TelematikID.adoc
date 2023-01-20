@@ -193,11 +193,126 @@
 === `1-20` Arztpraxen, Psychotherapeutenpraxen und weitere ambulante ärztliche und psychotherapeutische Einrichtungen
 
 |===
-|KV Code | Holder Code | KV Name 
+|Sektorkennzeichen |Kartenzuordnung |Kammercode | Holder Code | Ärztekammer |Beispiel
 
+|`1`
+|`20` (SMC-B)
 |`01`
 |`kvsh`
 |KV Schleswig Holstein
+|
+
+|`1`
+|`20` (SMC-B)
+|`02`
+|``
+|KV Hamburg
+|
+
+|`1`
+|`20` (SMC-B)
+|`03`
+|``
+|KV Bremen
+|
+
+|`1`
+|`20` (SMC-B)
+|`06,07,08,09,10,11,12,13,14,15,16,17`
+|``
+|KV Niedersachsen
+|
+
+|`1`
+|`20` (SMC-B)
+|`18,19,20`
+|``
+|KV Westfalen-Lippe
+|`1-20191931700`
+
+|`1`
+|`20` (SMC-B)
+|`21,24,25,27,28,31,37,38`
+|``
+|KV Nordrhein
+|
+
+|`1`
+|`20` (SMC-B)
+|`39,40,41,42,43,44,45,46`
+|``
+|KV Hessen
+|
+
+|`1`
+|`20` (SMC-B)
+|`47,48,49,50,51`
+|``
+|KV Reinland-Pfalz
+|
+
+|`1`
+|`20` (SMC-B)
+|`52, 53, 54,55,56,57,58,59,60,61,62`
+|``
+|KV Baden Würthenberg
+|
+
+|`1`
+|`20` (SMC-B)
+|`63,64,65,66,67,68,69,70,71`
+|``
+|KV Bayern
+|
+
+|`1`
+|`20` (SMC-B)
+|`72`
+|``
+|KV Berlin
+|
+
+|`1`
+|`20` (SMC-B)
+|`73`
+|``
+|KV Saarland
+|
+
+|`1`
+|`20` (SMC-B)
+|`78`
+|``
+|KV Mecklenburg-Vorpommern
+|
+
+|`1`
+|`20` (SMC-B)
+|`79,80,81,83`
+|``
+|KV Brandenburg
+|`1-20798070900`
+
+|`1`
+|`20` (SMC-B)
+|`85,86,87,88`
+|``
+|KV Sachsen Anhalt
+| 
+
+|`1`
+|`20` (SMC-B)
+|`89,90,91,93`
+|``
+|KV Thüringen
+| 
+
+|`1`
+|`20` (SMC-B)
+|`94,95,96,98`
+|``
+|KV Sachsen
+| 
 
 
 |===
