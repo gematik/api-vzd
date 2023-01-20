@@ -150,11 +150,13 @@ Im Folgenden wird ein Beispiel dargestellt.
 
 Am Kapitelende: +
 
-Für die Signaturprüfung der Föderationsliste nach dem Download über Operation getFederationList (GET /FederationList/federationList.json) muss das Signaturzertifikat für den Download durch die Clients auf den folgenden Endpunkten im PEM Format bereitstellen: +  
+Für die Signaturprüfung der Föderationsliste nach dem Download über Operation getFederationList (GET /FederationList/federationList.json) muss das Signaturzertifikat für den Download durch die Clients bereitstellt werden: +  
 
-- In der Produktionsumgebung ist die URL: https://fhir-directory.vzd.ti-dienste.de/federationListSigCert.crt
-- In der Referenzumgebung ist die URL: https://fhir-directory-ref.vzd.ti-dienste.de/federationListSigCert.crt
-- In der Testumgebung ist die URL: https://fhir-directory-test.vzd.ti-dienste.de/federationListSigCert.crt
+- Downloadpunkt: TSL-Download-Bereich [gemSpec_TSL#A_17680-01] mit eigenem Verzeichnis: VZD-Signer/VZD-FHIR-FList-Signer.der
+- OID: oid_vzd_ti
+- ProfessionOID: 1.2.276.0.76.4.171
+- Zertifikatsprofil: C.FD.SIG
+- CN: VZD-FHIR-FList-Signer
 
  
  
