@@ -579,6 +579,22 @@
 
 |===
 
+=== `2-2` ZOD Karte
+Eine ZOD-Karte kann von einer SMC-B  durch die  in der TID als Kartentyp hinterlegte "1" hinter der KZV-Nr unterschieden werden, während bei der SMC-B dort die "2" als Kartentyp aufgeführt ist, d.h.
+
+- SMC-B: 2-2.<KZV-Nr>.2.x.yyyy:
+- ZOD:   2-2.<KZV-Nr>.1.x.yyyy:
+
+Konkrete Beispiele:
+
+|===
+
+| SMC-B KZV Hessen | 2-2.20.*2*.1.00959010
+
+|ZOD-Karte (G0 Vorläufer HBA ) KZV Hessen 
+| 2-2.20.*1*.1.00000301
+
+|===
 
 == `3-` Apothekerschaft
 
