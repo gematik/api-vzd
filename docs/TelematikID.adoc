@@ -598,4 +598,44 @@ Konkrete Beispiele:
 
 == `3-` Apothekerschaft
 
+.Beispiel TelematikID (HBAvon der Apothekenkammer Westfalen-Lippe)
+|===
+|Bestandteil der TelematikID |Beispiel |Hinweise 
+
+|Sektorales Kennzeichen
+|`3`
+|`3` für Apothekerschaft
+
+|Kammer
+|`17`
+|gemäß Tabelle Apothekenkammern
+
+|Kartentyp
+|`3`
+|`3` für "Apothekerausweis"
+
+|Mitgliedsnummer
+|`1234560000`
+|Mitgliedsnummer des Apothekers bei der Kammer (in diesem Fall 6-stellig, mit Nullen aufgefüllt)
+
+|Kennung des TSP
+|`10`
+|Anbieterkennung (im Beispiel: Bundesdruckerei)
+
+|Zufallszahl
+|`372`
+|Durch den Anbieter vergeben
+
+|Gesamtkennung
+|`3-17.3.1234560000.10.372`
+|
+
+
+
+
+
+
+|===
+
+
 == `...` Xxx
