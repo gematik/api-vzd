@@ -10,245 +10,293 @@
   "url": "https://gematik.de/fhir/directory/CodeSystem/kim-dienstkennung-cs",
   "concept": [
     {
-      "code": "eEB_Anfrage_1.0",
-      "display": "eEB;Anfrage;V1.0"
+      "code": "eEB;Anfrage;V1.0",
+      "display": "Anfragedaten zum Erhalt von Versichertendaten"
     },
     {
-      "code": "eEB_Bescheinigung_1.0",
-      "display": "eEB;Bescheinigung;V1.0"
+      "code": "eEB;Bescheinigung;V1.0",
+      "display": "Anfragedaten zum Erhalt von Versichertendaten"
     },
     {
-      "code": "eEB_Fehler_1.0",
-      "display": "eEB;Fehler;V1.0"
+      "code": "eEB;Fehler;V1.0",
+      "display": "Versichertendaten in verschiedenen Ausprägungen"
     },
     {
-      "code": "KIM-Mail_Default_1.0",
-      "display": "KIM-Mail;Default;V1.0"
+      "code": "KIM-Mail;Default;V1.0",
+      "display": "Default Header"
     },
     {
-      "code": "KIM-Mail_Abwesend_1.0",
-      "display": "KIM-Mail;Abwesend;V1.0"
+      "code": "KIM-Mail;Abwesend;V1.0",
+      "display": "Abwesenheitsnotiz"
     },
     {
-      "code": "DALE-UV_Einsendung_1.0",
-      "display": "DALE-UV;Einsendung;V1.0"
+      "code": "DALE-UV;Einsendung;V1.0",
+      "display": "Einsendung einer Unfallversicherung"
     },
     {
-      "code": "DALE-UV_Quittung_1.0",
-      "display": "DALE-UV;Quittung;V1.0"
+      "code": "DALE-UV;Quittung;V1.0",
+      "display": "Quittung einer Unfallversicherung"
     },
     {
-      "code": "DiMus_Lieferung_1.0",
-      "display": "DiMus;Lieferung;V1.0"
+      "code": "DiMus;Lieferung;V1.0",
+      "display": "DiMus Lieferung"
     },
     {
-      "code": "DiMus_EingangsBestaetigung_1.0",
-      "display": "DiMus;Eingangsbestaetigung;V1.0"
+      "code": "DiMus;Eingangsbestaetigung;V1.0",
+      "display": "Eingangsbestätigung (MDN) zum Digitalen Muster"
     },
     {
-      "code": "DiMus_Rueckmeldung_1.0",
-      "display": "DiMus;Rueckmeldung;V1.0"
+      "code": "DiMus;Rueckmeldung;V1.0",
+      "display": "Rückmeldung bzw. qualifizierte Antwort auf den Nachrichten-Typ 'DiMus;Lieferung'"
     },
     {
-      "code": "eRezept_Zuweisung_1.0",
-      "display": "eRezept;Zuweisung;V1.0"
+      "code": "eRezept;Zuweisung;V1.0",
+      "display": "Direktzuweisung des E-Rezepts"
     },
     {
-      "code": "eRezept_Kommunikation_1.0",
-      "display": "eRezept;Kommunikation;V1.0"
+      "code": "eRezept;Kommunikation;V1.0",
+      "display": "Freie E-Rezept-Kommunikation"
     },
     {
-      "code": "eAU_Lieferung_1.0",
-      "display": "eAU;Lieferung;V1.0"
+      "code": "eAU;Lieferung;V1.0",
+      "display": "elektronische Arbeitsunfähigkeitsbescheinigung (Ausfertigung Krankenkasse)"
     },
     {
-      "code": "eAU_Storno-Arzt_1.0",
-      "display": "eAU;Storno-Arzt;V1.0"
+      "code": "eAU;Storno-Arzt;V1.0",
+      "display": "Storno-Nachricht zu einer versendeten elektronischen Arbeitsunfähigkeitsbescheinigung"
     },
     {
-      "code": "eAU_Fehler-Kasse_1.0",
-      "display": "eAU;Fehler-Kasse;V1.0"
+      "code": "eAU;Fehler-Kasse;V1.0",
+      "display": "Fehlermeldung zu einer elektronischen Arbeitsunfähigkeitsbescheinigung oder Storno-Nachricht von der Krankenkasse"
     },
     {
-      "code": "Arztbrief_VHitG-Versand_1.0",
-      "display": "Arztbrief;VHitG-Versand;V1.0"
+      "code": "Arztbrief;VHitG-Versand;V1.0",
+      "display": "eArztbrief-Versand"
     },
     {
-      "code": "Arztbrief_VHitG-Versand_1.2",
-      "display": "Arztbrief;VHitG-Versand;V1.2"
+      "code": "Arztbrief;VHitG-Versand;V1.2",
+      "display": "eArztbrief-Versand (Nutzdaten)"
     },
     {
-      "code": "Arztbrief_Eingangsbestaetigung_1.0",
-      "display": "Arztbrief;Eingangsbestaetigung;V1.0"
+      "code": "Arztbrief;Eingangsbestaetigung;V1.0",
+      "display": "Eingangsbestätigung (MDN) zum versandten eArztbrief"
     },
     {
-      "code": "Arztbrief_Eingangsbestaetigung_1.2",
-      "display": "Arztbrief;Eingangsbestaetigung;V1.2"
+      "code": "Arztbrief;Eingangsbestaetigung;V1.2",
+      "display": "Eingangsbestätigung (MDN) zum versandten eArztbrief (1.2)"
     },
     {
-      "code": "EBZ_PAR_1.4.0",
-      "display": "EBZ;PAR;1.4.0"
+      "code": "EBZ;PAR;1.4.0",
+      "display": "Behandlung von Parodontopathien"
     },
     {
-      "code": "EBZ_ZER_1.4.0",
-      "display": "EBZ;ZER;1.4.0"
+      "code": "EBZ;ZER;1.4.0",
+      "display": "Antragsdatensatz Zahnersatz"
     },
     {
-      "code": "EBZ_KGL_1.4.0",
-      "display": "EBZ;KGL;1.4.0"
+      "code": "EBZ;KGL;1.4.0",
+      "display": "Antragsdatensatz Behandlung von Kiefergelenkserkrankungen"
     },
     {
-      "code": "EBZ_KBR_1.4.0",
-      "display": "EBZ;KBR;1.4.0"
+      "code": "EBZ;KBR;1.4.0",
+      "display": "Antragsdatensatz Behandlung von Kieferbruch"
     },
     {
-      "code": "EBZ_KFO_1.4.0",
-      "display": "EBZ;KFO;1.4.0"
+      "code": "EBZ;KFO;1.4.0",
+      "display": "Antragsdatensatz Kieferorthopädische Behandlung"
     },
     {
-      "code": "EBZ_ANW_1.4.0",
-      "display": "EBZ;ANW;1.4.0"
+      "code": "EBZ;ANW;1.4.0",
+      "display": "Antwortdatensatz der Krankenkasse"
     },
     {
-      "code": "EBZ_FEH_1.4.0",
-      "display": "EBZ;FEH;1.4.0"
+      "code": "EBZ;FEH;1.4.0",
+      "display": "Fehlernachricht"
     },
     {
-      "code": "EBZ_MIT_1.4.0",
-      "display": "EBZ;MIT;1.4.0"
+      "code": "EBZ;MIT;1.4.0",
+      "display": "Mitteilungsdatensatz"
     },
     {
-      "code": "EBZ_PMB_1.4.0",
-      "display": "EBZ;PMB;1.4.0"
+      "code": "EBZ;PMB;1.4.0",
+      "display": "Antragsdatensatz von Behandlung bei anspruchsberechtigten Versicherten nach § 22a SGB V"
     },
     {
-      "code": "eDMP_Einsendung_1.0",
-      "display": "eDMP;Einsendung;V1.0"
+      "code": "eDMP;Einsendung;V1.0",
+      "display": "eDMP-Einsendung Übermittlung der DMP-Dokumentationen"
     },
     {
-      "code": "eDMP_Quittung_1.0",
-      "display": "eDMP;Quittung;V1.0"
+      "code": "eDMP;Quittung;V1.0",
+      "display": "eDMP-Quittung"
     },
     {
-      "code": "eDokumentation_Lieferung_2.0",
-      "display": "eDokumentation-<Typ>;Lieferung;V2.0"
+      "code": "eDokumentation-<QSHLT>;Lieferung;V2.0",
+      "display": "Einlieferung eDokumentation-Qualitätssicherung in der Holmium-Laser-Therapie"
     },
     {
-      "code": "eDokumentation_Status_2.0",
-      "display": "eDokumentation-<Typ>;Status;V2.0"
+      "code": "eDokumentation-<QSKE>;Lieferung;V2.0",
+      "display": "Einlieferung eDokumentation-Qualitätssicherung in der Kapselendoskopie"
     },
     {
-      "code": "eDokumentation_Eingangsbestaetigung_2.0",
-      "display": "eDokumentation-<Typ>;Eingangsbestaetigung;V2.0"
+      "code": "eDokumentation-<QSMG>;Lieferung;V2.0",
+      "display": "Einlieferung eDokumentation-Qualitätssicherung in der Molekulargenetik"
     },
     {
-      "code": "abD-eHKSEinsendung_1.0",
-      "display": "abD-eHKS;Einsendung;V1.0"
+      "code": "eDokumentation-<QSHGV>;Lieferung;V2.0",
+      "display": "Einlieferung eDokumentation-Qualitätssicherung in der Hörgeräteversorgung von Jugendlichen und Erwachsenen"
     },
     {
-      "code": "abD-eHKSQuittung_1.0",
-      "display": "abD-eHKS;Quittung;V1.0"
+      "code": "eDokumentation-<QSHGVK>;Lieferung;V2.0",
+      "display": "Einlieferung eDokumentation-Qualitätssicherung in der Hörgeräteversorgung von Säuglingen, Kleinkindern und Kindern"
     },
     {
-      "code": "eNachricht_Lieferung_2.1",
-      "display": "eNachricht;Lieferung;V2.1"
+      "code": "eDokumentation-<QSHLT>;Status;V2.0",
+      "display": "Status eDokumentation-Qualitätssicherung in der Holmium-Laser-Therapie"
     },
     {
-      "code": "eNachricht_Eingangsbestaetigung_2.1",
-      "display": "eNachricht;Eingangsbestaetigung;V2.1"
+      "code": "eDokumentation-<QSKE>;Status;V2.0",
+      "display": "Status eDokumentation-Qualitätssicherung in der Kapselendoskopie"
     },
     {
-      "code": "KZVAbr_Lieferung_1.0",
-      "display": "KZVAbr;Lieferung;V1.0"
+      "code": "eDokumentation-<QSMG>;Status;V2.0",
+      "display": "Status eDokumentation-Qualitätssicherung in der Molekulargenetik"
     },
     {
-      "code": "KZVAbr_Rueckmeldung_1.0",
-      "display": "KZVAbr;Rueckmeldung;V1.0"
+      "code": "eDokumentation-<QSHGV>;Status;V2.0",
+      "display": "Status eDokumentation-Qualitätssicherung in der Hörgeräteversorgung von Jugendlichen und Erwachsenen"
     },
     {
-      "code": "LDT-Auftrag_Lieferung_1.0",
-      "display": "LDT-Auftrag;Lieferung;V1.0"
+      "code": "eDokumentation-<QSHGVK>;Status;V2.0",
+      "display": "Status eDokumentation-Qualitätssicherung in der Hörgeräteversorgung von Säuglingen, Kleinkindern und Kindern"
     },
     {
-      "code": "LDT-Auftrag_Status_1.0",
-      "display": "LDT-Auftrag;Status;V1.0"
+      "code": "eDokumentation-<QSHLT>;Eingangsbestaetigung;V2.0",
+      "display": "Eingangsbestätigung (MDN) zur eDokumentation-Qualitätssicherung in der Hörgeräteversorgung von Säuglingen, Kleinkindern und Kindern"
     },
     {
-      "code": "LDT-Auftrag_Eingangsbestaetigung_1.0",
-      "display": "LDT-Auftrag;Eingangsbestaetigung;V1.0"
+      "code": "eDokumentation-<QSKE>;Eingangsbestaetigung;V2.0",
+      "display": "Eingangsbestätigung (MDN) zur eDokumentation-Qualitätssicherung in der Hörgeräteversorgung von Säuglingen, Kleinkindern und Kindern"
     },
     {
-      "code": "LDT-Befund_Lieferung_1.0",
-      "display": "LDT-Befund;Lieferung;V1.0"
+      "code": "eDokumentation-<QSMG>;Eingangsbestaetigung;V2.0",
+      "display": "Eingangsbestätigung (MDN) zur eDokumentation-Qualitätssicherung in der Hörgeräteversorgung von Säuglingen, Kleinkindern und Kindern"
     },
     {
-      "code": "LDT-Befund_Trigger_1.0",
-      "display": "LDT-Befund;Trigger;V1.0"
+      "code": "eDokumentation-<QSHGV>;Eingangsbestaetigung;V2.0",
+      "display": "Eingangsbestätigung (MDN) zur eDokumentation-Qualitätssicherung in der Hörgeräteversorgung von Säuglingen, Kleinkindern und Kindern"
     },
     {
-      "code": "LDT-Befund_Status_1.0",
-      "display": "LDT-Befund;Status;V1.0"
+      "code": "eDokumentation-<QSHGVK>;Eingangsbestaetigung;V2.0",
+      "display": "Eingangsbestätigung (MDN) zur eDokumentation-Qualitätssicherung in der Hörgeräteversorgung von Säuglingen, Kleinkindern und Kindern"
     },
     {
-      "code": "LDT-Befund_Eingangsbestaetigung_1.0",
-      "display": "LDT-Befund;Eingangsbestaetigung;V1.0"
+      "code": "abD-eHKS;Einsendung;V1.0",
+      "display": "Einsendung"
     },
     {
-      "code": "MIO_Lieferung_1.0",
-      "display": "MIO;Lieferung;V1.0"
+      "code": "abD-eHKS;Quittung;V1.0",
+      "display": "Quittung"
     },
     {
-      "code": "MIO_Rueckmeldung_1.0",
-      "display": "MIO;Rueckmeldung;V1.0"
+      "code": "eNachricht;Lieferung;V2.1",
+      "display": "eNachricht"
     },
     {
-      "code": "QSPB_Empfangsbestaetigung_2.0",
-      "display": "QSPB;Empfangsbestaetigung;V2.0"
+      "code": "eNachricht;Eingangsbestaetigung;V2.1",
+      "display": "Eingangsbestätigung (MDN) zur eNachricht"
     },
     {
-      "code": "QSPB_Empfangsbestaetigung_RM_2.0",
-      "display": "QSPB;Empfangsbestaetigung_RM;V2.0"
+      "code": "KZVAbr;Lieferung;V1.0",
+      "display": "Abrechnungs-Einlieferung"
     },
     {
-      "code": "QSPB_Miniprotokoll_2.0",
-      "display": "QSPB;Miniprotokoll;V2.0"
+      "code": "KZVAbr;Rueckmeldung;V1.0",
+      "display": "fachliche Rückmeldung"
     },
     {
-      "code": "QSPB_Lieferung_2.0",
-      "display": "QSPB;Lieferung;V2.0"
+      "code": "LDT-Auftrag;Lieferung;V1.0",
+      "display": "Laborauftrag"
     },
     {
-      "code": "QSPB_Datenflussprotokoll_2.0",
-      "display": "QSPB;Datenflussprotokoll;V2.0"
+      "code": "LDT-Auftrag;Status;V1.0",
+      "display": "Status-Nachricht (optionale Funktion)"
     },
     {
-      "code": "QSPB_Rueckmeldebericht_2.0",
-      "display": "QSPB;Rueckmeldebericht;V2.0"
+      "code": "LDT-Auftrag;Eingangsbestaetigung;V1.0",
+      "display": "Eingangsbestätigung (MDN) zum Laborauftrag"
     },
     {
-      "code": "UTeilnahme_Lieferung_1.0",
-      "display": "UTeilnahme;Lieferung;V1.0"
+      "code": "LDT-Befund;Lieferung;V1.0",
+      "display": "Laborbefund"
     },
     {
-      "code": "UTeilnahme_Quittung_1.0",
-      "display": "UTeilnahme;Quittung;V1.0"
+      "code": "LDT-Befund;Trigger;V1.0",
+      "display": " Initiale Nachricht für den Versand der Nachricht 'Laborbefund'"
     },
     {
-      "code": "Selbsttest_Lieferung_1.0",
-      "display": "Selbsttest;Lieferung;V1.0"
+      "code": "LDT-Befund;Status;V1.0",
+      "display": "Status-Nachricht (Antwort auf optionale Funktion 'Befundabruf')"
     },
     {
-      "code": "1ClickAbrechnung_Lieferung_2.0",
-      "display": "1ClickAbrechnung;Lieferung;V2.0"
+      "code": "LDT-Befund;Eingangsbestaetigung;V1.0",
+      "display": "Eingangsbestätigung (MDN) zum Laborauftrag"
     },
     {
-      "code": "1ClickAbrechnung_Eingangsbestaetigung_2.0",
-      "display": "1ClickAbrechnung;Eingangsbestaetigung;V2.0"
+      "code": "MIO;Lieferung;V1.0",
+      "display": "MIO-Lieferung"
     },
     {
-      "code": "1ClickAbrechnung_Rueckmeldung_2.0",
-      "display": "1ClickAbrechnung;Rueckmeldung;V2.0"
+      "code": "MIO;Rueckmeldung;V1.0",
+      "display": "MIO-Rückmeldung"
+    },
+    {
+      "code": "QSPB;Empfangsbestaetigung;V2.0",
+      "display": "Empfangsbestätigung zur QSPB Lieferung"
+    },
+    {
+      "code": "QSPB;Empfangsbestaetigung_RM;V2.0",
+      "display": "Empfangsbestätigung zum QSPB"
+    },
+    {
+      "code": "QSPB;Miniprotokoll;V2.0",
+      "display": "Miniprotokoll zur QSPB-Lieferung"
+    },
+    {
+      "code": "QSPB;Lieferung;V2.0",
+      "display": "Lieferung eines QSPB-Datensatzes"
+    },
+    {
+      "code": "QSPB;Datenflussprotokoll;V2.0",
+      "display": "Lieferung eines Datenflussprotokolls zur QSPB Lieferung"
+    },
+    {
+      "code": "QSPB;Rueckmeldebericht;V2.0",
+      "display": "Lieferung eines Rückmeldeberichts zu mehreren QSPB-Datensätzen (quartalsweie oder jährlich)"
+    },
+    {
+      "code": "UTeilnahme;Lieferung;V1.0",
+      "display": "U-Teilnahme (n Meldungen in einer Sendung)"
+    },
+    {
+      "code": "UTeilnahme;Quittung;V1.0",
+      "display": "Quittung zu einer U-Teilnahme-Sendung"
+    },
+    {
+      "code": "Selbsttest;Lieferung;V1.0",
+      "display": "Diese Dienstkennung dient ausschließlich der Einrichtung des Kontos innerhalb eines PVS und des Testes, ob Nachrichten versendet und empfangen werden können. Diese Dienstkennung wird im PVS bei der normalen Abholung von Nachrichten ignoriert."
+    },
+    {
+      "code": "1ClickAbrechnung;Lieferung;V2.0",
+      "display": "Abrechnungs-Einlieferung"
+    },
+    {
+      "code": "1ClickAbrechnung;Eingangsbestaetigung;V2.0",
+      "display": "Eingangsbestätigung (MDN) zur 1ClickAbrechnung"
+    },
+    {
+      "code": "1ClickAbrechnung;Rueckmeldung;V2.0",
+      "display": "fachliche Rückmeldung zur 1ClickAbrechnung"
     }
   ],
-  "count": 60
+  "count": 72
 }
