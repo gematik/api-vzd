@@ -70,6 +70,9 @@ Credentials beim FHIR-Directory für die Schnittstelle I_VZD_TIM_Provider_Servic
 Dabei übergibt der TI-Messenger Anbieter den hash des Signatur-Zertifikats, das für die Signatur des id_tokens 
 verwendet wird an das FHIR-Directory.
 
+Die Abfrage der owner-accesstoken erfolgt entsprechend dem Kontext / Client / relevanten IDP über die dazu passende URL. 
+Aktuell wird nur den Gematik-IDP unterstützt und damit ist die entsprechende URL /signin-gematik-idp-dienst
+
 Prüfung der id_token
 
 - [Org-Admin]: Das vom Registrierungsdienst ausgestellte id_token wird durch das FHIR-Directory geprüft 
