@@ -36,7 +36,7 @@ aa --> idp: Authentication challenge response
 deactivate aa
 activate idp
 idp --> cl: Authorization Response with Authorization code
-cl -> au: GET /owner-authenticate with Authorization code
+cl -> au: GET /signin-gematik-idp-dienst with Authorization code
 au -> idp: POST /tokenEndpoint {authorization code}
 idp --> au: Response {id_token}
 
