@@ -629,11 +629,68 @@ Konkrete Beispiele:
 |Gesamtkennung
 |`3-17.3.1234560000.10.372`
 |
+|===
 
+== `4-` Psychotherpeuten
 
+.Bildungsformel TelematikID (Psychotherpeuten)
+|===
+|Stelle |Bestandteil der TelematikID |Beispiel  
 
+|1
+|Sektorales Kennzeichen
+|`4`
 
+|2
+|Bindestrich
+|`-`
 
+|3
+|Kartentyp (Heilberufsausweis (1) Institutionskarte (2) wird durch KVen bereitgestellt)
+|`1`
+
+|4-6
+|Kammercode
+|`820`
+
+|7-8
+|Eindeutigkeit bei Vergabe der Telematik-ID durch mehrere Instanzen z.B. Bezirkskammern ohne eigenen Kammercode (bei den Psychotherapeutenkammern immer 01)
+|`01`
+
+|9-16
+|Laufende und eindeutige Nummer mit 8 Stellen
+|`12345678`
+
+|
+|Beispiel Gesamtkennung
+|`4-18200112345678`
+
+|===
+
+.Kammercodes
+|===
+|Kammercode |Psychotherpeutenkammer
+
+|710
+|Schleswig-Holstein
+
+|2
+|Bindestrich
+
+|3
+|Kartentyp (Heilberufsausweis (1) Institutionskarte (2) wird durch KVen bereitgestellt)
+
+|4-6
+|Kammercode
+
+|7-8
+|Eindeutigkeit bei Vergabe der Telematik-ID durch mehrere Instanzen z.B. Bezirkskammern ohne eigenen Kammercode (bei den Psychotherapeutenkammern immer 01)
+
+|9-16
+|Laufende und eindeutige Nummer mit 8 Stellen
+
+|
+|Beispiel Gesamtkennung
 
 |===
 
