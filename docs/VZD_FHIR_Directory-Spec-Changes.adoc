@@ -149,20 +149,6 @@ Im Folgenden wird ein Beispiel dargestellt.
 
 ----
 
-== Kapitel "4.2.1.4 Schnittstelle FHIRDirectoryTIMProviderAPI (I_VZD_TIM_Provider_Services.yaml)"
-
-Am Kapitelende: +
-
-Für die Signaturprüfung der Föderationsliste nach dem Download über Operation getFederationList (GET /FederationList/federationList.json) muss das Signaturzertifikat für den Download durch die Clients bereitstellt werden: +  
-
-- Downloadpunkt: TSL-Download-Bereich [gemSpec_TSL#A_17680-01] mit eigenem Verzeichnis: VZD-Signer/VZD-FHIR-FList-Signer.der
-- OID: oid_vzd_ti
-- ProfessionOID: 1.2.276.0.76.4.171
-- Zertifikatsprofil: C.FD.SIG
-- CN: VZD-FHIR-FList-Signer
-
- 
- 
 == Offene Punkte 
 
 - Prüfen ob wir die AFOs aus gemSpec_IDP_FD & gemSpec_IDP_Sek FHIR_VZD zuweisen (analog gemProdT_eRp_FD)
