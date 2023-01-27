@@ -674,23 +674,38 @@ Konkrete Beispiele:
 |710
 |Schleswig-Holstein
 
-|2
-|Bindestrich
+|720
+|Hamburg
 
-|3
-|Kartentyp (Heilberufsausweis (1) Institutionskarte (2) wird durch KVen bereitgestellt)
+|730
+|Niedersachsen
 
-|4-6
-|Kammercode
+|740
+|Bremen
 
-|7-8
-|Eindeutigkeit bei Vergabe der Telematik-ID durch mehrere Instanzen z.B. Bezirkskammern ohne eigenen Kammercode (bei den Psychotherapeutenkammern immer 01)
+|750
+|Nordrhein-Westfalen
 
-|9-16
-|Laufende und eindeutige Nummer mit 8 Stellen
+|760
+|Hessen
 
-|
-|Beispiel Gesamtkennung
+|770
+|Rheinland-Pfanz
+
+|780
+|Baden-Württemberg
+
+|790
+|Bayern
+
+|800
+|Saarland
+
+|810
+|Berlin
+
+|820
+|Ostdeutsche Psychotherpeutenkammer
 
 |===
 
