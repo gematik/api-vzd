@@ -34,7 +34,7 @@ class FHIRDirectoryConfig(BaseSettings):
 
     @property
     def federation_url(self):
-        return urljoin(self.base_url, "/tim-provider-services/federation/")
+        return urljoin(self.base_url, "/tim-provider-services/federation")
 
     class Config:
         env_prefix = "FHIR_DIRECTORY_"
@@ -42,17 +42,12 @@ class FHIRDirectoryConfig(BaseSettings):
 
 class MatrixConfig(BaseSettings):
     """Settings to access the matrix homeserver"""
-    id: str
-    password: SecretStr
+    homeserver: str
 
     @property
     def homeserver_url(self) -> str:
         return f"https://{self.homeserver}"
-
-    @property
-    def homeserver(self) -> str:
-        return self.id.split(':', 1)[1]
-
+    
     class Config:
         env_prefix = "MATRIX_"
 
