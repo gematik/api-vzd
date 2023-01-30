@@ -8,6 +8,7 @@ from threading import Thread, Event
 from queue import Queue
 from time import sleep
 
+
 def main():
     matrix_config = MatrixConfig()
 
@@ -128,7 +129,7 @@ def main():
 
     print("Backchannel Userinfo:")
     response = session.get(
-      urljoin(matrix_config.homeserver_url, "/_matrix/federation/v1/openid/userinfo"),
+      urljoin(matrix_config.homeserver_backchannel_url, "/_matrix/federation/v1/openid/userinfo"),
       params={
         "access_token": matrix_opendid_token,
       }

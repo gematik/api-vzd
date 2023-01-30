@@ -63,6 +63,10 @@ class MatrixConfig(BaseSettings):
     @property
     def homeserver_url(self) -> str:
         return f"https://{self.homeserver}"
+
+    @property
+    def homeserver_backchannel_url(self) -> str:
+        return f"https://{self.homeserver}:8448"
     
     class Config:
         env_prefix = "MATRIX_"
