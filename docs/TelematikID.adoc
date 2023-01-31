@@ -7,312 +7,244 @@
 
 === `1-1` Ärzte
 
+.Bildungsregel TelematikID für Ärzte
+[cols="m,,m"]
 |===
-|Sektorkennzeichen |Kartenzuordnung |Kammercode | Holder Code | Ärztekammer |Beispiel
+|Bestandteil |Info |Beispiel  
 
-|`1`
-|`1` (HBA)
-|`010`
-|``
+|1-1
+|Fester Prefix
+|1-1
+
+|NNN
+|Ärztekammerkennung
+|010
+
+|NNNNNNNNNN
+|Nummer
+|4242424242
+
+|
+| Ergibt
+| 1-10104242424242
+
+|===
+
+.Ärztekammerkennungen
+[cols="m,m,"]
+
+|===
+|Ärztekammerkennung | Holder | Ärztekammer
+
+|010
+|
 |ÄK Schleswig-Holstein
-|`1-10100010006848`
 
-|`1`
-|`1` (HBA)
-|`020`
-|``
+|020
+|
 |ÄK Hamburg
-|
 
-|`1`
-|`1` (HBA)
-|`030`
-|``
+|030
+|
 |ÄK Niedersachsen
-|
 
-|`1`
-|`1` (HBA)
-|`040`
-|``
+|040
+|
 |ÄK Bremen
-|
 
-|`1`
-|`1` (HBA)
-|`051`
-|``
+
+|051
+|
 |ÄK Nordrhein
-|
 
-|`1`
-|`1` (HBA)
-|`055`
-|``
+|055
+|
 |ÄK Westfalen-Lippe
-|
 
-|`1`
-|`1` (HBA)
-|`060`
-|``
+|060
+|
 |LÄK Hessen
-|
 
-|`1`
-|`1` (HBA)
-|`070`
-|``
+|070
+|
 |LÄK Rheinland-Pfalz
-|
 
-|`1`
-|`1` (HBA)
-|`080`
-|``
+|080
+|
 |LÄK Baden-Württemberg
-|
 
-|`1`
-|`1` (HBA)
-|`076`
-|``
+|076
+|
 |Bezirksärztekammer Nordwürttemberg
-|
 
-|`1`
-|`1` (HBA)
-|`077`
-|``
+|077
+|
 |Bezirksärztekammer Südwürttemberg
-|
 
-|`1`
-|`1` (HBA)
-|`078`
-|``
+|078
+|
 |Bezirksärztekammer Nordbaden
-|
 
-|`1`
-|`1` (HBA)
-|`079`
-|``
+|079
+|
 |Bezirksärztekammer Südbaden
-|
 
-|`1`
-|`1` (HBA)
-|`090`
-|``
+|090
+|
 |Bayerische LÄK
-|`1-10900100014283`
 
-|`1`
-|`1` (HBA)
-|`100`
-|``
+|100
+|
 |ÄK Saarland
-|`1-11000000001369`
 
-|`1`
-|`1` (HBA)
-|`110`
-|``
+|110
+|
 |ÄK Berlin
-|
 
-|`1`
-|`1` (HBA)
-|`120`
-|``
+|120
+|
 |ÄK Mecklenburg-Vorpommern
-|
 
-|`1`
-|`1` (HBA)
-|`130`
-|``
+|130
+|
 |LÄK Brandenburg
-|
 
-|`1`
-|`1` (HBA)
-|`140`
-|``
+|140
+|
 |ÄK Sachsen-Anhalt
-|
 
-|`1`
-|`1` (HBA)
-|`150`
-|``
+|150
+|
 |LÄK Thüringen
-|
 
-|`1`
-|`1` (HBA)
-|`160`
-|``
+|160
+|
 |Sächsische LÄK
-|
 
-|`1`
-|`1` (HBA)
-|`67`
-|``
+|67
+|
 |Bezirksärztekammer Rheinhessen
-|
 
-|`1`
-|`1` (HBA)
-|`68`
-|``
+|68
+|
 |Bezirksärztekammer Pfalz
-|
 
-|`1`
-|`1` (HBA)
-|`69`
-|``
+|69
+|
 |Bezirksärztekammer Trier
-|
 
-|`1`
-|`1` (HBA)
-|`66`
-|``
+|66
+|
 |Bezirksärztekammer Koblenz
+
+|===
+
+
+=== `1-20` Arztpraxen et al.
+
+Arztpraxen, Psychotherapeutenpraxen und weitere ambulante ärztliche und psychotherapeutische Einrichtungen
+
+`1-20{Betriebsstättennummer}`
+
+bzw.
+
+`1-20{KV-Kennung}{Nummer}`
+
+
+.Bildungsregel TelematikID für Arztpraxen et al.
+[cols="m,,m"]
+|===
+|Bestandteil |Info |Beispiel  
+
+|1-20
+|Fester Prefix
+|1-20
+
+|NNNNNNNNN
+|Betriebsstättennummer (BSNR), erste 2 Stellen KV-Kennung (s. unten)
+|424242424
+
 |
-
-
-
-|===
-
-
-=== `1-20` Arztpraxen, Psychotherapeutenpraxen und weitere ambulante ärztliche und psychotherapeutische Einrichtungen
+| Ergibt
+| 1-20424242424
 
 |===
-|Sektorkennzeichen |Kartenzuordnung |Kammercode | Holder Code | Ärztekammer |Beispiel
 
-|`1`
-|`20` (SMC-B)
-|`01`
-|`kvsh`
+.KV-Kennungen
+[cols="m,m,"]
+|===
+|Kennung |Holder |KV 
+
+|01
+|kvsh
 |KV Schleswig Holstein
-|
 
-|`1`
-|`20` (SMC-B)
-|`02`
-|``
+|02
+|
 |KV Hamburg
-|
 
-|`1`
-|`20` (SMC-B)
-|`03`
-|``
+
+|03
+|
 |KV Bremen
-|
 
-|`1`
-|`20` (SMC-B)
-|`06,07,08,09,10,11,12,13,14,15,16,17`
-|``
+
+|06,07,08,09,10,11,12,13,14,15,16,17
+|
 |KV Niedersachsen
-|
 
-|`1`
-|`20` (SMC-B)
-|`18,19,20`
-|``
+|18,19,20
+|
 |KV Westfalen-Lippe
-|`1-20191931700`
 
-|`1`
-|`20` (SMC-B)
-|`21,24,25,27,28,31,37,38`
-|``
+|21,24,25,27,28,31,37,38
+|
 |KV Nordrhein
-|
 
-|`1`
-|`20` (SMC-B)
-|`39,40,41,42,43,44,45,46`
-|``
+|39,40,41,42,43,44,45,46
+|
 |KV Hessen
-|
 
-|`1`
-|`20` (SMC-B)
-|`47,48,49,50,51`
-|``
-|KV Reinland-Pfalz
+|47,48,49,50,51
 |
+|KV Rheinland-Pfalz
 
-|`1`
-|`20` (SMC-B)
-|`52, 53, 54,55,56,57,58,59,60,61,62`
-|``
-|KV Baden Würthenberg
+|52, 53, 54,55,56,57,58,59,60,61,62
 |
+|KV Baden-Württemberg
 
-|`1`
-|`20` (SMC-B)
+
 |`63,64,65,66,67,68,69,70,71`
-|``
+|
 |KV Bayern
-|
 
-|`1`
-|`20` (SMC-B)
-|`72`
-|``
+|72
+|
 |KV Berlin
-|
 
-|`1`
-|`20` (SMC-B)
-|`73`
-|``
+|73
+|
 |KV Saarland
-|
 
-|`1`
-|`20` (SMC-B)
-|`78`
-|``
+|78
+|
 |KV Mecklenburg-Vorpommern
+
+|79,80,81,83
 |
-
-|`1`
-|`20` (SMC-B)
-|`79,80,81,83`
-|``
 |KV Brandenburg
-|`1-20798070900`
 
-|`1`
-|`20` (SMC-B)
-|`85,86,87,88`
-|``
-|KV Sachsen Anhalt
-| 
+|85,86,87,88
+|
+|KV Sachsen Anhalt 
 
-|`1`
-|`20` (SMC-B)
-|`89,90,91,93`
-|``
-|KV Thüringen
-| 
+|89,90,91,93
+|
+|KV Thüringen 
 
-|`1`
-|`20` (SMC-B)
-|`94,95,96,98`
-|``
-|KV Sachsen
-| 
+|94,95,96,98
+|
+|KV Sachsen 
 
 
 |===
@@ -321,261 +253,256 @@
 == `2-` Zahnärzteschaft
 === `2-1` Zahnärzte
 
+.Bildungsregel TelematikID für Zahnärzte
+[cols="m,,m"]
 |===
-|Sektorkennzeichen |Kartenzuordnung |Kammercode | Holder Code | Ärztekammer |Beispiel
+|Bestandteil |Info |Beispiel  
 
-|`2`
-|`1` (HBA)
-|`01`
-|``
+|2-1
+|Fester Prefix
+|2-1
+
+|.
+|Separator
+|.
+
+|NN
+|Zahnärztekammerkennung
+|01
+
+|.
+|Separator
+|.
+
+|1
+|Fester Wert
+|1
+
+|.
+|Separator
+
+|.
+|1
+|Fester Wert
+|1
+
+|.
+|Separator
+|.
+
+|NNNNNN
+|Nummer
+|424242
+
+|
+| Ergibt
+| 2-1.01.1.1.424242
+
+|===
+
+
+.Zahnärztekammerkennungen
+[cols="m,m,"]
+|===
+|Kennung |Holder| Zahnärztekammer
+
+|01
+|
 |Landeszahnärztekammer Baden-Württemberg
-|
 
-|`2`
-|`1` (HBA)
-|`02`
-|``
+|02
+|
 |Bayerische Landeszahnärztekammer
-|
 
-|`2`
-|`1` (HBA)
-|`03`
-|``
+
+|03
+|
 |Zahnärztekammer Berlin
-|
 
-|`2`
-|`1` (HBA)
-|`04`
-|``
+|04
+|
 |Landeszahnärztekammer Brandenburg
-|
 
-|`2`
-|`1` (HBA)
-|`05`
-|``
+|05
+|
 |Zahnärztekammer Bremen
-|
 
-|`2`
-|`1` (HBA)
-|`06`
-|``
+|06
+|
 |Zahnärztekammer Hamburg
-|
 
-|`2`
-|`1` (HBA)
-|`07`
-|``
+|07
+|
 |Landeszahnärztekammer Hessen
-|
 
-|`2`
-|`1` (HBA)
-|`08`
-|``
+|08
+|
 |Zahnärztekammer Mecklenburg-Vorpommern
-|
 
-|`2`
-|`1` (HBA)
-|`09`
-|``
+|09
+|
 |Zahnärztekammer Niedersachsen
-|
 
-|`2`
-|`1` (HBA)
-|`10`
-|``
+|10
+|
 |Zahnärztekammer Nordrhein
-|
 
-|`2`
-|`1` (HBA)
-|`11`
-|``
+|11
+|
 |Landeszahnärztekammer Rheinland-Pfalz
-|
 
-|`2`
-|`1` (HBA)
-|`12`
-|`zaeksaar`
+|12
+|zaeksaar
 |Ärztekammer des Saarlandes - Abteilung Zahnärzte
-|
 
-|`2`
-|`1` (HBA)
-|`13`
-|``
+|13
+|
 |Landeszahnärztekammer Sachsen
-|
 
-|`2`
-|`1` (HBA)
-|`14`
-|``
+
+|14
+|
 |Zahnärztekammer Sachsen-Anhalt
-|
 
-|`2`
-|`1` (HBA)
-|`15`
-|``
+|15
+|
 |Zahnärztekammer Schleswig-Holstein
-|
 
-|`2`
-|`1` (HBA)
-|`16`
-|``
+|16
+|
 |Landeszahnärztekammer Thüringen
-|
 
-|`2`
-|`1` (HBA)
-|`17`
-|``
+|17
+|
 |Zahnärztekammer Westfalen-Lippe
-|
-
 
 |===
 
 === `2-2` Zahnarztpraxen
 
+.Bildungsregel TelematikID für Zahnarztpraxen
+[cols="m,,m"]
 |===
-|Sektorkennzeichen |Kartenzuordnung |Kammercode | Holder Code | Ärztekammer |Beispiel
+|Bestandteil |Info |Beispiel  
 
-|`2`
-|`2` (SMC-B)
-|`02`
-|``
+|2-2
+|Fester Prefix
+|2-1
+
+|.
+|Separator
+|.
+
+|NN
+|KZV-Kennung.
+|02
+
+|.
+|Separator
+|.
+
+|2
+|Fester Wert
+|2
+
+|.
+|Separator
+
+|.
+|1
+|Fester Wert
+|1
+
+|.
+|Separator
+|.
+
+|NNNNN
+|Nummer
+|42424
+
+|
+| Ergibt
+| 2-2.02.2.1.42424
+
+|===
+
+.KZV-Kennungen
+[cols="m,m,""]
+|===
+|Kennung |Holder |KZV
+
+|02
+|
 |KZV Baden-Württemberg
-|
 
-|`2`
-|`2` (SMC-B)
-|`04`
-|``
+|04
+|
 |KZV Niedersachsen
-|
 
-|`2`
-|`2` (SMC-B)
-|`06`
-|``
+|06
+|
 |KZV Rheinland-Pfalz
-|
 
-|`2`
-|`2` (SMC-B)
-|`11`
-|``
+|11
+|
 |KZV Bayerns
-|
 
-|`2`
-|`2` (SMC-B)
-|`13`
-|``
+|13
+|
 |KZV Nordrhein
-|
 
-|`2`
-|`2` (SMC-B)
-|`20`
-|``
+|20
+|
 |KZV Hessen
-|
 
-|`2`
-|`2` (SMC-B)
-|`30`
-|``
+|30
+|
 |KZV Berlin
-|
 
-|`2`
-|`2` (SMC-B)
-|`31`
-|``
+|31
+|
 |KZV Bremen
-|
 
-|`2`
-|`2` (SMC-B)
-|`32`
-|``
+|32
+|
 |KZV Hamburg
-|
 
-|`2`
-|`2` (SMC-B)
-|`35`
-|``
+|35
+|
 |KZV Saarland
-|
 
-|`2`
-|`2` (SMC-B)
-|`36`
-|``
+|36
+|
 |KZV Schleswig-Holstein
-|
 
-|`2`
-|`2` (SMC-B)
-|`37`
-|``
+|37
+|
 |KZV Westfalen-Lippe
-|
 
-|`2`
-|`2` (SMC-B)
-|`52`
-|``
+|52
+|
 |KZV Mecklenburg-Vorpommern
-|
 
-|`2`
-|`2` (SMC-B)
-|`53`
-|``
+|53
+|
 |KZV Brandenburg
-|
 
-|`2`
-|`2` (SMC-B)
-|`54`
-|``
+|54
+|
 |KZV Sachsen-Anhalt
-|
 
-|`2`
-|`2` (SMC-B)
-|`55`
-|``
+|55
+|
 |KZV Thüringen
-|
 
-|`2`
-|`2` (SMC-B)
-|`56`
-|``
+|56
+|
 |KZV Sachsen
-|
 
-|`2`
-|`2` (SMC-B)
-|`99`
-|``
-|KZBV
+|99
 |
+|KZBV
 
 |===
 
@@ -592,11 +519,13 @@ Konkrete Beispiele:
 | SMC-B KZV Hessen | 2-2.20.*2*.1.00959010
 
 |ZOD-Karte (G0 Vorläufer HBA ) KZV Hessen 
-| 2-2.20.*1*.1.00000301
+|2-2.20.*1*.1.00000301
 
 |===
 
 == `3-` Apothekerschaft
+
+`3-{Apothekenkammer-Nr.}.{Kartentyp}.{Mitgliedsnummer}.{TSP-Kennung}.{Zufallszahl}`
 
 .Beispiel TelematikID (HBAvon der Apothekenkammer Westfalen-Lippe)
 |===
