@@ -5,7 +5,7 @@
 
 == `1-` Ärzteschaft
 
-=== `1-1` Ärzte
+=== `1-1` Ärzte (HBA)
 
 `1-1{Ärztekammerkennung}{Nummer}`
 
@@ -138,7 +138,7 @@
 |===
 
 
-=== `1-20` Arztpraxen et al.
+=== `1-20` Arztpraxen et al. (SMC-B)
 
 Arztpraxen, Psychotherapeutenpraxen und weitere ambulante ärztliche und psychotherapeutische Einrichtungen
 
@@ -241,7 +241,8 @@ Arztpraxen, Psychotherapeutenpraxen und weitere ambulante ärztliche und psychot
 
 
 == `2-` Zahnärzteschaft
-=== `2-1` Zahnärzte
+
+=== `2-1` Zahnärzte (HBA)
 
 `2-1.{Zahnärztekammerkennung}.1.1.{Nummer}`
 
@@ -342,7 +343,7 @@ Arztpraxen, Psychotherapeutenpraxen und weitere ambulante ärztliche und psychot
 
 |===
 
-=== `2-2` Zahnarztpraxen
+=== `2-2` Zahnarztpraxen (SMC-B)
 
 `2-2.{KZV-Kennung}.2.1.{Nummer}`
 
@@ -463,7 +464,7 @@ Konkrete Beispiele:
 
 == `3-` Apothekerschaft
 
-=== Apotheker
+=== Apotheker (HBA)
 
 `3-{Apothekenkammer-Nr.}.{Kartentyp}.{Mitgliedsnummer}.{TSP-Kennung}.{Zufallszahl}`
 
