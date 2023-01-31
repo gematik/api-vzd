@@ -79,7 +79,7 @@ Prüfung der id_token
   (Algorithmus, Signatur, Signaturzertifikat (Zertifikatstyp, technische Rolle, hash des Zertifikats, OCSP)). 
   Das zur Signatur des id_token verwendete Zertifikat muss aus der Komponenten-PKI der TI stammen 
   (Zertifikatstyp C.FD.SIG, technische Rolle oid_tim). Der TI-Messenger Anbieter stellt einen Download-Punkt 
-  für das Zertifikat bereitstellen, damit das FHIR-Directory für die Signaturprüfung des id_tokens, 
+  für das Zertifikat bereit, damit das FHIR-Directory für die Signaturprüfung des id_tokens, 
   Zugriff auf das Zertifikat erhält.
 
 - [LE mit HBA und TI-Messenger Client]: Das vom Identity Provider ausgestellte id_token wird durch das 
