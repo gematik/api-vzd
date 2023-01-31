@@ -23,7 +23,7 @@
 |Nummer
 |4242424242
 
-| Ergibt
+| TelematikID
 | 1-10104242424242
 
 |===
@@ -155,7 +155,7 @@ Arztpraxen, Psychotherapeutenpraxen und weitere ambulante ärztliche und psychot
 |Betriebsstättennummer (BSNR), erste 2 Stellen KV-Kennung (s. unten)
 |014242424
 
-| Ergibt
+| TelematikID
 | 1-20014242424
 
 |===
@@ -259,7 +259,7 @@ Arztpraxen, Psychotherapeutenpraxen und weitere ambulante ärztliche und psychot
 |Nummer
 |424242
 
-| Ergibt
+| TelematikID
 | 2-1.01.1.1.424242
 
 |===
@@ -360,7 +360,7 @@ Arztpraxen, Psychotherapeutenpraxen und weitere ambulante ärztliche und psychot
 |Nummer
 |42424
 
-| Ergibt
+| TelematikID
 | 2-2.02.2.1.42424
 
 |===
@@ -463,39 +463,36 @@ Konkrete Beispiele:
 
 == `3-` Apothekerschaft
 
+=== Apotheker
+
 `3-{Apothekenkammer-Nr.}.{Kartentyp}.{Mitgliedsnummer}.{TSP-Kennung}.{Zufallszahl}`
 
-.Beispiel TelematikID (HBAvon der Apothekenkammer Westfalen-Lippe)
+.Bildungsregel TelematikID für Apotheker
+[cols=",m"]
 |===
-|Bestandteil der TelematikID |Beispiel |Hinweise 
+|Bestandteil |Beispiel  
 
-|Sektorales Kennzeichen
-|`3`
-|`3` für Apothekerschaft
+|Fester Prefix
+|3-
 
-|Kammer
-|`17`
-|gemäß Tabelle Apothekenkammern
+|Apothekenkammerkennung
+|02
 
-|Kartentyp
-|`3`
-|`3` für "Apothekerausweis"
+|Kartentyp Apothekerausweis, fester Wert
+|3
 
 |Mitgliedsnummer
-|`1234560000`
-|Mitgliedsnummer des Apothekers bei der Kammer (in diesem Fall 6-stellig, mit Nullen aufgefüllt)
+|4242442
 
-|Kennung des TSP
-|`10`
-|Anbieterkennung (im Beispiel: Bundesdruckerei)
+|TSP-Kennung
+|10
 
 |Zufallszahl
-|`372`
-|Durch den Anbieter vergeben
+|250
 
-|Gesamtkennung
-|`3-17.3.1234560000.10.372`
-|
+| TelematikID
+| 3-02.3.42424242.10.250
+
 |===
 
 == `4-` Psychotherpeuten
