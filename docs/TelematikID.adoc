@@ -7,24 +7,22 @@
 
 === `1-1` Ärzte
 
-.Bildungsregel TelematikID für Ärzte
-[cols="m,,m"]
-|===
-|Bestandteil |Info |Beispiel  
+`1-1{Ärztekammerkennung}{Nummer}`
 
-|1-1
+.Bildungsregel TelematikID für Ärzte
+[cols=",m"]
+|===
+|Bestandteil |Beispiel  
+
 |Fester Prefix
 |1-1
 
-|NNN
 |Ärztekammerkennung
 |010
 
-|NNNNNNNNNN
 |Nummer
 |4242424242
 
-|
 | Ergibt
 | 1-10104242424242
 
@@ -146,27 +144,19 @@ Arztpraxen, Psychotherapeutenpraxen und weitere ambulante ärztliche und psychot
 
 `1-20{Betriebsstättennummer}`
 
-bzw.
-
-`1-20{KV-Kennung}{Nummer}`
-
-
 .Bildungsregel TelematikID für Arztpraxen et al.
-[cols="m,,m"]
+[cols=",m"]
 |===
-|Bestandteil |Info |Beispiel  
+|Bestandteil |Beispiel  
 
-|1-20
 |Fester Prefix
 |1-20
 
-|NNNNNNNNN
 |Betriebsstättennummer (BSNR), erste 2 Stellen KV-Kennung (s. unten)
-|424242424
+|014242424
 
-|
 | Ergibt
-| 1-20424242424
+| 1-20014242424
 
 |===
 
@@ -253,48 +243,22 @@ bzw.
 == `2-` Zahnärzteschaft
 === `2-1` Zahnärzte
 
-.Bildungsregel TelematikID für Zahnärzte
-[cols="m,,m"]
-|===
-|Bestandteil |Info |Beispiel  
+`2-1.{Zahnärztekammerkennung}.1.1.{Nummer}`
 
-|2-1
+.Bildungsregel TelematikID für Zahnärzte
+[cols=",m"]
+|===
+|Bestandteil |Beispiel  
+
 |Fester Prefix
 |2-1
 
-|.
-|Separator
-|.
-
-|NN
 |Zahnärztekammerkennung
 |01
 
-|.
-|Separator
-|.
-
-|1
-|Fester Wert
-|1
-
-|.
-|Separator
-
-|.
-|1
-|Fester Wert
-|1
-
-|.
-|Separator
-|.
-
-|NNNNNN
 |Nummer
 |424242
 
-|
 | Ergibt
 | 2-1.01.1.1.424242
 
@@ -380,48 +344,22 @@ bzw.
 
 === `2-2` Zahnarztpraxen
 
-.Bildungsregel TelematikID für Zahnarztpraxen
-[cols="m,,m"]
-|===
-|Bestandteil |Info |Beispiel  
+`2-2.{KZV-Kennung}.2.1.{Nummer}`
 
-|2-2
+.Bildungsregel TelematikID für Zahnarztpraxen
+[cols=",m"]
+|===
+|Bestandteil |Beispiel  
+
 |Fester Prefix
 |2-1
 
-|.
-|Separator
-|.
-
-|NN
-|KZV-Kennung.
+|KZV-Kennung
 |02
 
-|.
-|Separator
-|.
-
-|2
-|Fester Wert
-|2
-
-|.
-|Separator
-
-|.
-|1
-|Fester Wert
-|1
-
-|.
-|Separator
-|.
-
-|NNNNN
 |Nummer
 |42424
 
-|
 | Ergibt
 | 2-2.02.2.1.42424
 
@@ -509,8 +447,8 @@ bzw.
 === `2-2` ZOD Karte
 Eine ZOD-Karte kann von einer SMC-B  durch die  in der TID als Kartentyp hinterlegte "1" hinter der KZV-Nr unterschieden werden, während bei der SMC-B dort die "2" als Kartentyp aufgeführt ist, d.h.
 
-- SMC-B: 2-2.<KZV-Nr>.2.x.yyyy:
-- ZOD:   2-2.<KZV-Nr>.1.x.yyyy:
+- SMC-B: 2-2.<KZV-Kennung>.2.x.yyyy:
+- ZOD:   2-2.<KZV-Kennung>.1.x.yyyy:
 
 Konkrete Beispiele:
 
