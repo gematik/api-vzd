@@ -449,14 +449,14 @@ Pflicht, wenn Organisation ein Provider ist
 |0..1
 |
 |nein
-|ja
+|nein
 
 |name
 |Name der Location
 |0..*
 |
 |nein
-|ja
+|nein
 
 |description
 |Beschreibung der Location
