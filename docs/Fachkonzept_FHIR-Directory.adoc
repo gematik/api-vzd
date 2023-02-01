@@ -277,70 +277,70 @@ image::diagrams/ObjectDiagram.HealthcareService.png[ObjectDiagram HealthcareServ
 |1..1
 |Es gibt immer einen HealthcareService, der von den Kartenherausgebern erzeugt wird. Der Besitzer des Eintrags kann weitere Healthcareservices erzeugen, die immer eine Referenz auf die eigene Organization Ressource haben müssen.
 |ja
-|ja
+|ja (für selbst angelegte healtcareServices)
 
 |speciality
 |Fachrichtung
 |0..*
 |https://wiki.hl7.de/index.php?title=IG:Value_Sets_f%C3%BCr_XDS#DocumentEntry.practiceSettingCode[practiceSettingCode]
 |ja
-|nein
+|ja  (für selbst angelegte healtcareServices)
 
 |location
 |Reference der Location Ressource
 |0..*
 |
 |ja
-|ja
+|ja  (für selbst angelegte healtcareServices)
 
 |name
 |Name des HealthcareService
 |0..*
 |
 |nein
-|ja
+|ja (für selbst angelegte healtcareServices)
 
 |telecom
 |Kontaktdaten des HealthcareService
 |0..*
 |
 |nein
-|ja
+|ja (für selbst angelegte healtcareServices)
 
 |serviceProvisionCode
 |Service-Konditionen
 |0..*
 |Bedingungen unter denen der Service angeboten wird oder genutzt werden kann (z. B. kostenpflichtig)
 |nein
-|ja
+|ja (für selbst angelegte healtcareServices)
 
 |communication
 |Sprache
 |0..*
 |Sprache, in der der Service angeboten wird
 |nein
-|ja
+|ja (für selbst angelegte healtcareServices)
 
 |appointmentRequired
 |Termin erforderlich?
 |0..1
 |Ob ein Termin erforderlich ist
 |nein
-|ja
+|ja (für selbst angelegte healtcareServices)
 
 |availableTime
 |Verfügbarkeit des Service
 |0..*
 |Wann der Service verfügbar ist
 |nein
-|ja
+|ja (für selbst angelegte healtcareServices)
 
 |availabilityExceptions
 |Ausnahmen der Verfügbarkeit
 |0..*
 |Beschreibung der Verfügbarkeitsausnahmen
 |nein
-|ja
+|ja (für selbst angelegte healtcareServices)
 
 |endpoint
 |Referenz zur Endpoint Ressource
@@ -407,23 +407,23 @@ Pflicht, wenn Organisation ein Provider ist
 |alias
 |Alias Name der Organisation
 |0..*
-|Hat den Wert des LDAP-Attributs organization, wenn vorhanden. Der Besitzer kann das Attribut ändern.
+|Hat den Wert des LDAP-Attributs organization, wenn vorhanden.
 |ja
-|ja
+|nein
 
 |telecom
 |Kontaktdaten der Organisation
 |0..*
 |
 |nein
-|ja
+|nein
 
 |contact
 |Kontakt-Personen der Organisation
 |0..*
 |
 |nein
-|ja
+|nein
 
 |active
 |Status des Eintrags
@@ -442,7 +442,7 @@ Pflicht, wenn Organisation ein Provider ist
 |0..*
 |Aktuell kein Identifier vorgesehen
 |nein
-|ja
+|nein
 
 |status
 |active, suspended, inactive
@@ -463,42 +463,42 @@ Pflicht, wenn Organisation ein Provider ist
 |0..*
 |
 |nein
-|ja
+|nein
 
 |telecom
 |Kontaktdaten der Location
 |0..*
 |
 |nein
-|ja
+|nein
 
 |address
 |Postalische Adresse der Location
 |0..*
 |Wenn vom Kartenherausgeber angelegt, dann kann die Adresse nur durch den Kartenherausgeber geändert werden. Wenn durch die Organisation angelegt, dann kann die Adresse nur durch die Organisation geändert werden.
 |ja
-|ja
+|nein
 
 |position
 |Geographische Position der Location
 |0..*
-|Wenn vom Kartenherausgeber angelegt, dann kann die Position nur durch den Kartenherausgeber geändert werden. Wenn durch die Organisation angelegt, dann kann die Position nur durch die Organisation geändert werden.
+|Wenn vom Kartenherausgeber angelegt, dann kann die Position nur durch den Kartenherausgeber geändert werden.
 |ja
-|ja
+|nein
 
 |hoursOfOperation
 |Öffnungszeiten
 |0..*
 |
 |nein
-|ja
+|nein
 
 |availabilityExceptions
 |Ausnahmen der Öffnungszeiten
 |0..*
 |
 |nein
-|ja
+|nein
 |===
 
 .Datenmodell Ressource Endpoint [[Endpoint]]
@@ -536,7 +536,7 @@ Pflicht, wenn Organisation ein Provider ist
 |managingOrganization
 |Referenz der Organisation, zu der der Endpoint gehört.
 |0..1
-|Wird von TI-Messenger Anbietern genutzt
+|Wird nicht genutzt
 |nein
 |ja
 
@@ -574,14 +574,14 @@ image::diagrams/ObjectDiagram.PractitionerRole.png[ObjectDiagram PractitionerRol
 |0..*
 |
 |nein
-|ja
+|nein
 
 |practitioner
 |Reference zur Practitioner Ressource
 |1..1
-|Wenn vom Kartenherausgeber angelegt, dann wird die Reference auch vom Kartenherausgeber gesetzt. Wenn vom LE angelegt, dann wird die Reference vom LE gesetzt.
+|Wenn vom Kartenherausgeber angelegt, dann wird die Reference auch vom Kartenherausgeber gesetzt. 
 |ja
-|ja
+|nein
 
 |speciality
 |https://wiki.hl7.de/index.php?title=IG:Value_Sets_f%C3%BCr_XDS#DocumentEntry.practiceSettingCode[practiceSettingCode]
@@ -593,7 +593,7 @@ image::diagrams/ObjectDiagram.PractitionerRole.png[ObjectDiagram PractitionerRol
 |location
 |Reference zur Location Ressource
 |0..*
-|Wenn vom Kartenherausgeber angelegt, dann wird die Reference auch vom Kartenherausgeber gesetzt. Wenn vom LE angelegt, dann wird die Reference vom LE gesetzt.
+|Wenn vom Kartenherausgeber angelegt, dann wird die Reference auch vom Kartenherausgeber gesetzt.
 |ja
 |ja
 
@@ -602,7 +602,7 @@ image::diagrams/ObjectDiagram.PractitionerRole.png[ObjectDiagram PractitionerRol
 |0..*
 |
 |nein
-|ja
+|ja (indirekt, über Anlegen eines Endpoints)
 |===
 
 .Datenmodell Ressource Practitioner
@@ -635,28 +635,28 @@ image::diagrams/ObjectDiagram.PractitionerRole.png[ObjectDiagram PractitionerRol
 |0..*
 |
 |nein
-|ja
+|nein
 
 |gender
 |Geschlecht
 |0..1
 |
 |nein
-|ja
+|nein
 
 |birthDate
 |Geburtsdatum
 |0..1
 |
 |nein
-|ja
+|nein
 
 |photo
 |Foto
 |0..*
 |
 |nein
-|ja
+|nein
 
 |qualification
 |https://wiki.hl7.de/index.php?title=IG:Value_Sets_f%C3%BCr_XDS#DocumentEntry.authorSpecialty[authorSpecialty]
@@ -670,7 +670,7 @@ image::diagrams/ObjectDiagram.PractitionerRole.png[ObjectDiagram PractitionerRol
 |0..*
 |
 |nein
-|ja
+|nein
 |===
 
 Die Ressourcen <<Location>> und <<Endpoint>> werden wie im Organisationsverzeichnis verwendet.
