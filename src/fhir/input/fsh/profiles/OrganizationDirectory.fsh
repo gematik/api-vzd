@@ -19,7 +19,7 @@ organisations specific for german Healthcare and Telematics Infrastructure.
 * identifier[KZVA] only $IdentifierKZVA
 * identifier contains IKNR 0..1 MS
 * identifier[IKNR] only $IdentifierIKNR
-* type 1..1 MS
+* type 1..* MS
 * type from OrganizationTypeVS
 * name 1..1 MS
 * alias MS
