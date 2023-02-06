@@ -104,16 +104,16 @@
 |ÄK Mecklenburg-Vorpommern
 
 |130
-|
-|LÄK Brandenburg
+|lakbb
+|Landeszahnärztekammer Brandenburg
 
 |140
 |
 |ÄK Sachsen-Anhalt
 
 |150
-|
-|LÄK Thüringen
+|laekt
+|Landeszahnärztekammer Thüringen
 
 |160
 |
@@ -367,7 +367,7 @@ Arztpraxen, Psychotherapeutenpraxen und weitere ambulante ärztliche und psychot
 |===
 
 .KZV-Kennungen
-[cols="m,m,""]
+[cols="m,m,"]
 |===
 |Kennung |Holder |KZV
 
@@ -496,9 +496,13 @@ Konkrete Beispiele:
 
 |===
 
-== `4-` Psychotherpeuten
+== `4-` Psychotherapeuten 
 
-.Bildungsformel TelematikID (Psychotherpeuten)
+=== `4-1` Psychotherapeuten (HBA)
+
+`4-1{Kammercode}01{Nummer}`
+
+.Bildungsformel TelematikID für Psychotherpeuten
 |===
 |Stelle |Bestandteil der TelematikID |Beispiel  
 
@@ -532,47 +536,127 @@ Konkrete Beispiele:
 
 |===
 
-.Kammercodes
+.Kammercodes der Psychotherapeutenkammer 
 |===
-|Kammercode |Psychotherpeutenkammer
+|Kammercode |Holder |Psychotherpeutenkammer
 
 |710
+|
 |Schleswig-Holstein
 
 |720
+|
 |Hamburg
 
 |730
+|
 |Niedersachsen
 
 |740
+|
 |Bremen
 
 |750
+|
 |Nordrhein-Westfalen
 
 |760
+|
 |Hessen
 
 |770
+|
 |Rheinland-Pfanz
 
 |780
+|
 |Baden-Württemberg
 
 |790
+|
 |Bayern
 
 |800
+|
 |Saarland
 
 |810
+|
 |Berlin
 
 |820
+|
 |Ostdeutsche Psychotherpeutenkammer
 
 |===
 
+=== Psychotherapeutenpraxen 
 
-== `...` Xxx
+Die Institutionskarten für Psychotherapeutenpraxen (SMC-B) werden durch die KVen mit dem Prefix `1-20`  bereitgestellt.
+
+== `5-` Krankenhäuser et al.
+
+=== `5-2-` Krankenhäuser (SMC-B)
+
+`5-2-{IK-Nummer}[-{Suffix}]`
+
+Beispiele:
+
+* `5-2-424242424`
+* `5-2-424242424-001`
+
+== `7-` Kostenträger AdV
+
+AdV steht für Anwendungen der Versicherten
+
+`7-02-{Nummer}`
+
+== `8-` Kostenträger GKV
+
+== `8-01-` Kostenträger GKV (SMC-B KTR)
+
+`8-01-{Nummer}`
+
+== `8-03-` Kostenträger GKV ePA (SMC-B KTR ePA)
+
+`8-03-{Nummer}`
+
+== `9-` Ausgegeben durch gematik
+
+=== `9-1` gematik HBA
+
+`9-1.{Nutzungskreis}.{Nummer}`
+
+.Bildungsregel der TelematikIDs für gematik HBA
+[cols=",m"]
+|===
+|Bestandteil |Beispiel  
+
+|Fester Prefix
+|9-1
+
+|Nutzungskreis
+|34
+
+| TelematikID
+| 9-2.34.42424242
+
+|===
+
+.Nutzungskreise der gematik HBAs
+[cols="m,m,"]
+|===
+|Kartentyp |Nutzungskreis |Beschreibung
+
+|1
+|34
+|Pharmazieingenieur/-in
+
+|===
+
+
+=== `9-1.`
+
+== `10-` Ausgegeben durch eGBR
+
+_TODO_
