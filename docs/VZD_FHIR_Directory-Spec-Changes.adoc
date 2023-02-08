@@ -21,7 +21,7 @@ Dieses Dokument informiert über die Änderungen an Spezifikation gemSpec_VZD_FH
 Vor der Veröffentlichung auf dem Fachportal erfolgen noch Reviews. Folge dieser Reviews können Änderungen bis zur finalen Veröffentlichung bedingen.
 
 
-== FHIR-Schnittstelle für Besitzer FHIRDirectoryOwnerAPI (gemSpec_VZD_FHIR_Directory#4.2.1.3)
+== gemSpec_VZD_FHIR_Directory#4.2.1.3 FHIR-Schnittstelle für Besitzer FHIRDirectoryOwnerAPI
 Für die Prüfung der ID-Token vom IDP Dienst wird ergänzt: +
  +
 *ML-136899 - IDP ID-Token Prüfung (VZD-FHIR-Directory)* +
@@ -51,7 +51,45 @@ _Hinweis: Als personenbezogenes Attribute gelten gemäß Tabelle: [gemSpec_IDP_F
 Prüfung des "aud" Claim des ID_TOKEN mit der vom VZD-FHIR-Directory registrierten URI: Das VZD-FHIR-Directory muss den Claim aud des ID_TOKEN mit seiner beim IDP-Dienst registrierten URI "https://fhir-directory.vzd.ti-dienste.de/owner" prüfen. Nur wenn diese übereinstimmen, gilt diese Prüfung als positiv validiert. A_21520
 - nonce Prüfung: Wenn das VZD-FHIR-Directory im Authorization Request an den IDP-Dienst einen nonce-Parameter gesetzt hat, dann muss sich der IDP-Dienst diesen Wert (und die Zuordnung zum Request) merken. Im vom IDP-Dienst ausgestellten ID-Token muss dann genau dieser Wert als claim gesetzt werden. VZD-FHIR-Directory muss dann prüfen, ob der von im im Authorization-Request übergebene nonce-Wert mit dem im ID-Token übereinstimmt. 
 
-
-
-
-
+== gemSpec_VZD_FHIR_Directory#4.2.3 Erzeugung und Bereitstellung der Föderationsliste
+*Es wird in Kapitel 4.2.3 wie folgt angepasst* +
+ +
+Die Föderationsliste MUSS bei Änderung der Domains durch TI-Messenger-Anbieter neu erzeugt und zum Download über die Schnittstelle I_VZD_TIM_Provider_Services bereitgestellt werden. +
+ +
+Die Föderationsliste hat folgende Struktur:
+----
+{ 
+   "version": <Version der Föderationsliste (Integer)>,
+  "hashAlgorithm": "sha256", 
+  "domainList": [
+    {
+      "domain": "hash der Domain",
+      "telematikID": "Telematik-ID der Organisation, welche die Domain nutzt",
+      "isInsurance": false
+    }
+  ]
+}
+----
+Die Föderationsliste MUSS mit einer JWS gemäß *RFC7797* signiert werden. Der zu verwendende Signatur-Algorithmus MUSS "ES256" sein. Dazu MUSS ein Signatur-Zertifikat der Komponenten-PKI der TI (C.FD.SIG) verwendet werden. Das Signatur-Zertifikat und das ausstellende CA-Zertifikat MÜSSEN im Signatur-Header enthalten sein. +
+ +
+Der Signatur-Header hat folgende Struktur:
+----
+{ 
+  "typ":"JWT",
+  "alg": "ES256",
+  "x5c": [
+    "<X.509 Sig-Cert, base64-encoded DER>",
+    "<X.509 CA-Cert, base64-encoded DER>"
+  ]
+}
+----
+Die signierte Föderationsliste hat gemäß *RFC7797* folgende Struktur:
+----
+Signatur-Header.Föderationsliste.Signatur
+----
+Die einzelnen Bestandteile der signierten Föderationsliste sind Base64 kodiert. +
+ +
+Ein Beispiel für die Föderationsliste (im Signatur-Header werden noch die oben beschriebenen Zertifikate ergänzt):
+----
+eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiJ9.eyJ2ZXJzaW9uIjo1LCJoYXNoQWxnb3JpdGhtIjoiU0hBLTI1NiIsImRvbWFpbkxpc3QiOlt7ImRvbWFpbiI6ImVmNzJkNDNkNTliOTFjY2UzMDY2NzMzMzZkNzEyNWRiMGNiYjMwOWFiNjg5MzNmODBjZTBjZjU1NzA4ODEwZWEiLCJ0ZWxlbWF0aWtJRCI6IjEtMWdlbXRlc3Qtb3duZXItMDAwMSIsImlzSW5zdXJhbmNlIjpmYWxzZX0seyJkb21haW4iOiJkMDI1NzgzYzhiNDQzNTlhOTFlNTZlMjQzZWVhNzBiMzRjNWIzMDAwZWQwZTI2YWNmMzkyODk1YWI1NWVkZTdkIiwidGVsZW1hdGlrSUQiOiIxLTFnZW10ZXN0LW93bmVyLTAwMDEiLCJpc0luc3VyYW5jZSI6ZmFsc2V9LHsiZG9tYWluIjoiNWViNTdjMDg5MjY2YTlmNzY4NjBiZjdkMzc4YzNhNGJmYzU3YWNmZmE1MzNlNzJhZWIwMjEyZTZhZmM5ZjIyNyIsInRlbGVtYXRpa0lEIjoiMS0xZ2VtdGVzdC1vd25lci0wMDAxIiwiaXNJbnN1cmFuY2UiOmZhbHNlfSx7ImRvbWFpbiI6ImM0ODljYWUxYzkxYzAyZmJkZTUxMTJhMzg0YjFkOTgzYmEwNDQ5OTE4ZmFkMTEwNjMxZjM0Mzk2NzZjOGIwZTYiLCJ0ZWxlbWF0aWtJRCI6IjEtMmFydnRzdC1hcDAwMDAwMCIsImlzSW5zdXJhbmNlIjpmYWxzZX1dfQ.na7bSnm2xT_Cr0aslw7tn8w8-KIbaAt0MXcjB_MbPH9hhfy0sT8HmZzKItemLF71FFnzMlmI0ltDJ-LhNo66oQ
+----
