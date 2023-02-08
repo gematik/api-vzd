@@ -16,7 +16,7 @@ image:gematik_logo.svg[width=70%]
 
 toc::[]
 
-= Änderuntgen an Spezifikation gemSpec_VZD_FHIR_Directory
+= Änderungen an Spezifikation gemSpec_VZD_FHIR_Directory
 Dieses Dokument informiert über die Änderungen an Spezifikation gemSpec_VZD_FHIR_Directory, welche noch nicht auf dem gematik Fachportal veröffentlicht wurden.
 Vor der Veröffentlichung auf dem Fachportal erfolgen noch Reviews. Folge dieser Reviews können Änderungen bis zur finalen Veröffentlichung bedingen.
 
