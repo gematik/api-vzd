@@ -1,0 +1,57 @@
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
+:imagesdir: ../images
+:toc: macro
+:toclevels: 5
+:toc-title: Table of Contents
+:numbered:
+
+image:gematik_logo.svg[width=70%]
+
+toc::[]
+
+= Änderuntgen an Spezifikation gemSpec_VZD_FHIR_Directory
+Dieses Dokument informiert über die Änderungen an Spezifikation gemSpec_VZD_FHIR_Directory, welche noch nicht auf dem gematik Fachportal veröffentlicht wurden.
+Vor der Veröffentlichung auf dem Fachportal erfolgen noch Reviews. Folge dieser Reviews können Änderungen bis zur finalen Veröffentlichung bedingen.
+
+
+== FHIR-Schnittstelle für Besitzer FHIRDirectoryOwnerAPI (gemSpec_VZD_FHIR_Directory#4.2.1.3)
+Für die Prüfung der ID-Token vom IDP Dienst wird ergänzt: +
+ +
+*ML-136899 - IDP ID-Token Prüfung (VZD-FHIR-Directory)* +
+ +
+Die id_token Prüfung basiert auf Informationen aus dem IDP Discovery Dokument (siehe id_token Prüfung unten). Das Discovery Dokument wird vor Ausführung der id_token Prüfungen eingelesen. Bei dem Einlesen wird die Signatur des Discovery Dokuments geprüft. +
+ +
+Regelmäßiges Laden des Discovery Documents: Das VZD-FHIR-Directory muss das Discovery Document regelmäßig alle 24 Stunden von seinem Downloadpunkt laden und nach seiner erfolgreicher Prüfung die enthaltenen Daten zur ID_Token Prüfung verwenden. +
+ +
+Prüfung der Signatur des Discovery Document: Das VZD-FHIR-Directory muss die Signatur des Discovery Document mathematisch prüfen und auf ein zeitlich gültiges C.FD.SIG-Zertifikat mit der Rollen-OID oid_idpd zurückführen können, welches von einer ihm bekannten Komponenten-PKI ausgestellt wurde. A_21521 +
+ +
+Die vom IDP Dienst ausgestellten id_token müssen vom VZD-FHIR-Directory geprüft werden:
+
+- "ID_TOKEN" generelle Struktur: Validierung der gemäß [RFC7519 # section-7.1] vorgeschriebenen Struktur der ID_TOKEN gemäß [RFC7519 # section-7.2] validieren. A_20362
+-	"ID_TOKEN" sind verschlüsselt: Entschlüsselung der verschlüsselten ID_TOKEN entsprechend dem für diese Übertragung vorgesehenen Verfahren. Unverschlüsselte ID_TOKEN sind ungültig und abzulehnen. A_20363-01
+- Die Signatur des "ID_TOKEN" ist zu prüfen: Prüfung der Signatur der ID_TOKEN gegen den öffentlichen Schlüssel des Token-Endpunktes PUK_IDP_SIG. Das VZD-FHIR-Directory muss den öffentlichen Schlüssel PUK_IDP_SIG dabei dem Discovery Document des IDP-Dienstes entnehmen. A_20365-01
+
+**	Algorithmus:  "alg": Muss einem zulässigen Wert aus dem Discovery Dokument des IDP-Dienstes, Attribut "id_token_signing_alg_values_supported" entsprechen. Z.B. "BP256R1"
+
+- Reaktion bei ungültiger oder fehlender Signatur des "ID_TOKEN": Das VZD-FHIR-Directory muss alle mit dem ACCESS_TOKEN verbundenen Vorgänge abbrechen, wenn das ID_TOKEN nicht signiert oder dessen Signatur fehlerhaft ist. A_20504
+- Zeitliche Gültigkeit: 
+** Prüfung der Gültigkeit des "ID_TOKEN" für den Zugriff auf Fachdienste ohne "nbf": Das VZD-FHIR-Directory muss sicherstellen, dass der Zeitraum der Verwendung des Tokens zwischen den im Token mitgelieferten Werten der Attribute iat und exp liegt. A_20373
+** Prüfung der Gültigkeit des "ID_TOKEN" für den Zugriff auf Fachdienste mit "nbf": Das VZD-FHIR-Directory muss sicherstellen, dass der Zeitraum der Verwendung des Tokens zwischen den im Token mitgelieferten Werten der Attribute nbf und exp liegt. A_20374
+- Abbruch bei unerwarteten Inhalten: Das VZD-FHIR-Directory muss die im ID_TOKEN übertragenen Attribute mit denen vergleichen, die mit dem IDP-Dienst bei der Registrierung vereinbart wurden und alle mit dem ID_TOKEN in Verbindung stehenden Vorgänge abbrechen, wenn dem ID_TOKEN für die Verarbeitung notwendige Claims fehlen oder aber andere als die mit dem IDP-Dienst vereinbarten personenbezogenen Attribute vorhanden sind. A_20369-01
+ +
+_Hinweis: Als personenbezogenes Attribute gelten gemäß Tabelle: [gemSpec_IDP_FD#TAB_IDP_DIENST_0005] die Claims given_name, family_name, organizationName, professionOID und idNummer._
+- Abbruch bei falschen Datentypen der Attribute: Das VZD-FHIR-Directory muss ID_TOKEN ablehnen, wenn die in einem Attribut vorgetragenen Werte nicht dem schematisch erwarteten Datentyp des Attributes entsprechen. A_20370
+Prüfung des "aud" Claim des ID_TOKEN mit der vom VZD-FHIR-Directory registrierten URI: Das VZD-FHIR-Directory muss den Claim aud des ID_TOKEN mit seiner beim IDP-Dienst registrierten URI "https://fhir-directory.vzd.ti-dienste.de/owner" prüfen. Nur wenn diese übereinstimmen, gilt diese Prüfung als positiv validiert. A_21520
+- nonce Prüfung: Wenn das VZD-FHIR-Directory im Authorization Request an den IDP-Dienst einen nonce-Parameter gesetzt hat, dann muss sich der IDP-Dienst diesen Wert (und die Zuordnung zum Request) merken. Im vom IDP-Dienst ausgestellten ID-Token muss dann genau dieser Wert als claim gesetzt werden. VZD-FHIR-Directory muss dann prüfen, ob der von im im Authorization-Request übergebene nonce-Wert mit dem im ID-Token übereinstimmt. 
+
+
+
+
+
