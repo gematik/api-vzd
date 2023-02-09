@@ -21,7 +21,7 @@ Dieses Dokument informiert über die Änderungen an Spezifikation gemSpec_VZD_FH
 Vor der Veröffentlichung auf dem Fachportal erfolgen noch Reviews. Folge dieser Reviews können Änderungen bis zur finalen Veröffentlichung bedingen.
 
 
-== gemSpec_VZD_FHIR_Directory#4.2.1.3 FHIR-Schnittstelle für Besitzer FHIRDirectoryOwnerAPI
+== 4.2.1.3 FHIR-Schnittstelle für Besitzer FHIRDirectoryOwnerAPI
 Für die Prüfung der ID-Token vom IDP Dienst wird ergänzt: +
  +
 *ML-136899 - IDP ID-Token Prüfung (VZD-FHIR-Directory)* +
@@ -51,7 +51,7 @@ _Hinweis: Als personenbezogenes Attribute gelten gemäß Tabelle: [gemSpec_IDP_F
 Prüfung des "aud" Claim des ID_TOKEN mit der vom VZD-FHIR-Directory registrierten URI: Das VZD-FHIR-Directory muss den Claim aud des ID_TOKEN mit seiner beim IDP-Dienst registrierten URI "https://fhir-directory.vzd.ti-dienste.de/owner" prüfen. Nur wenn diese übereinstimmen, gilt diese Prüfung als positiv validiert. A_21520
 - nonce Prüfung: Wenn das VZD-FHIR-Directory im Authorization Request an den IDP-Dienst einen nonce-Parameter gesetzt hat, dann muss sich der IDP-Dienst diesen Wert (und die Zuordnung zum Request) merken. Im vom IDP-Dienst ausgestellten ID-Token muss dann genau dieser Wert als claim gesetzt werden. VZD-FHIR-Directory muss dann prüfen, ob der von im im Authorization-Request übergebene nonce-Wert mit dem im ID-Token übereinstimmt. 
 
-== gemSpec_VZD_FHIR_Directory#4.2.3 Erzeugung und Bereitstellung der Föderationsliste
+== 4.2.3 Erzeugung und Bereitstellung der Föderationsliste
 *Es wird in Kapitel 4.2.3 wie folgt angepasst* +
  +
 Die Föderationsliste MUSS bei Änderung der Domains durch TI-Messenger-Anbieter neu erzeugt und zum Download über die Schnittstelle I_VZD_TIM_Provider_Services bereitgestellt werden. +
