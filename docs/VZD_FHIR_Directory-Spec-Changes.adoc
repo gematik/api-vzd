@@ -27,11 +27,12 @@ Vor der Veröffentlichung auf dem Fachportal erfolgen noch Reviews. Folge dieser
 *ML-136899 - IDP-Dienst ID-TOKEN Prüfung (VZD-FHIR-Directory)* +
  +
 Die ID_TOKEN Prüfung basiert auf Informationen aus dem IDP Discovery Dokument des IDP-Dienstes. +
-Die URL des Downloadpunktes lautet in der TI: "https://idp.zentral.idp.splitdns.ti-dienste.de/.wellknown/openid-configuration". +
+Die URL des Downloadpunktes lautet im Internet: "https://idp.app.ti-dienste.de/.well-known/openid-configuration". +
 Das Discovery Dokument muss vor Ausführung der Prüfungen eingelesen worden sein. Beim Einlesen wird die Signatur des Discovery Dokuments geprüft:
  +
  +
 Prüfung der Signatur des Discovery Document: Das VZD-FHIR-Directory muss die Signatur des Discovery Document mathematisch prüfen und auf ein zeitlich gültiges C.FD.SIG-Zertifikat mit der Rollen-OID oid_idpd zurückführen können, welches von einer ihm bekannten CA der Komponenten-PKI ausgestellt wurde.  +
+OCSP Prüfung des Signaturzertifikats. +
  +
 Regelmäßiges Laden des Discovery Documents: Das VZD-FHIR-Directory muss das Discovery Document regelmäßig alle 24 Stunden von seinem Downloadpunkt laden und nach seiner erfolgreicher Prüfung die enthaltenen Daten zur Prüfung  von ID_TOKEN verwenden. +
  +
