@@ -21,7 +21,62 @@ Dieses Dokument informiert über die Änderungen an Spezifikation gemSpec_VZD_FH
 Vor der Veröffentlichung auf dem Fachportal erfolgen noch Reviews. Folge dieser Reviews können Änderungen bis zur finalen Veröffentlichung bedingen.
 
 
-== 4.2.1.3 FHIR-Schnittstelle für Besitzer FHIRDirectoryOwnerAPI
+== Eigentümer ändert seinen Eintrag im FHIR-Directory (gemSpec_VZD_FHIR_Directory#5.2)
+*Es wird in Kapitel 5.2 wie folgt angepasst* +
+
+=== AF_10037 Einträge im VZD-FHIR-Directory ändern
+.AF_10037 Einträge im VZD-FHIR-Directory ändern 
+|===
+|Attribute |Bemerkung
+
+|Beschreibung
+|Organisationen können ihren Eintrag im VZD-FHIR-Directory an die eigenen Strukturen anpassen. 
+Leistungserbringer können z. B. die TI-Messenger-Adresse in ihrem Eintrag hinzufügen. 
+Der Basiseintrag einer Organisation oder eines Leistungserbringers wird wie bisher durch die Kartenherausgeber erstellt. 
+Die Organisation KANN eigene mit dem Basiseintrag verlinkte FHIR-Ressourcen erstellen, um die Struktur der Organisation abzubilden. 
+Zum Beispiel können Krankenhäuser ihre Fachabteilungen als HealthcareService-Einträge abbilden, die mit dem Organization-Eintrag verlinkt sind. 
+Wenn der Org-Admin oder LE kein gültiges owner-accesstoken vom VZD-FHIR-Directory im Client vorliegt, 
+muss die Authentisierung mittels OIDC an einem IDP der TI-IDP-Föderation erfolgen. 
+Nach erfolgreicher Authentisierung ist die durch den IDP bestätigte Telematik-ID des Leistungserbringers oder der Organisation am Auth-Service bekannt. 
+Für den Aufruf der FHIR-Operationen durch den Client stellt der Auth-Service dem Client ein owner-accesstoken aus, 
+dass auch die Telematik-ID des LE oder der Organisation enthält.
+
+|Vorbedingung
+|Die Organisation oder der Leistungserbringer hat bereits einen Basiseintrag im VZD-FHIR-Directory. Eine Authenticator-App des IDP steht zur Verfügung, 
+mit der die Organisations-Identität oder die Leistungserbringer-Identität bei einem IDP der TI-IDP-Föderation bestätigt werden kann. 
+
+|Fehlermeldungen
+|
+
+
+|===
+
+++++
+<p align="left">
+  <img width="75%" src=../images/diagrams/SequenceDiagram.FHIR-Directory.owner.png>
+</p>
+++++
+
+Beschreibung für Anwendungsfall AF_10037:
+
+
+----
+Ein Org-Admin-Account kann am Registrierungs-Dienst nur angelegt werden kann, wenn eine erfolgreiche Authentisierung 
+einer Organisation mit Hilfe einer SMC-B durchgeführt wurde. Deshalb ist eine erneute SMC-B Authentifizierung am 
+FHIR-Directory nicht erforderlich. Dafür muss das FHIR-Directory den Registrierungs-Diensten aller TI-Messenger-Anbieter 
+vertrauen und die erforderlichen Daten (telematikID und professionOID) im id_token des Registrierungs-Denstes prüfen.
+
+Das Vertrauen zu den Registrierungsdiensten der TI-Messenger Anbieter wird hergestellt, wenn die TI-Messenger Anbieter 
+Credentials beim FHIR-Directory für die Schnittstelle I_VZD_TIM_Provider_Services beantragen. 
+Dabei übergibt der TI-Messenger Anbieter den hash des Signatur-Zertifikats, das für die Signatur des id_tokens 
+verwendet wird an das FHIR-Directory.
+
+Die Abfrage der owner-accesstoken erfolgt entsprechend dem Kontext / Client / relevanten IDP über die dazu passende URL. 
+Aktuell wird nur den Gematik-IDP unterstützt und damit ist die entsprechende URL /signin-gematik-idp-dienst
+----
+
+
+
 === Für die Prüfung der ID-Token vom IDP Dienst wird ergänzt:
 
 *ML-136899 - IDP-Dienst ID-TOKEN Prüfung (VZD-FHIR-Directory)* +
