@@ -126,19 +126,25 @@ Optional und verpflichtend ab FHIR VZD 1.2: 
  +
 Die vom Registrierungsdienst ausgestellten id_token  müssen vom VZD-FHIR-Directory  geprüft werden:
 
-- Validierung der gemäß [RFC7519 # section-7.1] vorgeschriebenen Struktur der id_token gemäß [RFC7519 # section-7.2].
+- Validierung der gemäß [RFC7519 # section-7.1] vorgeschriebenen Struktur der id_token gemäß [RFC7519 # section-7.2]. 
 -	Prüfung Signatur des id_token gemäß RFC7515 (das verwendete Zertifikat muss aus der Komponenten-PKI der TI stammen)
 ** Zertifikatstyp: C.FD.SIG
 ** technische Rolle: oid_tim
 ** Prüfung hash des id_token Signatur-Zertifikats gegen den bei der Beantragung der Credentials für die Schnittstelle I_VZD_TIM_Provider_Services übergebenen hash.
 ** OCSP Prüfung: Ja
 ** Algorithmus:  "alg": "ES256"
+- Die telematikID muss im Token Attribut idNummer  enthalten sein.
+
+Optional und verpflichtend ab FHIR VZD 1.2:
+
+- Prüfung hash des id_token Signatur-Zertifikats gegen den bei der Beantragung der Credentials für die Schnittstelle I_VZD_TIM_Provider_Services übergebenen hash. 
+- OCSP Prüfung des id_token Signatur-Zertifikats
+- Prüfung Algorithmus:  "alg": "ES256" 
 - Prüfung der zeitlichen Gültigkeit des id_token für den Zugriff auf den VZD-FHIR-Directory: Das VZD-FHIR-Directory muss sicherstellen, dass der Zeitraum der Verwendung des Tokens zwischen den im Token mitgelieferten Werten der Attribute iat und exp liegt.
 - Das VZD-FHIR-Directory muss die im id_token übertragenen Attribute mit denen vergleichen, die mit dem Registrierungsdienst vereinbart wurden und alle mit dem id_token in Verbindung stehenden Vorgänge abbrechen, wenn dem id_token für die Verarbeitung notwendige Claims fehlen oder aber andere als die mit dem IDP-Dienst vereinbarten personenbezogenen Attribute vorhanden sind.
-** Audience: "aud": URL der Schnittstelle z.B. "https://fhir-directory.vzd.ti-dienste.de/owner-authenticate"
-** Die telematikID muss im Token Attribut idNummer  enthalten sein.
-** _Hinweis: Als unerwartete personenbezogenes Attribute gelten gemäß Tabelle: [gemSpec_IDP_FD#TAB_IDP_DIENST_0005] die Claims given_name, family_name, und organizationName_
+** _Hinweis: Als unerwartete personenbezogenes Attribute gelten gemäß Tabelle: [gemSpec_IDP_FD#TAB_IDP_DIENST_0005] die Claims given_name, family_name, und organizationName_
 
+- Audience: "aud": URL der Schnittstelle z.B. "https://fhir-directory.vzd.ti-dienste.de/owner-authenticate"
 
 === Für die Prüfung der ACCESS_Token wird ergänzt:
  
@@ -146,17 +152,23 @@ Die vom Registrierungsdienst ausgestellten id_token  müssen vom VZD-FHIR-Direct
  +
 Die Access-Token müssen vom VZD-FHIR-Directory für den Endpunkt /owner geprüft werden:
 
-- Validierung der gemäß [RFC7519 # section-7.1] vorgeschriebenen Struktur der ACCESS_TOKEN gemäß [RFC7519 # section-7.2].
--	Prüfung Signatur des Tokens gemäß RFC7515:
-** Zertifikatstyp: C.FD.SIG
+- Validierung der gemäß [RFC7519 # section-7.1] vorgeschriebenen Struktur der ACCESS_TOKEN gemäß [RFC7519 # section-7.2].
+-	Sicherstellung der korrekten Signatur des Tokens gemäß RFC7515:
+** Zertifikatstyp: C.FD.SIG
 ** technische Rolle: oid_vzd_ti
-** OCSP Prüfung: Nein
-** Algorithmus:  "alg": "ES256"
-- Zeitliche Gültigkeit: Das VZD-FHIR-Directory muss sicherstellen, dass der Zeitraum der Verwendung des Tokens zwischen den im Token mitgelieferten Werten der Attribute iat und exp liegt.
+** Algorithmus:  "alg": "ES256" 
+** OCSP Prüfung des Signatur-Zertifikats: Nein
+
+- Zeitliche Gültigkeit: Das VZD-FHIR-Directory muss sicherstellen, dass der Zeitraum der Verwendung des Tokens zwischen den im Token mitgelieferten Werten der Attribute iat und exp liegt.
+- Die telematikID muss im Token "sub" claim enthalten sein.
+
+Optional und verpflichtend ab FHIR VZD 1.2: 
+
 - Das VZD-FHIR-Directory muss die im ACCESS_TOKEN übertragenen Attribute mit denen vergleichen, die vereinbart wurden und alle mit dem ACCESS_TOKEN in Verbindung stehenden Vorgänge abbrechen, wenn dem ID_TOKEN für die Verarbeitung notwendige Claims fehlen oder aber andere als die vereinbarten personenbezogenen Attribute vorhanden sind.
 ** Prüfung Audience "aud" aus dem Token (muss der /owner Schnittstelle entsprechen, z.B. https://fhir-directory.vzd.ti-dienste.de/owner)
-** Die telematikID muss im Token "sub" claim enthalten sein.
-** _Hinweis: Als unerwartete personenbezogenes Attribute gelten gemäß Tabelle: [gemSpec_IDP_FD#TAB_IDP_DIENST_0005] die Claims given_name, family_name, und organizationName_
+
+** _Hinweis: Als unerwartete personenbezogenes Attribute gelten gemäß Tabelle: [gemSpec_IDP_FD#TAB_IDP_DIENST_0005] die Claims given_name, family_name, und organizationName_
+
 
 
 
@@ -199,7 +211,7 @@ Signatur-Header.Föderationsliste.Signatur
 ----
 Die einzelnen Bestandteile der signierten Föderationsliste sind Base64 kodiert. +
  +
-Ein Beispiel für die Föderationsliste (im Signatur-Header werden noch die oben beschriebenen Zertifikate ergänzt):
+Ein Beispiel für die Föderationsliste:
 ----
-eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiJ9.eyJ2ZXJzaW9uIjo1LCJoYXNoQWxnb3JpdGhtIjoiU0hBLTI1NiIsImRvbWFpbkxpc3QiOlt7ImRvbWFpbiI6ImVmNzJkNDNkNTliOTFjY2UzMDY2NzMzMzZkNzEyNWRiMGNiYjMwOWFiNjg5MzNmODBjZTBjZjU1NzA4ODEwZWEiLCJ0ZWxlbWF0aWtJRCI6IjEtMWdlbXRlc3Qtb3duZXItMDAwMSIsImlzSW5zdXJhbmNlIjpmYWxzZX0seyJkb21haW4iOiJkMDI1NzgzYzhiNDQzNTlhOTFlNTZlMjQzZWVhNzBiMzRjNWIzMDAwZWQwZTI2YWNmMzkyODk1YWI1NWVkZTdkIiwidGVsZW1hdGlrSUQiOiIxLTFnZW10ZXN0LW93bmVyLTAwMDEiLCJpc0luc3VyYW5jZSI6ZmFsc2V9LHsiZG9tYWluIjoiNWViNTdjMDg5MjY2YTlmNzY4NjBiZjdkMzc4YzNhNGJmYzU3YWNmZmE1MzNlNzJhZWIwMjEyZTZhZmM5ZjIyNyIsInRlbGVtYXRpa0lEIjoiMS0xZ2VtdGVzdC1vd25lci0wMDAxIiwiaXNJbnN1cmFuY2UiOmZhbHNlfSx7ImRvbWFpbiI6ImM0ODljYWUxYzkxYzAyZmJkZTUxMTJhMzg0YjFkOTgzYmEwNDQ5OTE4ZmFkMTEwNjMxZjM0Mzk2NzZjOGIwZTYiLCJ0ZWxlbWF0aWtJRCI6IjEtMmFydnRzdC1hcDAwMDAwMCIsImlzSW5zdXJhbmNlIjpmYWxzZX1dfQ.na7bSnm2xT_Cr0aslw7tn8w8-KIbaAt0MXcjB_MbPH9hhfy0sT8HmZzKItemLF71FFnzMlmI0ltDJ-LhNo66oQ
+yJ4NWMiOlsiTUZvd0ZBWUhLb1pJemowQ0FRWUpLeVFEQXdJSUFRRUhBMElBQkJpMkt6RlE4bEs0TFMyajJVNnpYTjJkR2w1dG5TSnlGeUNMV3cyM3h1NExhY2RNOGNHY0pPdkI4Z3dwajBzQkZvNnpjMUFBaVhjdEhkbUc1TWFwenlZPSJdLCJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiJ9.eyJ2ZXJzaW9uIjo1MDYsImhhc2hBbGdvcml0aG0iOiJTSEEtMjU2IiwiZG9tYWluTGlzdCI6W3siZG9tYWluIjoiZWY3MmQ0M2Q1OWI5MWNjZTMwNjY3MzMzNmQ3MTI1ZGIwY2JiMzA5YWI2ODkzM2Y4MGNlMGNmNTU3MDg4MTBlYSIsInRlbGVtYXRpa0lEIjoiMS0xYXJ2dHN0LWF1dG8tdHMtMDAwMSIsImlzSW5zdXJhbmNlIjpmYWxzZX0seyJkb21haW4iOiJjNjRkM2VmYmMyNzk3ZDg0Y2NlOGM0NjAwMTNkYTFmMThiMWE1NTYzNWVhZTBhYTE4ZTljZmQxMGEzYWMyNGQ4IiwidGVsZW1hdGlrSUQiOiIxLTFhcnZ0c3QtdGVzdC10cDA3LTAzIiwiaXNJbnN1cmFuY2UiOmZhbHNlfSx7ImRvbWFpbiI6IjMzNTJhZjFhZThkY2Y4MjljYjM0YjdlYTY2NDk0OTAxMzM4NTg2MGYyZTFlNDBjNTUxMmVhYTk2ODg3YjdlNjEiLCJ0ZWxlbWF0aWtJRCI6IjEtMWFydnRzdC10ZXN0LXRwMDgtMDEiLCJpc0luc3VyYW5jZSI6ZmFsc2V9LHsiZG9tYWluIjoiYjRhZTM3OTZhN2Q5YWYzYzdiNmNhNzU5MzYxZTlhZDkyZjk0NmU3ZmFkNzZkZGVkZDEzM2U5ZTBhNjUwMTg1OCIsInRlbGVtYXRpa0lEIjoiMS0xYXJ2dHN0LXRlc3RvcmctdHAwOS4wMCIsImlzSW5zdXJhbmNlIjpmYWxzZX0seyJkb21haW4iOiJlN2RmNjRmOTQ1NGRkMDA3NjcxZmQ1MjUzYmNjNmMwYzlmZWJkMzBhZTIxZjQ3YjQwZmFlNDczZWQ0NzA2NzM0IiwidGVsZW1hdGlrSUQiOiIxLTFhcnZ0c3QtdGVzdG9yZy10cDA5LjAxIiwiaXNJbnN1cmFuY2UiOmZhbHNlfSx7ImRvbWFpbiI6Ijg5NDU3M2U3ZmJhNjYxODE1MGZkMWNkMzUwOTQ5NGE1YTY2NWM1ZjRiZmQ0YzY4MjlmZmE5NTM0NWZjYTUxYjAiLCJ0ZWxlbWF0aWtJRCI6IjEtMWFydnRzdC10ZXN0b3JnLXRwMDkuMDIiLCJpc0luc3VyYW5jZSI6ZmFsc2V9LHsiZG9tYWluIjoiNWY1YTZhOTA4ODNlMDZjMjEyODAzZmE3OTIwNGUzM2M1MzZkNjgyNTc0MGM5MGVlOGExMDU3ZDMwZTE4ZTNhZSIsInRlbGVtYXRpa0lEIjoiMS0xYXJ2dHN0LXRlc3RvcmctdHAwOS4xIiwiaXNJbnN1cmFuY2UiOmZhbHNlfSx7ImRvbWFpbiI6ImY4NzU1YjRiODk0MTViZjNkOGI1YTI4ZmI2MzAwYTBhNzE5MDU2NGU0OTQ3YTAzYWE4MTUyZjIwZDc2YTg4MzQiLCJ0ZWxlbWF0aWtJRCI6IjEtMWFydnRzdC10ZXN0LXRwMDUtMDEiLCJpc0luc3VyYW5jZSI6ZmFsc2V9LHsiZG9tYWluIjoiN2FiNWFkYjk1MWZlYmY5ZjUxM2Q4ZDQ3OWYyNjgzMTYzMWU5NGZmNDYwMDkwNTk2Mjk2NWU0NGI0MjkxMDAwYiIsInRlbGVtYXRpa0lEIjoiMS0xYXJ2dHN0LXRlc3QtdHAwNGEiLCJpc0luc3VyYW5jZSI6ZmFsc2V9LHsiZG9tYWluIjoiZGM5Nzg1YjFjNDU5ZjJmZjk3NWFjNGY2NWM3YTUwNzRkYTFiYWFiMzc4N2Q5ZDg5OGNkNTE3MWQ5NjdhMTUzNSIsInRlbGVtYXRpa0lEIjoiMS0xYXJ2dHN0LXRlc3QtdHAwNi1hIiwiaXNJbnN1cmFuY2UiOmZhbHNlfSx7ImRvbWFpbiI6ImY2MDQ2OTBmNTg2ZTQzYzRiY2FmMmQ5ODM2MTI4NWE3NGY2NDEzY2M4MTBiMzhhY2FmMTliMDc3ZTAzZDIyN2MiLCJ0ZWxlbWF0aWtJRCI6IjEtMWFydnRzdC10ZXN0LXRwMDYtMDEiLCJpc0luc3VyYW5jZSI6ZmFsc2V9LHsiZG9tYWluIjoiOWZmNDE0NDNlNGUwZDI0YzZkMGNiOGQwYWU2YTEzNWRkYzc3ZjUxZGViMmZmNDI4OWViMjkyZGZkZDY3NjcxMyIsInRlbGVtYXRpa0lEIjoiMS0xYXJ2dHN0LXRlc3QtdHAwNi0wMiIsImlzSW5zdXJhbmNlIjpmYWxzZX0seyJkb21haW4iOiJjNjYwYTMyN2QwNWMzNjNlZWFlN2ZhN2M0MWRkODY2ZmEzMzJmN2M2OTdiODllZThjMWU5YWNjNzA5ODRjOTFlIiwidGVsZW1hdGlrSUQiOiJ0cDA2YXJ2dHN0LXRlc3QtdHAwNi0wMyIsImlzSW5zdXJhbmNlIjpmYWxzZX0seyJkb21haW4iOiI0ZjlhZDY1NTliYjkzZjg2NTgwM2FjM2Q2YzgyMDhhNWFlNTIxZGMwMzdmYWVjYWU4YzVmMTVkMGJlMDlmMzhhIiwidGVsZW1hdGlrSUQiOiIxLTFhcnZ0c3QtdGVzdC10cDA2LTA0IiwiaXNJbnN1cmFuY2UiOmZhbHNlfSx7ImRvbWFpbiI6IjM1OTdjOWZkYTdiYWNiZGI5MGQ4ZTlkYTVkMDU5YWU0NzI5MjQ1OGEyODkxYmZlN2ViYzk4MjQ5YzRjN2EzOWMiLCJ0ZWxlbWF0aWtJRCI6IjEtMWFydnRzdC10ZXN0LXRwMDYtMDUiLCJpc0luc3VyYW5jZSI6ZmFsc2V9LHsiZG9tYWluIjoiZDk4NTFmMjNjMWRkYjFjMDlmNjcxOGQ3OWE3MDFjYzQwOTVjMjJiMjA0NGU3MWY3ODE4OGIwYTRjZjNlOWJkZSIsInRlbGVtYXRpa0lEIjoiMS0xYXJ2dHN0LXRlc3QtdHAwNjA2IiwiaXNJbnN1cmFuY2UiOmZhbHNlfSx7ImRvbWFpbiI6IjE4MjQzMGIxNmQ0NjdjNzMxYzMxYjgwYzNiYTg5ZTMwMzEzYWZjNTdkOTJlZThlY2FlMDQyNDRmZGU4ZDI2ODgiLCJ0ZWxlbWF0aWtJRCI6IjEtMWFydnRzdC10ZXN0LXRwMDciLCJpc0luc3VyYW5jZSI6ZmFsc2V9XX0.T3oRi_f5LT9C70eoLWkLLxHalpq5VUx6zAJb9FrSNPFzKpR8SPD3C342mpCGfrEvEc51bTtxxqmFBwve9lLYSg
 ----
