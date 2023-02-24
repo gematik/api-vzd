@@ -12,7 +12,7 @@
     }
   ],
   "url": "https://gematik.de/fhir/directory/StructureDefinition/OrganizationDirectory",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "name": "OrganizationDirectory",
   "title": "Organization in gematik Directory",
   "status": "draft",
@@ -136,7 +136,6 @@
         "id": "Organization.type",
         "path": "Organization.type",
         "min": 1,
-        "max": "1",
         "mustSupport": true,
         "binding": {
           "strength": "required",

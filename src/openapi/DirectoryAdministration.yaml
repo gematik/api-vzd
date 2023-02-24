@@ -3,10 +3,63 @@ info:
   title: I_Directory_Administration
   description: REST Schnittstelle zur Pflege der Verzeichniseinträge.
               Über diese Schnittstelle können Verzeichniseinträge inklusive Zertifikaten erzeugt, aktualisiert und gelöscht werden. Die Administration von Fachdaten erfolgt über Schnittstelle I_Directory_Application_Maintenance und wird durch die Fachanwendungen durchgeführt. Lesender Zugriff auf die Fachdaten ist mit Operation getDirectoryEntries in vorliegender Schnittstelle möglich.
-  version: 1.8.1
+  version: 1.9.5
+
+  # Änderungen in Version 1.9.5
+  #  - Attribut entryType aus Schema baseDirectoryEntry - aus Kompatibilitätsgründen zu 
+  #    bisherigen Schnittstellenversionen - auf Datentyp "array" geändert
+  # 
+  # Änderungen in Version 1.9.4
+  #  - Attribute active und meta in Operationen read_Directory_Entry_for_Sync und read_Directory_Entry_for_Sync_paging ergänzt
+  #  - Operation readLog: Erlaubte Parameter für Suchanfragen in Kommentaren erläutert
+  #
+  # Änderungen in Version 1.9.3
+  #  - "description" der Operationen mit Beschreibung der Attributbelegung überarbeitet 
+  #  - Attribut usage aus Schema userCertificate und Operationen entfernt
+  #    (wurde nicht mehr genutzt)
+  # 
+  # Änderungen in Version 1.9.2
+  #  - Operation readLog: Parameter holder umbenannt in clientID
+  #  - Beschreibung HTTP Status Kode 405 ergänzt
+  # 
+  # Änderungen in Version 1.9.1
+  #  - Operation readLog vereinfacht 
+  # 
+  # Änderungen in Version 1.9.0
+  #  - VZD:DirectoryRead Scope für Lesezugriff hinzugefügt und Scopes für jede Operation definiert
+  #  - baseDirectoryEntry.entryType ist ein Wert (kein array mehr)
+  #  - baseDirectoryEntry.entryType kann über die Schnittstelle modifiziert werden,
+  #    wenn keine Zertifikate vorhanden sind
+  #  - add_Directory_Entry, modify_Directory_Entry: HTTP Status Kode 400
+  #    ergänzt/erweitert für Fehlerbehandlung von entryType Konflikten
+  #  - Attribute in Schema baseDirectoryEntry und als Suchparameter 
+  #    in Operation read_Directory_Entry ergänzt:
+  #      active, meta 
+  #  - Attribute im Schema userCertificate und als Suchparameter 
+  #    in Operation read_Directory_Certificates ergänzt:
+  #      serialNumber, issuer, publicKeyAlgorithm
+  #  - Attribute im Schema userCertificate ergänzt:
+  #      notBefore, notAfter
+  #  - Attribute in Schema baseDirectoryEntry änderbar definiert:
+  #      givenName, sn, cn
+  #  - Operation stateSwitch_Directory_Entry hinzu gefügt
+  #
+  # Änderungen in Version 1.8.3
+  #  - Operation readLog hinzugefügt
+  #  - Suchparameter professionOID und entryType ergänzt in Operationen
+  #    o read_Directory_Entry_for_Sync
+  #    o read_Directory_Entry_for_Sync_paging
+  #
+  # Änderungen in Version 1.8.2
+  #  - Fehlerbehandlung verbessert:
+  #    o Schema Error: Optionale Fehlernachricht hinzugefügt
+  #    o Für alle Fehler HTTP Status Kodes das Error Schema aufgenommen
+  #    o Fehlercode 400 für Operationen read_Directory_Certificates, read_Directory_Entry_for_Sync, read_Directory_Entry_for_Sync_paging, read_Directory_Entry ergänzt
+  #
   # Änderungen in Version 1.8.1
   #  - Attribute "KOM-LE-Version" in eine Liste geändert 
   #  - Attribut "active" für Zertifikate aufgenommen
+  #
   # Änderungen in Version 1.8.0
   #  - Operation read_Directory_Entry_for_Sync: Zur Kompatibilität mit existierenden Clients wurde 
   #    read_Directory_Entry_for_Sync in der Version ohne Paging wieder aufgenommen.
@@ -95,6 +148,7 @@ info:
   #   - /DirectoryEntries
   #       read_Directory_Entry: 
   #          Suchparameter "baseEntryOnly" ergänzt
+  #
   # Änderungen in Version 1.2.0
   #   - /DirectoryEntries
   #       read_Directory_Entry: 
@@ -138,6 +192,10 @@ paths:
       tags:
       - getInfo DirectoryEntry Administration
       summary: Diese Operation liefert Metadaten über diese Schnittstelle
+      security:
+       - OAuth2: 
+         - 'VZD:DirectoryAdministration'
+         - 'VZD:DirectoryRead'
       description: Liefert die Metadaten aus dem Info Object diese OpenAPI Spezifikation und ergänzt sie.
       operationId: getInfo
       responses:
@@ -150,10 +208,16 @@ paths:
         401:
           description: Unauthorized
                     #  Der WWW-Authenticate Header im Response wird auf OAuth gesetzt.
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         403:
           description: Forbidden
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
 
 
   /DirectoryEntries:
@@ -161,48 +225,25 @@ paths:
       tags:
       - DirectoryEntry Administration
       summary: Einen Eintrag zum Verzeichnisdienst hinzufügen
+      security:
+       - OAuth2:
+         - 'VZD:DirectoryAdministration'
       operationId: add_Directory_Entry
       requestBody:
-        description: Datensatz für den neuen Eintrag. Die Attribute müssen wie folgt belegt sein
-                       dn.*          Leer/nicht vorhanden (wird vom Verzeichnisdienst belegt)
-                       givenName     Nicht vorhanden (wird vom Verzeichnisdienst belegt)
-                       sn            Nicht vorhanden (wird vom Verzeichnisdienst belegt)
-                       cn            Nicht vorhanden (wird vom Verzeichnisdienst belegt)
-                       displayName   Kann optional belegt werden.
-                       streetAddress Kann optional belegt werden.
-                       postalCode    Kann optional belegt werden.
-                       countryCode   Kann optional belegt werden.
-                                     Falls nicht belegt, ergänzt der VZD den Code für Deutschland (Defaultwert).
-                       localityName  Kann optional belegt werden.
-                       stateOrProvinceName  Kann optional belegt werden.
-                       title         Kann optional belegt werden.
-                       organization  Kann optional belegt werden.
-                       otherName     Kann optional belegt werden.
-                       telematikID Kann optional belegt werden.
-                          Das ist die telematikID in den Basisdaten (baseDirectoryEntry).
-                          Wird diese telematikID und userCertificate bzw. die telematikID in userCertificate angegeben, dann müssen diese telematikIDs übereinstimmen.
-                          Bei unterschiedlichen telematikID wird die Operation mit Fehlercode 422 abgelehnt.
-
-                       specialization  Kann optional belegt werden.
-                       domainID      Kann optional belegt werden.
-                       holder         Kann optional belegt werden.
-                       maxKOMLEadr   Kann optional belegt werden.
-                       personalEntry Nicht vorhanden (wird vom Verzeichnisdienst belegt)
-                       dataFromAuthority Nicht vorhanden (wird vom Verzeichnisdienst belegt)
-                       userCertificates  Kann optional belegt werden.
-                        dn.uid        Leer/nicht vorhanden (wird vom Verzeichnisdienst belegt)
-                        dn.dc         Leer/nicht vorhanden (wird vom Verzeichnisdienst belegt)
-                        dn.ou         Leer/nicht vorhanden (wird vom Verzeichnisdienst  belegt)
-                        dn.cn         Leer/nicht vorhanden (wird vom Verzeichnisdienst belegt)
-                        telematikID   Kann optional belegt werden.
-                          Wird telematikID und userCertificate angegeben, dann muss diese telematikID mit der telematikID im userCertificate übereinstimmen.
-                          Bei unterschiedlichen telematikID wird die Operation mit Fehlercode 422 abgelehnt.
-                        entryType     Nicht vorhanden (wird vom Verzeichnisdienst belegt)
-                        professionOID Nicht vorhanden (wird vom Verzeichnisdienst belegt)
-                        usage         Kann optional belegt werden.
-                        userCertificate   Kann optional belegt werden (Format DER, Base64 kodiert)
-                        description   Kann optional belegt werden.
-                        Entsprechend gemSpec_VZD wird ein Teil der Attribute durch den Verzeichnisdienst automatisch mit Werten aus dem Zertifikat gefüllt. Wenn in dieser Operation Attribute - für die dies erlaubt ist - mit einem Wert belegt werden, wird dieser Wert im Verzeichniseintrag gespeichert (auch wenn der Wert durch den Verzeichnisdienst aus dem Zertifikat entnommen werden kann).   
+        description: |
+                  Datensatz für den neuen Eintrag. \
+                  Die Attribute müssen entsprechend der
+                  Definition in "schemas" (siehe unten) und den sektorspezifischen Festlegungen
+                  im "Implementierungsleitfaden zur Pflege der Daten des Verzeichnisdienstes"
+                  (https://github.com/gematik/api-vzd/ Dokument docs/gemILF_Pflege_VZD.adoc)
+                  belegt werden. \
+                  
+                  Entsprechend gemSpec_VZD wird ein Teil der Attribute durch den
+                  Verzeichnisdienst automatisch mit Werten aus dem Zertifikat gefüllt. 
+                  Wenn in dieser Operation Attribute - für die dies erlaubt ist - mit einem
+                  Wert belegt werden, wird dieser Wert im Verzeichniseintrag gespeichert 
+                  (auch wenn der Wert durch den Verzeichnisdienst aus dem Zertifikat entnommen 
+                  werden kann). 
         content:
           application/json:
             schema:
@@ -226,12 +267,19 @@ paths:
         401:
           description: Unauthorized
                      # Der WWW-Authenticate Header im Response muss auf OAuth gesetzt werden.
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         403:
           description: Forbidden
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         405:
           description: Method Not Allowed
+                     # Request-Header (Accept, Authorization) nicht valide 
           content:
             application/json:
               schema:
@@ -259,10 +307,14 @@ paths:
       tags:
       - DirectoryEntry Administration
       summary: Gesamten Verzeichniseintrag lesen
+      security:
+       - OAuth2:
+         - 'VZD:DirectoryAdministration'
+         - 'VZD:DirectoryRead'
       description: Liefert alle zum Filter passenden Verzeichniseinträge (maximal 100 Einträge). Die angegebenen Parameter werden mit logischen UND verknüpft.
 #
-# Für die Leseoperationen read_Directory_Entry, read_Directory_Entry_for_Sync und
-# read_Directory_Entry_for_Sync_paging der Schnittstellen I_Directory_Administration 
+# Für die Leseoperationen read_Directory_Entry, read_Directory_Entry_for_Sync,
+# read_Directory_Entry_for_Sync_paging und readLog der Schnittstellen I_Directory_Administration 
 # und I_Directory_Application_Maintenance
 # werden die folgenden Filtermöglichkeiten unterstützt: 
 #     o Suche mit Wildcard "*" in den Parametern
@@ -410,7 +462,7 @@ paths:
         description: Erlaubt die Suche mit Hilfe des Attributs holder. 
                      Der Verzeichniseintrag wird selektiert, wenn der angegebene holder im Attribut holder (array) des Verzeichniseintrags enthalten ist.
                      Wenn der Parameter mit dem eigenen Wert des Clients belegt wird, werden alle gefundenen Einträge zurückgegeben (maximal 100 Einträge).
-                     Zur Suche nach Einträge ohne holder ist der Parameter mit dem einem leeren String "" zu belegen. Auch in diesem Fall werden alle gefundenen Einträge zurückgegeben (maximal 100 Einträge).
+                     Zur Suche nach Einträge ohne holder ist der Parameter mit einem leeren String "" zu belegen. Auch in diesem Fall werden alle gefundenen Einträge zurückgegeben (maximal 100 Einträge).
         schema:
           type: string  
       - name: personalEntry
@@ -426,13 +478,13 @@ paths:
       - name: professionOID
         in: query
         description: Erlaubt die Suche mit Hilfe des Attributs professionOID. 
-                     Selektiert der Verzeichniseintrag, wenn der angegebene Wert in den professionOID's (array) des Basiseintrags vorhanden ist. 
+                     Selektiert den Verzeichniseintrag, wenn der angegebene Wert in den professionOID's (array) des Basiseintrags vorhanden ist. 
         schema:
           type: string  
       - name: entryType
         in: query
         description: Erlaubt die Suche mit Hilfe des Attributs entryType. 
-                     Selektiert der Verzeichniseintrag, wenn der angegebene Wert in den entryType's (array) des Basiseintrags vorhanden ist. 
+                     Selektiert den Verzeichniseintrag, wenn der angegebene Wert in den entryType's (array) des Basiseintrags vorhanden ist. 
         schema:
           type: string  
       - name: maxKOMLEadr
@@ -464,6 +516,19 @@ paths:
         schema:
           type: boolean
           example: true
+      - name: active
+        in: query
+        description: Erlaubt die Suche mit Hilfe des Attributs baseDirectoryEntry.active.
+        schema:
+          type: boolean
+      - name: meta
+        in: query
+        description: |
+          Erlaubt die Suche mit Hilfe des Attributs baseDirectoryEntry.meta
+          
+          Selektiert alle Datensätze, deren Attribut meta den angegebenen String in einem Wert des arry's enthält.
+        schema:
+          type: string  
 
         
       responses:
@@ -476,24 +541,49 @@ paths:
               schema:
                   $ref: '#/components/schemas/DirectoryEntries'
 
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         401:
           description: Unauthorized
                     #  Der WWW-Authenticate Header im Response wird auf OAuth gesetzt.
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         403:
           description: Forbidden
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         404:
           description: Not Found
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
 
   /DirectoryEntriesSync:
     get:
       tags:
       - DirectoryEntry Synchronization
       summary: Synchronisation der Verzeichniseinträge zwischen VZD und Herausgeber
-      description: Liefert - analog zu read_Directory_Entry - alle zum Filter passenden Verzeichniseinträge. Im Unterschied zu read_Directory_Entry wird die Limitierung auf 100 Suchergebnisse aufgehoben. Die parallele Ausführung dieser Operation wird vom Server aus Performancegründen eingeschränkt.
-        Diese Operation soll nur genutzt werden, wenn mehr als 100 Suchergebnisse benötigt werden. Für alle anderen Suchanfragen soll Operation read_Directory_Entry genutzt werden.
+      security:
+       - OAuth2:
+         - 'VZD:DirectoryAdministration'
+      description: |
+       Liefert - analog zu read_Directory_Entry - alle zum Filter passenden 
+       Verzeichniseinträge. \
+       Im Unterschied zu read_Directory_Entry wird die Limitierung auf 100 Suchergebnisse
+       aufgehoben. Die parallele Ausführung dieser Operation wird vom Server aus
+       Performancegründen eingeschränkt.
+       Diese Operation soll nur genutzt werden, wenn mehr als 100 Suchergebnisse benötigt 
+       werden. 
+       Für alle anderen Suchanfragen soll Operation read_Directory_Entry genutzt werden.
 #
 # Für die Leseoperationen read_Directory_Entry, read_Directory_Entry_for_Sync und
 # read_Directory_Entry_for_Sync_paging der Schnittstellen I_Directory_Administration 
@@ -656,6 +746,20 @@ paths:
         description: Erlaubt die Suche mit Hilfe des Attributs dataFromAuthority. 
         schema:
           type: string  
+      - name: professionOID
+        in: query
+        description: |
+         Erlaubt die Suche mit Hilfe des Attributs professionOID. 
+         Selektiert der Verzeichniseintrag, wenn der angegebene Wert in den professionOID's (array) des Basiseintrags vorhanden ist. 
+        schema:
+          type: string  
+      - name: entryType
+        in: query
+        description: |
+         Erlaubt die Suche mit Hilfe des Attributs entryType. \
+         Selektiert der Verzeichniseintrag, wenn der angegebene Wert in den entryType's (array) des Basiseintrags vorhanden ist. 
+        schema:
+          type: string 
       - name: maxKOMLEadr
         in: query
         description: Erlaubt die Suche mit Hilfe des Attributs maxKOMLEadr. 
@@ -685,6 +789,19 @@ paths:
         schema:
           type: boolean
           example: true
+      - name: active
+        in: query
+        description: Erlaubt die Suche mit Hilfe des Attributs baseDirectoryEntry.active.
+        schema:
+          type: boolean
+      - name: meta
+        in: query
+        description: |
+          Erlaubt die Suche mit Hilfe des Attributs baseDirectoryEntry.meta
+          
+          Selektiert alle Datensätze, deren Attribut meta den angegebenen String in einem Wert des arry's enthält.
+        schema:
+          type: string  
 
       responses:
         200:
@@ -697,28 +814,57 @@ paths:
               schema:
                   $ref: '#/components/schemas/DirectoryEntries'
 
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         401:
           description: Unauthorized
                     #  Der WWW-Authenticate Header im Response wird auf OAuth gesetzt.
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         403:
           description: Forbidden
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         404:
           description: Not Found
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         503:
           description: Service Unavailable
           # Der Server schränkt die parallele Nutzung dieser Operation read_Directory_Entry_WL ein. Der Request kann nach einer angemessenen Zeitspanne wiederholt werden. 
-          content: {}  
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'  
 
   /v2/DirectoryEntriesSync:
     get:
       tags:
       - DirectoryEntry Synchronization
       summary: Synchronisation der Verzeichniseinträge zwischen VZD und Herausgeber
-      description: Liefert - analog zu read_Directory_Entry - alle zum Filter passenden Verzeichniseinträge. Im Unterschied zu read_Directory_Entry wird die Limitierung auf 100 Suchergebnisse aufgehoben. Die parallele Ausführung dieser Operation wird vom Server aus Performancegründen eingeschränkt.
-        Diese Operation soll nur genutzt werden, wenn mehr als 100 Suchergebnisse benötigt werden. Für alle anderen Suchanfragen soll Operation read_Directory_Entry genutzt werden.
+      security:
+       - OAuth2:
+         - 'VZD:DirectoryAdministration'
+      description: |
+       Liefert - analog zu read_Directory_Entry - alle zum Filter passenden 
+       Verzeichniseinträge. \
+       Im Unterschied zu read_Directory_Entry wird die Limitierung auf 100 Suchergebnisse 
+       aufgehoben. 
+       Die parallele Ausführung dieser Operation wird vom Server aus Performancegründen 
+       eingeschränkt.
+       Diese Operation soll nur genutzt werden, wenn mehr als 100 Suchergebnisse benötigt 
+       werden. 
+       Für alle anderen Suchanfragen soll Operation read_Directory_Entry genutzt werden.
 #
 # Für die Leseoperationen read_Directory_Entry, read_Directory_Entry_for_Sync und
 # read_Directory_Entry_for_Sync_paging der Schnittstellen I_Directory_Administration 
@@ -881,6 +1027,20 @@ paths:
         description: Erlaubt die Suche mit Hilfe des Attributs dataFromAuthority. 
         schema:
           type: string  
+      - name: professionOID
+        in: query
+        description: |
+         Erlaubt die Suche mit Hilfe des Attributs professionOID. 
+         Selektiert der Verzeichniseintrag, wenn der angegebene Wert in den professionOID's (array) des Basiseintrags vorhanden ist. 
+        schema:
+          type: string  
+      - name: entryType
+        in: query
+        description: |
+         Erlaubt die Suche mit Hilfe des Attributs entryType. 
+         Selektiert der Verzeichniseintrag, wenn der angegebene Wert in den entryType's (array) des Basiseintrags vorhanden ist. 
+        schema:
+          type: string 
       - name: maxKOMLEadr
         in: query
         description: Erlaubt die Suche mit Hilfe des Attributs maxKOMLEadr. 
@@ -910,6 +1070,20 @@ paths:
         schema:
           type: boolean
           example: true
+      - name: active
+        in: query
+        description: Erlaubt die Suche mit Hilfe des Attributs baseDirectoryEntry.active.
+        schema:
+          type: boolean
+      - name: meta
+        in: query
+        description: |
+          Erlaubt die Suche mit Hilfe des Attributs baseDirectoryEntry.meta
+          
+          Selektiert alle Datensätze, deren Attribut meta den angegebenen String in einem Wert des arry's enthält.
+        schema:
+          type: string  
+
     # Paging Parameter entsprechend https://tools.ietf.org/html/rfc2696
     # Paging ist nur für eigene Verzeichniseinträge erlaubt. Deshalb muss bei
     # Verwendung des Pagings zwingend der "holder" Suchparameter angegeben werden 
@@ -943,20 +1117,38 @@ paths:
               schema:
                   $ref: '#/components/schemas/readDirectoryEntryforSyncResponse'
 
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         401:
           description: Unauthorized
                     #  Der WWW-Authenticate Header im Response wird auf OAuth gesetzt.
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         403:
           description: Forbidden
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         404:
           description: Not Found
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         503:
           description: Service Unavailable
           # Der Server schränkt die parallele Nutzung dieser Operation read_Directory_Entry_WL ein. Der Request kann nach einer angemessenen Zeitspanne wiederholt werden. 
-          content: {}  
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'  
 
 
 
@@ -965,6 +1157,9 @@ paths:
       tags:
       - DirectoryEntry Administration
       summary: Der Verzeichniseintrag (ohne Zertifikate und Fachdaten) wird mit den übergebenen Daten aktualisiert. 
+      security:
+       - OAuth2:
+         - 'VZD:DirectoryAdministration'
       operationId: modify_Directory_Entry
       parameters:
       - name: uid
@@ -974,34 +1169,13 @@ paths:
         schema:
           type: string
       requestBody:
-        description: Datensatz für die Aktualisierung des Eintrags
-
-                     Die Attribute müssen wie folgt belegt sein
-
-                      dn.*          Nicht vorhanden (Adressierung erfolgt über uid in Path).
-                      givenName     Nicht vorhanden. 
-                      sn            Nicht vorhanden.
-                      cn            Nicht vorhanden.
-                      displayName   Kann optional belegt werden.
-                      streetAddress Kann optional belegt werden.
-                      postalCode    Kann optional belegt werden.
-                      countryCode   Kann optional belegt werden.
-                      localityName  Kann optional belegt werden.
-                      stateOrProvinceName  Kann optional belegt werden.
-                      title         Kann optional belegt werden.
-                      organization  Kann optional belegt werden.
-                      otherName     Nicht vorhanden.
-                      telematikID   Kann optional belegt werden.
-                          Das ist die telematikID in den Basisdaten (baseDirectoryEntry).
-                          Sind Zertifikateseinträge (userCertificate) vorhanden, dann müssen die telematikIDs übereinstimmen.
-                          Bei unterschiedlichen telematikID wird die Operation mit Fehlercode 422 abgelehnt.
-
-                      specialization  Kann optional belegt werden.
-                      domainID      Kann optional belegt werden.
-                      holder         Kann optional belegt werden.
-                      maxKOMLEadr   Kann optional belegt werden.
-                      personalEntry Nicht vorhanden.
-                      dataFromAuthority Nicht vorhanden
+        description: |
+         Datensatz für die Aktualisierung des Eintrags. \
+         Die Attribute müssen entsprechend der Definition in "schemas" (siehe unten) und den 
+         sektorspezifischen Festlegungen im "Implementierungsleitfaden zur Pflege der Daten 
+         des Verzeichnisdienstes"
+         (https://github.com/gematik/api-vzd/ Dokument docs/gemILF_Pflege_VZD.adoc)
+          belegt werden.
 
         content:
           application/json:
@@ -1033,19 +1207,33 @@ paths:
         400:
           description: Bad Request
                      # Invalid ID supplied
-          content: {}
+                     # Fehler/Inkonsistenz in Attributen
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         401:
           description: Unauthorized
                      # Der WWW-Authenticate Header im Response muss auf OAuth gesetzt werden.
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         403:
           description: Forbidden
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         404:
           description: Not Found
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         405:
           description: Method Not Allowed
+                     # Request-Header (Accept, Authorization) nicht valide           
           content:
             application/json:
               schema:
@@ -1066,12 +1254,17 @@ paths:
       tags:
       - DirectoryEntry Administration
       summary: Gesamten Verzeichniseintrag löschen
+      security:
+       - OAuth2:
+         - 'VZD:DirectoryAdministration'
       operationId: delete_Directory_Entry
       parameters:
       - name: uid
         in: path
-        description: ID von dem zu löschenden Verzeichniseintrag
-                     Gelöscht werden der Basis Verzeichniseintrag sowie alle dazugehörenden Zertifikate und Fachdaten.
+        description: |
+         ID von dem zu löschenden Verzeichniseintrag. \
+         Gelöscht werden der Basis Verzeichniseintrag sowie alle dazugehörenden Zertifikate und
+         Fachdaten.
         required: true
         schema:
           type: string
@@ -1084,23 +1277,116 @@ paths:
         400:
           description: Bad Request
                      # Invalid ID supplied
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         401:
           description: Unauthorized
                     #  Der WWW-Authenticate Header im Response muss auf OAuth gesetzt werden.
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         403:
           description: Forbidden
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         404:
           description: Not Found
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        409:
+          description: | 
+            Conflict
+            
+            Falls dem VZD Eintrag noch eine KIM-Adresse zugeordnet ist wird 
+            die Löschung des Eintrags unterbunden.
+            
+            Stattdessen wird Eintrag:
+            
+                - baseDirectoryEntry.active=FALSE gesetzt
+                - aus der flachen Liste entfernt
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /DirectoryEntries/{uid}/active:
+
+    put:
+      tags:
+      - DirectoryEntry Administration
+      summary: |
+        Status Verzeichniseintrag ändern.
+        
+        Mit dieser Operation kann das Attribut "baseDirectoryEntry.active" des Verzeichniseintrags geändert werden. Dazu muss in der Operation nur das Attribut "active" des Basisdatensatzes angegeben werden. Alle anderen Attribute des VZD Eintrags bleiben ungeändert.
+      security:
+       - OAuth2:
+         - 'VZD:DirectoryAdministration'
+      operationId: stateSwitch_Directory_Entry
+      parameters:
+      - name: uid
+        in: path
+        description: ID von dem Verzeichniseintrag
+        required: true
+        schema:
+          type: string
+      - name: active
+        in: query
+        description: Wert für das Attribut "baseDirectoryEntry.active"
+        schema:
+          type: boolean
+        required: true  
+        example: true
+          
+      responses:
+        204:
+          description: No Content
+           # Die Anfrage wurde erfolgreich durchgeführt
+          content:
+            application/json:
+                schema: {}
+        400:
+          description: Bad Request
+                     # Invalid Value 
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        401:
+          description: Unauthorized
+                    #  Der WWW-Authenticate Header im Response muss auf OAuth gesetzt werden.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        403:
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
 
   /DirectoryEntries/{uid}/Certificates:
     post:
       tags:
       - Certificate Administration
       summary: Der Zertifikatseintrag wird im Verzeichnisdienst hinzugefügt und ist logisch über dn.uid mit dem übergeordneten Verzeichniseintrag verknüpft.  
+      security:
+       - OAuth2:
+         - 'VZD:DirectoryAdministration'
       operationId: add_Directory_Entry_Certificate
       parameters:
       - name: uid
@@ -1124,7 +1410,6 @@ paths:
                             Bei unterschiedlichen telematikIDs wird die Operation mit Fehlercode 422 abgelehnt.
                       entryType         Nicht vorhanden (wird vom Verzeichnisdienst belegt)        
                       professionOID     Nicht vorhanden (wird vom Verzeichnisdienst belegt)      
-                      usage             Kann optional belegt werden 
                       userCertificate   Muss vorhanden sein      
                       description       Kann optional belegt werden 
         content:
@@ -1140,15 +1425,28 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/distinguishedName'
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         401:
           description: Unauthorized
                     #  Der WWW-Authenticate Header im Response muss auf OAuth gesetzt werden.
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         403:
           description: Forbidden
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         405:
           description: Method Not Allowed
+                     # Request-Header (Accept, Authorization) nicht valide 
           content:
             application/json:
               schema:
@@ -1182,6 +1480,10 @@ paths:
       - Certificate Administration
       summary: Zertifikat lesen
       description: Liefert alle Zertifikate, die dem Filter (siehe 'parameters') entsprechen.
+      security:
+       - OAuth2:
+         - 'VZD:DirectoryAdministration'
+         - 'VZD:DirectoryRead'
       operationId: read_Directory_Certificates
       parameters:
       - name: uid
@@ -1213,10 +1515,24 @@ paths:
                      Der Verzeichniseintrag wird selektiert, wenn die angegebene professionOID im Attribut professionOID (array) des Zertifikatseintrags enthalten ist.
         schema:
           type: string  
-      - name: usage
+      - name: active
         in: query
-        description: Erlaubt die Suche mit Hilfe des Attributs usage. 
-                     Der Verzeichniseintrag wird selektiert, wenn die angegebene usage im Attribut usage (array) des Zertifikatseintrags enthalten ist.
+        description: Erlaubt die Suche mit Hilfe des Attributs userCertificate.active. 
+        schema:
+          type: boolean  
+      - name: serialNumber
+        in: query
+        description: Erlaubt die Suche mit Hilfe des Attributs userCertificate.serialNumber. 
+        schema:
+          type: string  
+      - name: issuer
+        in: query
+        description: Erlaubt die Suche mit Hilfe des Attributs userCertificate.issuer. 
+        schema:
+          type: string  
+      - name: publicKeyAlgorithm
+        in: query
+        description: Erlaubt die Suche mit Hilfe des Attributs userCertificate.publicKeyAlgorithm. 
         schema:
           type: string  
 
@@ -1230,24 +1546,45 @@ paths:
               schema:
                   $ref: '#/components/schemas/userCertificates'
 
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         401:
           description: Unauthorized
                     #  Der WWW-Authenticate Header im Response muss auf OAuth gesetzt werden.
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         403:
           description: Forbidden
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         404:
           description: Not Found
                     #  Certificate not found
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
 
   /DirectoryEntries/{uid}/Certificates/{certificateEntryID}:
     delete:
       tags:
       - Certificate Administration
-      summary: Zertifikatseintrag löschen
-            Dem Verzeichniseintrag muss immer mindestens ein Zertifikat zugeordnet sein. Wenn nach dem Löschen kein Zertifikat mehr dem Verzeichniseintrag zugeordnet wäre, muss die delete Operation abgelehnt werden. 
+      summary: |
+       Zertifikatseintrag löschen. \
+       Dem Verzeichniseintrag muss immer mindestens ein Zertifikat zugeordnet sein. Wenn nach 
+       dem Löschen kein Zertifikat mehr dem Verzeichniseintrag zugeordnet wäre, muss die delete
+       Operation abgelehnt werden. 
+      security:
+       - OAuth2:
+         - 'VZD:DirectoryAdministration'
       operationId: delete_Directory_Entry_Certificate
       parameters:
       - name: uid
@@ -1300,12 +1637,142 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+
+  /Log:
+    get:
+      tags:
+      - Log
+      summary: Log von Verzeichniseinträgen lesen
+      security:
+       - OAuth2:
+         - 'VZD:DirectoryAdministration'
+         - 'VZD:DirectoryRead'
+      description: |
+       Liefert die Log Daten alle zum Filter passenden Verzeichniseinträge. \
+       Die angegebenen Parameter werden mit logischen UND verknüpft.
+      operationId: readLog
+#
+# Für Operation readLog werden folgende Kombinationen der Suchparameter erlaubt:
+#      - UID + logTimeFrom (optional) +logTimeTo (optional)
+#      - *telematikID* + logTimeFrom (optional) +logTimeTo (optional)
+#      - *clientID* + logTimeFrom (optional) +logTimeTo (optional)
+#      - operation + logTimeFrom (optional) +logTimeTo (optional)
+#      - noDataChanged + logTimeFrom (optional) +logTimeTo (optional)
+#      - logTimeFrom +logTimeTo
+#      - logTimeFrom
+#      - logTimeTo
+#   Andere Kombinationen der Suchparameter werden mit 400 bad request beantwortet.
+#
+# Für die Leseoperationen read_Directory_Entry, read_Directory_Entry_for_Sync,
+# read_Directory_Entry_for_Sync_paging und readLog der Schnittstellen I_Directory_Administration 
+# und I_Directory_Application_Maintenance
+# werden die folgenden Filtermöglichkeiten unterstützt: 
+#     o Suche mit Wildcard "*" in den Parametern
+#           - telematikID
+#           - clientID
+#           - professionOID
+#       Wildcard ist am Ende und am Anfang nutzbar:
+#           - *Mustermann* - "contains" 
+#           - "Dr. Manfred*" - "startsWith"
+#           - "* MBA" - "endsWith"
+#           treffen alle "Dr. Manfred Mustermann MBA".
+#
+      parameters:
+      - name: uid
+        in: query
+        description: ID von dem Verzeichniseintrag (distinguishedName.uid)
+        schema:
+          type: string  
+      - name: telematikID
+        in: query
+        description: Erlaubt die Suche mit Hilfe des Attributs telematikID (die telematikID in den Basisdaten).
+        schema:
+          type: string  
+      - name: clientID
+        in: query
+        description: Erlaubt die Suche mit Hilfe des Attributs clientID. 
+                     Der Verzeichniseintrag wird selektiert, wenn die angegebene clientID im Log-Datensatz enthalten ist.
+        schema:
+          type: string  
+      - name: logTimeFrom
+        in: query
+        description: Erlaubt die Suche mit Hilfe des Attributs logTime. 
+                  #  Selektiert alle Datensätze mit 
+                  #  logTime >= logTimeFrom
+        schema:
+          type: string  
+          # format: date-time
+          example: "2017-07-21T17:32:28Z"          
+      - name: logTimeTo
+        in: query
+        description: Erlaubt die Suche mit Hilfe des Attributs logTime. 
+                  #  Selektiert alle Datensätze mit 
+                  #  logTime <= logTimeTo
+        schema:
+          type: string  
+          # format: date-time
+          example: "2018-07-21T17:32:28Z"
+      - name: operation
+        in: query
+        description: Erlaubt die Suche anhand der ausgeführten Operation
+        schema:
+          type: string
+          enum: [add_Directory_Entry, 
+                 modify_Directory_Entry, 
+                 delete_Directory_Entry, 
+                 add_Directory_Entry_Certificate, 
+                 delete_Directory_Entry_Certificate, 
+                 add_Directory_FA-Attributes, 
+                 modify_Directory_FA-Attributes, 
+                 delete_Directory_FA-Attributes]
+      - name: noDataChanged
+        in: query
+        description: Erlaubt die Suche nach Log Daten für Schreiboperationen, die keine Daten geändert haben. 
+          (noDataChanged=true -> durch diese Operation wurden keine Daten geändert)
+        schema:
+          type: boolean  
+          example: flase
+
+      responses:
+        200:
+          description: OK
+                    #  Es werden die Logdaten aller zu dem Filter Parametern passenden Verzeichniseinträgen zurückgegeben.
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/LogEntries'
+        400:
+          description: Bad Request
+            # z.B. Kombinationen der Suchparameter nicht erlaubt
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        401:
+          description: Unauthorized
+                    #  Der WWW-Authenticate Header im Response wird auf OAuth gesetzt.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        403:
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   
 
 components:
 
   schemas:
-  
+
     userCertificate:
       description: Jeder Verzeichniseintrag muss mindestens ein Zertifikat enthalten.
       type: object
@@ -1336,18 +1803,6 @@ components:
               und dem Mapping in ab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch
               eingetragen. Siehe [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. / kann
               mehrfach vorkommen (0..100)'
-        usage:
-          maxItems: 100
-          minItems: 0
-          type: array
-          description: 'Nutzungskennzeichnung kann pro Zertifikat mehrfach
-            vergeben werden. Vorgegebener Wertebereich [KOM-LE, ePA].
-            Obligatorisch für LEI und KTR mit vorgegebenem Wert usage=ePA'
-          items:
-            type: string
-            enum:
-            - KOM-LE
-            - ePA
         userCertificate:
           type: string
           description: 'Zertifikat im DER Format. Base64 kodiert.
@@ -1361,7 +1816,39 @@ components:
           readOnly: true
           example: true
           description: Dieses Attribut eigt an, ob das Zertifikat aktiv ist oder nicht (true oder false).
-             
+        notBefore:
+          type: string
+          description: |
+            Wert wird vom VZD aus dem Zertifikat Feld "notBefore" entnommen und in dieses Attribut ohne Formatänderung eingetragen.
+            Wird vom VZD für die periodische Auswertung der Zertifikats-Gültigkeit genutzt.
+          readOnly: true
+          example: '2017-12-04T01:00:00'
+        notAfter:
+          type: string
+          description: |
+            Wert wird vom VZD aus dem Zertifikat Feld "notAfter" entnommen und in dieses Attribut ohne Formatänderung eingetragen.
+            Wird vom VZD für die periodische Auswertung der Zertifikats-Gültigkeit genutzt.
+          readOnly: true
+          example: '2022-12-04T00:59:59'
+        serialNumber:
+          type: string
+          description: |
+            Wert wird vom VZD aus dem Zertifikat Feld "serialNumber" entnommen und in dieses Attribut ohne Formatänderung eingetragen.
+          readOnly: true
+          example: 80276883110000092581
+        issuer:
+          type: string
+          description: |
+            Wert wird vom VZD aus dem Zertifikat Feld "issuer" entnommen und in dieses Attribut ohne Formatänderung eingetragen.
+          readOnly: true
+          example: 'CN=GEM.SMCB-CA8 TEST-ONLY,OU=Institution des Gesundheitswesens-CA der Telematikinfrastruktur,O=gematik GmbH NOT-VALID,C=DE'
+        publicKeyAlgorithm:
+          type: string
+          description: |
+            Wert wird vom VZD aus dem Zertifikat Feld "publicKeyAlgorithm" entnommen und in dieses Attribut ohne Formatänderung eingetragen.
+          readOnly: true
+          example: RSA
+
     userCertificates:
       type: array
       items:
@@ -1382,8 +1869,6 @@ components:
             $ref: '#/components/schemas/FAD1'
 
     FAD1:
-      required:
-      - dn
       type: object
       properties:
         dn:
@@ -1405,12 +1890,13 @@ components:
                 type: string
                 example: 1.5
                 description: Die höchste KOM-LE_Version der KIM Clientmodule für die KIM Mail Adresse
-            # Für jede Mail Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Attribut
-            # KOM-LE_Version geben. Es dürfen in KOM-LE_Version keine Mail Adressen referenziert werden,
-            # die nicht im zugehörigen "mail" Attribut enthalten sind.
-            # Wenn eine Mail Adresse gelöscht wird, muss auch ihre KOM-LE_Version gelöscht werden.
-            # Geschrieben wird immer die gesamte Liste. Für Änderungen muss erst der aktuelle Eintrag
-            # gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
+            description: |
+              Liste von KIM-Adressen mit der zugehörigen KIM-Version. 
+              Für jede Mail Adresse aus dem `mail` Attribut darf es nur einen Element in der Liste `komLeData` existieren. 
+              Es dürfen in der Liste `komLeData` keine Mail Adressen referenziert werden, die nicht im zugehörigen `mail` Attribut enthalten sind.
+              Wenn eine Mail Adresse gelöscht wird, muss auch ihre `komLeData`-Element gelöscht werden.
+              Geschrieben wird immer die gesamte Liste. 
+              Für Änderungen muss erst der aktuelle Eintrag gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
 
     distinguishedName:
       required:
@@ -1444,19 +1930,16 @@ components:
           type: string
           description: 'HBA: Vorname, obligatorisch, wird aus dem Zertifikat
             übernommen / SMC-B: nicht verwendet'
-          readOnly: true
           example:  Vorname
         sn:
           type: string
           description: 'HBA: Name, obligatorisch, wird aus dem Zertifikat
             übernommen / SMC-B: nicht verwendet'
-          readOnly: true
           example:  Nachname
         cn:
           type: string
           description: 'HBA: Vorname und Nachname / SMC-B: Bezeichner:
             Name Wird vom VZD aus dem Zertifikatsattribut commonName übernommen.'
-          readOnly: true
           example:  Vorname Nachname  
         displayName:
           type: string
@@ -1527,19 +2010,20 @@ components:
         holder:
           maxItems: 100
           type: array
-          description: Identifiziert den Eigentümer dieses Verzeichniseintrags, der Änderungen an ihm vornehmen darf.
+          description: |
+            Identifiziert den Eigentümer dieses Verzeichniseintrags, der Änderungen an ihm vornehmen darf.
             Hat keinen Einfluss auf Fachdaten und Zertifikatsdaten.
             Beim Anlegen eines neuen Verzeichniseintrags (add_Directory_Entry)
               - Ist im add_Directory_Entry Request das Attribut "holder" nicht vorhanden oder enthält keine Werte
-                 o Wird vom VZD in dieses Attribut kein Wert (leeres Attribut) eingetragen. 
+                 - Wird vom VZD in dieses Attribut kein Wert (leeres Attribut) eingetragen. 
               - Ist im add_Directory_Entry Request das Attribut "holder" vorhanden und mit Inhalten gefüllt
-                 o Ist ein Wert aus dem Request Attribut "holder" nicht gültig, MUSS der VZD die Operation mit 
+                 - Ist ein Wert aus dem Request Attribut "holder" nicht gültig, MUSS der VZD die Operation mit 
                  HTTP-Status-Code 422 abweisen und die weitere Verarbeitung von diesem Request abbrechen.
-                 o Sind alle Werte aus dem Request Attribut "holder" gültig, MUSS der VZD die Werte aus dem Request 
+                 - Sind alle Werte aus dem Request Attribut "holder" gültig, MUSS der VZD die Werte aus dem Request 
                  entnehmen und sie in das "holder" Attribut des Verzeichniseintrags übernehmen.
             Beim Ändern eines neuen Verzeichniseintrags (modify_Directory_Entry)
               - Ist im modify_Directory_Entry Request das Attribut "holder" nicht vorhanden oder enthält keine Werte
-                 o Die Werte im aktuellen "holder" Attribut des Verzeichniseintrags bleiben erhalten.
+                 - Die Werte im aktuellen "holder" Attribut des Verzeichniseintrags bleiben erhalten.
           items:
             type: string
             example: KartenHerausgeberABC
@@ -1549,8 +2033,10 @@ components:
           example: 1
         personalEntry:
           type: boolean
-          description: Wird vom VZD eingetragen / Wert == TRUE, wenn alle Zertifikate
-            den entryType 1 haben (Berufsgruppe), Wert == FALSE sonst
+          description: |
+            - Wird vom VZD eingetragen 
+            - Wird auf Basis von entryType bei jeder relevanten Operation neu ermittelt
+            - Wert == TRUE, wenn entryType den Wert 1 hat (Berufsgruppe), Wert == FALSE sonst
           readOnly: true
           example: true
         dataFromAuthority:
@@ -1561,7 +2047,7 @@ components:
         changeDateTime:
           type: string
 #          format: date-time Mit dieser Format Vorgabe ist kein Code mehr generierbar, deshalb auskommentiert. Es soll sich aber weiterhin an das Format gehalten werden.
-          description: Der VZD setzt dieses Attribut bei jeder Schreiboperation für den Datensatz (Basisdaten) auf die aktuelle Zeit. Format entsprechend RFC 3339, section 5.6.
+          description: Der VZD setzt dieses Attribut bei jeder Schreiboperation für den Datensatz (Basisdaten) und die zugeordneten Zertifikate auf die aktuelle Zeit. Format entsprechend RFC 3339, section 5.6.
           readOnly: true
           example: "2017-07-21T17:32:28Z"
         professionOID:
@@ -1574,14 +2060,44 @@ components:
             description: Wird vom VZD beim Hinzufügen eines Zertifikatseintrags (userCertificate) ebenfalls hier in den Basiseintrag eingefügt, wenn der Wert von professionOID noch nicht hier in den Basisdaten vorhanden ist.
               Beim Löschen eines Zertifikatseintrags werden die professionOID's dieses Zertifikatseintrags auch in den Basisdaten entfernt, falls sie nicht in anderen (noch gültigen und verlinkten) Zertifikatseinträgen vorhanden sind.
         entryType:
-          maxItems: 10
+          maxItems: 1
           minItems: 0
           type: array
-          readOnly: true
           items:
             type: string
-            description: Wird vom VZD beim Hinzufügen eines Zertifikatseintrags (userCertificate) ebenfalls hier in den Basiseintrag eingefügt, wenn der Wert von entryType noch nicht hier in den Basisdaten vorhanden ist.
-              Beim Löschen eines Zertifikatseintrags wird der entryType dieses Zertifikatseintrags auch in den Basisdaten entfernt, falls er nicht in anderen (noch gültigen und verlinkten) Zertifikatseinträgen vorhanden ist.
+            description: |
+             - Wird vom VZD beim Hinzufügen eines Zertifikatseintrags (userCertificate) ebenfalls hier in den Basiseintrag eingefügt, wenn der Wert von entryType noch nicht hier in den Basisdaten vorhanden ist.
+              - Mit Operationen add_Directory_Entry und modify_Directory_Entry ist  Setzen/Ändern von Attribut entryType möglich. Der Wert von Attribut entryType muss konform zu den Zertifikaten des Eintrags sein. Bei Abweichungen wird die Operation mit HTTP Status Kode 400 abgelehnt.
+                - Wird in Operationen add_Directory_Entry ein Zertifikat angegeben wird, muss ein eventuell angegebener Parameter entryType mit dem Wert aus dem Zertifikat übereinstimmen. Bei nicht angegebenem Parameter entryType wird das Attribut entryType entsprechend dem Zertifikat gesetzt.
+                - Mit Operation modify_Directory_Entry kann über Request Parameter entryType das Attribut im VZD geändert werden, solange kein Zertifikat im VZD enthalten ist (welches dann einen abweichenden Wert gegenüber dem Request Parameter entryType enthalten würde).
+             - Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzu gefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit Fehler (HTTP Status Kode 400).
+             - Beim Löschen von Zertifikaten bleibt der Wert im Attribut entryType erhalten
+        active:
+            type: boolean
+            example: true
+            default: true
+            description: |
+              Das Attribut "active" steuert die Sichtbarkeit des gesamten VZD Eintrags.
+              Bei FALSE wird der Eintrag aus der flachen Liste entfernt bzw. nicht übertragen. Default = TRUE
+              
+              Dieses Attribut wird nicht in die flache Liste synchronisiert. 
+        meta:
+          maxItems: 100
+          minItems: 0
+          type: array
+          items:
+            type: string
+            description: |
+              Dieses Attribut kann vom Kartenherausgeber und TSP für die Koordinierung ihrer Arbeit genutzt werden.
+              Beispiel für die Nutzung:
+               - TSP erzeugt einen VZD Eintrag.
+               - TSP setzt das Attribut "meta" auf "state_1"
+               - Kartenherausgeber prüft periodisch auf Einträge mit meta="state_1" und ergänzt Basisdaten
+              Der konkrete Ablauf und die Werte werden durch die beteiligten Kartenherausgeber und TSPs festgelegt.
+              
+              Wird vom VZD nicht ausgewertet.
+              Dieses Attribut wird nicht in die flache Liste synchronisiert. 
+  
 
     DirectoryEntry:
       type: object
@@ -1618,10 +2134,59 @@ components:
       items:
         $ref: '#/components/schemas/DirectoryEntry'
 
-            
+    LogEntries:
+      type: array
+      items:
+        $ref: '#/components/schemas/LogEntry'
+
+    LogEntry:
+      type: object
+      properties:
+        clientID:
+          description: clientID von dem Client, der die Datenänderung ausgeführt hat
+          type: string
+          readOnly: true
+          example: Client123
+        logTime:
+          type: string
+#          format: date-time 
+          description: Zeitpunkt der Schreiboperation für den Datensatz. Format entsprechend RFC 3339, section 5.6.
+          readOnly: true
+          example: "2017-07-21T17:32:28Z"
+        uid:
+          type: string
+          description: Name/ID, den den Eintrag eindeutig identifiziert. 
+        telematikID:
+          type: string
+          description: telematikID von dem geänderten VZD Eintrag
+        operation:
+          description: Ausgeführte Operation
+          type: string
+          enum: [add_Directory_Entry, 
+                 modify_Directory_Entry, 
+                 delete_Directory_Entry, 
+                 stateSwitch_Directory_Entry,
+                 add_Directory_Entry_Certificate, 
+                 delete_Directory_Entry_Certificate, 
+                 add_Directory_FA-Attributes, 
+                 modify_Directory_FA-Attributes, 
+                 delete_Directory_FA-Attributes]
+          readOnly: true
+          example: modify_Directory_Entry
+        noDataChanged:
+          description: Zeigt an, ob die Schreiboperation den Datensatz mit ungeänderten Daten überschieben hat (also keine Daten geändert hat)
+            noDataChanged=true -> durch diese Operation wurden keine Daten geändert.
+          type: boolean
+          readOnly: true
+          example: false
+
+
     Error:
       type: object
       properties:
+        message: 
+          type: string
+          description: (optionale) Fehlernachricht
         errors:
           maxItems: 50
           minItems: 0
@@ -1758,11 +2323,9 @@ components:
         clientCredentials:
           tokenUrl: '#umgebungsspezifisch'
           scopes:
-            VZD:DirectoryAdministration: I_Directory_Administration Client Scope
+            'VZD:DirectoryAdministration': I_Directory_Administration Client Scope
               Als Clients dieser Schnittstelle sind nur Systeme der TI Kartenherausgeber und von ihnen beauftragte Organisationen (z.B. TSPs) zulässig.
               Sie dürfen alle Operationen zur Administration der Verzeichniseinträge nutzen.
               Das AccessToken enthält im 'sub' claim den Identifier des Clients, der auf die Einträge zugreift. Dieser Identifier wird im Log abgelegt, welcher die Zugriffe über diese Schnittstelle protokolliert.
-
-security:
-  - OAuth2:
-      - VZD:DirectoryAdministration
+            'VZD:DirectoryRead': I_Directory_Administration Client Scope
+              Lesender Zugriff auf den VZD (ohne Sync Operationen)

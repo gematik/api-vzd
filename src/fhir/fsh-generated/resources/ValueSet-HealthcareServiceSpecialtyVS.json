@@ -4,7 +4,7 @@
   "name": "HealthcareServiceSpecialtyVS",
   "id": "HealthcareServiceSpecialtyVS",
   "description": "ValueSet for `HealthcareService.specialty`",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "url": "https://gematik.de/fhir/directory/ValueSet/HealthcareServiceSpecialtyVS",
   "publisher": "gematik GmbH",
   "compose": {

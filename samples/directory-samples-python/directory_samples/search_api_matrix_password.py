@@ -63,6 +63,7 @@ def main():
       headers={
         "X-Matrix-OpenID-Token": matrix_opendid_token
       },
+      verify=False  
     )
 
     print("FHIR-Directory /tim-authenticate response")

@@ -32,3 +32,10 @@ Alias: $NamingSystemLANR = https://fhir.kbv.de/NamingSystem/KBV_NS_Base_ANR
 // ZANR (Lebenslange Zahnarztnummer)
 Alias: $IdentifierZANR = http://fhir.de/StructureDefinition/identifier-zanr
 Alias: $NamingSystemZANR = http://fhir.de/sid/kzbv/zahnarztnummer
+
+Alias: $ContactEntityType = http://terminology.hl7.org/CodeSystem/contactentity-type
+Alias: $DaysOfWeek = http://hl7.org/fhir/days-of-week
+Alias: $ContactPointSystem = http://hl7.org/fhir/contact-point-system
+Alias: $ContactPointUse = http://hl7.org/fhir/contact-point-use
+Alias: $ServiceProvisionConditions = http://terminology.hl7.org/CodeSystem/service-provision-conditions
+Alias: $CommonLanguages = urn:ietf:bcp:47

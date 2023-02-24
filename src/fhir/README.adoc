@@ -13,12 +13,7 @@ werden folgende benötigt verwendet:
 * https://nodejs.org/NodeJS[Node]
 * https://github.com/FHIR/sushi[FSH SUSHI] für FHIR Shorthand
 ** `npm install -g fsh-sushi`
-* https://dotnet.microsoft.com/en-us/download/dotnet/3.1[Download .NET Core 3.1]
-** PATH Variable für `dotnet` Befehl richtig setzen
-* https://fire.ly/products/firely-terminal/[Firely Terminal] 2.5.0 or later (still in beta!)
-** `dotnet tool install --global Firely.Terminal --version 2.5.0-beta-7`
-** PATH Variable für `fhir` Befehl richtig setzen
-
+** Install https://docs.fire.ly/projects/Firely-Terminal/InstallingFirelyTerminal.html[Firely terminal] 
 == Validieren und Bauen von FHIR Resourcen 
 [source,bash]
 ----

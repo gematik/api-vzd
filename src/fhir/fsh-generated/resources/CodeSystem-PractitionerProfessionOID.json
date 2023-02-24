@@ -6,7 +6,7 @@
   "id": "PractitionerProfessionOID",
   "title": "CodeSystem for Practitioner's ProfessioiOID",
   "description": "The codes for Practitioners based on Profession OIDs defined in [gemSpec_OID](https://fachportal.gematik.de/fachportal-import/files/gemSpec_OID_V3.10.0.pdf)",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "url": "https://gematik.de/fhir/directory/CodeSystem/PractitionerProfessionOID",
   "concept": [
     {

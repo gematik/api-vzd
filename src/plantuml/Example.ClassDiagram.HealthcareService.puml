@@ -1,0 +1,78 @@
+@startuml ClassDiagram.HealthcareService
+skinparam monochrome true
+class HealthcareServiceBerlin {
+  {field} providedBy "5-2-26-11000040"
+  {field} speciality Fachrichtung1
+  {field} location "5-2-26-11000044"
+  {field} name "Standort Berlin"
+  {field} telecom berlin@deutschland.de
+  {field} serviceProvisionCode Free
+  {field} communication "German", "English"
+  {field} appointmentRequired true 
+  {field} availableTime Mo-Fr 8:00-18:00
+  {field} availabilityExceptions "An Feiertagen geschlossen"
+  {field} endpoint EndpointBerlin
+}
+class HealthcareServiceMünchen {
+  {field} providedBy "5-2-26-11000040"
+  {field} speciality Fachrichtung2
+  {field} location "5-2-26-09000040"
+  {field} name "Standort München"
+  {field} telecom muenchen@deutschland.de
+  {field} serviceProvisionCode Free
+  {field} communication "German", "English"
+  {field} appointmentRequired true 
+  {field} availableTime Mo-Fr 8:00-18:00
+  {field} availabilityExceptions "An Feiertagen geschlossen"
+  {field} endpoint EndpointMünchen
+}
+class EndpointBerlin {
+  {field} status "Active"
+  {field} connectionType "TI-Messenger Endpoint"
+  {field} name "Empfang Standort Berlin"
+  {field} managingOrganization "5-2-26-11000040"
+  {field} payloadType "TI-Messenger chat"
+  {field} address "matrix:u/74..43f:e-domain.de"
+}
+class EndpointMünchen {
+  {field} status "Active"
+  {field} connectionType "TI-Messenger Endpoint"
+  {field} name "Empfang Standort München"
+  {field} managingOrganization "5-2-26-11000040"
+  {field} payloadType "TI-Messenger chat"
+  {field} address "matrix:u/08..by:e-domain.de"
+}
+class LocationBerlin {
+  {field} name Berlin
+  {field} description "Standort Berlin"
+  {field} address "Friedrichstraße 1, 10117 Berlin"
+  {field} position "52.516181;13.376935"
+  {field} hoursOfOperation "Mo-Fr 8:00-18:00"
+  {field} availabilityExceptions ""
+}
+class LocationMünchen {
+  {field} name München
+  {field} description "Standort München"
+  {field} address "Ismaninger Str. 22, 81675 München"
+  {field} position "48.137524;11.5984587"
+  {field} hoursOfOperation "Mo-So 0:00-23:59"
+  {field} availabilityExceptions ""
+}
+class Organization {
+  {field} identifier "5-2-26-11000040"
+  {field} active true
+  {field} type "Krankenhaus"
+  {field} name Deutschland
+  {field} alias "Sonnen Krankenhaus"
+  {field} telecom sonnen-kkh@deutschland.de
+  {field} contact "030 1234567"
+}
+
+Organization --o HealthcareServiceBerlin: providedBy
+Organization --o HealthcareServiceMünchen: providedBy
+HealthcareServiceBerlin o-- EndpointBerlin: endpoint
+HealthcareServiceMünchen o-- EndpointMünchen: endpoint
+HealthcareServiceBerlin o-- LocationBerlin: location
+HealthcareServiceMünchen o-- LocationMünchen: location
+
+@enduml

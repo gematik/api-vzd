@@ -1,0 +1,25 @@
+= Changelog `de.gematik.fhir.directory`
+
+== Unreleased
+
+_no pending changes_
+
+== 0.9.1
+
+* Changed cardinality of `Organisation.type`  from 1..1 to 1..*
+* Add some basic examples
+
+== 0.9.0
+
+* Add CodeSystem `PharmacyTypeCS`
+* Add ValueSet `PharmacyTypeVS`
+* Add CodeSystem `PharmacyHealthcareServiceTypeCS`
+* Add ValueSet `PharmacyHealthcareServiceTypeVS` 
+* Add new values to `OrganizationProfessionOID`
+** `#1.2.276.0.76.4.284` "Betriebsstätte Weitere Kostenträger im Gesundheitswesen"
+** `#1.2.276.0.76.4.285` "Weitere Organisationen der Gesundheitsversorgung"
+** `#1.2.276.0.76.4.286` "KIM-Hersteller und -Anbieter"
+
+== 0.8.0-beta6
+
+* Add ValueSet for `HealthcareService.specialty`
