@@ -36,6 +36,10 @@ class FHIRDirectoryConfig(BaseSettings):
     def federation_url(self):
         return urljoin(self.base_url, "/tim-provider-services/federation")
 
+    @property
+    def owner_authenticate_url(self):
+        return urljoin(self.base_url, "/owner-authenticate")
+
     class Config:
         env_prefix = "FHIR_DIRECTORY_"
 
