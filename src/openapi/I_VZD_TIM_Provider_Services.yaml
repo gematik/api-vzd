@@ -3,12 +3,8 @@ info:
   title: I_VZD_TIM_Provider_Services
   description: REST interface to retrieve the TI-Messenger federation list and to administrate the TI-Messenger domains.
 
-  version: 1.2.1
+  version: 1.2.0
 
-  # version 1.2.1
-  #  - path Angaben entsprechend Spezifikation korrigiert (Prefix /tim-provider-services
-  #    ergänzt)
-  #
   # version 1.2.0
   #  - getFederationList changed: Changed from JSON response to file download
   #  - schema: schema FederationList and DomainList removed
@@ -67,7 +63,7 @@ tags:
 
 
 paths:
-  /tim-provider-services/:
+  /:
     get:
       tags:
       - getInfo
@@ -96,7 +92,7 @@ paths:
                 $ref: '#/components/schemas/Error'
 
 
-  /tim-provider-services/FederationList/federationList.jws:
+  /FederationList/federationList.jws:
     get:
       tags:
       - getFederationList
@@ -152,7 +148,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
 
-  /tim-provider-services/localization:
+  /localization:
     get:
       tags:
       - whereIs
@@ -208,7 +204,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
 
-  /tim-provider-services/federation:
+  /federation:
     post:
       tags:
       - domainAdministration
@@ -310,7 +306,7 @@ paths:
                 $ref: '#/components/schemas/Error'
 
 
-  /tim-provider-services/federation/{domain}:
+  /federation/{domain}:
 
     put:
       tags:
@@ -409,7 +405,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
 
-  /tim-provider-services/federationCheck:
+  /federationCheck:
     get:
       tags:
       - checkTiMessengerDomains
