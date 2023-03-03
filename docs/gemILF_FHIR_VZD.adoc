@@ -141,16 +141,39 @@ curl -X GET "[FHIRbaseUrl]/tim-authenticate?mxId=matrix.dev.service-ti.de" \
 ----
 For the X-Matrix-OpenID-Token parameter the access_token returen in the last operation has to be used as value. +
  +
-This operation returns a access toke from the FHIR-Directory. For example:
+This operation returns a access token from the FHIR-Directory. For example:
 [source]
 ----
 200
 {
   "jwt":
-"eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiJ9.e5Jpc3MiOiJodHRwczovL2ZoaXItZGlyZWN0b3J5LXRlc3QudnpkLnRpLWRpZW5zdGUuZGUvdGltLWF1dGhlbnRpY2F0ZSIsImF1ZCI6Imh0dHBzOi8vZmhpci1kaXJlY3RvcnktdGVzdC52emQudGktZGllbnN0ZS5kZS9zZWGyY2giLCJzdWIiOiJAZXR0cjAyOm1hdHJpeC5kZXYuc2VydmljZS10aS5kZSIsImlhdCI6MTY2NDEyMjY3MywiZXhwIjoxNjY0MjA5MDczfQ.CoTwrZmZJyfVYVJFD068QJNFo0YLemhfPVER_lW5h3MU2hgoiSj1lkD6yDHPDQAs4JJ6PlBWIUHtoGoYAwVOVw",
+"eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiJ9.e2lzcyI6Imh0dHBzOi8vZmhpci1kaXJlY3RvcnktdGVzdC52emQudGktZGllbnN0ZS5kZS90aW0tYXV0aGVudGljYXRlIiwiYXVkIjoiaHR0cHM6Ly9maGlyLWRpcmVjdG9yeS10ZXN0LnZ6ZC50aS1kaWVuc3RlLmRlL3NlYWNoIiwic3ViIjoiQGFiY2RlOm1hdHJpeC5kZXYuc2VydmljZS10aS5kZSIsImlhdCI6MTY2NDEyMjY3MywiZXhwIjoxNjY0MjA5MDczfQ.CoTwrZmZJyfVYVJFD068QJNFo0YLemhfPVER_lW5h3MU2hgoiSj1lkD6yDHPDQAs4JJ6PlBWIUHtoGoYAwVOVw",
   "token_type": "bearer",
   "expires_in": 86400
 }
+----
+Please note, that this example access token has an invalid signature (sub claim anonymized). +
+ +
+The access token is a JWT with the following structure:
+----
+Header:
+{
+  "typ": "JWT",
+  "alg": "ES256"
+}
+
+Payload:
+
+{
+ "iss": "https://fhir-directory-test.vzd.ti-dienste.de/tim-authenticate\",
+ "aud": "https://fhir-directory-test.vzd.ti-dienste.de/seach",
+ "sub": "@abcde:matrix.dev.service-ti.de",
+ "iat": 1664122673,
+ "exp": 1664209073
+ }
+
+Signature:
+...
 ----
 
 
@@ -158,7 +181,7 @@ This operation returns a access toke from the FHIR-Directory. For example:
 [source]
 ----
 curl -X GET "https://fhir-directory-test.vzd.ti-dienste.de/search/HealthcareService?organization.active=true&_count=1" \
-    -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiJ9.e5Jpc3MiOiJodHRwczovL2ZoaXItZGlyZWN0b3J5LXRlc3QudnpkLnRpLWRpZW5zdGUuZGUvdGltLWF1dGhlbnRpY2F0ZSIsImF1ZCI6Imh0dHBzOi8vZmhpci1kaXJlY3RvcnktdGVzdC52emQudGktZGllbnN0ZS5kZS9zZWGyY2giLCJzdWIiOiJAZXR0cjAyOm1hdHJpeC5kZXYuc2VydmljZS10aS5kZSIsImlhdCI6MTY2NDEyMjY3MywiZXhwIjoxNjY0MjA5MDczfQ.CoTwrZmZJyfVYVJFD068QJNFo0YLemhfPVER_lW5h3MU2hgoiSj1lkD6yDHPDQAs4JJ6PlBWIUHtoGoYAwVOVw
+    -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiJ9.e2lzcyI6Imh0dHBzOi8vZmhpci1kaXJlY3RvcnktdGVzdC52emQudGktZGllbnN0ZS5kZS90aW0tYXV0aGVudGljYXRlIiwiYXVkIjoiaHR0cHM6Ly9maGlyLWRpcmVjdG9yeS10ZXN0LnZ6ZC50aS1kaWVuc3RlLmRlL3NlYWNoIiwic3ViIjoiQGFiY2RlOm1hdHJpeC5kZXYuc2VydmljZS10aS5kZSIsImlhdCI6MTY2NDEyMjY3MywiZXhwIjoxNjY0MjA5MDczfQ.CoTwrZmZJyfVYVJFD068QJNFo0YLemhfPVER_lW5h3MU2hgoiSj1lkD6yDHPDQAs4JJ6PlBWIUHtoGoYAwVOVw
 ----
 For the "Authorization" parameter the access_token returend from the FHIR-Directory in the last operation has to be used as value. +
  +
