@@ -25,19 +25,23 @@ cl -> au: GET /owner-authenticate... ((Auth Header mit RegService-OpenID-Token))
 activate au
 au -> au: verify RegService-OpenID-Token (telematikID, professionOID)
 else LE mit HBA und TI-Messenger Client
-cl -> au: GET /owner-authenticate
+cl -> au: GET /owner-authenticate(Parameterliste)
 au -> au: Erzeuge PKCE Code für verifier und challenge
 au --> cl: Redirect to IDP Authorization Endpoint
-cl -> idp: POST /authorize
-idp --> cl: Authentication challenge
+cl -> aa: Deeplink authenticator://?{auth_endpoint}&{tim_callback}
 activate aa
-aa -> aa: Authentication
-aa --> idp: Authentication challenge response
-deactivate aa
+
+aa -> idp: GET {auth_endpoint}
 activate idp
-idp --> cl: Authorization Response with Authorization code
+idp --> aa: challenge
+aa -> aa: sign challenge
+aa-> idp: signed_challenge
+idp --> aa: auth_code
+aa --> cl: {tim_callback}?auth_code
+deactivate aa
+
 cl -> au: GET /signin-gematik-idp-dienst with Authorization code
-au -> idp: POST /tokenEndpoint {authorization code}
+au -> idp: POST /tokenEndpoint {authorization code, verifier}
 idp --> au: Response {id_token}
 
 deactivate idp
