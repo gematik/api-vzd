@@ -74,7 +74,7 @@ Usage: #example
 Description: "Example of an HealthcareService as to be found in gematik FHIR Directory"
 * providedBy = Reference(OrganizationExample)
 // müssen wir schauen wie und wo Orga-Typ kodiert wird. Hier wird zum resten mal SNOMED vorgeschlagen.
-//* specialty = $PracticeSettingCode#408444009 "Dental-General dental practice"
+* specialty = $ÄrztlicheFachrichtungen##MZKH "Zahnmedizin"
 * location[+] = Reference(LocationExample)
 * name = "Zahnmedizin"
 * telecom[+].system = $ContactPointSystem#phone "Phone"
