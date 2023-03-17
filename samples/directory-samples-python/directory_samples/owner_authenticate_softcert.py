@@ -140,9 +140,6 @@ def main():
 
     redirect_url = response.headers['Location']
 
-    # TODO: change URL because of environments conflict
-    redirect_url = redirect_url.replace("https://fhir-directory-ref.vzd.ti-dienste.de/", "https://fhir-directory-test.vzd.ti-dienste.de/")
-
     response = session.get(
         redirect_url,
         allow_redirects=False
