@@ -6,6 +6,7 @@
       "https://gematik.de/fhir/directory/StructureDefinition/PractitionerRoleDirectory"
     ]
   },
+  "active": true,
   "practitioner": {
     "reference": "Practitioner/TIPractitionerExampleDentist"
   },
