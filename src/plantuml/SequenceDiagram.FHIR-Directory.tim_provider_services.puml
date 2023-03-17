@@ -14,16 +14,16 @@ oa -> oa: prüfe client_id und client_secret
 oa --> rd: provider-accesstoken
 deactivate oa
 group optional
-rd -> fp: FHIR Request /FHIR mit provider-accesstoken\nRessourcen TIOrganization (type: TI-Messenger-Provider),\nEndpoint (tim-domain)
+rd -> fp: POST/GET/PUT/DELETE /federation mit provider-accesstoken (domainAdministration)
 activate fp
-fp --> rd: HTTP 200 OK Response body FHIR json
+fp --> rd: HTTP 200 OK Response
 end
 group optional
 rd -> fp: GET /FederationList mit provider-accesstoken
 fp --> rd: HTTP 200 OK Response body domainList json
 end
 group optional
-rd -> fp: GET /localization mit provider-accesstoken und hash der MXID in URL Form
+rd -> fp: GET /localization mit provider-accesstoken und MXID in URL Form
 fp --> rd: HTTP 200 OK Response body <enum: [org, pract, orgPract, none]> json
 end
 

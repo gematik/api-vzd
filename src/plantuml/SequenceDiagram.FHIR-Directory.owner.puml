@@ -16,42 +16,35 @@ o -> cl: möchte seinen FHIR-Eintrag\nändern
 activate cl
 cl -> cl: prüfe ob noch gültiges owner-accesstoken\nfür Schreibzugriff vom Auth-Service vorliegt
 alt kein gültiges owner-accesstoken für Schreibzugriff vorhanden
-alt Org-Admin-Client
+alt Org-Admin
 cl -> rd: POST /regservice/user/{userId}/request_token
 activate rd
-rd --> cl: HTTP 200 OK, Result body {"access_token": "RegService-OpenID-Token",..., "reg_server_url": "https://regserver.example.com/openid/userinfo/"; "userid": "admin-userid"}
+rd --> cl: HTTP 200 OK, Result body {"access_token": "RegService-OpenID-Token=id_token"}
 deactivate rd
 cl -> au: GET /owner-authenticate... ((Auth Header mit RegService-OpenID-Token))
 activate au
-else TI-Messenger-Client
-cl -> au: GET /owner-authenticate
-end
-alt RegService-OpenID-Token
-au -> rd: GET /openid/userinfo/?\naccess_token=RegService-OpenID-Token)
-activate rd
-rd --> au: HTTP 200 OK\n(Result Body userid des Org-Admin auf dem Reg-Server)
-deactivate rd
-au -> au: verify userid
-end
+au -> au: verify RegService-OpenID-Token (telematikID, professionOID)
+else LE mit HBA und TI-Messenger Client
+cl -> au: GET /owner-authenticate(Parameterliste)
 au -> au: Erzeuge PKCE Code für verifier und challenge
 au --> cl: Redirect to IDP Authorization Endpoint
-cl -> idp: GET /authorize
-idp --> cl: Authentication challenge
+cl -> aa: Deeplink authenticator://?{auth_endpoint}&{tim_callback}
 activate aa
-aa -> aa: Authentication
-aa --> idp: Authentication challenge response
-deactivate aa
+
+aa -> idp: GET {auth_endpoint}
 activate idp
-idp --> cl: Authorization Response with Authorization code
-cl -> au: GET /owner-authenticate with Authorization code
-au -> idp: POST /tokenEndpoint {authorization code}
+idp --> aa: challenge
+aa -> aa: sign challenge
+aa-> idp: signed_challenge
+idp --> aa: auth_code
+aa --> cl: {tim_callback}?auth_code
+deactivate aa
+
+cl -> au: GET /signin-gematik-idp-dienst with Authorization code
+au -> idp: POST /tokenEndpoint {authorization code, verifier}
 idp --> au: Response {id_token}
 
 deactivate idp
-alt RegService-OpenID-Token
-au -> au: Prüfe idtoken (professionOID for Organization?)
-else
-au -> au: Prüfe idtoken (professionOID for Practitioner?)
 end
 au -> au: erzeuge owner-accesstoken
 au --> cl: HTTP 200 OK, Result body {"access_token"="owner-accesstoken"}
