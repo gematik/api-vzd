@@ -40,7 +40,7 @@ def main():
     )
 
     debug_print("\n[b]Perform login and get Matrix Access Token:[b]")
-    debug_print(request_to_curl(response.request))
+    debug_print(request_to_curl(response.request, hide_body_secrets={"password": "****"}))
     debug_print(response_to_text(response))
 
     matrix_access_token = response.json()["access_token"]
