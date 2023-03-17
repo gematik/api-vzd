@@ -1,6 +1,6 @@
 {
   "resourceType": "ValueSet",
-  "status": "draft",
+  "status": "active",
   "name": "HealthcareServiceSpecialtyVS",
   "id": "HealthcareServiceSpecialtyVS",
   "description": "ValueSet for `HealthcareService.specialty`",

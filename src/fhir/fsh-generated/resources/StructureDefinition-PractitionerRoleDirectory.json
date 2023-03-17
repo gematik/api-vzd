@@ -15,7 +15,7 @@
   "version": "0.9.1",
   "name": "PractitionerRoleDirectory",
   "title": "PractitionerRole in gematik Directory",
-  "status": "draft",
+  "status": "active",
   "publisher": "gematik GmbH",
   "fhirVersion": "4.0.1",
   "mapping": [
