@@ -4,7 +4,7 @@ Usage: #example
 Description: """
 Example TI-Messenger Endpoint
 """
-* insert Meta
+* status = #active
 * connectionType = EndpointDirectoryConnectionType#tim
 * name = "@SystemsEngineering:tim.gematik.de"
 * address = "@SystemsEngineering:tim.gematik.de"
@@ -14,7 +14,7 @@ Instance: OrganizationExample001
 InstanceOf: OrganizationDirectory
 Usage: #example
 Description: "Example of an Organization as to be found in gematik FHIR Directory"
-* insert Meta
+* status = #active
 * identifier[TelematikID].value = "9-2.58.00000040"
 * type = OrganizationProfessionOID#1.2.276.0.76.4.58
 * name = "gematik GmbH"
@@ -45,7 +45,7 @@ Description: """
 Example of an ePA-Endpoint with a dedicated X509-Certficate
 for authorization.
 """
-* insert Meta
+* status = #active
 * connectionType = TIEndpointConnectionTypeCS#epa
 * address = "urn:TODO"
 * payloadType = #any
@@ -74,7 +74,7 @@ Instance: TIOrganizationExample001
 InstanceOf: TIOrganization
 Usage: #example
 Description: "Example of an Organization as to be found in gematik FHIR Directory"
-* insert Meta
+* status = #active
 * identifier[+].system = $IdentifierTelematikID
 * identifier[=].value = "9-2.58.00000040"
 * type = TIInstitutionTypeOidCS#1.2.276.0.76.4.58
