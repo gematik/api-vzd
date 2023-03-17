@@ -63,14 +63,15 @@ def main():
       headers={
         "X-Matrix-OpenID-Token": matrix_opendid_token
       },
-      verify=False  
     )
 
     print("FHIR-Directory /tim-authenticate response")
     print(request_to_curl(response.request), soft_wrap=True)
     print(response_to_text(response))
 
-    search_api_access_token = response.json()["jwt"]
+    assert response.status_code == 200
+    
+    search_api_access_token = response.json()["access_token"]
 
     print("/search API access_token:")
     print(jwt_to_text(search_api_access_token))
@@ -81,7 +82,7 @@ def main():
         urljoin(fhir_directory_config.search_url, "HealthcareService"),
         params={
             "organization.active": "true",
-            "_count": 1,
+            "_count": 5,
         },
         headers={
             "Authorization": f"Bearer {search_api_access_token}"
