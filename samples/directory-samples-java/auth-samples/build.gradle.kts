@@ -23,8 +23,8 @@ tasks.withType<JavaCompile>() {
 dependencies {
     implementation("ch.qos.logback:logback-classic:1.4.3")
     implementation("org.bitbucket.b_c:jose4j:0.9.1")
-    //implementation("org.bouncycastle:bcprov-jdk15on:1.70")
-    //implementation("org.bouncycastle:bcpkix-jdk15on:1.70")
+    implementation("org.bouncycastle:bcprov-jdk15on:1.70")
+    implementation("org.bouncycastle:bcpkix-jdk15on:1.70")
 
     // Use JUnit test framework.
     testImplementation("junit:junit:4.13.2")
