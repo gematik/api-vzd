@@ -36,8 +36,7 @@ Instance: OrganizationExample
 InstanceOf: OrganizationDirectory
 Usage: #example
 Description: "Example of an Organization as to be found in gematik FHIR Directory"
-* identifier[+].system = $IdentifierTelematikID
-* identifier[=].value = "2-2.58.00000040"
+* identifier[TelematikID].value = "2-2.58.00000040"
 * type = https://gematik.de/fhir/directory/CodeSystem/OrganizationProfessionOID#1.2.276.0.76.4.51 "Zahnarztpraxis"
 * name = "Zahnarztpraxis Dr. Mustermann"
 * active = true

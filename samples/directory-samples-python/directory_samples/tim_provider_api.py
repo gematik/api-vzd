@@ -42,7 +42,7 @@ def main():
     print(request_to_curl(response.request), soft_wrap=True)
     print(response_to_text(response))
 
-    ti_provider_api_access_token = response.json()["jwt"]
+    ti_provider_api_access_token = response.json()["access_token"]
 
     print("TI-Provider API Access Token")
     print(jwt_to_text(ti_provider_api_access_token))

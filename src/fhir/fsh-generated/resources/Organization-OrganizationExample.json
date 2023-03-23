@@ -8,7 +8,7 @@
   },
   "identifier": [
     {
-      "system": "http://fhir.de/StructureDefinition/identifier-telematik-id",
+      "system": "https://gematik.de/fhir/sid/telematik-id",
       "value": "2-2.58.00000040"
     }
   ],
