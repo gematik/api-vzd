@@ -202,11 +202,19 @@ Der Signatur-Header hat folgende Struktur:
   "typ":"JWT",
   "alg": "ES256",
   "x5c": [
-    "<X.509 Sig-Cert, base64-encoded DER>",
-    "<X.509 CA-Cert, base64-encoded DER>"
+    "<X.509 Sig-Cert, base64-encoded DER>"
   ]
 }
 ----
+Für die Signaturprüfung können die nötigen Root und CA-Zertifikate über folgende Downloadpunkte bezogen werden:
+
+- PU-Root https://download.tsl.ti-dienste.de/ECC/ROOT-CA/ 
+- PU-Sub https://download.tsl.ti-dienste.de/ECC/SUB-CA/ 
+- TU-Root https://download-test.tsl.ti-dienste.de/ECC/ROOT-CA/   
+- TU-Sub https://download-test.tsl.ti-dienste.de/ECC/SUB-CA/   
+- RU-Root https://download-ref.tsl.ti-dienste.de/ECC/ROOT-CA/   
+- RU-Sub https://download-ref.tsl.ti-dienste.de/ECC/SUB-CA/ 
+
 Die signierte Föderationsliste hat gemäß *RFC7797* folgende Struktur:
 ----
 Signatur-Header.Föderationsliste.Signatur
