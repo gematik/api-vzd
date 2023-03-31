@@ -151,7 +151,7 @@ def main():
 
     assert response.status_code == 200
 
-    search_api_access_token = response.json()["jwt"]
+    search_api_access_token = response.json()["access_token"]
 
     print("/search API access_token:")
     print(jwt_to_text(search_api_access_token))
