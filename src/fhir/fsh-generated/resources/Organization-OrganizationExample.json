@@ -6,7 +6,6 @@
       "https://gematik.de/fhir/directory/StructureDefinition/OrganizationDirectory"
     ]
   },
-  "active": true,
   "identifier": [
     {
       "system": "https://gematik.de/fhir/sid/telematik-id",
@@ -25,6 +24,7 @@
     }
   ],
   "name": "Zahnarztpraxis Dr. Mustermann",
+  "active": true,
   "alias": [
     "Zahnarztpraxis am Bahnhof"
   ],

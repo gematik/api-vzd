@@ -6,7 +6,6 @@
       "https://gematik.de/fhir/directory/StructureDefinition/LocationDirectory"
     ]
   },
-  "status": "active",
   "name": "Praxis am Rathaus",
   "description": "Praxis für Allgemeinmedizin",
   "address": {
