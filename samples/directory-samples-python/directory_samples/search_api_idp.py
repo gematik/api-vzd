@@ -1,6 +1,4 @@
 from requests import Session
-from cryptography import x509
-from cryptography.hazmat.primitives import serialization
 from rich import get_console
 from urllib.parse import urljoin, urlsplit, parse_qs
 from .apitools import (request_to_curl, response_to_text, base64url_decode, base64url_encode)

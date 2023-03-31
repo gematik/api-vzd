@@ -6,7 +6,6 @@
       "https://gematik.de/fhir/directory/StructureDefinition/HealthcareServiceDirectory"
     ]
   },
-  "active": true,
   "providedBy": {
     "reference": "Organization/OrganizationExample"
   },
@@ -14,9 +13,18 @@
     {
       "coding": [
         {
-          "code": "#MZKH",
+          "code": "MZKH",
           "system": "urn:oid:1.3.6.1.4.1.19376.3.276.1.5.4",
           "display": "Zahnmedizin"
+        }
+      ]
+    },
+    {
+      "coding": [
+        {
+          "code": "ORAL",
+          "system": "urn:oid:1.3.6.1.4.1.19376.3.276.1.5.4",
+          "display": "Oralchirurgie"
         }
       ]
     }

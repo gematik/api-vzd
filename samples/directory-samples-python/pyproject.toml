@@ -6,7 +6,7 @@ authors = ["Sergej Suskov <sergej.suskov@gematik.de>"]
 license = "MIT"
 
 [tool.poetry.dependencies]
-python = "^3.10"
+python = ">=3.7,<4"
 requests = "^2.28.1"
 pydantic = "^1.10.2"
 rich = "^12.5.1"
@@ -22,7 +22,8 @@ requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
-search_api_matrix = "directory_samples.search_api_matrix:main"
+search_api_matrix_password = "directory_samples.search_api_matrix_password:main"
+search_api_matrix_sso = "directory_samples.search_api_matrix_sso:main"
 tim_provider_api = "directory_samples.tim_provider_api:main"
-search_api_idp = "directory_samples.search_api_idp:main"
+owner_authenticate_softcert = "directory_samples.owner_authenticate_softcert:main"
 verify_certificate = "directory_samples.verify_certificate:main"

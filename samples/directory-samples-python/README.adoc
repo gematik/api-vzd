@@ -15,8 +15,11 @@ NOTE: Matrix Homeserver must be registered in the TI-Messenger Federation. The T
 ----
 export FHIR_DIRECTORY_BASE_URL=https://fhir-directory-test.vzd.ti-dienste.de/
 
+# for username/password login
 export MATRIX_ID=@username:matrix.example.com
 export MATRIX_PASSWORD=password
+# for sso login
+export MATRIX_HOMESERVER=matrix.example.com
  
 export TIM_PROVIDER_AUTH_URL=https://auth-test.vzd.ti-dienste.de:9443/auth/realms/TI-Provider/protocol/openid-connect/token
 export TIM_PROVIDER_AUTH_CLIENT_ID=<clientid>
@@ -51,5 +54,7 @@ poetry run tim_provider_api
 
 [source,bash]
 ----
-poetry run search_api_matrix 
+poetry run search_api_matrix_password 
+# or using sso:
+poetry run search_api_matrix_sso
 ----
