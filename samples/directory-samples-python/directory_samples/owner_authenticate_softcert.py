@@ -13,6 +13,8 @@ from cryptography.hazmat.primitives.serialization import (
   NoEncryption,
 )
 from rich.console import Console
+from rich.terminal_theme import MONOKAI
+
 
 debug_console = Console(record=True, stderr=True)
 debug_print = debug_console.print
@@ -149,3 +151,9 @@ def main():
 
     owner_access_token = response.json()['access_token']
     print(owner_access_token)
+
+    if not os.path.exists('debug'):
+        os.makedirs('debug')
+        
+    with open(os.path.join('debug', 'owner_authenticate_softcert.html'), 'w') as f:
+        f.write(debug_console.export_html(theme=MONOKAI))
