@@ -1,12 +1,12 @@
 {
   "resourceType": "CodeSystem",
-  "status": "draft",
+  "status": "active",
   "content": "complete",
   "name": "EndpointDirectoryPayloadType",
   "id": "EndpointDirectoryPayloadType",
   "title": "Codes for Endpoint.payloadType",
   "description": "CodeSystem TI specific payload types assigned to the Endpoints\n\nCodes are maintained by gematik.\nThe codes are used to declare which processes are supported by an entity with the corresponding entry in the gematik Directory.\nNew codes can be requested at gematik. There must exist a specification for each code so that developers can find out how to implement the process.",
-  "version": "0.9.1",
+  "version": "0.9.2",
   "url": "https://gematik.de/fhir/directory/CodeSystem/EndpointDirectoryPayloadType",
   "concept": [
     {

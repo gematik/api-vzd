@@ -1,10 +1,10 @@
 {
   "resourceType": "ValueSet",
-  "status": "draft",
+  "status": "active",
   "name": "EndpointConnectionTypeVS",
   "id": "EndpointConnectionTypeVS",
   "description": "ValueSet for `Endpoint.connectionType`",
-  "version": "0.9.1",
+  "version": "0.9.2",
   "url": "https://gematik.de/fhir/directory/ValueSet/EndpointConnectionTypeVS",
   "publisher": "gematik GmbH",
   "compose": {
