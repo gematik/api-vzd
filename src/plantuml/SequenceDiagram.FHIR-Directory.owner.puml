@@ -1,4 +1,6 @@
-@startuml FHIR-Directory, Sequenzdiagram Änderung von eigenen -Einträgen
+@startuml
+Bob -> Alice : hello
+
 skinparam dpi 100
 skinparam WrapWidth 200
 skinparam monochrome true
@@ -25,10 +27,10 @@ cl -> au: GET /owner-authenticate... ((Auth Header mit RegService-OpenID-Token))
 activate au
 au -> au: verify RegService-OpenID-Token (telematikID, professionOID)
 else LE mit HBA und TI-Messenger Client
-cl -> au: GET /owner-authenticate(Parameterliste)
+cl -> au: GET /owner-authenticate
 au -> au: Erzeuge PKCE Code für verifier und challenge
-au --> cl: Redirect to IDP Authorization Endpoint
-cl -> aa: Deeplink authenticator://?{auth_endpoint}&{tim_callback}
+au --> cl: Redirect (302) to IDP Authorization Endpoint
+cl -> aa: Deeplink authenticator://...
 activate aa
 
 aa -> idp: GET {auth_endpoint}
@@ -36,12 +38,12 @@ activate idp
 idp --> aa: challenge
 aa -> aa: sign challenge
 aa-> idp: signed_challenge
-idp --> aa: auth_code
-aa --> cl: {tim_callback}?auth_code
+idp --> aa: Redirect (302) {auth_code,..)
+aa --> cl: {client_callback_uri} {auth_code}
 deactivate aa
 
-cl -> au: GET /signin-gematik-idp-dienst with Authorization code
-au -> idp: POST /tokenEndpoint {authorization code, verifier}
+cl -> au: GET /signin-gematik-idp-dienst with {auth_code}
+au -> idp: POST /tokenEndpoint {auth_code, verifier}
 idp --> au: Response {id_token}
 
 deactivate idp
