@@ -32,7 +32,7 @@ image::gematik_logo.svg[gematik,float="right"]
  |*Change reason, special instructions* +
  |*Editing* +
 
-|1.0.0 |28.10.22 | |Initial document |gematik
+|1.0.0 |04.04.23 | |Initial document |gematik
 
 |===
 
@@ -207,6 +207,11 @@ Only resources with the status "active" may be displayed. For this reason, the [
 
 As result, the client receives a FHIR http://hl7.org/fhir/bundle.html[Bundle] resource with the search result. +
  +
+ +
+In addition to the HL7 FHIR specification, the FHIR VZD supports the following search parameters 
+
+- practitioner.qualification
+- location.address (e.g. to search for TI-Messenger addresses)
 
 ==== FHIR Search Organizations
 
