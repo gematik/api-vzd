@@ -497,12 +497,13 @@ paths:
       description: |
        Erzeugt einen neuen Fachdateneintrag \
         Nutzungshinweise
-         - FAD1.komLeData kann durch existierende Anwendungen noch genutzt werden, 
+         - Attribut FAD1.komLeData kann durch existierende Anwendungen noch genutzt werden, 
            wird jedoch durch FAD1.kimData abgelöst. 
            Neue Implementierungen sollen nur noch FAD1.kimData nutzen.
-         - Wenn FAD1.kimData angegeben wird, darf FAD1.komLeData nicht genutzt werden und
-           der VZD aktualisiert auch FAD1.komLeData (Attribute mail und version).
-         - Wenn FAD1.komLeData angegeben wird, erfolgt keine Aktualisierung von FAD1.kimData durch den VZD 
+         - Wenn FAD1.kimData angegeben wird, darf FAD1.komLeData nicht genutzt werden.
+         - Wenn FAD1.kimData angegeben wird, aktualisiert der VZD auch FAD1.komLeData (Attribute mail und version).
+         - Wenn FAD1.komLeData angegeben wird, aktualisiert der VZD auch FAD1.kimData (Attribute mail und version). 
+           Damit wird Attribut appFlags (Anwendungskennzeichen) auf einen leeren Wert zurückgesetzt. 
       operationId: add_Directory_FA-Attributes
       parameters:
        - name: telematikID
@@ -550,6 +551,13 @@ paths:
                     "attributeName": "mail",
                     "attributeError": "Inkonsistenz zwischen FAD1.mail und FAD1.komLeData.mail"
                    }
+            - FAD1.komLeData & FAD1.kimData dürfen nicht gleichzeitig genutzt werden
+              Ein Response mit HTTP Status Kode 400 und folgenden Werten im Body wird zurück gegeben
+              ```
+                 {
+                    "attributeName": "kimData",
+                    "attributeError": "FAD1.komLeData & FAD1.kimData dürfen nicht gleichzeitig genutzt werden"
+                   }  
           content: 
             application/json:
              schema:
@@ -641,12 +649,13 @@ paths:
       description: |
         Ändert den adressierten Fachdateneintrag. \
         Nutzungshinweise
-         - FAD1.komLeData kann durch existierende Anwendungen noch genutzt werden, 
+         - Attribut FAD1.komLeData kann durch existierende Anwendungen noch genutzt werden, 
            wird jedoch durch FAD1.kimData abgelöst. 
            Neue Implementierungen sollen nur noch FAD1.kimData nutzen.
-         - Wenn FAD1.kimData angegeben wird, darf FAD1.komLeData nicht genutzt werden und
-           der VZD aktualisiert auch FAD1.komLeData (Attribute mail und version).
-         - Wenn FAD1.komLeData angegeben wird, erfolgt keine Aktualisierung von FAD1.kimData durch den VZD 
+         - Wenn FAD1.kimData angegeben wird, darf FAD1.komLeData nicht genutzt werden.
+         - Wenn FAD1.kimData angegeben wird, aktualisiert der VZD auch FAD1.komLeData (Attribute mail und version).
+         - Wenn FAD1.komLeData angegeben wird, aktualisiert der VZD auch FAD1.kimData (Attribute mail und version). 
+           Damit wird Attribut appFlags (Anwendungskennzeichen) auf einen leeren Wert zurückgesetzt. 
       operationId: modify_Directory_FA-Attributes
       parameters:
       - name: telematikID
