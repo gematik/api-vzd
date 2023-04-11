@@ -4,6 +4,7 @@ Usage: #example
 Description: """
 Example TI-Messenger Endpoint
 """
+* meta.tag[+] = Origin#owner
 * status = #active "Active"
 * connectionType = EndpointDirectoryConnectionType#tim
 * name = "@SystemsEngineering:tim.gematik.de"
@@ -14,6 +15,7 @@ Instance: OrganizationExample001
 InstanceOf: OrganizationDirectory
 Usage: #example
 Description: "Example of an Organization as to be found in gematik FHIR Directory"
+* meta.tag[+] = Origin#ldap
 * active = true
 * identifier[TelematikID].value = "9-2.58.00000040"
 * type = OrganizationProfessionOID#1.2.276.0.76.4.58
