@@ -4,6 +4,12 @@ Parent: Endpoint
 Title: "Endpoint in gematik Directory"
 Description: "Endpoints for applications in the gematik Directory"
 * insert Meta
+* meta.tag 1.. MS
+  * ^slicing.discriminator.type = #value
+  * ^slicing.discriminator.path = "system"
+  * ^slicing.rules = #open
+* meta.tag contains OriginSlice 1..1 MS
+* meta.tag[OriginSlice] from OriginVS 
 * status 1..1 MS
 * connectionType 1..1 MS
 * connectionType.code from EndpointConnectionTypeVS (extensible)
