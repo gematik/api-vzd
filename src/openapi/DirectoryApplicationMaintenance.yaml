@@ -6,8 +6,12 @@ info:
    # REST Schnittstelle zur Pflege der Fachanwendungsdaten der Verzeichniseinträge
      Über diese Schnittstelle können Fachanwendungsdaten der Verzeichniseinträge erzeugt, aktualisiert und gelöscht werden. 
 
-  version: 1.2.4
+  version: 1.3.0
   
+  # Änderungen in Version 1.3.0 
+  #  - FAD1.komLeData.appFlags (Anwendungskennzeichen) ergänzt
+  #    und in Operationen add_Directory_FA-Attributes & modify_Directory_FA-Attributes beschrieben
+  # 
   # Änderungen in Version 1.2.4
   #  - Attribut entryType aus Schema baseDirectoryEntry - aus Kompatibilitätsgründen zu 
   #    bisherigen Schnittstellenversionen - auf Datentyp "array" geändert
@@ -462,7 +466,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'				
+                $ref: '#/components/schemas/Error'        
         401:
           description: |
            Unauthorized
@@ -490,7 +494,14 @@ paths:
       tags:
       - Application Data Administration
       summary: Fachdateneintrag erzeugen
-      description: Erzeugt einen neuen Fachdateneintrag
+      description: |
+       Erzeugt einen neuen Fachdateneintrag \
+        Nutzungshinweise
+         - FAD1.komLeData kann durch existierende Anwendungen noch genutzt werden, 
+           wird jedoch durch FAD1.kimData abgelöst. 
+           Neue Implementierungen sollen nur noch FAD1.kimData nutzen.
+         - Wenn FAD1.kimData angegeben wird, darf FAD1.komLeData nicht genutzt werden und
+           der VZD aktualisiert auch FAD1.komLeData (Attribute mail und version).
       operationId: add_Directory_FA-Attributes
       parameters:
        - name: telematikID
@@ -547,20 +558,20 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'				
+                $ref: '#/components/schemas/Error'        
         403:
           description: Forbidden
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'				
+                $ref: '#/components/schemas/Error'        
         404:
           description: Not Found
                     #  telematikID not found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'				
+                $ref: '#/components/schemas/Error'        
 
 
   /DirectoryEntries/{telematikID}/KOM-LE_Fachdaten/{fad}:
@@ -606,27 +617,34 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'				
+                $ref: '#/components/schemas/Error'        
         403:
           description: Forbidden
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'				
+                $ref: '#/components/schemas/Error'        
         404:
           description: Not Found
                     #  telematikID not found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'				
+                $ref: '#/components/schemas/Error'        
 
 
     put:
       tags:
       - Application Data Administration
       summary: Fachdateneintrag ändern
-      description: Ändert den adressierten Fachdateneintrag.
+      description: |
+        Ändert den adressierten Fachdateneintrag. \
+        Nutzungshinweise
+         - FAD1.komLeData kann durch existierende Anwendungen noch genutzt werden, 
+           wird jedoch durch FAD1.kimData abgelöst. 
+           Neue Implementierungen sollen nur noch FAD1.kimData nutzen.
+         - Wenn FAD1.kimData angegeben wird, darf FAD1.komLeData nicht genutzt werden und
+           der VZD aktualisiert auch FAD1.komLeData (Attribute mail und version).
       operationId: modify_Directory_FA-Attributes
       parameters:
       - name: telematikID
@@ -1010,10 +1028,37 @@ components:
             description: |
               Liste von KIM-Adressen mit der zugehörigen KIM-Version. 
               Für jede Mail Adresse aus dem `mail` Attribut darf es nur einen Element in der Liste `komLeData` existieren. 
-              Es dürfen in der Liste `komLeData` keine Mail Adressen referenziert werden, die nicht im zugehörigen `mail` Attribut enthalten sind.
-              Wenn eine Mail Adresse gelöscht wird, muss auch ihre `komLeData`-Element gelöscht werden.
+              Wenn eine Mail Adresse gelöscht wird, muss auch ihr `komLeData`-Element gelöscht werden.
               Geschrieben wird immer die gesamte Liste. 
               Für Änderungen muss erst der aktuelle Eintrag gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
+        kimData:
+          type: array
+          items:
+            type: object
+            properties:
+              mail:
+                type: string
+                description: 'E-Mail-Adresse'
+              version:
+                type: string
+                example: 1.5
+                description: 'Die höchste Version der KIM Clientmodule für diese KIM-Mail-Adresse'
+              appFlags:
+                type: array
+                items:
+                  type: string
+                  example: 
+                    - eEB;V1.0
+                    - DALE-UV;Einsendung;V1.0
+                  description: 'Anwendungskennzeichen, welche diese KIM-Mail-Adresse verarbeiten kann'
+            description: |
+              Liste von KIM-Adressen mit der zugehörigen KIM-Version und Anwendungskennzeichen. 
+              Für jede Mail Adresse darf nur einen Element in der Liste `kimData` existieren. 
+              Geschrieben wird immer die gesamte Liste. 
+              Für Änderungen muss erst der aktuelle Eintrag gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
+              Die Datenstruktur kimData wird in LDAP in einem String Attribut abgelegt:
+                 mail,version,appFlag1|appFlag2|appFlag3
+                Beispiel: mz_smcb_za@dom2.kim.telematik-test,1.5+,DALE-UV;Einsendung;V1.0|eEB;V1.0
 
 
     distinguishedName:
