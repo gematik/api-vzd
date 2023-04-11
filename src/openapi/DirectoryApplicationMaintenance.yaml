@@ -502,6 +502,7 @@ paths:
            Neue Implementierungen sollen nur noch FAD1.kimData nutzen.
          - Wenn FAD1.kimData angegeben wird, darf FAD1.komLeData nicht genutzt werden und
            der VZD aktualisiert auch FAD1.komLeData (Attribute mail und version).
+         - Wenn FAD1.komLeData angegeben wird, erfolgt keine Aktualisierung von FAD1.kimData durch den VZD 
       operationId: add_Directory_FA-Attributes
       parameters:
        - name: telematikID
@@ -645,6 +646,7 @@ paths:
            Neue Implementierungen sollen nur noch FAD1.kimData nutzen.
          - Wenn FAD1.kimData angegeben wird, darf FAD1.komLeData nicht genutzt werden und
            der VZD aktualisiert auch FAD1.komLeData (Attribute mail und version).
+         - Wenn FAD1.komLeData angegeben wird, erfolgt keine Aktualisierung von FAD1.kimData durch den VZD 
       operationId: modify_Directory_FA-Attributes
       parameters:
       - name: telematikID
@@ -699,7 +701,13 @@ paths:
                     "attributeName": "mail",
                     "attributeError": "Inkonsistenz zwischen FAD1.mail und FAD1.komLeData.mail"
                    }
-                       
+            - FAD1.komLeData & FAD1.kimData dürfen nicht gleichzeitig genutzt werden
+              Ein Response mit HTTP Status Kode 400 und folgenden Werten im Body wird zurück gegeben
+              ```
+                 {
+                    "attributeName": "kimData",
+                    "attributeError": "FAD1.komLeData & FAD1.kimData dürfen nicht gleichzeitig genutzt werden"
+                   }                       
           content: 
             application/json:
              schema:
