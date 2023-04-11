@@ -6,6 +6,7 @@ import io.restassured.path.json.JsonPath;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.client.utils.URLEncodedUtils;
+import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.jose4j.base64url.Base64;
 import org.jose4j.base64url.Base64Url;
 import org.jose4j.jwa.AlgorithmConstraints;
@@ -40,6 +41,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.KeyFactory;
 import java.security.MessageDigest;
 import java.security.SecureRandom;
+import java.security.Security;
 import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
 import java.security.spec.PKCS8EncodedKeySpec;
@@ -61,9 +63,10 @@ public class OwnerSignInSample {
             .connectTimeout(Duration.ofSeconds(10))
             .build();
     // configuration
-    final String IDP_URL = "https://idp-ref.app.ti-dienste.de";
-    final String CLIENT_ID = "GEMgematFHI4HkPrd8SR";
-    final String REDIRECT_URI = "https://fhir-directory-ref.vzd.ti-dienste.de/signin-gematik-idp-dienst";
+    final String IDP_URL = "https://idp-test.app.ti-dienste.de";
+    final String CLIENT_ID = "GEMgematFHI1KPraWvqT";
+
+    final String REDIRECT_URI = "https://fhir-directory-test.vzd.ti-dienste.de/signin-gematik-idp-dienst";
     final String SCOPE = "fhir-vzd openid";
 
     final String OWNER_CERT_FILENAME_DER = System.getenv("OWNER_CERT_FILENAME_DER");
@@ -72,6 +75,8 @@ public class OwnerSignInSample {
     @Test
     public void testOwnerSignIn() throws Exception {
 
+        Security.removeProvider(BouncyCastleProvider.PROVIDER_NAME);
+        Security.insertProviderAt(new BouncyCastleProvider(), 1);
         JOSE4JBrainpoolExtension.installExtension();
 
         Assert.assertNotNull("Environment variable OWNER_CERT_FILENAME_DER must be set", OWNER_CERT_FILENAME_DER);
@@ -304,16 +309,19 @@ public class OwnerSignInSample {
 
         JsonWebKey tokenKeyJWK = JsonWebKey.Factory.newJwk(String.format("{\"kty\":\"oct\",\"k\":\"%s\"}", tokenKey));
 
-        JsonWebEncryption encryptedTokenReceiver = new JsonWebEncryption();
-        encryptedTokenReceiver.setKey(tokenKeyJWK.getKey());
+        JsonWebEncryption encryptedAccessTokenReceiver = new JsonWebEncryption();
+        encryptedAccessTokenReceiver.setKey(tokenKeyJWK.getKey());
 
         // decrypt and retrieve the access_token from NJWT structure
-        encryptedTokenReceiver.setCompactSerialization(encryptedAccessToken);
-        String accessToken = new JsonPath(encryptedTokenReceiver.getPlaintextString()).getString("njwt");
+        encryptedAccessTokenReceiver.setCompactSerialization(encryptedAccessToken);
+        String accessToken = new JsonPath(encryptedAccessTokenReceiver.getPlaintextString()).getString("njwt");
+
+        JsonWebEncryption encryptedIdTokenReceiver = new JsonWebEncryption();
+        encryptedIdTokenReceiver.setKey(tokenKeyJWK.getKey());
 
         // decrypt and retrieve the id_token from NJWT structure
-        encryptedTokenReceiver.setCompactSerialization(encryptedIdToken);
-        String idToken = new JsonPath(encryptedTokenReceiver.getPlaintextString()).getString("njwt");
+        encryptedIdTokenReceiver.setCompactSerialization(encryptedIdToken);
+        String idToken = new JsonPath(encryptedIdTokenReceiver.getPlaintextString()).getString("njwt");
 
         logger.debug("access_token: {}", accessToken);
         logger.debug("id_token: {}", idToken);
@@ -323,17 +331,25 @@ public class OwnerSignInSample {
 
         HttpsJwks httpsJkws = new HttpsJwks(openidConfiguration.getJwtClaims().getClaimValueAsString("jwks_uri"));
         HttpsJwksVerificationKeyResolver httpsJwksKeyResolver = new HttpsJwksVerificationKeyResolver(httpsJkws);
-        JwtConsumer jwtConsumer = new JwtConsumerBuilder()
+        JwtConsumer jwtAccessConsumer = new JwtConsumerBuilder()
                 .setVerificationKeyResolver(httpsJwksKeyResolver)
-                .setExpectedAudience(REDIRECT_URI)
+                .setExpectedAudience("https://fhir-directory-test.vzd.ti-dienste.de/")
                 .setExpectedIssuer(IDP_URL)
                 .build();
 
-        JwtClaims accessTokenClaims = jwtConsumer.processToClaims(accessToken);
-        JwtClaims idTokenClaims = jwtConsumer.processToClaims(idToken);
+        JwtClaims accessTokenClaims = jwtAccessConsumer.processToClaims(accessToken);
 
-        logger.debug(new JsonPath(accessTokenClaims.toJson()).prettify());
-        logger.debug(new JsonPath(idTokenClaims.toJson()).prettify());
+        JwtConsumer jwtIdConsumer = new JwtConsumerBuilder()
+                .setVerificationKeyResolver(httpsJwksKeyResolver)
+                .setExpectedAudience(CLIENT_ID)
+                .setExpectedIssuer(IDP_URL)
+                .build();
+
+        //JwtClaims accessTokenClaims = jwtConsumer.processToClaims(accessToken);
+        JwtClaims idTokenClaims = jwtIdConsumer.processToClaims(idToken);
+
+        logger.debug("ACCESS_TOKEN: "+new JsonPath(accessTokenClaims.toJson()).prettify());
+        logger.debug("ID_TOKEN: "+new JsonPath(idTokenClaims.toJson()).prettify());
 
     }
 

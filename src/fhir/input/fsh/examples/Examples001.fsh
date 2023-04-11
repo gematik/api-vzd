@@ -13,7 +13,6 @@ Instance: PractitionerExampleDentist
 InstanceOf: PractitionerDirectory
 Usage: #example
 Description: "Example of a Practitioner (Dentist) as to be found in gematik FHIR Directory"
-* active = true
 * id = "TIPractitionerExampleDentist"
 * identifier[TelematikID].value = "2-2.58.00000040"
 * qualification[+].code = PractitionerProfessionOID#1.2.276.0.76.4.31 "Zahnärztin/Zahnarzt"
@@ -28,7 +27,6 @@ Instance: PractitionerRoleExample
 InstanceOf: PractitionerRoleDirectory
 Usage: #example
 Description: "Example of an PractitionerRole as to be found in gematik FHIR Directory"
-* active = true
 * practitioner = Reference(PractitionerExampleDentist)
 * location[+] = Reference(LocationExample)
 * endpoint[+] = Reference(EndpointExample)
@@ -38,9 +36,7 @@ Instance: OrganizationExample
 InstanceOf: OrganizationDirectory
 Usage: #example
 Description: "Example of an Organization as to be found in gematik FHIR Directory"
-* active = true
-* identifier[+].system = $IdentifierTelematikID
-* identifier[=].value = "2-2.58.00000040"
+* identifier[TelematikID].value = "2-2.58.00000040"
 * type = https://gematik.de/fhir/directory/CodeSystem/OrganizationProfessionOID#1.2.276.0.76.4.51 "Zahnarztpraxis"
 * name = "Zahnarztpraxis Dr. Mustermann"
 * active = true
@@ -54,7 +50,6 @@ Instance: LocationExample
 InstanceOf: LocationDirectory
 Usage: #example
 Description: "Example of a Location as to be found in gematik FHIR Directory"
-* status = #active "Active"
 * name[+] = "Praxis am Rathaus"
 * description[+] = "Praxis für Allgemeinmedizin"
 * address.text = "Hauptstraße 1, 10117 Berlin"
@@ -76,10 +71,9 @@ Instance: HealthcareServiceExample
 InstanceOf: HealthcareServiceDirectory
 Usage: #example
 Description: "Example of an HealthcareService as to be found in gematik FHIR Directory"
-* active = true
 * providedBy = Reference(OrganizationExample)
-// müssen wir schauen wie und wo Orga-Typ kodiert wird. Hier wird zum resten mal SNOMED vorgeschlagen.
-* specialty = $ÄrztlicheFachrichtungen##MZKH "Zahnmedizin"
+* specialty[+] = $ÄrztlicheFachrichtungen#MZKH "Zahnmedizin"
+* specialty[+] = $ÄrztlicheFachrichtungen#ORAL "Oralchirurgie"
 * location[+] = Reference(LocationExample)
 * name = "Zahnmedizin"
 * telecom[+].system = $ContactPointSystem#phone "Phone"

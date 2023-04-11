@@ -18,7 +18,7 @@ def request_to_curl(
 
     if request.body is not None and request.headers.get("Content-Type", "").startswith("application/json"):
         body = loads(request.body.decode("utf-8"))
-        body = body | hide_body_secrets
+        body.update(hide_body_secrets)
         lines.append(f"-d @- << EOF\n{dumps(body, indent=2)}\nEOF")
     elif request.body is not None:
         lines.append(f"-d @- << EOF\n{request.body}\nEOF")
