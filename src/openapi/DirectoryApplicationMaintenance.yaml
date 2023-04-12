@@ -494,16 +494,7 @@ paths:
       tags:
       - Application Data Administration
       summary: Fachdateneintrag erzeugen
-      description: |
-       Erzeugt einen neuen Fachdateneintrag \
-        Nutzungshinweise
-         - Attribut FAD1.komLeData kann durch existierende Anwendungen noch genutzt werden, 
-           wird jedoch durch FAD1.kimData abgelöst. 
-           Neue Implementierungen sollen nur noch FAD1.kimData nutzen.
-         - Wenn FAD1.kimData angegeben wird, darf FAD1.komLeData nicht genutzt werden.
-         - Wenn FAD1.kimData angegeben wird, aktualisiert der VZD auch FAD1.komLeData (Attribute mail und version).
-         - Wenn FAD1.komLeData angegeben wird, aktualisiert der VZD auch FAD1.kimData (Attribute mail und version). 
-           Damit wird Attribut appFlags (Anwendungskennzeichen) auf einen leeren Wert zurückgesetzt. 
+      description: Erzeugt einen neuen Fachdateneintrag 
       operationId: add_Directory_FA-Attributes
       parameters:
        - name: telematikID
@@ -551,13 +542,6 @@ paths:
                     "attributeName": "mail",
                     "attributeError": "Inkonsistenz zwischen FAD1.mail und FAD1.komLeData.mail"
                    }
-            - FAD1.komLeData & FAD1.kimData dürfen nicht gleichzeitig genutzt werden
-              Ein Response mit HTTP Status Kode 400 und folgenden Werten im Body wird zurück gegeben
-              ```
-                 {
-                    "attributeName": "kimData",
-                    "attributeError": "FAD1.komLeData & FAD1.kimData dürfen nicht gleichzeitig genutzt werden"
-                   }  
           content: 
             application/json:
              schema:
@@ -646,16 +630,7 @@ paths:
       tags:
       - Application Data Administration
       summary: Fachdateneintrag ändern
-      description: |
-        Ändert den adressierten Fachdateneintrag. \
-        Nutzungshinweise
-         - Attribut FAD1.komLeData kann durch existierende Anwendungen noch genutzt werden, 
-           wird jedoch durch FAD1.kimData abgelöst. 
-           Neue Implementierungen sollen nur noch FAD1.kimData nutzen.
-         - Wenn FAD1.kimData angegeben wird, darf FAD1.komLeData nicht genutzt werden.
-         - Wenn FAD1.kimData angegeben wird, aktualisiert der VZD auch FAD1.komLeData (Attribute mail und version).
-         - Wenn FAD1.komLeData angegeben wird, aktualisiert der VZD auch FAD1.kimData (Attribute mail und version). 
-           Damit wird Attribut appFlags (Anwendungskennzeichen) auf einen leeren Wert zurückgesetzt. 
+      description: Ändert den adressierten Fachdateneintrag.
       operationId: modify_Directory_FA-Attributes
       parameters:
       - name: telematikID
@@ -710,13 +685,6 @@ paths:
                     "attributeName": "mail",
                     "attributeError": "Inkonsistenz zwischen FAD1.mail und FAD1.komLeData.mail"
                    }
-            - FAD1.komLeData & FAD1.kimData dürfen nicht gleichzeitig genutzt werden
-              Ein Response mit HTTP Status Kode 400 und folgenden Werten im Body wird zurück gegeben
-              ```
-                 {
-                    "attributeName": "kimData",
-                    "attributeError": "FAD1.komLeData & FAD1.kimData dürfen nicht gleichzeitig genutzt werden"
-                   }                       
           content: 
             application/json:
              schema:
@@ -1040,25 +1008,7 @@ components:
                 description: 'E-Mail-Adresse'
               version:
                 type: string
-                example: 1.5
-                description: 'Die höchste Version der KIM Clientmodule für diese KIM-Mail-Adresse'
-            description: |
-              Liste von KIM-Adressen mit der zugehörigen KIM-Version. 
-              Für jede Mail Adresse aus dem `mail` Attribut darf es nur einen Element in der Liste `komLeData` existieren. 
-              Wenn eine Mail Adresse gelöscht wird, muss auch ihr `komLeData`-Element gelöscht werden.
-              Geschrieben wird immer die gesamte Liste. 
-              Für Änderungen muss erst der aktuelle Eintrag gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
-        kimData:
-          type: array
-          items:
-            type: object
-            properties:
-              mail:
-                type: string
-                description: 'E-Mail-Adresse'
-              version:
-                type: string
-                example: 1.5
+                example: 1.5+
                 description: 'Die höchste Version der KIM Clientmodule für diese KIM-Mail-Adresse'
               appFlags:
                 type: array
@@ -1070,12 +1020,20 @@ components:
                   description: 'Anwendungskennzeichen, welche diese KIM-Mail-Adresse verarbeiten kann'
             description: |
               Liste von KIM-Adressen mit der zugehörigen KIM-Version und Anwendungskennzeichen. 
-              Für jede Mail Adresse darf nur einen Element in der Liste `kimData` existieren. 
+              Für jede Mail Adresse darf nur einen Element in der Liste `komLeData` existieren. 
               Geschrieben wird immer die gesamte Liste. 
               Für Änderungen muss erst der aktuelle Eintrag gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
-              Die Datenstruktur kimData wird in LDAP in einem String Attribut abgelegt:
-                 mail,version,appFlag1|appFlag2|appFlag3
-                Beispiel: mz_smcb_za@dom2.kim.telematik-test,1.5+,DALE-UV;Einsendung;V1.0|eEB;V1.0
+              Die Datenstruktur komLeData wird in LDAP in folgenden Attributen als String abgelegt:
+                - komLeData: In diesem Attribut werden aus Kompatibilitätsgründen weiterhin die Attribute "mail" und "version" abgelegt. 
+                  Format des LDAP Attributes:  mail,version
+                  Beispiele der LDAP Darstellung:
+                     komLeData: 1.5+,mc_smcb_za@dom1.komle.telematik-test 
+                     komLeData: 1.0,mz_smcb_za@dom2.kim.telematik-test
+                - kimData: In diesem Attribut werden die Attribute "mail", "version" und "appFlags" abgelegt. 
+                  Format des LDAP Attributes:  mail,version,appFlag1|appFlag2|appFlag3
+                  Beispiele der LDAP Darstellung:
+                     kimData: mc_smcb_za@dom1.komle.telematik-test,1.5+,eEB;V1.0 
+                     kimData: mz_smcb_za@dom2.kim.telematik-test,1.0,DALE-UV;Einsendung;V1.0|eEB;V1.0
 
 
     distinguishedName:
