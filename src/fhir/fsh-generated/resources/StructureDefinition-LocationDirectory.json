@@ -1,6 +1,16 @@
 {
   "resourceType": "StructureDefinition",
   "id": "LocationDirectory",
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-category",
+      "valueString": "Base.Entities"
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-security-category",
+      "valueCode": "business"
+    }
+  ],
   "url": "https://gematik.de/fhir/directory/StructureDefinition/LocationDirectory",
   "version": "0.10.1",
   "name": "LocationDirectory",

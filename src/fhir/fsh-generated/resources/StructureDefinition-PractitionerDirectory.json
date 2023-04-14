@@ -1,6 +1,16 @@
 {
   "resourceType": "StructureDefinition",
   "id": "PractitionerDirectory",
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-category",
+      "valueString": "Base.Individuals"
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-security-category",
+      "valueCode": "individual"
+    }
+  ],
   "url": "https://gematik.de/fhir/directory/StructureDefinition/PractitionerDirectory",
   "version": "0.10.1",
   "name": "PractitionerDirectory",
