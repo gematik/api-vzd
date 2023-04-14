@@ -4,8 +4,8 @@
   "meta": {
     "tag": [
       {
-        "code": "owner",
-        "system": "https://gematik.de/fhir/directory/CodeSystem/Origin"
+        "system": "https://gematik.de/fhir/directory/CodeSystem/Origin",
+        "code": "owner"
       }
     ],
     "profile": [
