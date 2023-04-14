@@ -5,6 +5,12 @@ Description: """Defines the data structure for medical, regulatory and technical
 organisations specific for german Healthcare and Telematics Infrastructure.
 """
 * insert Meta
+* meta.tag 1.. MS
+  * ^slicing.discriminator.type = #value
+  * ^slicing.discriminator.path = "system"
+  * ^slicing.rules = #open
+* meta.tag contains OriginSlice 1..1 MS
+* meta.tag[OriginSlice] from OriginVS 
 * id 0..1 MS
 * name 1..1 MS
 * identifier 1..* MS

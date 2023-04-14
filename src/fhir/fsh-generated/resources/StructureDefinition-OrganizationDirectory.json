@@ -12,7 +12,7 @@
     }
   ],
   "url": "https://gematik.de/fhir/directory/StructureDefinition/OrganizationDirectory",
-  "version": "0.9.2",
+  "version": "0.10.0",
   "name": "OrganizationDirectory",
   "title": "Organization in gematik Directory",
   "status": "active",
@@ -52,6 +52,33 @@
         "id": "Organization.id",
         "path": "Organization.id",
         "mustSupport": true
+      },
+      {
+        "id": "Organization.meta.tag",
+        "path": "Organization.meta.tag",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "value",
+              "path": "system"
+            }
+          ],
+          "rules": "open"
+        },
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.meta.tag:OriginSlice",
+        "path": "Organization.meta.tag",
+        "sliceName": "OriginSlice",
+        "min": 1,
+        "max": "1",
+        "mustSupport": true,
+        "binding": {
+          "strength": "required",
+          "valueSet": "https://gematik.de/fhir/directory/ValueSet/OriginVS"
+        }
       },
       {
         "id": "Organization.identifier",

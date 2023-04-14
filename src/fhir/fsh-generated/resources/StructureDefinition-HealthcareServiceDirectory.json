@@ -12,7 +12,7 @@
     }
   ],
   "url": "https://gematik.de/fhir/directory/StructureDefinition/HealthcareServiceDirectory",
-  "version": "0.9.2",
+  "version": "0.10.0",
   "name": "HealthcareServiceDirectory",
   "title": "HealthcareService in gematik Directory",
   "status": "active",
@@ -42,6 +42,33 @@
         "id": "HealthcareService.id",
         "path": "HealthcareService.id",
         "mustSupport": true
+      },
+      {
+        "id": "HealthcareService.meta.tag",
+        "path": "HealthcareService.meta.tag",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "value",
+              "path": "system"
+            }
+          ],
+          "rules": "open"
+        },
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "HealthcareService.meta.tag:OriginSlice",
+        "path": "HealthcareService.meta.tag",
+        "sliceName": "OriginSlice",
+        "min": 1,
+        "max": "1",
+        "mustSupport": true,
+        "binding": {
+          "strength": "required",
+          "valueSet": "https://gematik.de/fhir/directory/ValueSet/OriginVS"
+        }
       },
       {
         "id": "HealthcareService.providedBy",
