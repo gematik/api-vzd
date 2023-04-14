@@ -11,6 +11,7 @@ info:
   # Änderungen in Version 1.3.0 
   #  - FAD1.komLeData.appFlags (Anwendungskennzeichen) ergänzt
   #    und in Operationen add_Directory_FA-Attributes & modify_Directory_FA-Attributes beschrieben
+  #  - Operation read_Directory_Entry um Suchparameter für Fachdaten erweitert
   # 
   # Änderungen in Version 1.2.4
   #  - Attribut entryType aus Schema baseDirectoryEntry - aus Kompatibilitätsgründen zu 
@@ -139,6 +140,7 @@ paths:
        
         Für die Leseoperationen read_Directory_Entry read_Directory_Entry_for_Sync der Schnittstellen I_Directory_Administration und I_Directory_Application_Maintenanc werden die folgenden Filtermöglichkeiten unterstützt: 
           - Suche mit Wildcard "*" in den Parametern
+          
                   - givenName
                   - sn
                   - cn
@@ -156,7 +158,9 @@ paths:
                   - domainID
                   - holder
                   - professionOID
+                  - mail
           - Suche nach Vorhandensein oder leerem Inhalt eines Attributs des VZD Datensatzes mit dem Kode \00 in den Parametern
+          
                   - givenName
                   - sn
                   - cn
@@ -175,7 +179,7 @@ paths:
                   - professionOID
                   - changeDateTimeFrom
                   - changeDateTimeTo
-
+                  - mail
             Diese Suche findet sowohl Datensätze mit nicht vorhandenem Attribut wie auch vorhandenem aber leerem Attribut.
             Der Suchparameter darf nur den Kode \00 enthalten, keine weiteren Zeichen.
             Alle Filterparameter einer Leseoperationen werden mit einem UND (&) verknüpft.      
@@ -348,6 +352,38 @@ paths:
           Erlaubt die Suche mit Hilfe des Attributs baseDirectoryEntry.meta
           
           Selektiert alle Datensätze, deren Attribut meta den angegebenen String in einem Wert des arry's enthält.
+        schema:
+          type: string  
+      - name: mail
+        in: query
+        description: |
+          Erlaubt die Suche mit Hilfe des Attributs FAD1.mail
+          
+          Selektiert alle Datensätze, deren Attribut FAD1.mail den angegebenen String in einem Wert des arry's enthält.
+        schema:
+          type: string  
+      - name: komLeData-mail
+        in: query
+        description: |
+          Erlaubt die Suche mit Hilfe des Attributs FAD1.komLeData.mail
+          
+          Selektiert alle Datensätze, deren Attribut FAD1.komLeData.mail den angegebenen String in einem Wert des arry's enthält.
+        schema:
+          type: string  
+      - name: komLeData-version
+        in: query
+        description: |
+          Erlaubt die Suche mit Hilfe des Attributs FAD1.komLeData.version
+          
+          Selektiert alle Datensätze, deren Attribut FAD1.komLeData.version den angegebenen String in einem Wert des arry's enthält.
+        schema:
+          type: string  
+      - name: komLeData-appFlags
+        in: query
+        description: |
+          Erlaubt die Suche mit Hilfe des Attributs FAD1.komLeData.version
+          
+          Selektiert alle Datensätze, deren Attribut FAD1.komLeData.version den angegebenen String in einem Wert des arry's enthält.
         schema:
           type: string  
           
