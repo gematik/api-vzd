@@ -87,7 +87,7 @@ The login operation depends from the selected authentication methods which can b
 
 [source]
 ----
-curl -X POST "[Matrix homeserver url]/_matrix/client/r0/login" \
+curl -X POST "[Matrix homeserver url]/_matrix/client/v3/login" \
     -H "Content-Type: application/json" \
     -d @- << EOF
 {
@@ -108,6 +108,16 @@ This operation returns a matrix access_token. For example:
   "device_id": "ABCDEFGHIJ"
 }
 ----
+
+.Search-Acccesstoken Flow
+[%collapsible%open]
+====
+++++
+<p align="center">
+  <img width="55%" src=../images/diagrams/SequenceDiagram.FHIR-Directory.search.auth.svg>
+</p>
+++++
+====
 
 *Request Matrix OpenID Token*
 [source]

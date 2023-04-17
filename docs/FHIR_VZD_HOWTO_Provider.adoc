@@ -64,8 +64,8 @@ curl -X GET \
 This operation returns generell API information.
 
 .Response Content
-====
 [source]
+----
 {
   "title": "FederationList",
   "description": "REST Schnittstelle zur Abfrage der Föderationsliste.",
@@ -81,7 +81,7 @@ This operation returns generell API information.
   },
   "version": "1.2.0"
 }
-====
+----
 
 === Query FederationList
 [source]
