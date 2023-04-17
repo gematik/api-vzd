@@ -1,12 +1,12 @@
 {
   "resourceType": "CodeSystem",
-  "status": "draft",
+  "status": "active",
   "content": "complete",
   "name": "Region",
   "id": "Region",
   "title": "Codes for regions in german healthcare system.",
   "description": "Additionally to german Bundeslander there are 2 sub-provinces \n`Nordrhein` and `Westfalen-Lippe`.",
-  "version": "0.8.0-beta6",
+  "version": "0.9.2",
   "url": "https://gematik.de/fhir/directory/CodeSystem/Region",
   "concept": [
     {

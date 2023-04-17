@@ -5,7 +5,9 @@
 .2+|givenName |HBA |Bezeichner: Vorname, wird vom VZD aus dem Zertifikat übernommen. |Practitioner |         name.given[0] | 
 |SMC-B |wird nicht verwendet |- | - | 
 
-.2+|sn |HBA |Bezeichner: Name, wird vom VZD aus dem Zertifikat übernommen |Practitioner | name.family | 
+.2+|sn |HBA |Bezeichner: Name, wird vom VZD aus dem Zertifikat übernommen.
+Bei mehreren Zertifikaten pro Basiseintrag "gewinnt" das zuletzt importierte Zertifikat bzw. dessen sn (theoretisch können in mehreren Zertifikaten verschiedene sn enthalten sein)
+|Practitioner | name.family | 
 |SMC-B |Wird vom VZD als Kopie des Attributs displayName übernommen. |- | (wird nicht gemapped) | 
 
 .2+|cn |HBA |Eintrag: Bezeichner: Nachname, Vorname | - | (wird nicht gemapped) .2+| 
@@ -13,7 +15,7 @@
 
 .2+|displayName |HBA |Bezeichner: Anzeigename, Name nach dem der Eintrag von Nutzern gesucht wird und unter dem gefundene Einträge angezeigt werden. Konvention für HBA Einträge: Name, Vorname | Practitioner | name.text | TI-Practitioner:
 family und given werden durch givenName und sn gesetzt: https://www.hl7.org/fhir/datatypes.html#HumanName
-|SMC-B |Bezeichner: Anzeigename, Name nach dem der Eintrag von Nutzern gesucht wird und unter dem gefundene Einträge angezeigt werden. |TIOrganization | name | 
+|SMC-B |Bezeichner: Anzeigename, Name nach dem der Eintrag von Nutzern gesucht wird und unter dem gefundene Einträge angezeigt werden. |Organization | name | 
 
 .2+|streetAddress,
 postalCode,
@@ -40,24 +42,26 @@ address.country = countryCode
 https://simplifier.net/basisprofil-de-r4/addressdebasis
 
 Wird wie definiert umgesetzt.
-|SMC-B |TIOrganization  
+|SMC-B |Organization  
 
 .2+|title |HBA |Bezeichner: Titel | Practitioner | name.prefix |Leer oder Titel nur mit "-" werden nicht übernommen. 
 |SMC-B |nicht verwendet |- | (wird nicht gemapped) |
 
 .2+|organization |HBA |Bezeichner: Name der Organisation oder Name der Betriebsstätte | *offen* | *offen* |
-|SMC-B |Alternativer Name nach dem der Eintrag von Nutzern gesucht wird und unter dem gefundene Einträge angezeigt werden |TIOrganization | alias |
+|SMC-B |Alternativer Name nach dem der Eintrag von Nutzern gesucht wird und unter dem gefundene Einträge angezeigt werden |Organization | alias |
 
 .2+|otherName |HBA .2+|Bezeichner: Anderer Name Veraltet: Wird für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen nicht benötigt (siehe displayName und organization) | - | - .2+| Veraltet wird nicht gemapped.
 |SMC-B |- |-  
 
-.2+|specialization Format
+.2+|specialization +
+ +
+Format
 
 urn:psc:<OID Codesystem:Code> |HBA |Bezeichner: Fachgebiet
 Kann mehrfach vorkommen (1..100).
 
 Für Einträge der Leistungserbringer (HBA-Eintrag)
-Der Wertebereich entspricht den in hl7 definierten Werten ( https://wiki.hl7.de/index.php?title=IG:Value_Sets_f%C3%BCr_XDS# DocumentEntry.authorSpecialty). urn:as:<OID Codesystem:Code> Beispiel für FA Allgemeinmedizin: urn:as:1.2.276.0.76.5.114:010 | TIPractitioner | qualification.code.coding.system = Codesystem
+Der Wertebereich entspricht den in hl7 definierten Werten ( https://wiki.hl7.de/index.php?title=IG:Value_Sets_f%C3%BCr_XDS# DocumentEntry.authorSpecialty). urn:as:<OID Codesystem:Code> Beispiel für FA Allgemeinmedizin: urn:as:1.2.276.0.76.5.114:010 | Practitioner | qualification.code.coding.system = Codesystem
 qualification.code.coding.code = Code
 qualification.code.coding.display = <added by FHIR-Proxy> 
 | specialization enthält die medizinische Fachrichtung (Allgemein, Augen, Kinder, ...) 
@@ -71,21 +75,20 @@ Codesystem ist ensprechend:  urn:oid:1.2.276.0.76.5.114
 Kann mehrfach vorkommen (1..100).
 
 Für Einträge der Leistungserbringerorganisationen (SMC-B Eintrag) Der Wertebereich entspricht den in hl7 definierten und für ePA festgelegten Werten ( https://wiki.hl7.de/index.php?title=IG:Value_Sets_f%C3%BCr_XDS# DocumentEntry.practiceSettingCode). 
-| TIOrganization | type.coding.system = Codesystem
+| Organization | type.coding.system = Codesystem
 specialty.coding.code = Code
 specialty.coding.display = <added by FHIR-Proxy> |
-0.6.0 ValueSets / Code Systems definiert:
-https://simplifier.net/vzd-fhir-directory/tiorganizationtypevs
-https://simplifier.net/vzd-fhir-directory/tipractitionerrolevs
+ValueSets / Code Systems definiert:
+https://simplifier.net/vzd-fhir-directory
 
-.2+|domainID |HBA |- | - | - |DomainID wird bei Personen nicht benötigt (wird also nicht berücksichtigt).
+.2+|domainID |HBA | - | - | - | -
 |SMC-B |Bezeichner: domänenspezifisches Kennzeichen des Eintrags. kann mehrfach vorkommen (0..100)
-| TIOrganization | identifier|
+| Organization | identifier|
 Es wird ein "genereller" Identifier Type für diese domainID verwendet. 
 Annahme: Identifier.type = domainID
 
 |holder |HBA und SMC-B |Legt fest, wer Änderungen an den Basisdaten des Eintrags vornehmen darf. Hat keinen Einfluss auf Fachdaten und Zertifikatsdaten. 
-| - | - |Wird aktuelle nicht synchronisiert, da dieses nicht für die TIM-Umsetzung gebraucht wird.
+| jeweilige Resource | Wird in Meta-Info (Bereich Security) abgelegt | -
 
 |maxKOMLEadr |HBA und SMC-B |Maximale Anzahl von mail Adressen in den KOM-LE-Fachdaten. Falls kein Wert eingetragen wurde, können beliebig viele mail Adressen in den KOM-LE Fachdaten eingetragen werden. Falls ein Wert eingetragen wurde, können maximal so viele mail Adressen in den KOM-LE Fachdaten eingetragen werden.
 | - | - |Wird aktuelle nicht synchronisiert, da dieses nicht für die TIM-Umsetzung gebraucht wird und in FHIR anderes geregelt werden kann.
@@ -108,34 +111,33 @@ Wird für EPA perspektivisch genutzt. Aus diesem Grund wird aktuelle hier keine 
 
 .2+|telematikID |HBA .2+|Bezeichner: TelematikID Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen. Ist in den Basisdaten und in den Zertifikatsdaten enthalten. 
 | Practitioner  | identifier.value = telematikID |
-|SMC-B | TIOrganization | identifier.value = telematikID |
+|SMC-B | Organization | identifier.value = telematikID |
 
 .2+|professionOID |HBA .2+|
-| Practitioner  | qualification.code | ValueSet: https://simplifier.net/vzd-fhir-directory/tiorganizationtypevs
-|SMC-B | TIOrganization | type.coding.system = https://simplifier.net/vzd-fhir-directory/tiinstitutiontypeoidcs
+Wird aus dem Zertifikat übernommen, 
+kann in LDAP (certificate, vzd_entry) 0..n mal vorkommen (im vzd_entry Gesamtmenge aller in allen Zertifikaten enthaltenen OIDs).
+Verhalten beim Löschen des letzten Zertifikats zu einem Basiseintrag: eine oder mehrere professionOIDs werden aus vzd_entry gelöscht.
+| Practitioner  | qualification.code | ValueSet: https://simplifier.net/vzd-fhir-directory/practitionerqualificationvs
+|SMC-B | Organization | type.coding.system = https://simplifier.net/vzd-fhir-directory/organizationprofessionoid
 type.coding.code = professionOID
-type.coding.display = display aus https://simplifier.net/vzd-fhir-directory/tiorganizationtypevs
-| ValueSet: https://simplifier.net/vzd-fhir-directory/tipractitionerrolevs
-
+type.coding.display = display aus https://simplifier.net/vzd-fhir-directory/organizationtypevs
+| 
 |usage |HBA und SMC-B | 
 | - | - |
 
 |description |HBA und SMC-B | 
 | - | - |
 
-|mail |HBA und SMC-B | 
-| - | - | KIM Informationen werden als Endpoint kodiert, s.
+|mail |HBA und SMC-B | Wird im aktuellen FHIR VZD Release nicht synchronisiert
+| Endpoint | address | KIM Informationen werden als Endpoint kodiert, s.
 https://simplifier.net/vzd-fhir-directory/endpointdirectory
 
-KIM-Daten werden aktuell nicht mit übertragen, da nur TIM-UserCase betrachtet wird.
 
-|KOM-LE-Version |HBA und SMC-B | 
-| - | - | KIM Informationen werden als Endpoint kodiert, s.
+|KOM-LE-Version |HBA und SMC-B | Wird im aktuellen FHIR VZD Release nicht synchronisiert
+| Endpoint | connectionType | KIM Informationen werden als Endpoint kodiert, s.
 https://simplifier.net/vzd-fhir-directory/endpointdirectory
-
-KIM-Daten werden aktuell nicht mit übertragen, da nur TIM-UserCase betrachtet wird.
 
 |changeDateTime |HBA und SMC-B | 
-| - | - | wird über FHIR Bordmittel realisiert
+| jeweilige Resource | Meta | wird in die FHIR Meta Daten übernommen
 
 |============================

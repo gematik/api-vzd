@@ -6,8 +6,12 @@ info:
    # REST Schnittstelle zur Pflege der Fachanwendungsdaten der Verzeichniseinträge
      Über diese Schnittstelle können Fachanwendungsdaten der Verzeichniseinträge erzeugt, aktualisiert und gelöscht werden. 
 
-  version: 1.2.3
+  version: 1.2.4
   
+  # Änderungen in Version 1.2.4
+  #  - Attribut entryType aus Schema baseDirectoryEntry - aus Kompatibilitätsgründen zu 
+  #    bisherigen Schnittstellenversionen - auf Datentyp "array" geändert
+  # 
   # Änderungen in Version 1.2.3
   #  - Attribut usage aus Schema userCertificate und Operationen entfernt
   #    (wurde nicht mehr genutzt)
@@ -1176,6 +1180,10 @@ components:
             description: Wird vom VZD beim Hinzufügen eines Zertifikatseintrags (userCertificate) ebenfalls hier in den Basiseintrag eingefügt, wenn der Wert von professionOID noch nicht hier in den Basisdaten vorhanden ist.
               Beim Löschen eines Zertifikatseintrags werden die professionOID's dieses Zertifikatseintrags auch in den Basisdaten entfernt, falls sie nicht in anderen (noch gültigen und verlinkten) Zertifikatseinträgen vorhanden sind.
         entryType:
+          maxItems: 1
+          minItems: 0
+          type: array
+          items:
             type: string
             description: |
              - Wird vom VZD beim Hinzufügen eines Zertifikatseintrags (userCertificate) ebenfalls hier in den Basiseintrag eingefügt, wenn der Wert von entryType noch nicht hier in den Basisdaten vorhanden ist.

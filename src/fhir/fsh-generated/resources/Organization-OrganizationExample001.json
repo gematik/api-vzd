@@ -12,6 +12,7 @@
       "value": "9-2.58.00000040"
     }
   ],
+  "active": true,
   "type": [
     {
       "coding": [
@@ -23,7 +24,6 @@
     }
   ],
   "name": "gematik GmbH",
-  "active": true,
   "alias": [
     "gematik"
   ],

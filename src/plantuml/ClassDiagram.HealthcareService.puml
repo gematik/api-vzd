@@ -34,7 +34,7 @@ class Organization {
   {field} active (1..1, MS, LDAP)
   {field} type (1..1, MS, LDAP)
   {field} name (1..1, MS, LDAP)
-  {field} alias (0.., MS)
+  {field} alias (0.., MS, LDAP)
   {field} telecom (0.., MS)
   {field} contact (0.., MS)
 }

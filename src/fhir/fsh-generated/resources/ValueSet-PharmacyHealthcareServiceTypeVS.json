@@ -1,6 +1,6 @@
 {
   "resourceType": "ValueSet",
-  "status": "draft",
+  "status": "active",
   "name": "PharmacyHealthcareServiceTypeVS",
   "id": "PharmacyHealthcareServiceTypeVS",
   "title": "ValueSet of HealthcareService types",

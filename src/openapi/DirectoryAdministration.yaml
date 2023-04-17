@@ -3,7 +3,12 @@ info:
   title: I_Directory_Administration
   description: REST Schnittstelle zur Pflege der Verzeichniseinträge.
               Über diese Schnittstelle können Verzeichniseinträge inklusive Zertifikaten erzeugt, aktualisiert und gelöscht werden. Die Administration von Fachdaten erfolgt über Schnittstelle I_Directory_Application_Maintenance und wird durch die Fachanwendungen durchgeführt. Lesender Zugriff auf die Fachdaten ist mit Operation getDirectoryEntries in vorliegender Schnittstelle möglich.
-  version: 1.9.4
+  version: 1.9.5
+
+  # Änderungen in Version 1.9.5
+  #  - Attribut entryType aus Schema baseDirectoryEntry - aus Kompatibilitätsgründen zu 
+  #    bisherigen Schnittstellenversionen - auf Datentyp "array" geändert
+  # 
   # Änderungen in Version 1.9.4
   #  - Attribute active und meta in Operationen read_Directory_Entry_for_Sync und read_Directory_Entry_for_Sync_paging ergänzt
   #  - Operation readLog: Erlaubte Parameter für Suchanfragen in Kommentaren erläutert
@@ -2055,6 +2060,10 @@ components:
             description: Wird vom VZD beim Hinzufügen eines Zertifikatseintrags (userCertificate) ebenfalls hier in den Basiseintrag eingefügt, wenn der Wert von professionOID noch nicht hier in den Basisdaten vorhanden ist.
               Beim Löschen eines Zertifikatseintrags werden die professionOID's dieses Zertifikatseintrags auch in den Basisdaten entfernt, falls sie nicht in anderen (noch gültigen und verlinkten) Zertifikatseinträgen vorhanden sind.
         entryType:
+          maxItems: 1
+          minItems: 0
+          type: array
+          items:
             type: string
             description: |
              - Wird vom VZD beim Hinzufügen eines Zertifikatseintrags (userCertificate) ebenfalls hier in den Basiseintrag eingefügt, wenn der Wert von entryType noch nicht hier in den Basisdaten vorhanden ist.

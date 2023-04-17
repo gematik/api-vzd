@@ -12,10 +12,10 @@
     }
   ],
   "url": "https://gematik.de/fhir/directory/StructureDefinition/OrganizationDirectory",
-  "version": "0.8.0-beta6",
+  "version": "0.9.2",
   "name": "OrganizationDirectory",
   "title": "Organization in gematik Directory",
-  "status": "draft",
+  "status": "active",
   "publisher": "gematik GmbH",
   "description": "Defines the data structure for medical, regulatory and technical \norganisations specific for german Healthcare and Telematics Infrastructure.",
   "fhirVersion": "4.0.1",
@@ -136,7 +136,6 @@
         "id": "Organization.type",
         "path": "Organization.type",
         "min": 1,
-        "max": "1",
         "mustSupport": true,
         "binding": {
           "strength": "required",
