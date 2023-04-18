@@ -550,12 +550,12 @@ paths:
           Selektiert alle Datensätze, deren Attribut FAD1.komLeData.version den angegebenen String in einem Wert des arry's enthält.
         schema:
           type: string  
-      - name: komLeData-appFlags
+      - name: komLeData-appTags
         in: query
         description: |
-          Erlaubt die Suche mit Hilfe des Attributs FAD1.komLeData.version
+          Erlaubt die Suche mit Hilfe des Attributs FAD1.komLeData.appTags
           
-          Selektiert alle Datensätze, deren Attribut FAD1.komLeData.version den angegebenen String in einem Wert des arry's enthält.
+          Selektiert alle Datensätze, deren Attribut FAD1.komLeData.appTags den angegebenen String in einem Wert des arry's enthält.
         schema:
           type: string  
 
@@ -1919,7 +1919,7 @@ components:
                 type: string
                 example: 1.5+
                 description: 'Die höchste Version der KIM Clientmodule für diese KIM-Mail-Adresse'
-              appFlags:
+              appTags:
                 type: array
                 items:
                   type: string
@@ -1938,8 +1938,8 @@ components:
                   Beispiele der LDAP Darstellung:
                      komLeData: 1.5+,mc_smcb_za@dom1.komle.telematik-test 
                      komLeData: 1.0,mz_smcb_za@dom2.kim.telematik-test
-                - kimData: In diesem Attribut werden die Attribute "mail", "version" und "appFlags" abgelegt. 
-                  Format des LDAP Attributes:  mail,version,appFlag1|appFlag2|appFlag3
+                - kimData: In diesem Attribut werden die Attribute "mail", "version" und "appTags" abgelegt. 
+                  Format des LDAP Attributes:  mail,version,appTag1|appFlag2|appTag3
                   Beispiele der LDAP Darstellung:
                      kimData: mc_smcb_za@dom1.komle.telematik-test,1.5+,eEB;V1.0 
                      kimData: mz_smcb_za@dom2.kim.telematik-test,1.0,DALE-UV;Einsendung;V1.0|eEB;V1.0
