@@ -9,7 +9,7 @@ info:
   version: 1.3.0
   
   # Änderungen in Version 1.3.0 
-  #  - FAD1.komLeData.appFlags (Anwendungskennzeichen) ergänzt
+  #  - FAD1.komLeData.appTags (Anwendungskennzeichen) ergänzt
   #    und in Operationen add_Directory_FA-Attributes & modify_Directory_FA-Attributes beschrieben
   #  - Operation read_Directory_Entry um Suchparameter für Fachdaten erweitert
   # 
@@ -1066,7 +1066,7 @@ components:
                      komLeData: 1.5+,mc_smcb_za@dom1.komle.telematik-test 
                      komLeData: 1.0,mz_smcb_za@dom2.kim.telematik-test
                 - kimData: In diesem Attribut werden die Attribute "mail", "version" und "appTags" abgelegt. 
-                  Format des LDAP Attributes:  mail,version,appFlag1|appTag2|appTag3
+                  Format des LDAP Attributes:  mail,version,appTag1|appTag2|appTag3
                   Beispiele der LDAP Darstellung:
                      kimData: mc_smcb_za@dom1.komle.telematik-test,1.5+,eEB;V1.0 
                      kimData: mz_smcb_za@dom2.kim.telematik-test,1.0,DALE-UV;Einsendung;V1.0|eEB;V1.0
