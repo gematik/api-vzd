@@ -2,6 +2,12 @@
   "resourceType": "PractitionerRole",
   "id": "PractitionerRoleExample",
   "meta": {
+    "tag": [
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/Origin",
+        "code": "ldap"
+      }
+    ],
     "profile": [
       "https://gematik.de/fhir/directory/StructureDefinition/PractitionerRoleDirectory"
     ]

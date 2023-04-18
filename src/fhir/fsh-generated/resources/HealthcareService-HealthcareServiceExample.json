@@ -2,6 +2,12 @@
   "resourceType": "HealthcareService",
   "id": "HealthcareServiceExample",
   "meta": {
+    "tag": [
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/Origin",
+        "code": "ldap"
+      }
+    ],
     "profile": [
       "https://gematik.de/fhir/directory/StructureDefinition/HealthcareServiceDirectory"
     ]
