@@ -24,4 +24,3 @@ Vor der Veröffentlichung auf dem Fachportal erfolgen noch Reviews. Folge dieser
 Die aktuellen Spezifikationserweiterungen und -änderungen wurden im gematik Fachportal veröffentlicht:
 https://fachportal.gematik.de/schnelleinstieg/downloadcenter/vorabveroeffentlichungen#c7532 +
 Deshalb werden sie aus diesem Dokument entfernt.
-

@@ -102,7 +102,9 @@ Neu für eGBR HBA und SMC-B |gematik
   (givenName, sn, cn, displayName, entryType) - DIR-214, DIR-236 +
 - Ergänzungen von dktig in Kap. 4.6 - DIR-339 +
 - Anpassungen in Kap. 4.14 - DIR-339 +
-- Tab_VZD_Datenbeschreibung_KZVen: Attribut domainID aktualisiert (KZBV Mail 8.12.2022)
+- Tab_VZD_Datenbeschreibung_KZVen: Attribut domainID aktualisiert (KZBV Mail 8.12.2022) +
+- eGBR Tabellen 13, 14 Attribut holder aktualisiert - DIR-412 +
+- eGBR Tabelle 14 Attribut domainID aktualisiert - DIR-412
 
 |gematik
 
@@ -2478,7 +2480,10 @@ Gibt an, ob die Daten vom Kartenherausgeber stammen. +
 Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
   +
 Wenn der Wert TRUE ist, können die Daten nicht mehr über die Schnittstelle I_Directory_Maintenance bearbeitet werden. Die Schnittstelle I_Directory_Maintenance wird von KOM-LE-Anbietern verwendet.
-|*holder* |optional |Legt fest, wer Änderungen an den Basisdaten des Eintrags vornehmen darf. Hat keinen Einfluss auf Fachdaten und Zertifikatsdaten.
+|*holder* |optional | Festlegung Änderungsrechte: +
+Wert „egbr“ und die „clientID“ des eintragenden TSP +
+ +
+Legt fest, wer Änderungen an den Basisdaten des Eintrags vornehmen darf. Hat keinen Einfluss auf Fachdaten und Zertifikatsdaten.
 |*professionOID* |obligatorisch |Bezeichner: Profession OID +
 Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und dem Mapping in ab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
 Kann mehrfach vorkommen (0..100).
@@ -2590,7 +2595,7 @@ Dieses Attribut wird durch den VZD nicht automatisch aus dem Zertifikat ermittel
 |*stateOrProvinceName * |optional |Nicht belegt.
 |*countryCode* |optional |Siehe TAB_VZD_Wertebereiche_der_Attribute
 |*organization* |optional |Nicht belegt.
-|*domainID* |optional |Nicht belegt.
+|*domainID* |obligatorisch |Bezeichner: Berufsbezeichnung im Klartext entsprechend der Tabelle Profession-OID
 |*specialization* |obligatorisch |Bezeichner: Fachgebiet +
 Kann mehrfach vorkommen (1..100). +
 Der Wertebereich entspricht den in hl7 definierten Werten**( https://wiki.hl7.de/index.php?title=IG:Value_Sets_f%C3%BCr_XDS#DocumentEntry.authorSpecialty[+++https://wiki.hl7.de/index.php?title=IG:Value_Sets_f%C3%BCr_XDS#DocumentEntry.authorSpecialty+++])** für nicht ärztliche Berufe. +
@@ -2626,7 +2631,10 @@ Gibt an, ob die Daten vom Kartenherausgeber stammen. +
 Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
   +
 Wenn der Wert TRUE ist, können die Daten nicht mehr über die Schnittstelle I_Directory_Maintenance bearbeitet werden. Die Schnittstelle I_Directory_Maintenance wird von KOM-LE-Anbietern verwendet.
-|*holder* |optional |Legt fest, wer Änderungen an den Basisdaten des Eintrags vornehmen darf. Hat keinen Einfluss auf Fachdaten und Zertifikatsdaten.
+|*holder* |optional |Festlegung Änderungsrechte: +
+Wert „egbr“ und die „clientID“ des eintragenden TSP +
+ +
+Legt fest, wer Änderungen an den Basisdaten des Eintrags vornehmen darf. Hat keinen Einfluss auf Fachdaten und Zertifikatsdaten.
 |*professionOID* |obligatorisch |Bezeichner: Profession OID +
 Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und dem Mapping in ab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
 Kann mehrfach vorkommen (0..100).
