@@ -106,6 +106,8 @@ Neu für eGBR HBA und SMC-B |gematik
 - eGBR Tabellen 13, 14 Attribut holder aktualisiert - DIR-412 +
 - eGBR Tabelle 14 Attribut domainID aktualisiert - DIR-412 +
 - Tabelle 5: Pezialisierung Pharmazieingenieur & Apothekerassistent  ergänzt - DIR-438
+- kimData in allen Tabellen eingeführt (Anwendungskennzeichen) - C_11193
+
 
 |gematik
 
@@ -532,6 +534,7 @@ Suche mit Wildcard "*" in den Parametern
 - domainID 
 - holder 
 - professionOID
+- mail
 
 Suche nach Vorhandensein ODER leerem Inhalt eines Attributs des VZD Datensatzes durch Belegung des Attributs im GET Request mit "" in den Parametern 
 
@@ -554,6 +557,7 @@ Suche nach Vorhandensein ODER leerem Inhalt eines Attributs des VZD Datensatzes 
 - maxKOMLEadr
 - changeDateTimeFrom
 - changeDateTimeTo
+- mail
 
 Diese Suche findet sowohl Datensätze mit nicht vorhandenem Attribut wie auch vorhandenem aber leerem Attribut. Der Suchparameter darf nur "" enthalten, keine weiteren Zeichen.
 
@@ -819,12 +823,15 @@ Kann mehrfach vorkommen (0..100)
 |*description* |optional |Wird derzeit nicht verwendet. +
  +
 Bezeichner: Beschreibung +
+
 Dieses Attribut ermöglicht, das Zertifikat zu beschreiben, um die Administration des VZD-Eintrags zu vereinfachen.
 |*mail* |optional |Bezeichner: E-Mail-Adresse +
 Kann mehrfach vorkommen (0..100) +
 Wird vom KOM-LE-Anbieter eingetragen.
 |*komLeData* |optional a|
 Bezeichner: komLeData +
+kann mehrfach vorkommen (0..1000) +
+ +
 Enthält die KOM-LE-Version des Clientmoduls der angegebenen "mail" Adresse im Attribut "version". Anhand dieser Version erkennt das sendende Clientmodul, welche KOM-LE-Version vom Empfänger-Clientmodul unterstützt wird und in welchem Format die Mail an diesen Empfänger versandt wird. +
 Wenn nicht angegeben, wird KOM-LE-Version 1.0 angenommen. +
 Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
@@ -833,19 +840,39 @@ Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
 - Für jede Mail-Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Datenstruktur komLeData geben. Es dürfen in komLeData keine Mail-Adressen referenziert werden, die nicht im übergeordneten "mail" Attribut enthalten sind.
 - Wenn eine Mail-Adresse gelöscht wird, muss auch ihr komLeData-Eintrag gelöscht werden. +
  Geschrieben wird immer die gesamte Liste. Für Änderungen muss erst der aktuelle Eintrag gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
-- Beispiel für den Wert eines komLeData-Eintrags in der flachen Liste (LDAP): +
+- Beispiel für den Wert eines komLeData-Eintrags in der flachen Liste (Ausgabe einer LDAP Suche): +
 [source, c]
 ----
- "komLeData": [
-        "1.0,xx-01@hersteller01.kim.telematik-test",
-        "1.0,xx-02@hersteller01.kim.telematik-test",
-        "1.0,xx-03@hersteller02.kim.telematik-test",
-        "1.0,xx-04@hersteller02.kim.telematik-test",
-        "1.0,xx-05@hersteller02.kim.telematik-test"
-        ]
+komLeData: 1.0,mc_smcb_za@dom1.komle.telematik-test
+komLeData: 1.0,mz_smcb_za@dom2.kim.telematik-test
+komLeData: 1.0,mz_smcb_za@dom1.kim.telematik-test
+komLeData: 1.0,mb_secu_sm@dom3.kim.telematik-test
+komLeData: 1.0,mb_secu_sm@dom4.kim.telematik-test
+komLeData: 1.5,ak_secu_102@dom5.kim.telematik-test
 ----
 
 Wird vom KOM-LE-Anbieter eingetragen.
+
+|*kimData* |optional a|
+Bezeichner: kimData +
+kann mehrfach vorkommen (0..1000) +
+ +
+Enthält die KOM-LE-Version des Clientmoduls der angegebenen "mail" Adresse im Attribut "version". Zusätzlich kann zur KOM-LE-Version ein "+" angegeben sein. Anhand dieser Version erkennt das sendende Clientmodul, welche KOM-LE-Version vom Empfänger-Clientmodul unterstützt wird und in welchem Format die Mail an diesen Empfänger versandt wird. Wenn ein zusätzliches "+" angegeben ist, dann können mit dieser "mail" Adresse Nachrichten größer 15MiB verarbeitet werden. Jeder Datensatz MUSS die Attribute KOM-LE-Mail-Adresse und Version enthalten (beide Attribute sind obligatorisch). +
+
+Jeder Datensatz kann zusätzlich ein oder mehrere Anwendungskennzeichen der angegebenen "mail" Adresse im Attribut "appTags" enthalten.Jeder Datensatz kann zusätzlich ein oder mehrere Anwendungskennzeichen der angegebenen "mail" Adresse im Attribut "appTags" enthalten. +
+
+Beispiel für den Wert eines kimData Eintrags in der flachen Liste (Ausgabe einer LDAP Suche): +
+[source, c]
+----
+kimData: mc_smcb_za@dom1.komle.telematik-test,1.0,eEB;V1.0 
+kimData: mz_smcb_za@dom2.kim.telematik-test,1.0,DALE-UV;Einsendung;V1.0\|eEB;V1.0 
+kimData: mz_smcb_za@dom1.kim.telematik-test,1.0 
+kimData: mb_secu_sm@dom3.kim.telematik-test,1.0 
+kimData: mb_secu_sm@dom4.kim.telematik-test,1.0 
+kimData: ak_secu_102@dom5.kim.telematik-test,1.5
+----
+
+Wird vom KOM-LE-Anbieter eingetragen. +
 
 |*active* |obligatorisch | Mit diesem Attribut im Basiseintrag kann der Client (Kartenherausgeber, TSP) die Aufnahme des VZD Eintrags in die flache Liste steuern. Wenn das Attribut beim Anlegen eines VZD Eintrags mit Zertifikat nicht angegeben wird, setzt der VZD das Attribut  active auf TRUE (Default-Wert). +
 Bei FALSE wird der Eintrag vom VZD aus der flachen Liste entfernt bzw. nicht übertragen. +
@@ -977,6 +1004,8 @@ Kann mehrfach vorkommen (0..100). +
 Wird vom KOM-LE-Anbieter eingetragen.
 |*komLeData* |optional a|
 Bezeichner: komLeData +
+kann mehrfach vorkommen (0..1000) +
+ +
 Enthält die KOM-LE-Version des Clientmoduls der angegebenen "mail" Adresse im Attribut "version". Anhand dieser Version erkennt das sendende Clientmodul, welche KOM-LE-Version vom Empfänger-Clientmodul unterstützt wird und in welchem Format die Mail an diesen Empfänger versandt wird. +
 Wenn nicht angegeben, wird KOM-LE-Version 1.0 angenommen. +
 Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
@@ -985,20 +1014,39 @@ Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
 - Für jede Mail-Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Datenstruktur komLeData geben. Es dürfen in komLeData keine Mail-Adressen referenziert werden, die nicht im übergeordneten "mail" Attribut enthalten sind.
 - Wenn eine Mail-Adresse gelöscht wird, muss auch ihr komLeData-Eintrag gelöscht werden. +
  Geschrieben wird immer die gesamte Liste. Für Änderungen muss erst der aktuelle Eintrag gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
-- Beispiel für den Wert eines komLeData-Eintrags in der flachen Liste (LDAP): +
+- Beispiel für den Wert eines komLeData-Eintrags in der flachen Liste (Ausgabe einer LDAP Suche): +
 [source, c]
 ----
- "komLeData": [
-        "1.0,xx-01@hersteller01.kim.telematik-test",
-        "1.0,xx-02@hersteller01.kim.telematik-test",
-        "1.0,xx-03@hersteller02.kim.telematik-test",
-        "1.0,xx-04@hersteller02.kim.telematik-test",
-        "1.0,xx-05@hersteller02.kim.telematik-test"
-        ]
+komLeData: 1.0,mc_smcb_za@dom1.komle.telematik-test
+komLeData: 1.0,mz_smcb_za@dom2.kim.telematik-test
+komLeData: 1.0,mz_smcb_za@dom1.kim.telematik-test
+komLeData: 1.0,mb_secu_sm@dom3.kim.telematik-test
+komLeData: 1.0,mb_secu_sm@dom4.kim.telematik-test
+komLeData: 1.5,ak_secu_102@dom5.kim.telematik-test
 ----
 
-
 Wird vom KOM-LE-Anbieter eingetragen.
+
+|*kimData* |optional a|
+Bezeichner: kimData +
+kann mehrfach vorkommen (0..1000) +
+ +
+Enthält die KOM-LE-Version des Clientmoduls der angegebenen "mail" Adresse im Attribut "version". Zusätzlich kann zur KOM-LE-Version ein "+" angegeben sein. Anhand dieser Version erkennt das sendende Clientmodul, welche KOM-LE-Version vom Empfänger-Clientmodul unterstützt wird und in welchem Format die Mail an diesen Empfänger versandt wird. Wenn ein zusätzliches "+" angegeben ist, dann können mit dieser "mail" Adresse Nachrichten größer 15MiB verarbeitet werden. Jeder Datensatz MUSS die Attribute KOM-LE-Mail-Adresse und Version enthalten (beide Attribute sind obligatorisch). +
+
+Jeder Datensatz kann zusätzlich ein oder mehrere Anwendungskennzeichen der angegebenen "mail" Adresse im Attribut "appTags" enthalten.Jeder Datensatz kann zusätzlich ein oder mehrere Anwendungskennzeichen der angegebenen "mail" Adresse im Attribut "appTags" enthalten. +
+
+Beispiel für den Wert eines kimData Eintrags in der flachen Liste (Ausgabe einer LDAP Suche): +
+[source, c]
+----
+kimData: mc_smcb_za@dom1.komle.telematik-test,1.0,eEB;V1.0 
+kimData: mz_smcb_za@dom2.kim.telematik-test,1.0,DALE-UV;Einsendung;V1.0\|eEB;V1.0 
+kimData: mz_smcb_za@dom1.kim.telematik-test,1.0 
+kimData: mb_secu_sm@dom3.kim.telematik-test,1.0 
+kimData: mb_secu_sm@dom4.kim.telematik-test,1.0 
+kimData: ak_secu_102@dom5.kim.telematik-test,1.5
+----
+
+Wird vom KOM-LE-Anbieter eingetragen. +
 
 |*active* |obligatorisch | Mit diesem Attribut im Basiseintrag kann der Client (Kartenherausgeber, TSP) die Aufnahme des VZD Eintrags in die flache Liste steuern. Wenn das Attribut beim Anlegen eines VZD Eintrags mit Zertifikat nicht angegeben wird, setzt der VZD das Attribut  active auf TRUE (Default-Wert). +
 Bei FALSE wird der Eintrag vom VZD aus der flachen Liste entfernt bzw. nicht übertragen. +
@@ -1139,29 +1187,50 @@ Wird vom KOM-LE-Anbieter eingetragen. +
 Hinweis: Diese Adressen werden auch für die Direktzuweisung (z.B. Zytostatika) durch Ärzte genutzt. 
 |*komLeData* |optional a|
 Bezeichner: komLeData +
+kann mehrfach vorkommen (0..1000) +
+ +
 Enthält die KOM-LE-Version des Clientmoduls der angegebenen "mail" Adresse im Attribut "version". Anhand dieser Version erkennt das sendende Clientmodul, welche KOM-LE-Version vom Empfänger-Clientmodul unterstützt wird und in welchem Format die Mail an diesen Empfänger versandt wird. +
 Wenn nicht angegeben, wird KOM-LE-Version 1.0 angenommen. +
 Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
-
 
 - Ein komLeData-Eintrag setzt sich zusammen aus der Mail-Adresse (Attribut "mail") und der zugehörigen KOM-LE Version (Attribut "version"). 
 - Für jede Mail-Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Datenstruktur komLeData geben. Es dürfen in komLeData keine Mail-Adressen referenziert werden, die nicht im übergeordneten "mail" Attribut enthalten sind.
 - Wenn eine Mail-Adresse gelöscht wird, muss auch ihr komLeData-Eintrag gelöscht werden. +
  Geschrieben wird immer die gesamte Liste. Für Änderungen muss erst der aktuelle Eintrag gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
-- Beispiel für den Wert eines komLeData-Eintrags in der flachen Liste (LDAP): +
+- Beispiel für den Wert eines komLeData-Eintrags in der flachen Liste (Ausgabe einer LDAP Suche): +
 [source, c]
 ----
- "komLeData": [
-        "1.0,xx-01@hersteller01.kim.telematik-test",
-        "1.0,xx-02@hersteller01.kim.telematik-test",
-        "1.0,xx-03@hersteller02.kim.telematik-test",
-        "1.0,xx-04@hersteller02.kim.telematik-test",
-        "1.0,xx-05@hersteller02.kim.telematik-test"
-        ]
+komLeData: 1.0,mc_smcb_za@dom1.komle.telematik-test
+komLeData: 1.0,mz_smcb_za@dom2.kim.telematik-test
+komLeData: 1.0,mz_smcb_za@dom1.kim.telematik-test
+komLeData: 1.0,mb_secu_sm@dom3.kim.telematik-test
+komLeData: 1.0,mb_secu_sm@dom4.kim.telematik-test
+komLeData: 1.5,ak_secu_102@dom5.kim.telematik-test
 ----
 
-
 Wird vom KOM-LE-Anbieter eingetragen.
+
+|*kimData* |optional a|
+Bezeichner: kimData +
+kann mehrfach vorkommen (0..1000) +
+ +
+Enthält die KOM-LE-Version des Clientmoduls der angegebenen "mail" Adresse im Attribut "version". Zusätzlich kann zur KOM-LE-Version ein "+" angegeben sein. Anhand dieser Version erkennt das sendende Clientmodul, welche KOM-LE-Version vom Empfänger-Clientmodul unterstützt wird und in welchem Format die Mail an diesen Empfänger versandt wird. Wenn ein zusätzliches "+" angegeben ist, dann können mit dieser "mail" Adresse Nachrichten größer 15MiB verarbeitet werden. Jeder Datensatz MUSS die Attribute KOM-LE-Mail-Adresse und Version enthalten (beide Attribute sind obligatorisch). +
+
+Jeder Datensatz kann zusätzlich ein oder mehrere Anwendungskennzeichen der angegebenen "mail" Adresse im Attribut "appTags" enthalten.Jeder Datensatz kann zusätzlich ein oder mehrere Anwendungskennzeichen der angegebenen "mail" Adresse im Attribut "appTags" enthalten. +
+
+Beispiel für den Wert eines kimData Eintrags in der flachen Liste (Ausgabe einer LDAP Suche): +
+[source, c]
+----
+kimData: mc_smcb_za@dom1.komle.telematik-test,1.0,eEB;V1.0 
+kimData: mz_smcb_za@dom2.kim.telematik-test,1.0,DALE-UV;Einsendung;V1.0\|eEB;V1.0 
+kimData: mz_smcb_za@dom1.kim.telematik-test,1.0 
+kimData: mb_secu_sm@dom3.kim.telematik-test,1.0 
+kimData: mb_secu_sm@dom4.kim.telematik-test,1.0 
+kimData: ak_secu_102@dom5.kim.telematik-test,1.5
+----
+
+Wird vom KOM-LE-Anbieter eingetragen. +
+
 |*active* |obligatorisch | Mit diesem Attribut im Basiseintrag kann der Client (Kartenherausgeber, TSP) die Aufnahme des VZD Eintrags in die flache Liste steuern. Wenn das Attribut beim Anlegen eines VZD Eintrags mit Zertifikat nicht angegeben wird, setzt der VZD das Attribut  active auf TRUE (Default-Wert). +
 Bei FALSE wird der Eintrag vom VZD aus der flachen Liste entfernt bzw. nicht übertragen. +
 Dieses Attribut ist nicht in der flachen Liste enthalten. +
@@ -1312,28 +1381,50 @@ Kann mehrfach vorkommen (0..100). +
 Wird vom KOM-LE-Anbieter eingetragen.
 |*komLeData* |optional a|
 Bezeichner: komLeData +
+kann mehrfach vorkommen (0..1000) +
+ +
 Enthält die KOM-LE-Version des Clientmoduls der angegebenen "mail" Adresse im Attribut "version". Anhand dieser Version erkennt das sendende Clientmodul, welche KOM-LE-Version vom Empfänger-Clientmodul unterstützt wird und in welchem Format die Mail an diesen Empfänger versandt wird. +
 Wenn nicht angegeben, wird KOM-LE-Version 1.0 angenommen. +
 Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
-
 
 - Ein komLeData-Eintrag setzt sich zusammen aus der Mail-Adresse (Attribut "mail") und der zugehörigen KOM-LE Version (Attribut "version"). 
 - Für jede Mail-Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Datenstruktur komLeData geben. Es dürfen in komLeData keine Mail-Adressen referenziert werden, die nicht im übergeordneten "mail" Attribut enthalten sind.
 - Wenn eine Mail-Adresse gelöscht wird, muss auch ihr komLeData-Eintrag gelöscht werden. +
  Geschrieben wird immer die gesamte Liste. Für Änderungen muss erst der aktuelle Eintrag gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
-- Beispiel für den Wert eines komLeData-Eintrags in der flachen Liste (LDAP): +
+- Beispiel für den Wert eines komLeData-Eintrags in der flachen Liste (Ausgabe einer LDAP Suche): +
 [source, c]
 ----
- "komLeData": [
-        "1.0,xx-01@hersteller01.kim.telematik-test",
-        "1.0,xx-02@hersteller01.kim.telematik-test",
-        "1.0,xx-03@hersteller02.kim.telematik-test",
-        "1.0,xx-04@hersteller02.kim.telematik-test",
-        "1.0,xx-05@hersteller02.kim.telematik-test"
-        ]
+komLeData: 1.0,mc_smcb_za@dom1.komle.telematik-test
+komLeData: 1.0,mz_smcb_za@dom2.kim.telematik-test
+komLeData: 1.0,mz_smcb_za@dom1.kim.telematik-test
+komLeData: 1.0,mb_secu_sm@dom3.kim.telematik-test
+komLeData: 1.0,mb_secu_sm@dom4.kim.telematik-test
+komLeData: 1.5,ak_secu_102@dom5.kim.telematik-test
 ----
 
 Wird vom KOM-LE-Anbieter eingetragen.
+
+|*kimData* |optional a|
+Bezeichner: kimData +
+kann mehrfach vorkommen (0..1000) +
+ +
+Enthält die KOM-LE-Version des Clientmoduls der angegebenen "mail" Adresse im Attribut "version". Zusätzlich kann zur KOM-LE-Version ein "+" angegeben sein. Anhand dieser Version erkennt das sendende Clientmodul, welche KOM-LE-Version vom Empfänger-Clientmodul unterstützt wird und in welchem Format die Mail an diesen Empfänger versandt wird. Wenn ein zusätzliches "+" angegeben ist, dann können mit dieser "mail" Adresse Nachrichten größer 15MiB verarbeitet werden. Jeder Datensatz MUSS die Attribute KOM-LE-Mail-Adresse und Version enthalten (beide Attribute sind obligatorisch). +
+
+Jeder Datensatz kann zusätzlich ein oder mehrere Anwendungskennzeichen der angegebenen "mail" Adresse im Attribut "appTags" enthalten.Jeder Datensatz kann zusätzlich ein oder mehrere Anwendungskennzeichen der angegebenen "mail" Adresse im Attribut "appTags" enthalten. +
+
+Beispiel für den Wert eines kimData Eintrags in der flachen Liste (Ausgabe einer LDAP Suche): +
+[source, c]
+----
+kimData: mc_smcb_za@dom1.komle.telematik-test,1.0,eEB;V1.0 
+kimData: mz_smcb_za@dom2.kim.telematik-test,1.0,DALE-UV;Einsendung;V1.0\|eEB;V1.0 
+kimData: mz_smcb_za@dom1.kim.telematik-test,1.0 
+kimData: mb_secu_sm@dom3.kim.telematik-test,1.0 
+kimData: mb_secu_sm@dom4.kim.telematik-test,1.0 
+kimData: ak_secu_102@dom5.kim.telematik-test,1.5
+----
+
+Wird vom KOM-LE-Anbieter eingetragen. +
+
 |*active* |obligatorisch | Mit diesem Attribut im Basiseintrag kann der Client (Kartenherausgeber, TSP) die Aufnahme des VZD Eintrags in die flache Liste steuern. Wenn das Attribut beim Anlegen eines VZD Eintrags mit Zertifikat nicht angegeben wird, setzt der VZD das Attribut  active auf TRUE (Default-Wert). +
 Bei FALSE wird der Eintrag vom VZD aus der flachen Liste entfernt bzw. nicht übertragen. +
 Dieses Attribut ist nicht in der flachen Liste enthalten. +
@@ -1462,28 +1553,50 @@ Kann mehrfach vorkommen (0..100). +
 Wird vom KOM-LE-Anbieter eingetragen.
 |*komLeData* |optional a|
 Bezeichner: komLeData +
+kann mehrfach vorkommen (0..1000) +
+ +
 Enthält die KOM-LE-Version des Clientmoduls der angegebenen "mail" Adresse im Attribut "version". Anhand dieser Version erkennt das sendende Clientmodul, welche KOM-LE-Version vom Empfänger-Clientmodul unterstützt wird und in welchem Format die Mail an diesen Empfänger versandt wird. +
 Wenn nicht angegeben, wird KOM-LE-Version 1.0 angenommen. +
 Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
-
 
 - Ein komLeData-Eintrag setzt sich zusammen aus der Mail-Adresse (Attribut "mail") und der zugehörigen KOM-LE Version (Attribut "version"). 
 - Für jede Mail-Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Datenstruktur komLeData geben. Es dürfen in komLeData keine Mail-Adressen referenziert werden, die nicht im übergeordneten "mail" Attribut enthalten sind.
 - Wenn eine Mail-Adresse gelöscht wird, muss auch ihr komLeData-Eintrag gelöscht werden. +
  Geschrieben wird immer die gesamte Liste. Für Änderungen muss erst der aktuelle Eintrag gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
-- Beispiel für den Wert eines komLeData-Eintrags in der flachen Liste (LDAP): +
+- Beispiel für den Wert eines komLeData-Eintrags in der flachen Liste (Ausgabe einer LDAP Suche): +
 [source, c]
 ----
- "komLeData": [
-        "1.0,xx-01@hersteller01.kim.telematik-test",
-        "1.0,xx-02@hersteller01.kim.telematik-test",
-        "1.0,xx-03@hersteller02.kim.telematik-test",
-        "1.0,xx-04@hersteller02.kim.telematik-test",
-        "1.0,xx-05@hersteller02.kim.telematik-test"
-        ]
+komLeData: 1.0,mc_smcb_za@dom1.komle.telematik-test
+komLeData: 1.0,mz_smcb_za@dom2.kim.telematik-test
+komLeData: 1.0,mz_smcb_za@dom1.kim.telematik-test
+komLeData: 1.0,mb_secu_sm@dom3.kim.telematik-test
+komLeData: 1.0,mb_secu_sm@dom4.kim.telematik-test
+komLeData: 1.5,ak_secu_102@dom5.kim.telematik-test
 ----
 
 Wird vom KOM-LE-Anbieter eingetragen.
+
+|*kimData* |optional a|
+Bezeichner: kimData +
+kann mehrfach vorkommen (0..1000) +
+ +
+Enthält die KOM-LE-Version des Clientmoduls der angegebenen "mail" Adresse im Attribut "version". Zusätzlich kann zur KOM-LE-Version ein "+" angegeben sein. Anhand dieser Version erkennt das sendende Clientmodul, welche KOM-LE-Version vom Empfänger-Clientmodul unterstützt wird und in welchem Format die Mail an diesen Empfänger versandt wird. Wenn ein zusätzliches "+" angegeben ist, dann können mit dieser "mail" Adresse Nachrichten größer 15MiB verarbeitet werden. Jeder Datensatz MUSS die Attribute KOM-LE-Mail-Adresse und Version enthalten (beide Attribute sind obligatorisch). +
+
+Jeder Datensatz kann zusätzlich ein oder mehrere Anwendungskennzeichen der angegebenen "mail" Adresse im Attribut "appTags" enthalten.Jeder Datensatz kann zusätzlich ein oder mehrere Anwendungskennzeichen der angegebenen "mail" Adresse im Attribut "appTags" enthalten. +
+
+Beispiel für den Wert eines kimData Eintrags in der flachen Liste (Ausgabe einer LDAP Suche): +
+[source, c]
+----
+kimData: mc_smcb_za@dom1.komle.telematik-test,1.0,eEB;V1.0 
+kimData: mz_smcb_za@dom2.kim.telematik-test,1.0,DALE-UV;Einsendung;V1.0\|eEB;V1.0 
+kimData: mz_smcb_za@dom1.kim.telematik-test,1.0 
+kimData: mb_secu_sm@dom3.kim.telematik-test,1.0 
+kimData: mb_secu_sm@dom4.kim.telematik-test,1.0 
+kimData: ak_secu_102@dom5.kim.telematik-test,1.5
+----
+
+Wird vom KOM-LE-Anbieter eingetragen. +
+
 |*active* |obligatorisch | Mit diesem Attribut im Basiseintrag kann der Client (Kartenherausgeber, TSP) die Aufnahme des VZD Eintrags in die flache Liste steuern. Wenn das Attribut beim Anlegen eines VZD Eintrags mit Zertifikat nicht angegeben wird, setzt der VZD das Attribut  active auf TRUE (Default-Wert). +
 Bei FALSE wird der Eintrag vom VZD aus der flachen Liste entfernt bzw. nicht übertragen. +
 Dieses Attribut ist nicht in der flachen Liste enthalten. +
@@ -1621,28 +1734,50 @@ Kann mehrfach vorkommen (0..100). +
 Wird vom KOM-LE-Anbieter eingetragen.
 |*komLeData* |optional a|
 Bezeichner: komLeData +
+kann mehrfach vorkommen (0..1000) +
+ +
 Enthält die KOM-LE-Version des Clientmoduls der angegebenen "mail" Adresse im Attribut "version". Anhand dieser Version erkennt das sendende Clientmodul, welche KOM-LE-Version vom Empfänger-Clientmodul unterstützt wird und in welchem Format die Mail an diesen Empfänger versandt wird. +
 Wenn nicht angegeben, wird KOM-LE-Version 1.0 angenommen. +
 Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
-
 
 - Ein komLeData-Eintrag setzt sich zusammen aus der Mail-Adresse (Attribut "mail") und der zugehörigen KOM-LE Version (Attribut "version"). 
 - Für jede Mail-Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Datenstruktur komLeData geben. Es dürfen in komLeData keine Mail-Adressen referenziert werden, die nicht im übergeordneten "mail" Attribut enthalten sind.
 - Wenn eine Mail-Adresse gelöscht wird, muss auch ihr komLeData-Eintrag gelöscht werden. +
  Geschrieben wird immer die gesamte Liste. Für Änderungen muss erst der aktuelle Eintrag gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
-- Beispiel für den Wert eines komLeData-Eintrags in der flachen Liste (LDAP): +
+- Beispiel für den Wert eines komLeData-Eintrags in der flachen Liste (Ausgabe einer LDAP Suche): +
 [source, c]
 ----
- "komLeData": [
-        "1.0,xx-01@hersteller01.kim.telematik-test",
-        "1.0,xx-02@hersteller01.kim.telematik-test",
-        "1.0,xx-03@hersteller02.kim.telematik-test",
-        "1.0,xx-04@hersteller02.kim.telematik-test",
-        "1.0,xx-05@hersteller02.kim.telematik-test"
-        ]
+komLeData: 1.0,mc_smcb_za@dom1.komle.telematik-test
+komLeData: 1.0,mz_smcb_za@dom2.kim.telematik-test
+komLeData: 1.0,mz_smcb_za@dom1.kim.telematik-test
+komLeData: 1.0,mb_secu_sm@dom3.kim.telematik-test
+komLeData: 1.0,mb_secu_sm@dom4.kim.telematik-test
+komLeData: 1.5,ak_secu_102@dom5.kim.telematik-test
 ----
 
 Wird vom KOM-LE-Anbieter eingetragen.
+
+|*kimData* |optional a|
+Bezeichner: kimData +
+kann mehrfach vorkommen (0..1000) +
+ +
+Enthält die KOM-LE-Version des Clientmoduls der angegebenen "mail" Adresse im Attribut "version". Zusätzlich kann zur KOM-LE-Version ein "+" angegeben sein. Anhand dieser Version erkennt das sendende Clientmodul, welche KOM-LE-Version vom Empfänger-Clientmodul unterstützt wird und in welchem Format die Mail an diesen Empfänger versandt wird. Wenn ein zusätzliches "+" angegeben ist, dann können mit dieser "mail" Adresse Nachrichten größer 15MiB verarbeitet werden. Jeder Datensatz MUSS die Attribute KOM-LE-Mail-Adresse und Version enthalten (beide Attribute sind obligatorisch). +
+
+Jeder Datensatz kann zusätzlich ein oder mehrere Anwendungskennzeichen der angegebenen "mail" Adresse im Attribut "appTags" enthalten.Jeder Datensatz kann zusätzlich ein oder mehrere Anwendungskennzeichen der angegebenen "mail" Adresse im Attribut "appTags" enthalten. +
+
+Beispiel für den Wert eines kimData Eintrags in der flachen Liste (Ausgabe einer LDAP Suche): +
+[source, c]
+----
+kimData: mc_smcb_za@dom1.komle.telematik-test,1.0,eEB;V1.0 
+kimData: mz_smcb_za@dom2.kim.telematik-test,1.0,DALE-UV;Einsendung;V1.0\|eEB;V1.0 
+kimData: mz_smcb_za@dom1.kim.telematik-test,1.0 
+kimData: mb_secu_sm@dom3.kim.telematik-test,1.0 
+kimData: mb_secu_sm@dom4.kim.telematik-test,1.0 
+kimData: ak_secu_102@dom5.kim.telematik-test,1.5
+----
+
+Wird vom KOM-LE-Anbieter eingetragen. +
+
 |*active* |obligatorisch | Mit diesem Attribut im Basiseintrag kann der Client (Kartenherausgeber, TSP) die Aufnahme des VZD Eintrags in die flache Liste steuern. Wenn das Attribut beim Anlegen eines VZD Eintrags mit Zertifikat nicht angegeben wird, setzt der VZD das Attribut  active auf TRUE (Default-Wert). +
 Bei FALSE wird der Eintrag vom VZD aus der flachen Liste entfernt bzw. nicht übertragen. +
 Dieses Attribut ist nicht in der flachen Liste enthalten. +
@@ -1779,28 +1914,50 @@ Kann mehrfach vorkommen (0..100). +
 Wird vom KOM-LE-Anbieter eingetragen.
 |*komLeData* |optional a|
 Bezeichner: komLeData +
+kann mehrfach vorkommen (0..1000) +
+ +
 Enthält die KOM-LE-Version des Clientmoduls der angegebenen "mail" Adresse im Attribut "version". Anhand dieser Version erkennt das sendende Clientmodul, welche KOM-LE-Version vom Empfänger-Clientmodul unterstützt wird und in welchem Format die Mail an diesen Empfänger versandt wird. +
 Wenn nicht angegeben, wird KOM-LE-Version 1.0 angenommen. +
 Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
-
 
 - Ein komLeData-Eintrag setzt sich zusammen aus der Mail-Adresse (Attribut "mail") und der zugehörigen KOM-LE Version (Attribut "version"). 
 - Für jede Mail-Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Datenstruktur komLeData geben. Es dürfen in komLeData keine Mail-Adressen referenziert werden, die nicht im übergeordneten "mail" Attribut enthalten sind.
 - Wenn eine Mail-Adresse gelöscht wird, muss auch ihr komLeData-Eintrag gelöscht werden. +
  Geschrieben wird immer die gesamte Liste. Für Änderungen muss erst der aktuelle Eintrag gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
-- Beispiel für den Wert eines komLeData-Eintrags in der flachen Liste (LDAP): +
+- Beispiel für den Wert eines komLeData-Eintrags in der flachen Liste (Ausgabe einer LDAP Suche): +
 [source, c]
 ----
- "komLeData": [
-        "1.0,xx-01@hersteller01.kim.telematik-test",
-        "1.0,xx-02@hersteller01.kim.telematik-test",
-        "1.0,xx-03@hersteller02.kim.telematik-test",
-        "1.0,xx-04@hersteller02.kim.telematik-test",
-        "1.0,xx-05@hersteller02.kim.telematik-test"
-        ]
+komLeData: 1.0,mc_smcb_za@dom1.komle.telematik-test
+komLeData: 1.0,mz_smcb_za@dom2.kim.telematik-test
+komLeData: 1.0,mz_smcb_za@dom1.kim.telematik-test
+komLeData: 1.0,mb_secu_sm@dom3.kim.telematik-test
+komLeData: 1.0,mb_secu_sm@dom4.kim.telematik-test
+komLeData: 1.5,ak_secu_102@dom5.kim.telematik-test
 ----
 
 Wird vom KOM-LE-Anbieter eingetragen.
+
+|*kimData* |optional a|
+Bezeichner: kimData +
+kann mehrfach vorkommen (0..1000) +
+ +
+Enthält die KOM-LE-Version des Clientmoduls der angegebenen "mail" Adresse im Attribut "version". Zusätzlich kann zur KOM-LE-Version ein "+" angegeben sein. Anhand dieser Version erkennt das sendende Clientmodul, welche KOM-LE-Version vom Empfänger-Clientmodul unterstützt wird und in welchem Format die Mail an diesen Empfänger versandt wird. Wenn ein zusätzliches "+" angegeben ist, dann können mit dieser "mail" Adresse Nachrichten größer 15MiB verarbeitet werden. Jeder Datensatz MUSS die Attribute KOM-LE-Mail-Adresse und Version enthalten (beide Attribute sind obligatorisch). +
+
+Jeder Datensatz kann zusätzlich ein oder mehrere Anwendungskennzeichen der angegebenen "mail" Adresse im Attribut "appTags" enthalten.Jeder Datensatz kann zusätzlich ein oder mehrere Anwendungskennzeichen der angegebenen "mail" Adresse im Attribut "appTags" enthalten. +
+
+Beispiel für den Wert eines kimData Eintrags in der flachen Liste (Ausgabe einer LDAP Suche): +
+[source, c]
+----
+kimData: mc_smcb_za@dom1.komle.telematik-test,1.0,eEB;V1.0 
+kimData: mz_smcb_za@dom2.kim.telematik-test,1.0,DALE-UV;Einsendung;V1.0\|eEB;V1.0 
+kimData: mz_smcb_za@dom1.kim.telematik-test,1.0 
+kimData: mb_secu_sm@dom3.kim.telematik-test,1.0 
+kimData: mb_secu_sm@dom4.kim.telematik-test,1.0 
+kimData: ak_secu_102@dom5.kim.telematik-test,1.5
+----
+
+Wird vom KOM-LE-Anbieter eingetragen. +
+
 |*active* |obligatorisch | Mit diesem Attribut im Basiseintrag kann der Client (Kartenherausgeber, TSP) die Aufnahme des VZD Eintrags in die flache Liste steuern. Wenn das Attribut beim Anlegen eines VZD Eintrags mit Zertifikat nicht angegeben wird, setzt der VZD das Attribut  active auf TRUE (Default-Wert). +
 Bei FALSE wird der Eintrag vom VZD aus der flachen Liste entfernt bzw. nicht übertragen. +
 Dieses Attribut ist nicht in der flachen Liste enthalten. +
@@ -1937,28 +2094,50 @@ Kann mehrfach vorkommen (0..100). +
 Wird vom KOM-LE-Anbieter eingetragen.
 |*komLeData* |optional a|
 Bezeichner: komLeData +
+kann mehrfach vorkommen (0..1000) +
+ +
 Enthält die KOM-LE-Version des Clientmoduls der angegebenen "mail" Adresse im Attribut "version". Anhand dieser Version erkennt das sendende Clientmodul, welche KOM-LE-Version vom Empfänger-Clientmodul unterstützt wird und in welchem Format die Mail an diesen Empfänger versandt wird. +
 Wenn nicht angegeben, wird KOM-LE-Version 1.0 angenommen. +
 Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
-
 
 - Ein komLeData-Eintrag setzt sich zusammen aus der Mail-Adresse (Attribut "mail") und der zugehörigen KOM-LE Version (Attribut "version"). 
 - Für jede Mail-Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Datenstruktur komLeData geben. Es dürfen in komLeData keine Mail-Adressen referenziert werden, die nicht im übergeordneten "mail" Attribut enthalten sind.
 - Wenn eine Mail-Adresse gelöscht wird, muss auch ihr komLeData-Eintrag gelöscht werden. +
  Geschrieben wird immer die gesamte Liste. Für Änderungen muss erst der aktuelle Eintrag gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
-- Beispiel für den Wert eines komLeData-Eintrags in der flachen Liste (LDAP): +
+- Beispiel für den Wert eines komLeData-Eintrags in der flachen Liste (Ausgabe einer LDAP Suche): +
 [source, c]
 ----
- "komLeData": [
-        "1.0,xx-01@hersteller01.kim.telematik-test",
-        "1.0,xx-02@hersteller01.kim.telematik-test",
-        "1.0,xx-03@hersteller02.kim.telematik-test",
-        "1.0,xx-04@hersteller02.kim.telematik-test",
-        "1.0,xx-05@hersteller02.kim.telematik-test"
-        ]
+komLeData: 1.0,mc_smcb_za@dom1.komle.telematik-test
+komLeData: 1.0,mz_smcb_za@dom2.kim.telematik-test
+komLeData: 1.0,mz_smcb_za@dom1.kim.telematik-test
+komLeData: 1.0,mb_secu_sm@dom3.kim.telematik-test
+komLeData: 1.0,mb_secu_sm@dom4.kim.telematik-test
+komLeData: 1.5,ak_secu_102@dom5.kim.telematik-test
 ----
 
 Wird vom KOM-LE-Anbieter eingetragen.
+
+|*kimData* |optional a|
+Bezeichner: kimData +
+kann mehrfach vorkommen (0..1000) +
+ +
+Enthält die KOM-LE-Version des Clientmoduls der angegebenen "mail" Adresse im Attribut "version". Zusätzlich kann zur KOM-LE-Version ein "+" angegeben sein. Anhand dieser Version erkennt das sendende Clientmodul, welche KOM-LE-Version vom Empfänger-Clientmodul unterstützt wird und in welchem Format die Mail an diesen Empfänger versandt wird. Wenn ein zusätzliches "+" angegeben ist, dann können mit dieser "mail" Adresse Nachrichten größer 15MiB verarbeitet werden. Jeder Datensatz MUSS die Attribute KOM-LE-Mail-Adresse und Version enthalten (beide Attribute sind obligatorisch). +
+
+Jeder Datensatz kann zusätzlich ein oder mehrere Anwendungskennzeichen der angegebenen "mail" Adresse im Attribut "appTags" enthalten.Jeder Datensatz kann zusätzlich ein oder mehrere Anwendungskennzeichen der angegebenen "mail" Adresse im Attribut "appTags" enthalten. +
+
+Beispiel für den Wert eines kimData Eintrags in der flachen Liste (Ausgabe einer LDAP Suche): +
+[source, c]
+----
+kimData: mc_smcb_za@dom1.komle.telematik-test,1.0,eEB;V1.0 
+kimData: mz_smcb_za@dom2.kim.telematik-test,1.0,DALE-UV;Einsendung;V1.0\|eEB;V1.0 
+kimData: mz_smcb_za@dom1.kim.telematik-test,1.0 
+kimData: mb_secu_sm@dom3.kim.telematik-test,1.0 
+kimData: mb_secu_sm@dom4.kim.telematik-test,1.0 
+kimData: ak_secu_102@dom5.kim.telematik-test,1.5
+----
+
+Wird vom KOM-LE-Anbieter eingetragen. +
+
 |*active* |obligatorisch | Mit diesem Attribut im Basiseintrag kann der Client (Kartenherausgeber, TSP) die Aufnahme des VZD Eintrags in die flache Liste steuern. Wenn das Attribut beim Anlegen eines VZD Eintrags mit Zertifikat nicht angegeben wird, setzt der VZD das Attribut  active auf TRUE (Default-Wert). +
 Bei FALSE wird der Eintrag vom VZD aus der flachen Liste entfernt bzw. nicht übertragen. +
 Dieses Attribut ist nicht in der flachen Liste enthalten. +
@@ -2078,30 +2257,51 @@ Wenn der Wert TRUE ist, können die Daten nicht mehr über die Schnittstelle I_D
 |*mail* |optional |Bezeichner: E-Mail-Adresse +
 Kann mehrfach vorkommen (0..100). +
 Wird vom KOM-LE-Anbieter eingetragen.
-|*komLeData* |​ a|
+|*komLeData* |optional a|
 Bezeichner: komLeData +
+kann mehrfach vorkommen (0..1000) +
+ +
 Enthält die KOM-LE-Version des Clientmoduls der angegebenen "mail" Adresse im Attribut "version". Anhand dieser Version erkennt das sendende Clientmodul, welche KOM-LE-Version vom Empfänger-Clientmodul unterstützt wird und in welchem Format die Mail an diesen Empfänger versandt wird. +
 Wenn nicht angegeben, wird KOM-LE-Version 1.0 angenommen. +
 Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
-
 
 - Ein komLeData-Eintrag setzt sich zusammen aus der Mail-Adresse (Attribut "mail") und der zugehörigen KOM-LE Version (Attribut "version"). 
 - Für jede Mail-Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Datenstruktur komLeData geben. Es dürfen in komLeData keine Mail-Adressen referenziert werden, die nicht im übergeordneten "mail" Attribut enthalten sind.
 - Wenn eine Mail-Adresse gelöscht wird, muss auch ihr komLeData-Eintrag gelöscht werden. +
  Geschrieben wird immer die gesamte Liste. Für Änderungen muss erst der aktuelle Eintrag gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
-- Beispiel für den Wert eines komLeData-Eintrags in der flachen Liste (LDAP): +
+- Beispiel für den Wert eines komLeData-Eintrags in der flachen Liste (Ausgabe einer LDAP Suche): +
 [source, c]
 ----
- "komLeData": [
-        "1.0,xx-01@hersteller01.kim.telematik-test",
-        "1.0,xx-02@hersteller01.kim.telematik-test",
-        "1.0,xx-03@hersteller02.kim.telematik-test",
-        "1.0,xx-04@hersteller02.kim.telematik-test",
-        "1.0,xx-05@hersteller02.kim.telematik-test"
-        ]
+komLeData: 1.0,mc_smcb_za@dom1.komle.telematik-test
+komLeData: 1.0,mz_smcb_za@dom2.kim.telematik-test
+komLeData: 1.0,mz_smcb_za@dom1.kim.telematik-test
+komLeData: 1.0,mb_secu_sm@dom3.kim.telematik-test
+komLeData: 1.0,mb_secu_sm@dom4.kim.telematik-test
+komLeData: 1.5,ak_secu_102@dom5.kim.telematik-test
 ----
 
 Wird vom KOM-LE-Anbieter eingetragen.
+
+|*kimData* |optional a|
+Bezeichner: kimData +
+kann mehrfach vorkommen (0..1000) +
+ +
+Enthält die KOM-LE-Version des Clientmoduls der angegebenen "mail" Adresse im Attribut "version". Zusätzlich kann zur KOM-LE-Version ein "+" angegeben sein. Anhand dieser Version erkennt das sendende Clientmodul, welche KOM-LE-Version vom Empfänger-Clientmodul unterstützt wird und in welchem Format die Mail an diesen Empfänger versandt wird. Wenn ein zusätzliches "+" angegeben ist, dann können mit dieser "mail" Adresse Nachrichten größer 15MiB verarbeitet werden. Jeder Datensatz MUSS die Attribute KOM-LE-Mail-Adresse und Version enthalten (beide Attribute sind obligatorisch). +
+
+Jeder Datensatz kann zusätzlich ein oder mehrere Anwendungskennzeichen der angegebenen "mail" Adresse im Attribut "appTags" enthalten.Jeder Datensatz kann zusätzlich ein oder mehrere Anwendungskennzeichen der angegebenen "mail" Adresse im Attribut "appTags" enthalten. +
+
+Beispiel für den Wert eines kimData Eintrags in der flachen Liste (Ausgabe einer LDAP Suche): +
+[source, c]
+----
+kimData: mc_smcb_za@dom1.komle.telematik-test,1.0,eEB;V1.0 
+kimData: mz_smcb_za@dom2.kim.telematik-test,1.0,DALE-UV;Einsendung;V1.0\|eEB;V1.0 
+kimData: mz_smcb_za@dom1.kim.telematik-test,1.0 
+kimData: mb_secu_sm@dom3.kim.telematik-test,1.0 
+kimData: mb_secu_sm@dom4.kim.telematik-test,1.0 
+kimData: ak_secu_102@dom5.kim.telematik-test,1.5
+----
+
+Wird vom KOM-LE-Anbieter eingetragen. +
 
 |*stateOrProvinceName * |optional |Bezeichner: Bundesland +
   +
@@ -2226,6 +2426,7 @@ Wird vom VZD auf TRUE gesetzt, wenn die Daten über die Schnittstelle I_Director
 Wenn der Wert TRUE ist, können die Daten nicht mehr über die Schnittstelle I_Directory_Maintenance bearbeitet werden. Die Schnittstelle I_Directory_Maintenance wird von KOM-LE-Anbietern verwendet.
 |*mail* |optional |Wird für SMC-B KTR ePA nicht verwendet. 
 |*komLeData* |optional |Wird für SMC-B KTR ePA nicht verwendet.
+|*kimData*|optional| Wird für SMC-B KTR ePA nicht verwendet.
 |*stateOrProvinceName * |optional |Bezeichner: Bundesland +
   +
 Der Wert wird für SMC-B KTR ePA nicht verwendet.
@@ -2354,28 +2555,50 @@ Kann mehrfach vorkommen (0..100). +
 Wird vom KOM-LE-Anbieter eingetragen.
 |*komLeData* |optional a|
 Bezeichner: komLeData +
+kann mehrfach vorkommen (0..1000) +
+ +
 Enthält die KOM-LE-Version des Clientmoduls der angegebenen "mail" Adresse im Attribut "version". Anhand dieser Version erkennt das sendende Clientmodul, welche KOM-LE-Version vom Empfänger-Clientmodul unterstützt wird und in welchem Format die Mail an diesen Empfänger versandt wird. +
 Wenn nicht angegeben, wird KOM-LE-Version 1.0 angenommen. +
 Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
-
 
 - Ein komLeData-Eintrag setzt sich zusammen aus der Mail-Adresse (Attribut "mail") und der zugehörigen KOM-LE Version (Attribut "version"). 
 - Für jede Mail-Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Datenstruktur komLeData geben. Es dürfen in komLeData keine Mail-Adressen referenziert werden, die nicht im übergeordneten "mail" Attribut enthalten sind.
 - Wenn eine Mail-Adresse gelöscht wird, muss auch ihr komLeData-Eintrag gelöscht werden. +
  Geschrieben wird immer die gesamte Liste. Für Änderungen muss erst der aktuelle Eintrag gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
-- Beispiel für den Wert eines komLeData-Eintrags in der flachen Liste (LDAP): +
+- Beispiel für den Wert eines komLeData-Eintrags in der flachen Liste (Ausgabe einer LDAP Suche): +
 [source, c]
 ----
- "komLeData": [
-        "1.0,xx-01@hersteller01.kim.telematik-test",
-        "1.0,xx-02@hersteller01.kim.telematik-test",
-        "1.0,xx-03@hersteller02.kim.telematik-test",
-        "1.0,xx-04@hersteller02.kim.telematik-test",
-        "1.0,xx-05@hersteller02.kim.telematik-test"
-        ]
+komLeData: 1.0,mc_smcb_za@dom1.komle.telematik-test
+komLeData: 1.0,mz_smcb_za@dom2.kim.telematik-test
+komLeData: 1.0,mz_smcb_za@dom1.kim.telematik-test
+komLeData: 1.0,mb_secu_sm@dom3.kim.telematik-test
+komLeData: 1.0,mb_secu_sm@dom4.kim.telematik-test
+komLeData: 1.5,ak_secu_102@dom5.kim.telematik-test
 ----
 
 Wird vom KOM-LE-Anbieter eingetragen.
+
+|*kimData* |optional a|
+Bezeichner: kimData +
+kann mehrfach vorkommen (0..1000) +
+ +
+Enthält die KOM-LE-Version des Clientmoduls der angegebenen "mail" Adresse im Attribut "version". Zusätzlich kann zur KOM-LE-Version ein "+" angegeben sein. Anhand dieser Version erkennt das sendende Clientmodul, welche KOM-LE-Version vom Empfänger-Clientmodul unterstützt wird und in welchem Format die Mail an diesen Empfänger versandt wird. Wenn ein zusätzliches "+" angegeben ist, dann können mit dieser "mail" Adresse Nachrichten größer 15MiB verarbeitet werden. Jeder Datensatz MUSS die Attribute KOM-LE-Mail-Adresse und Version enthalten (beide Attribute sind obligatorisch). +
+
+Jeder Datensatz kann zusätzlich ein oder mehrere Anwendungskennzeichen der angegebenen "mail" Adresse im Attribut "appTags" enthalten.Jeder Datensatz kann zusätzlich ein oder mehrere Anwendungskennzeichen der angegebenen "mail" Adresse im Attribut "appTags" enthalten. +
+
+Beispiel für den Wert eines kimData Eintrags in der flachen Liste (Ausgabe einer LDAP Suche): +
+[source, c]
+----
+kimData: mc_smcb_za@dom1.komle.telematik-test,1.0,eEB;V1.0 
+kimData: mz_smcb_za@dom2.kim.telematik-test,1.0,DALE-UV;Einsendung;V1.0\|eEB;V1.0 
+kimData: mz_smcb_za@dom1.kim.telematik-test,1.0 
+kimData: mb_secu_sm@dom3.kim.telematik-test,1.0 
+kimData: mb_secu_sm@dom4.kim.telematik-test,1.0 
+kimData: ak_secu_102@dom5.kim.telematik-test,1.5
+----
+
+Wird vom KOM-LE-Anbieter eingetragen. +
+
 |*active* |obligatorisch | Mit diesem Attribut im Basiseintrag kann der Client (Kartenherausgeber, TSP) die Aufnahme des VZD Eintrags in die flache Liste steuern. Wenn das Attribut beim Anlegen eines VZD Eintrags mit Zertifikat nicht angegeben wird, setzt der VZD das Attribut  active auf TRUE (Default-Wert). +
 Bei FALSE wird der Eintrag vom VZD aus der flachen Liste entfernt bzw. nicht übertragen. +
 Dieses Attribut ist nicht in der flachen Liste enthalten. +
@@ -2500,28 +2723,50 @@ Kann mehrfach vorkommen (0..100). +
 Wird vom KOM-LE-Anbieter eingetragen.
 |*komLeData* |optional a|
 Bezeichner: komLeData +
+kann mehrfach vorkommen (0..1000) +
+ +
 Enthält die KOM-LE-Version des Clientmoduls der angegebenen "mail" Adresse im Attribut "version". Anhand dieser Version erkennt das sendende Clientmodul, welche KOM-LE-Version vom Empfänger-Clientmodul unterstützt wird und in welchem Format die Mail an diesen Empfänger versandt wird. +
 Wenn nicht angegeben, wird KOM-LE-Version 1.0 angenommen. +
 Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
-
 
 - Ein komLeData-Eintrag setzt sich zusammen aus der Mail-Adresse (Attribut "mail") und der zugehörigen KOM-LE Version (Attribut "version"). 
 - Für jede Mail-Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Datenstruktur komLeData geben. Es dürfen in komLeData keine Mail-Adressen referenziert werden, die nicht im übergeordneten "mail" Attribut enthalten sind.
 - Wenn eine Mail-Adresse gelöscht wird, muss auch ihr komLeData-Eintrag gelöscht werden. +
  Geschrieben wird immer die gesamte Liste. Für Änderungen muss erst der aktuelle Eintrag gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
-- Beispiel für den Wert eines komLeData-Eintrags in der flachen Liste (LDAP): +
+- Beispiel für den Wert eines komLeData-Eintrags in der flachen Liste (Ausgabe einer LDAP Suche): +
 [source, c]
 ----
- "komLeData": [
-        "1.0,xx-01@hersteller01.kim.telematik-test",
-        "1.0,xx-02@hersteller01.kim.telematik-test",
-        "1.0,xx-03@hersteller02.kim.telematik-test",
-        "1.0,xx-04@hersteller02.kim.telematik-test",
-        "1.0,xx-05@hersteller02.kim.telematik-test"
-        ]
+komLeData: 1.0,mc_smcb_za@dom1.komle.telematik-test
+komLeData: 1.0,mz_smcb_za@dom2.kim.telematik-test
+komLeData: 1.0,mz_smcb_za@dom1.kim.telematik-test
+komLeData: 1.0,mb_secu_sm@dom3.kim.telematik-test
+komLeData: 1.0,mb_secu_sm@dom4.kim.telematik-test
+komLeData: 1.5,ak_secu_102@dom5.kim.telematik-test
 ----
 
 Wird vom KOM-LE-Anbieter eingetragen.
+
+|*kimData* |optional a|
+Bezeichner: kimData +
+kann mehrfach vorkommen (0..1000) +
+ +
+Enthält die KOM-LE-Version des Clientmoduls der angegebenen "mail" Adresse im Attribut "version". Zusätzlich kann zur KOM-LE-Version ein "+" angegeben sein. Anhand dieser Version erkennt das sendende Clientmodul, welche KOM-LE-Version vom Empfänger-Clientmodul unterstützt wird und in welchem Format die Mail an diesen Empfänger versandt wird. Wenn ein zusätzliches "+" angegeben ist, dann können mit dieser "mail" Adresse Nachrichten größer 15MiB verarbeitet werden. Jeder Datensatz MUSS die Attribute KOM-LE-Mail-Adresse und Version enthalten (beide Attribute sind obligatorisch). +
+
+Jeder Datensatz kann zusätzlich ein oder mehrere Anwendungskennzeichen der angegebenen "mail" Adresse im Attribut "appTags" enthalten.Jeder Datensatz kann zusätzlich ein oder mehrere Anwendungskennzeichen der angegebenen "mail" Adresse im Attribut "appTags" enthalten. +
+
+Beispiel für den Wert eines kimData Eintrags in der flachen Liste (Ausgabe einer LDAP Suche): +
+[source, c]
+----
+kimData: mc_smcb_za@dom1.komle.telematik-test,1.0,eEB;V1.0 
+kimData: mz_smcb_za@dom2.kim.telematik-test,1.0,DALE-UV;Einsendung;V1.0\|eEB;V1.0 
+kimData: mz_smcb_za@dom1.kim.telematik-test,1.0 
+kimData: mb_secu_sm@dom3.kim.telematik-test,1.0 
+kimData: mb_secu_sm@dom4.kim.telematik-test,1.0 
+kimData: ak_secu_102@dom5.kim.telematik-test,1.5
+----
+
+Wird vom KOM-LE-Anbieter eingetragen. +
+
 |*active* |obligatorisch | Mit diesem Attribut im Basiseintrag kann der Client (Kartenherausgeber, TSP) die Aufnahme des VZD Eintrags in die flache Liste steuern. Wenn das Attribut beim Anlegen eines VZD Eintrags mit Zertifikat nicht angegeben wird, setzt der VZD das Attribut  active auf TRUE (Default-Wert). +
 Bei FALSE wird der Eintrag vom VZD aus der flachen Liste entfernt bzw. nicht übertragen. +
 Dieses Attribut ist nicht in der flachen Liste enthalten. +
@@ -2655,28 +2900,50 @@ Kann mehrfach vorkommen (0..100). +
 Wird vom KOM-LE-Anbieter eingetragen.
 |*komLeData* |optional a|
 Bezeichner: komLeData +
+kann mehrfach vorkommen (0..1000) +
+ +
 Enthält die KOM-LE-Version des Clientmoduls der angegebenen "mail" Adresse im Attribut "version". Anhand dieser Version erkennt das sendende Clientmodul, welche KOM-LE-Version vom Empfänger-Clientmodul unterstützt wird und in welchem Format die Mail an diesen Empfänger versandt wird. +
 Wenn nicht angegeben, wird KOM-LE-Version 1.0 angenommen. +
 Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
-
 
 - Ein komLeData-Eintrag setzt sich zusammen aus der Mail-Adresse (Attribut "mail") und der zugehörigen KOM-LE Version (Attribut "version"). 
 - Für jede Mail-Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Datenstruktur komLeData geben. Es dürfen in komLeData keine Mail-Adressen referenziert werden, die nicht im übergeordneten "mail" Attribut enthalten sind.
 - Wenn eine Mail-Adresse gelöscht wird, muss auch ihr komLeData-Eintrag gelöscht werden. +
  Geschrieben wird immer die gesamte Liste. Für Änderungen muss erst der aktuelle Eintrag gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
-- Beispiel für den Wert eines komLeData-Eintrags in der flachen Liste (LDAP): +
+- Beispiel für den Wert eines komLeData-Eintrags in der flachen Liste (Ausgabe einer LDAP Suche): +
 [source, c]
 ----
- "komLeData": [
-        "1.0,xx-01@hersteller01.kim.telematik-test",
-        "1.0,xx-02@hersteller01.kim.telematik-test",
-        "1.0,xx-03@hersteller02.kim.telematik-test",
-        "1.0,xx-04@hersteller02.kim.telematik-test",
-        "1.0,xx-05@hersteller02.kim.telematik-test"
-        ]
+komLeData: 1.0,mc_smcb_za@dom1.komle.telematik-test
+komLeData: 1.0,mz_smcb_za@dom2.kim.telematik-test
+komLeData: 1.0,mz_smcb_za@dom1.kim.telematik-test
+komLeData: 1.0,mb_secu_sm@dom3.kim.telematik-test
+komLeData: 1.0,mb_secu_sm@dom4.kim.telematik-test
+komLeData: 1.5,ak_secu_102@dom5.kim.telematik-test
 ----
 
 Wird vom KOM-LE-Anbieter eingetragen.
+
+|*kimData* |optional a|
+Bezeichner: kimData +
+kann mehrfach vorkommen (0..1000) +
+ +
+Enthält die KOM-LE-Version des Clientmoduls der angegebenen "mail" Adresse im Attribut "version". Zusätzlich kann zur KOM-LE-Version ein "+" angegeben sein. Anhand dieser Version erkennt das sendende Clientmodul, welche KOM-LE-Version vom Empfänger-Clientmodul unterstützt wird und in welchem Format die Mail an diesen Empfänger versandt wird. Wenn ein zusätzliches "+" angegeben ist, dann können mit dieser "mail" Adresse Nachrichten größer 15MiB verarbeitet werden. Jeder Datensatz MUSS die Attribute KOM-LE-Mail-Adresse und Version enthalten (beide Attribute sind obligatorisch). +
+
+Jeder Datensatz kann zusätzlich ein oder mehrere Anwendungskennzeichen der angegebenen "mail" Adresse im Attribut "appTags" enthalten.Jeder Datensatz kann zusätzlich ein oder mehrere Anwendungskennzeichen der angegebenen "mail" Adresse im Attribut "appTags" enthalten. +
+
+Beispiel für den Wert eines kimData Eintrags in der flachen Liste (Ausgabe einer LDAP Suche): +
+[source, c]
+----
+kimData: mc_smcb_za@dom1.komle.telematik-test,1.0,eEB;V1.0 
+kimData: mz_smcb_za@dom2.kim.telematik-test,1.0,DALE-UV;Einsendung;V1.0\|eEB;V1.0 
+kimData: mz_smcb_za@dom1.kim.telematik-test,1.0 
+kimData: mb_secu_sm@dom3.kim.telematik-test,1.0 
+kimData: mb_secu_sm@dom4.kim.telematik-test,1.0 
+kimData: ak_secu_102@dom5.kim.telematik-test,1.5
+----
+
+Wird vom KOM-LE-Anbieter eingetragen. +
+
 |*active* |obligatorisch | Mit diesem Attribut im Basiseintrag kann der Client (Kartenherausgeber, TSP) die Aufnahme des VZD Eintrags in die flache Liste steuern. Wenn das Attribut beim Anlegen eines VZD Eintrags mit Zertifikat nicht angegeben wird, setzt der VZD das Attribut  active auf TRUE (Default-Wert). +
 Bei FALSE wird der Eintrag vom VZD aus der flachen Liste entfernt bzw. nicht übertragen. +
 Dieses Attribut ist nicht in der flachen Liste enthalten. +
@@ -2811,28 +3078,50 @@ Kann mehrfach vorkommen (0..100). +
 Wird vom KOM-LE-Anbieter eingetragen.
 |*komLeData* |optional a|
 Bezeichner: komLeData +
-Enthält die KOM-LE-Version des Clientmoduls der angegebenen "mail" Adresse im Attribut "version". Anhand dieser Version erkennt das sendende Clientmodul, welche KOM-LE-Version vom Empfänger-Clientmodul unterstützt wird und in welchem Format die Mail an diesen EmpfÃ¤nger versandt wird. +
+kann mehrfach vorkommen (0..1000) +
+ +
+Enthält die KOM-LE-Version des Clientmoduls der angegebenen "mail" Adresse im Attribut "version". Anhand dieser Version erkennt das sendende Clientmodul, welche KOM-LE-Version vom Empfänger-Clientmodul unterstützt wird und in welchem Format die Mail an diesen Empfänger versandt wird. +
 Wenn nicht angegeben, wird KOM-LE-Version 1.0 angenommen. +
 Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
-
 
 - Ein komLeData-Eintrag setzt sich zusammen aus der Mail-Adresse (Attribut "mail") und der zugehörigen KOM-LE Version (Attribut "version"). 
 - Für jede Mail-Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Datenstruktur komLeData geben. Es dürfen in komLeData keine Mail-Adressen referenziert werden, die nicht im übergeordneten "mail" Attribut enthalten sind.
 - Wenn eine Mail-Adresse gelöscht wird, muss auch ihr komLeData-Eintrag gelöscht werden. +
  Geschrieben wird immer die gesamte Liste. Für Änderungen muss erst der aktuelle Eintrag gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
-- Beispiel für den Wert eines komLeData-Eintrags in der flachen Liste (LDAP): +
+- Beispiel für den Wert eines komLeData-Eintrags in der flachen Liste (Ausgabe einer LDAP Suche): +
 [source, c]
 ----
- "komLeData": [
-        "1.0,xx-01@hersteller01.kim.telematik-test",
-        "1.0,xx-02@hersteller01.kim.telematik-test",
-        "1.0,xx-03@hersteller02.kim.telematik-test",
-        "1.0,xx-04@hersteller02.kim.telematik-test",
-        "1.0,xx-05@hersteller02.kim.telematik-test"
-        ]
+komLeData: 1.0,mc_smcb_za@dom1.komle.telematik-test
+komLeData: 1.0,mz_smcb_za@dom2.kim.telematik-test
+komLeData: 1.0,mz_smcb_za@dom1.kim.telematik-test
+komLeData: 1.0,mb_secu_sm@dom3.kim.telematik-test
+komLeData: 1.0,mb_secu_sm@dom4.kim.telematik-test
+komLeData: 1.5,ak_secu_102@dom5.kim.telematik-test
 ----
 
 Wird vom KOM-LE-Anbieter eingetragen.
+
+|*kimData* |optional a|
+Bezeichner: kimData +
+kann mehrfach vorkommen (0..1000) +
+ +
+Enthält die KOM-LE-Version des Clientmoduls der angegebenen "mail" Adresse im Attribut "version". Zusätzlich kann zur KOM-LE-Version ein "+" angegeben sein. Anhand dieser Version erkennt das sendende Clientmodul, welche KOM-LE-Version vom Empfänger-Clientmodul unterstützt wird und in welchem Format die Mail an diesen Empfänger versandt wird. Wenn ein zusätzliches "+" angegeben ist, dann können mit dieser "mail" Adresse Nachrichten größer 15MiB verarbeitet werden. Jeder Datensatz MUSS die Attribute KOM-LE-Mail-Adresse und Version enthalten (beide Attribute sind obligatorisch). +
+
+Jeder Datensatz kann zusätzlich ein oder mehrere Anwendungskennzeichen der angegebenen "mail" Adresse im Attribut "appTags" enthalten.Jeder Datensatz kann zusätzlich ein oder mehrere Anwendungskennzeichen der angegebenen "mail" Adresse im Attribut "appTags" enthalten. +
+
+Beispiel für den Wert eines kimData Eintrags in der flachen Liste (Ausgabe einer LDAP Suche): +
+[source, c]
+----
+kimData: mc_smcb_za@dom1.komle.telematik-test,1.0,eEB;V1.0 
+kimData: mz_smcb_za@dom2.kim.telematik-test,1.0,DALE-UV;Einsendung;V1.0\|eEB;V1.0 
+kimData: mz_smcb_za@dom1.kim.telematik-test,1.0 
+kimData: mb_secu_sm@dom3.kim.telematik-test,1.0 
+kimData: mb_secu_sm@dom4.kim.telematik-test,1.0 
+kimData: ak_secu_102@dom5.kim.telematik-test,1.5
+----
+
+Wird vom KOM-LE-Anbieter eingetragen. +
+
 |*active* |obligatorisch | Mit diesem Attribut im Basiseintrag kann der Client (Kartenherausgeber, TSP) die Aufnahme des VZD Eintrags in die flache Liste steuern. Wenn das Attribut beim Anlegen eines VZD Eintrags mit Zertifikat nicht angegeben wird, setzt der VZD das Attribut  active auf TRUE (Default-Wert). +
 Bei FALSE wird der Eintrag vom VZD aus der flachen Liste entfernt bzw. nicht übertragen. +
 Dieses Attribut ist nicht in der flachen Liste enthalten. +
