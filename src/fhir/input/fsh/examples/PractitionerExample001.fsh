@@ -2,6 +2,7 @@ Instance: PractitionerExample001
 InstanceOf: PractitionerDirectory
 Usage: #example
 Description: "Example of a Practitioner as to be found in gematik FHIR Directory"
+* meta.tag[Origin] = Origin#ldap
 * active = true
 * id = "TIPractitionerExample001"
 * identifier[TelematikID].value = "1-1.58.00000040"

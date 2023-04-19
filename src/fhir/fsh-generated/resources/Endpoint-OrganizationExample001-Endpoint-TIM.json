@@ -2,6 +2,12 @@
   "resourceType": "Endpoint",
   "id": "OrganizationExample001-Endpoint-TIM",
   "meta": {
+    "tag": [
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/Origin",
+        "code": "owner"
+      }
+    ],
     "profile": [
       "https://gematik.de/fhir/directory/StructureDefinition/EndpointDirectory"
     ]
