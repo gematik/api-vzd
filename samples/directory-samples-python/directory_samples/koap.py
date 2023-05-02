@@ -1,5 +1,5 @@
 from typing import List, Optional
-from pydantic import (BaseSettings)
+from pydantic import (BaseSettings, SecretStr)
 from urllib.parse import urljoin
 from requests import Session
 from zeep import Client
@@ -9,13 +9,6 @@ from zeep.settings import Settings
 from zeep.plugins import HistoryPlugin
 from requests.auth import HTTPBasicAuth
 from lxml import etree
-
-soap_settings = Settings()
-soap_settings.forbid_entities = False
-
-session = Session()
-session.verify = False
-transport = Transport(session=session)
 
 soap_history = HistoryPlugin()
 
@@ -36,27 +29,25 @@ class ConnectorConfig(BaseSettings):
     client_system_id: str
     workplace_id: str
     user_id: str
-    username: Optional[str]
-    password: Optional[str]
+    auth_basic_username: Optional[str]
+    auth_basic_password: Optional[SecretStr]
 
     def construct_url(self, path: str) -> str:
         return urljoin(self.base_url, path)
+    
+    class Config:
+        env_prefix = 'konnektor_'
 
 
-connector_config = ConnectorConfig(
-    base_url="https://192.168.1.156/",
-    mandant_id="M1",
-    client_system_id="C1",
-    workplace_id="A1",
-    user_id="U1",
-    username="client",
-    password="client",
-)
-
-session.auth = HTTPBasicAuth(connector_config.username, connector_config.password)
-
+connector_config = ConnectorConfig()
 
 def create_service_client(service_name: str, namespace: str) -> ServiceProxy:
+    soap_settings = Settings()
+    soap_settings.forbid_entities = False
+    session = Session()
+    session.verify = False
+    session.auth = HTTPBasicAuth(connector_config.auth_basic_username, connector_config.auth_basic_password.get_secret_value())
+    transport = Transport(session=session)
     client = Client(
         f"./api-telematik/conn/{service_name}.wsdl",
         settings=soap_settings,
@@ -64,10 +55,11 @@ def create_service_client(service_name: str, namespace: str) -> ServiceProxy:
         plugins=[soap_history]
     )
 
+    service_name_no_version = service_name.split("_")[0]
     service = client.create_service(
-        f"{{{namespace}}}{service_name}Binding",
+        f"{{{namespace}}}{service_name_no_version}Binding",
         # TODO: resolve endpoint using servicedirectory.sds 
-        address=connector_config.construct_url(f"ws/{service_name}")
+        address=connector_config.construct_url(f"ws/{service_name_no_version}")
     )
 
     return service
@@ -91,9 +83,9 @@ def get_cards():
     return response.Cards.Card
 
 
-def get_certificates(card_handle: str, cert_types=List[str]):
+def get_certificates(card_handle: str, cert_types: List[str], crypt: str):
     service = create_service_client(
-      "CertificateService",
+      "CertificateService_v6_0_1",
       "http://ws.gematik.de/conn/CertificateService/WSDL/v6.0"
     )
 
@@ -105,7 +97,8 @@ def get_certificates(card_handle: str, cert_types=List[str]):
             'WorkplaceId': connector_config.workplace_id,
             'UserId': connector_config.user_id,
         },
-        CertRefList=cert_types
+        CertRefList=cert_types,
+        Crypt=crypt
     )
 
     return response.X509DataInfoList.X509DataInfo
@@ -130,11 +123,21 @@ def verify_certificate(cert_data: bytes):
     return response
 
 
-def external_authenticate(card_handle: str, hash: bytes):
+def external_authenticate(card_handle: str, hash: bytes, crypt: str):
     service = create_service_client(
-      "AuthSignatureService",
+      "AuthSignatureService_v7_4_1",
       "http://ws.gematik.de/conn/AuthSignatureService/WSDL/v7.4"
     )
+
+    if crypt == "RSA":
+        optional_outputs = {
+            'SignatureType': 'urn:ietf:rfc:3447',
+            'SignatureSchemes': 'RSASSA-PSS'
+        }
+    else:
+        optional_outputs = {
+            'SignatureType': 'urn:bsi:tr:03111:ecdsa',
+        }
 
     response = service.ExternalAuthenticate(
         CardHandle=card_handle,
@@ -143,10 +146,7 @@ def external_authenticate(card_handle: str, hash: bytes):
             "ClientSystemId": connector_config.client_system_id,
             "WorkplaceId": connector_config.workplace_id,
         },
-        OptionalInputs={
-            'SignatureType': 'urn:ietf:rfc:3447',
-            'SignatureSchemes': 'RSASSA-PSS'
-        },
+        OptionalInputs=optional_outputs,
         BinaryString={
           "Base64Data": {
               "MimeType": "application/octet-stream",
