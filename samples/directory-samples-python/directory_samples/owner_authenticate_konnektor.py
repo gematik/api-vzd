@@ -37,7 +37,7 @@ def main():
     )
     debug_print("Request openid-configuration manifest")
     debug_print(request_to_curl(response.request), soft_wrap=True)
-    # TODO verify signature
+    # TODO verify signature of discovery document
     openid_configuration = loads(base64url_decode(response.text.split(".")[1]))
     debug_print(openid_configuration)
 
@@ -66,6 +66,8 @@ def main():
     debug_print("Extract challenge")
     challenge: str = response.json()["challenge"]
 
+    # TODO verify signature of challenge (authenticity of IDP-Dienst)
+
     challenge_jws = jws.JWS()
     challenge_jws.allowed_algs = ["BP256R1"]
     challenge_jws.deserialize(challenge)
@@ -76,8 +78,10 @@ def main():
     cards = get_cards()
 
     debug_print("All available Cards")
-    print(last_soap_request())
-    print(last_soap_response())
+    debug_print("GetCard Request")
+    debug_print(last_soap_request())
+    debug_print("GetCard Response")
+    debug_print(last_soap_response())
 
     # find first SMC-B card
     card = next(filter(lambda c: c.CardType == 'SMC-B', cards))
@@ -88,8 +92,10 @@ def main():
     card_handle = card.CardHandle
 
     card_certificates = get_certificates(card_handle, ['C.AUT'], crypt="ECC")
-    print(last_soap_request())
-    print(last_soap_response())
+    debug_print("GetCertificates Request")
+    debug_print(last_soap_request())
+    debug_print("GetCertificates Response")
+    debug_print(last_soap_response())
 
     certificate_bytes = card_certificates[0].X509Data.X509Certificate
 
@@ -107,7 +113,8 @@ def main():
     }
 
     header_and_payload = f"{base64url_encode(json_encode(challenge_response_header))}.{base64url_encode(json_encode(challenge_response_payload))}"
-    debug_print("Challenge response header and payload", header_and_payload)
+    debug_print("Challenge response header and payload:")
+    debug_print(header_and_payload, soft_wrap=True)
 
     bytes_to_sign = header_and_payload.encode("utf-8")
     sha256_hasher = hashes.Hash(hashes.SHA256())
@@ -117,8 +124,10 @@ def main():
     debug_print("Challenge response hash", challenge_response_hash)
 
     challenge_response_signature = external_authenticate(card_handle, challenge_response_hash, "ECC")
-    print(last_soap_request())
-    print(last_soap_response())
+    debug_print("ExternalAuthenticate Request")
+    debug_print(last_soap_request())
+    debug_print("ExternalAuthenticate Response")
+    debug_print(last_soap_response())
     
     debug_print("Received signature from konnektor")
     debug_print(challenge_response_signature)
