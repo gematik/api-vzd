@@ -105,8 +105,9 @@ Neu für eGBR HBA und SMC-B |gematik
 - Tab_VZD_Datenbeschreibung_KZVen: Attribut domainID aktualisiert (KZBV Mail 8.12.2022) +
 - eGBR Tabellen 13, 14 Attribut holder aktualisiert - DIR-412 +
 - eGBR Tabelle 14 Attribut domainID aktualisiert - DIR-412 +
-- Tabelle 5: Pezialisierung Pharmazieingenieur & Apothekerassistent  ergänzt - DIR-438
-- kimData in allen Tabellen eingeführt (Anwendungskennzeichen) - C_11193
+- Tabelle 5: Pezialisierung Pharmazieingenieur & Apothekerassistent  ergänzt - DIR-438 +
+- kimData in allen Tabellen eingeführt (Anwendungskennzeichen) - C_11193 +
+- Tabellen "Kostenträger PKV (SMC-B-Eintrag)" & "DiGA (SMC-B-Eintrag)" erstellt - DIR-489
 
 
 |gematik
