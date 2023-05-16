@@ -16,6 +16,7 @@ jwcrypto = { git = "https://github.com/spilikin/jwcrypto.git", branch = "master"
 
 [tool.poetry.dev-dependencies]
 flake8 = "^5.0.4"
+pytest = "^7.3"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

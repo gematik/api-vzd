@@ -34,12 +34,13 @@ class ConnectorConfig(BaseSettings):
 
     def construct_url(self, path: str) -> str:
         return urljoin(self.base_url, path)
-    
+
     class Config:
         env_prefix = 'konnektor_'
 
 
 connector_config = ConnectorConfig()
+
 
 def create_service_client(service_name: str, namespace: str) -> ServiceProxy:
     soap_settings = Settings()
@@ -58,7 +59,7 @@ def create_service_client(service_name: str, namespace: str) -> ServiceProxy:
     service_name_no_version = service_name.split("_")[0]
     service = client.create_service(
         f"{{{namespace}}}{service_name_no_version}Binding",
-        # TODO: resolve endpoint using servicedirectory.sds 
+        # TODO: resolve endpoint using servicedirectory.sds
         address=connector_config.construct_url(f"ws/{service_name_no_version}")
     )
 
@@ -156,4 +157,3 @@ def external_authenticate(card_handle: str, hash: bytes, crypt: str):
     )
 
     return response.SignatureObject.Base64Signature._value_1
-

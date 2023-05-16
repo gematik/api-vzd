@@ -1,7 +1,7 @@
 from requests import Session
 from urllib.parse import urljoin
 from .apitools import (request_to_curl, response_to_text, base64url_decode)
-from jwcrypto import jwt, jwk, jws
+from jwcrypto import jwt, jws
 from jwcrypto.common import json_encode, base64url_encode
 from json import loads
 from base64 import b64encode
