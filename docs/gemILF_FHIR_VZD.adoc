@@ -213,6 +213,11 @@ In addition to the HL7 FHIR specification, the FHIR VZD supports the following s
 - practitioner.qualification
 - location.address (e.g. to search for TI-Messenger addresses)
 
+The following HL7 FHIR search parameters are not yet support (but are in work):
+
+- https://hl7.org/fhir/search.html#_text[_text]
+- https://hl7.org/fhir/search.html#_content[_content]
+
 ==== FHIR Search Organizations
 
 To search for organizations, use "HealthcareService" as the resource type and at least "organization.active=true" as the parameter:
