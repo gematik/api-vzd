@@ -1,5 +1,4 @@
 @startuml
-Bob -> Alice : hello
 
 skinparam dpi 100
 skinparam WrapWidth 200
