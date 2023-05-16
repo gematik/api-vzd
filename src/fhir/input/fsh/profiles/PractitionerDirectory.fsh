@@ -6,8 +6,9 @@ Title: "Practitioner in gematik Directory"
   * ^slicing.discriminator.type = #value
   * ^slicing.discriminator.path = "system"
   * ^slicing.rules = #open
-* meta.tag contains OriginSlice 1..1 MS
-* meta.tag[OriginSlice] from OriginVS 
+* meta.tag contains Origin 1..1 MS
+* meta.tag[Origin] from OriginVS
+* meta.tag[Origin].system = "https://gematik.de/fhir/directory/CodeSystem/Origin"
 * id MS
 * identifier 1..* MS
   * ^slicing.discriminator.type = #value

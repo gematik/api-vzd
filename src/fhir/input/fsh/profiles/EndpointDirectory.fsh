@@ -8,8 +8,9 @@ Description: "Endpoints for applications in the gematik Directory"
   * ^slicing.discriminator.type = #value
   * ^slicing.discriminator.path = "system"
   * ^slicing.rules = #open
-* meta.tag contains OriginSlice 1..1 MS
-* meta.tag[OriginSlice] from OriginVS 
+* meta.tag contains Origin 1..1 MS
+* meta.tag[Origin] from OriginVS
+* meta.tag[Origin].system = "https://gematik.de/fhir/directory/CodeSystem/Origin"
 * status 1..1 MS
 * connectionType 1..1 MS
 * connectionType.code from EndpointConnectionTypeVS (extensible)

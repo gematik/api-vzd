@@ -19,13 +19,13 @@ endif::[]
 
 image:https://shields.io/badge/gem Spec VZD-v1.14.0-blue[link="https://fachportal.gematik.de/fachportal-import/files/gemSpec_VZD_V1.14.0.pdf"]
 image:https://shields.io/badge/gemILF_Pflege_VZD-v1.5.4-green[link="https://github.com/gematik/api-vzd/blob/gemILF_Pflege_VZD/1.5.4/docs/gemILF_Pflege_VZD.adoc"]
-image:https://shields.io/badge/simplifier.net-0.10.0-red[link="https://simplifier.net/vzd-fhir-directory"] +
+image:https://shields.io/badge/simplifier.net-0.10.1-red[link="https://simplifier.net/vzd-fhir-directory"] +
 image:https://shields.io/badge/Admin API-1.9.5-green?logo=swagger[link="https://github.com/gematik/api-vzd/blob/I_Directory_Administration/1.9.5/src/openapi/DirectoryAdministration.yaml"]
 image:https://shields.io/badge/Application Maintenance API-1.2.4-green?logo=swagger[link="https://github.com/gematik/api-vzd/blob/I_Directory_Application_Maintenance/1.2.4/src/openapi/DirectoryApplicationMaintenance.yaml"]
 
 == Aktuelles
 
-* *11.04.2023* 🔥 https://simplifier.net/packages/de.gematik.fhir.directory/0.10.0/~introduction[FHIR Package 0.10.0]
+* *11.04.2023* 🔥 https://simplifier.net/packages/de.gematik.fhir.directory/0.10.1/~introduction[FHIR Package 0.10.1]
 * *18.01.2023* 👨‍💻 https://github.com/gematik/api-vzd/blob/I_Directory_Administration/1.9.5/src/openapi/DirectoryAdministration.yaml[Directory Administration API v1.9.5]
 * *18.01.2023* 👨‍💻 https://github.com/gematik/api-vzd/blob/I_Directory_Application_Maintenance/1.2.4/src/openapi/DirectoryApplicationMaintenance.yaml[Directory Application Maintenance API v1.2.4]
 * *14.12.2022* 📄 https://fachportal.gematik.de/schnelleinstieg/downloadcenter/releases#c6770[Spezifikationen Verzeichnisdienst „VZD FHIR 1.0.0“]
