@@ -114,8 +114,10 @@ Neu für eGBR HBA und SMC-B |gematik
 |gematik
 
 |1.5.6 |xx.xx.2023 |5.4 +
- |
+3.3.1 |
 - Version der Referenzen ergänzt +
+- Kap. 3.3.1: POST /DirectoryEntries: Attribut entryType muss angeben werden, wenn kein Zertifikat übergeben wird +
+  (muss in Kap. 3.3.1 & 4 noch ergänzt werden)
 
 
 
