@@ -113,6 +113,13 @@ Neu für eGBR HBA und SMC-B |gematik
 
 |gematik
 
+|1.5.6 |xx.xx.2023 |5.4 +
+ |
+- Version der Referenzen ergänzt +
+
+
+
+|gematik
 |===
 
 == Einordnung des Dokumentes
@@ -3518,7 +3525,7 @@ Die nachfolgende Tabelle enthält die Bezeichnung der in dem vorliegenden Dokume
 |===
 |*[Quelle]* |*Herausgeber: Titel*
 |[gemGlossar] |gematik: Glossar der Telematikinfrastruktur
-|[gemSpec_VZD] |gematik: Spezifikation Verzeichnisdienst
+|[gemSpec_VZD] |gematik: Spezifikation Verzeichnisdienst - Version: 1.15.0
 |===
 
 ==== Weitere Dokumente
