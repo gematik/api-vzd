@@ -192,7 +192,7 @@ Signature:
 For search examples see: link:FHIR_VZD_HOWTO_Search.adoc[Search Examples]
 
 === Authenticate for the provider API
-To use the TIM-PROVDER-API, a corresponding TIM-Provider-API Token is necessary.
+To use the TIM-PROVIDER-API, a corresponding TIM-Provider-API Token is needed.
 The following sequence diagram shows the flow to obtain such a token 
 .Search-Acccesstoken Flow
 [%collapsible%open]
