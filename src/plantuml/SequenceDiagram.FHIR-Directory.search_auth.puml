@@ -2,6 +2,7 @@
 skinparam dpi 100
 skinparam WrapWidth 200
 skinparam monochrome true
+autonumber "<b>[00]"
 
 'title "FHIR-Directory, Sequenzdiagram search token exchange'
 participant cl as "TI-Messenger-Client"

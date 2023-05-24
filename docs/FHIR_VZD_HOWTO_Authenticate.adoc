@@ -62,7 +62,7 @@ With the following procedure an access token can be obtained:
 ----
  curl -X GET "[Matrix homeserver url]/_matrix/client/v3/login"
 ----
-This operation returns the supported authentication methods. For example:
+The request returns the supported authentication methods
 [source]
 ----
 200
@@ -97,7 +97,7 @@ curl -X POST "[Matrix homeserver url]/_matrix/client/v3/login" \
 }
 EOF
 ----
-This operation returns a matrix access_token. For example:
+The request returns a matrix access_token
 [source]
 ----
 200
@@ -119,7 +119,7 @@ This operation returns a matrix access_token. For example:
 ++++
 ====
 
-*Request Matrix OpenID Token*
+*[01] Request a Matrix OpenID Token*
 [source]
 ----
 curl -X POST "[Matrix homeserver url]/_matrix/client/v3/user/{user_id}/openid/request_token?access_token=syt_ZXR0cjAy_JVJehocKZFlYyRbtTdiz_18uj52" \
@@ -131,7 +131,7 @@ EOF
 In this operation the "username" has to be replaced with the user_id received in the response above. +
 For the access_token parameter the access_token returned in the response above has to be used. +
  +
-This operation returns a matrix access_token. For example:
+*[02] The request returns a matrix access_token*
 [source]
 ----
 200
@@ -143,7 +143,7 @@ This operation returns a matrix access_token. For example:
 }
 ----
 
-*Get the access token from the FHIR-Directory*
+*[03] Get the access token from the FHIR-Directory*
 [source]
 ----
 curl -X GET "[FHIRbaseUrl]/tim-authenticate?mxId=matrix.dev.service-ti.de" \
@@ -151,7 +151,7 @@ curl -X GET "[FHIRbaseUrl]/tim-authenticate?mxId=matrix.dev.service-ti.de" \
 ----
 For the X-Matrix-OpenID-Token parameter the access_token aquired by the "Request Matrix OpenID Token" operation has to be used. +
  +
-This operation returns a access token from the FHIR-Directory. For example:
+*[08] The request returns a access token from the FHIR-Directory*
 [source]
 ----
 200
@@ -192,10 +192,20 @@ Signature:
 For search examples see: link:FHIR_VZD_HOWTO_Search.adoc[Search Examples]
 
 === Authenticate for the provider API
-To use the API operations, a corresponding TI-Provider API Token from the FHIRDirectoryAuthorizationService must be available. +
- +
-With the following operation an access token can be obtained:
- 
+To use the TIM-PROVDER-API, a corresponding TIM-Provider-API Token is necessary.
+The following sequence diagram shows the flow to obtain such a token 
+.Search-Acccesstoken Flow
+[%collapsible%open]
+====
+++++
+<p align="center">
+  <img width="55%" src=../images/diagrams/SequenceDiagram.FHIR-Directory.tim_provider_auth.svg>
+</p>
+++++
+====
+
+*[01] With the following request a ti-provider-accesstoken can be obtained:* +
+(The Authorization string contains the base64 encoded client credentials.) 
 
 [source]
 ----
@@ -206,9 +216,9 @@ With the following operation an access token can be obtained:
 grant_type=client_credentials
 EOF
 ----
-The Authorization string contains the base64 encoded client credentials. +
- +
-This operation returns an access token. For example:
+
+
+*[03] The request returns a ti-provider-accesstoken.* 
 [source]
 ----
 {
@@ -223,13 +233,14 @@ This operation returns an access token. For example:
   "scope":"ti-provider"
 }
 ----
-Exchange the access token for the TI-Provider API Token
+
+*[04] Exchange the ti-provider-accesstoken for the tim-providerAPI-accesstoken*
 [source]
 ----
 curl -X GET "[baseUrl]/ti-provider-authenticate" -H "Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJiMkJXT0w2dmN2QjluMjhnYVRwQ19fQllnXzI1aDljMkN2UGVXbmFGYUVNIn0.eyJqdGkiOiI5YjFkYjQ2ZC0yOThmLTQ0ZGItOTQ3ZC0wODdmYTNkYjQ2YzMiLCJleHAiOjE2Nzg4NjcwMjQsIm5iZiI6MCwiaWF0IjoxNjc4ODY2NzI0LCJpc3MiOiJodHRwOi8vYXV0aC10ZXN0LnZ6ZC50aS1kaWVuc3RlLmRlOjk0NDMvYXV0aC9yZWFsbXMvVEktUHJvdmlkZXIiLCJzdWIiOiI2MWJjODJiOC0yN2VlLTRkMDUtYTc0OC1iNmQ3Zjc4NDk4ZmIiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJnZW1hdGlrIiwiYXV0aF90aW1lIjowLCJzZXNzaW9uX3N0YXRlIjoiMjg4NTc4MDgtNWIyNS00NWJhLWIzMDEtOGVkYjQzNTA4Mzc4IiwiYWNyIjoiMSIsInNjb3BlIjoidGktcHJvdmlkZXIiLCJjbGllbnRJZCI6ImdlbWF0aWsiLCJjbGllbnRIb3N0IjoiMTcyLjI0LjQ2LjEwIiwiY2xpZW50QWRkcmVzcyI6IjE3Mi4yNC40Ni4xMCJ9.LUbOr4XlICADdYuyT_SgviTBdXkSKdXQ43Fnp9VF7lr71Zrf0ELWiXkr1SplrMUmJrrbff8SaEzZTyy9Fx32xFTJnkX_Dw3uugbWXcARC-895lotzJ1Je4CJZSNSUSv4m6e86M8L7dfXjXxrbPAh4hH8IFWpudgF0mPG12VQMhaupJu13o2gIzB1GL7dk567_RVWXML8hi4ib6DT5dgZjIHFKKSAeuw99Xq0m1XdkwPCL9t8aIemY9lShQ2obvj70C8jBaIjquNGAScIrn3oTTLXs54XBN-t839M5wU0fxpwwHhuaDpRF-uLmPdQA3zE7MCNJYXkzl9nWdh2dLD31w"
 ----
 
-This operation returns the TI-Provider API Token. For example:
+*[06] This request returns the tim-providerAPI-accesstoken.* 
 [source]
 ----
 {

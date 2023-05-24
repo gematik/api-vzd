@@ -1,0 +1,26 @@
+@startuml SequenceDiagram.FHIR-Directory.tim_provider.auth
+skinparam dpi 100
+skinparam WrapWidth 200
+skinparam monochrome true
+autonumber "<b>[00]"
+
+participant rd as "TI-Messenger-Fachdienst\nRegistrierungsdienst"
+participant oa as "TI-Provider\nOAuth-Server"
+box <size:16>VZD-FHIR-Directory</size> #WhiteSmoke
+participant fa as "Auth-Service"
+end box
+
+rd -> oa: POST /authenticate (client_id, client_secret)
+activate rd
+activate oa
+oa -> oa: prüfe client_id und client_secret
+oa --> rd: ti-provider-accesstoken
+deactivate oa
+
+rd -> fa: GET /ti-provider-authenticate\n(Authorization: "Bearer ti-provider-accesstoken")
+activate fa
+fa -> fa: prüfe ti-provider-accesstoken
+fa --> rd: tim-providerAPI-accesstoken
+deactivate fa
+
+@enduml

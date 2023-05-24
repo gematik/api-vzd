@@ -2,31 +2,45 @@
 skinparam dpi 100
 skinparam WrapWidth 200
 skinparam monochrome true
+autonumber "<b>[00]"
 
 participant rd as "TI-Messenger-Fachdienst\nRegistrierungsdienst"
-participant oa as "VZD\nOAuth-Server"
-participant fp as "FHIR-Proxy"
+participant oa as "TI-Provider\nOAuth-Server"
+box <size:16>VZD-FHIR-Directory</size> #WhiteSmoke
+participant fp as "VZD FHIR TIM-Provider-API"
+participant fa as "Auth-Service"
+end box
 
 rd -> oa: POST /authenticate (client_id, client_secret)
 activate rd
 activate oa
 oa -> oa: prüfe client_id und client_secret
-oa --> rd: provider-accesstoken
+oa --> rd: ti-provider-accesstoken
 deactivate oa
+
+rd -> fa: GET /ti-provider-authenticate\n(Authorization: "Bearer ti-provider-accesstoken")
+activate fa
+fa -> fa: prüfe ti-provider-accesstoken
+fa --> rd: tim-providerAPI-accesstoken
+deactivate fa
+
 group optional
-rd -> fp: FHIR Request /FHIR mit provider-accesstoken\nRessourcen TIOrganization (type: TI-Messenger-Provider),\nEndpoint (tim-domain)
+rd -> fp: GET /tim-provider-services/federation\n(Authorization: "Bearer provider-accesstoken)
 activate fp
-fp --> rd: HTTP 200 OK Response body FHIR json
+fp --> rd: HTTP 200 OK Response body domainArray json
+deactivate fp
 end
 group optional
-rd -> fp: GET /FederationList mit provider-accesstoken
-fp --> rd: HTTP 200 OK Response body domainList json
+rd -> fp: GET /tim-provider-services/FederationList/federationList.jws\n(Authorization: "Bearer provider-accesstoken)
+activate fp
+fp --> rd: HTTP 200 OK Response body federationList json
+deactivate fp
 end
 group optional
-rd -> fp: GET /localization mit provider-accesstoken und hash der MXID in URL Form
+rd -> fp: GET /tim-provider-services/localization?mxid=[MXID in URL Form]\n(Authorization: "Bearer provider-accesstoken)
+activate fp
 fp --> rd: HTTP 200 OK Response body <enum: [org, pract, orgPract, none]> json
+deactivate fp
 end
 
-deactivate fp
-deactivate rd
 @enduml
