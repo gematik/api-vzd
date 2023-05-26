@@ -10,7 +10,7 @@ box <size:16>VZD-FHIR-Directory</size> #WhiteSmoke
 participant fa as "Auth-Service"
 end box
 
-rd -> oa: POST /authenticate (client_id, client_secret)
+rd -> oa: POST /token (client_id, client_secret)
 activate rd
 activate oa
 oa -> oa: prüfe client_id und client_secret
@@ -20,7 +20,7 @@ deactivate oa
 rd -> fa: GET /ti-provider-authenticate\n(Authorization: "Bearer ti-provider-accesstoken")
 activate fa
 fa -> fa: prüfe ti-provider-accesstoken
-fa --> rd: tim-providerAPI-accesstoken
+fa --> rd: provider-accesstoken
 deactivate fa
 
 @enduml
