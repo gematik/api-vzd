@@ -1,4 +1,4 @@
-@startuml SequenceDiagram.FHIR-Directory.tim_provider.auth
+@startuml SequenceDiagram.FHIR-Directory.tim_provider_auth
 skinparam dpi 100
 skinparam WrapWidth 200
 skinparam monochrome true

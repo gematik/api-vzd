@@ -1,4 +1,4 @@
-@startuml I_VZD_TIM_Provider_Services
+@startuml SequenceDiagram.FHIR-Directory.tim_provider_services
 skinparam dpi 100
 skinparam WrapWidth 200
 skinparam monochrome true
