@@ -114,10 +114,13 @@ Neu für eGBR HBA und SMC-B |gematik
 |gematik
 
 |1.5.6 |xx.xx.2023 |5.4 +
-3.3.1 |
+3.3.1 +
+4
+|
 - Version der Referenzen ergänzt +
 - Kap. 3.3.1: POST /DirectoryEntries: Attribut entryType muss angeben werden, wenn kein Zertifikat übergeben wird +
-  (muss in Kap. 3.3.1 & 4 noch ergänzt werden)
+  (muss in Kap. 3.3.1 & 4 noch ergänzt werden) +
+- Tab_VZD_Datenbeschreibung_DKTIG - Beschreibung domainID überarbeitet - JF gematik/dktig 2.06.2023
 
 
 
@@ -1519,7 +1522,7 @@ Dieses Attribut wird durch den VZD nicht automatisch aus dem Zertifikat ermittel
 |*organization* |optional |Bezeichner: Organisation +
 Dieses Attribut ist ein optionales zweites Namensattribut und wird befüllt bei Bedarf. Ebenso wie displayName ist es geeignet, um nach einem Namen zu filtern und ihn im Suchergebnis anzuzeigen.
 |*domainID* |optional |Bezeichner: Institutionskennzeichen +
-Das Attribut kann nur einmal vorkommen. Der Wert wird von der Arge IK (Sankt Augustin) vergebenen.
+Das Attribut kann nur einmal (ein Wert) pro VZD Eintrag (Telematik-ID) vorkommen. Der Wert wird von der Arge IK (Sankt Augustin) vergebenen.
 |*specialization* |obligatorisch |Bezeichner: Fachgebiet +
 Kann mehrfach vorkommen (1..100). +
 *Für Einträge der Leistungserbringer-Organisationen (SMC-B Eintrag)* +
