@@ -55,13 +55,12 @@ _The following specification was created by gematik solely from a technical poin
 
 The FHIR VZD implementation guide consists of the following parts
 
-- https://../docs/FHIR_VZD_HOWTO_Authenticate.adoc[Authentication for all FHIR VZD interfaces]
-- ./FHIR_VZD_HOWTO_Search.adoc[Search interface /search]
-- ./FHIR_VZD_HOWTO_Provider.adoc[TI-Messenger Provider interface /tim-provider-services]
+- link:FHIR_VZD_HOWTO_Authenticate.adoc[Authentication for all FHIR VZD interfaces]
+- link:FHIR_VZD_HOWTO_Search.adoc[Search interface /search]
+- link:FHIR_VZD_HOWTO_Provider.adoc[TI-Messenger Provider interface /tim-provider-services]
 - Owner interface (under work)
 
-
-
+The content of these parts is contained in the linked documents.
 
 
 
