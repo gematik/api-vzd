@@ -155,10 +155,8 @@ GET [baseUrl]/search/search/PractitionerRole?practitioner.active=true&practition
  
  
 .Response of this Request: 
-[%collapsible%closed]
-====
-include::../samples/FHIRseach/Search_PractitionerRole_name.adoc[]
-====
+link:../samples/FHIRseach/Search_PractitionerRole_name.adoc[FHIRseach/Search_PractitionerRole_name] +
+ +
  
 ==== FHIR VZD Search - "endpoint.payload-type" attribute (code based search)
 To search a resource which supports a defined type of communication the "endpoint.payload-type" attribute can be used in the search operation:
@@ -199,10 +197,8 @@ Please note that with this parameter resources with no active endpoints are not 
  
  
 .Response of this Request: 
-[%collapsible%closed]
-====
-include::../samples/FHIRseach/Search_PractitionerRole_payload-type.adoc[] 
-====
+link:../samples/FHIRseach/Search_PractitionerRole_payload-type.adoc[FHIRseach/Search_PractitionerRole_payload-type] +
+ +
 
  
 ==== FHIR VZD Search - "endpoint.payload-type" attribute (display text based search)
