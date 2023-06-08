@@ -32,7 +32,7 @@ image::gematik_logo.svg[gematik,float="right"]
  |*Change reason, special instructions* +
  |*Editing* +
 
-|1.0.0 |16.06.22 | |Initial document |gematik
+|1.0.0 |16.06.23 | |Initial document |gematik
 
 |===
 
