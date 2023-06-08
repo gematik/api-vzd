@@ -1,0 +1,314 @@
+= FHIR VZD HOWTO Authenticate
+:source-highlighter: rouge
+:icons:
+:title-page:
+:imagesdir: /images/
+ifdef::env-github[]
+:toc: preamble
+endif::[]
+ifndef::env-github[]
+:toc: left
+endif::[]
+:toclevels: 3
+:toc-title: Table of Contents
+:sectnums:
+
+
+image::gematik_logo.svg[gematik,float="right"]
+
+[width="100%",cols="50%,50%",options="header",]
+|===
+|Version: |0.0.1
+|Referencing: |gemILF_FHIR_VZD
+|===
+
+[big]*Document history*
+
+[width="100%",cols="11%,11%,7%,58%,13%",options="header",]
+|===
+|*Version* +
+ |*Stand* +
+ |*Chap./ Page* +
+ |*Change reason, special instructions* +
+ |*Editing* +
+
+|1.0.0 |28.10.22 | |Initial document |gematik
+
+|===
+
+== Classification of the document
+=== Objective
+This document describes how the different authentication interfaces of the FHIR directory service can be used to obtain access_tokens.
+
+=== Target group
+
+The document is aimed at software developers who are involved in implementing a client of the FHIR directory service and need access_tokens to interact with the API.
+
+=== Scope
+
+*Intellectual property/patent notice*
+
+_The following specification was created by gematik solely from a technical point of view. In individual cases, it cannot be ruled out that the implementation of the specification will interfere with the technical property rights of third parties. It is solely up to the supplier or manufacturer to take suitable measures to ensure that the products and/or services offered by him on the basis of the specification do not infringe third-party property rights and, if necessary, to obtain the necessary permits/licenses from the property right holders concerned. In this respect, gematik GmbH assumes no liability whatsoever._
+
+
+== FHIRDirectoryAuthenticationAPIs
+=== Authenticate for the search endpoint
+To use the search endpoint, a corresponding access token from the FHIRDirectoryAuthorizationService must be available. +
+ +
+With the following procedure an access token can be obtained:
+ 
+*Get  authentication methods supported by the Matrix homeserver*
+[source]
+----
+ curl -X GET "[Matrix homeserver url]/_matrix/client/v3/login"
+----
+The request returns the supported authentication methods
+[source]
+----
+200
+{
+  "flows": [
+    {
+      "type": "m.login.password"
+    },
+    {
+      "type": "m.login.application_service"
+    },
+    {
+      "type": "uk.half-shot.msc2778.login.application_service"
+    }
+  ]
+}
+----
+
+*Perform login and get Matrix Access Token*
+
+The login operation depends from the selected authentication methods which can be dependent from the used environment.
+
+[source]
+----
+curl -X POST "[Matrix homeserver url]/_matrix/client/v3/login" \
+    -H "Content-Type: application/json" \
+    -d @- << EOF
+{
+  "type": "m.login.password",
+  "user": "username",
+  "password": "password of the user"
+}
+EOF
+----
+The request returns a matrix access_token
+[source]
+----
+200
+{
+  "user_id": "username",
+  "access_token": "syt_ZXR0cjAy_JVJehocKZFlYyRbtTdiz_18uj52",
+  "home_server": "matix.home.server.de",
+  "device_id": "ABCDEFGHIJ"
+}
+----
+
+.Search-Acccesstoken Flow
+[%collapsible%open]
+====
+++++
+<p align="center">
+  <img width="55%" src=../images/diagrams/SequenceDiagram.FHIR-Directory.search.auth.svg>
+</p>
+++++
+====
+
+*[01] Request a Matrix OpenID Token*
+[source]
+----
+curl -X POST "[Matrix homeserver url]/_matrix/client/v3/user/{user_id}/openid/request_token?access_token=syt_ZXR0cjAy_JVJehocKZFlYyRbtTdiz_18uj52" \
+    -H "Content-Type: application/json" \
+    -d @- << EOF
+{}
+EOF
+----
+In this operation the "username" has to be replaced with the user_id received in the response above. +
+For the access_token parameter the access_token returned in the response above has to be used. +
+ +
+*[02] The request returns a matrix access_token*
+[source]
+----
+200
+{
+  "access_token": "zbKsYFDoZBWcKJMylLjCcMcR",
+  "token_type": "Bearer",
+  "matrix_server_name": "matix.home.server.de",
+  "expires_in": 3600
+}
+----
+
+*[03] Get the access token from the FHIR-Directory*
+[source]
+----
+curl -X GET "[FHIRbaseUrl]/tim-authenticate?mxId=matrix.dev.service-ti.de" \
+    -H "X-Matrix-OpenID-Token: zbKsYFDoZBWcKJMylLjCcMcR"
+----
+For the X-Matrix-OpenID-Token parameter the access_token aquired by the "Request Matrix OpenID Token" operation has to be used. +
+ +
+*[08] The request returns a access token from the FHIR-Directory*
+[source]
+----
+200
+{
+  "access_token":
+"eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiJ9.e2lzcyI6Imh0dHBzOi8vZmhpci1kaXJlY3RvcnktdGVzdC52emQudGktZGllbnN0ZS5kZS90aW0tYXV0aGVudGljYXRlIiwiYXVkIjoiaHR0cHM6Ly9maGlyLWRpcmVjdG9yeS10ZXN0LnZ6ZC50aS1kaWVuc3RlLmRlL3NlYWNoIiwic3ViIjoiQGFiY2RlOm1hdHJpeC5kZXYuc2VydmljZS10aS5kZSIsImlhdCI6MTY2NDEyMjY3MywiZXhwIjoxNjY0MjA5MDczfQ.CoTwrZmZJyfVYVJFD068QJNFo0YLemhfPVER_lW5h3MU2hgoiSj1lkD6yDHPDQAs4JJ6PlBWIUHtoGoYAwVOVw",
+  "token_type": "bearer",
+  "expires_in": 86400
+}
+----
+
+TIP: Please note, that this example access token has an invalid signature (sub claim anonymized). 
+
+The access token is a JWT with the following structure:
+
+[source]
+----
+Header:
+{
+  "typ": "JWT",
+  "alg": "ES256"
+}
+
+Payload:
+
+{
+ "iss": "https://fhir-directory-test.vzd.ti-dienste.de/tim-authenticate\",
+ "aud": "https://fhir-directory-test.vzd.ti-dienste.de/seach",
+ "sub": "@abcde:matrix.dev.service-ti.de",
+ "iat": 1664122673,
+ "exp": 1664209073
+ }
+
+Signature:
+...
+----
+
+For search examples see: link:FHIR_VZD_HOWTO_Search.adoc[Search Examples]
+
+=== Authenticate for the provider API
+To use the TIM-PROVIDER-API, a corresponding TIM-Provider-API Token is needed.
+The following sequence diagram shows the flow to obtain such a token 
+.Search-Acccesstoken Flow
+[%collapsible%open]
+====
+++++
+<p align="center">
+  <img width="55%" src=../images/diagrams/SequenceDiagram.FHIR-Directory.tim_provider_auth.svg>
+</p>
+++++
+====
+
+*[01] With the following request a ti-provider-accesstoken can be obtained:* +
+(The Authorization string contains the base64 encoded client credentials.) 
+
+[source]
+----
+ curl -X POST "[baseUrl]:9443/auth/realms/TI-Provider/protocol/openid-connect/token" \
+      -H "Content-Type: application/x-www-form-urlencoded" \
+      -H "Authorization: Basic VElNUHJvdmlkZXI6YjEyMzMxZTktYWJjZC00NTY3LTZhaWUtZGY4ZTY4Y2E0ZmZj=" \
+      -d @- << EOF
+grant_type=client_credentials
+EOF
+----
+
+
+*[03] The request returns a ti-provider-accesstoken.* 
+[source]
+----
+{
+ "access_token": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJiMkJXT0w2dmN2QjluMjhnYVRwQ19fQllnXzI1aDljMkN2UGVXbmFGYUVNIn0.eyJqdGkiOiI5YjFkYjQ2ZC0yOThmLTQ0ZGItOTQ3ZC0wODdmYTNkYjQ2YzMiLCJleHAiOjE2Nzg4NjcwMjQsIm5iZiI6MCwiaWF0IjoxNjc4ODY2NzI0LCJpc3MiOiJodHRwOi8vYXV0aC10ZXN0LnZ6ZC50aS1kaWVuc3RlLmRlOjk0NDMvYXV0aC9yZWFsbXMvVEktUHJvdmlkZXIiLCJzdWIiOiI2MWJjODJiOC0yN2VlLTRkMDUtYTc0OC1iNmQ3Zjc4NDk4ZmIiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJnZW1hdGlrIiwiYXV0aF90aW1lIjowLCJzZXNzaW9uX3N0YXRlIjoiMjg4NTc4MDgtNWIyNS00NWJhLWIzMDEtOGVkYjQzNTA4Mzc4IiwiYWNyIjoiMSIsInNjb3BlIjoidGktcHJvdmlkZXIiLCJjbGllbnRJZCI6ImdlbWF0aWsiLCJjbGllbnRIb3N0IjoiMTcyLjI0LjQ2LjEwIiwiY2xpZW50QWRkcmVzcyI6IjE3Mi4yNC40Ni4xMCJ9.LUbOr4XlICADdYuyT_SgviTBdXkSKdXQ43Fnp9VF7lr71Zrf0ELWiXkr1SplrMUmJrrbff8SaEzZTyy9Fx32xFTJnkX_Dw3uugbWXcARC-895lotzJ1Je4CJZSNSUSv4m6e86M8L7dfXjXxrbPAh4hH8IFWpudgF0mPG12VQMhaupJu13o2gIzB1GL7dk567_RVWXML8hi4ib6DT5dgZjIHFKKSAeuw99Xq0m1XdkwPCL9t8aIemY9lShQ2obvj70C8jBaIjquNGAScIrn3oTTLXs54XBN-t839M5wU0fxpwwHhuaDpRF-uLmPdQA3zE7MCNJYXkzl9nWdh2dLD31w",
+  "expires_in":300,
+  "refresh_expires_in":1800,
+  "refresh_token":
+ "eyJhbGciOiJIUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICIwMjk2NzMzNC1hOGJhLTQyNWYtYWQyOC1jYzAyOWE4YThhZDAifQ.eyJqdGkiOiIxMGY4ZjAyNi1iMzA1LTRjYmMtOWU4Yi1hZWE5MWY0YTRiMTciLCJleHAiOjE2Nzg4Njg1MjQsIm5iZiI6MCwiaWF0IjoxNjc4ODY2NzI0LCJpc3MiOiJodHRwOi8vYXV0aC10ZXN0LnZ6ZC50aS1kaWVuc3RlLmRlOjk0NDMvYXV0aC9yZWFsbXMvVEktUHJvdmlkZXIiLCJhdWQiOiJodHRwOi8vYXV0aC10ZXN0LnZ6ZC50aS1kaWVuc3RlLmRlOjk0NDMvYXV0aC9yZWFsbXMvVEktUHJvdmlkZXIiLCJzdWIiOiI2MWJjODJiOC0yN2VlLTRkMDUtYTc0OC1iNmQ3Zjc4NDk4ZmIiLCJ0eXAiOiJSZWZyZXNoIiwiYXpwIjoiZ2VtYXRpayIsImF1dGhfdGltZSI6MCwic2Vzc2lvbl9zdGF0ZSI6IjI4ODU3ODA4LTViMjUtNDViYS1iMzAxLThlZGI0MzUwODM3OCIsInNjb3BlIjoidGktcHJvdmlkZXIifQ.FlfHbsFoC26fcwVzsQ4-m_D7ZaKigWvP7We-X5IlBaA",
+  "token_type":"bearer",
+  "not-before-policy":0,
+  "session_state":"28857808-5b25-45ba-b301-8edb43508378",
+  "scope":"ti-provider"
+}
+----
+
+*[04] Exchange the ti-provider-accesstoken for the tim-providerAPI-accesstoken*
+[source]
+----
+curl -X GET "[baseUrl]/ti-provider-authenticate" -H "Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJiMkJXT0w2dmN2QjluMjhnYVRwQ19fQllnXzI1aDljMkN2UGVXbmFGYUVNIn0.eyJqdGkiOiI5YjFkYjQ2ZC0yOThmLTQ0ZGItOTQ3ZC0wODdmYTNkYjQ2YzMiLCJleHAiOjE2Nzg4NjcwMjQsIm5iZiI6MCwiaWF0IjoxNjc4ODY2NzI0LCJpc3MiOiJodHRwOi8vYXV0aC10ZXN0LnZ6ZC50aS1kaWVuc3RlLmRlOjk0NDMvYXV0aC9yZWFsbXMvVEktUHJvdmlkZXIiLCJzdWIiOiI2MWJjODJiOC0yN2VlLTRkMDUtYTc0OC1iNmQ3Zjc4NDk4ZmIiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJnZW1hdGlrIiwiYXV0aF90aW1lIjowLCJzZXNzaW9uX3N0YXRlIjoiMjg4NTc4MDgtNWIyNS00NWJhLWIzMDEtOGVkYjQzNTA4Mzc4IiwiYWNyIjoiMSIsInNjb3BlIjoidGktcHJvdmlkZXIiLCJjbGllbnRJZCI6ImdlbWF0aWsiLCJjbGllbnRIb3N0IjoiMTcyLjI0LjQ2LjEwIiwiY2xpZW50QWRkcmVzcyI6IjE3Mi4yNC40Ni4xMCJ9.LUbOr4XlICADdYuyT_SgviTBdXkSKdXQ43Fnp9VF7lr71Zrf0ELWiXkr1SplrMUmJrrbff8SaEzZTyy9Fx32xFTJnkX_Dw3uugbWXcARC-895lotzJ1Je4CJZSNSUSv4m6e86M8L7dfXjXxrbPAh4hH8IFWpudgF0mPG12VQMhaupJu13o2gIzB1GL7dk567_RVWXML8hi4ib6DT5dgZjIHFKKSAeuw99Xq0m1XdkwPCL9t8aIemY9lShQ2obvj70C8jBaIjquNGAScIrn3oTTLXs54XBN-t839M5wU0fxpwwHhuaDpRF-uLmPdQA3zE7MCNJYXkzl9nWdh2dLD31w"
+----
+
+*[06] This request returns the tim-providerAPI-accesstoken.* 
+[source]
+----
+{
+ "access_token":
+ "eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiJ9.eyJpc3MiOiJodHRwczovL2ZoaXItZGlyZWN0b3J5LXRlc3QudnpkLnRpLWRpZW5zdGUuZGUvdGktcHJvdmlkZXItYXV0aGVudGljYXRlIiwiYXVkIjoiaHR0cHM6Ly9maGlyLWRpcmVjdG9yeS10ZXN0LnZ6ZC50aS1kaWVuc3RlLmRlL3RpbS1wcm92aWRlci1zZXJ2aWNlcyIsInN1YiI6ImdlbWF0aWsiLCJpYXQiOjE2Nzg4NzI5NjAsImV4cCI6MTY3ODk1OTM2MCwiY2xpZW50SWQiOiJnZW1hdGlrIn0.hZDJXa-l1OK_B2NE54znl5FYWa5mW01Fw7LOiDo2kNIJOx2HPDCnEqxixd-7m9L34wq8WE4qVaA9jB6BNwX7qw",
+  "client_id":"gematik",
+  "token_type":"bearer",
+  "expires_in":86400
+}
+----
+
+For provider api usage examples see: link:FHIR_VZD_HOWTO_Provider.adoc[Provider Examples]
+
+=== Authenticate for the owner endpoint as an organization
+To use the API operations, a corresponding TI-Provider API Token from the FHIRDirectoryAuthorizationService must be available. +
+ +
+With the following operation an access token can be obtained:
+
+==== Authenticate with an RegService-OpenID-Token 
+One way to authenticate an organization is the possibility to exchange an RegService-OpenID-Token for an owneraccess-token. 
+
+The RegService-OpenID-Token must have the following structure:
+
+.RegService-OpenID-Token structure
+[%collapsible%closed]
+====
+[source, json]
+----
+HEADER
+{
+  "alg": "ES256",
+  "typ": "JWT"
+  "x5c": [
+     "<X.509 Sig-Cert, base64-encoded DER>",
+     "<X.509 CA-Cert, base64-encoded DER>"
+ ]
+}
+PAYLOAD
+{
+  "sub": "1234567890",
+  "iss": "<url des Registrierungs-Dienst-Endpunkts, über den das Token ausgestellt wurde>",
+  "aud": "https://vzd-fhir-directory.vzd.ti-dienste.de/owner-authenticate",
+  "professionOID": "<professionOID der Organisation>",
+  "idNummer": "<telematikID der Organisation>",
+  "iat": "1516239022", 
+  "exp": "1516239022"
+}
+----
+====
+
+The RegService-OpenID-Token can be exchanged for an owneraccess-token
+[source]
+----
+curl -X GET "[baseUrl]/owner-authenticate" -H "Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJiMkJXT0w2dmN2QjluMjhnYVRwQ19fQllnXzI1aDljMkN2UGVXbmFGYUVNIn0.eyJqdGkiOiI5YjFkYjQ2ZC0yOThmLTQ0ZGItOTQ3ZC0wODdmYTNkYjQ2YzMiLCJleHAiOjE2Nzg4NjcwMjQsIm5iZiI6MCwiaWF0IjoxNjc4ODY2NzI0LCJpc3MiOiJodHRwOi8vYXV0aC10ZXN0LnZ6ZC50aS1kaWVuc3RlLmRlOjk0NDMvYXV0aC9yZWFsbXMvVEktUHJvdmlkZXIiLCJzdWIiOiI2MWJjODJiOC0yN2VlLTRkMDUtYTc0OC1iNmQ3Zjc4NDk4ZmIiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJnZW1hdGlrIiwiYXV0aF90aW1lIjowLCJzZXNzaW9uX3N0YXRlIjoiMjg4NTc4MDgtNWIyNS00NWJhLWIzMDEtOGVkYjQzNTA4Mzc4IiwiYWNyIjoiMSIsInNjb3BlIjoidGktcHJvdmlkZXIiLCJjbGllbnRJZCI6ImdlbWF0aWsiLCJjbGllbnRIb3N0IjoiMTcyLjI0LjQ2LjEwIiwiY2xpZW50QWRkcmVzcyI6IjE3Mi4yNC40Ni4xMCJ9.LUbOr4XlICADdYuyT_SgviTBdXkSKdXQ43Fnp9VF7lr71Zrf0ELWiXkr1SplrMUmJrrbff8SaEzZTyy9Fx32xFTJnkX_Dw3uugbWXcARC-895lotzJ1Je4CJZSNSUSv4m6e86M8L7dfXjXxrbPAh4hH8IFWpudgF0mPG12VQMhaupJu13o2gIzB1GL7dk567_RVWXML8hi4ib6DT5dgZjIHFKKSAeuw99Xq0m1XdkwPCL9t8aIemY9lShQ2obvj70C8jBaIjquNGAScIrn3oTTLXs54XBN-t839M5wU0fxpwwHhuaDpRF-uLmPdQA3zE7MCNJYXkzl9nWdh2dLD31w"
+----
+
+.RegService-OpenID-Token validation steps
+[%collapsible%open]
+====
+. jwt structure must follow https://www.rfc-editor.org/rfc/rfc7519#section-7.2[RFC7519 Validating a JWT]
+. OCSP check of the signature certificate
+. compare the signature certificate with one handed over while registering for the provider services endpoint credentials
+. validating signature(must be signed with certificate from X5c header)
+. validating certificate 
+.. type is C.FD.SIG
+.. technical role is "oid_tim" 
+. validating the used algorithm and the expiration time
+. checking for existence of field idnummer containing the TelematikID
+====
+
+=== Authenticate for the owner endpoint as an user
