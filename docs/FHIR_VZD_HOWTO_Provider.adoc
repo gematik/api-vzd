@@ -18,7 +18,7 @@ image::gematik_logo.svg[gematik,float="right"]
 
 [width="100%",cols="50%,50%",options="header",]
 |===
-|Version: |0.0.1
+|Version: |1.0.0
 |Referencing: |gemILF_FHIR_VZD
 |===
 
@@ -32,7 +32,7 @@ image::gematik_logo.svg[gematik,float="right"]
  |*Change reason, special instructions* +
  |*Editing* +
 
-|1.0.0 |28.10.22 | |Initial document |gematik
+|1.0.0 |16.06.22 | |Initial document |gematik
 
 |===
 
