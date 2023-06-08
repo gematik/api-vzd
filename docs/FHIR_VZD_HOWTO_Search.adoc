@@ -155,7 +155,7 @@ GET [baseUrl]/search/search/PractitionerRole?practitioner.active=true&practition
  
  
 .Response of this Request: 
-link:../samples/FHIRseach/Search_PractitionerRole_name.adoc[FHIRseach/Search_PractitionerRole_name] +
+link:../samples/FHIRseach/Search_PractitionerRole_name.adoc[Search_PractitionerRole_name] +
  +
  
 ==== FHIR VZD Search - "endpoint.payload-type" attribute (code based search)
@@ -197,7 +197,7 @@ Please note that with this parameter resources with no active endpoints are not 
  
  
 .Response of this Request: 
-link:../samples/FHIRseach/Search_PractitionerRole_payload-type.adoc[FHIRseach/Search_PractitionerRole_payload-type] +
+link:../samples/FHIRseach/Search_PractitionerRole_payload-type.adoc[Search_PractitionerRole_payload-type] +
  +
 
  
