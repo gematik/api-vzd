@@ -1,0 +1,69 @@
+= FHIR VZD implementation guide
+:source-highlighter: rouge
+:icons:
+:title-page:
+:imagesdir: /images/
+ifdef::env-github[]
+:toc: preamble
+endif::[]
+ifndef::env-github[]
+:toc: left
+endif::[]
+:toclevels: 3
+:toc-title: Table of Contents
+:sectnums:
+
+
+image::gematik_logo.svg[gematik,float="right"]
+
+[width="100%",cols="50%,50%",options="header",]
+|===
+|Version: |1.0.0
+|Referencing: |gemILF_VZD_FHIR_Directory
+|===
+
+[big]*Document history*
+
+[width="100%",cols="11%,11%,7%,58%,13%",options="header",]
+|===
+|*Version* +
+ |*Stand* +
+ |*Chap./ Page* +
+ |*Change reason, special instructions* +
+ |*Editing* +
+
+|1.0.0 |16.06.23 | |Initial document |gematik
+
+|===
+
+== Classification of the document
+=== Objective
+This document describes how the interfaces of the FHIR directory service can be implemented and used on the client side.
+
+=== Target group
+
+The document is aimed at software developers who are involved in implementing a client of the FHIR directory service.
+
+=== Scope
+
+*Intellectual property/patent notice*
+
+_The following specification was created by gematik solely from a technical point of view. In individual cases, it cannot be ruled out that the implementation of the specification will interfere with the technical property rights of third parties. It is solely up to the supplier or manufacturer to take suitable measures to ensure that the products and/or services offered by him on the basis of the specification do not infringe third-party property rights and, if necessary, to obtain the necessary permits/licenses from the property right holders concerned. In this respect, gematik GmbH assumes no liability whatsoever._
+
+
+== Structure of the document
+
+The FHIR VZD implementation guide consists of the following parts
+
+- link:FHIR_VZD_HOWTO_Authenticate.adoc[Authentication for all FHIR VZD interfaces]
+- link:FHIR_VZD_HOWTO_Search.adoc[Search interface /search]
+- link:FHIR_VZD_HOWTO_Provider.adoc[TI-Messenger Provider interface /tim-provider-services]
+- Owner interface (under work)
+
+The content of these parts is contained in the linked documents.
+
+
+
+
+
+
