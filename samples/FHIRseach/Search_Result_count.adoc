@@ -1,0 +1,31 @@
+
+*FHIR search request*
+[source]
+----
+https://fhir-directory-test.vzd.ti-dienste.de/search/PractitionerRole?practitioner.active=true&_summary=count
+----
+*FHIR search response*
+[source]
+----
+{
+    "resourceType": "Bundle",
+    "id": "ffd12655-4891-4ff3-a655-0545063ba490",
+    "meta": {
+        "lastUpdated": "2022-10-27T14:32:38.881+02:00",
+        "tag": [
+            {
+                "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationValue",
+                "code": "SUBSETTED",
+                "display": "Resource encoded in summary mode"
+            },
+            {
+                "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationValue",
+                "code": "SUBSETTED",
+                "display": "Resource encoded in summary mode"
+            }
+        ]
+    },
+    "type": "searchset",
+    "total": 297019
+}
+----
