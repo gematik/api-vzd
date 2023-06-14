@@ -139,7 +139,7 @@ The following custom search parameters are supported in addition to the standard
 To search a resource the "name" attribute of it can be used in the search operation:
 [source]
 --
-GET [baseUrl]/search/search/PractitionerRole?practitioner.active=true&practitioner.name=Timjamin
+GET [baseUrl]/search/PractitionerRole?practitioner.active=true&practitioner.name=Timjamin
 --
 
 
