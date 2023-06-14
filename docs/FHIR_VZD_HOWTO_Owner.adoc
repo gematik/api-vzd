@@ -1,0 +1,82 @@
+= FHIR VZD HOWTO Owner
+:source-highlighter: rouge
+:icons:
+:title-page:
+:imagesdir: /images/
+ifdef::env-github[]
+:toc: preamble
+endif::[]
+ifndef::env-github[]
+:toc: left
+endif::[]
+:toclevels: 3
+:toc-title: Table of Contents
+:sectnums:
+
+
+image::gematik_logo.svg[gematik,float="right"]
+
+[width="100%",cols="50%,50%",options="header",]
+|===
+|Version: |1.0.0
+|Referencing: |gemILF_FHIR_VZD
+|===
+
+[big]*Document history*
+
+[width="100%",cols="11%,11%,7%,58%,13%",options="header",]
+|===
+|*Version* +
+ |*Stand* +
+ |*Chap./ Page* +
+ |*Change reason, special instructions* +
+ |*Editing* +
+
+|0.0.1 |16.06.23 | |Initial document |gematik
+
+|===
+
+== Classification of the document
+=== Objective
+This document sums up examples in interacting with the owner API. 
+
+=== Target group
+
+The document is aimed at software developers who are involved in implementing a client that interacts with the owner API of the VZD-FHIR-Directory.
+
+=== Scope
+
+*Intellectual property/patent notice*
+
+_The following specification was created by gematik solely from a technical point of view. In individual cases, it cannot be ruled out that the implementation of the specification will interfere with the technical property rights of third parties. It is solely up to the supplier or manufacturer to take suitable measures to ensure that the products and/or services offered by him on the basis of the specification do not infringe third-party property rights and, if necessary, to obtain the necessary permits/licenses from the property right holders concerned. In this respect, gematik GmbH assumes no liability whatsoever._
+
+
+== FHIRDirectoryOwnerAPI
+
+
+
+=== Search
+The search via the owner interface is not limited as on the "Search" interface. The normal FHIR search functionality can be used.+
+A few hints:
+
+- The full-text search (https://build.fhir.org/search.html#_content[_content] and https://build.fhir.org/search.html#_text[_text] search parameters) 
+is optimized for the "Search" interface. In the owner interface the normal FHIR functionality is available. 
+FHIR limits the full-text search to one resource. 
+If you use PractitionerRole or HealthcareService as base for your search, you have the full-text search of the "Search" interface, which includes linked resources.
+
+
+
+
+=== Create PracititonerRole
+The following rules apply when creating a PracititonerRole:
+
+- An authenticated owner can create own PracititionerRoles
+- The created PracititionerRole must be linked to the Practitioner of the synchronized PractitionerRole (identified via TelematikId, origin=ldap)
+- If a location is linked, the same location must be used as for the synchronized PractitionerRole.
+- Deleting the synchronized PracititionerRole also leads to the deletion of the created PracititionerRole.
+- Only own EndPoints may be linked.
+- No telematikId identifier may be set.
+- No ldapUuid identifier may be set.
+- Only "owner" has to be set for meta.tag.origin. "ldap" must not be set.
+- The created PractitionerRole can not be linked with an Organization.
+- The created PractitionerRole can not be linked with an HealthcareService (this will be possible in a subsequent release).
