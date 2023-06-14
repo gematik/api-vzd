@@ -69,10 +69,15 @@ FHIR limits the full-text search to one resource.
 If you use PractitionerRole or HealthcareService as base for your search, you have the full-text search of the "Search" interface, which includes linked resources.
 
 
-=== Create HealthcareService
-=== Create Endpoint
+=== Administration of resource HealthcareService
+=== Administration of resource Endpoint
+==== Delete Endpoint
+Endpoints that are still in use cannot be deleted by the owner (linked from a HealthcareService / PractitionerRole). 
+First the links have to be deleted.
 
-=== Create PracititonerRole
+
+
+=== Administration of resource PracititonerRole
 The following rules apply when creating a PracititonerRole:
 
 - An authenticated owner can create own PracititionerRoles
@@ -85,3 +90,12 @@ The following rules apply when creating a PracititonerRole:
 - Only "owner" has to be set for meta.tag.origin. "ldap" must not be set.
 - The created PractitionerRole can not be linked with an Organization.
 - The created PractitionerRole can not be linked with an HealthcareService (this will be possible in a subsequent release).
+
+////
+Noch einarbeiten:
+https://arvato-systems-group.atlassian.net/browse/FVZ-140
+
+https://arvato-systems-group.atlassian.net/browse/FVZ-229
+https://arvato-systems-group.atlassian.net/browse/FVZ-231
+https://arvato-systems-group.atlassian.net/browse/FVZ-232
+////
