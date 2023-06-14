@@ -69,7 +69,8 @@ FHIR limits the full-text search to one resource.
 If you use PractitionerRole or HealthcareService as base for your search, you have the full-text search of the "Search" interface, which includes linked resources.
 
 
-
+=== Create HealthcareService
+=== Create Endpoint
 
 === Create PracititonerRole
 The following rules apply when creating a PracititonerRole:
