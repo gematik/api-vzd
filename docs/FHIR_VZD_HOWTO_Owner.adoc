@@ -55,7 +55,9 @@ _The following specification was created by gematik solely from a technical poin
 
 The interface enables the owners of a telematikID to change their entry in the VZD-FHIR directory. 
 The access token used for authentication contains the user's telematikID. Only the entry (Practitioner or Organization) with your own telematikID may be changed. Only the attributes that are not synchronized by the VZD LDAP directory - and is not administered by the card issuers - may be changed.
-
+ +
+ +
+The supported operations are described in the following subchapters.
 
 === Search
 The search via the owner interface is not limited as on the "Search" interface. The normal FHIR search functionality can be used.+
