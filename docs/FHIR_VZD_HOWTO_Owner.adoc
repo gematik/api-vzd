@@ -68,7 +68,10 @@ A few hints:
 is optimized for the "Search" interface. In the owner interface the normal FHIR functionality is available. 
 FHIR limits the full-text search to one resource. 
 If you use PractitionerRole or HealthcareService as base for your search, you have the full-text search of the "Search" interface, which includes linked resources.
-- 
+- Only standard search attributes are supported.
+
+// https://arvato-systems-group.atlassian.net/browse/FVZ-720
+// https://arvato-systems-group.atlassian.net/browse/FVZ-794
 
 === Administration of resource HealthcareService
 
@@ -78,6 +81,7 @@ For an own HealthcareService, the following information can be changed
 
 - Link an Endpoint with a TI-Messenger address (ConnectionType = tim) to HeathcareService. The endpoint that is linked must also be assigned to the owner.
 - Remove the link to an Endpoint.
+
 // https://arvato-systems-group.atlassian.net/browse/FVZ-229
 
 ==== HealthcareService not synchronized from the LDAP VZD (Meta.Tag.Origin=owner)
@@ -96,6 +100,8 @@ An additional HealthcareService can be created (POST)
 - HealthcareService.specialty can not be set (is under the authority of the card issuer). Note: This will be changed in the future to "may be set to a subset of the synchronized HealthcareService.specialty.
 
 // https://arvato-systems-group.atlassian.net/browse/FVZ-704
+// https://arvato-systems-group.atlassian.net/browse/FVZ-779
+// https://arvato-systems-group.atlassian.net/browse/FVZ-852 Owner: HealthcareService POST/PUT Validierung Spezialisierung
 
 In addition to the mandatory attributes, setting the following attributes is recommended
 
@@ -103,33 +109,54 @@ In addition to the mandatory attributes, setting the following attributes is rec
 - HealthcareService.active - Whether this HealthcareService record is in active use. If set to false, the HealthcareService will be not found in the Search interface.
 
 ===== Update HealthcareService (PUT)
-The owner can delete HealthcareServices resources that they have created themselves.
+The owner can delete HealthcareServices resources that they have created themselves:
+
+- The HealthcareService must remain linked to the existing sync organization.
+- For all other attributes see "Create HealthcareService"
+
+// https://arvato-systems-group.atlassian.net/browse/FVZ-701
+// https://arvato-systems-group.atlassian.net/browse/FVZ-793
 
 ===== Delete HealthcareService
 The owner can delete HealthcareServices resources that they have created themselves.
 
-=== Administration of resource Endpoint
+=== Administration of resource Endpoint  (Meta.Tag.Origin=owner)
 ==== Create Endpoint
 Endpoints can be created if all of the following criteria are met
 
-- the Endpoint contains a TI-Messenger address (ConnectionType = tim). 
+- the Endpoint contains a TI-Messenger address:
+
+* Endpoint.address contains TI-Messenger address (MXID)
+* Endpoint.connectionType is set to "tim"
+
 - the Endpoint contains all necessary information (https://simplifier.net/vzd-fhir-directory/endpointdirectory)
+
 // https://arvato-systems-group.atlassian.net/browse/FVZ-231
 
+In addition to the mandatory attributes, setting the following attributes is recommended
+
+- Endpoint.status - The state of the Endpoint e.g. "active".
+- Endpoint.name - Name of the Endpoint.
+
 ==== Update Endpoint (PUT)
-The owner can update Endpoint resources that they have created themselves.
+The owner can update Endpoint resources that they have created themselves. Resources synchronized from the LDAP VZD cannot be changed. +
+For all attributes see "Create Endpoint".
 
 ==== Delete Endpoint
 Endpoints can be deleted by the owner if
 
-- the Endpoint contains a TI-Messenger address (ConnectionType = tim) and are assigned to the owner. All resources that reference the endpoint must also be assigned to the owner.
-// https://arvato-systems-group.atlassian.net/browse/FVZ-232
 - there are no linkes from a HealthcareService or PractitionerRole. 
   (First the links have to be deleted.)
+// https://arvato-systems-group.atlassian.net/browse/FVZ-1109
+
+// - the Endpoint contains a TI-Messenger address (ConnectionType = tim) and are assigned to the owner. All resources that reference the endpoint must also be assigned to the owner.
+// https://arvato-systems-group.atlassian.net/browse/FVZ-232
 
 
 
-=== Administration of resource PracititonerRole
+
+
+=== Administration of resource PracititonerRole  (Meta.Tag.Origin=owner)
 The following rules apply when creating a PracititonerRole:
 
 - An authenticated owner can create own PracititionerRoles
@@ -146,8 +173,4 @@ The following rules apply when creating a PracititonerRole:
 ////
 Noch einarbeiten:
 https://arvato-systems-group.atlassian.net/browse/FVZ-140
-
-https://arvato-systems-group.atlassian.net/browse/FVZ-229
-https://arvato-systems-group.atlassian.net/browse/FVZ-231
-https://arvato-systems-group.atlassian.net/browse/FVZ-232
 ////
