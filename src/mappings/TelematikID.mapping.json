@@ -105,8 +105,8 @@
     {
       "pattern": "^9-2.59",
       "fhirResource": "Organization",
-      "code": "PKV",
-      "displayShort": "PKV",
+      "code": "Krankenversicherung",
+      "displayShort": "Krankenversicherung",
     },
     {
       "pattern": "^9-2.254",
@@ -129,8 +129,8 @@
     {
       "pattern": "^9-2.273",
       "fhirResource": "Organization",
-      "code": "PKV_ePA",
-      "displayShort": "PKV (ePA)",
+      "code": "Krankenversicherung_ePA",
+      "displayShort": "Krankenversicherung (ePA)",
     },
     {
       "pattern": "^9-2.282",
