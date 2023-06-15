@@ -60,20 +60,72 @@ The access token used for authentication contains the user's telematikID. Only t
 The supported operations are described in the following subchapters.
 
 === Search
-The search via the owner interface is not limited as on the "Search" interface. The normal FHIR search functionality can be used.+
+The search via the owner interface is not limited as on the "Search" interface. The normal FHIR search functionality can be used. Only the result set is limited to max. 100 FHIR VZD entries. +
+
 A few hints:
 
 - The full-text search (https://build.fhir.org/search.html#_content[_content] and https://build.fhir.org/search.html#_text[_text] search parameters) 
 is optimized for the "Search" interface. In the owner interface the normal FHIR functionality is available. 
 FHIR limits the full-text search to one resource. 
 If you use PractitionerRole or HealthcareService as base for your search, you have the full-text search of the "Search" interface, which includes linked resources.
-
+- 
 
 === Administration of resource HealthcareService
+
+==== HealthcareService synchronized from the LDAP VZD (Meta.Tag.Origin=ldap)
+===== Update HealthcareService 
+For an own HealthcareService, the following information can be changed 
+
+- Link an Endpoint with a TI-Messenger address (ConnectionType = tim) to HeathcareService. The endpoint that is linked must also be assigned to the owner.
+- Remove the link to an Endpoint.
+// https://arvato-systems-group.atlassian.net/browse/FVZ-229
+
+==== HealthcareService not synchronized from the LDAP VZD (Meta.Tag.Origin=owner)
+===== Create HealthcareService 
+An additional HealthcareService can be created (POST)
+
+- The HealthcareService must be linked to the existing Organization. 
+- The HealthcareService may be linked to an existing Location. 
+- The OwnerId of the linked Organization and Location has to match to the telematikId in the owner access token.
+- The linked Organization and Location itself must belong to the same HealthcareService.
+- The successfully created HealthcareService resource can be linked to an endpoint that has the same OwnerId.
+- Meta.Tag.Origin must not be set to ldap and the ldapUId is not set as an identifier.
+- Meta.Security "owner" must be set.
+- Meta.Tag must be set to "owner".
+- If an identifier with CodeSystem "https://gematik.de/fhir/sid/telematik-id" is specified, the value must correspond to the telematik ID of the access token.
+- HealthcareService.specialty can not be set (is under the authority of the card issuer). Note: This will be changed in the future to "may be set to a subset of the synchronized HealthcareService.specialty.
+
+// https://arvato-systems-group.atlassian.net/browse/FVZ-704
+
+In addition to the mandatory attributes, setting the following attributes is recommended
+
+- HealthcareService.name - A name describing the provided HealthcareServiceHealthcareService.
+- HealthcareService.active - Whether this HealthcareService record is in active use. If set to false, the HealthcareService will be not found in the Search interface.
+
+===== Update HealthcareService (PUT)
+The owner can delete HealthcareServices resources that they have created themselves.
+
+===== Delete HealthcareService
+The owner can delete HealthcareServices resources that they have created themselves.
+
 === Administration of resource Endpoint
+==== Create Endpoint
+Endpoints can be created if all of the following criteria are met
+
+- the Endpoint contains a TI-Messenger address (ConnectionType = tim). 
+- the Endpoint contains all necessary information (https://simplifier.net/vzd-fhir-directory/endpointdirectory)
+// https://arvato-systems-group.atlassian.net/browse/FVZ-231
+
+==== Update Endpoint (PUT)
+The owner can update Endpoint resources that they have created themselves.
+
 ==== Delete Endpoint
-Endpoints that are still in use cannot be deleted by the owner (linked from a HealthcareService / PractitionerRole). 
-First the links have to be deleted.
+Endpoints can be deleted by the owner if
+
+- the Endpoint contains a TI-Messenger address (ConnectionType = tim) and are assigned to the owner. All resources that reference the endpoint must also be assigned to the owner.
+// https://arvato-systems-group.atlassian.net/browse/FVZ-232
+- there are no linkes from a HealthcareService or PractitionerRole. 
+  (First the links have to be deleted.)
 
 
 
