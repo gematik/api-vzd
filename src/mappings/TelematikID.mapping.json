@@ -1,0 +1,22 @@
+{
+  "mapping": [
+    {
+      "pattern": "^1-1",
+      "fhirResource": "Practitioner", 
+      "code": "Arzt",
+      "display": "Arzt",
+    },
+    {
+      "pattern": "^1-20",
+      "fhirResource": "Organization",
+      "code": "Arztpaxis",
+      "display": "Arztpaxis",
+    },
+    {
+      "pattern": "^2-0?1.*",
+      "fhirResource": "Practitioner",
+      "code": "Zahnarzt",
+      "display": "Zahnarzt",
+    }
+  ] 
+}
