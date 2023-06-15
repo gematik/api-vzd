@@ -1,208 +1,208 @@
 {
   "mapping": [
     {
-      "pattern": "^1-1",
-      "fhirResource": "Practitioner", 
+      "pattern": "^1-1.*",
+      "fhirResourceType": "Practitioner", 
       "code": "Arzt",
-      "displayShort": "Arzt",
+      "displayShort": "Arzt"
     },
     {
-      "pattern": "^1-20",
-      "fhirResource": "Organization",
+      "pattern": "^1-20.*",
+      "fhirResourceType": "Organization",
       "code": "Arztpaxis",
-      "displayShort": "Arztpaxis",
+      "displayShort": "Arztpaxis"
     },
     {
-      "pattern": "^2-0?1.",
-      "fhirResource": "Practitioner",
+      "pattern": "^2-0?1.*",
+      "fhirResourceType": "Practitioner",
       "code": "Zahnarzt",
-      "displayShort": "Zahnarzt",
+      "displayShort": "Zahnarzt"
     },
     {
-      "pattern": "^2-2",
-      "fhirResource": "Organization",
+      "pattern": "^2-2.*",
+      "fhirResourceType": "Organization",
       "code": "Zahnarztpraxis",
-      "displayShort": "Zahnarztpraxis",
+      "displayShort": "Zahnarztpraxis"
     },
     {
-      "pattern": "^3-...2.",
-      "fhirResource": "Organization",
+      "pattern": "^3-...2.*",
+      "fhirResourceType": "Organization",
       "code": "Apotheke",
-      "displayShort": "Apotheke",
+      "displayShort": "Apotheke"
     },
     {
-      "pattern": "^3-",
-      "fhirResource": "Apotheker",
+      "pattern": "^3-.*",
+      "fhirResourceType": "Practitioner",
       "code": "Apotheker",
-      "displayShort": "Apotheker",
+      "displayShort": "Apotheker"
     },
     {
-      "pattern": "^4-",
-      "fhirResource": "Practitioner",
+      "pattern": "^4-.*",
+      "fhirResourceType": "Practitioner",
       "code": "Physiotherapeut",
-      "displayShort": "Physiotherapeut",
+      "displayShort": "Physiotherapeut"
     },
     {
-      "pattern": "^5-",
-      "fhirResource": "Organization",
+      "pattern": "^5-.*",
+      "fhirResourceType": "Organization",
       "code": "Krankenhaus",
-      "displayShort": "Krankenhaus",
+      "displayShort": "Krankenhaus"
     },
     {
-      "pattern": "^8-01",
-      "fhirResource": "Organization",
+      "pattern": "^8-01.*",
+      "fhirResourceType": "Organization",
       "code": "Krankenkasse",
-      "displayShort": "Krankenkasse",
+      "displayShort": "Krankenkasse"
     },
     {
-      "pattern": "^8-03",
-      "fhirResource": "Organization",
+      "pattern": "^8-03.*",
+      "fhirResourceType": "Organization",
       "code": "Krankenkasse_ePA",
-      "displayShort": "Krankenkasse (ePA)",
+      "displayShort": "Krankenkasse (ePA)"
     },
     {
-      "pattern": "^9-1.32",
-      "fhirResource": "Practitioner",
+      "pattern": "^9-1.32.*",
+      "fhirResourceType": "Practitioner",
       "code": "EU_Versandapotheker",
-      "displayShort": "EU-Versandapotheker",
+      "displayShort": "EU-Versandapotheker"
     },
     {
-      "pattern": "^9-1.33",
-      "fhirResource": "Practitioner",
+      "pattern": "^9-1.33.*",
+      "fhirResourceType": "Practitioner",
       "code": "Apothekerassistent",
-      "displayShort": "Apothekerassistent",
+      "displayShort": "Apothekerassistent"
     },
     {
-      "pattern": "^9-1.34",
-      "fhirResource": "Practitioner",
+      "pattern": "^9-1.34.*",
+      "fhirResourceType": "Practitioner",
       "code": "Pharmazieingenieur",
-      "displayShort": "Pharmazieingenieur",
+      "displayShort": "Pharmazieingenieur"
     },
     {
-      "pattern": "^9-2.50",
-      "fhirResource": "Organization",
+      "pattern": "^9-2.50.*",
+      "fhirResourceType": "Organization",
       "code": "Private_Arztpraxis",
-      "displayShort": "Private Arztpraxis",
+      "displayShort": "Private Arztpraxis"
     },
     {
-      "pattern": "^9-2.51",
-      "fhirResource": "Organization",
+      "pattern": "^9-2.51.*",
+      "fhirResourceType": "Organization",
       "code": "Private_Zahnarztpraxis",
-      "displayShort": "Private Zahnarztpraxis",
+      "displayShort": "Private Zahnarztpraxis"
     },
     {
-      "pattern": "^9-2.34",
-      "fhirResource": "Organization",
+      "pattern": "^9-2.34.*",
+      "fhirResourceType": "Organization",
       "code": "Private_Psychotherapeutenpraxis",
-      "displayShort": "Private Psychotherapeutenpraxis",
+      "displayShort": "Private Psychotherapeutenpraxis"
     },
     {
-      "pattern": "^9-2.54",
-      "fhirResource": "Organization",
+      "pattern": "^9-2.54.*",
+      "fhirResourceType": "Organization",
       "code": "EU_Versandapotheke",
-      "displayShort": "EU-Versandapotheke",
+      "displayShort": "EU-Versandapotheke"
     },
     {
-      "pattern": "^9-2.59",
-      "fhirResource": "Organization",
+      "pattern": "^9-2.59.*",
+      "fhirResourceType": "Organization",
       "code": "Krankenversicherung",
-      "displayShort": "Krankenversicherung",
+      "displayShort": "Krankenversicherung"
     },
     {
-      "pattern": "^9-2.254",
-      "fhirResource": "Organization",
+      "pattern": "^9-2.254.*",
+      "fhirResourceType": "Organization",
       "code": "Sanitätsdienststelle_Bundeswehr",
-      "displayShort": "Bundeswehr",
+      "displayShort": "Bundeswehr"
     },
     {
-      "pattern": "^9-2.255",
-      "fhirResource": "Organization",
+      "pattern": "^9-2.255.*",
+      "fhirResourceType": "Organization",
       "code": "Gesundheitsamt",
-      "displayShort": "Gesundheitsamt",
+      "displayShort": "Gesundheitsamt"
     },
     {
-      "pattern": "^9-2.256",
-      "fhirResource": "Organization",
+      "pattern": "^9-2.256.*",
+      "fhirResourceType": "Organization",
       "code": "Arbeitsmedizin",
-      "displayShort": "Arbeitsmedizin",
+      "displayShort": "Arbeitsmedizin"
     },
     {
-      "pattern": "^9-2.273",
-      "fhirResource": "Organization",
+      "pattern": "^9-2.273.*",
+      "fhirResourceType": "Organization",
       "code": "Krankenversicherung_ePA",
-      "displayShort": "Krankenversicherung (ePA)",
+      "displayShort": "Krankenversicherung (ePA)"
     },
     {
-      "pattern": "^9-2.282",
-      "fhirResource": "Organization",
+      "pattern": "^9-2.282.*",
+      "fhirResourceType": "Organization",
       "code": "DiGA",
-      "displayShort": "DiGA",
+      "displayShort": "DiGA"
     },
     {
-      "pattern": "^9-2.",
-      "fhirResource": "Organization",
+      "pattern": "^9-2.*",
+      "fhirResourceType": "Organization",
       "code": "Organisation",
-      "displayShort": "Organisation",
+      "displayShort": "Organisation"
     },
     {
-      "pattern": "^10-67.245",
-      "fhirResource": "Organization",
+      "pattern": "^10-67.245.*",
+      "fhirResourceType": "Organization",
       "code": "Pflege",
-      "displayShort": "Pflege",
+      "displayShort": "Pflege"
     },
     {
-      "pattern": "^10-67.246",
-      "fhirResource": "Organization",
+      "pattern": "^10-67.246.*",
+      "fhirResourceType": "Organization",
       "code": "Geburtshilfe",
-      "displayShort": "Geburtshilfe",
+      "displayShort": "Geburtshilfe"
     },
     {
-      "pattern": "^10-67.247",
-      "fhirResource": "Organization",
+      "pattern": "^10-67.247.*",
+      "fhirResourceType": "Organization",
       "code": "Physiotherapie",
-      "displayShort": "Physiotherapie",
+      "displayShort": "Physiotherapie"
     },
     {
-      "pattern": "^10-67.232",
-      "fhirResource": "Practitioner",
+      "pattern": "^10-67.232.*",
+      "fhirResourceType": "Practitioner",
       "code": "Krankenpfleger",
-      "displayShort": "Krankenpfleger",
+      "displayShort": "Krankenpfleger"
     },
     {
-      "pattern": "^10-67.233",
-      "fhirResource": "Practitioner",
+      "pattern": "^10-67.233.*",
+      "fhirResourceType": "Practitioner",
       "code": "Altenpfleger",
-      "displayShort": "Altenpfleger",
+      "displayShort": "Altenpfleger"
     },
     {
-      "pattern": "^10-67.234",
-      "fhirResource": "Practitioner",
+      "pattern": "^10-67.234.*",
+      "fhirResourceType": "Practitioner",
       "code": "Pflegerin",
-      "displayShort": "Pfleger:in",
-    }
+      "displayShort": "Pfleger:in"
+    },
     {
-      "pattern": "^10-67.235",
-      "fhirResource": "Practitioner",
+      "pattern": "^10-67.235.*",
+      "fhirResourceType": "Practitioner",
       "code": "Hebamme",
-      "displayShort": "Hebamme",
+      "displayShort": "Hebamme"
     },
     {
-      "pattern": "^10-67.236",
-      "fhirResource": "Practitioner",
+      "pattern": "^10-67.236.*",
+      "fhirResourceType": "Practitioner",
       "code": "Physiotherapeut",
-      "displayShort": "Physiotherapeut",
+      "displayShort": "Physiotherapeut"
     },
     {
-      "pattern": "^10-67",
-      "fhirResource": "Practitioner",
+      "pattern": "^10-67.*",
+      "fhirResourceType": "Practitioner",
       "code": "Gesundheitsberuf",
-      "displayShort": "Gesundheitsberuf",
-    }
+      "displayShort": "Gesundheitsberuf"
+    },
     {
-      "pattern": "",
-      "fhirResource": "Organization",
+      "pattern": ".*",
+      "fhirResourceType": "Organization",
       "code": "Weitere",
-      "displayShort": "Weitere",
+      "displayShort": "Weitere"
     }
   ] 
 }
