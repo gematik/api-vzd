@@ -92,9 +92,8 @@ An additional HealthcareService can be created (POST)
 - The OwnerId of the linked Organization and Location has to match to the telematikId in the owner access token.
 - The linked Organization and Location itself must belong to the same HealthcareService.
 - The successfully created HealthcareService resource can be linked to an endpoint that has the same OwnerId.
-- Meta.Tag.Origin must not be set to ldap and the ldapUId is not set as an identifier.
+- Meta.Tag.Origin must be set to "owner" (and not to ldap) and the ldapUId is not set as an identifier.
 - Meta.Security "owner" must be set.
-- Meta.Tag must be set to "owner".
 - If an identifier with CodeSystem "https://gematik.de/fhir/sid/telematik-id" is specified, the value must correspond to the telematik ID of the access token.
 - HealthcareService.specialty can not be set (is under the authority of the card issuer). Note: This will be changed in the future to "may be set to a subset of the synchronized HealthcareService.specialty.
 
