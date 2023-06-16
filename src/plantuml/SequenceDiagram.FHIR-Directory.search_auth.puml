@@ -9,7 +9,7 @@ participant cl as "TI-Messenger-Client"
 box <size:16>FHIR-Directory</size> #WhiteSmoke
   participant au as "Auth-Service"
 end box
-participant hs as "Matrix-Homeserver\n(Messenger-Proxy)"
+participant hs as "TI-Messenger-Service\nMessenger-Proxy"
 activate cl
 cl -> hs: POST /_matrix/client/v3/user/{userId}/openid/request_token
 note left
@@ -21,8 +21,9 @@ hs --> cl: HTTP 200 OK, Result body {"access_token": "OFdZNozDIomXLrCWjgejIQBM" 
 deactivate hs
 cl -> au: GET /tim-authenticate?mxId=matrix.service-ti.de" \n -H "X-Matrix-OpenID-Token: OFdZNozDIomXLrCWjgejIQBM"
 activate au
-au -> au: Check that matrix server "matrix.service-ti.de"\n is part of the federation list
-au -> hs: GET /_matrix/federation/v1/openid/userinfo?access_token=OFdZNozDIomXLrCWjgejIQBM
+au -> au: Check that matrix server url "matrix.service-ti.de"\n is part of the federation list
+au -> au: lookup PORT for given matrix server url
+au -> hs: GET matrix.service-ti.de:{PORT}/_matrix/federation/v1/openid/userinfo?access_token=OFdZNozDIomXLrCWjgejIQBM
 activate hs
 hs --> au: HTTP 200 OK\nResult Body {"sub": "@testuser:matrix.service-ti.de"}
 deactivate hs
