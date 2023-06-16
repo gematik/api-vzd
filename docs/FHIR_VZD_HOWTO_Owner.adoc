@@ -68,7 +68,6 @@ A few hints:
 is optimized for the "Search" interface. In the owner interface the normal FHIR functionality is available. 
 FHIR limits the full-text search to one resource. 
 If you use PractitionerRole or HealthcareService as base for your search, you have the full-text search of the "Search" interface, which includes linked resources.
-- Only standard search attributes are supported.
 
 // https://arvato-systems-group.atlassian.net/browse/FVZ-720
 // https://arvato-systems-group.atlassian.net/browse/FVZ-794
