@@ -119,9 +119,10 @@ Neu für eGBR HBA und SMC-B |gematik
 |
 - Version der Referenzen ergänzt +
 - Kap. 3.3.1: POST /DirectoryEntries: Attribut entryType muss angeben werden, wenn kein Zertifikat übergeben wird +
-  (muss in Kap. 3.3.1 & 4 noch ergänzt werden) +
+- Kap. 4 Attribut "entryType" Wird kein Zertifikat übergeben, ist entryType Pflichtparameter - DIR-497 +
 - Tab_VZD_Datenbeschreibung_DKTIG - Beschreibung domainID überarbeitet - JF gematik/dktig 2.06.2023 +
-- Kap. 4 Attribut "usage" aus den Tabellen entfernt - Kommentierung 20230421_KIM_Maintenance_23.2_KIM1.5.3
+- Kap. 4 Attribut "usage" aus den Tabellen entfernt - Kommentierung 20230421_KIM_Maintenance_23.2_KIM1.5.3 +
+- Kap. 3.3.2 Hinweis aufgenommen, dass Zertifikate vor Freischaltung eingetragen werden dürfen - DIR-497
 
 
 
@@ -316,7 +317,7 @@ Zusätzlich müssen alle Strings als UTF-8 kodiert sein.
 
 Durch die addDirectoryEntry-Operation (HTTP POST /DirectoryEntries) wird ein Eintrag zum Verzeichnisdienst hinzugefügt.
 
-Entweder der Parameter telematikID oder der Parameter userCertificate muss im Request angegeben werden. Wird weder telematikID noch userCertificate angegeben, wird der Request mit HTTP Code 405 (Invalid Input) beantwortet. Wird telematikID und userCertificate angegeben, dann muss die telematikID mit der telematikID im userCertificate übereinstimmen. Bei unterschiedlicher telematikID wird die Operation mit Fehlercode 422 (Unprocessable Entity) abgelehnt. Wenn mehrere userCertificate-Parameter angegeben werden, dann werden nur vom letzten userCertificate die automatisch vom VZD extrahierten Daten wie z. B. cn in den VZD-Eintrag hinzugefügt. Die telematikID muss in allen übergebenen userCertificate-Parametern gleich sein. Bei unterschiedlicher telematikID wird die Operation mit Fehlercode 422 (Unprocessable Entity) abgelehnt. Wenn kein userCertificate angegeben ist, dann wird ein Certificates-Eintrag erstellt, der nur die telematikID enthält. In diesem Fall muss der Parameter personalEntry mit angegeben sein.
+Entweder der Parameter telematikID oder der Parameter userCertificate muss im Request angegeben werden. Wird weder telematikID noch userCertificate angegeben, wird der Request mit HTTP Code 405 (Invalid Input) beantwortet. Wird telematikID und userCertificate angegeben, dann muss die telematikID mit der telematikID im userCertificate übereinstimmen. Bei unterschiedlicher telematikID wird die Operation mit Fehlercode 422 (Unprocessable Entity) abgelehnt. Wenn mehrere userCertificate-Parameter angegeben werden, dann werden nur vom letzten userCertificate die automatisch vom VZD extrahierten Daten wie z. B. cn in den VZD-Eintrag hinzugefügt. Die telematikID muss in allen übergebenen userCertificate-Parametern gleich sein. Bei unterschiedlicher telematikID wird die Operation mit Fehlercode 422 (Unprocessable Entity) abgelehnt. Wenn kein userCertificate angegeben ist, dann wird ein Certificates-Eintrag erstellt, der nur die telematikID enthält. In diesem Fall muss der Parameter entryType mit angegeben sein.
 
 Der Parameter dn kann nicht im Request angegeben werden.
 
@@ -432,6 +433,14 @@ Connection: Keep-Alive
 
 Accept-Encoding: gzip
 ----
+
+===== Wann Zertifikate eintragen?
+
+Zertifikate können sofort nach Ausstellung durch den TSP in den VZD eingetragen werden, also auch vor Freischaltung durch den Karteninhaber. +
+Anhand von Attributen „notBefore“, „notAfter“ (zeitliche Gültigkeit) und userCertificate.active (OCSP Status) steuert der VZD die Sichtbarkeit der Zertifikate. Dabei wird die zeitliche Gültigkeit mit hoher Frequenz ausgewertet und der OCSP Status mindestens einmal täglich (konfigurierbar). +
+Damit sind die Zertifikate im VZD nur sichtbar, wenn sie freigeschaltet und zeitlich gülig sind.
+
+
 
 ==== DirectoryEntrySynchronization
 
@@ -821,6 +830,7 @@ Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admissio
  +
 entryType kann über Operationen add_Directory_Entry und modify_Directory_Entry gesetzt werden. +
 Wird in Operationen add_Directory_Entry ein Zertifikat angegeben wird, muss ein eventuell angegebener Parameter entryType mit dem Wert aus dem Zertifikat übereinstimmen. Bei nicht angegebenem Parameter entryType wird das Attribut entryType entsprechend dem Zertifikat gesetzt. +
+Wird in Operationen add_Directory_Entry kein Zertifikat angegeben, muss Parameter entryType angegeben werden. +
 Mit Operation modify_Directory_Entry kann über Request Parameter entryType das Attribut im VZD geändert werden, solange kein Zertifikat im VZD enthalten ist (welches dann einen abweichenden Wert gegenüber dem Request Parameter entryType enthalten würde). +
 Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit einem Fehler. 
 |*telematikID* |obligatorisch |Bezeichner: TelematikID +
@@ -995,6 +1005,7 @@ Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admissio
  +
 entryType kann über Operationen add_Directory_Entry und modify_Directory_Entry gesetzt werden. +
 Wird in Operationen add_Directory_Entry ein Zertifikat angegeben wird, muss ein eventuell angegebener Parameter entryType mit dem Wert aus dem Zertifikat übereinstimmen. Bei nicht angegebenem Parameter entryType wird das Attribut entryType entsprechend dem Zertifikat gesetzt. +
+Wird in Operationen add_Directory_Entry kein Zertifikat angegeben, muss Parameter entryType angegeben werden. +
 Mit Operation modify_Directory_Entry kann über Request Parameter entryType das Attribut im VZD geändert werden, solange kein Zertifikat im VZD enthalten ist (welches dann einen abweichenden Wert gegenüber dem Request Parameter entryType enthalten würde). +
 Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit einem Fehler. 
 |*telematikID* |obligatorisch |Bezeichner: TelematikID +
@@ -1175,6 +1186,7 @@ Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admissio
  +
 entryType kann über Operationen add_Directory_Entry und modify_Directory_Entry gesetzt werden. +
 Wird in Operationen add_Directory_Entry ein Zertifikat angegeben wird, muss ein eventuell angegebener Parameter entryType mit dem Wert aus dem Zertifikat übereinstimmen. Bei nicht angegebenem Parameter entryType wird das Attribut entryType entsprechend dem Zertifikat gesetzt. +
+Wird in Operationen add_Directory_Entry kein Zertifikat angegeben, muss Parameter entryType angegeben werden. +
 Mit Operation modify_Directory_Entry kann über Request Parameter entryType das Attribut im VZD geändert werden, solange kein Zertifikat im VZD enthalten ist (welches dann einen abweichenden Wert gegenüber dem Request Parameter entryType enthalten würde). +
 Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit einem Fehler. 
 |*telematikID* |obligatorisch |Bezeichner: TelematikID +
@@ -1374,6 +1386,7 @@ Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admissio
  +
 entryType kann über Operationen add_Directory_Entry und modify_Directory_Entry gesetzt werden. +
 Wird in Operationen add_Directory_Entry ein Zertifikat angegeben wird, muss ein eventuell angegebener Parameter entryType mit dem Wert aus dem Zertifikat übereinstimmen. Bei nicht angegebenem Parameter entryType wird das Attribut entryType entsprechend dem Zertifikat gesetzt. +
+Wird in Operationen add_Directory_Entry kein Zertifikat angegeben, muss Parameter entryType angegeben werden. +
 Mit Operation modify_Directory_Entry kann über Request Parameter entryType das Attribut im VZD geändert werden, solange kein Zertifikat im VZD enthalten ist (welches dann einen abweichenden Wert gegenüber dem Request Parameter entryType enthalten würde). +
 Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit einem Fehler. 
 |*telematikID* |obligatorisch |Bezeichner: TelematikID +
@@ -1546,6 +1559,7 @@ Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admissio
  +
 entryType kann über Operationen add_Directory_Entry und modify_Directory_Entry gesetzt werden. +
 Wird in Operationen add_Directory_Entry ein Zertifikat angegeben wird, muss ein eventuell angegebener Parameter entryType mit dem Wert aus dem Zertifikat übereinstimmen. Bei nicht angegebenem Parameter entryType wird das Attribut entryType entsprechend dem Zertifikat gesetzt. +
+Wird in Operationen add_Directory_Entry kein Zertifikat angegeben, muss Parameter entryType angegeben werden. +
 Mit Operation modify_Directory_Entry kann über Request Parameter entryType das Attribut im VZD geändert werden, solange kein Zertifikat im VZD enthalten ist (welches dann einen abweichenden Wert gegenüber dem Request Parameter entryType enthalten würde). +
 Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit einem Fehler. 
 |*telematikID* |obligatorisch |Bezeichner: TelematikID +
@@ -1725,6 +1739,7 @@ Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admissio
  +
 entryType kann über Operationen add_Directory_Entry und modify_Directory_Entry gesetzt werden. +
 Wird in Operationen add_Directory_Entry ein Zertifikat angegeben wird, muss ein eventuell angegebener Parameter entryType mit dem Wert aus dem Zertifikat übereinstimmen. Bei nicht angegebenem Parameter entryType wird das Attribut entryType entsprechend dem Zertifikat gesetzt. +
+Wird in Operationen add_Directory_Entry kein Zertifikat angegeben, muss Parameter entryType angegeben werden. +
 Mit Operation modify_Directory_Entry kann über Request Parameter entryType das Attribut im VZD geändert werden, solange kein Zertifikat im VZD enthalten ist (welches dann einen abweichenden Wert gegenüber dem Request Parameter entryType enthalten würde). +
 Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit einem Fehler. 
 |*telematikID* |obligatorisch |Bezeichner: TelematikID +
@@ -1904,6 +1919,7 @@ Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admissio
  +
 entryType kann über Operationen add_Directory_Entry und modify_Directory_Entry gesetzt werden. +
 Wird in Operationen add_Directory_Entry ein Zertifikat angegeben wird, muss ein eventuell angegebener Parameter entryType mit dem Wert aus dem Zertifikat übereinstimmen. Bei nicht angegebenem Parameter entryType wird das Attribut entryType entsprechend dem Zertifikat gesetzt. +
+Wird in Operationen add_Directory_Entry kein Zertifikat angegeben, muss Parameter entryType angegeben werden. +
 Mit Operation modify_Directory_Entry kann über Request Parameter entryType das Attribut im VZD geändert werden, solange kein Zertifikat im VZD enthalten ist (welches dann einen abweichenden Wert gegenüber dem Request Parameter entryType enthalten würde). +
 Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit einem Fehler. 
 |*telematikID* |obligatorisch |Bezeichner: TelematikID +
@@ -2083,6 +2099,7 @@ Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admissio
  +
 entryType kann über Operationen add_Directory_Entry und modify_Directory_Entry gesetzt werden. +
 Wird in Operationen add_Directory_Entry ein Zertifikat angegeben wird, muss ein eventuell angegebener Parameter entryType mit dem Wert aus dem Zertifikat übereinstimmen. Bei nicht angegebenem Parameter entryType wird das Attribut entryType entsprechend dem Zertifikat gesetzt. +
+Wird in Operationen add_Directory_Entry kein Zertifikat angegeben, muss Parameter entryType angegeben werden. +
 Mit Operation modify_Directory_Entry kann über Request Parameter entryType das Attribut im VZD geändert werden, solange kein Zertifikat im VZD enthalten ist (welches dann einen abweichenden Wert gegenüber dem Request Parameter entryType enthalten würde). +
 Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit einem Fehler. 
 |*telematikID* |obligatorisch |Bezeichner: TelematikID +
@@ -2254,6 +2271,7 @@ Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admissio
  +
 entryType kann über Operationen add_Directory_Entry und modify_Directory_Entry gesetzt werden. +
 Wird in Operationen add_Directory_Entry ein Zertifikat angegeben wird, muss ein eventuell angegebener Parameter entryType mit dem Wert aus dem Zertifikat übereinstimmen. Bei nicht angegebenem Parameter entryType wird das Attribut entryType entsprechend dem Zertifikat gesetzt. +
+Wird in Operationen add_Directory_Entry kein Zertifikat angegeben, muss Parameter entryType angegeben werden. +
 Mit Operation modify_Directory_Entry kann über Request Parameter entryType das Attribut im VZD geändert werden, solange kein Zertifikat im VZD enthalten ist (welches dann einen abweichenden Wert gegenüber dem Request Parameter entryType enthalten würde). +
 Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit einem Fehler. 
 |*telematikID* |obligatorisch |Bezeichner: TelematikID +
@@ -2423,6 +2441,7 @@ Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admissio
  +
 entryType kann über Operationen add_Directory_Entry und modify_Directory_Entry gesetzt werden. +
 Wird in Operationen add_Directory_Entry ein Zertifikat angegeben wird, muss ein eventuell angegebener Parameter entryType mit dem Wert aus dem Zertifikat übereinstimmen. Bei nicht angegebenem Parameter entryType wird das Attribut entryType entsprechend dem Zertifikat gesetzt. +
+Wird in Operationen add_Directory_Entry kein Zertifikat angegeben, muss Parameter entryType angegeben werden. +
 Mit Operation modify_Directory_Entry kann über Request Parameter entryType das Attribut im VZD geändert werden, solange kein Zertifikat im VZD enthalten ist (welches dann einen abweichenden Wert gegenüber dem Request Parameter entryType enthalten würde). +
 Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit einem Fehler. 
 |*telematikID* |obligatorisch |Bezeichner: TelematikID +
@@ -2545,6 +2564,7 @@ Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admissio
  +
 entryType kann über Operationen add_Directory_Entry und modify_Directory_Entry gesetzt werden. +
 Wird in Operationen add_Directory_Entry ein Zertifikat angegeben wird, muss ein eventuell angegebener Parameter entryType mit dem Wert aus dem Zertifikat übereinstimmen. Bei nicht angegebenem Parameter entryType wird das Attribut entryType entsprechend dem Zertifikat gesetzt. +
+Wird in Operationen add_Directory_Entry kein Zertifikat angegeben, muss Parameter entryType angegeben werden. +
 Mit Operation modify_Directory_Entry kann über Request Parameter entryType das Attribut im VZD geändert werden, solange kein Zertifikat im VZD enthalten ist (welches dann einen abweichenden Wert gegenüber dem Request Parameter entryType enthalten würde). +
 Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit einem Fehler. 
 |*telematikID* |obligatorisch |Bezeichner: TelematikID +
@@ -2709,6 +2729,7 @@ Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admissio
  +
 entryType kann über Operationen add_Directory_Entry und modify_Directory_Entry gesetzt werden. +
 Wird in Operationen add_Directory_Entry ein Zertifikat angegeben wird, muss ein eventuell angegebener Parameter entryType mit dem Wert aus dem Zertifikat übereinstimmen. Bei nicht angegebenem Parameter entryType wird das Attribut entryType entsprechend dem Zertifikat gesetzt. +
+Wird in Operationen add_Directory_Entry kein Zertifikat angegeben, muss Parameter entryType angegeben werden. +
 Mit Operation modify_Directory_Entry kann über Request Parameter entryType das Attribut im VZD geändert werden, solange kein Zertifikat im VZD enthalten ist (welches dann einen abweichenden Wert gegenüber dem Request Parameter entryType enthalten würde). +
 Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit einem Fehler. 
 |*telematikID* |obligatorisch |Bezeichner: TelematikID +
@@ -2881,6 +2902,7 @@ Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admissio
  +
 entryType kann über Operationen add_Directory_Entry und modify_Directory_Entry gesetzt werden. +
 Wird in Operationen add_Directory_Entry ein Zertifikat angegeben wird, muss ein eventuell angegebener Parameter entryType mit dem Wert aus dem Zertifikat übereinstimmen. Bei nicht angegebenem Parameter entryType wird das Attribut entryType entsprechend dem Zertifikat gesetzt. +
+Wird in Operationen add_Directory_Entry kein Zertifikat angegeben, muss Parameter entryType angegeben werden. +
 Mit Operation modify_Directory_Entry kann über Request Parameter entryType das Attribut im VZD geändert werden, solange kein Zertifikat im VZD enthalten ist (welches dann einen abweichenden Wert gegenüber dem Request Parameter entryType enthalten würde). +
 Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit einem Fehler. 
 |*telematikID* |obligatorisch |Bezeichner: TelematikID +
@@ -3071,6 +3093,7 @@ Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admissio
  +
 entryType kann über Operationen add_Directory_Entry und modify_Directory_Entry gesetzt werden. +
 Wird in Operationen add_Directory_Entry ein Zertifikat angegeben wird, muss ein eventuell angegebener Parameter entryType mit dem Wert aus dem Zertifikat übereinstimmen. Bei nicht angegebenem Parameter entryType wird das Attribut entryType entsprechend dem Zertifikat gesetzt. +
+Wird in Operationen add_Directory_Entry kein Zertifikat angegeben, muss Parameter entryType angegeben werden. +
 Mit Operation modify_Directory_Entry kann über Request Parameter entryType das Attribut im VZD geändert werden, solange kein Zertifikat im VZD enthalten ist (welches dann einen abweichenden Wert gegenüber dem Request Parameter entryType enthalten würde). +
 Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit einem Fehler. 
 |*telematikID* |obligatorisch |Bezeichner: TelematikID +
@@ -3217,6 +3240,7 @@ Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admissio
  +
 entryType kann über Operationen add_Directory_Entry und modify_Directory_Entry gesetzt werden. +
 Wird in Operationen add_Directory_Entry ein Zertifikat angegeben wird, muss ein eventuell angegebener Parameter entryType mit dem Wert aus dem Zertifikat übereinstimmen. Bei nicht angegebenem Parameter entryType wird das Attribut entryType entsprechend dem Zertifikat gesetzt. +
+Wird in Operationen add_Directory_Entry kein Zertifikat angegeben, muss Parameter entryType angegeben werden. +
 Mit Operation modify_Directory_Entry kann über Request Parameter entryType das Attribut im VZD geändert werden, solange kein Zertifikat im VZD enthalten ist (welches dann einen abweichenden Wert gegenüber dem Request Parameter entryType enthalten würde). +
 Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit einem Fehler. 
 |*telematikID* |obligatorisch |Bezeichner: TelematikID +
@@ -3363,6 +3387,7 @@ Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admissio
  +
 entryType kann über Operationen add_Directory_Entry und modify_Directory_Entry gesetzt werden. +
 Wird in Operationen add_Directory_Entry ein Zertifikat angegeben wird, muss ein eventuell angegebener Parameter entryType mit dem Wert aus dem Zertifikat übereinstimmen. Bei nicht angegebenem Parameter entryType wird das Attribut entryType entsprechend dem Zertifikat gesetzt. +
+Wird in Operationen add_Directory_Entry kein Zertifikat angegeben, muss Parameter entryType angegeben werden. +
 Mit Operation modify_Directory_Entry kann über Request Parameter entryType das Attribut im VZD geändert werden, solange kein Zertifikat im VZD enthalten ist (welches dann einen abweichenden Wert gegenüber dem Request Parameter entryType enthalten würde). +
 Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit einem Fehler. 
 |*telematikID* |obligatorisch |Bezeichner: TelematikID +
