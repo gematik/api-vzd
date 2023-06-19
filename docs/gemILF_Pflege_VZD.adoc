@@ -120,7 +120,9 @@ Neu für eGBR HBA und SMC-B |gematik
 - Version der Referenzen ergänzt +
 - Kap. 3.3.1: POST /DirectoryEntries: Attribut entryType muss angeben werden, wenn kein Zertifikat übergeben wird +
   (muss in Kap. 3.3.1 & 4 noch ergänzt werden) +
-- Tab_VZD_Datenbeschreibung_DKTIG - Beschreibung domainID überarbeitet - JF gematik/dktig 2.06.2023
+- Tab_VZD_Datenbeschreibung_DKTIG - Beschreibung domainID überarbeitet - JF gematik/dktig 2.06.2023 +
+- Kap. 4 Attribut "usage" aus den Tabellen entfernt - Kommentierung 20230421_KIM_Maintenance_23.2_KIM1.5.3
+
 
 
 
@@ -798,7 +800,6 @@ Der Wertebereich entspricht den in hl7 definierten und für ePA festgelegten W
 urn:psc:<OID Codesystem:Code> +
 Beispiel für Allgemeinmedizin: urn:psc:1.3.6.1.4.1.19376.3.276.1.5.4:ALLG
 |*countryCode* |optional |Siehe TAB_VZD_Wertebereiche_der_Attribute
-|*usage* |optional |Das Attribut usage wird nicht verwendet.
 |*userCertificate* |optional |Bezeichner: Enc-Zertifikat der SMC-B +
 Kann mehrfach vorkommen (0..50) +
 Format: DER, Base64 kodiert +
@@ -975,7 +976,6 @@ Kann mehrfach vorkommen (1..100) +
 Der Wertebereich entspricht den in hl7 definierten und für ePA festgelegten Werten ( https://wiki.hl7.de/index.php?title=IG:Value_Sets_f%C3%BCr_XDS#DocumentEntry.practiceSettingCode[+++https://wiki.hl7.de/index.php?title=IG:Value_Sets_f%C3%BCr_XDS#DocumentEntry.practiceSettingCode+++]). +
 urn:psc:<OID Codesystem:Code> +
 Beispiel für Zahnmedizin: urn:psc:1.3.6.1.4.1.19376.3.276.1.5.4:MKZH
-|*usage* |optional |Das Attribut usage wird nicht verwendet.
 |*userCertificate* |optional |Bezeichner: Enc-Zertifikat der SMC-B +
 Kann mehrfach vorkommen (0..50) +
 Format: DER, Base64 kodiert +
@@ -1154,7 +1154,6 @@ Default für das Attribut ist LEER. LEER wird in der eRezept Anwendung gleich be
  +
 Bezeichner: Fachgebiet +
 Kann mehrfach vorkommen (0..100).
-|*usage* |optional |Das Attribut usage wird nicht verwendet.
 |*maxKOMLEadr* |optional |Maximale Anzahl von Mail-Adressen in den KOM-LE-Fachdaten.  +
 Falls kein Wert eingetragen wurde, können beliebig viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden. +
 Falls ein Wert eingetragen wurde, können maximal so viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden.
@@ -1355,7 +1354,6 @@ Beispiel für Apothekerassistenten: +
 urn:as:1.3.6.1.4.1.19376.3.276.1.5.11:182 +
 
 
-|*usage* |optional |Das Attribut usage wird nicht verwendet.
 |*maxKOMLEadr* |optional |Maximale Anzahl von Mail-Adressen in den KOM-LE-Fachdaten.  +
 Falls kein Wert eingetragen wurde, können beliebig viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden. +
 Falls ein Wert eingetragen wurde, können maximal so viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden.
@@ -1529,7 +1527,6 @@ Kann mehrfach vorkommen (1..100). +
 Der Wertebereich entspricht den in hl7 definierten und für ePA festgelegten Werten ( https://wiki.hl7.de/index.php?title=IG:Value_Sets_f%C3%BCr_XDS#DocumentEntry.practiceSettingCode[+++https://wiki.hl7.de/index.php?title=IG:Value_Sets_f%C3%BCr_XDS#DocumentEntry.practiceSettingCode+++]). +
 urn:psc:<OID Codesystem:Code> +
 Beispiel für Krankenhaus: urn:psc:1.3.6.1.4.1.19376.3.276.1.5.4:GESU
-|*usage* |optional |Das Attribut usage wird nicht verwendet.
 |*maxKOMLEadr* |optional |Maximale Anzahl von Mail-Adressen in den KOM-LE-Fachdaten.  +
 Falls kein Wert eingetragen wurde, können beliebig viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden. +
 Falls ein Wert eingetragen wurde, können maximal so viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden.
@@ -1709,7 +1706,6 @@ Psychologischer Psychotherapeut: urn:as:1.3.6.1.4.1.19376.3.276.1.5.11:82 +
 Psychotherapeut: urn:as:1.3.6.1.4.1.19376.3.276.1.5.11:183 +
 Fachpsychotherapeut für Kinder und Jugendliche: urn:as:1.3.6.1.4.1.19376.3.276.1.5.11:184 +
 Fachpsychotherapeut für Erwachsene: urn:as:1.3.6.1.4.1.19376.3.276.1.5.11:185
-|*usage* |optional |Das Attribut usage wird nicht verwendet.
 |*maxKOMLEadr* |optional |Maximale Anzahl von Mail-Adressen in den KOM-LE-Fachdaten.  +
 Falls kein Wert eingetragen wurde, können beliebig viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden. +
 Falls ein Wert eingetragen wurde, können maximal so viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden.
@@ -1888,7 +1884,6 @@ Kann mehrfach vorkommen (1..100). +
 Der Wertebereich entspricht den in hl7 definierten Werten ( https://wiki.hl7.de/index.php?title=IG:Value_Sets_f%C3%BCr_XDS#DocumentEntry.authorSpecialty[+++https://wiki.hl7.de/index.php?title=IG:Value_Sets_f%C3%BCr_XDS#DocumentEntry.authorSpecialty+++]). +
 urn:as:<OID Codesystem:Code> +
 Beispiel für FA Allgemeinmedizin: urn:as:1.2.276.0.76.5.514:011001
-|*usage* |optional |Das Attribut usage wird nicht verwendet.
 |*maxKOMLEadr* |optional |Maximale Anzahl von Mail-Adressen in den KOM-LE-Fachdaten.  +
 Falls kein Wert eingetragen wurde, können beliebig viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden. +
 Falls ein Wert eingetragen wurde, können maximal so viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden.
@@ -2068,7 +2063,6 @@ Kann mehrfach vorkommen (1..100). +
 Der Wertebereich entspricht den in hl7 definierten Werten ( https://wiki.hl7.de/index.php?title=IG:Value_Sets_f%C3%BCr_XDS#DocumentEntry.authorSpecialty[+++https://wiki.hl7.de/index.php?title=IG:Value_Sets_f%C3%BCr_XDS#DocumentEntry.authorSpecialty+++]). +
 urn:as:<OID Codesystem:Code> +
 Beispiel für Zahnarzt: urn:as:1.2.276.0.76.5.492:1
-|*usage* |optional |Das Attribut usage wird nicht verwendet.
 |*maxKOMLEadr* |optional |Maximale Anzahl von Mail-Adressen in den KOM-LE-Fachdaten.  +
 Falls kein Wert eingetragen wurde, können beliebig viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden. +
 Falls ein Wert eingetragen wurde, können maximal so viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden.
@@ -2327,7 +2321,6 @@ Wird vom KOM-LE-Anbieter eingetragen. +
 Der Wert wird für SMC-B KTR nicht verwendet.
 |*countryCode* |optional |Siehe TAB_VZD_Wertebereiche_der_Attribute
 |*title* |optional |Wird für SMC-B nicht verwendet.
-|*usage* |optional |Das Attribut usage wird nicht verwendet.
 |*description* |optional |Bezeichner: Beschreibung +
 Dieses Attribut ermöglicht, das Zertifikat zu beschreiben, um die Administration des VZD-Eintrags zu vereinfachen. +
 Wird derzeit nicht verwendet.
@@ -2451,7 +2444,6 @@ Wenn der Wert TRUE ist, können die Daten nicht mehr über die Schnittstelle I_D
 Der Wert wird für SMC-B KTR ePA nicht verwendet.
 |*countryCode* |optional |Siehe TAB_VZD_Wertebereiche_der_Attribute
 |*title* |optional |Wird für SMC-B nicht verwendet.
-|*usage* |optional |Das Attribut usage wird nicht verwendet.
 |*description* |optional |Bezeichner: Beschreibung +
 Dieses Attribut ermöglicht, das Zertifikat zu beschreiben, um die Administration des VZD-Eintrags zu vereinfachen. +
 Wird derzeit nicht verwendet.
@@ -2534,7 +2526,6 @@ Dieses Attribut wird durch den VZD nicht automatisch aus dem Zertifikat ermittel
 Dieses Attribut ist ein optionales zweites Namensattribut und wird befüllt bei Bedarf. Ebenso wie displayName ist es geeignet, um nach einem Namen zu filtern und ihn im Suchergebnis anzuzeigen.
 |*domainID* |optional |nicht belegt
 |*specialization* |optional |nicht belegt
-|*usage* |optional |Das Attribut usage wird nicht verwendet.
 |*maxKOMLEadr* |optional |Maximale Anzahl von Mail-Adressen in den KOM-LE-Fachdaten.  +
 Falls kein Wert eingetragen wurde, können beliebig viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden. +
 Falls ein Wert eingetragen wurde, können maximal so viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden.
@@ -2699,7 +2690,6 @@ Kann mehrfach vorkommen (1..100). +
 Der Wertebereich entspricht den in HL7 definierten und für ePA festgelegten Werten ( https://wiki.hl7.de/index.php?title=IG:Value_Sets_f%C3%BCr_XDS#DocumentEntry.practiceSettingCode[+++https://wiki.hl7.de/index.php?title=IG:Value_Sets_f%C3%BCr_XDS#DocumentEntry.practiceSettingCode+++]) für nicht-ärztliche Fachrichtungen. +
 urn:psc:<OID Codesystem:Code> +
 Beispiel für Pflege und Betreuung: urn:psc:1.3.6.1.4.1.19376.3.276.1.5.5:PFL
-|*usage* |optional |Das Attribut usage wird nicht verwendet.
 |*maxKOMLEadr* |optional |Maximale Anzahl von Mail-Adressen in den KOM-LE-Fachdaten.  +
 Falls kein Wert eingetragen wurde, können beliebig viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden. +
 Falls ein Wert eingetragen wurde, können maximal so viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden.
@@ -2871,7 +2861,6 @@ Kann mehrfach vorkommen (1..100). +
 Der Wertebereich entspricht den in hl7 definierten Werten**( https://wiki.hl7.de/index.php?title=IG:Value_Sets_f%C3%BCr_XDS#DocumentEntry.authorSpecialty[+++https://wiki.hl7.de/index.php?title=IG:Value_Sets_f%C3%BCr_XDS#DocumentEntry.authorSpecialty+++])** für nicht ärztliche Berufe. +
 urn:as:<OID Codesystem:Code> +
 Beispiel Notfallsanitäter: urn:as:1.3.6.1.4.1.19376.3.276.1.5.11:88
-|*usage* |optional |Das Attribut usage wird nicht verwendet.
 |*maxKOMLEadr* |optional |Maximale Anzahl von Mail-Adressen in den KOM-LE-Fachdaten.  +
 Falls kein Wert eingetragen wurde, können beliebig viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden. +
 Falls ein Wert eingetragen wurde, können maximal so viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden.
@@ -3063,7 +3052,6 @@ urn:psc:1.3.6.1.4.1.19376.3.276.1.5.4:ALLG +
 Betriebsstätte Sanitätsdienst Bundeswehr: +
 urn:psc:1.3.6.1.4.1.19376.3.276.1.5.4:ALLG
 
-|*usage* |optional |Das Attribut usage wird nicht verwendet.
 |*maxKOMLEadr* |optional |Maximale Anzahl von Mail-Adressen in den KOM-LE-Fachdaten. +
 Falls kein Wert eingetragen wurde, können beliebig viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden. +
 Falls ein Wert eingetragen wurde, können maximal so viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden.
@@ -3210,7 +3198,6 @@ Dieses Attribut wird durch den VZD nicht automatisch aus dem Zertifikat ermittel
 Dieses Attribut ist ein optionales zweites Namensattribut und wird befüllt bei Bedarf. Ebenso wie displayName ist es geeignet, um nach einem Namen zu filtern und ihn im Suchergebnis anzuzeigen.
 |*domainID* |optional |nicht belegt
 |*specialization* |optional |nicht belegt
-|*usage* |optional |Das Attribut usage wird nicht verwendet.
 |*maxKOMLEadr* |optional |Maximale Anzahl von Mail-Adressen in den KOM-LE-Fachdaten. +
 Falls kein Wert eingetragen wurde, können beliebig viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden. +
 Falls ein Wert eingetragen wurde, können maximal so viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden.
@@ -3357,7 +3344,6 @@ Dieses Attribut wird durch den VZD nicht automatisch aus dem Zertifikat ermittel
 Dieses Attribut ist ein optionales zweites Namensattribut und wird befüllt bei Bedarf. Ebenso wie displayName ist es geeignet, um nach einem Namen zu filtern und ihn im Suchergebnis anzuzeigen.
 |*domainID* |optional |nicht belegt
 |*specialization* |optional |nicht belegt
-|*usage* |optional |Das Attribut usage wird nicht verwendet.
 |*maxKOMLEadr* |optional |Maximale Anzahl von Mail-Adressen in den KOM-LE-Fachdaten. +
 Falls kein Wert eingetragen wurde, können beliebig viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden. +
 Falls ein Wert eingetragen wurde, können maximal so viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden.
