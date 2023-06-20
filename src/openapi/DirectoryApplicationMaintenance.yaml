@@ -6,8 +6,14 @@ info:
    # REST Schnittstelle zur Pflege der Fachanwendungsdaten der Verzeichniseinträge
      Über diese Schnittstelle können Fachanwendungsdaten der Verzeichniseinträge erzeugt, aktualisiert und gelöscht werden. 
 
-  version: 1.3.0
+  version: 1.4.0
   
+  
+  # Änderungen in Version 1.4.0 
+  #  - Operation appTags ergänzt
+  #  - Flag "noVzdMailEntry" für add_Directory_FA-Attributes und modify_Directory_FA-Attributes 
+  #    hinzugefügt (noch nicht enthalten)
+  # 
   # Änderungen in Version 1.3.0 
   #  - FAD1.komLeData.appTags (Anwendungskennzeichen) ergänzt
   #    und in Operationen add_Directory_FA-Attributes & modify_Directory_FA-Attributes beschrieben
@@ -544,6 +550,7 @@ paths:
           application/json:
             schema:
              $ref: '#/components/schemas/FAD1'
+
    
       responses:
         201:
@@ -917,6 +924,32 @@ paths:
                 $ref: '#/components/schemas/Error'
         404:
           description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /appTags:
+    get:
+      tags:
+       - appTags
+      summary: Abfrage der Anwendungskennzeichen
+      description: Es wird die Liste der Anwendungskennzeichen abgefragt.
+        Die Anwendungskennzeichen werden als FHIR Codesystem in der
+        Response übergeben
+      operationId: getAppTags
+
+      responses:
+        200:
+          description: OK
+             # Rückgabe der Anwendungskennzeichen als FHIR CodeSystem (ServiceIdentifierCS)
+             # Siehe https://simplifier.net/app-transport-framework/service-identifier-cs/~json
+          content:
+            application/json:
+              schema:
+                {}
+        500:
+          description: Internal Server Error
           content:
             application/json:
               schema:
