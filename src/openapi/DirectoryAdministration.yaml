@@ -3,8 +3,12 @@ info:
   title: I_Directory_Administration
   description: REST Schnittstelle zur Pflege der Verzeichniseinträge.
               Über diese Schnittstelle können Verzeichniseinträge inklusive Zertifikaten erzeugt, aktualisiert und gelöscht werden. Die Administration von Fachdaten erfolgt über Schnittstelle I_Directory_Application_Maintenance und wird durch die Fachanwendungen durchgeführt. Lesender Zugriff auf die Fachdaten ist mit Operation getDirectoryEntries in vorliegender Schnittstelle möglich.
-  version: 1.10.0
+  version: 1.11.0
 
+  # Änderungen in Version 1.11.0 
+  #  - Schema FAD1 um kimData erweitert. Damit wird in read_Directory_Entry zusätzlich zu komLeData
+  #    auch kimData im Response aufgenommen
+  #
   # Änderungen in Version 1.10.0 
   #  - FAD1.komLeData.appTags (Anwendungskennzeichen) ergänzt
   #  - Operation read_Directory_Entry um Suchparameter für Fachdaten erweitert
@@ -1919,6 +1923,29 @@ components:
                 type: string
                 example: 1.5+
                 description: 'Die höchste Version der KIM Clientmodule für diese KIM-Mail-Adresse'
+            description: |
+              Liste von KIM-Adressen mit der zugehörigen KIM-Version. 
+              Für jede Mail Adresse darf nur einen Element in der Liste `komLeData` existieren. 
+              Geschrieben wird immer die gesamte Liste. 
+              Für Änderungen muss erst der aktuelle Eintrag gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
+              Die Datenstruktur komLeData wird in LDAP in folgendem Attribut als String abgelegt:
+                - komLeData: In diesem Attribut werden aus Kompatibilitätsgründen weiterhin die Attribute "mail" und "version" abgelegt. 
+                  Format des LDAP Attributes:  mail,version
+                  Beispiele der LDAP Darstellung:
+                     komLeData: 1.5+,mc_smcb_za@dom1.komle.telematik-test 
+                     komLeData: 1.0,mz_smcb_za@dom2.kim.telematik-test
+        kimData:
+          type: array
+          items:
+            type: object
+            properties:
+              mail:
+                type: string
+                description: 'E-Mail-Adresse'
+              version:
+                type: string
+                example: 1.5+
+                description: 'Die höchste Version der KIM Clientmodule für diese KIM-Mail-Adresse'
               appTags:
                 type: array
                 items:
@@ -1929,20 +1956,16 @@ components:
                   description: 'Anwendungskennzeichen, welche diese KIM-Mail-Adresse verarbeiten kann'
             description: |
               Liste von KIM-Adressen mit der zugehörigen KIM-Version und Anwendungskennzeichen. 
-              Für jede Mail Adresse darf nur einen Element in der Liste `komLeData` existieren. 
+              Für jede Mail Adresse darf nur einen Element in der Liste `kimData` existieren. 
               Geschrieben wird immer die gesamte Liste. 
               Für Änderungen muss erst der aktuelle Eintrag gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
-              Die Datenstruktur komLeData wird in LDAP in folgenden Attributen als String abgelegt:
-                - komLeData: In diesem Attribut werden aus Kompatibilitätsgründen weiterhin die Attribute "mail" und "version" abgelegt. 
-                  Format des LDAP Attributes:  mail,version
-                  Beispiele der LDAP Darstellung:
-                     komLeData: 1.5+,mc_smcb_za@dom1.komle.telematik-test 
-                     komLeData: 1.0,mz_smcb_za@dom2.kim.telematik-test
+              Die Datenstruktur kimData wird in LDAP in folgendem Attribut als String abgelegt:
                 - kimData: In diesem Attribut werden die Attribute "mail", "version" und "appTags" abgelegt. 
                   Format des LDAP Attributes:  mail,version,appTag1|appTag2|appTag3
                   Beispiele der LDAP Darstellung:
                      kimData: mc_smcb_za@dom1.komle.telematik-test,1.5+,eEB;V1.0 
                      kimData: mz_smcb_za@dom2.kim.telematik-test,1.0,DALE-UV;Einsendung;V1.0|eEB;V1.0
+
     distinguishedName:
       required:
       - uid
