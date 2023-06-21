@@ -13,7 +13,10 @@ info:
   #  - Operation appTags ergänzt
   #  - Flag "noVzdMailEntry" für add_Directory_FA-Attributes und modify_Directory_FA-Attributes 
   #    hinzugefügt
-  #  - Schema FAD1 um kimData erweitert und für alle POST/PUT Operationen Schema FAD_Req (ohne kimData) definiert
+  #  - Schema FAD1 um kimData erweitert und für alle POST/PUT Operationen Schema FAD_Req
+  #    (ohne kimData) definiert
+  #  - Operation read_Directory_Entry: Suchparameter komLeData-appTags in kimData-appTags umbenannt
+  #    und neue Suchparameter für kimData aufgenommen
   # 
   # Änderungen in Version 1.3.0 
   #  - FAD1.komLeData.appTags (Anwendungskennzeichen) ergänzt
@@ -375,6 +378,7 @@ paths:
           Erlaubt die Suche mit Hilfe des Attributs FAD1.komLeData.mail
           
           Selektiert alle Datensätze, deren Attribut FAD1.komLeData.mail den angegebenen String in einem Wert des arry's enthält.
+          Bitte beachten: Dieser Suchparameter wird auf eine LDAP Wildcard Suche mit führendem * abgebildet und verlangsamt die Operation signifikant.
         schema:
           type: string  
       - name: komLeData-version
@@ -385,12 +389,30 @@ paths:
           Selektiert alle Datensätze, deren Attribut FAD1.komLeData.version den angegebenen String in einem Wert des arry's enthält.
         schema:
           type: string  
-      - name: komLeData-appTags
+      - name: kimData-mail
         in: query
         description: |
-          Erlaubt die Suche mit Hilfe des Attributs FAD1.komLeData.appTags
+          Erlaubt die Suche mit Hilfe des Attributs FAD1.kimData.mail
           
-          Selektiert alle Datensätze, deren Attribut FAD1.komLeData.appTags den angegebenen String in einem Wert des arry's enthält.
+          Selektiert alle Datensätze, deren Attribut FAD1.kimData.mail den angegebenen String in einem Wert des arry's enthält.
+        schema:
+          type: string  
+      - name: kimData-version
+        in: query
+        description: |
+          Erlaubt die Suche mit Hilfe des Attributs FAD1.kimData.version
+          
+          Selektiert alle Datensätze, deren Attribut FAD1.kimData.version den angegebenen String in einem Wert des arry's enthält.
+          Bitte beachten: Dieser Suchparameter wird auf eine LDAP Wildcard Suche mit führendem * abgebildet und verlangsamt die Operation signifikant.
+        schema:
+          type: string  
+      - name: kimData-appTags
+        in: query
+        description: |
+          Erlaubt die Suche mit Hilfe des Attributs FAD1.kimData.appTags
+          
+          Selektiert alle Datensätze, deren Attribut FAD1.kimData.appTags den angegebenen String in einem Wert des arry's enthält.
+          Bitte beachten: Dieser Suchparameter wird auf eine LDAP Wildcard Suche mit führendem * abgebildet und verlangsamt die Operation signifikant.
         schema:
           type: string  
           
