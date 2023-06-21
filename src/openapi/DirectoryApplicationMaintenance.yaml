@@ -13,6 +13,7 @@ info:
   #  - Operation appTags ergänzt
   #  - Flag "noVzdMailEntry" für add_Directory_FA-Attributes und modify_Directory_FA-Attributes 
   #    hinzugefügt
+  #  - Schema FAD1 um kimData erweitert und für alle POST/PUT Operationen Schema FAD_Req (ohne kimData) definiert
   # 
   # Änderungen in Version 1.3.0 
   #  - FAD1.komLeData.appTags (Anwendungskennzeichen) ergänzt
