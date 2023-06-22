@@ -6,8 +6,18 @@ info:
    # REST Schnittstelle zur Pflege der Fachanwendungsdaten der Verzeichniseinträge
      Über diese Schnittstelle können Fachanwendungsdaten der Verzeichniseinträge erzeugt, aktualisiert und gelöscht werden. 
 
-  version: 1.3.0
+  version: 1.4.0
   
+  
+  # Änderungen in Version 1.4.0 
+  #  - Operation appTags ergänzt
+  #  - Flag "noVzdMailEntry" für add_Directory_FA-Attributes und modify_Directory_FA-Attributes 
+  #    hinzugefügt
+  #  - Schema FAD1 um kimData erweitert und für alle POST/PUT Operationen Schema FAD_Req
+  #    (ohne kimData) definiert
+  #  - Operation read_Directory_Entry: Suchparameter komLeData-appTags in kimData-appTags umbenannt
+  #    und neue Suchparameter für kimData aufgenommen
+  # 
   # Änderungen in Version 1.3.0 
   #  - FAD1.komLeData.appTags (Anwendungskennzeichen) ergänzt
   #    und in Operationen add_Directory_FA-Attributes & modify_Directory_FA-Attributes beschrieben
@@ -181,7 +191,7 @@ paths:
                   - changeDateTimeTo
                   - mail
             Diese Suche findet sowohl Datensätze mit nicht vorhandenem Attribut wie auch vorhandenem aber leerem Attribut.
-            Der Suchparameter darf nur den Kode \00 enthalten, keine weiteren Zeichen.
+            Der Suchparameter darf - für die Suche nach vorhandenem aber leerem Attribut - nur den Kode \00 enthalten, keine weiteren Zeichen.
             Alle Filterparameter einer Leseoperationen werden mit einem UND (&) verknüpft.      
       operationId: read_Directory_Entry
       parameters:
@@ -368,6 +378,7 @@ paths:
           Erlaubt die Suche mit Hilfe des Attributs FAD1.komLeData.mail
           
           Selektiert alle Datensätze, deren Attribut FAD1.komLeData.mail den angegebenen String in einem Wert des arry's enthält.
+          Bitte beachten: Dieser Suchparameter wird auf eine LDAP Wildcard Suche mit führendem * abgebildet und verlangsamt die Operation signifikant.
         schema:
           type: string  
       - name: komLeData-version
@@ -378,12 +389,30 @@ paths:
           Selektiert alle Datensätze, deren Attribut FAD1.komLeData.version den angegebenen String in einem Wert des arry's enthält.
         schema:
           type: string  
-      - name: komLeData-appTags
+      - name: kimData-mail
         in: query
         description: |
-          Erlaubt die Suche mit Hilfe des Attributs FAD1.komLeData.appTags
+          Erlaubt die Suche mit Hilfe des Attributs FAD1.kimData.mail
           
-          Selektiert alle Datensätze, deren Attribut FAD1.komLeData.appTags den angegebenen String in einem Wert des arry's enthält.
+          Selektiert alle Datensätze, deren Attribut FAD1.kimData.mail den angegebenen String in einem Wert des arry's enthält.
+        schema:
+          type: string  
+      - name: kimData-version
+        in: query
+        description: |
+          Erlaubt die Suche mit Hilfe des Attributs FAD1.kimData.version
+          
+          Selektiert alle Datensätze, deren Attribut FAD1.kimData.version den angegebenen String in einem Wert des arry's enthält.
+          Bitte beachten: Dieser Suchparameter wird auf eine LDAP Wildcard Suche mit führendem * abgebildet und verlangsamt die Operation signifikant.
+        schema:
+          type: string  
+      - name: kimData-appTags
+        in: query
+        description: |
+          Erlaubt die Suche mit Hilfe des Attributs FAD1.kimData.appTags
+          
+          Selektiert alle Datensätze, deren Attribut FAD1.kimData.appTags den angegebenen String in einem Wert des arry's enthält.
+          Bitte beachten: Dieser Suchparameter wird auf eine LDAP Wildcard Suche mit führendem * abgebildet und verlangsamt die Operation signifikant.
         schema:
           type: string  
           
@@ -543,7 +572,8 @@ paths:
         content:
           application/json:
             schema:
-             $ref: '#/components/schemas/FAD1'
+             $ref: '#/components/schemas/FAD_Req'
+
    
       responses:
         201:
@@ -685,7 +715,7 @@ paths:
         content:
           application/json:
             schema:
-             $ref: '#/components/schemas/FAD1'
+             $ref: '#/components/schemas/FAD_Req'
    
       responses:
         200:
@@ -922,6 +952,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
 
+  /appTags:
+    get:
+      tags:
+       - appTags
+      summary: Abfrage der Anwendungskennzeichen
+      description: Es wird die Liste der Anwendungskennzeichen abgefragt.
+        Die Anwendungskennzeichen werden als FHIR Codesystem in der
+        Response übergeben
+      operationId: getAppTags
+
+      responses:
+        200:
+          description: OK
+             # Rückgabe der Anwendungskennzeichen als FHIR CodeSystem (ServiceIdentifierCS)
+             # Siehe https://simplifier.net/app-transport-framework/service-identifier-cs/~json
+          content:
+            application/json:
+              schema:
+                {}
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
 
 components:
 
@@ -1024,7 +1080,7 @@ components:
           items:
             $ref: '#/components/schemas/FAD1'
 
-    FAD1:
+    FAD_Req:
       type: object
       properties:
         dn:
@@ -1054,6 +1110,14 @@ components:
                     - eEB;V1.0
                     - DALE-UV;Einsendung;V1.0
                   description: 'Anwendungskennzeichen, welche diese KIM-Mail-Adresse verarbeiten kann'
+              noVzdMailEntry:
+                  type: boolean
+                  default: false
+                  description: Wenn "noVzdMailEntry == true" dann werden durch den VZD die "mail" und komLeData
+                    Attribute nicht befüllt oder im Fall von PUT werden vorhandene mail und komLeData Attribute gelöscht.
+                    Dieses neue Attribut soll client-seitig nur vom Basis Consumer unterstützt werden.
+
+
             description: |
               Liste von KIM-Adressen mit der zugehörigen KIM-Version und Anwendungskennzeichen. 
               Für jede Mail Adresse darf nur einen Element in der Liste `komLeData` existieren. 
@@ -1065,6 +1129,71 @@ components:
                   Beispiele der LDAP Darstellung:
                      komLeData: 1.5+,mc_smcb_za@dom1.komle.telematik-test 
                      komLeData: 1.0,mz_smcb_za@dom2.kim.telematik-test
+                - kimData: In diesem Attribut werden die Attribute "mail", "version" und "appTags" abgelegt. 
+                  Format des LDAP Attributes:  mail,version,appTag1|appTag2|appTag3
+                  Beispiele der LDAP Darstellung:
+                     kimData: mc_smcb_za@dom1.komle.telematik-test,1.5+,eEB;V1.0 
+                     kimData: mz_smcb_za@dom2.kim.telematik-test,1.0,DALE-UV;Einsendung;V1.0|eEB;V1.0
+
+    FAD1:
+      type: object
+      properties:
+        dn:
+          $ref: '#/components/schemas/distinguishedName'
+        mail:
+          type: array
+          items:
+            type: string
+            description: 'E-Mail-Adresse'
+        komLeData:
+          type: array
+          items:
+            type: object
+            properties:
+              mail:
+                type: string
+                description: 'E-Mail-Adresse'
+              version:
+                type: string
+                example: 1.5+
+                description: 'Die höchste Version der KIM Clientmodule für diese KIM-Mail-Adresse'
+            description: |
+              Liste von KIM-Adressen mit der zugehörigen KIM-Version. 
+              Für jede Mail Adresse darf nur einen Element in der Liste `komLeData` existieren. 
+              Geschrieben wird immer die gesamte Liste. 
+              Für Änderungen muss erst der aktuelle Eintrag gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
+              Die Datenstruktur komLeData wird in LDAP in folgendem Attribut als String abgelegt:
+                - komLeData: In diesem Attribut werden aus Kompatibilitätsgründen weiterhin die Attribute "mail" und "version" abgelegt. 
+                  Format des LDAP Attributes:  mail,version
+                  Beispiele der LDAP Darstellung:
+                     komLeData: 1.5+,mc_smcb_za@dom1.komle.telematik-test 
+                     komLeData: 1.0,mz_smcb_za@dom2.kim.telematik-test
+        kimData:
+          type: array
+          items:
+            type: object
+            properties:
+              mail:
+                type: string
+                description: 'E-Mail-Adresse'
+              version:
+                type: string
+                example: 1.5+
+                description: 'Die höchste Version der KIM Clientmodule für diese KIM-Mail-Adresse'
+              appTags:
+                type: array
+                items:
+                  type: string
+                  example: 
+                    - eEB;V1.0
+                    - DALE-UV;Einsendung;V1.0
+                  description: 'Anwendungskennzeichen, welche diese KIM-Mail-Adresse verarbeiten kann'
+            description: |
+              Liste von KIM-Adressen mit der zugehörigen KIM-Version und Anwendungskennzeichen. 
+              Für jede Mail Adresse darf nur einen Element in der Liste `kimData` existieren. 
+              Geschrieben wird immer die gesamte Liste. 
+              Für Änderungen muss erst der aktuelle Eintrag gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
+              Die Datenstruktur kimData wird in LDAP in folgendem Attribut als String abgelegt:
                 - kimData: In diesem Attribut werden die Attribute "mail", "version" und "appTags" abgelegt. 
                   Format des LDAP Attributes:  mail,version,appTag1|appTag2|appTag3
                   Beispiele der LDAP Darstellung:
