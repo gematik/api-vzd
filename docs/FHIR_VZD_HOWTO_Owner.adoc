@@ -95,7 +95,7 @@ An additional HealthcareService can be created (POST)
 - Meta.Tag.Origin must be set to "owner" (and not to ldap) and the ldapUId is not set as an identifier.
 - Meta.Security "owner" must be set.
 - If an identifier with CodeSystem "https://gematik.de/fhir/sid/telematik-id" is specified, the value must correspond to the telematik ID of the access token.
-- HealthcareService.specialty can not be set (is under the authority of the card issuer). Note: This will be changed in the future to "may be set to a subset of the synchronized HealthcareService.specialty.
+- HealthcareService.specialty can be set be set to a subset of the synchronized HealthcareService.specialty (Please note that the modification of the speciality is implemented but not yet deployed).
 
 // https://arvato-systems-group.atlassian.net/browse/FVZ-704
 // https://arvato-systems-group.atlassian.net/browse/FVZ-779
