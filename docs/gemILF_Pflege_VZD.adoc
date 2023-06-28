@@ -20,6 +20,26 @@ Bei FALSE wird der Eintrag vom VZD aus der flachen Liste entfernt bzw. nicht üb
 Dieses Attribut ist nicht in der flachen Liste enthalten. + \
 {sp} + \
 Wenn der VZD beim zeitlichen Ablauf des letzten Zertifikats einen VZD Eintrag aus der flachen Liste entfernt, bleibt das Attribut active unverändert. Beim erneuten Hinzufügen eines Zertifikats wird der VZD Eintrag also wieder in die flache Liste übernommen, wenn dieses Attribut den Wert "true" enthält.
+
+:kimData: Bezeichner: kimData + \
+kann mehrfach vorkommen (0..1000) + \
+{sp} + \
+Enthält die KOM-LE-Version des Clientmoduls der angegebenen "mail" Adresse im Attribut "version". Zusätzlich kann zur KOM-LE-Version ein "+" angegeben sein. Anhand dieser Version erkennt das sendende Clientmodul, welche KOM-LE-Version vom Empfänger-Clientmodul unterstützt wird und in welchem Format die Mail an diesen Empfänger versandt wird. Wenn ein zusätzliches "+" angegeben ist, dann können mit dieser "mail" Adresse Nachrichten größer 15MiB verarbeitet werden. Jeder Datensatz MUSS die Attribute KOM-LE-Mail-Adresse und Version enthalten (beide Attribute sind obligatorisch). + \
+{sp} + \
+Jeder Datensatz kann zusätzlich ein oder mehrere Anwendungskennzeichen der angegebenen "mail" Adresse im Attribut "appTags" enthalten.Jeder Datensatz kann zusätzlich ein oder mehrere Anwendungskennzeichen der angegebenen "mail" Adresse im Attribut "appTags" enthalten. + \
+{sp} + \
+Wird vom KOM-LE-Anbieter eingetragen. + \
+{sp} + \
+Beispiel für den Wert eines kimData Eintrags in der flachen Liste (Ausgabe einer LDAP Suche):
+
+:kimData-example_1: kimData: mc_smcb_za@dom1.komle.telematik-test,1.0,eEB;V1.0
+:kimData-example_2: kimData: mz_smcb_za@dom2.kim.telematik-test,1.0,DALE-UV;Einsendung;V1.0\|eEB;V1.0
+:kimData-example_3: kimData: mz_smcb_za@dom1.kim.telematik-test,1.0
+:kimData-example_4: kimData: mb_secu_sm@dom3.kim.telematik-test,1.0
+:kimData-example_5: kimData: mb_secu_sm@dom4.kim.telematik-test,1.0
+:kimData-example_6: kimData: ak_secu_102@dom5.kim.telematik-test,1.5
+
+
 // End Attribute definitions
 
 
@@ -886,26 +906,17 @@ komLeData: 1.5,ak_secu_102@dom5.kim.telematik-test
 
 Wird vom KOM-LE-Anbieter eingetragen.
 
-|*kimData* |optional a|
-Bezeichner: kimData +
-kann mehrfach vorkommen (0..1000) +
- +
-Enthält die KOM-LE-Version des Clientmoduls der angegebenen "mail" Adresse im Attribut "version". Zusätzlich kann zur KOM-LE-Version ein "+" angegeben sein. Anhand dieser Version erkennt das sendende Clientmodul, welche KOM-LE-Version vom Empfänger-Clientmodul unterstützt wird und in welchem Format die Mail an diesen Empfänger versandt wird. Wenn ein zusätzliches "+" angegeben ist, dann können mit dieser "mail" Adresse Nachrichten größer 15MiB verarbeitet werden. Jeder Datensatz MUSS die Attribute KOM-LE-Mail-Adresse und Version enthalten (beide Attribute sind obligatorisch). +
+|*kimData* |optional a| {kimData}
 
-Jeder Datensatz kann zusätzlich ein oder mehrere Anwendungskennzeichen der angegebenen "mail" Adresse im Attribut "appTags" enthalten.Jeder Datensatz kann zusätzlich ein oder mehrere Anwendungskennzeichen der angegebenen "mail" Adresse im Attribut "appTags" enthalten. +
-
-Beispiel für den Wert eines kimData Eintrags in der flachen Liste (Ausgabe einer LDAP Suche): +
-[source, c]
+[source, c,subs=attributes+]
 ----
-kimData: mc_smcb_za@dom1.komle.telematik-test,1.0,eEB;V1.0 
-kimData: mz_smcb_za@dom2.kim.telematik-test,1.0,DALE-UV;Einsendung;V1.0\|eEB;V1.0 
-kimData: mz_smcb_za@dom1.kim.telematik-test,1.0 
-kimData: mb_secu_sm@dom3.kim.telematik-test,1.0 
-kimData: mb_secu_sm@dom4.kim.telematik-test,1.0 
-kimData: ak_secu_102@dom5.kim.telematik-test,1.5
+{kimData-example_1}
+{kimData-example_2}
+{kimData-example_3}
+{kimData-example_4}
+{kimData-example_5}
+{kimData-example_6}
 ----
-
-Wird vom KOM-LE-Anbieter eingetragen. +
 
 |*active* |obligatorisch | {active}
 |*meta* |optional | Kann von den pflegenden Clients zur Abstimmung der Prozesse zwischen z.B. Kartenherausgeber und TSP genutzt werden. Dieses Attribut wird durch den VZD nicht ausgewertet. Die Werte für dieses Attribut müssen von den pflegenden Organisationen festgelegt und abgestimmt werden. +
@@ -1056,26 +1067,17 @@ komLeData: 1.5,ak_secu_102@dom5.kim.telematik-test
 
 Wird vom KOM-LE-Anbieter eingetragen.
 
-|*kimData* |optional a|
-Bezeichner: kimData +
-kann mehrfach vorkommen (0..1000) +
- +
-Enthält die KOM-LE-Version des Clientmoduls der angegebenen "mail" Adresse im Attribut "version". Zusätzlich kann zur KOM-LE-Version ein "+" angegeben sein. Anhand dieser Version erkennt das sendende Clientmodul, welche KOM-LE-Version vom Empfänger-Clientmodul unterstützt wird und in welchem Format die Mail an diesen Empfänger versandt wird. Wenn ein zusätzliches "+" angegeben ist, dann können mit dieser "mail" Adresse Nachrichten größer 15MiB verarbeitet werden. Jeder Datensatz MUSS die Attribute KOM-LE-Mail-Adresse und Version enthalten (beide Attribute sind obligatorisch). +
+|*kimData* |optional a| {kimData}
 
-Jeder Datensatz kann zusätzlich ein oder mehrere Anwendungskennzeichen der angegebenen "mail" Adresse im Attribut "appTags" enthalten.Jeder Datensatz kann zusätzlich ein oder mehrere Anwendungskennzeichen der angegebenen "mail" Adresse im Attribut "appTags" enthalten. +
-
-Beispiel für den Wert eines kimData Eintrags in der flachen Liste (Ausgabe einer LDAP Suche): +
-[source, c]
+[source, c,subs=attributes+]
 ----
-kimData: mc_smcb_za@dom1.komle.telematik-test,1.0,eEB;V1.0 
-kimData: mz_smcb_za@dom2.kim.telematik-test,1.0,DALE-UV;Einsendung;V1.0\|eEB;V1.0 
-kimData: mz_smcb_za@dom1.kim.telematik-test,1.0 
-kimData: mb_secu_sm@dom3.kim.telematik-test,1.0 
-kimData: mb_secu_sm@dom4.kim.telematik-test,1.0 
-kimData: ak_secu_102@dom5.kim.telematik-test,1.5
+{kimData-example_1}
+{kimData-example_2}
+{kimData-example_3}
+{kimData-example_4}
+{kimData-example_5}
+{kimData-example_6}
 ----
-
-Wird vom KOM-LE-Anbieter eingetragen. +
 
 |*active* |obligatorisch | {active}
 |*meta* |optional | Kann von den pflegenden Clients zur Abstimmung der Prozesse zwischen z.B. Kartenherausgeber und TSP genutzt werden. Dieses Attribut wird durch den VZD nicht ausgewertet. Die Werte für dieses Attribut müssen von den pflegenden Organisationen festgelegt und abgestimmt werden. +
@@ -1235,26 +1237,17 @@ komLeData: 1.5,ak_secu_102@dom5.kim.telematik-test
 
 Wird vom KOM-LE-Anbieter eingetragen.
 
-|*kimData* |optional a|
-Bezeichner: kimData +
-kann mehrfach vorkommen (0..1000) +
- +
-Enthält die KOM-LE-Version des Clientmoduls der angegebenen "mail" Adresse im Attribut "version". Zusätzlich kann zur KOM-LE-Version ein "+" angegeben sein. Anhand dieser Version erkennt das sendende Clientmodul, welche KOM-LE-Version vom Empfänger-Clientmodul unterstützt wird und in welchem Format die Mail an diesen Empfänger versandt wird. Wenn ein zusätzliches "+" angegeben ist, dann können mit dieser "mail" Adresse Nachrichten größer 15MiB verarbeitet werden. Jeder Datensatz MUSS die Attribute KOM-LE-Mail-Adresse und Version enthalten (beide Attribute sind obligatorisch). +
+|*kimData* |optional a| {kimData}
 
-Jeder Datensatz kann zusätzlich ein oder mehrere Anwendungskennzeichen der angegebenen "mail" Adresse im Attribut "appTags" enthalten.Jeder Datensatz kann zusätzlich ein oder mehrere Anwendungskennzeichen der angegebenen "mail" Adresse im Attribut "appTags" enthalten. +
-
-Beispiel für den Wert eines kimData Eintrags in der flachen Liste (Ausgabe einer LDAP Suche): +
-[source, c]
+[source, c,subs=attributes+]
 ----
-kimData: mc_smcb_za@dom1.komle.telematik-test,1.0,eEB;V1.0 
-kimData: mz_smcb_za@dom2.kim.telematik-test,1.0,DALE-UV;Einsendung;V1.0\|eEB;V1.0 
-kimData: mz_smcb_za@dom1.kim.telematik-test,1.0 
-kimData: mb_secu_sm@dom3.kim.telematik-test,1.0 
-kimData: mb_secu_sm@dom4.kim.telematik-test,1.0 
-kimData: ak_secu_102@dom5.kim.telematik-test,1.5
+{kimData-example_1}
+{kimData-example_2}
+{kimData-example_3}
+{kimData-example_4}
+{kimData-example_5}
+{kimData-example_6}
 ----
-
-Wird vom KOM-LE-Anbieter eingetragen. +
 
 |*active* |obligatorisch | {active}
 |*meta* |optional | Kann von den pflegenden Clients zur Abstimmung der Prozesse zwischen z.B. Kartenherausgeber und TSP genutzt werden. Dieses Attribut wird durch den VZD nicht ausgewertet. Die Werte für dieses Attribut müssen von den pflegenden Organisationen festgelegt und abgestimmt werden. +
@@ -1430,26 +1423,17 @@ komLeData: 1.5,ak_secu_102@dom5.kim.telematik-test
 
 Wird vom KOM-LE-Anbieter eingetragen.
 
-|*kimData* |optional a|
-Bezeichner: kimData +
-kann mehrfach vorkommen (0..1000) +
- +
-Enthält die KOM-LE-Version des Clientmoduls der angegebenen "mail" Adresse im Attribut "version". Zusätzlich kann zur KOM-LE-Version ein "+" angegeben sein. Anhand dieser Version erkennt das sendende Clientmodul, welche KOM-LE-Version vom Empfänger-Clientmodul unterstützt wird und in welchem Format die Mail an diesen Empfänger versandt wird. Wenn ein zusätzliches "+" angegeben ist, dann können mit dieser "mail" Adresse Nachrichten größer 15MiB verarbeitet werden. Jeder Datensatz MUSS die Attribute KOM-LE-Mail-Adresse und Version enthalten (beide Attribute sind obligatorisch). +
+|*kimData* |optional a| {kimData}
 
-Jeder Datensatz kann zusätzlich ein oder mehrere Anwendungskennzeichen der angegebenen "mail" Adresse im Attribut "appTags" enthalten.Jeder Datensatz kann zusätzlich ein oder mehrere Anwendungskennzeichen der angegebenen "mail" Adresse im Attribut "appTags" enthalten. +
-
-Beispiel für den Wert eines kimData Eintrags in der flachen Liste (Ausgabe einer LDAP Suche): +
-[source, c]
+[source, c,subs=attributes+]
 ----
-kimData: mc_smcb_za@dom1.komle.telematik-test,1.0,eEB;V1.0 
-kimData: mz_smcb_za@dom2.kim.telematik-test,1.0,DALE-UV;Einsendung;V1.0\|eEB;V1.0 
-kimData: mz_smcb_za@dom1.kim.telematik-test,1.0 
-kimData: mb_secu_sm@dom3.kim.telematik-test,1.0 
-kimData: mb_secu_sm@dom4.kim.telematik-test,1.0 
-kimData: ak_secu_102@dom5.kim.telematik-test,1.5
+{kimData-example_1}
+{kimData-example_2}
+{kimData-example_3}
+{kimData-example_4}
+{kimData-example_5}
+{kimData-example_6}
 ----
-
-Wird vom KOM-LE-Anbieter eingetragen. +
 
 |*active* |obligatorisch | {active}
 |*meta* |optional | Kann von den pflegenden Clients zur Abstimmung der Prozesse zwischen z.B. Kartenherausgeber und TSP genutzt werden. Dieses Attribut wird durch den VZD nicht ausgewertet. Die Werte für dieses Attribut müssen von den pflegenden Organisationen festgelegt und abgestimmt werden. +
@@ -1598,26 +1582,17 @@ komLeData: 1.5,ak_secu_102@dom5.kim.telematik-test
 
 Wird vom KOM-LE-Anbieter eingetragen.
 
-|*kimData* |optional a|
-Bezeichner: kimData +
-kann mehrfach vorkommen (0..1000) +
- +
-Enthält die KOM-LE-Version des Clientmoduls der angegebenen "mail" Adresse im Attribut "version". Zusätzlich kann zur KOM-LE-Version ein "+" angegeben sein. Anhand dieser Version erkennt das sendende Clientmodul, welche KOM-LE-Version vom Empfänger-Clientmodul unterstützt wird und in welchem Format die Mail an diesen Empfänger versandt wird. Wenn ein zusätzliches "+" angegeben ist, dann können mit dieser "mail" Adresse Nachrichten größer 15MiB verarbeitet werden. Jeder Datensatz MUSS die Attribute KOM-LE-Mail-Adresse und Version enthalten (beide Attribute sind obligatorisch). +
+|*kimData* |optional a| {kimData}
 
-Jeder Datensatz kann zusätzlich ein oder mehrere Anwendungskennzeichen der angegebenen "mail" Adresse im Attribut "appTags" enthalten.Jeder Datensatz kann zusätzlich ein oder mehrere Anwendungskennzeichen der angegebenen "mail" Adresse im Attribut "appTags" enthalten. +
-
-Beispiel für den Wert eines kimData Eintrags in der flachen Liste (Ausgabe einer LDAP Suche): +
-[source, c]
+[source, c,subs=attributes+]
 ----
-kimData: mc_smcb_za@dom1.komle.telematik-test,1.0,eEB;V1.0 
-kimData: mz_smcb_za@dom2.kim.telematik-test,1.0,DALE-UV;Einsendung;V1.0\|eEB;V1.0 
-kimData: mz_smcb_za@dom1.kim.telematik-test,1.0 
-kimData: mb_secu_sm@dom3.kim.telematik-test,1.0 
-kimData: mb_secu_sm@dom4.kim.telematik-test,1.0 
-kimData: ak_secu_102@dom5.kim.telematik-test,1.5
+{kimData-example_1}
+{kimData-example_2}
+{kimData-example_3}
+{kimData-example_4}
+{kimData-example_5}
+{kimData-example_6}
 ----
-
-Wird vom KOM-LE-Anbieter eingetragen. +
 
 |*active* |obligatorisch | {active}
 |*meta* |optional | Kann von den pflegenden Clients zur Abstimmung der Prozesse zwischen z.B. Kartenherausgeber und TSP genutzt werden. Dieses Attribut wird durch den VZD nicht ausgewertet. Die Werte für dieses Attribut müssen von den pflegenden Organisationen festgelegt und abgestimmt werden. +
@@ -1775,26 +1750,17 @@ komLeData: 1.5,ak_secu_102@dom5.kim.telematik-test
 
 Wird vom KOM-LE-Anbieter eingetragen.
 
-|*kimData* |optional a|
-Bezeichner: kimData +
-kann mehrfach vorkommen (0..1000) +
- +
-Enthält die KOM-LE-Version des Clientmoduls der angegebenen "mail" Adresse im Attribut "version". Zusätzlich kann zur KOM-LE-Version ein "+" angegeben sein. Anhand dieser Version erkennt das sendende Clientmodul, welche KOM-LE-Version vom Empfänger-Clientmodul unterstützt wird und in welchem Format die Mail an diesen Empfänger versandt wird. Wenn ein zusätzliches "+" angegeben ist, dann können mit dieser "mail" Adresse Nachrichten größer 15MiB verarbeitet werden. Jeder Datensatz MUSS die Attribute KOM-LE-Mail-Adresse und Version enthalten (beide Attribute sind obligatorisch). +
+|*kimData* |optional a| {kimData}
 
-Jeder Datensatz kann zusätzlich ein oder mehrere Anwendungskennzeichen der angegebenen "mail" Adresse im Attribut "appTags" enthalten.Jeder Datensatz kann zusätzlich ein oder mehrere Anwendungskennzeichen der angegebenen "mail" Adresse im Attribut "appTags" enthalten. +
-
-Beispiel für den Wert eines kimData Eintrags in der flachen Liste (Ausgabe einer LDAP Suche): +
-[source, c]
+[source, c,subs=attributes+]
 ----
-kimData: mc_smcb_za@dom1.komle.telematik-test,1.0,eEB;V1.0 
-kimData: mz_smcb_za@dom2.kim.telematik-test,1.0,DALE-UV;Einsendung;V1.0\|eEB;V1.0 
-kimData: mz_smcb_za@dom1.kim.telematik-test,1.0 
-kimData: mb_secu_sm@dom3.kim.telematik-test,1.0 
-kimData: mb_secu_sm@dom4.kim.telematik-test,1.0 
-kimData: ak_secu_102@dom5.kim.telematik-test,1.5
+{kimData-example_1}
+{kimData-example_2}
+{kimData-example_3}
+{kimData-example_4}
+{kimData-example_5}
+{kimData-example_6}
 ----
-
-Wird vom KOM-LE-Anbieter eingetragen. +
 
 |*active* |obligatorisch | {active}
 |*meta* |optional | Kann von den pflegenden Clients zur Abstimmung der Prozesse zwischen z.B. Kartenherausgeber und TSP genutzt werden. Dieses Attribut wird durch den VZD nicht ausgewertet. Die Werte für dieses Attribut müssen von den pflegenden Organisationen festgelegt und abgestimmt werden. +
@@ -1951,26 +1917,17 @@ komLeData: 1.5,ak_secu_102@dom5.kim.telematik-test
 
 Wird vom KOM-LE-Anbieter eingetragen.
 
-|*kimData* |optional a|
-Bezeichner: kimData +
-kann mehrfach vorkommen (0..1000) +
- +
-Enthält die KOM-LE-Version des Clientmoduls der angegebenen "mail" Adresse im Attribut "version". Zusätzlich kann zur KOM-LE-Version ein "+" angegeben sein. Anhand dieser Version erkennt das sendende Clientmodul, welche KOM-LE-Version vom Empfänger-Clientmodul unterstützt wird und in welchem Format die Mail an diesen Empfänger versandt wird. Wenn ein zusätzliches "+" angegeben ist, dann können mit dieser "mail" Adresse Nachrichten größer 15MiB verarbeitet werden. Jeder Datensatz MUSS die Attribute KOM-LE-Mail-Adresse und Version enthalten (beide Attribute sind obligatorisch). +
+|*kimData* |optional a| {kimData}
 
-Jeder Datensatz kann zusätzlich ein oder mehrere Anwendungskennzeichen der angegebenen "mail" Adresse im Attribut "appTags" enthalten.Jeder Datensatz kann zusätzlich ein oder mehrere Anwendungskennzeichen der angegebenen "mail" Adresse im Attribut "appTags" enthalten. +
-
-Beispiel für den Wert eines kimData Eintrags in der flachen Liste (Ausgabe einer LDAP Suche): +
-[source, c]
+[source, c,subs=attributes+]
 ----
-kimData: mc_smcb_za@dom1.komle.telematik-test,1.0,eEB;V1.0 
-kimData: mz_smcb_za@dom2.kim.telematik-test,1.0,DALE-UV;Einsendung;V1.0\|eEB;V1.0 
-kimData: mz_smcb_za@dom1.kim.telematik-test,1.0 
-kimData: mb_secu_sm@dom3.kim.telematik-test,1.0 
-kimData: mb_secu_sm@dom4.kim.telematik-test,1.0 
-kimData: ak_secu_102@dom5.kim.telematik-test,1.5
+{kimData-example_1}
+{kimData-example_2}
+{kimData-example_3}
+{kimData-example_4}
+{kimData-example_5}
+{kimData-example_6}
 ----
-
-Wird vom KOM-LE-Anbieter eingetragen. +
 
 |*active* |obligatorisch | {active}
 |*meta* |optional | Kann von den pflegenden Clients zur Abstimmung der Prozesse zwischen z.B. Kartenherausgeber und TSP genutzt werden. Dieses Attribut wird durch den VZD nicht ausgewertet. Die Werte für dieses Attribut müssen von den pflegenden Organisationen festgelegt und abgestimmt werden. +
@@ -2127,26 +2084,17 @@ komLeData: 1.5,ak_secu_102@dom5.kim.telematik-test
 
 Wird vom KOM-LE-Anbieter eingetragen.
 
-|*kimData* |optional a|
-Bezeichner: kimData +
-kann mehrfach vorkommen (0..1000) +
- +
-Enthält die KOM-LE-Version des Clientmoduls der angegebenen "mail" Adresse im Attribut "version". Zusätzlich kann zur KOM-LE-Version ein "+" angegeben sein. Anhand dieser Version erkennt das sendende Clientmodul, welche KOM-LE-Version vom Empfänger-Clientmodul unterstützt wird und in welchem Format die Mail an diesen Empfänger versandt wird. Wenn ein zusätzliches "+" angegeben ist, dann können mit dieser "mail" Adresse Nachrichten größer 15MiB verarbeitet werden. Jeder Datensatz MUSS die Attribute KOM-LE-Mail-Adresse und Version enthalten (beide Attribute sind obligatorisch). +
+|*kimData* |optional a| {kimData}
 
-Jeder Datensatz kann zusätzlich ein oder mehrere Anwendungskennzeichen der angegebenen "mail" Adresse im Attribut "appTags" enthalten.Jeder Datensatz kann zusätzlich ein oder mehrere Anwendungskennzeichen der angegebenen "mail" Adresse im Attribut "appTags" enthalten. +
-
-Beispiel für den Wert eines kimData Eintrags in der flachen Liste (Ausgabe einer LDAP Suche): +
-[source, c]
+[source, c,subs=attributes+]
 ----
-kimData: mc_smcb_za@dom1.komle.telematik-test,1.0,eEB;V1.0 
-kimData: mz_smcb_za@dom2.kim.telematik-test,1.0,DALE-UV;Einsendung;V1.0\|eEB;V1.0 
-kimData: mz_smcb_za@dom1.kim.telematik-test,1.0 
-kimData: mb_secu_sm@dom3.kim.telematik-test,1.0 
-kimData: mb_secu_sm@dom4.kim.telematik-test,1.0 
-kimData: ak_secu_102@dom5.kim.telematik-test,1.5
+{kimData-example_1}
+{kimData-example_2}
+{kimData-example_3}
+{kimData-example_4}
+{kimData-example_5}
+{kimData-example_6}
 ----
-
-Wird vom KOM-LE-Anbieter eingetragen. +
 
 |*active* |obligatorisch | {active}
 |*meta* |optional | Kann von den pflegenden Clients zur Abstimmung der Prozesse zwischen z.B. Kartenherausgeber und TSP genutzt werden. Dieses Attribut wird durch den VZD nicht ausgewertet. Die Werte für dieses Attribut müssen von den pflegenden Organisationen festgelegt und abgestimmt werden. +
@@ -2289,26 +2237,17 @@ komLeData: 1.5,ak_secu_102@dom5.kim.telematik-test
 
 Wird vom KOM-LE-Anbieter eingetragen.
 
-|*kimData* |optional a|
-Bezeichner: kimData +
-kann mehrfach vorkommen (0..1000) +
- +
-Enthält die KOM-LE-Version des Clientmoduls der angegebenen "mail" Adresse im Attribut "version". Zusätzlich kann zur KOM-LE-Version ein "+" angegeben sein. Anhand dieser Version erkennt das sendende Clientmodul, welche KOM-LE-Version vom Empfänger-Clientmodul unterstützt wird und in welchem Format die Mail an diesen Empfänger versandt wird. Wenn ein zusätzliches "+" angegeben ist, dann können mit dieser "mail" Adresse Nachrichten größer 15MiB verarbeitet werden. Jeder Datensatz MUSS die Attribute KOM-LE-Mail-Adresse und Version enthalten (beide Attribute sind obligatorisch). +
+|*kimData* |optional a| {kimData}
 
-Jeder Datensatz kann zusätzlich ein oder mehrere Anwendungskennzeichen der angegebenen "mail" Adresse im Attribut "appTags" enthalten.Jeder Datensatz kann zusätzlich ein oder mehrere Anwendungskennzeichen der angegebenen "mail" Adresse im Attribut "appTags" enthalten. +
-
-Beispiel für den Wert eines kimData Eintrags in der flachen Liste (Ausgabe einer LDAP Suche): +
-[source, c]
+[source, c,subs=attributes+]
 ----
-kimData: mc_smcb_za@dom1.komle.telematik-test,1.0,eEB;V1.0 
-kimData: mz_smcb_za@dom2.kim.telematik-test,1.0,DALE-UV;Einsendung;V1.0\|eEB;V1.0 
-kimData: mz_smcb_za@dom1.kim.telematik-test,1.0 
-kimData: mb_secu_sm@dom3.kim.telematik-test,1.0 
-kimData: mb_secu_sm@dom4.kim.telematik-test,1.0 
-kimData: ak_secu_102@dom5.kim.telematik-test,1.5
+{kimData-example_1}
+{kimData-example_2}
+{kimData-example_3}
+{kimData-example_4}
+{kimData-example_5}
+{kimData-example_6}
 ----
-
-Wird vom KOM-LE-Anbieter eingetragen. +
 
 |*stateOrProvinceName * |optional |Bezeichner: Bundesland +
   +
@@ -2576,26 +2515,17 @@ komLeData: 1.5,ak_secu_102@dom5.kim.telematik-test
 
 Wird vom KOM-LE-Anbieter eingetragen.
 
-|*kimData* |optional a|
-Bezeichner: kimData +
-kann mehrfach vorkommen (0..1000) +
- +
-Enthält die KOM-LE-Version des Clientmoduls der angegebenen "mail" Adresse im Attribut "version". Zusätzlich kann zur KOM-LE-Version ein "+" angegeben sein. Anhand dieser Version erkennt das sendende Clientmodul, welche KOM-LE-Version vom Empfänger-Clientmodul unterstützt wird und in welchem Format die Mail an diesen Empfänger versandt wird. Wenn ein zusätzliches "+" angegeben ist, dann können mit dieser "mail" Adresse Nachrichten größer 15MiB verarbeitet werden. Jeder Datensatz MUSS die Attribute KOM-LE-Mail-Adresse und Version enthalten (beide Attribute sind obligatorisch). +
+|*kimData* |optional a| {kimData}
 
-Jeder Datensatz kann zusätzlich ein oder mehrere Anwendungskennzeichen der angegebenen "mail" Adresse im Attribut "appTags" enthalten.Jeder Datensatz kann zusätzlich ein oder mehrere Anwendungskennzeichen der angegebenen "mail" Adresse im Attribut "appTags" enthalten. +
-
-Beispiel für den Wert eines kimData Eintrags in der flachen Liste (Ausgabe einer LDAP Suche): +
-[source, c]
+[source, c,subs=attributes+]
 ----
-kimData: mc_smcb_za@dom1.komle.telematik-test,1.0,eEB;V1.0 
-kimData: mz_smcb_za@dom2.kim.telematik-test,1.0,DALE-UV;Einsendung;V1.0\|eEB;V1.0 
-kimData: mz_smcb_za@dom1.kim.telematik-test,1.0 
-kimData: mb_secu_sm@dom3.kim.telematik-test,1.0 
-kimData: mb_secu_sm@dom4.kim.telematik-test,1.0 
-kimData: ak_secu_102@dom5.kim.telematik-test,1.5
+{kimData-example_1}
+{kimData-example_2}
+{kimData-example_3}
+{kimData-example_4}
+{kimData-example_5}
+{kimData-example_6}
 ----
-
-Wird vom KOM-LE-Anbieter eingetragen. +
 
 |*active* |obligatorisch | {active}
 |*meta* |optional | Kann von den pflegenden Clients zur Abstimmung der Prozesse zwischen z.B. Kartenherausgeber und TSP genutzt werden. Dieses Attribut wird durch den VZD nicht ausgewertet. Die Werte für dieses Attribut müssen von den pflegenden Organisationen festgelegt und abgestimmt werden. +
@@ -2740,26 +2670,17 @@ komLeData: 1.5,ak_secu_102@dom5.kim.telematik-test
 
 Wird vom KOM-LE-Anbieter eingetragen.
 
-|*kimData* |optional a|
-Bezeichner: kimData +
-kann mehrfach vorkommen (0..1000) +
- +
-Enthält die KOM-LE-Version des Clientmoduls der angegebenen "mail" Adresse im Attribut "version". Zusätzlich kann zur KOM-LE-Version ein "+" angegeben sein. Anhand dieser Version erkennt das sendende Clientmodul, welche KOM-LE-Version vom Empfänger-Clientmodul unterstützt wird und in welchem Format die Mail an diesen Empfänger versandt wird. Wenn ein zusätzliches "+" angegeben ist, dann können mit dieser "mail" Adresse Nachrichten größer 15MiB verarbeitet werden. Jeder Datensatz MUSS die Attribute KOM-LE-Mail-Adresse und Version enthalten (beide Attribute sind obligatorisch). +
+|*kimData* |optional a| {kimData}
 
-Jeder Datensatz kann zusätzlich ein oder mehrere Anwendungskennzeichen der angegebenen "mail" Adresse im Attribut "appTags" enthalten.Jeder Datensatz kann zusätzlich ein oder mehrere Anwendungskennzeichen der angegebenen "mail" Adresse im Attribut "appTags" enthalten. +
-
-Beispiel für den Wert eines kimData Eintrags in der flachen Liste (Ausgabe einer LDAP Suche): +
-[source, c]
+[source, c,subs=attributes+]
 ----
-kimData: mc_smcb_za@dom1.komle.telematik-test,1.0,eEB;V1.0 
-kimData: mz_smcb_za@dom2.kim.telematik-test,1.0,DALE-UV;Einsendung;V1.0\|eEB;V1.0 
-kimData: mz_smcb_za@dom1.kim.telematik-test,1.0 
-kimData: mb_secu_sm@dom3.kim.telematik-test,1.0 
-kimData: mb_secu_sm@dom4.kim.telematik-test,1.0 
-kimData: ak_secu_102@dom5.kim.telematik-test,1.5
+{kimData-example_1}
+{kimData-example_2}
+{kimData-example_3}
+{kimData-example_4}
+{kimData-example_5}
+{kimData-example_6}
 ----
-
-Wird vom KOM-LE-Anbieter eingetragen. +
 
 |*active* |obligatorisch | {active}
 |*meta* |optional | Kann von den pflegenden Clients zur Abstimmung der Prozesse zwischen z.B. Kartenherausgeber und TSP genutzt werden. Dieses Attribut wird durch den VZD nicht ausgewertet. Die Werte für dieses Attribut müssen von den pflegenden Organisationen festgelegt und abgestimmt werden. +
@@ -2913,26 +2834,17 @@ komLeData: 1.5,ak_secu_102@dom5.kim.telematik-test
 
 Wird vom KOM-LE-Anbieter eingetragen.
 
-|*kimData* |optional a|
-Bezeichner: kimData +
-kann mehrfach vorkommen (0..1000) +
- +
-Enthält die KOM-LE-Version des Clientmoduls der angegebenen "mail" Adresse im Attribut "version". Zusätzlich kann zur KOM-LE-Version ein "+" angegeben sein. Anhand dieser Version erkennt das sendende Clientmodul, welche KOM-LE-Version vom Empfänger-Clientmodul unterstützt wird und in welchem Format die Mail an diesen Empfänger versandt wird. Wenn ein zusätzliches "+" angegeben ist, dann können mit dieser "mail" Adresse Nachrichten größer 15MiB verarbeitet werden. Jeder Datensatz MUSS die Attribute KOM-LE-Mail-Adresse und Version enthalten (beide Attribute sind obligatorisch). +
+|*kimData* |optional a| {kimData}
 
-Jeder Datensatz kann zusätzlich ein oder mehrere Anwendungskennzeichen der angegebenen "mail" Adresse im Attribut "appTags" enthalten.Jeder Datensatz kann zusätzlich ein oder mehrere Anwendungskennzeichen der angegebenen "mail" Adresse im Attribut "appTags" enthalten. +
-
-Beispiel für den Wert eines kimData Eintrags in der flachen Liste (Ausgabe einer LDAP Suche): +
-[source, c]
+[source, c,subs=attributes+]
 ----
-kimData: mc_smcb_za@dom1.komle.telematik-test,1.0,eEB;V1.0 
-kimData: mz_smcb_za@dom2.kim.telematik-test,1.0,DALE-UV;Einsendung;V1.0\|eEB;V1.0 
-kimData: mz_smcb_za@dom1.kim.telematik-test,1.0 
-kimData: mb_secu_sm@dom3.kim.telematik-test,1.0 
-kimData: mb_secu_sm@dom4.kim.telematik-test,1.0 
-kimData: ak_secu_102@dom5.kim.telematik-test,1.5
+{kimData-example_1}
+{kimData-example_2}
+{kimData-example_3}
+{kimData-example_4}
+{kimData-example_5}
+{kimData-example_6}
 ----
-
-Wird vom KOM-LE-Anbieter eingetragen. +
 
 |*active* |obligatorisch | {active}
 |*meta* |optional | Kann von den pflegenden Clients zur Abstimmung der Prozesse zwischen z.B. Kartenherausgeber und TSP genutzt werden. Dieses Attribut wird durch den VZD nicht ausgewertet. Die Werte für dieses Attribut müssen von den pflegenden Organisationen festgelegt und abgestimmt werden. +
@@ -3093,26 +3005,17 @@ komLeData: 1.5,ak_secu_102@dom5.kim.telematik-test
 
 Wird vom KOM-LE-Anbieter eingetragen.
 
-|*kimData* |optional a|
-Bezeichner: kimData +
-kann mehrfach vorkommen (0..1000) +
- +
-Enthält die KOM-LE-Version des Clientmoduls der angegebenen "mail" Adresse im Attribut "version". Zusätzlich kann zur KOM-LE-Version ein "+" angegeben sein. Anhand dieser Version erkennt das sendende Clientmodul, welche KOM-LE-Version vom Empfänger-Clientmodul unterstützt wird und in welchem Format die Mail an diesen Empfänger versandt wird. Wenn ein zusätzliches "+" angegeben ist, dann können mit dieser "mail" Adresse Nachrichten größer 15MiB verarbeitet werden. Jeder Datensatz MUSS die Attribute KOM-LE-Mail-Adresse und Version enthalten (beide Attribute sind obligatorisch). +
+|*kimData* |optional a| {kimData}
 
-Jeder Datensatz kann zusätzlich ein oder mehrere Anwendungskennzeichen der angegebenen "mail" Adresse im Attribut "appTags" enthalten.Jeder Datensatz kann zusätzlich ein oder mehrere Anwendungskennzeichen der angegebenen "mail" Adresse im Attribut "appTags" enthalten. +
-
-Beispiel für den Wert eines kimData Eintrags in der flachen Liste (Ausgabe einer LDAP Suche): +
-[source, c]
+[source, c,subs=attributes+]
 ----
-kimData: mc_smcb_za@dom1.komle.telematik-test,1.0,eEB;V1.0 
-kimData: mz_smcb_za@dom2.kim.telematik-test,1.0,DALE-UV;Einsendung;V1.0\|eEB;V1.0 
-kimData: mz_smcb_za@dom1.kim.telematik-test,1.0 
-kimData: mb_secu_sm@dom3.kim.telematik-test,1.0 
-kimData: mb_secu_sm@dom4.kim.telematik-test,1.0 
-kimData: ak_secu_102@dom5.kim.telematik-test,1.5
+{kimData-example_1}
+{kimData-example_2}
+{kimData-example_3}
+{kimData-example_4}
+{kimData-example_5}
+{kimData-example_6}
 ----
-
-Wird vom KOM-LE-Anbieter eingetragen. +
 
 |*active* |obligatorisch | {active}
 |*meta* |optional | Kann von den pflegenden Clients zur Abstimmung der Prozesse zwischen z.B. Kartenherausgeber und TSP genutzt werden. Dieses Attribut wird durch den VZD nicht ausgewertet. Die Werte für dieses Attribut müssen von den pflegenden Organisationen festgelegt und abgestimmt werden. +
@@ -3236,26 +3139,17 @@ komLeData: 1.5,ak_secu_102@dom5.kim.telematik-test
 
 Wird vom KOM-LE-Anbieter eingetragen.
 
-|*kimData* |optional a|
-Bezeichner: kimData +
-kann mehrfach vorkommen (0..1000) +
- +
-Enthält die KOM-LE-Version des Clientmoduls der angegebenen "mail" Adresse im Attribut "version". Zusätzlich kann zur KOM-LE-Version ein "+" angegeben sein. Anhand dieser Version erkennt das sendende Clientmodul, welche KOM-LE-Version vom Empfänger-Clientmodul unterstützt wird und in welchem Format die Mail an diesen Empfänger versandt wird. Wenn ein zusätzliches "+" angegeben ist, dann können mit dieser "mail" Adresse Nachrichten größer 15MiB verarbeitet werden. Jeder Datensatz MUSS die Attribute KOM-LE-Mail-Adresse und Version enthalten (beide Attribute sind obligatorisch). +
+|*kimData* |optional a| {kimData}
 
-Jeder Datensatz kann zusätzlich ein oder mehrere Anwendungskennzeichen der angegebenen "mail" Adresse im Attribut "appTags" enthalten.Jeder Datensatz kann zusätzlich ein oder mehrere Anwendungskennzeichen der angegebenen "mail" Adresse im Attribut "appTags" enthalten. +
-
-Beispiel für den Wert eines kimData Eintrags in der flachen Liste (Ausgabe einer LDAP Suche): +
-[source, c]
+[source, c,subs=attributes+]
 ----
-kimData: mc_smcb_za@dom1.komle.telematik-test,1.0,eEB;V1.0 
-kimData: mz_smcb_za@dom2.kim.telematik-test,1.0,DALE-UV;Einsendung;V1.0\|eEB;V1.0 
-kimData: mz_smcb_za@dom1.kim.telematik-test,1.0 
-kimData: mb_secu_sm@dom3.kim.telematik-test,1.0 
-kimData: mb_secu_sm@dom4.kim.telematik-test,1.0 
-kimData: ak_secu_102@dom5.kim.telematik-test,1.5
+{kimData-example_1}
+{kimData-example_2}
+{kimData-example_3}
+{kimData-example_4}
+{kimData-example_5}
+{kimData-example_6}
 ----
-
-Wird vom KOM-LE-Anbieter eingetragen. +
 
 |*active* |obligatorisch | {active}
 |*meta* |optional | Kann von den pflegenden Clients zur Abstimmung der Prozesse zwischen z.B. Kartenherausgeber und TSP genutzt werden. Dieses Attribut wird durch den VZD nicht ausgewertet. Die Werte für dieses Attribut müssen von den pflegenden Organisationen festgelegt und abgestimmt werden. +
@@ -3379,26 +3273,17 @@ komLeData: 1.5,ak_secu_102@dom5.kim.telematik-test
 
 Wird vom KOM-LE-Anbieter eingetragen.
 
-|*kimData* |optional a|
-Bezeichner: kimData +
-kann mehrfach vorkommen (0..1000) +
- +
-Enthält die KOM-LE-Version des Clientmoduls der angegebenen "mail" Adresse im Attribut "version". Zusätzlich kann zur KOM-LE-Version ein "+" angegeben sein. Anhand dieser Version erkennt das sendende Clientmodul, welche KOM-LE-Version vom Empfänger-Clientmodul unterstützt wird und in welchem Format die Mail an diesen Empfänger versandt wird. Wenn ein zusätzliches "+" angegeben ist, dann können mit dieser "mail" Adresse Nachrichten größer 15MiB verarbeitet werden. Jeder Datensatz MUSS die Attribute KOM-LE-Mail-Adresse und Version enthalten (beide Attribute sind obligatorisch). +
+|*kimData* |optional a| {kimData}
 
-Jeder Datensatz kann zusätzlich ein oder mehrere Anwendungskennzeichen der angegebenen "mail" Adresse im Attribut "appTags" enthalten.Jeder Datensatz kann zusätzlich ein oder mehrere Anwendungskennzeichen der angegebenen "mail" Adresse im Attribut "appTags" enthalten. +
-
-Beispiel für den Wert eines kimData Eintrags in der flachen Liste (Ausgabe einer LDAP Suche): +
-[source, c]
+[source, c,subs=attributes+]
 ----
-kimData: mc_smcb_za@dom1.komle.telematik-test,1.0,eEB;V1.0 
-kimData: mz_smcb_za@dom2.kim.telematik-test,1.0,DALE-UV;Einsendung;V1.0\|eEB;V1.0 
-kimData: mz_smcb_za@dom1.kim.telematik-test,1.0 
-kimData: mb_secu_sm@dom3.kim.telematik-test,1.0 
-kimData: mb_secu_sm@dom4.kim.telematik-test,1.0 
-kimData: ak_secu_102@dom5.kim.telematik-test,1.5
+{kimData-example_1}
+{kimData-example_2}
+{kimData-example_3}
+{kimData-example_4}
+{kimData-example_5}
+{kimData-example_6}
 ----
-
-Wird vom KOM-LE-Anbieter eingetragen. +
 
 |*active* |obligatorisch | {active}
 |*meta* |optional | Kann von den pflegenden Clients zur Abstimmung der Prozesse zwischen z.B. Kartenherausgeber und TSP genutzt werden. Dieses Attribut wird durch den VZD nicht ausgewertet. Die Werte für dieses Attribut müssen von den pflegenden Organisationen festgelegt und abgestimmt werden. +
