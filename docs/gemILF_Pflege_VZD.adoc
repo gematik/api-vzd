@@ -468,6 +468,8 @@ Zertifikate können sofort nach Ausstellung durch den TSP in den VZD eingetragen
 Anhand von Attributen „notBefore“, „notAfter“ (zeitliche Gültigkeit) und userCertificate.active (OCSP Status) steuert der VZD die Sichtbarkeit der Zertifikate. Dabei wird die zeitliche Gültigkeit mit hoher Frequenz ausgewertet und der OCSP Status mindestens einmal täglich (konfigurierbar). +
 Damit sind die Zertifikate im VZD nur sichtbar, wenn sie freigeschaltet und zeitlich gülig sind.
 
+NOTE: Wenn die Zertifikate schon im VZD eingetragen sind und die Karte freigeschaltet wird, kann es bis zu einem Tag bis zur OCSP Status Prüfung durch den VZD dauern. Die Zertifikate im VZD sind erst nach dieser OCSP Prüfung sichtbar/nutzbar. 
+
 
 
 ==== DirectoryEntrySynchronization
@@ -743,6 +745,30 @@ Versehentlich fehlerhaft eingetragene Berechtigungen müssen durch einen aktuell
 {empty} +
 {empty} +
 
+=== Prüfungen beim Eintragen von Daten zur Verbesserung der Datenqualität
+
+[width="100%",cols="6%,10%,84%",options="header",]
+|===
+|*Nr* |*Status* |*Beschreibung*
+|V001 |geplant
+| Wenn countryCode==DE gilt für stateOrProvinceName der Wertebereich des CodeSystems  https://simplifier.net/vzd-fhir-directory/region[VZD-FHIR-Directory] für die Region (Wertebereich). 
+Andere Schreibweisen werden werden nicht zugelassen. 
+|V002 |geplant
+| Wenn countryCode==DE muss postalCode 5 stellige Nummer sein. 
+|V003 |geplant
+| countryCode muss 2-Stellige ISO Code sein. 
+|V004 |geplant
+| Bei SMC-B muss specialization folgenden Format haben: urn:psc:{OID Codesystem}:{Code}, 
+wobei CodeSystems und Codes aus  https://simplifier.net/vzd-fhir-directory/healthcareservicespecialtyvs[HealthcareServiceSpecialtyVS]  
+zu entnehmen sind.
+|V005 |geplant
+| Bei HBA muss specialization folgenden Format haben: urn:as:{OID Codesystem}:{Code}, wobei CodeSystems und Codes aus https://simplifier.net/vzd-fhir-directory/practitionerqualificationvs[PractitionerQualificationVS] zu entnehmen sind.
+|V006 |geplant
+| Überschreibt V004 für Apotheken. Bei Apotheken SMC-B müssen für specialization die Codes aus https://simplifier.net/vzd-fhir-directory/pharmacytypecs[PharmacyTypeCS] (nur Code, ohne CodeSystem) verwendet werden.
+|===
+
+{empty} +
+{empty} +
 
 == Attributtabellen
 
