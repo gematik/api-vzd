@@ -128,12 +128,12 @@ Endpoints can be created if all of the following criteria are met
 * Endpoint.connectionType is set to "tim"
 
 - the Endpoint contains all necessary information (https://simplifier.net/vzd-fhir-directory/endpointdirectory)
+- Endpoint.status - The state of the Endpoint has to be "active".
 
 // https://arvato-systems-group.atlassian.net/browse/FVZ-231
 
 In addition to the mandatory attributes, setting the following attributes is recommended
 
-- Endpoint.status - The state of the Endpoint e.g. "active".
 - Endpoint.name - Name of the Endpoint.
 
 ==== Update Endpoint (PUT)
