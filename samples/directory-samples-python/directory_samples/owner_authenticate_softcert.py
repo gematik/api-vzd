@@ -26,7 +26,6 @@ def main():
 
     fhir_directopy_base_url = os.getenv("FHIR_DIRECTORY_BASE_URL") or "https://fhir-directory-test.vzd.ti-dienste.de/"
     gematik_idp_base_url = os.getenv("GEMATIK_IDP_BASE_URL") or "https://idp-test.app.ti-dienste.de/"
-    
     owner_key_filename_der = os.environ["OWNER_KEY_FILENAME_DER"]
     owner_cert_filename_der = os.environ["OWNER_CERT_FILENAME_DER"]
 
