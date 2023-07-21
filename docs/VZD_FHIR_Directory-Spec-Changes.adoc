@@ -17,9 +17,7 @@ image:gematik_logo.svg[width=70%]
 
 toc::[]
 
-// Filename: VZD_FHIR_Directory-Spec-Changes.adoc
-
-= Änderungen an Spezifikation gemSpec_VZD_FHIR_Directory
+= Änderungen an VZD Spezifikationen 
 Dieses Dokument informiert über die Änderungen an Spezifikation gemSpec_VZD_FHIR_Directory und gemSpec_VZD, welche noch nicht auf dem gematik Fachportal veröffentlicht wurden.
 Vor der Veröffentlichung auf dem Fachportal erfolgen noch Reviews. Folge dieser Reviews können Änderungen bis zur finalen Veröffentlichung bedingen.
  +
@@ -132,7 +130,7 @@ Der VZD MUSS für die Administration von Attribut "providedBy" gewährleisten:
 Der VZD MUSS für verlinkte LDAP Datensätze - mit einer TelematikID in Attribut "providedBy" - bei der Synchronisation der LDAP Daten in den FHIR VZD - abweichend von den normalen Synchronisationsregeln - folgendes Mapping der Attribute beachten.
 Tabelle 34: Tab_VZD_Datenbeschreibung 
 
-
+[width="100%",cols="10%,10%,80%",options="header",]
 |===
 |*LDAP Attribut* |*FHIR HealthcareServices Attribut* |*Bemerkung*
 |displayName|name|
