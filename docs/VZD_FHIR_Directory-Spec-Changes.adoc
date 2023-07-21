@@ -127,8 +127,9 @@ Der VZD MUSS für die Administration von Attribut "providedBy" gewährleisten:
 <=
 
 *A_XXXXX VZD, I_Directory_Administration, Synchronisationsregeln für verlinkte LDAP Datensätze* +
-Der VZD MUSS für verlinkte LDAP Datensätze - mit einer TelematikID in Attribut "providedBy" - bei der Synchronisation der LDAP Daten in den FHIR VZD - abweichend von den normalen Synchronisationsregeln - folgendes Mapping der Attribute beachten.
-Tabelle 34: Tab_VZD_Datenbeschreibung 
+Der VZD MUSS für verlinkte LDAP Datensätze - mit einer TelematikID in Attribut "providedBy" - bei der Synchronisation der LDAP Daten in den FHIR VZD - abweichend von den normalen Synchronisationsregeln - das Mapping der Attribute entsprechend Tab_VZD_Datenmapping_linked durchführen. +
+ +
+Tabelle 34: Tab_VZD_Datenmapping_linked 
 
 [width="100%",cols="10%,10%,80%",options="header",]
 |===
@@ -161,8 +162,10 @@ Bei der Authentisierung mit der telematikID eines untergeordneten HealthcareServ
 |professionOID|type|
 Wird für normalerweise in Organization.type abgelegt. +
 Mapping erfolgt hier auf HealthcareService.type. 
-|active|HealthcareService.active|
-Wird auf das active Attribut der Ressource (HealthcareService) abgebildet.
+|active|-|
+Wird nicht in den HelathcareService gemappt.Der Status für den generierten HelathcareService ergibt sich aus dem "active" Status der Organisation (wie für alle HealtcareServices). +
+Wenn der untergeordnete LDAP Datensatz über das "active" Attribut deaktiviert wird, hat das keine Auswirkungen auf den FHIR HealthcareService. +
+Wenn der übergeordnete LDAP Datensatz über das "active" Attribut deaktiviert wird, hat dies im FHIR VZD Auswirkungen auf alle verlinkten HealthcareService.
 
 |===
 
@@ -180,7 +183,8 @@ Tabelle 34: Tab_VZD_Datenbeschreibung
 |*LDAP-Directory Attribut* |*Pflichtfeld?* |*Erläuterung*
 |...||
 |providedBy|optional|
-Zusammenhängende Einträge können über das Attribut providedBy gekennzeichnet werden.
+Zusammenhängende Einträge können über das Attribut providedBy gekennzeichnet werden. 
+Siehe Kapitel 4.6.3 Zusammenführung mehrerer TelematikID´s zu einer Organisation
 
 
 |===
