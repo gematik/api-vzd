@@ -45,7 +45,7 @@ Die Föderationsliste MUSS mit einer JWS gemäß RFC7797 signiert werden. Der zu
 
 *Es wird in gemSpec_VZD_FHIR_Directory Kapitel 4.2.3 wie folgt angepasst* +
 ... +
-*ML-136890 - AF_10037 TIM Registrierungsdienst id_token Prüfung (VZD-FHIR-Directory)* +
+*ML-142894 - AF_10037 TIM Registrierungsdienst id_token Prüfung (VZD-FHIR-Directory)* +
 Die vom Registrierungsdienst ausgestellten id_token müssen vom VZD-FHIR-Directory geprüft werden: +
 
 - Validierung der gemäß [RFC7519 # section-7.1] vorgeschriebenen Struktur der id_token gemäß [RFC7519 # section-7.2]. 
@@ -70,7 +70,7 @@ Optional und verpflichtend ab FHIR VZD 1.2: +
 
 ...
 
-*ML-136887 - AF_10037 TI-Provider-Access-Token Prüfung (VZD-FHIR-Directory)*
+*ML-142895 - AF_10037 TI-Provider-Access-Token Prüfung (VZD-FHIR-Directory)*
 Die TI-Provider-Access-Token müssen vom VZD-FHIR-Directory für den Endpunkt /tim-provider-services geprüft werden: +
 
 -	Validierung der gemäß [RFC7519 # section-7.1] vorgeschriebenen Struktur der ACCESS_TOKEN gemäß [RFC7519 # section-7.2].
@@ -96,7 +96,7 @@ Optional und verpflichtend ab FHIR VZD 1.2: +
 == Zusammenführung mehrerer TelematikID´s zu einer Organisation
 *Es wird in gemSpec_VZD Kapitel 4.6.1.2.3 wie folgt ergänzt* +
  +
-*A_18450 VZD, I_Directory_Administration, modify_Directory_Entry* +
+*A_18450-04 VZD, I_Directory_Administration, modify_Directory_Entry* +
  +
 *In Tabelle 26: Tab_VZD „modify_Directory_Entry” werden die Eingangsdaten aktualisiert, insbesondere "providedBy"* +
  +
@@ -117,16 +117,17 @@ Dafür wird das Attribut "providedBy" genutzt:
 - Ist Attribut "providedBy" im LDAP VZD Eintrag nicht gesetzt, wird für den LDAP Eintrag im FHIR VZD eine Organisation generiert.
 - Wird in Attribut "providedBy" im LDAP VZD Eintrag eine TelematikID eingetragen, wird für den LDAP Eintrag im FHIR VZD ein HealthcareService unter der - mit der TelematikID - referenzierten Organisation generiert.
 
-*A_XXXXX VZD, I_Directory_Administration, providedBy* +
+*A_24058 VZD, I_Directory_Administration, providedBy* +
 Der VZD MUSS für die Administration von Attribut "providedBy" gewährleisten:
 
 - Es wird nur eine Hierarchieebene unterstützt. Das Attribut "providedBy" im referenzierten LDAP Datensatz muss deshalb leer sein. In allen anderen Fälle MUSS der VZD mit einem Fehler antworten.
 - Der VZD MUSS bei Löschung eines LDAP VZD Eintrags prüfen, ob dieser Eintrag über Attribut "providedBy" von einem anderen Datensatz referenziert wird. Ist dies der Fall, MUSS der VZD die Löschoperation mit einem Fehler ablehnen.
 - Das Attribut "providedBy" darf nur eine TelematikID enthalten.
+- Wenn Attribut providedBy gesetzt wurde, kann es nur zurückgesetzt (Inhalt auf leer gesetzt) werden. Eine Änderung auf einen anderen Wert wird nicht unterstützt.
 - Der VZD MUSS vor dem Setzen von Attribut "providedBy" prüfen, ob der Client auch für den referenzierten LDAP Datensatz als Holder eingetragen ist. Ist dies nicht der Fall, MUSS der VZD die Operation mit einem Fehler ablehnen.
 <=
 
-*A_XXXXX VZD, I_Directory_Administration, Synchronisationsregeln für verlinkte LDAP Datensätze* +
+*A_24059 VZD, I_Directory_Administration, Synchronisationsregeln für verlinkte LDAP Datensätze* +
 Der VZD MUSS für verlinkte LDAP Datensätze - mit einer TelematikID in Attribut "providedBy" - bei der Synchronisation der LDAP Daten in den FHIR VZD - abweichend von den normalen Synchronisationsregeln - das Mapping der Attribute entsprechend Tab_VZD_Datenmapping_linked durchführen. +
  +
 Tabelle 34: Tab_VZD_Datenmapping_linked 
