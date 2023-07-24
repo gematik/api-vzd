@@ -767,17 +767,23 @@ zu entnehmen sind.
 | Bei HBA muss specialization folgendes Format haben: urn:as:{OID Codesystem}:{Code}, wobei CodeSystems und Codes aus https://simplifier.net/vzd-fhir-directory/practitionerqualificationvs[PractitionerQualificationVS] zu entnehmen sind.
 |V006 |geplant
 | Überschreibt V004 für den Sektor der Apotheken. Bei SMC-B Einträgen füt Apotheken müssen für das Attribut specialization die Codes aus https://simplifier.net/vzd-fhir-directory/pharmacytypecs[PharmacyTypeCS] (nur Code, ohne CodeSystem) verwendet werden.
-|V008 |geplant
+// bisher V008 
+|V007 |geplant
 | displayName muss mindestens 2 UTF-8 Alphanummerische Zeichen enthalten
-|V010 |umgesetzt
+// bisher V010 
+|V008 |umgesetzt
 | Prüfung auf Zugehörigkeit der Daten anhand der TelematikID. Alle Daten eines LDAP Eintrags müssen zur gleichen TelematikID gehören (z.B. Zertifikate).
-|V012 |geplant
+// bisher V012
+|V009 |geplant
 | Für jeden Sektor wird überprüft, welche Attribute obligatorisch sind (Grundlage ist der Implementierungsleitfaden). Wenn Attribute obligatorisch zu setzen sind, dies aber vom Pflegenden nicht befüllt wird, kann der Eintrag nicht angelegt werden. Der Sektor wird anhand der TelematikId erkannt.
-|V015 |umgesetzt
+// bisher V015
+|V010 |umgesetzt
 | Verzeichnisdienst filtert die Leerzeichen (leading, trailing) automatisch. Ist das Ausfiltern nicht möglich oder fachlich unzulässig (z.B. im Zertifikat) werden diese Daten mit einem Fehler abgelehnt. Minimalprüfung: Leerzeichen am Anfang bzw. am Ende sind bei allen Attributen unzulässig. 
-|V018 |geplant
+// bisher V018
+|V011 |geplant
 | Für SMC-B Einträge muss ProfessionOID aus den folgenden Codes entnommen werden: https://simplifier.net/vzd-fhir-directory/organizationprofessionoid[OrganizationProfessionOID]
-|V019 |geplant
+// bisher V019
+|V012 |geplant
 | Bei eHBA muss ProfessionOID aus den folgenden Codes entnommen werden: https://simplifier.net/vzd-fhir-directory/practitionerprofessionoid[PractitionerProfessionOID]
 
 |===
