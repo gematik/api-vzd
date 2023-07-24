@@ -133,6 +133,7 @@ Endpoints can be created if all of the following criteria are met
 // https://arvato-systems-group.atlassian.net/browse/FVZ-231
 
 In addition to the mandatory attributes, setting the following attributes is recommended
+
 - Endpoint.status - The state of the Endpoint.
 - Endpoint.name - Name of the Endpoint.
 
