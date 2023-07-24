@@ -754,31 +754,31 @@ Zur Verbesserung der Datenqualität werden im VZD zusätzliche Prüfungen beim E
 |*Nr* |*Status* |*Beschreibung*
 |V001 |geplant
 | Wenn countryCode==DE gilt für stateOrProvinceName der Wertebereich des CodeSystems  https://simplifier.net/vzd-fhir-directory/region[VZD-FHIR-Directory] für die Region (Wertebereich). 
-Andere Schreibweisen werden werden nicht zugelassen. 
+Andere Schreibweisen werden nicht zugelassen. 
 |V002 |geplant
-| Wenn countryCode==DE muss postalCode 5 stellige Nummer sein. 
+| Wenn countryCode==DE muss postalCode eine 5 stellige Nummer sein. 
 |V003 |geplant
-| countryCode muss 2-Stellige ISO Code sein. 
+| countryCode muss 2-Stellige ISO Code sein. Siehe https://www.iso.org/obp/ui/#search/code/[ISO 3166 "Alpha-2 code"].
 |V004 |geplant
-| Bei SMC-B muss specialization folgenden Format haben: urn:psc:{OID Codesystem}:{Code}, 
+| Bei SMC-B muss specialization folgendes Format haben: urn:psc:{OID Codesystem}:{Code}, 
 wobei CodeSystems und Codes aus  https://simplifier.net/vzd-fhir-directory/healthcareservicespecialtyvs[HealthcareServiceSpecialtyVS]  
 zu entnehmen sind.
 |V005 |geplant
-| Bei HBA muss specialization folgenden Format haben: urn:as:{OID Codesystem}:{Code}, wobei CodeSystems und Codes aus https://simplifier.net/vzd-fhir-directory/practitionerqualificationvs[PractitionerQualificationVS] zu entnehmen sind.
+| Bei HBA muss specialization folgendes Format haben: urn:as:{OID Codesystem}:{Code}, wobei CodeSystems und Codes aus https://simplifier.net/vzd-fhir-directory/practitionerqualificationvs[PractitionerQualificationVS] zu entnehmen sind.
 |V006 |geplant
-| Überschreibt V004 für Apotheken. Bei Apotheken SMC-B müssen für specialization die Codes aus https://simplifier.net/vzd-fhir-directory/pharmacytypecs[PharmacyTypeCS] (nur Code, ohne CodeSystem) verwendet werden.
+| Überschreibt V004 für den Sektor der Apotheken. Bei SMC-B Einträgen füt Apotheken müssen für das Attribut specialization die Codes aus https://simplifier.net/vzd-fhir-directory/pharmacytypecs[PharmacyTypeCS] (nur Code, ohne CodeSystem) verwendet werden.
 |V008 |geplant
 | displayName muss mindestens 2 UTF-8 Alphanummerische Zeichen enthalten
 |V010 |umgesetzt
 | Prüfung auf Zugehörigkeit der Daten anhand der TelematikID. Alle Daten eines LDAP Eintrags müssen zur gleichen TelematikID gehören (z.B. Zertifikate).
 |V012 |geplant
-| Für jeden Sektor wird überprüft, welche Attribute obligatorisch sind (Grundlage ist der Implementierungsleitfaden). Wenn Attribute obligatorisch zu setzen sind, dies aber vom Pflegenden nicht befüllt wird, kann der Eintrag nicht angelegt werden. Sektor (aktuell 17) wird anhand TelematikId erkannt.
+| Für jeden Sektor wird überprüft, welche Attribute obligatorisch sind (Grundlage ist der Implementierungsleitfaden). Wenn Attribute obligatorisch zu setzen sind, dies aber vom Pflegenden nicht befüllt wird, kann der Eintrag nicht angelegt werden. Der Sektor wird anhand der TelematikId erkannt.
 |V015 |umgesetzt
-| Verzeichnisdienst filtert die Leerzeichen (leading, trailing) automatisch aus. Ist das Ausfiltern nicht möglich oder fachlich unzulässig (z.B. im Zertifikat) werden diese Daten mit Fehler abgelehnt. Minimalprüfung: Leerzeichen am Anfang / Ende sind bei allen Attributen unzulässig. 
+| Verzeichnisdienst filtert die Leerzeichen (leading, trailing) automatisch. Ist das Ausfiltern nicht möglich oder fachlich unzulässig (z.B. im Zertifikat) werden diese Daten mit einem Fehler abgelehnt. Minimalprüfung: Leerzeichen am Anfang bzw. am Ende sind bei allen Attributen unzulässig. 
 |V018 |geplant
-| Für SMC-B Einträge muss ProfessionOID aus den folgenden Codes entnommen werden: [gemSpec_VZD] Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID (Wertbereich).
+| Für SMC-B Einträge muss ProfessionOID aus den folgenden Codes entnommen werden: https://simplifier.net/vzd-fhir-directory/organizationprofessionoid[OrganizationProfessionOID]
 |V019 |geplant
-| Bei eHBA muss ProfessionOID aus den folgenden Codes entnommen werden: [gemSpec_VZD] Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID (Wertbereich).
+| Bei eHBA muss ProfessionOID aus den folgenden Codes entnommen werden: https://simplifier.net/vzd-fhir-directory/practitionerprofessionoid[PractitionerProfessionOID]
 
 |===
 
