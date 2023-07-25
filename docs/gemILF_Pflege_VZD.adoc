@@ -749,6 +749,8 @@ Versehentlich fehlerhaft eingetragene Berechtigungen müssen durch einen aktuell
 
 Zur Verbesserung der Datenqualität werden im VZD zusätzliche Prüfungen beim Eintragen der Daten implementiert.
 
+// arvato Beschreibung: https://arvato-systems-group.atlassian.net/browse/FVZ-551
+
 [width="100%",cols="6%,10%,84%",options="header",]
 |===
 |*Nr* |*Status* |*Beschreibung*
