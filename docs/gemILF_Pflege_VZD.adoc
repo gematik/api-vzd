@@ -858,7 +858,7 @@ Verhalten der Befüllung des Attributs bei Nutzung der Operationen
 * add_Directory_Entry_Certificate 
 ** Hat keine Auswirkungen auf das sn Attribut.
 |*cn* +
-* * +
+ +
   |obligatorisch |Bezeichner: Name +
 Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
  +
@@ -873,8 +873,8 @@ Dieses Attribut wird genutzt um den Namen der Betriebsstätte gegenüber dem Anw
 Dieses Attribut wird durch den VZD nicht automatisch aus dem Zertifikat ermittelt. Es kann über die Schreiboperationen von Schnittstelle I_Directory_Administration gesetzt werden. Wird über die Operation  add_Directory_Entry von Schnittstelle I_Directory_Administration für displayName kein Inhalt geliefert, so wird in displayName der Wert "-" gesetzt.
 |*streetAddress* |obligatorisch |Bezeichner: Straße und Hausnummer der Betriebsstätte
 |*postalCode* |obligatorisch |Bezeichner: Postleitzahl der Betriebsstätte
-|*localityName * |obligatorisch |Bezeichner: Ort der Betriebsstätte
-|*stateOrProvinceName * |optional |Bezeichner: Bundesland der Betriebsstätte oder KV-Region
+|*localityName* |obligatorisch |Bezeichner: Ort der Betriebsstätte
+|*stateOrProvinceName* |optional |Bezeichner: Bundesland der Betriebsstätte oder KV-Region
 |*organization* |optional |Bezeichner: Organisation +
 Dieses Attribut ist ein optionales zweites Namensattribut und wird befüllt bei Bedarf. Ebenso wie displayName ist es geeignet, um nach einem Namen zu filtern und ihn im Suchergebnis anzuzeigen.
 |*domainID* |obligatorisch |Bezeichner: Betriebsstättennummer der Praxis +
@@ -1030,8 +1030,8 @@ Dieses Attribut wird genutzt um den Namen der Betriebsstätte gegenüber dem Anw
 Dieses Attribut wird durch den VZD nicht automatisch aus dem Zertifikat ermittelt. Es kann über die Schreiboperationen von Schnittstelle I_Directory_Administration gesetzt werden. Wird über die Operation  add_Directory_Entry von Schnittstelle I_Directory_Administration für displayName kein Inhalt geliefert, so wird in displayName der Wert "-" gesetzt.
 |*streetAddress* |obligatorisch |Bezeichner: Straße und Hausnummer
 |*postalCode* |obligatorisch |Bezeichner: Postleitzahl
-|*localityName * |obligatorisch |Bezeichner: Ort
-|*stateOrProvinceName * |optional |Bezeichner: Bundesland der Betriebsstätte oder KZV-Region
+|*localityName* |obligatorisch |Bezeichner: Ort
+|*localityName* |optional |Bezeichner: Bundesland der Betriebsstätte oder KZV-Region
 |*countryCode* |optional |Siehe TAB_VZD_Wertebereiche_der_Attribute 
 |*organization* |optional |Bezeichner: Organisation +
 Dieses Attribut ist ein optionales zweites Namensattribut und wird befüllt bei Bedarf. Ebenso wie displayName ist es geeignet, um nach einem Namen zu filtern und ihn im Suchergebnis anzuzeigen.
@@ -1203,8 +1203,8 @@ Dieses Attribut wird durch den VZD nicht automatisch aus dem Zertifikat ermittel
 Aus dieser Adresse (zusammen mit postalCode, localityName, stateOrProvinceName und countryCode) werden die Geokoordinaten der Apotheke berechnet. +
 Deshalb wird die Prüfung dieser Adresse mittels einer Kartenseite (GMaps, BingMaps, OSM, …) oder eines Adress-Validators vor dem Eintragen in den VZD empfohlen.
 |*postalCode* |obligatorisch |Bezeichner: Postleitzahl der Apotheke
-|*localityName * |obligatorisch |Bezeichner: Ort der Apotheke
-|*stateOrProvinceName * |optional |Bezeichner: Bundesland der Apotheke
+|*localityName* |obligatorisch |Bezeichner: Ort der Apotheke
+|*localityName* |optional |Bezeichner: Bundesland der Apotheke
 |*countryCode* |optional |Siehe TAB_VZD_Wertebereiche_der_Attribute
 |*organization* |optional |Bezeichner: Organisation +
 Dieses Attribut ist ein optionales zweites Namensattribut und wird befüllt bei Bedarf. Ebenso wie displayName ist es geeignet um nach einem Namen zu filtern und ihn im Suchergebnis anzuzeigen. +
@@ -1378,9 +1378,9 @@ Dieses Attribut wird durch den VZD nicht automatisch aus dem Zertifikat ermittel
 Der Wert wird von der pflegenden Stelle festgelegt.
 |*postalCode* |optional |Bezeichner: Postleitzahl  (berufliche Adresse) +
 Der Wert wird von der pflegenden Stelle festgelegt.
-|*localityName * |optional |Bezeichner: Ort  (berufliche Adresse) +
+|*localityName* |optional |Bezeichner: Ort  (berufliche Adresse) +
 Der Wert wird von der pflegenden Stelle festgelegt.
-|*stateOrProvinceName * |optional |Bezeichner: Bundesland  (berufliche Adresse) +
+|*localityName* |optional |Bezeichner: Bundesland  (berufliche Adresse) +
 Der Wert wird von der pflegenden Stelle festgelegt.
 |*countryCode* |optional |Siehe TAB_VZD_Wertebereiche_der_Attribute
 |*organization* |optional |Bezeichner: Organisation +
@@ -1552,8 +1552,8 @@ Dieses Attribut wird genutzt um den Namen der Institution gegenüber dem Anwende
 Dieses Attribut wird durch den VZD nicht automatisch aus dem Zertifikat ermittelt. Es kann über die Schreiboperationen von Schnittstelle I_Directory_Administration gesetzt werden. Wird über die Operation  add_Directory_Entry von Schnittstelle I_Directory_Administration für displayName kein Inhalt geliefert, so wird in displayName der Wert "-" gesetzt.
 |*streetAddress* |obligatorisch |Bezeichner: Straße und Hausnummer der Institution
 |*postalCode* |obligatorisch |Bezeichner: Postleitzahl der Institution
-|*localityName * |obligatorisch |Bezeichner: Ort der Institution
-|*stateOrProvinceName * |optional |Bezeichner: Bundesland der Institution
+|*localityName* |obligatorisch |Bezeichner: Ort der Institution
+|*localityName* |optional |Bezeichner: Bundesland der Institution
 |*countryCode* |optional |Siehe TAB_VZD_Wertebereiche_der_Attribute
 |*organization* |optional |Bezeichner: Organisation +
 Dieses Attribut ist ein optionales zweites Namensattribut und wird befüllt bei Bedarf. Ebenso wie displayName ist es geeignet, um nach einem Namen zu filtern und ihn im Suchergebnis anzuzeigen.
@@ -1712,8 +1712,8 @@ Dieses Attribut wird genutzt, um den Namen der Person gegenüber dem Anwender da
 Dieses Attribut wird durch den VZD nicht automatisch aus dem Zertifikat ermittelt. Es kann über die Schreiboperationen von Schnittstelle I_Directory_Administration gesetzt werden. Wird über die Operation  add_Directory_Entry von Schnittstelle I_Directory_Administration für displayName kein Inhalt geliefert, so wird in displayName der Wert "-" gesetzt.
 |*streetAddress* |obligatorisch |Bezeichner: Straße und Hausnummer (Adresse der Betriebsstätte)
 |*postalCode* |obligatorisch |Bezeichner: Postleitzahl  (Adresse der Betriebsstätte)
-|*localityName * |obligatorisch |Bezeichner: Ort  (Adresse der Betriebsstätte)
-|*stateOrProvinceName * |optional |Bezeichner: Bundesland  (Adresse der Betriebsstätte)
+|*localityName* |obligatorisch |Bezeichner: Ort  (Adresse der Betriebsstätte)
+|*localityName* |optional |Bezeichner: Bundesland  (Adresse der Betriebsstätte)
 |*countryCode* |optional |Siehe TAB_VZD_Wertebereiche_der_Attribute
 |*organization* |optional |Bezeichner: Organisation +
 Dieses Attribut wird genutzt um den Namen der Betriebsstätte gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut, um die Suche einzuschränken, und bei der Darstellung des Ergebnisses).
@@ -1882,9 +1882,9 @@ Dieses Attribut wird durch den VZD nicht automatisch aus dem Zertifikat ermittel
 Der Wert wird von der pflegenden Stelle festgelegt.
 |*postalCode* |optional |Bezeichner: Postleitzahl  (berufliche Adresse) +
 Der Wert wird von der pflegenden Stelle festgelegt.
-|*localityName * |optional |Bezeichner: Ort  (berufliche Adresse) +
+|*localityName* |optional |Bezeichner: Ort  (berufliche Adresse) +
 Der Wert wird von der pflegenden Stelle festgelegt.
-|*stateOrProvinceName * |optional |Bezeichner: Bundesland  (berufliche Adresse) +
+|*localityName* |optional |Bezeichner: Bundesland  (berufliche Adresse) +
 Der Wert wird von der pflegenden Stelle festgelegt.
 |*countryCode* |optional |Siehe TAB_VZD_Wertebereiche_der_Attribute
 |*organization* |optional |Bezeichner: Organisation +
@@ -2049,9 +2049,9 @@ Dieses Attribut wird durch den VZD nicht automatisch aus dem Zertifikat ermittel
 Der Wert wird von der pflegenden Stelle festgelegt.
 |*postalCode* |optional |Bezeichner: Postleitzahl  (berufliche Adresse) +
 Der Wert wird von der pflegenden Stelle festgelegt.
-|*localityName * |optional |Bezeichner: Ort  (berufliche Adresse) +
+|*localityName* |optional |Bezeichner: Ort  (berufliche Adresse) +
 Der Wert wird von der pflegenden Stelle festgelegt.
-|*stateOrProvinceName * |optional |Bezeichner: Bundesland  (berufliche Adresse) +
+|*localityName* |optional |Bezeichner: Bundesland  (berufliche Adresse) +
 Der Wert wird von der pflegenden Stelle festgelegt.
 |*countryCode* |optional |Siehe TAB_VZD_Wertebereiche_der_Attribute
 |*organization* |optional |Bezeichner: Organisation +
@@ -2212,7 +2212,7 @@ Der Wert wird von der pflegenden Stelle aus dem Zertifikat übernommen (Attribut
 |*postalCode* |obligatorisch |Bezeichner: Postleitzahl +
   +
 Der Wert wird von der pflegenden Stelle aus dem Zertifikat übernommen (Attribut postalCode).
-|*localityName * |obligatorisch |Bezeichner: Ort des Krankenkassenhauptsitzes +
+|*localityName* |obligatorisch |Bezeichner: Ort des Krankenkassenhauptsitzes +
   +
 Der Wert wird von der pflegenden Stelle aus dem Zertifikat übernommen (Attribut localityName).
 |*organization* |obligatorisch |Bezeichner: Name der Organisation +
@@ -2298,7 +2298,7 @@ Wird vom KOM-LE-Anbieter eingetragen.
 {kimData-example_6}
 ----
 
-|*stateOrProvinceName * |optional |Bezeichner: Bundesland +
+|*localityName* |optional |Bezeichner: Bundesland +
   +
 Der Wert wird für SMC-B KTR nicht verwendet.
 |*countryCode* |optional |Siehe TAB_VZD_Wertebereiche_der_Attribute
@@ -2371,7 +2371,7 @@ Der Wert wird von der pflegenden Stelle aus dem Zertifikat übernommen (Attribut
 |*postalCode* |obligatorisch |Bezeichner: Postleitzahl +
   +
 Der Wert wird von der pflegenden Stelle aus dem Zertifikat übernommen (Attribut postalCode).
-|*localityName * |obligatorisch |Bezeichner: Ort des Krankenkassenhauptsitzes +
+|*localityName* |obligatorisch |Bezeichner: Ort des Krankenkassenhauptsitzes +
   +
 Der Wert wird von der pflegenden Stelle aus dem Zertifikat übernommen (Attribut localityName).
 |*organization* |obligatorisch |Bezeichner: Name der Organisation +
@@ -2418,7 +2418,7 @@ Wenn der Wert TRUE ist, können die Daten nicht mehr über die Schnittstelle I_D
 |*mail* |optional |Wird für SMC-B KTR ePA nicht verwendet. 
 |*komLeData* |optional |Wird für SMC-B KTR ePA nicht verwendet.
 |*kimData*|optional| Wird für SMC-B KTR ePA nicht verwendet.
-|*stateOrProvinceName * |optional |Bezeichner: Bundesland +
+|*localityName* |optional |Bezeichner: Bundesland +
   +
 Der Wert wird für SMC-B KTR ePA nicht verwendet.
 |*countryCode* |optional |Siehe TAB_VZD_Wertebereiche_der_Attribute
@@ -2494,8 +2494,8 @@ Dieses Attribut wird genutzt um den Namen der Betriebsstätte gegenüber dem Anw
 Dieses Attribut wird durch den VZD nicht automatisch aus dem Zertifikat ermittelt. Es kann über die Schreiboperationen von Schnittstelle I_Directory_Administration gesetzt werden. Wird über die Operation  add_Directory_Entry von Schnittstelle I_Directory_Administration für displayName kein Inhalt geliefert, so wird in displayName der Wert "-" gesetzt.
 |*streetAddress* |obligatorisch |Bezeichner: Straße und Hausnummer (wenn verfügbar) der Organisation 
 |*postalCode* |obligatorisch |Bezeichner: Postleitzahl der Organisation 
-|*localityName * |obligatorisch |Bezeichner: Ort der Organisation 
-|*stateOrProvinceName * |optional |Bezeichner: Bundesland der Organisation 
+|*localityName* |obligatorisch |Bezeichner: Ort der Organisation 
+|*localityName* |optional |Bezeichner: Bundesland der Organisation 
 |*countryCode* |optional |Siehe TAB_VZD_Wertebereiche_der_Attribute
 |*organization* |optional |Bezeichner: Organisation +
 Dieses Attribut ist ein optionales zweites Namensattribut und wird befüllt bei Bedarf. Ebenso wie displayName ist es geeignet, um nach einem Namen zu filtern und ihn im Suchergebnis anzuzeigen.
@@ -2641,8 +2641,8 @@ Dieses Attribut wird genutzt um den Namen der Betriebsstätte gegenüber dem Anw
 Dieses Attribut wird durch den VZD nicht automatisch aus dem Zertifikat ermittelt. Es kann über die Schreiboperationen von Schnittstelle I_Directory_Administration gesetzt werden. Wird über die Operation  add_Directory_Entry von Schnittstelle I_Directory_Administration für displayName kein Inhalt geliefert, so wird in displayName der Wert "-" gesetzt.
 |*streetAddress* |obligatorisch |Bezeichner: Straße und Hausnummer (wenn verfügbar) der Leistungserbringerinstitution
 |*postalCode* |obligatorisch |Bezeichner: Postleitzahl der Leistungserbringerinstitution
-|*localityName * |obligatorisch |Bezeichner: Ort der Leistungserbringerinstitution
-|*stateOrProvinceName * |obligatorisch |Bezeichner: Bundesland der Leistungserbringerinstitution
+|*localityName* |obligatorisch |Bezeichner: Ort der Leistungserbringerinstitution
+|*localityName* |obligatorisch |Bezeichner: Bundesland der Leistungserbringerinstitution
 |*countryCode* |optional |Siehe TAB_VZD_Wertebereiche_der_Attribute
 |*organization* |optional |Bezeichner: Organisation +
 Dieses Attribut ist ein optionales zweites Namensattribut und wird befüllt bei Bedarf. Ebenso wie displayName ist es geeignet, um nach einem Namen zu filtern und ihn im Suchergebnis anzuzeigen.
@@ -2802,8 +2802,8 @@ Dieses Attribut wird genutzt, um den Namen der Person gegenüber dem Anwender da
 Dieses Attribut wird durch den VZD nicht automatisch aus dem Zertifikat ermittelt. Es kann über die Schreiboperationen von Schnittstelle I_Directory_Administration gesetzt werden. Wird über die Operation  add_Directory_Entry von Schnittstelle I_Directory_Administration für displayName kein Inhalt geliefert, so wird in displayName der Wert "-" gesetzt.
 |*streetAddress* |optional |Nicht belegt.
 |*postalCode* |optional |Nicht belegt.
-|*localityName * |optional |Nicht belegt.
-|*stateOrProvinceName * |optional |Nicht belegt.
+|*localityName* |optional |Nicht belegt.
+|*localityName* |optional |Nicht belegt.
 |*countryCode* |optional |Siehe TAB_VZD_Wertebereiche_der_Attribute
 |*organization* |optional |Nicht belegt.
 |*domainID* |obligatorisch |Bezeichner: Berufsbezeichnung im Klartext entsprechend der Tabelle Profession-OID
