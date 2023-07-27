@@ -32,7 +32,7 @@ image::gematik_logo.svg[gematik,float="right"]
  |*Change reason, special instructions* +
  |*Editing* +
 
-|1.0.0 |16.06.23 | |Initial document |gematik
+|1.0.0 |28.07.23 | |Initial document |gematik
 
 |===
 
@@ -58,7 +58,7 @@ The FHIR VZD implementation guide consists of the following parts
 - link:FHIR_VZD_HOWTO_Authenticate.adoc[Authentication for all FHIR VZD interfaces]
 - link:FHIR_VZD_HOWTO_Search.adoc[Search interface /search]
 - link:FHIR_VZD_HOWTO_Provider.adoc[TI-Messenger Provider interface /tim-provider-services]
-- Owner interface (under work)
+- link:FHIR_VZD_HOWTO_Owner.adoc[Owner interface /owner]
 
 
 The content of these parts is contained in the linked documents. +
