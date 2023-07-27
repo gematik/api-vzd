@@ -1,0 +1,411 @@
+= FHIR VZD HOWTO Search
+:source-highlighter: rouge
+:icons:
+:title-page:
+:imagesdir: /images/
+ifdef::env-github[]
+:toc: preamble
+endif::[]
+ifndef::env-github[]
+:toc: left
+endif::[]
+:toclevels: 3
+:toc-title: Table of Contents
+:sectnums:
+
+
+image::gematik_logo.svg[gematik,float="right"]
+
+[width="100%",cols="50%,50%",options="header",]
+|===
+|Version: |1.0.0
+|Referencing: |gemILF_FHIR_VZD
+|===
+
+[big]*Document history*
+
+[width="100%",cols="11%,11%,7%,58%,13%",options="header",]
+|===
+|*Version* +
+ |*Stand* +
+ |*Chap./ Page* +
+ |*Change reason, special instructions* +
+ |*Editing* +
+
+|1.0.0 |28.07.23 | |Initial document |gematik
+
+|===
+
+== Classification of the document
+=== Objective
+This document gives a brief overview and examples for the FHIR search API that is provided by the VZD-FHIR-Directory.
+
+=== Target group
+
+The document is aimed at software developers who are involved in implementing search functionality for a client of the FHIR directory service.
+
+=== Scope
+
+*Intellectual property/patent notice*
+
+_The following specification was created by gematik solely from a technical point of view. In individual cases, it cannot be ruled out that the implementation of the specification will interfere with the technical property rights of third parties. It is solely up to the supplier or manufacturer to take suitable measures to ensure that the products and/or services offered by him on the basis of the specification do not infringe third-party property rights and, if necessary, to obtain the necessary permits/licenses from the property right holders concerned. In this respect, gematik GmbH assumes no liability whatsoever._
+
+
+== API Documentation
+=== FHIRDirectorySearchAPI: Search for Practitioners and Organizations
+To access the search API a valid searchaccess_token is needed that can be obtained by authenticating via xref:FHIR_VZD_HOWTO_Search.adoc[Authenticate for search]
+
+==== FHIR Search Basics
+The REST interface /search allows you to search for practitioners and organizations. 
+The standard FHIR search operation is used https://build.fhir.org/search.html +
+
+GET [baseUrl]/[resourceType]?[optional parameters] +
+ +
+As resourceType are supported
+
+- HealthcareService (search for organizations)
+- PractitionerRole (search for practitioners)
+
+The overview about the supported data model can be found here: 
+https://simplifier.net/vzd-fhir-directory
+
+Only resources with the status "active" may be displayed. For this reason, the [resource].active=true parameter must be specified for all search operations. The minimal variant of the search operations thus looks like this:
+
+- GET [baseUrl]/search/HealthcareService?organization.active=true
+- GET [baseUrl]/search/PractitionerRole?practitioner.active=true
+
+As result, the client receives a FHIR http://hl7.org/fhir/bundle.html[Bundle] resource with the search result. +
+ +
+ +	
+ 
+In addition to the HL7 FHIR specification, the FHIR VZD supports the following search parameters 	
+
+- practitioner.qualification	
+- location.address (e.g. to search for TI-Messenger addresses)	
+
+The following HL7 FHIR search parameters are not yet support (but are in work):	
+
+- https://hl7.org/fhir/search.html#_text[_text]	
+- https://hl7.org/fhir/search.html#_content[_content]	
+
+ 
+IMPORTANT: For all search operations a valid searchaccess_token is needed that can be achieved by following the authentication flow: link:FHIR_VZD_HOWTO_Authenticate.adoc#_authenticate_for_the_search_endpoint[Get search token]
+
+==== FHIR Search Organizations
+
+To search for organizations, use "HealthcareService" as the resource type and at least "organization.active=true" as the parameter:
+[source]
+--
+GET [baseUrl]/search/HealthcareService?organization.active=true
+--
+Additional parameters can be added to refine the search. +
+ +
+
+==== FHIR Search Practitioners
+To search for people, use "PractitionerRole" as the resource type and at least "practitioner.active=true" as the parameter:
+[source]
+--
+GET [baseUrl]/search/PractitionerRole?practitioner.active=true
+--
+Additional parameters can be added to refine the search.
+ +
+ 
+==== FHIR Search Parameters - Overview
+FHIR defines which search parameters can be used for each resource. 
+For each resource the is a "Search Parameters" section. Examples: +
+
+- For practitioners https://www.hl7.org/fhir/practitioner.html#search
+- For organizations https://www.hl7.org/fhir/organization.html#search
+- For endpoints https://www.hl7.org/fhir/endpoint.html#search
+- For locations https://www.hl7.org/fhir/location.html#search
+
+An overview about all resources with its search parameters can be found here: 
+https://www.hl7.org/fhir/searchparameter-registry.html +
+ +
+The behavior of the search parameter depends from the parameter type and is documented here: https://www.hl7.org/fhir/search.html#ptypes +
+ +
+
+==== FHIR Search Parameters - Custom Search Parameters
+The following custom search parameters are supported in addition to the standard FHIR search parameters
+
+- Endpoint.address
+- Practitioner.qualification
+** Practitioner.qualification.code.coding.code  
+** Practitioner.qualification.code.coding.display
+
+
+ 
+==== FHIR VZD Search - "practitioner.name" attribute
+To search a resource the "name" attribute of it can be used in the search operation:
+[source]
+--
+GET [baseUrl]/search/PractitionerRole?practitioner.active=true&practitioner.name=Timjamin
+--
+
+
+.Table Used search parameters
+|===
+|FHIR search parameter |Parameter Value | Explanation
+
+|practitioner.name
+|Timjamin
+|The string "Timjamin" is searched for attribute "name" of the "practitioner" resource.   
+
+|===
+ 
+ 
+.Response of this Request: 
+link:../samples/FHIRseach/Search_PractitionerRole_name.adoc[Search_PractitionerRole_name] +
+ +
+ 
+==== FHIR VZD Search - "endpoint.payload-type" attribute (code based search)
+To search a resource which supports a defined type of communication the "endpoint.payload-type" attribute can be used in the search operation:
+[source]
+--
+GET [baseUrl]/search/PractitionerRole?practitioner.active=true&_include=PractitionerRole:practitioner&_include=PractitionerRole:location&_include=PractitionerRole:endpoint&endpoint.payload-type=tim-chat&endpoint.status=active
+--
+
+
+.Table Used search parameters
+|===
+|FHIR search parameter |Parameter Value | Explanation
+
+|endpoint.payload-type
+|tim-chat
+|The link:https://hl7.org/fhir/endpoint.html#search["payload-type"] is used to search for resources, supporting the TI-Messenger chat communication. 
+ The definition of the link:https://hl7.org/fhir/endpoint.html["endpoint"] is refined in simplifier for the link:https://simplifier.net/vzd-fhir-directory/["FHIR VZD"]. For the payloadType the link:https://simplifier.net/vzd-fhir-directory/endpointpayloadtypevs["ValueSet EndpointPayloadTypeVS"] imports all values from link:https://simplifier.net/vzd-fhir-directory/endpointdirectorypayloadtype["EndpointDirectoryPayloadType"].
+
+|_include
+|PractitionerRole:practitioner
+|"practitioner" resources, linked to the "PractitionerRole" resources of the search request are included in the search response.   
+
+|_include
+|PractitionerRole:location
+|"location" resources, linked to the "PractitionerRole" resources of the search request are included in the search response.   
+
+|_include
+|PractitionerRole:endpoint
+|"endpoint" resources, linked to the "PractitionerRole" resources of the search request are included in the search response.   
+
+|endpoint.status
+|active
+|The search parameter link:https://hl7.org/fhir/endpoint.html#search["status"] ensures, that only active endpoints are returned. 
+If endpoints are needed, then only active endpoints have to be used/displayed. This has to be ensured by all clients.
+Please note that with this parameter resources with no active endpoints are not returned.
+
+|===
+ 
+ 
+.Response of this Request: 
+link:../samples/FHIRseach/Search_PractitionerRole_payload-type.adoc[Search_PractitionerRole_payload-type] +
+ +
+
+ 
+==== FHIR VZD Search - "endpoint.payload-type" attribute (display text based search)
+For the display text of a coded attribute can be searched with the modifier link:https://hl7.org/fhir/search.html#modifiers[":text"]:
+
+[source]
+--
+GET [baseUrl]/search/PractitionerRole?practitioner.active=true&_include=PractitionerRole:practitioner&_include=PractitionerRole:location&_include=PractitionerRole:endpoint&endpoint.payload-type:text=TI-Messenger chat&endpoint.status=active
+--
+
+
+.Table Used search parameters
+|===
+|FHIR search parameter |Parameter Value | Explanation
+
+|endpoint.payload-type:text
+|TI-Messenger chat
+|The link:https://hl7.org/fhir/endpoint.html#search["payload-type"] is used to searched for resources, supporting the TI-Messenger chat communication. 
+ The definition of the link:https://hl7.org/fhir/endpoint.html["endpoint"] is refined in simplifier for the link:https://simplifier.net/vzd-fhir-directory/["FHIR VZD"]. For the payloadType the link:https://simplifier.net/vzd-fhir-directory/endpointpayloadtypevs["ValueSet EndpointPayloadTypeVS"] imports all values from link:https://simplifier.net/vzd-fhir-directory/endpointdirectorypayloadtype["EndpointDirectoryPayloadType"].
+
+|_include
+|PractitionerRole:practitioner
+|"practitioner" resources, linked to the "PractitionerRole" resources of the search request are included in the search response.   
+
+|_include
+|PractitionerRole:location
+|"location" resources, linked to the "PractitionerRole" resources of the search request are included in the search response.   
+
+|_include
+|PractitionerRole:endpoint
+|"endpoint" resources, linked to the "PractitionerRole" resources of the search request are included in the search response.   
+
+|endpoint.status
+|active
+|The search parameter link:https://hl7.org/fhir/endpoint.html#search["status"] ensures, that only active endpoints are returned. 
+If endpoints are needed, then only active endpoints have to be used/displayed. This has to be ensured by all clients.
+Please note that with this parameter resources with no active endpoints are not returned.
+
+|===
+ 
+ 
+Response of this Request: 
+link:../samples/FHIRseach/Search_PractitionerRole_payload-type_text.adoc[Search_PractitionerRole_payload-type:text] +
+ +
+ 
+==== FHIR VZD Search - complex search request
+Search in a city for a practitioner with a defined qualification and offers the communication via TI-Messenger:
+
+[source]
+--
+GET [baseUrl]/search/PractitionerRole?practitioner.active=true&_include=PractitionerRole:practitioner&_include=PractitionerRole:location&_include=PractitionerRole:endpoint&location.address-city=Gelsenkirchen&location.address=45884&practitioner.qualification=1.2.276.0.76.4.241&endpoint.payload-type=tim-chat&endpoint.status=active
+--
+
+
+.Table Used search parameters
+|===
+|FHIR search parameter |Parameter Value | Explanation
+
+|_include
+|PractitionerRole:practitioner
+|"practitioner" resources, linked to the "PractitionerRole" resources of the search request are included in the search response.   
+
+|_include
+|PractitionerRole:location
+|"location" resources, linked to the "PractitionerRole" resources of the search request are included in the search response.   
+
+|_include
+|PractitionerRole:endpoint
+|"endpoint" resources, linked to the "PractitionerRole" resources of the search request are included in the search response.   
+
+|location.address-city
+|Gelsenkirchen
+|Search for practitioners with search parameter link:https://www.hl7.org/fhir/location.html#search["address-city"] in the city "Gelsenkirchen". "address-city" limits the search to the address attribute "city", search parameter "address" searches all address attributes for the string.
+
+|location.address
+|45884
+|Search for practitioners with search parameter link:https://www.hl7.org/fhir/location.html#search["address"] in all address attributes for "45884". 
+
+|practitioner.qualification
+|1.2.276.0.76.4.241
+|Search for practitioners with search parameter "qualification" for qualification code "1.2.276.0.76.4.241". +
+Note: For humans a readable text should be used for selection and display of coded attributes.
+
+|endpoint.payload-type
+|tim-chat
+|The link:https://hl7.org/fhir/endpoint.html#search["payload-type"] is used to searched for resources, supporting the TI-Messenger chat communication. 
+ The definition of the link:https://hl7.org/fhir/endpoint.html["endpoint"] is refined in simplifier for the link:https://simplifier.net/vzd-fhir-directory/["FHIR VZD"]. For the payloadType the link:https://simplifier.net/vzd-fhir-directory/endpointpayloadtypevs["ValueSet EndpointPayloadTypeVS"] imports all values from link:https://simplifier.net/vzd-fhir-directory/endpointdirectorypayloadtype["EndpointDirectoryPayloadType"].
+
+|endpoint.status
+|active
+|The search parameter link:https://hl7.org/fhir/endpoint.html#search["status"] ensures, that only active endpoints are returned. 
+If endpoints are needed, then only active endpoints have to be used/displayed. This has to be ensured by all clients.
+Please note that with this parameter resources with no active endpoints are not returned.
+
+|===
+ 
+ 
+Response of this Request: 
+link:../samples/FHIRseach/Search_PractitionerRole_complex.adoc[Search_PractitionerRole_complex] +
+ +
+ 
+==== FHIR VZD Search - HealtcareService by telematikID
+Search an organization with a telematikID:
+
+[source]
+--
+GET [baseUrl]/search/HealthcareService?organization.active=true&_include=*&endpoint.status=active&organization.identifier=1-2arvtst-ap000052
+--
+
+
+.Table Used search parameters
+|===
+|FHIR search parameter |Parameter Value | Explanation
+
+|_include
+*
+|All resources, linked to the "HealthcareService" resources of the search request are included in the search response.   
+
+|endpoint.status
+|active
+|The search parameter link:https://hl7.org/fhir/endpoint.html#search["status"] ensures, that only active endpoints are returned. 
+If endpoints are needed, then only active endpoints have to be used/displayed. This has to be ensured by all clients.
+Please note that with this parameter resources with no active endpoints are not returned.
+
+|organization.identifier
+|1-2arvtst-ap000052
+|Search for the organization with search parameter "identifier" for telematikID "1-2arvtst-ap000052". +
+Note: A resourcew may contain several values in the "identifier". This request searches in all identifier values, independent from the identifier coding system.
+
+|===
+ 
+Response of this Request: 
+link:../samples/FHIRseach/Search_HealthcareService_telematikID.adoc[Search_HealthcareService_telematikID] +
+ +
+ 
+
+==== FHIR VZD Search results
+The Client can manage the content of the FHIR search response with several parameters. In this section some examples are shown. The full list of parameters for managing search results can be found here: https://www.hl7.org/fhir/search.html#return +
+ +
+ 
+===== _include Parameter + 
+The response of the 'FHIR VZD Search with "name" attribute' contains only resources of type "PractitionerRole". +
+With the link:https://www.hl7.org/fhir/search.html#revinclude["_include"] parameter also resources linked with the search result resources are returned: +
+ +
+ 
+[source]
+--
+GET [baseUrl]/search/PractitionerRole?practitioner.active=true&practitioner.name=Timjamin&_include=PractitionerRole:practitioner&_include=PractitionerRole:location&_include=PractitionerRole:endpoint&endpoint.status=active
+--
+
+
+.Table Used search parameters
+|===
+|FHIR search parameter |Parameter Value | Explanation
+
+|practitioner.name
+|Timjamin
+|The string "Timjamin" is searched for attribute "name" of the "practitioner" resource.   
+
+|_include
+|PractitionerRole:practitioner
+|"practitioner" resources, linked to the "PractitionerRole" resources of the search request are included in the search response.   
+
+|_include
+|PractitionerRole:location
+|"location" resources, linked to the "PractitionerRole" resources of the search request are included in the search response.   
+
+|_include
+|PractitionerRole:endpoint
+|"endpoint" resources, linked to the "PractitionerRole" resources of the search request are included in the search response.   
+
+|endpoint.status
+|active
+|The search parameter link:https://hl7.org/fhir/endpoint.html#search["status"] ensures, that only active endpoints are returned. 
+If endpoints are needed, then only active endpoints have to be used/displayed. This has to be ensured by all clients.
+Please note that with this parameter resources with no active endpoints are not returned.
+
+|===
+ 
+ 
+Response of this Request: 
+link:../samples/FHIRseach/Search_PractitionerRole_name_include.adoc[Search_PractitionerRole_name_include]
+ +
+ +
+
+===== _summary Parameter - count the results +  
+Using the parameter link:https://www.hl7.org/fhir/search.html#summary[_summary] the client can request the server to return only a portion of the resources:
+[source]
+--
+GET [baseUrl]/search/PractitionerRole?practitioner.active=true&_summary=count
+--
+
+
+.Table Used search parameters
+|===
+|FHIR search parameter |Parameter Value | Explanation
+
+|_summary
+|count
+|only the number of the matching resources is returned   
+
+|===
+ 
+ 
+Response of this Request: 
+link:../samples/FHIRseach/Search_Result_count.adoc[Search_Result_count]
+ +
+
+
+

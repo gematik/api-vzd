@@ -1,0 +1,176 @@
+= FHIR VZD HOWTO Owner
+:source-highlighter: rouge
+:icons:
+:title-page:
+:imagesdir: /images/
+ifdef::env-github[]
+:toc: preamble
+endif::[]
+ifndef::env-github[]
+:toc: left
+endif::[]
+:toclevels: 3
+:toc-title: Table of Contents
+:sectnums:
+
+
+image::gematik_logo.svg[gematik,float="right"]
+
+[width="100%",cols="50%,50%",options="header",]
+|===
+|Version: |1.0.0
+|Referencing: |gemILF_FHIR_VZD
+|===
+
+[big]*Document history*
+
+[width="100%",cols="11%,11%,7%,58%,13%",options="header",]
+|===
+|*Version* +
+ |*Stand* +
+ |*Chap./ Page* +
+ |*Change reason, special instructions* +
+ |*Editing* +
+
+|1.0.0 |28.07.23 | |Initial document |gematik
+
+|===
+
+== Classification of the document
+=== Objective
+This document sums up examples in interacting with the owner API. 
+
+=== Target group
+
+The document is aimed at software developers who are involved in implementing a client that interacts with the owner API of the VZD-FHIR-Directory.
+
+=== Scope
+
+*Intellectual property/patent notice*
+
+_The following specification was created by gematik solely from a technical point of view. In individual cases, it cannot be ruled out that the implementation of the specification will interfere with the technical property rights of third parties. It is solely up to the supplier or manufacturer to take suitable measures to ensure that the products and/or services offered by him on the basis of the specification do not infringe third-party property rights and, if necessary, to obtain the necessary permits/licenses from the property right holders concerned. In this respect, gematik GmbH assumes no liability whatsoever._
+
+
+== FHIRDirectoryOwnerAPI
+
+The interface enables the owners of a telematikID to change their entry in the VZD-FHIR directory. 
+The access token used for authentication contains the user's telematikID. Only the entry (Practitioner or Organization) with your own telematikID may be changed. Only the attributes that are not synchronized by the VZD LDAP directory - and is not administered by the card issuers - may be changed.
+ +
+ +
+The supported operations are described in the following subchapters.
+
+=== Search
+The search via the owner interface is not limited as on the "Search" interface. The normal FHIR search functionality can be used. Only the result set is limited to max. 100 FHIR VZD entries. +
+
+A few hints:
+
+- The full-text search (https://build.fhir.org/search.html#_content[_content] and https://build.fhir.org/search.html#_text[_text] search parameters) 
+is optimized for the "Search" interface. In the owner interface the normal FHIR functionality is available. 
+FHIR limits the full-text search to one resource. 
+If you use PractitionerRole or HealthcareService as base for your search, you have the full-text search of the "Search" interface, which includes linked resources.
+
+// https://arvato-systems-group.atlassian.net/browse/FVZ-720
+// https://arvato-systems-group.atlassian.net/browse/FVZ-794
+
+=== Administration of resource HealthcareService
+
+==== HealthcareService synchronized from the LDAP VZD (Meta.Tag.Origin=ldap)
+===== Update HealthcareService 
+For an own HealthcareService, the following information can be changed 
+
+- Link an Endpoint with a TI-Messenger address (ConnectionType = tim) to HeathcareService. The endpoint that is linked must also be assigned to the owner.
+- Remove the link to an Endpoint.
+
+// https://arvato-systems-group.atlassian.net/browse/FVZ-229
+
+==== HealthcareService not synchronized from the LDAP VZD (Meta.Tag.Origin=owner)
+===== Create HealthcareService 
+An additional HealthcareService can be created (POST)
+
+- The HealthcareService must be linked to the existing Organization. 
+- The HealthcareService may be linked to an existing Location. 
+- The OwnerId of the linked Organization and Location has to match to the telematikId in the owner access token.
+- The linked Organization and Location itself must belong to the same HealthcareService.
+- The successfully created HealthcareService resource can be linked to an endpoint that has the same OwnerId.
+- Meta.Tag.Origin must be set to "owner" (and not to ldap) and the ldapUId is not set as an identifier.
+- Meta.Security "owner" must be set.
+- If an identifier with CodeSystem "https://gematik.de/fhir/sid/telematik-id" is specified, the value must correspond to the telematik ID of the access token.
+- HealthcareService.specialty can be set be set to a subset of the synchronized HealthcareService.specialty.
+
+// https://arvato-systems-group.atlassian.net/browse/FVZ-704
+// https://arvato-systems-group.atlassian.net/browse/FVZ-779
+// https://arvato-systems-group.atlassian.net/browse/FVZ-852 Owner: HealthcareService POST/PUT Validierung Spezialisierung
+
+In addition to the mandatory attributes, setting the following attributes is recommended
+
+- HealthcareService.name - A name describing the provided HealthcareServiceHealthcareService.
+- HealthcareService.active - Whether this HealthcareService record is in active use. If set to false, the HealthcareService will be not found in the Search interface.
+
+===== Update HealthcareService (PUT)
+The owner can delete HealthcareServices resources that they have created themselves:
+
+- The HealthcareService must remain linked to the existing sync organization.
+- For all other attributes see "Create HealthcareService"
+
+// https://arvato-systems-group.atlassian.net/browse/FVZ-701
+// https://arvato-systems-group.atlassian.net/browse/FVZ-793
+
+===== Delete HealthcareService
+The owner can delete HealthcareServices resources that they have created themselves.
+
+=== Administration of resource Endpoint  (Meta.Tag.Origin=owner)
+==== Create Endpoint
+Endpoints can be created if all of the following criteria are met
+
+- the Endpoint contains a TI-Messenger address:
+
+* Endpoint.address contains TI-Messenger address (MXID)
+* Endpoint.connectionType is set to "tim"
+
+- the Endpoint contains all necessary information (https://simplifier.net/vzd-fhir-directory/endpointdirectory)
+
+
+// https://arvato-systems-group.atlassian.net/browse/FVZ-231
+
+In addition to the mandatory attributes, setting the following attributes is recommended
+
+- Endpoint.status - The state of the Endpoint.
+- Endpoint.name - Name of the Endpoint.
+
+==== Update Endpoint (PUT)
+The owner can update Endpoint resources that they have created themselves. Resources synchronized from the LDAP VZD cannot be changed. +
+For all attributes see "Create Endpoint".
+
+==== Delete Endpoint
+Endpoints can be deleted by the owner if
+
+- there are no linkes from a HealthcareService or PractitionerRole. 
+  (First the links have to be deleted.)
+// https://arvato-systems-group.atlassian.net/browse/FVZ-1109
+
+// - the Endpoint contains a TI-Messenger address (ConnectionType = tim) and are assigned to the owner. All resources that reference the endpoint must also be assigned to the owner.
+// https://arvato-systems-group.atlassian.net/browse/FVZ-232
+
+
+
+
+
+=== Administration of resource PracititonerRole  (Meta.Tag.Origin=owner)
+
+The following rules apply when creating a PracititonerRole:
+
+- An authenticated owner can create own PracititionerRoles
+- The created PracititionerRole must be linked to the Practitioner of the synchronized PractitionerRole (identified via TelematikId, origin=ldap)
+- If a location is linked, the same location must be used as for the synchronized PractitionerRole.
+- Deleting the synchronized PracititionerRole also leads to the deletion of the created PracititionerRole.
+- Only own EndPoints may be linked.
+- No telematikId identifier may be set.
+- No ldapUuid identifier may be set.
+- Only "owner" has to be set for meta.tag.origin. "ldap" must not be set.
+- The created PractitionerRole can not be linked with an Organization.
+- The created PractitionerRole can not be linked with an HealthcareService (this will be possible in a subsequent release).
+
+////
+Noch einarbeiten:
+https://arvato-systems-group.atlassian.net/browse/FVZ-140
+////
