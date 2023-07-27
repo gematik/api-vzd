@@ -1,3 +1,4 @@
+
 ifdef::env-github[]
 :tip-caption: :bulb:
 :note-caption: :information_source:
@@ -16,11 +17,176 @@ image:gematik_logo.svg[width=70%]
 
 toc::[]
 
-= Änderungen an Spezifikation gemSpec_VZD_FHIR_Directory
-Dieses Dokument informiert über die Änderungen an Spezifikation gemSpec_VZD_FHIR_Directory, welche noch nicht auf dem gematik Fachportal veröffentlicht wurden.
+= Änderungen an VZD Spezifikationen 
+Dieses Dokument informiert über die Änderungen an Spezifikation gemSpec_VZD_FHIR_Directory und gemSpec_VZD, welche noch nicht auf dem gematik Fachportal veröffentlicht wurden.
 Vor der Veröffentlichung auf dem Fachportal erfolgen noch Reviews. Folge dieser Reviews können Änderungen bis zur finalen Veröffentlichung bedingen.
  +
  +
-Die aktuellen Spezifikationserweiterungen und -änderungen wurden im gematik Fachportal veröffentlicht:
-https://fachportal.gematik.de/schnelleinstieg/downloadcenter/vorabveroeffentlichungen#c7532 +
-Deshalb werden sie aus diesem Dokument entfernt.
+
+== Aktualisierung Signatur-Algorithmen (gemSpec_VZD_FHIR_Directory#4.2.3 & 5.2)
+
+ 
+*Es wird in gemSpec_VZD_FHIR_Directory Kapitel 4.2.3 wie folgt angepasst* +
+... +
+Die Föderationsliste MUSS mit einer JWS gemäß RFC7797 signiert werden. Der zu verwendende Signatur-Algorithmus MUSS +++<del>+++*"ES256"*+++</del>+++ *in der Liste der zulässigen Algorithmen enthalten* sein. Dazu MUSS ein Signatur-Zertifikat der Komponenten-PKI der TI (C.FD.SIG) verwendet werden. Das Signatur-Zertifikat MUSS im Signatur-Header enthalten sein.Der Signatur-Header hat folgende Struktur:
+
+
+[source,subs="quotes"]
+--
+{ 
+  "typ":"JWT",  
+  "alg": <del>*"ES256"*</del> *"BP256R1"*, 
+  "x5c": [ 
+    "<X.509 Sig-Cert, base64-encoded DER>" 
+  ] 
+}
+
+--
+
+*Es wird in gemSpec_VZD_FHIR_Directory Kapitel 4.2.3 wie folgt angepasst* +
+... +
+*ML-142894 - AF_10037 TIM Registrierungsdienst id_token Prüfung (VZD-FHIR-Directory)* +
+Die vom Registrierungsdienst ausgestellten id_token müssen vom VZD-FHIR-Directory geprüft werden: +
+
+- Validierung der gemäß [RFC7519 # section-7.1] vorgeschriebenen Struktur der id_token gemäß [RFC7519 # section-7.2]. 
+- Prüfung Signatur des id_token gemäß RFC7515 (das verwendete Zertifikat muss aus der Komponenten-PKI der TI stammen)
+* Zertifikatstyp: C.FD.SIG
+* technische Rolle: oid_tim
+- Die telematikID muss im Token Attribut idNummer  enthalten sein.
+
+Optional und verpflichtend ab FHIR VZD 1.2: +
+
+- Prüfung des id_token Signatur-Zertifikats (oder sein Hash) gegen das bei der Beantragung der Credentials für die Schnittstelle I_VZD_TIM_Provider_Services übergebene Signatur-Zertifikat. 
+*	OCSP Prüfung des id_token Signatur-Zertifikats
+*	Prüfung Algorithmus:  "alg": +++<del>+++*"ES256"*+++</del>+++ *MUSS in der Liste der zulässigen Algorithmen enthalten sein*
+*	Prüfung des Signaturzertifikats gegen das X.509-Root-CA Zertifikat der TI.
+
+-	Prüfung der zeitlichen Gültigkeit des id_token für den Zugriff auf den VZD-FHIR-Directory: Das VZD-FHIR-Directory muss sicherstellen, dass der Zeitraum der Verwendung des Tokens zwischen den im Token mitgelieferten Werten der Attribute iat und exp liegt.
+-	Das VZD-FHIR-Directory muss die im id_token übertragenen Attribute mit denen vergleichen, die mit dem Registrierungsdienst vereinbart wurden und alle mit dem id_token in Verbindung stehenden Vorgänge abbrechen, wenn dem id_token für die Verarbeitung notwendige Claims fehlen oder aber andere als die mit dem IDP-Dienst vereinbarten personenbezogenen Attribute vorhanden sind.
+*	Hinweis: Als unerwartete personenbezogenes Attribute gelten gemäß Tabelle: [gemSpec_IDP_FD#TAB_IDP_DIENST_0005] die Claims given_name, family_name, und organizationName
+-	Audience: "aud": URL der Schnittstelle z.B. "https://fhir-directory.vzd.ti-dienste.de/owner-authenticate"
+-	Die TelematikID aus dem Token Attribut idNummer muss in der Föderationsliste enthalten sein und der Föderationslisten-Eintrag muss vom gleichen TIM-Provider eingetragen worden sein der auch das Token ausgestellt hat.
+<=
+
+...
+
+*ML-142895 - AF_10037 TI-Provider-Access-Token Prüfung (VZD-FHIR-Directory)*
+Die TI-Provider-Access-Token müssen vom VZD-FHIR-Directory für den Endpunkt /tim-provider-services geprüft werden: +
+
+-	Validierung der gemäß [RFC7519 # section-7.1] vorgeschriebenen Struktur der ACCESS_TOKEN gemäß [RFC7519 # section-7.2].
+-	Sicherstellung der korrekten Signatur des Tokens gemäß RFC7515:
+*	Zertifikatstyp: C.FD.SIG
+*	technische Rolle: oid_vzd_ti
+*	OCSP Prüfung des Signatur-Zertifikats: Nein
+-	Zeitliche Gültigkeit: Das VZD-FHIR-Directory muss sicherstellen, dass der Zeitraum der Verwendung des Tokens zwischen den im Token mitgelieferten Werten der Attribute iat und exp liegt.
+-	Die telematikID muss im Token "sub" claim enthalten sein.
+
+Optional und verpflichtend ab FHIR VZD 1.2: +
+
+-	Das VZD-FHIR-Directory muss die im ACCESS_TOKEN übertragenen Attribute mit denen vergleichen, die vereinbart wurden und alle mit dem ACCESS_TOKEN in Verbindung stehenden Vorgänge abbrechen, wenn dem ID_TOKEN für die Verarbeitung notwendige Claims fehlen oder aber andere als die vereinbarten personenbezogenen Attribute vorhanden sind.
+*	Prüfung Audience "aud" aus dem Token (muss der /tim-provider-services Schnittstelle entsprechen, z.B. https://fhir-directory.vzd.ti-dienste.de/tim-provider-services)
+*	Hinweis: Als unerwartete personenbezogenes Attribute gelten gemäß Tabelle: [gemSpec_IDP_FD#TAB_IDP_DIENST_0005] die Claims given_name, family_name, und organizationName
+-	Sicherstellung der korrekten Signatur des Tokens gemäß RFC7515:
+*	Prüfung Algorithmus:  "alg": +++<del>+++*"ES256"*+++</del>+++ *MUSS in der Liste der zulässigen Algorithmen enthalten sein*
+
+<=
+
+ 
+
+== Zusammenführung mehrerer TelematikID´s zu einer Organisation
+*Es wird in gemSpec_VZD Kapitel 4.6.1.2.3 wie folgt ergänzt* +
+ +
+*A_18450-04 VZD, I_Directory_Administration, modify_Directory_Entry* +
+ +
+*In Tabelle 26: Tab_VZD „modify_Directory_Entry” werden die Eingangsdaten aktualisiert, insbesondere "providedBy"* +
+ +
+ +
+*Es wird in gemSpec_VZD Kapitel 4.6.3 wie folgt aufgenommen* +
+ +
+*4.6.3 Zusammenführung mehrerer TelematikID´s zu einer Organisation* +
+Im LDAP VZD existieren Einträge, die in der Realität eine Organisation darstellen, als einzelne Datensätze. 
+Es haben z.B. Krankenhäuser unterschiedliche Einträge für ihre einzelnen Abteilungen im LDAP VZD.
+Für jeden dieser LDAP Einträge wird im FHIR VZD eine eigene Organisation generiert. +
+
+Entsprechende LDAP Einträge sollen als eine Organisation im VZD FHIR zusammengeführt werden. 
+Damit sollen den VZD Nutzern die zusammengehörenden LDAP VZD Einträge im FHIR VZD als eine Organisation angezeigt werden. +
+
+Die Administration zusammengehörender Einträge erfolgt über Schnittstelle I_Directory_Administration. +
+Dafür wird das Attribut "providedBy" genutzt:
+
+- Ist Attribut "providedBy" im LDAP VZD Eintrag nicht gesetzt, wird für den LDAP Eintrag im FHIR VZD eine Organisation generiert.
+- Wird in Attribut "providedBy" im LDAP VZD Eintrag eine TelematikID eingetragen, wird für den LDAP Eintrag im FHIR VZD ein HealthcareService unter der - mit der TelematikID - referenzierten Organisation generiert.
+
+*A_24058 VZD, I_Directory_Administration, providedBy* +
+Der VZD MUSS für die Administration von Attribut "providedBy" gewährleisten:
+
+- Es wird nur eine Hierarchieebene unterstützt. Das Attribut "providedBy" im referenzierten LDAP Datensatz muss deshalb leer sein. In allen anderen Fälle MUSS der VZD mit einem Fehler antworten.
+- Der VZD MUSS bei Löschung eines LDAP VZD Eintrags prüfen, ob dieser Eintrag über Attribut "providedBy" von einem anderen Datensatz referenziert wird. Ist dies der Fall, MUSS der VZD die Löschoperation mit einem Fehler ablehnen.
+- Das Attribut "providedBy" darf nur eine TelematikID enthalten.
+- Wenn Attribut providedBy gesetzt wurde, kann es nur zurückgesetzt (Inhalt auf leer gesetzt) werden. Eine Änderung auf einen anderen Wert wird nicht unterstützt.
+- Der VZD MUSS vor dem Setzen von Attribut "providedBy" prüfen, ob der Client auch für den referenzierten LDAP Datensatz als Holder eingetragen ist. Ist dies nicht der Fall, MUSS der VZD die Operation mit einem Fehler ablehnen.
+<=
+
+*A_24059 VZD, I_Directory_Administration, Synchronisationsregeln für verlinkte LDAP Datensätze* +
+Der VZD MUSS für verlinkte LDAP Datensätze - mit einer TelematikID in Attribut "providedBy" - bei der Synchronisation der LDAP Daten in den FHIR VZD - abweichend von den normalen Synchronisationsregeln - das Mapping der Attribute entsprechend Tab_VZD_Datenmapping_linked durchführen. +
+ +
+Tabelle 34: Tab_VZD_Datenmapping_linked 
+
+[width="100%",cols="10%,10%,80%",options="header",]
+|===
+|*LDAP Attribut* |*FHIR HealthcareServices Attribut* |*Bemerkung*
+|displayName|name|
+Wird für normale Einträge in organization.name gemappt, hier auf HealthcareService.name.
+|organization|-|
+Kann einen alternativen Namen enthalten. +
+Wird nicht synchronisiert, da es im HCS kein korrespondierendes Attribut gibt. +
+Falls es in LDAP sinnvolle Informationen enthält, könnte man in FHR das HCS Attribut "comment" dafür nutzen.
+|specialization|speciality|
+Mapping auf HealthcareServices.specialty +
+|domainID|identifier|
+Wird normalerweise auf Organization.identifier gemappt.  +
+Mapping erfolgt hier auf HealthcareService.identifier. Das muss bei der Suche im FHIR VZD beachtet werden. +
+|streetAddress,
+postalCode,
+countryCode,
+localityName,
+stateOrProvinceName|Location|
+Normales Mapping auf Location Attribute und Verlinkung der Location mit dem HealthcareService.
+|holder|-|
+Wird nicht in den HelathcareService gemappt. +
+Der VZD stellt bei der Verlinkung von zwei Datensätzen sicher, dass der Client als Holder für beide Datensätze eingetragen ist. Die Zugriffsrechte für den generierten HelathcareService werden aus den Zugriffsrechten der Organisation abgeleitet (wie für alle HealtcareServices).
+|telematikID|identifier|
+Wird normalerweise auf Organization.identifier gemappt. +
+Mapping erfolgt hier auf HealthcareService.identifier. Das muss bei der Suche im FHIR VZD und bei der Authentisierung am Owner Interface beachtet werden. +
+Der OrgAdmin des Haupteintrags kann damit auch alle untergeordneten HealthcareServices bearbeiten. 
+Bei der Authentisierung mit der telematikID eines untergeordneten HealthcareServices darf der FHIR VZD nur das Bearbeiten dieses HealthcareService und untergeordneter Ressourcen erlauben.
+|professionOID|type|
+Wird für normalerweise in Organization.type abgelegt. +
+Mapping erfolgt hier auf HealthcareService.type. 
+|active|-|
+Wird nicht in den HelathcareService gemappt.Der Status für den generierten HelathcareService ergibt sich aus dem "active" Status der Organisation (wie für alle HealtcareServices). +
+Wenn der untergeordnete LDAP Datensatz über das "active" Attribut deaktiviert wird, hat das keine Auswirkungen auf den FHIR HealthcareService. +
+Wenn der übergeordnete LDAP Datensatz über das "active" Attribut deaktiviert wird, hat dies im FHIR VZD Auswirkungen auf alle verlinkten HealthcareService.
+
+|===
+
+
+ 
+
+*Es wird in gemSpec_VZD Kapitel 5. wie folgt ergänzt* +
+
+... 
+ +
+Tabelle 34: Tab_VZD_Datenbeschreibung 
+
+
+|===
+|*LDAP-Directory Attribut* |*Pflichtfeld?* |*Erläuterung*
+|...||
+|providedBy|optional|
+Zusammenhängende Einträge können über das Attribut providedBy gekennzeichnet werden. 
+Siehe Kapitel 4.6.3 Zusammenführung mehrerer TelematikID´s zu einer Organisation
+
+
+|===
+

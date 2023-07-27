@@ -9,13 +9,8 @@
             "type": "integer",
             "readOnly": true
           },
-          "hashAlgorithm": {
-            "description": "The hash algorithm that was used to create the hashes. Currently only SHA-256 is supported.",
-            "type": "string",
-            "readOnly": true
-          },
           "domainList": {
-            "description": "The list of hashed TI-Messenger domain names",
+            "description": "The list of TI-Messenger domain names",
             "type": "array",
             "items": {
                       "domain": {
@@ -32,7 +27,11 @@
                           "default": false,
                           "example": false
                                         },
-               "required": ["domain", "telematikID", "isInsurance"]
+                       "timProvider": {
+                         "description": "The Zuweisungsgruppe im TI-ITSM-System of the TI-Messenger Provider, who added the domain",
+                         "type": "string"
+                                       },                
+               "required": ["domain", "telematikID", "isInsurance", "timProvider"]
             }
           }
         }

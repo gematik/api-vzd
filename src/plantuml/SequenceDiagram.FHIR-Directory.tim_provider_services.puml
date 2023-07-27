@@ -2,6 +2,7 @@
 skinparam dpi 100
 skinparam WrapWidth 200
 skinparam monochrome false
+
 autonumber "<b>[00]"
 
 participant rd as "TI-Messenger-Fachdienst\nRegistrierungsdienst"
@@ -10,6 +11,7 @@ box <size:16>VZD-FHIR-Directory</size> #WhiteSmoke
 participant fp as "VZD FHIR TIM-Provider-API"
 participant fa as "Auth-Service"
 participant hs as "TI-Messenger-Service\nMessenger Proxy"
+
 end box
 
 rd -> oa: POST /token (client_id, client_secret)
@@ -25,6 +27,7 @@ fa -> fa: prüfe ti-provider-accesstoken
 fa --> rd: provider-accesstoken
 deactivate fa
 
+
 alt#LightGrey #MISTYROSE  <size:16>Matrix-Domain nicht in der Föderation enthalten</size>
 group optional
 rd -> fp: POST /tim-provider-services/federation\n(Authorization: "Bearer provider-accesstoken")\n{domain, telematikID, isInsurance}
@@ -39,6 +42,7 @@ end
 hs -> fp : HTTP 200 OK Response body { "m.server": "HOSTNAME:PORT" }
 deactivate hs
 fp -> fp : Store PORT for domain
+
 
 fp --> rd: HTTP 200 OK Response body domainArray json
 deactivate fp
