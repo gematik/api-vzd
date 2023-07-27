@@ -3,8 +3,13 @@ info:
   title: I_VZD_TIM_Provider_Services
   description: REST interface to retrieve the TI-Messenger federation list and to administrate the TI-Messenger domains.
 
-  version: 1.2.0
+  version: 1.3.0
 
+  # version 1.3.0
+  #  - Attribut "domain" in the FederationList is not more a hash
+  #    - JSON schema FederationList.json: Attribute "hashAlgorithm" removed
+  #  - Comments containing descriptions of the hashed domains updated
+  #
   # version 1.2.0
   #  - getFederationList changed: Changed from JSON response to file download
   #  - schema: schema FederationList and DomainList removed
@@ -176,7 +181,7 @@ paths:
                   enum: [org, pract, orgPract, none]
                   example: org
                   description: |
-                    Returns in which part of the directory the MXID (the request contains the hash of the MXID) is located:
+                    Returns in which part of the directory the MXID is located:
                      - org:      Located in the Organization part
                      - pract:    Located in the Practitioner part
                      - orgPract: Located in the Organization and Practitioner part
@@ -202,7 +207,7 @@ paths:
                 $ref: '#/components/schemas/Error'
         404:
           description: Not Found
-                   #  hash of the MXID not found in FHIR VZD
+                   #  MXID not found in FHIR VZD
           content:
             application/json:
               schema:
