@@ -156,7 +156,6 @@ Endpoints can be deleted by the owner if
 
 
 === Administration of resource PracititonerRole  (Meta.Tag.Origin=owner)
-IMPORTANT:  This feature is under development and not yet contained in a test FHIR VZD
 
 The following rules apply when creating a PracititonerRole:
 
