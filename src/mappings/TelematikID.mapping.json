@@ -10,7 +10,8 @@
       "pattern": "^1-20.*",
       "fhirResourceType": "Organization",
       "code": "Arztpaxis",
-      "displayShort": "Arztpaxis"
+      "displayShort": "Arztpaxis",
+      "fhirIdentifierProfile": "http://fhir.de/StructureDefinition/identifier-bsnr"
     },
     {
       "pattern": "^2-0?1.*",
@@ -22,7 +23,8 @@
       "pattern": "^2-2.*",
       "fhirResourceType": "Organization",
       "code": "Zahnarztpraxis",
-      "displayShort": "Zahnarztpraxis"
+      "displayShort": "Zahnarztpraxis",
+      "fhirIdentifierProfile": "http://fhir.de/StructureDefinition/identifier-kzva"
     },
     {
       "pattern": "^3-...2.*",
@@ -46,13 +48,15 @@
       "pattern": "^5-.*",
       "fhirResourceType": "Organization",
       "code": "Krankenhaus",
-      "displayShort": "Krankenhaus"
+      "displayShort": "Krankenhaus",
+      "fhirIdentifierProfile": "http://fhir.de/StructureDefinition/identifier-iknr"
     },
     {
       "pattern": "^8-01.*",
       "fhirResourceType": "Organization",
       "code": "Krankenkasse",
-      "displayShort": "Krankenkasse"
+      "displayShort": "Krankenkasse",
+      "fhirIdentifierProfile": "http://fhir.de/StructureDefinition/identifier-iknr"
     },
     {
       "pattern": "^8-03.*",
@@ -106,7 +110,8 @@
       "pattern": "^9-2.59.*",
       "fhirResourceType": "Organization",
       "code": "Krankenversicherung",
-      "displayShort": "Krankenversicherung"
+      "displayShort": "Krankenversicherung",
+      "fhirIdentifierProfile": "http://fhir.de/StructureDefinition/identifier-iknr"
     },
     {
       "pattern": "^9-2.254.*",
