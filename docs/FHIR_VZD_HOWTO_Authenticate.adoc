@@ -114,7 +114,7 @@ The request returns a matrix access_token
 ====
 ++++
 <p align="center">
-  <img width="55%" src=../images/diagrams/SequenceDiagram.FHIR-Directory.search.auth.svg>
+  <img width="55%" src=../images/diagrams/SequenceDiagram.FHIR-Directory.search_auth.svg>
 </p>
 ++++
 ====
