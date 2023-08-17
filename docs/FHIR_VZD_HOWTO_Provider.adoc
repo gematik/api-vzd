@@ -109,6 +109,23 @@ This operation returns the location of the MXID.
 "org"
 ----
 
+=== Add own domain
+[source]
+----
+curl  -X POST \
+  '[baseUrl]/tim-provider-services/federation' \
+  --header 'Accept: */*' \
+  --header 'User-Agent: Thunder Client (https://www.thunderclient.com)' \
+  --header 'Authorization: Bearer eyJhbGciOiJCUDI1NlIxIiwidHlwIjoiSldUIn0.eyJpc3MiOiJodHRwczovL2ZoaXItZGlyZWN0b3J5LXJlZi52emQudGktZGllbnN0ZS5kZS90aS1wcm92aWRlci1hdXRoZW50aWNhdGUiLCJhdWQiOiJodHRwczovL2ZoaXItZGlyZWN0b3J5LXJlZi52emQudGktZGllbnN0ZS5kZS90aW0tcHJvdmlkZXItc2VydmljZXMiLCJzdWIiOiJnZW1hdGlrIiwiaWF0IjoxNjkyMjg1MzE0LCJleHAiOjE2OTIzNzE3MTQsImNsaWVudElkIjoiZ2VtYXRpayJ9.MN77Ar9JhuY8c1Qp_kHuWA2E8pFIO2btralTmJXqaOYYqHGxLZtISd_ybu-NbhI5Y3LWc6M7FP4Jg6ltqSxj_Q' \
+  --header 'Content-Type: application/json' \
+  --data-raw '{
+  "domain": "matrix.test.service-ti.de",
+  "telematikID": "MY-SMC-B-Testkarte",
+  "isInsurance": false
+}'
+----
+This operation adds new domain to the federation list.
+
 === Query own domains
 [source]
 ----
@@ -131,12 +148,12 @@ This operation returns all own domains.
   },
   {
     "domain": "ti-messenger.gdomain",
-    "telematikID": "1-2arvtst-ap000094",
+    "telematikID": "1-2arvtest-ap000094",
     "isInsurance": false
   },
   {
     "domain": "testserver.dev.service-ti.de",
-    "telematikID": "1-1gemref-testowner-0001",
+    "telematikID": "1-gemref-testowner-0001",
     "isInsurance": false
   }
 ]
@@ -159,7 +176,7 @@ This operation returns the own domains that are marked as "inactive".
 {
   "inactiveOrganizationDomains": [
     {
-      "domain": "testserver.dev.service-ti.de",
+      "domain": "testserver.service-ti.de",
       "telematikID": "1-1gemref-testowner-0001",
       "isInsurance": false
     }
