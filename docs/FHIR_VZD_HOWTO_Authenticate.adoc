@@ -194,6 +194,7 @@ For search examples see: link:FHIR_VZD_HOWTO_Search.adoc[Search Examples]
 === Authenticate for the provider API
 To use the TIM-PROVIDER-API, a corresponding TIM-Provider-API Token is needed.
 The following sequence diagram shows the flow to obtain such a token 
+
 .Search-Acccesstoken Flow
 [%collapsible%open]
 ====
@@ -314,3 +315,16 @@ curl -X GET "[baseUrl]/owner-authenticate" -H "Authorization: Bearer eyJhbGciOiJ
 ====
 
 === Authenticate for the owner endpoint as an user
+The user can authenticate himself by using his smartcard(HBA/SMC-B). The following diagram shows the interaction between a client, the Auth-Service of the VZD-FHIR Directory, a smartcard and the IDP.
+
+CAUTION: The diagramm displays the most important interaction parts. For detailed information on the checks performed by the IDP or the detailed smartcard interaction steps please consult the product specific specification.
+
+.owner-authenticate Flow
+[%collapsible%open]
+====
+++++
+<p align="center">
+  <img width="55%" src=../images/diagrams/SequenceDiagram.FHIR-Directory.owner_auth.svg>
+</p>
+++++
+====
