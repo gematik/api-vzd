@@ -300,14 +300,17 @@ curl -X GET "[baseUrl]/owner-authenticate" -H "Authorization: Bearer eyJhbGciOiJ
 [%collapsible%open]
 ====
 . jwt structure must follow https://www.rfc-editor.org/rfc/rfc7519#section-7.2[RFC7519 Validating a JWT]
-. OCSP check of the signature certificate
-. compare the signature certificate with one handed over while registering for the provider services endpoint credentials
-. validating signature(must be signed with certificate from X5c header)
 . validating certificate 
 .. type is C.FD.SIG
 .. technical role is "oid_tim" 
-. validating the used algorithm and the expiration time
+. validating the used algorithm(BP256R1) and the expiration time
 . checking for existence of field idnummer containing the TelematikID
+
+*Optional and mandatory starting with FHIR VZD 1.2*
+
+. compare the signature certificate with the one handed over while registering for the provider services endpoint credentials
+. OCSP check of the signature certificate
+. validating signature certificate against the X.509-Root-CA certificate
 ====
 
 === Authenticate for the owner endpoint as an user
