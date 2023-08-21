@@ -1113,10 +1113,12 @@ components:
               noVzdMailEntry:
                   type: boolean
                   default: false
-                  description: Wenn "noVzdMailEntry == true" dann werden durch den VZD die "mail" und komLeData
-                    Attribute nicht befüllt oder im Fall von PUT werden vorhandene mail und komLeData Attribute gelöscht.
+                  description: |
+                    Wenn "noVzdMailEntry == true" dann werden durch den VZD die "mail" und "komLeData"
+                    Attribute nicht befüllt oder im Fall von PUT werden vorhandene "mail" und
+                    "komLeData" Attribute gelöscht. Nach Ausführung der Operation ist in diesem Fall nur
+                    kimData gefüllt und die "mail" und "komLeData" Attribute sind leer.
                     Dieses neue Attribut soll client-seitig nur vom Basis Consumer unterstützt werden.
-
 
             description: |
               Liste von KIM-Adressen mit der zugehörigen KIM-Version und Anwendungskennzeichen. 
