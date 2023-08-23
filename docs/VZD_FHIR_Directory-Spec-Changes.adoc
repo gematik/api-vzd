@@ -17,6 +17,8 @@ image:gematik_logo.svg[width=70%]
 
 toc::[]
 
+// https://polarion.int.gematik.de/polarion/#/project/Mainline_OPB1/wiki/Anlagendokumente%20P-Liste/C_11549_Anlage
+
 = Änderungen an VZD Spezifikationen 
 Dieses Dokument informiert über die Änderungen an Spezifikation gemSpec_VZD_FHIR_Directory und gemSpec_VZD, welche noch nicht auf dem gematik Fachportal veröffentlicht wurden.
 Vor der Veröffentlichung auf dem Fachportal erfolgen noch Reviews. Folge dieser Reviews können Änderungen bis zur finalen Veröffentlichung bedingen.
@@ -190,3 +192,18 @@ Siehe Kapitel 4.6.3 Zusammenführung mehrerer TelematikID´s zu einer Organisati
 
 |===
 
+== Support und Unterstützungsleistungen Produktivbetrieb TI-Messenger
+*Es wird in gemSpec_VZD Kapitel 4.6.1.2.3 wie folgt ergänzt* +
+ +
+Es wird in gemSpec_VZD Kapitel 5. wie folgt ergänzt
+
+Tabelle: Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID
+|===
+|*Eintragstyp* |*Eintragstyp Bedeutung* |*ProfessionOID (ProfessionItem)*
+|...||
+|*8*|*TIM*|
+1.2.276.0.76.4.295 (TIM-Hersteller und -Anbieter)
+|...||
+
+
+|===
