@@ -173,10 +173,10 @@ paths:
       - name: mxid
         in: query
         description: |
-              MXID (MXID in URL Form)
+              MXID (MXID in URI Form)
               Format: matrix:user/localpart:domainpart  
                 Beispiel MatrixID:                 @1-1tst-auto-ts-ow2:tim.test.gematik.de 
-                MatrixID im URL Format: matrix:u/1-1tst-auto-ts-ow2:tim.test.gematik.de
+                MatrixID im URI Format: matrix:u/1-1tst-auto-ts-ow2:tim.test.gematik.de
         schema:
           type: string
 
