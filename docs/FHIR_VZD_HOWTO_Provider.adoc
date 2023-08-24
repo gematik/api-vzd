@@ -52,16 +52,18 @@ _The following specification was created by gematik solely from a technical poin
 
 
 == FHIRDirectoryProviderAPI
+To access the provider API a valid provider access_token is needed that can be obtained by authenticating via link:FHIR_VZD_HOWTO_Authenticate.adoc#22-authenticate-for-the-provider-api[Provider Authenticate].
+
 === Query API Information
+This operation returns generell API information and no authentication is needed.
+
+.Request
 [source]
 ----
-curl -X GET \
+curl  -X GET \
   'https://fhir-directory-ref.vzd.ti-dienste.de/tim-provider-services/' \
-  --header 'Accept: */*' \
-  --header 'User-Agent: Thunder Client (https://www.thunderclient.com)' \
-  --header 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiJ9.eyJpc3MiOiJodHRwczovL2ZoaXItZGlyZWN0b3J5LXRlc3QudnpkLnRpLWRpZW5zdGUuZGUvdGktcHJvdmlkZXItYXV0aGVudGljYXRlIiwiYXVkIjoiaHR0cHM6Ly9maGlyLWRpcmVjdG9yeS10ZXN0LnZ6ZC50aS1kaWVuc3RlLmRlL3RpbS1wcm92aWRlci1zZXJ2aWNlcyIsInN1YiI6ImdlbWF0aWsiLCJpYXQiOjE2NzU2ODY3ODUsImV4cCI6MTY3NTc3MzE4NSwiY2xpZW50SWQiOiJnZW1hdGlrIn0.lvE0wqBpoRJPFSRhApl4xregokrIRf8R_Zplg6itm5pl86PAE-uGEJh_ir0Pu2ZOrE3fbgM29zSTA6lfjN72CQ'
+  --header 'Accept: */*'
 ----
-This operation returns generell API information.
 
 .Response Content
 [source]
@@ -84,11 +86,13 @@ This operation returns generell API information.
 ----
 
 === Query FederationList
+This operation returns the federation list. 
+
+.Request
 [source]
 ----
 curl -X GET "[baseUrl]/tim-provider-services/FederationList/federationList.jws" -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiJ9.eyJpc3MiOiJodHRwczovL2ZoaXItZGlyZWN0b3J5LXRlc3QudnpkLnRpLWRpZW5zdGUuZGUvdGktcHJvdmlkZXItYXV0aGVudGljYXRlIiwiYXVkIjoiaHR0cHM6Ly9maGlyLWRpcmVjdG9yeS10ZXN0LnZ6ZC50aS1kaWVuc3RlLmRlL3RpbS1wcm92aWRlci1zZXJ2aWNlcyIsInN1YiI6ImdlbWF0aWsiLCJpYXQiOjE2Nzg4NzI5NjAsImV4cCI6MTY3ODk1OTM2MCwiY2xpZW50SWQiOiJnZW1hdGlrIn0.hZDJXa-l1OK_B2NE54znl5FYWa5mW01Fw7LOiDo2kNIJOx2HPDCnEqxixd-7m9L34wq8WE4qVaA9jB6BNwX7qw"
 ----
-This operation returns the federation list. 
 
 .Response Content
 [source]
@@ -97,11 +101,13 @@ eyJ4NWMiOlsiTUZvd0ZBWUhLb1pJemowQ0FRWUpLeVFEQXdJSUFRRUhBMElBQkJpMkt6RlE4bEs0TFMy
 ----
 
 === Query MXID Location
+This operation returns the location of the MXID. 
+
+.Request
 [source]
 ----
 curl -X GET "[baseUrl]/tim-provider-services/localization?mxid=%401-2arvtst-ap000037%3Atim.test.gematik.de' -H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiJ9.eyJpc3MiOiJodHRwczovL2ZoaXItZGlyZWN0b3J5LXRlc3QudnpkLnRpLWRpZW5zdGUuZGUvdGktcHJvdmlkZXItYXV0aGVudGljYXRlIiwiYXVkIjoiaHR0cHM6Ly9maGlyLWRpcmVjdG9yeS10ZXN0LnZ6ZC50aS1kaWVuc3RlLmRlL3RpbS1wcm92aWRlci1zZXJ2aWNlcyIsInN1YiI6ImdlbWF0aWsiLCJpYXQiOjE2ODEyMjEwNjUsImV4cCI6MTY4MTMwNzQ2NSwiY2xpZW50SWQiOiJnZW1hdGlrIn0.gThvA77gnbQAAtDYCj9THKc8DzKdR6afOkrgldKEgspOohGU6LFdQ5KsMEkkzJ1-g2oAl6rSGa4Drhz7oIrZ9g"
 ----
-This operation returns the location of the MXID. 
 
 .Response Content
 [source]
@@ -109,7 +115,39 @@ This operation returns the location of the MXID.
 "org"
 ----
 
+=== Add own domain
+This operation adds a new domain to the federation list.
+
+.Request
+[source]
+----
+curl  -X POST \
+  '[baseUrl]/tim-provider-services/federation' \
+  --header 'Accept: */*' \
+  --header 'User-Agent: Thunder Client (https://www.thunderclient.com)' \
+  --header 'Authorization: Bearer eyJhbGciOiJCUDI1NlIxIiwidHlwIjoiSldUIn0.eyJpc3MiOiJodHRwczovL2ZoaXItZGlyZWN0b3J5LXJlZi52emQudGktZGllbnN0ZS5kZS90aS1wcm92aWRlci1hdXRoZW50aWNhdGUiLCJhdWQiOiJodHRwczovL2ZoaXItZGlyZWN0b3J5LXJlZi52emQudGktZGllbnN0ZS5kZS90aW0tcHJvdmlkZXItc2VydmljZXMiLCJzdWIiOiJnZW1hdGlrIiwiaWF0IjoxNjkyMjg1MzE0LCJleHAiOjE2OTIzNzE3MTQsImNsaWVudElkIjoiZ2VtYXRpayJ9.MN77Ar9JhuY8c1Qp_kHuWA2E8pFIO2btralTmJXqaOYYqHGxLZtISd_ybu-NbhI5Y3LWc6M7FP4Jg6ltqSxj_Q' \
+  --header 'Content-Type: application/json' \
+  --data-raw '{
+  "domain": "matrix.test.service-ti.de",
+  "telematikID": "MY-SMC-B-Testkarte",
+  "isInsurance": false
+}'
+----
+
+.Response Content
+[source]
+----
+{
+  "domain": "matrix.test.service-ti.de",
+  "telematikID": "MY-SMC-B-Testkarte",
+  "isInsurance": false
+}
+----
+
 === Query own domains
+This operation returns all own domains. 
+
+.Request
 [source]
 ----
 curl -X GET \
@@ -118,7 +156,6 @@ curl -X GET \
   --header 'User-Agent: Thunder Client (https://www.thunderclient.com)' \
   --header 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiJ9.eyJpc3MiOiJodHRwczovL2ZoaXItZGlyZWN0b3J5LXJlZi52emQudGktZGllbnN0ZS5kZS90aS1wcm92aWRlci1hdXRoZW50aWNhdGUiLCJhdWQiOiJodHRwczovL2ZoaXItZGlyZWN0b3J5LXJlZi52emQudGktZGllbnN0ZS5kZS90aW0tcHJvdmlkZXItc2VydmljZXMiLCJzdWIiOiJnZW1hdGlrIiwiaWF0IjoxNjgxMjg3MDg2LCJleHAiOjE2ODEzNzM0ODYsImNsaWVudElkIjoiZ2VtYXRpayJ9.g-TOcYRmT64grzhQUKsdCXXJ0wH3WSQuVQwPAh6PrvQecJFPDcOqjOba-ojcUBWeIgT4lZBwGIjC4uBNMTKL4w'
 ----
-This operation returns all own domains. 
 
 .Response Content
 [source]
@@ -131,19 +168,21 @@ This operation returns all own domains.
   },
   {
     "domain": "ti-messenger.gdomain",
-    "telematikID": "1-2arvtst-ap000094",
+    "telematikID": "1-2arvtest-ap000094",
     "isInsurance": false
   },
   {
     "domain": "testserver.dev.service-ti.de",
-    "telematikID": "1-1gemref-testowner-0001",
+    "telematikID": "1-gemref-testowner-0001",
     "isInsurance": false
   }
 ]
 ----
 
 === Check own managed domains
-[source]
+This operation returns the own domains that are marked as "inactive".
+
+.Request
 ----
 curl -X GET \
   'https://fhir-directory-ref.vzd.ti-dienste.de/tim-provider-services/federationCheck' \
@@ -151,7 +190,6 @@ curl -X GET \
   --header 'User-Agent: Thunder Client (https://www.thunderclient.com)' \
   --header 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiJ9.eyJpc3MiOiJodHRwczovL2ZoaXItZGlyZWN0b3J5LXJlZi52emQudGktZGllbnN0ZS5kZS90aS1wcm92aWRlci1hdXRoZW50aWNhdGUiLCJhdWQiOiJodHRwczovL2ZoaXItZGlyZWN0b3J5LXJlZi52emQudGktZGllbnN0ZS5kZS90aW0tcHJvdmlkZXItc2VydmljZXMiLCJzdWIiOiJnZW1hdGlrIiwiaWF0IjoxNjgxMjg3MDg2LCJleHAiOjE2ODEzNzM0ODYsImNsaWVudElkIjoiZ2VtYXRpayJ9.g-TOcYRmT64grzhQUKsdCXXJ0wH3WSQuVQwPAh6PrvQecJFPDcOqjOba-ojcUBWeIgT4lZBwGIjC4uBNMTKL4w'
 ----
-This operation returns the own domains that are marked as "inactive".
 
 .Response Content
 [source]
@@ -159,7 +197,7 @@ This operation returns the own domains that are marked as "inactive".
 {
   "inactiveOrganizationDomains": [
     {
-      "domain": "testserver.dev.service-ti.de",
+      "domain": "testserver.service-ti.de",
       "telematikID": "1-1gemref-testowner-0001",
       "isInsurance": false
     }
