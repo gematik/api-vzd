@@ -6,9 +6,13 @@ info:
    # REST Schnittstelle zur Pflege der Fachanwendungsdaten der Verzeichniseinträge
      Über diese Schnittstelle können Fachanwendungsdaten der Verzeichniseinträge erzeugt, aktualisiert und gelöscht werden. 
 
-  version: 1.4.0
+  version: 1.4.1
   
   
+  # Änderungen in Version 1.4.1 
+  #  - Operation appTags: Return Type definiert
+  #  - Operation read_Directory_Entry: Suchparameter für komLeData und kimData vereinfacht
+  # 
   # Änderungen in Version 1.4.0 
   #  - Operation appTags ergänzt
   #  - Flag "noVzdMailEntry" für add_Directory_FA-Attributes und modify_Directory_FA-Attributes 
@@ -169,6 +173,8 @@ paths:
                   - holder
                   - professionOID
                   - mail
+                  - komLeData
+                  - kimData
           - Suche nach Vorhandensein oder leerem Inhalt eines Attributs des VZD Datensatzes mit dem Kode \00 in den Parametern
           
                   - givenName
@@ -372,50 +378,36 @@ paths:
           Selektiert alle Datensätze, deren Attribut FAD1.mail den angegebenen String in einem Wert des arry's enthält.
         schema:
           type: string  
-      - name: komLeData-mail
+      - name: komLeData
         in: query
         description: |
-          Erlaubt die Suche mit Hilfe des Attributs FAD1.komLeData.mail
+          Erlaubt die Suche mit Hilfe des Attributs FAD1.komLeData
           
-          Selektiert alle Datensätze, deren Attribut FAD1.komLeData.mail den angegebenen String in einem Wert des arry's enthält.
-          Bitte beachten: Dieser Suchparameter wird auf eine LDAP Wildcard Suche mit führendem * abgebildet und verlangsamt die Operation signifikant.
+          Selektiert alle Datensätze, deren Attribut FAD1.komLeData den angegebenen String in einem Wert des array's enthält.
+          komLeData enthält die "version" und "mail" durch Komma getrennt in einem array.
+          Beispiel: 1.0,mc_smcb_za@dom1.komle.telematik-test
+          Für diesen Suchparameter kann ein Wildcard genutzt werden.
         schema:
           type: string  
-      - name: komLeData-version
-        in: query
-        description: |
-          Erlaubt die Suche mit Hilfe des Attributs FAD1.komLeData.version
-          
-          Selektiert alle Datensätze, deren Attribut FAD1.komLeData.version den angegebenen String in einem Wert des arry's enthält.
-        schema:
-          type: string  
-      - name: kimData-mail
+      - name: kimData
         in: query
         description: |
           Erlaubt die Suche mit Hilfe des Attributs FAD1.kimData.mail
           
           Selektiert alle Datensätze, deren Attribut FAD1.kimData.mail den angegebenen String in einem Wert des arry's enthält.
+                    
+          Selektiert alle Datensätze, deren Attribut FAD1.kimData den angegebenen String in einem Wert des array's enthält.
+          komLeData enthält die "mail", "version" und "appTags" durch Komma getrennt in einem array.
+          Die appTags werden durch das Pipe Zeichen getrennt. 
+          Bitte beachten: Wenn das Pipe Zeichen im Suchstring genutzt wird muss die besondere
+          Bedeutung dieses Zeichens bei der LDAP Suche beachtet werden.
+          Beispiel: mz_smcb_za@dom2.kim.telematik-test,1.0,DALE-UV;Einsendung;V1.0|eEB;V1.0
+          Für diesen Suchparameter kann ein Wildcard genutzt werden, z.B. 
+            mz_smcb_za@dom2.kim.telematik-test*
+
         schema:
           type: string  
-      - name: kimData-version
-        in: query
-        description: |
-          Erlaubt die Suche mit Hilfe des Attributs FAD1.kimData.version
-          
-          Selektiert alle Datensätze, deren Attribut FAD1.kimData.version den angegebenen String in einem Wert des arry's enthält.
-          Bitte beachten: Dieser Suchparameter wird auf eine LDAP Wildcard Suche mit führendem * abgebildet und verlangsamt die Operation signifikant.
-        schema:
-          type: string  
-      - name: kimData-appTags
-        in: query
-        description: |
-          Erlaubt die Suche mit Hilfe des Attributs FAD1.kimData.appTags
-          
-          Selektiert alle Datensätze, deren Attribut FAD1.kimData.appTags den angegebenen String in einem Wert des arry's enthält.
-          Bitte beachten: Dieser Suchparameter wird auf eine LDAP Wildcard Suche mit führendem * abgebildet und verlangsamt die Operation signifikant.
-        schema:
-          type: string  
-          
+
       responses:
         200:
           description: |
@@ -958,19 +950,18 @@ paths:
        - appTags
       summary: Abfrage der Anwendungskennzeichen
       description: Es wird die Liste der Anwendungskennzeichen abgefragt.
-        Die Anwendungskennzeichen werden als FHIR Codesystem in der
-        Response übergeben
+        Die Anwendungskennzeichen werden als FHIR Codesystem im Response zurückgegeben
       operationId: getAppTags
 
       responses:
         200:
           description: OK
              # Rückgabe der Anwendungskennzeichen als FHIR CodeSystem (ServiceIdentifierCS)
-             # Siehe https://simplifier.net/app-transport-framework/service-identifier-cs/~json
+             # Datenstruktur siehe https://simplifier.net/app-transport-framework/service-identifier-cs/~json
           content:
             application/json:
               schema:
-                {}
+               type: string  
         500:
           description: Internal Server Error
           content:
