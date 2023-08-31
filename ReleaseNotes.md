@@ -1,4 +1,4 @@
-<img align="right" width="250" height="47" src="images/meta/gematik_logo.svg"/> <br/>    
+<img align="right" width="250" height="47" src="images/gematik_logo.svg"/> <br/>    
  
 # Release Notes api-vzd
  
