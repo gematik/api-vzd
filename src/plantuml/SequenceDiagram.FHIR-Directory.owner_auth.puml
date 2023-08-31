@@ -1,0 +1,35 @@
+@startuml SequenceDiagram.FHIR-Directory.owner_auth
+skinparam dpi 100
+skinparam WrapWidth 200
+skinparam monochrome true
+autonumber "<b>[00]"
+
+participant mc as "TI-Messenger-Client"
+participant sc as "Smartcard(HBA/SMC-B)"
+participant idp as "gematik IDP"
+box <size:16>VZD-FHIR-Directory</size> #WhiteSmoke
+participant auth as "Auth-Service"
+end box
+
+activate mc
+mc -> auth ++: GET /owner-authenticate 
+return HTTP 302 redirect to idp auth endpoint with (client_id, scope, ...)
+|||
+mc -> idp ++: GET redirect
+return encoded challenge_token & user_consent
+|||
+mc -> mc: check challenge_token signature
+mc -> mc: display user_consent and ask for permission
+mc -> sc ++: get private Key for AUTH certificate
+return private key 
+
+mc -> mc: sign challenge_token with private key from the smartcard
+mc -> mc: encrypt signed challenge_token with Puk_IDP_ENC provided by IDP
+|||
+mc -> idp ++: POST IDP /[authorization_endpoint] with encrypted & signed challenge_token
+return HTTP 302 redirect to VZD-FHIR Directory /signin-gematik-idp-dienst?code=(authorization_code)
+|||
+mc -> auth ++: GET VZD-FHIR Directory /signin-gematik-idp-dienst?code=(authorization_code)
+return owneraccess-token
+
+@enduml
