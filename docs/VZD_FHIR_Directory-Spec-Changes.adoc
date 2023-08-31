@@ -205,5 +205,11 @@ Tabelle: Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID
 1.2.276.0.76.4.295 (TIM-Hersteller und -Anbieter)
 |...||
 
-
 |===
+
+== Korrekturen
+*Es wird in gemSpec_VZD_FHIR_Directory Kapitel "4.2.3 Erzeugung und Bereitstellung der Föderationsliste" wie folgt angepasst* +
+ +
++++<s>ML-123677 - Maßnahmen gegen die Manipulation der Föderationsliste (VZD-FHIR-Directory, Sicherheitsgutachten)</s>+++ +
++++<s>Im Sicherheitsgutachten des VZD-FHIR-Directories sind geeignete Maßnahmen gegen die Manipulation der Föderationsliste beschrieben.<=</s>+++
+ +
