@@ -12,7 +12,7 @@
     }
   ],
   "url": "https://gematik.de/fhir/directory/StructureDefinition/EndpointDirectory",
-  "version": "0.10.1",
+  "version": "0.10.2",
   "name": "EndpointDirectory",
   "title": "Endpoint in gematik Directory",
   "status": "active",
