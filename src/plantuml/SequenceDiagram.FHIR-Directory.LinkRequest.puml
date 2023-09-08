@@ -50,7 +50,22 @@ group Suche aller Partner Ressourcen, die verlinkt werden können
      end
 end
 
-cl --> Nutzer:Anzeige aller eigenen und Partner Ressourcen \n(HealthcareService und PractitionerRole)
+group Lese alle vorhandenen Verlinkungsdaten
+  cl -> fa: getPersonInstitutionLinks {}
+  activate fa
+  fa -> fa: prüfe owner-accesstoken\n& Prüfe, dass eine der Ressourcen \neine eigene Ressource ist
+
+    alt accesstoken is valid
+      fa -> fa: Lesen der Verlinkungsdaten
+      fa --> cl: HTTP 200 OK\n(Result Body json)
+      
+     else owner-accesstoken is invalid
+      fa --> cl: HTTP 401
+      deactivate fa
+     end
+end
+
+cl --> Nutzer:Anzeige aller eigenen und Partner Ressourcen \n(HealthcareService und PractitionerRole) \nsowie vorhandene Verlinkungsdaten
 Nutzer -> Nutzer: Auswahl der zu zu verlinkenden Ressourcen
 Nutzer -> cl: Verlinkungsanfrage \nmit ausgewählten Ressourcen \n{HealthcareService, PractitionerRole}
 
