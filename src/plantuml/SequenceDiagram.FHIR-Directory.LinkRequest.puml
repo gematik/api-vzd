@@ -53,8 +53,7 @@ end
 group Lese alle vorhandenen Verlinkungsdaten
   cl -> fa: getPersonInstitutionLinks {}
   activate fa
-  fa -> fa: prüfe owner-accesstoken\n& Prüfe, dass eine der Ressourcen \neine eigene Ressource ist
-
+  fa -> fa: prüfe owner-accesstoken
     alt accesstoken is valid
       fa -> fa: Lesen der Verlinkungsdaten
       fa --> cl: HTTP 200 OK\n(Result Body json)
