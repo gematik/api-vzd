@@ -3,9 +3,17 @@ info:
   title: I_Directory_Administration
   description: REST Schnittstelle zur Pflege der Verzeichniseinträge.
               Über diese Schnittstelle können Verzeichniseinträge inklusive Zertifikaten erzeugt, aktualisiert und gelöscht werden. Die Administration von Fachdaten erfolgt über Schnittstelle I_Directory_Application_Maintenance und wird durch die Fachanwendungen durchgeführt. Lesender Zugriff auf die Fachdaten ist mit Operation getDirectoryEntries in vorliegender Schnittstelle möglich.
-  version: 1.11.1
+  version: 1.12.1
 
-  # Änderungen in Version 1.11.1
+  # Änderungen in Version 1.12.1 
+  #  - Merge von Versionen 1.12.0 und 1.11.1
+  #
+  # Änderungen in Version 1.12.0 
+  #  - Schema baseDirectoryEntry um Attribut providedBy erweitert. 
+  #    Damit wird die Zusammenführung von mehreren LDAP Einträgen in einer FHIR Organisation möglich.
+  #
+    # Änderungen in Version 1.11.1
+  #  - Schema baseDirectoryEntry um Attribut providedBy erweitert.
   #  - Operation read_Directory_Entry: Suchparameter für komLeData und kimData vereinfacht
   #
   # Änderungen in Version 1.11.0 
@@ -349,7 +357,7 @@ paths:
                   - professionOID
                   - mail
                   - komLeData
-                  - kimData                  
+                  - kimData    
           - Suche nach Vorhandensein oder leerem Inhalt eines Attributs des VZD Datensatzes mit dem Kode \00 in den Parametern
           
                   - givenName
@@ -572,8 +580,7 @@ paths:
           Für diesen Suchparameter kann ein Wildcard genutzt werden, z.B. 
             mz_smcb_za@dom2.kim.telematik-test*
         schema:
-          type: string  
-
+          type: string
         
       responses:
         200:
@@ -2071,6 +2078,28 @@ components:
           description: 'Wird beim Anlegen des Eintrags vom VZD aus dem Zertifikat übernommen (Feld registrationNumber der Extension Admission).
                     Falls der Basiseintrag (baseDirectoryEntry) ohne Zertifikat angelegt wird, kann in Operation add_Directory_Entry die telematikID angegeben werden.
             Damit ist der Verzeichniseintrag bereits über die telematikID im baseDirectoryEntry auffindbar. Diese telematikID muss mit der telematikID aus dem Zertifikatseintrag (userCertificate) übereinstimmen. Simmten die telematikIDs nicht überein, wird die Operation mit Fehlercode 422 abgelehnt' 
+        providedBy:
+          type: string
+          description: |
+           Erlaubt die Zusammenführung von mehreren LDAP Einträgen in einer FHIR Organisation.
+           In Attribut providedBy wird dazu die telematikID der übergeordneten Oragnisation eingetragen.
+           Wird in Attribut "providedBy" im LDAP VZD Eintrag eine TelematikID eingetragen, 
+           wird für den LDAP Eintrag im FHIR VZD ein HealthcareService unter der - mit der TelematikID -
+           referenzierten Organisation generiert.
+           Randbedingungen:
+            - Es wird nur eine Hierarchieebene unterstützt (providedBy vom referenzierten Datensatz
+              MUSS leer sein)
+            - Es können nur Organisationseinträge zusammengeführt/verlinkt werden (personalEntry=false)
+            - Das Attribut "providedBy" darf nur eine TelematikID enthalten.
+            - Der Client - der dieses Attribut setzt - MUSS auch für den referenzierten 
+              LDAP Datensatz als Holder eingetragen sein.
+            - Wenn Attribut providedBy gesetzt wurde, kann es nur zurückgesetzt 
+              (Inhalt auf leer gesetzt) werden. Eine Änderung auf einen anderen Wert 
+              wird nicht unterstützt.  
+            - Vor Löschung eines LDAP VZD Eintrags müssen alle Verlinkungen über Attribut "providedBy"
+              von anderen Datensätzen auf den zu löschenden Datensatz entfernt werden.  
+            Bei Nichteinhaltung der Randbedingungen wird die Schreiboperation (POST/PUT) mit
+            Fehler (HTTP Status 400) und entsprechendem Fehlertext beendet.
         specialization:
           maxItems: 100
           type: array
