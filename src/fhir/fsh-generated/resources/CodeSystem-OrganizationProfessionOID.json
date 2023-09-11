@@ -222,6 +222,10 @@
       "display": "Ernährungstherapeutische Praxis"
     },
     {
+      "code": "1.2.276.0.76.4.282",
+      "display": "DIGA-Hersteller und Anbieter"
+    },
+    {
       "code": "1.2.276.0.76.4.284",
       "display": "Betriebsstätte Weitere Kostenträger im Gesundheitswesen"
     },
@@ -232,9 +236,13 @@
     {
       "code": "1.2.276.0.76.4.286",
       "display": "KIM-Hersteller und -Anbieter"
+    },
+    {
+      "code": "1.2.276.0.76.4.295",
+      "display": "TIM-Hersteller und -Anbieter"
     }
   ],
   "publisher": "gematik GmbH",
   "caseSensitive": false,
-  "count": 56
+  "count": 58
 }
