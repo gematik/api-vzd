@@ -318,10 +318,11 @@ Die ERROR_REASON kann die folgenden Werte annehmen:
 Das minimal erlaubte Polling-Interval wird auf 3 Sekunden festlgelegt. Das VZD speichert den Zeitstempel der letzten Polling-Anfrage, sodass bei der nächsten Anfrage mit dem gleichen auth_req_id der letzte Zeitstempel abgerufen werden kann (z.B. in der gleichen Datenbanktabelle). Der Zeitunterschied des aktuellen Zeitstempel und den letzten Zeitstempel muss im Minimum 3 Sekunden betragen.
 | Bereitstellung einer neuen Redirect_uri | Aktuell liefert die vom VZD-FHIR Directory verwendete Redirect_uri (/signin-gematik-idp-dienst) bei Übergabe des Auth_code und des state einen owner-accesstoken zurück. Diese Rückgabe ist nicht notwendig, wenn der Authenticator die Redirect_uri direkt aufruft.    
 |=====
-=======
+
 
 
 == Support und Unterstützungsleistungen Produktivbetrieb TI-Messenger
+
 *Es wird in gemSpec_VZD Kapitel 4.6.1.2.3 wie folgt ergänzt* +
  +
 Es wird in gemSpec_VZD Kapitel 5. wie folgt ergänzt
