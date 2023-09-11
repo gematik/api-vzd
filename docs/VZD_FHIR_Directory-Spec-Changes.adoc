@@ -100,7 +100,7 @@ Optional und verpflichtend ab FHIR VZD 1.2: +
  +
 *A_18450-04 VZD, I_Directory_Administration, modify_Directory_Entry* +
  +
-*In Tabelle 26: Tab_VZD „modify_Directory_Entry” werden die Eingangsdaten aktualisiert, insbesondere "providedBy"* +
+In Tabelle 26: Tab_VZD „modify_Directory_Entry” werden die Eingangsdaten aktualisiert, insbesondere "providedBy" +
  +
  +
 *Es wird in gemSpec_VZD Kapitel 4.6.3 wie folgt aufgenommen* +
@@ -324,9 +324,8 @@ Das minimal erlaubte Polling-Interval wird auf 3 Sekunden festlgelegt. Das VZD s
 == Support und Unterstützungsleistungen Produktivbetrieb TI-Messenger
 
 
-*Es wird in gemSpec_VZD Kapitel 4.6.1.2.3 wie folgt ergänzt* +
- +
-Es wird in gemSpec_VZD Kapitel 5. wie folgt ergänzt
+
+*Es wird in gemSpec_VZD Kapitel 5. wie folgt ergänzt*
 
 Tabelle: Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID
 |===
