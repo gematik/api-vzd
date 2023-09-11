@@ -17,6 +17,8 @@ image:gematik_logo.svg[width=70%]
 
 toc::[]
 
+// https://polarion.int.gematik.de/polarion/#/project/Mainline_OPB1/wiki/Anlagendokumente%20P-Liste/C_11549_Anlage
+
 = Änderungen an VZD Spezifikationen 
 Dieses Dokument informiert über die Änderungen an Spezifikation gemSpec_VZD_FHIR_Directory und gemSpec_VZD, welche noch nicht auf dem gematik Fachportal veröffentlicht wurden.
 Vor der Veröffentlichung auf dem Fachportal erfolgen noch Reviews. Folge dieser Reviews können Änderungen bis zur finalen Veröffentlichung bedingen.
@@ -190,6 +192,7 @@ Siehe Kapitel 4.6.3 Zusammenführung mehrerer TelematikID´s zu einer Organisati
 
 |===
 
+
 == Anbieten eines Polling Endpunktes
 Wenn der Authenticator der gematik von Clients genutzt wird, um eine Authentifizierung auf Basis von Smartcards zu realisieren, dann ist es notwendig am Ende des Prozesses, die Kontrolle wieder an den Client zu übergeben und diesen mit den notwendigen Informationen für die weiteren Prozesschritte zu versorgen. Im folgenden werden die Anpassungen am Auth-Service des VZD-FHIR Directories beschrieben, die notwendig sind, um eine Anmeldung unter Verwendung des gematik Authenticators zu realsieren. 
 
@@ -315,3 +318,28 @@ Die ERROR_REASON kann die folgenden Werte annehmen:
 Das minimal erlaubte Polling-Interval wird auf 3 Sekunden festlgelegt. Das VZD speichert den Zeitstempel der letzten Polling-Anfrage, sodass bei der nächsten Anfrage mit dem gleichen auth_req_id der letzte Zeitstempel abgerufen werden kann (z.B. in der gleichen Datenbanktabelle). Der Zeitunterschied des aktuellen Zeitstempel und den letzten Zeitstempel muss im Minimum 3 Sekunden betragen.
 | Bereitstellung einer neuen Redirect_uri | Aktuell liefert die vom VZD-FHIR Directory verwendete Redirect_uri (/signin-gematik-idp-dienst) bei Übergabe des Auth_code und des state einen owner-accesstoken zurück. Diese Rückgabe ist nicht notwendig, wenn der Authenticator die Redirect_uri direkt aufruft.    
 |=====
+=======
+
+
+== Support und Unterstützungsleistungen Produktivbetrieb TI-Messenger
+*Es wird in gemSpec_VZD Kapitel 4.6.1.2.3 wie folgt ergänzt* +
+ +
+Es wird in gemSpec_VZD Kapitel 5. wie folgt ergänzt
+
+Tabelle: Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID
+|===
+|*Eintragstyp* |*Eintragstyp Bedeutung* |*ProfessionOID (ProfessionItem)*
+|...||
+|*8*|*TIM*|
+1.2.276.0.76.4.295 (TIM-Hersteller und -Anbieter)
+|...||
+
+|===
+
+== Korrekturen
+*Es wird in gemSpec_VZD_FHIR_Directory Kapitel "4.2.3 Erzeugung und Bereitstellung der Föderationsliste" wie folgt angepasst* +
+ +
++++<s>ML-123677 - Maßnahmen gegen die Manipulation der Föderationsliste (VZD-FHIR-Directory, Sicherheitsgutachten)</s>+++ +
++++<s>Im Sicherheitsgutachten des VZD-FHIR-Directories sind geeignete Maßnahmen gegen die Manipulation der Föderationsliste beschrieben.<=</s>+++
+ +
+
