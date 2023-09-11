@@ -35,7 +35,8 @@ image::gematik_logo.svg[gematik,float="right"]
 |1.0.0 |28.07.23 | |Initial document |gematik
 
 |1.0.1 |25.08.23 |Chap. 2.4 |added chapter for owner auth |gematik
-|1.0.2 |11.09.23 |Chap. 2.5 |added chapter "2.5. Authenticate using the gematik Authenticator"
+
+|1.0.2 |11.09.23 |Chap. 2.5 |added chapter "2.5. Authenticate using the gematik Authenticator" |gematik
 
 |===
 
