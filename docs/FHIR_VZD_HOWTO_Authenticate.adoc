@@ -18,7 +18,7 @@ image::gematik_logo.svg[gematik,float="right"]
 
 [width="100%",cols="50%,50%",options="header",]
 |===
-|Version: |1.0.1
+|Version: |1.0.2
 |Referencing: |gemILF_FHIR_VZD
 |===
 
@@ -35,6 +35,8 @@ image::gematik_logo.svg[gematik,float="right"]
 |1.0.0 |28.07.23 | |Initial document |gematik
 
 |1.0.1 |25.08.23 |Chap. 2.4 |added chapter for owner auth |gematik
+
+|1.0.2 |11.09.23 |Chap. 2.5 |added chapter "2.5. Authenticate using the gematik Authenticator" |gematik
 
 |===
 
@@ -327,6 +329,26 @@ CAUTION: The diagramm displays the most important interaction parts. For detaile
 ++++
 <p align="center">
   <img width="55%" src=../images/diagrams/SequenceDiagram.FHIR-Directory.owner_auth.svg>
+</p>
+++++
+====
+
+=== Authenticate using the gematik Authenticator
+The link:https://fachportal.gematik.de/hersteller-anbieter/komponenten-dienste/authenticator[gematik Authenticator] is a windows application that can be used to simplify the interaction with a connector, the card terminals and the users smartcards(SMC-B/HBA). The authenticator app can be started using a deeplink call (authenticator://) and the authenticator app takes over control. The authenticator offers 2 possibilities to interact with the caller:
+
+* calling the redirect_uri using the registered application for http calls
+* calling the redirect_uri directly using a HTTP get Request   
+
+The first option would require that the redirect_uri provided by the VZD-FHIR directory has to return application specific content that fits the callers needs. As the caller can be any application, this flow is not an option. 
+For the second option the caller needs information on the actual status of the authenticator authorization process.To fullfill this need the VZD-FHIR directory will provide an endpoint that can be used by clients to query the actual authorization process status. 
+The following sequence diagramm shows the process in detail. 
+
+.owner-authenticate with the gematik Authenticator
+[%collapsible%open]
+====
+++++
+<p align="center">
+  <img width="55%" src=../images/diagrams/SequenceDiagram.FHIR-Directory.owner_auth_authenticator.svg>
 </p>
 ++++
 ====

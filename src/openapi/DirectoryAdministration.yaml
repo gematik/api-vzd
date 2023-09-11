@@ -3,8 +3,19 @@ info:
   title: I_Directory_Administration
   description: REST Schnittstelle zur Pflege der Verzeichniseinträge.
               Über diese Schnittstelle können Verzeichniseinträge inklusive Zertifikaten erzeugt, aktualisiert und gelöscht werden. Die Administration von Fachdaten erfolgt über Schnittstelle I_Directory_Application_Maintenance und wird durch die Fachanwendungen durchgeführt. Lesender Zugriff auf die Fachdaten ist mit Operation getDirectoryEntries in vorliegender Schnittstelle möglich.
-  version: 1.11.0
+  version: 1.12.1
 
+  # Änderungen in Version 1.12.1 
+  #  - Merge von Versionen 1.12.0 und 1.11.1
+  #
+  # Änderungen in Version 1.12.0 
+  #  - Schema baseDirectoryEntry um Attribut providedBy erweitert. 
+  #    Damit wird die Zusammenführung von mehreren LDAP Einträgen in einer FHIR Organisation möglich.
+  #
+  # Änderungen in Version 1.11.1
+  #  - Schema baseDirectoryEntry um Attribut providedBy erweitert.
+  #  - Operation read_Directory_Entry: Suchparameter für komLeData und kimData vereinfacht
+  #
   # Änderungen in Version 1.11.0 
   #  - Schema FAD1 um kimData erweitert. Damit wird in read_Directory_Entry zusätzlich zu komLeData
   #    auch kimData im Response aufgenommen
@@ -345,6 +356,8 @@ paths:
                   - holder
                   - professionOID
                   - mail
+                  - komLeData
+                  - kimData    
           - Suche nach Vorhandensein oder leerem Inhalt eines Attributs des VZD Datensatzes mit dem Kode \00 in den Parametern
           
                   - givenName
@@ -540,50 +553,34 @@ paths:
           Selektiert alle Datensätze, deren Attribut FAD1.mail den angegebenen String in einem Wert des arry's enthält.
         schema:
           type: string  
-      - name: komLeData-mail
+      - name: komLeData
         in: query
         description: |
-          Erlaubt die Suche mit Hilfe des Attributs FAD1.komLeData.mail
+          Erlaubt die Suche mit Hilfe des Attributs FAD1.komLeData
           
-          Selektiert alle Datensätze, deren Attribut FAD1.komLeData.mail den angegebenen String in einem Wert des arry's enthält.
-          Bitte beachten: Dieser Suchparameter wird auf eine LDAP Wildcard Suche mit führendem * abgebildet und verlangsamt die Operation signifikant.
+          Selektiert alle Datensätze, deren Attribut FAD1.komLeData den angegebenen String in einem Wert des array's enthält.
+          komLeData enthält die "version" und "mail" durch Komma getrennt in einem array.
+          Beispiel: 1.0,mc_smcb_za@dom1.komle.telematik-test
+          Für diesen Suchparameter kann ein Wildcard genutzt werden.
         schema:
           type: string  
-      - name: komLeData-version
-        in: query
-        description: |
-          Erlaubt die Suche mit Hilfe des Attributs FAD1.komLeData.version
-          
-          Selektiert alle Datensätze, deren Attribut FAD1.komLeData.version den angegebenen String in einem Wert des arry's enthält.
-        schema:
-          type: string  
-      - name: kimData-mail
+      - name: kimData
         in: query
         description: |
           Erlaubt die Suche mit Hilfe des Attributs FAD1.kimData.mail
           
           Selektiert alle Datensätze, deren Attribut FAD1.kimData.mail den angegebenen String in einem Wert des arry's enthält.
+                    
+          Selektiert alle Datensätze, deren Attribut FAD1.kimData den angegebenen String in einem Wert des array's enthält.
+          komLeData enthält die "mail", "version" und "appTags" durch Komma getrennt in einem array.
+          Die appTags werden durch das Pipe Zeichen getrennt. 
+          Bitte beachten: Wenn das Pipe Zeichen im Suchstring genutzt wird muss die besondere
+          Bedeutung dieses Zeichens bei der LDAP Suche beachtet werden.
+          Beispiel: mz_smcb_za@dom2.kim.telematik-test,1.0,DALE-UV;Einsendung;V1.0|eEB;V1.0
+          Für diesen Suchparameter kann ein Wildcard genutzt werden, z.B. 
+            mz_smcb_za@dom2.kim.telematik-test*
         schema:
-          type: string  
-      - name: kimData-version
-        in: query
-        description: |
-          Erlaubt die Suche mit Hilfe des Attributs FAD1.kimData.version
-          
-          Selektiert alle Datensätze, deren Attribut FAD1.kimData.version den angegebenen String in einem Wert des arry's enthält.
-          Bitte beachten: Dieser Suchparameter wird auf eine LDAP Wildcard Suche mit führendem * abgebildet und verlangsamt die Operation signifikant.
-        schema:
-          type: string  
-      - name: kimData-appTags
-        in: query
-        description: |
-          Erlaubt die Suche mit Hilfe des Attributs FAD1.kimData.appTags
-          
-          Selektiert alle Datensätze, deren Attribut FAD1.kimData.appTags den angegebenen String in einem Wert des arry's enthält.
-          Bitte beachten: Dieser Suchparameter wird auf eine LDAP Wildcard Suche mit führendem * abgebildet und verlangsamt die Operation signifikant.
-        schema:
-          type: string  
-
+          type: string
         
       responses:
         200:
@@ -2081,6 +2078,28 @@ components:
           description: 'Wird beim Anlegen des Eintrags vom VZD aus dem Zertifikat übernommen (Feld registrationNumber der Extension Admission).
                     Falls der Basiseintrag (baseDirectoryEntry) ohne Zertifikat angelegt wird, kann in Operation add_Directory_Entry die telematikID angegeben werden.
             Damit ist der Verzeichniseintrag bereits über die telematikID im baseDirectoryEntry auffindbar. Diese telematikID muss mit der telematikID aus dem Zertifikatseintrag (userCertificate) übereinstimmen. Simmten die telematikIDs nicht überein, wird die Operation mit Fehlercode 422 abgelehnt' 
+        providedBy:
+          type: string
+          description: |
+           Erlaubt die Zusammenführung von mehreren LDAP Einträgen in einer FHIR Organisation.
+           In Attribut providedBy wird dazu die telematikID der übergeordneten Oragnisation eingetragen.
+           Wird in Attribut "providedBy" im LDAP VZD Eintrag eine TelematikID eingetragen, 
+           wird für den LDAP Eintrag im FHIR VZD ein HealthcareService unter der - mit der TelematikID -
+           referenzierten Organisation generiert.
+           Randbedingungen:
+            - Es wird nur eine Hierarchieebene unterstützt (providedBy vom referenzierten Datensatz
+              MUSS leer sein)
+            - Es können nur Organisationseinträge zusammengeführt/verlinkt werden (personalEntry=false)
+            - Das Attribut "providedBy" darf nur eine TelematikID enthalten.
+            - Der Client - der dieses Attribut setzt - MUSS auch für den referenzierten 
+              LDAP Datensatz als Holder eingetragen sein.
+            - Wenn Attribut providedBy gesetzt wurde, kann es nur zurückgesetzt 
+              (Inhalt auf leer gesetzt) werden. Eine Änderung auf einen anderen Wert 
+              wird nicht unterstützt.  
+            - Vor Löschung eines LDAP VZD Eintrags müssen alle Verlinkungen über Attribut "providedBy"
+              von anderen Datensätzen auf den zu löschenden Datensatz entfernt werden.  
+            Bei Nichteinhaltung der Randbedingungen wird die Schreiboperation (POST/PUT) mit
+            Fehler (HTTP Status 400) und entsprechendem Fehlertext beendet.
         specialization:
           maxItems: 100
           type: array
