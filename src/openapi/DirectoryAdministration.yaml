@@ -12,7 +12,7 @@ info:
   #  - Schema baseDirectoryEntry um Attribut providedBy erweitert. 
   #    Damit wird die Zusammenführung von mehreren LDAP Einträgen in einer FHIR Organisation möglich.
   #
-    # Änderungen in Version 1.11.1
+  # Änderungen in Version 1.11.1
   #  - Schema baseDirectoryEntry um Attribut providedBy erweitert.
   #  - Operation read_Directory_Entry: Suchparameter für komLeData und kimData vereinfacht
   #
