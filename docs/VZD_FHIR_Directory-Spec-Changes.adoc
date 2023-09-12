@@ -30,7 +30,7 @@ Vor der Veröffentlichung auf dem Fachportal erfolgen noch Reviews. Folge dieser
  
 *Es wird in gemSpec_VZD_FHIR_Directory Kapitel 4.2.3 wie folgt angepasst* +
 ... +
-Die Föderationsliste MUSS mit einer JWS gemäß RFC7797 signiert werden. Der zu verwendende Signatur-Algorithmus MUSS +++<del>+++*"ES256"*+++</del>+++ *in der Liste der zulässigen Algorithmen enthalten* sein. Dazu MUSS ein Signatur-Zertifikat der Komponenten-PKI der TI (C.FD.SIG) verwendet werden. Das Signatur-Zertifikat MUSS im Signatur-Header enthalten sein.Der Signatur-Header hat folgende Struktur:
+Die Föderationsliste MUSS mit einer JWS gemäß RFC7797 signiert werden. Der zu verwendende Signatur-Algorithmus MUSS +++<del>+++*"ES256"in der Liste der zulässigen Algorithmen enthalten*+++</del>+++ *"BP256R1"* sein. Dazu MUSS ein Signatur-Zertifikat der Komponenten-PKI der TI (C.FD.SIG) verwendet werden. Das Signatur-Zertifikat MUSS im Signatur-Header enthalten sein.Der Signatur-Header hat folgende Struktur:
 
 
 [source,subs="quotes"]
