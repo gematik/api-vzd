@@ -193,7 +193,12 @@ Siehe Kapitel 4.6.3 Zusammenführung mehrerer TelematikID´s zu einer Organisati
 |===
 
 
-== Anbieten eines Polling Endpunktes
+== TI-Messenger Authentifizierung mit dem gematik Authenticator - Anbieten eines Polling Endpunktes
+
+*Es wird in gemSpec_VZD_FHIR_Directory Kapitel 5.2 am Kapitelende wie folgt ergänzt* +
+
+*TI-Messenger Authentifizierung mit dem gematik Authenticator - Anbieten eines Polling Endpunktes* +
+
 Wenn der Authenticator der gematik von Clients genutzt wird, um eine Authentifizierung auf Basis von Smartcards zu realisieren, dann ist es notwendig am Ende des Prozesses, die Kontrolle wieder an den Client zu übergeben und diesen mit den notwendigen Informationen für die weiteren Prozesschritte zu versorgen. Im folgenden werden die Anpassungen am Auth-Service des VZD-FHIR Directories beschrieben, die notwendig sind, um eine Anmeldung unter Verwendung des gematik Authenticators zu realsieren. 
 
 Beim Anmeldevorgang verwendet der User eine Smartcard als Authentifizierungsmittel. Der Ablauf orientiert sich hierbei an den OIDC-Vorgaben zur link:https://openid.net/specs/openid-client-initiated-backchannel-authentication-core-1_0.html[Client initiated backchannel authentication]. Um die Kollisionen mit standard OAuth2 Grants zu vermeiden, definiert die gematik einen eigenen Grant urn:telematik:params:grant-type:decoupled als link:https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-08#section-6.3[Extension]. 
@@ -210,10 +215,10 @@ OIDC Konformität und Abweichungen werden im Anschluss an das Sequenzdiagramm im
 ++++
 ====
 
-*Notwendige Anpassungen/Neuerungen am VZD-FHIR Directory*
+*Der FHIR VZD muss für diese Authentifizierung folgende Funktionalitäten bereitstellen*
 [options="header"]
 |=====
-| Funktionalität | Anfoderung                                                                    
+| Funktionalität | Anforderung                                                                    
 | Bereitstellung des initalen authenticate Endpunkt am Auth-Service a| Das VZD-FHIR Directory muss einen /owner-authenticate-decoupled Endpunkt anbieten der POST Request mit dem übergebene grant_type urn:telematik:params:grant-type:decoupled akzeptiert. 
 
 .neuer owner Endpunkt
@@ -232,7 +237,7 @@ Erhält das VZD-FHIR Directory eine derartige Anfrage wird ein Autorisierungsauf
 
 * auth_reg_id
 * state
-* owner-accesstoken(in diesem Moment noch unbefüllt)
+* owner-accesstoken (in diesem Moment noch unbefüllt)
 * code_challenge
 
 erstellt und es werden folgende Daten an den Client im Response zurück geliefert:
@@ -274,7 +279,8 @@ grant_type=urn%3Atelematik%3Aparams%3Agrant-type%3Adecoupled
 auth_req_id=bspuw6ea-scst-u5hn-p3nt-37khzwY4g
 ----
 ==== 
-Es wird geprüft, ob für die auth_req_id noch gültig ist und bereits ein owner-accesstoken vorliegt:
+Es wird geprüft, ob für die auth_req_id noch gültig ist und bereits ein owner-accesstoken vorliegt: +
+ +
 a) Es liegt ein passendes Token vor:
 Dann antwortet der Auth-Service in seinem Response mit dem entsprechenden owner-accesstoken:
 
