@@ -60,7 +60,7 @@ Optional und verpflichtend ab FHIR VZD 1.2: +
 
 - Prüfung des id_token Signatur-Zertifikats (oder sein Hash) gegen das bei der Beantragung der Credentials für die Schnittstelle I_VZD_TIM_Provider_Services übergebene Signatur-Zertifikat. 
 *	OCSP Prüfung des id_token Signatur-Zertifikats
-*	Prüfung Algorithmus:  "alg": +++<del>+++*"ES256"*+++</del>+++ *MUSS in der Liste der zulässigen Algorithmen enthalten sein*
+*	Prüfung Algorithmus:  "alg": +++<del>+++*"ES256"*+++</del>+++ *"BP256R1"*
 *	Prüfung des Signaturzertifikats gegen das X.509-Root-CA Zertifikat der TI.
 
 -	Prüfung der zeitlichen Gültigkeit des id_token für den Zugriff auf den VZD-FHIR-Directory: Das VZD-FHIR-Directory muss sicherstellen, dass der Zeitraum der Verwendung des Tokens zwischen den im Token mitgelieferten Werten der Attribute iat und exp liegt.
@@ -89,7 +89,7 @@ Optional und verpflichtend ab FHIR VZD 1.2: +
 *	Prüfung Audience "aud" aus dem Token (muss der /tim-provider-services Schnittstelle entsprechen, z.B. https://fhir-directory.vzd.ti-dienste.de/tim-provider-services)
 *	Hinweis: Als unerwartete personenbezogenes Attribute gelten gemäß Tabelle: [gemSpec_IDP_FD#TAB_IDP_DIENST_0005] die Claims given_name, family_name, und organizationName
 -	Sicherstellung der korrekten Signatur des Tokens gemäß RFC7515:
-*	Prüfung Algorithmus:  "alg": +++<del>+++*"ES256"*+++</del>+++ *MUSS in der Liste der zulässigen Algorithmen enthalten sein*
+*	Prüfung Algorithmus:  "alg": +++<del>+++*"ES256"*+++</del>+++ *"BP256R1"*
 
 <=
 
