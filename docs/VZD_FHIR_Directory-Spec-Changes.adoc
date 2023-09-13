@@ -179,12 +179,17 @@ Wenn der übergeordnete LDAP Datensatz über das "active" Attribut deaktiviert w
 
 ... 
  +
-Tabelle 34: Tab_VZD_Datenbeschreibung 
+Tabelle 3: Tab_VZD_Datenbeschreibung 
 
 
 |===
 |*LDAP-Directory Attribut* |*Pflichtfeld?* |*Erläuterung*
 |...||
+|userCertificate.active|obligatorisch|
+Wird vom VZD eingetragen. +
+Wert == TRUE, wenn das userCertificate gemäß OCSP gültig ist (OCSP Response Status "good"), 
+Wert == FALSE bei Zertifikaten von noch nicht freigeschalteten Karten (OCSP Response Status "unknown"). +
+Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in die flache Liste übernommen.
 |providedBy|optional|
 Zusammenhängende Einträge können über das Attribut providedBy gekennzeichnet werden. 
 Siehe Kapitel 4.6.3 Zusammenführung mehrerer TelematikID´s zu einer Organisation
@@ -205,8 +210,8 @@ Beim Anmeldevorgang verwendet der User eine Smartcard als Authentifizierungsmitt
 
 Der Standard kann nicht zu 100% umgesetzt werden, da hierfür ebenfalls noch eine Anpassung des gematik Authenticators und des IDP der gematik notwendig sind.Als Übergangslösung wird der Client den Aufruf des Authenticators übernehmen und das VZD-FHIR Directory einen Endpunkt bereitstellen über den der Status des Authentifizierungsvorgangs abgefragt werden kann.
 OIDC Konformität und Abweichungen werden im Anschluss an das Sequenzdiagramm im Rahmen der Erläutertung der einzelnen Schritte hervorgehoben.
-.owner-authenticate with the gematik Authenticator
-[%collapsible%open]
+// .owner-authenticate with the gematik Authenticator
+// [%collapsible%open]
 ====
 ++++
 <p align="center">
@@ -324,6 +329,180 @@ Die ERROR_REASON kann die folgenden Werte annehmen:
 Das minimal erlaubte Polling-Interval wird auf 3 Sekunden festlgelegt. Das VZD speichert den Zeitstempel der letzten Polling-Anfrage, sodass bei der nächsten Anfrage mit dem gleichen auth_req_id der letzte Zeitstempel abgerufen werden kann (z.B. in der gleichen Datenbanktabelle). Der Zeitunterschied des aktuellen Zeitstempel und den letzten Zeitstempel muss im Minimum 3 Sekunden betragen.
 | Bereitstellung einer neuen Redirect_uri | Aktuell liefert die vom VZD-FHIR Directory verwendete Redirect_uri (/signin-gematik-idp-dienst) bei Übergabe des Auth_code und des state einen owner-accesstoken zurück. Diese Rückgabe ist nicht notwendig, wenn der Authenticator die Redirect_uri direkt aufruft.    
 |=====
+
+
+
+== Verlinkung von Personen und Organisationen
+
+Es wird in gemSpec_VZD_FHIR_Directory Kapitel 4.1.4 wie folgt ergänzt4.1.4 Verlinkung von Personen und Organisationen in FHIRIm FHIR VZD kann die Zugehörigkeit von Personen (Practitioner) zu Organisationen (Organization) hinterlegt werden. Das Eintragen dieser Verlinkung erfolgt im beidseitigen Einverständnis zwischen Organisation und Leistungserbringern. +
+Die Verlinkungsanfragen und Bestätigungen werden nicht in FHIR Daten abgelegt, sondern separat abgelegt. Erst mit Erteilung des beidseitigen Einverständnisses wird die Verlinkung in die FHIR Daten eingetragen. +
+Für das Eintragen der Verlinkungsdaten muss sich der Nutzer authentisieren. Die Authentisierung erfolgt je Rolle über folgende Authentisierungstoken.
+
+* Leistungserbringer 
+** Ein Leistungserbringer authentisiert sich über das Owner-Authenticate-Verfahren (mit Gematik-IDP). 
+** Dabei erhält dieser einen Owner-Authenticate-Token, welcher an der administrativen Schnittstelle genutzt werden kann. 
+
+* Verantwortlicher einer Institution (Organisation) 
+** Der Verantwortliche authentisiert sich über das Owner-Authenticate-Verfahren (vereinfachtes Verfahren HBA oder Gematik IDP-Verfahren). 
+** Dabei erhält dieser einen Owner-Authenticate-Token, welcher an der administrativen Schnittstelle genutzt werden kann. 
+
+* Kartenherausgeber (Holder) 
+** Ein Kartenherausgeber authentisiert sich über die neue Schnittstelle Holder-Authenticate.
+** Hierzu verwendet er den bereits bekannten Keycloak, um sich ein entsprechenden Keycloak-IdToken per Client-Secret-Verfahren zu holen. 
+** Im Anschluss tauscht er diesen Token gegen einen Holder-AccessToken aus, welcher an der administrativen Schnittstelle genutzt werden kann.
+
+*Akzeptanzkriterien* +
+ +
+
+*ML-143700 - VZD-FHIR-Directory - Sichtbare Verbindung zwischen Personen und Organisationen* +
+Für FHIR VZD Nutzer muss die Zugehörigkeit von Personen (Practitioner) zu Organisationen (Organization) sichtbar sein. Die Zugehörigkeit darf erst nach beidseitiger Bestätigung (von Person und Organisation) sichtbar sein. <= +
+ +
+
+*ML-143701 - VZD-FHIR-Directory - Genehmigungspflichtige Verbindung zwischen Personen und Organisationen* +
+Die Verbindung zwischen Personen und Organisationen muss beidseitig von den verlinkten Personen und Organisationen bestätigt werden. <= +
+ +
+
+*ML-143703 - VZD-FHIR-Directory - Dokumentation der Verlinkungs-Genehmigungen zwischen Personen und Organisationen* +
+Die Genehmigungen, Ablehnungen und Löschungen der Verbindung zwischen Personen und Organisationen müssen dokumentiert werden und einsehbar sein. <= +
+ +
+*ML-143702 - VZD-FHIR-Directory - Widerruf der Verbindung zwischen Personen und Organisationen* +
+Die Widerrufung der Verbindung zwischen Personen und Organisationen muss einseitig möglich sein +
+
+* durch den verlinkten Leistungserbringer,
+* als Verantwortlicher einer verlinkten Institution und
+* als Kartenherausgeber (der Organisation oder des Practitioners). <= +
+
+
+*ML-143800 - VZD-FHIR-Directory - Authentisierung für Verlinkung zwischen Personen und Organisationen* +
+Der FHIR VZD muss die Nutzer vor dem Eintragen von Verlinkungsdaten entsprechend ihrer Nutzergruppe authentisieren. Folgende Nutzergruppen müssen berücksichtigt werden +
+
+* Leistungserbringer
+* Verantwortlicher eine Institution (Organisation)
+* Kartenherausgeber (Holder) <= +
+
+
+*ML-143878 - VZD-FHIR-Directory - Verbieten von Ressoucen-Verlinkungen ohne Verknüpfungsauftrag* +
+Der FHIR VZD muss das direkte Eintragen der Verbindung zwischen Personen und Organisationen über die FHIR VZD Owner Schnittstelle verhindern. Das Eintragen dieser Verbindung ist nur im beidseitiges Einverständnis zwischen Organisation und Leistungserbringern erlaubt. <= +
+ +
+*Es wird in gemSpec_VZD_FHIR_Directory Kapitel 5 wie folgt ergänzt:* +
+ +
+*5.5 Erstellen einer Verlinkungsanfrage* +
+ +
+*AF_10208 - FHIR-Directory - Erstellen einer Verlinkungsanfrage* +
+|===
+|*Attribute* |*Bemerkung* 
+|Beschreibung|
+Der authentisierte Institutionsverantwortliche oder Leistungserbringer erstellt eine Verbindungsanfrage für seine Organisation bzw. Practitioner. In der Anfrage vermerkt er mit welchen HealthcareService bzw.PractitionerRole sein FHIR VZD Datensatz verbunden werden sollen. Die Bestätigung der Verlinkung erfolgt beidseitig. Die Antragsteller stimmt bereits mit dem Verlinkungsantrag zu.
+|Vorbedingung|
+Die Institution und der Leistungserbringer sind bereits im FHIR VZD eingetragen. Der Nutzer ist authentisiert.
+|Nachbedingung|
+Die Verlinkungsanfrage wurde erfasst. Die Verlinkung ist noch nicht im FHIR VZD sichtbar.
+|===
+
+// [%collapsible%open]
+====
+++++
+<p align="center">
+  <img width="55%" src=../images/diagrams/SequenceDiagram.FHIR-Directory.LinkRequest.svg>
+</p>
+++++
+====
+
+_Abbildung: Sequence diagram - Erstellen einer Verlinkungsanfrage_ <=
+
+*Akzeptanzkriterien für den Anwendungsfall AF_10208 FHIR-Directory - Erstellen einer Verlinkungsanfrage* +
+ +
+*ML-143802 - Erstellen einer Verlinkungsanfrage* +
+Der FHIR VZD muss für Verlinkungsanfragen sicherstellen: 
+
+* Nur authentisierte Nutzer dürfen Verlinkungsanfragen für ihre FHIR VZD Einträge stellen.
+* Die Verlinkungsanfragen werden gespeichert und sind noch nicht in den normalen FHIR VZD Daten sichtbar. <= +
+
+
+*5.6 Bestätigen einer Verlinkungsanfrage* +
+ +
+*AF_10207 FHIR-Directory - Bestätigen einer Verlinkungsanfrage* +
+|===
+|*Attribute* |*Bemerkung* 
+|Beschreibung|
+Der authentisierte Institutionsverantwortliche oder Leistungserbringer bestätigt eine Verbindungsanfrage für seine Organisation bzw. Practitioner. +
+Die Bestätigung der Verlinkung erfolgt beidseitig. Die Antragsteller stimmt bereits mit dem Verlinkungsantrag zu.
+|Vorbedingung|
+Die Institution und der Leistungserbringer sind bereits im FHIR VZD eingetragen. +
+Der Nutzer ist authentisiert.
+|Nachbedingung|
+Die Verlinkungsanfrage wurde bestätigt. +
+Die Verlinkungsdaten wurden aktualisiert. +
+Die Verlinkung ist im FHIR VZD sichtbar.
+|===
+
+// [%collapsible%open]
+====
+++++
+<p align="center">
+  <img width="55%" src=../images/diagrams/SequenceDiagram.FHIR-Directory.LinkApproval.svg>
+</p>
+++++
+====
+
+_Abbildung: Sequence diagram - Bestätigen einer Verlinkungsanfrage_ <=
+
+*Akzeptanzkriterien für den Anwendungsfall AF_10207 FHIR-Directory - Bestätigung einer Verlinkungsanfrage* +
+ +
+*ML-143808 - Bestätigung einer Verlinkungsanfrage* +
+Der FHIR VZD muss für die Bestätigung von Verlinkungsanfragen sicherstellen: 
+
+* Nur authentisierte Nutzer dürfen offene Verlinkungsanfragen für ihre FHIR VZD Einträge bestätigen.
+* Die Verlinkungsbestätigungen werden in den Verlinkungsdaten gespeichert.
+* In den FHIR VZD Daten wurde die Verlinkung ergänzt. <=
+
+
+*ML-143872 - Ablehnung einer Verlinkungsanfrage* +
+Der FHIR VZD muss die Ablehnung von Verlinkungsanfragen erlauben: 
+
+* Nur authentisierte Nutzer dürfen offene Verlinkungsanfragen für ihre FHIR VZD Einträge ablehnen/zurückziehen (beide beteiligten Seiten).
+* Die Verlinkungsablehnungen werden in den Verlinkungsdaten gespeichert.
+* In den FHIR VZD Daten wurde die Verlinkung nicht eingetragen. <= +
+
+
+*5.7 Löschen einer Verlinkung* +
+ +
+*AF_10209 FHIR-Directory - Löschen einer Verlinkung* +
+|===
+|*Attribute* |*Bemerkung* 
+|Beschreibung|
+Der authentisierte Institutionsverantwortliche, Leistungserbringer oder Kartenherausgeber löscht eine Verlinkung für seine Organisation bzw. Practitioner bzw. seinen Zuständigkeitsbereich  (Kartenherausgeber). +
+Die Löschung der Verlinkung erfolgt einseitig und kann von jeder verlinkten Partei oder dem zuständigen Kartenherausgeber erfolgen.
+|Vorbedingung|
+Die Institution und der Leistungserbringer sind im FHIR VZD verlinkt. +
+Der Nutzer ist authentisiert.
+|Nachbedingung|
+Die Verlinkung wurde gelöscht. +
+Die Verlinkungsdaten wurden aktualisiert. +
+Die Verlinkung ist im FHIR VZD nicht mehr sichtbar.
+|===
+
+// [%collapsible%open]
+====
+++++
+<p align="center">
+  <img width="55%" src=../images/diagrams/SequenceDiagram.FHIR-Directory.LinkRemoval.svg>
+</p>
+++++
+====
+
+_Abbildung: Sequence diagram - Löschen einer Verlinkung_ <=
+
+*Akzeptanzkriterien für den Anwendungsfall AF_10209 FHIR-Directory - Löschen einer Verlinkung* +
+ +
+*ML-143811 - Löschen einer Verlinkung* +
+Der FHIR VZD muss für die Löschung von Verlinkungen sicherstellen: 
+
+* Nur authentisierte Nutzer dürfen Verlinkung für ihre FHIR VZD Einträge bzw. für ihren Zuständigkeitsbereich löschen.
+* Die Löschung der Verlinkung wird in den Verlinkungsdaten gespeichert.
+* In den FHIR VZD Daten wurde die Verlinkung gelöscht. <=
+
+
 
 
 
