@@ -3,8 +3,11 @@ info:
   title: I_Directory_Administration
   description: REST Schnittstelle zur Pflege der Verzeichniseinträge.
               Über diese Schnittstelle können Verzeichniseinträge inklusive Zertifikaten erzeugt, aktualisiert und gelöscht werden. Die Administration von Fachdaten erfolgt über Schnittstelle I_Directory_Application_Maintenance und wird durch die Fachanwendungen durchgeführt. Lesender Zugriff auf die Fachdaten ist mit Operation getDirectoryEntries in vorliegender Schnittstelle möglich.
-  version: 1.12.1
+  version: 1.12.2
 
+  # Änderungen in Version 1.12.2 
+  #  - Operation read_Directory_Entry: providedBy als Suchparameter aufgenommen
+  #
   # Änderungen in Version 1.12.1 
   #  - Merge von Versionen 1.12.0 und 1.11.1
   #
@@ -351,6 +354,7 @@ paths:
                   - organization
                   - otherName
                   - telematikID
+                  - providedBy
                   - specialization
                   - domainID
                   - holder
@@ -379,6 +383,7 @@ paths:
                   - changeDateTimeFrom
                   - changeDateTimeTo
                   - mail
+                  - providedBy
             Diese Suche findet sowohl Datensätze mit nicht vorhandenem Attribut wie auch vorhandenem aber leerem Attribut.
             Der Suchparameter darf nur den Kode \00 enthalten, keine weiteren Zeichen.
             Alle Filterparameter einer Leseoperationen werden mit einem UND (&) verknüpft.
@@ -459,6 +464,13 @@ paths:
         in: query
         description: Erlaubt die Suche nach einem Substring am Anfang der telematikID (die telematikID in den Basisdaten).
                       Entspricht der LDAP Filters Substring Assertion vom Typ "subInitial Component".
+        schema:
+          type: string  
+      - name: providedBy
+        in: query
+        description: |
+                    Erlaubt die Suche mit Hilfe des Attributs providedBy 
+                    (die telematikID der übergeordneten Organisation).
         schema:
           type: string  
       - name: specialization
