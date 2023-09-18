@@ -1,0 +1,86 @@
+= FHIR VZD implementation guide - Data Model
+:source-highlighter: rouge
+:icons:
+:title-page:
+:imagesdir: /images/
+ifdef::env-github[]
+:toc: preamble
+endif::[]
+ifndef::env-github[]
+:toc: left
+endif::[]
+:toclevels: 3
+:toc-title: Table of Contents
+:sectnums:
+
+
+image::gematik_logo.svg[gematik,float="right"]
+
+[width="100%",cols="50%,50%",options="header",]
+|===
+|Version: |0.0.1
+|Referencing: |gemILF_VZD_FHIR_Directory
+|===
+
+[big]*Document history*
+
+[width="100%",cols="11%,11%,7%,58%,13%",options="header",]
+|===
+|*Version* +
+ |*Stand* +
+ |*Doc./ Chap./ Page* +
+ |*Change reason, special instructions* +
+ |*Editing* +
+
+|0.0.1 |28.07.23 | |Initial document |gematik
+|===
+
+== Classification of the document
+=== Objective
+This document describes how the interfaces of the FHIR directory service can be implemented and used on the client side.
+
+=== Target group
+
+The document is aimed at software developers who are involved in implementing a client of the FHIR directory service.
+
+=== Scope
+
+*Intellectual property/patent notice*
+
+_The following specification was created by gematik solely from a technical point of view. In individual cases, it cannot be ruled out that the implementation of the specification will interfere with the technical property rights of third parties. It is solely up to the supplier or manufacturer to take suitable measures to ensure that the products and/or services offered by him on the basis of the specification do not infringe third-party property rights and, if necessary, to obtain the necessary permits/licenses from the property right holders concerned. In this respect, gematik GmbH assumes no liability whatsoever._
+
+
+== Directory of people
+This part of the directory contains information about persons. +
+ +
+*Technical illustration - Directory of people*
+//[%collapsible%open]
+====
+++++
+<p align="center">
+  <img width="55%" src=../images/diagrams/ClassDiagram.PractitionerDirectory.svg>
+</p>
+++++
+====
+https://simplifier.net/vzd-fhir-directory/practitionerdirectory[Practitioner-Ressource]
+
+[width="100%",cols="10%,13%,7%,20%,5%,5%,5%,5%",options="header",]
+|===
+|*Attributes* +
+ |*Value* +
+ |*Cardinality* +
+ |*Remark* +
+ |*Sync from LDAP-VZD* +
+ |*Changable by owner* +
+ |*Mandatory field LDAPSync* +
+ |*Mandatory field for owners* +
+
+|identifier |Telematik-ID |1..1 |According FHIR Profil https://simplifier.net/packages/de.basisprofil.r4/1.3.2/files/564537[Identifier-Telematik-Id] |Yes|No|x|-
+|identifier |LDAP UID |1..1 |The LDAP UID of the data record is synchronized from the LDAP VZD. |Yes|No|x|-
+
+
+|===
+
+
+
+
