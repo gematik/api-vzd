@@ -12,6 +12,7 @@ info:
   # Änderungen in Version 1.4.1 
   #  - Operation appTags: Return Type definiert
   #  - Operation read_Directory_Entry: Suchparameter für komLeData und kimData vereinfacht
+  #  - Beschreibung von Attribut noVzdMailEntry in Kommentaren verbessert
   # 
   # Änderungen in Version 1.4.0 
   #  - Operation appTags ergänzt
@@ -1105,12 +1106,10 @@ components:
                   type: boolean
                   default: false
                   description: |
-                    Wenn "noVzdMailEntry == true" dann werden durch den VZD die "mail" und "komLeData"
-                    Attribute nicht befüllt oder im Fall von PUT werden vorhandene "mail" und
-                    "komLeData" Attribute gelöscht. Nach Ausführung der Operation ist in diesem Fall nur
-                    kimData gefüllt und die "mail" und "komLeData" Attribute sind leer.
-                    Dieses neue Attribut soll client-seitig nur vom Basis Consumer unterstützt werden.
-
+                    Wenn "noVzdMailEntry == true" dann wird durch den VZD das "komLeData"
+                    Attribut nicht mit dieser Mail-Adresse befüllt.
+                    "komLeData" enthält nur die Mail-Adressen, bei denen "noVzdMailEntry == false"
+                    gesetzt bzw. nicht angegeben wurde.
             description: |
               Liste von KIM-Adressen mit der zugehörigen KIM-Version und Anwendungskennzeichen. 
               Für jede Mail Adresse darf nur einen Element in der Liste `komLeData` existieren. 
