@@ -62,7 +62,9 @@ This part of the directory contains information about persons. +
 </p>
 ++++
 ====
-https://simplifier.net/vzd-fhir-directory/practitionerdirectory[Practitioner-Ressource]
+
+
+https://simplifier.net/vzd-fhir-directory/practitionerdirectory[Practitioner-Resource]
 
 [width="100%",cols="10%,13%,7%,20%,5%,5%",options="header",]
 |===
@@ -72,7 +74,6 @@ https://simplifier.net/vzd-fhir-directory/practitionerdirectory[Practitioner-Res
  |*Remark* +
  |*Sync from LDAP-VZD* +
  |*Changable by owner* +
-
 
 |identifier 
 |Telematik-ID 
@@ -151,11 +152,10 @@ https://simplifier.net/vzd-fhir-directory/practitionerdirectory[Practitioner-Res
 |No
 |No
 
-
-
 |===
 
-https://simplifier.net/vzd-fhir-directory/practitionerroledirectory[PractitionerRole-Ressource]
+
+https://simplifier.net/vzd-fhir-directory/practitionerroledirectory[PractitionerRole-Resource]
 [width="100%",cols="10%,13%,7%,20%,5%,5%,options="header",]
 |===
 |*Attributes* +
@@ -165,6 +165,21 @@ https://simplifier.net/vzd-fhir-directory/practitionerroledirectory[Practitioner
  |*Sync from LDAP-VZD* +
  |*Changable by owner* +
 
+|identifier 
+|LDAP UID 
+|1..1 
+|The LDAP UID of the data record is taken from the LDAP VZD. +
+ The owner cannot add any further identifiers with the ldapUid system 
+|Yes
+|No
+
+|identifier 
+|Individual identifier 
+|0..* 
+|Owners can optionally add additional individual identifiers. +
+ The owner is not allowed to add any identifier with the TelematikId or ldapUid system. 
+|No
+|Yes
 
 |practitioner
 |Reference to Practitioner resource
@@ -187,7 +202,144 @@ https://simplifier.net/vzd-fhir-directory/practitionerroledirectory[Practitioner
 |No (TIM-address)
 |No
 
+|meta.tag
+|Origin
+|1..1
+|
+|No
+|No (Must be set to "owner" for owner resources)
 
+|meta.security
+|OwnerId
+|0..*
+|OwnerId of the owner. Is set automatically by the system based on the Telematics ID of the owner token.
+|No
+|No
+
+|meta.security
+|Holder
+|0..*
+|Holder attributes of the card issuer
+|Yes
+|No
 
 |===
+
+
+https://simplifier.net/vzd-fhir-directory/locationdirectory[Location-Resource]
+[width="100%",cols="10%,13%,7%,20%,5%,5%,options="header",]
+|===
+|*Attributes* +
+ |*Value* +
+ |*Cardinality* +
+ |*Remark* +
+ |*Sync from LDAP-VZD* +
+ |*Changable by owner* +
+
+|identifier 
+|LDAP UID 
+|1..1 
+|The LDAP UID of the data record is taken from the LDAP VZD. +
+ Can neither be created nor changed by the owner. 
+|Yes
+|No
+
+|address 
+|Adress 
+|0..1 
+|The exact structure of the address can be found in the link:LDAP2FHIR_Sync.adoc[LDAP sync mapping]. 
+|Yes
+|No
+
+|meta.tag
+|Origin
+|1..1
+|Is set to "ldap" for all synchronized addresses from LDAP.
+|No
+|No
+
+|===
+
+
+https://simplifier.net/vzd-fhir-directory/endpointdirectory[Endpoint-Resource]
+[width="100%",cols="10%,13%,7%,20%,5%,5%,options="header",]
+|===
+|*Attributes* +
+ |*Value* +
+ |*Cardinality* +
+ |*Remark* +
+ |*Sync from LDAP-VZD* +
+ |*Changable by owner* +
+
+|identifier 
+|LDAP UID 
+|1..1 
+|Only applies to KIM address mapping endpoints: +
+ The LDAP UID of the data record is taken from the LDAP VZD. +
+ The owner cannot add any further identifiers with the ldapUid system 
+|Yes
+|No
+
+|identifier 
+|Individual identifier 
+|0..* 
+|Owners can optionally add additional individual identifiers. +
+ The owner is not allowed to add any identifier with the TelematikId or ldapUid system. 
+|No
+|Yes
+
+|connectionType
+|Type of the endpoint
+|1..1
+| Values according to https://simplifier.net/vzd-fhir-directory/endpointdirectoryconnectiontype[EndpointConnectionType]
+|No
+|Yes
+
+|status
+|state
+|1..1
+|Endpoint status flag. Set by the owner to control the visibility of the endpoint. +
+ Possible values: +
+ active \| suspended \| error \| off \| entered-in-error \| test
+|No
+|Yes
+
+|name
+|name of the endpoint
+|1..1
+|Name assigned by the owner. 
+|No
+|Yes
+
+|address
+|address (e.g. MX-ID, KIM mail address)
+|1..1
+|Address of the endpoint in URL notation. 
+|No
+|Yes
+
+|payloadType
+|Type of use
+|1..*
+|For which processes the address can be used. +
+ According to https://simplifier.net/vzd-fhir-directory/endpointpayloadtypevs[EndpointPlayloadTypeVS]. 
+|No
+|Yes
+
+|meta.tag
+|Origin
+|1..1
+|
+|No
+|No (Must be set to "owner" for owner resources)
+
+|meta.security
+|OwnerId
+|0..*
+|OwnerId of the owner. Is set automatically by the system based on the Telematics ID of the owner token.
+|No
+|No
+
+|===
+
 
