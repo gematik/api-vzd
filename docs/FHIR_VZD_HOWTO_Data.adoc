@@ -263,7 +263,7 @@ Example of a https://github.com/gematik/api-vzd/blob/ad0cc6e7c59842de4c2457f26fb
 |No
 
 |===
-Simplifier: https://simplifier.net/vzd-fhir-directory/locationdirectory[Location-Resource]
+Simplifier: https://simplifier.net/vzd-fhir-directory/locationdirectory[Location-Resource] +
 Example of a https://github.com/gematik/api-vzd/blob/ad0cc6e7c59842de4c2457f26fbecc1645ac0605/samples/FHIRseach/QueryPractitionerRole.adoc?plain=1#L10967[Location resource] +
  +
 
@@ -390,71 +390,52 @@ This part of the directory contains information about organizations. +
 |Yes
 |No
 
+|identifier 
+|DomainID 
+|0..* 
+|Sector specific usage. Name and value of this identifier depends from the sector.
+|Yes
+|No
+
 |name 
-|Name of the Practitioner  
-|1..* 
-|Name of the Practitioner 
+|Name of the Organization  
+|0..* 
+|Name is synchronized from LDAP VZD.
 |Yes
 |No
 
-|qualification.code 
-|specialization 
+|type 
+|Organization type 
 |0..* 
-|According to FHIR profile https://simplifier.net/vzd-fhir-directory/practitionerqualificationvs[PractitionerQualificationVS]
+|According to FHIR profile https://simplifier.net/vzd-fhir-directory/organizationprofessionoid[OrganiszationProfessionOID] +
+ Mandatory if organization is not a provider
 |Yes
 |No
 
-|qualification.code 
-|professional group 
+|type 
+|Provider type 
 |0..* 
-|According to https://simplifier.net/vzd-fhir-directory/practitionerprofessionoid[ProfessionOid]
+|According to FHIR profile https://simplifier.net/vzd-fhir-directory/organizationprovidertype[OrganizationProviderType] +
+ Mandatory if it is not an Organization.
 |Yes
 |No
 
 |active 
 |State of the resource 
 |1..1 
-|Indicates whether the person is active or not. Inactive resources may not be found in the /search interface.
+|Indicates whether the organization is active or not. Inactive resources may not be found in the /search interface.
 |Yes
 |No
 
-|telecom 
-|Practitioner contact details
-|0..* 
-|
+|meta.tag
+|Origin
+|1..1
+|If the resource was synchronized from LDAP, meta.tag is automatically set to "ldap".
 |No
-|No
-
-|gender 
-|Practitioner gender
-|0..1 
-|
-|No
-|No
-
-|birthDate 
-|Practitioner birthDate
-|0..1 
-|
-|No
-|No
-
-|photo 
-|Practitioner photo
-|0..* 
-|
-|No
-|No
-
-|communication 
-|Supported languages
-|0..* 
-|
-|No
-|No
+|No (Must be set to "owner" for owner resources)
 
 |===
-Simplifier: https://simplifier.net/vzd-fhir-directory/practitionerdirectory[Organization-Resource] +
+Simplifier: https://simplifier.net/vzd-fhir-directory/organizationdirectory[Organization-Resource] +
 Example of a https://github.com/gematik/api-vzd/blob/122ef63f9e76689261c9195e09cd7312b65ee71c/samples/FHIRseach/QueryHealthcareService.adoc?plain=1#L13799[Organization-Resource] +
  +
 
@@ -484,32 +465,44 @@ Example of a https://github.com/gematik/api-vzd/blob/122ef63f9e76689261c9195e09c
 |No
 |Yes
 
-|practitioner
-|Reference to Practitioner resource
+|providedBy
+|Organization
 |1..1
-|A PractitionerRole is always created for the Practitioner. 
+|A HeathcareService is always created for an organization. +
+ Owner resources must necessarily reference the resource synchronized by LDAP. 
 |Yes
 |No
+
+|speciality
+|speciality
+|0..*
+|According to https://simplifier.net/vzd-fhir-directory/healthcareservicespecialtyvs[HealthcareServiceSpecialityVS].
+ Owners are not allowed to maintain a specialty with FHIR VZD release 1.1.0.
+|Yes
+|No (FHIR VZD 1.1.0) +
+ Yes (FHIR VZD 1.2.0 for owner resources)
 
 |location
 |Reference to location resource
 |0..*
-|Address of the Practitioner. 
+|See <<Location-Resource>>. +
+ Not allowed for owner resources. 
 |Yes
 |No
 
 |endpoint
 |Reference to endpoint resource
 |0..*
-|One endpoint is created per KIM-/TIM-address. 
+|See <<Endpoint-Resource>>. +
+ One endpoint is created per KIM-/TIM-address. 
 |No (TIM-address)
-|No
+|Yes
 
 |meta.tag
 |Origin
 |1..1
 |If the resource was synchronized from LDAP, meta.tag is automatically set to "ldap".
-|No
+|Yes (Set to "ldap" for synchronized resources)
 |No (Must be set to "owner" for owner resources)
 
 |meta.security
@@ -527,7 +520,7 @@ Example of a https://github.com/gematik/api-vzd/blob/122ef63f9e76689261c9195e09c
 |No
 
 |===
-Simplifier: https://simplifier.net/vzd-fhir-directory/practitionerroledirectory[HealthcareService-Resource] +
+Simplifier: https://simplifier.net/vzd-fhir-directory/healthcareservicedirectory[HealthcareService-Resource] +
 Example of a https://github.com/gematik/api-vzd/blob/122ef63f9e76689261c9195e09cd7312b65ee71c/samples/FHIRseach/QueryHealthcareService.adoc?plain=1#L21[HealthcareService-Resource] +
  +
 
