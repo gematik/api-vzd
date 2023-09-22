@@ -1,0 +1,533 @@
+= FHIR VZD implementation guide - Data Model
+:source-highlighter: rouge
+:icons:
+:title-page:
+:imagesdir: /images/
+ifdef::env-github[]
+:toc: preamble
+endif::[]
+ifndef::env-github[]
+:toc: left
+endif::[]
+:toclevels: 3
+:toc-title: Table of Contents
+:sectnums:
+
+
+image::gematik_logo.svg[gematik,float="right"]
+
+[width="100%",cols="50%,50%",options="header",]
+|===
+|Version: |0.0.1
+|Referencing: |gemILF_VZD_FHIR_Directory
+|===
+
+[big]*Document history*
+
+[width="100%",cols="11%,11%,7%,58%,13%",options="header",]
+|===
+|*Version* +
+ |*Stand* +
+ |*Doc./ Chap./ Page* +
+ |*Change reason, special instructions* +
+ |*Editing* +
+
+|0.0.1 |28.07.23 | |Initial document |gematik
+|===
+
+== Classification of the document
+=== Objective
+This document describes how the interfaces of the FHIR directory service can be implemented and used on the client side.
+
+=== Target group
+
+The document is aimed at software developers who are involved in implementing a client of the FHIR directory service.
+
+=== Scope
+
+*Intellectual property/patent notice*
+
+_The following specification was created by gematik solely from a technical point of view. In individual cases, it cannot be ruled out that the implementation of the specification will interfere with the technical property rights of third parties. It is solely up to the supplier or manufacturer to take suitable measures to ensure that the products and/or services offered by him on the basis of the specification do not infringe third-party property rights and, if necessary, to obtain the necessary permits/licenses from the property right holders concerned. In this respect, gematik GmbH assumes no liability whatsoever._
+
+
+== Directory of people
+This part of the directory contains information about persons. +
+ +
+*Technical illustration - Directory of people*
+//[%collapsible%open]
+====
+++++
+<p align="center">
+  <img width="55%" src=../images/diagrams/ClassDiagram.PractitionerRole.svg>
+</p>
+++++
+====
+
+
+=== Practitioner-Resource
+
+[width="100%",cols="10%,13%,7%,20%,5%,5%",options="header",]
+|===
+|*Attributes* +
+ |*Value* +
+ |*Cardinality* +
+ |*Remark* +
+ |*Sync from LDAP-VZD* +
+ |*Changable by owner* +
+
+|identifier 
+|Telematik-ID 
+|1..1 
+|According FHIR Profil https://simplifier.net/packages/de.basisprofil.r4/1.3.2/files/564537[Identifier-Telematik-Id] 
+|Yes
+|No
+
+|identifier 
+|LDAP UID 
+|1..1 
+|The LDAP UID of the data record is synchronized from the LDAP VZD. 
+|Yes
+|No
+
+|name 
+|Name of the Practitioner  
+|1..* 
+|Name of the Practitioner 
+|Yes
+|No
+
+|qualification.code 
+|specialization 
+|0..* 
+|According to FHIR profile https://simplifier.net/vzd-fhir-directory/practitionerqualificationvs[PractitionerQualificationVS]
+|Yes
+|No
+
+|qualification.code 
+|professional group 
+|0..* 
+|According to https://simplifier.net/vzd-fhir-directory/practitionerprofessionoid[ProfessionOid]
+|Yes
+|No
+
+|active 
+|State of the resource 
+|1..1 
+|Indicates whether the person is active or not. Inactive resources may not be found in the /search interface.
+|Yes
+|No
+
+|telecom 
+|Practitioner contact details
+|0..* 
+|
+|No
+|No
+
+|gender 
+|Practitioner gender
+|0..1 
+|
+|No
+|No
+
+|birthDate 
+|Practitioner birthDate
+|0..1 
+|
+|No
+|No
+
+|photo 
+|Practitioner photo
+|0..* 
+|
+|No
+|No
+
+|communication 
+|Supported languages
+|0..* 
+|
+|No
+|No
+
+|===
+Simplifier: https://simplifier.net/vzd-fhir-directory/practitionerdirectory[Practitioner-Resource] +
+Example of a https://github.com/gematik/api-vzd/blob/ad0cc6e7c59842de4c2457f26fbecc1645ac0605/samples/FHIRseach/QueryPractitionerRole.adoc?plain=1#L10888[Practitioner resource] +
+ +
+
+=== PractitionerRole-Resource
+[width="100%",cols="10%,13%,7%,20%,5%,5%,options="header",]
+|===
+|*Attributes* +
+ |*Value* +
+ |*Cardinality* +
+ |*Remark* +
+ |*Sync from LDAP-VZD* +
+ |*Changable by owner* +
+
+|identifier 
+|LDAP UID 
+|1..1 
+|The LDAP UID of the data record is taken from the LDAP VZD. +
+ The owner cannot add any further identifiers with the ldapUid system 
+|Yes
+|No
+
+|identifier 
+|Individual identifier 
+|0..* 
+|Owners can optionally add additional individual identifiers. +
+ The owner is not allowed to add any identifier with the TelematikId or ldapUid system. 
+|No
+|Yes
+
+|practitioner
+|Reference to Practitioner resource
+|1..1
+|A PractitionerRole is always created for the Practitioner. 
+|Yes
+|No
+
+|location
+|Reference to location resource
+|0..*
+|Address of the Practitioner. 
+|Yes
+|No
+
+|endpoint
+|Reference to endpoint resource
+|0..*
+|One endpoint is created per KIM-/TIM-address. 
+|No (TIM-address)
+|No
+
+|meta.tag
+|Origin
+|1..1
+|If the resource was synchronized from LDAP, meta.tag is automatically set to "ldap".
+|No
+|No (Must be set to "owner" for owner resources)
+
+|meta.security
+|OwnerId
+|0..*
+|OwnerId of the owner. Is set automatically by the system based on the Telematics ID of the owner token.
+|No
+|No
+
+|meta.security
+|Holder
+|0..*
+|Holder attributes of the card issuer
+|Yes
+|No
+
+|===
+Simplifier: https://simplifier.net/vzd-fhir-directory/practitionerroledirectory[PractitionerRole-Resource] +
+Example of a https://github.com/gematik/api-vzd/blob/ad0cc6e7c59842de4c2457f26fbecc1645ac0605/samples/FHIRseach/QueryPractitionerRole.adoc?plain=1#L21[PractitionerRole resource] +
+ +
+
+=== Location-Resource
+[width="100%",cols="10%,13%,7%,20%,5%,5%,options="header",]
+|===
+|*Attributes* +
+ |*Value* +
+ |*Cardinality* +
+ |*Remark* +
+ |*Sync from LDAP-VZD* +
+ |*Changable by owner* +
+
+|identifier 
+|LDAP UID 
+|1..1 
+|The LDAP UID of the data record is taken from the LDAP VZD. +
+ Can neither be created nor changed by the owner. 
+|Yes
+|No
+
+|address 
+|Adress 
+|0..1 
+|The exact structure of the address can be found in the link:LDAP2FHIR_Sync.adoc[LDAP sync mapping]. 
+|Yes
+|No
+
+|meta.tag
+|Origin
+|1..1
+|Is set to "ldap" for all synchronized addresses from LDAP.
+|No
+|No
+
+|===
+Simplifier: https://simplifier.net/vzd-fhir-directory/locationdirectory[Location-Resource] +
+Example of a https://github.com/gematik/api-vzd/blob/ad0cc6e7c59842de4c2457f26fbecc1645ac0605/samples/FHIRseach/QueryPractitionerRole.adoc?plain=1#L10967[Location resource] +
+ +
+
+=== Endpoint-Resource
+[width="100%",cols="10%,13%,7%,20%,5%,5%,options="header",]
+|===
+|*Attributes* +
+ |*Value* +
+ |*Cardinality* +
+ |*Remark* +
+ |*Sync from LDAP-VZD* +
+ |*Changable by owner* +
+
+|identifier 
+|LDAP UID 
+|1..1 
+|Only applies to KIM address mapping endpoints: +
+ The LDAP UID of the data record is taken from the LDAP VZD. +
+ The owner cannot add any further identifiers with the ldapUid system 
+|Yes
+|No
+
+|identifier 
+|Individual identifier 
+|0..* 
+|Owners can optionally add additional individual identifiers. +
+ The owner is not allowed to add any identifier with the TelematikId or ldapUid system. 
+|No
+|Yes
+
+|connectionType
+|Type of the endpoint
+|1..1
+| Values according to https://simplifier.net/vzd-fhir-directory/endpointdirectoryconnectiontype[EndpointConnectionType]
+|No
+|Yes
+
+|status
+|state
+|1..1
+|Endpoint status flag. Set by the owner to control the visibility of the endpoint. +
+ Possible values: +
+ active \| suspended \| error \| off \| entered-in-error \| test
+|No
+|Yes
+
+|name
+|name of the endpoint
+|1..1
+|Name assigned by the owner. 
+|No
+|Yes
+
+|address
+|address (e.g. MX-ID, KIM mail address)
+|1..1
+|Address of the endpoint in URL notation. 
+|No
+|Yes
+
+|payloadType
+|Type of use
+|1..*
+|For which processes the address can be used. +
+ According to https://simplifier.net/vzd-fhir-directory/endpointpayloadtypevs[EndpointPlayloadTypeVS]. 
+|No
+|Yes
+
+|meta.tag
+|Origin
+|1..1
+|
+|No
+|No (Must be set to "owner" for owner resources)
+
+|meta.security
+|OwnerId
+|0..*
+|OwnerId of the owner. Is set automatically by the system based on the Telematics ID of the owner token.
+|No
+|No
+
+|===
+Simplifier: https://simplifier.net/vzd-fhir-directory/endpointdirectory[Endpoint-Resource] +
+Example of an https://github.com/gematik/api-vzd/blob/122ef63f9e76689261c9195e09cd7312b65ee71c/samples/FHIRseach/QueryHealthcareService.adoc?plain=1#L13718[Endpoint resource] +
+ +
+
+== Directory of organizations
+This part of the directory contains information about organizations. +
+ +
+*Technical illustration - Directory of organizations*
+//[%collapsible%open]
+====
+++++
+<p align="center">
+  <img width="55%" src=../images/diagrams/ClassDiagram.HealthcareService.svg>
+</p>
+++++
+====
+
+
+=== Organization-Resource
+
+[width="100%",cols="10%,13%,7%,20%,5%,5%",options="header",]
+|===
+|*Attributes* +
+ |*Value* +
+ |*Cardinality* +
+ |*Remark* +
+ |*Sync from LDAP-VZD* +
+ |*Changable by owner* +
+
+|identifier 
+|Telematik-ID 
+|1..1 
+|According FHIR Profil https://simplifier.net/packages/de.basisprofil.r4/1.3.2/files/564537[Identifier-Telematik-Id] 
+|Yes
+|No
+
+|identifier 
+|LDAP UID 
+|1..1 
+|The LDAP UID of the data record is synchronized from the LDAP VZD. 
+|Yes
+|No
+
+|identifier 
+|DomainID 
+|0..* 
+|Sector specific usage. Name and value of this identifier depends from the sector.
+|Yes
+|No
+
+|name 
+|Name of the Organization  
+|0..* 
+|Name is synchronized from LDAP VZD.
+|Yes
+|No
+
+|type 
+|Organization type 
+|0..* 
+|According to FHIR profile https://simplifier.net/vzd-fhir-directory/organizationprofessionoid[OrganiszationProfessionOID] +
+ Mandatory if organization is not a provider
+|Yes
+|No
+
+|type 
+|Provider type 
+|0..* 
+|According to FHIR profile https://simplifier.net/vzd-fhir-directory/organizationprovidertype[OrganizationProviderType] +
+ Mandatory if it is not an Organization.
+|Yes
+|No
+
+|active 
+|State of the resource 
+|1..1 
+|Indicates whether the organization is active or not. Inactive resources may not be found in the /search interface.
+|Yes
+|No
+
+|meta.tag
+|Origin
+|1..1
+|If the resource was synchronized from LDAP, meta.tag is automatically set to "ldap".
+|No
+|No (Must be set to "owner" for owner resources)
+
+|===
+Simplifier: https://simplifier.net/vzd-fhir-directory/organizationdirectory[Organization-Resource] +
+Example of a https://github.com/gematik/api-vzd/blob/122ef63f9e76689261c9195e09cd7312b65ee71c/samples/FHIRseach/QueryHealthcareService.adoc?plain=1#L13799[Organization-Resource] +
+ +
+
+=== HealthcareService-Resource
+[width="100%",cols="10%,13%,7%,20%,5%,5%,options="header",]
+|===
+|*Attributes* +
+ |*Value* +
+ |*Cardinality* +
+ |*Remark* +
+ |*Sync from LDAP-VZD* +
+ |*Changable by owner* +
+
+|identifier 
+|LDAP UID 
+|1..1 
+|The LDAP UID of the data record is taken from the LDAP VZD. +
+ The owner cannot add any further identifiers with the ldapUid system 
+|Yes
+|No
+
+|identifier 
+|Individual identifier 
+|0..* 
+|Owners can optionally add additional individual identifiers. +
+ The owner is not allowed to add any identifier with the TelematikId or ldapUid system. 
+|No
+|Yes
+
+|providedBy
+|Organization
+|1..1
+|A HeathcareService is always created for an organization. +
+ Owner resources must necessarily reference the resource synchronized by LDAP. 
+|Yes
+|No
+
+|speciality
+|speciality
+|0..*
+|According to https://simplifier.net/vzd-fhir-directory/healthcareservicespecialtyvs[HealthcareServiceSpecialityVS].
+ Owners are not allowed to maintain a specialty with FHIR VZD release 1.1.0.
+|Yes
+|No (FHIR VZD 1.1.0) +
+ Yes (FHIR VZD 1.2.0 for owner resources)
+
+|location
+|Reference to location resource
+|0..*
+|See <<Location-Resource>>. +
+ Not allowed for owner resources. 
+|Yes
+|No
+
+|endpoint
+|Reference to endpoint resource
+|0..*
+|See <<Endpoint-Resource>>. +
+ One endpoint is created per KIM-/TIM-address. 
+|No (TIM-address)
+|Yes
+
+|meta.tag
+|Origin
+|1..1
+|If the resource was synchronized from LDAP, meta.tag is automatically set to "ldap".
+|Yes (Set to "ldap" for synchronized resources)
+|No (Must be set to "owner" for owner resources)
+
+|meta.security
+|OwnerId
+|0..*
+|OwnerId of the owner. Is set automatically by the system based on the Telematics ID of the owner token.
+|No
+|No
+
+|meta.security
+|Holder
+|0..*
+|Holder attributes of the card issuer
+|Yes
+|No
+
+|===
+Simplifier: https://simplifier.net/vzd-fhir-directory/healthcareservicedirectory[HealthcareService-Resource] +
+Example of a https://github.com/gematik/api-vzd/blob/122ef63f9e76689261c9195e09cd7312b65ee71c/samples/FHIRseach/QueryHealthcareService.adoc?plain=1#L21[HealthcareService-Resource] +
+ +
+
+=== Location-Resource in organization directory
+See <<Location-Resource>>
+
+=== Endpoint-Resource in organization directory
+See <<Endpoint-Resource>>
+
+
