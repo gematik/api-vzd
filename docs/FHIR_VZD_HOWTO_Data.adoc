@@ -397,17 +397,10 @@ This part of the directory contains information about organizations. +
 |Yes
 |No
 
-|name 
-|Name of the Organization  
-|0..* 
-|Name is synchronized from LDAP VZD.
-|Yes
-|No
-
-|alias  
-|Alternative name of the Organization  
-|0..* 
-|Is synchronized from LDAP VZD.
+|active 
+|State of the resource 
+|1..1 
+|Indicates whether the organization is active or not. Inactive resources may not be found in the /search interface.
 |Yes
 |No
 
@@ -427,10 +420,17 @@ This part of the directory contains information about organizations. +
 |Yes
 |No
 
-|active 
-|State of the resource 
-|1..1 
-|Indicates whether the organization is active or not. Inactive resources may not be found in the /search interface.
+|name 
+|Name of the Organization  
+|0..* 
+|Name is synchronized from LDAP VZD.
+|Yes
+|No
+
+|alias  
+|Alternative name of the Organization  
+|0..* 
+|Is synchronized from LDAP VZD.
 |Yes
 |No
 
@@ -438,6 +438,13 @@ This part of the directory contains information about organizations. +
 |A contact detail for the organization  
 |0..* 
 |Human contact for the organization.
+|No
+|Yes
+
+|contact  
+|Contact for the organization for a certain purpose  
+|0..* 
+|Where multiple contacts for the same purpose are provided there is a standard extension that can be used to determine which one is the preferred contact to use.
 |No
 |Yes
 
