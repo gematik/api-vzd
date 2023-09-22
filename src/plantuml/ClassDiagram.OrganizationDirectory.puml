@@ -2,11 +2,12 @@
  
 class Organization {
   {field} identifier (1..*, MS, LDAP)
-  {field} name (1..1, MS)
-  {field} alias (0..*, MS)
-  {field} type(1..*, MS, LDAP)
   {field} active (1..1, MS, LDAP)
+  {field} type(1..*, MS, LDAP)
+  {field} name (1..1, MS, LDAP)
+  {field} alias (0..*, MS)
   {field} telecom (0..*, MS)
+  {field} contact (0.., MS)
   {field} meta.tag.origin (1..1, MS, LDAP)
 }
  
@@ -15,6 +16,7 @@ class HealthcareService {
   {field} providedBy (1..1, MS, LDAP/Owner)
   {field} speciality (0..*, MS, LDAP/Owner)
   {field} location (0..*, MS, LDAP/Owner)
+  {field} name (0..1, MS)
   {field} endpoint (0..*, MS)
   {field} meta.tag.origin (1..1, MS, LDAP)
   {field} meta.security.ownerId (1..*, MS)
@@ -23,11 +25,11 @@ class HealthcareService {
  
 class Endpoint {
   {field} identifier (1..*, MS)
-  {field} connectionType (0..*, MS)
   {field} status (0..*, MS)
+  {field} connectionType (0..*, MS)
   {field} name (0..1, MS)
-  {field} address (1..1, MS)
   {field} payloadType (1..*, MS)
+  {field} address (1..1, MS)
   {field} meta.tag.origin (1..1, MS)
   {field} meta.security.ownerId (1..*, MS)
 }
