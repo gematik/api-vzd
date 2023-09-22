@@ -404,6 +404,13 @@ This part of the directory contains information about organizations. +
 |Yes
 |No
 
+|alias  
+|Alternative name of the Organization  
+|0..* 
+|Is synchronized from LDAP VZD.
+|Yes
+|No
+
 |type 
 |Organization type 
 |0..* 
@@ -426,6 +433,13 @@ This part of the directory contains information about organizations. +
 |Indicates whether the organization is active or not. Inactive resources may not be found in the /search interface.
 |Yes
 |No
+
+|telecom  
+|A contact detail for the organization  
+|0..* 
+|Human contact for the organization.
+|No
+|Yes
 
 |meta.tag
 |Origin
