@@ -343,7 +343,7 @@ Für das Eintragen der Verlinkungsdaten muss sich der Nutzer authentisieren. Di
 ** Dabei erhält dieser einen Owner-Authenticate-Token, welcher an der administrativen Schnittstelle genutzt werden kann. 
 
 * Verantwortlicher einer Institution (Organisation) 
-** Der Verantwortliche authentisiert sich über das Owner-Authenticate-Verfahren (vereinfachtes Verfahren HBA oder Gematik IDP-Verfahren). 
+** Der Verantwortliche authentisiert sich über das Owner-Authenticate-Verfahren (vereinfachtes Verfahren SMC-B oder Gematik IDP-Verfahren). 
 ** Dabei erhält dieser einen Owner-Authenticate-Token, welcher an der administrativen Schnittstelle genutzt werden kann. 
 
 * Kartenherausgeber (Holder) 
