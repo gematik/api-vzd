@@ -150,6 +150,8 @@ Neu für eGBR HBA und SMC-B |gematik
 - Kap. 4 Attribut "entryType" Wird kein Zertifikat übergeben, ist entryType Pflichtparameter - DIR-497 +
 - Tab_VZD_Datenbeschreibung_DKTIG - Beschreibung domainID überarbeitet - JF gematik/dktig 2.06.2023 +
 - Kap. 4 Attribut "usage" aus den Tabellen entfernt - Kommentierung 20230421_KIM_Maintenance_23.2_KIM1.5.3 +
+- Kap. 4.4 Attribut "specialization" Beschreibung verbessert. +
+- Kap. 4.15, 4.16 Beschreibung von Attributen "sn" und "cn" aktualisiert. +
 - Kap. 3.3.2 Hinweis aufgenommen, dass Zertifikate vor Freischaltung eingetragen werden dürfen - DIR-497 +
 - Kap. 3.7 Prüfungen aktualisiert 
 
@@ -1212,7 +1214,7 @@ Dieses Attribut ist ein optionales zweites Namensattribut und wird befüllt bei 
 Für EU-Versandapotheken: EU-Versandapotheke
 |*domainID* |optional |Im Attribut domainID kann der Verweis auf die Mutter-Apotheke erfasst werden. +
 Die Inhalte werden durch die Kartenherausgeber gepflegt.
-|*specialization* |optional |Im Attribut specialization werden die ApothekenTypen (OffizinApo, Versand etc) und "offen" "beschränkt erfasst. Hierfür werden die dafür definierten CodeSysteme genutzt. Die Inhalte werden durch die Kartenherausgeber gepflegt. +
+|*specialization* |optional |Im Attribut specialization werden die ApothekenTypen (OffizinApo, Versand etc) erfasst. Hierfür wird das dafür definierten CodeSysteme https://simplifier.net/vzd-fhir-directory/pharmacytypecs[PharmacyTypeCS] genutzt . Die Inhalte werden durch die Kartenherausgeber gepflegt. +
 Default für das Attribut ist LEER. LEER wird in der eRezept Anwendung gleich behandelt wie "Sonstige_offen". +
  +
 Bezeichner: Fachgebiet +
@@ -3103,12 +3105,25 @@ Tabelle 16: Tab_VZD_Datenbeschreibung_der_SMC-B_KT_PKV
 |===
 |*LDAP-Directory Attribut* |*Pflichtfeld aus Sicht Pflege und Nutzung?* |*Erläuterung*
 |*givenName* |optional |Wird für SMC-B nicht verwendet.
-|*sn* |optional a| Wird vom VZD als Kopie von displayName automatisch eingetragen.
-Wird von E-Mail Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet.
-|*cn* |obligatorisch a| Bezeichner: Name +
-Wird vom VZD als Kopie des Attributs displayName übernommen.
-Wird von E-Mail Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet.
+|*sn* |obligatorisch a| Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
+ +
+Verhalten der Befüllung des Attributs bei Nutzung der Operationen
 
+* add_Directory_Entry:   
+** Wird sn als Parameter übergeben, wird der angegebene Wert übernommen. 
+** Wird sn nicht als Parameter übergeben, wird sn als Kopie von Parameter displayName gesetzt. 
+** Wird sn und displayName nicht als Parameter übergeben, wird sn auf einen leeren Wert gesetzt ("-" im LDAP-View). 
+* modify_Directory_Entry:
+** Wird sn als Parameter übergeben, wird der angegebene Wert übernommen.
+** Wird sn nicht als Parameter übergeben, wird sn gelöscht ("-" im LDAP-View).
+* add_Directory_Entry_Certificate 
+** Hat keine Auswirkungen auf das sn Attribut.
+|*cn* +
+ +
+  |obligatorisch |Bezeichner: Name +
+Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
+ +
+Bei Nutzung der Schreiboperationen von Schnittstelle I_Directory_Administration wird cn als Kopie von Attribut displayName gesetzt, wenn cn nicht als Parameter übergeben wird. Wird cn als Parameter übergeben, wird der angegebene Wert übernommen.
 |*otherName* |optional |Das Attribut otherName ist veraltet und wird in einer zukünftigen Version aus dem Datenmodell entfernt. +
  +
 Bezeichner: Anderer Name +
@@ -3237,12 +3252,25 @@ Tabelle 17: Tab_VZD_Datenbeschreibung_der_SMC-B_DiGA
 |===
 |*LDAP-Directory Attribut* |*Pflichtfeld aus Sicht Pflege und Nutzung?* |*Erläuterung*
 |*givenName* |optional |Wird für SMC-B nicht verwendet.
-|*sn* |optional a| Wird vom VZD als Kopie von displayName automatisch eingetragen.
-Wird von E-Mail Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet.
-|*cn* |obligatorisch a| Bezeichner: Name +
-Wird vom VZD als Kopie des Attributs displayName übernommen.
-Wird von E-Mail Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet.
+|*sn* |obligatorisch a| Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
+ +
+Verhalten der Befüllung des Attributs bei Nutzung der Operationen
 
+* add_Directory_Entry:   
+** Wird sn als Parameter übergeben, wird der angegebene Wert übernommen. 
+** Wird sn nicht als Parameter übergeben, wird sn als Kopie von Parameter displayName gesetzt. 
+** Wird sn und displayName nicht als Parameter übergeben, wird sn auf einen leeren Wert gesetzt ("-" im LDAP-View). 
+* modify_Directory_Entry:
+** Wird sn als Parameter übergeben, wird der angegebene Wert übernommen.
+** Wird sn nicht als Parameter übergeben, wird sn gelöscht ("-" im LDAP-View).
+* add_Directory_Entry_Certificate 
+** Hat keine Auswirkungen auf das sn Attribut.
+|*cn* +
+ +
+  |obligatorisch |Bezeichner: Name +
+Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
+ +
+Bei Nutzung der Schreiboperationen von Schnittstelle I_Directory_Administration wird cn als Kopie von Attribut displayName gesetzt, wenn cn nicht als Parameter übergeben wird. Wird cn als Parameter übergeben, wird der angegebene Wert übernommen.
 |*otherName* |optional |Das Attribut otherName ist veraltet und wird in einer zukünftigen Version aus dem Datenmodell entfernt. +
  +
 Bezeichner: Anderer Name +
