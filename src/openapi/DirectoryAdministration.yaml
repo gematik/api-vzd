@@ -3,8 +3,12 @@ info:
   title: I_Directory_Administration
   description: REST Schnittstelle zur Pflege der Verzeichniseinträge.
               Über diese Schnittstelle können Verzeichniseinträge inklusive Zertifikaten erzeugt, aktualisiert und gelöscht werden. Die Administration von Fachdaten erfolgt über Schnittstelle I_Directory_Application_Maintenance und wird durch die Fachanwendungen durchgeführt. Lesender Zugriff auf die Fachdaten ist mit Operation getDirectoryEntries in vorliegender Schnittstelle möglich.
-  version: 1.12.2
+  version: 1.12.3
 
+  # Änderungen in Version 1.12.3 
+  #  - Operationen DirectoryEntry Synchronization: 
+  #     Input Parameter ergänzt: providedBy, mail, komLeData, kimData
+  #
   # Änderungen in Version 1.12.2 
   #  - Operation read_Directory_Entry: providedBy als Suchparameter aufgenommen
   #
@@ -779,6 +783,13 @@ paths:
                       Entspricht der LDAP Filters Substring Assertion vom Typ "subInitial Component".
         schema:
           type: string  
+      - name: providedBy
+        in: query
+        description: |
+                    Erlaubt die Suche mit Hilfe des Attributs providedBy 
+                    (die telematikID der übergeordneten Organisation).
+        schema:
+          type: string  
       - name: specialization
         in: query
         description: Erlaubt die Suche mit Hilfe des Attributs specialization. 
@@ -865,6 +876,42 @@ paths:
           Selektiert alle Datensätze, deren Attribut meta den angegebenen String in einem Wert des arry's enthält.
         schema:
           type: string  
+      - name: mail
+        in: query
+        description: |
+          Erlaubt die Suche mit Hilfe des Attributs FAD1.mail
+          
+          Selektiert alle Datensätze, deren Attribut FAD1.mail den angegebenen String in einem Wert des arry's enthält.
+        schema:
+          type: string  
+      - name: komLeData
+        in: query
+        description: |
+          Erlaubt die Suche mit Hilfe des Attributs FAD1.komLeData
+          
+          Selektiert alle Datensätze, deren Attribut FAD1.komLeData den angegebenen String in einem Wert des array's enthält.
+          komLeData enthält die "version" und "mail" durch Komma getrennt in einem array.
+          Beispiel: 1.0,mc_smcb_za@dom1.komle.telematik-test
+          Für diesen Suchparameter kann ein Wildcard genutzt werden.
+        schema:
+          type: string  
+      - name: kimData
+        in: query
+        description: |
+          Erlaubt die Suche mit Hilfe des Attributs FAD1.kimData.mail
+          
+          Selektiert alle Datensätze, deren Attribut FAD1.kimData.mail den angegebenen String in einem Wert des arry's enthält.
+                    
+          Selektiert alle Datensätze, deren Attribut FAD1.kimData den angegebenen String in einem Wert des array's enthält.
+          komLeData enthält die "mail", "version" und "appTags" durch Komma getrennt in einem array.
+          Die appTags werden durch das Pipe Zeichen getrennt. 
+          Bitte beachten: Wenn das Pipe Zeichen im Suchstring genutzt wird muss die besondere
+          Bedeutung dieses Zeichens bei der LDAP Suche beachtet werden.
+          Beispiel: mz_smcb_za@dom2.kim.telematik-test,1.0,DALE-UV;Einsendung;V1.0|eEB;V1.0
+          Für diesen Suchparameter kann ein Wildcard genutzt werden, z.B. 
+            mz_smcb_za@dom2.kim.telematik-test*
+        schema:
+          type: string
 
       responses:
         200:
@@ -1060,6 +1107,13 @@ paths:
                       Entspricht der LDAP Filters Substring Assertion vom Typ "subInitial Component".
         schema:
           type: string  
+      - name: providedBy
+        in: query
+        description: |
+                    Erlaubt die Suche mit Hilfe des Attributs providedBy 
+                    (die telematikID der übergeordneten Organisation).
+        schema:
+          type: string  
       - name: specialization
         in: query
         description: Erlaubt die Suche mit Hilfe des Attributs specialization. 
@@ -1146,6 +1200,42 @@ paths:
           Selektiert alle Datensätze, deren Attribut meta den angegebenen String in einem Wert des arry's enthält.
         schema:
           type: string  
+      - name: mail
+        in: query
+        description: |
+          Erlaubt die Suche mit Hilfe des Attributs FAD1.mail
+          
+          Selektiert alle Datensätze, deren Attribut FAD1.mail den angegebenen String in einem Wert des arry's enthält.
+        schema:
+          type: string  
+      - name: komLeData
+        in: query
+        description: |
+          Erlaubt die Suche mit Hilfe des Attributs FAD1.komLeData
+          
+          Selektiert alle Datensätze, deren Attribut FAD1.komLeData den angegebenen String in einem Wert des array's enthält.
+          komLeData enthält die "version" und "mail" durch Komma getrennt in einem array.
+          Beispiel: 1.0,mc_smcb_za@dom1.komle.telematik-test
+          Für diesen Suchparameter kann ein Wildcard genutzt werden.
+        schema:
+          type: string  
+      - name: kimData
+        in: query
+        description: |
+          Erlaubt die Suche mit Hilfe des Attributs FAD1.kimData.mail
+          
+          Selektiert alle Datensätze, deren Attribut FAD1.kimData.mail den angegebenen String in einem Wert des arry's enthält.
+                    
+          Selektiert alle Datensätze, deren Attribut FAD1.kimData den angegebenen String in einem Wert des array's enthält.
+          komLeData enthält die "mail", "version" und "appTags" durch Komma getrennt in einem array.
+          Die appTags werden durch das Pipe Zeichen getrennt. 
+          Bitte beachten: Wenn das Pipe Zeichen im Suchstring genutzt wird muss die besondere
+          Bedeutung dieses Zeichens bei der LDAP Suche beachtet werden.
+          Beispiel: mz_smcb_za@dom2.kim.telematik-test,1.0,DALE-UV;Einsendung;V1.0|eEB;V1.0
+          Für diesen Suchparameter kann ein Wildcard genutzt werden, z.B. 
+            mz_smcb_za@dom2.kim.telematik-test*
+        schema:
+          type: string
 
     # Paging Parameter entsprechend https://tools.ietf.org/html/rfc2696
     # Paging ist nur für eigene Verzeichniseinträge erlaubt. Deshalb muss bei
