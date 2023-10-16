@@ -3,8 +3,13 @@ info:
   title: I_Directory_Administration
   description: REST Schnittstelle zur Pflege der Verzeichniseinträge.
               Über diese Schnittstelle können Verzeichniseinträge inklusive Zertifikaten erzeugt, aktualisiert und gelöscht werden. Die Administration von Fachdaten erfolgt über Schnittstelle I_Directory_Application_Maintenance und wird durch die Fachanwendungen durchgeführt. Lesender Zugriff auf die Fachdaten ist mit Operation getDirectoryEntries in vorliegender Schnittstelle möglich.
-  version: 1.12.3
+  version: 1.12.4
 
+  # Änderungen in Version 1.12.4 
+  #  - Operationen DirectoryEntry Synchronization & read_Directory_Entry: 
+  #     Suchparameter mail, komLeData, kimData entfernt und für Suche mit diesen 
+  #     Parametern neue Operation search_Directory_FA-Attributes definiert.
+  #
   # Änderungen in Version 1.12.3 
   #  - Operationen DirectoryEntry Synchronization: 
   #     Input Parameter ergänzt: providedBy, mail, komLeData, kimData
@@ -212,6 +217,8 @@ tags:
   description: Pflege der Verzeichniseinträge (Basiseinträge)
 - name: Certificate Administration
   description: Pflege der Zertifikatseinträge 
+- name: Application Data Administration
+  description: Pflege der Fachdaten
 - name: DirectoryEntry Synchronization
   description: Synchronisation der Verzeichniseinträge (Basiseinträge) mit dem eigenen Datenbestand
 paths:
@@ -363,10 +370,8 @@ paths:
                   - domainID
                   - holder
                   - professionOID
-                  - mail
-                  - komLeData
-                  - kimData    
-          - Suche nach Vorhandensein oder leerem Inhalt eines Attributs des VZD Datensatzes mit dem Kode \00 in den Parametern
+ 
+          - Suche nach Vorhandensein oder leerem Inhalt eines Attributs des VZD Datensatzes mit "" in den Parametern
           
                   - givenName
                   - sn
@@ -386,10 +391,8 @@ paths:
                   - professionOID
                   - changeDateTimeFrom
                   - changeDateTimeTo
-                  - mail
                   - providedBy
             Diese Suche findet sowohl Datensätze mit nicht vorhandenem Attribut wie auch vorhandenem aber leerem Attribut.
-            Der Suchparameter darf nur den Kode \00 enthalten, keine weiteren Zeichen.
             Alle Filterparameter einer Leseoperationen werden mit einem UND (&) verknüpft.
 
       operationId: read_Directory_Entry
@@ -561,42 +564,6 @@ paths:
           Selektiert alle Datensätze, deren Attribut meta den angegebenen String in einem Wert des arry's enthält.
         schema:
           type: string  
-      - name: mail
-        in: query
-        description: |
-          Erlaubt die Suche mit Hilfe des Attributs FAD1.mail
-          
-          Selektiert alle Datensätze, deren Attribut FAD1.mail den angegebenen String in einem Wert des arry's enthält.
-        schema:
-          type: string  
-      - name: komLeData
-        in: query
-        description: |
-          Erlaubt die Suche mit Hilfe des Attributs FAD1.komLeData
-          
-          Selektiert alle Datensätze, deren Attribut FAD1.komLeData den angegebenen String in einem Wert des array's enthält.
-          komLeData enthält die "version" und "mail" durch Komma getrennt in einem array.
-          Beispiel: 1.0,mc_smcb_za@dom1.komle.telematik-test
-          Für diesen Suchparameter kann ein Wildcard genutzt werden.
-        schema:
-          type: string  
-      - name: kimData
-        in: query
-        description: |
-          Erlaubt die Suche mit Hilfe des Attributs FAD1.kimData.mail
-          
-          Selektiert alle Datensätze, deren Attribut FAD1.kimData.mail den angegebenen String in einem Wert des arry's enthält.
-                    
-          Selektiert alle Datensätze, deren Attribut FAD1.kimData den angegebenen String in einem Wert des array's enthält.
-          komLeData enthält die "mail", "version" und "appTags" durch Komma getrennt in einem array.
-          Die appTags werden durch das Pipe Zeichen getrennt. 
-          Bitte beachten: Wenn das Pipe Zeichen im Suchstring genutzt wird muss die besondere
-          Bedeutung dieses Zeichens bei der LDAP Suche beachtet werden.
-          Beispiel: mz_smcb_za@dom2.kim.telematik-test,1.0,DALE-UV;Einsendung;V1.0|eEB;V1.0
-          Für diesen Suchparameter kann ein Wildcard genutzt werden, z.B. 
-            mz_smcb_za@dom2.kim.telematik-test*
-        schema:
-          type: string
         
       responses:
         200:
@@ -876,42 +843,6 @@ paths:
           Selektiert alle Datensätze, deren Attribut meta den angegebenen String in einem Wert des arry's enthält.
         schema:
           type: string  
-      - name: mail
-        in: query
-        description: |
-          Erlaubt die Suche mit Hilfe des Attributs FAD1.mail
-          
-          Selektiert alle Datensätze, deren Attribut FAD1.mail den angegebenen String in einem Wert des arry's enthält.
-        schema:
-          type: string  
-      - name: komLeData
-        in: query
-        description: |
-          Erlaubt die Suche mit Hilfe des Attributs FAD1.komLeData
-          
-          Selektiert alle Datensätze, deren Attribut FAD1.komLeData den angegebenen String in einem Wert des array's enthält.
-          komLeData enthält die "version" und "mail" durch Komma getrennt in einem array.
-          Beispiel: 1.0,mc_smcb_za@dom1.komle.telematik-test
-          Für diesen Suchparameter kann ein Wildcard genutzt werden.
-        schema:
-          type: string  
-      - name: kimData
-        in: query
-        description: |
-          Erlaubt die Suche mit Hilfe des Attributs FAD1.kimData.mail
-          
-          Selektiert alle Datensätze, deren Attribut FAD1.kimData.mail den angegebenen String in einem Wert des arry's enthält.
-                    
-          Selektiert alle Datensätze, deren Attribut FAD1.kimData den angegebenen String in einem Wert des array's enthält.
-          komLeData enthält die "mail", "version" und "appTags" durch Komma getrennt in einem array.
-          Die appTags werden durch das Pipe Zeichen getrennt. 
-          Bitte beachten: Wenn das Pipe Zeichen im Suchstring genutzt wird muss die besondere
-          Bedeutung dieses Zeichens bei der LDAP Suche beachtet werden.
-          Beispiel: mz_smcb_za@dom2.kim.telematik-test,1.0,DALE-UV;Einsendung;V1.0|eEB;V1.0
-          Für diesen Suchparameter kann ein Wildcard genutzt werden, z.B. 
-            mz_smcb_za@dom2.kim.telematik-test*
-        schema:
-          type: string
 
       responses:
         200:
@@ -1200,42 +1131,6 @@ paths:
           Selektiert alle Datensätze, deren Attribut meta den angegebenen String in einem Wert des arry's enthält.
         schema:
           type: string  
-      - name: mail
-        in: query
-        description: |
-          Erlaubt die Suche mit Hilfe des Attributs FAD1.mail
-          
-          Selektiert alle Datensätze, deren Attribut FAD1.mail den angegebenen String in einem Wert des arry's enthält.
-        schema:
-          type: string  
-      - name: komLeData
-        in: query
-        description: |
-          Erlaubt die Suche mit Hilfe des Attributs FAD1.komLeData
-          
-          Selektiert alle Datensätze, deren Attribut FAD1.komLeData den angegebenen String in einem Wert des array's enthält.
-          komLeData enthält die "version" und "mail" durch Komma getrennt in einem array.
-          Beispiel: 1.0,mc_smcb_za@dom1.komle.telematik-test
-          Für diesen Suchparameter kann ein Wildcard genutzt werden.
-        schema:
-          type: string  
-      - name: kimData
-        in: query
-        description: |
-          Erlaubt die Suche mit Hilfe des Attributs FAD1.kimData.mail
-          
-          Selektiert alle Datensätze, deren Attribut FAD1.kimData.mail den angegebenen String in einem Wert des arry's enthält.
-                    
-          Selektiert alle Datensätze, deren Attribut FAD1.kimData den angegebenen String in einem Wert des array's enthält.
-          komLeData enthält die "mail", "version" und "appTags" durch Komma getrennt in einem array.
-          Die appTags werden durch das Pipe Zeichen getrennt. 
-          Bitte beachten: Wenn das Pipe Zeichen im Suchstring genutzt wird muss die besondere
-          Bedeutung dieses Zeichens bei der LDAP Suche beachtet werden.
-          Beispiel: mz_smcb_za@dom2.kim.telematik-test,1.0,DALE-UV;Einsendung;V1.0|eEB;V1.0
-          Für diesen Suchparameter kann ein Wildcard genutzt werden, z.B. 
-            mz_smcb_za@dom2.kim.telematik-test*
-        schema:
-          type: string
 
     # Paging Parameter entsprechend https://tools.ietf.org/html/rfc2696
     # Paging ist nur für eigene Verzeichniseinträge erlaubt. Deshalb muss bei
@@ -1790,6 +1685,108 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+
+  /DirectoryEntries/KOM-LE_Fachdaten:
+  
+    get:
+      tags:
+      - Application Data Administration
+      summary: Anhand der Fachdaten suchen
+      description: |
+        Liefert alle zum Filter passenden Verzeichniseinträge (die Treffermenge ist nicht begrenzt). Die angegebenen Parameter werden mit logischen UND verknüpft.
+       
+        Für die Operationen werden die folgenden Filtermöglichkeiten unterstützt: 
+          - Suche mit Wildcard "*" in den Parametern
+          
+                  - mail
+                  - komLeData
+                  - kimData    
+          - Suche nach Vorhandensein oder leerem Inhalt eines Attributs des VZD Datensatzes mit "" in den Parametern
+                  - mail
+                  - komLeData
+                  - kimData    
+            Diese Suche findet sowohl Datensätze mit nicht vorhandenem Attribut wie auch vorhandenem aber leerem Attribut.
+            Alle Filterparameter einer Leseoperationen werden mit einem UND (&) verknüpft.
+
+      security:
+       - OAuth2:
+         - 'VZD:DirectoryAdministration'
+         - 'VZD:DirectoryRead'
+      operationId: search_Directory_FA-Attributes
+      parameters:
+      - name: mail
+        in: query
+        description: |
+          Erlaubt die Suche mit Hilfe des Attributs FAD1.mail
+          
+          Selektiert alle Datensätze, deren Attribut FAD1.mail den angegebenen String in einem Wert des arry's enthält.
+        schema:
+          type: string  
+      - name: komLeData
+        in: query
+        description: |
+          Erlaubt die Suche mit Hilfe des Attributs FAD1.komLeData
+          
+          Selektiert alle Datensätze, deren Attribut FAD1.komLeData den angegebenen String in einem Wert des array's enthält.
+          komLeData enthält die "version" und "mail" durch Komma getrennt in einem array.
+          Beispiel: 1.0,mc_smcb_za@dom1.komle.telematik-test
+          Für diesen Suchparameter kann ein Wildcard genutzt werden.
+        schema:
+          type: string  
+      - name: kimData
+        in: query
+        description: |
+          Erlaubt die Suche mit Hilfe des Attributs FAD1.kimData.mail
+          
+          Selektiert alle Datensätze, deren Attribut FAD1.kimData.mail den angegebenen String in einem Wert des arry's enthält.
+                    
+          Selektiert alle Datensätze, deren Attribut FAD1.kimData den angegebenen String in einem Wert des array's enthält.
+          komLeData enthält die "mail", "version" und "appTags" durch Komma getrennt in einem array.
+          Die appTags werden durch das Pipe Zeichen getrennt. 
+          Bitte beachten: Wenn das Pipe Zeichen im Suchstring genutzt wird muss die besondere
+          Bedeutung dieses Zeichens bei der LDAP Suche beachtet werden.
+          Beispiel: mz_smcb_za@dom2.kim.telematik-test,1.0,DALE-UV;Einsendung;V1.0|eEB;V1.0
+          Für diesen Suchparameter kann ein Wildcard genutzt werden, z.B. 
+            mz_smcb_za@dom2.kim.telematik-test*
+        schema:
+          type: string
+      responses:
+        200:
+          description: OK
+                    #  Es werden alle zu dem Filter Parametern passenden Verzeichniseinträge - inklusive Zertifikaten und Fachdaten - zurückgegeben.
+                    # Bei mehr als 100 gefundenen Einträgen nur 100 gefundenen Einträge zurückgegeben.   
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/DirectoryEntries'
+
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        401:
+          description: Unauthorized
+                    #  Der WWW-Authenticate Header im Response wird auf OAuth gesetzt.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        403:
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+
 
   /Log:
     get:
