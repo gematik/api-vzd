@@ -1737,11 +1737,8 @@ paths:
         in: query
         description: |
           Erlaubt die Suche mit Hilfe des Attributs FAD1.kimData.mail
-          
-          Selektiert alle Datensätze, deren Attribut FAD1.kimData.mail den angegebenen String in einem Wert des arry's enthält.
-                    
           Selektiert alle Datensätze, deren Attribut FAD1.kimData den angegebenen String in einem Wert des array's enthält.
-          komLeData enthält die "mail", "version" und "appTags" durch Komma getrennt in einem array.
+          kimData enthält die "mail", "version" und "appTags" durch Komma getrennt in einem array.
           Die appTags werden durch das Pipe Zeichen getrennt. 
           Bitte beachten: Wenn das Pipe Zeichen im Suchstring genutzt wird muss die besondere
           Bedeutung dieses Zeichens bei der LDAP Suche beachtet werden.
