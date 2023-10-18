@@ -6,8 +6,12 @@ info:
    # REST Schnittstelle zur Pflege der Fachanwendungsdaten der Verzeichniseinträge
      Über diese Schnittstelle können Fachanwendungsdaten der Verzeichniseinträge erzeugt, aktualisiert und gelöscht werden. 
 
-  version: 1.4.2
+  version: 1.4.3
   
+  # Änderungen in Version 1.4.3
+  #  - Operationen read_Directory_Entry: 
+  #     Suchparameter providedBy ergänzt
+  #
   # Änderungen in Version 1.4.2 
   #  - Operationen read_Directory_Entry: 
   #     Suchparameter mail, komLeData, kimData entfernt und für Suche mit diesen 
@@ -279,6 +283,13 @@ paths:
         description: |
          Erlaubt die Suche nach einem Substring am Anfang der telematikID (die telematikID in den Basisdaten).
          Entspricht der LDAP Filters Substring Assertion vom Typ "subInitial Component".
+        schema:
+          type: string  
+      - name: providedBy
+        in: query
+        description: |
+                    Erlaubt die Suche mit Hilfe des Attributs providedBy 
+                    (die telematikID der übergeordneten Organisation).
         schema:
           type: string  
       - name: specialization
@@ -792,7 +803,8 @@ paths:
       - Application Data Administration
       summary: Anhand der Fachdaten suchen
       description: |
-        Liefert alle zum Filter passenden Verzeichniseinträge (die Treffermenge ist nicht begrenzt). Die angegebenen Parameter werden mit logischen UND verknüpft.
+        Liefert alle zum Filter passenden Verzeichniseinträge. 
+        Die angegebenen Parameter werden mit logischen UND verknüpft.
        
         Für die Operationen werden die folgenden Filtermöglichkeiten unterstützt: 
           - Suche mit Wildcard "*" in den Parametern
