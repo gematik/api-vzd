@@ -61,7 +61,7 @@ The FHIR VZD implementation guide consists of the following parts
 - link:FHIR_VZD_HOWTO_Search.adoc[Search interface /search]
 - link:FHIR_VZD_HOWTO_Provider.adoc[TI-Messenger Provider interface /tim-provider-services]
 - link:FHIR_VZD_HOWTO_Owner.adoc[Owner interface /owner]
-
+- link:FHIR_VZD_HOWTO_Data.adoc[Data Model]
 
 The content of these parts is contained in the linked documents. +
  +
