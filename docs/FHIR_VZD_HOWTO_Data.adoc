@@ -32,7 +32,7 @@ image::gematik_logo.svg[gematik,float="right"]
  |*Change reason, special instructions* +
  |*Editing* +
 
-|0.0.1 |28.07.23 | |Initial document |gematik
+|0.0.1 |22.09.23 | |Initial document |gematik
 |===
 
 == Classification of the document
@@ -58,7 +58,7 @@ This part of the directory contains information about persons. +
 ====
 ++++
 <p align="center">
-  <img width="55%" src=../images/diagrams/ClassDiagram.PractitionerRole.svg>
+  <img width="55%" src=../images/diagrams/ClassDiagram.PractitionerDirectory.svg>
 </p>
 ++++
 ====
@@ -75,38 +75,17 @@ This part of the directory contains information about persons. +
  |*Sync from LDAP-VZD* +
  |*Changable by owner* +
 
-|identifier 
+.2+|identifier 
 |Telematik-ID 
 |1..1 
 |According FHIR Profil https://simplifier.net/packages/de.basisprofil.r4/1.3.2/files/564537[Identifier-Telematik-Id] 
 |Yes
 |No
 
-|identifier 
+
 |LDAP UID 
 |1..1 
 |The LDAP UID of the data record is synchronized from the LDAP VZD. 
-|Yes
-|No
-
-|name 
-|Name of the Practitioner  
-|1..* 
-|Name of the Practitioner 
-|Yes
-|No
-
-|qualification.code 
-|specialization 
-|0..* 
-|According to FHIR profile https://simplifier.net/vzd-fhir-directory/practitionerqualificationvs[PractitionerQualificationVS]
-|Yes
-|No
-
-|qualification.code 
-|professional group 
-|0..* 
-|According to https://simplifier.net/vzd-fhir-directory/practitionerprofessionoid[ProfessionOid]
 |Yes
 |No
 
@@ -117,32 +96,53 @@ This part of the directory contains information about persons. +
 |Yes
 |No
 
+|name 
+|Name of the Practitioner  
+|1..* 
+|Name of the Practitioner 
+|Yes
+|No
+
 |telecom 
 |Practitioner contact details
 |0..* 
 |
 |No
-|No
+|Yes
 
 |gender 
 |Practitioner gender
 |0..1 
 |
 |No
-|No
+|Yes
 
 |birthDate 
 |Practitioner birthDate
 |0..1 
 |
 |No
-|No
+|Yes
 
 |photo 
 |Practitioner photo
 |0..* 
 |
 |No
+|Yes
+
+.2+|qualification.code 
+|specialization 
+|0..* 
+|According to FHIR profile https://simplifier.net/vzd-fhir-directory/practitionerqualificationvs[PractitionerQualificationVS]
+|Yes
+|No
+
+
+|professional group 
+|0..* 
+|According to https://simplifier.net/vzd-fhir-directory/practitionerprofessionoid[ProfessionOid]
+|Yes
 |No
 
 |communication 
@@ -167,7 +167,7 @@ Example of a https://github.com/gematik/api-vzd/blob/ad0cc6e7c59842de4c2457f26fb
  |*Sync from LDAP-VZD* +
  |*Changable by owner* +
 
-|identifier 
+.2+|identifier 
 |LDAP UID 
 |1..1 
 |The LDAP UID of the data record is taken from the LDAP VZD. +
@@ -175,7 +175,7 @@ Example of a https://github.com/gematik/api-vzd/blob/ad0cc6e7c59842de4c2457f26fb
 |Yes
 |No
 
-|identifier 
+
 |Individual identifier 
 |0..* 
 |Owners can optionally add additional individual identifiers. +
@@ -196,6 +196,13 @@ Example of a https://github.com/gematik/api-vzd/blob/ad0cc6e7c59842de4c2457f26fb
 |Address of the Practitioner. 
 |Yes
 |No
+
+|healthcareService
+|Reference to healthcareService resource
+|0..*
+|The list of healthcare services that this worker provides for this role's Organization/Location(s). 
+|No
+|Yes
 
 |endpoint
 |Reference to endpoint resource
@@ -277,7 +284,7 @@ Example of a https://github.com/gematik/api-vzd/blob/ad0cc6e7c59842de4c2457f26fb
  |*Sync from LDAP-VZD* +
  |*Changable by owner* +
 
-|identifier 
+.2+|identifier 
 |LDAP UID 
 |1..1 
 |Only applies to KIM address mapping endpoints: +
@@ -286,18 +293,11 @@ Example of a https://github.com/gematik/api-vzd/blob/ad0cc6e7c59842de4c2457f26fb
 |Yes
 |No
 
-|identifier 
+
 |Individual identifier 
 |0..* 
 |Owners can optionally add additional individual identifiers. +
  The owner is not allowed to add any identifier with the TelematikId or ldapUid system. 
-|No
-|Yes
-
-|connectionType
-|Type of the endpoint
-|1..1
-| Values according to https://simplifier.net/vzd-fhir-directory/endpointdirectoryconnectiontype[EndpointConnectionType]
 |No
 |Yes
 
@@ -310,17 +310,17 @@ Example of a https://github.com/gematik/api-vzd/blob/ad0cc6e7c59842de4c2457f26fb
 |No
 |Yes
 
+|connectionType
+|Type of the endpoint
+|1..1
+| Values according to https://simplifier.net/vzd-fhir-directory/endpointdirectoryconnectiontype[EndpointConnectionType]
+|No
+|Yes
+
 |name
 |name of the endpoint
 |1..1
 |Name assigned by the owner. 
-|No
-|Yes
-
-|address
-|address (e.g. MX-ID, KIM mail address)
-|1..1
-|Address of the endpoint in URL notation. 
 |No
 |Yes
 
@@ -329,6 +329,13 @@ Example of a https://github.com/gematik/api-vzd/blob/ad0cc6e7c59842de4c2457f26fb
 |1..*
 |For which processes the address can be used. +
  According to https://simplifier.net/vzd-fhir-directory/endpointpayloadtypevs[EndpointPlayloadTypeVS]. 
+|No
+|Yes
+
+|address
+|address (e.g. MX-ID, KIM mail address)
+|1..1
+|Address of the endpoint in URL notation. 
 |No
 |Yes
 
@@ -359,7 +366,7 @@ This part of the directory contains information about organizations. +
 ====
 ++++
 <p align="center">
-  <img width="55%" src=../images/diagrams/ClassDiagram.HealthcareService.svg>
+  <img width="55%" src=../images/diagrams/ClassDiagram.OrganizationDirectory.svg>
 </p>
 ++++
 ====
@@ -376,24 +383,47 @@ This part of the directory contains information about organizations. +
  |*Sync from LDAP-VZD* +
  |*Changable by owner* +
 
-|identifier 
+.3+|identifier 
 |Telematik-ID 
 |1..1 
 |According FHIR Profil https://simplifier.net/packages/de.basisprofil.r4/1.3.2/files/564537[Identifier-Telematik-Id] 
 |Yes
 |No
 
-|identifier 
+
 |LDAP UID 
 |1..1 
 |The LDAP UID of the data record is synchronized from the LDAP VZD. 
 |Yes
 |No
 
-|identifier 
+
 |DomainID 
 |0..* 
 |Sector specific usage. Name and value of this identifier depends from the sector.
+|Yes
+|No
+
+|active 
+|State of the resource 
+|1..1 
+|Indicates whether the organization is active or not. Inactive resources may not be found in the /search interface.
+|Yes
+|No
+
+.2+|type 
+|Organization type 
+|0..* 
+|According to FHIR profile https://simplifier.net/vzd-fhir-directory/organizationprofessionoid[OrganiszationProfessionOID] +
+ Mandatory if organization is not a provider
+|Yes
+|No
+
+
+|Provider type 
+|0..* 
+|According to FHIR profile https://simplifier.net/vzd-fhir-directory/organizationprovidertype[OrganizationProviderType] +
+ Mandatory if it is not an Organization.
 |Yes
 |No
 
@@ -404,28 +434,26 @@ This part of the directory contains information about organizations. +
 |Yes
 |No
 
-|type 
-|Organization type 
+|alias  
+|Alternative name of the Organization  
 |0..* 
-|According to FHIR profile https://simplifier.net/vzd-fhir-directory/organizationprofessionoid[OrganiszationProfessionOID] +
- Mandatory if organization is not a provider
+|Is synchronized from LDAP VZD.
 |Yes
 |No
 
-|type 
-|Provider type 
+|telecom  
+|A contact detail for the organization  
 |0..* 
-|According to FHIR profile https://simplifier.net/vzd-fhir-directory/organizationprovidertype[OrganizationProviderType] +
- Mandatory if it is not an Organization.
-|Yes
+|Human contact for the organization.
 |No
+|Yes
 
-|active 
-|State of the resource 
-|1..1 
-|Indicates whether the organization is active or not. Inactive resources may not be found in the /search interface.
-|Yes
+|contact  
+|Contact for the organization for a certain purpose  
+|0..* 
+|Where multiple contacts for the same purpose are provided there is a standard extension that can be used to determine which one is the preferred contact to use.
 |No
+|Yes
 
 |meta.tag
 |Origin
@@ -449,7 +477,7 @@ Example of a https://github.com/gematik/api-vzd/blob/122ef63f9e76689261c9195e09c
  |*Sync from LDAP-VZD* +
  |*Changable by owner* +
 
-|identifier 
+.2+|identifier 
 |LDAP UID 
 |1..1 
 |The LDAP UID of the data record is taken from the LDAP VZD. +
@@ -457,7 +485,7 @@ Example of a https://github.com/gematik/api-vzd/blob/122ef63f9e76689261c9195e09c
 |Yes
 |No
 
-|identifier 
+
 |Individual identifier 
 |0..* 
 |Owners can optionally add additional individual identifiers. +
@@ -489,6 +517,13 @@ Example of a https://github.com/gematik/api-vzd/blob/122ef63f9e76689261c9195e09c
  Not allowed for owner resources. 
 |Yes
 |No
+
+|name 
+|Name of the HealthcareService  
+|0..* 
+|Description of service as presented to a consumer while searching.
+|No
+|Yes
 
 |endpoint
 |Reference to endpoint resource
@@ -529,5 +564,4 @@ See <<Location-Resource>>
 
 === Endpoint-Resource in organization directory
 See <<Endpoint-Resource>>
-
 
