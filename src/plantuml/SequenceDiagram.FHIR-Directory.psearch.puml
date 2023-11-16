@@ -1,0 +1,78 @@
+@startuml
+autonumber 1 1 "<b>[00]"
+title "FHIR-VZD Authentisierung mit GesundheitsID"
+
+participant VClient as "Client Versicherter"
+
+box VZD-FHIR-Directory #WhiteSmoke
+    participant "Auth-Service" as VzdAuth
+end box
+participant sekIDP as "sektoraler IDP" 
+participant "Federation Master" as fedMaster
+
+
+VzdAuth->fedMaster++: getEntityStatement
+fedMaster-->VzdAuth: Response EntityStatement sekt. IDP
+deactivate fedMaster
+
+VClient->VzdAuth++: AUTHORIZATION REQUEST \n iss= URL sektoraler IDP
+
+par GesundheitsID
+
+alt optional
+VzdAuth->sekIDP++: getEntityStatement (IDP)
+sekIDP-->VzdAuth: EntityStatement
+deactivate sekIDP
+VzdAuth->fedMaster++: Fetch EntityStatement (IDP)
+fedMaster-->VzdAuth: EntityStatement
+deactivate fedMaster
+end
+
+VzdAuth->sekIDP++: AUTHORIZATION REQUEST (PAR)
+
+alt optional
+sekIDP->VzdAuth++: getEntityStatement (RP)
+VzdAuth-->sekIDP: EntityStatement
+deactivate VzdAuth
+sekIDP->fedMaster++: Fetch EntityStatement (RP)
+fedMaster-->sekIDP: EntityStatement
+deactivate fedMaster
+end
+
+sekIDP-->VzdAuth++: URI-PAR
+deactivate sekIDP
+
+VzdAuth-->VClient: AUTHORIZATION REQUEST (URI-PAR)
+deactivate VzdAuth
+
+alt Implementierungsspezifisch
+VClient->sekIDP++:  AUTHORIZATION REQUEST (URI-PAR)
+
+alt optional
+sekIDP-->VClient++: Login, user consent
+VClient->sekIDP: credentials, Consent
+deactivate VClient
+
+deactivate fedMaster
+end
+
+sekIDP-->VClient++: Redirect to redirect URL, AUTH_CODE
+deactivate sekIDP
+
+end
+
+VClient->VzdAuth++: AUTH_CODE
+deactivate VClient
+VzdAuth->sekIDP++: AUTH_CODE
+sekIDP-->VzdAuth: ID_TOKEN, (ACCESS_TOKEN)
+deactivate sekIDP
+VzdAuth->VzdAuth: Erzeuge search-accesstoken
+
+end
+
+VzdAuth-->VClient: Response AUTHORIZATION REQUEST (search-accesstoken)
+deactivate VzdAuth
+deactivate VzdAuth
+
+== ...fachlicher flow... ==
+@enduml
