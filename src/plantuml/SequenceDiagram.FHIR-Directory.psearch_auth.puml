@@ -6,6 +6,8 @@ participant VClient as "Client Versicherter"
 
 box VZD-FHIR-Directory #WhiteSmoke
     participant "Auth-Service" as VzdAuth
+    participant fp as "FHIR-Proxy"
+    participant fd as "FHIR-Directory"
 end box
 participant sekIDP as "sektoraler IDP" 
 participant "Federation Master" as fedMaster
@@ -75,4 +77,19 @@ deactivate VzdAuth
 deactivate VzdAuth
 
 == ...fachlicher flow... ==
+
+VClient -> fp: GET /psearch?... (Auth Header mit\nsearch-accesstoken)
+activate fp
+fp -> fp: prüfe search-accesstoken
+
+alt search-accesstoken is valid
+fp -> fd: GET /?...
+activate fd
+fd --> fp: HTTP 200 OK\n(Result Body json)
+deactivate fd
+fp --> VClient: HTTP 200 OK (Result Body json)
+else search-accesstoken is invalid
+fp --> VClient: HTTP 401
+deactivate fp
+end
 @enduml
