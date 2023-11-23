@@ -759,40 +759,44 @@ Zur Verbesserung der Datenqualität werden im VZD zusätzliche Prüfungen beim E
 |*Nr* |*Status* |*FHIR-VZD +
 Sync +
 relevant* |*Beschreibung*
-|V001 |geplant |ja
+|V001 |01/2024 |ja
 | Wenn countryCode==DE gilt für stateOrProvinceName der Wertebereich des CodeSystems  https://simplifier.net/vzd-fhir-directory/region[VZD-FHIR-Directory] für die Region (Wertebereich). 
 Andere Schreibweisen werden nicht zugelassen. 
-|V002 |geplant |xxx
+|V002 |01/2024 |nein
 | Wenn countryCode==DE muss postalCode eine 5 stellige Nummer sein. 
-|V003 |geplant |xxx
+|V003 |01/2024 |ja
 | countryCode muss 2-Stellige ISO Code sein. Siehe https://www.iso.org/obp/ui/#search/code/[ISO 3166 "Alpha-2 code"].
-|V004 |geplant |xxx
+|V004 |01/2024 |ja
 | Bei SMC-B muss specialization folgendes Format haben: urn:psc:{OID Codesystem}:{Code}, 
 wobei CodeSystems und Codes aus  https://simplifier.net/vzd-fhir-directory/healthcareservicespecialtyvs[HealthcareServiceSpecialtyVS]  
 zu entnehmen sind.
-|V005 |geplant |xxx
+|V005 |01/2024 |ja
 | Bei HBA muss specialization folgendes Format haben: urn:as:{OID Codesystem}:{Code}, wobei CodeSystems und Codes aus https://simplifier.net/vzd-fhir-directory/practitionerqualificationvs[PractitionerQualificationVS] zu entnehmen sind.
-|V006 |geplant |xxx
+|V006 |01/2024 |ja
 | Überschreibt V004 für den Sektor der Apotheken. Bei SMC-B Einträgen füt Apotheken müssen für das Attribut specialization die Codes aus https://simplifier.net/vzd-fhir-directory/pharmacytypecs[PharmacyTypeCS] (nur Code, ohne CodeSystem) verwendet werden.
 // bisher V008  
-|V007 |geplant |xxx
+|V007 |01/2024 |nein
 | displayName muss mindestens 2 UTF-8 Alphanummerische Zeichen enthalten
 // bisher V010 
-|V008 |umgesetzt |xxx
+|V008 |01/2024 |nein
 | Prüfung auf Zugehörigkeit der Daten anhand der TelematikID. Alle Daten eines LDAP Eintrags müssen zur gleichen TelematikID gehören (z.B. Zertifikate).
 // bisher V012
-|V009 |geplant |xxx
+|V009 |geplant |nein
 | Für jeden Sektor wird überprüft, welche Attribute obligatorisch sind (Grundlage ist der Implementierungsleitfaden). Wenn Attribute obligatorisch zu setzen sind, dies aber vom Pflegenden nicht befüllt wird, kann der Eintrag nicht angelegt werden. Der Sektor wird anhand der TelematikId erkannt.
 // bisher V015
-|V010 |umgesetzt |xxx
+|V010 |umgesetzt |nein
 | Verzeichnisdienst filtert die Leerzeichen (leading, trailing) automatisch. Ist das Ausfiltern nicht möglich oder fachlich unzulässig (z.B. im Zertifikat) werden diese Daten mit einem Fehler abgelehnt. Minimalprüfung: Leerzeichen am Anfang bzw. am Ende sind bei allen Attributen unzulässig. 
 // bisher V018
-|V011 |geplant |xxx
+|V011 |01/2024 |ja
 | Für SMC-B Einträge muss die ProfessionOID aus den folgenden Codes entnommen werden: [gemSpec_VZD] Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID.
 // bisher V019
-|V012 |geplant |xxx
+|V012 |01/2024 |ja
 | Für HBA Einträge muss die ProfessionOID aus den folgenden Codes entnommen werden: [gemSpec_VZD] Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID.
-
+// bisher V22
+|V013 |01/2024 |ja
+| VZD Einträge ohne ProfessionOID - Keine Prüfung an der REST Schnittstelle aber Synchronisierungsproblem. +
+Basiseinträge ohne ProfessionOID dürfen im LDAP-VZD angelegt werden. +
+Entsprechende Datensätze ohne ProfessionOIDs können nicht in den FHIR-VZD synchronisiert werden.
 |===
 
 {empty} +
