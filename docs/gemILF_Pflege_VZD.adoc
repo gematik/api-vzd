@@ -797,6 +797,14 @@ zu entnehmen sind.
 | VZD Einträge ohne ProfessionOID - Keine Prüfung an der REST Schnittstelle aber Synchronisierungsproblem. +
 Basiseinträge ohne ProfessionOID dürfen im LDAP-VZD angelegt werden. +
 Entsprechende Datensätze ohne ProfessionOIDs können nicht in den FHIR-VZD synchronisiert werden.
+|V014 |01/2024 |nein
+a| Bei Organisationseinträgen werden die für Personen vorgesehene Felder givenName und title abgelehnt: +
+
+- Unterscheidung erfolgt anhand des Attributes isPersonalEntry (extrahiert aus Zertifikat bzw. direkter Übergabe des Attributes im REST Aufruf).
+- Relevant sind nur die Attribute die im REST Aufruf übergeben werden.
+- Die Validierung gilt nicht für Zertifikatsfelder.
+- Übergabe von Attribute SN (Surname) für Übernahme des Displayname ist weiterhin möglich.
+
 |===
 
 {empty} +
