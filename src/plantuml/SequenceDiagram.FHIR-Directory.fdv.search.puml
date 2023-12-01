@@ -1,0 +1,51 @@
+@startuml
+autonumber 1 1 "<b>[00]"
+title "FHIR-VZD Authentisierung mit GesundheitsID"
+
+participant VClient as "Client Versicherter"
+
+box VZD-FHIR-Directory #WhiteSmoke
+    participant "OAuth-Server" as VzdOAuth
+    participant "Auth-Service" as VzdAuth
+    participant fp as "FHIR-Proxy"
+    participant fd as "FHIR-Directory"
+end box
+
+
+VClient->VzdOAuth++: POST /token (client_id, client_secret)
+VzdOAuth->VzdOAuth: prüfe client_id, client_secret
+VzdOAuth-->VClient: patient-accesstoken
+
+VClient->VzdAuth++: GET /patient-authenticate \n(Authorization: "Bearer patient-accesstoken")
+VzdAuth->VzdAuth: Prüfe patient-accesstoken
+VzdAuth->VzdAuth: Erzeuge search-ACCESS_TOKEN & REFRESH_TOKEN
+VzdAuth-->VClient: search-ACCESS_TOKEN & REFRESH_TOKEN
+
+== ...Suche durch Versicherte im FHIR VZD... ==
+
+VClient -> fp: GET /search?... (Auth Header mit\nsearch-ACCESS_TOKEN)
+activate fp
+fp -> fp: prüfe search-ACCESS_TOKEN
+
+alt search-ACCESS_TOKEN is valid
+fp -> fd: GET /?...
+activate fd
+fd --> fp: HTTP 200 OK\n(Result Body json)
+deactivate fd
+fp --> VClient : HTTP 200 OK (Result Body json)
+else search-accesstoken is invalid
+fp --> VClient : HTTP 401
+deactivate fp
+end
+
+== ...search-ACCESS_TOKEN abgelaufen... ==
+
+VClient->VzdAuth++: GET /patient-authenticate \n(Authorization: "Bearer REFRESH_TOKEN")
+VzdAuth->VzdAuth: Prüfe REFRESH_TOKEN
+VzdAuth->VzdAuth: Erzeuge search-ACCESS_TOKEN & REFRESH_TOKEN
+
+VzdAuth-->VClient: Response (search-ACCESS_TOKEN & REFRESH_TOKEN)
+deactivate VzdAuth
+deactivate VzdAuth
+
+@enduml
