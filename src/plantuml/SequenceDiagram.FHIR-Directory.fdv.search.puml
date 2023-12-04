@@ -1,6 +1,6 @@
 @startuml
 autonumber 1 1 "<b>[00]"
-title "FHIR-VZD Authentisierung mit GesundheitsID"
+title "FHIR-VZD Authentisierung für Versicherte"
 
 participant VClient as "Client Versicherter"
 
@@ -11,15 +11,40 @@ box VZD-FHIR-Directory #WhiteSmoke
     participant fd as "FHIR-Directory"
 end box
 
+participant hs as "Matrix-Homeserver\n(Messenger-Proxy)"
 
+VClient-> VClient: prüfe ob noch gültiges search-ACCESS_TOKEN\nvom FHIR-Directory Auth-Service vorliegt
+
+alt kein gültiges search-ACCESS_TOKEN vorhanden - TIM Client
+VClient-> hs: POST /_matrix/client/r0/user/{userId}/openid/request_token
+activate hs
+hs --> VClient: HTTP 200 OK, Result body {"access_token": "Matrix-OpenID-Token",..., "matrix_server_name": "example.com",...}
+deactivate hs
+ else kein gültiges search-ACCESS_TOKEN vorhanden - alle anderen Clients
 VClient->VzdOAuth++: POST /token (client_id, client_secret)
 VzdOAuth->VzdOAuth: prüfe client_id, client_secret
 VzdOAuth-->VClient: patient-accesstoken
+deactivate VzdOAuth
+end
 
-VClient->VzdAuth++: GET /patient-authenticate \n(Authorization: "Bearer patient-accesstoken")
+VClient->VzdAuth++: GET /patient-authenticate \n(Authorization: "Bearer patient-accesstoken ODER Matrix-OpenID-Token")
+
+alt kein gültiges search-ACCESS_TOKEN vorhanden - Authorization mit Matrix-OpenID-Token
+
+VzdAuth-> VzdAuth: Prüfe ob matrix_server_name\nin Föderationsliste enthalten
+VzdAuth-> hs: GET /openid/userinfo/\nrequest header, Authorization: Bearer Matrix-OpenID-Token
+activate hs
+hs --> VzdAuth: HTTP 200 OK\n(Result Body MXID des Nutzers)
+deactivate hs
+
+ else kein gültiges search-ACCESS_TOKEN vorhanden - Authorization mit patient-accesstoken
+
 VzdAuth->VzdAuth: Prüfe patient-accesstoken
+end
+
 VzdAuth->VzdAuth: Erzeuge search-ACCESS_TOKEN & REFRESH_TOKEN
-VzdAuth-->VClient: search-ACCESS_TOKEN & REFRESH_TOKEN
+VzdAuth--> VClient: HTTP 200 OK, Result body mit search-ACCESS_TOKEN & REFRESH_TOKEN\n{"access_token"="search-ACCESS_TOKEN", "token_type":"bearer",\n"expires_in":86400}
+deactivate VzdAuth
 
 == ...Suche durch Versicherte im FHIR VZD... ==
 
