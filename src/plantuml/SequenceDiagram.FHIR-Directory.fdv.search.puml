@@ -68,6 +68,7 @@ end
 VClient->VzdAuth++: GET /patient-authenticate \n(Authorization: "Bearer REFRESH_TOKEN")
 VzdAuth->VzdAuth: Prüfe REFRESH_TOKEN
 VzdAuth->VzdAuth: Erzeuge search-ACCESS_TOKEN & REFRESH_TOKEN
+VzdAuth->VzdAuth: Deaktiviere altes REFRESH_TOKEN
 
 VzdAuth-->VClient: Response (search-ACCESS_TOKEN & REFRESH_TOKEN)
 deactivate VzdAuth
