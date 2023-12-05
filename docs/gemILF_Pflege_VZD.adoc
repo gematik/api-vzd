@@ -824,29 +824,7 @@ Tabelle 1: TAB_VZD_Wertebereiche_der_Attribute
 [width="100%",cols="24%,40%,36%",options="header",]
 |===
 |*Attribut* |*gültige Werte* |*Beschreibung*
-|stateOrProvinceName |Baden-Württemberg +
-Bayern +
-Berlin +
-Brandenburg +
-Bremen +
-Hamburg +
-Hessen +
-Mecklenburg-Vorpommern +
-Niedersachsen +
-Nordrhein-Westfalen +
-Rheinland-Pfalz +
-Saarland +
-Sachsen +
-Sachsen-Anhalt +
-Schleswig-Holstein +
-Thüringen +
- +
-Nordrhein +
-Westfalen-Lippe +
- +
-<Platzhalter für EU-Organisationen/Personen außerhalb Deutschlands> |Zu den 16 Bundesländern sind auch die KV-Regionen Nordrhein und Westfalen-Lippe gültige Werte. +
- +
-Mit der Einführung des E-Rezepts sind auch Bezeichnungen von EU-Ortschaften und EU-Ländern außerhalb Deutschlands möglich.
+|stateOrProvinceName |Siehe Wertebereich des CodeSystems https://simplifier.net/vzd-fhir-directory/region[VZD-FHIR-Directory] |
 |countryCode |Werte gemäß  ISO-3166-1 ALPHA-2 |Wenn nicht im add oder modify Request angegeben, wird vom VZD der Code "DE" eingetragen.
 |===
 {empty} +
