@@ -29,10 +29,11 @@ alt kein gültiges REFRESH_TOKEN vorhanden
    VzdAuth-> hs: GET /openid/userinfo/\nrequest header, Authorization: Bearer Matrix-OpenID-Token
    activate hs
    hs --> VzdAuth: HTTP 200 OK\n(Result Body MXID des Nutzers)
+   deactivate hs
    VzdAuth->VzdAuth: Erzeuge search-ACCESS_TOKEN & REFRESH_TOKEN
    VzdAuth--> VClient: HTTP 200 OK, Result body mit search-ACCESS_TOKEN & REFRESH_TOKEN\n{"access_token"="search-ACCESS_TOKEN", "token_type":"bearer",\n"expires_in":86400\n"refresh_token"="REFRESH_TOKEN", "token_type":"refresh_token"}
    deactivate VzdAuth
-   deactivate hs
+
  else gültiges REFRESH_TOKEN vorhanden
    VClient->VzdAuth++: GET /patient-authenticate \n(Authorization: "Bearer REFRESH_TOKEN")
    VzdAuth->VzdAuth: Prüfe REFRESH_TOKEN
