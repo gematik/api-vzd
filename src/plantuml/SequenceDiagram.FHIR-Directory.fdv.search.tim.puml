@@ -2,11 +2,7 @@
 autonumber 1 1 "<b>[00]"
 title "FHIR-VZD Authentisierung für Versicherte"
 
-
-box Fachanwendung #WhiteSmoke
-    participant VClient as "Client Versicherter"
-    participant FDienst as "Fachdienst"
-end box
+participant VClient as "TIM-Client Versicherter"
 
 box VZD-FHIR-Directory #WhiteSmoke
     participant "OAuth-Server" as VzdOAuth
@@ -14,43 +10,39 @@ box VZD-FHIR-Directory #WhiteSmoke
     participant fp as "FHIR-Proxy"
 end box
 
+participant hs as "Matrix-Homeserver\n(Messenger-Proxy)"
 
-
-VClient-> VClient: prüfe ob  gültiges ""search-access-token""\nvom FHIR-Directory Auth-Service vorliegt
-
+VClient-> VClient: prüfe ob noch gültiges search-access-token\nvom FHIR-Directory Auth-Service vorliegt
 
 alt kein gültiges search-access-token vorhanden
-   VClient-> FDienst: Anfrage search-access-token
+   VClient-> hs: POST /_matrix/client/r0/user/{userId}/openid/request_token
+   activate hs
+   hs --> VClient: HTTP 200 OK, Result body {"access_token": "Matrix-OpenID-Token",..., "matrix_server_name": "example.com",...}
+   deactivate hs
 
-note left: Vor der Anfrage\nvom search-access-token\nmuss der Client authentisiert sein
+   VClient->VzdAuth++: GET /tim-authenticate \nX-Matrix-OpenID-Token: Matrix-OpenID-Token
 
-   
-   FDienst -> FDienst: client_id und client_secret\nz.B. aus config File lesen
-   FDienst ->VzdOAuth++: POST /token (client_id, client_secret)
-   VzdOAuth->VzdOAuth: prüfe client_id, client_secret
-   VzdOAuth-->FDienst--: ""service-authz-token""
-
-   FDienst->VzdAuth++: GET /service-authenticate \n Authorization:   Bearer {service-authz-token}
-
-   VzdAuth->VzdAuth: Prüfe service-authz-token
-
+   VzdAuth-> VzdAuth: Prüfe ob matrix_server_name\nin Föderationsliste enthalten
+   VzdAuth-> hs: GET /openid/userinfo/\nrequest header, Authorization: Bearer Matrix-OpenID-Token
+   activate hs
+   hs --> VzdAuth: HTTP 200 OK\n(Result Body MXID des Nutzers)
+   deactivate hs
    VzdAuth->VzdAuth: Erzeuge search-access-token
-   VzdAuth-->FDienst: HTTP 200 OK\n{\n "access_token"="search-access-token",\n  "token_type":"bearer",\n "expires_in":86400\n}
+   VzdAuth--> VClient: HTTP 200 OK\n{\n  "access_token"="search-access-token",\n  "token_type":"bearer",\n  "expires_in":86400\n}
+   deactivate VzdAuth
 
-   FDienst->FDienst: cache ""search-access-token""
-
-   FDienst-->VClient: ""search-access-token""
 end
 
 == ...Suche durch Versicherte im FHIR VZD... ==
 
-VClient -> fp: GET /patient/search?... \nAuthorization: Bearer search-access-token
+VClient -> fp: GET /fdv/search?...\nAuthorization: Bearer search-access-token
 activate fp
 fp -> fp: prüfe search-access-token
-fp -> fp: suche
+
 alt search-access-token ist gültig
+   fp -> fp: suche im FHIR-VZD
    fp --> VClient : HTTP 200 OK (Result Body json)
- else search-access-token ist ungültig
+ else search-accesstoken ist ungültig
    fp --> VClient : HTTP 401
    deactivate fp
 end
