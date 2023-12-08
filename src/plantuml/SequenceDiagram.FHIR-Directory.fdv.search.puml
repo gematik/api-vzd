@@ -14,16 +14,12 @@ box VZD-FHIR-Directory #WhiteSmoke
     participant fp as "FHIR-Proxy"
 end box
 
-
-
 VClient-> VClient: prüfe ob  gültiges ""search-access-token""\nvom FHIR-Directory Auth-Service vorliegt
-
 
 alt kein gültiges search-access-token vorhanden
    VClient-> FDienst: Anfrage search-access-token
 
 note left: Vor der Anfrage\nvom search-access-token\nmuss der Client authentisiert sein
-
    
    FDienst -> FDienst: client_id und client_secret\nz.B. aus config File lesen
    FDienst ->VzdOAuth++: POST /token (client_id, client_secret)
