@@ -42,7 +42,7 @@ end
 
 == ...Suche durch Versicherte im FHIR VZD... ==
 
-VClient -> fp: GET /insurant/search?... \nAuthorization: Bearer search-access-token
+VClient -> fp: GET /patient/search?... \nAuthorization: Bearer search-access-token
 activate fp
 fp -> fp: prüfe search-access-token
 fp -> fp: suche
