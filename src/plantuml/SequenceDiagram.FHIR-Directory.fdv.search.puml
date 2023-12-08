@@ -12,59 +12,43 @@ box VZD-FHIR-Directory #WhiteSmoke
     participant "OAuth-Server" as VzdOAuth
     participant "Auth-Service" as VzdAuth
     participant fp as "FHIR-Proxy"
-    participant fd as "FHIR-Directory"
 end box
 
-participant hs as "Matrix-Homeserver\n(Messenger-Proxy)"
 
-VClient-> VClient: prüfe ob noch gültiges search-ACCESS_TOKEN\nvom FHIR-Directory Auth-Service vorliegt
+VClient-> VClient: prüfe ob  gültiges ""search-access-token""\nvom FHIR-Directory Auth-Service vorliegt
 
-alt kein gültiges search-ACCESS_TOKEN vorhanden
-   VClient-> FDienst: Anfrage search-ACCESS_TOKEN
 
-   FDienst->FDienst: gültiges REFRESH_TOKEN vorhanden?
+alt kein gültiges search-access-token vorhanden
+   VClient-> FDienst: Anfrage search-access-token
 
-  alt kein gültiges REFRESH_TOKEN vorhanden
-     FDienst ->VzdOAuth++: POST /token (client_id, client_secret)
-     VzdOAuth->VzdOAuth: prüfe client_id, client_secret
-     VzdOAuth-->FDienst: patient-accesstoken
-     deactivate VzdOAuth
+   FDienst->FDienst: Prüfe Benutzer Authentisierung
+   
+   FDienst -> FDienst: client_id und client_secret\nabrufen
+   FDienst ->VzdOAuth++: POST /token (client_id, client_secret)
+   VzdOAuth->VzdOAuth: prüfe client_id, client_secret
+   VzdOAuth-->FDienst--: ""service-authz-token""
 
-     FDienst->VzdAuth++: GET /patient-authenticate \n(Authorization: "grant_type=Bearer patient-accesstoken")
+   FDienst->VzdAuth++: GET /service-authenticate \n Authorization:   Bearer {service-authz-token}
 
-     VzdAuth->VzdAuth: Prüfe patient-accesstoken
+   VzdAuth->VzdAuth: Prüfe service-authz-token
 
-     VzdAuth->VzdAuth: Erzeuge search-ACCESS_TOKEN & REFRESH_TOKEN
-     VzdAuth-->FDienst: HTTP 200 OK, Result body mit search-ACCESS_TOKEN & REFRESH_TOKEN\n{"access_token"="search-ACCESS_TOKEN", "token_type":"bearer",\n"expires_in":86400\n"refresh_token"="REFRESH_TOKEN", "token_type":"refresh_token"}
-     deactivate VzdAuth
+   VzdAuth->VzdAuth: Erzeuge search-access-token
+   VzdAuth-->FDienst: HTTP 200 OK\n{\n "access_token"="search-access-token",\n  "token_type":"bearer",\n "expires_in":86400\n}
 
- else gültiges REFRESH_TOKEN vorhanden
-     FDienst->VzdAuth++: GET /patient-authenticate \n(Authorization: "grant_type=refresh_token REFRESH_TOKEN")
+   FDienst->FDienst: cache ""search-access-token""
 
-     VzdAuth->VzdAuth: Prüfe REFRESH_TOKEN
-
-     VzdAuth->VzdAuth: Erzeuge search-ACCESS_TOKEN & REFRESH_TOKEN
-     VzdAuth->VzdAuth: Deaktiviere altes REFRESH_TOKEN
-     VzdAuth-->FDienst: HTTP 200 OK, Result body mit search-ACCESS_TOKEN & REFRESH_TOKEN\n{"access_token"="search-ACCESS_TOKEN", "token_type":"bearer",\n"expires_in":86400\n"refresh_token"="REFRESH_TOKEN", "token_type":"refresh_token"}
-     deactivate VzdAuth
- end
-
-   FDienst-->VClient: search-ACCESS_TOKEN
+   FDienst-->VClient: ""search-access-token""
 end
 
 == ...Suche durch Versicherte im FHIR VZD... ==
 
-VClient -> fp: GET /fdv/search?... (Auth Header mit\nsearch-ACCESS_TOKEN)
+VClient -> fp: GET /patient/search?... \nAuthorization: Bearer search-access-token
 activate fp
-fp -> fp: prüfe search-ACCESS_TOKEN
-
-alt search-ACCESS_TOKEN is valid
-   fp -> fd: GET /?...
-   activate fd
-   fd --> fp: HTTP 200 OK\n(Result Body json)
-   deactivate fd
+fp -> fp: prüfe search-access-token
+fp -> fp: suche
+alt search-access-token ist gültig
    fp --> VClient : HTTP 200 OK (Result Body json)
- else search-accesstoken is invalid
+ else search-access-token ist ungültig
    fp --> VClient : HTTP 401
    deactivate fp
 end
