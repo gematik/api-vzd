@@ -8,57 +8,42 @@ box VZD-FHIR-Directory #WhiteSmoke
     participant "OAuth-Server" as VzdOAuth
     participant "Auth-Service" as VzdAuth
     participant fp as "FHIR-Proxy"
-    participant fd as "FHIR-Directory"
 end box
 
 participant hs as "Matrix-Homeserver\n(Messenger-Proxy)"
 
-VClient-> VClient: prüfe ob noch gültiges search-ACCESS_TOKEN\nvom FHIR-Directory Auth-Service vorliegt
+VClient-> VClient: prüfe ob noch gültiges search-access-token\nvom FHIR-Directory Auth-Service vorliegt
 
-alt kein gültiges search-ACCESS_TOKEN vorhanden
-VClient->VClient: gültiges REFRESH_TOKEN vorhanden?
-alt kein gültiges REFRESH_TOKEN vorhanden
+alt kein gültiges search-access-token vorhanden
    VClient-> hs: POST /_matrix/client/r0/user/{userId}/openid/request_token
    activate hs
    hs --> VClient: HTTP 200 OK, Result body {"access_token": "Matrix-OpenID-Token",..., "matrix_server_name": "example.com",...}
    deactivate hs
 
-   VClient->VzdAuth++: GET /patient-authenticate \n(Authorization: "Bearer Matrix-OpenID-Token")
+   VClient->VzdAuth++: GET /patient-authenticate \nX-Matrix-OpenID-Token: Matrix-OpenID-Token
 
    VzdAuth-> VzdAuth: Prüfe ob matrix_server_name\nin Föderationsliste enthalten
    VzdAuth-> hs: GET /openid/userinfo/\nrequest header, Authorization: Bearer Matrix-OpenID-Token
    activate hs
    hs --> VzdAuth: HTTP 200 OK\n(Result Body MXID des Nutzers)
    deactivate hs
-   VzdAuth->VzdAuth: Erzeuge search-ACCESS_TOKEN & REFRESH_TOKEN
-   VzdAuth--> VClient: HTTP 200 OK, Result body mit search-ACCESS_TOKEN & REFRESH_TOKEN\n{"access_token"="search-ACCESS_TOKEN", "token_type":"bearer",\n"expires_in":86400\n"refresh_token"="REFRESH_TOKEN", "token_type":"refresh_token"}
+   VzdAuth->VzdAuth: Erzeuge search-access-token
+   VzdAuth--> VClient: HTTP 200 OK\n{\n  "access_token"="search-access-token",\n  "token_type":"bearer",\n  "expires_in":86400\n}
    deactivate VzdAuth
 
- else gültiges REFRESH_TOKEN vorhanden
-   VClient->VzdAuth++: GET /patient-authenticate \n(Authorization: "Bearer REFRESH_TOKEN")
-   VzdAuth->VzdAuth: Prüfe REFRESH_TOKEN
-   VzdAuth->VzdAuth: Erzeuge search-ACCESS_TOKEN & REFRESH_TOKEN
-   VzdAuth->VzdAuth: Deaktiviere altes REFRESH_TOKEN
-   VzdAuth--> VClient: HTTP 200 OK, Result body mit search-ACCESS_TOKEN & REFRESH_TOKEN\n{"access_token"="search-ACCESS_TOKEN", "token_type":"bearer",\n"expires_in":86400\n"refresh_token"="REFRESH_TOKEN", "token_type":"refresh_token"}
-   deactivate VzdAuth
-
-end
 
 end
 
 == ...Suche durch Versicherte im FHIR VZD... ==
 
-VClient -> fp: GET /fdv/search?... (Auth Header mit\nsearch-ACCESS_TOKEN)
+VClient -> fp: GET /insurant/search?...\nAuthorization: Bearer search-access-token
 activate fp
-fp -> fp: prüfe search-ACCESS_TOKEN
+fp -> fp: prüfe search-access-token
+fp -> fp: suche
 
-alt search-ACCESS_TOKEN is valid
-   fp -> fd: GET /?...
-   activate fd
-   fd --> fp: HTTP 200 OK\n(Result Body json)
-   deactivate fd
+alt search-access-token ist gültig
    fp --> VClient : HTTP 200 OK (Result Body json)
- else search-accesstoken is invalid
+ else search-accesstoken ist ungültig
    fp --> VClient : HTTP 401
    deactivate fp
 end

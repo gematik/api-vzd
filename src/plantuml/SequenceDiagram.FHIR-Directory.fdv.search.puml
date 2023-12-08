@@ -4,22 +4,16 @@ title "FHIR-VZD Authentisierung für Versicherte"
 
 
 box Fachanwendung #WhiteSmoke
-    participant VClient as "Frontend Versicherter"
+    participant VClient as "Client Versicherter"
     participant FDienst as "Fachdienst"
 end box
 
 box VZD-FHIR-Directory #WhiteSmoke
     participant "OAuth-Server" as VzdOAuth
     participant "Auth-Service" as VzdAuth
-    participant fp as "VZD FHIR"
+    participant fp as "FHIR-Proxy"
 end box
 
-
-group Asynchron
-
-
-
-end
 
 VClient-> VClient: prüfe ob  gültiges ""search-access-token""\nvom FHIR-Directory Auth-Service vorliegt
 
@@ -48,7 +42,7 @@ end
 
 == ...Suche durch Versicherte im FHIR VZD... ==
 
-VClient -> fp: GET /frontend/search?... \nAuthorization: Bearer search-access-token
+VClient -> fp: GET /insurant/search?... \nAuthorization: Bearer search-access-token
 activate fp
 fp -> fp: prüfe search-access-token
 fp -> fp: suche
