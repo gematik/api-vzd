@@ -1,6 +1,6 @@
 @startuml
 autonumber 1 1 "<b>[00]"
-title "FHIR-VZD Authentisierung für Versicherte"
+title "FHIR-VZD Authentisierung für TI-Messenger-Nutzer (Versicherte)"
 
 participant VClient as "TIM-Client Versicherter"
 
@@ -22,12 +22,12 @@ alt kein gültiges search-access-token vorhanden
 
    VClient->VzdAuth++: GET /tim-authenticate \nX-Matrix-OpenID-Token: Matrix-OpenID-Token
 
-   VzdAuth-> VzdAuth: Prüfe ob matrix_server_name\nin Föderationsliste enthalten
+   VzdAuth-> VzdAuth: Prüfe ob matrix_server_name\nin Föderationsliste enthalten \nund prüfe das isInsurance Flag des matrix_server_name\nin der Föderationsliste
    VzdAuth-> hs: GET /openid/userinfo/\nrequest header, Authorization: Bearer Matrix-OpenID-Token
    activate hs
    hs --> VzdAuth: HTTP 200 OK\n(Result Body MXID des Nutzers)
    deactivate hs
-   VzdAuth->VzdAuth: Erzeuge search-access-token
+   VzdAuth->VzdAuth: Erzeuge search-access-token\nbei isInsurance=true für die /fdv/search Schnittstelle,\nbei isInsurance=true für die /search Schnittstelle.
    VzdAuth--> VClient: HTTP 200 OK\n{\n  "access_token"="search-access-token",\n  "token_type":"bearer",\n  "expires_in":86400\n}
    deactivate VzdAuth
 
