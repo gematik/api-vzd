@@ -511,7 +511,7 @@ components:
             type: integer
           minItems: 1
           uniqueItems: true
-          example: 108433248, 104127692
+          example: [108433248, 104127692]
 
 
     Error:
