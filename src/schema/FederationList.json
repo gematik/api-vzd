@@ -26,8 +26,8 @@
           "default": false,
           "example": false
         },
-        "ikNumbers": {
-          "description": "The IK numbers managed by the defined health insurace domain",
+        "ik": {
+          "description": "The IKs managed by the defined health insurace domain",
           "type": "array",
           "items": {
             "type": "integer"
