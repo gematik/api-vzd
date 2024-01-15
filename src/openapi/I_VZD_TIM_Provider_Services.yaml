@@ -3,7 +3,10 @@ info:
   title: I_VZD_TIM_Provider_Services
   description: REST interface to retrieve the TI-Messenger federation list and to administrate the TI-Messenger domains.
 
-  version: 1.3.2
+  version: 1.3.3
+
+  # version 1.3.3
+  #  - Schema Domain: Attribut ikNumbers renamed to ik
 
   # version 1.3.2
   #  - added optional array for ik numbers in case the domain is used for insured persons
@@ -501,8 +504,8 @@ components:
           type: boolean
           default: false          
           example: true
-        ikNumbers:
-          description: The IK numbers managed by the defined health insurace domain
+        ik:
+          description: The IK managed by the defined health insurace domain
           type: array
           items: 
             type: integer
