@@ -6,7 +6,8 @@ info:
   version: 1.3.3
 
   # version 1.3.3
-  #  - Schema Domain: Attribut ikNumbers renamed to ik
+  #  - Schema Domain: - Attribut ikNumbers renamed to ik
+  #                   - Added attribute timProvider
 
   # version 1.3.2
   #  - added optional array for ik numbers in case the domain is used for insured persons
@@ -512,7 +513,10 @@ components:
           minItems: 1
           uniqueItems: true
           example: [108433248, 104127692]
-
+        timProvider:
+          description: The Zuweisungsgruppe im TI-ITSM-System of the TI-Messenger Provider, who added the domain
+          type: string
+          readOnly: true
 
     Error:
       type: object
