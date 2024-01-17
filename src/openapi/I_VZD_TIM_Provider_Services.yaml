@@ -72,7 +72,7 @@ servers:
 - url: https://fhir-directory-ref.vzd.ti-dienste.de/tim-provider-services
   description: Reference server
 - url: https://fhir-directory.vzd.ti-dienste.de/tim-provider-services
-  description: roduction server
+  description: Production server
 tags:
 - name: getInfo
   description: This operation returns meta data about this interface
@@ -181,10 +181,10 @@ paths:
       - name: mxid
         in: query
         description: |
-              MXID (MXID in URI Form)
+              MXID (MXID im URL Format)
               Format: matrix:user/localpart:domainpart  
                 Example MatrixID:       @1-1tst-auto-ts-ow2:tim.test.gematik.de 
-                MatrixID im URI Format: matrix:u/1-1tst-auto-ts-ow2:tim.test.gematik.de
+                MatrixID im URL Format: matrix:user/1-1tst-auto-ts-ow2:tim.test.gematik.de
         schema:
           type: string
 
@@ -543,8 +543,8 @@ components:
 
     InfoObject:
       required:
-      - title
-      - version
+        - title
+        - version
       readOnly: true
       type: object
       properties:
