@@ -6,7 +6,7 @@ info:
    # REST Schnittstelle zur Pflege der Fachanwendungsdaten der Verzeichniseinträge
      Über diese Schnittstelle können Fachanwendungsdaten der Verzeichniseinträge erzeugt, aktualisiert und gelöscht werden. 
 
-  version: 1.4.4
+  version: 1.4.5
 
   # Änderungen in Version 1.4.5
   #  - Operation read_Directory_Entry: 
