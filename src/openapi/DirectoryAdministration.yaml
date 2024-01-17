@@ -3,8 +3,14 @@ info:
   title: I_Directory_Administration
   description: REST Schnittstelle zur Pflege der Verzeichniseinträge.
               Über diese Schnittstelle können Verzeichniseinträge inklusive Zertifikaten erzeugt, aktualisiert und gelöscht werden. Die Administration von Fachdaten erfolgt über Schnittstelle I_Directory_Application_Maintenance und wird durch die Fachanwendungen durchgeführt. Lesender Zugriff auf die Fachdaten ist mit Operation getDirectoryEntries in vorliegender Schnittstelle möglich.
-  version: 1.12.5
+  version: 1.12.6
 
+  # Änderungen in Version 1.12.6
+  #  - Operation read_Directory_Entry: 
+  #    Attribute aus "Suche nach Vorhandensein oder leerem Inhalt" in description entfernt
+  #                - changeDateTimeFrom
+  #                - changeDateTimeTo
+  # 
   # Änderungen in Version 1.12.5
   #  - Operationen search_Directory_FA-Attributes_for_Sync_paging definiert.
   #
@@ -392,8 +398,6 @@ paths:
                   - domainID
                   - holder
                   - professionOID
-                  - changeDateTimeFrom
-                  - changeDateTimeTo
                   - providedBy
             Diese Suche findet sowohl Datensätze mit nicht vorhandenem Attribut wie auch vorhandenem aber leerem Attribut.
             Alle Filterparameter einer Leseoperationen werden mit einem UND (&) verknüpft.
