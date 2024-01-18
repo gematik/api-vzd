@@ -14,12 +14,12 @@ box VZD-FHIR-Directory #WhiteSmoke
     participant fp as "FHIR-Proxy"
 end box
 
-VClient-> VClient: prüfe ob  gültiges ""search-access-token""\nvom FHIR-Directory Auth-Service vorliegt
+VClient-> VClient: prüfe ob  gültiges ""search-access_token""\nvom FHIR-Directory Auth-Service vorliegt
 
-alt kein gültiges search-access-token vorhanden
-   VClient-> FDienst: Anfrage search-access-token
+alt kein gültiges search-access_token vorhanden
+   VClient-> FDienst: Anfrage search-access_token
 
-note left: Vor der Anfrage\nvom search-access-token\nmuss der Client authentisiert sein
+note left: Vor der Anfrage\nvom search-access_token\nmuss der Client authentisiert sein
    
    FDienst -> FDienst: client_id und client_secret\nz.B. aus config File lesen
    FDienst ->VzdOAuth++: POST /token (client_id, client_secret)
@@ -30,24 +30,24 @@ note left: Vor der Anfrage\nvom search-access-token\nmuss der Client authentisie
 
    VzdAuth->VzdAuth: Prüfe service-authz-token
 
-   VzdAuth->VzdAuth: Erzeuge search-access-token
-   VzdAuth-->FDienst: HTTP 200 OK\n{\n "access_token"="search-access-token",\n  "token_type":"bearer",\n "expires_in":86400\n}
+   VzdAuth->VzdAuth: Erzeuge search-access_token
+   VzdAuth-->FDienst: HTTP 200 OK\n{\n "access_token"="search-access_token",\n  "token_type":"bearer",\n "expires_in":86400\n}
 
-   FDienst->FDienst: cache ""search-access-token""
+   FDienst->FDienst: cache ""search-access_token""
 
-   FDienst-->VClient: ""search-access-token""
+   FDienst-->VClient: ""search-access_token""
 end
 
 == ...Suche durch Versicherte im FHIR VZD... ==
 
-VClient -> fp: GET /fdv/search?... \nAuthorization: Bearer search-access-token
+VClient -> fp: GET /fdv/search?... \nAuthorization: Bearer search-access_token
 activate fp
-fp -> fp: prüfe search-access-token
+fp -> fp: prüfe search-access_token
 
-alt search-access-token ist gültig
+alt search-access_token ist gültig
    fp -> fp: suche im FHIR VZD
    fp --> VClient : HTTP 200 OK (Result Body json)
- else search-access-token ist ungültig
+ else search-access_token ist ungültig
    fp --> VClient : HTTP 401
    deactivate fp
 end
