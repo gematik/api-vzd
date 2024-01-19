@@ -71,7 +71,7 @@ Nutzer -> cl: Verlinkungsanfrage \nmit ausgewählten Ressourcen \n{HealthcareSer
 group VerlinkungsRequest
   cl -> fa: suggestPersonInstitutionLink {HealthcareService, PractitionerRole}
   activate fa
-  fa -> fa: prüfe owner-accesstoken\n& Prüfe, dass eine der Ressourcen \neine eigene Ressource ist
+  fa -> fa: prüfe owner-accesstoken\n& Prüfe, dass eine der Ressourcen \neine eigene Ressource ist\n& Prüfe, dass eine der Ressourcen\n ein HealthcareService und die andere\n Ressource eine PractitionerRole ist.
 
     alt accesstoken is valid
       fa -> fa: Eintragen des Verlinkungsrequests
