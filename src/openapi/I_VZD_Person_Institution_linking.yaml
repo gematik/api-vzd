@@ -2,8 +2,13 @@ openapi: 3.0.3
 info:
   title: I_VZD_Person_Institution_linking
   description: REST interface for linkin person and institution entries.
-  version: 1.0.0
+  version: 1.0.1
 
+  # version 1.0.1
+  #   HTTP error codes added
+  #   deletePersonInstitutionLink returns 200 and PersonInstitutionLink
+  #   Schema PersonInstitutionLink: Attribute id removed from "required" section
+  #
   # version 1.0.0
   #   initial Version
 
@@ -17,7 +22,6 @@ servers:
 - url: https://Person_Institution_linking-ref.vzd.ti-dienste.de:443/
   description: Referenzumgebung
 - url: https://Person_Institution_linking.vzd.ti-dienste.de:443/
-  description: Produktivumgebung
 
 tags:
   - name: getInfo
@@ -35,7 +39,7 @@ paths:
   /:
     get:
       tags:
-      - getInfo
+        - getInfo
       summary: This operation delivers meta data about this interface
       operationId: getInfo
       responses:
@@ -44,10 +48,10 @@ paths:
           content:
             application/json:
               schema:
-                  $ref: '#/components/schemas/InfoObject'
+                $ref: '#/components/schemas/InfoObject'
         401:
           description: Unauthorized
-                    #  The WWW-Authenticate Header in the response will be set to OAuth
+          #  The WWW-Authenticate Header in the response will be set to OAuth
           content:
             application/json:
               schema:
@@ -99,7 +103,7 @@ paths:
                 $ref: '#/components/schemas/Error'
         409:
           description: Conflict
-          # Person-Institution-Link already exists
+          # Active Person-Institution-Link already exists
           content:
             application/json:
               schema:
@@ -109,10 +113,10 @@ paths:
         - getPersonInstitutionLinks
       summary: Get Person-Institution-Links
       description: |
-           Get Person-Institution-Links
-           All input parameters are used as a filter parameters combined by AND.
-           An omitted parameter selects all entries.
-           An operation call without input parameters returns all entries of the table.
+        Get Person-Institution-Links
+        All input parameters are used as a filter parameters combined by AND.
+        An omitted parameter selects all entries.
+        An operation call without input parameters returns all entries of the table.
       operationId: getPersonInstitutionLinks
       parameters:
         - name: id
@@ -218,13 +222,21 @@ paths:
         403:
           description: Forbidden
           # state will be only changed, if the requesting client is contained in
-          # the link and is not the creator of the link request. 
+          # the link and is not the creator of the link request.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
         404:
           description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        409:
+          description: Conflict
+          # Person-Institution-Link can not be approved, because the assumed Person-Institution-Link is in wrong state
+
           content:
             application/json:
               schema:
@@ -244,8 +256,12 @@ paths:
           schema:
             type: string
       responses:
-        204:
-          description: No content
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PersonInstitutionLink'
         400:
           description: Bad Request
           content:
@@ -261,7 +277,7 @@ paths:
                 $ref: '#/components/schemas/Error'
         403:
           description: Forbidden
-          # link will be only deleted, if the requesting client (telematikID) 
+          # link will be only deleted, if the requesting client (telematikID)
           # is contained in the link.
           content:
             application/json:
@@ -273,13 +289,19 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+        409:
+          description: Conflict
+          # Person-Institution-Link can not be deleted, because the assumed Person-Institution-Link is in wrong state
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
 
 components:
   schemas:
     PersonInstitutionLink:
       type: object
       required:
-        - id
         - telematikIDHealthcareService
         - telematikIDPractitionerRole
       properties:
@@ -305,17 +327,17 @@ components:
           readOnly: true
         status:
           description: |
-           Status of linking proposal
-             "CREATED"   - The linking proposal is created
-                    -> approvePersonInstitutionLink changes this state to "APPROVED"
-                    -> deletePersonInstitutionLink changes this state to "REVOKED"
-             "APPROVED"  - The linking proposal is accepted by the other party
-                    -> deletePersonInstitutionLink changes this state to "REVOKED"
-             "LINKED"    - The link is created in the FHIR VZD Data
-                    -> deletePersonInstitutionLink changes this state to "REVOKED"
-             "REVOKED"   - The linking proposal is revoked.
-             "UNLINKED"  - The link is removed in the FHIR VZD data.
-                    -> no change of this state is possible
+            Status of linking proposal
+              "CREATED"   - The linking proposal is created
+                     -> approvePersonInstitutionLink changes this state to "APPROVED"
+                     -> deletePersonInstitutionLink changes this state to "REVOKED"
+              "APPROVED"  - The linking proposal is accepted by the other party
+                     -> deletePersonInstitutionLink changes this state to "REVOKED"
+              "LINKED"    - The link is created in the FHIR VZD Data
+                     -> deletePersonInstitutionLink changes this state to "REVOKED"
+              "REVOKED"   - The linking proposal is revoked.
+              "UNLINKED"  - The link is removed in the FHIR VZD data.
+                     -> no change of this state is possible
           type: string
           enum: [ "CREATED", "APPROVED", "LINKED", "REVOKED", "UNLINKED"]
           readOnly: true
@@ -323,22 +345,22 @@ components:
           description: Timestamp of creation
           type: string
           format: date-time
-          readOnly: true  
+          readOnly: true
         approvedAt:
           description: Timestamp of approval
           type: string
           format: date-time
-          readOnly: true          
+          readOnly: true
         linkedAt:
           description: Timestamp of linkage
           type: string
           format: date-time
-          readOnly: true          
+          readOnly: true
         revokedAt:
           description: Timestamp of revokal
           type: string
           format: date-time
-          readOnly: true          
+          readOnly: true
 
     Error:
       type: object
@@ -364,8 +386,8 @@ components:
 
     InfoObject:
       required:
-      - title
-      - version
+        - title
+        - version
       readOnly: true
       type: object
       properties:
@@ -381,7 +403,6 @@ components:
           type: string
           description: Die Version von dem OpenAPI Document (YAML Datei)
           example: "1.6.0"
-          
 
   securitySchemes:
     bearerAuth:
@@ -390,23 +411,22 @@ components:
       bearerFormat: JWT
 
 security:
-    - bearerAuth: []
-#              Users of this interface are
-#               - persons contained in the FHIR VZD
-#               - organizations contained in the FHIR VZD
-#              They have to authenticate with a HBA or SMC-B and the smartcard IDP.
-#              The FHIR VZD accepts the OpenID-Token of the smartcard IDP for authentication and 
-#              returns a FHIR VZD access token which allows the usage of this interface.
+  - bearerAuth: []
+      #              Users of this interface are
+      #               - persons contained in the FHIR VZD
+      #               - organizations contained in the FHIR VZD
+      #              They have to authenticate with a HBA or SMC-B and the smartcard IDP.
+      #              The FHIR VZD accepts the OpenID-Token of the smartcard IDP for authentication and
+      #              returns a FHIR VZD access token which allows the usage of this interface.
 
-#        Token Endpoint is specific for the environment:
-        
-#        **Testumgebung:**
-#        * https://auth-test.vzd.ti-dienste.de:9443/auth/realms/Person_Institution_linking/protocol/openid-connect/token
-        
-#        **Referenzumgebung:**
-#        * https://auth-ref.vzd.ti-dienste.de:9443/auth/realms/Person_Institution_linking/protocol/openid-connect/token
-        
+      #        Token Endpoint is specific for the environment:
+
+      #        **Testumgebung:**
+      #        * https://auth-test.vzd.ti-dienste.de:9443/auth/realms/Person_Institution_linking/protocol/openid-connect/token
+
+      #        **Referenzumgebung:**
+    #        * https://auth-ref.vzd.ti-dienste.de:9443/auth/realms/Person_Institution_linking/protocol/openid-connect/token
+
 #        **Produktivumgebung:**
 #        * https://auth.vzd.ti-dienste.de:9443/auth/realms/Person_Institution_linking/protocol/openid-connect/token
-
 
