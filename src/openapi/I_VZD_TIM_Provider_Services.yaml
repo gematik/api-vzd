@@ -3,7 +3,11 @@ info:
   title: I_VZD_TIM_Provider_Services
   description: REST interface to retrieve the TI-Messenger federation list and to administrate the TI-Messenger domains.
 
-  version: 1.3.3
+  version: 1.3.4
+
+  # version 1.3.4
+  #  - Schema InfoObject: - Attributs termsOfService, contact & license removed
+  #  - Schema Contact & License removed
 
   # version 1.3.3
   #  - Schema Domain: - Attribut ikNumbers renamed to ik
