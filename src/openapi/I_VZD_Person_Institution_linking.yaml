@@ -2,8 +2,12 @@ openapi: 3.0.3
 info:
   title: I_VZD_Person_Institution_linking
   description: REST interface for linkin person and institution entries.
-  version: 1.0.1
+  version: 1.0.2
 
+  # version 1.0.2
+  #   "servers" section updated
+
+  #
   # version 1.0.1
   #   HTTP error codes added
   #   deletePersonInstitutionLink returns 200 and PersonInstitutionLink
@@ -17,11 +21,11 @@ externalDocs:
   description: Schnittstelle zur Pflege der Verzeichniseinträge
   url: http://github.com/gematik/api-vzd/
 servers:
-- url: https://Person_Institution_linking-test.vzd.ti-dienste.de:443/
-  description: Testumgebung
-- url: https://Person_Institution_linking-ref.vzd.ti-dienste.de:443/
-  description: Referenzumgebung
-- url: https://Person_Institution_linking.vzd.ti-dienste.de:443/
+  - url: https://fhir-directory-test.vzd.ti-dienste.de/PersonInstitutionLink
+    description: Testumgebung
+  - url: https://fhir-directory-ref.vzd.ti-dienste.de/PersonInstitutionLink
+    description: Referenzumgebung
+  - url: https://fhir-directory.vzd.ti-dienste.de/PersonInstitutionLink
 
 tags:
   - name: getInfo
@@ -103,7 +107,7 @@ paths:
                 $ref: '#/components/schemas/Error'
         409:
           description: Conflict
-          # Active Person-Institution-Link already exists
+          # Created or active Person-Institution-Link already exists
           content:
             application/json:
               schema:
@@ -424,7 +428,7 @@ security:
       #        **Testumgebung:**
       #        * https://auth-test.vzd.ti-dienste.de:9443/auth/realms/Person_Institution_linking/protocol/openid-connect/token
 
-      #        **Referenzumgebung:**
+    #        **Referenzumgebung:**
     #        * https://auth-ref.vzd.ti-dienste.de:9443/auth/realms/Person_Institution_linking/protocol/openid-connect/token
 
 #        **Produktivumgebung:**
