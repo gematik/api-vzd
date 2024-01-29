@@ -2,11 +2,13 @@ openapi: 3.0.3
 info:
   title: I_VZD_Person_Institution_linking
   description: REST interface for linkin person and institution entries.
-  version: 1.0.2
+  version: 1.0.3
 
+  # version 1.0.3
+  #   Renamed relative part "PersonInstitutionLink" to "Link"
+  #
   # version 1.0.2
   #   "servers" section updated
-
   #
   # version 1.0.1
   #   HTTP error codes added
@@ -67,7 +69,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
 
-  /PersonInstitutionLink:
+  /Link:
     post:
       tags:
         - suggestPersonInstitutionLink
@@ -184,7 +186,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
 
-  /PersonInstitutionLink/{id}:
+  /Link/{id}:
     put:
       tags:
         - approvePersonInstitutionLink
@@ -426,7 +428,7 @@ security:
       #        Token Endpoint is specific for the environment:
 
       #        **Testumgebung:**
-      #        * https://auth-test.vzd.ti-dienste.de:9443/auth/realms/Person_Institution_linking/protocol/openid-connect/token
+    #        * https://auth-test.vzd.ti-dienste.de:9443/auth/realms/Person_Institution_linking/protocol/openid-connect/token
 
     #        **Referenzumgebung:**
     #        * https://auth-ref.vzd.ti-dienste.de:9443/auth/realms/Person_Institution_linking/protocol/openid-connect/token
