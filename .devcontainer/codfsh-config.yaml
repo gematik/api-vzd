@@ -1,0 +1,9 @@
+sushi:
+  min_version: "3.0.0"
+hapi:
+  min_version: "3.0.0"
+  parameters: 
+    jurisdiction: DE
+    locale: de-DE
+    tx: "n/a"
+    debug: true
