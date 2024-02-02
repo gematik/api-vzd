@@ -240,9 +240,13 @@
     {
       "code": "1.2.276.0.76.4.295",
       "display": "TIM-Hersteller und -Anbieter"
+    },
+    {
+      "code": "1.2.276.0.76.4.303",
+      "display": "Ombudsstelle eines Kostenträgers"
     }
   ],
   "publisher": "gematik GmbH",
   "caseSensitive": false,
-  "count": 58
+  "count": 59
 }
