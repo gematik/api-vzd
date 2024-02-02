@@ -64,3 +64,4 @@ The codes for Organizations based on Profession OIDs defined in [gemSpec_OID](ht
 * #1.2.276.0.76.4.285 "Weitere Organisationen der Gesundheitsversorgung"
 * #1.2.276.0.76.4.286 "KIM-Hersteller und -Anbieter"
 * #1.2.276.0.76.4.295 "TIM-Hersteller und -Anbieter"
+* #1.2.276.0.76.4.303 "Ombudsstelle eines Kostenträgers"
