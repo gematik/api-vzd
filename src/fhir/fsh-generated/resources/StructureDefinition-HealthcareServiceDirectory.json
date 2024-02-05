@@ -77,10 +77,49 @@
         "patternUri": "https://gematik.de/fhir/directory/CodeSystem/Origin"
       },
       {
+        "id": "HealthcareService.identifier",
+        "path": "HealthcareService.identifier",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "value",
+              "path": "system"
+            }
+          ],
+          "rules": "open"
+        },
+        "mustSupport": true
+      },
+      {
+        "id": "HealthcareService.identifier:TelematikID",
+        "path": "HealthcareService.identifier",
+        "sliceName": "TelematikID",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "Identifier",
+            "profile": [
+              "http://fhir.de/StructureDefinition/identifier-telematik-id"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
         "id": "HealthcareService.providedBy",
         "path": "HealthcareService.providedBy",
         "min": 1,
         "mustSupport": true
+      },
+      {
+        "id": "HealthcareService.type",
+        "path": "HealthcareService.type",
+        "mustSupport": true,
+        "binding": {
+          "strength": "required",
+          "valueSet": "https://gematik.de/fhir/directory/ValueSet/OrganizationTypeVS"
+        }
       },
       {
         "id": "HealthcareService.specialty",
