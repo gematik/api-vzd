@@ -238,6 +238,10 @@
       "display": "KIM-Hersteller und -Anbieter"
     },
     {
+      "code": "1.2.276.0.76.4.292",
+      "display": "NCPeH Fachdienst"
+    },
+    {
       "code": "1.2.276.0.76.4.295",
       "display": "TIM-Hersteller und -Anbieter"
     },
@@ -248,5 +252,5 @@
   ],
   "publisher": "gematik GmbH",
   "caseSensitive": false,
-  "count": 59
+  "count": 60
 }
