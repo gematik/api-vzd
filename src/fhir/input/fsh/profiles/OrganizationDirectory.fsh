@@ -20,14 +20,26 @@ organisations specific for german Healthcare and Telematics Infrastructure.
 * identifier ^slicing.rules = #open
 * identifier contains TelematikID 1..1 MS
 * identifier[TelematikID] only $IdentifierTelematikID
-* identifier contains BSNR 0..1 MS
-* identifier[BSNR] only $IdentifierBSNR
 * identifier contains KZVA 0..1 MS
 * identifier[KZVA] only $IdentifierKZVA
 * identifier contains IKNR 0..1 MS
 * identifier[IKNR] only $IdentifierIKNR
 * type 1..* MS
-* type from OrganizationTypeVS
+  * ^slicing.discriminator.type = #pattern
+  * ^slicing.discriminator.path = "$this"
+  * ^slicing.rules = #open
+* type contains providerType 0..*  MS and profession 0..* MS   
+* type[providerType] from OrganizationProviderTypeVS
+* type[profession] from OrganizationProfessionOIDTypeVS
 * name 1..1 MS
 * alias MS
 * contact MS
+* address MS
+* address only AddressDeBasis
+  * use MS
+  * text MS
+  * line MS
+  * city MS
+  * state MS
+  * postalCode MS
+  * country MS

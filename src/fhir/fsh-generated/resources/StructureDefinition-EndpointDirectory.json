@@ -1,18 +1,7 @@
 {
   "resourceType": "StructureDefinition",
   "id": "EndpointDirectory",
-  "extension": [
-    {
-      "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-category",
-      "valueString": "Base.Entities"
-    },
-    {
-      "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-security-category",
-      "valueCode": "business"
-    }
-  ],
   "url": "https://gematik.de/fhir/directory/StructureDefinition/EndpointDirectory",
-  "version": "0.10.2",
   "name": "EndpointDirectory",
   "title": "Endpoint in gematik Directory",
   "status": "active",
@@ -82,8 +71,14 @@
         "mustSupport": true
       },
       {
+        "id": "Endpoint.connectionType.system",
+        "path": "Endpoint.connectionType.system",
+        "mustSupport": true
+      },
+      {
         "id": "Endpoint.connectionType.code",
         "path": "Endpoint.connectionType.code",
+        "mustSupport": true,
         "binding": {
           "strength": "extensible",
           "valueSet": "https://gematik.de/fhir/directory/ValueSet/EndpointConnectionTypeVS"

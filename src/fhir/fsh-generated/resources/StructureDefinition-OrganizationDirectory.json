@@ -1,18 +1,7 @@
 {
   "resourceType": "StructureDefinition",
   "id": "OrganizationDirectory",
-  "extension": [
-    {
-      "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-category",
-      "valueString": "Base.Entities"
-    },
-    {
-      "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-security-category",
-      "valueCode": "business"
-    }
-  ],
   "url": "https://gematik.de/fhir/directory/StructureDefinition/OrganizationDirectory",
-  "version": "0.10.2",
   "name": "OrganizationDirectory",
   "title": "Organization in gematik Directory",
   "status": "active",
@@ -118,22 +107,6 @@
         "mustSupport": true
       },
       {
-        "id": "Organization.identifier:BSNR",
-        "path": "Organization.identifier",
-        "sliceName": "BSNR",
-        "min": 0,
-        "max": "1",
-        "type": [
-          {
-            "code": "Identifier",
-            "profile": [
-              "http://fhir.de/StructureDefinition/identifier-bsnr"
-            ]
-          }
-        ],
-        "mustSupport": true
-      },
-      {
         "id": "Organization.identifier:KZVA",
         "path": "Organization.identifier",
         "sliceName": "KZVA",
@@ -168,11 +141,40 @@
       {
         "id": "Organization.type",
         "path": "Organization.type",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "pattern",
+              "path": "$this"
+            }
+          ],
+          "rules": "open"
+        },
         "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.type:providerType",
+        "path": "Organization.type",
+        "sliceName": "providerType",
+        "min": 0,
+        "max": "*",
         "mustSupport": true,
         "binding": {
           "strength": "required",
-          "valueSet": "https://gematik.de/fhir/directory/ValueSet/OrganizationTypeVS"
+          "valueSet": "https://gematik.de/fhir/directory/ValueSet/OrganizationProviderTypeVS"
+        }
+      },
+      {
+        "id": "Organization.type:profession",
+        "path": "Organization.type",
+        "sliceName": "profession",
+        "min": 0,
+        "max": "*",
+        "mustSupport": true,
+        "binding": {
+          "strength": "required",
+          "valueSet": "https://gematik.de/fhir/directory/ValueSet/OrganizationProfessionOIDTypeVS"
         }
       },
       {
@@ -184,6 +186,54 @@
       {
         "id": "Organization.alias",
         "path": "Organization.alias",
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.address",
+        "path": "Organization.address",
+        "type": [
+          {
+            "code": "Address",
+            "profile": [
+              "http://fhir.de/StructureDefinition/address-de-basis"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.address.use",
+        "path": "Organization.address.use",
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.address.text",
+        "path": "Organization.address.text",
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.address.line",
+        "path": "Organization.address.line",
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.address.city",
+        "path": "Organization.address.city",
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.address.state",
+        "path": "Organization.address.state",
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.address.postalCode",
+        "path": "Organization.address.postalCode",
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.address.country",
+        "path": "Organization.address.country",
         "mustSupport": true
       },
       {

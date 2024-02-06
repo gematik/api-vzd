@@ -1,18 +1,7 @@
 {
   "resourceType": "StructureDefinition",
   "id": "LocationDirectory",
-  "extension": [
-    {
-      "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-category",
-      "valueString": "Base.Entities"
-    },
-    {
-      "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-security-category",
-      "valueCode": "business"
-    }
-  ],
   "url": "https://gematik.de/fhir/directory/StructureDefinition/LocationDirectory",
-  "version": "0.10.2",
   "name": "LocationDirectory",
   "title": "Location in gematik Directory",
   "status": "active",
@@ -77,6 +66,36 @@
         "patternUri": "https://gematik.de/fhir/directory/CodeSystem/Origin"
       },
       {
+        "id": "Location.identifier",
+        "path": "Location.identifier",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "value",
+              "path": "system"
+            }
+          ],
+          "rules": "open"
+        },
+        "mustSupport": true
+      },
+      {
+        "id": "Location.identifier:BSNR",
+        "path": "Location.identifier",
+        "sliceName": "BSNR",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "Identifier",
+            "profile": [
+              "http://fhir.de/StructureDefinition/identifier-bsnr"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
         "id": "Location.name",
         "path": "Location.name",
         "mustSupport": true
@@ -89,6 +108,14 @@
       {
         "id": "Location.address",
         "path": "Location.address",
+        "type": [
+          {
+            "code": "Address",
+            "profile": [
+              "http://fhir.de/StructureDefinition/address-de-basis"
+            ]
+          }
+        ],
         "mustSupport": true
       },
       {
@@ -112,18 +139,9 @@
         "mustSupport": true
       },
       {
-        "id": "Location.address.district",
-        "path": "Location.address.district",
-        "mustSupport": true
-      },
-      {
         "id": "Location.address.state",
         "path": "Location.address.state",
-        "mustSupport": true,
-        "binding": {
-          "strength": "extensible",
-          "valueSet": "https://gematik.de/fhir/directory/ValueSet/AddressStateVS"
-        }
+        "mustSupport": true
       },
       {
         "id": "Location.address.postalCode",
@@ -153,6 +171,11 @@
       {
         "id": "Location.position.altitude",
         "path": "Location.position.altitude",
+        "mustSupport": true
+      },
+      {
+        "id": "Location.managingOrganization",
+        "path": "Location.managingOrganization",
         "mustSupport": true
       },
       {

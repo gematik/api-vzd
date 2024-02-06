@@ -18,6 +18,24 @@
       "value": "9-2.58.00000040"
     }
   ],
+  "address": [
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-precinct",
+          "valueString": "Mitte"
+        }
+      ],
+      "text": "gematik GmbH\nFriedrichstr. 136, \n10117 Berlin",
+      "line": [
+        "Friedrichstr. 136"
+      ],
+      "city": "Berlin",
+      "state": "Berlin",
+      "postalCode": "10117",
+      "country": "DE"
+    }
+  ],
   "active": true,
   "type": [
     {
@@ -32,19 +50,6 @@
   "name": "gematik GmbH",
   "alias": [
     "gematik"
-  ],
-  "address": [
-    {
-      "text": "gematik GmbH\nFriedrichstr. 136, \n10117 Berlin",
-      "line": [
-        "Friedrichstr. 136"
-      ],
-      "city": "Berlin",
-      "district": "Mitte",
-      "state": "Berlin",
-      "postalCode": "10117",
-      "country": "DE"
-    }
   ],
   "contact": [
     {

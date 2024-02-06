@@ -4,7 +4,6 @@
   "name": "EndpointPayloadTypeVS",
   "id": "EndpointPayloadTypeVS",
   "description": "ValueSet for `Endpoint.payloadType`",
-  "version": "0.10.2",
   "url": "https://gematik.de/fhir/directory/ValueSet/EndpointPayloadTypeVS",
   "publisher": "gematik GmbH",
   "compose": {

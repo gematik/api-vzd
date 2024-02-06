@@ -1,18 +1,7 @@
 {
   "resourceType": "StructureDefinition",
   "id": "HealthcareServiceDirectory",
-  "extension": [
-    {
-      "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-category",
-      "valueString": "Base.Entities"
-    },
-    {
-      "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-security-category",
-      "valueCode": "business"
-    }
-  ],
   "url": "https://gematik.de/fhir/directory/StructureDefinition/HealthcareServiceDirectory",
-  "version": "0.10.2",
   "name": "HealthcareServiceDirectory",
   "title": "HealthcareService in gematik Directory",
   "status": "active",
@@ -83,12 +72,30 @@
         "mustSupport": true
       },
       {
+        "id": "HealthcareService.category",
+        "path": "HealthcareService.category",
+        "mustSupport": true,
+        "binding": {
+          "strength": "required",
+          "valueSet": "http://ihe-d.de/ValueSets/IHEXDShealthcareFacilityTypeCodePatientRelatedHealthcare"
+        }
+      },
+      {
+        "id": "HealthcareService.type",
+        "path": "HealthcareService.type",
+        "mustSupport": true,
+        "binding": {
+          "strength": "extensible",
+          "valueSet": "https://gematik.de/fhir/directory/ValueSet/HealthcareServiceTypeVS"
+        }
+      },
+      {
         "id": "HealthcareService.specialty",
         "path": "HealthcareService.specialty",
         "mustSupport": true,
         "binding": {
-          "strength": "extensible",
-          "valueSet": "https://gematik.de/fhir/directory/ValueSet/HealthcareServiceSpecialtyVS"
+          "strength": "required",
+          "valueSet": "https://gematik.de/fhir/directory/ValueSet/HealthcareSpecialityTypeVS"
         }
       },
       {
@@ -124,6 +131,11 @@
       {
         "id": "HealthcareService.serviceProvisionCode",
         "path": "HealthcareService.serviceProvisionCode",
+        "mustSupport": true
+      },
+      {
+        "id": "HealthcareService.characteristic",
+        "path": "HealthcareService.characteristic",
         "mustSupport": true
       },
       {

@@ -5,7 +5,6 @@
   "name": "OrganizationProviderType",
   "id": "OrganizationProviderType",
   "description": "CodeSystem of TI Service Provider types as to be found in the gematik Directory",
-  "version": "0.10.2",
   "url": "https://gematik.de/fhir/directory/CodeSystem/OrganizationProviderType",
   "concept": [
     {

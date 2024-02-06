@@ -20,6 +20,7 @@ Title: "Practitioner in gematik Directory"
 * identifier[LANR] only $IdentifierLANR
 * identifier contains ZANR 0.. MS
 * identifier[ZANR] only $IdentifierZANR
+* name only HumannameDeBasis
 * name 1..1 MS
   * text 1..1 MS
   * family 1..1 MS
@@ -34,5 +35,6 @@ Title: "Practitioner in gematik Directory"
 * birthDate MS
 * photo MS
 * qualification MS
-* qualification.code from PractitionerQualificationVS (extensible)
+  * code MS
+  * code from PractitionerQualificationVS (extensible)
 * communication MS

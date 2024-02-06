@@ -27,7 +27,7 @@ Friedrichstr. 136,
 10117 Berlin"""
 * address.line[+] = "Friedrichstr. 136"
 * address.city = "Berlin"
-* address.district = "Mitte"
+* address.extension[Stadtteil].valueString = "Mitte"
 * address.state = Region#Berlin
 * address.postalCode = "10117"
 * address.country = "DE"

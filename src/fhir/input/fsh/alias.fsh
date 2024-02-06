@@ -39,3 +39,4 @@ Alias: $ContactPointSystem = http://hl7.org/fhir/contact-point-system
 Alias: $ContactPointUse = http://hl7.org/fhir/contact-point-use
 Alias: $ServiceProvisionConditions = http://terminology.hl7.org/CodeSystem/service-provision-conditions
 Alias: $CommonLanguages = urn:ietf:bcp:47
+Alias: $sct = http://snomed.info/sct

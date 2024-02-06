@@ -1,5 +1,5 @@
-ValueSet: HealthcareServiceSpecialtyVS
-Description: "ValueSet for `HealthcareService.specialty`"
+ValueSet: HealthcareServiceTypeVS
+Description: "ValueSet for `HealthcareService.type`"
 * insert Meta
 // Ärztliche Fachrichtungen
 * urn:oid:1.3.6.1.4.1.19376.3.276.1.5.4#ALLG "Allgemeinmedizin"
@@ -99,3 +99,4 @@ Description: "ValueSet for `HealthcareService.specialty`"
 * urn:oid:1.3.6.1.4.1.19376.3.276.1.5.5#VKO "Versorgungskoordination"
 * urn:oid:1.3.6.1.4.1.19376.3.276.1.5.5#VER "Verwaltung"
 * urn:oid:1.3.6.1.4.1.19376.3.276.1.5.5#PST "Psychotherapie"
+* include codes from system PharmacyTypeCS
