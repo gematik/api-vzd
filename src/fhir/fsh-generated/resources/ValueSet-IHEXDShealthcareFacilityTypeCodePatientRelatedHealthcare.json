@@ -2,7 +2,7 @@
   "resourceType": "ValueSet",
   "status": "active",
   "name": "IHEXDShealthcareFacilityTypeCodePatientRelatedHealthcare",
-  "id": "1.2.276.0.76.11.58--20211114161028",
+  "id": "IHEXDShealthcareFacilityTypeCodePatientRelatedHealthcare",
   "title": "IHE XDS healthcareFacilityTypeCode Patient Related Healthcare",
   "description": "**healthcareFacilityTypeCode (XDSDocumentEntry)**\n This code for an XDS Document represents the type of organizational setting of the clinical encounter during which the documented act occurred.",
   "url": "http://ihe-d.de/ValueSets/IHEXDShealthcareFacilityTypeCodePatientRelatedHealthcare",

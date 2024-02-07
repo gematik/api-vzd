@@ -100,8 +100,8 @@
     "fshName": "HealthcareServiceExample",
     "fshType": "Instance",
     "fshFile": "examples/Examples001.fsh",
-    "startLine": 75,
-    "endLine": 103
+    "startLine": 76,
+    "endLine": 104
   },
   {
     "outputFile": "Location-LocationExample.json",
@@ -109,7 +109,7 @@
     "fshType": "Instance",
     "fshFile": "examples/Examples001.fsh",
     "startLine": 53,
-    "endLine": 73
+    "endLine": 74
   },
   {
     "outputFile": "Organization-OrganizationExample.json",
@@ -200,14 +200,6 @@
     "endLine": 15
   },
   {
-    "outputFile": "ValueSet-1.2.276.0.76.11.58--20211114161028.json",
-    "fshName": "IHEXDShealthcareFacilityTypeCodePatientRelatedHealthcare",
-    "fshType": "ValueSet",
-    "fshFile": "valuesets/HealthCareServiceCategory.fsh",
-    "startLine": 3,
-    "endLine": 62
-  },
-  {
     "outputFile": "ValueSet-AddressStateVS.json",
     "fshName": "AddressStateVS",
     "fshType": "ValueSet",
@@ -246,6 +238,14 @@
     "fshFile": "valuesets/HealthcareServiceSpecialityVS.fsh",
     "startLine": 1,
     "endLine": 7
+  },
+  {
+    "outputFile": "ValueSet-IHEXDShealthcareFacilityTypeCodePatientRelatedHealthcare.json",
+    "fshName": "IHEXDShealthcareFacilityTypeCodePatientRelatedHealthcare",
+    "fshType": "ValueSet",
+    "fshFile": "valuesets/HealthCareServiceCategory.fsh",
+    "startLine": 3,
+    "endLine": 62
   },
   {
     "outputFile": "ValueSet-OrganizationProfessionOIDTypeVS.json",

@@ -28,7 +28,7 @@ Friedrichstr. 136,
 * address.line[+] = "Friedrichstr. 136"
 * address.city = "Berlin"
 * address.extension[Stadtteil].valueString = "Mitte"
-* address.state = Region#Berlin
+* address.state = "DE-BE"
 * address.postalCode = "10117"
 * address.country = "DE"
 // Gibt es bedarf an TI/DE-spezifischen Kontakt-Zwecken?

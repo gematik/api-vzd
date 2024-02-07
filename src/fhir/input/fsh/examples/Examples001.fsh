@@ -60,7 +60,7 @@ Description: "Example of a Location as to be found in gematik FHIR Directory"
 * address.text = "Hauptstraße 1, 10117 Berlin"
 * address.line = "Hauptstraße 1"
 * address.city = "Berlin"
-* address.state = "Berlin"
+* address.state = "DE-BE"
 * address.postalCode = "10117"
 * address.country = "DE"
 * hoursOfOperation.daysOfWeek[+] = $DaysOfWeek#mon "Monday"
@@ -71,6 +71,7 @@ Description: "Example of a Location as to be found in gematik FHIR Directory"
 * hoursOfOperation.openingTime = "08:00:00"
 * hoursOfOperation.closingTime = "18:00:00"
 * availabilityExceptions = "An Feiertagen geschlossen"
+* managingOrganization = Reference(OrganizationExample001)
 
 Instance: HealthcareServiceExample
 InstanceOf: HealthcareServiceDirectory

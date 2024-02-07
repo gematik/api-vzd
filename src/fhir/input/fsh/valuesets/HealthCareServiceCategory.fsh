@@ -1,7 +1,7 @@
 Alias: $PatientBezogenenGesundheitsversorgung = http://ihe-d.de/CodeSystems/PatientBezogenenGesundheitsversorgung
 
 ValueSet: IHEXDShealthcareFacilityTypeCodePatientRelatedHealthcare
-Id: 1.2.276.0.76.11.58--20211114161028
+Id: IHEXDShealthcareFacilityTypeCodePatientRelatedHealthcare
 Title: "IHE XDS healthcareFacilityTypeCode Patient Related Healthcare"
 Description: """**healthcareFacilityTypeCode (XDSDocumentEntry)**
  This code for an XDS Document represents the type of organizational setting of the clinical encounter during which the documented act occurred."""
