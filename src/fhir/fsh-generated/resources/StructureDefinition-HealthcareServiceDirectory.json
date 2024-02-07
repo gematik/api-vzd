@@ -136,7 +136,11 @@
       {
         "id": "HealthcareService.characteristic",
         "path": "HealthcareService.characteristic",
-        "mustSupport": true
+        "mustSupport": true,
+        "binding": {
+          "strength": "required",
+          "valueSet": "https://gematik.de/fhir/directory/ValueSet/healthcareservice-characteristic-vs"
+        }
       },
       {
         "id": "HealthcareService.communication",

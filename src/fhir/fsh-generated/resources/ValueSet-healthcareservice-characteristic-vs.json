@@ -1,0 +1,23 @@
+{
+  "resourceType": "ValueSet",
+  "status": "active",
+  "name": "HealthCareServiceCharacteristicVS",
+  "id": "healthcareservice-characteristic-vs",
+  "title": "HealthCareServiceCharacteristicVS",
+  "description": "HealthCareServiceCharacteristicVS",
+  "url": "https://gematik.de/fhir/directory/ValueSet/healthcareservice-characteristic-vs",
+  "publisher": "gematik GmbH",
+  "compose": {
+    "include": [
+      {
+        "system": "http://terminology.hl7.org/CodeSystem/v3-RoleCode",
+        "concept": [
+          {
+            "code": "DELEGATOR",
+            "display": "eRX Token Receiver"
+          }
+        ]
+      }
+    ]
+  }
+}

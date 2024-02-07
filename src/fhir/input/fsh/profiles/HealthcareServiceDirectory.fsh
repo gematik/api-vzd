@@ -33,3 +33,4 @@ organisations specific for german Healthcare and Telematics Infrastructure.
 * availabilityExceptions MS
 * endpoint MS
 * characteristic MS
+* characteristic from HealthCareServiceCharacteristicVS

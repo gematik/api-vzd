@@ -5,7 +5,7 @@
     "fshType": "CodeSystem",
     "fshFile": "codesystems/EndpointDirectoryConnectionType.fsh",
     "startLine": 1,
-    "endLine": 13
+    "endLine": 14
   },
   {
     "outputFile": "CodeSystem-EndpointDirectoryPayloadType.json",
@@ -101,7 +101,7 @@
     "fshType": "Instance",
     "fshFile": "examples/Examples001.fsh",
     "startLine": 75,
-    "endLine": 100
+    "endLine": 103
   },
   {
     "outputFile": "Location-LocationExample.json",
@@ -165,7 +165,7 @@
     "fshType": "Profile",
     "fshFile": "profiles/HealthcareServiceDirectory.fsh",
     "startLine": 1,
-    "endLine": 35
+    "endLine": 36
   },
   {
     "outputFile": "StructureDefinition-LocationDirectory.json",
@@ -278,5 +278,13 @@
     "fshFile": "valuesets/PractitionerQualificationVS.fsh",
     "startLine": 1,
     "endLine": 457
+  },
+  {
+    "outputFile": "ValueSet-healthcareservice-characteristic-vs.json",
+    "fshName": "HealthCareServiceCharacteristicVS",
+    "fshType": "ValueSet",
+    "fshFile": "valuesets/HealthCareServiceCharacteristic.fsh",
+    "startLine": 1,
+    "endLine": 6
   }
 ]

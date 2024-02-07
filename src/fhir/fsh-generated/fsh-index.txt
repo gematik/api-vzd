@@ -1,5 +1,5 @@
 Output File                                          Name                                                      Type        FSH File                                               Lines
-CodeSystem-EndpointDirectoryConnectionType.json      EndpointDirectoryConnectionType                           CodeSystem  codesystems/EndpointDirectoryConnectionType.fsh        1 - 13
+CodeSystem-EndpointDirectoryConnectionType.json      EndpointDirectoryConnectionType                           CodeSystem  codesystems/EndpointDirectoryConnectionType.fsh        1 - 14
 CodeSystem-EndpointDirectoryPayloadType.json         EndpointDirectoryPayloadType                              CodeSystem  codesystems/EndpointDirectoryPayloadType.fsh           1 - 12
 CodeSystem-HolderCS.json                             HolderCS                                                  CodeSystem  codesystems/HolderCS.fsh                               1 - 125
 CodeSystem-OrganizationProfessionOID.json            OrganizationProfessionOID                                 CodeSystem  codesystems/OrganizationProfessionOID.fsh              1 - 66
@@ -11,7 +11,7 @@ CodeSystem-PractitionerProfessionOID.json            PractitionerProfessionOID  
 CodeSystem-Region.json                               Region                                                    CodeSystem  codesystems/Region.fsh                                 1 - 27
 Endpoint-EndpointExample.json                        EndpointExample                                           Instance    examples/Examples001.fsh                               1 - 11
 Endpoint-OrganizationExample001-Endpoint-TIM.json    OrganizationExample001-Endpoint-TIM                       Instance    examples/OrganizationExample001.fsh                    1 - 12
-HealthcareService-HealthcareServiceExample.json      HealthcareServiceExample                                  Instance    examples/Examples001.fsh                               75 - 100
+HealthcareService-HealthcareServiceExample.json      HealthcareServiceExample                                  Instance    examples/Examples001.fsh                               75 - 103
 Location-LocationExample.json                        LocationExample                                           Instance    examples/Examples001.fsh                               53 - 73
 Organization-OrganizationExample.json                OrganizationExample                                       Instance    examples/Examples001.fsh                               38 - 51
 Organization-OrganizationExample001.json             OrganizationExample001                                    Instance    examples/OrganizationExample001.fsh                    14 - 39
@@ -19,7 +19,7 @@ Practitioner-TIPractitionerExample001.json           PractitionerExample001     
 Practitioner-TIPractitionerExampleDentist.json       PractitionerExampleDentist                                Instance    examples/Examples001.fsh                               13 - 26
 PractitionerRole-PractitionerRoleExample.json        PractitionerRoleExample                                   Instance    examples/Examples001.fsh                               28 - 35
 StructureDefinition-EndpointDirectory.json           EndpointDirectory                                         Profile     profiles/EndpointDirectory.fsh                         1 - 23
-StructureDefinition-HealthcareServiceDirectory.json  HealthcareServiceDirectory                                Profile     profiles/HealthcareServiceDirectory.fsh                1 - 35
+StructureDefinition-HealthcareServiceDirectory.json  HealthcareServiceDirectory                                Profile     profiles/HealthcareServiceDirectory.fsh                1 - 36
 StructureDefinition-LocationDirectory.json           LocationDirectory                                         Profile     profiles/LocationDirectory.fsh                         1 - 44
 StructureDefinition-OrganizationDirectory.json       OrganizationDirectory                                     Profile     profiles/OrganizationDirectory.fsh                     1 - 45
 StructureDefinition-PractitionerDirectory.json       PractitionerDirectory                                     Profile     profiles/PractitionerDirectory.fsh                     1 - 40
@@ -34,3 +34,4 @@ ValueSet-OrganizationProfessionOIDTypeVS.json        OrganizationProfessionOIDTy
 ValueSet-OrganizationProviderTypeVS.json             OrganizationProviderTypeVS                                ValueSet    valuesets/OrganizationProviderTypeVS.fsh               1 - 4
 ValueSet-OriginVS.json                               OriginVS                                                  ValueSet    valuesets/OriginVS.fsh                                 1 - 4
 ValueSet-PractitionerQualificationVS.json            PractitionerQualificationVS                               ValueSet    valuesets/PractitionerQualificationVS.fsh              1 - 457
+ValueSet-healthcareservice-characteristic-vs.json    HealthCareServiceCharacteristicVS                         ValueSet    valuesets/HealthCareServiceCharacteristic.fsh          1 - 6
