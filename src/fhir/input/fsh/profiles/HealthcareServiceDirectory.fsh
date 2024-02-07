@@ -20,7 +20,7 @@ organisations specific for german Healthcare and Telematics Infrastructure.
 * identifier contains TelematikID 0..1 MS
 * identifier[TelematikID] only $IdentifierTelematikID
 * providedBy 1..1 MS
-* type 0..* MS
+* type MS
 * type from OrganizationTypeVS
 * specialty MS
 * specialty from HealthcareServiceSpecialtyVS (extensible)
