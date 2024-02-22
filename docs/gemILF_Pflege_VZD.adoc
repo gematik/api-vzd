@@ -157,10 +157,13 @@ Neu für eGBR HBA und SMC-B |gematik
 - Tab_VZD_Datenbeschreibung_DKTIG - Beschreibung domainID überarbeitet - JF gematik/dktig 2.06.2023 +
 - Kap. 4 Attribut "usage" aus den Tabellen entfernt - Kommentierung 20230421_KIM_Maintenance_23.2_KIM1.5.3 +
 - Kap. 4 Tabellen Tab_VZD_Datenbeschreibung_der_SMC-B_HWK & Tab_VZD_Datenbeschreibung_BA_HWK ergänzt. +
+- Kap. 4 holder Attribut ist - entsprechend „Richtlinie Verzeichnisdienst Datenübermittlung und Befüllung“ - in den Tabellen obligatorisch geworden. +
+- Kap. 4 Beschreibung von Attribut personalEntry erweitert. +
 - Kap. 4.4 Attribut "specialization" Beschreibung verbessert. +
 - Kap. 4.15, 4.16 Beschreibung von Attributen "sn" und "cn" aktualisiert. +
 - Kap. 3.3.2 Hinweis aufgenommen, dass Zertifikate vor Freischaltung eingetragen werden dürfen - DIR-497 +
-- Kap. 3.7 Prüfungen aktualisiert 
+- Kap. 3.7 Prüfungen aktualisiert +
+- Kap. 3.3.4. Log Beschreibung erweitert.
 
 
 
@@ -642,6 +645,36 @@ Diese Operation entspricht Operation read_Directory_Entry_for_Sync mit folgenden
 ===== GET /Log
 
 Durch die readLog Operation werden die Log Daten aller zum Filter passenden Verzeichniseinträge geliefert. Die angegebenen Parameter werden mit logischen UND verknüpft.
+Als Ergebnis erhält man für jeder Datenänderung im VZD einen Datensatz mit den Attributen
+
+- TelematikID (telematikID): Die TelematikID des geänderten Datensatzes.
+- ClientID (clientID): Die Identifikation von dem Client, der die Änderung ausgeführt hat (client_id aus den OAuth 2.0 Client Credentials). +
+  Die ClientID "SYS_BGS" ist der VZD Hintergrundprozess (BackGroundService), der die Datensätze z.B. bei dem zeitlichen Auslauf von Zertifikaten aktualisiert.
+- Operation (operation): Die ausgeführte Operation.
+- Timestamp (logTime): Zeitpunkt der Datenänderung
+- "" (noDataChanged): "false" - es wurden Daten geändert; "true" - Schreiboperation hat keine Daten geändert
+
+Beispiel für Logdaten:
+[source]
+--
++----------------------------------------+--------------+---------------------------------+--------------------------+-------+
+| TelematikID                            | ClientID     | Operation                       | Timestamp                |       |
++----------------------------------------+--------------+---------------------------------+--------------------------+-------+
+| 9-2.229.00008731                       | abcdefg      | modify_Directory_Entry          | 2023-01-11T15:44:23.643Z | false |
+| 9-2-LEO-ORG-WORLDLINE01                | FAD0072      | modify_Directory_FA_Attributes  | 2023-01-17T13:01:01.662Z | false |
+| 9-2-LEO-ORG-WORLDLINE01                | FAD0042      | modify_Directory_FA_Attributes  | 2023-01-17T13:01:01.756Z | false |
+| 9-2.51.19999998                        | abcdef       | delete_Directory_Entry          | 2023-01-23T10:19:23.314Z | false |
+| 9-2.51.19999998                        | 123456       | add_Directory_Entry             | 2023-01-23T10:23:57.781Z | false |
+| 9-2.51.19999998                        | abcdef       | delete_Directory_Entry          | 2023-01-23T10:34:00.574Z | false |
+| 9-2.51.19999998                        | 123456       | add_Directory_Entry             | 2023-01-23T10:35:21.963Z | false |
+| 9-1.032.12345678                       | SYS_BGS      | modify_Directory_Entry          | 2023-01-29T22:10:02.879Z | false |
+| 9-1.032.12345678                       | SYS_BGS      | modify_Directory_Entry          | 2023-01-30T15:29:16.439Z | false |
+| 9-2.187.12345678                       | 123456       | delete_Directory_Entry          | 2023-02-07T09:52:02.840Z | false |
+| 9-2.187.12345678                       | 123456       | delete_Directory_Entry          | 2023-02-07T12:31:12.664Z | false |
+| 9-2.187.87654321                       | 123456       | add_Directory_Entry             | 2023-02-07T13:45:01.621Z | false |
+| 9-2.187.12345678                       | abcdef       | delete_Directory_Entry          | 2023-02-07T14:10:39.518Z | false |
+--
+
 
 === Return type
 
@@ -749,7 +782,7 @@ Die Prüfung der Berechtigungen für VZD Basisdatensätze erfolgt in folgenden S
 . Prüfung der Befüllung
 .. Die gematik prüft mit statistischen VZD Reports den Stand der Befüllung des „holder“ Attributs.
 .. Die Kartenherausgeber bzw. beauftragten TSPs prüfen die Befüllung „ihrer“ VZD Basisdatensätze.
-. Aktivierung der Berechtigungsprüfung
+. *Aktivierung der Berechtigungsprüfung* (aktueller Status: Berechtigungsprüfung wurde aktiviert)
 .. Der VZD prüft die Berechtigungen bei Änderungen an den VZD Basisdatensätzen.
 .. Für VZD Basisdatensätzen ohne befülltes „holder“ Attribut erfolgt weiterhin keine Prüfung.
 
@@ -909,9 +942,9 @@ Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in 
 |*maxKOMLEadr* |optional |Maximale Anzahl von Mail-Adressen in den KOM-LE-Fachdaten.  +
 Falls kein Wert eingetragen wurde, können beliebig viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden. +
 Falls ein Wert eingetragen wurde, können maximal so viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden.
-|*personalEntry* |obligatorisch |Wird vom VZD eingetragen. +
+|*personalEntry* |obligatorisch |Wird vom VZD aus dem Zertifikat ermittelt und eingetragen. Wenn kein Zertifikat übergeben wird, kann es mit add_Directory_Entry als Parameter übergeben werden. +
 Wert == TRUE, wenn baseDirectoryEntry.entryType den Wert 1 hat (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID). +
-Nach Löschung aller Zertifikate bleibt der Wert dieses Attributs "personalEntry" erhalten.
+Nach Löschung aller Zertifikate bleibt der Wert dieses Attributs "personalEntry" erhalten. +
 |*entryType* |obligatorisch |Bezeichner: Eintragstyp +
 Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
  +
@@ -927,7 +960,7 @@ Gibt an, ob die Daten vom Kartenherausgeber stammen. +
 Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
   +
 Wenn der Wert TRUE ist, können die Daten nicht mehr über die Schnittstelle I_Directory_Maintenance bearbeitet werden. Die Schnittstelle I_Directory_Maintenance wird von KOM-LE-Anbietern verwendet.
-|*holder* |optional |Legt fest, wer Änderungen an den Basisdaten des Eintrags vornehmen darf. Hat keinen Einfluss auf Fachdaten und Zertifikatsdaten.
+|*holder* |obligatorisch |Legt fest, wer Änderungen an den Basisdaten des Eintrags vornehmen darf. Hat keinen Einfluss auf Fachdaten und Zertifikatsdaten.
 |*professionOID* |obligatorisch |Bezeichner: Profession OID +
 Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und dem Mapping in ab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
 Kann mehrfach vorkommen (0..100)
@@ -1071,7 +1104,7 @@ Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in 
 |*maxKOMLEadr* |optional |Maximale Anzahl von Mail-Adressen in den KOM-LE-Fachdaten.  +
 Falls kein Wert eingetragen wurde, können beliebig viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden. +
 Falls ein Wert eingetragen wurde, können maximal so viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden.
-|*personalEntry* |obligatorisch |Wird vom VZD eingetragen. +
+|*personalEntry* |obligatorisch |Wird vom VZD aus dem Zertifikat ermittelt und eingetragen. Wenn kein Zertifikat übergeben wird, kann es mit add_Directory_Entry als Parameter übergeben werden. +
 Wert == TRUE, wenn baseDirectoryEntry.entryType den Wert 1 hat (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID). +
 Nach Löschung aller Zertifikate bleibt der Wert dieses Attributs "personalEntry" erhalten.
 |*entryType* |obligatorisch |Bezeichner: Eintragstyp +
@@ -1089,7 +1122,7 @@ Gibt an, ob die Daten vom Kartenherausgeber stammen. +
 Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
   +
 Wenn der Wert TRUE ist, können die Daten nicht mehr über die Schnittstelle I_Directory_Maintenance bearbeitet werden. Die Schnittstelle I_Directory_Maintenance wird von KOM-LE-Anbietern verwendet.
-|*holder* |optional |Legt fest, wer Änderungen an den Basisdaten des Eintrags vornehmen darf. Hat keinen Einfluss auf Fachdaten und Zertifikatsdaten.
+|*holder* |obligatorisch |Legt fest, wer Änderungen an den Basisdaten des Eintrags vornehmen darf. Hat keinen Einfluss auf Fachdaten und Zertifikatsdaten.
 |*professionOID* |obligatorisch |Bezeichner: Profession OID +
 Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und dem Mapping in ab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
 Kann mehrfach vorkommen (0..100).
@@ -1239,7 +1272,7 @@ Der VZD lässt jedoch auch Einträge ohne userCertificate zu, da dies vom Ablauf
 |*userCertificate.active* |obligatorisch |Wird vom VZD eingetragen. +
 Wert == TRUE, wenn das userCertificate gemäß OCSP gültig ist (OCSP Response Status "good"), Wert == FALSE bei Zertifikaten von noch nicht freigeschalteten Karten (OCSP Response Status "unknown"). +
 Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in die flache Liste übernommen.
-|*personalEntry* |obligatorisch |Wird vom VZD eingetragen. +
+|*personalEntry* |obligatorisch |Wird vom VZD aus dem Zertifikat ermittelt und eingetragen. Wenn kein Zertifikat übergeben wird, kann es mit add_Directory_Entry als Parameter übergeben werden. +
 Wert == TRUE, wenn baseDirectoryEntry.entryType den Wert 1 hat (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID). +
 Nach Löschung aller Zertifikate bleibt der Wert dieses Attributs "personalEntry" erhalten.
 |*entryType* |obligatorisch |Bezeichner: Eintragstyp +
@@ -1257,7 +1290,7 @@ Gibt an, ob die Daten vom Kartenherausgeber stammen. +
 Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
   +
 Wenn der Wert TRUE ist, können die Daten nicht mehr über die Schnittstelle I_Directory_Maintenance bearbeitet werden. Die Schnittstelle I_Directory_Maintenance wird von KOM-LE-Anbietern verwendet.
-|*holder* |optional |Legt fest, wer Änderungen an den Basisdaten des Eintrags vornehmen darf. Hat keinen Einfluss auf Fachdaten und Zertifikatsdaten.
+|*holder* |obligatorisch |Legt fest, wer Änderungen an den Basisdaten des Eintrags vornehmen darf. Hat keinen Einfluss auf Fachdaten und Zertifikatsdaten.
 |*professionOID* |obligatorisch |Bezeichner: Profession OID  +
 Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und dem Mapping in ab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
 Kann mehrfach vorkommen (0..100).
@@ -1426,7 +1459,7 @@ Es können Einträge ohne Zertifikat angelegt werden. Diese Einträge werden jed
 |*userCertificate.active* |obligatorisch |Wird vom VZD eingetragen. +
 Wert == TRUE, wenn das userCertificate gemäß OCSP gültig ist (OCSP Response Status "good"), Wert == FALSE bei Zertifikaten von noch nicht freigeschalteten Karten (OCSP Response Status "unknown"). +
 Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in die flache Liste übernommen.
-|*personalEntry* |obligatorisch |Wird vom VZD eingetragen. +
+|*personalEntry* |obligatorisch |Wird vom VZD aus dem Zertifikat ermittelt und eingetragen. Wenn kein Zertifikat übergeben wird, kann es mit add_Directory_Entry als Parameter übergeben werden. +
 Wert == TRUE, wenn baseDirectoryEntry.entryType den Wert 1 hat (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID). +
 Nach Löschung aller Zertifikate bleibt der Wert dieses Attributs "personalEntry" erhalten.
 |*entryType* |obligatorisch |Bezeichner: Eintragstyp +
@@ -1444,7 +1477,7 @@ Gibt an, ob die Daten vom Kartenherausgeber stammen. +
 Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
   +
 Wenn der Wert TRUE ist, können die Daten nicht mehr über die Schnittstelle I_Directory_Maintenance bearbeitet werden. Die Schnittstelle I_Directory_Maintenance wird von KOM-LE-Anbietern verwendet.
-|*holder* |optional |Legt fest, wer Änderungen an den Basisdaten des Eintrags vornehmen darf. Hat keinen Einfluss auf Fachdaten und Zertifikatsdaten.
+|*holder* |obligatorisch |Legt fest, wer Änderungen an den Basisdaten des Eintrags vornehmen darf. Hat keinen Einfluss auf Fachdaten und Zertifikatsdaten.
 |*professionOID* |obligatorisch |Bezeichner: Profession OID +
 Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und dem Mapping in ab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
 Kann mehrfach vorkommen (0..100).
@@ -1586,7 +1619,7 @@ Es können Einträge ohne Zertifikat angelegt werden. Diese Einträge werden jed
 |*userCertificate.active* |obligatorisch |Wird vom VZD eingetragen. +
 Wert == TRUE, wenn das userCertificate gemäß OCSP gültig ist (OCSP Response Status "good"), Wert == FALSE bei Zertifikaten von noch nicht freigeschalteten Karten (OCSP Response Status "unknown"). +
 Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in die flache Liste übernommen.
-|*personalEntry* |obligatorisch |Wird vom VZD eingetragen. +
+|*personalEntry* |obligatorisch |Wird vom VZD aus dem Zertifikat ermittelt und eingetragen. Wenn kein Zertifikat übergeben wird, kann es mit add_Directory_Entry als Parameter übergeben werden. +
 Wert == TRUE, wenn baseDirectoryEntry.entryType den Wert 1 hat (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID). +
 Nach Löschung aller Zertifikate bleibt der Wert dieses Attributs "personalEntry" erhalten.
 |*entryType* |obligatorisch |Bezeichner: Eintragstyp +
@@ -1604,7 +1637,7 @@ Gibt an, ob die Daten vom Kartenherausgeber stammen. +
 Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
   +
 Wenn der Wert TRUE ist, können die Daten nicht mehr über die Schnittstelle I_Directory_Maintenance bearbeitet werden. Die Schnittstelle I_Directory_Maintenance wird von KOM-LE-Anbietern verwendet.
-|*holder* |optional |Legt fest, wer Änderungen an den Basisdaten des Eintrags vornehmen darf. Hat keinen Einfluss auf Fachdaten und Zertifikatsdaten.
+|*holder* |obligatorisch |Legt fest, wer Änderungen an den Basisdaten des Eintrags vornehmen darf. Hat keinen Einfluss auf Fachdaten und Zertifikatsdaten.
 |*professionOID* |obligatorisch |Bezeichner: Profession OID +
 Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und dem Mapping in ab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
 Kann mehrfach vorkommen (0..100).
@@ -1753,7 +1786,7 @@ Es können Einträge ohne Zertifikat angelegt werden. Diese Einträge werden jed
 |*userCertificate.active* |obligatorisch |Wird vom VZD eingetragen. +
 Wert == TRUE, wenn das userCertificate gemäß OCSP gültig ist (OCSP Response Status "good"), Wert == FALSE bei Zertifikaten von noch nicht freigeschalteten Karten (OCSP Response Status "unknown"). +
 Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in die flache Liste übernommen.
-|*personalEntry* |obligatorisch |Wird vom VZD eingetragen. +
+|*personalEntry* |obligatorisch |Wird vom VZD aus dem Zertifikat ermittelt und eingetragen. Wenn kein Zertifikat übergeben wird, kann es mit add_Directory_Entry als Parameter übergeben werden. +
 Wert == TRUE, wenn baseDirectoryEntry.entryType den Wert 1 hat (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID). +
 Nach Löschung aller Zertifikate bleibt der Wert dieses Attributs "personalEntry" erhalten.
 |*entryType* |obligatorisch |Bezeichner: Eintragstyp +
@@ -1771,7 +1804,7 @@ Gibt an, ob die Daten vom Kartenherausgeber stammen. +
 Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
   +
 Wenn der Wert TRUE ist, können die Daten nicht mehr über die Schnittstelle I_Directory_Maintenance bearbeitet werden. Die Schnittstelle I_Directory_Maintenance wird von KOM-LE-Anbietern verwendet.
-|*holder* |optional |Legt fest, wer Änderungen an den Basisdaten des Eintrags vornehmen darf. Hat keinen Einfluss auf Fachdaten und Zertifikatsdaten.
+|*holder* |obligatorisch |Legt fest, wer Änderungen an den Basisdaten des Eintrags vornehmen darf. Hat keinen Einfluss auf Fachdaten und Zertifikatsdaten.
 |*professionOID* |obligatorisch |Bezeichner: Profession OID +
 Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und dem Mapping in ab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
 Kann mehrfach vorkommen (0..100).
@@ -1920,7 +1953,7 @@ Es können Einträge ohne Zertifikat angelegt werden. Diese Einträge werden jed
 |*userCertificate.active* |obligatorisch |Wird vom VZD eingetragen. +
 Wert == TRUE, wenn das userCertificate gemäß OCSP gültig ist (OCSP Response Status "good"), Wert == FALSE bei Zertifikaten von noch nicht freigeschalteten Karten (OCSP Response Status "unknown"). +
 Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in die flache Liste übernommen.
-|*personalEntry* |obligatorisch |Wird vom VZD eingetragen. +
+|*personalEntry* |obligatorisch |Wird vom VZD aus dem Zertifikat ermittelt und eingetragen. Wenn kein Zertifikat übergeben wird, kann es mit add_Directory_Entry als Parameter übergeben werden. +
 Wert == TRUE, wenn baseDirectoryEntry.entryType den Wert 1 hat (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID). +
 Nach Löschung aller Zertifikate bleibt der Wert dieses Attributs "personalEntry" erhalten.
 |*entryType* |obligatorisch |Bezeichner: Eintragstyp +
@@ -1938,7 +1971,7 @@ Gibt an, ob die Daten vom Kartenherausgeber stammen. +
 Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
   +
 Wenn der Wert TRUE ist, können die Daten nicht mehr über die Schnittstelle I_Directory_Maintenance bearbeitet werden. Die Schnittstelle I_Directory_Maintenance wird von KOM-LE-Anbietern verwendet.
-|*holder* |optional |Legt fest, wer Änderungen an den Basisdaten des Eintrags vornehmen darf. Hat keinen Einfluss auf Fachdaten und Zertifikatsdaten.
+|*holder* |obligatorisch |Legt fest, wer Änderungen an den Basisdaten des Eintrags vornehmen darf. Hat keinen Einfluss auf Fachdaten und Zertifikatsdaten.
 |*professionOID* |obligatorisch |Bezeichner: Profession OID +
 Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und dem Mapping in ab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
 Kann mehrfach vorkommen (0..100).
@@ -2087,7 +2120,7 @@ Es können Einträge ohne Zertifikat angelegt werden. Diese Einträge werden jed
 |*userCertificate.active* |obligatorisch |Wird vom VZD eingetragen. +
 Wert == TRUE, wenn das userCertificate gemäß OCSP gültig ist (OCSP Response Status "good"), Wert == FALSE bei Zertifikaten von noch nicht freigeschalteten Karten (OCSP Response Status "unknown"). +
 Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in die flache Liste übernommen.
-|*personalEntry* |obligatorisch |Wird vom VZD eingetragen. +
+|*personalEntry* |obligatorisch |Wird vom VZD aus dem Zertifikat ermittelt und eingetragen. Wenn kein Zertifikat übergeben wird, kann es mit add_Directory_Entry als Parameter übergeben werden. +
 Wert == TRUE, wenn baseDirectoryEntry.entryType den Wert 1 hat (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID). +
 Nach Löschung aller Zertifikate bleibt der Wert dieses Attributs "personalEntry" erhalten.
 |*entryType* |obligatorisch |Bezeichner: Eintragstyp +
@@ -2105,7 +2138,7 @@ Gibt an, ob die Daten vom Kartenherausgeber stammen. +
 Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
   +
 Wenn der Wert TRUE ist, können die Daten nicht mehr über die Schnittstelle I_Directory_Maintenance bearbeitet werden. Die Schnittstelle I_Directory_Maintenance wird von KOM-LE-Anbietern verwendet.
-|*holder* |optional |Legt fest, wer Änderungen an den Basisdaten des Eintrags vornehmen darf. Hat keinen Einfluss auf Fachdaten und Zertifikatsdaten.
+|*holder* |obligatorisch |Legt fest, wer Änderungen an den Basisdaten des Eintrags vornehmen darf. Hat keinen Einfluss auf Fachdaten und Zertifikatsdaten.
 |*professionOID* |obligatorisch |Bezeichner: Profession OID +
 Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und dem Mapping in ab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
 Kann mehrfach vorkommen (0..100).
@@ -2246,7 +2279,7 @@ Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in 
  +
 Bezeichner: Anderer Name +
 Wird vom VZD aus dem Zertifikatsattribut otherName übernommen.
-|*personalEntry* |obligatorisch |Wird vom VZD eingetragen. +
+|*personalEntry* |obligatorisch |Wird vom VZD aus dem Zertifikat ermittelt und eingetragen. Wenn kein Zertifikat übergeben wird, kann es mit add_Directory_Entry als Parameter übergeben werden. +
 Wert == TRUE, wenn baseDirectoryEntry.entryType den Wert 1 hat (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID). +
 Nach Löschung aller Zertifikate bleibt der Wert dieses Attributs "personalEntry" erhalten.
 |*entryType* |obligatorisch |Bezeichner: Eintragstyp +
@@ -2259,7 +2292,7 @@ Mit Operation modify_Directory_Entry kann über Request Parameter entryType das 
 Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit einem Fehler. 
 |*telematikID* |obligatorisch |Bezeichner: TelematikID +
 Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
-|*holder* |optional |Legt fest, wer Änderungen an den Basisdaten des Eintrags vornehmen darf. Hat keinen Einfluss auf Fachdaten und Zertifikatsdaten.
+|*holder* |obligatorisch |Legt fest, wer Änderungen an den Basisdaten des Eintrags vornehmen darf. Hat keinen Einfluss auf Fachdaten und Zertifikatsdaten.
 |*professionOID* |obligatorisch |Bezeichner: Profession OID +
 Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und dem Mapping in ab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
 Kann mehrfach vorkommen (0..100).
@@ -2402,7 +2435,7 @@ Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in 
  +
 Bezeichner: Anderer Name +
 Wird vom VZD aus dem Zertifikatsattribut otherName übernommen.
-|*personalEntry* |obligatorisch |Wird vom VZD eingetragen. +
+|*personalEntry* |obligatorisch |Wird vom VZD aus dem Zertifikat ermittelt und eingetragen. Wenn kein Zertifikat übergeben wird, kann es mit add_Directory_Entry als Parameter übergeben werden. +
 Wert == TRUE, wenn baseDirectoryEntry.entryType den Wert 1 hat (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID). +
 Wert == FALSE für SMC-B KTR ePA +
 Nach Löschung aller Zertifikate bleibt der Wert dieses Attributs "personalEntry" erhalten.
@@ -2416,7 +2449,7 @@ Mit Operation modify_Directory_Entry kann über Request Parameter entryType das 
 Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit einem Fehler. 
 |*telematikID* |obligatorisch |Bezeichner: TelematikID +
 Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
-|*holder* |optional |Legt fest, wer Änderungen an den Basisdaten des Eintrags vornehmen darf. Hat keinen Einfluss auf Fachdaten und Zertifikatsdaten.
+|*holder* |obligatorisch |Legt fest, wer Änderungen an den Basisdaten des Eintrags vornehmen darf. Hat keinen Einfluss auf Fachdaten und Zertifikatsdaten.
 |*professionOID* |obligatorisch |Bezeichner: Profession OID +
 Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und dem Mapping in ab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
 Kann mehrfach vorkommen (0..100).
@@ -2522,7 +2555,7 @@ Es können Einträge ohne Zertifikat angelegt werden. Diese Einträge werden jed
 |*userCertificate.active* |obligatorisch |Wird vom VZD eingetragen. +
 Wert == TRUE, wenn das userCertificate gemäß OCSP gültig ist (OCSP Response Status "good"), Wert == FALSE bei Zertifikaten von noch nicht freigeschalteten Karten (OCSP Response Status "unknown"). +
 Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in die flache Liste übernommen.
-|*personalEntry* |obligatorisch |Wird vom VZD eingetragen. +
+|*personalEntry* |obligatorisch |Wird vom VZD aus dem Zertifikat ermittelt und eingetragen. Wenn kein Zertifikat übergeben wird, kann es mit add_Directory_Entry als Parameter übergeben werden. +
 Wert == TRUE, wenn baseDirectoryEntry.entryType den Wert 1 hat (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID). +
 Nach Löschung aller Zertifikate bleibt der Wert dieses Attributs "personalEntry" erhalten.
 |*entryType* |obligatorisch |Bezeichner: Eintragstyp +
@@ -2540,7 +2573,7 @@ Gibt an, ob die Daten vom Kartenherausgeber stammen. +
 Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
   +
 Wenn der Wert TRUE ist, können die Daten nicht mehr über die Schnittstelle I_Directory_Maintenance bearbeitet werden. Die Schnittstelle I_Directory_Maintenance wird von KOM-LE-Anbietern verwendet.
-|*holder* |optional |Legt fest, wer Änderungen an den Basisdaten des Eintrags vornehmen darf. Hat keinen Einfluss auf Fachdaten und Zertifikatsdaten.
+|*holder* |obligatorisch |Legt fest, wer Änderungen an den Basisdaten des Eintrags vornehmen darf. Hat keinen Einfluss auf Fachdaten und Zertifikatsdaten.
 |*professionOID* |obligatorisch |Bezeichner: Profession OID +
 Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und dem Mapping in ab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
 Kann mehrfach vorkommen (0..100).
@@ -2674,7 +2707,7 @@ Es können Einträge ohne Zertifikat angelegt werden. Diese Einträge werden jed
 |*userCertificate.active* |obligatorisch |Wird vom VZD eingetragen. +
 Wert == TRUE, wenn das userCertificate gemäß OCSP gültig ist (OCSP Response Status "good"), Wert == FALSE bei Zertifikaten von noch nicht freigeschalteten Karten (OCSP Response Status "unknown"). +
 Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in die flache Liste übernommen.
-|*personalEntry* |obligatorisch |Wird vom VZD eingetragen. +
+|*personalEntry* |obligatorisch |Wird vom VZD aus dem Zertifikat ermittelt und eingetragen. Wenn kein Zertifikat übergeben wird, kann es mit add_Directory_Entry als Parameter übergeben werden. +
 Wert == TRUE, wenn baseDirectoryEntry.entryType den Wert 1 hat (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID). +
 Nach Löschung aller Zertifikate bleibt der Wert dieses Attributs "personalEntry" erhalten.
 |*entryType* |obligatorisch |Bezeichner: Eintragstyp +
@@ -2692,7 +2725,7 @@ Gibt an, ob die Daten vom Kartenherausgeber stammen. +
 Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
   +
 Wenn der Wert TRUE ist, können die Daten nicht mehr über die Schnittstelle I_Directory_Maintenance bearbeitet werden. Die Schnittstelle I_Directory_Maintenance wird von KOM-LE-Anbietern verwendet.
-|*holder* |optional | Festlegung Änderungsrechte: +
+|*holder* |obligatorisch | Festlegung Änderungsrechte: +
 Wert „egbr“ und die „clientID“ des eintragenden TSP +
  +
 Legt fest, wer Änderungen an den Basisdaten des Eintrags vornehmen darf. Hat keinen Einfluss auf Fachdaten und Zertifikatsdaten.
@@ -2834,7 +2867,7 @@ Es können Einträge ohne Zertifikat angelegt werden. Diese Einträge werden jed
 |*userCertificate.active* |obligatorisch |Wird vom VZD eingetragen. +
 Wert == TRUE, wenn das userCertificate gemäß OCSP gültig ist (OCSP Response Status "good"), Wert == FALSE bei Zertifikaten von noch nicht freigeschalteten Karten (OCSP Response Status "unknown"). +
 Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in die flache Liste übernommen.
-|*personalEntry* |obligatorisch |Wird vom VZD eingetragen. +
+|*personalEntry* |obligatorisch |Wird vom VZD aus dem Zertifikat ermittelt und eingetragen. Wenn kein Zertifikat übergeben wird, kann es mit add_Directory_Entry als Parameter übergeben werden. +
 Wert == TRUE, wenn baseDirectoryEntry.entryType den Wert 1 hat (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID). +
 Nach Löschung aller Zertifikate bleibt der Wert dieses Attributs "personalEntry" erhalten.
 |*entryType* |obligatorisch |Bezeichner: Eintragstyp +
@@ -2852,7 +2885,7 @@ Gibt an, ob die Daten vom Kartenherausgeber stammen. +
 Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
   +
 Wenn der Wert TRUE ist, können die Daten nicht mehr über die Schnittstelle I_Directory_Maintenance bearbeitet werden. Die Schnittstelle I_Directory_Maintenance wird von KOM-LE-Anbietern verwendet.
-|*holder* |optional |Festlegung Änderungsrechte: +
+|*holder* |obligatorisch |Festlegung Änderungsrechte: +
 Wert „egbr“ und die „clientID“ des eintragenden TSP +
  +
 Legt fest, wer Änderungen an den Basisdaten des Eintrags vornehmen darf. Hat keinen Einfluss auf Fachdaten und Zertifikatsdaten.
@@ -3012,7 +3045,7 @@ Es können Einträge ohne Zertifikat angelegt werden. Diese Einträge werden jed
 |*userCertificate.active* |obligatorisch |Wird vom VZD eingetragen. +
 Wert == TRUE, wenn das userCertificate gemäß OCSP gültig ist (OCSP Response Status "good"), Wert == FALSE bei Zertifikaten von noch nicht freigeschalteten Karten (OCSP Response Status "unknown"). +
 Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in die flache Liste übernommen.
-|*personalEntry* |obligatorisch |Wird vom VZD eingetragen. +
+|*personalEntry* |obligatorisch |Wird vom VZD aus dem Zertifikat ermittelt und eingetragen. Wenn kein Zertifikat übergeben wird, kann es mit add_Directory_Entry als Parameter übergeben werden. +
 Wert == TRUE, wenn baseDirectoryEntry.entryType den Wert 1 hat (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID). +
 Nach Löschung aller Zertifikate bleibt der Wert dieses Attributs "personalEntry" erhalten.
 |*entryType* |obligatorisch |Bezeichner: Eintragstyp +
@@ -3030,7 +3063,7 @@ Gibt an, ob die Daten vom Kartenherausgeber stammen. +
 Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
  +
 Wenn der Wert TRUE ist, können die Daten nicht mehr über die Schnittstelle I_Directory_Maintenance bearbeitet werden. Die Schnittstelle I_Directory_Maintenance wird von KOM-LE-Anbietern verwendet.
-|*holder* |optional |Legt fest, wer Änderungen an den Basisdaten des Eintrags vornehmen darf. Hat keinen Einfluss auf Fachdaten und Zertifikatsdaten.
+|*holder* |obligatorisch |Legt fest, wer Änderungen an den Basisdaten des Eintrags vornehmen darf. Hat keinen Einfluss auf Fachdaten und Zertifikatsdaten.
 |*professionOID* |obligatorisch |Bezeichner: Profession OID +
 Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und dem Mapping in ab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
 Kann mehrfach vorkommen (0..100).
@@ -3159,7 +3192,7 @@ Es können Einträge ohne Zertifikat angelegt werden. Diese Einträge werden jed
 |*userCertificate.active* |obligatorisch |Wird vom VZD eingetragen. +
 Wert == TRUE, wenn das userCertificate gemäß OCSP gültig ist (OCSP Response Status "good"), Wert == FALSE bei Zertifikaten von noch nicht freigeschalteten Karten (OCSP Response Status "unknown"). +
 Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in die flache Liste übernommen.
-|*personalEntry* |obligatorisch |Wird vom VZD eingetragen. +
+|*personalEntry* |obligatorisch |Wird vom VZD aus dem Zertifikat ermittelt und eingetragen. Wenn kein Zertifikat übergeben wird, kann es mit add_Directory_Entry als Parameter übergeben werden. +
 Wert == TRUE, wenn baseDirectoryEntry.entryType den Wert 1 hat (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID). +
 Nach Löschung aller Zertifikate bleibt der Wert dieses Attributs "personalEntry" erhalten.
 |*entryType* |obligatorisch |Bezeichner: Eintragstyp +
@@ -3177,7 +3210,7 @@ Gibt an, ob die Daten vom Kartenherausgeber stammen. +
 Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
  +
 Wenn der Wert TRUE ist, können die Daten nicht mehr über die Schnittstelle I_Directory_Maintenance bearbeitet werden. Die Schnittstelle I_Directory_Maintenance wird von KOM-LE-Anbietern verwendet.
-|*holder* |optional |Legt fest, wer Änderungen an den Basisdaten des Eintrags vornehmen darf. Hat keinen Einfluss auf Fachdaten und Zertifikatsdaten.
+|*holder* |obligatorisch |Legt fest, wer Änderungen an den Basisdaten des Eintrags vornehmen darf. Hat keinen Einfluss auf Fachdaten und Zertifikatsdaten.
 |*professionOID* |obligatorisch |Bezeichner: Profession OID +
 Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und dem Mapping in ab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
 Kann mehrfach vorkommen (0..100).
@@ -3306,7 +3339,7 @@ Es können Einträge ohne Zertifikat angelegt werden. Diese Einträge werden jed
 |*userCertificate.active* |obligatorisch |Wird vom VZD eingetragen. +
 Wert == TRUE, wenn das userCertificate gemäß OCSP gültig ist (OCSP Response Status "good"), Wert == FALSE bei Zertifikaten von noch nicht freigeschalteten Karten (OCSP Response Status "unknown"). +
 Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in die flache Liste übernommen.
-|*personalEntry* |obligatorisch |Wird vom VZD eingetragen. +
+|*personalEntry* |obligatorisch |Wird vom VZD aus dem Zertifikat ermittelt und eingetragen. Wenn kein Zertifikat übergeben wird, kann es mit add_Directory_Entry als Parameter übergeben werden. +
 Wert == TRUE, wenn baseDirectoryEntry.entryType den Wert 1 hat (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID). +
 Nach Löschung aller Zertifikate bleibt der Wert dieses Attributs "personalEntry" erhalten.
 |*entryType* |obligatorisch |Bezeichner: Eintragstyp +
@@ -3324,7 +3357,7 @@ Gibt an, ob die Daten vom Kartenherausgeber stammen. +
 Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
  +
 Wenn der Wert TRUE ist, können die Daten nicht mehr über die Schnittstelle I_Directory_Maintenance bearbeitet werden. Die Schnittstelle I_Directory_Maintenance wird von KOM-LE-Anbietern verwendet.
-|*holder* |optional |Legt fest, wer Änderungen an den Basisdaten des Eintrags vornehmen darf. Hat keinen Einfluss auf Fachdaten und Zertifikatsdaten.
+|*holder* |obligatorisch |Legt fest, wer Änderungen an den Basisdaten des Eintrags vornehmen darf. Hat keinen Einfluss auf Fachdaten und Zertifikatsdaten.
 |*professionOID* |obligatorisch |Bezeichner: Profession OID +
 Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und dem Mapping in ab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
 Kann mehrfach vorkommen (0..100).
@@ -3470,7 +3503,7 @@ Es können Einträge ohne Zertifikat angelegt werden. Diese Einträge werden jed
 |*userCertificate.active* |obligatorisch |Wird vom VZD eingetragen. +
 Wert == TRUE, wenn das userCertificate gemäß OCSP gültig ist (OCSP Response Status "good"), Wert == FALSE bei Zertifikaten von noch nicht freigeschalteten Karten (OCSP Response Status "unknown"). +
 Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in die flache Liste übernommen.
-|*personalEntry* |obligatorisch |Wird vom VZD eingetragen. +
+|*personalEntry* |obligatorisch |Wird vom VZD aus dem Zertifikat ermittelt und eingetragen. Wenn kein Zertifikat übergeben wird, kann es mit add_Directory_Entry als Parameter übergeben werden. +
 Wert == TRUE, wenn baseDirectoryEntry.entryType den Wert 1 hat (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID). +
 Nach Löschung aller Zertifikate bleibt der Wert dieses Attributs "personalEntry" erhalten.
 |*entryType* |obligatorisch |Bezeichner: Eintragstyp +
@@ -3488,7 +3521,7 @@ Gibt an, ob die Daten vom Kartenherausgeber stammen. +
 Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
  +
 Wenn der Wert TRUE ist, können die Daten nicht mehr über die Schnittstelle I_Directory_Maintenance bearbeitet werden. Die Schnittstelle I_Directory_Maintenance wird von KOM-LE-Anbietern verwendet.
-|*holder* |optional |Festlegung Änderungsrechte: +
+|*holder* |obligatorisch |Festlegung Änderungsrechte: +
 Wert „hk<ID>“ und die „clientID“ des eintragenden TSP +
 Kürzel "hk<ID>" mit ID aus den letzten beiden Ziffern der Handwerkskammer-ID (die drei führenden Nullen fallen weg) gemäß +
 https://www.xrepository.de/details/urn:xoev-de:xunternehmen:codeliste:handwerkskammern
@@ -3646,7 +3679,7 @@ Es können Einträge ohne Zertifikat angelegt werden. Diese Einträge werden jed
 |*userCertificate.active* |obligatorisch |Wird vom VZD eingetragen. +
 Wert == TRUE, wenn das userCertificate gemäß OCSP gültig ist (OCSP Response Status "good"), Wert == FALSE bei Zertifikaten von noch nicht freigeschalteten Karten (OCSP Response Status "unknown"). +
 Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in die flache Liste übernommen.
-|*personalEntry* |obligatorisch |Wird vom VZD eingetragen. +
+|*personalEntry* |obligatorisch |Wird vom VZD aus dem Zertifikat ermittelt und eingetragen. Wenn kein Zertifikat übergeben wird, kann es mit add_Directory_Entry als Parameter übergeben werden. +
 Wert == TRUE, wenn baseDirectoryEntry.entryType den Wert 1 hat (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID). +
 Nach Löschung aller Zertifikate bleibt der Wert dieses Attributs "personalEntry" erhalten.
 |*entryType* |obligatorisch |Bezeichner: Eintragstyp +
@@ -3664,7 +3697,7 @@ Gibt an, ob die Daten vom Kartenherausgeber stammen. +
 Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
  +
 Wenn der Wert TRUE ist, können die Daten nicht mehr über die Schnittstelle I_Directory_Maintenance bearbeitet werden. Die Schnittstelle I_Directory_Maintenance wird von KOM-LE-Anbietern verwendet.
-|*holder* |optional |Festlegung Änderungsrechte: +
+|*holder* |obligatorisch |Festlegung Änderungsrechte: +
 Wert „hk<ID>“ und die „clientID“ des eintragenden TSP +
 Kürzel "hk<ID>" mit ID aus den letzten beiden Ziffern der Handwerkskammer-ID (die drei führenden Nullen fallen weg) gemäß +
 https://www.xrepository.de/details/urn:xoev-de:xunternehmen:codeliste:handwerkskammern +
