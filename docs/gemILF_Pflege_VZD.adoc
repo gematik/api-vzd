@@ -147,7 +147,7 @@ Neu für eGBR HBA und SMC-B |gematik
 |gematik
 
 
-|1.5.7 |xx.xx.2023 |5.4 +
+|1.5.7 |23.02.2024 |5.4 +
 3.3.1 +
 4
 |
@@ -2689,7 +2689,7 @@ Dieses Attribut wird durch den VZD nicht automatisch aus dem Zertifikat ermittel
 |*countryCode* |optional |Siehe TAB_VZD_Wertebereiche_der_Attribute
 |*organization* |optional |Bezeichner: Organisation +
 Dieses Attribut ist ein optionales zweites Namensattribut und wird befüllt bei Bedarf. Ebenso wie displayName ist es geeignet, um nach einem Namen zu filtern und ihn im Suchergebnis anzuzeigen.
-|*domainID* |obligatorisch |Bezeichner: IK-Nummer der Leistungserbringerinstitution +
+|*domainID* |obligatorisch |Bezeichner: IK (Institutionskennzeichen) der Leistungserbringerinstitution +
 Dieses Attribut kann nur einmal vorkommen. Der Wert wird von der ARGE-IK vergeben.
 |*specialization* |obligatorisch |Bezeichner: Fachgebiet +
 Kann mehrfach vorkommen (1..100). +
@@ -3470,11 +3470,11 @@ Dieses Attribut wird durch den VZD nicht automatisch aus dem Zertifikat ermittel
 |*streetAddress* |obligatorisch |Bezeichner: Straße und Hausnummer (wenn verfügbar) der Leistungserbringerinstitution
 |*postalCode* |obligatorisch |Bezeichner: Postleitzahl der Leistungserbringerinstitution
 |*localityName* |obligatorisch |Bezeichner: Ort der Leistungserbringerinstitution
-|*stateOrProvinceName* |optional |Bezeichner: Bundesland der Leistungserbringerinstitution
+|*stateOrProvinceName* |obligatorisch |Bezeichner: Bundesland der Leistungserbringerinstitution
 |*countryCode* |optional |Siehe TAB_VZD_Wertebereiche_der_Attribute
 |*organization* |optional |Bezeichner: Organisation +
 Dieses Attribut ist ein optionales zweites Namensattribut und wird befüllt bei Bedarf. Ebenso wie displayName ist es geeignet, um nach einem Namen zu filtern und ihn im Suchergebnis anzuzeigen.
-|*domainID* |optional |Bezeichner: IK-Nummer der Leistungserbringerinstitution +
+|*domainID* |optional |Bezeichner: IK (Institutionskennzeichen) der Leistungserbringerinstitution +
 Dieses Attribut kann nur einmal vorkommen. Der Wert wird von der ARGE-IK vergeben.
 
 |*specialization* |obligatorisch |Bezeichner: Fachgebiet +
