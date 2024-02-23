@@ -3602,7 +3602,7 @@ Dieses Attribut ist nicht in der flachen Liste enthalten.
 
 
 === gematik – Handwerkskammern – Weitere Gesundheitsfachberufe (BA-Eintrag)
-Einträge für Betriebe der Gesundheitshandwerke werden im Verzeichnisdienst durch den Anbieter SMC-B angelegt. Der Anbieter SMC-B trägt in das Attribut holder den Wert der jeweils zuständigen Handwerkskammer und seine eigene clientID ein. Damit sind diese Einträge durch Handwerkskammer-Clients und die Clients des Anbieters SMC-B änderbar. +
+Einträge für Betriebe der Gesundheitshandwerke werden im Verzeichnisdienst durch den Anbieter HBA angelegt. Der Anbieter HBA trägt in das Attribut holder den Wert der jeweils zuständigen Handwerkskammer und seine eigene clientID ein. Damit sind diese Einträge durch Handwerkskammer-Clients und die Clients des Anbieters HBA änderbar. +
  +
 Tabelle 19: Tab_VZD_Datenbeschreibung_BA_HWK
 
