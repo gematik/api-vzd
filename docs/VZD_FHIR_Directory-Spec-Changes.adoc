@@ -1,3 +1,4 @@
+
 ifdef::env-github[]
 :tip-caption: :bulb:
 :note-caption: :information_source:
@@ -16,11 +17,515 @@ image:gematik_logo.svg[width=70%]
 
 toc::[]
 
-= Änderungen an Spezifikation gemSpec_VZD_FHIR_Directory
-Dieses Dokument informiert über die Änderungen an Spezifikation gemSpec_VZD_FHIR_Directory, welche noch nicht auf dem gematik Fachportal veröffentlicht wurden.
+// https://polarion.int.gematik.de/polarion/#/project/Mainline_OPB1/wiki/Anlagendokumente%20P-Liste/C_11549_Anlage
+
+= Änderungen an VZD Spezifikationen 
+Dieses Dokument informiert über die Änderungen an Spezifikation gemSpec_VZD_FHIR_Directory und gemSpec_VZD, welche noch nicht auf dem gematik Fachportal veröffentlicht wurden.
 Vor der Veröffentlichung auf dem Fachportal erfolgen noch Reviews. Folge dieser Reviews können Änderungen bis zur finalen Veröffentlichung bedingen.
  +
  +
-Die aktuellen Spezifikationserweiterungen und -änderungen wurden im gematik Fachportal veröffentlicht:
-https://fachportal.gematik.de/schnelleinstieg/downloadcenter/vorabveroeffentlichungen#c7532 +
-Deshalb werden sie aus diesem Dokument entfernt.
+
+== Aktualisierung Signatur-Algorithmen (gemSpec_VZD_FHIR_Directory#4.2.3 & 5.2)
+
+ 
+*Es wird in gemSpec_VZD_FHIR_Directory Kapitel 4.2.3 wie folgt angepasst* +
+... +
+Die Föderationsliste MUSS mit einer JWS gemäß RFC7797 signiert werden. Der zu verwendende Signatur-Algorithmus MUSS +++<del>+++*"ES256"in der Liste der zulässigen Algorithmen enthalten*+++</del>+++ *"BP256R1"* sein. Dazu MUSS ein Signatur-Zertifikat der Komponenten-PKI der TI (C.FD.SIG) verwendet werden. Das Signatur-Zertifikat MUSS im Signatur-Header enthalten sein.Der Signatur-Header hat folgende Struktur:
+
+
+[source,subs="quotes"]
+--
+{ 
+  "typ":"JWT",  
+  "alg": <del>*"ES256"*</del> *"BP256R1"*, 
+  "x5c": [ 
+    "<X.509 Sig-Cert, base64-encoded DER>" 
+  ] 
+}
+
+--
+
+*Es wird in gemSpec_VZD_FHIR_Directory Kapitel 4.2.3 wie folgt angepasst* +
+... +
+*ML-142894 - AF_10037 TIM Registrierungsdienst id_token Prüfung (VZD-FHIR-Directory)* +
+Die vom Registrierungsdienst ausgestellten id_token müssen vom VZD-FHIR-Directory geprüft werden: +
+
+- Validierung der gemäß [RFC7519 # section-7.1] vorgeschriebenen Struktur der id_token gemäß [RFC7519 # section-7.2]. 
+- Prüfung Signatur des id_token gemäß RFC7515 (das verwendete Zertifikat muss aus der Komponenten-PKI der TI stammen)
+* Zertifikatstyp: C.FD.SIG
+* technische Rolle: oid_tim
+- Die telematikID muss im Token Attribut idNummer  enthalten sein.
+
+Optional und verpflichtend ab FHIR VZD 1.2: +
+
+- Prüfung des id_token Signatur-Zertifikats (oder sein Hash) gegen das bei der Beantragung der Credentials für die Schnittstelle I_VZD_TIM_Provider_Services übergebene Signatur-Zertifikat. 
+*	OCSP Prüfung des id_token Signatur-Zertifikats
+*	Prüfung Algorithmus:  "alg": +++<del>+++*"ES256"*+++</del>+++ *"BP256R1"*
+*	Prüfung des Signaturzertifikats gegen das X.509-Root-CA Zertifikat der TI.
+
+-	Prüfung der zeitlichen Gültigkeit des id_token für den Zugriff auf den VZD-FHIR-Directory: Das VZD-FHIR-Directory muss sicherstellen, dass der Zeitraum der Verwendung des Tokens zwischen den im Token mitgelieferten Werten der Attribute iat und exp liegt.
+-	Das VZD-FHIR-Directory muss die im id_token übertragenen Attribute mit denen vergleichen, die mit dem Registrierungsdienst vereinbart wurden und alle mit dem id_token in Verbindung stehenden Vorgänge abbrechen, wenn dem id_token für die Verarbeitung notwendige Claims fehlen oder aber andere als die mit dem IDP-Dienst vereinbarten personenbezogenen Attribute vorhanden sind.
+*	Hinweis: Als unerwartete personenbezogenes Attribute gelten gemäß Tabelle: [gemSpec_IDP_FD#TAB_IDP_DIENST_0005] die Claims given_name, family_name, und organizationName
+-	Audience: "aud": URL der Schnittstelle z.B. "https://fhir-directory.vzd.ti-dienste.de/owner-authenticate"
+-	Die TelematikID aus dem Token Attribut idNummer muss in der Föderationsliste enthalten sein und der Föderationslisten-Eintrag muss vom gleichen TIM-Provider eingetragen worden sein der auch das Token ausgestellt hat.
+<=
+
+...
+
+*ML-142895 - AF_10037 TI-Provider-Access-Token Prüfung (VZD-FHIR-Directory)*
+Die TI-Provider-Access-Token müssen vom VZD-FHIR-Directory für den Endpunkt /tim-provider-services geprüft werden: +
+
+-	Validierung der gemäß [RFC7519 # section-7.1] vorgeschriebenen Struktur der ACCESS_TOKEN gemäß [RFC7519 # section-7.2].
+-	Sicherstellung der korrekten Signatur des Tokens gemäß RFC7515:
+*	Zertifikatstyp: C.FD.SIG
+*	technische Rolle: oid_vzd_ti
+*	OCSP Prüfung des Signatur-Zertifikats: Nein
+-	Zeitliche Gültigkeit: Das VZD-FHIR-Directory muss sicherstellen, dass der Zeitraum der Verwendung des Tokens zwischen den im Token mitgelieferten Werten der Attribute iat und exp liegt.
+-	Die telematikID muss im Token "sub" claim enthalten sein.
+
+Optional und verpflichtend ab FHIR VZD 1.2: +
+
+-	Das VZD-FHIR-Directory muss die im ACCESS_TOKEN übertragenen Attribute mit denen vergleichen, die vereinbart wurden und alle mit dem ACCESS_TOKEN in Verbindung stehenden Vorgänge abbrechen, wenn dem ID_TOKEN für die Verarbeitung notwendige Claims fehlen oder aber andere als die vereinbarten personenbezogenen Attribute vorhanden sind.
+*	Prüfung Audience "aud" aus dem Token (muss der /tim-provider-services Schnittstelle entsprechen, z.B. https://fhir-directory.vzd.ti-dienste.de/tim-provider-services)
+*	Hinweis: Als unerwartete personenbezogenes Attribute gelten gemäß Tabelle: [gemSpec_IDP_FD#TAB_IDP_DIENST_0005] die Claims given_name, family_name, und organizationName
+-	Sicherstellung der korrekten Signatur des Tokens gemäß RFC7515:
+*	Prüfung Algorithmus:  "alg": +++<del>+++*"ES256"*+++</del>+++ *"BP256R1"*
+
+<=
+
+ 
+
+== Zusammenführung mehrerer TelematikID´s zu einer Organisation
+*Es wird in gemSpec_VZD Kapitel 4.6.1.2.3 wie folgt ergänzt* +
+ +
+*A_18450-04 VZD, I_Directory_Administration, modify_Directory_Entry* +
+ +
+*In Tabelle 26: Tab_VZD „modify_Directory_Entry” werden die Eingangsdaten aktualisiert, insbesondere "providedBy"* +
+ +
+ +
+*Es wird in gemSpec_VZD Kapitel 4.6.3 wie folgt aufgenommen* +
+ +
+*4.6.3 Zusammenführung mehrerer TelematikID´s zu einer Organisation* +
+Im LDAP VZD existieren Einträge, die in der Realität eine Organisation darstellen, als einzelne Datensätze. 
+Es haben z.B. Krankenhäuser unterschiedliche Einträge für ihre einzelnen Abteilungen im LDAP VZD.
+Für jeden dieser LDAP Einträge wird im FHIR VZD eine eigene Organisation generiert. +
+
+Entsprechende LDAP Einträge sollen als eine Organisation im VZD FHIR zusammengeführt werden. 
+Damit sollen den VZD Nutzern die zusammengehörenden LDAP VZD Einträge im FHIR VZD als eine Organisation angezeigt werden. +
+
+Die Administration zusammengehörender Einträge erfolgt über Schnittstelle I_Directory_Administration. +
+Dafür wird das Attribut "providedBy" genutzt:
+
+- Ist Attribut "providedBy" im LDAP VZD Eintrag nicht gesetzt, wird für den LDAP Eintrag im FHIR VZD eine Organisation generiert.
+- Wird in Attribut "providedBy" im LDAP VZD Eintrag eine TelematikID eingetragen, wird für den LDAP Eintrag im FHIR VZD ein HealthcareService unter der - mit der TelematikID - referenzierten Organisation generiert.
+
+*A_24058 VZD, I_Directory_Administration, providedBy* +
+Der VZD MUSS für die Administration von Attribut "providedBy" gewährleisten:
+
+- Es wird nur eine Hierarchieebene unterstützt. Das Attribut "providedBy" im referenzierten LDAP Datensatz muss deshalb leer sein. In allen anderen Fälle MUSS der VZD mit einem Fehler antworten.
+- Der VZD MUSS bei Löschung eines LDAP VZD Eintrags prüfen, ob dieser Eintrag über Attribut "providedBy" von einem anderen Datensatz referenziert wird. Ist dies der Fall, MUSS der VZD die Löschoperation mit einem Fehler ablehnen.
+- Das Attribut "providedBy" darf nur eine TelematikID enthalten.
+- Wenn Attribut providedBy gesetzt wurde, kann es nur zurückgesetzt (Inhalt auf leer gesetzt) werden. Eine Änderung auf einen anderen Wert wird nicht unterstützt.
+- Der VZD MUSS vor dem Setzen von Attribut "providedBy" prüfen, ob der Client auch für den referenzierten LDAP Datensatz als Holder eingetragen ist. Ist dies nicht der Fall, MUSS der VZD die Operation mit einem Fehler ablehnen.
+<=
+
+*A_24059 VZD, I_Directory_Administration, Synchronisationsregeln für verlinkte LDAP Datensätze* +
+Der VZD MUSS für verlinkte LDAP Datensätze - mit einer TelematikID in Attribut "providedBy" - bei der Synchronisation der LDAP Daten in den FHIR VZD - abweichend von den normalen Synchronisationsregeln - das Mapping der Attribute entsprechend Tab_VZD_Datenmapping_linked durchführen. +
+ +
+Tabelle 34: Tab_VZD_Datenmapping_linked 
+
+[width="100%",cols="10%,10%,80%",options="header",]
+|===
+|*LDAP Attribut* |*FHIR HealthcareServices Attribut* |*Bemerkung*
+|displayName|name|
+Wird für normale Einträge in organization.name gemappt, hier auf HealthcareService.name.
+|organization|-|
+Kann einen alternativen Namen enthalten. +
+Wird nicht synchronisiert, da es im HCS kein korrespondierendes Attribut gibt. +
+Falls es in LDAP sinnvolle Informationen enthält, könnte man in FHR das HCS Attribut "comment" dafür nutzen.
+|specialization|speciality|
+Mapping auf HealthcareServices.specialty +
+|domainID|identifier|
+Wird normalerweise auf Organization.identifier gemappt.  +
+Mapping erfolgt hier auf HealthcareService.identifier. Das muss bei der Suche im FHIR VZD beachtet werden. +
+|streetAddress,
+postalCode,
+countryCode,
+localityName,
+stateOrProvinceName|Location|
+Normales Mapping auf Location Attribute und Verlinkung der Location mit dem HealthcareService.
+|holder|-|
+Wird nicht in den HelathcareService gemappt. +
+Der VZD stellt bei der Verlinkung von zwei Datensätzen sicher, dass der Client als Holder für beide Datensätze eingetragen ist. Die Zugriffsrechte für den generierten HelathcareService werden aus den Zugriffsrechten der Organisation abgeleitet (wie für alle HealtcareServices).
+|telematikID|identifier|
+Wird normalerweise auf Organization.identifier gemappt. +
+Mapping erfolgt hier auf HealthcareService.identifier. Das muss bei der Suche im FHIR VZD und bei der Authentisierung am Owner Interface beachtet werden. +
+Der OrgAdmin des Haupteintrags kann damit auch alle untergeordneten HealthcareServices bearbeiten. 
+Bei der Authentisierung mit der telematikID eines untergeordneten HealthcareServices darf der FHIR VZD nur das Bearbeiten dieses HealthcareService und untergeordneter Ressourcen erlauben.
+|professionOID|type|
+Wird für normalerweise in Organization.type abgelegt. +
+Mapping erfolgt hier auf HealthcareService.type. 
+|active|-|
+Wird nicht in den HelathcareService gemappt.Der Status für den generierten HelathcareService ergibt sich aus dem "active" Status der Organisation (wie für alle HealtcareServices). +
+Wenn der untergeordnete LDAP Datensatz über das "active" Attribut deaktiviert wird, hat das keine Auswirkungen auf den FHIR HealthcareService. +
+Wenn der übergeordnete LDAP Datensatz über das "active" Attribut deaktiviert wird, hat dies im FHIR VZD Auswirkungen auf alle verlinkten HealthcareService.
+
+|===
+
+
+ 
+
+*Es wird in gemSpec_VZD Kapitel 5. wie folgt ergänzt* +
+
+... 
+ +
+Tabelle 3: Tab_VZD_Datenbeschreibung 
+
+
+|===
+|*LDAP-Directory Attribut* |*Pflichtfeld?* |*Erläuterung*
+|...||
+|userCertificate.active|obligatorisch|
+Wird vom VZD eingetragen. +
+Wert == TRUE, wenn das userCertificate gemäß OCSP gültig ist (OCSP Response Status "good"), 
+Wert == FALSE bei Zertifikaten von noch nicht freigeschalteten Karten (OCSP Response Status "unknown"). +
+Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in die flache Liste übernommen.
+|providedBy|optional|
+Zusammenhängende Einträge können über das Attribut providedBy gekennzeichnet werden. 
+Siehe Kapitel 4.6.3 Zusammenführung mehrerer TelematikID´s zu einer Organisation
+
+
+|===
+
+
+== TI-Messenger Authentifizierung mit dem gematik Authenticator - Anbieten eines Polling Endpunktes
+
+*Es wird in gemSpec_VZD_FHIR_Directory Kapitel 5.2 am Kapitelende wie folgt ergänzt* +
+
+*TI-Messenger Authentifizierung mit dem gematik Authenticator - Anbieten eines Polling Endpunktes* +
+
+Wenn der Authenticator der gematik von Clients genutzt wird, um eine Authentifizierung auf Basis von Smartcards zu realisieren, dann ist es notwendig am Ende des Prozesses, die Kontrolle wieder an den Client zu übergeben und diesen mit den notwendigen Informationen für die weiteren Prozesschritte zu versorgen. Im folgenden werden die Anpassungen am Auth-Service des VZD-FHIR Directories beschrieben, die notwendig sind, um eine Anmeldung unter Verwendung des gematik Authenticators zu realsieren. 
+
+Beim Anmeldevorgang verwendet der User eine Smartcard als Authentifizierungsmittel. Der Ablauf orientiert sich hierbei an den OIDC-Vorgaben zur link:https://openid.net/specs/openid-client-initiated-backchannel-authentication-core-1_0.html[Client initiated backchannel authentication]. Um die Kollisionen mit standard OAuth2 Grants zu vermeiden, definiert die gematik einen eigenen Grant urn:telematik:params:grant-type:decoupled als link:https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-08#section-6.3[Extension]. 
+
+Der Standard kann nicht zu 100% umgesetzt werden, da hierfür ebenfalls noch eine Anpassung des gematik Authenticators und des IDP der gematik notwendig sind.Als Übergangslösung wird der Client den Aufruf des Authenticators übernehmen und das VZD-FHIR Directory einen Endpunkt bereitstellen über den der Status des Authentifizierungsvorgangs abgefragt werden kann.
+OIDC Konformität und Abweichungen werden im Anschluss an das Sequenzdiagramm im Rahmen der Erläutertung der einzelnen Schritte hervorgehoben.
+// .owner-authenticate with the gematik Authenticator
+// [%collapsible%open]
+====
+++++
+<p align="center">
+  <img width="55%" src=../images/diagrams/SequenceDiagram.FHIR-Directory.owner_auth_authenticator.svg>
+</p>
+++++
+====
+
+*Der FHIR VZD muss für diese Authentifizierung folgende Funktionalitäten bereitstellen*
+[options="header"]
+|=====
+| Funktionalität | Anforderung                                                                    
+| Bereitstellung des initalen authenticate Endpunkt am Auth-Service a| Das VZD-FHIR Directory muss einen /owner-authenticate-decoupled Endpunkt anbieten der POST Request mit dem übergebene grant_type urn:telematik:params:grant-type:decoupled akzeptiert. 
+
+.neuer owner Endpunkt
+[%collapsible%closed]
+====
+[source]
+----
+POST /owner-authenticate-decoupled HTTP/1.1
+Host: https://fhir-directory-ref.vzd.ti-dienste.de/
+Content-Type: application/x-www-form-urlencoded
+ 
+grant_type=urn%3Atelematik%3Aparams%3Agrant-type%3Adecoupled
+----
+====  
+Erhält das VZD-FHIR Directory eine derartige Anfrage wird ein Autorisierungsauftrag mit den Werten:
+
+* auth_reg_id
+* state
+* owner-accesstoken (in diesem Moment noch unbefüllt)
+* code_challenge
+
+erstellt und es werden folgende Daten an den Client im Response zurück geliefert:
+
+.owner Response
+[%collapsible%closed]
+====
+[source, json]
+----
+HTTP/1.1 200 OK
+Content-Type: application/json
+Cache-Control: no-store
+ 
+{
+  "auth_req_id": "bspuw6ea-scst-u5hn-p3nt-37khzwY4g",
+  "redirect_uri": "https://idp-ref.app.ti-dienste.de/...",
+  "poll_uri": "https://fhir-directory-ref.vzd.ti-dienste.de/...",
+  "expires_in": 600,
+  "interval": 3
+}
+----
+==== 
+* expires_in: definiert die Zeit, die die auth_reg_id gültig ist und genutzt werden kann in Sekunden
+* interval: definiert das Mindestwarteintervall zwischen 2 Pollinganfragen
+                                           
+| Bereitstellung eines neuen polling Endpunktes am Auth-Service     a| Das VZD-FHIR Directory muss einen Endpunkt anbieten, der von Clients genutzt werden kann, um den Status eines Autorisierungsauftrages abzufragen.
+Dazu übergibt ein anfragender Client die folgenden Werte (wobei ist durch VZD festgelegter Endpoint, welcher im Schritt 06 dem Client über poll_uri mitgeteilt wird)
+
+.Token Request
+[%collapsible%closed]
+====
+[source, json]
+----
+POST /oauth/v2/oauth-token HTTP/1.1
+Host: idsvr.example.com
+Content-Type: application/x-www-form-urlencoded
+ 
+grant_type=urn%3Atelematik%3Aparams%3Agrant-type%3Adecoupled
+auth_req_id=bspuw6ea-scst-u5hn-p3nt-37khzwY4g
+----
+==== 
+Es wird geprüft, ob für die auth_req_id noch gültig ist und bereits ein owner-accesstoken vorliegt: +
+ +
+a) Es liegt ein passendes Token vor:
+Dann antwortet der Auth-Service in seinem Response mit dem entsprechenden owner-accesstoken:
+
+.Token Response Success
+[%collapsible%closed]
+====
+[source, json]
+----
+HTTP/1.1 200 OK
+    Content-Type: application/json
+    Cache-Control: no-store
+ 
+    {
+     "access_token": "G5kXH2wHvUra0sHlDy1iTkDJgsgUO1bN"
+     "token_typ": "Bearer"
+     "expires_in": "86400"
+}
+----
+==== 
+b) liegt kein passendes Token vor dann antwortet der Server mit:
+
+.Token Response Error
+[%collapsible%closed]
+====
+[source, json]
+----
+HTTP/1.1 400 Bad Request
+Content-Type: application/json
+Cache-Control: no-cache, no-store
+ 
+{
+  "error": [ERROR_REASON]
+}
+----
+==== 
+Die ERROR_REASON kann die folgenden Werte annehmen:
+
+* authorization_pending - Der Authentifizierungsprozess ist noch nicht abgeschlossen
+* slow_down - Wenn der Token Request noch nicht abgeschlossen ist und der Client hat den Request schneller als 3 Sekunden gestellt.
+* access_denied - Der Authentifizierungsprozess konnte im Hintergrund nicht erfolgreich durchgeführt werden.
+Das minimal erlaubte Polling-Interval wird auf 3 Sekunden festlgelegt. Das VZD speichert den Zeitstempel der letzten Polling-Anfrage, sodass bei der nächsten Anfrage mit dem gleichen auth_req_id der letzte Zeitstempel abgerufen werden kann (z.B. in der gleichen Datenbanktabelle). Der Zeitunterschied des aktuellen Zeitstempel und den letzten Zeitstempel muss im Minimum 3 Sekunden betragen.
+| Bereitstellung einer neuen Redirect_uri | Aktuell liefert die vom VZD-FHIR Directory verwendete Redirect_uri (/signin-gematik-idp-dienst) bei Übergabe des Auth_code und des state einen owner-accesstoken zurück. Diese Rückgabe ist nicht notwendig, wenn der Authenticator die Redirect_uri direkt aufruft.    
+|=====
+
+
+
+== Verlinkung von Personen und Organisationen
+
+Es wird in gemSpec_VZD_FHIR_Directory Kapitel 4.1.4 wie folgt ergänzt4.1.4 Verlinkung von Personen und Organisationen in FHIRIm FHIR VZD kann die Zugehörigkeit von Personen (Practitioner) zu Organisationen (Organization) hinterlegt werden. Das Eintragen dieser Verlinkung erfolgt im beidseitigen Einverständnis zwischen Organisation und Leistungserbringern. +
+Die Verlinkungsanfragen und Bestätigungen werden nicht in FHIR Daten abgelegt, sondern separat abgelegt. Erst mit Erteilung des beidseitigen Einverständnisses wird die Verlinkung in die FHIR Daten eingetragen. +
+Für das Eintragen der Verlinkungsdaten muss sich der Nutzer authentisieren. Die Authentisierung erfolgt je Rolle über folgende Authentisierungstoken.
+
+* Leistungserbringer 
+** Ein Leistungserbringer authentisiert sich über das Owner-Authenticate-Verfahren (mit Gematik-IDP). 
+** Dabei erhält dieser einen Owner-Authenticate-Token, welcher an der administrativen Schnittstelle genutzt werden kann. 
+
+* Verantwortlicher einer Institution (Organisation) 
+** Der Verantwortliche authentisiert sich über das Owner-Authenticate-Verfahren (vereinfachtes Verfahren SMC-B oder Gematik IDP-Verfahren). 
+** Dabei erhält dieser einen Owner-Authenticate-Token, welcher an der administrativen Schnittstelle genutzt werden kann. 
+
+* Kartenherausgeber (Holder) 
+** Ein Kartenherausgeber authentisiert sich über die neue Schnittstelle Holder-Authenticate.
+** Hierzu verwendet er den bereits bekannten Keycloak, um sich ein entsprechenden Keycloak-IdToken per Client-Secret-Verfahren zu holen. 
+** Im Anschluss tauscht er diesen Token gegen einen Holder-AccessToken aus, welcher an der administrativen Schnittstelle genutzt werden kann.
+
+*Akzeptanzkriterien* +
+ +
+
+*ML-143700 - VZD-FHIR-Directory - Sichtbare Verbindung zwischen Personen und Organisationen* +
+Für FHIR VZD Nutzer muss die Zugehörigkeit von Personen (Practitioner) zu Organisationen (Organization) sichtbar sein. Die Zugehörigkeit darf erst nach beidseitiger Bestätigung (von Person und Organisation) sichtbar sein. <= +
+ +
+
+*ML-143701 - VZD-FHIR-Directory - Genehmigungspflichtige Verbindung zwischen Personen und Organisationen* +
+Die Verbindung zwischen Personen und Organisationen muss beidseitig von den verlinkten Personen und Organisationen bestätigt werden. <= +
+ +
+
+*ML-143703 - VZD-FHIR-Directory - Dokumentation der Verlinkungs-Genehmigungen zwischen Personen und Organisationen* +
+Die Genehmigungen, Ablehnungen und Löschungen der Verbindung zwischen Personen und Organisationen müssen dokumentiert werden und einsehbar sein. <= +
+ +
+*ML-143702 - VZD-FHIR-Directory - Widerruf der Verbindung zwischen Personen und Organisationen* +
+Die Widerrufung der Verbindung zwischen Personen und Organisationen muss einseitig möglich sein +
+
+* durch den verlinkten Leistungserbringer,
+* als Verantwortlicher einer verlinkten Institution und
+* als Kartenherausgeber (der Organisation oder des Practitioners). <= +
+
+
+*ML-143800 - VZD-FHIR-Directory - Authentisierung für Verlinkung zwischen Personen und Organisationen* +
+Der FHIR VZD muss die Nutzer vor dem Eintragen von Verlinkungsdaten entsprechend ihrer Nutzergruppe authentisieren. Folgende Nutzergruppen müssen berücksichtigt werden +
+
+* Leistungserbringer
+* Verantwortlicher eine Institution (Organisation)
+* Kartenherausgeber (Holder) <= +
+
+
+*ML-143878 - VZD-FHIR-Directory - Verbieten von Ressoucen-Verlinkungen ohne Verknüpfungsauftrag* +
+Der FHIR VZD muss das direkte Eintragen der Verbindung zwischen Personen und Organisationen über die FHIR VZD Owner Schnittstelle verhindern. Das Eintragen dieser Verbindung ist nur im beidseitiges Einverständnis zwischen Organisation und Leistungserbringern erlaubt. <= +
+ +
+*Es wird in gemSpec_VZD_FHIR_Directory Kapitel 5 wie folgt ergänzt:* +
+ +
+*5.5 Erstellen einer Verlinkungsanfrage* +
+ +
+*AF_10208 - FHIR-Directory - Erstellen einer Verlinkungsanfrage* +
+|===
+|*Attribute* |*Bemerkung* 
+|Beschreibung|
+Der authentisierte Institutionsverantwortliche oder Leistungserbringer erstellt eine Verbindungsanfrage für seine Organisation bzw. Practitioner. In der Anfrage vermerkt er mit welchen HealthcareService bzw.PractitionerRole sein FHIR VZD Datensatz verbunden werden sollen. Die Bestätigung der Verlinkung erfolgt beidseitig. Die Antragsteller stimmt bereits mit dem Verlinkungsantrag zu.
+|Vorbedingung|
+Die Institution und der Leistungserbringer sind bereits im FHIR VZD eingetragen. Der Nutzer ist authentisiert.
+|Nachbedingung|
+Die Verlinkungsanfrage wurde erfasst. Die Verlinkung ist noch nicht im FHIR VZD sichtbar.
+|===
+
+// [%collapsible%open]
+====
+++++
+<p align="center">
+  <img width="55%" src=../images/diagrams/SequenceDiagram.FHIR-Directory.LinkRequest.svg>
+</p>
+++++
+====
+
+_Abbildung: Sequence diagram - Erstellen einer Verlinkungsanfrage_ <=
+
+*Akzeptanzkriterien für den Anwendungsfall AF_10208 FHIR-Directory - Erstellen einer Verlinkungsanfrage* +
+ +
+*ML-143802 - Erstellen einer Verlinkungsanfrage* +
+Der FHIR VZD muss für Verlinkungsanfragen sicherstellen: 
+
+* Nur authentisierte Nutzer dürfen Verlinkungsanfragen für ihre FHIR VZD Einträge stellen.
+* Die Verlinkungsanfragen werden gespeichert und sind noch nicht in den normalen FHIR VZD Daten sichtbar. <= +
+
+
+*5.6 Bestätigen einer Verlinkungsanfrage* +
+ +
+*AF_10207 FHIR-Directory - Bestätigen einer Verlinkungsanfrage* +
+|===
+|*Attribute* |*Bemerkung* 
+|Beschreibung|
+Der authentisierte Institutionsverantwortliche oder Leistungserbringer bestätigt eine Verbindungsanfrage für seine Organisation bzw. Practitioner. +
+Die Bestätigung der Verlinkung erfolgt beidseitig. Die Antragsteller stimmt bereits mit dem Verlinkungsantrag zu.
+|Vorbedingung|
+Die Institution und der Leistungserbringer sind bereits im FHIR VZD eingetragen. +
+Der Nutzer ist authentisiert.
+|Nachbedingung|
+Die Verlinkungsanfrage wurde bestätigt. +
+Die Verlinkungsdaten wurden aktualisiert. +
+Die Verlinkung ist im FHIR VZD sichtbar.
+|===
+
+// [%collapsible%open]
+====
+++++
+<p align="center">
+  <img width="55%" src=../images/diagrams/SequenceDiagram.FHIR-Directory.LinkApproval.svg>
+</p>
+++++
+====
+
+_Abbildung: Sequence diagram - Bestätigen einer Verlinkungsanfrage_ <=
+
+*Akzeptanzkriterien für den Anwendungsfall AF_10207 FHIR-Directory - Bestätigung einer Verlinkungsanfrage* +
+ +
+*ML-143808 - Bestätigung einer Verlinkungsanfrage* +
+Der FHIR VZD muss für die Bestätigung von Verlinkungsanfragen sicherstellen: 
+
+* Nur authentisierte Nutzer dürfen offene Verlinkungsanfragen für ihre FHIR VZD Einträge bestätigen.
+* Die Verlinkungsbestätigungen werden in den Verlinkungsdaten gespeichert.
+* In den FHIR VZD Daten wurde die Verlinkung ergänzt. <=
+
+
+*ML-143872 - Ablehnung einer Verlinkungsanfrage* +
+Der FHIR VZD muss die Ablehnung von Verlinkungsanfragen erlauben: 
+
+* Nur authentisierte Nutzer dürfen offene Verlinkungsanfragen für ihre FHIR VZD Einträge ablehnen/zurückziehen (beide beteiligten Seiten).
+* Die Verlinkungsablehnungen werden in den Verlinkungsdaten gespeichert.
+* In den FHIR VZD Daten wurde die Verlinkung nicht eingetragen. <= +
+
+
+*5.7 Löschen einer Verlinkung* +
+ +
+*AF_10209 FHIR-Directory - Löschen einer Verlinkung* +
+|===
+|*Attribute* |*Bemerkung* 
+|Beschreibung|
+Der authentisierte Institutionsverantwortliche, Leistungserbringer oder Kartenherausgeber löscht eine Verlinkung für seine Organisation bzw. Practitioner bzw. seinen Zuständigkeitsbereich  (Kartenherausgeber). +
+Die Löschung der Verlinkung erfolgt einseitig und kann von jeder verlinkten Partei oder dem zuständigen Kartenherausgeber erfolgen.
+|Vorbedingung|
+Die Institution und der Leistungserbringer sind im FHIR VZD verlinkt. +
+Der Nutzer ist authentisiert.
+|Nachbedingung|
+Die Verlinkung wurde gelöscht. +
+Die Verlinkungsdaten wurden aktualisiert. +
+Die Verlinkung ist im FHIR VZD nicht mehr sichtbar.
+|===
+
+// [%collapsible%open]
+====
+++++
+<p align="center">
+  <img width="55%" src=../images/diagrams/SequenceDiagram.FHIR-Directory.LinkRemoval.svg>
+</p>
+++++
+====
+
+_Abbildung: Sequence diagram - Löschen einer Verlinkung_ <=
+
+*Akzeptanzkriterien für den Anwendungsfall AF_10209 FHIR-Directory - Löschen einer Verlinkung* +
+ +
+*ML-143811 - Löschen einer Verlinkung* +
+Der FHIR VZD muss für die Löschung von Verlinkungen sicherstellen: 
+
+* Nur authentisierte Nutzer dürfen Verlinkung für ihre FHIR VZD Einträge bzw. für ihren Zuständigkeitsbereich löschen.
+* Die Löschung der Verlinkung wird in den Verlinkungsdaten gespeichert.
+* In den FHIR VZD Daten wurde die Verlinkung gelöscht. <=
+
+
+
+
+
+== Support und Unterstützungsleistungen Produktivbetrieb TI-Messenger
+
+*Es wird in gemSpec_VZD Kapitel 4.6.1.2.3 wie folgt ergänzt* +
+ +
+Es wird in gemSpec_VZD Kapitel 5. wie folgt ergänzt
+
+Tabelle: Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID
+|===
+|*Eintragstyp* |*Eintragstyp Bedeutung* |*ProfessionOID (ProfessionItem)*
+|...||
+|*8*|*TIM*|
+1.2.276.0.76.4.295 (TIM-Hersteller und -Anbieter)
+|...||
+
+|===
+
+== Korrekturen
+*Es wird in gemSpec_VZD_FHIR_Directory Kapitel "4.2.3 Erzeugung und Bereitstellung der Föderationsliste" wie folgt angepasst* +
+ +
++++<s>ML-123677 - Maßnahmen gegen die Manipulation der Föderationsliste (VZD-FHIR-Directory, Sicherheitsgutachten)</s>+++ +
++++<s>Im Sicherheitsgutachten des VZD-FHIR-Directories sind geeignete Maßnahmen gegen die Manipulation der Föderationsliste beschrieben.<=</s>+++
+ +
+

@@ -1,5 +1,4 @@
 @startuml
-Bob -> Alice : hello
 
 skinparam dpi 100
 skinparam WrapWidth 200
@@ -33,17 +32,17 @@ au --> cl: Redirect (302) to IDP Authorization Endpoint
 cl -> aa: Deeplink authenticator://...
 activate aa
 
-aa -> idp: GET {auth_endpoint}
+aa -> idp: GET {authorization_endpoint}
 activate idp
 idp --> aa: challenge
 aa -> aa: sign challenge
 aa-> idp: signed_challenge
-idp --> aa: Redirect (302) {auth_code,..)
+idp --> aa: Redirect (302) (auth_code)
 aa --> cl: {client_callback_uri} {auth_code}
 deactivate aa
 
 cl -> au: GET /signin-gematik-idp-dienst with {auth_code}
-au -> idp: POST /tokenEndpoint {auth_code, verifier}
+au -> idp: POST {token_Endpoint} (auth_code, verifier)
 idp --> au: Response {id_token}
 
 deactivate idp
@@ -52,14 +51,14 @@ au -> au: erzeuge owner-accesstoken
 au --> cl: HTTP 200 OK, Result body {"access_token"="owner-accesstoken"}
 deactivate au
 end
-cl -> fp: POST /owner/TIHealthcareService (Authorization Bearer owner-accesstoken) {providedBy.id=telematikID}
+cl -> fp: POST /owner/HealthcareService (Authorization Bearer owner-accesstoken) {providedBy.id=telematikID}
 activate fp
 fp -> fp: prüfe owner-accesstoken
-fp -> fd: POST /TIHealthcareService {providedBy.id=telematikID}
+fp -> fd: POST /HealthcareService {providedBy.id=telematikID}
 activate fd
 fd --> fp: HTTP 200 OK (Result Body json)
-fp --> cl: HTTP 200 OK (Result Body json)
 deactivate fd
+fp --> cl: HTTP 200 OK (Result Body json)
 deactivate fp
 deactivate cl
 @enduml

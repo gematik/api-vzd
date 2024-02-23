@@ -1,0 +1,75 @@
+@startuml
+autonumber 1 1 "<b>[00]"
+title "Entkoppelte FHIR-VZD Authentisierung"
+
+actor User as "Leistungserbringer"
+participant TIMClient as "TI-M Client"
+participant Authenticator as "gematik Authenticator"
+
+participant "gematik IDP-Dienst" as IdpDienst
+box VZD-FHIR-Directory #WhiteSmoke
+    participant "Auth-Service" as VzdAuth
+end box
+
+User->TIMClient++: Anmeldung starten
+
+TIMClient -> VzdAuth++: Decoupled Authorization Request\nPOST /owner-authenticate-decoupled\nHeader: Content-Type=application/x-www-form-urlencoded\nBody: grant_type=urn:telematik:params:grant-type:decoupled
+  VzdAuth -> VzdAuth: Erzeuge PKCE_code_challenge, PKCE_code_verifier und state
+VzdAuth -> VzdAuth: Erzeuge auth_req_id
+note right: **Siehe Bildungsregel:**\nhttps://openid.net/specs/openid-client-initiated-backchannel\n-authentication-core-1_0.html#rfc.section.7.3
+VzdAuth -> VzdAuth: code, state und auth_req_id werden als Autorisierungsauftrag\n in einem persistent Store gespeichert
+
+
+VzdAuth --> TIMClient: Decoupled Authorization Response 200 OK \n(\n\t"auth_req_id": "...",\n\t"poll_uri": "...",\n\t//{redirect_uri}//: "https://idp-ref.app.ti-dienste.de/auth?\n\t\tresponse_type=code\n\t\t&client_id=GEMgematFHI4HkPrd8SR\n\t\t&scope=fhir-vzd+openid\n\t\t&redirect_uri=https%3A%2F%2Ffhir-directory-ref.vzd.ti-dienste.de%2Fsignin-gematik-idp-dienst\n\t\t&state=HkX8By1qMekEg4a7B1aXyw\n\t\t&code_challenge=a0kY3HugNKgveqhBQjc1tmX4_m-OT7FMF175rDlOIOM\n\t\t&code_challenge_method=S256",\n\t "expires_in": 600,\n\t "interval": 3\n)
+
+par Authenticator Flow
+
+TIMClient -> Authenticator++: Deeplink-Aufruf:\nauthenticator://?\n  challenge_path=//{redirect_uri}//\n\t**&callback=DIRECT**\n\t**&cardType=HBA**
+Authenticator <--> IdpDienst++: Der Authenticator interagiert mit dem IDP\n und über einen Konnektor mit den Smartcards.\nAm Ende des Prozesses erhält der Authenticator\n den auth_code vom IDP. **Siehe nächster Aufruf!**
+IdpDienst -> Authenticator: 302 Redirect auf die redirect_uri des VZD-FHIR\n mit dem auth_code und dem state
+deactivate IdpDienst
+Authenticator -> VzdAuth: Der Authenticator ruft selbst mit einem HTTP Get,\nredirect_uri&code=XXX&state=YYY auf.\n)
+VzdAuth -> VzdAuth: Finde via state den Autorisierungsauftrag\nund speichere auth_code in diesem Autorisierungsauftrag
+VzdAuth -> Authenticator: 200 OK, Empty Body
+Authenticator->Authenticator--: Anwendung wird beendet
+VzdAuth->IdpDienst++: Übergabe des auth_code und des\nkey_verifier an den Token Endpunkt
+note left: **Siehe:**\nhttps://github.com/gematik/api-ti-messenger/blob/main/docs/IDP/\nidp.adoc#3231-erzeugung-des-key_verifier-durch-die-relying-party
+return signierter id_token
+VzdAuth->VzdAuth: Erzeuge owner-accesstoken auf Basis des id_tokens\nund speichere dieses am Autorisierungsauftrag
+
+else TI-M Client pollt
+
+TIMClient -> VzdAuth: Access Token Request POST {poll_uri}\naus Decopled Authorization Response\nBody: auth_req_id={auth_req_id}
+VzdAuth->VzdAuth: Prüfe ob für die übergebene auth_req_id\n ein Autorisierungsauftrag vorliegt und \nggf. bereits ein owner-accesstoken
+
+alt Poll Pending
+VzdAuth --> TIMClient: 400 Bad Request (Pending)
+note left
+{
+  "error":"authorization_pending"
+}
+end note
+else Poll Success
+VzdAuth -> TIMClient: 200 OK (Success)
+note left
+{
+  "access_token": "..."
+}
+end note
+else Poll Error
+VzdAuth -> TIMClient: 400 Bad Request (Error)
+note left
+{
+  "error": "access_denied"
+  ..or..
+  "error": "expired_token"
+  ..or..
+  "error": "slow_down"
+}
+end note
+end
+deactivate TIMClient
+deactivate VzdAuth
+end
+== ...fachlicher flow... ==
+@enduml

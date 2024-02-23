@@ -1,0 +1,63 @@
+openapi: 3.0.3
+info:
+  title: I_FHIR_VZD_token_FD
+  description: REST interface between application servers and their clints to request FHIR VZD search tokens.
+  version: 1.0.0
+
+  # version 1.0.0
+  #   initial Version
+
+
+externalDocs:
+  description: VZD interfaces 
+  url: http://github.com/gematik/api-vzd/
+
+################## server URLs have to be defined by each application ##################
+servers:
+- url: https://XXX.de:443/
+  description: Testumgebung
+- url: https://XXX.de:443/
+  description: Referenzumgebung
+- url: https://XXX.de:443/
+  description: Produktivumgebung
+
+tags:
+  - name: FHIRVZDtoken
+    description: Interface to exchange FHIR VZD search access-token between application servers and their clients
+
+paths:
+  /:
+    get:
+      tags:
+      - FHIRVZDtoken
+      summary:  exchange FHIR VZD search access-token between application servers and their clients
+      operationId: getFHIRVZDtoken
+      responses:
+        200:
+          description: OK
+          content: 
+             application/json: 
+              schema:
+                $ref: '#/components/schemas/token'
+
+        500:
+          description: Internal Server Error
+          content: 
+            text/plain:
+              schema: 
+                type: string 
+                         
+components:
+  schemas:
+    token:
+      type: string
+      example: 
+                 {
+                  "access_token":"MTQ0NjJkZmQ5OTM2NDE1ZTZjNGZmZjI3",
+                  "token_type":"Bearer",
+                  "expires_in":86400
+                   }
+
+                       
+
+

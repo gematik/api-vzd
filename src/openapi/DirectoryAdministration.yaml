@@ -3,8 +3,50 @@ info:
   title: I_Directory_Administration
   description: REST Schnittstelle zur Pflege der Verzeichniseinträge.
               Über diese Schnittstelle können Verzeichniseinträge inklusive Zertifikaten erzeugt, aktualisiert und gelöscht werden. Die Administration von Fachdaten erfolgt über Schnittstelle I_Directory_Application_Maintenance und wird durch die Fachanwendungen durchgeführt. Lesender Zugriff auf die Fachdaten ist mit Operation getDirectoryEntries in vorliegender Schnittstelle möglich.
-  version: 1.9.5
+  version: 1.12.6
 
+  # Änderungen in Version 1.12.6
+  #  - Operation read_Directory_Entry: 
+  #    Attribute aus "Suche nach Vorhandensein oder leerem Inhalt" in description entfernt
+  #                - changeDateTimeFrom
+  #                - changeDateTimeTo
+  # 
+  # Änderungen in Version 1.12.5
+  #  - Operationen search_Directory_FA-Attributes_for_Sync_paging definiert.
+  #
+  # Änderungen in Version 1.12.4 
+  #  - Operationen DirectoryEntry Synchronization & read_Directory_Entry: 
+  #     Suchparameter mail, komLeData, kimData entfernt und für Suche mit diesen 
+  #     Parametern neue Operation search_Directory_FA-Attributes definiert.
+  #
+  # Änderungen in Version 1.12.3 
+  #  - Operationen DirectoryEntry Synchronization: 
+  #     Input Parameter ergänzt: providedBy, mail, komLeData, kimData
+  #
+  # Änderungen in Version 1.12.2 
+  #  - Operation read_Directory_Entry: providedBy als Suchparameter aufgenommen
+  #
+  # Änderungen in Version 1.12.1 
+  #  - Merge von Versionen 1.12.0 und 1.11.1
+  #
+  # Änderungen in Version 1.12.0 
+  #  - Schema baseDirectoryEntry um Attribut providedBy erweitert. 
+  #    Damit wird die Zusammenführung von mehreren LDAP Einträgen in einer FHIR Organisation möglich.
+  #
+  # Änderungen in Version 1.11.1
+  #  - Schema baseDirectoryEntry um Attribut providedBy erweitert.
+  #  - Operation read_Directory_Entry: Suchparameter für komLeData und kimData vereinfacht
+  #
+  # Änderungen in Version 1.11.0 
+  #  - Schema FAD1 um kimData erweitert. Damit wird in read_Directory_Entry zusätzlich zu komLeData
+  #    auch kimData im Response aufgenommen
+  #  - Operation read_Directory_Entry: Suchparameter komLeData-appTags in kimData-appTags umbenannt
+  #    und neue Suchparameter für kimData aufgenommen
+  #
+  # Änderungen in Version 1.10.0 
+  #  - FAD1.komLeData.appTags (Anwendungskennzeichen) ergänzt
+  #  - Operation read_Directory_Entry um Suchparameter für Fachdaten erweitert
+  # 
   # Änderungen in Version 1.9.5
   #  - Attribut entryType aus Schema baseDirectoryEntry - aus Kompatibilitätsgründen zu 
   #    bisherigen Schnittstellenversionen - auf Datentyp "array" geändert
@@ -184,6 +226,8 @@ tags:
   description: Pflege der Verzeichniseinträge (Basiseinträge)
 - name: Certificate Administration
   description: Pflege der Zertifikatseinträge 
+- name: Application Data Administration
+  description: Pflege der Fachdaten
 - name: DirectoryEntry Synchronization
   description: Synchronisation der Verzeichniseinträge (Basiseinträge) mit dem eigenen Datenbestand
 paths:
@@ -311,61 +355,52 @@ paths:
        - OAuth2:
          - 'VZD:DirectoryAdministration'
          - 'VZD:DirectoryRead'
-      description: Liefert alle zum Filter passenden Verzeichniseinträge (maximal 100 Einträge). Die angegebenen Parameter werden mit logischen UND verknüpft.
-#
-# Für die Leseoperationen read_Directory_Entry, read_Directory_Entry_for_Sync,
-# read_Directory_Entry_for_Sync_paging und readLog der Schnittstellen I_Directory_Administration 
-# und I_Directory_Application_Maintenance
-# werden die folgenden Filtermöglichkeiten unterstützt: 
-#     o Suche mit Wildcard "*" in den Parametern
-#           - givenName
-#           - sn
-#           - cn
-#           - displayName
-#           - streetAddress
-#           - postalCode
-#           - countryCode
-#           - localityName
-#           - stateOrProvinceName
-#           - title
-#           - organization
-#           - otherName
-#           - telematikID
-#           - specialization
-#           - domainID
-#           - holder
-#           - professionOID
-#       Wildcard ist am Ende und am Anfang nutzbar:
-#           - *Mustermann* - "contains" 
-#           - "Dr. Manfred*" - "startsWith"
-#           - "* MBA" - "endsWith"
-#           treffen alle "Dr. Manfred Mustermann MBA".
-#
-#      o Suche nach Vorhandensein ODER leerem Inhalt eines Attributs des 
-#        VZD Datensatzes durch Belegung des Attributs im GET Request mit "" in den Parametern
-#           - givenName
-#           - sn
-#           - cn
-#           - displayName
-#           - streetAddress
-#           - postalCode
-#           - countryCode
-#           - localityName
-#           - stateOrProvinceName
-#           - title
-#           - organization
-#           - otherName
-#           - specialization
-#           - domainID
-#           - holder
-#           - professionOID
-#           - maxKOMLEadr
-#           - changeDateTimeFrom
-#           - changeDateTimeTo
-#        Diese Suche findet sowohl Datensätze mit nicht vorhandenem Attribut
-#        wie auch vorhandenem aber leerem Attribut.
-#     Alle Filterparameter einer Leseoperationen werden mit einem UND (&) verknüpft.
-#        
+      description: |
+       Liefert alle zum Filter passenden Verzeichniseinträge (maximal 100 Einträge). Die angegebenen Parameter werden mit logischen UND verknüpft.
+       
+        Für die Leseoperationen read_Directory_Entry read_Directory_Entry_for_Sync der Schnittstellen I_Directory_Administration und I_Directory_Application_Maintenanc werden die folgenden Filtermöglichkeiten unterstützt: 
+          - Suche mit Wildcard "*" in den Parametern
+          
+                  - givenName
+                  - sn
+                  - cn
+                  - displayName
+                  - streetAddress
+                  - postalCode
+                  - countryCode
+                  - localityName
+                  - stateOrProvinceName
+                  - title
+                  - organization
+                  - otherName
+                  - telematikID
+                  - providedBy
+                  - specialization
+                  - domainID
+                  - holder
+                  - professionOID
+ 
+          - Suche nach Vorhandensein oder leerem Inhalt eines Attributs des VZD Datensatzes mit "" in den Parametern
+          
+                  - givenName
+                  - sn
+                  - cn
+                  - displayName
+                  - streetAddress
+                  - postalCode
+                  - countryCode
+                  - localityName
+                  - stateOrProvinceName
+                  - title
+                  - organization
+                  - otherName
+                  - specialization
+                  - domainID
+                  - holder
+                  - professionOID
+                  - providedBy
+            Diese Suche findet sowohl Datensätze mit nicht vorhandenem Attribut wie auch vorhandenem aber leerem Attribut.
+            Alle Filterparameter einer Leseoperationen werden mit einem UND (&) verknüpft.
 
       operationId: read_Directory_Entry
       parameters:
@@ -443,6 +478,13 @@ paths:
         in: query
         description: Erlaubt die Suche nach einem Substring am Anfang der telematikID (die telematikID in den Basisdaten).
                       Entspricht der LDAP Filters Substring Assertion vom Typ "subInitial Component".
+        schema:
+          type: string  
+      - name: providedBy
+        in: query
+        description: |
+                    Erlaubt die Suche mit Hilfe des Attributs providedBy 
+                    (die telematikID der übergeordneten Organisation).
         schema:
           type: string  
       - name: specialization
@@ -529,7 +571,6 @@ paths:
           Selektiert alle Datensätze, deren Attribut meta den angegebenen String in einem Wert des arry's enthält.
         schema:
           type: string  
-
         
       responses:
         200:
@@ -716,6 +757,13 @@ paths:
                       Entspricht der LDAP Filters Substring Assertion vom Typ "subInitial Component".
         schema:
           type: string  
+      - name: providedBy
+        in: query
+        description: |
+                    Erlaubt die Suche mit Hilfe des Attributs providedBy 
+                    (die telematikID der übergeordneten Organisation).
+        schema:
+          type: string  
       - name: specialization
         in: query
         description: Erlaubt die Suche mit Hilfe des Attributs specialization. 
@@ -807,8 +855,6 @@ paths:
         200:
           description: OK
                     #  Es werden alle zu dem Filter Parametern passenden Verzeichniseinträge - inklusive Zertifikaten und Fachdaten - zurückgegeben.
-                    # Bei mehr als 100 gefundenen Einträgen nur 100 gefundenen Einträge zurückgegeben.   
-                    # Wenn der Suchparameter "holder" mit dem eigenen Wert des Clients belegt wird, werden alle gefundenen Einträge zurückgegeben (für eigene Einträge gilt das Limit von 100 Ergebnissen nicht).
           content:
             application/json:
               schema:
@@ -997,6 +1043,13 @@ paths:
                       Entspricht der LDAP Filters Substring Assertion vom Typ "subInitial Component".
         schema:
           type: string  
+      - name: providedBy
+        in: query
+        description: |
+                    Erlaubt die Suche mit Hilfe des Attributs providedBy 
+                    (die telematikID der übergeordneten Organisation).
+        schema:
+          type: string  
       - name: specialization
         in: query
         description: Erlaubt die Suche mit Hilfe des Attributs specialization. 
@@ -1110,8 +1163,6 @@ paths:
         200:
           description: OK
                     #  Es werden alle zu dem Filter Parametern passenden Verzeichniseinträge - inklusive Zertifikaten und Fachdaten - zurückgegeben.
-                    # Bei mehr als 100 gefundenen Einträgen nur 100 gefundenen Einträge zurückgegeben.   
-                    # Wenn der Suchparameter "holder" mit dem eigenen Wert des Clients belegt wird, werden alle gefundenen Einträge zurückgegeben (für eigene Einträge gilt das Limit von 100 Ergebnissen nicht).
           content:
             application/json:
               schema:
@@ -1149,6 +1200,136 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'  
+
+
+  /v2/DirectoryEntriesSync/KOM-LE_Fachdaten:
+
+    get:
+      tags:
+      - DirectoryEntry Synchronization
+      summary: Synchronisation der Verzeichniseinträge anhand der Fachdaten
+      description: |
+       Liefert - analog zu search_Directory_FA-Attributes - alle zum Filter passenden 
+       Verzeichniseinträge. \
+       Im Unterschied zu search_Directory_FA-Attributes wird die Limitierung auf 100 Suchergebnisse 
+       aufgehoben. 
+       Die parallele Ausführung dieser Operation wird vom Server aus Performancegründen 
+       eingeschränkt.
+       Diese Operation soll nur genutzt werden, wenn mehr als 100 Suchergebnisse benötigt 
+       werden. 
+       Für alle anderen Suchanfragen soll Operation read_Directory_Entry genutzt werden.
+
+       Für die Operationen werden die folgenden Filtermöglichkeiten unterstützt: 
+          - Suche mit Wildcard "*" in den Parametern
+          
+                  - mail
+                  - komLeData
+                  - kimData    
+          - Suche nach Vorhandensein oder leerem Inhalt eines Attributs des VZD Datensatzes mit "" in den Parametern
+                  - mail
+                  - komLeData
+                  - kimData    
+            Diese Suche findet sowohl Datensätze mit nicht vorhandenem Attribut wie auch vorhandenem aber leerem Attribut.
+            Alle Filterparameter einer Leseoperationen werden mit einem UND (&) verknüpft.
+
+      security:
+       - OAuth2:
+         - 'VZD:DirectoryAdministration'
+      operationId: search_Directory_FA-Attributes_for_Sync_paging
+      parameters:
+      - name: mail
+        in: query
+        description: |
+          Erlaubt die Suche mit Hilfe des Attributs FAD1.mail
+          
+          Selektiert alle Datensätze, deren Attribut FAD1.mail den angegebenen String in einem Wert des arry's enthält.
+        schema:
+          type: string  
+      - name: komLeData
+        in: query
+        description: |
+          Erlaubt die Suche mit Hilfe des Attributs FAD1.komLeData
+          
+          Selektiert alle Datensätze, deren Attribut FAD1.komLeData den angegebenen String in einem Wert des array's enthält.
+          komLeData enthält die "version" und "mail" durch Komma getrennt in einem array.
+          Beispiel: 1.0,mc_smcb_za@dom1.komle.telematik-test
+          Für diesen Suchparameter kann ein Wildcard genutzt werden.
+        schema:
+          type: string  
+      - name: kimData
+        in: query
+        description: |
+          Erlaubt die Suche mit Hilfe des Attributs FAD1.kimData.mail
+          Selektiert alle Datensätze, deren Attribut FAD1.kimData den angegebenen String in einem Wert des array's enthält.
+          kimData enthält die "mail", "version" und "appTags" durch Komma getrennt in einem array.
+          Die appTags werden durch das Pipe Zeichen getrennt. 
+          Bitte beachten: Wenn das Pipe Zeichen im Suchstring genutzt wird muss die besondere
+          Bedeutung dieses Zeichens bei der LDAP Suche beachtet werden.
+          Beispiel: mz_smcb_za@dom2.kim.telematik-test,1.0,DALE-UV;Einsendung;V1.0|eEB;V1.0
+          Für diesen Suchparameter kann ein Wildcard genutzt werden, z.B. 
+            mz_smcb_za@dom2.kim.telematik-test*
+        schema:
+          type: string
+
+    # Paging Parameter entsprechend https://tools.ietf.org/html/rfc2696
+    # Paging ist nur für eigene Verzeichniseinträge erlaubt. Deshalb muss bei
+    # Verwendung des Pagings zwingend der "holder" Suchparameter angegeben werden 
+    # und den eigenen holderID (entsprechend dem Wert im ID_Token claim scope) enthalten.
+    # Siehe auch #/components/schemas/searchControlValue
+      - name: size   
+        in: query
+        description: Paging Größe 
+           # Entspricht realSearchControlValue.size in RFC2696.
+           # Maximal diese Anzahl von Verzeichniseinträgen sind in einem Response enthalten. 
+           # In dem nächsten Response sind die nächsten Verzeichniseinträge enthalten.
+        schema:
+         type: integer 
+         example: 50
+      - name: cookie  
+        in: query
+        description: Paging Cookie
+          # Im ersten Request übergibt der Client einen leeren String in diesem Parameter. 
+          # In den Folgerequests übernimmt der Client dieses Cookie jeweils aus dem letzten Response und erhält die nächsten Verzeichniseinträge.
+        schema:
+         type: string 
+          
+
+
+      responses:
+        200:
+          description: OK
+                    #  Es werden alle zu dem Filter Parametern passenden Verzeichniseinträge - inklusive Zertifikaten und Fachdaten - zurückgegeben.
+                    # Bei mehr als 100 gefundenen Einträgen nur 100 gefundenen Einträge zurückgegeben.   
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/readDirectoryEntryforSyncResponse'
+
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        401:
+          description: Unauthorized
+                    #  Der WWW-Authenticate Header im Response wird auf OAuth gesetzt.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        403:
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
 
 
 
@@ -1638,6 +1819,113 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
 
+  /DirectoryEntries/KOM-LE_Fachdaten:
+  
+    get:
+      tags:
+      - Application Data Administration
+      summary: Anhand der Fachdaten suchen
+      description: |
+        Liefert alle zum Filter passenden Verzeichniseinträge. 
+        Die angegebenen Parameter werden mit logischen UND verknüpft.
+       
+        Für die Operationen werden die folgenden Filtermöglichkeiten unterstützt: 
+          - Suche mit Wildcard "*" in den Parametern
+          
+                  - mail
+                  - komLeData
+                  - kimData    
+          - Suche nach Vorhandensein oder leerem Inhalt eines Attributs des VZD Datensatzes mit "" in den Parametern
+                  - mail
+                  - komLeData
+                  - kimData    
+            Diese Suche findet sowohl Datensätze mit nicht vorhandenem Attribut wie auch vorhandenem aber leerem Attribut.
+            Alle Filterparameter einer Leseoperationen werden mit einem UND (&) verknüpft.
+
+      security:
+       - OAuth2:
+         - 'VZD:DirectoryAdministration'
+         - 'VZD:DirectoryRead'
+      operationId: search_Directory_FA-Attributes
+      parameters:
+      - name: mail
+        in: query
+        description: |
+          Erlaubt die Suche mit Hilfe des Attributs FAD1.mail
+          
+          Selektiert alle Datensätze, deren Attribut FAD1.mail den angegebenen String in einem Wert des arry's enthält.
+        schema:
+          type: string  
+      - name: komLeData
+        in: query
+        description: |
+          Erlaubt die Suche mit Hilfe des Attributs FAD1.komLeData
+          
+          Selektiert alle Datensätze, deren Attribut FAD1.komLeData den angegebenen String in einem Wert des array's enthält.
+
+          komLeData enthält die "version" und "mail" durch Komma getrennt in einem array.
+          
+          Beispiel: 1.0,mc_smcb_za@dom1.komle.telematik-test
+          Für diesen Suchparameter kann ein Wildcard genutzt werden.
+        schema:
+          type: string  
+      - name: kimData
+        in: query
+        description: |
+          Erlaubt die Suche mit Hilfe des Attributs FAD1.kimData.mail
+          Selektiert alle Datensätze, deren Attribut FAD1.kimData den angegebenen String in einem Wert des array's enthält.
+
+          kimData enthält die "mail", "version" und "appTags" durch Komma getrennt in einem array.
+
+          Die appTags werden durch das Pipe Zeichen getrennt. 
+          Bitte beachten: Wenn das Pipe Zeichen im Suchstring genutzt wird muss die besondere
+          Bedeutung dieses Zeichens bei der LDAP Suche beachtet werden.
+
+          Beispiel: mz_smcb_za@dom2.kim.telematik-test,1.0,DALE-UV;Einsendung;V1.0|eEB;V1.0
+          Für diesen Suchparameter kann ein Wildcard genutzt werden, z.B. 
+            mz_smcb_za@dom2.kim.telematik-test*
+
+           Bei der Suche nach KimData sollte die Reihenfolge „mail, version, apptags“ berücksichtigt werden. Wir empfehlen die Nutzung der Wildcard '*'. 
+        schema:
+          type: string
+      responses:
+        200:
+          description: OK
+                    #  Es werden alle zu dem Filter Parametern passenden Verzeichniseinträge - inklusive Zertifikaten und Fachdaten - zurückgegeben.
+                    # Bei mehr als 100 gefundenen Einträgen nur 100 gefundenen Einträge zurückgegeben.   
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/DirectoryEntries'
+
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        401:
+          description: Unauthorized
+                    #  Der WWW-Authenticate Header im Response wird auf OAuth gesetzt.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        403:
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+
+
   /Log:
     get:
       tags:
@@ -1888,15 +2176,50 @@ components:
                 description: 'E-Mail-Adresse'
               version:
                 type: string
-                example: 1.5
-                description: Die höchste KOM-LE_Version der KIM Clientmodule für die KIM Mail Adresse
+                example: 1.5+
+                description: 'Die höchste Version der KIM Clientmodule für diese KIM-Mail-Adresse'
             description: |
               Liste von KIM-Adressen mit der zugehörigen KIM-Version. 
-              Für jede Mail Adresse aus dem `mail` Attribut darf es nur einen Element in der Liste `komLeData` existieren. 
-              Es dürfen in der Liste `komLeData` keine Mail Adressen referenziert werden, die nicht im zugehörigen `mail` Attribut enthalten sind.
-              Wenn eine Mail Adresse gelöscht wird, muss auch ihre `komLeData`-Element gelöscht werden.
+              Für jede Mail Adresse darf nur einen Element in der Liste `komLeData` existieren. 
               Geschrieben wird immer die gesamte Liste. 
               Für Änderungen muss erst der aktuelle Eintrag gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
+              Die Datenstruktur komLeData wird in LDAP in folgendem Attribut als String abgelegt:
+                - komLeData: In diesem Attribut werden aus Kompatibilitätsgründen weiterhin die Attribute "mail" und "version" abgelegt. 
+                  Format des LDAP Attributes:  mail,version
+                  Beispiele der LDAP Darstellung:
+                     komLeData: 1.5+,mc_smcb_za@dom1.komle.telematik-test 
+                     komLeData: 1.0,mz_smcb_za@dom2.kim.telematik-test
+        kimData:
+          type: array
+          items:
+            type: object
+            properties:
+              mail:
+                type: string
+                description: 'E-Mail-Adresse'
+              version:
+                type: string
+                example: 1.5+
+                description: 'Die höchste Version der KIM Clientmodule für diese KIM-Mail-Adresse'
+              appTags:
+                type: array
+                items:
+                  type: string
+                  example: 
+                    - eEB;V1.0
+                    - DALE-UV;Einsendung;V1.0
+                  description: 'Anwendungskennzeichen, welche diese KIM-Mail-Adresse verarbeiten kann'
+            description: |
+              Liste von KIM-Adressen mit der zugehörigen KIM-Version und Anwendungskennzeichen. 
+              Für jede Mail Adresse darf nur einen Element in der Liste `kimData` existieren. 
+              Geschrieben wird immer die gesamte Liste. 
+              Für Änderungen muss erst der aktuelle Eintrag gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
+              Die Datenstruktur kimData wird in LDAP in folgendem Attribut als String abgelegt:
+                - kimData: In diesem Attribut werden die Attribute "mail", "version" und "appTags" abgelegt. 
+                  Format des LDAP Attributes:  mail,version,appTag1|appTag2|appTag3
+                  Beispiele der LDAP Darstellung:
+                     kimData: mc_smcb_za@dom1.komle.telematik-test,1.5+,eEB;V1.0 
+                     kimData: mz_smcb_za@dom2.kim.telematik-test,1.0,DALE-UV;Einsendung;V1.0|eEB;V1.0
 
     distinguishedName:
       required:
@@ -1992,6 +2315,28 @@ components:
           description: 'Wird beim Anlegen des Eintrags vom VZD aus dem Zertifikat übernommen (Feld registrationNumber der Extension Admission).
                     Falls der Basiseintrag (baseDirectoryEntry) ohne Zertifikat angelegt wird, kann in Operation add_Directory_Entry die telematikID angegeben werden.
             Damit ist der Verzeichniseintrag bereits über die telematikID im baseDirectoryEntry auffindbar. Diese telematikID muss mit der telematikID aus dem Zertifikatseintrag (userCertificate) übereinstimmen. Simmten die telematikIDs nicht überein, wird die Operation mit Fehlercode 422 abgelehnt' 
+        providedBy:
+          type: string
+          description: |
+           Erlaubt die Zusammenführung von mehreren LDAP Einträgen in einer FHIR Organisation.
+           In Attribut providedBy wird dazu die telematikID der übergeordneten Oragnisation eingetragen.
+           Wird in Attribut "providedBy" im LDAP VZD Eintrag eine TelematikID eingetragen, 
+           wird für den LDAP Eintrag im FHIR VZD ein HealthcareService unter der - mit der TelematikID -
+           referenzierten Organisation generiert.
+           Randbedingungen:
+            - Es wird nur eine Hierarchieebene unterstützt (providedBy vom referenzierten Datensatz
+              MUSS leer sein)
+            - Es können nur Organisationseinträge zusammengeführt/verlinkt werden (personalEntry=false)
+            - Das Attribut "providedBy" darf nur eine TelematikID enthalten.
+            - Der Client - der dieses Attribut setzt - MUSS auch für den referenzierten 
+              LDAP Datensatz als Holder eingetragen sein.
+            - Wenn Attribut providedBy gesetzt wurde, kann es nur zurückgesetzt 
+              (Inhalt auf leer gesetzt) werden. Eine Änderung auf einen anderen Wert 
+              wird nicht unterstützt.  
+            - Vor Löschung eines LDAP VZD Eintrags müssen alle Verlinkungen über Attribut "providedBy"
+              von anderen Datensätzen auf den zu löschenden Datensatz entfernt werden.  
+            Bei Nichteinhaltung der Randbedingungen wird die Schreiboperation (POST/PUT) mit
+            Fehler (HTTP Status 400) und entsprechendem Fehlertext beendet.
         specialization:
           maxItems: 100
           type: array

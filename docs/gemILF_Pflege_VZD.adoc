@@ -47,7 +47,9 @@ image::gematik_logo.svg[gematik,float="right"]
 
 [width="100%",cols="50%,50%",options="header",]
 |===
+
 |Version: |1.5.7
+
 |Referenzierung: |gemILF_Pflege_VZD
 |===
 
@@ -147,6 +149,7 @@ Neu für eGBR HBA und SMC-B |gematik
 |gematik
 
 
+
 |1.5.7 |23.02.2024 |5.4 +
 3.3.1 +
 4
@@ -166,6 +169,8 @@ Neu für eGBR HBA und SMC-B |gematik
 - Kap. 3.3.4. Log Beschreibung erweitert.
 
 |gematik
+=======
+
 |===
 
 == Einordnung des Dokumentes

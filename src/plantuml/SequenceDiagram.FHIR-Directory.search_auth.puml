@@ -1,0 +1,34 @@
+@startuml SequenceDiagram.FHIR-Directory.search.auth
+skinparam dpi 100
+skinparam WrapWidth 200
+skinparam monochrome true
+autonumber "<b>[00]"
+
+'title "FHIR-Directory, Sequenzdiagram search token exchange'
+participant cl as "TI-Messenger-Client"
+box <size:16>FHIR-Directory</size> #WhiteSmoke
+  participant au as "Auth-Service"
+end box
+participant hs as "TI-Messenger-Service\nMessenger-Proxy"
+activate cl
+cl -> hs: POST /_matrix/client/v3/user/{userId}/openid/request_token
+note left
+Precondition: 
+The user is logged in & no search-accesstoken for the FHIR-Directory exists
+end note
+activate hs
+hs --> cl: HTTP 200 OK, Result body {"access_token": "OFdZNozDIomXLrCWjgejIQBM" \n ,..., "matrix_server_name": "matrix.service-ti.de",...}
+deactivate hs
+cl -> au: GET /tim-authenticate?mxId=matrix.service-ti.de" \n -H "X-Matrix-OpenID-Token: OFdZNozDIomXLrCWjgejIQBM"
+activate au
+au -> au: Check that matrix server url "matrix.service-ti.de"\n is part of the federation list
+au -> au: lookup PORT for given matrix server url
+au -> hs: GET matrix.service-ti.de:{PORT}/_matrix/federation/v1/openid/userinfo?access_token=OFdZNozDIomXLrCWjgejIQBM
+activate hs
+hs --> au: HTTP 200 OK\nResult Body {"sub": "@testuser:matrix.service-ti.de"}
+deactivate hs
+au -> au: Create search-accesstoken for TI-Messenger-Client
+au --> cl: HTTP 200 OK, Result body\n{"access_token"="eyJ0eXAiOiJKV1...", "token_type":"bearer",\n"expires_in":86400}
+deactivate au
+deactivate cl
+@enduml

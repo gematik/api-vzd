@@ -1,0 +1,90 @@
+@startuml SequenceDiagram.FHIR-Directory.linkRequest
+skinparam dpi 100
+skinparam WrapWidth 200
+skinparam monochrome true
+autonumber "<b>[00]"
+
+'title "FHIR-Directory, Sequenzdiagram link request'
+actor Nutzer
+participant cl as "FHIR-VZD-Client"
+box <size:16>FHIR-Directory</size> #WhiteSmoke
+  participant fp as "FHIR-Proxy"
+  participant fd as "FHIR-Directory"
+  participant fa as "FHIR-VZD-Administration"
+end box
+
+Nutzer -> cl:Start Verlinkungsanfrage \nmit Suche nach der zu verlinkenden Partner-Ressourcen
+activate cl
+
+group Suche aller eigenen Ressourcen, die verlinkt werden können
+  cl -> fp: GET /owner?... (Suche alle eigenen HealthcareService oder PractitionerRole \nmit telematikID aus dem accesstoken)
+  activate fp
+  fp -> fp: prüfe owner-accesstoken
+
+    alt accesstoken is valid
+      fp -> fd: GET /?...
+      activate fd
+      fd --> fp: HTTP 200 OK\n(Result Body json)
+      deactivate fd
+      fp --> cl: HTTP 200 OK (Result Body json)
+     else search-accesstoken is invalid
+      fp --> cl: HTTP 401
+      deactivate fp
+     end
+end
+
+group Suche aller Partner Ressourcen, die verlinkt werden können
+  cl -> fp: GET /owner?... (Mit Nutzer Suchstring für \nPartner HealthcareService oder PractitionerRole)
+  activate fp
+  fp -> fp: prüfe owner-accesstoken
+
+    alt accesstoken is valid
+      fp -> fd: GET /?...
+      activate fd
+      fd --> fp: HTTP 200 OK\n(Result Body json)
+      deactivate fd
+      fp --> cl: HTTP 200 OK (Result Body json)
+     else search-accesstoken is invalid
+      fp --> cl: HTTP 401
+      deactivate fp
+     end
+end
+
+group Lese alle vorhandenen Verlinkungsdaten
+  cl -> fa: getPersonInstitutionLinks {}
+  activate fa
+  fa -> fa: prüfe owner-accesstoken
+    alt accesstoken is valid
+      fa -> fa: Lesen der Verlinkungsdaten
+      fa --> cl: HTTP 200 OK\n(Result Body json)
+      
+     else owner-accesstoken is invalid
+      fa --> cl: HTTP 401
+      deactivate fa
+     end
+end
+
+cl --> Nutzer:Anzeige aller eigenen und Partner Ressourcen \n(HealthcareService und PractitionerRole) \nsowie vorhandene Verlinkungsdaten
+Nutzer -> Nutzer: Auswahl der zu zu verlinkenden Ressourcen
+Nutzer -> cl: Verlinkungsanfrage \nmit ausgewählten Ressourcen \n{HealthcareService, PractitionerRole}
+
+group VerlinkungsRequest
+  cl -> fa: suggestPersonInstitutionLink {HealthcareService, PractitionerRole}
+  activate fa
+  fa -> fa: prüfe owner-accesstoken\n& Prüfe, dass eine der Ressourcen \neine eigene Ressource ist\n& Prüfe, dass eine der Ressourcen\n ein HealthcareService und die andere\n Ressource eine PractitionerRole ist.
+
+    alt accesstoken is valid
+      fa -> fa: Eintragen des Verlinkungsrequests
+      fa --> cl: HTTP 200 OK\n(Result Body json)
+      
+     else owner-accesstoken is invalid\noder keine eigene Ressource ausgewählt
+      fa --> cl: HTTP 401
+      deactivate fa
+     end
+end
+
+cl -> Nutzer: Ergebnis Verlinkungsanfrage
+
+deactivate cl
+
+@enduml
