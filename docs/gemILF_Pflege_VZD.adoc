@@ -169,7 +169,6 @@ Neu für eGBR HBA und SMC-B |gematik
 - Kap. 3.3.4. Log Beschreibung erweitert.
 
 |gematik
-=======
 
 |===
 
