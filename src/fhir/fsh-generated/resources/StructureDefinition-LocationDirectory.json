@@ -149,6 +149,11 @@
         "mustSupport": true
       },
       {
+        "id": "Location.partOf",
+        "path": "Location.partOf",
+        "mustSupport": true
+      },
+      {
         "id": "Location.hoursOfOperation",
         "path": "Location.hoursOfOperation",
         "mustSupport": true
