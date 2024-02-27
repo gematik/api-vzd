@@ -4,6 +4,7 @@ Parent: Endpoint
 Title: "Endpoint in gematik Directory"
 Description: "Endpoints for applications in the gematik Directory"
 * insert Meta
+* extension contains EndpointVisibility named endpointVisibility 0..* MS
 * meta.tag 1.. MS
   * ^slicing.discriminator.type = #value
   * ^slicing.discriminator.path = "system"

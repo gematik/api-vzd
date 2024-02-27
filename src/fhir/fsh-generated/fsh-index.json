@@ -16,6 +16,14 @@
     "endLine": 12
   },
   {
+    "outputFile": "CodeSystem-EndpointVisibilityCS.json",
+    "fshName": "EndpointVisibilityCS",
+    "fshType": "CodeSystem",
+    "fshFile": "profiles/Extension.fsh",
+    "startLine": 35,
+    "endLine": 40
+  },
+  {
     "outputFile": "CodeSystem-HolderCS.json",
     "fshName": "HolderCS",
     "fshType": "CodeSystem",
@@ -38,6 +46,14 @@
     "fshFile": "codesystems/OrganizationProviderType.fsh",
     "startLine": 1,
     "endLine": 11
+  },
+  {
+    "outputFile": "CodeSystem-OrganizationVisibilityCS.json",
+    "fshName": "OrganizationVisibilityCS",
+    "fshType": "CodeSystem",
+    "fshFile": "profiles/Extension.fsh",
+    "startLine": 11,
+    "endLine": 16
   },
   {
     "outputFile": "CodeSystem-Origin.json",
@@ -85,7 +101,7 @@
     "fshType": "Instance",
     "fshFile": "examples/Examples001.fsh",
     "startLine": 1,
-    "endLine": 11
+    "endLine": 12
   },
   {
     "outputFile": "Endpoint-OrganizationExample001-Endpoint-TIM.json",
@@ -100,24 +116,24 @@
     "fshName": "HealthcareServiceExample",
     "fshType": "Instance",
     "fshFile": "examples/Examples001.fsh",
-    "startLine": 76,
-    "endLine": 104
+    "startLine": 77,
+    "endLine": 105
   },
   {
     "outputFile": "Location-LocationExample.json",
     "fshName": "LocationExample",
     "fshType": "Instance",
     "fshFile": "examples/Examples001.fsh",
-    "startLine": 53,
-    "endLine": 74
+    "startLine": 54,
+    "endLine": 75
   },
   {
     "outputFile": "Organization-OrganizationExample.json",
     "fshName": "OrganizationExample",
     "fshType": "Instance",
     "fshFile": "examples/Examples001.fsh",
-    "startLine": 38,
-    "endLine": 51
+    "startLine": 39,
+    "endLine": 52
   },
   {
     "outputFile": "Organization-OrganizationExample001.json",
@@ -125,7 +141,7 @@
     "fshType": "Instance",
     "fshFile": "examples/OrganizationExample001.fsh",
     "startLine": 14,
-    "endLine": 40
+    "endLine": 41
   },
   {
     "outputFile": "Practitioner-TIPractitionerExample001.json",
@@ -140,16 +156,16 @@
     "fshName": "PractitionerExampleDentist",
     "fshType": "Instance",
     "fshFile": "examples/Examples001.fsh",
-    "startLine": 13,
-    "endLine": 26
+    "startLine": 14,
+    "endLine": 27
   },
   {
     "outputFile": "PractitionerRole-PractitionerRoleExample.json",
     "fshName": "PractitionerRoleExample",
     "fshType": "Instance",
     "fshFile": "examples/Examples001.fsh",
-    "startLine": 28,
-    "endLine": 35
+    "startLine": 29,
+    "endLine": 36
   },
   {
     "outputFile": "StructureDefinition-EndpointDirectory.json",
@@ -157,7 +173,15 @@
     "fshType": "Profile",
     "fshFile": "profiles/EndpointDirectory.fsh",
     "startLine": 1,
-    "endLine": 23
+    "endLine": 24
+  },
+  {
+    "outputFile": "StructureDefinition-EndpointVisibility.json",
+    "fshName": "EndpointVisibility",
+    "fshType": "Extension",
+    "fshFile": "profiles/Extension.fsh",
+    "startLine": 25,
+    "endLine": 33
   },
   {
     "outputFile": "StructureDefinition-HealthcareServiceDirectory.json",
@@ -165,7 +189,7 @@
     "fshType": "Profile",
     "fshFile": "profiles/HealthcareServiceDirectory.fsh",
     "startLine": 1,
-    "endLine": 37
+    "endLine": 36
   },
   {
     "outputFile": "StructureDefinition-LocationDirectory.json",
@@ -182,6 +206,14 @@
     "fshFile": "profiles/OrganizationDirectory.fsh",
     "startLine": 1,
     "endLine": 53
+  },
+  {
+    "outputFile": "StructureDefinition-OrganizationVisibility.json",
+    "fshName": "OrganizationVisibility",
+    "fshType": "Extension",
+    "fshFile": "profiles/Extension.fsh",
+    "startLine": 1,
+    "endLine": 9
   },
   {
     "outputFile": "StructureDefinition-PractitionerDirectory.json",
@@ -224,6 +256,14 @@
     "endLine": 4
   },
   {
+    "outputFile": "ValueSet-EndpointVisibilityVS.json",
+    "fshName": "EndpointVisibilityVS",
+    "fshType": "ValueSet",
+    "fshFile": "profiles/Extension.fsh",
+    "startLine": 42,
+    "endLine": 47
+  },
+  {
     "outputFile": "ValueSet-HealthcareServiceTypeVS.json",
     "fshName": "HealthcareServiceTypeVS",
     "fshType": "ValueSet",
@@ -262,6 +302,14 @@
     "fshFile": "valuesets/OrganizationProviderTypeVS.fsh",
     "startLine": 1,
     "endLine": 4
+  },
+  {
+    "outputFile": "ValueSet-OrganizationVisibilityVS.json",
+    "fshName": "OrganizationVisibilityVS",
+    "fshType": "ValueSet",
+    "fshFile": "profiles/Extension.fsh",
+    "startLine": 18,
+    "endLine": 23
   },
   {
     "outputFile": "ValueSet-OriginVS.json",

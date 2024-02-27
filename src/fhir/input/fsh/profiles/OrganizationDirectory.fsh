@@ -5,6 +5,7 @@ Description: """Defines the data structure for medical, regulatory and technical
 organisations specific for german Healthcare and Telematics Infrastructure.
 """
 * insert Meta
+* extension contains OrganizationVisibility named organizationVisibility 0..* MS
 * meta.tag 1.. MS
   * ^slicing.discriminator.type = #value
   * ^slicing.discriminator.path = "system"

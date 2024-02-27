@@ -38,6 +38,15 @@
       "value": "9-2.58.00000050"
     }
   ],
+  "extension": [
+    {
+      "url": "https://gematik.de/fhir/directory/StructureDefinition/OrganizationVisibility",
+      "valueCoding": {
+        "code": "erezeptApp",
+        "system": "https://gematik.de/fhir/directory/CodeSystem/OrganizationVisibilityCS"
+      }
+    }
+  ],
   "address": [
     {
       "extension": [

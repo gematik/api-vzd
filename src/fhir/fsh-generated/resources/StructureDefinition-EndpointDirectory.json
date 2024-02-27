@@ -61,6 +61,22 @@
         "patternUri": "https://gematik.de/fhir/directory/CodeSystem/Origin"
       },
       {
+        "id": "Endpoint.extension:endpointVisibility",
+        "path": "Endpoint.extension",
+        "sliceName": "endpointVisibility",
+        "min": 0,
+        "max": "*",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "https://gematik.de/fhir/directory/StructureDefinition/EndpointVisibility"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
         "id": "Endpoint.status",
         "path": "Endpoint.status",
         "mustSupport": true

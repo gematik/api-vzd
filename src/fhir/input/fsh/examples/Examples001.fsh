@@ -3,6 +3,7 @@ InstanceOf: EndpointDirectory
 Usage: #example
 Description: "Example of a Endpoint as to be found in gematik FHIR Directory"
 * meta.tag[Origin] = Origin#owner
+* extension[endpointVisibility].valueCoding = EndpointVisibilityCS#versicherte
 * status = #active "Active"
 * connectionType = EndpointDirectoryConnectionType#tim "TI-Messenger Endpoint"
 * name = "Messenger"

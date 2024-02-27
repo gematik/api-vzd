@@ -76,6 +76,22 @@
         "patternUri": "https://gematik.de/fhir/directory/CodeSystem/Origin"
       },
       {
+        "id": "Organization.extension:organizationVisibility",
+        "path": "Organization.extension",
+        "sliceName": "organizationVisibility",
+        "min": 0,
+        "max": "*",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "https://gematik.de/fhir/directory/StructureDefinition/OrganizationVisibility"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
         "id": "Organization.identifier",
         "path": "Organization.identifier",
         "slicing": {
