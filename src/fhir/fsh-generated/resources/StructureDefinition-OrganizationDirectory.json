@@ -81,8 +81,8 @@
         "slicing": {
           "discriminator": [
             {
-              "type": "value",
-              "path": "system"
+              "type": "pattern",
+              "path": "$this"
             }
           ],
           "rules": "open"
@@ -96,14 +96,36 @@
         "sliceName": "TelematikID",
         "min": 1,
         "max": "1",
-        "type": [
-          {
-            "code": "Identifier",
-            "profile": [
-              "http://fhir.de/StructureDefinition/identifier-telematik-id"
+        "patternIdentifier": {
+          "system": "http://fhir.de/StructureDefinition/identifier-telematik-id",
+          "type": {
+            "coding": [
+              {
+                "code": "63161005",
+                "system": "http://snomed.info/sct"
+              }
             ]
           }
-        ],
+        },
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.identifier:AlternativeTelematikID",
+        "path": "Organization.identifier",
+        "sliceName": "AlternativeTelematikID",
+        "min": 0,
+        "max": "*",
+        "patternIdentifier": {
+          "system": "http://fhir.de/StructureDefinition/identifier-telematik-id",
+          "type": {
+            "coding": [
+              {
+                "code": "2603003",
+                "system": "http://snomed.info/sct"
+              }
+            ]
+          }
+        },
         "mustSupport": true
       },
       {
@@ -112,14 +134,9 @@
         "sliceName": "KZVA",
         "min": 0,
         "max": "1",
-        "type": [
-          {
-            "code": "Identifier",
-            "profile": [
-              "http://fhir.de/StructureDefinition/identifier-kzva"
-            ]
-          }
-        ],
+        "patternIdentifier": {
+          "system": "http://fhir.de/StructureDefinition/identifier-kzva"
+        },
         "mustSupport": true
       },
       {
@@ -128,14 +145,20 @@
         "sliceName": "IKNR",
         "min": 0,
         "max": "1",
-        "type": [
-          {
-            "code": "Identifier",
-            "profile": [
-              "http://fhir.de/StructureDefinition/identifier-iknr"
-            ]
-          }
-        ],
+        "patternIdentifier": {
+          "system": "http://fhir.de/StructureDefinition/identifier-iknr"
+        },
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.identifier:BSNR",
+        "path": "Organization.identifier",
+        "sliceName": "BSNR",
+        "min": 0,
+        "max": "1",
+        "patternIdentifier": {
+          "system": "http://fhir.de/StructureDefinition/identifier-bsnr"
+        },
         "mustSupport": true
       },
       {
@@ -234,6 +257,11 @@
       {
         "id": "Organization.address.country",
         "path": "Organization.address.country",
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.partOf",
+        "path": "Organization.partOf",
         "mustSupport": true
       },
       {

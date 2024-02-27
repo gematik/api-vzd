@@ -125,7 +125,7 @@
     "fshType": "Instance",
     "fshFile": "examples/OrganizationExample001.fsh",
     "startLine": 14,
-    "endLine": 39
+    "endLine": 40
   },
   {
     "outputFile": "Practitioner-TIPractitionerExample001.json",
@@ -165,7 +165,7 @@
     "fshType": "Profile",
     "fshFile": "profiles/HealthcareServiceDirectory.fsh",
     "startLine": 1,
-    "endLine": 36
+    "endLine": 37
   },
   {
     "outputFile": "StructureDefinition-LocationDirectory.json",
@@ -173,7 +173,7 @@
     "fshType": "Profile",
     "fshFile": "profiles/LocationDirectory.fsh",
     "startLine": 1,
-    "endLine": 44
+    "endLine": 38
   },
   {
     "outputFile": "StructureDefinition-OrganizationDirectory.json",
@@ -181,7 +181,7 @@
     "fshType": "Profile",
     "fshFile": "profiles/OrganizationDirectory.fsh",
     "startLine": 1,
-    "endLine": 45
+    "endLine": 53
   },
   {
     "outputFile": "StructureDefinition-PractitionerDirectory.json",

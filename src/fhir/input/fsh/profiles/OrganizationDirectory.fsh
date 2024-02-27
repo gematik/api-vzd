@@ -15,20 +15,26 @@ organisations specific for german Healthcare and Telematics Infrastructure.
 * id 0..1 MS
 * name 1..1 MS
 * identifier 1..* MS
-* identifier ^slicing.discriminator.type = #value
-* identifier ^slicing.discriminator.path = "system"
+* identifier ^slicing.discriminator.type = #pattern
+* identifier ^slicing.discriminator.path = "$this"
 * identifier ^slicing.rules = #open
 * identifier contains TelematikID 1..1 MS
-* identifier[TelematikID] only $IdentifierTelematikID
+* identifier[TelematikID] ^patternIdentifier.system = $IdentifierTelematikID
+* identifier[TelematikID] ^patternIdentifier.type = $sct#63161005 // primary
+* identifier contains AlternativeTelematikID 0..* MS
+* identifier[AlternativeTelematikID] ^patternIdentifier.system = $IdentifierTelematikID
+* identifier[AlternativeTelematikID] ^patternIdentifier.type = $sct#2603003 //secondary
 * identifier contains KZVA 0..1 MS
-* identifier[KZVA] only $IdentifierKZVA
+* identifier[KZVA] ^patternIdentifier.system = $IdentifierKZVA
 * identifier contains IKNR 0..1 MS
-* identifier[IKNR] only $IdentifierIKNR
+* identifier[IKNR] ^patternIdentifier.system = $IdentifierIKNR
+* identifier contains BSNR 0..1 MS
+* identifier[BSNR] ^patternIdentifier.system = $IdentifierBSNR
 * type 1..* MS
   * ^slicing.discriminator.type = #pattern
   * ^slicing.discriminator.path = "$this"
   * ^slicing.rules = #open
-* type contains providerType 0..*  MS and profession 0..* MS   
+* type contains providerType 0..*  MS and profession 0..* MS
 * type[providerType] from OrganizationProviderTypeVS
 * type[profession] from OrganizationProfessionOIDTypeVS
 * name 1..1 MS
@@ -43,3 +49,4 @@ organisations specific for german Healthcare and Telematics Infrastructure.
   * state MS
   * postalCode MS
   * country MS
+* partOf MS

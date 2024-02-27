@@ -18,6 +18,7 @@ Description: "Example of an Organization as to be found in gematik FHIR Director
 * meta.tag[Origin] = Origin#ldap
 * active = true
 * identifier[TelematikID].value = "9-2.58.00000040"
+* identifier[AlternativeTelematikID].value = "9-2.58.00000050"
 * type[profession] = OrganizationProfessionOID#1.2.276.0.76.4.58
 * name = "gematik GmbH"
 * active = true

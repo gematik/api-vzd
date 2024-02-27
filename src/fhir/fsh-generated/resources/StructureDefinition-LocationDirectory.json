@@ -66,36 +66,6 @@
         "patternUri": "https://gematik.de/fhir/directory/CodeSystem/Origin"
       },
       {
-        "id": "Location.identifier",
-        "path": "Location.identifier",
-        "slicing": {
-          "discriminator": [
-            {
-              "type": "value",
-              "path": "system"
-            }
-          ],
-          "rules": "open"
-        },
-        "mustSupport": true
-      },
-      {
-        "id": "Location.identifier:BSNR",
-        "path": "Location.identifier",
-        "sliceName": "BSNR",
-        "min": 0,
-        "max": "1",
-        "type": [
-          {
-            "code": "Identifier",
-            "profile": [
-              "http://fhir.de/StructureDefinition/identifier-bsnr"
-            ]
-          }
-        ],
-        "mustSupport": true
-      },
-      {
         "id": "Location.name",
         "path": "Location.name",
         "mustSupport": true
