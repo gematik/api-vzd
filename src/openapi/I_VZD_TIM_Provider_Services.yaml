@@ -3,7 +3,10 @@ info:
   title: I_VZD_TIM_Provider_Services
   description: REST interface to retrieve the TI-Messenger federation list and to administrate the TI-Messenger domains.
 
-  version: 1.3.4
+  version: 1.3.5
+
+    # version 1.3.5
+    #  - getFederationList - Parameter sigAlg added for support of BP and NIST signatures
 
     # version 1.3.4
     #  - Schema InfoObject: - Attributs termsOfService, contact & license removed
@@ -131,6 +134,16 @@ paths:
           description: Version of the known federation list
           schema:
             type: integer
+        - name: sigAlg
+          in: query
+          description: Signature algorithm of the federation list
+                       The federation list will be signed according to the selected value of this parameter.
+          schema:
+            type: string
+            enum:
+              - BP256R1 # Brainpool
+              - ES256   # Elliptic Curve Digital Signature Algorithm with the P-256 curve
+            default: BP256R1
 
       responses:
         200:
