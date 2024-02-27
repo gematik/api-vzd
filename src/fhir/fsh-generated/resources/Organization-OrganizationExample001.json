@@ -42,7 +42,7 @@
     {
       "url": "https://gematik.de/fhir/directory/StructureDefinition/OrganizationVisibility",
       "valueCoding": {
-        "code": "erezeptApp",
+        "code": "hide-erezeptApp",
         "system": "https://gematik.de/fhir/directory/CodeSystem/OrganizationVisibilityCS"
       }
     }

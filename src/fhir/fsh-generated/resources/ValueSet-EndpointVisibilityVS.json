@@ -1,0 +1,17 @@
+{
+  "resourceType": "ValueSet",
+  "status": "active",
+  "name": "EndpointVisibilityVS",
+  "id": "EndpointVisibilityVS",
+  "title": "EndpointVisibilityVS",
+  "description": "EndpointVisibilityVS",
+  "url": "https://gematik.de/fhir/directory/ValueSet/EndpointVisibilityVS",
+  "publisher": "gematik GmbH",
+  "compose": {
+    "include": [
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/EndpointVisibilityCS"
+      }
+    ]
+  }
+}

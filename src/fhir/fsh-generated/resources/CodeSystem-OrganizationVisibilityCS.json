@@ -1,0 +1,18 @@
+{
+  "resourceType": "CodeSystem",
+  "status": "active",
+  "content": "complete",
+  "name": "OrganizationVisibilityCS",
+  "id": "OrganizationVisibilityCS",
+  "title": "OrganizationVisibilityCS",
+  "description": "OrganizationVisibilityCS",
+  "url": "https://gematik.de/fhir/directory/CodeSystem/OrganizationVisibilityCS",
+  "concept": [
+    {
+      "code": "hide-erezeptApp",
+      "display": "Eintrag nicht in eRezeptApp darstellen"
+    }
+  ],
+  "publisher": "gematik GmbH",
+  "count": 1
+}

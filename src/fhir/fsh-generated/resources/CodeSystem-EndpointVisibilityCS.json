@@ -1,0 +1,18 @@
+{
+  "resourceType": "CodeSystem",
+  "status": "active",
+  "content": "complete",
+  "name": "EndpointVisibilityCS",
+  "id": "EndpointVisibilityCS",
+  "title": "EndpointVisibilityCS",
+  "description": "EndpointVisibilityCS",
+  "url": "https://gematik.de/fhir/directory/CodeSystem/EndpointVisibilityCS",
+  "concept": [
+    {
+      "code": "hide-versicherte",
+      "display": "Eintrag nicht Versicherten anzeigen"
+    }
+  ],
+  "publisher": "gematik GmbH",
+  "count": 1
+}

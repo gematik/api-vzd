@@ -16,7 +16,7 @@
     {
       "url": "https://gematik.de/fhir/directory/StructureDefinition/EndpointVisibility",
       "valueCoding": {
-        "code": "versicherte",
+        "code": "hide-versicherte",
         "system": "https://gematik.de/fhir/directory/CodeSystem/EndpointVisibilityCS"
       }
     }
