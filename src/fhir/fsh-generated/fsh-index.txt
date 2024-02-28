@@ -24,7 +24,7 @@ StructureDefinition-EndpointDirectory.json                              Endpoint
 StructureDefinition-EndpointVisibility.json                             EndpointVisibility                                        Extension   profiles/Extension.fsh                                 25 - 33
 StructureDefinition-HealthcareServiceDirectory.json                     HealthcareServiceDirectory                                Profile     profiles/HealthcareServiceDirectory.fsh                1 - 36
 StructureDefinition-LocationDirectory.json                              LocationDirectory                                         Profile     profiles/LocationDirectory.fsh                         1 - 38
-StructureDefinition-OrganizationDirectory.json                          OrganizationDirectory                                     Profile     profiles/OrganizationDirectory.fsh                     1 - 53
+StructureDefinition-OrganizationDirectory.json                          OrganizationDirectory                                     Profile     profiles/OrganizationDirectory.fsh                     1 - 58
 StructureDefinition-OrganizationVisibility.json                         OrganizationVisibility                                    Extension   profiles/Extension.fsh                                 1 - 9
 StructureDefinition-PractitionerDirectory.json                          PractitionerDirectory                                     Profile     profiles/PractitionerDirectory.fsh                     1 - 40
 StructureDefinition-PractitionerRoleDirectory.json                      PractitionerRoleDirectory                                 Profile     profiles/PractitionerRoleDirectory.fsh                 1 - 15

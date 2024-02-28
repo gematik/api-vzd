@@ -94,7 +94,7 @@
         "path": "Practitioner.identifier",
         "sliceName": "TelematikID",
         "min": 1,
-        "max": "*",
+        "max": "1",
         "type": [
           {
             "code": "Identifier",

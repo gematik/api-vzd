@@ -20,17 +20,22 @@ organisations specific for german Healthcare and Telematics Infrastructure.
 * identifier ^slicing.discriminator.path = "$this"
 * identifier ^slicing.rules = #open
 * identifier contains TelematikID 1..1 MS
-* identifier[TelematikID] ^patternIdentifier.system = $IdentifierTelematikID
-* identifier[TelematikID] ^patternIdentifier.type = $sct#63161005 // primary
+* identifier[TelematikID] only $IdentifierTelematikID
+* identifier[TelematikID] ^patternIdentifier.system = $SidTelematikID
+* identifier[TelematikID] ^patternIdentifier.use = #usual
 * identifier contains AlternativeTelematikID 0..* MS
-* identifier[AlternativeTelematikID] ^patternIdentifier.system = $IdentifierTelematikID
-* identifier[AlternativeTelematikID] ^patternIdentifier.type = $sct#2603003 //secondary
+* identifier[AlternativeTelematikID] only $IdentifierTelematikID
+* identifier[AlternativeTelematikID] ^patternIdentifier.system = $SidTelematikID
+* identifier[AlternativeTelematikID] ^patternIdentifier.use = #secondary
 * identifier contains KZVA 0..1 MS
-* identifier[KZVA] ^patternIdentifier.system = $IdentifierKZVA
+* identifier[KZVA] only IdentifierKzva
+* identifier[KZVA] ^patternIdentifier.system = $SidKZVA
 * identifier contains IKNR 0..1 MS
-* identifier[IKNR] ^patternIdentifier.system = $IdentifierIKNR
+* identifier[IKNR] only IdentifierIknr
+* identifier[IKNR] ^patternIdentifier.system = $SidIKNR
 * identifier contains BSNR 0..1 MS
-* identifier[BSNR] ^patternIdentifier.system = $IdentifierBSNR
+* identifier[BSNR] only IdentifierBsnr
+* identifier[BSNR] ^patternIdentifier.system = $SidBSNR
 * type 1..* MS
   * ^slicing.discriminator.type = #pattern
   * ^slicing.discriminator.path = "$this"

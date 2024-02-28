@@ -22,7 +22,6 @@ organisations specific for german Healthcare and Telematics Infrastructure.
   * line MS
   * city MS
   * state MS
-// FIXME: widerspricht dt. Basisprofilen  * state from AddressStateVS (extensible)
   * postalCode MS
   * country MS
 * position MS

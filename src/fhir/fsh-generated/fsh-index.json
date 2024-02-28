@@ -205,7 +205,7 @@
     "fshType": "Profile",
     "fshFile": "profiles/OrganizationDirectory.fsh",
     "startLine": 1,
-    "endLine": 53
+    "endLine": 58
   },
   {
     "outputFile": "StructureDefinition-OrganizationVisibility.json",

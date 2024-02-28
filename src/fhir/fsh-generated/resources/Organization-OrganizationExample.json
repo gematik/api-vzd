@@ -14,15 +14,8 @@
   },
   "identifier": [
     {
-      "system": "http://fhir.de/StructureDefinition/identifier-telematik-id",
-      "type": {
-        "coding": [
-          {
-            "code": "63161005",
-            "system": "http://snomed.info/sct"
-          }
-        ]
-      },
+      "system": "https://gematik.de/fhir/sid/telematik-id",
+      "use": "usual",
       "value": "2-2.58.00000040"
     }
   ],

@@ -14,7 +14,7 @@ Title: "Practitioner in gematik Directory"
   * ^slicing.discriminator.type = #value
   * ^slicing.discriminator.path = "system"
   * ^slicing.rules = #open
-* identifier contains TelematikID 1.. MS
+* identifier contains TelematikID 1..1 MS
 * identifier[TelematikID] only $IdentifierTelematikID
 * identifier contains LANR 0.. MS
 * identifier[LANR] only $IdentifierLANR

@@ -112,16 +112,17 @@
         "sliceName": "TelematikID",
         "min": 1,
         "max": "1",
-        "patternIdentifier": {
-          "system": "http://fhir.de/StructureDefinition/identifier-telematik-id",
-          "type": {
-            "coding": [
-              {
-                "code": "63161005",
-                "system": "http://snomed.info/sct"
-              }
+        "type": [
+          {
+            "code": "Identifier",
+            "profile": [
+              "http://fhir.de/StructureDefinition/identifier-telematik-id"
             ]
           }
+        ],
+        "patternIdentifier": {
+          "system": "https://gematik.de/fhir/sid/telematik-id",
+          "use": "usual"
         },
         "mustSupport": true
       },
@@ -131,16 +132,17 @@
         "sliceName": "AlternativeTelematikID",
         "min": 0,
         "max": "*",
-        "patternIdentifier": {
-          "system": "http://fhir.de/StructureDefinition/identifier-telematik-id",
-          "type": {
-            "coding": [
-              {
-                "code": "2603003",
-                "system": "http://snomed.info/sct"
-              }
+        "type": [
+          {
+            "code": "Identifier",
+            "profile": [
+              "http://fhir.de/StructureDefinition/identifier-telematik-id"
             ]
           }
+        ],
+        "patternIdentifier": {
+          "system": "https://gematik.de/fhir/sid/telematik-id",
+          "use": "secondary"
         },
         "mustSupport": true
       },
@@ -150,8 +152,16 @@
         "sliceName": "KZVA",
         "min": 0,
         "max": "1",
+        "type": [
+          {
+            "code": "Identifier",
+            "profile": [
+              "http://fhir.de/StructureDefinition/identifier-kzva"
+            ]
+          }
+        ],
         "patternIdentifier": {
-          "system": "http://fhir.de/StructureDefinition/identifier-kzva"
+          "system": "http://fhir.de/sid/kzbv/kzvabrechnungsnummer"
         },
         "mustSupport": true
       },
@@ -161,8 +171,16 @@
         "sliceName": "IKNR",
         "min": 0,
         "max": "1",
+        "type": [
+          {
+            "code": "Identifier",
+            "profile": [
+              "http://fhir.de/StructureDefinition/identifier-iknr"
+            ]
+          }
+        ],
         "patternIdentifier": {
-          "system": "http://fhir.de/StructureDefinition/identifier-iknr"
+          "system": "http://fhir.de/sid/arge-ik/iknr"
         },
         "mustSupport": true
       },
@@ -172,8 +190,16 @@
         "sliceName": "BSNR",
         "min": 0,
         "max": "1",
+        "type": [
+          {
+            "code": "Identifier",
+            "profile": [
+              "http://fhir.de/StructureDefinition/identifier-bsnr"
+            ]
+          }
+        ],
         "patternIdentifier": {
-          "system": "http://fhir.de/StructureDefinition/identifier-bsnr"
+          "system": "https://fhir.kbv.de/NamingSystem/KBV_NS_Base_BSNR"
         },
         "mustSupport": true
       },
