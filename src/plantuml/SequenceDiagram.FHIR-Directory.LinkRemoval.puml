@@ -18,7 +18,7 @@ activate cl
 
 
 group Lese alle eigenen verlinkten Rassourcen
-  cl -> fp: GET /owner?... (Suche alle eigenen HealthcareService oder PractitionerRole \nmit telematikID aus dem accesstoken \noder clientID/holder aus dem accesstoken (Kartenherausgeber))
+  cl -> fp: GET /owner?... (Suche alle eigenen HealthcareService oder PractitionerRole \nmit telematikID aus dem accesstoken)
   activate fp
   fp -> fp: prüfe owner-accesstoken
 
@@ -43,13 +43,13 @@ group VerlinkungsRemoval
   activate fa
   fa -> fa: prüfe owner-accesstoken
 
-    alt accesstoken is valid \n& Verlinkung gehört zu eigener Ressource (telematikID/clientID/holder aus dem accesstoken)
+    alt accesstoken is valid \n& Verlinkung gehört zu eigener Ressource (telematikID aus dem accesstoken)
       fa -> fa: Eintragen des Verlinkungsremovals
       fa -> fd: Löschen der Verlinkung in die FHIR Daten
       fd --> fa: HTTP 200 OK
       fa --> cl: HTTP 200 OK\n(Result Body json)
       
-     else owner-accesstoken is invalid\noder Verlinkung bezieht sich nicht auf eigene Ressourcen/Zuständigkeitsbereich
+     else owner-accesstoken is invalid\noder Verlinkung bezieht sich nicht auf eigene Ressourcen
       fa --> cl: HTTP 401
       deactivate fa
      end
