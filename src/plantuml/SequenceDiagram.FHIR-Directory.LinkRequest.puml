@@ -13,7 +13,7 @@ box <size:16>FHIR-Directory</size> #WhiteSmoke
   participant fa as "FHIR-VZD-Administration"
 end box
 
-Nutzer -> cl:Start Verlinkungsanfrage \nmit Suche nach der zu verlinkenden Partner-Ressourcen
+Nutzer -> cl:Start Verlinkungsanfrage \nmit Suche nach der zu verlinkenden Ressourcen
 activate cl
 
 group Suche aller eigenen Ressourcen, die verlinkt werden können
@@ -33,8 +33,8 @@ group Suche aller eigenen Ressourcen, die verlinkt werden können
      end
 end
 
-group Suche aller Partner Ressourcen, die verlinkt werden können
-  cl -> fp: GET /owner?... (Mit Nutzer Suchstring für \nPartner HealthcareService oder PractitionerRole)
+group Suche der Ressourcen, mit denen die Verlinkung erstellt werden soll
+  cl -> fp: GET /owner?... (Mit Nutzer Suchstring für \nHealthcareService oder PractitionerRole)
   activate fp
   fp -> fp: prüfe owner-accesstoken
 
@@ -64,7 +64,7 @@ group Lese alle vorhandenen Verlinkungsdaten
      end
 end
 
-cl --> Nutzer:Anzeige aller eigenen und Partner Ressourcen \n(HealthcareService und PractitionerRole) \nsowie vorhandene Verlinkungsdaten
+cl --> Nutzer:Anzeige aller eigenen und gesuchten Ressourcen \n(HealthcareService und PractitionerRole) \nsowie vorhandene Verlinkungsdaten
 Nutzer -> Nutzer: Auswahl der zu zu verlinkenden Ressourcen
 Nutzer -> cl: Verlinkungsanfrage \nmit ausgewählten Ressourcen \n{HealthcareService, PractitionerRole}
 
