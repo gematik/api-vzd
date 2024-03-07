@@ -82,6 +82,7 @@
     }
   ],
   "publisher": "gematik GmbH",
+  "version": "0.11.0",
   "caseSensitive": false,
   "count": 18
 }

@@ -7,6 +7,7 @@
   "description": "**healthcareFacilityTypeCode (XDSDocumentEntry)**\n This code for an XDS Document represents the type of organizational setting of the clinical encounter during which the documented act occurred.",
   "url": "http://ihe-d.de/ValueSets/IHEXDShealthcareFacilityTypeCodePatientRelatedHealthcare",
   "publisher": "IHE Deutschland e.V.",
+  "version": "0.11.0",
   "experimental": false,
   "compose": {
     "include": [

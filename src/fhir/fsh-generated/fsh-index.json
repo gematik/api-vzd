@@ -5,7 +5,7 @@
     "fshType": "CodeSystem",
     "fshFile": "codesystems/EndpointDirectoryConnectionType.fsh",
     "startLine": 1,
-    "endLine": 14
+    "endLine": 15
   },
   {
     "outputFile": "CodeSystem-EndpointDirectoryPayloadType.json",

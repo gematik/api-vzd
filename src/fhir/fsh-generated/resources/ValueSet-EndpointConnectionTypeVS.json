@@ -6,6 +6,7 @@
   "description": "ValueSet for `Endpoint.connectionType`",
   "url": "https://gematik.de/fhir/directory/ValueSet/EndpointConnectionTypeVS",
   "publisher": "gematik GmbH",
+  "version": "0.11.0",
   "compose": {
     "include": [
       {

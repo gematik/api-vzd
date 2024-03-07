@@ -1,5 +1,5 @@
 Output File                                                             Name                                                      Type        FSH File                                               Lines
-CodeSystem-EndpointDirectoryConnectionType.json                         EndpointDirectoryConnectionType                           CodeSystem  codesystems/EndpointDirectoryConnectionType.fsh        1 - 14
+CodeSystem-EndpointDirectoryConnectionType.json                         EndpointDirectoryConnectionType                           CodeSystem  codesystems/EndpointDirectoryConnectionType.fsh        1 - 15
 CodeSystem-EndpointDirectoryPayloadType.json                            EndpointDirectoryPayloadType                              CodeSystem  codesystems/EndpointDirectoryPayloadType.fsh           1 - 12
 CodeSystem-EndpointVisibilityCS.json                                    EndpointVisibilityCS                                      CodeSystem  profiles/Extension.fsh                                 35 - 40
 CodeSystem-HolderCS.json                                                HolderCS                                                  CodeSystem  codesystems/HolderCS.fsh                               1 - 125
