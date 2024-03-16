@@ -3,7 +3,7 @@ FROM mcr.microsoft.com/devcontainers/base:alpine-3.18
 # Setzen der Umgebungsvariablen
 ENV FIRELY_TERMINAL_VERSION=3.1.0
 ENV JAVA_VALIDATOR_VERSION=6.0.11
-ENV SUSHI_VERSION=3.5.0
+ENV SUSHI_VERSION=3.6.1
 
 # Installieren der notwendige Tools
 # Add Microsoft's .NET SDK repository and install .NET SDK

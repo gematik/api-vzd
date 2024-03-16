@@ -1,36 +1,14 @@
 {
   "resourceType": "StructureDefinition",
   "id": "EndpointDirectory",
-  "extension": [
-    {
-      "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-category",
-      "valueString": "Base.Entities"
-    },
-    {
-      "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-security-category",
-      "valueCode": "business"
-    }
-  ],
   "url": "https://gematik.de/fhir/directory/StructureDefinition/EndpointDirectory",
-  "version": "0.10.2",
+  "version": "0.11.0",
   "name": "EndpointDirectory",
   "title": "Endpoint in gematik Directory",
   "status": "active",
   "publisher": "gematik GmbH",
   "description": "Endpoints for applications in the gematik Directory",
   "fhirVersion": "4.0.1",
-  "mapping": [
-    {
-      "identity": "rim",
-      "uri": "http://hl7.org/v3",
-      "name": "RIM Mapping"
-    },
-    {
-      "identity": "w5",
-      "uri": "http://hl7.org/fhir/fivews",
-      "name": "FiveWs Pattern Mapping"
-    }
-  ],
   "kind": "resource",
   "abstract": false,
   "type": "Endpoint",
@@ -72,6 +50,22 @@
         "patternUri": "https://gematik.de/fhir/directory/CodeSystem/Origin"
       },
       {
+        "id": "Endpoint.extension:endpointVisibility",
+        "path": "Endpoint.extension",
+        "sliceName": "endpointVisibility",
+        "min": 0,
+        "max": "*",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "https://gematik.de/fhir/directory/StructureDefinition/EndpointVisibility"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
         "id": "Endpoint.status",
         "path": "Endpoint.status",
         "mustSupport": true
@@ -82,8 +76,14 @@
         "mustSupport": true
       },
       {
+        "id": "Endpoint.connectionType.system",
+        "path": "Endpoint.connectionType.system",
+        "mustSupport": true
+      },
+      {
         "id": "Endpoint.connectionType.code",
         "path": "Endpoint.connectionType.code",
+        "mustSupport": true,
         "binding": {
           "strength": "extensible",
           "valueSet": "https://gematik.de/fhir/directory/ValueSet/EndpointConnectionTypeVS"

@@ -4,6 +4,7 @@ Parent: Endpoint
 Title: "Endpoint in gematik Directory"
 Description: "Endpoints for applications in the gematik Directory"
 * insert Meta
+* extension contains EndpointVisibility named endpointVisibility 0..* MS
 * meta.tag 1.. MS
   * ^slicing.discriminator.type = #value
   * ^slicing.discriminator.path = "system"
@@ -13,9 +14,11 @@ Description: "Endpoints for applications in the gematik Directory"
 * meta.tag[Origin].system = "https://gematik.de/fhir/directory/CodeSystem/Origin"
 * status 1..1 MS
 * connectionType 1..1 MS
-* connectionType.code from EndpointConnectionTypeVS (extensible)
+  * code MS
+  * code from EndpointConnectionTypeVS (extensible)
+  * system MS
 * name 1..1 MS  // identical to address; because search is possible in element name and not in element address
-* managingOrganization 0..1 MS
+* managingOrganization MS
 * payloadType 1..* MS
 * payloadType from EndpointPayloadTypeVS (extensible)
 * address 1..1 MS

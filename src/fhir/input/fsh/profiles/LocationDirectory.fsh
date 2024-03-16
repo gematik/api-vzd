@@ -16,22 +16,23 @@ organisations specific for german Healthcare and Telematics Infrastructure.
 * name MS
 * description MS
 * address MS
+* address only AddressDeBasis
   * use MS
   * text MS
   * line MS
   * city MS
-  * district MS
   * state MS
-  * state from AddressStateVS (extensible)
   * postalCode MS
   * country MS
 * position MS
   * longitude MS
   * latitude MS
   * altitude MS
+* partOf MS
 * hoursOfOperation MS
   * daysOfWeek MS
   * allDay MS
   * openingTime MS
   * closingTime MS
 * availabilityExceptions MS
+* managingOrganization MS

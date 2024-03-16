@@ -1,19 +1,16 @@
 {
   "resourceType": "ValueSet",
   "status": "active",
-  "name": "OrganizationTypeVS",
-  "id": "OrganizationTypeVS",
+  "name": "OrganizationProfessionOIDTypeVS",
+  "id": "OrganizationProfessionOIDTypeVS",
   "description": "ValueSet for `Organization.type`",
-  "version": "0.10.2",
-  "url": "https://gematik.de/fhir/directory/ValueSet/OrganizationTypeVS",
+  "url": "https://gematik.de/fhir/directory/ValueSet/OrganizationProfessionOIDTypeVS",
   "publisher": "gematik GmbH",
+  "version": "0.11.0",
   "compose": {
     "include": [
       {
         "system": "https://gematik.de/fhir/directory/CodeSystem/OrganizationProfessionOID"
-      },
-      {
-        "system": "https://gematik.de/fhir/directory/CodeSystem/OrganizationProviderType"
       }
     ]
   }

@@ -1,36 +1,14 @@
 {
   "resourceType": "StructureDefinition",
   "id": "LocationDirectory",
-  "extension": [
-    {
-      "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-category",
-      "valueString": "Base.Entities"
-    },
-    {
-      "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-security-category",
-      "valueCode": "business"
-    }
-  ],
   "url": "https://gematik.de/fhir/directory/StructureDefinition/LocationDirectory",
-  "version": "0.10.2",
+  "version": "0.11.0",
   "name": "LocationDirectory",
   "title": "Location in gematik Directory",
   "status": "active",
   "publisher": "gematik GmbH",
   "description": "Defines the data structure for medical, regulatory and technical\norganisations specific for german Healthcare and Telematics Infrastructure.",
   "fhirVersion": "4.0.1",
-  "mapping": [
-    {
-      "identity": "rim",
-      "uri": "http://hl7.org/v3",
-      "name": "RIM Mapping"
-    },
-    {
-      "identity": "w5",
-      "uri": "http://hl7.org/fhir/fivews",
-      "name": "FiveWs Pattern Mapping"
-    }
-  ],
   "kind": "resource",
   "abstract": false,
   "type": "Location",
@@ -89,6 +67,14 @@
       {
         "id": "Location.address",
         "path": "Location.address",
+        "type": [
+          {
+            "code": "Address",
+            "profile": [
+              "http://fhir.de/StructureDefinition/address-de-basis"
+            ]
+          }
+        ],
         "mustSupport": true
       },
       {
@@ -112,18 +98,9 @@
         "mustSupport": true
       },
       {
-        "id": "Location.address.district",
-        "path": "Location.address.district",
-        "mustSupport": true
-      },
-      {
         "id": "Location.address.state",
         "path": "Location.address.state",
-        "mustSupport": true,
-        "binding": {
-          "strength": "extensible",
-          "valueSet": "https://gematik.de/fhir/directory/ValueSet/AddressStateVS"
-        }
+        "mustSupport": true
       },
       {
         "id": "Location.address.postalCode",
@@ -153,6 +130,16 @@
       {
         "id": "Location.position.altitude",
         "path": "Location.position.altitude",
+        "mustSupport": true
+      },
+      {
+        "id": "Location.managingOrganization",
+        "path": "Location.managingOrganization",
+        "mustSupport": true
+      },
+      {
+        "id": "Location.partOf",
+        "path": "Location.partOf",
         "mustSupport": true
       },
       {

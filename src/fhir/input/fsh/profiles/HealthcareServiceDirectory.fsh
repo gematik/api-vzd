@@ -14,8 +14,12 @@ organisations specific for german Healthcare and Telematics Infrastructure.
 * meta.tag[Origin].system = "https://gematik.de/fhir/directory/CodeSystem/Origin"
 * id ..1 MS
 * providedBy 1..1 MS
+* category MS 
+* category from IHEXDShealthcareFacilityTypeCodePatientRelatedHealthcare
+* type MS 
+* type from HealthcareServiceTypeVS (extensible)
 * specialty MS
-* specialty from HealthcareServiceSpecialtyVS (extensible)
+* specialty from HealthcareServiceSpecialityVS 
 * location MS
 * name MS
 * telecom MS
@@ -28,3 +32,5 @@ organisations specific for german Healthcare and Telematics Infrastructure.
 * availableTime MS
 * availabilityExceptions MS
 * endpoint MS
+* characteristic MS
+* characteristic from HealthCareServiceCharacteristicVS

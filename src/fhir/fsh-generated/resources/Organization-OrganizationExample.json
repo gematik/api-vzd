@@ -15,6 +15,7 @@
   "identifier": [
     {
       "system": "https://gematik.de/fhir/sid/telematik-id",
+      "use": "usual",
       "value": "2-2.58.00000040"
     }
   ],

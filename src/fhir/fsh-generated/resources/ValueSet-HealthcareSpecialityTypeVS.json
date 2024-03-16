@@ -1,0 +1,21 @@
+{
+  "resourceType": "ValueSet",
+  "status": "active",
+  "name": "HealthcareServiceSpecialityVS",
+  "id": "HealthcareSpecialityTypeVS",
+  "title": "ValueSet of HealthcareService specialities",
+  "description": "HealthcareService specialities",
+  "url": "https://gematik.de/fhir/directory/ValueSet/HealthcareSpecialityTypeVS",
+  "publisher": "gematik GmbH",
+  "version": "0.11.0",
+  "compose": {
+    "include": [
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/PharmacyHealthcareSpecialityCS"
+      },
+      {
+        "system": "http://terminology.hl7.org/CodeSystem/service-type"
+      }
+    ]
+  }
+}
