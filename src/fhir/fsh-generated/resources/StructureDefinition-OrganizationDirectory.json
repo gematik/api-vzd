@@ -1,46 +1,14 @@
 {
   "resourceType": "StructureDefinition",
   "id": "OrganizationDirectory",
-  "extension": [
-    {
-      "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-category",
-      "valueString": "Base.Entities"
-    },
-    {
-      "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-security-category",
-      "valueCode": "business"
-    }
-  ],
   "url": "https://gematik.de/fhir/directory/StructureDefinition/OrganizationDirectory",
-  "version": "0.10.2",
+  "version": "0.11.0",
   "name": "OrganizationDirectory",
   "title": "Organization in gematik Directory",
   "status": "active",
   "publisher": "gematik GmbH",
   "description": "Defines the data structure for medical, regulatory and technical \norganisations specific for german Healthcare and Telematics Infrastructure.",
   "fhirVersion": "4.0.1",
-  "mapping": [
-    {
-      "identity": "v2",
-      "uri": "http://hl7.org/v2",
-      "name": "HL7 v2 Mapping"
-    },
-    {
-      "identity": "rim",
-      "uri": "http://hl7.org/v3",
-      "name": "RIM Mapping"
-    },
-    {
-      "identity": "servd",
-      "uri": "http://www.omg.org/spec/ServD/1.0/",
-      "name": "ServD"
-    },
-    {
-      "identity": "w5",
-      "uri": "http://hl7.org/fhir/fivews",
-      "name": "FiveWs Pattern Mapping"
-    }
-  ],
   "kind": "resource",
   "abstract": false,
   "type": "Organization",
@@ -85,6 +53,22 @@
         "path": "Organization.meta.tag.system",
         "min": 1,
         "patternUri": "https://gematik.de/fhir/directory/CodeSystem/Origin"
+      },
+      {
+        "id": "Organization.extension:organizationVisibility",
+        "path": "Organization.extension",
+        "sliceName": "organizationVisibility",
+        "min": 0,
+        "max": "*",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "https://gematik.de/fhir/directory/StructureDefinition/OrganizationVisibility"
+            ]
+          }
+        ],
+        "mustSupport": true
       },
       {
         "id": "Organization.identifier",
@@ -168,11 +152,40 @@
       {
         "id": "Organization.type",
         "path": "Organization.type",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "pattern",
+              "path": "$this"
+            }
+          ],
+          "rules": "open"
+        },
         "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.type:providerType",
+        "path": "Organization.type",
+        "sliceName": "providerType",
+        "min": 0,
+        "max": "*",
         "mustSupport": true,
         "binding": {
           "strength": "required",
-          "valueSet": "https://gematik.de/fhir/directory/ValueSet/OrganizationTypeVS"
+          "valueSet": "https://gematik.de/fhir/directory/ValueSet/OrganizationProviderTypeVS"
+        }
+      },
+      {
+        "id": "Organization.type:profession",
+        "path": "Organization.type",
+        "sliceName": "profession",
+        "min": 0,
+        "max": "*",
+        "mustSupport": true,
+        "binding": {
+          "strength": "required",
+          "valueSet": "https://gematik.de/fhir/directory/ValueSet/OrganizationProfessionOIDTypeVS"
         }
       },
       {
@@ -184,6 +197,51 @@
       {
         "id": "Organization.alias",
         "path": "Organization.alias",
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.address",
+        "path": "Organization.address",
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.address.use",
+        "path": "Organization.address.use",
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.address.text",
+        "path": "Organization.address.text",
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.address.line",
+        "path": "Organization.address.line",
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.address.city",
+        "path": "Organization.address.city",
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.address.state",
+        "path": "Organization.address.state",
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.address.postalCode",
+        "path": "Organization.address.postalCode",
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.address.country",
+        "path": "Organization.address.country",
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.partOf",
+        "path": "Organization.partOf",
         "mustSupport": true
       },
       {

@@ -12,6 +12,7 @@ Alias: $NichtÄrztlicheAutoren = urn:oid:1.3.6.1.4.1.19376.3.276.1.5.11
 
 Alias: $ÄrztlicheFachrichtungen = urn:oid:1.3.6.1.4.1.19376.3.276.1.5.4
 Alias: $NichtÄrztlicheFachrichtungen = urn:oid:1.3.6.1.4.1.19376.3.276.1.5.5
+Alias: $ZahnärztlicheFachrichtungen = urn:oid:1.2.276.0.76.5.494
 
 // Identifiers
 // TelematikID
@@ -39,3 +40,4 @@ Alias: $ContactPointSystem = http://hl7.org/fhir/contact-point-system
 Alias: $ContactPointUse = http://hl7.org/fhir/contact-point-use
 Alias: $ServiceProvisionConditions = http://terminology.hl7.org/CodeSystem/service-provision-conditions
 Alias: $CommonLanguages = urn:ietf:bcp:47
+Alias: $sct = http://snomed.info/sct

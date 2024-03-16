@@ -29,9 +29,11 @@ organisations specific for german Healthcare and Telematics Infrastructure.
   * longitude MS
   * latitude MS
   * altitude MS
+* partOf MS
 * hoursOfOperation MS
   * daysOfWeek MS
   * allDay MS
   * openingTime MS
   * closingTime MS
 * availabilityExceptions MS
+* managingOrganization MS

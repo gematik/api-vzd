@@ -37,5 +37,8 @@
       "closingTime": "18:00:00"
     }
   ],
-  "availabilityExceptions": "An Feiertagen geschlossen"
+  "availabilityExceptions": "An Feiertagen geschlossen",
+  "managingOrganization": {
+    "reference": "Organization/OrganizationExample001"
+  }
 }

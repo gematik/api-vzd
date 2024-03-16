@@ -12,6 +12,15 @@
       "https://gematik.de/fhir/directory/StructureDefinition/EndpointDirectory"
     ]
   },
+  "extension": [
+    {
+      "url": "https://gematik.de/fhir/directory/StructureDefinition/EndpointVisibility",
+      "valueCoding": {
+        "code": "hide-versicherte",
+        "system": "https://gematik.de/fhir/directory/CodeSystem/EndpointVisibilityCS"
+      }
+    }
+  ],
   "status": "active",
   "connectionType": {
     "code": "tim",

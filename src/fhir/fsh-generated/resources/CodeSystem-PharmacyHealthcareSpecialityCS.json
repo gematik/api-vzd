@@ -2,12 +2,11 @@
   "resourceType": "CodeSystem",
   "status": "active",
   "content": "complete",
-  "name": "PharmacyHealthcareServiceTypeCS",
-  "id": "PharmacyHealthcareServiceTypeCS",
-  "title": "HealthcareService Type",
-  "description": "Type codes of HealthcareServices",
-  "version": "1.0",
-  "url": "https://gematik.de/fhir/directory/CodeSystem/PharmacyHealthcareServiceTypeCS",
+  "name": "PharmacyHealthcareSpecialityCS",
+  "id": "PharmacyHealthcareSpecialityCS",
+  "title": "HealthcareService Speciality",
+  "description": "Speciality codes of HealthcareServices",
+  "url": "https://gematik.de/fhir/directory/CodeSystem/PharmacyHealthcareSpecialityCS",
   "concept": [
     {
       "code": "10",
@@ -31,6 +30,7 @@
     }
   ],
   "publisher": "gematik GmbH",
+  "version": "0.11.0",
   "caseSensitive": false,
   "count": 5
 }

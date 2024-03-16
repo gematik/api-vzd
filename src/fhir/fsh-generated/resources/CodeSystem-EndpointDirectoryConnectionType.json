@@ -6,7 +6,6 @@
   "id": "EndpointDirectoryConnectionType",
   "title": "Codes for Endpoint.connectionType",
   "description": "CodeSystem TI specific connection types assigned to the Endpoints",
-  "version": "0.10.2",
   "url": "https://gematik.de/fhir/directory/CodeSystem/EndpointDirectoryConnectionType",
   "concept": [
     {
@@ -14,8 +13,12 @@
       "display": "TI-Messenger Endpoint"
     },
     {
-      "code": "tim-domain",
-      "display": "TI-Messenger domain name"
+      "code": "tim-fa",
+      "display": "TI-Messenger Funktionsaccount"
+    },
+    {
+      "code": "tim-bot",
+      "display": "TI-Messenger Chatbot"
     },
     {
       "code": "kim-1.0",
@@ -36,9 +39,14 @@
     {
       "code": "erp-supported",
       "display": "eRP Endpoint"
+    },
+    {
+      "code": "ident-eingangsabruf",
+      "display": "Ident Eingangsdatenabruf"
     }
   ],
   "publisher": "gematik GmbH",
+  "version": "0.11.0",
   "caseSensitive": false,
-  "count": 7
+  "count": 9
 }
