@@ -1,5 +1,5 @@
 CodeSystem: PractitionerProfessionOID
-Title: "CodeSystem for Practitioner's ProfessioiOID"
+Title: "CodeSystem for Practitioner's ProfessionOID"
 Description: """
 The codes for Practitioners based on Profession OIDs defined in [gemSpec_OID](https://fachportal.gematik.de/fachportal-import/files/gemSpec_OID_V3.10.0.pdf)
 """

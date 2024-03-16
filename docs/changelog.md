@@ -23,8 +23,7 @@
 - identifier[AlternativeTelematikID] hinzugefügt
 - type OrganizationTypeVS aufgeteilt in zwei ValueSets & Slices: type[providerType] & type[profession]
 - address `MS`
-- address `MS`
-- address muss AddressDeBasis entsprechen
+- address muss **AddressDeBasis** entsprechen
 - partOf `MS`
 
 ### PractitionerDirectory
