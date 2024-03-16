@@ -9,28 +9,6 @@
   "publisher": "gematik GmbH",
   "description": "Defines the data structure for medical, regulatory and technical \norganisations specific for german Healthcare and Telematics Infrastructure.",
   "fhirVersion": "4.0.1",
-  "mapping": [
-    {
-      "identity": "v2",
-      "uri": "http://hl7.org/v2",
-      "name": "HL7 v2 Mapping"
-    },
-    {
-      "identity": "rim",
-      "uri": "http://hl7.org/v3",
-      "name": "RIM Mapping"
-    },
-    {
-      "identity": "servd",
-      "uri": "http://www.omg.org/spec/ServD/1.0/",
-      "name": "ServD"
-    },
-    {
-      "identity": "w5",
-      "uri": "http://hl7.org/fhir/fivews",
-      "name": "FiveWs Pattern Mapping"
-    }
-  ],
   "kind": "resource",
   "abstract": false,
   "type": "Organization",
@@ -228,7 +206,7 @@
         "mustSupport": true,
         "binding": {
           "strength": "required",
-          "valueSet": "https://gematik.de/fhir/directory/ValueSet/OrganizationProviderTypeVS"
+          "valueSet": "https://gematik.de/fhir/directory/ValueSet/OrganizationTypeVS"
         }
       },
       {

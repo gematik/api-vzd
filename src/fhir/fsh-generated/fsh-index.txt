@@ -36,7 +36,7 @@ ValueSet-HealthcareServiceTypeVS.json                                   Healthca
 ValueSet-HealthcareSpecialityTypeVS.json                                HealthcareServiceSpecialityVS                             ValueSet    valuesets/HealthcareServiceSpecialityVS.fsh            1 - 7
 ValueSet-IHEXDShealthcareFacilityTypeCodePatientRelatedHealthcare.json  IHEXDShealthcareFacilityTypeCodePatientRelatedHealthcare  ValueSet    valuesets/HealthCareServiceCategory.fsh                3 - 62
 ValueSet-OrganizationProfessionOIDTypeVS.json                           OrganizationProfessionOIDTypeVS                           ValueSet    valuesets/OrganizationProfessionOIDTypeVS.fsh          1 - 4
-ValueSet-OrganizationProviderTypeVS.json                                OrganizationProviderTypeVS                                ValueSet    valuesets/OrganizationProviderTypeVS.fsh               1 - 4
+ValueSet-OrganizationTypeVS.json                                        OrganizationTypeVS                                        ValueSet    valuesets/OrganizationTypeVS.fsh                       1 - 4
 ValueSet-OrganizationVisibilityVS.json                                  OrganizationVisibilityVS                                  ValueSet    profiles/Extension.fsh                                 18 - 23
 ValueSet-OriginVS.json                                                  OriginVS                                                  ValueSet    valuesets/OriginVS.fsh                                 1 - 4
 ValueSet-PractitionerQualificationVS.json                               PractitionerQualificationVS                               ValueSet    valuesets/PractitionerQualificationVS.fsh              1 - 457

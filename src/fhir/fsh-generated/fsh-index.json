@@ -296,10 +296,10 @@
     "endLine": 4
   },
   {
-    "outputFile": "ValueSet-OrganizationProviderTypeVS.json",
-    "fshName": "OrganizationProviderTypeVS",
+    "outputFile": "ValueSet-OrganizationTypeVS.json",
+    "fshName": "OrganizationTypeVS",
     "fshType": "ValueSet",
-    "fshFile": "valuesets/OrganizationProviderTypeVS.fsh",
+    "fshFile": "valuesets/OrganizationTypeVS.fsh",
     "startLine": 1,
     "endLine": 4
   },
