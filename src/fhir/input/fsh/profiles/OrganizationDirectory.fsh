@@ -32,7 +32,7 @@ organisations specific for german Healthcare and Telematics Infrastructure.
   * ^slicing.discriminator.path = "$this"
   * ^slicing.rules = #open
 * type contains providerType 0..*  MS and profession 0..* MS
-* type[providerType] from OrganizationProviderTypeVS
+* type[providerType] from OrganizationTypeVS
 * type[profession] from OrganizationProfessionOIDTypeVS
 * name 1..1 MS
 * alias MS

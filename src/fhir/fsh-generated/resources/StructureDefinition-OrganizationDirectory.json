@@ -173,7 +173,7 @@
         "mustSupport": true,
         "binding": {
           "strength": "required",
-          "valueSet": "https://gematik.de/fhir/directory/ValueSet/OrganizationProviderTypeVS"
+          "valueSet": "https://gematik.de/fhir/directory/ValueSet/OrganizationTypeVS"
         }
       },
       {
