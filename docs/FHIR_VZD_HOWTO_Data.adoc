@@ -270,6 +270,20 @@ Example of a https://github.com/gematik/api-vzd/blob/ad0cc6e7c59842de4c2457f26fb
 |No
 |No
 
+|hoursOfOperation
+|Not used
+|0..*
+|This Element ist not used in the FHIR VZD.
+|No
+|No
+
+|availabilityExceptions
+|Not used
+|0..1
+|This Element ist not used in the FHIR VZD.
+|No
+|No
+
 |===
 Simplifier: https://simplifier.net/vzd-fhir-directory/locationdirectory[Location-Resource] +
 Example of a https://github.com/gematik/api-vzd/blob/ad0cc6e7c59842de4c2457f26fbecc1645ac0605/samples/FHIRseach/QueryPractitionerRole.adoc?plain=1#L10967[Location resource] +
