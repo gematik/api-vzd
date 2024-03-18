@@ -248,9 +248,17 @@
     {
       "code": "1.2.276.0.76.4.303",
       "display": "Ombudsstelle eines Kostenträgers"
+    },
+    {
+      "code": "1.2.276.0.76.4.304",
+      "display": "Betriebsstätte Augenoptiker und Hörakustiker"
+    },
+    {
+      "code": "1.2.276.0.76.4.306",
+      "display": "Betriebsstätte Orthopädieschuhmacher und Orthopädietechniker"
     }
   ],
   "publisher": "gematik GmbH",
   "caseSensitive": false,
-  "count": 60
+  "count": 62
 }
