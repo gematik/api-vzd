@@ -3,6 +3,7 @@ InstanceOf: EndpointDirectory
 Usage: #example
 Description: "Example of a Endpoint as to be found in gematik FHIR Directory"
 * meta.tag[Origin] = Origin#owner
+* extension[endpointVisibility].valueCoding = EndpointVisibilityCS#hide-versicherte
 * status = #active "Active"
 * connectionType = EndpointDirectoryConnectionType#tim "TI-Messenger Endpoint"
 * name = "Messenger"
@@ -71,6 +72,7 @@ Description: "Example of a Location as to be found in gematik FHIR Directory"
 * hoursOfOperation.openingTime = "08:00:00"
 * hoursOfOperation.closingTime = "18:00:00"
 * availabilityExceptions = "An Feiertagen geschlossen"
+* managingOrganization = Reference(OrganizationExample001)
 
 Instance: HealthcareServiceExample
 InstanceOf: HealthcareServiceDirectory
@@ -78,8 +80,10 @@ Usage: #example
 Description: "Example of an HealthcareService as to be found in gematik FHIR Directory"
 * meta.tag[Origin] = Origin#ldap
 * providedBy = Reference(OrganizationExample)
-* specialty[+] = $ÄrztlicheFachrichtungen#MZKH "Zahnmedizin"
-* specialty[+] = $ÄrztlicheFachrichtungen#ORAL "Oralchirurgie"
+* category = $PatientBezogenenGesundheitsversorgung#PRA "Arztpraxis"
+* type[+] = $ÄrztlicheFachrichtungen#MZKH "Zahnmedizin"
+* type[+] = $ÄrztlicheFachrichtungen#ORAL "Oralchirurgie"
+* specialty = ServiceType#92 "Paediatric Dentistry"
 * location[+] = Reference(LocationExample)
 * name = "Zahnmedizin"
 * telecom[+].system = $ContactPointSystem#phone "Phone"
@@ -98,3 +102,4 @@ Description: "Example of an HealthcareService as to be found in gematik FHIR Dir
 * availableTime.availableEndTime = "18:00:00"
 * availabilityExceptions = "An Feiertagen geschlossen"
 * endpoint[+] = Reference(EndpointExample)
+* characteristic = RoleCode#DELEGATOR "eRX Token Receiver"

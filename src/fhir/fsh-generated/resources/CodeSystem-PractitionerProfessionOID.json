@@ -4,9 +4,8 @@
   "content": "complete",
   "name": "PractitionerProfessionOID",
   "id": "PractitionerProfessionOID",
-  "title": "CodeSystem for Practitioner's ProfessioiOID",
+  "title": "CodeSystem for Practitioner's ProfessionOID",
   "description": "The codes for Practitioners based on Profession OIDs defined in [gemSpec_OID](https://fachportal.gematik.de/fachportal-import/files/gemSpec_OID_V3.10.0.pdf)",
-  "version": "0.10.2",
   "url": "https://gematik.de/fhir/directory/CodeSystem/PractitionerProfessionOID",
   "concept": [
     {
@@ -160,6 +159,7 @@
     }
   ],
   "publisher": "gematik GmbH",
+  "version": "0.11.0",
   "caseSensitive": false,
   "count": 37
 }

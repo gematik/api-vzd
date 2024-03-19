@@ -5,6 +5,7 @@ Description: """Defines the data structure for medical, regulatory and technical
 organisations specific for german Healthcare and Telematics Infrastructure.
 """
 * insert Meta
+* extension contains OrganizationVisibility named organizationVisibility 0..* MS
 * meta.tag 1.. MS
   * ^slicing.discriminator.type = #value
   * ^slicing.discriminator.path = "system"
@@ -27,7 +28,21 @@ organisations specific for german Healthcare and Telematics Infrastructure.
 * identifier contains IKNR 0..1 MS
 * identifier[IKNR] only $IdentifierIKNR
 * type 1..* MS
-* type from OrganizationTypeVS
+  * ^slicing.discriminator.type = #pattern
+  * ^slicing.discriminator.path = "$this"
+  * ^slicing.rules = #open
+* type contains providerType 0..*  MS and profession 0..* MS
+* type[providerType] from OrganizationTypeVS
+* type[profession] from OrganizationProfessionOIDTypeVS
 * name 1..1 MS
 * alias MS
 * contact MS
+* address MS
+  * use MS
+  * text MS
+  * line MS
+  * city MS
+  * state MS
+  * postalCode MS
+  * country MS
+* partOf MS

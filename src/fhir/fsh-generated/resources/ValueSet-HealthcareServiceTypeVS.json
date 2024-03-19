@@ -1,12 +1,12 @@
 {
   "resourceType": "ValueSet",
   "status": "active",
-  "name": "HealthcareServiceSpecialtyVS",
-  "id": "HealthcareServiceSpecialtyVS",
-  "description": "ValueSet for `HealthcareService.specialty`",
-  "version": "0.10.2",
-  "url": "https://gematik.de/fhir/directory/ValueSet/HealthcareServiceSpecialtyVS",
+  "name": "HealthcareServiceTypeVS",
+  "id": "HealthcareServiceTypeVS",
+  "description": "ValueSet for `HealthcareService.type`",
+  "url": "https://gematik.de/fhir/directory/ValueSet/HealthcareServiceTypeVS",
   "publisher": "gematik GmbH",
+  "version": "0.11.0",
   "compose": {
     "include": [
       {
@@ -403,6 +403,9 @@
             "display": "Psychotherapie"
           }
         ]
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/PharmacyTypeCS"
       }
     ]
   }
