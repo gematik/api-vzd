@@ -237,12 +237,28 @@
       "display": "KIM-Hersteller und -Anbieter"
     },
     {
+      "code": "1.2.276.0.76.4.292",
+      "display": "NCPeH Fachdienst"
+    },
+    {
       "code": "1.2.276.0.76.4.295",
       "display": "TIM-Hersteller und -Anbieter"
+    },
+    {
+      "code": "1.2.276.0.76.4.303",
+      "display": "Ombudsstelle eines Kostenträgers"
+    },
+    {
+      "code": "1.2.276.0.76.4.304",
+      "display": "Betriebsstätte Augenoptiker und Hörakustiker"
+    },
+    {
+      "code": "1.2.276.0.76.4.306",
+      "display": "Betriebsstätte Orthopädieschuhmacher und Orthopädietechniker"
     }
   ],
   "publisher": "gematik GmbH",
   "version": "0.11.1",
   "caseSensitive": false,
-  "count": 58
+  "count": 62
 }

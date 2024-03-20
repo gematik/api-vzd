@@ -148,10 +148,18 @@
     {
       "code": "1.2.276.0.76.4.277",
       "display": "Ernährungstherapeut/-in"
+    },
+    {
+      "code": "1.2.276.0.76.4.305",
+      "display": "Orthopädieschuhmacher/-in und Orthopädietechniker/-in"
+    },
+    {
+      "code": "1.2.276.0.76.4.308",
+      "display": "Augenoptiker/-in, Optometrist/-in und Hörakustiker/-in"
     }
   ],
   "publisher": "gematik GmbH",
   "version": "0.11.1",
   "caseSensitive": false,
-  "count": 35
+  "count": 37
 }

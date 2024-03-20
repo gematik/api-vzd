@@ -63,4 +63,8 @@ The codes for Organizations based on Profession OIDs defined in [gemSpec_OID](ht
 * #1.2.276.0.76.4.284 "Betriebsstätte Weitere Kostenträger im Gesundheitswesen"
 * #1.2.276.0.76.4.285 "Weitere Organisationen der Gesundheitsversorgung"
 * #1.2.276.0.76.4.286 "KIM-Hersteller und -Anbieter"
+* #1.2.276.0.76.4.292 "NCPeH Fachdienst"
 * #1.2.276.0.76.4.295 "TIM-Hersteller und -Anbieter"
+* #1.2.276.0.76.4.303 "Ombudsstelle eines Kostenträgers"
+* #1.2.276.0.76.4.304 "Betriebsstätte Augenoptiker und Hörakustiker"
+* #1.2.276.0.76.4.306 "Betriebsstätte Orthopädieschuhmacher und Orthopädietechniker"

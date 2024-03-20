@@ -41,3 +41,5 @@ The codes for Practitioners based on Profession OIDs defined in [gemSpec_OID](ht
 * #1.2.276.0.76.4.275 "Logopäde/Logopädin"
 * #1.2.276.0.76.4.276 "Podologe/Podologin"
 * #1.2.276.0.76.4.277 "Ernährungstherapeut/-in"
+* #1.2.276.0.76.4.305 "Orthopädieschuhmacher/-in und Orthopädietechniker/-in"
+* #1.2.276.0.76.4.308 "Augenoptiker/-in, Optometrist/-in und Hörakustiker/-in"
