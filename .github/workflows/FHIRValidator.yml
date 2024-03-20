@@ -47,4 +47,4 @@ jobs:
 
       - name: Check for Uncommitted Changes
         run: |
-          git diff --exit-code 'Resources/fsh-generated/resources'|| (echo "Es gibt Änderungen durch die Pipeline. Lokale Sushi Konfiguration prüfen!" && exit 1)
+          git diff --exit-code 'src/fhir/fsh-generated/resources'|| (echo "Es gibt Änderungen durch die Pipeline. Lokale Sushi Konfiguration prüfen!" && exit 1)
