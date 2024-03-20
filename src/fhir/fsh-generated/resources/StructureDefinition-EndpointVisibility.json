@@ -13,7 +13,7 @@
   "abstract": false,
   "context": [
     {
-      "expression": "Organization",
+      "expression": "Endpoint",
       "type": "element"
     }
   ],
