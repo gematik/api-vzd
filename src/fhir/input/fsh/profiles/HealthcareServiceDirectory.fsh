@@ -15,7 +15,7 @@ organisations specific for german Healthcare and Telematics Infrastructure.
 * id ..1 MS
 * providedBy 1..1 MS
 * category MS 
-* category from IHEXDShealthcareFacilityTypeCodePatientRelatedHealthcare
+* category from $IHEXDShealthcareFacilityTypeCodePatientRelatedHealthcare
 * type MS 
 * type from HealthcareServiceTypeVS (extensible)
 * specialty MS

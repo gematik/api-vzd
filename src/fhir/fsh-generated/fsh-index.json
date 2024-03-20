@@ -37,7 +37,7 @@
     "fshType": "CodeSystem",
     "fshFile": "codesystems/OrganizationProfessionOID.fsh",
     "startLine": 1,
-    "endLine": 66
+    "endLine": 70
   },
   {
     "outputFile": "CodeSystem-OrganizationProviderType.json",
@@ -85,7 +85,7 @@
     "fshType": "CodeSystem",
     "fshFile": "codesystems/PractitionerProfessionOID.fsh",
     "startLine": 1,
-    "endLine": 43
+    "endLine": 45
   },
   {
     "outputFile": "CodeSystem-Region.json",
@@ -278,14 +278,6 @@
     "fshFile": "valuesets/HealthcareServiceSpecialityVS.fsh",
     "startLine": 1,
     "endLine": 7
-  },
-  {
-    "outputFile": "ValueSet-IHEXDShealthcareFacilityTypeCodePatientRelatedHealthcare.json",
-    "fshName": "IHEXDShealthcareFacilityTypeCodePatientRelatedHealthcare",
-    "fshType": "ValueSet",
-    "fshFile": "valuesets/HealthCareServiceCategory.fsh",
-    "startLine": 3,
-    "endLine": 62
   },
   {
     "outputFile": "ValueSet-OrganizationProfessionOIDTypeVS.json",

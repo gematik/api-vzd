@@ -2,5 +2,6 @@ canonical: https://gematik.de/fhir/directory
 version: 0.11.1
 fhirVersion: 4.0.1
 dependencies:
-  de.basisprofil.r4: 1.4.0
+  de.basisprofil.r4: 1.5.0-ballot2
+  de.ihe-d.terminology: 3.0.0
 FSHOnly: true
