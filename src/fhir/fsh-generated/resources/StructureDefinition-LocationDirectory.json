@@ -2,7 +2,7 @@
   "resourceType": "StructureDefinition",
   "id": "LocationDirectory",
   "url": "https://gematik.de/fhir/directory/StructureDefinition/LocationDirectory",
-  "version": "0.11.0",
+  "version": "0.11.1",
   "name": "LocationDirectory",
   "title": "Location in gematik Directory",
   "status": "active",

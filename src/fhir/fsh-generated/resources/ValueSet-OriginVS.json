@@ -6,7 +6,7 @@
   "description": "ValueSet for `meta.tag[Origin]`",
   "url": "https://gematik.de/fhir/directory/ValueSet/OriginVS",
   "publisher": "gematik GmbH",
-  "version": "0.11.0",
+  "version": "0.11.1",
   "compose": {
     "include": [
       {

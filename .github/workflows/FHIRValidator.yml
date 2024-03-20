@@ -1,17 +1,14 @@
 # This is a basic workflow to help you get started with Actions
 
-name: FHIRValidator
+name: CI (FHIR Validation)
 
+# Controls when the action will run.
 on:
+  # Triggers the workflow on all push or pull request events but only for the main branches
   push:
-    paths:
-      - 'src/fhir/**'
-      - 'package.json'
-    branches-ignore:
-      - 'main**'
+    branches: [ main* ]
   pull_request:
-    branches:
-      - 'main**'
+    branches: [ main* ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -48,10 +45,6 @@ jobs:
           SUSHI_VERSION: 3.8.0
           EXPECTED_FAILS: VALIDATION_CONFORMANCE_DOTNET VALIDATION_CONFORMANCE_JAVA VALIDATION_EXAMPLES_JAVA
 
-      - name: Add & Commit
-        uses: EndBug/add-and-commit@v9
-        with:
-          committer_name: GitHub Actions Bot
-          committer_email: ActionBot@github.com
-          add: 'src/fhir/fsh-generated/resources/'
-          message: auto-generated FHIR files by GitHub Actions (CI FSH to FHIR Validation)
+      - name: Check for Uncommitted Changes
+        run: |
+          git diff --exit-code 'Resources/fsh-generated/resources'|| (echo "Es gibt Änderungen durch die Pipeline. Lokale Sushi Konfiguration prüfen!" && exit 1)
