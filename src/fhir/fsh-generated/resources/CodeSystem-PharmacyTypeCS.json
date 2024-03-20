@@ -9,7 +9,7 @@
   "url": "https://gematik.de/fhir/directory/CodeSystem/PharmacyTypeCS",
   "concept": [
     {
-      "code": "offizin-apotheke\"",
+      "code": "offizin-apotheke",
       "display": "Offizin-Apotheke"
     },
     {
