@@ -48,7 +48,7 @@ image::gematik_logo.svg[gematik,float="right"]
 [width="100%",cols="50%,50%",options="header",]
 |===
 
-|Version: |1.5.7
+|Version: |1.5.8
 
 |Referenzierung: |gemILF_Pflege_VZD
 |===
@@ -167,6 +167,13 @@ Neu für eGBR HBA und SMC-B |gematik
 - Kap. 3.3.2 Hinweis aufgenommen, dass Zertifikate vor Freischaltung eingetragen werden dürfen - DIR-497 +
 - Kap. 3.7 Prüfungen inklusive Status aktualisiert +
 - Kap. 3.3.4. Log Beschreibung erweitert.
+
+|gematik
+
+|1.5.8 |20.03.2024 |3.7 +
+4.4
+|
+- Simplifier Link für PharmacyTypeCS mit expliziter Version versehen
 
 |gematik
 
@@ -822,7 +829,7 @@ zu entnehmen sind.
 |V005 |umgesetzt |ja
 | Bei HBA muss specialization folgendes Format haben: urn:as:{OID Codesystem}:{Code}, wobei CodeSystems und Codes aus https://simplifier.net/vzd-fhir-directory/practitionerqualificationvs[PractitionerQualificationVS] zu entnehmen sind.
 |V006 |umgesetzt |ja
-| Überschreibt V004 für den Sektor der Apotheken. Bei SMC-B Einträgen füt Apotheken müssen für das Attribut specialization die Codes aus https://simplifier.net/vzd-fhir-directory/pharmacytypecs[PharmacyTypeCS] (nur Code, ohne CodeSystem) verwendet werden.
+| Überschreibt V004 für den Sektor der Apotheken. Bei SMC-B Einträgen füt Apotheken müssen für das Attribut specialization die Codes aus https://simplifier.net/packages/de.gematik.fhir.directory/0.10.2/files/2140635[PharmacyTypeCS] (nur Code, ohne CodeSystem) verwendet werden.
 // bisher V008  
 |V007 |umgesetzt |nein
 | displayName muss mindestens 2 UTF-8 Alphanummerische Zeichen enthalten
@@ -1255,7 +1262,7 @@ Dieses Attribut ist ein optionales zweites Namensattribut und wird befüllt bei 
 Für EU-Versandapotheken: EU-Versandapotheke
 |*domainID* |optional |Im Attribut domainID kann der Verweis auf die Mutter-Apotheke erfasst werden. +
 Die Inhalte werden durch die Kartenherausgeber gepflegt.
-|*specialization* |optional |Im Attribut specialization werden die ApothekenTypen (OffizinApo, Versand etc) erfasst. Hierfür wird das dafür definierten CodeSysteme https://simplifier.net/vzd-fhir-directory/pharmacytypecs[PharmacyTypeCS] genutzt . Die Inhalte werden durch die Kartenherausgeber gepflegt. +
+|*specialization* |optional |Im Attribut specialization werden die ApothekenTypen (OffizinApo, Versand etc) erfasst. Hierfür wird das dafür definierten CodeSysteme https://simplifier.net/packages/de.gematik.fhir.directory/0.10.2/files/2140635[PharmacyTypeCS] genutzt . Die Inhalte werden durch die Kartenherausgeber gepflegt. +
 Default für das Attribut ist LEER. LEER wird in der eRezept Anwendung gleich behandelt wie "Sonstige_offen". +
  +
 Bezeichner: Fachgebiet +
@@ -3432,7 +3439,7 @@ Dieses Attribut ist nicht in der flachen Liste enthalten.
 {empty} +
 {empty} +
 
-=== gematik – Handwerkskammern – Nichtärztliche Institutionen (SMC-B-Eintrag)
+=== Handwerkskammern – Nichtärztliche Institutionen (SMC-B-Eintrag)
 Einträge für Betriebe der Gesundheitshandwerke werden im Verzeichnisdienst durch den Anbieter SMC-B angelegt. Der Anbieter SMC-B trägt in das Attribut holder den Wert der jeweils zuständigen Handwerkskammer und seine eigene clientID ein. Damit sind diese Einträge durch Handwerkskammer-Clients und die Clients des Anbieters SMC-B änderbar. +
  +
 Tabelle 18: Tab_VZD_Datenbeschreibung_der_SMC-B_HWK
@@ -3602,7 +3609,7 @@ Dieses Attribut ist nicht in der flachen Liste enthalten.
 {empty} +
 
 
-=== gematik – Handwerkskammern – Weitere Gesundheitsfachberufe (BA-Eintrag)
+=== Handwerkskammern – Weitere Gesundheitsfachberufe (BA-Eintrag)
 Einträge für Betriebe der Gesundheitshandwerke werden im Verzeichnisdienst durch den Anbieter HBA angelegt. Der Anbieter HBA trägt in das Attribut holder den Wert der jeweils zuständigen Handwerkskammer und seine eigene clientID ein. Damit sind diese Einträge durch Handwerkskammer-Clients und die Clients des Anbieters HBA änderbar. +
  +
 Tabelle 19: Tab_VZD_Datenbeschreibung_BA_HWK
@@ -3663,9 +3670,9 @@ Hörakustiker: +
 urn:as:1.3.6.1.4.1.19376.3.276.1.5.11:122 +
 Orthopädieschuhmacher: +
 urn:as:1.3.6.1.4.1.19376.3.276.1.5.11:129 +
-Betriebsstätte Orthopädietechniker: +
+Orthopädietechniker: +
 urn:as:1.3.6.1.4.1.19376.3.276.1.5.11:130 +
-Betriebsstätte Zahntechniker: +
+Zahntechniker: +
 urn:as:1.3.6.1.4.1.19376.3.276.1.5.11:131 +
 
 |*maxKOMLEadr* |optional |Maximale Anzahl von Mail-Adressen in den KOM-LE-Fachdaten. +
