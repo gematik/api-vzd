@@ -26,7 +26,7 @@ Extension: EndpointVisibility
 Id: EndpointVisibility
 Title: "EndpointVisibility"
 Description: "Visibility of an Endpoint in the FHIR-VZD. This Extensions includes codes of use-cases im which this Endpoint SHALL not be visible."
-Context: Organization
+Context: Endpoint
 * insert Meta
 * value[x] MS
 * value[x] only Coding

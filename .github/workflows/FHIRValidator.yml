@@ -1,15 +1,14 @@
 # This is a basic workflow to help you get started with Actions
 
-name: FHIRValidator
+name: CI (FHIR Validation)
 
+# Controls when the action will run.
 on:
+  # Triggers the workflow on all push or pull request events but only for the main branches
   push:
-    branches:
-      - main
-      - 'feature/**'
-    paths: 
-      - 'src/fhir/**'
-      - 'package.json'
+    branches: [ main* ]
+  pull_request:
+    branches: [ main* ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -30,7 +29,7 @@ jobs:
       # Java and .NET are already installed on ubuntu-latest
         
       - name: Firely.Terminal (GitHub Actions)
-        uses: FirelyTeam/firely-terminal-pipeline@v0.3.5
+        uses: FirelyTeam/firely-terminal-pipeline@v0.4.1
         with:
           PATH_TO_CONFORMANCE_RESOURCES: src/fhir/fsh-generated/resources/
           #PATH_TO_EXAMPLES: Examples
@@ -43,9 +42,9 @@ jobs:
           SIMPLIFIER_PASSWORD: ${{ secrets.SIMPLIFIER_PASSWORD }}
           SUSHI_ENABLED: true
           SUSHI_OPTIONS: src/fhir/
+          SUSHI_VERSION: 3.8.0
           EXPECTED_FAILS: VALIDATION_CONFORMANCE_DOTNET VALIDATION_CONFORMANCE_JAVA VALIDATION_EXAMPLES_JAVA
 
-      - name: Add & Commit
-        uses: EndBug/add-and-commit@v7
-        with:
-          add: 'src/fhir/fsh-generated/resources/'
+      - name: Check for Uncommitted Changes
+        run: |
+          git diff --exit-code 'src/fhir/fsh-generated/resources'|| (echo "Es gibt Änderungen durch die Pipeline. Lokale Sushi Konfiguration prüfen!" && exit 1)

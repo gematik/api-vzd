@@ -6,6 +6,6 @@ Description: "Pharmacy type codes of accessability for patients"
 * ^version = "1.0"
 * ^caseSensitive = true
 * ^content = #complete
-* #offizin-apotheke" "Offizin-Apotheke"
+* #offizin-apotheke "Offizin-Apotheke"
 * #krankenhausversorgende-apotheke "Krankenhausversorgende Apotheke"
 * #bundeswehrapotheke "Bundeswehrapotheke"

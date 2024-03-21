@@ -6,13 +6,13 @@ Alias: $HL7EndpointConnectionType = http://terminology.hl7.org/CodeSystem/endpoi
 
 Alias: $IHEXDSauthorSpeciality = http://ihe-d.de/ValueSets/IHEXDSauthorSpeciality
 Alias: $Facharzttitel = urn:oid:1.2.276.0.76.5.514
-Alias: $ZahnärztlicheAutoren = urn:oid:1.2.276.0.76.5.492
-Alias: $ÄrztlicheBerufsvarianten = urn:oid:1.2.276.0.76.5.493
-Alias: $NichtÄrztlicheAutoren = urn:oid:1.3.6.1.4.1.19376.3.276.1.5.11
+Alias: $ZahnaerztlicheAutoren = urn:oid:1.2.276.0.76.5.492
+Alias: $AerztlicheBerufsvarianten = urn:oid:1.2.276.0.76.5.493
+Alias: $NichtAerztlicheAutoren = urn:oid:1.3.6.1.4.1.19376.3.276.1.5.11
 
-Alias: $ÄrztlicheFachrichtungen = urn:oid:1.3.6.1.4.1.19376.3.276.1.5.4
-Alias: $NichtÄrztlicheFachrichtungen = urn:oid:1.3.6.1.4.1.19376.3.276.1.5.5
-Alias: $ZahnärztlicheFachrichtungen = urn:oid:1.2.276.0.76.5.494
+Alias: $AerztlicheFachrichtungen = urn:oid:1.3.6.1.4.1.19376.3.276.1.5.4
+Alias: $NichtAerztlicheFachrichtungen = urn:oid:1.3.6.1.4.1.19376.3.276.1.5.5
+Alias: $ZahnaerztlicheFachrichtungen = urn:oid:1.2.276.0.76.5.494
 
 // Identifiers
 // TelematikID
@@ -41,3 +41,4 @@ Alias: $ContactPointUse = http://hl7.org/fhir/contact-point-use
 Alias: $ServiceProvisionConditions = http://terminology.hl7.org/CodeSystem/service-provision-conditions
 Alias: $CommonLanguages = urn:ietf:bcp:47
 Alias: $sct = http://snomed.info/sct
+Alias: $IHEXDShealthcareFacilityTypeCodePatientRelatedHealthcare = http://ihe-d.de/ValueSets/IHEXDShealthcareFacilityTypeCodePatientRelatedHealthcare
