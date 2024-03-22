@@ -76,19 +76,26 @@ This part of the directory contains information about persons. +
  |*Sync from LDAP-VZD* +
  |*Changable by owner* +
 
-.2+|identifier 
+|id 
+|Logical id of this artifact 
+|0..1 
+|The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes. +
+ The only time that a resource does not have an id is when it is being submitted to the server using a create operation. 
+|No
+|No
+
+.1+|identifier 
 |Telematik-ID 
 |1..1 
 |According FHIR Profil https://simplifier.net/packages/de.basisprofil.r4/1.3.2/files/564537[Identifier-Telematik-Id] 
 |Yes
 |No
 
-
-|LDAP UID 
-|1..1 
-|The LDAP UID of the data record is synchronized from the LDAP VZD. 
-|Yes
-|No
+// |LDAP UID 
+// |1..1 
+// |The LDAP UID of the data record is synchronized from the LDAP VZD. 
+// |Yes
+// |No
 
 |active 
 |State of the resource 
@@ -139,7 +146,6 @@ This part of the directory contains information about persons. +
 |Yes
 |No
 
-
 |professional group 
 |0..* 
 |According to https://simplifier.net/vzd-fhir-directory/practitionerprofessionoid[ProfessionOid]
@@ -168,21 +174,28 @@ Example of a https://github.com/gematik/api-vzd/blob/ad0cc6e7c59842de4c2457f26fb
  |*Sync from LDAP-VZD* +
  |*Changable by owner* +
 
-.2+|identifier 
-|LDAP UID 
-|1..1 
-|The LDAP UID of the data record is taken from the LDAP VZD. +
- The owner cannot add any further identifiers with the ldapUid system 
-|Yes
+|id 
+|Logical id of this artifact 
+|0..1 
+|The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes. +
+ The only time that a resource does not have an id is when it is being submitted to the server using a create operation. 
+|No
 |No
 
+// .2+|identifier 
+// |LDAP UID 
+// |1..1 
+// |The LDAP UID of the data record is taken from the LDAP VZD. +
+//  The owner cannot add any further identifiers with the ldapUid system 
+// |Yes
+// |No
 
-|Individual identifier 
-|0..* 
-|Owners can optionally add additional individual identifiers. +
- The owner is not allowed to add any identifier with the TelematikId or ldapUid system. 
-|No
-|Yes
+// |Individual identifier 
+// |0..* 
+// |Owners can optionally add additional individual identifiers. +
+//  The owner is not allowed to add any identifier with the TelematikId or ldapUid system. 
+// |No
+// |Yes
 
 |practitioner
 |Reference to Practitioner resource
@@ -334,22 +347,21 @@ Example of a https://github.com/gematik/api-vzd/blob/ad0cc6e7c59842de4c2457f26fb
  |*Sync from LDAP-VZD* +
  |*Changable by owner* +
 
-.2+|identifier 
-|LDAP UID 
-|1..1 
-|Only applies to KIM address mapping endpoints: +
- The LDAP UID of the data record is taken from the LDAP VZD. +
- The owner cannot add any further identifiers with the ldapUid system 
-|Yes
-|No
+// .2+|identifier 
+// |LDAP UID 
+// |1..1 
+// |Only applies to KIM address mapping endpoints: +
+//  The LDAP UID of the data record is taken from the LDAP VZD. +
+//  The owner cannot add any further identifiers with the ldapUid system 
+// |Yes
+// |No
 
-
-|Individual identifier 
-|0..* 
-|Owners can optionally add additional individual identifiers. +
- The owner is not allowed to add any identifier with the TelematikId or ldapUid system. 
-|No
-|Yes
+// |Individual identifier 
+// |0..* 
+// |Owners can optionally add additional individual identifiers. +
+//  The owner is not allowed to add any identifier with the TelematikId or ldapUid system. 
+// |No
+// |Yes
 
 |status
 |state
@@ -433,16 +445,18 @@ This part of the directory contains information about organizations. +
  |*Sync from LDAP-VZD* +
  |*Changable by owner* +
 
+|id 
+|Logical id of this artifact 
+|0..1 
+|The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes. +
+ The only time that a resource does not have an id is when it is being submitted to the server using a create operation. 
+|No
+|No
+
 .5+|identifier 
 |TelematikID 
 |1..1 
 |According FHIR Profil https://simplifier.net/packages/de.basisprofil.r4/1.3.2/files/564537[Identifier-Telematik-Id] 
-|Yes
-|No
-
-|LDAP UID 
-|1..1 
-|The LDAP UID of the data record is synchronized from the LDAP VZD. 
 |Yes
 |No
 
@@ -551,21 +565,28 @@ Example of a https://github.com/gematik/api-vzd/blob/122ef63f9e76689261c9195e09c
  |*Sync from LDAP-VZD* +
  |*Changable by owner* +
 
-.2+|identifier 
-|LDAP UID 
-|1..1 
-|The LDAP UID of the data record is taken from the LDAP VZD. +
- The owner cannot add any further identifiers with the ldapUid system 
-|Yes
+|id 
+|Logical id of this artifact 
+|0..1 
+|The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes. +
+ The only time that a resource does not have an id is when it is being submitted to the server using a create operation. 
+|No
 |No
 
+// .2+|identifier 
+// |LDAP UID 
+// |1..1 
+// |The LDAP UID of the data record is taken from the LDAP VZD. +
+//  The owner cannot add any further identifiers with the ldapUid system 
+// |Yes
+// |No
 
-|Individual identifier 
-|0..* 
-|Owners can optionally add additional individual identifiers. +
- The owner is not allowed to add any identifier with the TelematikId or ldapUid system. 
-|No
-|Yes
+// |Individual identifier 
+// |0..* 
+// |Owners can optionally add additional individual identifiers. +
+//  The owner is not allowed to add any identifier with the TelematikId or ldapUid system. 
+// |No
+// |Yes
 
 |providedBy
 |Organization
