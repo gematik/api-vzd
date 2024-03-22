@@ -404,7 +404,7 @@ Example of a https://github.com/gematik/api-vzd/blob/ad0cc6e7c59842de4c2457f26fb
 |meta.tag
 |Origin
 |1..1
-|
+|Is set to "owner" for all endpoints, created by the owner of the VZD entry.
 |No
 |No (Must be set to "owner" for owner resources)
 
@@ -453,7 +453,7 @@ This part of the directory contains information about organizations. +
 |No
 |No
 
-.5+|identifier 
+.4+|identifier 
 |TelematikID 
 |1..1 
 |According FHIR Profil https://simplifier.net/packages/de.basisprofil.r4/1.3.2/files/564537[Identifier-Telematik-Id] 
