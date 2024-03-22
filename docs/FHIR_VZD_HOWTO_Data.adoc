@@ -197,6 +197,13 @@ Example of a https://github.com/gematik/api-vzd/blob/ad0cc6e7c59842de4c2457f26fb
 |No
 |No
 
+|meta.tag
+|Origin
+|1..1
+|If the resource was synchronized from LDAP, meta.tag is automatically set to "ldap".
+|No
+|No (Must be set to "owner" for owner resources)
+
 // .2+|identifier 
 // |LDAP UID 
 // |1..1 
@@ -240,26 +247,6 @@ Example of a https://github.com/gematik/api-vzd/blob/ad0cc6e7c59842de4c2457f26fb
 |No (TIM-address)
 |No
 
-|meta.tag
-|Origin
-|1..1
-|If the resource was synchronized from LDAP, meta.tag is automatically set to "ldap".
-|No
-|No (Must be set to "owner" for owner resources)
-
-|meta.security
-|OwnerId
-|0..*
-|OwnerId of the owner. Is set automatically by the system based on the Telematics ID of the owner token.
-|No
-|No
-
-|meta.security
-|Holder
-|0..*
-|Holder attributes of the card issuer
-|Yes
-|No
 
 |===
 Simplifier: https://simplifier.net/vzd-fhir-directory/practitionerroledirectory[PractitionerRole-Resource] +
@@ -281,6 +268,13 @@ Example of a https://github.com/gematik/api-vzd/blob/ad0cc6e7c59842de4c2457f26fb
 |0..1 
 |The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes. +
  The only time that a resource does not have an id is when it is being submitted to the server using a create operation. 
+|No
+|No
+
+|meta.tag
+|Origin
+|1..1
+|Is set to "ldap" for all synchronized addresses from LDAP.
 |No
 |No
 
@@ -323,13 +317,6 @@ Example of a https://github.com/gematik/api-vzd/blob/ad0cc6e7c59842de4c2457f26fb
 |Not used 
 |0..1 
 |This Element ist not used in the FHIR VZD.
-|No
-|No
-
-|meta.tag
-|Origin
-|1..1
-|Is set to "ldap" for all synchronized addresses from LDAP.
 |No
 |No
 
@@ -385,12 +372,12 @@ Example of a https://github.com/gematik/api-vzd/blob/ad0cc6e7c59842de4c2457f26fb
 |No
 |No (Must be set to "owner" for owner resources)
 
-|meta.security
-|OwnerId
-|0..*
-|OwnerId of the owner. Is set automatically by the system based on the Telematics ID of the owner token.
-|No
-|No
+// |meta.security
+// |OwnerId
+// |0..*
+// |OwnerId of the owner. Is set automatically by the system based on the Telematics ID of the owner token.
+// |No
+// |No
 
 .1+|extension 
 |endpointVisibility 
@@ -484,6 +471,21 @@ This part of the directory contains information about organizations. +
 |No
 |No
 
+|meta.tag
+|Origin
+|1..1
+|If the resource was synchronized from LDAP, meta.tag is automatically set to "ldap".
+|No
+|No (Must be set to "owner" for owner resources)
+
+.1+|extension 
+|organizationVisibility 
+|0..* 
+|Visibility of an Organization in the FHIR-VZD. This Extensions includes codes of use-cases in which this Organization SHALL not be visible. +
+For example it can be used to hide the organization in the eRezeptApp.
+|No
+|Yes
+
 .4+|identifier 
 |TelematikID 
 |1..1 
@@ -515,14 +517,6 @@ This part of the directory contains information about organizations. +
 |Indicates whether the organization is active or not. Inactive resources may not be found in the /search interface.
 |Yes
 |No
-
-.1+|extension 
-|organizationVisibility 
-|0..* 
-|Visibility of an Organization in the FHIR-VZD. This Extensions includes codes of use-cases in which this Organization SHALL not be visible. +
-For example it can be used to hide the organization in the eRezeptApp.
-|No
-|Yes
 
 .2+|type 
 |providerType 
@@ -567,19 +561,19 @@ For example it can be used to hide the organization in the eRezeptApp.
 |No
 |Yes
 
+|partOf  
+|Not used  
+|0..1 
+|Not yet used in the FHIR VZD  
+|No
+|Yes
+
 |contact  
 |Contact for the organization for a certain purpose  
 |0..* 
 |Where multiple contacts for the same purpose are provided there is a standard extension that can be used to determine which one is the preferred contact to use.
 |No
 |Yes
-
-|meta.tag
-|Origin
-|1..1
-|If the resource was synchronized from LDAP, meta.tag is automatically set to "ldap".
-|No
-|No (Must be set to "owner" for owner resources)
 
 |===
 Simplifier: https://simplifier.net/vzd-fhir-directory/organizationdirectory[Organization-Resource] +
@@ -603,6 +597,27 @@ Example of a https://github.com/gematik/api-vzd/blob/122ef63f9e76689261c9195e09c
  The only time that a resource does not have an id is when it is being submitted to the server using a create operation. 
 |No
 |No
+
+|meta.tag
+|Origin
+|1..1
+|If the resource was synchronized from LDAP, meta.tag is automatically set to "ldap".
+|Yes (Set to "ldap" for synchronized resources)
+|No (Must be set to "owner" for owner resources)
+
+// |meta.security
+// |OwnerId
+// |0..*
+// |OwnerId of the owner. Is set automatically by the system based on the Telematics ID of the owner token.
+// |No
+// |No
+
+// |meta.security
+// |Holder
+// |0..*
+// |Holder attributes of the card issuer
+// |Yes
+// |No
 
 // .2+|identifier 
 // |LDAP UID 
@@ -635,6 +650,13 @@ For the eRezept functionality the code DELEGATOR	(display: eRX Token Receiver) m
 |Yes
 |No
 
+|type
+|Type of service that may be delivered or performed
+|0..*
+|Type of service according to HealthcareServiceTypeVS https://simplifier.net/vzd-fhir-directory/healthcareservicetypevs
+|Yes
+|No
+
 |speciality
 |speciality
 |0..*
@@ -658,6 +680,42 @@ For the eRezept functionality the code DELEGATOR	(display: eRX Token Receiver) m
 |Description of service as presented to a consumer while searching.
 |No
 |Yes
+
+|telecom  
+|A contact detail for the organization  
+|0..* 
+|Not used in the FHIR VZD.
+|No
+|No
+
+|serviceProvisionCode  
+|Conditions under which service is available/offered  
+|0..* 
+|Not used in the FHIR VZD.
+|No
+|No
+
+|characteristic  
+|Collection of characteristics (attributes)  
+|0..* 
+|According to https://simplifier.net/vzd-fhir-directory/healthcareservice-characteristic-vs +
+E.g. used for the eRezept (eRX Token Receiver).
+|No
+|No
+
+|communication  
+|The language that this service is offered in  
+|0..* 
+|
+|No
+|No
+
+|appointmentRequired  
+|If an appointment is required for access to this service  
+|0..1 
+|
+|No
+|No
 
 |availableTime
 |
@@ -708,27 +766,6 @@ For the eRezept functionality the code DELEGATOR	(display: eRX Token Receiver) m
  One endpoint is created per KIM-/TIM-address. 
 |No (TIM-address)
 |Yes
-
-|meta.tag
-|Origin
-|1..1
-|If the resource was synchronized from LDAP, meta.tag is automatically set to "ldap".
-|Yes (Set to "ldap" for synchronized resources)
-|No (Must be set to "owner" for owner resources)
-
-|meta.security
-|OwnerId
-|0..*
-|OwnerId of the owner. Is set automatically by the system based on the Telematics ID of the owner token.
-|No
-|No
-
-|meta.security
-|Holder
-|0..*
-|Holder attributes of the card issuer
-|Yes
-|No
 
 |===
 Simplifier: https://simplifier.net/vzd-fhir-directory/healthcareservicedirectory[HealthcareService-Resource] +
