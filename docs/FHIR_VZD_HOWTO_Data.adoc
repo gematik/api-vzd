@@ -543,37 +543,37 @@ For example it can be used to hide the organization in the eRezeptApp.
 |alias  
 |Alternative name of the Organization  
 |0..* 
-|Is synchronized from LDAP VZD.
-|Yes
+|Not used in the FHIR VZD.
+|No
 |No
 
 |telecom  
 |A contact detail for the organization  
 |0..* 
-|Human contact for the organization.
+|Not used in the FHIR VZD.
 |No
-|Yes
+|No
 
 |address  
 |Not used  
 |0..* 
 |Not used in the FHIR VZD  
 |No
-|Yes
+|No
 
 |partOf  
 |Not used  
 |0..1 
-|Not yet used in the FHIR VZD  
+|Not yet used in the FHIR VZD.  
 |No
-|Yes
+|No
 
 |contact  
 |Contact for the organization for a certain purpose  
 |0..* 
-|Where multiple contacts for the same purpose are provided there is a standard extension that can be used to determine which one is the preferred contact to use.
+|Not used in the FHIR VZD.
 |No
-|Yes
+|No
 
 |===
 Simplifier: https://simplifier.net/vzd-fhir-directory/organizationdirectory[Organization-Resource] +
