@@ -20,14 +20,14 @@ Organization-OrganizationExample001.json             OrganizationExample001     
 Practitioner-TIPractitionerExample001.json           PractitionerExample001               Instance    examples/PractitionerExample001.fsh                    1 - 18
 Practitioner-TIPractitionerExampleDentist.json       PractitionerExampleDentist           Instance    examples/Examples001.fsh                               14 - 27
 PractitionerRole-PractitionerRoleExample.json        PractitionerRoleExample              Instance    examples/Examples001.fsh                               29 - 36
-StructureDefinition-EndpointDirectory.json           EndpointDirectory                    Profile     profiles/EndpointDirectory.fsh                         1 - 24
+StructureDefinition-EndpointDirectory.json           EndpointDirectory                    Profile     profiles/EndpointDirectory.fsh                         1 - 25
 StructureDefinition-EndpointVisibility.json          EndpointVisibility                   Extension   profiles/Extension.fsh                                 25 - 33
 StructureDefinition-HealthcareServiceDirectory.json  HealthcareServiceDirectory           Profile     profiles/HealthcareServiceDirectory.fsh                1 - 36
 StructureDefinition-LocationDirectory.json           LocationDirectory                    Profile     profiles/LocationDirectory.fsh                         1 - 39
-StructureDefinition-OrganizationDirectory.json       OrganizationDirectory                Profile     profiles/OrganizationDirectory.fsh                     1 - 48
+StructureDefinition-OrganizationDirectory.json       OrganizationDirectory                Profile     profiles/OrganizationDirectory.fsh                     1 - 49
 StructureDefinition-OrganizationVisibility.json      OrganizationVisibility               Extension   profiles/Extension.fsh                                 1 - 9
 StructureDefinition-PractitionerDirectory.json       PractitionerDirectory                Profile     profiles/PractitionerDirectory.fsh                     1 - 39
-StructureDefinition-PractitionerRoleDirectory.json   PractitionerRoleDirectory            Profile     profiles/PractitionerRoleDirectory.fsh                 1 - 15
+StructureDefinition-PractitionerRoleDirectory.json   PractitionerRoleDirectory            Profile     profiles/PractitionerRoleDirectory.fsh                 1 - 17
 ValueSet-AddressStateVS.json                         AddressStateVS                       ValueSet    valuesets/AddressStateVS.fsh                           1 - 4
 ValueSet-EndpointConnectionTypeVS.json               EndpointConnectionTypeVS             ValueSet    valuesets/EndpointConnectionTypeVS.fsh                 1 - 5
 ValueSet-EndpointPayloadTypeVS.json                  EndpointPayloadTypeVS                ValueSet    valuesets/EndpointPayloadTypeVS.fsh                    1 - 4

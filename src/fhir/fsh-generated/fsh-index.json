@@ -173,7 +173,7 @@
     "fshType": "Profile",
     "fshFile": "profiles/EndpointDirectory.fsh",
     "startLine": 1,
-    "endLine": 24
+    "endLine": 25
   },
   {
     "outputFile": "StructureDefinition-EndpointVisibility.json",
@@ -205,7 +205,7 @@
     "fshType": "Profile",
     "fshFile": "profiles/OrganizationDirectory.fsh",
     "startLine": 1,
-    "endLine": 48
+    "endLine": 49
   },
   {
     "outputFile": "StructureDefinition-OrganizationVisibility.json",
@@ -229,7 +229,7 @@
     "fshType": "Profile",
     "fshFile": "profiles/PractitionerRoleDirectory.fsh",
     "startLine": 1,
-    "endLine": 15
+    "endLine": 17
   },
   {
     "outputFile": "ValueSet-AddressStateVS.json",

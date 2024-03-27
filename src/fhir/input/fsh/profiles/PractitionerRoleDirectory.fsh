@@ -13,3 +13,5 @@ Title: "PractitionerRole in gematik Directory"
 * practitioner 1..1 MS
 * location MS
 * endpoint MS
+* healthcareService MS
+* organization MS
