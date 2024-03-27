@@ -2,7 +2,7 @@
   "resourceType": "StructureDefinition",
   "id": "EndpointDirectory",
   "url": "https://gematik.de/fhir/directory/StructureDefinition/EndpointDirectory",
-  "version": "0.11.1",
+  "version": "0.11.2",
   "name": "EndpointDirectory",
   "title": "Endpoint in gematik Directory",
   "status": "active",
@@ -16,6 +16,11 @@
   "derivation": "constraint",
   "differential": {
     "element": [
+      {
+        "id": "Endpoint.id",
+        "path": "Endpoint.id",
+        "mustSupport": true
+      },
       {
         "id": "Endpoint.meta.tag",
         "path": "Endpoint.meta.tag",

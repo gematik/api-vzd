@@ -12,7 +12,7 @@ organisations specific for german Healthcare and Telematics Infrastructure.
 * meta.tag contains Origin 1..1 MS
 * meta.tag[Origin] from OriginVS
 * meta.tag[Origin].system = "https://gematik.de/fhir/directory/CodeSystem/Origin"
-* id 0..1 MS
+* id MS
 * name MS
 * description MS
 * address MS

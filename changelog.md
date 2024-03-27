@@ -1,5 +1,16 @@
 # Changelog
 
+## 2024-03-16 - Version 0.11.2 & 0.11.1
+
+- fix: dependency basisprofile auf stable version: 1.4.0 (war 1.5.0-ballot)
+- fix: id MS auf allen Profilen
+
+### PractitionerRoleDirectory
+- feat: healthcareService & Organization MS
+
+### Extensions
+- fix EndpointVisibility.context war falsch gesetzt, jetzt korrekt (Organization -> Enpoint)
+
 ## 2024-03-16 - Version 0.11.0
 
 ### EndpointDirectory
