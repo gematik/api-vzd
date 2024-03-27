@@ -240,6 +240,13 @@ Example of a https://github.com/gematik/api-vzd/blob/ad0cc6e7c59842de4c2457f26fb
 |No
 |Yes
 
+|organization
+|Reference to organization resource
+|0..*
+|Not yet used in the FHIR VZD.
+|No
+|No
+
 |endpoint
 |Reference to endpoint resource
 |0..*
@@ -604,20 +611,6 @@ Example of a https://github.com/gematik/api-vzd/blob/122ef63f9e76689261c9195e09c
 |If the resource was synchronized from LDAP, meta.tag is automatically set to "ldap".
 |Yes (Set to "ldap" for synchronized resources)
 |No (Must be set to "owner" for owner resources)
-
-// |meta.security
-// |OwnerId
-// |0..*
-// |OwnerId of the owner. Is set automatically by the system based on the Telematics ID of the owner token.
-// |No
-// |No
-
-// |meta.security
-// |Holder
-// |0..*
-// |Holder attributes of the card issuer
-// |Yes
-// |No
 
 // .2+|identifier 
 // |LDAP UID 
