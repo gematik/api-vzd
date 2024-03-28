@@ -33,7 +33,7 @@ image::gematik_logo.svg[gematik,float="right"]
  |*Editing* +
 
 |0.0.1 |22.09.23 | |Initial document |gematik
-|0.0.2 |22.03.24 | |Update for eRezept |gematik
+|0.0.2 |28.03.24 | |Update for eRezept |gematik
 |===
 
 == Classification of the document
@@ -638,9 +638,8 @@ Example of a https://github.com/gematik/api-vzd/blob/122ef63f9e76689261c9195e09c
 |category
 |Category of service being performed or delivered
 |1..1
-|A category of the service(s) that could be provided. +
-For the eRezept functionality the code DELEGATOR	(display: eRX Token Receiver) may be contained.
-|Yes
+|Not used in the FHIR VZD.
+|No
 |No
 
 |type
@@ -771,4 +770,120 @@ See <<Location-Resource>>
 === Endpoint-Resource in organization directory
 See <<Endpoint-Resource>>
 
+== Use of the data model in applications
+=== eRezept
+Overview of the special data for the eRezept application.
+
+==== Kind of organization/pharmacie
+The kind of organization is stored in the Organization.type attribute. For pharmacies the following codes from https://simplifier.net/vzd-fhir-directory/organizationprofessionoid[OrganizationProfessionOID] are relevant:
+
+- 1.2.276.0.76.4.54	Öffentliche Apotheke
+- 1.2.276.0.76.4.55	Krankenhausapotheke
+- 1.2.276.0.76.4.56	Bundeswehrapotheke
+
+==== Services of the pharmacie
+The services of the pharmacie is stored in the HealthcareService.specialty attribute. For pharmacies the following codes from https://simplifier.net/vzd-fhir-directory/pharmacyhealthcarespecialitycs[PharmacyHealthcareSpecialityCS] are relevant. +
+ +
+The ability of the pharmacie to receive eRX Token is encoded in an attribute HealthcareService.characteristic. The codes are contained here https://simplifier.net/vzd-fhir-directory/healthcareservice-characteristic-vs[HealthCareServiceCharacteristicVS] +
+ +
+*Note*: 
+An organization can create additional HealthcareServices itself. The HealthcareService with the pharmacie services can be recognized by the attribute "meta.tag" = "ldap".
+
+==== opening hours
+The opening times of pharmacies are stored in the HealthcareService.availableTime attribute. 
+Exceptions to these opening times are described in HealthcareService.availabilityExceptions. +
+ +
+*Note*: An organization can create additional HealthcareServices itself. The HealthcareService with the opening hours of the pharmacy can be recognized by the attribute "meta.tag" = "ldap". +
+ +
+The opening times attributes in the Location resources are not used. +
+ +
+Example for opening times
+
+----
+"availableTime": [
+        {
+            "daysOfWeek": [
+                "mon"
+            ],
+            "availableStartTime": "08:00:00",
+            "availableEndTime": "13:00:00"
+        },
+        {
+            "daysOfWeek": [
+                "mon"
+            ],
+            "availableStartTime": "14:30:00",
+            "availableEndTime": "18:30:00"
+        },
+        {
+            "daysOfWeek": [
+                "tue"
+            ],
+            "availableStartTime": "08:00:00",
+            "availableEndTime": "13:00:00"
+        },
+        {
+            "daysOfWeek": [
+                "tue"
+            ],
+            "availableStartTime": "14:30:00",
+            "availableEndTime": "18:30:00"
+        },
+        {
+            "daysOfWeek": [
+                "wed"
+            ],
+            "availableStartTime": "08:00:00",
+            "availableEndTime": "13:00:00"
+        },
+        {
+            "daysOfWeek": [
+                "thu"
+            ],
+            "availableStartTime": "08:00:00",
+            "availableEndTime": "13:00:00"
+        },
+        {
+            "daysOfWeek": [
+                "thu"
+            ],
+            "availableStartTime": "14:30:00",
+            "availableEndTime": "18:30:00"
+        },
+        {
+            "daysOfWeek": [
+                "fri"
+            ],
+            "availableStartTime": "08:00:00",
+            "availableEndTime": "13:00:00"
+        },
+        {
+            "daysOfWeek": [
+                "fri"
+            ],
+            "availableStartTime": "14:30:00",
+            "availableEndTime": "18:00:00"
+        },
+        {
+            "daysOfWeek": [
+                "sat"
+            ],
+            "availableStartTime": "09:00:00",
+            "availableEndTime": "12:30:00"
+        }
+    ],
+----
+
+==== Geographic location
+The absolute geographic location of pharmacies are stored in the Location.position attribute. +
+The Location.position.longitude and Location.position.latitude attributes are used, Location.position.altitude is not used. +
+ +
+Example for Location.position
+
+----
+    "position": {
+        "latitude": 52.51630,
+        "longitude": 13.37796
+    }
+----
 
