@@ -1,0 +1,889 @@
+= FHIR VZD implementation guide - Data Model
+:source-highlighter: rouge
+:icons:
+:title-page:
+:imagesdir: /images/
+ifdef::env-github[]
+:toc: preamble
+endif::[]
+ifndef::env-github[]
+:toc: left
+endif::[]
+:toclevels: 3
+:toc-title: Table of Contents
+:sectnums:
+
+
+image::gematik_logo.svg[gematik,float="right"]
+
+[width="100%",cols="50%,50%",options="header",]
+|===
+|Version: |0.0.2
+|Referencing: |gemILF_VZD_FHIR_Directory
+|===
+
+[big]*Document history*
+
+[width="100%",cols="11%,11%,7%,58%,13%",options="header",]
+|===
+|*Version* +
+ |*Stand* +
+ |*Doc./ Chap./ Page* +
+ |*Change reason, special instructions* +
+ |*Editing* +
+
+|0.0.1 |22.09.23 | |Initial document |gematik
+|0.0.2 |28.03.24 | |Update for eRezept |gematik
+|===
+
+== Classification of the document
+=== Objective
+This document describes how the interfaces of the FHIR directory service can be implemented and used on the client side.
+
+=== Target group
+
+The document is aimed at software developers who are involved in implementing a client of the FHIR directory service.
+
+=== Scope
+
+*Intellectual property/patent notice*
+
+_The following specification was created by gematik solely from a technical point of view. In individual cases, it cannot be ruled out that the implementation of the specification will interfere with the technical property rights of third parties. It is solely up to the supplier or manufacturer to take suitable measures to ensure that the products and/or services offered by him on the basis of the specification do not infringe third-party property rights and, if necessary, to obtain the necessary permits/licenses from the property right holders concerned. In this respect, gematik GmbH assumes no liability whatsoever._
+
+
+== Directory of people
+This part of the directory contains information about persons. +
+ +
+*Technical illustration - Directory of people*
+//[%collapsible%open]
+====
+++++
+<p align="center">
+  <img width="55%" src=../images/diagrams/ClassDiagram.PractitionerDirectory.svg>
+</p>
+++++
+====
+
+
+=== Practitioner-Resource
+
+[width="100%",cols="10%,13%,7%,20%,5%,5%",options="header",]
+|===
+|*Attributes* +
+ |*Value* +
+ |*Cardinality* +
+ |*Remark* +
+ |*Sync from LDAP-VZD* +
+ |*Changable by owner* +
+
+|id 
+|Logical id of this artifact 
+|0..1 
+|The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes. +
+ The only time that a resource does not have an id is when it is being submitted to the server using a create operation. 
+|No
+|No
+
+|meta.tag
+|Origin
+|1..1
+|If the resource was synchronized from LDAP, meta.tag is automatically set to "ldap".
+|No
+|No
+
+.3+|identifier 
+|TelematikID 
+|1..1 
+|According FHIR Profil https://simplifier.net/packages/de.basisprofil.r4/1.3.2/files/564537[Identifier-Telematik-Id] 
+|Yes
+|No
+
+|LANR 
+|0..* 
+|Lifetime doctor number "Lebenslange Arztnummer". +
+ (Not yet used)
+|No
+|No
+
+|LANR 
+|0..* 
+|Lifetime dentist number "Lebenslange Zahnarztnummer". +
+ (Not yet used)
+|No
+|No
+
+// |LDAP UID 
+// |1..1 
+// |The LDAP UID of the data record is synchronized from the LDAP VZD. 
+// |Yes
+// |No
+
+|active 
+|State of the resource 
+|1..1 
+|Indicates whether the person is active or not. Inactive resources may not be found in the /search interface.
+|Yes
+|No
+
+|name 
+|Name of the Practitioner  
+|1..* 
+|Name of the Practitioner 
+|Yes
+|No
+
+|telecom 
+|Practitioner contact details
+|0..* 
+|
+|No
+|Yes
+
+|gender 
+|Practitioner gender
+|0..1 
+|
+|No
+|Yes
+
+|birthDate 
+|Practitioner birthDate
+|0..1 
+|
+|No
+|Yes
+
+|photo 
+|Practitioner photo
+|0..* 
+|
+|No
+|Yes
+
+.1+|qualification.code 
+|Coded representation of the qualification. 
+|0..* 
+|According to FHIR profile https://simplifier.net/vzd-fhir-directory/practitionerqualificationvs[PractitionerQualificationVS]
+|Yes
+|No
+
+|communication 
+|Supported languages
+|0..* 
+|
+|No
+|No
+
+|===
+Simplifier: https://simplifier.net/vzd-fhir-directory/practitionerdirectory[Practitioner-Resource] +
+Example of a https://github.com/gematik/api-vzd/blob/ad0cc6e7c59842de4c2457f26fbecc1645ac0605/samples/FHIRseach/QueryPractitionerRole.adoc?plain=1#L10888[Practitioner resource] +
+ +
+
+=== PractitionerRole-Resource
+[width="100%",cols="10%,13%,7%,20%,5%,5%,options="header",]
+|===
+|*Attributes* +
+ |*Value* +
+ |*Cardinality* +
+ |*Remark* +
+ |*Sync from LDAP-VZD* +
+ |*Changable by owner* +
+
+|id 
+|Logical id of this artifact 
+|0..1 
+|The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes. +
+ The only time that a resource does not have an id is when it is being submitted to the server using a create operation. 
+|No
+|No
+
+|meta.tag
+|Origin
+|1..1
+|If the resource was synchronized from LDAP, meta.tag is automatically set to "ldap".
+|No
+|No (Must be set to "owner" for owner resources)
+
+// .2+|identifier 
+// |LDAP UID 
+// |1..1 
+// |The LDAP UID of the data record is taken from the LDAP VZD. +
+//  The owner cannot add any further identifiers with the ldapUid system 
+// |Yes
+// |No
+
+// |Individual identifier 
+// |0..* 
+// |Owners can optionally add additional individual identifiers. +
+//  The owner is not allowed to add any identifier with the TelematikId or ldapUid system. 
+// |No
+// |Yes
+
+|practitioner
+|Reference to Practitioner resource
+|1..1
+|A PractitionerRole is always created for the Practitioner. 
+|Yes
+|No
+
+|location
+|Reference to location resource
+|0..*
+|Address of the Practitioner. 
+|Yes
+|No
+
+|healthcareService
+|Reference to healthcareService resource
+|0..*
+|The list of healthcare services that this worker provides for this role's Organization/Location(s). 
+|No
+|Yes
+
+|organization
+|Reference to organization resource
+|0..*
+|Not yet used in the FHIR VZD.
+|No
+|No
+
+|endpoint
+|Reference to endpoint resource
+|0..*
+|One endpoint is created per KIM-/TIM-address. 
+|No (TIM-address)
+|No
+
+
+|===
+Simplifier: https://simplifier.net/vzd-fhir-directory/practitionerroledirectory[PractitionerRole-Resource] +
+Example of a https://github.com/gematik/api-vzd/blob/ad0cc6e7c59842de4c2457f26fbecc1645ac0605/samples/FHIRseach/QueryPractitionerRole.adoc?plain=1#L21[PractitionerRole resource] +
+ +
+
+=== Location-Resource
+[width="100%",cols="10%,13%,7%,20%,5%,5%,options="header",]
+|===
+|*Attributes* +
+ |*Value* +
+ |*Cardinality* +
+ |*Remark* +
+ |*Sync from LDAP-VZD* +
+ |*Changable by owner* +
+
+|id 
+|Logical id of this artifact 
+|0..1 
+|The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes. +
+ The only time that a resource does not have an id is when it is being submitted to the server using a create operation. 
+|No
+|No
+
+|meta.tag
+|Origin
+|1..1
+|Is set to "ldap" for all synchronized addresses from LDAP.
+|No
+|No
+
+|name 
+|Not used 
+|0..1 
+|This Element ist not used in the FHIR VZD.
+|No
+|No
+
+|description 
+|Not used 
+|0..1 
+|This Element ist not used in the FHIR VZD.
+|No
+|No
+
+|address 
+|Adress 
+|0..1 
+|The exact structure of the address can be found in the link:LDAP2FHIR_Sync.adoc[LDAP sync mapping]. 
+|Yes
+|No
+
+|position 
+|The absolute geographic location 
+|0..1 
+|The absolute geographic location of the Location
+|Yes
+|No
+
+|managingOrganization 
+|Not used 
+|0..1 
+|This Element ist not used in the FHIR VZD.
+|No
+|No
+
+|partOf 
+|Not used 
+|0..1 
+|This Element ist not used in the FHIR VZD.
+|No
+|No
+
+|hoursOfOperation
+|Not used
+|0..*
+|This Element ist not used in the FHIR VZD.
+|No
+|No
+
+|availabilityExceptions
+|Not used
+|0..1
+|This Element ist not used in the FHIR VZD.
+|No
+|No
+
+|===
+Simplifier: https://simplifier.net/vzd-fhir-directory/locationdirectory[Location-Resource] +
+Example of a https://github.com/gematik/api-vzd/blob/ad0cc6e7c59842de4c2457f26fbecc1645ac0605/samples/FHIRseach/QueryPractitionerRole.adoc?plain=1#L10967[Location resource] +
+ +
+
+=== Endpoint-Resource
+[width="100%",cols="10%,13%,7%,20%,5%,5%,options="header",]
+|===
+|*Attributes* +
+ |*Value* +
+ |*Cardinality* +
+ |*Remark* +
+ |*Sync from LDAP-VZD* +
+ |*Changable by owner* +
+
+// .2+|identifier 
+// |LDAP UID 
+// |1..1 
+// |Only applies to KIM address mapping endpoints: +
+//  The LDAP UID of the data record is taken from the LDAP VZD. +
+//  The owner cannot add any further identifiers with the ldapUid system 
+// |Yes
+// |No
+
+// |Individual identifier 
+// |0..* 
+// |Owners can optionally add additional individual identifiers. +
+//  The owner is not allowed to add any identifier with the TelematikId or ldapUid system. 
+// |No
+// |Yes
+
+|meta.tag
+|Origin
+|1..1
+|Is set to "owner" for all endpoints, created by the owner of the VZD entry.
+|No
+|No (Must be set to "owner" for owner resources)
+
+// |meta.security
+// |OwnerId
+// |0..*
+// |OwnerId of the owner. Is set automatically by the system based on the Telematics ID of the owner token.
+// |No
+// |No
+
+.1+|extension 
+|endpointVisibility 
+|0..* 
+|Visibility of an Endpoint in the FHIR-VZD. This Extensions includes codes of use-cases im which this Endpoint SHALL not be visible. +
+For example it can be used to hide the endpoint from a part of users.	
+|No
+|Yes
+
+|status
+|state
+|1..1
+|Endpoint status flag. Set by the owner to control the visibility of the endpoint. +
+ Possible values: +
+ active \| suspended \| error \| off \| entered-in-error \| test
+|No
+|Yes
+
+|connectionType
+|Type of the endpoint
+|1..1
+| Values according to https://simplifier.net/vzd-fhir-directory/endpointdirectoryconnectiontype[EndpointConnectionType]
+|No
+|Yes
+
+|name
+|name of the endpoint
+|1..1
+|Name assigned by the owner. 
+|No
+|Yes
+
+|managingOrganization 
+|Not used 
+|0..1 
+|This Element ist not used in the FHIR VZD.
+|No
+|No
+
+|payloadType
+|Type of use
+|1..*
+|For which processes the address can be used. +
+ According to https://simplifier.net/vzd-fhir-directory/endpointpayloadtypevs[EndpointPlayloadTypeVS]. 
+|No
+|Yes
+
+|address
+|address (e.g. MX-ID, KIM mail address)
+|1..1
+|Address of the endpoint in URL notation. 
+|No
+|Yes
+
+
+|===
+Simplifier: https://simplifier.net/vzd-fhir-directory/endpointdirectory[Endpoint-Resource] +
+Example of an https://github.com/gematik/api-vzd/blob/122ef63f9e76689261c9195e09cd7312b65ee71c/samples/FHIRseach/QueryHealthcareService.adoc?plain=1#L13718[Endpoint resource] +
+ +
+
+== Directory of organizations
+This part of the directory contains information about organizations. +
+ +
+*Technical illustration - Directory of organizations*
+//[%collapsible%open]
+====
+++++
+<p align="center">
+  <img width="55%" src=../images/diagrams/ClassDiagram.OrganizationDirectory.svg>
+</p>
+++++
+====
+
+
+=== Organization-Resource
+
+[width="100%",cols="10%,13%,7%,20%,5%,5%",options="header",]
+|===
+|*Attributes* +
+ |*Value* +
+ |*Cardinality* +
+ |*Remark* +
+ |*Sync from LDAP-VZD* +
+ |*Changable by owner* +
+
+|id 
+|Logical id of this artifact 
+|0..1 
+|The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes. +
+ The only time that a resource does not have an id is when it is being submitted to the server using a create operation. 
+|No
+|No
+
+|meta.tag
+|Origin
+|1..1
+|If the resource was synchronized from LDAP, meta.tag is automatically set to "ldap".
+|No
+|No (Must be set to "owner" for owner resources)
+
+.1+|extension 
+|organizationVisibility 
+|0..* 
+|Visibility of an Organization in the FHIR-VZD. This Extensions includes codes of use-cases in which this Organization SHALL not be visible. +
+For example it can be used to hide the organization in the eRezeptApp.
+|No
+|Yes
+
+.4+|identifier 
+|TelematikID 
+|1..1 
+|According FHIR Profil https://simplifier.net/packages/de.basisprofil.r4/1.3.2/files/564537[Identifier-Telematik-Id] 
+|Yes
+|No
+
+|BSNR 
+|0..* 
+|Betriebsstättennummer. Used in some sectors.
+|Yes
+|No
+
+|KZVA 
+|0..* 
+|KZVAbrechnungsnummer
+|Yes
+|No
+
+|IKNR 
+|0..* 
+|Institutionskennzeichen
+|Yes
+|No
+
+|active 
+|State of the resource 
+|1..1 
+|Indicates whether the organization is active or not. Inactive resources may not be found in the /search interface.
+|Yes
+|No
+
+.2+|type 
+|providerType 
+|0..* 
+|According to FHIR profile https://simplifier.net/vzd-fhir-directory/organizationprovidertype[OrganizationProviderType] +
+ Mandatory if it is not an Organization.
+|Yes
+|No
+
+|profession 
+|0..* 
+|Kind of organization. According to FHIR profile https://simplifier.net/vzd-fhir-directory/organizationprofessionoid[OrganiszationProfessionOID] +
+ Mandatory if organization is not a provider
+|Yes
+|No
+
+|name 
+|Name of the Organization  
+|0..* 
+|Name is synchronized from LDAP VZD.
+|Yes
+|No
+
+|alias  
+|Alternative name of the Organization  
+|0..* 
+|Not used in the FHIR VZD.
+|No
+|No
+
+|telecom  
+|A contact detail for the organization  
+|0..* 
+|Not used in the FHIR VZD.
+|No
+|No
+
+|address  
+|Not used  
+|0..* 
+|Not used in the FHIR VZD  
+|No
+|No
+
+|partOf  
+|Not used  
+|0..1 
+|Not yet used in the FHIR VZD.  
+|No
+|No
+
+|contact  
+|Contact for the organization for a certain purpose  
+|0..* 
+|Not used in the FHIR VZD.
+|No
+|No
+
+|===
+Simplifier: https://simplifier.net/vzd-fhir-directory/organizationdirectory[Organization-Resource] +
+Example of a https://github.com/gematik/api-vzd/blob/122ef63f9e76689261c9195e09cd7312b65ee71c/samples/FHIRseach/QueryHealthcareService.adoc?plain=1#L13799[Organization-Resource] +
+ +
+
+=== HealthcareService-Resource
+[width="100%",cols="10%,13%,7%,20%,5%,5%,options="header",]
+|===
+|*Attributes* +
+ |*Value* +
+ |*Cardinality* +
+ |*Remark* +
+ |*Sync from LDAP-VZD* +
+ |*Changable by owner* +
+
+|id 
+|Logical id of this artifact 
+|0..1 
+|The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes. +
+ The only time that a resource does not have an id is when it is being submitted to the server using a create operation. 
+|No
+|No
+
+|meta.tag
+|Origin
+|1..1
+|If the resource was synchronized from LDAP, meta.tag is automatically set to "ldap".
+|Yes (Set to "ldap" for synchronized resources)
+|No (Must be set to "owner" for owner resources)
+
+// .2+|identifier 
+// |LDAP UID 
+// |1..1 
+// |The LDAP UID of the data record is taken from the LDAP VZD. +
+//  The owner cannot add any further identifiers with the ldapUid system 
+// |Yes
+// |No
+
+// |Individual identifier 
+// |0..* 
+// |Owners can optionally add additional individual identifiers. +
+//  The owner is not allowed to add any identifier with the TelematikId or ldapUid system. 
+// |No
+// |Yes
+
+|providedBy
+|Organization
+|1..1
+|A HeathcareService is always created for an organization. +
+ Owner resources must necessarily reference the resource synchronized by LDAP. 
+|Yes
+|No
+
+|category
+|Category of service being performed or delivered
+|1..1
+|Not used in the FHIR VZD.
+|No
+|No
+
+|type
+|Type of service that may be delivered or performed
+|0..*
+|Type of service according to HealthcareServiceTypeVS https://simplifier.net/vzd-fhir-directory/healthcareservicetypevs
+|Yes
+|No
+
+|speciality
+|speciality
+|0..*
+|According to https://simplifier.net/vzd-fhir-directory/healthcareservicespecialtyvs[HealthcareServiceSpecialityVS]. +
+ For pharmacies it contains the specialities according https://gematik.de/fhir/directory/CodeSystem/PharmacyHealthcareSpecialityCS (e.g. Handverkauf, Versand, Botendienst,...). +
+ For all HealthcareServices it may contain the specialities according to *ServiceType* (http://terminology.hl7.org/CodeSystem/service-type).
+|Yes
+|No
+
+|location
+|Reference to location resource
+|0..*
+|See <<Location-Resource>>. +
+ Not allowed for owner resources. 
+|Yes
+|No
+
+|name 
+|Name of the HealthcareService  
+|0..* 
+|Description of service as presented to a consumer while searching.
+|No
+|Yes
+
+|telecom  
+|A contact detail for the organization  
+|0..* 
+|Not used in the FHIR VZD.
+|No
+|No
+
+|serviceProvisionCode  
+|Conditions under which service is available/offered  
+|0..* 
+|Not used in the FHIR VZD.
+|No
+|No
+
+|characteristic  
+|Collection of characteristics (attributes)  
+|0..* 
+|According to https://simplifier.net/vzd-fhir-directory/healthcareservice-characteristic-vs +
+E.g. used for the eRezept (eRX Token Receiver).
+|No
+|No
+
+|communication  
+|The language that this service is offered in  
+|0..* 
+|
+|No
+|No
+
+|appointmentRequired  
+|If an appointment is required for access to this service  
+|0..1 
+|
+|No
+|No
+
+|availableTime
+|
+|0..*
+|Times the Service Site is available. More detailed availability information may be provided in the subordinate attributes. 
+|No
+|Yes
+
+|availableTime.daysOfWeek
+|day(s)
+|0..*
+|Indicates which days of the week are available between the start and end Times.
+|No
+|Yes
+
+|availableTime.allDay
+|Always available?
+|0..1
+|Is this always available? (hence times are irrelevant) e.g. 24 hour service.
+|No
+|Yes
+
+|availableTime.availableStartTime
+|Opening time of day
+|0..1
+|The opening time of day. Note: If the AllDay flag is set, then this time is ignored.
+|No
+|Yes
+
+|availableTime.availableEndTime
+|Closing time of day
+|0..1
+|The closing time of day. Note: If the AllDay flag is set, then this time is ignored.
+|No
+|Yes
+
+|availabilityExceptions
+|Description of availability exceptions
+|0..1
+|A description of site availability exceptions, e.g. public holiday availability.
+|No
+|Yes
+
+|endpoint
+|Reference to endpoint resource
+|0..*
+|See <<Endpoint-Resource>>. +
+ One endpoint is created per KIM-/TIM-address. 
+|No (TIM-address)
+|Yes
+
+|===
+Simplifier: https://simplifier.net/vzd-fhir-directory/healthcareservicedirectory[HealthcareService-Resource] +
+Example of a https://github.com/gematik/api-vzd/blob/122ef63f9e76689261c9195e09cd7312b65ee71c/samples/FHIRseach/QueryHealthcareService.adoc?plain=1#L21[HealthcareService-Resource] +
+ +
+
+=== Location-Resource in organization directory
+See <<Location-Resource>>
+
+=== Endpoint-Resource in organization directory
+See <<Endpoint-Resource>>
+
+== Use of the data model in applications
+=== eRezept
+Overview of the special data for the eRezept application.
+
+==== Kind of organization/pharmacie
+The kind of organization is stored in the Organization.type attribute. For pharmacies the following codes from https://simplifier.net/vzd-fhir-directory/organizationprofessionoid[OrganizationProfessionOID] are relevant:
+
+- 1.2.276.0.76.4.54	Öffentliche Apotheke
+- 1.2.276.0.76.4.55	Krankenhausapotheke
+- 1.2.276.0.76.4.56	Bundeswehrapotheke
+
+==== Services of the pharmacie
+The services of the pharmacie is stored in the HealthcareService.specialty attribute. For pharmacies the codes from https://simplifier.net/vzd-fhir-directory/pharmacyhealthcarespecialitycs[PharmacyHealthcareSpecialityCS] are relevant. +
+ +
+The ability of the pharmacie to receive eRX Token is encoded in an attribute HealthcareService.characteristic. The codes are contained here https://simplifier.net/vzd-fhir-directory/healthcareservice-characteristic-vs[HealthCareServiceCharacteristicVS] +
+ +
+*Note*: 
+An organization can create additional HealthcareServices itself. The HealthcareService with the pharmacie services can be recognized by the attribute "meta.tag" = "ldap".
+
+==== opening hours
+The opening times of pharmacies are stored in the HealthcareService.availableTime attribute. +
+Exceptions to these opening times are described in HealthcareService.availabilityExceptions. +
+ +
+*Note*: An organization can create additional HealthcareServices itself. The HealthcareService with the opening hours of the pharmacy can be recognized by the attribute "meta.tag" = "ldap". +
+ +
+The opening times attributes in the Location resources are not used. +
+ +
+Example for opening times
+
+----
+"availableTime": [
+        {
+            "daysOfWeek": [
+                "mon"
+            ],
+            "availableStartTime": "08:00:00",
+            "availableEndTime": "13:00:00"
+        },
+        {
+            "daysOfWeek": [
+                "mon"
+            ],
+            "availableStartTime": "14:30:00",
+            "availableEndTime": "18:30:00"
+        },
+        {
+            "daysOfWeek": [
+                "tue"
+            ],
+            "availableStartTime": "08:00:00",
+            "availableEndTime": "13:00:00"
+        },
+        {
+            "daysOfWeek": [
+                "tue"
+            ],
+            "availableStartTime": "14:30:00",
+            "availableEndTime": "18:30:00"
+        },
+        {
+            "daysOfWeek": [
+                "wed"
+            ],
+            "availableStartTime": "08:00:00",
+            "availableEndTime": "13:00:00"
+        },
+        {
+            "daysOfWeek": [
+                "thu"
+            ],
+            "availableStartTime": "08:00:00",
+            "availableEndTime": "13:00:00"
+        },
+        {
+            "daysOfWeek": [
+                "thu"
+            ],
+            "availableStartTime": "14:30:00",
+            "availableEndTime": "18:30:00"
+        },
+        {
+            "daysOfWeek": [
+                "fri"
+            ],
+            "availableStartTime": "08:00:00",
+            "availableEndTime": "13:00:00"
+        },
+        {
+            "daysOfWeek": [
+                "fri"
+            ],
+            "availableStartTime": "14:30:00",
+            "availableEndTime": "18:00:00"
+        },
+        {
+            "daysOfWeek": [
+                "sat"
+            ],
+            "availableStartTime": "09:00:00",
+            "availableEndTime": "12:30:00"
+        }
+    ],
+----
+
+==== Geographic location
+The absolute geographic location of pharmacies are stored in the Location.position attribute. +
+The Location.position.longitude and Location.position.latitude attributes are used, Location.position.altitude is not used. +
+ +
+Example for Location.position
+
+----
+    "position": {
+        "latitude": 52.51630,
+        "longitude": 13.37796
+    }
+----
+
