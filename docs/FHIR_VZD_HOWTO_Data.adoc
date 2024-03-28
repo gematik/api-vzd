@@ -782,7 +782,7 @@ The kind of organization is stored in the Organization.type attribute. For pharm
 - 1.2.276.0.76.4.56	Bundeswehrapotheke
 
 ==== Services of the pharmacie
-The services of the pharmacie is stored in the HealthcareService.specialty attribute. For pharmacies the following codes from https://simplifier.net/vzd-fhir-directory/pharmacyhealthcarespecialitycs[PharmacyHealthcareSpecialityCS] are relevant. +
+The services of the pharmacie is stored in the HealthcareService.specialty attribute. For pharmacies the codes from https://simplifier.net/vzd-fhir-directory/pharmacyhealthcarespecialitycs[PharmacyHealthcareSpecialityCS] are relevant. +
  +
 The ability of the pharmacie to receive eRX Token is encoded in an attribute HealthcareService.characteristic. The codes are contained here https://simplifier.net/vzd-fhir-directory/healthcareservice-characteristic-vs[HealthCareServiceCharacteristicVS] +
  +
@@ -790,7 +790,7 @@ The ability of the pharmacie to receive eRX Token is encoded in an attribute Hea
 An organization can create additional HealthcareServices itself. The HealthcareService with the pharmacie services can be recognized by the attribute "meta.tag" = "ldap".
 
 ==== opening hours
-The opening times of pharmacies are stored in the HealthcareService.availableTime attribute. 
+The opening times of pharmacies are stored in the HealthcareService.availableTime attribute. +
 Exceptions to these opening times are described in HealthcareService.availabilityExceptions. +
  +
 *Note*: An organization can create additional HealthcareServices itself. The HealthcareService with the opening hours of the pharmacy can be recognized by the attribute "meta.tag" = "ldap". +
