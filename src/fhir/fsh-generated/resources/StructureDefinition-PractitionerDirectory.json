@@ -2,7 +2,7 @@
   "resourceType": "StructureDefinition",
   "id": "PractitionerDirectory",
   "url": "https://gematik.de/fhir/directory/StructureDefinition/PractitionerDirectory",
-  "version": "0.11.2",
+  "version": "0.11.3",
   "name": "PractitionerDirectory",
   "title": "Practitioner in gematik Directory",
   "status": "active",

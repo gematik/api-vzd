@@ -13,13 +13,19 @@ organisations specific for german Healthcare and Telematics Infrastructure.
 * meta.tag[Origin] from OriginVS
 * meta.tag[Origin].system = "https://gematik.de/fhir/directory/CodeSystem/Origin"
 * id MS
+* identifier 1..* MS
+* identifier ^slicing.discriminator.type = #value
+* identifier ^slicing.discriminator.path = "system"
+* identifier ^slicing.rules = #open
+* identifier contains TelematikID 1..1 MS
+* identifier[TelematikID] only $IdentifierTelematikID
 * providedBy 1..1 MS
 * category MS 
 * category from $IHEXDShealthcareFacilityTypeCodePatientRelatedHealthcare
 * type MS 
 * type from HealthcareServiceTypeVS (extensible)
 * specialty MS
-* specialty from HealthcareServiceSpecialityVS 
+* specialty from HealthcareServiceSpecialtyVS 
 * location MS
 * name MS
 * telecom MS

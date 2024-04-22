@@ -1,5 +1,11 @@
 # Changelog
 
+## 2024-04-22 - Version 0.11.3
+
+- feat: added "Heimversorgende Apotheke", "Versandapotheke" & "Sterilherstellung" to PharmacyTypeCS
+- feat: added TelematikId identifier slice to HealthcareServiceDirectory
+- fix: renamed PharmacyHealthcareSpecialityCS and HealthcareServiceSpecialityVS to PharmacyHealthcareSpecialtyCS and HealthcareServiceSpecialtyVS
+
 ## 2024-03-16 - Version 0.11.2 & 0.11.1
 
 - fix: dependency basisprofile auf stable version: 1.4.0 (war 1.5.0-ballot)

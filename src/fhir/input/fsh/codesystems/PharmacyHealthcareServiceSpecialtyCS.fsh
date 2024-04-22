@@ -1,7 +1,7 @@
-CodeSystem: PharmacyHealthcareSpecialityCS
-Id: PharmacyHealthcareSpecialityCS
-Title: "HealthcareService Speciality"
-Description: "Speciality codes of HealthcareServices"
+CodeSystem: PharmacyHealthcareSpecialtyCS
+Id: PharmacyHealthcareSpecialtyCS
+Title: "HealthcareService Specialty"
+Description: "Specialty codes of HealthcareServices"
 * insert Meta
 * ^caseSensitive = false
 * ^content = #complete

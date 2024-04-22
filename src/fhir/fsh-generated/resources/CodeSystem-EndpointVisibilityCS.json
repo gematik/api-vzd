@@ -10,10 +10,10 @@
   "concept": [
     {
       "code": "hide-versicherte",
-      "display": "Eintrag nicht Versicherten anzeigen"
+      "display": "Eintrag für Versicherte verbergen"
     }
   ],
   "publisher": "gematik GmbH",
-  "version": "0.11.2",
+  "version": "0.11.3",
   "count": 1
 }

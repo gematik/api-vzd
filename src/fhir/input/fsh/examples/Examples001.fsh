@@ -80,6 +80,7 @@ Usage: #example
 Description: "Example of an HealthcareService as to be found in gematik FHIR Directory"
 * meta.tag[Origin] = Origin#ldap
 * providedBy = Reference(OrganizationExample)
+* identifier[TelematikID].value = "2-2.58.00000040"
 * category = PatientBezogenenGesundheitsversorgung#PRA "Arztpraxis"
 * type[+] = $AerztlicheFachrichtungen#MZKH "Zahnmedizin"
 * type[+] = $AerztlicheFachrichtungen#ORAL "Oralchirurgie"

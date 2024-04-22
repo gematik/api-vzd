@@ -64,10 +64,10 @@
     "endLine": 7
   },
   {
-    "outputFile": "CodeSystem-PharmacyHealthcareSpecialityCS.json",
-    "fshName": "PharmacyHealthcareSpecialityCS",
+    "outputFile": "CodeSystem-PharmacyHealthcareSpecialtyCS.json",
+    "fshName": "PharmacyHealthcareSpecialtyCS",
     "fshType": "CodeSystem",
-    "fshFile": "codesystems/PharmacyHealthcareServiceSpecialityCS.fsh",
+    "fshFile": "codesystems/PharmacyHealthcareServiceSpecialtyCS.fsh",
     "startLine": 1,
     "endLine": 12
   },
@@ -77,7 +77,7 @@
     "fshType": "CodeSystem",
     "fshFile": "codesystems/PharmacyTypeCS.fsh",
     "startLine": 1,
-    "endLine": 11
+    "endLine": 14
   },
   {
     "outputFile": "CodeSystem-PractitionerProfessionOID.json",
@@ -117,7 +117,7 @@
     "fshType": "Instance",
     "fshFile": "examples/Examples001.fsh",
     "startLine": 77,
-    "endLine": 105
+    "endLine": 106
   },
   {
     "outputFile": "Location-LocationExample.json",
@@ -189,7 +189,7 @@
     "fshType": "Profile",
     "fshFile": "profiles/HealthcareServiceDirectory.fsh",
     "startLine": 1,
-    "endLine": 36
+    "endLine": 42
   },
   {
     "outputFile": "StructureDefinition-LocationDirectory.json",
@@ -272,10 +272,10 @@
     "endLine": 102
   },
   {
-    "outputFile": "ValueSet-HealthcareSpecialityTypeVS.json",
-    "fshName": "HealthcareServiceSpecialityVS",
+    "outputFile": "ValueSet-HealthcareSpecialtyTypeVS.json",
+    "fshName": "HealthcareServiceSpecialtyVS",
     "fshType": "ValueSet",
-    "fshFile": "valuesets/HealthcareServiceSpecialityVS.fsh",
+    "fshFile": "valuesets/HealthcareServiceSpecialtyVS.fsh",
     "startLine": 1,
     "endLine": 7
   },

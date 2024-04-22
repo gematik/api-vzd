@@ -37,7 +37,7 @@ Id: EndpointVisibilityCS
 Title: "EndpointVisibilityCS"
 Description: "EndpointVisibilityCS"
 * insert Meta
-* #hide-versicherte "Eintrag nicht Versicherten anzeigen"
+* #hide-versicherte "Eintrag für Versicherte verbergen"
 
 ValueSet: EndpointVisibilityVS
 Id: EndpointVisibilityVS

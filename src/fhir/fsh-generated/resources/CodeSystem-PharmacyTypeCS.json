@@ -19,10 +19,22 @@
     {
       "code": "bundeswehrapotheke",
       "display": "Bundeswehrapotheke"
+    },
+    {
+      "code": "heimversorgende-apotheke",
+      "display": "Heimversorgende Apotheke"
+    },
+    {
+      "code": "versandapotheke",
+      "display": "Versandapotheke"
+    },
+    {
+      "code": "sterilherstellung",
+      "display": "Sterilherstellung"
     }
   ],
   "publisher": "gematik GmbH",
   "version": "1.0",
   "caseSensitive": true,
-  "count": 3
+  "count": 6
 }
