@@ -25,6 +25,7 @@ image:https://shields.io/badge/Application Maintenance API-1.2.4-green?logo=swag
 
 == Aktuelles
 
+* *26.04.2024* 👨‍💻 https://github.com/gematik/api-vzd/blob/gemILF_Pflege_VZD/1.5.10/docs/gemILF_Pflege_VZD.adoc[Implementierungsleitfaden v1.5.10]
 * *22.04.2024* 👨‍💻 https://simplifier.net/packages/de.gematik.fhir.directory/0.11.3[Simplifier Profil 0.11.3]
 * *04.04.2024* 👨‍💻 https://github.com/gematik/api-vzd/blob/gemILF_Pflege_VZD/1.5.9/docs/gemILF_Pflege_VZD.adoc[Implementierungsleitfaden v1.5.9]
 * *23.02.2024* 👨‍💻 https://github.com/gematik/api-vzd/blob/gemILF_Pflege_VZD/1.5.7/docs/gemILF_Pflege_VZD.adoc[Implementierungsleitfaden v1.5.7]
