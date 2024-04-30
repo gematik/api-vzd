@@ -17,7 +17,7 @@ organisations specific for german Healthcare and Telematics Infrastructure.
 * identifier ^slicing.discriminator.type = #value
 * identifier ^slicing.discriminator.path = "system"
 * identifier ^slicing.rules = #open
-* identifier contains TelematikID 1..1 MS
+* identifier contains TelematikID 0..1 MS
 * identifier[TelematikID] only $IdentifierTelematikID
 * providedBy 1..1 MS
 * category MS 
@@ -25,7 +25,7 @@ organisations specific for german Healthcare and Telematics Infrastructure.
 * type MS 
 * type from HealthcareServiceTypeVS (extensible)
 * specialty MS
-* specialty from HealthcareServiceSpecialtyVS 
+* specialty from HealthcareServiceSpecialtyVS
 * location MS
 * name MS
 * telecom MS

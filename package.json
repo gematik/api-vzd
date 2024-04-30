@@ -9,6 +9,5 @@
   "dependencies": {
     "de.basisprofil.r4": "1.4.0",
     "de.ihe-d.terminology": "3.0.0"
-
   }
 }
