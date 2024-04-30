@@ -1,5 +1,9 @@
 # Changelog
 
+## 2024-04-30 - Version 0.11.5
+
+- fix: HealthcareServiceDirectory.identifier[TelematikId] optional -> 0..1
+
 ## 2024-04-22 - Version 0.11.3
 
 - feat: added "Heimversorgende Apotheke", "Versandapotheke" & "Sterilherstellung" to PharmacyTypeCS
