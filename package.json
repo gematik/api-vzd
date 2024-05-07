@@ -1,6 +1,6 @@
 {
   "name": "de.gematik.fhir.directory",
-  "version": "0.11.5",
+  "version": "0.11.6",
   "author": "gematik GmbH",
   "description": "Package Release des gematik FHIR Directory",
   "fhirVersions": [

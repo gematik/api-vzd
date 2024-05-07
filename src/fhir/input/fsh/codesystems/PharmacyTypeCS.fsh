@@ -3,7 +3,6 @@ Id: PharmacyTypeCS
 Title: "Pharmacy type"
 Description: "Pharmacy type codes of accessability for patients"
 * insert Meta
-* ^version = "1.0"
 * ^caseSensitive = true
 * ^content = #complete
 * #offizin-apotheke "Offizin-Apotheke"
