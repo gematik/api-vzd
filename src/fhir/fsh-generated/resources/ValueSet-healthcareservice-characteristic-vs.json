@@ -5,9 +5,9 @@
   "id": "healthcareservice-characteristic-vs",
   "title": "HealthCareServiceCharacteristicVS",
   "description": "HealthCareServiceCharacteristicVS",
+  "version": "0.11.6",
   "url": "https://gematik.de/fhir/directory/ValueSet/healthcareservice-characteristic-vs",
   "publisher": "gematik GmbH",
-  "version": "0.11.5",
   "compose": {
     "include": [
       {

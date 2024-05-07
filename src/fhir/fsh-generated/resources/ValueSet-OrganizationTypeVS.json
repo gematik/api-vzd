@@ -4,9 +4,9 @@
   "name": "OrganizationTypeVS",
   "id": "OrganizationTypeVS",
   "description": "ValueSet for `Organization.type`",
+  "version": "0.11.6",
   "url": "https://gematik.de/fhir/directory/ValueSet/OrganizationTypeVS",
   "publisher": "gematik GmbH",
-  "version": "0.11.5",
   "compose": {
     "include": [
       {

@@ -1,5 +1,9 @@
 # Changelog
 
+## 2024-05-07 - Version 0.11.6
+
+- fix: HealthcareServiceDirectory.identifier Kardinalität optional -> 0..1
+
 ## 2024-04-30 - Version 0.11.5
 
 - fix: HealthcareServiceDirectory.identifier[TelematikId] optional -> 0..1

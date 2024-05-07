@@ -4,9 +4,9 @@
   "name": "PractitionerQualificationVS",
   "id": "PractitionerQualificationVS",
   "description": "ValueSet for `Practitoner.qualification`",
+  "version": "0.11.6",
   "url": "https://gematik.de/fhir/directory/ValueSet/PractitionerQualificationVS",
   "publisher": "gematik GmbH",
-  "version": "0.11.5",
   "compose": {
     "include": [
       {
