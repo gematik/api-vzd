@@ -25,6 +25,8 @@ image:https://shields.io/badge/Application Maintenance API-1.2.4-green?logo=swag
 
 == Aktuelles
 
+* *16.05.2024* 👨‍💻 https://github.com/gematik/api-vzd/blob/c8554d0173ff3b4540a8a0e76d41cb9ca99375c8/src/openapi/DirectoryAdministration.yaml[DirectoryAdministration.yaml 1.12.6]
+* *16.05.2024* 👨‍💻 https://github.com/gematik/api-vzd/blob/f8aa6cc260cd6915c936c873c512b5ce11ef1bde/src/openapi/DirectoryApplicationMaintenance.yaml[DirectoryApplicationMaintenance.yaml 1.4.5]
 * *07.05.2024* 👨‍💻 https://simplifier.net/packages/de.gematik.fhir.directory/0.11.6[Simplifier Profil 0.11.6]
 * *30.04.2024* 👨‍💻 https://simplifier.net/packages/de.gematik.fhir.directory/0.11.5[Simplifier Profil 0.11.5]
 * *26.04.2024* 👨‍💻 https://github.com/gematik/api-vzd/blob/gemILF_Pflege_VZD/1.5.10/docs/gemILF_Pflege_VZD.adoc[Implementierungsleitfaden v1.5.10]
