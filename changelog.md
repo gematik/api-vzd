@@ -1,5 +1,11 @@
 # Changelog
 
+## 2024-05-30 - Version 0.11.7
+- feat: dependency basisprofile updated to 1.5.0-ballot2 
+- feat: added support for Apotheken Ident Verfahren
+  - added concept "Apotheken Ident Verfahren" to EndpointDirectoryConnectionType CodeSystem
+  - added concept "Apotheken Ident Verfahren" to PharmacyHealthcareSpecialtyCS
+
 ## 2024-05-07 - Version 0.11.6
 
 - fix: HealthcareServiceDirectory.identifier Kardinalität optional -> 0..1

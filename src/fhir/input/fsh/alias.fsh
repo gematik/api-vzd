@@ -42,3 +42,4 @@ Alias: $ServiceProvisionConditions = http://terminology.hl7.org/CodeSystem/servi
 Alias: $CommonLanguages = urn:ietf:bcp:47
 Alias: $sct = http://snomed.info/sct
 Alias: $IHEXDShealthcareFacilityTypeCodePatientRelatedHealthcare = http://ihe-d.de/ValueSets/IHEXDShealthcareFacilityTypeCodePatientRelatedHealthcare
+                                                                  

@@ -1,5 +1,5 @@
 Output File                                          Name                                 Type        FSH File                                              Lines
-CodeSystem-EndpointDirectoryConnectionType.json      EndpointDirectoryConnectionType      CodeSystem  codesystems/EndpointDirectoryConnectionType.fsh       1 - 15
+CodeSystem-EndpointDirectoryConnectionType.json      EndpointDirectoryConnectionType      CodeSystem  codesystems/EndpointDirectoryConnectionType.fsh       1 - 16
 CodeSystem-EndpointDirectoryPayloadType.json         EndpointDirectoryPayloadType         CodeSystem  codesystems/EndpointDirectoryPayloadType.fsh          1 - 12
 CodeSystem-EndpointVisibilityCS.json                 EndpointVisibilityCS                 CodeSystem  profiles/Extension.fsh                                35 - 40
 CodeSystem-HolderCS.json                             HolderCS                             CodeSystem  codesystems/HolderCS.fsh                              1 - 125
@@ -7,8 +7,8 @@ CodeSystem-OrganizationProfessionOID.json            OrganizationProfessionOID  
 CodeSystem-OrganizationProviderType.json             OrganizationProviderType             CodeSystem  codesystems/OrganizationProviderType.fsh              1 - 11
 CodeSystem-OrganizationVisibilityCS.json             OrganizationVisibilityCS             CodeSystem  profiles/Extension.fsh                                11 - 16
 CodeSystem-Origin.json                               Origin                               CodeSystem  codesystems/Origin.fsh                                1 - 7
-CodeSystem-PharmacyHealthcareSpecialtyCS.json        PharmacyHealthcareSpecialtyCS        CodeSystem  codesystems/PharmacyHealthcareServiceSpecialtyCS.fsh  1 - 12
-CodeSystem-PharmacyTypeCS.json                       PharmacyTypeCS                       CodeSystem  codesystems/PharmacyTypeCS.fsh                        1 - 14
+CodeSystem-PharmacyHealthcareSpecialtyCS.json        PharmacyHealthcareSpecialtyCS        CodeSystem  codesystems/PharmacyHealthcareServiceSpecialtyCS.fsh  1 - 13
+CodeSystem-PharmacyTypeCS.json                       PharmacyTypeCS                       CodeSystem  codesystems/PharmacyTypeCS.fsh                        1 - 13
 CodeSystem-PractitionerProfessionOID.json            PractitionerProfessionOID            CodeSystem  codesystems/PractitionerProfessionOID.fsh             1 - 45
 CodeSystem-Region.json                               Region                               CodeSystem  codesystems/Region.fsh                                1 - 27
 Endpoint-EndpointExample.json                        EndpointExample                      Instance    examples/Examples001.fsh                              1 - 12
