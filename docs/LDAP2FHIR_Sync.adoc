@@ -1,3 +1,4 @@
+.Synchronisierung LDAP VZD -> FHIR VZD
 [cols="2,1,2,1,2,2",options="header"]
 |============================
 |LDAP-Attribut |LDAP-Eintragstyp |Nutzung LDAP gemäß VZD-Spec Tab_VZD_Datenbeschreibung |FHIR-Ressource | FHIR-Element | Bemerkungen
@@ -53,7 +54,7 @@ Wird wie definiert umgesetzt.
 .2+|otherName |HBA .2+|Bezeichner: Anderer Name Veraltet: Wird für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen nicht benötigt (siehe displayName und organization) | - | - .2+| Veraltet wird nicht gemapped.
 |SMC-B |- |-  
 
-.2+|specialization +
+.3+|specialization +
  +
 Format
 
@@ -83,6 +84,9 @@ specialty.coding.display = <added by FHIR-Proxy> |
 ValueSets / Code Systems definiert:
 https://simplifier.net/vzd-fhir-directory
 
+|SMC-B Apotheken 3+|
+Für Besonderheiten von Apotheken siehe zusätzlich Tabelle "Synchronisierung der Attribute professionOID & specialization für Apotheken" 
+|
 .2+|domainID |HBA | - | - | - | -
 |SMC-B |Bezeichner: domänenspezifisches Kennzeichen des Eintrags. kann mehrfach vorkommen (0..100)
 | Organization | identifier|
@@ -101,6 +105,9 @@ Annahme: Identifier.type = domainID
 |dataFromAuthority |HBA und SMC-B |wird vom VZD eingetragen Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
 | - | - |Wird über neues Berechtigungsmodell behandelet
 
+.2+|active |HBA | Zustand des LDAP HBA Eintrags | Practitioner | active | Wird aus LDAP übernommen.
+|SMC-B |Zustand des LDAP HBA Eintrags | Organization | active| Wird aus LDAP übernommen.
+
 .2+|userCertificate |HBA .2+|Bezeichner: Enc-Zertifikat kann mehrfach vorkommen (0..50) Das Zertifikat wird gelöscht, wenn es ungültig geworden ist. Wenn kein Zertifikat vorliegt, dann kann der Eintrag nicht mittels LDAP-Abfrage gefunden werden. Format: DER, Base64-kodiert | - | - |Da aktuelle nur erste einmal der TIM-UserCase umgesetzt wird, werden keine KIM-Zertifikat genutzt.
 |SMC-B 
 | - | - |
@@ -115,7 +122,7 @@ Wird für EPA perspektivisch genutzt. Aus diesem Grund wird aktuelle hier keine 
 | Practitioner  | identifier.value = telematikID |
 |SMC-B | Organization | identifier.value = telematikID |
 
-.2+|professionOID |HBA .2+|
+.3+|professionOID |HBA .2+|
 Wird aus dem Zertifikat übernommen, 
 kann in LDAP (certificate, vzd_entry) 0..n mal vorkommen (im vzd_entry Gesamtmenge aller in allen Zertifikaten enthaltenen OIDs).
 Verhalten beim Löschen des letzten Zertifikats zu einem Basiseintrag: eine oder mehrere professionOIDs werden aus vzd_entry gelöscht.
@@ -124,6 +131,9 @@ Verhalten beim Löschen des letzten Zertifikats zu einem Basiseintrag: eine oder
 type.coding.code = professionOID
 type.coding.display = display aus https://simplifier.net/vzd-fhir-directory/organizationtypevs
 | 
+|SMC-B Apotheken 3+|
+Für Besonderheiten von Apotheken siehe zusätzlich Tabelle "Synchronisierung der Attribute professionOID & specialization für Apotheken" 
+|
 |usage |HBA und SMC-B | 
 | - | - |
 
@@ -143,3 +153,27 @@ https://simplifier.net/vzd-fhir-directory/endpointdirectory
 | jeweilige Resource | Meta | wird in die FHIR Meta Daten übernommen
 
 |============================
+
+.Synchronisierung der Attribute professionOID & specialization für Apotheken
+[cols="1,2,2,2,2",options="header"]
+|============================
+2+|LDAP VZD 3+| FHIR VZD
+|LDAP-Attribut |LDAP Attributwert |Organization.type |HealthcareService.specialty (PharmacyHealthcareSpecialityCS) | HealthcareService.type (PharmacyTypeCS)
+.4+|professionOID ||||
+| 1.2.276.0.76.4.54 Öffentliche Apotheke | 1.2.276.0.76.4.54 Öffentliche Apotheke ||
+| 1.2.276.0.76.4.55 Krankenhausapotheke | 1.2.276.0.76.4.55 Krankenhausapotheke ||
+| 1.2.276.0.76.4.56 Bundeswehrapotheke | 1.2.276.0.76.4.56 Bundeswehrapotheke ||bundeswehrapotheke +
+Bundeswehrapotheke
+
+.5+|specialization +
+(PharmacyTypeCS) ||||
+| 10 Offizin-Apotheke ||10 Handverkauf |offizin-apotheke +
+Offizin-Apotheke
+| 20 Krankenhausversorgende Apotheke |||krankenhausversorgende-apotheke +
+Krankenhausversorgende Apotheke 
+| 30 Heimversorgende Apotheke |||heimversorgende-apotheke +
+Heimversorgende Apotheke
+| 40 Versandapotheke ||40 Versand|versandapotheke +
+Versandapotheke
+|============================
+
