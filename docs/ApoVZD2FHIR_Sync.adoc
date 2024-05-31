@@ -1,9 +1,37 @@
 
-[cols="2,1,2,1",options="header"]
+[cols="2,1,2",options="header"]
 |============================
-|ApoVZD-Attribut |FHIR VZD Ressource | FHIR-Element | Bemerkungen
+|ApoVZD-Attribut |FHIR VZD Element | Bemerkungen
+|HealthcareService.coverageArea |HealthcareService.specialty  | 
+Wenn im ApoVZD der HealthcareService.type="Mobile Services" eines contained HealthcareService ist, wird im FHIR VZD Attribut HealthcareService.specialty Code:30	Display:Botendienst hinzugefügt (falls noch nicht vorhanden).
 
-.2+|givenName |HealtcareService | Attribut | Bemerkung 
+|HealthcareService.type |HealthcareService.coverageArea  | 
+Wenn im ApoVZD der HealthcareService.type="Mobile Services" eines contained HealthcareService ist, wird das von einer Apotheke angebotene Liefergebiet für optionale Botendienstlieferungen aus dem HealthcareService.coverageArea in den FHIR VZD übernommen (falls im ApoVZD vorhanden).
+
+|HealthcareService.location |  | 
+
+|Location.position |Location.position  | 
+Die Geo-Daten aus dem ApoVZD Attribut Location.position werden in das FHIR VZD Attribut Location.position übernommen.
+
+|Location.type=PHARM |HealthcareService.specialty  | 
+Aus dem ApoVZD Attribut Location.type werden die Spezialisierungen für das FHIR VZD Attribut HealthcareService.specialty abgeleitet +
+Der ApoVZD Wert "PHARM" ist für Apotheken immer gesetzt und wird nicht auf HealthcareService.specialty im FHIR VZD abgebildet.
+
+.2+|Location.type=OUTPHARM |HealthcareService.specialty  | 
+Aus dem ApoVZD Attribut Location.type werden die Spezialisierungen für das FHIR VZD Attribut HealthcareService.specialty abgeleitet +
+Für ApoVZD Wert "OUTPHARM" (Apotheke mit Offizin) wird in HealthcareService.specialty im FHIR VZD Code:10	Display:Handverkauf ergänzt (falls noch nicht vorhanden).
+
+|HealthcareService.type  | 
+Aus dem ApoVZD Attribut Location.type werden die Spezialisierungen für das FHIR VZD Attribut HealthcareService.type abgeleitet +
+Für ApoVZD Wert "OUTPHARM" (Apotheke mit Offizin) wird in HealthcareService.type im FHIR VZD Code:offizin-apotheke	Display:Offizin-Apotheke ergänzt (falls noch nicht vorhanden).
+
+.2+|Location.type=MOBL |HealthcareService.specialty  | 
+Aus dem ApoVZD Attribut Location.type werden die Spezialisierungen für das FHIR VZD Attribut HealthcareService.specialty abgeleitet +
+Für ApoVZD Wert "MOBL" (Versandapotheke) wird in HealthcareService.specialty im FHIR VZD Code:40	Display:Versand ergänzt (falls noch nicht vorhanden).
+
+|HealthcareService.type  | 
+Aus dem ApoVZD Attribut Location.type werden die Service Typen für das FHIR VZD Attribut HealthcareService.type abgeleitet +
+Für ApoVZD Wert "MOBL" (Versandapotheke) wird in HealthcareService.type im FHIR VZD Code:versandapotheke	Display:Versandapotheke ergänzt (falls noch nicht vorhanden).
 
 
 
