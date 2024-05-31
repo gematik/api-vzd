@@ -1,1 +1,10 @@
 
+[cols="2,1,2,1",options="header"]
+|============================
+|ApoVZD-Attribut |FHIR VZD Ressource | FHIR-Element | Bemerkungen
+
+.2+|givenName |HealtcareService | Attribut | Bemerkung 
+
+
+
+|============================
