@@ -40,3 +40,6 @@ organisations specific for german Healthcare and Telematics Infrastructure.
 * endpoint MS
 * characteristic MS
 * characteristic from HealthCareServiceCharacteristicVS
+* coverageArea MS
+  * extension MS 
+  * extension contains ServiceCoverageArea named serviceCoverageArea ..1 MS

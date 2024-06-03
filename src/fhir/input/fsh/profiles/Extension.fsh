@@ -1,3 +1,14 @@
+Extension: ServiceCoverageArea
+Id: ServiceCoverageArea
+Title: "ServiceCoverageArea"
+Description: "ServiceCoverage area as a radius in meters"
+Context: HealthcareService.coverageArea
+* insert Meta
+* value[x] only Quantity
+* valueQuantity 1.. MS
+  * code = #m
+  * system = $UCUM
+
 Extension: OrganizationVisibility
 Id: OrganizationVisibility
 Title: "OrganizationVisibility"
@@ -45,3 +56,4 @@ Title: "EndpointVisibilityVS"
 Description: "EndpointVisibilityVS"
 * insert Meta
 * include codes from system EndpointVisibilityCS
+

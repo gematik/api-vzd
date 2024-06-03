@@ -1,0 +1,64 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "ServiceCoverageArea",
+  "url": "https://gematik.de/fhir/directory/StructureDefinition/ServiceCoverageArea",
+  "version": "0.11.7",
+  "name": "ServiceCoverageArea",
+  "title": "ServiceCoverageArea",
+  "status": "active",
+  "publisher": "gematik GmbH",
+  "description": "ServiceCoverage area as a radius in meters",
+  "fhirVersion": "4.0.1",
+  "kind": "complex-type",
+  "abstract": false,
+  "context": [
+    {
+      "expression": "HealthcareService.coverageArea",
+      "type": "element"
+    }
+  ],
+  "type": "Extension",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Extension",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Extension",
+        "path": "Extension",
+        "short": "ServiceCoverageArea",
+        "definition": "ServiceCoverage area as a radius in meters"
+      },
+      {
+        "id": "Extension.extension",
+        "path": "Extension.extension",
+        "max": "0"
+      },
+      {
+        "id": "Extension.url",
+        "path": "Extension.url",
+        "fixedUri": "https://gematik.de/fhir/directory/StructureDefinition/ServiceCoverageArea"
+      },
+      {
+        "id": "Extension.value[x]",
+        "path": "Extension.value[x]",
+        "min": 1,
+        "type": [
+          {
+            "code": "Quantity"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Extension.value[x].system",
+        "path": "Extension.value[x].system",
+        "patternUri": "http://unitsofmeasure.org"
+      },
+      {
+        "id": "Extension.value[x].code",
+        "path": "Extension.value[x].code",
+        "patternCode": "m"
+      }
+    ]
+  }
+}

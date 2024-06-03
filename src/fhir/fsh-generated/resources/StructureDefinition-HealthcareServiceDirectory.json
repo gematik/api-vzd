@@ -148,6 +148,32 @@
         "mustSupport": true
       },
       {
+        "id": "HealthcareService.coverageArea",
+        "path": "HealthcareService.coverageArea",
+        "mustSupport": true
+      },
+      {
+        "id": "HealthcareService.coverageArea.extension",
+        "path": "HealthcareService.coverageArea.extension",
+        "mustSupport": true
+      },
+      {
+        "id": "HealthcareService.coverageArea.extension:serviceCoverageArea",
+        "path": "HealthcareService.coverageArea.extension",
+        "sliceName": "serviceCoverageArea",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "https://gematik.de/fhir/directory/StructureDefinition/ServiceCoverageArea"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
         "id": "HealthcareService.serviceProvisionCode",
         "path": "HealthcareService.serviceProvisionCode",
         "mustSupport": true

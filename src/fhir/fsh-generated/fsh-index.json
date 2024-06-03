@@ -20,8 +20,8 @@
     "fshName": "EndpointVisibilityCS",
     "fshType": "CodeSystem",
     "fshFile": "profiles/Extension.fsh",
-    "startLine": 35,
-    "endLine": 40
+    "startLine": 46,
+    "endLine": 51
   },
   {
     "outputFile": "CodeSystem-HolderCS.json",
@@ -52,8 +52,8 @@
     "fshName": "OrganizationVisibilityCS",
     "fshType": "CodeSystem",
     "fshFile": "profiles/Extension.fsh",
-    "startLine": 11,
-    "endLine": 16
+    "startLine": 22,
+    "endLine": 27
   },
   {
     "outputFile": "CodeSystem-Origin.json",
@@ -180,8 +180,8 @@
     "fshName": "EndpointVisibility",
     "fshType": "Extension",
     "fshFile": "profiles/Extension.fsh",
-    "startLine": 25,
-    "endLine": 33
+    "startLine": 36,
+    "endLine": 44
   },
   {
     "outputFile": "StructureDefinition-HealthcareServiceDirectory.json",
@@ -189,7 +189,7 @@
     "fshType": "Profile",
     "fshFile": "profiles/HealthcareServiceDirectory.fsh",
     "startLine": 1,
-    "endLine": 42
+    "endLine": 45
   },
   {
     "outputFile": "StructureDefinition-LocationDirectory.json",
@@ -212,8 +212,8 @@
     "fshName": "OrganizationVisibility",
     "fshType": "Extension",
     "fshFile": "profiles/Extension.fsh",
-    "startLine": 1,
-    "endLine": 9
+    "startLine": 12,
+    "endLine": 20
   },
   {
     "outputFile": "StructureDefinition-PractitionerDirectory.json",
@@ -230,6 +230,14 @@
     "fshFile": "profiles/PractitionerRoleDirectory.fsh",
     "startLine": 1,
     "endLine": 17
+  },
+  {
+    "outputFile": "StructureDefinition-ServiceCoverageArea.json",
+    "fshName": "ServiceCoverageArea",
+    "fshType": "Extension",
+    "fshFile": "profiles/Extension.fsh",
+    "startLine": 1,
+    "endLine": 10
   },
   {
     "outputFile": "ValueSet-AddressStateVS.json",
@@ -260,8 +268,8 @@
     "fshName": "EndpointVisibilityVS",
     "fshType": "ValueSet",
     "fshFile": "profiles/Extension.fsh",
-    "startLine": 42,
-    "endLine": 47
+    "startLine": 53,
+    "endLine": 58
   },
   {
     "outputFile": "ValueSet-HealthcareServiceTypeVS.json",
@@ -300,8 +308,8 @@
     "fshName": "OrganizationVisibilityVS",
     "fshType": "ValueSet",
     "fshFile": "profiles/Extension.fsh",
-    "startLine": 18,
-    "endLine": 23
+    "startLine": 29,
+    "endLine": 34
   },
   {
     "outputFile": "ValueSet-OriginVS.json",

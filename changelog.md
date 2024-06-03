@@ -5,6 +5,7 @@
 - feat: added support for Apotheken Ident Verfahren
   - added concept "Apotheken Ident Verfahren" to EndpointDirectoryConnectionType CodeSystem
   - added concept "Apotheken Ident Verfahren" to PharmacyHealthcareSpecialtyCS
+- feat: added Extension https://gematik.de/fhir/directory/StructureDefinition/ServiceCoverageArea for capturing the ServiceArea of a pharmacy in meter 
 
 ## 2024-05-07 - Version 0.11.6
 
