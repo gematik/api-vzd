@@ -2,13 +2,11 @@
 [cols="2,1,2",options="header"]
 |============================
 |ApoVZD-Attribut |FHIR VZD Element | Bemerkungen
-|HealthcareService.coverageArea |HealthcareService.specialty  | 
-Wenn im ApoVZD der HealthcareService.type="Mobile Services" eines contained HealthcareService ist, wird im FHIR VZD Attribut HealthcareService.specialty Code:30	Display:Botendienst hinzugefügt (falls noch nicht vorhanden).
+|HealthcareService.type |HealthcareService.specialty  | 
+Wenn im ApoVZD der HealthcareService.type=498 "Mobile Services" eines contained HealthcareService ist, wird im FHIR VZD Attribut HealthcareService.specialty Code:30	Display:Botendienst hinzugefügt (falls noch nicht vorhanden).
 
-|HealthcareService.type |HealthcareService.coverageArea  | 
+|HealthcareService.coverageArea |HealthcareService.coverageArea  | 
 Wenn im ApoVZD der HealthcareService.type="Mobile Services" eines contained HealthcareService ist, wird das von einer Apotheke angebotene Liefergebiet für optionale Botendienstlieferungen aus dem HealthcareService.coverageArea in den FHIR VZD übernommen (falls im ApoVZD vorhanden).
-
-|HealthcareService.location |  | 
 
 |Location.position |Location.position  | 
 Die Geo-Daten aus dem ApoVZD Attribut Location.position werden in das FHIR VZD Attribut Location.position übernommen.
