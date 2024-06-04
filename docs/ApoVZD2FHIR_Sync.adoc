@@ -34,7 +34,7 @@ Für ApoVZD Wert "MOBL" (Versandapotheke) wird in HealthcareService.type im FHIR
 |Location.hoursOfOperation  |HealthcareService.availableTime | 
 Aus dem ApoVZD Attribut Location.hoursOfOperation werden die Spezialisierungen für das FHIR VZD Attribut HealthcareService.availableTime übernommen.
 
-|Location.telecom  | ?HealthcareService.telecom? | 
+|Location.telecom  | HealthcareService.telecom | Aus dem ApoVZD werden Webseite, Mail, Telefon, Fax in den FHIR VZD übernommen. 
 
 
 
