@@ -4,7 +4,7 @@
   "name": "OriginVS",
   "id": "OriginVS",
   "description": "ValueSet for `meta.tag[Origin]`",
-  "version": "0.11.6",
+  "version": "0.11.7",
   "url": "https://gematik.de/fhir/directory/ValueSet/OriginVS",
   "publisher": "gematik GmbH",
   "compose": {

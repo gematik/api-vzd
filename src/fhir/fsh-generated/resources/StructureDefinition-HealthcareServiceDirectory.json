@@ -2,7 +2,7 @@
   "resourceType": "StructureDefinition",
   "id": "HealthcareServiceDirectory",
   "url": "https://gematik.de/fhir/directory/StructureDefinition/HealthcareServiceDirectory",
-  "version": "0.11.6",
+  "version": "0.11.7",
   "name": "HealthcareServiceDirectory",
   "title": "HealthcareService in gematik Directory",
   "status": "active",
@@ -145,6 +145,32 @@
       {
         "id": "HealthcareService.telecom.use",
         "path": "HealthcareService.telecom.use",
+        "mustSupport": true
+      },
+      {
+        "id": "HealthcareService.coverageArea",
+        "path": "HealthcareService.coverageArea",
+        "mustSupport": true
+      },
+      {
+        "id": "HealthcareService.coverageArea.extension",
+        "path": "HealthcareService.coverageArea.extension",
+        "mustSupport": true
+      },
+      {
+        "id": "HealthcareService.coverageArea.extension:serviceCoverageArea",
+        "path": "HealthcareService.coverageArea.extension",
+        "sliceName": "serviceCoverageArea",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "https://gematik.de/fhir/directory/StructureDefinition/ServiceCoverageArea"
+            ]
+          }
+        ],
         "mustSupport": true
       },
       {

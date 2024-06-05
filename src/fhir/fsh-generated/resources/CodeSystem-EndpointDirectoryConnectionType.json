@@ -6,7 +6,7 @@
   "id": "EndpointDirectoryConnectionType",
   "title": "Codes for Endpoint.connectionType",
   "description": "CodeSystem TI specific connection types assigned to the Endpoints",
-  "version": "0.11.6",
+  "version": "0.11.7",
   "url": "https://gematik.de/fhir/directory/CodeSystem/EndpointDirectoryConnectionType",
   "concept": [
     {
@@ -44,9 +44,13 @@
     {
       "code": "ident-eingangsabruf",
       "display": "Ident Eingangsdatenabruf"
+    },
+    {
+      "code": "apotheken-identverfahren",
+      "display": "Apotheken Ident Verfahren"
     }
   ],
   "publisher": "gematik GmbH",
   "caseSensitive": false,
-  "count": 9
+  "count": 10
 }
