@@ -58,7 +58,8 @@ Wird wie definiert umgesetzt.
  +
 Format
 
-urn:psc:<OID Codesystem:Code> |HBA |Bezeichner: Fachgebiet
+urn:psc:<OID Codesystem:Code> 
+|HBA |Bezeichner: Fachgebiet
 Kann mehrfach vorkommen (1..100).
 
 Für Einträge der Leistungserbringer (HBA-Eintrag)
@@ -72,17 +73,23 @@ im Gegensatz zur professionOID, die die Art der LEI beschreibt (Arztpraxis, Zahn
 Es werden folgenden Codes verwendet: https://simplifier.net/packages/de.basisprofil.r4/1.2.0/files/483083
 
 Codesystem ist ensprechend:  urn:oid:1.2.276.0.76.5.114
-|SMC-B |Bezeichner: Fachgebiet
+.2+|SMC-B .2+|Bezeichner: Fachgebiet
 Kann mehrfach vorkommen (1..100).
 
 Für Einträge der Leistungserbringerorganisationen (SMC-B Eintrag) Der Wertebereich entspricht den in hl7 definierten und für ePA festgelegten Werten ( https://wiki.hl7.de/index.php?title=IG:Value_Sets_f%C3%BCr_XDS# DocumentEntry.practiceSettingCode). 
-| HealthcareService | specialty.coding.system = Codesystem 
-(Mapping erfolgt nach Entfernung des Prefix. Beispiel: "urn:psc:<OID Codesystem>" 
-wird gemappt auf "urn:oid;<OID Codesystem>"
-specialty.coding.code = Code
-specialty.coding.display = <added by FHIR-Proxy> |
+| HealthcareService.specialty | Werte die nicht dem Valueset https://simplifier.net/vzd-fhir-directory/healthcarespecialtytypevs[HealthcareServiceSpecialtyVS] zugeordnet werden können, werden nicht gemappt. Die Synchronisation wird hierdurch nicht unterbrochen. |
 ValueSets / Code Systems definiert:
-https://simplifier.net/vzd-fhir-directory
+Valueset https://simplifier.net/vzd-fhir-directory/healthcarespecialtytypevs[HealthcareServiceSpecialtyVS] +
+Es werden Code-Literale ohne weiteres Qualifier-Prefixing nacheinander gegen die CodeSysteme https://simplifier.net/resolve?scope=VZD-FHIR-Directory@current&filepath=src/fhir/fsh-generated/resources/CodeSystem-PharmacyHealthcareSpecialtyCS.json[PharmacyHealthcareSpecialtyCS] und https://simplifier.net/resolve?scope=hl7.fhir.r4.core@4.0.1&filepath=package/CodeSystem-service-type.json[ServiceType] abgeglichen und bei Übereinstimmung übernommen.
+
+| HealthcareService.type | Werte die nicht dem Valueset https://simplifier.net/vzd-fhir-directory/healthcareservicetypevs[HealthcareServiceTypeVS] zugeordnet werden können, werden nicht gemappt. Die Synchronisation wird hierdurch nicht unterbrochen. 
+| ValueSets / Code Systems definiert: https://simplifier.net/vzd-fhir-directory/healthcareservicetypevs[HealthcareServiceTypeVS] +
+type.coding.system = Codesystem +
+Mapping erfolgt nach Entfernung des Prefix. Beispiel: "urn:psc:<OID Codesystem>" +
+wird gemappt auf "urn:oid:<OID Codesystem>" +
+type.coding.code = Code +
+type.coding.display = <added by FHIR-Proxy>
+
 
 |SMC-B Apotheken 3+|
 Für Besonderheiten von Apotheken siehe zusätzlich Tabelle "Synchronisierung der Attribute professionOID & specialization für Apotheken" 
