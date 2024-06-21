@@ -18,7 +18,7 @@ image::gematik_logo.svg[gematik,float="right"]
 
 [width="100%",cols="50%,50%",options="header",]
 |===
-|Version: |1.2.0
+|Version: |1.2.1
 |Referencing: |gemILF_VZD_FHIR_Directory
 |===
 
@@ -37,6 +37,9 @@ image::gematik_logo.svg[gematik,float="right"]
 |1.0.2 |11.09.23 |FHIR_VZD_HOWTO_Authenticate |added "Authenticate using the gematik Authenticator" |gematik
 |1.1.0 |27.10.23 |FHIR_VZD_HOWTO_Search |added chapter full-text search |gematik
 |1.2.0 |28.03.24 |FHIR_VZD_HOWTO_Data |Update for eRezept |gematik
+|1.2.1 |21.06.24 |FHIR_VZD_HOWTO_Search |added Added full-text search attribute pharmacyType +
+Added description for "near" Search parameter for Location.position
+|gematik
 
 |===
 
