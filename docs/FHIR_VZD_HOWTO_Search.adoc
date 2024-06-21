@@ -34,7 +34,13 @@ image::gematik_logo.svg[gematik,float="right"]
 
 |1.0.0 |28.07.23 | |Initial document |gematik
 |1.1.0 |27.10.23 |Full-text search |Added chapter full-text search |gematik
-|1.1.1 |16.05.24 |Full-text search |Added full-text search attribute pharmacyType |gematik
+|1.1.1 |21.06.24 |Full-text search +
+                 "near" Search parameter
+|Added full-text search attribute pharmacyType +
+ Added  description for "near" Search parameter for	Location.position
+
+  |gematik
+
 |===
 
 == Classification of the document
@@ -685,7 +691,14 @@ This example matches e.g.
 
 |=======================
 
+==== FHIR VZD Search - "near" search parameter for Location.position
+Search for locations where the location.position is near to, or within a specified distance of, the provided coordinates expressed as [latitude]|[longitude]|[distance]|[units].
 
+[source]
+--
+GET [baseUrl]/search/HealthcareService?organization.active=true&location.near=50.1503|8.6168|10|km&_sort=location&_include=HealthcareService:location
+--
+*Please note that for the FHIR VZD "near" search all "near" search parameters ([latitude]|[longitude]|[distance]|[units]) are mandatory.*
 
  
 
