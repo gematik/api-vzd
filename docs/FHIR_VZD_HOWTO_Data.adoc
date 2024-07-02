@@ -676,7 +676,16 @@ Example of a https://github.com/gematik/api-vzd/blob/122ef63f9e76689261c9195e09c
 |telecom  
 |A contact detail for the organization  
 |0..* 
-|Not used in the FHIR VZD.
+|For pharmacies taken from the ApoVZD / pharmacy portal. May contain website, email, telephone, fax. +
+For other organizations: Not used in the FHIR VZD.
+|No
+|No
+
+|coverageArea.extension: +
+serviceCoverageArea  
+|Delivery area of the service.
+|0..1 
+|For pharmacies taken from the ApoVZD / pharmacy portal.
 |No
 |No
 
