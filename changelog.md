@@ -1,5 +1,8 @@
 # Changelog
 
+## 2024-05-30 - Version 0.11.8
+- feat: dependency basisprofile updated to 1.5.0 (no changes introduced by this update)
+
 ## 2024-05-30 - Version 0.11.7
 - feat: dependency basisprofile updated to 1.5.0-ballot2 
 - feat: added support for Apotheken Ident Verfahren
