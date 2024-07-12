@@ -93,7 +93,7 @@ type.coding.display = <added by FHIR-Proxy>
 
 |SMC-B Apotheken 3+|
 Für Besonderheiten von Apotheken siehe zusätzlich Tabelle "Synchronisierung der Attribute professionOID & specialization für Apotheken" 
-|
+| |
 .2+|domainID |HBA | - | - | - | -
 |SMC-B |Bezeichner: domänenspezifisches Kennzeichen des Eintrags. kann mehrfach vorkommen (0..100)
 | Organization | identifier|
