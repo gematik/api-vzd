@@ -54,7 +54,7 @@ Wird wie definiert umgesetzt.
 .2+|otherName |HBA .2+|Bezeichner: Anderer Name Veraltet: Wird für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen nicht benötigt (siehe displayName und organization) | - | - .2+| Veraltet wird nicht gemapped.
 |SMC-B |- |-  
 
-.3+|specialization +
+.4+|specialization +
  +
 Format
 
@@ -93,7 +93,7 @@ type.coding.display = <added by FHIR-Proxy>
 
 |SMC-B Apotheken 3+|
 Für Besonderheiten von Apotheken siehe zusätzlich Tabelle "Synchronisierung der Attribute professionOID & specialization für Apotheken" 
-| |
+| 
 .2+|domainID |HBA | - | - | - | -
 |SMC-B |Bezeichner: domänenspezifisches Kennzeichen des Eintrags. kann mehrfach vorkommen (0..100)
 | Organization | identifier|
