@@ -120,7 +120,6 @@
       {
         "id": "HealthcareService.location",
         "path": "HealthcareService.location",
-        "min": 1,
         "max": "1",
         "mustSupport": true
       },

@@ -5,7 +5,7 @@
 - feat: HealthcareServiceDirectoryDirectory.characteristic is now sliced into technical & physicalFeatures characteristics
 - feat: HealthcareServiceDirectory.characteristic physicalFeatures characteristics added
 - feat: HealthcareServiceDirectory.characteristic[technical] supports "Apotheken-Anfrage"
-- feat: HealthcareServiceDirectory.location cardinality set to 1..1
+- feat: HealthcareServiceDirectory.location cardinality set to ..1
 - feat: EndpointDirectoryConnectionType removed generic concept `erp-supported` and added the specific concepts `eRP-onPremise`, `eRP-delivery` , `eRP-shipment`
 - feat: added HealthcareServiceSpecialtyCS used on HealthcareServiceDirectory.specialty
 - feat: added SpecialOpeningTimesEX Extension to capture special opening periods (e.g. "Notdienst") used on `HealthcareServiceDirectory.availableTime`
