@@ -76,17 +76,6 @@
       "use": "work"
     }
   ],
-  "serviceProvisionCode": [
-    {
-      "coding": [
-        {
-          "code": "free",
-          "system": "http://terminology.hl7.org/CodeSystem/service-provision-conditions",
-          "display": "Free"
-        }
-      ]
-    }
-  ],
   "communication": [
     {
       "coding": [

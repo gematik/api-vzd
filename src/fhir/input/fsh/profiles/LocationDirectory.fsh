@@ -30,11 +30,4 @@ organisations specific for german Healthcare and Telematics Infrastructure.
   * latitude MS
   * altitude MS
 * partOf MS
-* hoursOfOperation MS
-  * extension contains SpecialOpeningTimesEX named specialOpeningTimes 0..1 MS
-  * daysOfWeek MS
-  * allDay MS
-  * openingTime MS
-  * closingTime MS
-* availabilityExceptions MS
 * managingOrganization MS

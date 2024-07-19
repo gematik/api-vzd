@@ -20,6 +20,6 @@ Description: "Endpoints for applications in the gematik Directory"
   * system MS
 * name 1..1 MS  // identical to address; because search is possible in element name and not in element address
 * managingOrganization
-* payloadType 1..* MS
+* payloadType MS
 * payloadType from EndpointPayloadTypeVS (extensible)
 * address 1..1 MS

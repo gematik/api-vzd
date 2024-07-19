@@ -22,5 +22,15 @@
   "managingOrganization": {
     "reference": "Organization/PharmacyOrganizationExample"
   },
-  "address": "https://rathausapotheke.de/terminbuchung"
+  "address": "https://rathausapotheke.de/terminbuchung",
+  "payloadType": [
+    {
+      "coding": [
+        {
+          "code": "not-applicable",
+          "system": "http://terminology.hl7.org/CodeSystem/data-absent-reason"
+        }
+      ]
+    }
+  ]
 }

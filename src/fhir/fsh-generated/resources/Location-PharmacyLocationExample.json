@@ -12,44 +12,6 @@
       "https://gematik.de/fhir/directory/StructureDefinition/LocationDirectory"
     ]
   },
-  "hoursOfOperation": [
-    {
-      "daysOfWeek": [
-        "mon",
-        "mon",
-        "tue",
-        "wed",
-        "thu",
-        "fri"
-      ],
-      "openingTime": "08:00:00",
-      "closingTime": "18:00:00"
-    },
-    {
-      "extension": [
-        {
-          "url": "https://gematik.de/fhir/directory/StructureDefinition/SpecialOpeningTimesEX",
-          "extension": [
-            {
-              "url": "period",
-              "valuePeriod": {
-                "start": "2024-07-20T08:30:00+02:00",
-                "end": "2024-07-21T08:30:00+02:00"
-              }
-            },
-            {
-              "url": "qualifier",
-              "valueCoding": {
-                "code": "notdienst",
-                "system": "https://gematik.de/fhir/directory/CodeSystem/OpeningTimeQualifierCS",
-                "display": "Notdienst"
-              }
-            }
-          ]
-        }
-      ]
-    }
-  ],
   "name": "Rathausapotheke",
   "address": {
     "use": "work",

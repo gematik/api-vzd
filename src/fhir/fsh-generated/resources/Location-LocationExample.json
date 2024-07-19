@@ -24,20 +24,6 @@
     "postalCode": "10117",
     "country": "DE"
   },
-  "hoursOfOperation": [
-    {
-      "daysOfWeek": [
-        "mon",
-        "tue",
-        "wed",
-        "thu",
-        "fri"
-      ],
-      "openingTime": "08:00:00",
-      "closingTime": "18:00:00"
-    }
-  ],
-  "availabilityExceptions": "An Feiertagen geschlossen",
   "managingOrganization": {
     "reference": "Organization/OrganizationExample001"
   }

@@ -33,7 +33,6 @@ Friedrichstr. 136,
 * address.postalCode = "10117"
 * address.country = "DE"
 // Gibt es bedarf an TI/DE-spezifischen Kontakt-Zwecken?
-* contact.purpose = $ContactEntityTypeCS#ADMIN
 * contact.name.text = "gematik ITSM"
 * contact.telecom[+].system = $ContactPointSystemCS#email
 * contact.telecom[=].value = "betrieb@gematik.de"

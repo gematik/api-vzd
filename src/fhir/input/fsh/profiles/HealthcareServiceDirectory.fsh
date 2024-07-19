@@ -26,13 +26,12 @@ organisations specific for german Healthcare and Telematics Infrastructure.
 * type from HealthcareServiceTypeVS (extensible)
 * specialty MS
 * specialty from HealthcareServiceSpecialtyVS
-* location MS
+* location 1..1 MS
 * name MS
 * telecom MS
   * system MS
   * value MS
   * use MS
-* serviceProvisionCode MS
 * communication MS
 * appointmentRequired MS
 * availableTime MS

@@ -36,15 +36,6 @@
   ],
   "contact": [
     {
-      "purpose": {
-        "coding": [
-          {
-            "code": "PATINF",
-            "system": "http://terminology.hl7.org/CodeSystem/contactentity-type",
-            "display": "Patient"
-          }
-        ]
-      },
       "name": {
         "text": "Empfang Zahnarztpraxis Dr. Mustermann"
       },

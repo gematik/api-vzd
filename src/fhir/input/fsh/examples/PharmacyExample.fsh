@@ -88,23 +88,6 @@ Description: "Example of a Pharmacy Location as to be found in gematik FHIR Dire
 * address.state = "Hessen"
 * address.postalCode = "60596"
 * address.country = "DE"
-* hoursOfOperation[+]
-  * daysOfWeek[+] = $DaysOfWeek#mon "Monday"
-  * daysOfWeek[+] = $DaysOfWeek#mon "Monday"
-  * daysOfWeek[+] = $DaysOfWeek#tue "Tuesday"
-  * daysOfWeek[+] = $DaysOfWeek#wed "Wednesday"
-  * daysOfWeek[+] = $DaysOfWeek#thu "Thursday"
-  * daysOfWeek[+] = $DaysOfWeek#fri "Friday"
-  * openingTime = "08:00:00"
-  * closingTime = "18:00:00"
-* hoursOfOperation[+]
-  * extension[specialOpeningTimes]
-    * extension[period]
-      * valuePeriod
-        * start = "2024-07-20T08:30:00+02:00"
-        * end = "2024-07-21T08:30:00+02:00"
-    * extension[qualifier]
-      * valueCoding = OpeningTimeQualifierCS#notdienst "Notdienst"
 * availabilityExceptions = "An Feiertagen geschlossen"
 * managingOrganization = Reference(OrganizationExample001)
 * position.longitude = 8.6648
@@ -132,6 +115,7 @@ Description: "Example of a Pharamacy eRP Endpoint"
 * name = "ERP Reservierung"
 * managingOrganization = Reference(PharmacyOrganizationExample)
 * address = "https://be-305314293.adv-erezept.de/gematik/onPremise/<ti_id>/<transactionID>"
+* payloadType = DataAbsentReason#not-applicable
 
 Instance: PharmacyEndpointOnlineAppointmentBookingExample
 InstanceOf: EndpointDirectory
@@ -143,3 +127,4 @@ Description: "Example of a Pharamacy online appointment booking Endpoint"
 * name = "Online Terminbuchung"
 * managingOrganization = Reference(PharmacyOrganizationExample)
 * address = "https://rathausapotheke.de/terminbuchung"
+* payloadType = DataAbsentReason#not-applicable

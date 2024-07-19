@@ -142,52 +142,6 @@
         "id": "Location.partOf",
         "path": "Location.partOf",
         "mustSupport": true
-      },
-      {
-        "id": "Location.hoursOfOperation",
-        "path": "Location.hoursOfOperation",
-        "mustSupport": true
-      },
-      {
-        "id": "Location.hoursOfOperation.extension:specialOpeningTimes",
-        "path": "Location.hoursOfOperation.extension",
-        "sliceName": "specialOpeningTimes",
-        "min": 0,
-        "max": "1",
-        "type": [
-          {
-            "code": "Extension",
-            "profile": [
-              "https://gematik.de/fhir/directory/StructureDefinition/SpecialOpeningTimesEX"
-            ]
-          }
-        ],
-        "mustSupport": true
-      },
-      {
-        "id": "Location.hoursOfOperation.daysOfWeek",
-        "path": "Location.hoursOfOperation.daysOfWeek",
-        "mustSupport": true
-      },
-      {
-        "id": "Location.hoursOfOperation.allDay",
-        "path": "Location.hoursOfOperation.allDay",
-        "mustSupport": true
-      },
-      {
-        "id": "Location.hoursOfOperation.openingTime",
-        "path": "Location.hoursOfOperation.openingTime",
-        "mustSupport": true
-      },
-      {
-        "id": "Location.hoursOfOperation.closingTime",
-        "path": "Location.hoursOfOperation.closingTime",
-        "mustSupport": true
-      },
-      {
-        "id": "Location.availabilityExceptions",
-        "path": "Location.availabilityExceptions",
-        "mustSupport": true
       }
     ]
   }

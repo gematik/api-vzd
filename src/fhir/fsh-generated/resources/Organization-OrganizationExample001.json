@@ -57,14 +57,6 @@
   ],
   "contact": [
     {
-      "purpose": {
-        "coding": [
-          {
-            "code": "ADMIN",
-            "system": "http://terminology.hl7.org/CodeSystem/contactentity-type"
-          }
-        ]
-      },
       "name": {
         "text": "gematik ITSM"
       },

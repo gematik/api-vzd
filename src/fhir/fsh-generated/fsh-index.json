@@ -140,32 +140,32 @@
     "fshName": "PharmacyEndpointErpReservationExample",
     "fshType": "Instance",
     "fshFile": "examples/PharmacyExample.fsh",
-    "startLine": 125,
-    "endLine": 134
+    "startLine": 108,
+    "endLine": 118
   },
   {
     "outputFile": "Endpoint-PharmacyEndpointOnlineAppointmentBookingExample.json",
     "fshName": "PharmacyEndpointOnlineAppointmentBookingExample",
     "fshType": "Instance",
     "fshFile": "examples/PharmacyExample.fsh",
-    "startLine": 136,
-    "endLine": 145
+    "startLine": 120,
+    "endLine": 130
   },
   {
     "outputFile": "Endpoint-PharmacyEndpointTIMExample.json",
     "fshName": "PharmacyEndpointTIMExample",
     "fshType": "Instance",
     "fshFile": "examples/PharmacyExample.fsh",
-    "startLine": 113,
-    "endLine": 123
+    "startLine": 96,
+    "endLine": 106
   },
   {
     "outputFile": "HealthcareService-HealthcareServiceExample.json",
     "fshName": "HealthcareServiceExample",
     "fshType": "Instance",
     "fshFile": "examples/Examples001.fsh",
-    "startLine": 77,
-    "endLine": 106
+    "startLine": 68,
+    "endLine": 97
   },
   {
     "outputFile": "HealthcareService-PharmacyHealthCareServiceExample.json",
@@ -180,8 +180,8 @@
     "fshName": "LocationExample",
     "fshType": "Instance",
     "fshFile": "examples/Examples001.fsh",
-    "startLine": 54,
-    "endLine": 75
+    "startLine": 53,
+    "endLine": 66
   },
   {
     "outputFile": "Location-PharmacyLocationExample.json",
@@ -189,7 +189,7 @@
     "fshType": "Instance",
     "fshFile": "examples/PharmacyExample.fsh",
     "startLine": 77,
-    "endLine": 111
+    "endLine": 94
   },
   {
     "outputFile": "Organization-OrganizationExample.json",
@@ -197,7 +197,7 @@
     "fshType": "Instance",
     "fshFile": "examples/Examples001.fsh",
     "startLine": 39,
-    "endLine": 52
+    "endLine": 51
   },
   {
     "outputFile": "Organization-OrganizationExample001.json",
@@ -205,7 +205,7 @@
     "fshType": "Instance",
     "fshFile": "examples/OrganizationExample001.fsh",
     "startLine": 14,
-    "endLine": 40
+    "endLine": 39
   },
   {
     "outputFile": "Organization-PharmacyOrganizationExample.json",
@@ -261,7 +261,7 @@
     "fshType": "Profile",
     "fshFile": "profiles/HealthcareServiceDirectory.fsh",
     "startLine": 1,
-    "endLine": 59
+    "endLine": 58
   },
   {
     "outputFile": "StructureDefinition-LocationDirectory.json",
@@ -269,7 +269,7 @@
     "fshType": "Profile",
     "fshFile": "profiles/LocationDirectory.fsh",
     "startLine": 1,
-    "endLine": 40
+    "endLine": 33
   },
   {
     "outputFile": "StructureDefinition-OrganizationDirectory.json",
