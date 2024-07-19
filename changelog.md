@@ -1,6 +1,6 @@
 # Changelog
 
-## tbd - Version 0.11.9
+## 2024-07-19 - Version 0.11.9
 - fix: EndpointDirectory.managingOrganization: removed MS
 - feat: HealthcareServiceDirectoryDirectory.characteristic is now sliced into technical & physicalFeatures characteristics
 - feat: HealthcareServiceDirectory.characteristic physicalFeatures characteristics added
