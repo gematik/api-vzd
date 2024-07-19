@@ -31,6 +31,7 @@ organisations specific for german Healthcare and Telematics Infrastructure.
   * altitude MS
 * partOf MS
 * hoursOfOperation MS
+  * extension contains SpecialOpeningTimesEX named specialOpeningTimes 0..1 MS
   * daysOfWeek MS
   * allDay MS
   * openingTime MS

@@ -131,8 +131,8 @@
     {
       "coding": [
         {
-          "code": "DELEGATOR",
-          "system": "http://terminology.hl7.org/CodeSystem/v3-RoleCode",
+          "code": "erx-token-receiver",
+          "system": "https://gematik.de/fhir/directory/CodeSystem/VZDHealthCareServiceCharacteristicsCS",
           "display": "eRX Token Receiver"
         }
       ]

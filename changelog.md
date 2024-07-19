@@ -1,5 +1,10 @@
 # Changelog
 
+## tbd - Version 0.11.9
+- feat: HealthcareService.characteristic is now sliced into technical & location characteristics
+- feat: HealthcareService.characteristic location characteristics added
+- feat: HealthcareService.characteristic supports "Apotheken-Anfrage"
+
 ## 2024-05-30 - Version 0.11.8
 - feat: dependency basisprofile updated to 1.5.0 (no changes introduced by this update)
 

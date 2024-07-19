@@ -1,0 +1,220 @@
+{
+  "resourceType": "HealthcareService",
+  "id": "PharmacyHealthCareServiceExample",
+  "meta": {
+    "tag": [
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/Origin",
+        "code": "ldap"
+      }
+    ],
+    "profile": [
+      "https://gematik.de/fhir/directory/StructureDefinition/HealthcareServiceDirectory"
+    ]
+  },
+  "identifier": [
+    {
+      "system": "https://gematik.de/fhir/sid/telematik-id",
+      "value": "3-07.2.1444560000.16.108"
+    }
+  ],
+  "availableTime": [
+    {
+      "daysOfWeek": [
+        "mon",
+        "tue",
+        "tue",
+        "wed",
+        "thu",
+        "fri"
+      ],
+      "availableStartTime": "08:00:00",
+      "availableEndTime": "18:00:00"
+    },
+    {
+      "extension": [
+        {
+          "url": "https://gematik.de/fhir/directory/StructureDefinition/SpecialOpeningTimesEX",
+          "extension": [
+            {
+              "url": "period",
+              "valuePeriod": {
+                "start": "2024-07-20T08:30:00+02:00",
+                "end": "2024-07-21T08:30:00+02:00"
+              }
+            },
+            {
+              "url": "qualifier",
+              "valueCoding": {
+                "code": "notdienst",
+                "system": "https://gematik.de/fhir/directory/CodeSystem/OpeningTimeQualifierCS",
+                "display": "Notdienst"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "characteristic": [
+    {
+      "coding": [
+        {
+          "system": "https://gematik.de/fhir/directory/CodeSystem/physicalFeatures",
+          "code": "oepnv",
+          "display": "ÖPNV in der Nähe"
+        }
+      ],
+      "extension": [
+        {
+          "url": "https://gematik.de/fhir/directory/StructureDefinition/PhysicalFeaturesAdditionalNoteEX",
+          "valueString": "Vor dem Haus"
+        }
+      ]
+    },
+    {
+      "coding": [
+        {
+          "system": "https://gematik.de/fhir/directory/CodeSystem/physicalFeatures",
+          "code": "oepnv",
+          "display": "ÖPNV in der Nähe"
+        }
+      ]
+    },
+    {
+      "coding": [
+        {
+          "code": "erx-token-receiver",
+          "system": "https://gematik.de/fhir/directory/CodeSystem/VZDHealthCareServiceCharacteristicsCS",
+          "display": "eRX Token Receiver"
+        }
+      ]
+    },
+    {
+      "coding": [
+        {
+          "code": "apotheke-verfuegbarkeitsanfrage",
+          "system": "https://gematik.de/fhir/directory/CodeSystem/VZDHealthCareServiceCharacteristicsCS",
+          "display": "Apotheke: Verfügbarkeitsanfrage"
+        }
+      ]
+    },
+    {
+      "coding": [
+        {
+          "code": "terminbuchung",
+          "system": "https://gematik.de/fhir/directory/CodeSystem/VZDHealthCareServiceCharacteristicsCS",
+          "display": "Terminbuchung"
+        }
+      ]
+    }
+  ],
+  "coverageArea": [
+    {
+      "extension": [
+        {
+          "url": "https://gematik.de/fhir/directory/StructureDefinition/ServiceCoverageArea",
+          "valueQuantity": {
+            "system": "http://unitsofmeasure.org",
+            "code": "m",
+            "value": 10000
+          }
+        }
+      ]
+    }
+  ],
+  "providedBy": {
+    "reference": "Organization/PharmacyOrganizationExample"
+  },
+  "category": [
+    {
+      "coding": [
+        {
+          "code": "APO",
+          "system": "http://ihe-d.de/CodeSystems/PatientBezogenenGesundheitsversorgung",
+          "display": "Apotheke"
+        }
+      ]
+    }
+  ],
+  "type": [
+    {
+      "coding": [
+        {
+          "code": "offizin-apotheke",
+          "system": "https://gematik.de/fhir/directory/CodeSystem/PharmacyTypeCS",
+          "display": "Offizin-Apotheke"
+        }
+      ]
+    }
+  ],
+  "specialty": [
+    {
+      "coding": [
+        {
+          "code": "10",
+          "system": "https://gematik.de/fhir/directory/CodeSystem/PharmacyHealthcareSpecialtyCS",
+          "display": "Handverkauf"
+        }
+      ]
+    },
+    {
+      "coding": [
+        {
+          "code": "allergietest",
+          "system": "https://gematik.de/fhir/directory/CodeSystem/HealthcareServiceSpecialtyCS",
+          "display": "Allergietest"
+        }
+      ]
+    }
+  ],
+  "location": [
+    {
+      "reference": "Location/PharmacyLocationExample"
+    }
+  ],
+  "name": "Rathausapotheke",
+  "telecom": [
+    {
+      "system": "phone",
+      "value": "030 1234567",
+      "use": "work"
+    }
+  ],
+  "communication": [
+    {
+      "coding": [
+        {
+          "code": "de",
+          "system": "urn:ietf:bcp:47",
+          "display": "German"
+        }
+      ]
+    },
+    {
+      "coding": [
+        {
+          "code": "en",
+          "system": "urn:ietf:bcp:47",
+          "display": "English"
+        }
+      ]
+    }
+  ],
+  "appointmentRequired": false,
+  "notAvailable": [
+    {
+      "description": "Urlaub",
+      "during": {
+        "start": "2024-09-01",
+        "end": "2024-09-21"
+      }
+    }
+  ],
+  "availabilityExceptions": "An Feiertagen geschlossen",
+  "endpoint": [
+    {
+      "reference": "Endpoint/EndpointExample"
+    }
+  ]
+}

@@ -2,7 +2,7 @@
   "resourceType": "StructureDefinition",
   "id": "LocationDirectory",
   "url": "https://gematik.de/fhir/directory/StructureDefinition/LocationDirectory",
-  "version": "0.11.8",
+  "version": "0.11.9",
   "name": "LocationDirectory",
   "title": "Location in gematik Directory",
   "status": "active",
@@ -146,6 +146,22 @@
       {
         "id": "Location.hoursOfOperation",
         "path": "Location.hoursOfOperation",
+        "mustSupport": true
+      },
+      {
+        "id": "Location.hoursOfOperation.extension:specialOpeningTimes",
+        "path": "Location.hoursOfOperation.extension",
+        "sliceName": "specialOpeningTimes",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "https://gematik.de/fhir/directory/StructureDefinition/SpecialOpeningTimesEX"
+            ]
+          }
+        ],
         "mustSupport": true
       },
       {

@@ -1,6 +1,6 @@
-ValueSet: HealthCareServiceCharacteristicVS
-Id: healthcareservice-characteristic-vs
-Title: "HealthCareServiceCharacteristicVS"
-Description: "HealthCareServiceCharacteristicVS"
+ValueSet: HealthCareServiceTechnicalCharacteristicVS
+Id: healthcareservice-technical-characteristic-vs
+Title: "HealthCareServiceTechnicalCharacteristicVS"
+Description: "HealthCareServiceTechnicalCharacteristicVS"
 * insert Meta
-* RoleCode#DELEGATOR "eRX Token Receiver"
+* include codes from system VZDHealthCareServiceCharacteristicsCS

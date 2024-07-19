@@ -1,0 +1,32 @@
+{
+  "resourceType": "CodeSystem",
+  "status": "active",
+  "content": "complete",
+  "name": "VZDHealthCareServiceCharacteristicsCS",
+  "id": "VZDHealthCareServiceCharacteristicsCS",
+  "description": "CodeSystem of VZD specific HealthcareService characteristics",
+  "version": "0.11.9",
+  "url": "https://gematik.de/fhir/directory/CodeSystem/VZDHealthCareServiceCharacteristicsCS",
+  "concept": [
+    {
+      "code": "erx-token-receiver",
+      "display": "eRX Token Receiver"
+    },
+    {
+      "code": "apotheke-verfuegbarkeitsanfrage",
+      "display": "Apotheke: Verfügbarkeitsanfrage",
+      "definition": "Apotheke ermöglicht die Abfrage einer Verfügbarkeit eines Medikaments"
+    },
+    {
+      "code": "apotheken-ident-verfahren",
+      "display": "Apotheken Ident Verfahren"
+    },
+    {
+      "code": "terminbuchung",
+      "display": "Terminbuchung"
+    }
+  ],
+  "publisher": "gematik GmbH",
+  "caseSensitive": false,
+  "count": 4
+}

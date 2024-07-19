@@ -1,7 +1,7 @@
 CodeSystem: PharmacyHealthcareSpecialtyCS
 Id: PharmacyHealthcareSpecialtyCS
-Title: "HealthcareService Specialty"
-Description: "Specialty codes of HealthcareServices"
+Title: "Pharmacy HealthcareService Specialty"
+Description: "Specialty codes of pharmacy HealthcareServices"
 * insert Meta
 * ^caseSensitive = false
 * ^content = #complete
@@ -10,4 +10,3 @@ Description: "Specialty codes of HealthcareServices"
 * #30 "Botendienst"
 * #40 "Versand"
 * #50 "Zytostatikaherstellung"
-* #apo-ident "Apotheken Ident Verfahren"

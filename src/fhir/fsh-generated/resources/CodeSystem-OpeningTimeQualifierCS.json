@@ -1,0 +1,18 @@
+{
+  "resourceType": "CodeSystem",
+  "status": "draft",
+  "content": "complete",
+  "name": "OpeningTimeQualifierCS",
+  "id": "OpeningTimeQualifierCS",
+  "title": "OpeningTimeQualifierCS",
+  "description": "Qualifier code for HealthCareService opening times",
+  "version": "0.11.9",
+  "url": "https://gematik.de/fhir/directory/CodeSystem/OpeningTimeQualifierCS",
+  "concept": [
+    {
+      "code": "notdienst",
+      "display": "Notdienst"
+    }
+  ],
+  "count": 1
+}
