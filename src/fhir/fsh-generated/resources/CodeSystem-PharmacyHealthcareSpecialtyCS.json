@@ -4,9 +4,9 @@
   "content": "complete",
   "name": "PharmacyHealthcareSpecialtyCS",
   "id": "PharmacyHealthcareSpecialtyCS",
-  "title": "HealthcareService Specialty",
-  "description": "Specialty codes of HealthcareServices",
-  "version": "0.11.8",
+  "title": "Pharmacy HealthcareService Specialty",
+  "description": "Specialty codes of pharmacy HealthcareServices",
+  "version": "0.11.9",
   "url": "https://gematik.de/fhir/directory/CodeSystem/PharmacyHealthcareSpecialtyCS",
   "concept": [
     {
@@ -28,13 +28,9 @@
     {
       "code": "50",
       "display": "Zytostatikaherstellung"
-    },
-    {
-      "code": "apo-ident",
-      "display": "Apotheken Ident Verfahren"
     }
   ],
   "publisher": "gematik GmbH",
   "caseSensitive": false,
-  "count": 6
+  "count": 5
 }

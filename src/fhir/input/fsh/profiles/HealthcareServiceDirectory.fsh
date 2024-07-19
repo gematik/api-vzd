@@ -26,20 +26,33 @@ organisations specific for german Healthcare and Telematics Infrastructure.
 * type from HealthcareServiceTypeVS (extensible)
 * specialty MS
 * specialty from HealthcareServiceSpecialtyVS
-* location MS
+* location ..1 MS
 * name MS
 * telecom MS
   * system MS
   * value MS
   * use MS
-* serviceProvisionCode MS
 * communication MS
 * appointmentRequired MS
 * availableTime MS
+  * extension contains SpecialOpeningTimesEX named specialOpeningTimes 0..1 MS
+* notAvailable MS
 * availabilityExceptions MS
 * endpoint MS
 * characteristic MS
-* characteristic from HealthCareServiceCharacteristicVS
+  * ^short = "Physical Features & Technical Services"
+  * ^slicing.discriminator.type = #pattern
+  * ^slicing.discriminator.path = "$this"
+  * ^slicing.rules = #open
+* characteristic contains
+    technicalCharacteristic 0..* MS and
+    physicalFeatures 0..* MS
+* characteristic[technicalCharacteristic] from HealthCareServiceTechnicalCharacteristicVS
+  * ^short = "Technical Services"
+* characteristic[physicalFeatures] from PhysicalFeaturesHealthCareServiceVS (extensible)
+  * extension contains PhysicalFeaturesAdditionalNoteEX named additionalNote 0..1 MS
+  * ^patternCodeableConcept.coding.system = $physicalFeaturesHealthCareServiceCS
+  * ^short = "Physical Features"
 * coverageArea MS
   * extension MS 
   * extension contains ServiceCoverageArea named serviceCoverageArea ..1 MS

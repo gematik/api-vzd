@@ -1,6 +1,6 @@
 {
   "resourceType": "Organization",
-  "id": "OrganizationExample",
+  "id": "PharmacyOrganizationExample",
   "meta": {
     "tag": [
       {
@@ -15,36 +15,47 @@
   "identifier": [
     {
       "system": "https://gematik.de/fhir/sid/telematik-id",
-      "value": "2-2.58.00000040"
+      "value": "3-07.2.1444560000.16.108"
     }
   ],
   "type": [
     {
       "coding": [
         {
-          "code": "1.2.276.0.76.4.51",
+          "code": "1.2.276.0.76.4.54",
           "system": "https://gematik.de/fhir/directory/CodeSystem/OrganizationProfessionOID",
-          "display": "Zahnarztpraxis"
+          "display": "Öffentliche Apotheke"
         }
       ]
     }
   ],
-  "name": "Zahnarztpraxis Dr. Mustermann",
+  "name": "Rathausapotheke",
   "active": true,
   "alias": [
-    "Zahnarztpraxis am Bahnhof"
+    "Rathausapotheke"
   ],
   "contact": [
     {
-      "name": {
-        "text": "Empfang Zahnarztpraxis Dr. Mustermann"
-      },
       "telecom": [
         {
           "system": "phone",
           "value": "030 1234567"
         }
       ]
+    }
+  ],
+  "address": [
+    {
+      "use": "work",
+      "type": "postal",
+      "text": "Theodor-Stern-Kai 7, 60596 Frankfurt am Main, Hessen, DE",
+      "line": [
+        "Theodor-Stern-Kai 7"
+      ],
+      "city": "Frankfurt am Main",
+      "state": "Hessen",
+      "postalCode": "60596",
+      "country": "DE"
     }
   ]
 }

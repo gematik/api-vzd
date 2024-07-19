@@ -6,7 +6,7 @@
   "id": "EndpointDirectoryConnectionType",
   "title": "Codes for Endpoint.connectionType",
   "description": "CodeSystem TI specific connection types assigned to the Endpoints",
-  "version": "0.11.8",
+  "version": "0.11.9",
   "url": "https://gematik.de/fhir/directory/CodeSystem/EndpointDirectoryConnectionType",
   "concept": [
     {
@@ -38,19 +38,39 @@
       "display": "ePA Endpoint"
     },
     {
-      "code": "erp-supported",
-      "display": "eRP Endpoint"
-    },
-    {
       "code": "ident-eingangsabruf",
       "display": "Ident Eingangsdatenabruf"
     },
     {
       "code": "apotheken-identverfahren",
       "display": "Apotheken Ident Verfahren"
+    },
+    {
+      "code": "eRP-onPremise",
+      "display": "Reservierung"
+    },
+    {
+      "code": "eRP-delivery",
+      "display": "Botendienst"
+    },
+    {
+      "code": "eRP-shipment",
+      "display": "Versand"
+    },
+    {
+      "code": "terminbuchung-online",
+      "display": "Online Terminbuchung"
+    },
+    {
+      "code": "terminbuchung-telefonisch",
+      "display": "Telefonische Terminbuchung"
+    },
+    {
+      "code": "terminbuchung-tim",
+      "display": "TI-Messenger Terminbuchung"
     }
   ],
   "publisher": "gematik GmbH",
   "caseSensitive": false,
-  "count": 10
+  "count": 15
 }

@@ -46,7 +46,6 @@ Description: "Example of an Organization as to be found in gematik FHIR Director
 * name = "Zahnarztpraxis Dr. Mustermann"
 * active = true
 * alias = "Zahnarztpraxis am Bahnhof"
-* contact.purpose = $ContactEntityType#PATINF "Patient"
 * contact.name.text = "Empfang Zahnarztpraxis Dr. Mustermann"
 * contact.telecom[+].system = $ContactPointSystem#phone "Phone"
 * contact.telecom[=].value = "030 1234567"
@@ -64,14 +63,6 @@ Description: "Example of a Location as to be found in gematik FHIR Directory"
 * address.state = "Berlin"
 * address.postalCode = "10117"
 * address.country = "DE"
-* hoursOfOperation.daysOfWeek[+] = $DaysOfWeek#mon "Monday"
-* hoursOfOperation.daysOfWeek[+] = $DaysOfWeek#tue "Tuesday"
-* hoursOfOperation.daysOfWeek[+] = $DaysOfWeek#wed "Wednesday"
-* hoursOfOperation.daysOfWeek[+] = $DaysOfWeek#thu "Thursday"
-* hoursOfOperation.daysOfWeek[+] = $DaysOfWeek#fri "Friday"
-* hoursOfOperation.openingTime = "08:00:00"
-* hoursOfOperation.closingTime = "18:00:00"
-* availabilityExceptions = "An Feiertagen geschlossen"
 * managingOrganization = Reference(OrganizationExample001)
 
 Instance: HealthcareServiceExample
@@ -90,7 +81,7 @@ Description: "Example of an HealthcareService as to be found in gematik FHIR Dir
 * telecom[+].system = $ContactPointSystem#phone "Phone"
 * telecom[=].value = "030 7654321"
 * telecom[=].use = $ContactPointUse#work "Work"
-* serviceProvisionCode = $ServiceProvisionConditions#free "Free"
+
 * communication[+] = $CommonLanguages#de "German"
 * communication[+] = $CommonLanguages#en "English"
 * appointmentRequired = true 
@@ -103,4 +94,4 @@ Description: "Example of an HealthcareService as to be found in gematik FHIR Dir
 * availableTime.availableEndTime = "18:00:00"
 * availabilityExceptions = "An Feiertagen geschlossen"
 * endpoint[+] = Reference(EndpointExample)
-* characteristic = RoleCode#DELEGATOR "eRX Token Receiver"
+* characteristic = VZDHealthCareServiceCharacteristicsCS#erx-token-receiver "eRX Token Receiver"

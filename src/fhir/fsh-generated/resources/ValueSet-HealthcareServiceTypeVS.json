@@ -4,7 +4,7 @@
   "name": "HealthcareServiceTypeVS",
   "id": "HealthcareServiceTypeVS",
   "description": "ValueSet for `HealthcareService.type`",
-  "version": "0.11.8",
+  "version": "0.11.9",
   "url": "https://gematik.de/fhir/directory/ValueSet/HealthcareServiceTypeVS",
   "publisher": "gematik GmbH",
   "compose": {

@@ -1,0 +1,35 @@
+{
+  "resourceType": "ValueSet",
+  "status": "active",
+  "name": "PhysicalFeaturesHealthCareServiceVS",
+  "id": "PhysicalFeaturesHealthCareServiceVS",
+  "description": "ValueSet of defined physical features",
+  "version": "0.11.9",
+  "url": "https://gematik.de/fhir/directory/ValueSet/PhysicalFeaturesHealthCareServiceVS",
+  "publisher": "gematik GmbH",
+  "compose": {
+    "include": [
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/physicalFeatures",
+        "concept": [
+          {
+            "code": "parkmoeglichkeit",
+            "display": "Parkmöglichkeit"
+          },
+          {
+            "code": "oepnv",
+            "display": "ÖPNV in der Nähe"
+          },
+          {
+            "code": "barrierefrei",
+            "display": "Barrierefrei"
+          },
+          {
+            "code": "abholautomat",
+            "display": "Abholautomat"
+          }
+        ]
+      }
+    ]
+  }
+}

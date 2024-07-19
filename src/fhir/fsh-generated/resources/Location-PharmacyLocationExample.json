@@ -1,6 +1,6 @@
 {
   "resourceType": "Location",
-  "id": "LocationExample",
+  "id": "PharmacyLocationExample",
   "meta": {
     "tag": [
       {
@@ -12,19 +12,25 @@
       "https://gematik.de/fhir/directory/StructureDefinition/LocationDirectory"
     ]
   },
-  "name": "Praxis am Rathaus",
-  "description": "Praxis für Allgemeinmedizin",
+  "name": "Rathausapotheke",
   "address": {
-    "text": "Hauptstraße 1, 10117 Berlin",
+    "use": "work",
+    "type": "postal",
+    "text": "Theodor-Stern-Kai 7, 60596 Frankfurt am Main, Hessen, DE",
     "line": [
-      "Hauptstraße 1"
+      "Theodor-Stern-Kai 7"
     ],
-    "city": "Berlin",
-    "state": "Berlin",
-    "postalCode": "10117",
+    "city": "Frankfurt am Main",
+    "state": "Hessen",
+    "postalCode": "60596",
     "country": "DE"
   },
+  "availabilityExceptions": "An Feiertagen geschlossen",
   "managingOrganization": {
     "reference": "Organization/OrganizationExample001"
+  },
+  "position": {
+    "longitude": 8.6648,
+    "latitude": 50.097
   }
 }

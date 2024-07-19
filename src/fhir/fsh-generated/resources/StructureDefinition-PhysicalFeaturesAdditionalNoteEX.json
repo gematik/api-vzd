@@ -1,0 +1,54 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "PhysicalFeaturesAdditionalNoteEX",
+  "url": "https://gematik.de/fhir/directory/StructureDefinition/PhysicalFeaturesAdditionalNoteEX",
+  "version": "0.11.9",
+  "name": "PhysicalFeaturesAdditionalNoteEX",
+  "title": "Physical Features Additional Note",
+  "status": "active",
+  "publisher": "gematik GmbH",
+  "description": "Additional FreeText for HealthCare characteristics",
+  "fhirVersion": "4.0.1",
+  "kind": "complex-type",
+  "abstract": false,
+  "context": [
+    {
+      "expression": "HealthcareService.characteristic",
+      "type": "element"
+    }
+  ],
+  "type": "Extension",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Extension",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Extension",
+        "path": "Extension",
+        "short": "Physical Features Additional Note",
+        "definition": "Additional FreeText for HealthCare characteristics"
+      },
+      {
+        "id": "Extension.extension",
+        "path": "Extension.extension",
+        "max": "0"
+      },
+      {
+        "id": "Extension.url",
+        "path": "Extension.url",
+        "fixedUri": "https://gematik.de/fhir/directory/StructureDefinition/PhysicalFeaturesAdditionalNoteEX"
+      },
+      {
+        "id": "Extension.value[x]",
+        "path": "Extension.value[x]",
+        "min": 1,
+        "type": [
+          {
+            "code": "string"
+          }
+        ],
+        "mustSupport": true
+      }
+    ]
+  }
+}

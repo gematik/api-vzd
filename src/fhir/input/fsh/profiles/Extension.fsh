@@ -6,7 +6,9 @@ Context: HealthcareService.coverageArea
 * insert Meta
 * value[x] only Quantity
 * valueQuantity 1.. MS
+  * code 1.. MS
   * code = #m
+  * system 1.. MS
   * system = $UCUM
 
 Extension: OrganizationVisibility
@@ -57,3 +59,40 @@ Description: "EndpointVisibilityVS"
 * insert Meta
 * include codes from system EndpointVisibilityCS
 
+Extension: SpecialOpeningTimesEX
+Id: SpecialOpeningTimesEX
+Title: "SpecialOpeningTimesEX"
+Description: "SpecialOpeningTimesEX"
+Context: HealthcareService.availableTime
+* insert Meta
+* extension contains
+    period 1..1 MS and
+    qualifier 1..1 MS
+* extension[period]
+  * value[x] only Period
+  * valuePeriod 1.. MS
+* extension[qualifier]
+  * value[x] only Coding
+  * valueCoding 1.. MS
+  * valueCoding from OpeningTimeQualifierVS
+
+CodeSystem: OpeningTimeQualifierCS
+Id: OpeningTimeQualifierCS
+Title: "OpeningTimeQualifierCS"
+Description: "Qualifier code for HealthCareService opening times"
+* #notdienst "Notdienst"
+
+ValueSet: OpeningTimeQualifierVS
+Id: OpeningTimeQualifierVS
+Title: "OpeningTimeQualifierVS"
+Description: "ValueSet of Qualifier codes for HealthCareService opening times"
+* include codes from system OpeningTimeQualifierCS
+
+Extension: PhysicalFeaturesAdditionalNoteEX
+Id: PhysicalFeaturesAdditionalNoteEX
+Title: "Physical Features Additional Note"
+Description: "Additional FreeText for HealthCare characteristics"
+Context: HealthcareService.characteristic
+* insert Meta
+* value[x] only string
+* valueString 1.. MS

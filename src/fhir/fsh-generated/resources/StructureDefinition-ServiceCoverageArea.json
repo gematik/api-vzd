@@ -2,7 +2,7 @@
   "resourceType": "StructureDefinition",
   "id": "ServiceCoverageArea",
   "url": "https://gematik.de/fhir/directory/StructureDefinition/ServiceCoverageArea",
-  "version": "0.11.8",
+  "version": "0.11.9",
   "name": "ServiceCoverageArea",
   "title": "ServiceCoverageArea",
   "status": "active",
@@ -52,12 +52,16 @@
       {
         "id": "Extension.value[x].system",
         "path": "Extension.value[x].system",
-        "patternUri": "http://unitsofmeasure.org"
+        "min": 1,
+        "patternUri": "http://unitsofmeasure.org",
+        "mustSupport": true
       },
       {
         "id": "Extension.value[x].code",
         "path": "Extension.value[x].code",
-        "patternCode": "m"
+        "min": 1,
+        "patternCode": "m",
+        "mustSupport": true
       }
     ]
   }
