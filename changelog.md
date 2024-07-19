@@ -1,9 +1,21 @@
 # Changelog
 
 ## tbd - Version 0.11.9
-- feat: HealthcareService.characteristic is now sliced into technical & location characteristics
-- feat: HealthcareService.characteristic location characteristics added
-- feat: HealthcareService.characteristic supports "Apotheken-Anfrage"
+- fix: EndpointDirectory.managingOrganization: removed MS
+- feat: HealthcareServiceDirectoryDirectory.characteristic is now sliced into technical & physicalFeatures characteristics
+- feat: HealthcareServiceDirectory.characteristic physicalFeatures characteristics added
+- feat: HealthcareServiceDirectory.characteristic[technical] supports "Apotheken-Anfrage"
+- feat: HealthcareServiceDirectory.location cardinality set to 1..1
+- feat: EndpointDirectoryConnectionType removed generic concept `erp-supported` and added the specific concepts `eRP-onPremise`, `eRP-delivery` , `eRP-shipment`
+- feat: added HealthcareServiceSpecialtyCS used on HealthcareServiceDirectory.specialty
+- feat: added SpecialOpeningTimesEX Extension to capture special opening periods (e.g. "Notdienst") used on `HealthcareServiceDirectory.availableTime`
+- feat: added PhysicalFeaturesAdditionalNoteEX to capture additional free text info of `HealthcareServiceDirectory.characteristic` (e.g. description where the parking space is located)
+- fix: removed MS from LocationDirectory.hoursOfOperation & availabilityExceptions , opening hours are captured in the HealthcareServiceDirectory
+- fix: removed `apo-ident` from PharmacyHealthcareSpecialtyCS
+- feat: added VZDHealthCareServiceCharacteristicsCS used on `HealthcareServiceDirectory.characteristic[technicalCharacteristic]`
+- feat: added PhysicalFeaturesHealthCareServiceVS
+- fix: removed irrelevant information from examples
+- feat: added a complete pharmacy example
 
 ## 2024-05-30 - Version 0.11.8
 - feat: dependency basisprofile updated to 1.5.0 (no changes introduced by this update)
