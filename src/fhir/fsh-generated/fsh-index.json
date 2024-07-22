@@ -349,7 +349,7 @@
     "fshType": "ValueSet",
     "fshFile": "valuesets/EndpointPayloadTypeVS.fsh",
     "startLine": 1,
-    "endLine": 4
+    "endLine": 5
   },
   {
     "outputFile": "ValueSet-EndpointVisibilityVS.json",

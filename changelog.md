@@ -1,4 +1,6 @@
 # Changelog
+## 2024-07-22 - Version 0.11.10
+- feat: added DataAbsentReason#not-applicable "Not Applicable" to the VS-Binding of EndpointDirectory.payloadType
 
 ## 2024-07-19 - Version 0.11.9
 - fix: EndpointDirectory.managingOrganization: removed MS

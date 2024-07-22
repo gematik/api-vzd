@@ -2,7 +2,7 @@
   "resourceType": "StructureDefinition",
   "id": "ServiceCoverageArea",
   "url": "https://gematik.de/fhir/directory/StructureDefinition/ServiceCoverageArea",
-  "version": "0.11.9",
+  "version": "0.11.10",
   "name": "ServiceCoverageArea",
   "title": "ServiceCoverageArea",
   "status": "active",

@@ -2,7 +2,7 @@
   "resourceType": "StructureDefinition",
   "id": "OrganizationDirectory",
   "url": "https://gematik.de/fhir/directory/StructureDefinition/OrganizationDirectory",
-  "version": "0.11.9",
+  "version": "0.11.10",
   "name": "OrganizationDirectory",
   "title": "Organization in gematik Directory",
   "status": "active",
