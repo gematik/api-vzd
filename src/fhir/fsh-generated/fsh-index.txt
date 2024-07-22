@@ -42,7 +42,7 @@ StructureDefinition-ServiceCoverageArea.json                   ServiceCoverageAr
 StructureDefinition-SpecialOpeningTimesEX.json                 SpecialOpeningTimesEX                            Extension   profiles/Extension.fsh                                 62 - 77
 ValueSet-AddressStateVS.json                                   AddressStateVS                                   ValueSet    valuesets/AddressStateVS.fsh                           1 - 4
 ValueSet-EndpointConnectionTypeVS.json                         EndpointConnectionTypeVS                         ValueSet    valuesets/EndpointConnectionTypeVS.fsh                 1 - 5
-ValueSet-EndpointPayloadTypeVS.json                            EndpointPayloadTypeVS                            ValueSet    valuesets/EndpointPayloadTypeVS.fsh                    1 - 4
+ValueSet-EndpointPayloadTypeVS.json                            EndpointPayloadTypeVS                            ValueSet    valuesets/EndpointPayloadTypeVS.fsh                    1 - 5
 ValueSet-EndpointVisibilityVS.json                             EndpointVisibilityVS                             ValueSet    profiles/Extension.fsh                                 55 - 60
 ValueSet-HealthcareServiceTypeVS.json                          HealthcareServiceTypeVS                          ValueSet    valuesets/HealthcareServiceTypeVS.fsh                  1 - 102
 ValueSet-HealthcareSpecialtyTypeVS.json                        HealthcareServiceSpecialtyVS                     ValueSet    valuesets/HealthcareServiceSpecialtyVS.fsh             1 - 8

@@ -2,7 +2,7 @@
   "resourceType": "StructureDefinition",
   "id": "PhysicalFeaturesAdditionalNoteEX",
   "url": "https://gematik.de/fhir/directory/StructureDefinition/PhysicalFeaturesAdditionalNoteEX",
-  "version": "0.11.9",
+  "version": "0.11.10",
   "name": "PhysicalFeaturesAdditionalNoteEX",
   "title": "Physical Features Additional Note",
   "status": "active",
