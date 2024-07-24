@@ -657,7 +657,7 @@ Example of a https://github.com/gematik/api-vzd/blob/122ef63f9e76689261c9195e09c
 |speciality
 |0..*
 |According to https://simplifier.net/vzd-fhir-directory/healthcareservicespecialtyvs[HealthcareServiceSpecialityVS]. +
- For pharmacies it contains the specialities according https://gematik.de/fhir/directory/CodeSystem/PharmacyHealthcareSpecialityCS (e.g. Handverkauf, Versand, Botendienst,...). +
+ For s it contains the specialities according https://gematik.de/fhir/directory/CodeSystem/PharmacyHealthcareSpecialityCS (e.g. Handverkauf, Versand, Botendienst,...). +
  For all HealthcareServices it may contain the specialities according to *ServiceType* (http://terminology.hl7.org/CodeSystem/service-type).
 |Yes
 |No
@@ -680,7 +680,7 @@ Example of a https://github.com/gematik/api-vzd/blob/122ef63f9e76689261c9195e09c
 |telecom  
 |A contact detail for the organization  
 |0..* 
-|For pharmacies taken from the ApoVZD / pharmacy portal. May contain website, email, telephone, fax. +
+|For s taken from the ApoVZD / pharmacy portal. May contain website, email, telephone, fax. +
 For other organizations: Not used in the FHIR VZD.
 |No
 |No
@@ -689,7 +689,7 @@ For other organizations: Not used in the FHIR VZD.
 serviceCoverageArea  
 |Delivery area of the service.
 |0..1 
-|For pharmacies taken from the ApoVZD / pharmacy portal.
+|For s taken from the ApoVZD / pharmacy portal.
 |No
 |No
 
@@ -787,20 +787,20 @@ See <<Endpoint-Resource>>
 === eRezept
 Overview of the special data for the eRezept application.
 
-==== Kind of organization/pharmacie
+==== Kind of organization/pharmacy
 The kind of organization is stored in the Organization.type attribute. For pharmacies the following codes from https://simplifier.net/vzd-fhir-directory/organizationprofessionoid[OrganizationProfessionOID] are relevant:
 
 - 1.2.276.0.76.4.54	Öffentliche Apotheke
 - 1.2.276.0.76.4.55	Krankenhausapotheke
 - 1.2.276.0.76.4.56	Bundeswehrapotheke
 
-==== Services of the pharmacie
-The services of the pharmacie is stored in the HealthcareService.specialty attribute. For pharmacies the codes from https://simplifier.net/vzd-fhir-directory/pharmacyhealthcarespecialtycs[PharmacyHealthcareSpecialityCS] are relevant. +
+==== Services of the pharmacy
+The services of the pharmacy is stored in the HealthcareService.specialty attribute. For pharmacies the codes from https://simplifier.net/vzd-fhir-directory/pharmacyhealthcarespecialtycs[PharmacyHealthcareSpecialityCS] are relevant. +
  +
-The ability of the pharmacie to receive eRX Token is encoded in an attribute HealthcareService.characteristic. The codes are contained here https://simplifier.net/vzd-fhir-directory/healthcareservice-characteristic-vs[HealthCareServiceCharacteristicVS] +
+The ability of the pharmacy to receive eRX Token is encoded in an attribute HealthcareService.characteristic. The codes are contained here https://simplifier.net/vzd-fhir-directory/healthcareservice-characteristic-vs[HealthCareServiceCharacteristicVS] +
  +
 *Note*: 
-An organization can create additional HealthcareServices itself. The HealthcareService with the pharmacie services can be recognized by the attribute "meta.tag" = "ldap".
+An organization can create additional HealthcareServices itself. The HealthcareService with the pharmacy services can be recognized by the attribute "meta.tag" = "ldap".
 
 ==== opening hours
 The opening times of pharmacies are stored in the HealthcareService.availableTime attribute. +
