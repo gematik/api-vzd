@@ -66,13 +66,13 @@ Für Einträge der Leistungserbringer (HBA-Eintrag)
 Der Wertebereich entspricht den in hl7 definierten Werten ( https://wiki.hl7.de/index.php?title=IG:Value_Sets_f%C3%BCr_XDS# DocumentEntry.authorSpecialty). urn:as:<OID Codesystem:Code> Beispiel für FA Allgemeinmedizin: urn:as:1.2.276.0.76.5.114:010 | Practitioner | qualification.code.coding.system = Codesystem
 qualification.code.coding.code = Code
 qualification.code.coding.display = <added by FHIR-Proxy> 
-| specialization enthält die medizinische Fachrichtung (Allgemein, Augen, Kinder, ...) 
+| specialization enthält die medizinische Fachrichtung (Allgemein, Augen, Kinder, ...) 
 
 im Gegensatz zur professionOID, die die Art der LEI beschreibt (Arztpraxis, Zahnarztpraxis, Krankenhaus, ...)
 
 Es werden folgenden Codes verwendet: https://simplifier.net/packages/de.basisprofil.r4/1.2.0/files/483083
 
-Codesystem ist ensprechend:  urn:oid:1.2.276.0.76.5.114
+Codesystem ist ensprechend:  urn:oid:1.2.276.0.76.5.114
 .2+|SMC-B .2+|Bezeichner: Fachgebiet
 Kann mehrfach vorkommen (1..100).
 
@@ -93,7 +93,7 @@ type.coding.display = <added by FHIR-Proxy>
 
 |SMC-B Apotheken 3+|
 Für Besonderheiten von Apotheken siehe zusätzlich Tabelle "Synchronisierung der Attribute professionOID & specialization für Apotheken" 
-| 
+|
 .2+|domainID |HBA | - | - | - | -
 |SMC-B |Bezeichner: domänenspezifisches Kennzeichen des Eintrags. kann mehrfach vorkommen (0..100)
 | Organization | identifier|
@@ -112,8 +112,8 @@ Annahme: Identifier.type = domainID
 |dataFromAuthority |HBA und SMC-B |wird vom VZD eingetragen Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
 | - | - |Wird über neues Berechtigungsmodell behandelet
 
-.2+|active |HBA | Zustand des LDAP HBA Eintrags | Practitioner | active | Wird aus LDAP übernommen.
-|SMC-B |Zustand des LDAP HBA Eintrags | Organization | active| Wird aus LDAP übernommen.
+.2+|active |HBA | Zustand des LDAP HBA Eintrags | Practitioner | active | Wird aus LDAP übernommen, wenn im LDAP VZD gültige Zertifikate vorliegen. Ohne gültige Zertifikate im LDAP VZD wird der Eintrag im FHIR VZD auf inaktiv gesetzt (active=false). 
+|SMC-B |Zustand des LDAP SMC-B Eintrags | Organization | active| Wird aus LDAP übernommen, , wenn im LDAP VZD gültige Zertifikate vorliegen. Ohne gültige Zertifikate im LDAP VZD wird der Eintrag im FHIR VZD auf inaktiv gesetzt (active=false). 
 
 .2+|userCertificate |HBA .2+|Bezeichner: Enc-Zertifikat kann mehrfach vorkommen (0..50) Das Zertifikat wird gelöscht, wenn es ungültig geworden ist. Wenn kein Zertifikat vorliegt, dann kann der Eintrag nicht mittels LDAP-Abfrage gefunden werden. Format: DER, Base64-kodiert | - | - |Da aktuelle nur erste einmal der TIM-UserCase umgesetzt wird, werden keine KIM-Zertifikat genutzt.
 |SMC-B 
@@ -183,3 +183,4 @@ Heimversorgende Apotheke
 | 40 Versandapotheke ||40 Versand|versandapotheke +
 Versandapotheke
 |============================
+
