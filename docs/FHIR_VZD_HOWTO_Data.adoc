@@ -774,20 +774,20 @@ See <<Endpoint-Resource>>
 === eRezept
 Overview of the special data for the eRezept application.
 
-==== Kind of organization/pharmacie
+==== Kind of organization/pharmacy
 The kind of organization is stored in the Organization.type attribute. For pharmacies the following codes from https://simplifier.net/vzd-fhir-directory/organizationprofessionoid[OrganizationProfessionOID] are relevant:
 
 - 1.2.276.0.76.4.54	Öffentliche Apotheke
 - 1.2.276.0.76.4.55	Krankenhausapotheke
 - 1.2.276.0.76.4.56	Bundeswehrapotheke
 
-==== Services of the pharmacie
-The services of the pharmacie is stored in the HealthcareService.specialty attribute. For pharmacies the codes from https://simplifier.net/vzd-fhir-directory/pharmacyhealthcarespecialtycs[PharmacyHealthcareSpecialityCS] are relevant. +
+==== Services of the pharmacy
+The services of the pharmacy is stored in the HealthcareService.specialty attribute. For pharmacies the codes from https://simplifier.net/vzd-fhir-directory/pharmacyhealthcarespecialtycs[PharmacyHealthcareSpecialityCS] are relevant. +
  +
-The ability of the pharmacie to receive eRX Token is encoded in an attribute HealthcareService.characteristic. The codes are contained here https://simplifier.net/vzd-fhir-directory/healthcareservice-characteristic-vs[HealthCareServiceCharacteristicVS] +
+The ability of the pharmacy to receive eRX Token is encoded in an attribute HealthcareService.characteristic. The codes are contained here https://simplifier.net/vzd-fhir-directory/healthcareservice-characteristic-vs[HealthCareServiceCharacteristicVS] +
  +
 *Note*: 
-An organization can create additional HealthcareServices itself. The HealthcareService with the pharmacie services can be recognized by the attribute "meta.tag" = "ldap".
+An organization can create additional HealthcareServices itself. The HealthcareService with the pharmacy services can be recognized by the attribute "meta.tag" = "ldap".
 
 ==== opening hours
 The opening times of pharmacies are stored in the HealthcareService.availableTime attribute. +
