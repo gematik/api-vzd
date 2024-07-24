@@ -112,8 +112,8 @@ Annahme: Identifier.type = domainID
 |dataFromAuthority |HBA und SMC-B |wird vom VZD eingetragen Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
 | - | - |Wird über neues Berechtigungsmodell behandelet
 
-.2+|active |HBA | Zustand des LDAP HBA Eintrags | Practitioner | active | Wird aus LDAP übernommen.
-|SMC-B |Zustand des LDAP HBA Eintrags | Organization | active| Wird aus LDAP übernommen.
+.2+|active |HBA | Zustand des LDAP HBA Eintrags | Practitioner | active | Wird aus LDAP übernommen, wenn im LDAP VZD gültige Zertifikate vorliegen. Ohne gültige Zertifikate im LDAP VZD wird der Eintrag im FHIR VZD auf inaktiv gesetzt (active=false). 
+|SMC-B |Zustand des LDAP SMC-B Eintrags | Organization | active| Wird aus LDAP übernommen, , wenn im LDAP VZD gültige Zertifikate vorliegen. Ohne gültige Zertifikate im LDAP VZD wird der Eintrag im FHIR VZD auf inaktiv gesetzt (active=false). 
 
 .2+|userCertificate |HBA .2+|Bezeichner: Enc-Zertifikat kann mehrfach vorkommen (0..50) Das Zertifikat wird gelöscht, wenn es ungültig geworden ist. Wenn kein Zertifikat vorliegt, dann kann der Eintrag nicht mittels LDAP-Abfrage gefunden werden. Format: DER, Base64-kodiert | - | - |Da aktuelle nur erste einmal der TIM-UserCase umgesetzt wird, werden keine KIM-Zertifikat genutzt.
 |SMC-B 
