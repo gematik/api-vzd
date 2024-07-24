@@ -1,3 +1,4 @@
+.Synchronisierung LDAP VZD -> FHIR VZD
 [cols="2,1,2,1,2,2",options="header"]
 |============================
 |LDAP-Attribut |LDAP-Eintragstyp |Nutzung LDAP gemäß VZD-Spec Tab_VZD_Datenbeschreibung |FHIR-Ressource | FHIR-Element | Bemerkungen
@@ -53,11 +54,12 @@ Wird wie definiert umgesetzt.
 .2+|otherName |HBA .2+|Bezeichner: Anderer Name Veraltet: Wird für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen nicht benötigt (siehe displayName und organization) | - | - .2+| Veraltet wird nicht gemapped.
 |SMC-B |- |-  
 
-.2+|specialization +
+.4+|specialization +
  +
 Format
 
-urn:psc:<OID Codesystem:Code> |HBA |Bezeichner: Fachgebiet
+urn:psc:<OID Codesystem:Code> 
+|HBA |Bezeichner: Fachgebiet
 Kann mehrfach vorkommen (1..100).
 
 Für Einträge der Leistungserbringer (HBA-Eintrag)
@@ -71,18 +73,27 @@ im Gegensatz zur professionOID, die die Art der LEI beschreibt (Arztpraxis, Zahn
 Es werden folgenden Codes verwendet: https://simplifier.net/packages/de.basisprofil.r4/1.2.0/files/483083
 
 Codesystem ist ensprechend:  urn:oid:1.2.276.0.76.5.114
-|SMC-B |Bezeichner: Fachgebiet
+.2+|SMC-B .2+|Bezeichner: Fachgebiet
 Kann mehrfach vorkommen (1..100).
 
 Für Einträge der Leistungserbringerorganisationen (SMC-B Eintrag) Der Wertebereich entspricht den in hl7 definierten und für ePA festgelegten Werten ( https://wiki.hl7.de/index.php?title=IG:Value_Sets_f%C3%BCr_XDS# DocumentEntry.practiceSettingCode). 
-| HealthcareService | specialty.coding.system = Codesystem 
-(Mapping erfolgt nach Entfernung des Prefix. Beispiel: "urn:psc:<OID Codesystem>" 
-wird gemappt auf "urn:oid;<OID Codesystem>"
-specialty.coding.code = Code
-specialty.coding.display = <added by FHIR-Proxy> |
+| HealthcareService.specialty | Werte die nicht dem Valueset https://simplifier.net/vzd-fhir-directory/healthcarespecialtytypevs[HealthcareServiceSpecialtyVS] zugeordnet werden können, werden nicht gemappt. Die Synchronisation wird hierdurch nicht unterbrochen. |
 ValueSets / Code Systems definiert:
-https://simplifier.net/vzd-fhir-directory
+Valueset https://simplifier.net/vzd-fhir-directory/healthcarespecialtytypevs[HealthcareServiceSpecialtyVS] +
+Es werden Code-Literale ohne weiteres Qualifier-Prefixing nacheinander gegen die CodeSysteme https://simplifier.net/resolve?scope=VZD-FHIR-Directory@current&filepath=src/fhir/fsh-generated/resources/CodeSystem-PharmacyHealthcareSpecialtyCS.json[PharmacyHealthcareSpecialtyCS] und https://simplifier.net/resolve?scope=hl7.fhir.r4.core@4.0.1&filepath=package/CodeSystem-service-type.json[ServiceType] abgeglichen und bei Übereinstimmung übernommen.
 
+| HealthcareService.type | Werte die nicht dem Valueset https://simplifier.net/vzd-fhir-directory/healthcareservicetypevs[HealthcareServiceTypeVS] zugeordnet werden können, werden nicht gemappt. Die Synchronisation wird hierdurch nicht unterbrochen. 
+| ValueSets / Code Systems definiert: https://simplifier.net/vzd-fhir-directory/healthcareservicetypevs[HealthcareServiceTypeVS] +
+type.coding.system = Codesystem +
+Mapping erfolgt nach Entfernung des Prefix. Beispiel: "urn:psc:<OID Codesystem>" +
+wird gemappt auf "urn:oid:<OID Codesystem>" +
+type.coding.code = Code +
+type.coding.display = <added by FHIR-Proxy>
+
+
+|SMC-B Apotheken 3+|
+Für Besonderheiten von Apotheken siehe zusätzlich Tabelle "Synchronisierung der Attribute professionOID & specialization für Apotheken" 
+|
 .2+|domainID |HBA | - | - | - | -
 |SMC-B |Bezeichner: domänenspezifisches Kennzeichen des Eintrags. kann mehrfach vorkommen (0..100)
 | Organization | identifier|
@@ -101,6 +112,9 @@ Annahme: Identifier.type = domainID
 |dataFromAuthority |HBA und SMC-B |wird vom VZD eingetragen Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
 | - | - |Wird über neues Berechtigungsmodell behandelet
 
+.2+|active |HBA | Zustand des LDAP HBA Eintrags | Practitioner | active | Wird aus LDAP übernommen, wenn im LDAP VZD gültige Zertifikate vorliegen. Ohne gültige Zertifikate im LDAP VZD wird der Eintrag im FHIR VZD auf inaktiv gesetzt (active=false). 
+|SMC-B |Zustand des LDAP SMC-B Eintrags | Organization | active| Wird aus LDAP übernommen, , wenn im LDAP VZD gültige Zertifikate vorliegen. Ohne gültige Zertifikate im LDAP VZD wird der Eintrag im FHIR VZD auf inaktiv gesetzt (active=false). 
+
 .2+|userCertificate |HBA .2+|Bezeichner: Enc-Zertifikat kann mehrfach vorkommen (0..50) Das Zertifikat wird gelöscht, wenn es ungültig geworden ist. Wenn kein Zertifikat vorliegt, dann kann der Eintrag nicht mittels LDAP-Abfrage gefunden werden. Format: DER, Base64-kodiert | - | - |Da aktuelle nur erste einmal der TIM-UserCase umgesetzt wird, werden keine KIM-Zertifikat genutzt.
 |SMC-B 
 | - | - |
@@ -115,7 +129,7 @@ Wird für EPA perspektivisch genutzt. Aus diesem Grund wird aktuelle hier keine 
 | Practitioner  | identifier.value = telematikID |
 |SMC-B | Organization | identifier.value = telematikID |
 
-.2+|professionOID |HBA .2+|
+.3+|professionOID |HBA .2+|
 Wird aus dem Zertifikat übernommen, 
 kann in LDAP (certificate, vzd_entry) 0..n mal vorkommen (im vzd_entry Gesamtmenge aller in allen Zertifikaten enthaltenen OIDs).
 Verhalten beim Löschen des letzten Zertifikats zu einem Basiseintrag: eine oder mehrere professionOIDs werden aus vzd_entry gelöscht.
@@ -124,6 +138,9 @@ Verhalten beim Löschen des letzten Zertifikats zu einem Basiseintrag: eine oder
 type.coding.code = professionOID
 type.coding.display = display aus https://simplifier.net/vzd-fhir-directory/organizationtypevs
 | 
+|SMC-B Apotheken 3+|
+Für Besonderheiten von Apotheken siehe zusätzlich Tabelle "Synchronisierung der Attribute professionOID & specialization für Apotheken" 
+|
 |usage |HBA und SMC-B | 
 | - | - |
 
@@ -143,3 +160,27 @@ https://simplifier.net/vzd-fhir-directory/endpointdirectory
 | jeweilige Resource | Meta | wird in die FHIR Meta Daten übernommen
 
 |============================
+
+.Synchronisierung der Attribute professionOID & specialization für Apotheken
+[cols="1,2,2,2,2",options="header"]
+|============================
+2+|LDAP VZD 3+| FHIR VZD
+|LDAP-Attribut |LDAP Attributwert |Organization.type |HealthcareService.specialty (PharmacyHealthcareSpecialityCS) | HealthcareService.type (PharmacyTypeCS)
+.4+|professionOID ||||
+| 1.2.276.0.76.4.54 Öffentliche Apotheke | 1.2.276.0.76.4.54 Öffentliche Apotheke ||
+| 1.2.276.0.76.4.55 Krankenhausapotheke | 1.2.276.0.76.4.55 Krankenhausapotheke ||
+| 1.2.276.0.76.4.56 Bundeswehrapotheke | 1.2.276.0.76.4.56 Bundeswehrapotheke ||bundeswehrapotheke +
+Bundeswehrapotheke
+
+.5+|specialization +
+(PharmacyTypeCS) ||||
+| 10 Offizin-Apotheke ||10 Handverkauf |offizin-apotheke +
+Offizin-Apotheke
+| 20 Krankenhausversorgende Apotheke |||krankenhausversorgende-apotheke +
+Krankenhausversorgende Apotheke 
+| 30 Heimversorgende Apotheke |||heimversorgende-apotheke +
+Heimversorgende Apotheke
+| 40 Versandapotheke ||40 Versand|versandapotheke +
+Versandapotheke
+|============================
+
