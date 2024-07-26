@@ -6,7 +6,7 @@
   "id": "PharmacyHealthcareSpecialtyCS",
   "title": "Pharmacy HealthcareService Specialty",
   "description": "Specialty codes of pharmacy HealthcareServices",
-  "version": "0.11.10",
+  "version": "0.11.11",
   "url": "https://gematik.de/fhir/directory/CodeSystem/PharmacyHealthcareSpecialtyCS",
   "concept": [
     {
@@ -27,7 +27,7 @@
     },
     {
       "code": "50",
-      "display": "Zytostatikaherstellung"
+      "display": "Sterilherstellung"
     }
   ],
   "publisher": "gematik GmbH",
