@@ -96,6 +96,14 @@
     "endLine": 13
   },
   {
+    "outputFile": "CodeSystem-PharmacyTypeLDAPCS.json",
+    "fshName": "PharmacyTypeLDAPCS",
+    "fshType": "CodeSystem",
+    "fshFile": "codesystems/PharmacyTypeLDAPCS.fsh",
+    "startLine": 1,
+    "endLine": 12
+  },
+  {
     "outputFile": "CodeSystem-PractitionerProfessionOID.json",
     "fshName": "PractitionerProfessionOID",
     "fshType": "CodeSystem",

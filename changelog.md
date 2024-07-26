@@ -1,4 +1,9 @@
 # Changelog
+
+## 2024-07-26 - Version 0.11.11
+- feat: added PharmacyTypeLDAPCS which represents the pharmacy type codes in the ldap-VZD
+- fix: changed display of PharmacyHealthcareSpecialtyCS#50 from `Zytostatikaherstellung` to `Sterilherstellung`
+
 ## 2024-07-22 - Version 0.11.10
 - feat: added DataAbsentReason#not-applicable "Not Applicable" to the VS-Binding of EndpointDirectory.payloadType
 

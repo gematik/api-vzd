@@ -1,0 +1,36 @@
+{
+  "resourceType": "CodeSystem",
+  "status": "active",
+  "content": "complete",
+  "name": "PharmacyTypeLDAPCS",
+  "id": "PharmacyTypeLDAPCS",
+  "title": "Pharmacy type LDAP",
+  "description": "Pharmacy type codes used in the LDAP-VZD",
+  "version": "0.11.11",
+  "url": "https://gematik.de/fhir/directory/CodeSystem/PharmacyTypeLDAPCS",
+  "concept": [
+    {
+      "code": "10",
+      "display": "Offizin-Apotheke"
+    },
+    {
+      "code": "20",
+      "display": "Krankenhausversorgende Apotheke"
+    },
+    {
+      "code": "30",
+      "display": "Heimversorgende Apotheke"
+    },
+    {
+      "code": "40",
+      "display": "Versandapotheke"
+    },
+    {
+      "code": "50",
+      "display": "Sterilherstellung"
+    }
+  ],
+  "publisher": "gematik GmbH",
+  "caseSensitive": true,
+  "count": 5
+}
