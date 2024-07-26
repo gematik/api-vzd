@@ -1,0 +1,107 @@
+@startuml
+
+
+package "LDAP VZD" <<Frame>> #lightgreen {
+class specialization {
++ 10_Officin_Apotheke
++ 20_Krankenhausversorgende_Apotheke
++ 30_Heimversorgende_Apotheke
++ 40_Versandapotheke  
+}
+
+  note left of specialization
+   PharmacyTypeLDAPCS
+  end note
+
+ class professionOID {
+   + 1.2.276.0.76.4.54	Öffentliche Apotheke
+   + 1.2.276.0.76.4.55	Krankenhausapotheke
+   + 1.2.276.0.76.4.56	Bundeswehrapotheke
+  }
+  
+}
+
+package "FHIR VZD" <<Frame>> #lightyellow {
+ class HealthcareService_specialty {
+  + 10_Handverkauf
+  + 20_Nacht_und_Notdienst
+  + 30_Botendienst
+  + 40_Versand
+  + 50_Sterilherstellung 
+ }
+
+  note top of HealthcareService_specialty
+  PharmacyHealthcareSpecialityCS
+  end note  
+
+ class HealthcareService_type {
+  + Offizin-Apotheke
+  + Krankenhausversorgende Apotheke	
+  + Bundeswehrapotheke
+  + Heimversorgende Apotheke
+  + Versandapotheke
+  + Sterilherstellung
+ }
+
+ class Organization_type {
+   + 1.2.276.0.76.4.54	Öffentliche Apotheke
+   + 1.2.276.0.76.4.55	Krankenhausapotheke
+   + 1.2.276.0.76.4.56	Bundeswehrapotheke
+  }
+  
+ class HealthcareService_characteristic {
+   + eRX_Token_Receiver
+   + Apotheke_Verfügbarkeitsanfrage
+   + Apotheken_Ident_Verfahren
+   + Terminbuchung
+   - Parkmöglichkeit
+   - ÖPNV_in_der_Nähe
+   - Barrierefrei
+   - Abholautomat
+  }
+
+  class Endpoint {
+   + connectionType
+   + payloadType
+   + address
+  }
+
+  
+}
+
+package ApoVZD <<Frame>> #lightblue {
+ class ApoVZD_Mehrwertdaten {
+  + Apotheke_PHARM
+  + Apotheke_mit_Offizin_OUTPHARM
+  + Versandapotheke_MOBL
+  + eRX_Token_Receiver_DELEGATOR
+ }
+
+ class ApoVZD_Location_telecom {
+  + onPremise_URL
+  + delivery_URL
+  + shipment_URP
+ } 
+  
+}
+
+' LDAP Daten
+specialization -[#red,thickness=4]-> HealthcareService_type
+professionOID -[#red,thickness=4]-> Organization_type
+specialization::10_Officin_Apotheke -[#green]-> HealthcareService_specialty::10_Handverkauf
+specialization::40_Versandapotheke  -[#blue]-> HealthcareService_specialty::40_Versand
+
+' ApoVZD Mehrwertdaten
+ApoVZD_Mehrwertdaten::Apotheke_mit_Offizin_OUTPHARM -[#green]-> HealthcareService_specialty::10_Handverkauf
+ApoVZD_Mehrwertdaten::Versandapotheke_MOBL -[#blue]-> HealthcareService_specialty::40_Versand
+ApoVZD_Mehrwertdaten::eRX_Token_Receiver_DELEGATOR -[#Sienna]-> HealthcareService_characteristic::eRX_Token_Receiver
+
+' DELEGATOR URLs
+ApoVZD_Location_telecom::onPremise_URL -[#black]right-> Endpoint::address : URL
+ApoVZD_Location_telecom::onPremise_URL -[#black]right-> Endpoint::connectionType : "eRP-onPremise"
+ApoVZD_Location_telecom::onPremise_URL -[#black]right-> Endpoint::payloadType : "not-applicable"
+
+' Layout
+HealthcareService_type -[hidden]--> Endpoint
+
+@enduml
