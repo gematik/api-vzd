@@ -1,5 +1,8 @@
 # Changelog
 
+## 2024-07-26 - Version 0.11.12
+- fix: version 0.11.11 didn't include dependencies
+
 ## 2024-07-26 - Version 0.11.11
 - feat: added PharmacyTypeLDAPCS which represents the pharmacy type codes in the ldap-VZD
 - fix: changed display of PharmacyHealthcareSpecialtyCS#50 from `Zytostatikaherstellung` to `Sterilherstellung`
