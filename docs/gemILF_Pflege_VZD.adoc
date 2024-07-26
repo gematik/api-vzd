@@ -48,7 +48,7 @@ image::gematik_logo.svg[gematik,float="right"]
 [width="100%",cols="50%,50%",options="header",]
 |===
 
-|Version: |1.5.10
+|Version: |1.5.11
 
 |Referenzierung: |gemILF_Pflege_VZD
 |===
@@ -186,6 +186,10 @@ Neu für eGBR HBA und SMC-B |gematik
 - kimData - Korrektur der Beispiele für das Anwendungskennzeichen (Versionen und Nachrichtentypen sind nicht Bestandteil)
 |gematik
 
+|1.5.11 |26.07.2024 |4.4
+|
+- specialization - CodeSysteme PharmacyTypeCS umbenannt in PharmacyTypeLDAPCS und "Sterilherstellung" ergänzt
+|gematik
 |===
 
 == Einordnung des Dokumentes
@@ -838,7 +842,7 @@ zu entnehmen sind.
 |V005 |umgesetzt |ja
 | Bei HBA muss specialization folgendes Format haben: urn:as:{OID Codesystem}:{Code}, wobei CodeSystems und Codes aus https://simplifier.net/vzd-fhir-directory/practitionerqualificationvs[PractitionerQualificationVS] zu entnehmen sind.
 |V006 |umgesetzt |ja
-| Überschreibt V004 für den Sektor der Apotheken. Bei SMC-B Einträgen füt Apotheken müssen für das Attribut specialization die Codes aus https://simplifier.net/packages/de.gematik.fhir.directory/0.10.2/files/2140635[PharmacyTypeCS] (nur Code, ohne CodeSystem) verwendet werden.
+| Überschreibt V004 für den Sektor der Apotheken. Bei SMC-B Einträgen füt Apotheken müssen für das Attribut specialization die Codes aus https://simplifier.net/vzd-fhir-directory/pharmacytypeldapcs[PharmacyTypeLDAPCS] (nur Code, ohne CodeSystem) verwendet werden.
 // bisher V008  
 |V007 |umgesetzt |nein
 | displayName muss mindestens 2 UTF-8 Alphanummerische Zeichen enthalten
@@ -1271,7 +1275,7 @@ Dieses Attribut ist ein optionales zweites Namensattribut und wird befüllt bei 
 Für EU-Versandapotheken: EU-Versandapotheke
 |*domainID* |optional |Im Attribut domainID kann der Verweis auf die Mutter-Apotheke erfasst werden. +
 Die Inhalte werden durch die Kartenherausgeber gepflegt.
-|*specialization* |obligatorisch |Im Attribut specialization werden die ApothekenTypen (OffizinApo, Versand etc) erfasst. Hierfür wird das dafür definierten CodeSysteme https://simplifier.net/packages/de.gematik.fhir.directory/0.10.2/files/2140635[PharmacyTypeCS] genutzt . Die Inhalte werden durch die Kartenherausgeber gepflegt. +
+|*specialization* |obligatorisch |Im Attribut specialization werden die ApothekenTypen (OffizinApo, Versand etc) erfasst. Hierfür wird das dafür definierten CodeSysteme https://simplifier.net/vzd-fhir-directory/pharmacytypeldapcs[PharmacyTypeLDAPCS] genutzt . Die Inhalte werden durch die Kartenherausgeber gepflegt. +
 Default für das Attribut ist LEER. LEER wird in der eRezept Anwendung gleich behandelt wie "Sonstige_offen". +
  +
 Bezeichner: Fachgebiet +
