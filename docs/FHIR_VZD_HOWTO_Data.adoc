@@ -18,7 +18,7 @@ image::gematik_logo.svg[gematik,float="right"]
 
 [width="100%",cols="50%,50%",options="header",]
 |===
-|Version: |0.0.3
+|Version: |0.0.5
 |Referencing: |gemILF_VZD_FHIR_Directory
 |===
 
@@ -36,6 +36,7 @@ image::gematik_logo.svg[gematik,float="right"]
 |0.0.2 |28.03.24 | |Update for eRezept |gematik
 |0.0.3 |02.07.24 | |Update according data from ApoVZD |gematik
 |0.0.4 |09.07.24 | |Update  |gematik
+|0.0.5 |29.07.24 | |Simplifier links fixed |gematik
 |===
 
 == Classification of the document
@@ -656,8 +657,8 @@ Example of a https://github.com/gematik/api-vzd/blob/122ef63f9e76689261c9195e09c
 |speciality
 |speciality
 |0..*
-|According to https://simplifier.net/vzd-fhir-directory/healthcareservicespecialtyvs[HealthcareServiceSpecialityVS]. +
- For s it contains the specialities according https://gematik.de/fhir/directory/CodeSystem/PharmacyHealthcareSpecialityCS (e.g. Handverkauf, Versand, Botendienst,...). +
+|According to https://simplifier.net/vzd-fhir-directory/healthcarespecialtytypevs[HealthcareServiceSpecialityVS]. +
+ For pharmacies it contains the specialities according https://simplifier.net/vzd-fhir-directory/pharmacyhealthcarespecialtycs (e.g. Handverkauf, Versand, Botendienst,...). +
  For all HealthcareServices it may contain the specialities according to *ServiceType* (http://terminology.hl7.org/CodeSystem/service-type).
 |Yes
 |No
@@ -703,8 +704,9 @@ serviceCoverageArea
 |characteristic  
 |Collection of characteristics (attributes)  
 |0..* 
-|According to https://simplifier.net/vzd-fhir-directory/healthcareservice-characteristic-vs +
-E.g. used for the eRezept (eRX Token Receiver).
+|According to https://simplifier.net/vzd-fhir-directory/healthcareservice-technical-characteristic-vs +
+E.g. used for the eRezept (eRX Token Receiver) and can also show some physical characteristic https://simplifier.net/vzd-fhir-directory/physicalfeatureshealthcareservicevs. 
+
 |No
 |No
 
@@ -797,7 +799,7 @@ The kind of organization is stored in the Organization.type attribute. For pharm
 ==== Services of the pharmacy
 The services of the pharmacy is stored in the HealthcareService.specialty attribute. For pharmacies the codes from https://simplifier.net/vzd-fhir-directory/pharmacyhealthcarespecialtycs[PharmacyHealthcareSpecialityCS] are relevant. +
  +
-The ability of the pharmacy to receive eRX Token is encoded in an attribute HealthcareService.characteristic. The codes are contained here https://simplifier.net/vzd-fhir-directory/healthcareservice-characteristic-vs[HealthCareServiceCharacteristicVS] +
+The ability of the pharmacy to receive eRX Token is encoded in an attribute HealthcareService.characteristic. The codes are contained here https://simplifier.net/vzd-fhir-directory/healthcarespecialtytypevs[HealthCareServiceCharacteristicVS] +
  +
 *Note*: 
 An organization can create additional HealthcareServices itself. The HealthcareService with the pharmacy services can be recognized by the attribute "meta.tag" = "ldap".
