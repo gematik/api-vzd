@@ -41,8 +41,8 @@
     {
       "pattern": "^4-.*",
       "fhirResourceType": "Practitioner",
-      "code": "Physiotherapeut",
-      "displayShort": "Physiotherapeut"
+      "code": "Psychotherapeut",
+      "displayShort": "Psychotherapeut"
     },
     {
       "pattern": "^5-.*",
