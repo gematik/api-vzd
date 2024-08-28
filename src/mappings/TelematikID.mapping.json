@@ -2,27 +2,33 @@
   "mapping": [
     {
       "pattern": "^1-1.*",
-      "fhirResourceType": "Practitioner", 
+      "fhirResourceType": "Practitioner",
       "code": "Arzt",
-      "displayShort": "Arzt"
+      "displayShort": "Arzt",
+      "specializationRequired": "true"
     },
     {
       "pattern": "^1-20.*",
       "fhirResourceType": "Organization",
       "code": "Arztpaxis",
-      "displayShort": "Arztpaxis"
+      "displayShort": "Arztpaxis",
+      "fhirIdentifierProfile": "http://fhir.de/StructureDefinition/identifier-bsnr",
+      "specializationRequired": "true"
     },
     {
       "pattern": "^2-0?1.*",
       "fhirResourceType": "Practitioner",
       "code": "Zahnarzt",
-      "displayShort": "Zahnarzt"
+      "displayShort": "Zahnarzt",
+      "specializationRequired": "true"
     },
     {
       "pattern": "^2-2.*",
       "fhirResourceType": "Organization",
       "code": "Zahnarztpraxis",
-      "displayShort": "Zahnarztpraxis"
+      "displayShort": "Zahnarztpraxis",
+      "fhirIdentifierProfile": "http://fhir.de/StructureDefinition/identifier-kzva",
+      "specializationRequired": "true"
     },
     {
       "pattern": "^3-...2.*",
@@ -31,7 +37,7 @@
       "displayShort": "Apotheke"
     },
     {
-      "pattern": "^3-.*",
+      "pattern": "^3-...3.*",
       "fhirResourceType": "Practitioner",
       "code": "Apotheker",
       "displayShort": "Apotheker"
@@ -39,20 +45,24 @@
     {
       "pattern": "^4-.*",
       "fhirResourceType": "Practitioner",
-      "code": "Physiotherapeut",
-      "displayShort": "Physiotherapeut"
+      "code": "Psychotherapeut",
+      "displayShort": "Psychotherapeut",
+      "specializationRequired": "true"
     },
     {
       "pattern": "^5-.*",
       "fhirResourceType": "Organization",
       "code": "Krankenhaus",
-      "displayShort": "Krankenhaus"
+      "displayShort": "Krankenhaus",
+      "fhirIdentifierProfile": "http://fhir.de/StructureDefinition/identifier-iknr",
+      "specializationRequired": "true"
     },
     {
       "pattern": "^8-01.*",
       "fhirResourceType": "Organization",
       "code": "Krankenkasse",
-      "displayShort": "Krankenkasse"
+      "displayShort": "Krankenkasse",
+      "fhirIdentifierProfile": "http://fhir.de/StructureDefinition/identifier-iknr"
     },
     {
       "pattern": "^8-03.*",
@@ -94,7 +104,8 @@
       "pattern": "^9-2.34.*",
       "fhirResourceType": "Organization",
       "code": "Private_Psychotherapeutenpraxis",
-      "displayShort": "Private Psychotherapeutenpraxis"
+      "displayShort": "Private Psychotherapeutenpraxis",
+      "specializationRequired": "true"
     },
     {
       "pattern": "^9-2.54.*",
@@ -106,7 +117,8 @@
       "pattern": "^9-2.59.*",
       "fhirResourceType": "Organization",
       "code": "Krankenversicherung",
-      "displayShort": "Krankenversicherung"
+      "displayShort": "Krankenversicherung",
+      "fhirIdentifierProfile": "http://fhir.de/StructureDefinition/identifier-iknr"
     },
     {
       "pattern": "^9-2.254.*",
@@ -145,64 +157,60 @@
       "displayShort": "Pflege"
     },
     {
-      "pattern": "^9-2.*",
-      "fhirResourceType": "Organization",
-      "code": "Organisation",
-      "displayShort": "Organisation"
-    },
-    {
       "pattern": "^10-67.245.*",
       "fhirResourceType": "Organization",
       "code": "Pflege",
-      "displayShort": "Pflege"
+      "displayShort": "Pflege",
+      "specializationRequired": "true"
     },
     {
       "pattern": "^10-67.246.*",
       "fhirResourceType": "Organization",
       "code": "Geburtshilfe",
-      "displayShort": "Geburtshilfe"
+      "displayShort": "Geburtshilfe",
+      "specializationRequired": "true"
     },
     {
       "pattern": "^10-67.247.*",
       "fhirResourceType": "Organization",
       "code": "Physiotherapie",
-      "displayShort": "Physiotherapie"
+      "displayShort": "Physiotherapie",
+      "specializationRequired": "true"
     },
     {
       "pattern": "^10-67.232.*",
       "fhirResourceType": "Practitioner",
       "code": "Krankenpfleger",
-      "displayShort": "Krankenpfleger"
+      "displayShort": "Krankenpfleger",
+      "specializationRequired": "true"
     },
     {
       "pattern": "^10-67.233.*",
       "fhirResourceType": "Practitioner",
       "code": "Altenpfleger",
-      "displayShort": "Altenpfleger"
+      "displayShort": "Altenpfleger",
+      "specializationRequired": "true"
     },
     {
       "pattern": "^10-67.234.*",
       "fhirResourceType": "Practitioner",
       "code": "Pfleger",
-      "displayShort": "Pfleger"
+      "displayShort": "Pfleger",
+      "specializationRequired": "true"
     },
     {
       "pattern": "^10-67.235.*",
       "fhirResourceType": "Practitioner",
       "code": "Hebamme",
-      "displayShort": "Hebamme"
+      "displayShort": "Hebamme",
+      "specializationRequired": "true"
     },
     {
       "pattern": "^10-67.236.*",
       "fhirResourceType": "Practitioner",
       "code": "Physiotherapeut",
-      "displayShort": "Physiotherapeut"
-    },
-    {
-      "pattern": "^10-67.*",
-      "fhirResourceType": "Practitioner",
-      "code": "Gesundheitsberuf",
-      "displayShort": "Gesundheitsberuf"
+      "displayShort": "Physiotherapeut",
+      "specializationRequired": "true"
     },
     {
       "pattern": "(?s)^.*$",
@@ -210,5 +218,5 @@
       "code": "Weitere",
       "displayShort": "Weitere"
     }
-  ] 
+  ]
 }
