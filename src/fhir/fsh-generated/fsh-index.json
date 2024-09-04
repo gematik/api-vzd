@@ -77,7 +77,7 @@
     "fshType": "CodeSystem",
     "fshFile": "codesystems/Origin.fsh",
     "startLine": 1,
-    "endLine": 7
+    "endLine": 8
   },
   {
     "outputFile": "CodeSystem-PharmacyHealthcareSpecialtyCS.json",
