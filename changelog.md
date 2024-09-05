@@ -1,5 +1,8 @@
 # Changelog
 
+## 2024-07-26 - Version 0.11.13
+- feat: added Synchronized from ApoVZD as concept to `https://gematik.de/fhir/directory/CodeSystem/Origin`
+
 ## 2024-07-26 - Version 0.11.12
 - fix: version 0.11.11 didn't include dependencies
 
