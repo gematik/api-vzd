@@ -1,0 +1,283 @@
+openapi: 3.0.1
+info:
+  title: I_FHIR_VZD_Certificates
+  description: REST Schnittstelle zum Abruf von Zertifikaten.
+
+  version: 0.1.0
+
+  # Änderungen in Version 0.1.0
+  #   - initiale Version
+
+externalDocs:
+  description: Schnittstelle zum Abruf von Zertifikaten von Verzeichniseinträgen
+  url: http://github.com/gematik/api-vzd/
+servers:
+- url: https://xxx.vzd.ti-dienste.de:9543/
+  description: Testumgebung
+- url: https://xxx.vzd.ti-dienste.de:9543/
+  description: Referenzumgebung
+- url: https://xxx.vzd.ti-dienste.de:9543/
+  description: Produktivumgebung
+tags:
+- name: getInfo
+  description: Diese Operation liefert Metadaten über diese Schnittstelle
+
+paths:
+
+  /:
+    get:
+      tags:
+      - getInfo I_FHIR_VZD_Certificates
+      summary: Diese Operation liefert Metadaten über diese Schnittstelle
+      security:
+       - OAuth2: 
+         - 'certificate:read'
+      description: Liefert die Metadaten für diese Schnittstelle.
+      operationId: getInfo
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/InfoObject'
+        401:
+          description: Unauthorized
+                    #  Der WWW-Authenticate Header im Response wird auf OAuth gesetzt.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        403:
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /Certificates:
+  
+    get:
+      tags:
+      - Certificates
+      summary: Zertifikate lesen
+      description: Liefert alle Zertifikate, die dem Filter (siehe 'parameters') entsprechen.
+      security:
+       - OAuth2:
+         - 'certificate:read'
+      operationId: read_FhirVZD_Certificates
+      parameters:
+      - name: telematikID
+        in: query
+        description: telematikID von dem Zertifikat 
+                     Erlaubt die Suche nach Zertifikatseinträgen einer telematikID.
+        schema:
+          type: string
+      - name: professionOID
+        in: query
+        description: Erlaubt die Suche mit Hilfe des Attributs professionOID. 
+                     Der Verzeichniseintrag wird selektiert, wenn die angegebene professionOID im Attribut professionOID (array) des Zertifikatseintrags enthalten ist.
+        schema:
+          type: string  
+      - name: entryType
+        in: query
+        description: Erlaubt die Suche mit Hilfe des Attributs entryType.
+        schema:
+          type: string
+      - name: active
+        in: query
+        description: Erlaubt die Suche mit Hilfe des Attributs active. 
+        schema:
+          type: boolean  
+      - name: serialNumber
+        in: query
+        description: Erlaubt die Suche mit Hilfe des Attributs serialNumber. 
+        schema:
+          type: string  
+      - name: issuer
+        in: query
+        description: Erlaubt die Suche mit Hilfe des Attributs issuer. 
+        schema:
+          type: string  
+      - name: publicKeyAlgorithm
+        in: query
+        description: Erlaubt die Suche mit Hilfe des Attributs publicKeyAlgorithm. 
+        schema:
+          type: string  
+
+      responses:
+        200:
+          description: OK
+                    #  Es werden alle gefundenen Zertifikatseinträge zurückgegeben.
+                                                                                                 
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/userCertificates'
+
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        401:
+          description: Unauthorized
+                    #  Der WWW-Authenticate Header im Response muss auf OAuth gesetzt werden.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        403:
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        404:
+          description: Not Found
+                    #  Certificate not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+
+components:
+
+  schemas:
+
+    userCertificate:
+      description: Jeder Verzeichniseintrag muss mindestens ein Zertifikat enthalten.
+      type: object
+      properties:
+        telematikID:
+          type: string
+          description: 'Wird beim Anlegen des Eintrags vom VZD aus dem Zertifikat 
+                        übernommen (Feld registrationNumber der Extension Admission).'
+        userCertificate:
+          type: string
+          description: 'Zertifikat im DER Format. Base64 kodiert.'
+        professionOID:
+          maxItems: 100
+          minItems: 0
+          type: array
+          readOnly: true
+          items:
+            type: string
+            description: 'Profession OID / Wird vom VZD dem Zertifikat entnommen. 
+                          Kann mehrfach vorkommen (0..100)'
+        entryType:
+          type: string
+          description: 'Eintragstyp Wird vom VZD anhand der in dem Zertifikat
+            enthaltenen OID (Extension Admission, Attribut ProfessionOID) und der
+            Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch
+            eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403'
+          readOnly: true
+        active:
+          type: boolean
+          readOnly: true
+          example: true
+          description: Dieses Attribut eigt an, ob das Zertifikat aktiv ist oder nicht (true oder false).
+        notBefore:
+          type: string
+          description: |
+            Wert wird vom VZD aus dem Zertifikat Feld "notBefore" entnommen und in dieses Attribut ohne Formatänderung eingetragen.
+          readOnly: true
+          example: '2017-12-04T01:00:00'
+        notAfter:
+          type: string
+          description: |
+            Wert wird vom VZD aus dem Zertifikat Feld "notAfter" entnommen und in dieses Attribut ohne Formatänderung eingetragen.
+          readOnly: true
+          example: '2022-12-04T00:59:59'
+        serialNumber:
+          type: string
+          description: |
+            Wert wird vom VZD aus dem Zertifikat Feld "serialNumber" entnommen und in dieses Attribut ohne Formatänderung eingetragen.
+          readOnly: true
+          example: 80276883110000092581
+        issuer:
+          type: string
+          description: |
+            Wert wird vom VZD aus dem Zertifikat Feld "issuer" entnommen und in dieses Attribut ohne Formatänderung eingetragen.
+          readOnly: true
+          example: 'CN=GEM.SMCB-CA8 TEST-ONLY,OU=Institution des Gesundheitswesens-CA der Telematikinfrastruktur,O=gematik GmbH NOT-VALID,C=DE'
+        publicKeyAlgorithm:
+          type: string
+          description: |
+            Wert wird vom VZD aus dem Zertifikat Feld "publicKeyAlgorithm" entnommen und in dieses Attribut ohne Formatänderung eingetragen.
+          readOnly: true
+          example: RSA
+
+    userCertificates:
+      type: array
+      items:
+        $ref: '#/components/schemas/userCertificate'
+            
+
+    Error:
+      type: object
+      properties:
+        message: 
+          type: string
+          description: (optionale) Fehlernachricht
+        errors:
+          maxItems: 50
+          minItems: 0
+          type: array
+          items:
+            $ref: '#/components/schemas/InnerError'
+
+    InnerError:
+      type: object
+      properties:
+        attributeName:
+          description: Name des Attributs, in dem ein Fehler erkannt wurde
+          type: string
+        attributeError:
+          description: Beschreibung des erkannten Fehlers
+          type: string
+
+    InfoObject:
+      required:
+      - title
+      - version
+      readOnly: true
+      type: object
+      properties:
+        title:
+          type: string
+          description: Der Titel der Anwendung
+          example: "I_FHIR_VZD_Certificates"
+        description:
+          type: string
+          description: Eine kurze Beschreibung der Anwendung
+          example: "REST Schnittstelle zum Abruf der Zertifikate von Verzeichniseinträgen."
+        version:
+          type: string
+          description: Die Version von dem OpenAPI Document (YAML Datei)
+          example: "1.6.0"
+
+
+
+  securitySchemes:
+    OAuth2:
+      description: |
+        I_Directory_Administration unterstützt OAuth2 Client Credentials Flow.
+        Token Endpoint ist spezifisch für die jeweilige Umgebung:
+        
+        **Testumgenung:**
+        * https://auth-test.vzd.ti-dienste.de:9443/auth/realms/RSDirectoryAdministration/protocol/openid-connect/token
+        
+        **Referenzumgebung:**
+        * https://auth-ref.vzd.ti-dienste.de:9443/auth/realms/RSDirectoryAdministration/protocol/openid-connect/token
+        
+        **Produktifumgebung:**
+        * https://auth.vzd.ti-dienste.de:9443/auth/realms/RSDirectoryAdministration/protocol/openid-connect/token
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: '#umgebungsspezifisch'
+          scopes:
+            'certificate:read': I_FHIR_VZD_Certificates Client Scope
