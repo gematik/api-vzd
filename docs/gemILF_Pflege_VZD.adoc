@@ -40,6 +40,14 @@ Beispiel für den Wert eines kimData Eintrags in der flachen Liste (Ausgabe eine
 :kimData-example_6: kimData: ak_secu_102@dom5.kim.telematik-test,1.5
 
 
+:givenName: Bezeichner: Vorname + \
+Wird vom VZD beim Anlegen des Datensatzes (Operation add_Directory_Entry) aus dem Zertifikatsattribut givenName übernommen, wenn der Client von Schnittstelle I_Directory_Administration keinen Wert angibt (im REST Aufruf wird Attribut givenName nicht übergeben). + \
+{sp}  + \
+Wird über die Schreiboperationen (modify_Directory_Entry) von Schnittstelle I_Directory_Administration  für givenName ein Inhalt geliefert, so dieser Wert für das Attribut gesetzt. + \
+Mit Übergaben von "" wird das Attribut givenName auf einen leeren Wert gesetzt. Ein leerer Wert für das Attribut wird bei der Replikation auf die redundanten, performanten LDAP-Server - welche die LDAP Suchanfragen beantworten - auf "-" gesetzt. Diesen Wert erhalten die Clients vom LDAP VZD für dieses leere Attribut. + \
+{sp}  + \
+Wird dem Verzeichniseintrag ein neues Zertifikat hinzu gefügt (Operation add_Directory_Entry_Certificate), wird der aktuelle Wert des Attributs durch der Wert aus Zertifikatsattribut givenName überschrieben.
+
 // End Attribute definitions
 
 
@@ -48,7 +56,7 @@ image::gematik_logo.svg[gematik,float="right"]
 [width="100%",cols="50%,50%",options="header",]
 |===
 
-|Version: |1.5.11
+|Version: |1.5.12
 
 |Referenzierung: |gemILF_Pflege_VZD
 |===
@@ -190,6 +198,12 @@ Neu für eGBR HBA und SMC-B |gematik
 |
 - specialization - CodeSysteme PharmacyTypeCS umbenannt in PharmacyTypeLDAPCS und "Sterilherstellung" ergänzt
 |gematik
+
+|1.5.12 |11.09.2024 |4
+|
+- givenName - Verhalten bei der Administration von Attribut givenName genauer beschrieben
+|gematik
+
 |===
 
 == Einordnung des Dokumentes
@@ -1406,12 +1420,7 @@ Tabelle 5: Tab_VZD_Datenbeschreibung_Apotheker_Pharmazieingenieure_Apothekerassi
 [width="100%",cols="18%,9%,73%",options="header",]
 |===
 |*LDAP-Directory Attribut* |*Pflichtfeld aus Sicht Pflege und Nutzung?* |*Erläuterung*
-|*givenName* |optional |Bezeichner: Vorname +
-Wird vom VZD aus dem Zertifikatsattribut givenName übernommen, wenn der Client von Schnittstelle I_Directory_Administration keinen Wert angibt. +
- +
-Wird über die Schreiboperationen von Schnittstelle I_Directory_Administration für givenName ein Inhalt geliefert, so dieser Wert für das Attribut gesetzt. +
- +
-Wird dem Verzeichniseintrag ein neues Zertifikat hinzu gefügt, wird der aktuelle Wert des Attributs durch der Wert aus Zertifikatsattribut givenName überschrieben.
+|*givenName* |optional |{givenName}
 |*sn* |optional a|Bezeichner: Nachname +
 Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
  +
@@ -1742,12 +1751,7 @@ Tabelle 7: Tab_VZD_Datenbeschreibung_Psychotherapeuten
 [width="100%",cols="19%,10%,71%",options="header",]
 |===
 |*LDAP-Directory Attribut* |*Pflichtfeld aus Sicht Pflege und Nutzung?* |*Erläuterung*
-|*givenName* |optional |Bezeichner: Vorname +
-Wird vom VZD aus dem Zertifikatsattribut givenName übernommen, wenn der Client von Schnittstelle I_Directory_Administration keinen Wert angibt. +
- +
-Wird über die Schreiboperationen von Schnittstelle I_Directory_Administration für givenName ein Inhalt geliefert, so dieser Wert für das Attribut gesetzt. +
- +
-Wird dem Verzeichniseintrag ein neues Zertifikat hinzu gefügt, wird der aktuelle Wert des Attributs durch der Wert aus Zertifikatsattribut givenName überschrieben.
+|*givenName* |optional |{givenName}
 |*sn* |optional a|Bezeichner: Nachname +
 Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
  +
@@ -1910,12 +1914,7 @@ Tabelle 8: Tab_VZD_Datenbeschreibung_BÄK
 [width="100%",cols="17%,9%,74%",options="header",]
 |===
 |LDAP-Directory Attribut |Pflichtfeld aus Sicht Pflege und Nutzung? |Erläuterung
-|*givenName* |optional |Bezeichner: Vorname +
-Wird vom VZD aus dem Zertifikatsattribut givenName übernommen, wenn der Client von Schnittstelle I_Directory_Administration keinen Wert angibt. +
- +
-Wird über die Schreiboperationen von Schnittstelle I_Directory_Administration für givenName ein Inhalt geliefert, so dieser Wert für das Attribut gesetzt. +
- +
-Wird dem Verzeichniseintrag ein neues Zertifikat hinzu gefügt, wird der aktuelle Wert des Attributs durch der Wert aus Zertifikatsattribut givenName überschrieben.
+|*givenName* |optional |{givenName}
 |*sn* |optional a|Bezeichner: Nachname +
 Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
  +
@@ -2077,12 +2076,7 @@ Tabelle 9: Tab_VZD_Datenbeschreibung_BZÄK
 [width="100%",cols="19%,10%,71%",options="header",]
 |===
 |LDAP-Directory Attribut |Pflichtfeld aus Sicht Pflege und Nutzung? |Erläuterung
-|*givenName* |optional |Bezeichner: Vorname +
-Wird vom VZD aus dem Zertifikatsattribut givenName übernommen, wenn der Client von Schnittstelle I_Directory_Administration keinen Wert angibt. +
- +
-Wird über die Schreiboperationen von Schnittstelle I_Directory_Administration für givenName ein Inhalt geliefert, so dieser Wert für das Attribut gesetzt. +
- +
-Wird dem Verzeichniseintrag ein neues Zertifikat hinzu gefügt, wird der aktuelle Wert des Attributs durch der Wert aus Zertifikatsattribut givenName überschrieben.
+|*givenName* |optional |{givenName}
 |*sn* |optional a|Bezeichner: Nachname +
 Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
  +
@@ -2831,12 +2825,7 @@ Tabelle 14: Tab_VZD_Datenbeschreibung_eGBR_HBA
 [width="100%",cols="18%,10%,72%",options="header",]
 |===
 |*LDAP-Directory Attribut* |*Pflichtfeld aus Sicht Pflege und Nutzung?* |*Erläuterung*
-|*givenName* |optional |Bezeichner: Vorname +
-Wird vom VZD aus dem Zertifikatsattribut givenName übernommen, wenn der Client von Schnittstelle I_Directory_Administration keinen Wert angibt. +
- +
-Wird über die Schreiboperationen von Schnittstelle I_Directory_Administration für givenName ein Inhalt geliefert, so dieser Wert für das Attribut gesetzt. +
- +
-Wird dem Verzeichniseintrag ein neues Zertifikat hinzu gefügt, wird der aktuelle Wert des Attributs durch der Wert aus Zertifikatsattribut givenName überschrieben.
+|*givenName* |optional |{givenName}
 |*sn* |optional a|Bezeichner: Nachname +
 Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
  +
@@ -3630,13 +3619,7 @@ Tabelle 19: Tab_VZD_Datenbeschreibung_BA_HWK
 [width="100%",cols="18%,12%,70%",options="header",]
 |===
 |*LDAP-Directory Attribut* |*Pflichtfeld aus Sicht Pflege und Nutzung?* |*Erläuterung*
-|*givenName* |optional |Bezeichner: Vorname +
-Wird vom VZD aus dem Zertifikatsattribut givenName übernommen, wenn der Client von Schnittstelle I_Directory_Administration keinen Wert angibt. +
- +
-Wird über die Schreiboperationen von Schnittstelle I_Directory_Administration für givenName ein Inhalt geliefert, so dieser Wert für das Attribut gesetzt. +
- +
-Wird dem Verzeichniseintrag ein neues Zertifikat hinzu gefügt, wird der aktuelle Wert des Attributs durch der Wert aus Zertifikatsattribut givenName überschrieben. +
-
+|*givenName* |optional |{givenName}
 |*sn* |optional a| Bezeichner: Nachname +
 Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
  +
