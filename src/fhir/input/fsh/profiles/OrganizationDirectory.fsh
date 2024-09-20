@@ -7,7 +7,7 @@ organisations specific for german Healthcare and Telematics Infrastructure.
 * insert Meta
 * extension contains OrganizationVisibility named organizationVisibility 0..* MS
 * meta.tag 1.. MS
-  * ^slicing.discriminator.type = #value
+  * ^slicing.discriminator.type = #pattern
   * ^slicing.discriminator.path = "system"
   * ^slicing.rules = #open
 * meta.tag contains Origin 1..1 MS

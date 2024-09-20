@@ -2,7 +2,7 @@
   "resourceType": "StructureDefinition",
   "id": "PractitionerRoleDirectory",
   "url": "https://gematik.de/fhir/directory/StructureDefinition/PractitionerRoleDirectory",
-  "version": "0.11.13",
+  "version": "0.11.14",
   "name": "PractitionerRoleDirectory",
   "title": "PractitionerRole in gematik Directory",
   "status": "active",
@@ -26,7 +26,7 @@
         "slicing": {
           "discriminator": [
             {
-              "type": "value",
+              "type": "pattern",
               "path": "system"
             }
           ],

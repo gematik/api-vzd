@@ -1,5 +1,8 @@
 # Changelog
 
+## 2024-09-20 - Version 0.11.14
+- fix: slicing discriminator type meta.tag. Was 'value', now: 'pattern'
+
 ## 2024-07-26 - Version 0.11.13
 - feat: added Synchronized from ApoVZD as concept to `https://gematik.de/fhir/directory/CodeSystem/Origin`
 
