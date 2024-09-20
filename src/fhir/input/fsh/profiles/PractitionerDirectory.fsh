@@ -3,7 +3,7 @@ Parent: Practitioner
 Title: "Practitioner in gematik Directory"
 * insert Meta
 * meta.tag 1.. MS
-  * ^slicing.discriminator.type = #value
+  * ^slicing.discriminator.type = #pattern
   * ^slicing.discriminator.path = "system"
   * ^slicing.rules = #open
 * meta.tag contains Origin 1..1 MS
