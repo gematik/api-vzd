@@ -37,7 +37,7 @@ image::gematik_logo.svg[gematik,float="right"]
 |0.0.3 |02.07.24 | |Update according data from ApoVZD |gematik
 |0.0.4 |09.07.24 | |Update  |gematik
 |0.0.5 |29.07.24 | |Simplifier links fixed |gematik
-|0.0.6 |18.09.24 | |Update attributes |gematik
+|0.0.6 |20.09.24 | |Update attributes |gematik
 |===
 
 == Classification of the document
@@ -633,6 +633,13 @@ Example of a https://simplifier.net/vzd-fhir-directory/~resources?category=Examp
 // |No
 // |Yes
 
+|identifier 
+|TelematikID 
+|0..1 
+|According FHIR Profil https://simplifier.net/packages/de.basisprofil.r4/1.3.2/files/564537[Identifier-Telematik-Id] 
+|Yes
+|No
+
 |providedBy
 |Organization
 |1..1
@@ -662,7 +669,7 @@ Example of a https://simplifier.net/vzd-fhir-directory/~resources?category=Examp
  For pharmacies it contains the specialities according https://simplifier.net/vzd-fhir-directory/pharmacyhealthcarespecialtycs (e.g. Handverkauf, Versand, Botendienst,...). +
  For all HealthcareServices it may contain the specialities according to *ServiceType* (http://terminology.hl7.org/CodeSystem/service-type).
 |Yes
-|No
+|No,  Yes for owner-resources
 
 |location
 |Reference to location resource
@@ -682,7 +689,7 @@ Example of a https://simplifier.net/vzd-fhir-directory/~resources?category=Examp
 |telecom  
 |A contact detail for the organization  
 |0..* 
-|For s taken from the ApoVZD / pharmacy portal. May contain website, email, telephone, fax. +
+|Is taken from the ApoVZD / pharmacy portal. May contain website, email, telephone, fax. +
 For other organizations: Not used in the FHIR VZD.
 |No
 |No
@@ -691,7 +698,7 @@ For other organizations: Not used in the FHIR VZD.
 serviceCoverageArea  
 |Delivery area of the service.
 |0..1 
-|For s taken from the ApoVZD / pharmacy portal.
+|Is taken from the ApoVZD / pharmacy portal.
 |No
 |No
 
@@ -706,7 +713,8 @@ serviceCoverageArea
 |Collection of characteristics (attributes)  
 |0..* 
 |According to https://simplifier.net/vzd-fhir-directory/healthcareservice-technical-characteristic-vs +
-E.g. used for the eRezept (eRX Token Receiver) and can also show some physical characteristic https://simplifier.net/vzd-fhir-directory/physicalfeatureshealthcareservicevs. 
+E.g. used for the eRezept (eRX Token Receiver is taken from the ApoVZD / pharmacy portal) +
+and can also show some physical characteristic https://simplifier.net/vzd-fhir-directory/physicalfeatureshealthcareservicevs. 
 
 |No
 |No
