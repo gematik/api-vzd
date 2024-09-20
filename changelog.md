@@ -1,5 +1,8 @@
 # Changelog
 
+## 2024-09-20 - Version 0.11.15
+- fix: version 0.11.14 didn't include dependencies
+
 ## 2024-09-20 - Version 0.11.14
 - fix: slicing discriminator type meta.tag. Was 'value', now: 'pattern'
 
