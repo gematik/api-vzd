@@ -6,7 +6,7 @@
   "id": "PharmacyTypeCS",
   "title": "Pharmacy type",
   "description": "Pharmacy type codes of accessability for patients",
-  "version": "0.11.14",
+  "version": "0.11.15",
   "url": "https://gematik.de/fhir/directory/CodeSystem/PharmacyTypeCS",
   "concept": [
     {

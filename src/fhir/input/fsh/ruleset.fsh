@@ -1,4 +1,4 @@
 RuleSet: Meta
 * ^status = #active
 * ^publisher = "gematik GmbH"
-* ^version = "0.11.14"
+* ^version = "0.11.15"
