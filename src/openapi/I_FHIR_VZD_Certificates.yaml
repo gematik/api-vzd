@@ -3,35 +3,38 @@ info:
   title: I_FHIR_VZD_Certificates
   description: REST Schnittstelle zum Abruf von Zertifikaten.
 
-  version: 0.1.0
+  version: 0.1.1
 
+  # Änderungen in Version 0.1.1
+  #   - servers ergänzt und die URLs in securitySchemas - OAuth2 aktualisiert
+  #
   # Änderungen in Version 0.1.0
   #   - initiale Version
 
 externalDocs:
-  description: Schnittstelle zum Abruf von Zertifikaten von Verzeichniseinträgen
-  url: http://github.com/gematik/api-vzd/
+  description: I_FHIR_VZD_Certificates REST interface
+  url: https://www.gematik.de
 servers:
-- url: https://xxx.vzd.ti-dienste.de:9543/
-  description: Testumgebung
-- url: https://xxx.vzd.ti-dienste.de:9543/
-  description: Referenzumgebung
-- url: https://xxx.vzd.ti-dienste.de:9543/
-  description: Produktivumgebung
+  - url: https://fhir-directory-test.vzd.ti-dienste.de/certificates
+    description: Development server
+  - url: https://fhir-directory-ref.vzd.ti-dienste.de/certificates
+    description: Reference server
+  - url: https://fhir-directory.vzd.ti-dienste.de/certificates
+    description: Production server
 tags:
-- name: getInfo
-  description: Diese Operation liefert Metadaten über diese Schnittstelle
+  - name: getInfo
+    description: Diese Operation liefert Metadaten über diese Schnittstelle
 
 paths:
 
   /:
     get:
       tags:
-      - getInfo I_FHIR_VZD_Certificates
+        - getInfo I_FHIR_VZD_Certificates
       summary: Diese Operation liefert Metadaten über diese Schnittstelle
       security:
-       - OAuth2: 
-         - 'certificate:read'
+        - OAuth2:
+            - 'certificate:read'
       description: Liefert die Metadaten für diese Schnittstelle.
       operationId: getInfo
       responses:
@@ -40,10 +43,10 @@ paths:
           content:
             application/json:
               schema:
-                  $ref: '#/components/schemas/InfoObject'
+                $ref: '#/components/schemas/InfoObject'
         401:
           description: Unauthorized
-                    #  Der WWW-Authenticate Header im Response wird auf OAuth gesetzt.
+          #  Der WWW-Authenticate Header im Response wird auf OAuth gesetzt.
           content:
             application/json:
               schema:
@@ -56,64 +59,64 @@ paths:
                 $ref: '#/components/schemas/Error'
 
   /Certificates:
-  
+
     get:
       tags:
-      - Certificates
+        - Certificates
       summary: Zertifikate lesen
       description: Liefert alle Zertifikate, die dem Filter (siehe 'parameters') entsprechen.
       security:
-       - OAuth2:
-         - 'certificate:read'
+        - OAuth2:
+            - 'certificate:read'
       operationId: read_FhirVZD_Certificates
       parameters:
-      - name: telematikID
-        in: query
-        description: telematikID von dem Zertifikat 
-                     Erlaubt die Suche nach Zertifikatseinträgen einer telematikID.
-        schema:
-          type: string
-      - name: professionOID
-        in: query
-        description: Erlaubt die Suche mit Hilfe des Attributs professionOID. 
-                     Der Verzeichniseintrag wird selektiert, wenn die angegebene professionOID im Attribut professionOID (array) des Zertifikatseintrags enthalten ist.
-        schema:
-          type: string  
-      - name: entryType
-        in: query
-        description: Erlaubt die Suche mit Hilfe des Attributs entryType.
-        schema:
-          type: string
-      - name: active
-        in: query
-        description: Erlaubt die Suche mit Hilfe des Attributs active. 
-        schema:
-          type: boolean  
-      - name: serialNumber
-        in: query
-        description: Erlaubt die Suche mit Hilfe des Attributs serialNumber. 
-        schema:
-          type: string  
-      - name: issuer
-        in: query
-        description: Erlaubt die Suche mit Hilfe des Attributs issuer. 
-        schema:
-          type: string  
-      - name: publicKeyAlgorithm
-        in: query
-        description: Erlaubt die Suche mit Hilfe des Attributs publicKeyAlgorithm. 
-        schema:
-          type: string  
+        - name: telematikID
+          in: query
+          description: telematikID von dem Zertifikat
+            Erlaubt die Suche nach Zertifikatseinträgen einer telematikID.
+          schema:
+            type: string
+        - name: professionOID
+          in: query
+          description: Erlaubt die Suche mit Hilfe des Attributs professionOID.
+            Der Verzeichniseintrag wird selektiert, wenn die angegebene professionOID im Attribut professionOID (array) des Zertifikatseintrags enthalten ist.
+          schema:
+            type: string
+        - name: entryType
+          in: query
+          description: Erlaubt die Suche mit Hilfe des Attributs entryType.
+          schema:
+            type: string
+        - name: active
+          in: query
+          description: Erlaubt die Suche mit Hilfe des Attributs active.
+          schema:
+            type: boolean
+        - name: serialNumber
+          in: query
+          description: Erlaubt die Suche mit Hilfe des Attributs serialNumber.
+          schema:
+            type: string
+        - name: issuer
+          in: query
+          description: Erlaubt die Suche mit Hilfe des Attributs issuer.
+          schema:
+            type: string
+        - name: publicKeyAlgorithm
+          in: query
+          description: Erlaubt die Suche mit Hilfe des Attributs publicKeyAlgorithm.
+          schema:
+            type: string
 
       responses:
         200:
           description: OK
-                    #  Es werden alle gefundenen Zertifikatseinträge zurückgegeben.
-                                                                                                 
+            #  Es werden alle gefundenen Zertifikatseinträge zurückgegeben.
+
           content:
             application/json:
               schema:
-                  $ref: '#/components/schemas/userCertificates'
+                $ref: '#/components/schemas/userCertificates'
 
         400:
           description: Bad Request
@@ -123,7 +126,7 @@ paths:
                 $ref: '#/components/schemas/Error'
         401:
           description: Unauthorized
-                    #  Der WWW-Authenticate Header im Response muss auf OAuth gesetzt werden.
+          #  Der WWW-Authenticate Header im Response muss auf OAuth gesetzt werden.
           content:
             application/json:
               schema:
@@ -136,7 +139,7 @@ paths:
                 $ref: '#/components/schemas/Error'
         404:
           description: Not Found
-                    #  Certificate not found
+          #  Certificate not found
           content:
             application/json:
               schema:
@@ -214,12 +217,12 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/userCertificate'
-            
+
 
     Error:
       type: object
       properties:
-        message: 
+        message:
           type: string
           description: (optionale) Fehlernachricht
         errors:
@@ -241,8 +244,8 @@ components:
 
     InfoObject:
       required:
-      - title
-      - version
+        - title
+        - version
       readOnly: true
       type: object
       properties:
@@ -267,14 +270,14 @@ components:
         I_Directory_Administration unterstützt OAuth2 Client Credentials Flow.
         Token Endpoint ist spezifisch für die jeweilige Umgebung:
         
-        **Testumgenung:**
-        * https://auth-test.vzd.ti-dienste.de:9443/auth/realms/RSDirectoryAdministration/protocol/openid-connect/token
+        **Testumgebung:**
+        * https://auth-test.vzd.ti-dienste.de:9443/auth/realms/Service-Authenticate/protocol/openid-connect/token
         
         **Referenzumgebung:**
-        * https://auth-ref.vzd.ti-dienste.de:9443/auth/realms/RSDirectoryAdministration/protocol/openid-connect/token
+        * https://auth-ref.vzd.ti-dienste.de:9443/auth/realms/Service-Authenticate/protocol/openid-connect/token
         
-        **Produktifumgebung:**
-        * https://auth.vzd.ti-dienste.de:9443/auth/realms/RSDirectoryAdministration/protocol/openid-connect/token
+        **Produktivumgebung:**
+        * https://auth.vzd.ti-dienste.de:9443/auth/realms/Service-Authenticate/protocol/openid-connect/token
       type: oauth2
       flows:
         clientCredentials:
