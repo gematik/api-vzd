@@ -128,6 +128,14 @@
     "endLine": 9
   },
   {
+    "outputFile": "CodeSystem-physicalFeatures.json",
+    "fshName": "PhysicalFeaturesHealthCareServiceCS",
+    "fshType": "CodeSystem",
+    "fshFile": "codesystems/PhysicalFeaturesHealthCareServiceCS.fsh",
+    "startLine": 1,
+    "endLine": 8
+  },
+  {
     "outputFile": "Endpoint-EndpointExample.json",
     "fshName": "EndpointExample",
     "fshType": "Instance",
@@ -429,7 +437,7 @@
     "fshType": "ValueSet",
     "fshFile": "valuesets/PhysicalFeaturesHealthCareServiceVS.fsh",
     "startLine": 1,
-    "endLine": 7
+    "endLine": 4
   },
   {
     "outputFile": "ValueSet-PractitionerQualificationVS.json",
