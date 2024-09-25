@@ -1,0 +1,30 @@
+{
+  "resourceType": "CodeSystem",
+  "status": "active",
+  "content": "complete",
+  "name": "PhysicalFeaturesHealthCareServiceCS",
+  "id": "physicalFeatures",
+  "description": "CodeSystem of defined physical features",
+  "version": "0.11.16",
+  "url": "https://gematik.de/fhir/directory/CodeSystem/physicalFeatures",
+  "concept": [
+    {
+      "code": "parkmoeglichkeit",
+      "display": "Parkmöglichkeit"
+    },
+    {
+      "code": "oepnv",
+      "display": "ÖPNV in der Nähe"
+    },
+    {
+      "code": "barrierefrei",
+      "display": "Barrierefrei"
+    },
+    {
+      "code": "abholautomat",
+      "display": "Abholautomat"
+    }
+  ],
+  "publisher": "gematik GmbH",
+  "count": 4
+}

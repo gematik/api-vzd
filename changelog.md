@@ -1,5 +1,8 @@
 # Changelog
 
+## 2024-09-24 - Version 0.11.16
+- fix: added missing PhysicalFeaturesHealthCareServiceCS
+
 ## 2024-09-20 - Version 0.11.15
 - fix: version 0.11.14 didn't include dependencies
 

@@ -42,4 +42,3 @@ Alias: $ContactPointUse = http://hl7.org/fhir/contact-point-use
 Alias: $CommonLanguages = urn:ietf:bcp:47
 Alias: $sct = http://snomed.info/sct
 Alias: $IHEXDShealthcareFacilityTypeCodePatientRelatedHealthcare = http://ihe-d.de/ValueSets/IHEXDShealthcareFacilityTypeCodePatientRelatedHealthcare
-Alias: $physicalFeaturesHealthCareServiceCS = https://gematik.de/fhir/directory/CodeSystem/physicalFeatures                                                  

@@ -67,9 +67,9 @@ Description: "PharmacyHealthCareServiceExample"
 * characteristic[technicalCharacteristic][+] = VZDHealthCareServiceCharacteristicsCS#erx-token-receiver "eRX Token Receiver"
 * characteristic[technicalCharacteristic][+] = VZDHealthCareServiceCharacteristicsCS#apotheke-verfuegbarkeitsanfrage "Apotheke: Verfügbarkeitsanfrage"
 * characteristic[technicalCharacteristic][+] = VZDHealthCareServiceCharacteristicsCS#terminbuchung "Terminbuchung"
-* characteristic[physicalFeatures][+] = $physicalFeaturesHealthCareServiceCS#parkmoeglichkeit "Parkmöglichkeit"
+* characteristic[physicalFeatures][+] = PhysicalFeaturesHealthCareServiceCS#parkmoeglichkeit "Parkmöglichkeit"
   * extension[additionalNote].valueString = "Vor dem Haus"
-* characteristic[physicalFeatures][+] = $physicalFeaturesHealthCareServiceCS#oepnv "ÖPNV in der Nähe"
+* characteristic[physicalFeatures][+] = PhysicalFeaturesHealthCareServiceCS#oepnv "ÖPNV in der Nähe"
 * coverageArea
   * extension[serviceCoverageArea]
     * valueQuantity.value = 10000

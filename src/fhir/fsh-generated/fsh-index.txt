@@ -15,6 +15,7 @@ CodeSystem-PharmacyTypeLDAPCS.json                             PharmacyTypeLDAPC
 CodeSystem-PractitionerProfessionOID.json                      PractitionerProfessionOID                        CodeSystem  codesystems/PractitionerProfessionOID.fsh              1 - 45
 CodeSystem-Region.json                                         Region                                           CodeSystem  codesystems/Region.fsh                                 1 - 27
 CodeSystem-VZDHealthCareServiceCharacteristicsCS.json          VZDHealthCareServiceCharacteristicsCS            CodeSystem  codesystems/VZDHealthCareServiceCharacteristicsCS.fsh  1 - 9
+CodeSystem-physicalFeatures.json                               PhysicalFeaturesHealthCareServiceCS              CodeSystem  codesystems/PhysicalFeaturesHealthCareServiceCS.fsh    1 - 8
 Endpoint-EndpointExample.json                                  EndpointExample                                  Instance    examples/Examples001.fsh                               1 - 12
 Endpoint-OrganizationExample001-Endpoint-TIM.json              OrganizationExample001-Endpoint-TIM              Instance    examples/OrganizationExample001.fsh                    1 - 12
 Endpoint-PharmacyEndpointErpReservationExample.json            PharmacyEndpointErpReservationExample            Instance    examples/PharmacyExample.fsh                           108 - 118
@@ -52,6 +53,6 @@ ValueSet-OrganizationProfessionOIDTypeVS.json                  OrganizationProfe
 ValueSet-OrganizationTypeVS.json                               OrganizationTypeVS                               ValueSet    valuesets/OrganizationTypeVS.fsh                       1 - 4
 ValueSet-OrganizationVisibilityVS.json                         OrganizationVisibilityVS                         ValueSet    profiles/Extension.fsh                                 31 - 36
 ValueSet-OriginVS.json                                         OriginVS                                         ValueSet    valuesets/OriginVS.fsh                                 1 - 4
-ValueSet-PhysicalFeaturesHealthCareServiceVS.json              PhysicalFeaturesHealthCareServiceVS              ValueSet    valuesets/PhysicalFeaturesHealthCareServiceVS.fsh      1 - 7
+ValueSet-PhysicalFeaturesHealthCareServiceVS.json              PhysicalFeaturesHealthCareServiceVS              ValueSet    valuesets/PhysicalFeaturesHealthCareServiceVS.fsh      1 - 4
 ValueSet-PractitionerQualificationVS.json                      PractitionerQualificationVS                      ValueSet    valuesets/PractitionerQualificationVS.fsh              1 - 457
 ValueSet-healthcareservice-technical-characteristic-vs.json    HealthCareServiceTechnicalCharacteristicVS       ValueSet    valuesets/HealthCareServiceCharacteristic.fsh          1 - 6

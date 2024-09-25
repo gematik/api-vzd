@@ -51,7 +51,7 @@ organisations specific for german Healthcare and Telematics Infrastructure.
   * ^short = "Technical Services"
 * characteristic[physicalFeatures] from PhysicalFeaturesHealthCareServiceVS (extensible)
   * extension contains PhysicalFeaturesAdditionalNoteEX named additionalNote 0..1 MS
-  * ^patternCodeableConcept.coding.system = $physicalFeaturesHealthCareServiceCS
+  * ^patternCodeableConcept.coding.system = Canonical(PhysicalFeaturesHealthCareServiceCS)
   * ^short = "Physical Features"
 * coverageArea MS
   * extension MS 
