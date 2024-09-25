@@ -37,7 +37,7 @@ image::gematik_logo.svg[gematik,float="right"]
 |0.0.3 |02.07.24 | |Update according data from ApoVZD |gematik
 |0.0.4 |09.07.24 | |Update  |gematik
 |0.0.5 |29.07.24 | |Simplifier links fixed |gematik
-|0.0.6 |20.09.24 | |Update attributes |gematik
+|0.0.6 |27.09.24 | |HealthcareService.active #3.2 changeability updated, Updated several attribute descriptions |gematik
 |===
 
 == Classification of the document
@@ -658,7 +658,8 @@ Example of a https://simplifier.net/vzd-fhir-directory/~resources?category=Examp
 |type
 |Type of service that may be delivered or performed
 |0..*
-|Type of service according to HealthcareServiceTypeVS https://simplifier.net/vzd-fhir-directory/healthcareservicetypevs
+|Type of service according to HealthcareServiceTypeVS https://simplifier.net/vzd-fhir-directory/healthcareservicetypevs +
+ Owners are allowed to assign a subset of the values ​​defined by the LDAP VZD synchronized resource (available with FHIR VZD Release 1.2.0-9).
 |Yes
 |No
 
@@ -667,7 +668,9 @@ Example of a https://simplifier.net/vzd-fhir-directory/~resources?category=Examp
 |0..*
 |According to https://simplifier.net/vzd-fhir-directory/healthcarespecialtytypevs[HealthcareServiceSpecialityVS]. +
  For pharmacies it contains the specialities according https://simplifier.net/vzd-fhir-directory/pharmacyhealthcarespecialtycs (e.g. Handverkauf, Versand, Botendienst,...). +
- For all HealthcareServices it may contain the specialities according to *ServiceType* (http://terminology.hl7.org/CodeSystem/service-type).
+ For all HealthcareServices it may contain the specialities according to *ServiceType* (http://terminology.hl7.org/CodeSystem/service-type). +
+ +
+ 
 |Yes
 |No,  Yes for owner-resources
 
