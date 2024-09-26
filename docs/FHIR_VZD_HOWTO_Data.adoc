@@ -18,7 +18,7 @@ image::gematik_logo.svg[gematik,float="right"]
 
 [width="100%",cols="50%,50%",options="header",]
 |===
-|Version: |0.0.5
+|Version: |0.0.6
 |Referencing: |gemILF_VZD_FHIR_Directory
 |===
 
@@ -37,6 +37,7 @@ image::gematik_logo.svg[gematik,float="right"]
 |0.0.3 |02.07.24 | |Update according data from ApoVZD |gematik
 |0.0.4 |09.07.24 | |Update  |gematik
 |0.0.5 |29.07.24 | |Simplifier links fixed |gematik
+|0.0.6 |27.09.24 | |HealthcareService.active #3.2 changeability updated, Updated several attribute descriptions |gematik
 |===
 
 == Classification of the document
@@ -108,7 +109,7 @@ This part of the directory contains information about persons. +
 |No
 |No
 
-|LANR 
+|ZANR 
 |0..* 
 |Lifetime dentist number "Lebenslange Zahnarztnummer". +
  (Not yet used)
@@ -140,28 +141,28 @@ This part of the directory contains information about persons. +
 |0..* 
 |
 |No
-|Yes
+|No
 
 |gender 
 |Practitioner gender
 |0..1 
 |
 |No
-|Yes
+|No
 
 |birthDate 
 |Practitioner birthDate
 |0..1 
 |
 |No
-|Yes
+|No
 
 |photo 
 |Practitioner photo
 |0..* 
 |
 |No
-|Yes
+|No
 
 .1+|qualification.code 
 |Coded representation of the qualification. 
@@ -179,7 +180,7 @@ This part of the directory contains information about persons. +
 
 |===
 Simplifier: https://simplifier.net/vzd-fhir-directory/practitionerdirectory[Practitioner-Resource] +
-Example of a https://github.com/gematik/api-vzd/blob/ad0cc6e7c59842de4c2457f26fbecc1645ac0605/samples/FHIRseach/QueryPractitionerRole.adoc?plain=1#L10888[Practitioner resource] +
+Example of a https://simplifier.net/vzd-fhir-directory/~resources?category=Example&exampletype=Practitioner[Practitioner resource] +
  +
 
 === PractitionerRole-Resource
@@ -255,12 +256,12 @@ Example of a https://github.com/gematik/api-vzd/blob/ad0cc6e7c59842de4c2457f26fb
 |0..*
 |One endpoint is created per KIM-/TIM-address. 
 |No (TIM-address)
-|No
+|Yes
 
 
 |===
 Simplifier: https://simplifier.net/vzd-fhir-directory/practitionerroledirectory[PractitionerRole-Resource] +
-Example of a https://github.com/gematik/api-vzd/blob/ad0cc6e7c59842de4c2457f26fbecc1645ac0605/samples/FHIRseach/QueryPractitionerRole.adoc?plain=1#L21[PractitionerRole resource] +
+Example of a https://simplifier.net/vzd-fhir-directory/~resources?category=Example&exampletype=PractitionerRole&sortBy=LastUpdateDate_desc[PractitionerRole resource] +
  +
 
 === Location-Resource
@@ -303,7 +304,7 @@ Example of a https://github.com/gematik/api-vzd/blob/ad0cc6e7c59842de4c2457f26fb
 |No
 
 |address 
-|Adress 
+|Address 
 |0..1 
 |The exact structure of the address can be found in the link:LDAP2FHIR_Sync.adoc[LDAP sync mapping]. 
 |Yes
@@ -346,7 +347,7 @@ Example of a https://github.com/gematik/api-vzd/blob/ad0cc6e7c59842de4c2457f26fb
 
 |===
 Simplifier: https://simplifier.net/vzd-fhir-directory/locationdirectory[Location-Resource] +
-Example of a https://github.com/gematik/api-vzd/blob/ad0cc6e7c59842de4c2457f26fbecc1645ac0605/samples/FHIRseach/QueryPractitionerRole.adoc?plain=1#L10967[Location resource] +
+Example of a https://simplifier.net/vzd-fhir-directory/~resources?category=Example&exampletype=Location&sortBy=LastUpdateDate_desc[Location resource] +
  +
 
 === Endpoint-Resource
@@ -389,8 +390,8 @@ Example of a https://github.com/gematik/api-vzd/blob/ad0cc6e7c59842de4c2457f26fb
 // |No
 // |No
 
-.1+|extension 
-|endpointVisibility 
+.1+|extension:endpointVisibility 
+|https://simplifier.net/vzd-fhir-directory/endpointvisibilitycs[EndpointVisibilityCS] 
 |0..* 
 |Visibility of an Endpoint in the FHIR-VZD. This Extensions includes codes of use-cases im which this Endpoint SHALL not be visible. +
 For example it can be used to hide the endpoint from a part of users.	
@@ -445,7 +446,7 @@ For example it can be used to hide the endpoint from a part of users.
 
 |===
 Simplifier: https://simplifier.net/vzd-fhir-directory/endpointdirectory[Endpoint-Resource] +
-Example of an https://github.com/gematik/api-vzd/blob/122ef63f9e76689261c9195e09cd7312b65ee71c/samples/FHIRseach/QueryHealthcareService.adoc?plain=1#L13718[Endpoint resource] +
+Example of an https://simplifier.net/vzd-fhir-directory/~resources?category=Example&exampletype=Endpoint&sortBy=LastUpdateDate_desc[Endpoint resource] +
  +
 
 == Directory of organizations
@@ -488,8 +489,8 @@ This part of the directory contains information about organizations. +
 |No
 |No (Must be set to "owner" for owner resources)
 
-.1+|extension 
-|organizationVisibility 
+.1+|extension:organizationVisibility 
+| https://simplifier.net/vzd-fhir-directory/organizationvisibilitycs[OrganizationVisibilityCS] 
 |0..* 
 |Visibility of an Organization in the FHIR-VZD. This Extensions includes codes of use-cases in which this Organization SHALL not be visible. +
 Values
@@ -589,7 +590,7 @@ Values
 
 |===
 Simplifier: https://simplifier.net/vzd-fhir-directory/organizationdirectory[Organization-Resource] +
-Example of a https://github.com/gematik/api-vzd/blob/122ef63f9e76689261c9195e09cd7312b65ee71c/samples/FHIRseach/QueryHealthcareService.adoc?plain=1#L13799[Organization-Resource] +
+Example of a https://simplifier.net/vzd-fhir-directory/~resources?category=Example&exampletype=Organization&sortBy=LastUpdateDate_desc[Organization-Resource] +
  +
 
 === HealthcareService-Resource
@@ -632,6 +633,13 @@ Example of a https://github.com/gematik/api-vzd/blob/122ef63f9e76689261c9195e09c
 // |No
 // |Yes
 
+|identifier 
+|TelematikID 
+|0..1 
+|According FHIR Profil https://simplifier.net/packages/de.basisprofil.r4/1.3.2/files/564537[Identifier-Telematik-Id] 
+|Yes
+|No
+
 |providedBy
 |Organization
 |1..1
@@ -650,7 +658,8 @@ Example of a https://github.com/gematik/api-vzd/blob/122ef63f9e76689261c9195e09c
 |type
 |Type of service that may be delivered or performed
 |0..*
-|Type of service according to HealthcareServiceTypeVS https://simplifier.net/vzd-fhir-directory/healthcareservicetypevs
+|Type of service according to HealthcareServiceTypeVS https://simplifier.net/vzd-fhir-directory/healthcareservicetypevs +
+ Owners are allowed to assign a subset of the values ​​defined by the LDAP VZD synchronized resource (available with FHIR VZD Release 1.2.0-9).
 |Yes
 |No
 
@@ -659,9 +668,11 @@ Example of a https://github.com/gematik/api-vzd/blob/122ef63f9e76689261c9195e09c
 |0..*
 |According to https://simplifier.net/vzd-fhir-directory/healthcarespecialtytypevs[HealthcareServiceSpecialityVS]. +
  For pharmacies it contains the specialities according https://simplifier.net/vzd-fhir-directory/pharmacyhealthcarespecialtycs (e.g. Handverkauf, Versand, Botendienst,...). +
- For all HealthcareServices it may contain the specialities according to *ServiceType* (http://terminology.hl7.org/CodeSystem/service-type).
+ For all HealthcareServices it may contain the specialities according to *ServiceType* (http://terminology.hl7.org/CodeSystem/service-type). +
+ +
+ 
 |Yes
-|No
+|No,  Yes for owner-resources
 
 |location
 |Reference to location resource
@@ -681,7 +692,7 @@ Example of a https://github.com/gematik/api-vzd/blob/122ef63f9e76689261c9195e09c
 |telecom  
 |A contact detail for the organization  
 |0..* 
-|For s taken from the ApoVZD / pharmacy portal. May contain website, email, telephone, fax. +
+|Is taken from the ApoVZD / pharmacy portal. May contain website, email, telephone, fax. +
 For other organizations: Not used in the FHIR VZD.
 |No
 |No
@@ -690,7 +701,7 @@ For other organizations: Not used in the FHIR VZD.
 serviceCoverageArea  
 |Delivery area of the service.
 |0..1 
-|For s taken from the ApoVZD / pharmacy portal.
+|Is taken from the ApoVZD / pharmacy portal.
 |No
 |No
 
@@ -705,7 +716,8 @@ serviceCoverageArea
 |Collection of characteristics (attributes)  
 |0..* 
 |According to https://simplifier.net/vzd-fhir-directory/healthcareservice-technical-characteristic-vs +
-E.g. used for the eRezept (eRX Token Receiver) and can also show some physical characteristic https://simplifier.net/vzd-fhir-directory/physicalfeatureshealthcareservicevs. 
+E.g. used for the eRezept (eRX Token Receiver is taken from the ApoVZD / pharmacy portal) +
+and can also show some physical characteristic https://simplifier.net/vzd-fhir-directory/physicalfeatureshealthcareservicevs. 
 
 |No
 |No
@@ -776,7 +788,7 @@ E.g. used for the eRezept (eRX Token Receiver) and can also show some physical c
 
 |===
 Simplifier: https://simplifier.net/vzd-fhir-directory/healthcareservicedirectory[HealthcareService-Resource] +
-Example of a https://github.com/gematik/api-vzd/blob/122ef63f9e76689261c9195e09cd7312b65ee71c/samples/FHIRseach/QueryHealthcareService.adoc?plain=1#L21[HealthcareService-Resource] +
+Example of a https://simplifier.net/vzd-fhir-directory/~resources?category=Example&exampletype=HealthcareService&sortBy=LastUpdateDate_desc[HealthcareService-Resource] +
  +
 
 === Location-Resource in organization directory
