@@ -1,0 +1,49 @@
+@startuml
+ 
+class Organization {
+  {field} identifier (1..*, MS, LDAP)
+  {field} name (1..1, MS)
+  {field} alias (0..*, MS)
+  {field} type(1..*, MS, LDAP)
+  {field} active (1..1, MS, LDAP)
+  {field} telecom (0..*, MS)
+  {field} meta.tag.origin (1..1, MS, LDAP)
+}
+ 
+class HealthcareService {
+  {field} identifier (1..*, MS)
+  {field} providedBy (1..1, MS, LDAP/Owner)
+  {field} speciality (0..*, MS, LDAP/Owner)
+  {field} location (0..*, MS, LDAP/Owner)
+  {field} endpoint (0..*, MS)
+  {field} meta.tag.origin (1..1, MS, LDAP)
+  {field} meta.security.ownerId (1..*, MS)
+  {field} meta.security.holder (1..*, MS, LDAP)
+}
+ 
+class Endpoint {
+  {field} identifier (1..*, MS)
+  {field} connectionType (0..*, MS)
+  {field} status (0..*, MS)
+  {field} name (0..1, MS)
+  {field} address (1..1, MS)
+  {field} payloadType (1..*, MS)
+  {field} meta.tag.origin (1..1, MS)
+  {field} meta.security.ownerId (1..*, MS)
+}
+ 
+class Location {
+  {field} identifier (1..*, MS, LDAP)
+  {field} address (0..1, MS, LDAP)
+  {field} meta.tag.origin (1..1, MS, LDAP)
+}
+ 
+Organization <-- HealthcareService
+HealthcareService --> Endpoint
+HealthcareService --> Location
+ 
+Organization <-- HealthcareService_n
+HealthcareService_n --> Endpoint_n
+HealthcareService_n --> Location_n
+ 
+@enduml
