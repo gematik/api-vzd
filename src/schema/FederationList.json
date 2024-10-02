@@ -27,11 +27,11 @@
                           "default": false,
                           "example": false
                                         },
-                       "timProvider": {
+                       "timAnbieter": {
                          "description": "The Zuweisungsgruppe im TI-ITSM-System of the TI-Messenger Provider, who added the domain",
                          "type": "string"
                                        },                
-               "required": ["domain", "telematikID", "isInsurance", "timProvider"]
+               "required": ["domain", "telematikID", "isInsurance", "timAnbieter"]
             }
           }
         }
