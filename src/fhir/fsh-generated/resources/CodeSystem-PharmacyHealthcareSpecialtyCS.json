@@ -6,7 +6,7 @@
   "id": "PharmacyHealthcareSpecialtyCS",
   "title": "Pharmacy HealthcareService Specialty",
   "description": "Specialty codes of pharmacy HealthcareServices",
-  "version": "0.11.16",
+  "version": "0.11.17",
   "url": "https://gematik.de/fhir/directory/CodeSystem/PharmacyHealthcareSpecialtyCS",
   "concept": [
     {
@@ -30,7 +30,9 @@
       "display": "Sterilherstellung"
     }
   ],
+  "experimental": false,
   "publisher": "gematik GmbH",
+  "date": "2024-10-11",
   "caseSensitive": false,
   "count": 5
 }

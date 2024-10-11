@@ -11,6 +11,15 @@ Context: HealthcareService.coverageArea
   * system 1.. MS
   * system = $UCUM
 
+Extension: ServiceCoveragePostalCode
+Id: ServiceCoveragePostalCode
+Title: "ServiceCoveragePostalCode"
+Description: "Service coverage area expressed as a postal code (PLZ)"
+Context: HealthcareService.coverageArea
+* insert Meta
+* value[x] only string
+* valueString 1.. MS
+
 Extension: OrganizationVisibility
 Id: OrganizationVisibility
 Title: "OrganizationVisibility"
@@ -80,12 +89,14 @@ CodeSystem: OpeningTimeQualifierCS
 Id: OpeningTimeQualifierCS
 Title: "OpeningTimeQualifierCS"
 Description: "Qualifier code for HealthCareService opening times"
+* insert Meta
 * #notdienst "Notdienst"
 
 ValueSet: OpeningTimeQualifierVS
 Id: OpeningTimeQualifierVS
 Title: "OpeningTimeQualifierVS"
 Description: "ValueSet of Qualifier codes for HealthCareService opening times"
+* insert Meta
 * include codes from system OpeningTimeQualifierCS
 
 Extension: PhysicalFeaturesAdditionalNoteEX

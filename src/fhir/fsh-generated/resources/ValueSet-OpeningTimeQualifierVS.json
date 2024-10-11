@@ -1,12 +1,15 @@
 {
   "resourceType": "ValueSet",
-  "status": "draft",
+  "status": "active",
   "name": "OpeningTimeQualifierVS",
   "id": "OpeningTimeQualifierVS",
   "title": "OpeningTimeQualifierVS",
   "description": "ValueSet of Qualifier codes for HealthCareService opening times",
-  "version": "0.11.16",
+  "version": "0.11.17",
   "url": "https://gematik.de/fhir/directory/ValueSet/OpeningTimeQualifierVS",
+  "experimental": false,
+  "publisher": "gematik GmbH",
+  "date": "2024-10-11",
   "compose": {
     "include": [
       {

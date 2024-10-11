@@ -1,0 +1,21 @@
+{
+  "resourceType": "SearchParameter",
+  "id": "OrganizationTypeDisplaySP",
+  "url": "https://gematik.de/fhir/directory/SearchParameter/OrganizationTypeDisplaySP",
+  "version": "0.11.17",
+  "status": "active",
+  "experimental": false,
+  "publisher": "gematik GmbH",
+  "date": "2024-10-09",
+  "name": "organization-type-display",
+  "description": "Search organizations by the display value of their type.",
+  "code": "type-display",
+  "base": [
+    "Organization"
+  ],
+  "type": "string",
+  "expression": "Organization.type.coding.display",
+  "target": [
+    "Organization"
+  ]
+}

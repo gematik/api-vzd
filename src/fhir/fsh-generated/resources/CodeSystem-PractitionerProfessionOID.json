@@ -6,7 +6,7 @@
   "id": "PractitionerProfessionOID",
   "title": "CodeSystem for Practitioner's ProfessionOID",
   "description": "The codes for Practitioners based on Profession OIDs defined in [gemSpec_OID](https://fachportal.gematik.de/fachportal-import/files/gemSpec_OID_V3.10.0.pdf)",
-  "version": "0.11.16",
+  "version": "0.11.17",
   "url": "https://gematik.de/fhir/directory/CodeSystem/PractitionerProfessionOID",
   "concept": [
     {
@@ -159,7 +159,9 @@
       "display": "Augenoptiker/-in, Optometrist/-in und Hörakustiker/-in"
     }
   ],
+  "experimental": false,
   "publisher": "gematik GmbH",
+  "date": "2024-10-11",
   "caseSensitive": false,
   "count": 37
 }
