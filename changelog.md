@@ -1,7 +1,7 @@
 # Changelog
 
 ## 2024-10-11 - Version 0.11.17
-- feat: added SearchParameter: OrganizationTypeDisplaySP, EndpointAddressSP, OrganizationVisibilitySP, PractitionerQualificationSP, EndpointVisibilitySP
+- feat: added SearchParameter: OrganizationTypeDisplaySP, EndpointAddressSP, OrganizationVisibilitySP, PractitionerQualificationSP, EndpointVisibilitySP, HealthcareServiceCoverageAreaPostalCodeSP
 - feat: added serviceCoveragePostalCode Extension on HealthcareServiceDirectory.coverageArea
 - feat: added #eRP-availability "Apotheke Verfügbarkeitsanfrage" to EndpointDirectoryConnectionType
 

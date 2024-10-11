@@ -18,7 +18,7 @@ Usage: #definition
 * description = "Search by the address field of the Endpoint resource."
 * code = #address
 * base = #Endpoint
-* type = #string
+* type = #uri
 * expression = "Endpoint.address"
 
 Instance: OrganizationVisibilitySP
@@ -48,9 +48,19 @@ InstanceOf: SearchParameter
 Usage: #definition
 * insert MetaInstance
 * name = "endpoint-visibility"
-* publisher = "gematik GmbH"
 * description = "Search on Endpoint.extension(https://gematik.de/fhir/directory/StructureDefinition/EndpointVisibility)"
 * code = #endpointVisibility
 * base = #Endpoint
 * type = #token
 * expression = "Endpoint.extension.where(url = 'https://gematik.de/fhir/directory/StructureDefinition/EndpointVisibility').value.ofType(Coding)"
+
+Instance: HealthcareServiceCoverageAreaPostalCodeSP
+InstanceOf: SearchParameter
+Usage: #definition
+* insert MetaInstance
+* name = "service-coverage-plz"
+* description = "Search on HealthcareService.coverageArea.extension(https://gematik.de/fhir/directory/StructureDefinition/ServiceCoveragePostalCode)"
+* code = #coverageAreaPostalCode
+* base = #HealthcareService
+* type = #string
+* expression = "HealthcareService.coverageArea.extension.where(url = 'https://gematik.de/fhir/directory/StructureDefinition/ServiceCoveragePostalCode').value.ofType(string)"

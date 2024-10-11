@@ -1,0 +1,18 @@
+{
+  "resourceType": "SearchParameter",
+  "id": "HealthcareServiceCoverageAreaPostalCodeSP",
+  "url": "https://gematik.de/fhir/directory/SearchParameter/HealthcareServiceCoverageAreaPostalCodeSP",
+  "version": "0.11.17",
+  "status": "active",
+  "experimental": false,
+  "publisher": "gematik GmbH",
+  "date": "2024-10-09",
+  "name": "service-coverage-plz",
+  "description": "Search on HealthcareService.coverageArea.extension(https://gematik.de/fhir/directory/StructureDefinition/ServiceCoveragePostalCode)",
+  "code": "coverageAreaPostalCode",
+  "base": [
+    "HealthcareService"
+  ],
+  "type": "string",
+  "expression": "HealthcareService.coverageArea.extension.where(url = 'https://gematik.de/fhir/directory/StructureDefinition/ServiceCoveragePostalCode').value.ofType(string)"
+}

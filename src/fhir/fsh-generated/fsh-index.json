@@ -269,7 +269,15 @@
     "fshType": "Instance",
     "fshFile": "searchParameter.fsh",
     "startLine": 46,
-    "endLine": 56
+    "endLine": 55
+  },
+  {
+    "outputFile": "SearchParameter-HealthcareServiceCoverageAreaPostalCodeSP.json",
+    "fshName": "HealthcareServiceCoverageAreaPostalCodeSP",
+    "fshType": "Instance",
+    "fshFile": "searchParameter.fsh",
+    "startLine": 57,
+    "endLine": 66
   },
   {
     "outputFile": "SearchParameter-OrganizationTypeDisplaySP.json",

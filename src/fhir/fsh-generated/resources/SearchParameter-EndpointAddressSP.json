@@ -13,6 +13,6 @@
   "base": [
     "Endpoint"
   ],
-  "type": "string",
+  "type": "uri",
   "expression": "Endpoint.address"
 }

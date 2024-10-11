@@ -122,6 +122,14 @@
         },
         {
           "url": "https://gematik.de/fhir/directory/StructureDefinition/ServiceCoveragePostalCode",
+          "valueString": "60596"
+        },
+        {
+          "url": "https://gematik.de/fhir/directory/StructureDefinition/ServiceCoveragePostalCode",
+          "valueString": "60597"
+        },
+        {
+          "url": "https://gematik.de/fhir/directory/StructureDefinition/ServiceCoveragePostalCode",
           "valueString": "60598"
         }
       ]
