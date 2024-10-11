@@ -1,21 +1,21 @@
 {
   "resourceType": "StructureDefinition",
-  "id": "EndpointVisibility",
-  "url": "https://gematik.de/fhir/directory/StructureDefinition/EndpointVisibility",
+  "id": "ServiceCoveragePostalCode",
+  "url": "https://gematik.de/fhir/directory/StructureDefinition/ServiceCoveragePostalCode",
   "version": "0.11.17",
-  "name": "EndpointVisibility",
-  "title": "EndpointVisibility",
+  "name": "ServiceCoveragePostalCode",
+  "title": "ServiceCoveragePostalCode",
   "status": "active",
   "experimental": false,
   "date": "2024-10-11",
   "publisher": "gematik GmbH",
-  "description": "Visibility of an Endpoint in the FHIR-VZD. This Extensions includes codes of use-cases im which this Endpoint SHALL not be visible.",
+  "description": "Service coverage area expressed as a postal code (PLZ)",
   "fhirVersion": "4.0.1",
   "kind": "complex-type",
   "abstract": false,
   "context": [
     {
-      "expression": "Endpoint",
+      "expression": "HealthcareService.coverageArea",
       "type": "element"
     }
   ],
@@ -27,8 +27,8 @@
       {
         "id": "Extension",
         "path": "Extension",
-        "short": "EndpointVisibility",
-        "definition": "Visibility of an Endpoint in the FHIR-VZD. This Extensions includes codes of use-cases im which this Endpoint SHALL not be visible."
+        "short": "ServiceCoveragePostalCode",
+        "definition": "Service coverage area expressed as a postal code (PLZ)"
       },
       {
         "id": "Extension.extension",
@@ -38,21 +38,18 @@
       {
         "id": "Extension.url",
         "path": "Extension.url",
-        "fixedUri": "https://gematik.de/fhir/directory/StructureDefinition/EndpointVisibility"
+        "fixedUri": "https://gematik.de/fhir/directory/StructureDefinition/ServiceCoveragePostalCode"
       },
       {
         "id": "Extension.value[x]",
         "path": "Extension.value[x]",
+        "min": 1,
         "type": [
           {
-            "code": "Coding"
+            "code": "string"
           }
         ],
-        "mustSupport": true,
-        "binding": {
-          "strength": "required",
-          "valueSet": "https://gematik.de/fhir/directory/ValueSet/EndpointVisibilityVS"
-        }
+        "mustSupport": true
       }
     ]
   }

@@ -55,4 +55,6 @@ organisations specific for german Healthcare and Telematics Infrastructure.
   * ^short = "Physical Features"
 * coverageArea MS
   * extension MS 
-  * extension contains ServiceCoverageArea named serviceCoverageArea ..1 MS
+  * extension contains 
+    ServiceCoverageArea named serviceCoverageArea ..1 MS and
+    ServiceCoveragePostalCode named serviceCoveragePostalCode ..* MS

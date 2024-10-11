@@ -5,9 +5,11 @@
   "id": "healthcareservice-technical-characteristic-vs",
   "title": "HealthCareServiceTechnicalCharacteristicVS",
   "description": "HealthCareServiceTechnicalCharacteristicVS",
-  "version": "0.11.16",
+  "version": "0.11.17",
   "url": "https://gematik.de/fhir/directory/ValueSet/healthcareservice-technical-characteristic-vs",
+  "experimental": false,
   "publisher": "gematik GmbH",
+  "date": "2024-10-11",
   "compose": {
     "include": [
       {

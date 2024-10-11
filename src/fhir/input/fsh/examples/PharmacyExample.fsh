@@ -73,6 +73,12 @@ Description: "PharmacyHealthCareServiceExample"
 * coverageArea
   * extension[serviceCoverageArea]
     * valueQuantity.value = 10000
+  * extension[serviceCoveragePostalCode]
+    * valueString = "60596"
+  * extension[serviceCoveragePostalCode]
+    * valueString = "60597"
+  * extension[serviceCoveragePostalCode]
+    * valueString = "60598"
 
 Instance: PharmacyLocationExample
 InstanceOf: LocationDirectory

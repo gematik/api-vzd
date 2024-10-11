@@ -5,9 +5,11 @@
   "id": "HealthcareSpecialtyTypeVS",
   "title": "ValueSet of HealthcareService specialities",
   "description": "HealthcareService specialities",
-  "version": "0.11.16",
+  "version": "0.11.17",
   "url": "https://gematik.de/fhir/directory/ValueSet/HealthcareSpecialtyTypeVS",
+  "experimental": false,
   "publisher": "gematik GmbH",
+  "date": "2024-10-11",
   "compose": {
     "include": [
       {

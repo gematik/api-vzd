@@ -6,7 +6,7 @@
   "id": "EndpointDirectoryConnectionType",
   "title": "Codes for Endpoint.connectionType",
   "description": "CodeSystem TI specific connection types assigned to the Endpoints",
-  "version": "0.11.16",
+  "version": "0.11.17",
   "url": "https://gematik.de/fhir/directory/CodeSystem/EndpointDirectoryConnectionType",
   "concept": [
     {
@@ -58,6 +58,10 @@
       "display": "Versand"
     },
     {
+      "code": "eRP-availability",
+      "display": "Apotheke Verfügbarkeitsanfrage"
+    },
+    {
       "code": "terminbuchung-online",
       "display": "Online Terminbuchung"
     },
@@ -70,7 +74,9 @@
       "display": "TI-Messenger Terminbuchung"
     }
   ],
+  "experimental": false,
   "publisher": "gematik GmbH",
+  "date": "2024-10-11",
   "caseSensitive": false,
-  "count": 15
+  "count": 16
 }

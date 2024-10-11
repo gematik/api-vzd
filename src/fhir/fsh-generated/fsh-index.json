@@ -5,7 +5,7 @@
     "fshType": "CodeSystem",
     "fshFile": "codesystems/EndpointDirectoryConnectionType.fsh",
     "startLine": 1,
-    "endLine": 21
+    "endLine": 22
   },
   {
     "outputFile": "CodeSystem-EndpointDirectoryPayloadType.json",
@@ -20,8 +20,8 @@
     "fshName": "EndpointVisibilityCS",
     "fshType": "CodeSystem",
     "fshFile": "profiles/Extension.fsh",
-    "startLine": 48,
-    "endLine": 53
+    "startLine": 57,
+    "endLine": 62
   },
   {
     "outputFile": "CodeSystem-HealthcareServiceSpecialtyCS.json",
@@ -44,8 +44,8 @@
     "fshName": "OpeningTimeQualifierCS",
     "fshType": "CodeSystem",
     "fshFile": "profiles/Extension.fsh",
-    "startLine": 79,
-    "endLine": 83
+    "startLine": 88,
+    "endLine": 92
   },
   {
     "outputFile": "CodeSystem-OrganizationProfessionOID.json",
@@ -68,8 +68,8 @@
     "fshName": "OrganizationVisibilityCS",
     "fshType": "CodeSystem",
     "fshFile": "profiles/Extension.fsh",
-    "startLine": 24,
-    "endLine": 29
+    "startLine": 33,
+    "endLine": 38
   },
   {
     "outputFile": "CodeSystem-Origin.json",
@@ -156,24 +156,24 @@
     "fshName": "PharmacyEndpointErpReservationExample",
     "fshType": "Instance",
     "fshFile": "examples/PharmacyExample.fsh",
-    "startLine": 108,
-    "endLine": 118
+    "startLine": 114,
+    "endLine": 124
   },
   {
     "outputFile": "Endpoint-PharmacyEndpointOnlineAppointmentBookingExample.json",
     "fshName": "PharmacyEndpointOnlineAppointmentBookingExample",
     "fshType": "Instance",
     "fshFile": "examples/PharmacyExample.fsh",
-    "startLine": 120,
-    "endLine": 130
+    "startLine": 126,
+    "endLine": 136
   },
   {
     "outputFile": "Endpoint-PharmacyEndpointTIMExample.json",
     "fshName": "PharmacyEndpointTIMExample",
     "fshType": "Instance",
     "fshFile": "examples/PharmacyExample.fsh",
-    "startLine": 96,
-    "endLine": 106
+    "startLine": 102,
+    "endLine": 112
   },
   {
     "outputFile": "HealthcareService-HealthcareServiceExample.json",
@@ -189,7 +189,7 @@
     "fshType": "Instance",
     "fshFile": "examples/PharmacyExample.fsh",
     "startLine": 23,
-    "endLine": 75
+    "endLine": 81
   },
   {
     "outputFile": "Location-LocationExample.json",
@@ -204,8 +204,8 @@
     "fshName": "PharmacyLocationExample",
     "fshType": "Instance",
     "fshFile": "examples/PharmacyExample.fsh",
-    "startLine": 77,
-    "endLine": 94
+    "startLine": 83,
+    "endLine": 100
   },
   {
     "outputFile": "Organization-OrganizationExample.json",
@@ -256,6 +256,46 @@
     "endLine": 36
   },
   {
+    "outputFile": "SearchParameter-EndpointAddressSP.json",
+    "fshName": "EndpointAddressSP",
+    "fshType": "Instance",
+    "fshFile": "searchParameter.fsh",
+    "startLine": 13,
+    "endLine": 22
+  },
+  {
+    "outputFile": "SearchParameter-EndpointVisibilitySP.json",
+    "fshName": "EndpointVisibilitySP",
+    "fshType": "Instance",
+    "fshFile": "searchParameter.fsh",
+    "startLine": 46,
+    "endLine": 56
+  },
+  {
+    "outputFile": "SearchParameter-OrganizationTypeDisplaySP.json",
+    "fshName": "OrganizationTypeDisplaySP",
+    "fshType": "Instance",
+    "fshFile": "searchParameter.fsh",
+    "startLine": 1,
+    "endLine": 11
+  },
+  {
+    "outputFile": "SearchParameter-OrganizationVisibilitySP.json",
+    "fshName": "OrganizationVisibilitySP",
+    "fshType": "Instance",
+    "fshFile": "searchParameter.fsh",
+    "startLine": 24,
+    "endLine": 33
+  },
+  {
+    "outputFile": "SearchParameter-PractitionerQualificationSP.json",
+    "fshName": "PractitionerQualificationSP",
+    "fshType": "Instance",
+    "fshFile": "searchParameter.fsh",
+    "startLine": 35,
+    "endLine": 44
+  },
+  {
     "outputFile": "StructureDefinition-EndpointDirectory.json",
     "fshName": "EndpointDirectory",
     "fshType": "Profile",
@@ -268,8 +308,8 @@
     "fshName": "EndpointVisibility",
     "fshType": "Extension",
     "fshFile": "profiles/Extension.fsh",
-    "startLine": 38,
-    "endLine": 46
+    "startLine": 47,
+    "endLine": 55
   },
   {
     "outputFile": "StructureDefinition-HealthcareServiceDirectory.json",
@@ -277,7 +317,7 @@
     "fshType": "Profile",
     "fshFile": "profiles/HealthcareServiceDirectory.fsh",
     "startLine": 1,
-    "endLine": 58
+    "endLine": 60
   },
   {
     "outputFile": "StructureDefinition-LocationDirectory.json",
@@ -300,16 +340,16 @@
     "fshName": "OrganizationVisibility",
     "fshType": "Extension",
     "fshFile": "profiles/Extension.fsh",
-    "startLine": 14,
-    "endLine": 22
+    "startLine": 23,
+    "endLine": 31
   },
   {
     "outputFile": "StructureDefinition-PhysicalFeaturesAdditionalNoteEX.json",
     "fshName": "PhysicalFeaturesAdditionalNoteEX",
     "fshType": "Extension",
     "fshFile": "profiles/Extension.fsh",
-    "startLine": 91,
-    "endLine": 98
+    "startLine": 100,
+    "endLine": 107
   },
   {
     "outputFile": "StructureDefinition-PractitionerDirectory.json",
@@ -336,12 +376,20 @@
     "endLine": 12
   },
   {
+    "outputFile": "StructureDefinition-ServiceCoveragePostalCode.json",
+    "fshName": "ServiceCoveragePostalCode",
+    "fshType": "Extension",
+    "fshFile": "profiles/Extension.fsh",
+    "startLine": 14,
+    "endLine": 21
+  },
+  {
     "outputFile": "StructureDefinition-SpecialOpeningTimesEX.json",
     "fshName": "SpecialOpeningTimesEX",
     "fshType": "Extension",
     "fshFile": "profiles/Extension.fsh",
-    "startLine": 62,
-    "endLine": 77
+    "startLine": 71,
+    "endLine": 86
   },
   {
     "outputFile": "ValueSet-AddressStateVS.json",
@@ -372,8 +420,8 @@
     "fshName": "EndpointVisibilityVS",
     "fshType": "ValueSet",
     "fshFile": "profiles/Extension.fsh",
-    "startLine": 55,
-    "endLine": 60
+    "startLine": 64,
+    "endLine": 69
   },
   {
     "outputFile": "ValueSet-HealthcareServiceTypeVS.json",
@@ -396,8 +444,8 @@
     "fshName": "OpeningTimeQualifierVS",
     "fshType": "ValueSet",
     "fshFile": "profiles/Extension.fsh",
-    "startLine": 85,
-    "endLine": 89
+    "startLine": 94,
+    "endLine": 98
   },
   {
     "outputFile": "ValueSet-OrganizationProfessionOIDTypeVS.json",
@@ -420,8 +468,8 @@
     "fshName": "OrganizationVisibilityVS",
     "fshType": "ValueSet",
     "fshFile": "profiles/Extension.fsh",
-    "startLine": 31,
-    "endLine": 36
+    "startLine": 40,
+    "endLine": 45
   },
   {
     "outputFile": "ValueSet-OriginVS.json",

@@ -5,9 +5,11 @@
   "id": "OrganizationVisibilityVS",
   "title": "OrganizationVisibilityVS",
   "description": "OrganizationVisibilityVS",
-  "version": "0.11.16",
+  "version": "0.11.17",
   "url": "https://gematik.de/fhir/directory/ValueSet/OrganizationVisibilityVS",
+  "experimental": false,
   "publisher": "gematik GmbH",
+  "date": "2024-10-11",
   "compose": {
     "include": [
       {
