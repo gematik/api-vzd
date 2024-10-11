@@ -45,7 +45,7 @@
     "fshType": "CodeSystem",
     "fshFile": "profiles/Extension.fsh",
     "startLine": 88,
-    "endLine": 92
+    "endLine": 93
   },
   {
     "outputFile": "CodeSystem-OrganizationProfessionOID.json",
@@ -356,8 +356,8 @@
     "fshName": "PhysicalFeaturesAdditionalNoteEX",
     "fshType": "Extension",
     "fshFile": "profiles/Extension.fsh",
-    "startLine": 100,
-    "endLine": 107
+    "startLine": 102,
+    "endLine": 109
   },
   {
     "outputFile": "StructureDefinition-PractitionerDirectory.json",
@@ -452,8 +452,8 @@
     "fshName": "OpeningTimeQualifierVS",
     "fshType": "ValueSet",
     "fshFile": "profiles/Extension.fsh",
-    "startLine": 94,
-    "endLine": 98
+    "startLine": 95,
+    "endLine": 100
   },
   {
     "outputFile": "ValueSet-OrganizationProfessionOIDTypeVS.json",
