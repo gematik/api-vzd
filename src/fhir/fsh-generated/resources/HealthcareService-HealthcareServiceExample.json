@@ -100,10 +100,34 @@
   "availableTime": [
     {
       "daysOfWeek": [
-        "mon",
-        "tue",
-        "wed",
-        "thu",
+        "mon"
+      ],
+      "availableStartTime": "08:00:00",
+      "availableEndTime": "18:00:00"
+    },
+    {
+      "daysOfWeek": [
+        "tue"
+      ],
+      "availableStartTime": "08:00:00",
+      "availableEndTime": "18:00:00"
+    },
+    {
+      "daysOfWeek": [
+        "wed"
+      ],
+      "availableStartTime": "08:00:00",
+      "availableEndTime": "18:00:00"
+    },
+    {
+      "daysOfWeek": [
+        "thu"
+      ],
+      "availableStartTime": "08:00:00",
+      "availableEndTime": "18:00:00"
+    },
+    {
+      "daysOfWeek": [
         "fri"
       ],
       "availableStartTime": "08:00:00",

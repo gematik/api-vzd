@@ -2,7 +2,7 @@
   "resourceType": "SearchParameter",
   "id": "EndpointAddressSP",
   "url": "https://gematik.de/fhir/directory/SearchParameter/EndpointAddressSP",
-  "version": "0.11.17",
+  "version": "0.11.18",
   "status": "active",
   "experimental": false,
   "publisher": "gematik GmbH",

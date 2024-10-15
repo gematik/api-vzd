@@ -156,24 +156,24 @@
     "fshName": "PharmacyEndpointErpReservationExample",
     "fshType": "Instance",
     "fshFile": "examples/PharmacyExample.fsh",
-    "startLine": 114,
-    "endLine": 124
+    "startLine": 127,
+    "endLine": 137
   },
   {
     "outputFile": "Endpoint-PharmacyEndpointOnlineAppointmentBookingExample.json",
     "fshName": "PharmacyEndpointOnlineAppointmentBookingExample",
     "fshType": "Instance",
     "fshFile": "examples/PharmacyExample.fsh",
-    "startLine": 126,
-    "endLine": 136
+    "startLine": 139,
+    "endLine": 149
   },
   {
     "outputFile": "Endpoint-PharmacyEndpointTIMExample.json",
     "fshName": "PharmacyEndpointTIMExample",
     "fshType": "Instance",
     "fshFile": "examples/PharmacyExample.fsh",
-    "startLine": 102,
-    "endLine": 112
+    "startLine": 115,
+    "endLine": 125
   },
   {
     "outputFile": "HealthcareService-HealthcareServiceExample.json",
@@ -181,7 +181,7 @@
     "fshType": "Instance",
     "fshFile": "examples/Examples001.fsh",
     "startLine": 68,
-    "endLine": 97
+    "endLine": 112
   },
   {
     "outputFile": "HealthcareService-PharmacyHealthCareServiceExample.json",
@@ -189,7 +189,7 @@
     "fshType": "Instance",
     "fshFile": "examples/PharmacyExample.fsh",
     "startLine": 23,
-    "endLine": 81
+    "endLine": 92
   },
   {
     "outputFile": "Location-LocationExample.json",
@@ -204,8 +204,8 @@
     "fshName": "PharmacyLocationExample",
     "fshType": "Instance",
     "fshFile": "examples/PharmacyExample.fsh",
-    "startLine": 83,
-    "endLine": 100
+    "startLine": 96,
+    "endLine": 113
   },
   {
     "outputFile": "Organization-OrganizationExample.json",
@@ -325,7 +325,7 @@
     "fshType": "Profile",
     "fshFile": "profiles/HealthcareServiceDirectory.fsh",
     "startLine": 1,
-    "endLine": 60
+    "endLine": 65
   },
   {
     "outputFile": "StructureDefinition-LocationDirectory.json",

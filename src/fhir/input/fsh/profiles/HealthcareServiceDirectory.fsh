@@ -35,7 +35,12 @@ organisations specific for german Healthcare and Telematics Infrastructure.
 * communication MS
 * appointmentRequired MS
 * availableTime MS
+  * obeys VZD-Service-Opening-Time
   * extension contains SpecialOpeningTimesEX named specialOpeningTimes 0..1 MS
+  * daysOfWeek ..1 MS
+  * allDay ..0
+  * availableStartTime MS
+  * availableEndTime MS
 * notAvailable MS
 * availabilityExceptions MS
 * endpoint MS

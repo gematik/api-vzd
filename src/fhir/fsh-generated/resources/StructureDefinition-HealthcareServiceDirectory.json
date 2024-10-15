@@ -2,7 +2,7 @@
   "resourceType": "StructureDefinition",
   "id": "HealthcareServiceDirectory",
   "url": "https://gematik.de/fhir/directory/StructureDefinition/HealthcareServiceDirectory",
-  "version": "0.11.17",
+  "version": "0.11.18",
   "name": "HealthcareServiceDirectory",
   "title": "HealthcareService in gematik Directory",
   "status": "active",
@@ -269,6 +269,15 @@
       {
         "id": "HealthcareService.availableTime",
         "path": "HealthcareService.availableTime",
+        "constraint": [
+          {
+            "key": "VZD-Service-Opening-Time",
+            "severity": "error",
+            "human": "Only allows either specialOpeningTimes extension or daysOfWeek, availableStartTime, availableEndTime",
+            "expression": "extension('https://gematik.de/fhir/directory/StructureDefinition/SpecialOpeningTimesEX').exists() xor (daysOfWeek.exists() and availableStartTime.exists() and availableEndTime.exists())",
+            "source": "https://gematik.de/fhir/directory/StructureDefinition/HealthcareServiceDirectory"
+          }
+        ],
         "mustSupport": true
       },
       {
@@ -285,6 +294,27 @@
             ]
           }
         ],
+        "mustSupport": true
+      },
+      {
+        "id": "HealthcareService.availableTime.daysOfWeek",
+        "path": "HealthcareService.availableTime.daysOfWeek",
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "HealthcareService.availableTime.allDay",
+        "path": "HealthcareService.availableTime.allDay",
+        "max": "0"
+      },
+      {
+        "id": "HealthcareService.availableTime.availableStartTime",
+        "path": "HealthcareService.availableTime.availableStartTime",
+        "mustSupport": true
+      },
+      {
+        "id": "HealthcareService.availableTime.availableEndTime",
+        "path": "HealthcareService.availableTime.availableEndTime",
         "mustSupport": true
       },
       {
