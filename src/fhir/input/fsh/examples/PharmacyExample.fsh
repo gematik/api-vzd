@@ -41,12 +41,23 @@ Description: "PharmacyHealthCareServiceExample"
 * communication[+] = $CommonLanguages#en "English"
 * appointmentRequired = false 
 * availableTime[+]
-  * daysOfWeek[+] = $DaysOfWeek#mon "Monday"
-  * daysOfWeek[+] = $DaysOfWeek#tue "Tuesday"
-  * daysOfWeek[+] = $DaysOfWeek#tue "Tuesday"
-  * daysOfWeek[+] = $DaysOfWeek#wed "Wednesday"
-  * daysOfWeek[+] = $DaysOfWeek#thu "Thursday"
-  * daysOfWeek[+] = $DaysOfWeek#fri "Friday"
+  * daysOfWeek = $DaysOfWeek#mon "Monday"
+  * availableStartTime = "08:00:00"
+  * availableEndTime = "18:00:00"
+* availableTime[+]
+  * daysOfWeek = $DaysOfWeek#tue "Tuesday"
+  * availableStartTime = "08:00:00"
+  * availableEndTime = "18:00:00"
+* availableTime[+] 
+  * daysOfWeek = $DaysOfWeek#wed "Wednesday"
+  * availableStartTime = "08:00:00"
+  * availableEndTime = "18:00:00"
+* availableTime[+]
+  * daysOfWeek = $DaysOfWeek#thu "Thursday"
+  * availableStartTime = "08:00:00"
+  * availableEndTime = "18:00:00"
+* availableTime[+]
+  * daysOfWeek = $DaysOfWeek#fri "Friday"
   * availableStartTime = "08:00:00"
   * availableEndTime = "18:00:00"
 * availableTime[+]
@@ -79,6 +90,8 @@ Description: "PharmacyHealthCareServiceExample"
     * valueString = "60597"
   * extension[serviceCoveragePostalCode][+]
     * valueString = "60598"
+
+
 
 Instance: PharmacyLocationExample
 InstanceOf: LocationDirectory

@@ -85,11 +85,26 @@ Description: "Example of an HealthcareService as to be found in gematik FHIR Dir
 * communication[+] = $CommonLanguages#de "German"
 * communication[+] = $CommonLanguages#en "English"
 * appointmentRequired = true 
-* availableTime.daysOfWeek[+] = $DaysOfWeek#mon "Monday"
-* availableTime.daysOfWeek[+] = $DaysOfWeek#tue "Tuesday"
-* availableTime.daysOfWeek[+] = $DaysOfWeek#wed "Wednesday"
-* availableTime.daysOfWeek[+] = $DaysOfWeek#thu "Thursday"
-* availableTime.daysOfWeek[+] = $DaysOfWeek#fri "Friday"
+* availableTime[+]
+  * daysOfWeek = $DaysOfWeek#mon "Monday"
+  * availableStartTime = "08:00:00"
+  * availableEndTime = "18:00:00"
+* availableTime[+]
+  * daysOfWeek = $DaysOfWeek#tue "Tuesday"
+  * availableStartTime = "08:00:00"
+  * availableEndTime = "18:00:00"
+* availableTime[+] 
+  * daysOfWeek = $DaysOfWeek#wed "Wednesday"
+  * availableStartTime = "08:00:00"
+  * availableEndTime = "18:00:00"
+* availableTime[+]
+  * daysOfWeek = $DaysOfWeek#thu "Thursday"
+  * availableStartTime = "08:00:00"
+  * availableEndTime = "18:00:00"
+* availableTime[+]
+  * daysOfWeek = $DaysOfWeek#fri "Friday"
+  * availableStartTime = "08:00:00"
+  * availableEndTime = "18:00:00"
 * availableTime.availableStartTime = "08:00:00"
 * availableTime.availableEndTime = "18:00:00"
 * availabilityExceptions = "An Feiertagen geschlossen"
