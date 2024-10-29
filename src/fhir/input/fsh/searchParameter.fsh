@@ -18,7 +18,7 @@ Usage: #definition
 * description = "Search by the address field of the Endpoint resource."
 * code = #address
 * base = #Endpoint
-* type = #uri
+* type = #string
 * expression = "Endpoint.address"
 
 Instance: OrganizationVisibilitySP

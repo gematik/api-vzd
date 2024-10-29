@@ -6,7 +6,7 @@
   "id": "PharmacyHealthcareSpecialtyCS",
   "title": "Pharmacy HealthcareService Specialty",
   "description": "Specialty codes of pharmacy HealthcareServices",
-  "version": "0.11.18",
+  "version": "0.11.19",
   "url": "https://gematik.de/fhir/directory/CodeSystem/PharmacyHealthcareSpecialtyCS",
   "concept": [
     {
@@ -32,7 +32,7 @@
   ],
   "experimental": false,
   "publisher": "gematik GmbH",
-  "date": "2024-10-11",
+  "date": "2024-10-29",
   "caseSensitive": false,
   "count": 5
 }
