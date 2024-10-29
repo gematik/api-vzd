@@ -1,5 +1,8 @@
 # Changelog
 
+## 2024-10-15 - Version 0.11.19
+- fix: EndpointAddressSP search typ switched from uri -> string due to a hapi issue not beeing able to chain with uri SP
+
 ## 2024-10-15 - Version 0.11.18
 - feat: restrict HealthcareServiceDirectory.availableTime.daysOfWeek to ..1 to enforce a an availableTime per weekday
 - feat: set HealthcareServiceDirectory.availableTime.allDay to ..0 to simplify implementations, all day can be entered as 0:00 - 23:59

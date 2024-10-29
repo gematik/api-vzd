@@ -1,10 +1,10 @@
-Alias: $version = 0.11.18
+Alias: $version = 0.11.19
 
 RuleSet: Meta
 * ^status = #active
 * ^experimental = false
 * ^publisher = "gematik GmbH"
-* ^date = "2024-10-11"
+* ^date = "2024-10-29"
 * ^version = $version
 
 RuleSet: MetaInstance
@@ -12,4 +12,4 @@ RuleSet: MetaInstance
 * status = #active
 * experimental = false
 * publisher = "gematik GmbH"
-* date = "2024-10-09"
+* date = "2024-10-29"
