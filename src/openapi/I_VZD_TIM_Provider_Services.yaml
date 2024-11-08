@@ -3,8 +3,11 @@ info:
   title: I_VZD_TIM_Provider_Services
   description: REST interface to retrieve the TI-Messenger federation list and to administrate the TI-Messenger domains.
 
-  version: 1.3.6
+  version: 1.3.7
 
+    # Version 1.3.7
+    #   - Update URL in servers for TU
+  
     # version 1.3.6
     # - /components/schemas/Domain contains redirectDomains
 
@@ -77,12 +80,12 @@ externalDocs:
   description: I_VZD_TIMessenger_services REST interface
   url: https://www.gematik.de
 servers:
-  - url: https://fhir-directory-test.vzd.ti-dienste.de/tim-provider-services
-    description: Development server
+  - url: https://fhir-directory-tu.vzd.ti-dienste.de/tim-provider-services
+    description: Test server (TU)
   - url: https://fhir-directory-ref.vzd.ti-dienste.de/tim-provider-services
-    description: Reference server
+    description: Reference server (RU)
   - url: https://fhir-directory.vzd.ti-dienste.de/tim-provider-services
-    description: Production server
+    description: Production server (PU)
 tags:
   - name: getInfo
     description: This operation returns meta data about this interface
