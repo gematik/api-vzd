@@ -2,8 +2,11 @@ openapi: 3.0.3
 info:
   title: I_VZD_Person_Institution_linking
   description: REST interface for linkin person and institution entries.
-  version: 1.0.3
+  version: 1.0.4
 
+  # Änderungen in Version 1.0.4
+  #   - Update URLs in servers (TU)
+  # 
   # version 1.0.3
   #   Renamed relative part "PersonInstitutionLink" to "Link"
   #
@@ -23,11 +26,12 @@ externalDocs:
   description: Schnittstelle zur Pflege der Verzeichniseinträge
   url: http://github.com/gematik/api-vzd/
 servers:
-  - url: https://fhir-directory-test.vzd.ti-dienste.de/PersonInstitutionLink
-    description: Testumgebung
+  - url: https://fhir-directory-tu.vzd.ti-dienste.de/PersonInstitutionLink
+    description: Testumgebung (TU)
   - url: https://fhir-directory-ref.vzd.ti-dienste.de/PersonInstitutionLink
-    description: Referenzumgebung
+    description: Referenzumgebung (RU)
   - url: https://fhir-directory.vzd.ti-dienste.de/PersonInstitutionLink
+    description: Produktivumgebung (PU)
 
 tags:
   - name: getInfo
@@ -428,7 +432,7 @@ security:
       #        Token Endpoint is specific for the environment:
 
       #        **Testumgebung:**
-    #        * https://auth-test.vzd.ti-dienste.de:9443/auth/realms/Person_Institution_linking/protocol/openid-connect/token
+    #        * https://auth-tu.vzd.ti-dienste.de:9443/auth/realms/Person_Institution_linking/protocol/openid-connect/token
 
     #        **Referenzumgebung:**
     #        * https://auth-ref.vzd.ti-dienste.de:9443/auth/realms/Person_Institution_linking/protocol/openid-connect/token
