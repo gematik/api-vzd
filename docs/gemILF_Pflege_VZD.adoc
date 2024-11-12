@@ -3807,10 +3807,10 @@ Dieses Attribut wird durch den VZD nicht automatisch aus dem Zertifikat ermittel
 Attribut displayName muss vom Client über die Schreiboperationen von Schnittstelle I_Directory_Administration gesetzt werden. +
 Dafür muss er den Wert aus dem Zertifikatsattribut commonName entnehmen und dem VZD an Schnittstelle I_Directory_Administration als Attribut displayName übergeben.
 
-|*streetAddress* |optional |Nicht belegt.
-|*postalCode* |optional |Nicht belegt.
-|*localityName* |optional |Nicht belegt.
-|*stateOrProvinceName* |optional |Nicht belegt.
+|*streetAddress* |obligatorisch |Bezeichner: Straße und Hausnummer (wenn verfügbar) der Organisation.
+|*postalCode* |obligatorisch |Bezeichner: Postleitzahl der Organisation.
+|*localityName* |obligatorisch |Bezeichner: Ort der Organisation.
+|*stateOrProvinceName* |optional |Bezeichner: Bundesland der Organisation.
 |*countryCode* |optional |Siehe TAB_VZD_Wertebereiche_der_Attribute
 |*organization* |optional |Nicht belegt.
 |*domainID* |optional |Nicht belegt.
