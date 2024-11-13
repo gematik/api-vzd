@@ -204,8 +204,10 @@ Neu für eGBR HBA und SMC-B |gematik
 - givenName - Verhalten bei der Administration von Attribut givenName genauer beschrieben
 |gematik
 
-|1.5.13 |11.11.2024 |4.19
+|1.5.13 |11.11.2024 |3.7 +
+4.19
 |
+- Prüfung V004: Link auf Simplifier aktualisiert +
 - Tabelle für NCPeH ergänzt
 |gematik
 |===
@@ -855,7 +857,7 @@ Andere Schreibweisen werden nicht zugelassen.
 | countryCode muss 2-Stellige ISO Code sein. Siehe https://www.iso.org/obp/ui/#search/code/[ISO 3166 "Alpha-2 code"].
 |V004 |umgesetzt |ja
 | Bei SMC-B muss specialization folgendes Format haben: urn:psc:{OID Codesystem}:{Code}, 
-wobei CodeSystems und Codes aus  https://simplifier.net/vzd-fhir-directory/healthcareservicespecialtyvs[HealthcareServiceSpecialtyVS]  
+wobei CodeSystems und Codes aus  https://simplifier.net/vzd-fhir-directory/healthcarespecialtytypevs[HealthcareServiceSpecialtyVS]  
 zu entnehmen sind.
 |V005 |umgesetzt |ja
 | Bei HBA muss specialization folgendes Format haben: urn:as:{OID Codesystem}:{Code}, wobei CodeSystems und Codes aus https://simplifier.net/vzd-fhir-directory/practitionerqualificationvs[PractitionerQualificationVS] zu entnehmen sind.
