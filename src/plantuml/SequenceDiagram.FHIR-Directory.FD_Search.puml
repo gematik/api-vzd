@@ -29,7 +29,7 @@ end
 
 == Suche durch Fachdienst im FHIR VZD ==
 
-Fachdienst -> Proxy: GET /fdv/search?... \nAuthorization: Bearer search-access_token
+Fachdienst -> Proxy: GET /search?... \nAuthorization: Bearer search-access_token
 
 alt search_access_token ist gültig
     Proxy -> Fachdienst: HTTP 200 OK (Result Body json)
