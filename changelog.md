@@ -1,6 +1,9 @@
 # Changelog
 
-## 2024-10-15 - Version 0.11.19
+## 2024-11-15 - Version 0.11.20
+- fix: SystemsEngineering:tim.gematik.de Example address is now a matrix uri
+
+## 2024-10-29 - Version 0.11.19
 - fix: EndpointAddressSP search typ switched from uri -> string due to a hapi issue not beeing able to chain with uri SP
 
 ## 2024-10-15 - Version 0.11.18

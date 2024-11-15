@@ -7,8 +7,8 @@ Example TI-Messenger Endpoint
 * meta.tag[Origin] = Origin#owner
 * status = #active "Active"
 * connectionType = EndpointDirectoryConnectionType#tim
-* name = "@SystemsEngineering:tim.gematik.de"
-* address = "@SystemsEngineering:tim.gematik.de"
+* name = "SystemsEngineering:tim.gematik.de"
+* address = "matrix:u/SystemsEngineering:tim.gematik.de"
 * payloadType = EndpointDirectoryPayloadType#tim-chat
 
 Instance: OrganizationExample001
