@@ -3807,7 +3807,7 @@ Dieses Attribut wird genutzt, um den Namen der Person gegenüber dem Anwender da
  +
 Dieses Attribut wird durch den VZD nicht automatisch aus dem Zertifikat ermittelt. +
 Attribut displayName muss vom Client über die Schreiboperationen von Schnittstelle I_Directory_Administration gesetzt werden. +
-Dafür muss er den Wert aus dem Zertifikatsattribut commonName entnehmen und dem VZD an Schnittstelle I_Directory_Administration als Attribut displayName übergeben.
+Dafür muss die deutsche amtliche Kurzform des Ländernamens aus dem Zertifikatsattribut commonName entnommen und dem VZD an Schnittstelle I_Directory_Administration als Attribut displayName übergeben werden.
 
 |*streetAddress* |obligatorisch |Bezeichner: Straße und Hausnummer (wenn verfügbar) der Organisation.
 |*postalCode* |obligatorisch |Bezeichner: Postleitzahl der Organisation.
