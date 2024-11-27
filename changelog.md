@@ -1,7 +1,8 @@
 # Changelog
 
 ## 2024-tbd - Version 0.11.21
-- feat: restricted all extensible bindings to required- feat: removed ServiceType from Fhir core from HealthcareServiceSpecialtyVS
+- feat: restricted all extensible bindings to required
+- feat: removed ServiceType from Fhir core from HealthcareServiceSpecialtyVS
 - feat: added NCPeHCountryEx to represent NCPeH country in a coded form
 - feat: added CodeSystems for all ValueSets
 - feat: added * OrganizationProfessionOID#1.2.276.0.76.4.292 "NCPeH Fachdienst" to HealthcareServiceCategoryCodes ValueSet
