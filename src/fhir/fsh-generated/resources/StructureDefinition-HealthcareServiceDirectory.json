@@ -98,7 +98,7 @@
         "mustSupport": true,
         "binding": {
           "strength": "required",
-          "valueSet": "http://ihe-d.de/ValueSets/IHEXDShealthcareFacilityTypeCodePatientRelatedHealthcare"
+          "valueSet": "https://gematik.de/fhir/directory/ValueSet/healthcare-service-category-codes"
         }
       },
       {
@@ -106,7 +106,7 @@
         "path": "HealthcareService.type",
         "mustSupport": true,
         "binding": {
-          "strength": "extensible",
+          "strength": "required",
           "valueSet": "https://gematik.de/fhir/directory/ValueSet/HealthcareServiceTypeVS"
         }
       },
@@ -236,7 +236,7 @@
         },
         "mustSupport": true,
         "binding": {
-          "strength": "extensible",
+          "strength": "required",
           "valueSet": "https://gematik.de/fhir/directory/ValueSet/PhysicalFeaturesHealthCareServiceVS"
         }
       },

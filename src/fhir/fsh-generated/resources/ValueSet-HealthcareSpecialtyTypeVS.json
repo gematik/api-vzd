@@ -19,7 +19,9 @@
         "system": "https://gematik.de/fhir/directory/CodeSystem/HealthcareServiceSpecialtyCS"
       },
       {
-        "system": "http://terminology.hl7.org/CodeSystem/service-type"
+        "valueSet": [
+          "https://gematik.de/fhir/directory/ValueSet/ncpeh-healthcare-service-speciality-cs"
+        ]
       }
     ]
   }

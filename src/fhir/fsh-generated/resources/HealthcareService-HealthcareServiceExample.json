@@ -52,17 +52,6 @@
       ]
     }
   ],
-  "specialty": [
-    {
-      "coding": [
-        {
-          "code": "92",
-          "system": "http://terminology.hl7.org/CodeSystem/service-type",
-          "display": "Paediatric Dentistry"
-        }
-      ]
-    }
-  ],
   "location": [
     {
       "reference": "Location/LocationExample"

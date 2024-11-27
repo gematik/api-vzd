@@ -73,15 +73,13 @@ Description: "Example of an HealthcareService as to be found in gematik FHIR Dir
 * providedBy = Reference(OrganizationExample)
 * identifier[TelematikID].value = "2-2.58.00000040"
 * category = PatientBezogenenGesundheitsversorgung#PRA "Arztpraxis"
-* type[+] = $AerztlicheFachrichtungen#MZKH "Zahnmedizin"
-* type[+] = $AerztlicheFachrichtungen#ORAL "Oralchirurgie"
-* specialty = ServiceType#92 "Paediatric Dentistry"
+* type[+] = AerztlicheFachrichtungen_OID_URL#MZKH "Zahnmedizin"
+* type[+] = AerztlicheFachrichtungen_OID_URL#ORAL "Oralchirurgie"
 * location[+] = Reference(LocationExample)
 * name = "Zahnmedizin"
 * telecom[+].system = $ContactPointSystem#phone "Phone"
 * telecom[=].value = "030 7654321"
 * telecom[=].use = $ContactPointUse#work "Work"
-
 * communication[+] = $CommonLanguages#de "German"
 * communication[+] = $CommonLanguages#en "English"
 * appointmentRequired = true 

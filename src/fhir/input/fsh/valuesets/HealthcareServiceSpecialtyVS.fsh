@@ -5,4 +5,4 @@ Description: "HealthcareService specialities"
 * insert Meta
 * include codes from system PharmacyHealthcareSpecialtyCS
 * include codes from system HealthcareServiceSpecialtyCS
-* include codes from system ServiceType
+* include codes from valueset NCPeHHealthcareServiceSpecialityVS

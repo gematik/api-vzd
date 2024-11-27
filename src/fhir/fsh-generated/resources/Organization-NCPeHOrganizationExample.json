@@ -1,0 +1,48 @@
+{
+  "resourceType": "Organization",
+  "id": "NCPeHOrganizationExample",
+  "meta": {
+    "tag": [
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/Origin",
+        "code": "ldap"
+      }
+    ],
+    "profile": [
+      "https://gematik.de/fhir/directory/StructureDefinition/OrganizationDirectory"
+    ]
+  },
+  "identifier": [
+    {
+      "system": "https://gematik.de/fhir/sid/telematik-id",
+      "value": "2-2.58.00000041"
+    }
+  ],
+  "extension": [
+    {
+      "url": "https://gematik.de/fhir/directory/StructureDefinition/ncpeh-country-ex",
+      "valueCodeableConcept": {
+        "coding": [
+          {
+            "code": "PT",
+            "system": "urn:iso:std:iso:3166",
+            "display": "Portugal"
+          }
+        ]
+      }
+    }
+  ],
+  "type": [
+    {
+      "coding": [
+        {
+          "code": "1.2.276.0.76.4.292",
+          "system": "https://gematik.de/fhir/directory/CodeSystem/OrganizationProfessionOID",
+          "display": "NCPeH Fachdienst"
+        }
+      ]
+    }
+  ],
+  "name": "NCPeH Portugal",
+  "active": true
+}

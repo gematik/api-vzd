@@ -198,7 +198,7 @@
         "path": "Practitioner.qualification.code",
         "mustSupport": true,
         "binding": {
-          "strength": "extensible",
+          "strength": "required",
           "valueSet": "https://gematik.de/fhir/directory/ValueSet/PractitionerQualificationVS"
         }
       },

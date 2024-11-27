@@ -35,5 +35,5 @@ Title: "Practitioner in gematik Directory"
 * photo MS
 * qualification MS
   * code MS
-  * code from PractitionerQualificationVS (extensible)
+  * code from PractitionerQualificationVS
 * communication MS

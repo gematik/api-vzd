@@ -1,0 +1,38 @@
+{
+  "resourceType": "CodeSystem",
+  "status": "draft",
+  "content": "complete",
+  "name": "QualifikatorenZahnaerztlicherAutoren_OID_URL",
+  "id": "qualifikatoren-zahnaerztlicher-autoren-oid-url",
+  "title": "Qualifikatoren Zahnaerztlicher Autoren",
+  "description": "Qualifikatoren Zahnaerztlicher Autoren",
+  "version": "0.11.20",
+  "url": "urn:oid:1.2.276.0.76.5.492",
+  "concept": [
+    {
+      "code": "1",
+      "display": "Zahnärztin/Zahnarzt"
+    },
+    {
+      "code": "2",
+      "display": "FZA Allgemeine Zahnheilkunde"
+    },
+    {
+      "code": "3",
+      "display": "FZA Parodontologie"
+    },
+    {
+      "code": "4",
+      "display": "FZA Oralchirurgie"
+    },
+    {
+      "code": "5",
+      "display": "FZA Kieferorthopädie"
+    },
+    {
+      "code": "6",
+      "display": "FZA öffentliches Gesundheitswesen"
+    }
+  ],
+  "count": 6
+}
