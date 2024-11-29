@@ -1,0 +1,270 @@
+{
+  "resourceType": "CodeSystem",
+  "status": "draft",
+  "content": "complete",
+  "name": "KBV_CS_SFHIR_BAR2_WBO_OID_URL",
+  "id": "kbv-cm-sfhir-bar2-wbo-oid-url",
+  "title": "KBV_CS_SFHIR_BAR2_WBO Fachgruppen",
+  "description": "Fachgruppen-Codes nach Weiterbildungsordnung Bundesarztregister, BAR-Schlüsselverzeichnis Anlage 4",
+  "version": "0.11.20",
+  "url": "urn:oid:1.2.276.0.76.5.114",
+  "concept": [
+    {
+      "code": "010",
+      "display": "FA Allgemeinmedizin"
+    },
+    {
+      "code": "020",
+      "display": "FA Anästhesiologie"
+    },
+    {
+      "code": "030",
+      "display": "FA Augenheilkunde"
+    },
+    {
+      "code": "050",
+      "display": "FA Frauenheilkunde und Geburtshilfe"
+    },
+    {
+      "code": "060",
+      "display": "FA Hals-, Nasen-, Ohrenheilkunde"
+    },
+    {
+      "code": "070",
+      "display": "FA Haut- und Geschlechtskrankheiten"
+    },
+    {
+      "code": "080",
+      "display": "FA Innere Medizin"
+    },
+    {
+      "code": "091",
+      "display": "SP Kinderkardiologie"
+    },
+    {
+      "code": "093",
+      "display": "SP Neonatologie"
+    },
+    {
+      "code": "102",
+      "display": "FA Kinder- und Jugendpsychiatrie und -psychotherapie"
+    },
+    {
+      "code": "110",
+      "display": "FA Laboratoriumsmedizin"
+    },
+    {
+      "code": "130",
+      "display": "FA Mund-Kiefer-Gesichts-Chirurgie"
+    },
+    {
+      "code": "142",
+      "display": "FA Neurologie"
+    },
+    {
+      "code": "147",
+      "display": "FA Psychiatrie und Psychotherapie"
+    },
+    {
+      "code": "150",
+      "display": "FA Neurochirurgie"
+    },
+    {
+      "code": "170",
+      "display": "FA Pathologie"
+    },
+    {
+      "code": "180",
+      "display": "FA Pharmakologie und Toxikologie"
+    },
+    {
+      "code": "196",
+      "display": "SP Kinderradiologie"
+    },
+    {
+      "code": "197",
+      "display": "SP Neuroradiologie"
+    },
+    {
+      "code": "200",
+      "display": "FA Urologie"
+    },
+    {
+      "code": "210",
+      "display": "FA Arbeitsmedizin"
+    },
+    {
+      "code": "220",
+      "display": "FA Nuklearmedizin"
+    },
+    {
+      "code": "230",
+      "display": "FA Öffentliches Gesundheitswesen"
+    },
+    {
+      "code": "240",
+      "display": "FA Rechtsmedizin"
+    },
+    {
+      "code": "250",
+      "display": "FA Hygiene und Umweltmedizin"
+    },
+    {
+      "code": "271",
+      "display": "FA Neuropathologie"
+    },
+    {
+      "code": "281",
+      "display": "FA Klinische Pharmakologie"
+    },
+    {
+      "code": "291",
+      "display": "FA Strahlentherapie"
+    },
+    {
+      "code": "301",
+      "display": "FA Anatomie"
+    },
+    {
+      "code": "302",
+      "display": "FA Biochemie"
+    },
+    {
+      "code": "303",
+      "display": "FA Transfusionsmedizin"
+    },
+    {
+      "code": "304",
+      "display": "FA Kinderchirurgie"
+    },
+    {
+      "code": "308",
+      "display": "FA Physiologie"
+    },
+    {
+      "code": "313",
+      "display": "FA Herzchirurgie"
+    },
+    {
+      "code": "314",
+      "display": "FA Humangenetik"
+    },
+    {
+      "code": "330",
+      "display": "FA Physikalische und Rehabilitative Medizin"
+    },
+    {
+      "code": "341",
+      "display": "FA Kinder-und Jugendmedizin"
+    },
+    {
+      "code": "359",
+      "display": "Fachzahnarzt für Mikrobiologie"
+    },
+    {
+      "code": "360",
+      "display": "Fachzahnarzt für Kieferchirurgie (§ 6 Abs. 1 BMV)"
+    },
+    {
+      "code": "361",
+      "display": "Fachzahnarzt für theoretisch-experimentelle Medizin"
+    },
+    {
+      "code": "511",
+      "display": "FA Gefäßchirurgie"
+    },
+    {
+      "code": "512",
+      "display": "FA Orthopädie und Unfallchirurgie"
+    },
+    {
+      "code": "513",
+      "display": "FA Thoraxchirurgie"
+    },
+    {
+      "code": "514",
+      "display": "FA Visceralchirurgie"
+    },
+    {
+      "code": "515",
+      "display": "SP Gynäkologische Onkologie"
+    },
+    {
+      "code": "516",
+      "display": "SP Gynäkologische Endokrinologie und Reproduktionsmedizin"
+    },
+    {
+      "code": "517",
+      "display": "SP Spezielle Geburtshilfe und Perinatalmedizin"
+    },
+    {
+      "code": "518",
+      "display": "FA Sprach-, Stimm- und kindliche Hörstörungen"
+    },
+    {
+      "code": "521",
+      "display": "FA Innere Medizin und (SP) Angiologie"
+    },
+    {
+      "code": "522",
+      "display": "FA Innere Medizin und (SP) Endokrinologie und Diabetologie"
+    },
+    {
+      "code": "523",
+      "display": "FA Innere Medizin und (SP) Gastroenterologie"
+    },
+    {
+      "code": "524",
+      "display": "FA Innere Medizin und (SP) Hämatologie und Onkologie"
+    },
+    {
+      "code": "525",
+      "display": "FA Innere Medizin und (SP) Kardiologie"
+    },
+    {
+      "code": "526",
+      "display": "FA Innere Medizin und (SP) Nephrologie"
+    },
+    {
+      "code": "527",
+      "display": "FA Innere Medizin und (SP) Pneumologie"
+    },
+    {
+      "code": "528",
+      "display": "FA Innere Medizin und (SP) Rheumatologie"
+    },
+    {
+      "code": "530",
+      "display": "SP Kinder-Hämatologie und -Onkologie"
+    },
+    {
+      "code": "531",
+      "display": "SP Neuropädiatrie"
+    },
+    {
+      "code": "532",
+      "display": "FA Mikrobiologie, Virologie und Infektionsepidemiologie"
+    },
+    {
+      "code": "533",
+      "display": "SP Forensische Psychiatrie"
+    },
+    {
+      "code": "534",
+      "display": "FA Psychosomatische Medizin und Psychotherapie"
+    },
+    {
+      "code": "535",
+      "display": "FA Radiologie (neue (M-)WBO)"
+    },
+    {
+      "code": "542",
+      "display": "FA Plastische und Ästhetische Chirurgie"
+    },
+    {
+      "code": "544",
+      "display": "FA Allgemeinchirurgie"
+    }
+  ],
+  "count": 64
+}

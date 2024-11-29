@@ -128,12 +128,76 @@
     "endLine": 9
   },
   {
+    "outputFile": "CodeSystem-aerztliche-fachrichtungen-oid-url.json",
+    "fshName": "AerztlicheFachrichtungen_OID_URL",
+    "fshType": "CodeSystem",
+    "fshFile": "codesystems/external/AerztlicheFachrichtungen.fsh",
+    "startLine": 1,
+    "endLine": 83
+  },
+  {
+    "outputFile": "CodeSystem-aerztlicheBerufsvarianten.json",
+    "fshName": "AerztlicheBerufsvarianten",
+    "fshType": "CodeSystem",
+    "fshFile": "codesystems/external/AerztlicheBerufsvarianten.fsh",
+    "startLine": 1,
+    "endLine": 8
+  },
+  {
+    "outputFile": "CodeSystem-facharzttitelderaerztekammern-oid-url.json",
+    "fshName": "FacharzttitelDerAerztekammern_OID_URL",
+    "fshType": "CodeSystem",
+    "fshFile": "codesystems/external/FacharzttitelDerAerztekammern.fsh",
+    "startLine": 1,
+    "endLine": 202
+  },
+  {
+    "outputFile": "CodeSystem-kbv-cm-sfhir-bar2-wbo-oid-url.json",
+    "fshName": "KBV_CS_SFHIR_BAR2_WBO_OID_URL",
+    "fshType": "CodeSystem",
+    "fshFile": "codesystems/external/FachgruppenCodesKBV.fsh",
+    "startLine": 1,
+    "endLine": 69
+  },
+  {
+    "outputFile": "CodeSystem-nicht-aerztliche-fachrichtungen-oid-url.json",
+    "fshName": "NichtAerztlicheFachrichtungen_OID_URL",
+    "fshType": "CodeSystem",
+    "fshFile": "codesystems/external/NichtAerztlicheFachrichtungen.fsh",
+    "startLine": 1,
+    "endLine": 20
+  },
+  {
     "outputFile": "CodeSystem-physicalFeatures.json",
     "fshName": "PhysicalFeaturesHealthCareServiceCS",
     "fshType": "CodeSystem",
     "fshFile": "codesystems/PhysicalFeaturesHealthCareServiceCS.fsh",
     "startLine": 1,
     "endLine": 8
+  },
+  {
+    "outputFile": "CodeSystem-qualifikationen-nicht-aerztlicher-autoren-oid-url.json",
+    "fshName": "QualifikationenNichtAerztlicherAutoren_OID_URL",
+    "fshType": "CodeSystem",
+    "fshFile": "codesystems/external/QualifikationenNichtAerztlicherAutoren.fsh",
+    "startLine": 1,
+    "endLine": 183
+  },
+  {
+    "outputFile": "CodeSystem-qualifikatoren-zahnaerztlicher-autoren-oid-url.json",
+    "fshName": "QualifikatorenZahnaerztlicherAutoren_OID_URL",
+    "fshType": "CodeSystem",
+    "fshFile": "codesystems/external/QualifikatorenZahnaerztlicherAutoren.fsh",
+    "startLine": 1,
+    "endLine": 11
+  },
+  {
+    "outputFile": "CodeSystem-zahnaerztliche-fachrichtungen-oid-url.json",
+    "fshName": "ZahnaerztlicheFachrichtungen_OID_URL",
+    "fshType": "CodeSystem",
+    "fshFile": "codesystems/external/ZahnAerztlicheFachrichtungen.fsh",
+    "startLine": 1,
+    "endLine": 7
   },
   {
     "outputFile": "Endpoint-EndpointExample.json",
@@ -181,7 +245,15 @@
     "fshType": "Instance",
     "fshFile": "examples/Examples001.fsh",
     "startLine": 68,
-    "endLine": 112
+    "endLine": 110
+  },
+  {
+    "outputFile": "HealthcareService-NCPeHHealthcareServiceExample.json",
+    "fshName": "NCPeHHealthcareServiceExample",
+    "fshType": "Instance",
+    "fshFile": "examples/NCPeHExamples.fsh",
+    "startLine": 12,
+    "endLine": 22
   },
   {
     "outputFile": "HealthcareService-PharmacyHealthCareServiceExample.json",
@@ -206,6 +278,14 @@
     "fshFile": "examples/PharmacyExample.fsh",
     "startLine": 96,
     "endLine": 113
+  },
+  {
+    "outputFile": "Organization-NCPeHOrganizationExample.json",
+    "fshName": "NCPeHOrganizationExample",
+    "fshType": "Instance",
+    "fshFile": "examples/NCPeHExamples.fsh",
+    "startLine": 1,
+    "endLine": 10
   },
   {
     "outputFile": "Organization-OrganizationExample.json",
@@ -341,7 +421,7 @@
     "fshType": "Profile",
     "fshFile": "profiles/OrganizationDirectory.fsh",
     "startLine": 1,
-    "endLine": 49
+    "endLine": 51
   },
   {
     "outputFile": "StructureDefinition-OrganizationVisibility.json",
@@ -400,6 +480,14 @@
     "endLine": 86
   },
   {
+    "outputFile": "StructureDefinition-ncpeh-country-ex.json",
+    "fshName": "NCPeHCountryEx",
+    "fshType": "Extension",
+    "fshFile": "profiles/OrganizationDirectory.fsh",
+    "startLine": 53,
+    "endLine": 64
+  },
+  {
     "outputFile": "ValueSet-AddressStateVS.json",
     "fshName": "AddressStateVS",
     "fshType": "ValueSet",
@@ -437,7 +525,7 @@
     "fshType": "ValueSet",
     "fshFile": "valuesets/HealthcareServiceTypeVS.fsh",
     "startLine": 1,
-    "endLine": 102
+    "endLine": 7
   },
   {
     "outputFile": "ValueSet-HealthcareSpecialtyTypeVS.json",
@@ -501,13 +589,29 @@
     "fshType": "ValueSet",
     "fshFile": "valuesets/PractitionerQualificationVS.fsh",
     "startLine": 1,
-    "endLine": 457
+    "endLine": 9
+  },
+  {
+    "outputFile": "ValueSet-healthcare-service-category-codes.json",
+    "fshName": "HealthcareServiceCategoryCodes",
+    "fshType": "ValueSet",
+    "fshFile": "valuesets/HealthcareServiceCategoryCodes.fsh",
+    "startLine": 1,
+    "endLine": 6
   },
   {
     "outputFile": "ValueSet-healthcareservice-technical-characteristic-vs.json",
     "fshName": "HealthCareServiceTechnicalCharacteristicVS",
     "fshType": "ValueSet",
     "fshFile": "valuesets/HealthCareServiceCharacteristic.fsh",
+    "startLine": 1,
+    "endLine": 6
+  },
+  {
+    "outputFile": "ValueSet-ncpeh-healthcare-service-speciality-cs.json",
+    "fshName": "NCPeHHealthcareServiceSpecialityVS",
+    "fshType": "ValueSet",
+    "fshFile": "valuesets/NCPeHHealthcareServiceSpeciality.fsh",
     "startLine": 1,
     "endLine": 6
   }

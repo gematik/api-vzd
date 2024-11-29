@@ -1,0 +1,75 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "ncpeh-country-ex",
+  "url": "https://gematik.de/fhir/directory/StructureDefinition/ncpeh-country-ex",
+  "version": "0.11.20",
+  "name": "NCPeHCountryEx",
+  "title": "National Contact Point of Health (NCPeH) Country Extension",
+  "status": "draft",
+  "description": "The country extension for  National Contact Point of Health (NCPeH) Organizations, representing the country in which the NCPeH is located.",
+  "fhirVersion": "4.0.1",
+  "kind": "complex-type",
+  "abstract": false,
+  "context": [
+    {
+      "expression": "Organization",
+      "type": "element"
+    }
+  ],
+  "type": "Extension",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Extension",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Extension",
+        "path": "Extension",
+        "short": "National Contact Point of Health (NCPeH) Country Extension",
+        "definition": "The country extension for  National Contact Point of Health (NCPeH) Organizations, representing the country in which the NCPeH is located."
+      },
+      {
+        "id": "Extension.extension",
+        "path": "Extension.extension",
+        "max": "0"
+      },
+      {
+        "id": "Extension.url",
+        "path": "Extension.url",
+        "fixedUri": "https://gematik.de/fhir/directory/StructureDefinition/ncpeh-country-ex"
+      },
+      {
+        "id": "Extension.value[x]",
+        "path": "Extension.value[x]",
+        "min": 1,
+        "type": [
+          {
+            "code": "CodeableConcept"
+          }
+        ],
+        "mustSupport": true,
+        "binding": {
+          "strength": "required",
+          "valueSet": "http://hl7.org/fhir/ValueSet/iso3166-1-2"
+        }
+      },
+      {
+        "id": "Extension.value[x].coding",
+        "path": "Extension.value[x].coding",
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "Extension.value[x].coding.system",
+        "path": "Extension.value[x].coding.system",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "Extension.value[x].coding.code",
+        "path": "Extension.value[x].coding.code",
+        "min": 1,
+        "mustSupport": true
+      }
+    ]
+  }
+}

@@ -92,7 +92,7 @@
         "path": "Endpoint.connectionType.code",
         "mustSupport": true,
         "binding": {
-          "strength": "extensible",
+          "strength": "required",
           "valueSet": "https://gematik.de/fhir/directory/ValueSet/EndpointConnectionTypeVS"
         }
       },
@@ -107,7 +107,7 @@
         "path": "Endpoint.payloadType",
         "mustSupport": true,
         "binding": {
-          "strength": "extensible",
+          "strength": "required",
           "valueSet": "https://gematik.de/fhir/directory/ValueSet/EndpointPayloadTypeVS"
         }
       },

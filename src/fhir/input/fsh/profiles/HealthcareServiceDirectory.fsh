@@ -21,9 +21,9 @@ organisations specific for german Healthcare and Telematics Infrastructure.
 * identifier[TelematikID] only $IdentifierTelematikID
 * providedBy 1..1 MS
 * category MS 
-* category from $IHEXDShealthcareFacilityTypeCodePatientRelatedHealthcare
+* category from HealthcareServiceCategoryCodes
 * type MS 
-* type from HealthcareServiceTypeVS (extensible)
+* type from HealthcareServiceTypeVS
 * specialty MS
 * specialty from HealthcareServiceSpecialtyVS
 * location ..1 MS
@@ -54,7 +54,7 @@ organisations specific for german Healthcare and Telematics Infrastructure.
     physicalFeatures 0..* MS
 * characteristic[technicalCharacteristic] from HealthCareServiceTechnicalCharacteristicVS
   * ^short = "Technical Services"
-* characteristic[physicalFeatures] from PhysicalFeaturesHealthCareServiceVS (extensible)
+* characteristic[physicalFeatures] from PhysicalFeaturesHealthCareServiceVS
   * extension contains PhysicalFeaturesAdditionalNoteEX named additionalNote 0..1 MS
   * ^patternCodeableConcept.coding.system = Canonical(PhysicalFeaturesHealthCareServiceCS)
   * ^short = "Physical Features"

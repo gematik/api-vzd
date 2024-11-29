@@ -101,7 +101,7 @@
         "path": "Location.address.state",
         "mustSupport": true,
         "binding": {
-          "strength": "extensible",
+          "strength": "required",
           "valueSet": "https://gematik.de/fhir/directory/ValueSet/AddressStateVS"
         }
       },

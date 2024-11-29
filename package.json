@@ -8,6 +8,6 @@
   ],
   "dependencies": {
     "de.basisprofil.r4": "1.5.0",
-    "de.ihe-d.terminology": "3.0.0"
+    "de.ihe-d.terminology": "3.0.1"
   }
 }

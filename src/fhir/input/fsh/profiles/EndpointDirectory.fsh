@@ -16,10 +16,10 @@ Description: "Endpoints for applications in the gematik Directory"
 * status 1..1 MS
 * connectionType 1..1 MS
   * code MS
-  * code from EndpointConnectionTypeVS (extensible)
+  * code from EndpointConnectionTypeVS
   * system MS
 * name 1..1 MS  // identical to address; because search is possible in element name and not in element address
 * managingOrganization
 * payloadType MS
-* payloadType from EndpointPayloadTypeVS (extensible)
+* payloadType from EndpointPayloadTypeVS
 * address 1..1 MS

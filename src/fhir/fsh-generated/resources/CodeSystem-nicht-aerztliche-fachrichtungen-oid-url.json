@@ -1,0 +1,74 @@
+{
+  "resourceType": "CodeSystem",
+  "status": "draft",
+  "content": "complete",
+  "name": "NichtAerztlicheFachrichtungen_OID_URL",
+  "id": "nicht-aerztliche-fachrichtungen-oid-url",
+  "title": "NichtAerztlicheFachrichtungen_OID_URL",
+  "description": "NichtAerztlicheFachrichtungen_OID_URL",
+  "version": "0.11.20",
+  "url": "urn:oid:1.3.6.1.4.1.19376.3.276.1.5.5",
+  "concept": [
+    {
+      "code": "ERG",
+      "display": "Ergotherapie"
+    },
+    {
+      "code": "ERN",
+      "display": "Ernährung und Diätetik"
+    },
+    {
+      "code": "FOR",
+      "display": "Forschung"
+    },
+    {
+      "code": "PFL",
+      "display": "Pflege und Betreuung"
+    },
+    {
+      "code": "ALT",
+      "display": "Altenpflege"
+    },
+    {
+      "code": "KIN",
+      "display": "Kinderpflege"
+    },
+    {
+      "code": "PAT",
+      "display": "Patient außerhalb der Betreuung"
+    },
+    {
+      "code": "PHZ",
+      "display": "Pharmazeutik"
+    },
+    {
+      "code": "POD",
+      "display": "Podologie"
+    },
+    {
+      "code": "PRV",
+      "display": "Prävention"
+    },
+    {
+      "code": "SOZ",
+      "display": "Sozialwesen"
+    },
+    {
+      "code": "SPR",
+      "display": "Sprachtherapie"
+    },
+    {
+      "code": "VKO",
+      "display": "Versorgungskoordination"
+    },
+    {
+      "code": "VER",
+      "display": "Verwaltung"
+    },
+    {
+      "code": "PST",
+      "display": "Psychotherapie"
+    }
+  ],
+  "count": 15
+}

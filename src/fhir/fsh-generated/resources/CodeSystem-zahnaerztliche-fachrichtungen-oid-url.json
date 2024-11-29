@@ -1,0 +1,22 @@
+{
+  "resourceType": "CodeSystem",
+  "status": "draft",
+  "content": "complete",
+  "name": "ZahnaerztlicheFachrichtungen_OID_URL",
+  "id": "zahnaerztliche-fachrichtungen-oid-url",
+  "title": "ZahnaerztlicheFachrichtungen",
+  "description": "ZahnaerztlicheFachrichtungen",
+  "version": "0.11.20",
+  "url": "urn:oid:1.2.276.0.76.5.494",
+  "concept": [
+    {
+      "code": "MZAH",
+      "display": "Allgemeine Zahnheilkunde"
+    },
+    {
+      "code": "ZGES",
+      "display": "Öffentliches Gesundheitswesen"
+    }
+  ],
+  "count": 2
+}
