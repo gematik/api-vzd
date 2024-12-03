@@ -42,7 +42,9 @@ image::gematik_logo.svg[gematik,float="right"]
   |gematik
 |1.1.2 |05.09.24 |Full-text search
 |Update of tables "_text attribute for organizations" and "_text attribute for persons"
-
+  |gematik
+|1.1.3 |03.12.24 |Full-text search
+|Update example "near" Search parameter
   |gematik
 |===
 
@@ -720,7 +722,7 @@ Search for locations where the location.position is near to, or within a specifi
 
 [source]
 --
-GET [baseUrl]/search/HealthcareService?organization.active=true&location.near=50.1503|8.6168|10|km&_sort=location&_include=HealthcareService:location
+GET [baseUrl]/search/HealthcareService?organization.active=true&location.near=50.1503|8.6168|10|km&_include=HealthcareService:location
 --
 *Please note that for the FHIR VZD "near" search all "near" search parameters ([latitude]|[longitude]|[distance]|[units]) are mandatory.*
 
