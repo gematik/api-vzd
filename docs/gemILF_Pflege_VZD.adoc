@@ -3893,7 +3893,12 @@ Wird vom KOM-LE-Anbieter eingetragen.
 {kimData-example_6}
 ----
 
-|*active* |obligatorisch | {active}
+|*active* |obligatorisch a| {active} +
+ +
+Vorgabe für die Befüllung des "active" Attributs für NCPeH Einträge: +
+
+* Bei Anlage eines neuen NCPeHs wird das "active" Attribut auf "false" (inaktiv) gesetzt.
+* Nach Vervollständigung des NCPeH Eintrags im FHIR VZD wird das "active" Attribut auf "true" (aktiv) gesetzt.
 |*meta* |optional | Kann von den pflegenden Clients zur Abstimmung der Prozesse zwischen z.B. Kartenherausgeber und TSP genutzt werden. Dieses Attribut wird durch den VZD nicht ausgewertet. Die Werte für dieses Attribut müssen von den pflegenden Organisationen festgelegt und abgestimmt werden. +
 Array von Strings (wird in LDAP auf <String, String> gemappt). es erfolgt keine Synchronisierung in die flache Liste. +
 Dieses Attribut ist nicht in der flachen Liste enthalten. +
@@ -3921,12 +3926,17 @@ Dieses Attribut ist nicht in der flachen Liste enthalten.
  +
 NCPeH VZD Einträge werden mit folgendem Ablauf erzeugt: +
 
-* Die NCPeH Daten - inklusive Zertifikat(en) - werden entsprechend Tabelle Tab_VZD_Datenbeschreibung_NCPeH in den LDAP VZD eingetragen.
+* Die NCPeH Daten - inklusive Zertifikat(en) - werden entsprechend Tabelle Tab_VZD_Datenbeschreibung_NCPeH in den LDAP VZD eingetragen. 
+Dabei wird das "active" Attribut auf "false" (inaktiv) gesetzt. 
 * Der VZD synchronisiert den LDAP NCPeH Eintrag in den FHIR VZD.
 * Nach der Synchronisation wird im FHIR VZD der NCPeH Eintrag um die folgenden Daten angereichert, die nicht im LDAP VZD vorhanden sind. Dafür wird die FHIR VZD Schnittstelle FHIRDirectoryOwnerAPI (/owner) mit der Authentisierung als Holder genutzt.
 ** In Organization.extension:ncpehCountryEx wird das Land eingetragen, für das der NCPeH zuständig ist.
 ** In HealthcareService.category wird die ProfessionOID von dem NCPeH (1.2.276.0.76.4.292) eingetragen.
-** In HealthcareService.specialty werden die unterstützten Codes (https://simplifier.net/vzd-fhir-directory/ncpeh-healthcare-service-speciality-cs[NCPeHHealthcareServiceSpecialityVS]) für den NCPeH eingetragen.
+** In HealthcareService.specialty werden die unterstützten Codes (https://simplifier.net/vzd-fhir-directory/ncpeh-healthcare-service-speciality-cs[NCPeHHealthcareServiceSpecialityVS]) für den NCPeH eingetragen. 
+* Nach Vervollständigung des NCPeH Eintrags im FHIR VZD wird das "active" Attribut im LDAP VZD auf "true" (aktiv) gesetzt. Die Aktivierung von dem NCPeH Datensatz im LDAP VZD wird in den FHIR VZD synchronisiert.
+
+
+
 
 == Anhang A – Verzeichnisse
 
