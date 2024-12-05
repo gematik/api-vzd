@@ -18,7 +18,7 @@ image::gematik_logo.svg[gematik,float="right"]
 
 [width="100%",cols="50%,50%",options="header",]
 |===
-|Version: |0.0.6
+|Version: |0.0.7
 |Referencing: |gemILF_VZD_FHIR_Directory
 |===
 
@@ -38,6 +38,7 @@ image::gematik_logo.svg[gematik,float="right"]
 |0.0.4 |09.07.24 | |Update  |gematik
 |0.0.5 |29.07.24 | |Simplifier links fixed |gematik
 |0.0.6 |27.09.24 | |HealthcareService.active #3.2 changeability updated, Updated several attribute descriptions |gematik
+|0.0.7 |05.12.24 | |Update of FHIR resource Organization: Extension ncpehCountryEx added |gematik
 |===
 
 == Classification of the document
@@ -490,14 +491,21 @@ This part of the directory contains information about organizations. +
 |No (Must be set to "owner" for owner resources)
 
 .1+|extension:organizationVisibility 
-| https://simplifier.net/vzd-fhir-directory/organizationvisibilitycs[OrganizationVisibilityCS] 
-|0..* 
+| https://simplifier.net/vzd-fhir-directory/organizationvisibilitycs[National Contact Point of Health (NCPeH) Country Extension
+] 
+|0..1 
 |Visibility of an Organization in the FHIR-VZD. This Extensions includes codes of use-cases in which this Organization SHALL not be visible. +
-Values
-
-- *hide-erezeptApp*:	The organization and linked ressources will be not returned in the /fdv/search interface
+Values:
 |No
 |Yes
+
+.1+|extension:ncpehCountryEx 
+| https://simplifier.net/vzd-fhir-directory/ncpehcountryex[OrganizationVisibilityCS] 
+|0..* 
+|The country for which the National Contact Point of Health (NCPeH) is responsible. +
+Values: https://simplifier.net/packages/hl7.fhir.r4.core/4.0.1/files/79837[Iso3166-1-2]
+|No
+|No
 
 .4+|identifier 
 |TelematikID 
