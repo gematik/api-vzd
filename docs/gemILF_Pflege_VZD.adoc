@@ -204,7 +204,7 @@ Neu für eGBR HBA und SMC-B |gematik
 - givenName - Verhalten bei der Administration von Attribut givenName genauer beschrieben
 |gematik
 
-|1.5.13 |11.11.2024 |3.7 +
+|1.5.13 |05.12.2024 |3.7 +
 4.19
 |
 - Prüfung V004: Link auf Simplifier aktualisiert +
@@ -3809,14 +3809,14 @@ Dieses Attribut wird durch den VZD nicht automatisch aus dem Zertifikat ermittel
 Attribut displayName muss vom Client über die Schreiboperationen von Schnittstelle I_Directory_Administration gesetzt werden. +
 Dafür muss die deutsche amtliche Kurzform des Ländernamens aus dem Zertifikatsattribut commonName entnommen und dem VZD an Schnittstelle I_Directory_Administration als Attribut displayName übergeben werden.
 
-|*streetAddress* |obligatorisch |Bezeichner: Straße und Hausnummer (wenn verfügbar) der Organisation.
-|*postalCode* |obligatorisch |Bezeichner: Postleitzahl der Organisation.
-|*localityName* |obligatorisch |Bezeichner: Ort der Organisation.
+|*streetAddress* |optional |Bezeichner: Straße und Hausnummer (wenn verfügbar) der Organisation.
+|*postalCode* |optional |Bezeichner: Postleitzahl der Organisation.
+|*localityName* |optional |Bezeichner: Ort der Organisation.
 |*stateOrProvinceName* |optional |Bezeichner: Bundesland der Organisation.
 |*countryCode* |optional |Siehe TAB_VZD_Wertebereiche_der_Attribute
 |*organization* |optional |Nicht belegt.
 |*domainID* |optional |Nicht belegt.
-|*specialization* |obligatorisch | Wird für den NCPeH nicht verwendet.
+|*specialization* |optional | Wird für den NCPeH nicht verwendet.
 |*maxKOMLEadr* |optional |Maximale Anzahl von Mail-Adressen in den KOM-LE-Fachdaten. +
 Falls kein Wert eingetragen wurde, können beliebig viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden. +
 Falls ein Wert eingetragen wurde, können maximal so viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden.
@@ -3918,6 +3918,15 @@ Dieses Attribut ist nicht in der flachen Liste enthalten.
 
 |===
 {empty} +
+ +
+NCPeH VZD Einträge werden mit folgendem Ablauf erzeugt: +
+
+* Die NCPeH Daten - inklusive Zertifikat(en) - werden entsprechend Tabelle Tab_VZD_Datenbeschreibung_NCPeH in den LDAP VZD eingetragen.
+* Der VZD synchronisiert den LDAP NCPeH Eintrag in den FHIR VZD.
+* Nach der Synchronisation wird im FHIR VZD der NCPeH Eintrag um die folgenden Daten angereichert, die nicht im LDAP VZD vorhanden sind. Dafür wird die FHIR VZD Schnittstelle FHIRDirectoryOwnerAPI (/owner) mit der Authentisierung als Holder genutzt.
+** In Organization.extension:ncpehCountryEx wird das Land eingetragen, für das der NCPeH zuständig ist.
+** In HealthcareService.category wird die ProfessionOID von dem NCPeH (1.2.276.0.76.4.292) eingetragen.
+** In HealthcareService.specialty werden die unterstützten Codes (https://simplifier.net/vzd-fhir-directory/ncpeh-healthcare-service-speciality-cs[NCPeHHealthcareServiceSpecialityVS]) für den NCPeH eingetragen.
 
 == Anhang A – Verzeichnisse
 
