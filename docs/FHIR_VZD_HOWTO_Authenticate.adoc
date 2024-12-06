@@ -37,6 +37,7 @@ image::gematik_logo.svg[gematik,float="right"]
 |1.0.1 |25.08.23 |Chap. 2.4 |added chapter for owner auth |gematik
 
 |1.0.2 |11.09.23 |Chap. 2.5 |added chapter "2.5. Authenticate using the gematik Authenticator" |gematik
+|1.0.3 |06.12.24 |Chap. 2.1 |Update URLs in access token example |gematik
 
 |===
 
@@ -182,8 +183,8 @@ Header:
 Payload:
 
 {
- "iss": "https://fhir-directory-test.vzd.ti-dienste.de/tim-authenticate\",
- "aud": "https://fhir-directory-test.vzd.ti-dienste.de/seach",
+ "iss": "https://fhir-directory-tu.vzd.ti-dienste.de/tim-authenticate\",
+ "aud": "https://fhir-directory-tu.vzd.ti-dienste.de/search",
  "sub": "@abcde:matrix.dev.service-ti.de",
  "iat": 1664122673,
  "exp": 1664209073
