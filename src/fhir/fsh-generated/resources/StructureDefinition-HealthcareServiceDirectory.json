@@ -2,7 +2,7 @@
   "resourceType": "StructureDefinition",
   "id": "HealthcareServiceDirectory",
   "url": "https://gematik.de/fhir/directory/StructureDefinition/HealthcareServiceDirectory",
-  "version": "0.11.21",
+  "version": "0.11.22",
   "name": "HealthcareServiceDirectory",
   "title": "HealthcareService in gematik Directory",
   "status": "active",
@@ -320,6 +320,16 @@
       {
         "id": "HealthcareService.notAvailable",
         "path": "HealthcareService.notAvailable",
+        "mustSupport": true
+      },
+      {
+        "id": "HealthcareService.notAvailable.description",
+        "path": "HealthcareService.notAvailable.description",
+        "mustSupport": true
+      },
+      {
+        "id": "HealthcareService.notAvailable.during",
+        "path": "HealthcareService.notAvailable.during",
         "mustSupport": true
       },
       {

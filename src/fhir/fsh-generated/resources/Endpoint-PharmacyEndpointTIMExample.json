@@ -9,7 +9,7 @@
       }
     ],
     "profile": [
-      "https://gematik.de/fhir/directory/StructureDefinition/EndpointDirectory"
+      "https://gematik.de/fhir/directory/StructureDefinition/endpoint-directory-Strict"
     ]
   },
   "status": "active",
@@ -19,9 +19,6 @@
     "display": "TI-Messenger Endpoint"
   },
   "name": "Messenger",
-  "managingOrganization": {
-    "reference": "Organization/PharmacyOrganizationExample"
-  },
   "payloadType": [
     {
       "coding": [

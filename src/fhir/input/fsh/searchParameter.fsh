@@ -64,3 +64,25 @@ Usage: #definition
 * base = #HealthcareService
 * type = #string
 * expression = "HealthcareService.coverageArea.extension.where(url = 'https://gematik.de/fhir/directory/StructureDefinition/ServiceCoveragePostalCode').value.ofType(string)"
+
+Instance: OrganizationNCPeHCountrySP
+InstanceOf: SearchParameter
+Usage: #definition
+* insert MetaInstance
+* name = "ncpeh-country"
+* description = "Search on Organization.extension(https://gematik.de/fhir/directory/StructureDefinition/NCPeHCountry)"
+* code = #ncpeh-country
+* base = #Organization
+* type = #token
+* expression = "Organization.extension.where(url = 'https://gematik.de/fhir/directoryNCPeHCountry/StructureDefinition').value.ofType(Coding)"
+
+Instance: OrganizationAliasSP
+InstanceOf: SearchParameter
+Usage: #definition
+* insert MetaInstance
+* name = "alias"
+* description = "Search on Organization.alias"
+* code = #alias
+* base = #Organization
+* type = #string
+* expression = "Organization.alias"

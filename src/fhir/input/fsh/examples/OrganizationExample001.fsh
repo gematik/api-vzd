@@ -1,5 +1,5 @@
 Instance: OrganizationExample001-Endpoint-TIM
-InstanceOf: EndpointDirectory
+InstanceOf: EndpointDirectoryStrict
 Usage: #example
 Description: """
 Example TI-Messenger Endpoint
@@ -12,14 +12,14 @@ Example TI-Messenger Endpoint
 * payloadType = EndpointDirectoryPayloadType#tim-chat
 
 Instance: OrganizationExample001
-InstanceOf: OrganizationDirectory
+InstanceOf: OrganizationDirectoryStrict
 Usage: #example
 Description: "Example of an Organization as to be found in gematik FHIR Directory"
 * meta.tag[Origin] = Origin#ldap
 * active = true
 * extension[organizationVisibility].valueCoding = OrganizationVisibilityCS#hide-erezeptApp
 * identifier[TelematikID].value = "9-2.58.00000040"
-* type = OrganizationProfessionOID#1.2.276.0.76.4.58
+* type[profession] = OrganizationProfessionOID#1.2.276.0.76.4.58
 * name = "gematik GmbH"
 * active = true
 * alias = "gematik"
@@ -36,4 +36,3 @@ Friedrichstr. 136,
 * contact.name.text = "gematik ITSM"
 * contact.telecom[+].system = $ContactPointSystemCS#email
 * contact.telecom[=].value = "betrieb@gematik.de"
-* endpoint[+] = Reference(OrganizationExample001-Endpoint-TIM)

@@ -2,10 +2,13 @@
   "resourceType": "StructureDefinition",
   "id": "ncpeh-country-ex",
   "url": "https://gematik.de/fhir/directory/StructureDefinition/ncpeh-country-ex",
-  "version": "0.11.21",
+  "version": "0.11.22",
   "name": "NCPeHCountryEx",
   "title": "National Contact Point of Health (NCPeH) Country Extension",
-  "status": "draft",
+  "status": "active",
+  "experimental": false,
+  "date": "2024-10-29",
+  "publisher": "gematik GmbH",
   "description": "The country extension for  National Contact Point of Health (NCPeH) Organizations, representing the country in which the NCPeH is located.",
   "fhirVersion": "4.0.1",
   "kind": "complex-type",
@@ -43,7 +46,7 @@
         "min": 1,
         "type": [
           {
-            "code": "CodeableConcept"
+            "code": "Coding"
           }
         ],
         "mustSupport": true,
@@ -53,20 +56,14 @@
         }
       },
       {
-        "id": "Extension.value[x].coding",
-        "path": "Extension.value[x].coding",
-        "max": "1",
-        "mustSupport": true
-      },
-      {
-        "id": "Extension.value[x].coding.system",
-        "path": "Extension.value[x].coding.system",
+        "id": "Extension.value[x].system",
+        "path": "Extension.value[x].system",
         "min": 1,
         "mustSupport": true
       },
       {
-        "id": "Extension.value[x].coding.code",
-        "path": "Extension.value[x].coding.code",
+        "id": "Extension.value[x].code",
+        "path": "Extension.value[x].code",
         "min": 1,
         "mustSupport": true
       }

@@ -1,5 +1,12 @@
 # Changelog
 
+## 2024-12-20  Version 0.11.22  
+
+- feat: added SearchParameter for NCPeHCountryEx: OrganizationNCPeHCountrySP
+- feat: added SearchParameter for Organization.alias: OrganizationAliasSP
+- feat: added strict profiles: These profiles are derived from the VZD-profiles, are restricted non-MS elements to 0..0, add closed slicing. Purpose technical validation for VZD implementations
+- feat: added SearchParameters with Uplifted-Refchains extension for hapi fhir servers
+
 ## 2024-12-03 - Version 0.11.21  
 - feat: restricted all extensible bindings to required:
   - EndpointDirectory.code
@@ -13,6 +20,16 @@
 - feat: added NCPeHCountryEx to OrganizationDirectory to represent the NCPeH country in a coded form
 - feat: added CodeSystems for HealthcareServiceTypeVS which weren't included before
 - feat: added * OrganizationProfessionOID#1.2.276.0.76.4.292 "NCPeH Fachdienst" to HealthcareServiceCategoryCodes ValueSet
+
+### data migration
+- check instances if they are using concepts outside of the bound ValueSets:
+  - EndpointDirectory.code (NAME!!!)
+  - EndpointDirectory.payloadType
+  - HealthcareServiceDirectory.type
+  - HealthcareServiceDirectory.characteristic
+  - LocationDirectory.state
+  - PractitionerDirectory.qualification.code
+- check instances if they are using concepts from ServiceType on HealthcareServiceDirectory.speciality
 
 ## 2024-11-15 - Version 0.11.20
 - fix: SystemsEngineering:tim.gematik.de Example address is now a matrix uri

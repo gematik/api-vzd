@@ -9,7 +9,7 @@
       }
     ],
     "profile": [
-      "https://gematik.de/fhir/directory/StructureDefinition/LocationDirectory"
+      "https://gematik.de/fhir/directory/StructureDefinition/LocationDirectoryStrict"
     ]
   },
   "name": "Rathausapotheke",
@@ -25,7 +25,6 @@
     "postalCode": "60596",
     "country": "DE"
   },
-  "availabilityExceptions": "An Feiertagen geschlossen",
   "managingOrganization": {
     "reference": "Organization/OrganizationExample001"
   },

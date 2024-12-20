@@ -18,8 +18,21 @@ Description: "Endpoints for applications in the gematik Directory"
   * code MS
   * code from EndpointConnectionTypeVS
   * system MS
-* name 1..1 MS  // identical to address; because search is possible in element name and not in element address
-* managingOrganization
+* name 1..1 MS
 * payloadType MS
 * payloadType from EndpointPayloadTypeVS
 * address 1..1 MS
+
+Profile: EndpointDirectoryStrict
+Parent: EndpointDirectory
+Id: endpoint-directory-Strict
+Title: "EndpointDirectory-Strict"
+Description: "Endpoint in gematik Directory with strict constraints"
+* meta.tag
+  * ^slicing.rules = #closed
+* identifier 0..0
+* managingOrganization 0..0
+* contact 0..0
+* period 0..0
+* payloadMimeType 0..0
+* header 0..0

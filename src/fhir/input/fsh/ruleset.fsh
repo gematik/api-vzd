@@ -1,4 +1,4 @@
-Alias: $version = 0.11.21
+Alias: $version = 0.11.22
 
 RuleSet: Meta
 * ^status = #active
@@ -13,3 +13,10 @@ RuleSet: MetaInstance
 * experimental = false
 * publisher = "gematik GmbH"
 * date = "2024-10-29"
+
+RuleSet: refChain(code)
+* extension[+]
+  * url = $refChainEx
+  * extension
+    * url = "code"
+    * valueCode = #{code}

@@ -15,3 +15,20 @@ Title: "PractitionerRole in gematik Directory"
 * endpoint MS
 * healthcareService MS
 * organization MS
+
+Profile: PractitionerRoleDirectoryStrict
+Parent: PractitionerRoleDirectory
+Id: PractitionerRoleDirectoryStrict
+Title: "PractitionerRoleDirectoryStrict"
+Description: "PractitionerRole in gematik Directory with strict constraints"
+* meta.tag
+  * ^slicing.rules = #closed
+* identifier 0..0
+* active 0..0
+* period 0..0
+* code 0..0
+* specialty 0..0
+* telecom 0..0
+* availableTime 0..0
+* notAvailable 0..0
+* availabilityExceptions 0..0

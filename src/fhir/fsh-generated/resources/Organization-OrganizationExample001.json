@@ -9,7 +9,7 @@
       }
     ],
     "profile": [
-      "https://gematik.de/fhir/directory/StructureDefinition/OrganizationDirectory"
+      "https://gematik.de/fhir/directory/StructureDefinition/OrganizationDirectoryStrict"
     ]
   },
   "identifier": [
@@ -66,11 +66,6 @@
           "value": "betrieb@gematik.de"
         }
       ]
-    }
-  ],
-  "endpoint": [
-    {
-      "reference": "Endpoint/OrganizationExample001-Endpoint-TIM"
     }
   ]
 }
