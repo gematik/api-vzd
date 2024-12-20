@@ -9,7 +9,7 @@
       }
     ],
     "profile": [
-      "https://gematik.de/fhir/directory/StructureDefinition/HealthcareServiceDirectory"
+      "https://gematik.de/fhir/directory/StructureDefinition/HealthcareServiceDirectoryStrict"
     ]
   },
   "identifier": [

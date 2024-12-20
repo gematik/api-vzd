@@ -9,7 +9,7 @@
       }
     ],
     "profile": [
-      "https://gematik.de/fhir/directory/StructureDefinition/OrganizationDirectory"
+      "https://gematik.de/fhir/directory/StructureDefinition/OrganizationDirectoryStrict"
     ]
   },
   "identifier": [
@@ -21,14 +21,10 @@
   "extension": [
     {
       "url": "https://gematik.de/fhir/directory/StructureDefinition/ncpeh-country-ex",
-      "valueCodeableConcept": {
-        "coding": [
-          {
-            "code": "PT",
-            "system": "urn:iso:std:iso:3166",
-            "display": "Portugal"
-          }
-        ]
+      "valueCoding": {
+        "code": "PT",
+        "system": "urn:iso:std:iso:3166",
+        "display": "Portugal"
       }
     }
   ],

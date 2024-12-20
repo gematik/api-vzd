@@ -37,3 +37,15 @@ Title: "Practitioner in gematik Directory"
   * code MS
   * code from PractitionerQualificationVS
 * communication MS
+
+Profile: PractitionerDirectoryStrict
+Parent: PractitionerDirectory
+Id: PractitionerDirectoryStrict
+Title: "PractitionerDirectoryStrict"
+Description: "Practitioner in gematik Directory with strict constraints"
+* meta.tag
+  * ^slicing.rules = #closed
+* identifier 
+  ^slicing.rules = #closed
+* active 0..0
+* address 0..0

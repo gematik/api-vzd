@@ -1,5 +1,5 @@
 Instance: EndpointExample
-InstanceOf: EndpointDirectory
+InstanceOf: EndpointDirectoryStrict
 Usage: #example
 Description: "Example of a Endpoint as to be found in gematik FHIR Directory"
 * meta.tag[Origin] = Origin#owner
@@ -7,12 +7,11 @@ Description: "Example of a Endpoint as to be found in gematik FHIR Directory"
 * status = #active "Active"
 * connectionType = EndpointDirectoryConnectionType#tim "TI-Messenger Endpoint"
 * name = "Messenger"
-* managingOrganization = Reference(OrganizationExample)
 * payloadType = EndpointDirectoryPayloadType#tim-chat "TI-Messenger chat"
 * address = "matrix:u/74c1fecc710ce4c8a8bbe310fbc5954c2a5e1e9ef5f70d651da1bfc4c9abe43f:example-domain.de"
 
 Instance: PractitionerExampleDentist
-InstanceOf: PractitionerDirectory
+InstanceOf: PractitionerDirectoryStrict
 Usage: #example
 Description: "Example of a Practitioner (Dentist) as to be found in gematik FHIR Directory"
 * meta.tag[Origin] = Origin#ldap
@@ -37,12 +36,12 @@ Description: "Example of an PractitionerRole as to be found in gematik FHIR Dire
 
 
 Instance: OrganizationExample
-InstanceOf: OrganizationDirectory
+InstanceOf: OrganizationDirectoryStrict
 Usage: #example
 Description: "Example of an Organization as to be found in gematik FHIR Directory"
 * meta.tag[Origin] = Origin#ldap
 * identifier[TelematikID].value = "2-2.58.00000040"
-* type = https://gematik.de/fhir/directory/CodeSystem/OrganizationProfessionOID#1.2.276.0.76.4.51 "Zahnarztpraxis"
+* type[profession] = https://gematik.de/fhir/directory/CodeSystem/OrganizationProfessionOID#1.2.276.0.76.4.51 "Zahnarztpraxis"
 * name = "Zahnarztpraxis Dr. Mustermann"
 * active = true
 * alias = "Zahnarztpraxis am Bahnhof"
@@ -66,7 +65,7 @@ Description: "Example of a Location as to be found in gematik FHIR Directory"
 * managingOrganization = Reference(OrganizationExample001)
 
 Instance: HealthcareServiceExample
-InstanceOf: HealthcareServiceDirectory
+InstanceOf: HealthcareServiceDirectoryStrict
 Usage: #example
 Description: "Example of an HealthcareService as to be found in gematik FHIR Directory"
 * meta.tag[Origin] = Origin#ldap
@@ -107,4 +106,4 @@ Description: "Example of an HealthcareService as to be found in gematik FHIR Dir
 * availableTime.availableEndTime = "18:00:00"
 * availabilityExceptions = "An Feiertagen geschlossen"
 * endpoint[+] = Reference(EndpointExample)
-* characteristic = VZDHealthCareServiceCharacteristicsCS#erx-token-receiver "eRX Token Receiver"
+* characteristic[technicalCharacteristic] = VZDHealthCareServiceCharacteristicsCS#erx-token-receiver "eRX Token Receiver"

@@ -9,7 +9,7 @@
       }
     ],
     "profile": [
-      "https://gematik.de/fhir/directory/StructureDefinition/PractitionerDirectory"
+      "https://gematik.de/fhir/directory/StructureDefinition/PractitionerDirectoryStrict"
     ]
   },
   "identifier": [
@@ -22,7 +22,6 @@
       "value": "123456789"
     }
   ],
-  "active": true,
   "qualification": [
     {
       "code": {

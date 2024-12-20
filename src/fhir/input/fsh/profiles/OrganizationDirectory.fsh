@@ -50,15 +50,16 @@ organisations specific for german Healthcare and Telematics Infrastructure.
   * country MS
 * partOf MS
 
-Extension: NCPeHCountryEx
-Id: ncpeh-country-ex
-Title: "National Contact Point of Health (NCPeH) Country Extension"
-Description: "The country extension for  National Contact Point of Health (NCPeH) Organizations, representing the country in which the NCPeH is located." 
-Context: Organization
-* value[x] 1.. MS
-* value[x] only CodeableConcept
-* valueCodeableConcept 1.. MS
-* valueCodeableConcept from Iso3166-1-2
-  * coding ..1 MS
-    * system 1.. MS
-    * code 1.. MS
+Profile: OrganizationDirectoryStrict
+Parent: OrganizationDirectory
+Id: OrganizationDirectoryStrict
+Title: "OrganizationDirectoryStrict"
+Description: "Organization in gematik Directory with strict constraints"
+* meta.tag
+  * ^slicing.rules = #closed
+* identifier 
+  ^slicing.rules = #closed
+* type 
+  ^slicing.rules = #closed
+* telecom 0..0
+* endpoint 0..0

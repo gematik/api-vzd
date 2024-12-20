@@ -31,3 +31,22 @@ organisations specific for german Healthcare and Telematics Infrastructure.
   * altitude MS
 * partOf MS
 * managingOrganization MS
+
+Profile: LocationDirectoryStrict
+Parent: LocationDirectory
+Id: LocationDirectoryStrict
+Title: "LocationDirectoryStrict"
+Description: "Location in gematik Directory with strict constraints"
+* meta.tag
+  * ^slicing.rules = #closed
+* identifier 0..0
+* status 0..0
+* operationalStatus 0..0
+* alias 0..0
+* mode 0..0
+* type 0..0
+* telecom 0..0
+* physicalType 0..0
+* hoursOfOperation 0..0
+* availabilityExceptions 0..0
+* endpoint 0..0

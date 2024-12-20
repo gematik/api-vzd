@@ -1,16 +1,16 @@
 Instance: NCPeHOrganizationExample
-InstanceOf: OrganizationDirectory
+InstanceOf: OrganizationDirectoryStrict
 Usage: #example
 Description: "Example of an NCPeH Organization as to be found in gematik FHIR Directory"
 * meta.tag[Origin] = Origin#ldap
-* extension[ncpehCountryEx].valueCodeableConcept = urn:iso:std:iso:3166#PT "Portugal"
+* extension[ncpehCountryEx].valueCoding = urn:iso:std:iso:3166#PT "Portugal"
 * identifier[TelematikID].value = "2-2.58.00000041"
-* type = OrganizationProfessionOID#1.2.276.0.76.4.292 "NCPeH Fachdienst"
+* type[profession] = OrganizationProfessionOID#1.2.276.0.76.4.292 "NCPeH Fachdienst"
 * name = "NCPeH Portugal"
 * active = true
 
 Instance: NCPeHHealthcareServiceExample
-InstanceOf: HealthcareServiceDirectory
+InstanceOf: HealthcareServiceDirectoryStrict
 Usage: #example
 Description: "Example of a NCPeH HealthcareService as to be found in gematik FHIR Directory"
 * meta.tag[Origin] = Origin#ldap

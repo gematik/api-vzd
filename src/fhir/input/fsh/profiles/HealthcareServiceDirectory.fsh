@@ -42,6 +42,8 @@ organisations specific for german Healthcare and Telematics Infrastructure.
   * availableStartTime MS
   * availableEndTime MS
 * notAvailable MS
+  * description MS
+  * during MS
 * availabilityExceptions MS
 * endpoint MS
 * characteristic MS
@@ -63,3 +65,31 @@ organisations specific for german Healthcare and Telematics Infrastructure.
   * extension contains 
     ServiceCoverageArea named serviceCoverageArea ..1 MS and
     ServiceCoveragePostalCode named serviceCoveragePostalCode ..* MS
+
+Profile: HealthcareServiceDirectoryStrict
+Parent: HealthcareServiceDirectory
+Id: HealthcareServiceDirectoryStrict
+Title: "HealthcareServiceDirectoryStrict"
+Description: "HealthcareService in gematik Directory with strict constraints"
+* meta.tag
+  * ^slicing.rules = #closed
+* identifier 
+  ^slicing.rules = #closed
+* active 0..0
+* comment 0..0
+* extraDetails 0..0
+* photo 0..0
+* telecom
+  * rank 0..0
+  * period 0..0
+* coverageArea
+  * reference 0..0
+  * type 0..0
+  * identifier 0..0
+  * display 0..0
+* serviceProvisionCode 0..0
+* eligibility 0..0 
+* program 0..0
+* characteristic
+  * ^slicing.rules = #closed
+* referralMethod 0..0

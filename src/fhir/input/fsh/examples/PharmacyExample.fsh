@@ -1,11 +1,11 @@
 Instance: PharmacyOrganizationExample
-InstanceOf: OrganizationDirectory
+InstanceOf: OrganizationDirectoryStrict
 Usage: #example
 Title: "PharmacyOrganizationExample"
 Description: "PharmacyOrganizationExample"
 * meta.tag[Origin] = Origin#ldap
 * identifier[TelematikID].value = "3-07.2.1444560000.16.108"
-* type = OrganizationProfessionOID#1.2.276.0.76.4.54 "Öffentliche Apotheke"
+* type[profession] = OrganizationProfessionOID#1.2.276.0.76.4.54 "Öffentliche Apotheke"
 * name = "Rathausapotheke"
 * active = true
 * alias = "Rathausapotheke"
@@ -21,7 +21,7 @@ Description: "PharmacyOrganizationExample"
 * address.country = "DE"
 
 Instance: PharmacyHealthCareServiceExample
-InstanceOf: HealthcareServiceDirectory
+InstanceOf: HealthcareServiceDirectoryStrict
 Usage: #example
 Title: "PharmacyHealthCareServiceExample"
 Description: "PharmacyHealthCareServiceExample"
@@ -91,10 +91,8 @@ Description: "PharmacyHealthCareServiceExample"
   * extension[serviceCoveragePostalCode][+]
     * valueString = "60598"
 
-
-
 Instance: PharmacyLocationExample
-InstanceOf: LocationDirectory
+InstanceOf: LocationDirectoryStrict
 Usage: #example
 Description: "Example of a Pharmacy Location as to be found in gematik FHIR Directory"
 * meta.tag[Origin] = Origin#ldap
@@ -107,43 +105,39 @@ Description: "Example of a Pharmacy Location as to be found in gematik FHIR Dire
 * address.state = "Hessen"
 * address.postalCode = "60596"
 * address.country = "DE"
-* availabilityExceptions = "An Feiertagen geschlossen"
 * managingOrganization = Reference(OrganizationExample001)
 * position.longitude = 8.6648
 * position.latitude = 50.097
 
 Instance: PharmacyEndpointTIMExample
-InstanceOf: EndpointDirectory
+InstanceOf: EndpointDirectoryStrict
 Usage: #example
 Description: "Example of a Pharamacy TIM Endpoint"
 * meta.tag[Origin] = Origin#ldap
 * status = #active "Active"
 * connectionType = EndpointDirectoryConnectionType#tim "TI-Messenger Endpoint"
 * name = "Messenger"
-* managingOrganization = Reference(PharmacyOrganizationExample)
 * payloadType = EndpointDirectoryPayloadType#tim-chat "TI-Messenger chat"
 * address = "matrix:u/74c1fecc710ce4c8a8bbe310fbc5954c2a5e1e9ef5f70d651da1bfc4c9abe43f:example-domain.de"
 
 Instance: PharmacyEndpointErpReservationExample
-InstanceOf: EndpointDirectory
+InstanceOf: EndpointDirectoryStrict
 Usage: #example
 Description: "Example of a Pharamacy eRP Endpoint"
 * meta.tag[Origin] = Origin#ldap
 * status = #active "Active"
 * connectionType = EndpointDirectoryConnectionType#eRP-onPremise "Reservierung"
 * name = "ERP Reservierung"
-* managingOrganization = Reference(PharmacyOrganizationExample)
 * address = "https://be-305314293.adv-erezept.de/gematik/onPremise/<ti_id>/<transactionID>"
 * payloadType = DataAbsentReason#not-applicable
 
 Instance: PharmacyEndpointOnlineAppointmentBookingExample
-InstanceOf: EndpointDirectory
+InstanceOf: EndpointDirectoryStrict
 Usage: #example
 Description: "Example of a Pharamacy online appointment booking Endpoint"
 * meta.tag[Origin] = Origin#ldap
 * status = #active "Active"
 * connectionType = EndpointDirectoryConnectionType#terminbuchung-online "Online Terminbuchung"
 * name = "Online Terminbuchung"
-* managingOrganization = Reference(PharmacyOrganizationExample)
 * address = "https://rathausapotheke.de/terminbuchung"
 * payloadType = DataAbsentReason#not-applicable

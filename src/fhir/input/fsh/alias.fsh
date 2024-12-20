@@ -5,6 +5,7 @@ Alias: $ContactPointSystemCS = http://hl7.org/fhir/contact-point-system
 Alias: $HL7EndpointConnectionType = http://terminology.hl7.org/CodeSystem/endpoint-connection-type
 Alias: $UCUM = http://unitsofmeasure.org
 Alias: $loinc = http://loinc.org
+Alias: $sct = http://snomed.info/sct
 
 Alias: $IHEXDSauthorSpeciality = http://ihe-d.de/ValueSets/IHEXDSauthorSpeciality
 
@@ -33,5 +34,6 @@ Alias: $DaysOfWeek = http://hl7.org/fhir/days-of-week
 Alias: $ContactPointSystem = http://hl7.org/fhir/contact-point-system
 Alias: $ContactPointUse = http://hl7.org/fhir/contact-point-use
 Alias: $CommonLanguages = urn:ietf:bcp:47
-Alias: $sct = http://snomed.info/sct
+
 Alias: $IHEXDShealthcareFacilityTypeCodePatientRelatedHealthcare = http://ihe-d.de/ValueSets/IHEXDShealthcareFacilityTypeCodePatientRelatedHealthcare
+Alias: $refChainEx = https://smilecdr.com/fhir/ns/StructureDefinition/searchparameter-uplift-refchain
