@@ -1,0 +1,34 @@
+@startuml
+autonumber 1 1 "<b>[00]"
+title "FHIR-VZD Authentisierung für Versicherte"
+
+    participant FhirVzdClient as "FHIR-VZD-Client"
+
+
+    participant fp as "VZD-FHIR-Directory"
+
+
+FhirVzdClient-> FhirVzdClient: prüfe ob  gültiges ""search-access_token""\nvom FHIR-Directory Auth-Service vorliegt
+
+alt kein gültiges search-access_token vorhanden
+   FhirVzdClient-> FhirVzdClient: search-access_token beschaffen
+end
+
+
+FhirVzdClient-> FhirVzdClient: prüfe ob  telematikID von dem VZD Datensatz vorhanden ist
+
+alt keine telematikID von dem VZD Datensatz vorhanden
+   FhirVzdClient -> fp: suche im FHIR VZD
+   activate fp
+   fp --> FhirVzdClient : HTTP 200 OK (Result Body json)
+   deactivate fp
+end
+
+== ...Lese Zertifikate vom Verzeichniseintrag ... ==
+
+FhirVzdClient -> fp: read_FhirVZD_Certificates (telematikID) 
+activate fp
+fp-->FhirVzdClient: Liste der Zertifikate für selektierten Eintrag
+deactivate fp
+
+@enduml
