@@ -18,7 +18,7 @@ image::gematik_logo.svg[gematik,float="right"]
 
 [width="100%",cols="50%,50%",options="header",]
 |===
-|Version: |1.1.3
+|Version: |1.1.4
 |Referencing: |gemILF_FHIR_VZD
 |===
 
@@ -46,6 +46,11 @@ image::gematik_logo.svg[gematik,float="right"]
 |1.1.3 |03.12.24 |Full-text search
 |Update example "near" Search parameter
   |gematik
+|1.1.4 |10.01.25 | FHIR VZD Search - read resources via its [id]
+|Added this chapter
+  |gematik
+
+FHIR VZD Search - read resources via its [id]
 |===
 
 == Classification of the document
@@ -726,6 +731,32 @@ GET [baseUrl]/search/HealthcareService?organization.active=true&location.near=50
 --
 *Please note that for the FHIR VZD "near" search all "near" search parameters ([latitude]|[longitude]|[distance]|[units]) are mandatory.*
 
+==== FHIR VZD Search - read resources via its [id]
+The FHIR VZD allows to read resources via its [id] 
+[source]
+--
+GET [base]/[type]/[id] 
+
+- base: The Service Base URL
+- type: The name of a resource type (e.g. "Endpoint")
+- id: The Logical Id of a resource
+--
+
+[IMPORTANT]
+--
+This operation returns the resource without checking the attributes "active" of the Organization or Practitioner resources or the "state" attribute of the Endpoint" resource.
+The client is responsible for filtering out inactive resources.
+--
+
+Some Examples:
+[source]
+--
+{{fhir_server}}/search/Location/869056f7-17e7-4d87-bb4e-3af5cbda3d7e
+{{fhir_server}}/search/Organization/e6e4dee3-687b-4591-9f34-6a89efbbc8bb
+{{fhir_server}}/search/Endpoint/c6ca0089-d2ea-40c2-ae54-966020ad2668
+--
+
+ 
  
 
 
