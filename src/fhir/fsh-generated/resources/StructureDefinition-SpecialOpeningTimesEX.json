@@ -2,7 +2,7 @@
   "resourceType": "StructureDefinition",
   "id": "SpecialOpeningTimesEX",
   "url": "https://gematik.de/fhir/directory/StructureDefinition/SpecialOpeningTimesEX",
-  "version": "0.11.22",
+  "version": "0.11.23",
   "name": "SpecialOpeningTimesEX",
   "title": "SpecialOpeningTimesEX",
   "status": "active",

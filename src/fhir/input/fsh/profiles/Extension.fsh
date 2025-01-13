@@ -28,7 +28,8 @@ Context: Organization
 * insert Meta
 * value[x] MS
 * value[x] only Coding
-* value[x] from OrganizationVisibilityVS
+* valueCoding 1.. MS
+* valueCoding from OrganizationVisibilityVS
 
 CodeSystem: OrganizationVisibilityCS
 Id: OrganizationVisibilityCS
@@ -52,7 +53,8 @@ Context: Endpoint
 * insert Meta
 * value[x] MS
 * value[x] only Coding
-* value[x] from EndpointVisibilityVS
+* valueCoding 1.. MS
+* valueCoding from EndpointVisibilityVS
 
 CodeSystem: EndpointVisibilityCS
 Id: EndpointVisibilityCS

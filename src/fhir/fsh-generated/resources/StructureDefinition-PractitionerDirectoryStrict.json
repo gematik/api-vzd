@@ -1,0 +1,56 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "PractitionerDirectoryStrict",
+  "url": "https://gematik.de/fhir/directory/StructureDefinition/PractitionerDirectoryStrict",
+  "version": "0.11.23",
+  "name": "PractitionerDirectoryStrict",
+  "title": "PractitionerDirectoryStrict",
+  "status": "draft",
+  "description": "Practitioner in gematik Directory with strict constraints",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Practitioner",
+  "baseDefinition": "https://gematik.de/fhir/directory/StructureDefinition/PractitionerDirectory",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Practitioner.meta.tag",
+        "path": "Practitioner.meta.tag",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "pattern",
+              "path": "system"
+            }
+          ],
+          "rules": "closed"
+        }
+      },
+      {
+        "id": "Practitioner.identifier",
+        "path": "Practitioner.identifier",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "value",
+              "path": "system"
+            }
+          ],
+          "rules": "closed"
+        }
+      },
+      {
+        "id": "Practitioner.active",
+        "path": "Practitioner.active",
+        "max": "0"
+      },
+      {
+        "id": "Practitioner.address",
+        "path": "Practitioner.address",
+        "max": "0"
+      }
+    ]
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "endpoint-directory-Strict",
+  "url": "https://gematik.de/fhir/directory/StructureDefinition/endpoint-directory-Strict",
+  "version": "0.11.23",
+  "name": "EndpointDirectoryStrict",
+  "title": "EndpointDirectory-Strict",
+  "status": "draft",
+  "description": "Endpoint in gematik Directory with strict constraints",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Endpoint",
+  "baseDefinition": "https://gematik.de/fhir/directory/StructureDefinition/EndpointDirectory",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Endpoint.meta.tag",
+        "path": "Endpoint.meta.tag",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "pattern",
+              "path": "system"
+            }
+          ],
+          "rules": "closed"
+        }
+      },
+      {
+        "id": "Endpoint.identifier",
+        "path": "Endpoint.identifier",
+        "max": "0"
+      },
+      {
+        "id": "Endpoint.managingOrganization",
+        "path": "Endpoint.managingOrganization",
+        "max": "0"
+      },
+      {
+        "id": "Endpoint.contact",
+        "path": "Endpoint.contact",
+        "max": "0"
+      },
+      {
+        "id": "Endpoint.period",
+        "path": "Endpoint.period",
+        "max": "0"
+      },
+      {
+        "id": "Endpoint.payloadMimeType",
+        "path": "Endpoint.payloadMimeType",
+        "max": "0"
+      },
+      {
+        "id": "Endpoint.header",
+        "path": "Endpoint.header",
+        "max": "0"
+      }
+    ]
+  }
+}

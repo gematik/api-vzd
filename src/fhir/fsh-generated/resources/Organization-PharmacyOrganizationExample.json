@@ -12,12 +12,6 @@
       "https://gematik.de/fhir/directory/StructureDefinition/OrganizationDirectoryStrict"
     ]
   },
-  "identifier": [
-    {
-      "system": "https://gematik.de/fhir/sid/telematik-id",
-      "value": "3-07.2.1444560000.16.108"
-    }
-  ],
   "type": [
     {
       "coding": [

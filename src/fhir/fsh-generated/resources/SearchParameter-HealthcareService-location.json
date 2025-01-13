@@ -1,0 +1,65 @@
+{
+  "resourceType": "SearchParameter",
+  "id": "HealthcareService-location",
+  "url": "http://hl7.org/fhir/SearchParameter/HealthcareService-location",
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status",
+      "valueCode": "trial-use"
+    },
+    {
+      "url": "https://smilecdr.com/fhir/ns/StructureDefinition/searchparameter-uplift-refchain",
+      "extension": [
+        {
+          "url": "code",
+          "valueCode": "identifier"
+        }
+      ]
+    },
+    {
+      "url": "https://smilecdr.com/fhir/ns/StructureDefinition/searchparameter-uplift-refchain",
+      "extension": [
+        {
+          "url": "code",
+          "valueCode": "address"
+        }
+      ]
+    }
+  ],
+  "version": "4.0.1",
+  "name": "location",
+  "status": "active",
+  "experimental": false,
+  "date": "2019-11-01T09:29:23+11:00",
+  "publisher": "Health Level Seven International (Patient Administration)",
+  "contact": [
+    {
+      "telecom": [
+        {
+          "system": "url",
+          "value": "http://hl7.org/fhir"
+        }
+      ]
+    },
+    {
+      "telecom": [
+        {
+          "system": "url",
+          "value": "http://www.hl7.org/Special/committees/pafm/index.cfm"
+        }
+      ]
+    }
+  ],
+  "description": "The location of the Healthcare Service",
+  "code": "location",
+  "base": [
+    "HealthcareService"
+  ],
+  "type": "reference",
+  "expression": "HealthcareService.location",
+  "xpath": "f:HealthcareService/f:location",
+  "xpathUsage": "normal",
+  "target": [
+    "Location"
+  ]
+}

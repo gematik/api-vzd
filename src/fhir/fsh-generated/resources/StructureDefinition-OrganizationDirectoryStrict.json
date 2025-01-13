@@ -1,0 +1,69 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "OrganizationDirectoryStrict",
+  "url": "https://gematik.de/fhir/directory/StructureDefinition/OrganizationDirectoryStrict",
+  "version": "0.11.23",
+  "name": "OrganizationDirectoryStrict",
+  "title": "OrganizationDirectoryStrict",
+  "status": "draft",
+  "description": "Organization in gematik Directory with strict constraints",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Organization",
+  "baseDefinition": "https://gematik.de/fhir/directory/StructureDefinition/OrganizationDirectory",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Organization.meta.tag",
+        "path": "Organization.meta.tag",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "pattern",
+              "path": "system"
+            }
+          ],
+          "rules": "closed"
+        }
+      },
+      {
+        "id": "Organization.identifier",
+        "path": "Organization.identifier",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "value",
+              "path": "system"
+            }
+          ],
+          "rules": "closed"
+        }
+      },
+      {
+        "id": "Organization.type",
+        "path": "Organization.type",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "pattern",
+              "path": "$this"
+            }
+          ],
+          "rules": "closed"
+        }
+      },
+      {
+        "id": "Organization.telecom",
+        "path": "Organization.telecom",
+        "max": "0"
+      },
+      {
+        "id": "Organization.endpoint",
+        "path": "Organization.endpoint",
+        "max": "0"
+      }
+    ]
+  }
+}

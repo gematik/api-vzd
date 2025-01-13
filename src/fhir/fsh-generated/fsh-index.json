@@ -20,8 +20,8 @@
     "fshName": "EndpointVisibilityCS",
     "fshType": "CodeSystem",
     "fshFile": "profiles/Extension.fsh",
-    "startLine": 57,
-    "endLine": 62
+    "startLine": 59,
+    "endLine": 64
   },
   {
     "outputFile": "CodeSystem-HealthcareServiceSpecialtyCS.json",
@@ -44,8 +44,8 @@
     "fshName": "OpeningTimeQualifierCS",
     "fshType": "CodeSystem",
     "fshFile": "profiles/Extension.fsh",
-    "startLine": 88,
-    "endLine": 93
+    "startLine": 90,
+    "endLine": 95
   },
   {
     "outputFile": "CodeSystem-OrganizationProfessionOID.json",
@@ -68,8 +68,8 @@
     "fshName": "OrganizationVisibilityCS",
     "fshType": "CodeSystem",
     "fshFile": "profiles/Extension.fsh",
-    "startLine": 33,
-    "endLine": 38
+    "startLine": 34,
+    "endLine": 39
   },
   {
     "outputFile": "CodeSystem-Origin.json",
@@ -460,8 +460,8 @@
     "fshName": "EndpointVisibility",
     "fshType": "Extension",
     "fshFile": "profiles/Extension.fsh",
-    "startLine": 47,
-    "endLine": 55
+    "startLine": 48,
+    "endLine": 57
   },
   {
     "outputFile": "StructureDefinition-HealthcareServiceDirectory.json",
@@ -517,15 +517,15 @@
     "fshType": "Extension",
     "fshFile": "profiles/Extension.fsh",
     "startLine": 23,
-    "endLine": 31
+    "endLine": 32
   },
   {
     "outputFile": "StructureDefinition-PhysicalFeaturesAdditionalNoteEX.json",
     "fshName": "PhysicalFeaturesAdditionalNoteEX",
     "fshType": "Extension",
     "fshFile": "profiles/Extension.fsh",
-    "startLine": 102,
-    "endLine": 109
+    "startLine": 104,
+    "endLine": 111
   },
   {
     "outputFile": "StructureDefinition-PractitionerDirectory.json",
@@ -580,8 +580,8 @@
     "fshName": "SpecialOpeningTimesEX",
     "fshType": "Extension",
     "fshFile": "profiles/Extension.fsh",
-    "startLine": 71,
-    "endLine": 86
+    "startLine": 73,
+    "endLine": 88
   },
   {
     "outputFile": "StructureDefinition-endpoint-directory-Strict.json",
@@ -596,8 +596,8 @@
     "fshName": "NCPeHCountryEx",
     "fshType": "Extension",
     "fshFile": "profiles/Extension.fsh",
-    "startLine": 111,
-    "endLine": 122
+    "startLine": 113,
+    "endLine": 124
   },
   {
     "outputFile": "ValueSet-AddressStateVS.json",
@@ -628,8 +628,8 @@
     "fshName": "EndpointVisibilityVS",
     "fshType": "ValueSet",
     "fshFile": "profiles/Extension.fsh",
-    "startLine": 64,
-    "endLine": 69
+    "startLine": 66,
+    "endLine": 71
   },
   {
     "outputFile": "ValueSet-HealthcareServiceTypeVS.json",
@@ -652,8 +652,8 @@
     "fshName": "OpeningTimeQualifierVS",
     "fshType": "ValueSet",
     "fshFile": "profiles/Extension.fsh",
-    "startLine": 95,
-    "endLine": 100
+    "startLine": 97,
+    "endLine": 102
   },
   {
     "outputFile": "ValueSet-OrganizationProfessionOIDTypeVS.json",
@@ -676,8 +676,8 @@
     "fshName": "OrganizationVisibilityVS",
     "fshType": "ValueSet",
     "fshFile": "profiles/Extension.fsh",
-    "startLine": 40,
-    "endLine": 45
+    "startLine": 41,
+    "endLine": 46
   },
   {
     "outputFile": "ValueSet-OriginVS.json",

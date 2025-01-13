@@ -1,0 +1,129 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "HealthcareServiceDirectoryStrict",
+  "url": "https://gematik.de/fhir/directory/StructureDefinition/HealthcareServiceDirectoryStrict",
+  "version": "0.11.23",
+  "name": "HealthcareServiceDirectoryStrict",
+  "title": "HealthcareServiceDirectoryStrict",
+  "status": "draft",
+  "description": "HealthcareService in gematik Directory with strict constraints",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "HealthcareService",
+  "baseDefinition": "https://gematik.de/fhir/directory/StructureDefinition/HealthcareServiceDirectory",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "HealthcareService.meta.tag",
+        "path": "HealthcareService.meta.tag",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "pattern",
+              "path": "system"
+            }
+          ],
+          "rules": "closed"
+        }
+      },
+      {
+        "id": "HealthcareService.identifier",
+        "path": "HealthcareService.identifier",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "value",
+              "path": "system"
+            }
+          ],
+          "rules": "closed"
+        }
+      },
+      {
+        "id": "HealthcareService.active",
+        "path": "HealthcareService.active",
+        "max": "0"
+      },
+      {
+        "id": "HealthcareService.comment",
+        "path": "HealthcareService.comment",
+        "max": "0"
+      },
+      {
+        "id": "HealthcareService.extraDetails",
+        "path": "HealthcareService.extraDetails",
+        "max": "0"
+      },
+      {
+        "id": "HealthcareService.photo",
+        "path": "HealthcareService.photo",
+        "max": "0"
+      },
+      {
+        "id": "HealthcareService.telecom.rank",
+        "path": "HealthcareService.telecom.rank",
+        "max": "0"
+      },
+      {
+        "id": "HealthcareService.telecom.period",
+        "path": "HealthcareService.telecom.period",
+        "max": "0"
+      },
+      {
+        "id": "HealthcareService.coverageArea.reference",
+        "path": "HealthcareService.coverageArea.reference",
+        "max": "0"
+      },
+      {
+        "id": "HealthcareService.coverageArea.type",
+        "path": "HealthcareService.coverageArea.type",
+        "max": "0"
+      },
+      {
+        "id": "HealthcareService.coverageArea.identifier",
+        "path": "HealthcareService.coverageArea.identifier",
+        "max": "0"
+      },
+      {
+        "id": "HealthcareService.coverageArea.display",
+        "path": "HealthcareService.coverageArea.display",
+        "max": "0"
+      },
+      {
+        "id": "HealthcareService.serviceProvisionCode",
+        "path": "HealthcareService.serviceProvisionCode",
+        "max": "0"
+      },
+      {
+        "id": "HealthcareService.eligibility",
+        "path": "HealthcareService.eligibility",
+        "max": "0"
+      },
+      {
+        "id": "HealthcareService.program",
+        "path": "HealthcareService.program",
+        "max": "0"
+      },
+      {
+        "id": "HealthcareService.characteristic",
+        "path": "HealthcareService.characteristic",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "pattern",
+              "path": "$this"
+            }
+          ],
+          "rules": "closed"
+        }
+      },
+      {
+        "id": "HealthcareService.referralMethod",
+        "path": "HealthcareService.referralMethod",
+        "max": "0"
+      }
+    ]
+  }
+}
