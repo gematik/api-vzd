@@ -26,7 +26,28 @@
             }
           ],
           "rules": "closed"
-        }
+        },
+        "type": [
+          {
+            "code": "Coding",
+            "profile": [
+              "https://gematik.de/fhir/directory/StructureDefinition/CodingWithCodeAndSystem"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "PractitionerRole.meta.tag:Origin",
+        "path": "PractitionerRole.meta.tag",
+        "sliceName": "Origin",
+        "type": [
+          {
+            "code": "Coding",
+            "profile": [
+              "https://gematik.de/fhir/directory/StructureDefinition/CodingWithCodeAndSystem"
+            ]
+          }
+        ]
       },
       {
         "id": "PractitionerRole.identifier",

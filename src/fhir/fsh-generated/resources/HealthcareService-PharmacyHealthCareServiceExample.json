@@ -12,6 +12,12 @@
       "https://gematik.de/fhir/directory/StructureDefinition/HealthcareServiceDirectoryStrict"
     ]
   },
+  "identifier": [
+    {
+      "system": "https://gematik.de/fhir/sid/telematik-id",
+      "value": "3-07.2.1444560000.16.108"
+    }
+  ],
   "availableTime": [
     {
       "daysOfWeek": [
@@ -75,26 +81,17 @@
   ],
   "characteristic": [
     {
-      "coding": [
-        {
-          "system": "https://gematik.de/fhir/directory/CodeSystem/physicalFeatures",
-          "code": "oepnv",
-          "display": "ÖPNV in der Nähe"
-        }
-      ],
       "extension": [
         {
           "url": "https://gematik.de/fhir/directory/StructureDefinition/PhysicalFeaturesAdditionalNoteEX",
           "valueString": "Vor dem Haus"
         }
-      ]
-    },
-    {
+      ],
       "coding": [
         {
+          "code": "parkmoeglichkeit",
           "system": "https://gematik.de/fhir/directory/CodeSystem/physicalFeatures",
-          "code": "oepnv",
-          "display": "ÖPNV in der Nähe"
+          "display": "Parkmöglichkeit"
         }
       ]
     },
@@ -122,6 +119,15 @@
           "code": "terminbuchung",
           "system": "https://gematik.de/fhir/directory/CodeSystem/VZDHealthCareServiceCharacteristicsCS",
           "display": "Terminbuchung"
+        }
+      ]
+    },
+    {
+      "coding": [
+        {
+          "code": "oepnv",
+          "system": "https://gematik.de/fhir/directory/CodeSystem/physicalFeatures",
+          "display": "ÖPNV in der Nähe"
         }
       ]
     }
@@ -243,7 +249,7 @@
   "availabilityExceptions": "An Feiertagen geschlossen",
   "endpoint": [
     {
-      "reference": "Endpoint/EndpointExample"
+      "reference": "Endpoint/MessengerEndpointWithVisibility"
     }
   ]
 }

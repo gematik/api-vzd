@@ -26,7 +26,62 @@
             }
           ],
           "rules": "closed"
-        }
+        },
+        "type": [
+          {
+            "code": "Coding",
+            "profile": [
+              "https://gematik.de/fhir/directory/StructureDefinition/CodingWithCodeAndSystem"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Organization.meta.tag:Origin",
+        "path": "Organization.meta.tag",
+        "sliceName": "Origin",
+        "type": [
+          {
+            "code": "Coding",
+            "profile": [
+              "https://gematik.de/fhir/directory/StructureDefinition/CodingWithCodeAndSystem"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Organization.extension:organizationVisibility",
+        "path": "Organization.extension",
+        "sliceName": "organizationVisibility"
+      },
+      {
+        "id": "Organization.extension:organizationVisibility.value[x]",
+        "path": "Organization.extension.value[x]",
+        "type": [
+          {
+            "code": "Coding",
+            "profile": [
+              "https://gematik.de/fhir/directory/StructureDefinition/CodingWithCodeAndSystem"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Organization.extension:ncpehCountryEx",
+        "path": "Organization.extension",
+        "sliceName": "ncpehCountryEx"
+      },
+      {
+        "id": "Organization.extension:ncpehCountryEx.value[x]",
+        "path": "Organization.extension.value[x]",
+        "type": [
+          {
+            "code": "Coding",
+            "profile": [
+              "https://gematik.de/fhir/directory/StructureDefinition/CodingWithCodeAndSystem"
+            ]
+          }
+        ]
       },
       {
         "id": "Organization.identifier",

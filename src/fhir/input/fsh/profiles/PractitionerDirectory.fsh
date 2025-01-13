@@ -6,6 +6,7 @@ Title: "Practitioner in gematik Directory"
   * ^slicing.discriminator.type = #pattern
   * ^slicing.discriminator.path = "system"
   * ^slicing.rules = #open
+* meta.tag obeys CodingSytemCodeInv
 * meta.tag contains Origin 1..1 MS
 * meta.tag[Origin] from OriginVS
 * meta.tag[Origin].system = "https://gematik.de/fhir/directory/CodeSystem/Origin"
@@ -36,16 +37,24 @@ Title: "Practitioner in gematik Directory"
 * qualification MS
   * code MS
   * code from PractitionerQualificationVS
+    * coding obeys CodingSytemCodeInv
 * communication MS
+  * coding obeys CodingSytemCodeInv
 
 Profile: PractitionerDirectoryStrict
 Parent: PractitionerDirectory
 Id: PractitionerDirectoryStrict
 Title: "PractitionerDirectoryStrict"
 Description: "Practitioner in gematik Directory with strict constraints"
+* meta.tag only CodingWithCodeAndSystem
 * meta.tag
   * ^slicing.rules = #closed
 * identifier 
   ^slicing.rules = #closed
 * active 0..0
 * address 0..0
+* qualification 
+  * code
+    * coding only CodingWithCodeAndSystem
+* communication
+  * coding only CodingWithCodeAndSystem

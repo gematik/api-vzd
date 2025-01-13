@@ -26,7 +26,28 @@
             }
           ],
           "rules": "closed"
-        }
+        },
+        "type": [
+          {
+            "code": "Coding",
+            "profile": [
+              "https://gematik.de/fhir/directory/StructureDefinition/CodingWithCodeAndSystem"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Practitioner.meta.tag:Origin",
+        "path": "Practitioner.meta.tag",
+        "sliceName": "Origin",
+        "type": [
+          {
+            "code": "Coding",
+            "profile": [
+              "https://gematik.de/fhir/directory/StructureDefinition/CodingWithCodeAndSystem"
+            ]
+          }
+        ]
       },
       {
         "id": "Practitioner.identifier",
@@ -50,6 +71,30 @@
         "id": "Practitioner.address",
         "path": "Practitioner.address",
         "max": "0"
+      },
+      {
+        "id": "Practitioner.qualification.code.coding",
+        "path": "Practitioner.qualification.code.coding",
+        "type": [
+          {
+            "code": "Coding",
+            "profile": [
+              "https://gematik.de/fhir/directory/StructureDefinition/CodingWithCodeAndSystem"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Practitioner.communication.coding",
+        "path": "Practitioner.communication.coding",
+        "type": [
+          {
+            "code": "Coding",
+            "profile": [
+              "https://gematik.de/fhir/directory/StructureDefinition/CodingWithCodeAndSystem"
+            ]
+          }
+        ]
       }
     ]
   }

@@ -12,6 +12,7 @@ organisations specific for german Healthcare and Telematics Infrastructure.
   * ^slicing.discriminator.type = #pattern
   * ^slicing.discriminator.path = "system"
   * ^slicing.rules = #open
+* meta.tag obeys CodingSytemCodeInv
 * meta.tag contains Origin 1..1 MS
 * meta.tag[Origin] from OriginVS
 * meta.tag[Origin].system = "https://gematik.de/fhir/directory/CodeSystem/Origin"
@@ -34,6 +35,7 @@ organisations specific for german Healthcare and Telematics Infrastructure.
   * ^slicing.discriminator.type = #pattern
   * ^slicing.discriminator.path = "$this"
   * ^slicing.rules = #open
+* type.coding obeys CodingSytemCodeInv
 * type contains providerType 0..*  MS and profession 0..* MS
 * type[providerType] from OrganizationTypeVS
 * type[profession] from OrganizationProfessionOIDTypeVS
@@ -55,8 +57,11 @@ Parent: OrganizationDirectory
 Id: OrganizationDirectoryStrict
 Title: "OrganizationDirectoryStrict"
 Description: "Organization in gematik Directory with strict constraints"
+* meta.tag only CodingWithCodeAndSystem
 * meta.tag
   * ^slicing.rules = #closed
+* extension[organizationVisibility].valueCoding only CodingWithCodeAndSystem
+* extension[ncpehCountryEx].valueCoding only CodingWithCodeAndSystem
 * identifier 
   ^slicing.rules = #closed
 * type 

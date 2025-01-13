@@ -49,6 +49,15 @@
             "code": "Coding"
           }
         ],
+        "constraint": [
+          {
+            "key": "CodingSytemCodeInv",
+            "severity": "warning",
+            "human": "System and Code SHOULD be present",
+            "expression": "system.exists() and code.exists()",
+            "source": "https://gematik.de/fhir/directory/StructureDefinition/ncpeh-country-ex"
+          }
+        ],
         "mustSupport": true,
         "binding": {
           "strength": "required",
