@@ -82,6 +82,7 @@ As resourceType are supported
 
 - HealthcareService (search for organizations)
 - PractitionerRole (search for practitioners)
+- Endpoint (search for endpoints)
 
 The overview about the supported data model can be found here: 
 https://simplifier.net/vzd-fhir-directory
@@ -756,7 +757,76 @@ Some Examples:
 {{fhir_server}}/search/Endpoint/c6ca0089-d2ea-40c2-ae54-966020ad2668
 --
 
- 
- 
+
+==== FHIR VZD Search - Checking active and status attribute
+At the FHIR VZD interfaces /search and /fdv/search only those resources from the search result are allowed to be used for which the following conditions apply 
+
+- organization.active=true - All linked ressources (Organization, HealthcareService, Location, Endpoint) are allowed to be used only if the "active" attribute has value "true".
+- practitioner.active=true - All linked ressources (Practitioner, PractitionerRole, Location, Endpoint) are allowed to be used only if the "active" attribute has value "true".
+- endpoint.status=active   - Endpoints are allowed to be used only if the "status" attribute has value "active". Attribute endpoint.status has no influence on the use of the other resources  (Organization, HealthcareService, Practitioner, PractitionerRole, Location).
+
+Depending from the used resourceType for the search operation the checks are performed partly by the FHIR VZD (according the search paramaters):
+
+- resourceType HealthcareService - The check of the organization.active attribut is included in the search operation: "GET [baseUrl]/search/HealthcareService?organization.active=true"
+- resourceType PractitionerRole  - The check of the practitioner.active attribut is included in the search operation: "GET [baseUrl]/search/PractitionerRole?practitioner.active=true"
+- resourceType Endpoint          - The check of the endpoint.status attribut is included in the search operation: "GET [baseUrl]/search/Endpoint?status=active"
+
+===== FHIR VZD Search - Checking active and status attribute - _include
+The operation can be extended by a search parameter e.g. endpoint.status=active. Then the FHIR VZD return all matching ressources with at least one endpoint in status "active".
+GET [baseUrl]/search/HealthcareService?organization.active=true&_include=HealthcareService:organization&_include=HealthcareService:endpoint&endpoint.status=active
+
+[source]
+--
+GET [baseUrl]/search/HealthcareService?organization.active=true&endpoint.status=active&_include=HealthcareService:endpoint
+--
+But the _include=HealthcareService:endpoint returns also the endpoints with other values in the "status" attribute. Therefore the client has to check the "status" attribut of all included endpoints and may only use the "active" endpoints.
+
+===== FHIR VZD Search - Checking active and status attribute -individual endpoint loading 
+If _include=HealthcareService:endpoint is not used in the search operation then the endpoints are not included in the search result. But the references to the endpoints are contained in the HealthcareService or PractitionerRole resource.
+[source]
+--
+                "endpoint": [
+                    {
+                        "reference": "Endpoint/c6ca0089-d2ea-40c2-ae54-966020ad2668"
+                    }
+                ]
+--
+Then the endpoints can be loaded wit the id:
+[source]
+--
+GET [baseUrl]/search/Endpoint/c6ca0089-d2ea-40c2-ae54-966020ad2668
+--
+For the endpoint the client has to check the "status" attribut and may only use the "active" endpoints.
+
+===== FHIR VZD Search - Checking active and status attribute - Loading all "active" endpoints of one resource
+If the client already found the HealthcareService or PractitionerRole resource and want to load all endpoints with "status" attribute containing value "active", it can use a FHIR VZD search operation like this:
+[source]
+--
+GET [baseUrl]/search/Endpoint?status=active&_revinclude=HealthcareService:endpoint&_has:HealthcareService:endpoint:identifier=5ad211ed-cdde-4149-8e64-930e69e8a49e
+--
+
+- status=active - search for endpoints with status=active
+- _revinclude=HealthcareService:endpoint  - Includes the HealthcareService refering to the endpoint
+- _has:HealthcareService:endpoint:identifier=5ad211ed-cdde-4149-8e64-930e69e8a49e  - search for all endpoints refered in the HealthcareService with the defined identifier value 
+
+[IMPORTANT]
+--
+The client has to ensure, that the "active" attribute of the Organization or Practitioner resource has value "true".
+--
+
+===== FHIR VZD Search - Checking active and status attribute - Loading all "active" endpoints of one Organization/Practitioner
+The following FHIR VZD search operation returns active Organizations (organization.active) with all active Endpoins (endpoint.status):
+[source]
+--
+GET [baseUrl]/search/Endpoint?status=active&_include=HealthcareService:organization&_revinclude=HealthcareService:endpoint&_has:HealthcareService:endpoint:organization.active=true&_has:HealthcareService:endpoint:organization.name=Organisation-ap000011
+--
+
+- status=active - search for endpoints with status=active
+- _has:HealthcareService:endpoint:organization.active=true  - search for active organizations
+- _revinclude=HealthcareService:endpoint  - Includes the HealthcareService refering to the endpoint
+- _include=HealthcareService:organization - Includes the Organization refered in the HealthcareService 
+- _has:HealthcareService:endpoint:organization.name=Organisation-ap000011  - search for organizations with the defined name 
+
+The search operation for practitioner resources is similar.
 
 
