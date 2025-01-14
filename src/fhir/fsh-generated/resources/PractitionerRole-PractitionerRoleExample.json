@@ -22,7 +22,7 @@
   ],
   "endpoint": [
     {
-      "reference": "Endpoint/EndpointExample"
+      "reference": "Endpoint/MessengerEndpointWithVisibility"
     }
   ]
 }

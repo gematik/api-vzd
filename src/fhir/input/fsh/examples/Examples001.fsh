@@ -1,7 +1,7 @@
-Instance: EndpointExample
+Instance: MessengerEndpointWithVisibility
 InstanceOf: EndpointDirectoryStrict
 Usage: #example
-Description: "Example of a Endpoint as to be found in gematik FHIR Directory"
+Description: "Example of TI-Messenger Endpoint with visibility"
 * meta.tag[Origin] = Origin#owner
 * extension[endpointVisibility].valueCoding = EndpointVisibilityCS#hide-versicherte
 * status = #active "Active"
@@ -32,7 +32,7 @@ Description: "Example of an PractitionerRole as to be found in gematik FHIR Dire
 * meta.tag[Origin] = Origin#ldap
 * practitioner = Reference(PractitionerExampleDentist)
 * location[+] = Reference(LocationExample)
-* endpoint[+] = Reference(EndpointExample)
+* endpoint[+] = Reference(MessengerEndpointWithVisibility)
 
 
 Instance: OrganizationExample
@@ -105,5 +105,5 @@ Description: "Example of an HealthcareService as to be found in gematik FHIR Dir
 * availableTime.availableStartTime = "08:00:00"
 * availableTime.availableEndTime = "18:00:00"
 * availabilityExceptions = "An Feiertagen geschlossen"
-* endpoint[+] = Reference(EndpointExample)
+* endpoint[+] = Reference(MessengerEndpointWithVisibility)
 * characteristic[technicalCharacteristic] = VZDHealthCareServiceCharacteristicsCS#erx-token-receiver "eRX Token Receiver"

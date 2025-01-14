@@ -2,7 +2,7 @@
   "resourceType": "StructureDefinition",
   "id": "SpecialOpeningTimesEX",
   "url": "https://gematik.de/fhir/directory/StructureDefinition/SpecialOpeningTimesEX",
-  "version": "0.11.22",
+  "version": "0.11.23",
   "name": "SpecialOpeningTimesEX",
   "title": "SpecialOpeningTimesEX",
   "status": "active",
@@ -89,6 +89,15 @@
         "type": [
           {
             "code": "Coding"
+          }
+        ],
+        "constraint": [
+          {
+            "key": "CodingSytemCodeInv",
+            "severity": "warning",
+            "human": "System and Code SHOULD be present",
+            "expression": "system.exists() and code.exists()",
+            "source": "https://gematik.de/fhir/directory/StructureDefinition/SpecialOpeningTimesEX"
           }
         ],
         "mustSupport": true,

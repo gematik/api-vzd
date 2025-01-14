@@ -2,7 +2,7 @@
   "resourceType": "StructureDefinition",
   "id": "EndpointDirectory",
   "url": "https://gematik.de/fhir/directory/StructureDefinition/EndpointDirectory",
-  "version": "0.11.22",
+  "version": "0.11.23",
   "name": "EndpointDirectory",
   "title": "Endpoint in gematik Directory",
   "status": "active",
@@ -36,6 +36,15 @@
           "rules": "open"
         },
         "min": 1,
+        "constraint": [
+          {
+            "key": "CodingSytemCodeInv",
+            "severity": "warning",
+            "human": "System and Code SHOULD be present",
+            "expression": "system.exists() and code.exists()",
+            "source": "https://gematik.de/fhir/directory/StructureDefinition/EndpointDirectory"
+          }
+        ],
         "mustSupport": true
       },
       {
@@ -80,6 +89,15 @@
       {
         "id": "Endpoint.connectionType",
         "path": "Endpoint.connectionType",
+        "constraint": [
+          {
+            "key": "CodingSytemCodeInv",
+            "severity": "warning",
+            "human": "System and Code SHOULD be present",
+            "expression": "system.exists() and code.exists()",
+            "source": "https://gematik.de/fhir/directory/StructureDefinition/EndpointDirectory"
+          }
+        ],
         "mustSupport": true
       },
       {
@@ -110,6 +128,19 @@
           "strength": "required",
           "valueSet": "https://gematik.de/fhir/directory/ValueSet/EndpointPayloadTypeVS"
         }
+      },
+      {
+        "id": "Endpoint.payloadType.coding",
+        "path": "Endpoint.payloadType.coding",
+        "constraint": [
+          {
+            "key": "CodingSytemCodeInv",
+            "severity": "warning",
+            "human": "System and Code SHOULD be present",
+            "expression": "system.exists() and code.exists()",
+            "source": "https://gematik.de/fhir/directory/StructureDefinition/EndpointDirectory"
+          }
+        ]
       },
       {
         "id": "Endpoint.address",

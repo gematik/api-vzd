@@ -1,6 +1,6 @@
 {
   "resourceType": "Endpoint",
-  "id": "EndpointExample",
+  "id": "MessengerEndpointWithVisibility",
   "meta": {
     "tag": [
       {

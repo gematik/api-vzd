@@ -6,4 +6,3 @@ Description: "CodeSystem of defined physical features"
 * #oepnv "ÖPNV in der Nähe"
 * #barrierefrei "Barrierefrei"
 * #abholautomat "Abholautomat"
-

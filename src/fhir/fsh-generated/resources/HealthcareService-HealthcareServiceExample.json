@@ -126,7 +126,7 @@
   "availabilityExceptions": "An Feiertagen geschlossen",
   "endpoint": [
     {
-      "reference": "Endpoint/EndpointExample"
+      "reference": "Endpoint/MessengerEndpointWithVisibility"
     }
   ],
   "characteristic": [

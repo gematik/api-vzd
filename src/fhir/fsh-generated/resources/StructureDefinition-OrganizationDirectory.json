@@ -2,7 +2,7 @@
   "resourceType": "StructureDefinition",
   "id": "OrganizationDirectory",
   "url": "https://gematik.de/fhir/directory/StructureDefinition/OrganizationDirectory",
-  "version": "0.11.22",
+  "version": "0.11.23",
   "name": "OrganizationDirectory",
   "title": "Organization in gematik Directory",
   "status": "active",
@@ -36,6 +36,15 @@
           "rules": "open"
         },
         "min": 1,
+        "constraint": [
+          {
+            "key": "CodingSytemCodeInv",
+            "severity": "warning",
+            "human": "System and Code SHOULD be present",
+            "expression": "system.exists() and code.exists()",
+            "source": "https://gematik.de/fhir/directory/StructureDefinition/OrganizationDirectory"
+          }
+        ],
         "mustSupport": true
       },
       {
@@ -186,6 +195,19 @@
         },
         "min": 1,
         "mustSupport": true
+      },
+      {
+        "id": "Organization.type.coding",
+        "path": "Organization.type.coding",
+        "constraint": [
+          {
+            "key": "CodingSytemCodeInv",
+            "severity": "warning",
+            "human": "System and Code SHOULD be present",
+            "expression": "system.exists() and code.exists()",
+            "source": "https://gematik.de/fhir/directory/StructureDefinition/OrganizationDirectory"
+          }
+        ]
       },
       {
         "id": "Organization.type:providerType",

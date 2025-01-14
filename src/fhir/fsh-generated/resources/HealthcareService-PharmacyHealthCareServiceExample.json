@@ -81,26 +81,17 @@
   ],
   "characteristic": [
     {
-      "coding": [
-        {
-          "system": "https://gematik.de/fhir/directory/CodeSystem/physicalFeatures",
-          "code": "oepnv",
-          "display": "ÖPNV in der Nähe"
-        }
-      ],
       "extension": [
         {
           "url": "https://gematik.de/fhir/directory/StructureDefinition/PhysicalFeaturesAdditionalNoteEX",
           "valueString": "Vor dem Haus"
         }
-      ]
-    },
-    {
+      ],
       "coding": [
         {
+          "code": "parkmoeglichkeit",
           "system": "https://gematik.de/fhir/directory/CodeSystem/physicalFeatures",
-          "code": "oepnv",
-          "display": "ÖPNV in der Nähe"
+          "display": "Parkmöglichkeit"
         }
       ]
     },
@@ -128,6 +119,15 @@
           "code": "terminbuchung",
           "system": "https://gematik.de/fhir/directory/CodeSystem/VZDHealthCareServiceCharacteristicsCS",
           "display": "Terminbuchung"
+        }
+      ]
+    },
+    {
+      "coding": [
+        {
+          "code": "oepnv",
+          "system": "https://gematik.de/fhir/directory/CodeSystem/physicalFeatures",
+          "display": "ÖPNV in der Nähe"
         }
       ]
     }
@@ -249,7 +249,7 @@
   "availabilityExceptions": "An Feiertagen geschlossen",
   "endpoint": [
     {
-      "reference": "Endpoint/EndpointExample"
+      "reference": "Endpoint/MessengerEndpointWithVisibility"
     }
   ]
 }

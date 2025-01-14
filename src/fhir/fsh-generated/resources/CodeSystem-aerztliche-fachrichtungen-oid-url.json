@@ -6,7 +6,7 @@
   "id": "aerztliche-fachrichtungen-oid-url",
   "title": "AerztlicheFachrichtungen",
   "description": "AerztlicheFachrichtungen",
-  "version": "0.11.22",
+  "version": "0.11.23",
   "url": "urn:oid:1.3.6.1.4.1.19376.3.276.1.5.4",
   "concept": [
     {

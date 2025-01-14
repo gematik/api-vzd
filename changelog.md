@@ -1,11 +1,45 @@
 # Changelog
 
+## 2025-01-10  Version 0.11.23
+- feat: added Invariant `CodingSytemCodeInv` throwing a warning if a Coding element is missing system or code. Added to:
+  - EndpointDirectory.meta.tag
+  - EndpointDirectory.connectionType
+  - EndpointDirectory.payloadType.coding
+  - OrganizationVisibility.valueCoding
+  - EndpointVisibility.valueCoding
+  - SpecialOpeningTimesEX.extension[qualifier].valueCoding
+  - NCPeHCountryEx.valueCoding
+  - HealthcareServiceDirectory.meta.tag
+  - HealthcareServiceDirectory.category.coding
+  - HealthcareServiceDirectory.type.coding
+  - HealthcareServiceDirectory.specialty.coding
+  - HealthcareServiceDirectory.communication.coding
+  - HealthcareServiceDirectory.characteristic.coding
+  - LocationDirectory.meta.tag
+  - OrganizationDirectory.meta.tag
+  - OrganizationDirectory.type.coding
+  - PractitionerDirectory.meta.tag
+  - PractitionerDirectory.qualification.code.coding
+  - PractitionerDirectory.communication.coding
+  - PractitionerRoleDirectory.meta.tag
+- feat: added a data type profile `CodingWithCodeAndSystem` setting .code and .system to a min cardinality of 1. Applied in the derived strict profiles at the same elements as the `CodingSytemCodeInv` invariant.
+- fix: added SearchParameters with Uplifted-Refchains extension for hapi fhir servers (was not included in 0.11.22 due to a technical issue)
+- fix: added strict profiles: These profiles are derived from the VZD-profiles, are restricted non-MS elements to 0..0, add closed slicing. Purpose technical validation for VZD implementations (was not included in 0.11.22 due to a technical issue)
+- fix: Extensions: OrganizationVisibility & EndpointVisibility had a required binding on Extension.value[x] which implies a min cardinality of 1. valueCoding is now set to 1.. explicitly.
+- feat: upgraded dependency de.basisprofil.r4 to version 1.5.1. This has no direct impact on the vzd.
+
+### data migration
+- none
+
 ## 2024-12-20  Version 0.11.22  
 
 - feat: added SearchParameter for NCPeHCountryEx: OrganizationNCPeHCountrySP
 - feat: added SearchParameter for Organization.alias: OrganizationAliasSP
 - feat: added strict profiles: These profiles are derived from the VZD-profiles, are restricted non-MS elements to 0..0, add closed slicing. Purpose technical validation for VZD implementations
 - feat: added SearchParameters with Uplifted-Refchains extension for hapi fhir servers
+
+### data migration
+- none
 
 ## 2024-12-03 - Version 0.11.21  
 - feat: restricted all extensible bindings to required:

@@ -2,7 +2,7 @@
   "resourceType": "StructureDefinition",
   "id": "HealthcareServiceDirectory",
   "url": "https://gematik.de/fhir/directory/StructureDefinition/HealthcareServiceDirectory",
-  "version": "0.11.22",
+  "version": "0.11.23",
   "name": "HealthcareServiceDirectory",
   "title": "HealthcareService in gematik Directory",
   "status": "active",
@@ -36,6 +36,15 @@
           "rules": "open"
         },
         "min": 1,
+        "constraint": [
+          {
+            "key": "CodingSytemCodeInv",
+            "severity": "warning",
+            "human": "System and Code SHOULD be present",
+            "expression": "system.exists() and code.exists()",
+            "source": "https://gematik.de/fhir/directory/StructureDefinition/HealthcareServiceDirectory"
+          }
+        ],
         "mustSupport": true
       },
       {
@@ -102,6 +111,19 @@
         }
       },
       {
+        "id": "HealthcareService.category.coding",
+        "path": "HealthcareService.category.coding",
+        "constraint": [
+          {
+            "key": "CodingSytemCodeInv",
+            "severity": "warning",
+            "human": "System and Code SHOULD be present",
+            "expression": "system.exists() and code.exists()",
+            "source": "https://gematik.de/fhir/directory/StructureDefinition/HealthcareServiceDirectory"
+          }
+        ]
+      },
+      {
         "id": "HealthcareService.type",
         "path": "HealthcareService.type",
         "mustSupport": true,
@@ -111,6 +133,19 @@
         }
       },
       {
+        "id": "HealthcareService.type.coding",
+        "path": "HealthcareService.type.coding",
+        "constraint": [
+          {
+            "key": "CodingSytemCodeInv",
+            "severity": "warning",
+            "human": "System and Code SHOULD be present",
+            "expression": "system.exists() and code.exists()",
+            "source": "https://gematik.de/fhir/directory/StructureDefinition/HealthcareServiceDirectory"
+          }
+        ]
+      },
+      {
         "id": "HealthcareService.specialty",
         "path": "HealthcareService.specialty",
         "mustSupport": true,
@@ -118,6 +153,19 @@
           "strength": "required",
           "valueSet": "https://gematik.de/fhir/directory/ValueSet/HealthcareSpecialtyTypeVS"
         }
+      },
+      {
+        "id": "HealthcareService.specialty.coding",
+        "path": "HealthcareService.specialty.coding",
+        "constraint": [
+          {
+            "key": "CodingSytemCodeInv",
+            "severity": "warning",
+            "human": "System and Code SHOULD be present",
+            "expression": "system.exists() and code.exists()",
+            "source": "https://gematik.de/fhir/directory/StructureDefinition/HealthcareServiceDirectory"
+          }
+        ]
       },
       {
         "id": "HealthcareService.location",
@@ -208,6 +256,19 @@
         "mustSupport": true
       },
       {
+        "id": "HealthcareService.characteristic.coding",
+        "path": "HealthcareService.characteristic.coding",
+        "constraint": [
+          {
+            "key": "CodingSytemCodeInv",
+            "severity": "warning",
+            "human": "System and Code SHOULD be present",
+            "expression": "system.exists() and code.exists()",
+            "source": "https://gematik.de/fhir/directory/StructureDefinition/HealthcareServiceDirectory"
+          }
+        ]
+      },
+      {
         "id": "HealthcareService.characteristic:technicalCharacteristic",
         "path": "HealthcareService.characteristic",
         "sliceName": "technicalCharacteristic",
@@ -227,13 +288,6 @@
         "short": "Physical Features",
         "min": 0,
         "max": "*",
-        "patternCodeableConcept": {
-          "coding": [
-            {
-              "system": "https://gematik.de/fhir/directory/CodeSystem/physicalFeatures"
-            }
-          ]
-        },
         "mustSupport": true,
         "binding": {
           "strength": "required",
@@ -262,6 +316,19 @@
         "mustSupport": true
       },
       {
+        "id": "HealthcareService.communication.coding",
+        "path": "HealthcareService.communication.coding",
+        "constraint": [
+          {
+            "key": "CodingSytemCodeInv",
+            "severity": "warning",
+            "human": "System and Code SHOULD be present",
+            "expression": "system.exists() and code.exists()",
+            "source": "https://gematik.de/fhir/directory/StructureDefinition/HealthcareServiceDirectory"
+          }
+        ]
+      },
+      {
         "id": "HealthcareService.appointmentRequired",
         "path": "HealthcareService.appointmentRequired",
         "mustSupport": true
@@ -271,7 +338,7 @@
         "path": "HealthcareService.availableTime",
         "constraint": [
           {
-            "key": "VZD-Service-Opening-Time",
+            "key": "VZD-Service-Opening-TimeInv",
             "severity": "error",
             "human": "Only allows either specialOpeningTimes extension or daysOfWeek, availableStartTime, availableEndTime",
             "expression": "extension('https://gematik.de/fhir/directory/StructureDefinition/SpecialOpeningTimesEX').exists() xor (daysOfWeek.exists() and availableStartTime.exists() and availableEndTime.exists())",

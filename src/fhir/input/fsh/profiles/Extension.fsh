@@ -28,7 +28,9 @@ Context: Organization
 * insert Meta
 * value[x] MS
 * value[x] only Coding
-* value[x] from OrganizationVisibilityVS
+* valueCoding obeys CodingSytemCodeInv
+* valueCoding 1.. MS
+* valueCoding from OrganizationVisibilityVS
 
 CodeSystem: OrganizationVisibilityCS
 Id: OrganizationVisibilityCS
@@ -52,7 +54,9 @@ Context: Endpoint
 * insert Meta
 * value[x] MS
 * value[x] only Coding
-* value[x] from EndpointVisibilityVS
+* valueCoding obeys CodingSytemCodeInv
+* valueCoding 1.. MS
+* valueCoding from EndpointVisibilityVS
 
 CodeSystem: EndpointVisibilityCS
 Id: EndpointVisibilityCS
@@ -82,6 +86,7 @@ Context: HealthcareService.availableTime
   * valuePeriod 1.. MS
 * extension[qualifier]
   * value[x] only Coding
+  * valueCoding obeys CodingSytemCodeInv
   * valueCoding 1.. MS
   * valueCoding from OpeningTimeQualifierVS
 
@@ -117,6 +122,7 @@ Context: Organization
 * value[x] 1.. MS
 * value[x] only Coding
 * valueCoding 1.. MS
+* valueCoding obeys CodingSytemCodeInv
 * valueCoding from Iso3166-1-2
   * system 1.. MS
   * code 1.. MS

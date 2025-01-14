@@ -9,6 +9,7 @@ organisations specific for german Healthcare and Telematics Infrastructure.
   * ^slicing.discriminator.type = #pattern
   * ^slicing.discriminator.path = "system"
   * ^slicing.rules = #open
+* meta.tag obeys CodingSytemCodeInv
 * meta.tag contains Origin 1..1 MS
 * meta.tag[Origin] from OriginVS
 * meta.tag[Origin].system = "https://gematik.de/fhir/directory/CodeSystem/Origin"
@@ -20,11 +21,14 @@ organisations specific for german Healthcare and Telematics Infrastructure.
 * identifier contains TelematikID 0..1 MS
 * identifier[TelematikID] only $IdentifierTelematikID
 * providedBy 1..1 MS
-* category MS 
+* category MS
+  * coding obeys CodingSytemCodeInv
 * category from HealthcareServiceCategoryCodes
-* type MS 
+* type MS
+  * coding obeys CodingSytemCodeInv 
 * type from HealthcareServiceTypeVS
 * specialty MS
+  * coding obeys CodingSytemCodeInv
 * specialty from HealthcareServiceSpecialtyVS
 * location ..1 MS
 * name MS
@@ -33,9 +37,10 @@ organisations specific for german Healthcare and Telematics Infrastructure.
   * value MS
   * use MS
 * communication MS
+  * coding obeys CodingSytemCodeInv
 * appointmentRequired MS
 * availableTime MS
-  * obeys VZD-Service-Opening-Time
+  * obeys VZD-Service-Opening-TimeInv
   * extension contains SpecialOpeningTimesEX named specialOpeningTimes 0..1 MS
   * daysOfWeek ..1 MS
   * allDay ..0
@@ -47,6 +52,7 @@ organisations specific for german Healthcare and Telematics Infrastructure.
 * availabilityExceptions MS
 * endpoint MS
 * characteristic MS
+  * coding obeys CodingSytemCodeInv
   * ^short = "Physical Features & Technical Services"
   * ^slicing.discriminator.type = #pattern
   * ^slicing.discriminator.path = "$this"
@@ -58,7 +64,7 @@ organisations specific for german Healthcare and Telematics Infrastructure.
   * ^short = "Technical Services"
 * characteristic[physicalFeatures] from PhysicalFeaturesHealthCareServiceVS
   * extension contains PhysicalFeaturesAdditionalNoteEX named additionalNote 0..1 MS
-  * ^patternCodeableConcept.coding.system = Canonical(PhysicalFeaturesHealthCareServiceCS)
+//  * ^patternCodeableConcept.coding.system = Canonical(PhysicalFeaturesHealthCareServiceCS)
   * ^short = "Physical Features"
 * coverageArea MS
   * extension MS 
@@ -71,11 +77,15 @@ Parent: HealthcareServiceDirectory
 Id: HealthcareServiceDirectoryStrict
 Title: "HealthcareServiceDirectoryStrict"
 Description: "HealthcareService in gematik Directory with strict constraints"
+* meta.tag only CodingWithCodeAndSystem
 * meta.tag
   * ^slicing.rules = #closed
 * identifier 
   ^slicing.rules = #closed
 * active 0..0
+* category.coding only CodingWithCodeAndSystem
+* type.coding only CodingWithCodeAndSystem
+* specialty.coding only CodingWithCodeAndSystem
 * comment 0..0
 * extraDetails 0..0
 * photo 0..0
@@ -90,6 +100,11 @@ Description: "HealthcareService in gematik Directory with strict constraints"
 * serviceProvisionCode 0..0
 * eligibility 0..0 
 * program 0..0
+* communication.coding only CodingWithCodeAndSystem
 * characteristic
   * ^slicing.rules = #closed
+  * coding only CodingWithCodeAndSystem
 * referralMethod 0..0
+* availableTime 
+  * extension[specialOpeningTimes]
+    * extension[qualifier].valueCoding only CodingWithCodeAndSystem

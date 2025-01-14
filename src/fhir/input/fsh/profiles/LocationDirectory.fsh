@@ -9,6 +9,7 @@ organisations specific for german Healthcare and Telematics Infrastructure.
   * ^slicing.discriminator.type = #pattern
   * ^slicing.discriminator.path = "system"
   * ^slicing.rules = #open
+* meta.tag obeys CodingSytemCodeInv
 * meta.tag contains Origin 1..1 MS
 * meta.tag[Origin] from OriginVS
 * meta.tag[Origin].system = "https://gematik.de/fhir/directory/CodeSystem/Origin"
