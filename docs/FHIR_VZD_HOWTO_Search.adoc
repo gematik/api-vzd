@@ -814,19 +814,3 @@ GET [baseUrl]/search/Endpoint?status=active&_revinclude=HealthcareService:endpoi
 The client has to ensure, that the "active" attribute of the Organization or Practitioner resource has value "true".
 --
 
-===== FHIR VZD Search - Checking active and status attribute - Loading all "active" endpoints of one Organization/Practitioner
-The following FHIR VZD search operation returns active Organizations (organization.active) with all active Endpoins (endpoint.status):
-[source]
---
-GET [baseUrl]/search/Endpoint?status=active&_include=HealthcareService:organization&_revinclude=HealthcareService:endpoint&_has:HealthcareService:endpoint:organization.active=true&_has:HealthcareService:endpoint:organization.name=Organisation-ap000011
---
-
-- status=active - search for endpoints with status=active
-- _has:HealthcareService:endpoint:organization.active=true  - search for active organizations
-- _revinclude=HealthcareService:endpoint  - Includes the HealthcareService refering to the endpoint
-- _include=HealthcareService:organization - Includes the Organization refered in the HealthcareService 
-- _has:HealthcareService:endpoint:organization.name=Organisation-ap000011  - search for organizations with the defined name 
-
-The search operation for practitioner resources is similar.
-
-
