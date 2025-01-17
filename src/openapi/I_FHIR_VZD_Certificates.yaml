@@ -3,8 +3,11 @@ info:
   title: I_FHIR_VZD_Certificates
   description: REST Schnittstelle zum Abruf von Zertifikaten.
 
-  version: 0.1.2
+  version: 0.1.3
 
+  # Änderungen in Version 0.1.3
+  #   - URLs entsprechend arvato Zuarbeit aktualisiert
+  #  
   # Änderungen in Version 0.1.2
   #   - URLs in servers & securitySchemas - OAuth2 für die TU aktualisiert
   #  
@@ -274,7 +277,7 @@ components:
         Token Endpoint ist spezifisch für die jeweilige Umgebung:
         
         **Testumgebung (TU):**
-        * https://auth-tu.vzd.ti-dienste.de:9443/auth/realms/Service-Authenticate/protocol/openid-connect/token
+        * https://auth-test.vzd.ti-dienste.de:9443/auth/realms/Service-Authenticate/protocol/openid-connect/token
         
         **Referenzumgebung (RU):**
         * https://auth-ref.vzd.ti-dienste.de:9443/auth/realms/Service-Authenticate/protocol/openid-connect/token
