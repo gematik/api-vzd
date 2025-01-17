@@ -204,9 +204,11 @@ Neu für eGBR HBA und SMC-B |gematik
 - givenName - Verhalten bei der Administration von Attribut givenName genauer beschrieben
 |gematik
 
-|1.5.13 |05.12.2024 |3.7 +
+|1.5.13 |17.01.2025 |3.7 +
+4.
 4.19
 |
+- Belegung - nicht genutzter - optionaler Attribute ergänzt.
 - Prüfung V004: Link auf Simplifier aktualisiert +
 - Tabelle für NCPeH ergänzt
 |gematik
@@ -905,6 +907,7 @@ In den folgenden Abschnitten werden für die Kartenherausgeber spezifische Festl
 
 NOTE: Für KOM-LE wird in der externen Darstellung die Bezeichnung "KIM" genutzt. In den Spezifikationen wird aber noch der Begriff KOM-LE/komLe genutzt.
 
+IMPORTANT: Optionale Attribute - welche nicht belegt werden - sind nicht anzugeben (bitte NICHT mit leeren Wert z.B. "" belegen).
 
 === Wertebereiche der Attribute
 
