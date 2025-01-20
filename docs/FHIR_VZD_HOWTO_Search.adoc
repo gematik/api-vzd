@@ -746,7 +746,7 @@ GET [base]/[type]/[id]
 [IMPORTANT]
 --
 This operation returns the resource without checking the attributes "active" of the Organization or Practitioner resources or the "state" attribute of the Endpoint" resource.
-The client is responsible for filtering out inactive resources.
+The client is responsible for filtering out inactive resources and resources referred by inactive resources (e.g. active endpoints refrred by an inactive organization or practitioner).
 --
 
 Some Examples:
