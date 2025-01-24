@@ -432,7 +432,7 @@ security:
       #        Token Endpoint is specific for the environment:
 
       #        **Testumgebung:**
-    #        * https://auth-tu.vzd.ti-dienste.de:9443/auth/realms/Person_Institution_linking/protocol/openid-connect/token
+    #        * https://auth-test.vzd.ti-dienste.de:9443/auth/realms/Person_Institution_linking/protocol/openid-connect/token
 
     #        **Referenzumgebung:**
     #        * https://auth-ref.vzd.ti-dienste.de:9443/auth/realms/Person_Institution_linking/protocol/openid-connect/token
