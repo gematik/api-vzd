@@ -1,0 +1,94 @@
+openapi: 3.0.3
+info:
+  title: I_VZD_TIM_Authenticate
+  description: REST interface to retrieve the TI-Messenger authenticate token.
+  version: 1.0.0
+  # initiale Version
+
+externalDocs:
+  description: I_VZD_TIM_Authenticate REST interface
+  url: https://www.gematik.de
+servers:
+  #- url: https://vzd-fhir-directory.vzd.ti-dienste.de/tim-authenticate }
+  - url: "{protocol}://{hostname}"
+    variables:
+      protocol:
+        default: http
+      hostname:
+        default: "localhost:8085"
+
+paths:
+  /tim-authenticate:
+    # matrix-access-token
+    get:
+      summary: "Endpunkt zur Nutzer-Authentifizierung"
+      description: "Endpunkt für die Authentisierung des TIM-Client am FHIR-Proxy von Einträgen im VZD-FHIR-Directory."
+      operationId: getTimeAuthenticate
+      parameters:
+        - in: header
+          name: X-Matrix-OpenID-Token
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: mxId
+          schema:
+            type: string
+          required: true
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TimSearchAccessToken'
+        401:
+          description: Unauthorized
+          #  The WWW-Authenticate header in the response is OAuth.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        503:
+          description: Service unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+
+  schemas:
+    TimSearchAccessToken:
+      properties:
+        access_token:
+          type: string
+          description: Json-WebToken as BP256R1
+        token_type:
+          type: string
+          enum:
+            - bearer
+        expires_in:
+          type: integer
+          format: int64
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+          description: (optionale) Fehlernachricht
+        errors:
+          maxItems: 50
+          minItems: 0
+          type: array
+          items:
+            $ref: '#/components/schemas/InnerError'
+
+    InnerError:
+      type: object
+      properties:
+        attributeName:
+          description: Name des Attributs, in dem ein Fehler erkannt wurde
+          type: string
+        attributeError:
+          description: Beschreibung des erkannten Fehlers
+          type: string

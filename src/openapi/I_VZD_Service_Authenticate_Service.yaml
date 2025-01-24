@@ -1,0 +1,96 @@
+openapi: 3.0.3
+info:
+  title: I_VZD_Service_Authenticate_Services
+  description: REST interface to authenticate Services.
+  version: 1.0.0
+  # initiale Version
+
+externalDocs:
+  description: I_VZD_Service_Authenticate_Services REST interface
+  url: https://www.gematik.de
+servers:
+  - url: "{protocol}://{hostname}"
+    variables:
+      protocol:
+        default: http
+      hostname:
+        default: "localhost:8085"
+paths:
+  /service-authenticate:
+    # Keycloak OAuth2
+    get:
+      summary: "Endpunkt zur Service-Authentifizierung"
+      description: "Endpunkt für die Authentisierung von Services am FHIR-Proxy."
+      operationId: getServiceAuthenticate
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceAccessToken'
+        401:
+          description: Unauthorized
+          #  The WWW-Authenticate header in the response is OAuth.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        503:
+          description: Service unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    ServiceAccessToken:
+      properties:
+        access_token:
+          type: string
+          description: Json-WebToken as BP256R1
+        client_id:
+          type: string
+          description: id of Keycloak client
+        token_type:
+          type: string
+          enum:
+            - bearer
+        expires_in:
+          type: integer
+          format: int64
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+          description: (optionale) Fehlernachricht
+        errors:
+          maxItems: 50
+          minItems: 0
+          type: array
+          items:
+            $ref: '#/components/schemas/InnerError'
+    InnerError:
+      type: object
+      properties:
+        attributeName:
+          description: Name des Attributs, in dem ein Fehler erkannt wurde
+          type: string
+        attributeError:
+          description: Beschreibung des erkannten Fehlers
+          type: string
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: "https://auth-test.vzd.ti-dienste.de:9443/realms/ServiceAuthenticate/protocol/openid-connect/token"
+          scopes:
+            "Service-Authenticate":
+              Erlaubt Umtausch des Oauth-Access-Tokens zu einem Access-Token für die /fdv/search Schnittstelle 
+              über den hier beschriebenen /service-authenticate Endpunkt.
+security:
+  - OAuth2:
+    - "Service-Authenticate"
+

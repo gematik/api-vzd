@@ -1,0 +1,98 @@
+openapi: 3.0.3
+info:
+  title: I_VZD_TI_Provider_Authenticate_Service
+  description: REST interface to authenticate TI Provider.
+  version: 1.0.0
+  # initiale Version
+
+externalDocs:
+  description: I_VZD_TI_Provider_Authenticate_Service REST interface
+  url: https://www.gematik.de
+servers:
+  #- url: https://vzd-fhir-directory.vzd.ti-dienste.de/ti-provider-authenticate-service
+  - url: "{protocol}://{hostname}"
+    variables:
+      protocol:
+        default: http
+      hostname:
+        default: "localhost:8085"
+
+paths:
+  /ti-provider-authenticate:
+    # Keycloak OAuth2
+    get:
+      summary: "Endpunkt zur TI-Provider-Authentifizierung"
+      description: "Endpunkt für die Authentisierung von TI-Provider am FHIR-Proxy."
+      operationId: getTiProviderAuthenticate
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TiProviderAccessToken'
+        401:
+          description: Unauthorized
+          #  The WWW-Authenticate header in the response is OAuth.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        503:
+          description: Service unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    TiProviderAccessToken:
+      properties:
+        access_token:
+          type: string
+          description: Json-WebToken as BP256R1
+        client_id:
+          type: string
+          description: id of Keycloak client
+        token_type:
+          type: string
+          enum:
+            - bearer
+        expires_in:
+          type: integer
+          format: int64
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+          description: (optionale) Fehlernachricht
+        errors:
+          maxItems: 50
+          minItems: 0
+          type: array
+          items:
+            $ref: '#/components/schemas/InnerError'
+
+    InnerError:
+      type: object
+      properties:
+        attributeName:
+          description: Name des Attributs, in dem ein Fehler erkannt wurde
+          type: string
+        attributeError:
+          description: Beschreibung des erkannten Fehlers
+          type: string
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: "https://auth-test.vzd.ti-dienste.de:9443/realms/TI-Provider/protocol/openid-connect/token"
+          scopes:
+            ti-provider:
+              Erlaubt Umtausch des Oauth2-Access-Tokens zu einem Access-Token für die /tim-provider-services Schnittstellen
+              über den hier beschriebenen /ti-provider-authenticate Endpunkt.
+security:
+  - OAuth2:
+    - "ti-provider"
