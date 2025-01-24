@@ -1,0 +1,442 @@
+openapi: 3.0.3
+info:
+  title: I_VZD_Person_Institution_linking
+  description: REST interface for linkin person and institution entries.
+  version: 1.0.4
+
+  # Änderungen in Version 1.0.4
+  #   - Update URLs in servers (TU)
+  # 
+  # version 1.0.3
+  #   Renamed relative part "PersonInstitutionLink" to "Link"
+  #
+  # version 1.0.2
+  #   "servers" section updated
+  #
+  # version 1.0.1
+  #   HTTP error codes added
+  #   deletePersonInstitutionLink returns 200 and PersonInstitutionLink
+  #   Schema PersonInstitutionLink: Attribute id removed from "required" section
+  #
+  # version 1.0.0
+  #   initial Version
+
+
+externalDocs:
+  description: Schnittstelle zur Pflege der Verzeichniseinträge
+  url: http://github.com/gematik/api-vzd/
+servers:
+  - url: https://fhir-directory-tu.vzd.ti-dienste.de/PersonInstitutionLink
+    description: Testumgebung (TU)
+  - url: https://fhir-directory-ref.vzd.ti-dienste.de/PersonInstitutionLink
+    description: Referenzumgebung (RU)
+  - url: https://fhir-directory.vzd.ti-dienste.de/PersonInstitutionLink
+    description: Produktivumgebung (PU)
+
+tags:
+  - name: getInfo
+    description: Diese Operation liefert Metadaten über diese Schnittstelle
+  - name: getPersonInstitutionLinks
+    description: Endpoint to get new Person-Institution-Links
+  - name: suggestPersonInstitutionLink
+    description: Endpoint to suggest new Person-Institution-Link
+  - name: approvePersonInstitutionLink
+    description: Endpoint to approve new Person-Institution-Link
+  - name: deletePersonInstitutionLink
+    description: Endpoint to remove approved Person-Institution-Link
+
+paths:
+  /:
+    get:
+      tags:
+        - getInfo
+      summary: This operation delivers meta data about this interface
+      operationId: getInfo
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InfoObject'
+        401:
+          description: Unauthorized
+          #  The WWW-Authenticate Header in the response will be set to OAuth
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        403:
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /Link:
+    post:
+      tags:
+        - suggestPersonInstitutionLink
+      summary: Suggest new Person-Institution-Link
+      description: Suggest new Person-Institution-Link
+      operationId: suggestPersonInstitutionLink
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PersonInstitutionLink'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PersonInstitutionLink'
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        401:
+          description: Unauthorized
+          #  The WWW-Authenticate header in the response is OAuth.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        403:
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        409:
+          description: Conflict
+          # Created or active Person-Institution-Link already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    get:
+      tags:
+        - getPersonInstitutionLinks
+      summary: Get Person-Institution-Links
+      description: |
+        Get Person-Institution-Links
+        All input parameters are used as a filter parameters combined by AND.
+        An omitted parameter selects all entries.
+        An operation call without input parameters returns all entries of the table.
+      operationId: getPersonInstitutionLinks
+      parameters:
+        - name: id
+          in: query
+          description: |
+            If this parameter is used, then the selected PersonInstitutionLink is returned.
+          schema:
+            type: string
+        - name: telematikIDHealthcareService
+          in: query
+          description: |
+            If this parameter is used, then the selected PersonInstitutionLink with the defined telematikID of the telematikIDHealthcareService are returned.
+          schema:
+            type: string
+        - name: telematikIDPractitionerRole
+          in: query
+          description: |
+            If this parameter is used, then the selected PersonInstitutionLink with the defined telematikID of the telematikIDPractitionerRole are returned.
+          schema:
+            type: string
+        - name: status
+          in: query
+          description: |
+            If this parameter is used, then all selected PersonInstitutionLink with the defined status are returned.
+          schema:
+            type: string
+            enum: [ "CREATED", "APPROVED", "LINKED", "REVOKED", "UNLINKED"]
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PersonInstitutionLink'
+
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        401:
+          description: Unauthorized
+          #  The WWW-Authenticate header in the response is OAuth.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        403:
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /Link/{id}:
+    put:
+      tags:
+        - approvePersonInstitutionLink
+      summary: Update Status of Person-Institution-Link
+      description: |
+        Update Status of Person-Institution-Link
+        This operation appoves the linking of a person and an organization.
+        This approval can be done only by linked person or organization
+        which has not created the link request.
+      operationId: approvePersonInstitutionLink
+      parameters:
+        - name: id
+          in: path
+          description: |
+            id
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PersonInstitutionLink'
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        401:
+          description: Unauthorized
+          #  The WWW-Authenticate header in the response is OAuth.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        403:
+          description: Forbidden
+          # state will be only changed, if the requesting client is contained in
+          # the link and is not the creator of the link request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        409:
+          description: Conflict
+          # Person-Institution-Link can not be approved, because the assumed Person-Institution-Link is in wrong state
+
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+    delete:
+      tags:
+        - deletePersonInstitutionLink
+      summary: Deletes Person-Institution-Link
+      description: Deletes Person-Institution-Link
+      operationId: deletePersonInstitutionLink
+      parameters:
+        - name: id
+          in: path
+          description: Id
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PersonInstitutionLink'
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        401:
+          description: Unauthorized
+          #  The WWW-Authenticate header in the response is OAuth.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        403:
+          description: Forbidden
+          # link will be only deleted, if the requesting client (telematikID)
+          # is contained in the link.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        409:
+          description: Conflict
+          # Person-Institution-Link can not be deleted, because the assumed Person-Institution-Link is in wrong state
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+components:
+  schemas:
+    PersonInstitutionLink:
+      type: object
+      required:
+        - telematikIDHealthcareService
+        - telematikIDPractitionerRole
+      properties:
+        id:
+          description: |
+            The id of the PersonInstitutionLink.
+            Created by the FHIR VZD.
+          type: string
+          readOnly: true
+        telematikIDHealthcareService:
+          description: The telematikID of the relevant healthcareService
+          type: string
+        telematikIDPractitionerRole:
+          description: The telematikID of the relevant practitionerRole
+          type: string
+        createdBy:
+          description: The telematikID of the link proposal creator
+          type: string
+          readOnly: true
+        revokedBy:
+          description: The telematikID of the link proposal revoker
+          type: string
+          readOnly: true
+        status:
+          description: |
+            Status of linking proposal
+              "CREATED"   - The linking proposal is created
+                     -> approvePersonInstitutionLink changes this state to "APPROVED"
+                     -> deletePersonInstitutionLink changes this state to "REVOKED"
+              "APPROVED"  - The linking proposal is accepted by the other party
+                     -> deletePersonInstitutionLink changes this state to "REVOKED"
+              "LINKED"    - The link is created in the FHIR VZD Data
+                     -> deletePersonInstitutionLink changes this state to "REVOKED"
+              "REVOKED"   - The linking proposal is revoked.
+              "UNLINKED"  - The link is removed in the FHIR VZD data.
+                     -> no change of this state is possible
+          type: string
+          enum: [ "CREATED", "APPROVED", "LINKED", "REVOKED", "UNLINKED"]
+          readOnly: true
+        createdAt:
+          description: Timestamp of creation
+          type: string
+          format: date-time
+          readOnly: true
+        approvedAt:
+          description: Timestamp of approval
+          type: string
+          format: date-time
+          readOnly: true
+        linkedAt:
+          description: Timestamp of linkage
+          type: string
+          format: date-time
+          readOnly: true
+        revokedAt:
+          description: Timestamp of revokal
+          type: string
+          format: date-time
+          readOnly: true
+
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+          description: (optionale) Fehlernachricht
+        errors:
+          maxItems: 50
+          minItems: 0
+          type: array
+          items:
+            $ref: '#/components/schemas/InnerError'
+    InnerError:
+      type: object
+      properties:
+        attributeName:
+          description: Name des Attributs, in dem ein Fehler erkannt wurde
+          type: string
+        attributeError:
+          description: Beschreibung des erkannten Fehlers
+          type: string
+
+    InfoObject:
+      required:
+        - title
+        - version
+      readOnly: true
+      type: object
+      properties:
+        title:
+          type: string
+          description: The titel of the application
+          example: "I_VZD_Person_Institution_linking"
+        description:
+          type: string
+          description: A short description of the application
+          example: "REST interface for the linking of persons and institutions in the FHIR VZD"
+        version:
+          type: string
+          description: Die Version von dem OpenAPI Document (YAML Datei)
+          example: "1.6.0"
+
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+security:
+  - bearerAuth: []
+      #              Users of this interface are
+      #               - persons contained in the FHIR VZD
+      #               - organizations contained in the FHIR VZD
+      #              They have to authenticate with a HBA or SMC-B and the smartcard IDP.
+      #              The FHIR VZD accepts the OpenID-Token of the smartcard IDP for authentication and
+      #              returns a FHIR VZD access token which allows the usage of this interface.
+
+      #        Token Endpoint is specific for the environment:
+
+      #        **Testumgebung:**
+    #        * https://auth-tu.vzd.ti-dienste.de:9443/auth/realms/Person_Institution_linking/protocol/openid-connect/token
+
+    #        **Referenzumgebung:**
+    #        * https://auth-ref.vzd.ti-dienste.de:9443/auth/realms/Person_Institution_linking/protocol/openid-connect/token
+
+#        **Produktivumgebung:**
+#        * https://auth.vzd.ti-dienste.de:9443/auth/realms/Person_Institution_linking/protocol/openid-connect/token
+
