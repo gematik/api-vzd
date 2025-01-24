@@ -529,7 +529,7 @@ components:
           default: false
           example: true
         ik:
-          description: The IK managed by the defined health insurace domain
+          description: The IK managed by the defined health insurance domain
           type: array
           items:
             type: integer
