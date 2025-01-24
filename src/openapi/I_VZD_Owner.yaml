@@ -1,0 +1,332 @@
+openapi: 3.0.3
+info:
+  title: I_VZD_Owner
+  description: REST interface for owner-authenticate.
+  version: 1.0.1
+
+  # version 1.0.1
+  #  signin-gematik-idp hinzugefügt
+  #
+  # version 1.0.0
+  #  initiale Version
+
+externalDocs:
+  description: I_VZD_Owner REST interface
+  url: https://www.gematik.de
+servers:
+  - url: "{protocol}://{hostname}"
+    variables:
+      protocol:
+        default: http
+      hostname:
+        default: "localhost:8085"
+tags:
+  - name: getOwnerAuthenticate
+    description: Endpoint for authentication of the owner
+  - name: getSignInGematikIdpDienst
+    description: Endpoint to the signin at the Gematik-IDP-Service
+paths:
+  /owner-authenticate:
+    get:
+      tags:
+        - getOwnerAuthenticate
+      summary: "Endpunkt zur Owner-Authentifizierung"
+      description: "Endpunkt für die Authentisierung des Owners."
+      operationId: getOwnerAuthenticate
+      parameters:
+        - in: header
+          name: Authorization
+          schema:
+            type: string
+          required: false
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OwnerAccessToken'
+        302:
+          description: state, code_challenge and other metadata was successfully resolved and is returned via Location Header.
+          headers:
+            Location:
+              schema:
+                type: string
+              required: true
+        401:
+          description: Unauthorized
+          #  The WWW-Authenticate header in the response is OAuth.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        503:
+          description: Service unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /owner-authenticate-decoupled:
+    post:
+      tags:
+        - postOwnerAuthenticateDecoupled
+      summary: "Endpunkt zur Owner-Backchannel-Authentifizierung"
+      description: "Endpunkt für die Backchannel-Authentisierung des Owners."
+      operationId: postOwnerAuthenticateDecoupled
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              required:
+                - "grant_type"
+              properties:
+                grant_type:
+                  type: string
+                  enum:
+                    - "urn:telematik:params:grant-type:decoupled"
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DecoupledAuthorizationResponse'
+        400:
+          description: "missing or wrong grant type"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        503:
+          description: Service unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /signin-gematik-idp-dienst:
+    get:
+      tags:
+        - getSignInGematikIdpDienst
+      summary: "Endpunkt zum Signin bei dem Gematik-IDP-Dienst"
+      description: "Endpunkt zum Signin bei dem Gematik-IDP-Dienst."
+      operationId: getSignInGematikIdpDienst
+      parameters:
+        - name: code
+          in: query
+          schema:
+            type: string
+          required: true
+        - name: state
+          in: query
+          description: State
+          schema:
+            type: string
+          required: true
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OwnerAccessToken'
+        401:
+          description: Unauthorized
+          #  The WWW-Authenticate header in the response is OAuth.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        503:
+          description: Service unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /signin-gematik-idp-dienst-decoupled:
+    get:
+      tags:
+        - getSignInGematikIdpDienstDecoupled
+      summary: "Endpunkt zum Signin bei dem Gematik-IDP-Dienst (Backchannel-Variante)"
+      description: "Endpunkt zum Signin bei dem Gematik-IDP-Dienst. (Backchannel-Variante)"
+      operationId: getSignInGematikIdpDienstDecoupled
+      parameters:
+        - name: code
+          in: query
+          schema:
+            type: string
+          required: true
+        - name: state
+          in: query
+          description: State
+          schema:
+            type: string
+          required: true
+      responses:
+        200:
+          description: OK
+        503:
+          description: Service unavailable
+  /owner-authenticate-poll:
+    post:
+      tags:
+        - postOwnerAuthenticatePoll
+      summary: "Endpunkt zum Polling des Authentication Results (Backchannel-Variante)."
+      description: "Endpunkt zum Polling des Authentication Results (Backchannel-Variante)."
+      operationId: postOwnerAuthenticatePoll
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              required:
+                - "grant_type"
+                - "auth_req_id"
+              properties:
+                auth_req_id:
+                  type: string
+                grant_type:
+                  type: string
+                  enum:
+                    - "urn:telematik:params:grant-type:decoupled"
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OwnerAccessToken'
+        400:
+          description:
+            "Authentifizierungsfehler"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationError'
+        503:
+          description: Service unavailable
+  /owner-auth-certificate-hash:
+    post:
+      tags:
+        - postOwnerAuthCertificateHash
+      summary: "Endpunkt zum Einspielen und Hash-Persistierung eines Owner-Authenticate Zertifikats."
+      description: "Endpunkt zum Einspielen und Hash-Persistierung eines Owner-Authenticate Zertifikats."
+      operationId: postOwnerAuthCertificateHash
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostCertificateHashRequestBody'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostCertificateHashResponseObject'
+        400:
+          description: Bad Request
+          # Examples for errors:
+          # message "Missing one or multiple required fields 'filePath','zuweisungsgruppe','clientId'"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        503:
+          description: Service unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    Owner:
+      properties:
+        telematikId:
+          type: string
+    OwnerAccessToken:
+      properties:
+        access_token:
+          type: string
+          description: Json-WebToken as ES256
+        token_type:
+          type: string
+          enum:
+            - bearer
+        expires_in:
+          type: integer
+          format: int64
+    DecoupledAuthorizationResponse:
+      properties:
+        auth_req_id:
+          type: string
+        poll_uri:
+          type: string
+        redirect_uri:
+          type: string
+        expires_in:
+          type: integer
+          format: int64
+        interval:
+          type: integer
+          format: int64
+    PostCertificateHashRequestBody:
+      type: object
+      required:
+        - filePath
+        - zuweisungsgruppe
+        - clientId
+      properties:
+        filePath:
+          description: Path to certificate file
+          type: string
+        zuweisungsgruppe:
+          description: Zuweisungsgruppe from ITSM
+          type: string
+        clientId:
+          description: ClientId similar to Keycloak-ClientCredentials
+          type: string
+    PostCertificateHashResponseObject:
+      properties:
+        certificate_hash:
+          type: string
+        zuweisungsgruppe:
+          type: string
+        clientId:
+          type: string
+    AuthenticationError:
+      type: object
+      required:
+        - error
+      properties:
+        error:
+          type: string
+          enum:
+            - "authorization_pending"
+            - "access_denied"
+            - "slow_down"
+            - "expired_token"
+        referenceCode:
+          type: string
+        description:
+          type: string
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+          description: (optionale) Fehlernachricht
+        errors:
+          maxItems: 50
+          minItems: 0
+          type: array
+          items:
+            $ref: '#/components/schemas/InnerError'
+
+    InnerError:
+      type: object
+      properties:
+        attributeName:
+          description: Name des Attributs, in dem ein Fehler erkannt wurde
+          type: string
+        attributeError:
+          description: Beschreibung des erkannten Fehlers
+          type: string
