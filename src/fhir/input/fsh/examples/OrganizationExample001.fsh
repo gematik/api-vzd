@@ -17,7 +17,7 @@ Usage: #example
 Description: "Example of an Organization as to be found in gematik FHIR Directory"
 * meta.tag[Origin] = Origin#ldap
 * active = true
-* extension[organizationVisibility].valueCoding = OrganizationVisibilityCS#hide-erezeptApp
+* extension[organizationVisibility].valueCoding = OrganizationVisibilityCS#hide-versicherte
 * identifier[TelematikID].value = "9-2.58.00000040"
 * type[profession] = OrganizationProfessionOID#1.2.276.0.76.4.58
 * name = "gematik GmbH"

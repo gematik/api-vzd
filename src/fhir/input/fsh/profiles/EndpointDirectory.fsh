@@ -31,6 +31,7 @@ Parent: EndpointDirectory
 Id: endpoint-directory-Strict
 Title: "EndpointDirectory-Strict"
 Description: "Endpoint in gematik Directory with strict constraints"
+* insert Meta
 * meta.tag only CodingWithCodeAndSystem
 * meta.tag
   * ^slicing.rules = #closed

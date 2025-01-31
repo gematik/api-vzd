@@ -22,7 +22,7 @@
     {
       "url": "https://gematik.de/fhir/directory/StructureDefinition/OrganizationVisibility",
       "valueCoding": {
-        "code": "hide-erezeptApp",
+        "code": "hide-versicherte",
         "system": "https://gematik.de/fhir/directory/CodeSystem/OrganizationVisibilityCS"
       }
     }

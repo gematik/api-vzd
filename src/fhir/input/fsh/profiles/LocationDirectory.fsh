@@ -38,6 +38,7 @@ Parent: LocationDirectory
 Id: LocationDirectoryStrict
 Title: "LocationDirectoryStrict"
 Description: "Location in gematik Directory with strict constraints"
+* insert Meta
 * meta.tag
   * ^slicing.rules = #closed
 * identifier 0..0

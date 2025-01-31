@@ -1,12 +1,12 @@
 {
   "resourceType": "CodeSystem",
-  "status": "draft",
+  "status": "active",
   "content": "complete",
   "name": "FacharzttitelDerAerztekammern_OID_URL",
   "id": "facharzttitelderaerztekammern-oid-url",
   "title": "Facharzttitel Der Aerztekammern",
   "description": "Facharzttitel Der Aerztekammern",
-  "version": "0.11.23",
+  "version": "2021-10-15T12:13:26",
   "url": "urn:oid:1.2.276.0.76.5.514",
   "concept": [
     {
@@ -15,7 +15,8 @@
     },
     {
       "code": "012901",
-      "display": "SP Geriatrie"
+      "display": "SP Geriatrie",
+      "definition": "FA Allgemeinmedizin mit SP Geriatrie"
     },
     {
       "code": "021001",
@@ -111,59 +112,73 @@
     },
     {
       "code": "072002",
-      "display": "SP Rheumatologie (Orthopädie)"
+      "display": "SP Rheumatologie (Orthopädie)",
+      "definition": "FA Chirurgie mit SP Rheumatologie (Orthopädie)"
     },
     {
       "code": "072003",
-      "display": "SP Thoraxchirurgie in der Chirurgie"
+      "display": "SP Thoraxchirurgie in der Chirurgie",
+      "definition": "FA Chirurgie mit SP Thoraxchirurgie in der Chirurgie"
     },
     {
       "code": "072004",
-      "display": "SP Thoraxchirurgie in der Herzchirurgie"
+      "display": "SP Thoraxchirurgie in der Herzchirurgie",
+      "definition": "FA Chirurgie mit SP Thoraxchirurgie in der Herzchirurgie"
     },
     {
       "code": "072005",
-      "display": "SP Unfallchirurgie"
+      "display": "SP Unfallchirurgie",
+      "definition": "FA Chirurgie mit SP Unfallchirurgie"
     },
     {
       "code": "072006",
-      "display": "SP Visceralchirurgie"
+      "display": "SP Visceralchirurgie",
+      "definition": "FA Chirurgie mit SP Visceralchirurgie"
     },
     {
       "code": "073001",
-      "display": "TG Echokardiologie herznaher Gefäße"
+      "display": "TG Echokardiologie herznaher Gefäße",
+      "definition": "FA Chirurgie mit TG Echokardiologie herznaher Gefäße"
     },
     {
       "code": "073002",
-      "display": "TG Gefäßchirurgie"
+      "display": "TG Gefäßchirurgie",
+      "definition": "FA Chirurgie mit TG Gefäßchirurgie"
     },
     {
       "code": "073003",
-      "display": "TG Herz- und Gefäßchirurgie"
+      "display": "TG Herz- und Gefäßchirurgie",
+      "definition": "FA Chirurgie mit TG Herz- und Gefäßchirurgie"
     },
     {
       "code": "073004",
-      "display": "TG Kinderchirurgie"
+      "display": "TG Kinderchirurgie",
+      "definition": "FA Chirurgie mit TG Kinderchirurgie"
     },
     {
       "code": "073005",
-      "display": "TG Plastische Chirurgie"
+      "display": "TG Plastische Chirurgie",
+      "definition": "FA Chirurgie mit TG Plastische Chirurgie"
     },
     {
       "code": "073006",
-      "display": "TG Rheumatologie (Orthopädie)"
+      "display": "TG Rheumatologie (Orthopädie)",
+      "definition": "FA Chirurgie mit TG Rheumatologie (Orthopädie)"
     },
     {
       "code": "073007",
-      "display": "TG Thorax- und Kardiovaskularchirurgie"
+      "display": "TG Thorax- und Kardiovaskularchirurgie",
+      "definition": "FA Chirurgie mit TG Thorax- und Kardiovaskularchirurgie"
     },
     {
       "code": "073008",
-      "display": "TG Thoraxchirurgie"
+      "display": "TG Thoraxchirurgie",
+      "definition": "FA Chirurgie mit TG Thoraxchirurgie"
     },
     {
       "code": "073009",
-      "display": "TG Unfallchirurgie"
+      "display": "TG Unfallchirurgie",
+      "definition": "FA Chirurgie mit TG Unfallchirurgie"
     },
     {
       "code": "081001",
@@ -179,15 +194,18 @@
     },
     {
       "code": "082101",
-      "display": "SP Gynäkologische Endokrinologie und Reproduktionsmedizin"
+      "display": "SP Gynäkologische Endokrinologie und Reproduktionsmedizin",
+      "definition": "FA Frauenheilkunde und Geburtshilfe mit SP Gynäkologische Endokrinologie und Reproduktionsmedizin"
     },
     {
       "code": "082102",
-      "display": "SP Gynäkologische Onkologie"
+      "display": "SP Gynäkologische Onkologie",
+      "definition": "FA Frauenheilkunde und Geburtshilfe mit SP Gynäkologische Onkologie"
     },
     {
       "code": "082103",
-      "display": "SP Spezielle Geburtshilfe und Perinatalmedizin"
+      "display": "SP Spezielle Geburtshilfe und Perinatalmedizin",
+      "definition": "FA Frauenheilkunde und Geburtshilfe mit SP Spezielle Geburtshilfe und Perinatalmedizin"
     },
     {
       "code": "091001",
@@ -203,15 +221,18 @@
     },
     {
       "code": "093001",
-      "display": "TG Audiologie"
+      "display": "TG Audiologie",
+      "definition": "FA Hals- Nasen- Ohrenheilkunde mit TG Audiologie"
     },
     {
       "code": "093002",
-      "display": "TG Phoniatrie"
+      "display": "TG Phoniatrie",
+      "definition": "FA Hals- Nasen- Ohrenheilkunde mit TG Phoniatrie"
     },
     {
       "code": "093003",
-      "display": "TG Phoniatrie und Pädaudiologie"
+      "display": "TG Phoniatrie und Pädaudiologie",
+      "definition": "FA Hals- Nasen- Ohrenheilkunde mit TG Phoniatrie und Pädaudiologie"
     },
     {
       "code": "101001",
@@ -343,7 +364,8 @@
     },
     {
       "code": "142901",
-      "display": "SP Endokrinologie und Diabetologie"
+      "display": "SP Endokrinologie und Diabetologie",
+      "definition": "FA Innere Medizin mit SP Endokrinologie und Diabetologie"
     },
     {
       "code": "142003",
@@ -351,71 +373,88 @@
     },
     {
       "code": "142004",
-      "display": "SP Geriatrie"
+      "display": "SP Geriatrie",
+      "definition": "FA Innere Medizin mit SP Geriatrie"
     },
     {
       "code": "142005",
-      "display": "SP Hämatologie und Internistische Onkologie"
+      "display": "SP Hämatologie und Internistische Onkologie",
+      "definition": "FA Innere Medizin mit SP Hämatologie und Internistische Onkologie"
     },
     {
       "code": "142006",
-      "display": "SP Infektiologie"
+      "display": "SP Infektiologie",
+      "definition": "FA Innere Medizin mit SP Infektiologie"
     },
     {
       "code": "142007",
-      "display": "SP Kardiologie"
+      "display": "SP Kardiologie",
+      "definition": "FA Innere Medizin mit SP Kardiologie"
     },
     {
       "code": "142008",
-      "display": "SP Nephrologie"
+      "display": "SP Nephrologie",
+      "definition": "FA Innere Medizin mit SP Nephrologie"
     },
     {
       "code": "142009",
-      "display": "SP Pneumologie"
+      "display": "SP Pneumologie",
+      "definition": "FA Innere Medizin mit SP Pneumologie"
     },
     {
       "code": "142010",
-      "display": "SP Rheumatologie"
+      "display": "SP Rheumatologie",
+      "definition": "FA Innere Medizin mit SP Rheumatologie"
     },
     {
       "code": "143001",
-      "display": "TG Diabetologie"
+      "display": "TG Diabetologie",
+      "definition": "FA Innere Medizin mit TG Diabetologie"
     },
     {
       "code": "143002",
-      "display": "TG Endokrinologie"
+      "display": "TG Endokrinologie",
+      "definition": "FA Innere Medizin mit TG Endokrinologie"
     },
     {
       "code": "143003",
-      "display": "TG Gastroenterologie"
+      "display": "TG Gastroenterologie",
+      "definition": "FA Innere Medizin mit TG Gastroenterologie"
     },
     {
       "code": "143004",
-      "display": "TG Hämatologie"
+      "display": "TG Hämatologie",
+      "definition": "FA Innere Medizin mit TG Hämatologie"
     },
     {
       "code": "143005",
-      "display": "TG Infektions- und Tropenmedizin"
+      "display": "TG Infektions- und Tropenmedizin",
+      "definition": "FA Innere Medizin mit TG Infektions- und Tropenmedizin"
     },
     {
       "code": "143006",
-      "display": "TG Kardiologie"
+      "display": "TG Kardiologie",
+      "definition": "FA Innere Medizin mit TG Kardiologie"
     },
     {
       "code": "143901",
-      "display": "TG Kardiologie und Angiologie"
+      "display": "TG Kardiologie und Angiologie",
+      "definition": "FA Innere Medizin mit TG Kardiologie und Angiologie"
     },
     {
       "code": "143007",
-      "display": "TG Lungen- und Bronchialheilkunde"
+      "display": "TG Lungen- und Bronchialheilkunde",
+      "definition": "FA Innere Medizin mit TG Lungen- und Bronchialheilkunde"
     },
     {
       "code": "143008",
-      "display": "TG Nephrologie"
+      "display": "TG Nephrologie",
+      "definition": "FA Innere Medizin mit TG Nephrologie"
     },
     {
       "code": "143009",
-      "display": "TG Rheumatologie"
+      "display": "TG Rheumatologie",
+      "definition": "FA Innere Medizin mit TG Rheumatologie"
     },
     {
       "code": "151002",
@@ -435,79 +474,98 @@
     },
     {
       "code": "152001",
-      "display": "SP Infektiologie"
+      "display": "SP Infektiologie",
+      "definition": "FA Kinder- und Jugendmedizin mit SP Infektiologie"
     },
     {
       "code": "152201",
-      "display": "SP Kinder- und Jugend-Hämatologie und -Onkologie"
+      "display": "SP Kinder- und Jugend-Hämatologie und -Onkologie",
+      "definition": "FA Kinder- und Jugendmedizin mit SP Kinder- und Jugend-Hämatologie und -Onkologie"
     },
     {
       "code": "152202",
-      "display": "SP Kinder- und Jugend-Kardiologie"
+      "display": "SP Kinder- und Jugend-Kardiologie",
+      "definition": "FA Kinder- und Jugendmedizin mit SP Kinder- und Jugend-Kardiologie"
     },
     {
       "code": "152101",
-      "display": "SP Kinder-Hämatologie und -Onkologie"
+      "display": "SP Kinder-Hämatologie und -Onkologie",
+      "definition": "FA Kinder- und Jugendmedizin mit SP Kinder-Hämatologie und -Onkologie"
     },
     {
       "code": "152002",
-      "display": "SP Kinder-Kardiologie"
+      "display": "SP Kinder-Kardiologie",
+      "definition": "FA Kinder- und Jugendmedizin mit SP Kinder-Kardiologie"
     },
     {
       "code": "152906",
-      "display": "SP Kinderpneumologie"
+      "display": "SP Kinderpneumologie",
+      "definition": "FA Kinder- und Jugendmedizin mit SP Kinderpneumologie"
     },
     {
       "code": "152003",
-      "display": "SP Neonatologie"
+      "display": "SP Neonatologie",
+      "definition": "FA Kinder- und Jugendmedizin mit SP Neonatologie"
     },
     {
       "code": "152903",
-      "display": "SP Nephrologie"
+      "display": "SP Nephrologie",
+      "definition": "FA Kinder- und Jugendmedizin mit SP Nephrologie"
     },
     {
       "code": "152102",
-      "display": "SP Neuropädiatrie"
+      "display": "SP Neuropädiatrie",
+      "definition": "FA Kinder- und Jugendmedizin mit SP Neuropädiatrie"
     },
     {
       "code": "152904",
-      "display": "SP Pädiatrische Rheumatologie"
+      "display": "SP Pädiatrische Rheumatologie",
+      "definition": "FA Kinder- und Jugendmedizin mit SP Pädiatrische Rheumatologie"
     },
     {
       "code": "152905",
-      "display": "SP Pulmologie in der Kinder- und Jugendmedizin"
+      "display": "SP Pulmologie in der Kinder- und Jugendmedizin",
+      "definition": "FA Kinder- und Jugendmedizin mit SP Pulmologie in der Kinder- und Jugendmedizin"
     },
     {
       "code": "153001",
-      "display": "TG Kinderdiabetologie"
+      "display": "TG Kinderdiabetologie",
+      "definition": "FA Kinder- und Jugendmedizin mit TG Kinderdiabetologie"
     },
     {
       "code": "153002",
-      "display": "TG Kindergastroenterologie"
+      "display": "TG Kindergastroenterologie",
+      "definition": "FA Kinder- und Jugendmedizin mit TG Kindergastroenterologie"
     },
     {
       "code": "153003",
-      "display": "TG Kinderhämatologie"
+      "display": "TG Kinderhämatologie",
+      "definition": "FA Kinder- und Jugendmedizin mit TG Kinderhämatologie"
     },
     {
       "code": "153004",
-      "display": "TG Kinderkardiologie"
+      "display": "TG Kinderkardiologie",
+      "definition": "FA Kinder- und Jugendmedizin mit TG Kinderkardiologie"
     },
     {
       "code": "153005",
-      "display": "TG Kinderlungen- und -bronchialheilkunde"
+      "display": "TG Kinderlungen- und -bronchialheilkunde",
+      "definition": "FA Kinder- und Jugendmedizin mit TG Kinderlungen- und -bronchialheilkunde"
     },
     {
       "code": "153006",
-      "display": "TG Kinderneonatologie"
+      "display": "TG Kinderneonatologie",
+      "definition": "FA Kinder- und Jugendmedizin mit TG Kinderneonatologie"
     },
     {
       "code": "153007",
-      "display": "TG Kindernephrologie"
+      "display": "TG Kindernephrologie",
+      "definition": "FA Kinder- und Jugendmedizin mit TG Kindernephrologie"
     },
     {
       "code": "153008",
-      "display": "TG Kinderneuropsychiatrie"
+      "display": "TG Kinderneuropsychiatrie",
+      "definition": "FA Kinder- und Jugendmedizin mit TG Kinderneuropsychiatrie"
     },
     {
       "code": "161001",
@@ -523,7 +581,8 @@
     },
     {
       "code": "173001",
-      "display": "TG Medizinische Mikrobiologie"
+      "display": "TG Medizinische Mikrobiologie",
+      "definition": "FA Laboratoriumsmedizin mit TG Medizinische Mikrobiologie"
     },
     {
       "code": "181001",
@@ -563,7 +622,8 @@
     },
     {
       "code": "203001",
-      "display": "TG Kinderneuropsychiatrie"
+      "display": "TG Kinderneuropsychiatrie",
+      "definition": "FA Nervenheilkunde mit TG Kinderneuropsychiatrie"
     },
     {
       "code": "211001",
@@ -575,7 +635,8 @@
     },
     {
       "code": "222901",
-      "display": "SP Geriatrie"
+      "display": "SP Geriatrie",
+      "definition": "FA Neurologie mit SP Geriatrie"
     },
     {
       "code": "231001",
@@ -607,7 +668,8 @@
     },
     {
       "code": "253001",
-      "display": "TG Neuropathologie"
+      "display": "TG Neuropathologie",
+      "definition": "FA Pathologie mit TG Neuropathologie"
     },
     {
       "code": "261001",
@@ -623,7 +685,8 @@
     },
     {
       "code": "263001",
-      "display": "TG Klinische Pharmakologie"
+      "display": "TG Klinische Pharmakologie",
+      "definition": "FA Pharmakologie mit TG Klinische Pharmakologie"
     },
     {
       "code": "381201",
@@ -655,7 +718,8 @@
     },
     {
       "code": "292901",
-      "display": "SP Geriatrie"
+      "display": "SP Geriatrie",
+      "definition": "FA Psychiatrie und Psychotherapie mit SP Geriatrie"
     },
     {
       "code": "301101",
@@ -683,27 +747,33 @@
     },
     {
       "code": "312201",
-      "display": "SP Kinder- und Jugendradiologie"
+      "display": "SP Kinder- und Jugendradiologie",
+      "definition": "FA Radiologie mit SP Kinder- und Jugendradiologie"
     },
     {
       "code": "312001",
-      "display": "SP Kinderradiologie"
+      "display": "SP Kinderradiologie",
+      "definition": "FA Radiologie mit SP Kinderradiologie"
     },
     {
       "code": "312002",
-      "display": "SP Neuroradiologie"
+      "display": "SP Neuroradiologie",
+      "definition": "FA Radiologie mit SP Neuroradiologie"
     },
     {
       "code": "313001",
-      "display": "TG Kinderradiologie"
+      "display": "TG Kinderradiologie",
+      "definition": "FA Radiologie mit TG Kinderradiologie"
     },
     {
       "code": "313002",
-      "display": "TG Neuroradiologie"
+      "display": "TG Neuroradiologie",
+      "definition": "FA Radiologie mit TG Neuroradiologie"
     },
     {
       "code": "313003",
-      "display": "TG Strahlentherapie"
+      "display": "TG Strahlentherapie",
+      "definition": "FA Radiologie mit TG Strahlentherapie"
     },
     {
       "code": "321001",
@@ -735,7 +805,8 @@
     },
     {
       "code": "142902",
-      "display": "SP Geriatrie"
+      "display": "SP Geriatrie",
+      "definition": "Facharzt für Innere Medizin mit Schwerpunkt Geriatrie"
     },
     {
       "code": "331001",
@@ -798,5 +869,8 @@
       "display": "Praktische Ärztin/Praktischer Arzt (EWG-Recht ab 86/457/EWG)"
     }
   ],
+  "experimental": false,
+  "publisher": "gematik GmbH",
+  "date": "2024-10-29",
   "count": 197
 }

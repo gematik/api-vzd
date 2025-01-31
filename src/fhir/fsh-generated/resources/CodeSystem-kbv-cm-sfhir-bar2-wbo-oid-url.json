@@ -1,45 +1,41 @@
 {
   "resourceType": "CodeSystem",
-  "status": "draft",
+  "status": "active",
   "content": "complete",
   "name": "KBV_CS_SFHIR_BAR2_WBO_OID_URL",
   "id": "kbv-cm-sfhir-bar2-wbo-oid-url",
   "title": "KBV_CS_SFHIR_BAR2_WBO Fachgruppen",
   "description": "Fachgruppen-Codes nach Weiterbildungsordnung Bundesarztregister, BAR-Schlüsselverzeichnis Anlage 4",
-  "version": "0.11.23",
+  "version": "1.18",
   "url": "urn:oid:1.2.276.0.76.5.114",
   "concept": [
     {
       "code": "010",
-      "display": "FA Allgemeinmedizin"
+      "display": "FÄ/FA Allgemeinmedizin (alte (M-)WBO, kammerindividuell, EU-Ärzte)"
     },
     {
       "code": "020",
-      "display": "FA Anästhesiologie"
+      "display": "FÄ/FA Anästhesiologie"
     },
     {
       "code": "030",
-      "display": "FA Augenheilkunde"
+      "display": "FÄ/FA Augenheilkunde"
     },
     {
       "code": "050",
-      "display": "FA Frauenheilkunde und Geburtshilfe"
+      "display": "FÄ/FA Frauenheilkunde und Geburtshilfe"
     },
     {
       "code": "060",
-      "display": "FA Hals-, Nasen-, Ohrenheilkunde"
+      "display": "FÄ/FA Hals-, Nasen-, Ohrenheilkunde"
     },
     {
       "code": "070",
-      "display": "FA Haut- und Geschlechtskrankheiten"
+      "display": "FÄ/FA Haut- und Geschlechtskrankheiten"
     },
     {
       "code": "080",
-      "display": "FA Innere Medizin"
-    },
-    {
-      "code": "091",
-      "display": "SP Kinderkardiologie"
+      "display": "FÄ/FA Innere Medizin"
     },
     {
       "code": "093",
@@ -47,39 +43,39 @@
     },
     {
       "code": "102",
-      "display": "FA Kinder- und Jugendpsychiatrie und -psychotherapie"
+      "display": "FÄ/FA Kinder- und Jugendpsychiatrie und -psychotherapie"
     },
     {
       "code": "110",
-      "display": "FA Laboratoriumsmedizin"
+      "display": "FÄ/FA Laboratoriumsmedizin"
     },
     {
       "code": "130",
-      "display": "FA Mund-Kiefer-Gesichts-Chirurgie"
+      "display": "FÄ/FA Mund-Kiefer-Gesichtschirurgie"
     },
     {
       "code": "142",
-      "display": "FA Neurologie"
+      "display": "FÄ/FA Neurologie"
+    },
+    {
+      "code": "144",
+      "display": "Psychotherapeutisch tätige Ärztin/Psychotherapeutisch tätiger Arzt (Zusatzbezeichnung)"
     },
     {
       "code": "147",
-      "display": "FA Psychiatrie und Psychotherapie"
+      "display": "FÄ/FA Psychiatrie und Psychotherapie"
     },
     {
       "code": "150",
-      "display": "FA Neurochirurgie"
+      "display": "FÄ/FA Neurochirurgie"
     },
     {
       "code": "170",
-      "display": "FA Pathologie"
+      "display": "FÄ/FA Pathologie"
     },
     {
       "code": "180",
-      "display": "FA Pharmakologie und Toxikologie"
-    },
-    {
-      "code": "196",
-      "display": "SP Kinderradiologie"
+      "display": "FÄ/FA Pharmakologie und Toxikologie"
     },
     {
       "code": "197",
@@ -87,103 +83,183 @@
     },
     {
       "code": "200",
-      "display": "FA Urologie"
+      "display": "FÄ/FA Urologie"
     },
     {
       "code": "210",
-      "display": "FA Arbeitsmedizin"
+      "display": "FÄ/FA Arbeitsmedizin"
     },
     {
       "code": "220",
-      "display": "FA Nuklearmedizin"
+      "display": "FÄ/FA Nuklearmedizin"
     },
     {
       "code": "230",
-      "display": "FA Öffentliches Gesundheitswesen"
+      "display": "FÄ/FA Öffentliches Gesundheitswesen"
     },
     {
       "code": "240",
-      "display": "FA Rechtsmedizin"
+      "display": "FÄ/FA Rechtsmedizin"
     },
     {
       "code": "250",
-      "display": "FA Hygiene und Umweltmedizin"
+      "display": "FÄ/FA Hygiene und Umweltmedizin"
     },
     {
       "code": "271",
-      "display": "FA Neuropathologie"
+      "display": "FÄ/FA Neuropathologie"
     },
     {
       "code": "281",
-      "display": "FA Klinische Pharmakologie"
+      "display": "FÄ/FA Klinische Pharmakologie"
     },
     {
       "code": "291",
-      "display": "FA Strahlentherapie"
+      "display": "FÄ/FA Strahlentherapie"
     },
     {
       "code": "301",
-      "display": "FA Anatomie"
+      "display": "FÄ/FA Anatomie"
     },
     {
       "code": "302",
-      "display": "FA Biochemie"
+      "display": "FÄ/FA Biochemie"
     },
     {
       "code": "303",
-      "display": "FA Transfusionsmedizin"
+      "display": "FÄ/FA Transfusionsmedizin"
     },
     {
-      "code": "304",
-      "display": "FA Kinderchirurgie"
+      "code": "305",
+      "display": "Medizinische Genetik"
+    },
+    {
+      "code": "306",
+      "display": "Medizinische Informatik"
+    },
+    {
+      "code": "307",
+      "display": "Pathologische Physiologie"
     },
     {
       "code": "308",
-      "display": "FA Physiologie"
+      "display": "FÄ/FA Physiologie"
     },
     {
       "code": "313",
-      "display": "FA Herzchirurgie"
+      "display": "FÄ/FA Herzchirurgie"
     },
     {
       "code": "314",
-      "display": "FA Humangenetik"
+      "display": "FÄ/FA Humangenetik"
+    },
+    {
+      "code": "317",
+      "display": "Physiologische Chemie"
     },
     {
       "code": "330",
-      "display": "FA Physikalische und Rehabilitative Medizin"
+      "display": "FÄ/FA Physikalische und Rehabilitative Medizin"
     },
     {
       "code": "341",
-      "display": "FA Kinder-und Jugendmedizin"
+      "display": "FÄ/FA Kinder- und Jugendmedizin"
+    },
+    {
+      "code": "350",
+      "display": "Biomathematik"
+    },
+    {
+      "code": "351",
+      "display": "Biophysik"
+    },
+    {
+      "code": "352",
+      "display": "Geschichte der Medizin"
+    },
+    {
+      "code": "353",
+      "display": "Industrietoxikologie"
+    },
+    {
+      "code": "354",
+      "display": "Klinische Strahlenphysik"
+    },
+    {
+      "code": "355",
+      "display": "Medizinische Wissenschaftsinformation"
+    },
+    {
+      "code": "356",
+      "display": "Medizinische Physik und Biophysik"
+    },
+    {
+      "code": "358",
+      "display": "Fachbiologie der Medizin"
     },
     {
       "code": "359",
-      "display": "Fachzahnarzt für Mikrobiologie"
+      "display": "Fachzahnärztin/Fachzahnarzt für Mikrobiologie"
     },
     {
       "code": "360",
-      "display": "Fachzahnarzt für Kieferchirurgie (§ 6 Abs. 1 BMV)"
+      "display": "Fachzahnärztin/Fachzahnarzt für Kieferchirurgie (§ 6 Abs. 1 BMV-Ä)"
     },
     {
       "code": "361",
-      "display": "Fachzahnarzt für theoretisch-experimentelle Medizin"
+      "display": "Fachzahnärztin/Fachzahnarzt für theoretisch-experimentelle Medizin (§ 6 Abs. 2 BMV-Ä)"
+    },
+    {
+      "code": "371",
+      "display": "Fachwissenschaftlerin/Fachwissenschaftler Chemie und Labordiagnostik"
+    },
+    {
+      "code": "372",
+      "display": "Fachwissenschaftlerin/Fachwissenschaftler Genetik"
+    },
+    {
+      "code": "373",
+      "display": "Fachwissenschaftlerin/Fachwissenschaftler Immunologie"
+    },
+    {
+      "code": "374",
+      "display": "Fachwissenschaftlerin/Fachwissenschaftler Zytologie/Histologie"
+    },
+    {
+      "code": "470",
+      "display": "Psychologische Psychotherapeutin/Psychologischer Psychotherapeut"
+    },
+    {
+      "code": "471",
+      "display": "Kinder- und Jugendlichenpsychotherapeutin/Kinder- und Jugendlichenpsychotherapeut"
+    },
+    {
+      "code": "474",
+      "display": "Fachpsychotherapeutin/Fachpsychotherapeut für Erwachsene"
+    },
+    {
+      "code": "475",
+      "display": "Fachpsychotherapeutin/Fachpsychotherapeut für Kinder und Jugendliche"
+    },
+    {
+      "code": "476",
+      "display": "Fachpsychotherapeutin/Fachpsychotherapeut für Neuropsychologische Psychotherapie"
     },
     {
       "code": "511",
-      "display": "FA Gefäßchirurgie"
+      "display": "FÄ/FA Gefäßchirurgie"
     },
     {
       "code": "512",
-      "display": "FA Orthopädie und Unfallchirurgie"
+      "display": "FÄ/FA Orthopädie und Unfallchirurgie"
     },
     {
       "code": "513",
-      "display": "FA Thoraxchirurgie"
+      "display": "FÄ/FA Thoraxchirurgie"
     },
     {
       "code": "514",
-      "display": "FA Visceralchirurgie"
+      "display": "FÄ/FA Visceralchirurgie/FÄ/FA Viszeralchirurgie"
     },
     {
       "code": "515",
@@ -198,44 +274,36 @@
       "display": "SP Spezielle Geburtshilfe und Perinatalmedizin"
     },
     {
-      "code": "518",
-      "display": "FA Sprach-, Stimm- und kindliche Hörstörungen"
-    },
-    {
       "code": "521",
-      "display": "FA Innere Medizin und (SP) Angiologie"
+      "display": "FÄ/FA Innere Medizin und (SP) Angiologie"
     },
     {
       "code": "522",
-      "display": "FA Innere Medizin und (SP) Endokrinologie und Diabetologie"
+      "display": "FÄ/FA Innere Medizin und (SP) Endokrinologie und Diabetologie"
     },
     {
       "code": "523",
-      "display": "FA Innere Medizin und (SP) Gastroenterologie"
+      "display": "FÄ/FA Innere Medizin und (SP) Gastroenterologie"
     },
     {
       "code": "524",
-      "display": "FA Innere Medizin und (SP) Hämatologie und Onkologie"
+      "display": "FÄ/FA Innere Medizin und (SP) Hämatologie und Onkologie"
     },
     {
       "code": "525",
-      "display": "FA Innere Medizin und (SP) Kardiologie"
+      "display": "FÄ/FA Innere Medizin und (SP) Kardiologie"
     },
     {
       "code": "526",
-      "display": "FA Innere Medizin und (SP) Nephrologie"
+      "display": "FÄ/FA Innere Medizin und (SP) Nephrologie"
     },
     {
       "code": "527",
-      "display": "FA Innere Medizin und (SP) Pneumologie"
+      "display": "FÄ/FA Innere Medizin und (SP) Pneumologie"
     },
     {
       "code": "528",
-      "display": "FA Innere Medizin und (SP) Rheumatologie"
-    },
-    {
-      "code": "530",
-      "display": "SP Kinder-Hämatologie und -Onkologie"
+      "display": "FÄ/FA Innere Medizin und (SP) Rheumatologie"
     },
     {
       "code": "531",
@@ -243,7 +311,7 @@
     },
     {
       "code": "532",
-      "display": "FA Mikrobiologie, Virologie und Infektionsepidemiologie"
+      "display": "FÄ/FA Mikrobiologie, Virologie und Infektionsepidemiologie"
     },
     {
       "code": "533",
@@ -251,20 +319,43 @@
     },
     {
       "code": "534",
-      "display": "FA Psychosomatische Medizin und Psychotherapie"
+      "display": "FÄ/FA Psychosomatische Medizin und Psychotherapie"
     },
     {
       "code": "535",
-      "display": "FA Radiologie (neue (M-)WBO)"
+      "display": "FÄ/FA Radiologie (neue (M-)WBO)"
     },
     {
-      "code": "542",
-      "display": "FA Plastische und Ästhetische Chirurgie"
+      "code": "573",
+      "display": "FÄ/FA Kinder -und Jugendchirurgie"
     },
     {
-      "code": "544",
-      "display": "FA Allgemeinchirurgie"
+      "code": "574",
+      "display": "FÄ/FA Plastische, Rekonstruktive und Ästhetische Chirurgie"
+    },
+    {
+      "code": "575",
+      "display": "FÄ/FA Phoniatrie und Pädaudiologie ((M-)WBO 2018)"
+    },
+    {
+      "code": "576",
+      "display": "SP Kinder- und Jugend-Hämatologie und -Onkologie"
+    },
+    {
+      "code": "577",
+      "display": "SP Kinder- und Jugend-Kardiologie"
+    },
+    {
+      "code": "578",
+      "display": "SP Kinder- und Jugendradiologie"
+    },
+    {
+      "code": "579",
+      "display": "FÄ/FA Innere Medizin und Infektiologie ((M-)WBO 2018)"
     }
   ],
-  "count": 64
+  "experimental": false,
+  "publisher": "gematik GmbH",
+  "date": "2024-10-29",
+  "count": 86
 }

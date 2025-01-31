@@ -1,74 +1,92 @@
 {
   "resourceType": "CodeSystem",
-  "status": "draft",
+  "status": "active",
   "content": "complete",
   "name": "NichtAerztlicheFachrichtungen_OID_URL",
   "id": "nicht-aerztliche-fachrichtungen-oid-url",
   "title": "NichtAerztlicheFachrichtungen_OID_URL",
   "description": "NichtAerztlicheFachrichtungen_OID_URL",
-  "version": "0.11.23",
+  "version": "2021-11-14T15:59:46",
   "url": "urn:oid:1.3.6.1.4.1.19376.3.276.1.5.5",
   "concept": [
     {
       "code": "ERG",
-      "display": "Ergotherapie"
+      "display": "Ergotherapie",
+      "definition": "Ergotherapie unterstützt und begleitet Menschen jeden Alters, die in ihrer Handlungsfähigkeit eingeschränkt oder von Einschränkung bedroht sind. Ziel ist, sie bei der Durchführung für sie bedeutungsvoller Betätigungen in den Bereichen Selbstversorgung, Produktivität und Freizeit in ihrer persönlichen Umwelt zu stärken.Hierbei dienen spezifische Aktivitäten, Umweltanpassung und Beratung dazu, dem Menschen Handlungsfähigkeit im Alltag, gesellschaftliche Teilhabe und eine Verbesserung seiner Lebensqualität zu ermöglichen. (Definition vom \"Deutschen Verband der Ergotherapeuten e.V.\")Typischerweise werden Dokumente, die von Angehörigen der folgenden Berufsgruppen erstellt werden, mit diesem Code versehen:* Ergotherapeutin/ Ergotherapeut"
     },
     {
       "code": "ERN",
-      "display": "Ernährung und Diätetik"
+      "display": "Ernährung und Diätetik",
+      "definition": "Das Fachgebiet der Ernährung und Diätetik deckt die Tätigkeiten folgender Berufe ab:* Diätassistentin/ Diätassistent* Diätköchin/ Diätkoch* Ernährungsberaterin/ Ernährungsberater* Oekotrophologin/ Oekotrophologe* Diabetesassistentin/ Diabetesassistent* Diabetesberaterin/ Diabetesberater"
     },
     {
       "code": "FOR",
-      "display": "Forschung"
+      "display": "Forschung",
+      "definition": "Das Konzept der Forschung deckt die Tätigkeiten folgender Berufe ab:* Clinical Trial Manager* Fachwissenschaftler/-innen in der Medizin* Klinischer Monitor* Studienassistentin/ Studienassistent* Study Nurse"
     },
     {
       "code": "PFL",
-      "display": "Pflege und Betreuung"
+      "display": "Pflege und Betreuung",
+      "definition": "Pflege umfasst die eigenverantwortliche Versorgung und Betreuung, allein oder in Kooperation mit anderen Berufsangehörigen, von Menschen aller Altersgruppen, von Familien oder Lebensgemeinschaften, sowie von Gruppen und sozialen Gemeinschaften, ob krank oder gesund, in allen Lebenssituationen (Settings). Pflege schließt die Förderung der Gesundheit, Verhütung von Krankheiten und die Versorgung und Betreuung kranker, behinderter und sterbender Menschen ein. Weitere Schlüsselaufgaben der Pflege sind Wahrnehmung der Interessen und Bedürfnisse (Advocacy), Förderung einer sicheren Umgebung, Forschung, Mitwirkung in der Gestaltung der Gesundheitspolitik sowie im Management des Gesundheitswesens und in der Bildung. (Definition der Pflege vom \"International Council of Nurses ICN\" übersetzt vom Deutschen Berufsverband für Pflegeberufe) Das Konzept deckt die Tätigkeiten folgender Berufe ab: Pflegeassistent / Alltagsbetreuer (m/w) Servicehelfer im Sozial- und Gesundheitswesen (m/w) Wundexperte (m/w) Stomatherapeutin/ Stomatherapeut Heilerziehungspflegerin/ Heilerziehungspfleger Gesundheits- und Krankenpflegehelferin/ Gesundheits- und Krankenpflegehelfer Gesundheits- und Krankenpflegerin/ Gesundheits- und Krankenpfleger Gesundheits- und Pflegeassistentin/ Gesundheits- und Pflegeassistent Gesundheits- und Pflegeberaterin/ Gesundheits- und Pflegeberater Pflegesachverständige/ Pflegesachverständiger"
     },
     {
       "code": "ALT",
-      "display": "Altenpflege"
+      "display": "Altenpflege",
+      "definition": "Altenpfleger und Altenpflegehelfer pflegen und versorgen gesunde, kranke und pflegebedürftige alte Menschen. Neben den sozial-pflegerischen Aufgaben (z.B. Hilfe bei der Körperpflege und beim Essen) kommen den Altenpflegern und Altenpflegehelfern auch medizinisch-pflegerische Aufgaben zu (z.B. Unterstützung bei therapeutischen Maßnahmen der Rehabilitation oder das Ausführen ärztlicher Verordnungen wie das Wechseln von Verbänden, das Verabreichen von Medikamenten). (Definition der Gesundheitsberichterstattung des Bundes)Typischerweise werden Dokumente, die von Angehörigen der folgenden Berufsgruppen erstellt werden, mit diesem Code versehen:* Altenpflegerin/ Altenpfleger"
     },
     {
       "code": "KIN",
-      "display": "Kinderpflege"
+      "display": "Kinderpflege",
+      "definition": "Die Tätigkeitsfelder der Gesundheits- und Kinderkrankenpflege umfassen: Die Gestaltung eines Entwicklungsfördernden Umfeldes, Beratung über entsprechende Maßnahmen und Gesundheitsaufklärung, Entlastung der pflegenden Angehörigen, physische und psychische Betreuung, Entwicklung von Krankheitskonzepten, Unterstützung bei der Teilnahme am gesellschaftlichen Leben und Gutachtertätigkeit. (Definition vom Berufsverband Kinderkrankenpflege Deutschland e.V.) Typischerweise werden Dokumente, die von Angehörigen der folgenden Berufsgruppen erstellt werden, mit diesem Code versehen: - Gesundheits- und Kinderkrankenpflegerin/ Gesundheits- und Kinderkrankenpfleger"
     },
     {
       "code": "PAT",
-      "display": "Patient außerhalb der Betreuung"
+      "display": "Patient außerhalb der Betreuung",
+      "definition": "Dieses Konzept kann zur Kennzeichnung der Herkunft von Dokumenten verwendet werden, die der Patient selbstständig erstellt und eingestellt hat. Zum Beispiel über ein Patientenportal oder eine Smartphone-App. Daten die vom Patienten über eine solche Lösung stellvertretend für einen Heilberufler eingestellt werden (z.B. gescannter Arztbrief, DICOMDVD) sollten nicht dieses Konzept, sondern das Konzept, welches für den Heilberufler vorgesehen ist, verwenden."
     },
     {
       "code": "PHZ",
-      "display": "Pharmazeutik"
+      "display": "Pharmazeutik",
+      "definition": "Das Konzept der Pharmazeutik deckt die Tätigkeiten folgender Berufe ab:* Pharmakantin/ Pharmakant* Pharmakovigilantin/ Pharmakovigilant* Pharmazeutisch-kaufmännische Angestellte/ Pharmazeutisch-kaufmännischer Angestellter* Pharmazeutisch-technische Assistentin/ Pharmazeutisch-technischer Assistent* Apothekerin/Apotheker"
     },
     {
       "code": "POD",
-      "display": "Podologie"
+      "display": "Podologie",
+      "definition": "Podologie ist die (nicht-ärztliche) Fuß-Heilkunde und wird von Podologen/Podologinnen praktiziert."
     },
     {
       "code": "PRV",
-      "display": "Prävention"
+      "display": "Prävention",
+      "definition": "Die Prävention deckt die Tätigkeiten von Wellnessberatern und -beraterinnen ab; auch die Tätigkeiten von Fitnesstrainern und -trainerinnen außerhalb der medizinischen Rehabilitation oder der Sportmedizin sind durch dieses Konzept abgedeckt.Typischerweise werden Dokumente, die von Angehörigen der folgenden Berufsgruppen erstellt werden, mit diesem Code versehen:* Fitnessberaterin/ Fitnessberater* Fitnessmanagerin/ Fitnessmanager* Fitnesstrainerin/ Fitnesstrainer* Wellnessberaterin/ Wellnessberater* Wellnesstrainerin/ Wellnesstrainer"
     },
     {
       "code": "SOZ",
-      "display": "Sozialwesen"
+      "display": "Sozialwesen",
+      "definition": "Das Konzept deckt die Tätigkeiten folgender Berufe ab:* Sozialarbeiterin / Sozialarbeiter* Sozialmedizinische Fachangestellte* Sozialpädagogin/ Sozialpädagoge* Sozialtherapeutin/ Sozialtherapeut* Compliance Coach, Adherence CoachWenn die Tätigkeit des Sozialdienstes eines Krankenhauses eindeutig einem ärztlichen Fachgebiet zugeordnet werden kann, sollte dieses bevorzugt verwendet werden."
     },
     {
       "code": "SPR",
-      "display": "Sprachtherapie"
+      "display": "Sprachtherapie",
+      "definition": "Die Sprachtherapie deckt die Tätigkeiten folgender Berufe ab:* Logopädin/ Logopäde* Medizinische Sprachheilpädagogin/ Medizinischer Sprachheilpädagoge* Staatlich anerkannte Sprachtherapeutin/ Staatlich anerkannter Sprachtherapeut"
     },
     {
       "code": "VKO",
-      "display": "Versorgungskoordination"
+      "display": "Versorgungskoordination",
+      "definition": "Die Versorgungskoordination deckt die Tätigkeiten von Case Managern/Case Managerinnen ab."
     },
     {
       "code": "VER",
-      "display": "Verwaltung"
+      "display": "Verwaltung",
+      "definition": "Das Konzept deckt die Tätigkeiten folgender Berufe ab:* Medizincontrollerin/ Medizincontroller* Sekretärin im Gesundheitswesen/ Sekretär im Gesundheitswesen* Sozialversicherungsfachangestellte/ Sozialversicherungsfachangestellter* Verwaltungsangestellte in medizinischen Pflegeeinrichtungen/ Verwaltungsangestellter in medizinischen PflegeeinrichtungenWenn diese Tätigkeiten eindeutig einem ärztlichen Fachgebiet zugeordnet werden können, sollte dieses bevorzugt verwendet werden."
     },
     {
       "code": "PST",
-      "display": "Psychotherapie"
+      "display": "Psychotherapie",
+      "definition": "Psychotherapie bezeichnet allgemein die „gezielte professionelle Behandlung seelischer (psychischer) Störungen oder psychisch bedingter körperlicher Störungen mit psychologischen Mitteln."
     }
   ],
+  "experimental": false,
+  "publisher": "gematik GmbH",
+  "date": "2024-10-29",
   "count": 15
 }

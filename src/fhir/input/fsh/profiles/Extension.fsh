@@ -37,7 +37,7 @@ Id: OrganizationVisibilityCS
 Title: "OrganizationVisibilityCS"
 Description: "OrganizationVisibilityCS"
 * insert Meta
-* #hide-erezeptApp "Eintrag nicht in eRezeptApp darstellen"
+* #hide-versicherte "Eintrag für Versicherte verbergen"
 
 ValueSet: OrganizationVisibilityVS
 Id: OrganizationVisibilityVS

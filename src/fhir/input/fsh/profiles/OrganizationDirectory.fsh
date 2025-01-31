@@ -29,7 +29,7 @@ organisations specific for german Healthcare and Telematics Infrastructure.
 * identifier[BSNR] only $IdentifierBSNR
 * identifier contains KZVA 0..1 MS
 * identifier[KZVA] only $IdentifierKZVA
-* identifier contains IKNR 0..1 MS
+* identifier contains IKNR 0..* MS
 * identifier[IKNR] only $IdentifierIKNR
 * type 1..* MS
   * ^slicing.discriminator.type = #pattern
@@ -57,6 +57,7 @@ Parent: OrganizationDirectory
 Id: OrganizationDirectoryStrict
 Title: "OrganizationDirectoryStrict"
 Description: "Organization in gematik Directory with strict constraints"
+* insert Meta
 * meta.tag only CodingWithCodeAndSystem
 * meta.tag
   * ^slicing.rules = #closed
