@@ -22,6 +22,7 @@ Parent: PractitionerRoleDirectory
 Id: PractitionerRoleDirectoryStrict
 Title: "PractitionerRoleDirectoryStrict"
 Description: "PractitionerRole in gematik Directory with strict constraints"
+* insert Meta
 * meta.tag only CodingWithCodeAndSystem
 * meta.tag
   * ^slicing.rules = #closed

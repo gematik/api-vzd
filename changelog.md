@@ -1,5 +1,102 @@
 # Changelog
 
+## 2025-01-10  Version 0.11.24
+- fix: relaxed cardinality of OrganizationDirectory.identifier[IKNR] from 0..1 -> 0..* allowing multiple IKNR for an Organization
+- removed: PractitionerDirectory.identifier[ZANR]  as it is not required.
+- fix: `breaking` Updated Contents of external IHE & KBV CodeSystems
+- fix: `breaking` OrganizationVisibilityCS: renamed #hide-erezeptApp "Eintrag nicht in eRezeptApp darstellen" to #hide-versicherte "Eintrag für Versicherte verbergen"
+- fix: changed status to active for CodeSystems:
+  - AerztlicheBerufsvarianten
+  - AerztlicheFachrichtungen_OID_URL
+  - FacharzttitelDerAerztekammern_OID_URL
+  - KBV_CS_SFHIR_BAR2_WBO_OID_URL
+  - NichtAerztlicheFachrichtungen_OID_URL
+  - QualifikationenNichtAerztlicherAutoren_OID_URL
+  - QualifikatorenZahnaerztlicherAutoren_OID_URL
+  - ZahnaerztlicheFachrichtungen_OID_URL
+- fix: changed status to active for Valusets:
+  - HealthcareServiceCategoryCodes
+  - NCPeHHealthcareServiceSpecialityVS
+- fix: changed status to active for Profiles:
+  - CodingWithCodeAndSystem
+  - EndpointDirectoryStrict
+  - HealthcareServiceDirectoryStrict
+  - LocationDirectoryStrict
+  - OrganizationDirectoryStrict
+  - PractitionerDirectoryStrict
+  - PractitionerRoleDirectoryStrict
+- fix: changed status to active for SearchParameter:
+  - PractitionerRole-endpoint
+
+### data migration
+- CodeSystem: OrganizationVisibilityCS (https://gematik.de/fhir/directory/CodeSystem/OrganizationVisibilityCS)
+  - #hide-erezeptApp "Eintrag nicht in eRezeptApp darstellen" was changed to #hide-versicherte "Eintrag für Versicherte verbergen"
+- CodeSystem: KBV_CS_SFHIR_BAR2_WBO Fachgruppen (urn:oid:1.2.276.0.76.5.114)
+  - removed: 
+    - #091 "SP Kinderkardiologie"
+    - #196 "SP Kinderradiologie"
+    - #304 "FA Kinderchirurgie"
+    - #518 "FA Sprach-, Stimm- und kindliche Hörstörungen"
+    - #530 "SP Kinder-Hämatologie und -Onkologie"
+    - #542 "FA Plastische und Ästhetische Chirurgie"
+    - #544 "FA Allgemeinchirurgie"
+  - new:
+    - #144 "Psychotherapeutisch tätige Ärztin/Psychotherapeutisch tätiger Arzt (Zusatzbezeichnung)"
+    - #305 "Medizinische Genetik"
+    - #306 "Medizinische Informatik"
+    - #307 "Pathologische Physiologie"
+    - #317 "Physiologische Chemie"
+    - #350 "Biomathematik"
+    - #351 "Biophysik"
+    - #352 "Geschichte der Medizin"
+    - #353 "Industrietoxikologie"
+    - #354 "Klinische Strahlenphysik"
+    - #355 "Medizinische Wissenschaftsinformation"
+    - #356 "Medizinische Physik und Biophysik"
+    - #358 "Fachbiologie der Medizin"
+    - #371 "Fachwissenschaftlerin/Fachwissenschaftler Chemie und Labordiagnostik"
+    - #372 "Fachwissenschaftlerin/Fachwissenschaftler Genetik"
+    - #373 "Fachwissenschaftlerin/Fachwissenschaftler Immunologie"
+    - #374 "Fachwissenschaftlerin/Fachwissenschaftler Zytologie/Histologie"
+    - #470 "Psychologische Psychotherapeutin/Psychologischer Psychotherapeut"
+    - #471 "Kinder- und Jugendlichenpsychotherapeutin/Kinder- und Jugendlichenpsychotherapeut"
+    - #474 "Fachpsychotherapeutin/Fachpsychotherapeut für Erwachsene"
+    - #475 "Fachpsychotherapeutin/Fachpsychotherapeut für Kinder und Jugendliche"
+    - #476 "Fachpsychotherapeutin/Fachpsychotherapeut für Neuropsychologische Psychotherapie"
+    - #573 "FÄ/FA Kinder -und Jugendchirurgie"
+    - #574 "FÄ/FA Plastische, Rekonstruktive und Ästhetische Chirurgie"
+    - #575 "FÄ/FA Phoniatrie und Pädaudiologie ((M-)WBO 2018)"
+    - #576 "SP Kinder- und Jugend-Hämatologie und -Onkologie"
+    - #577 "SP Kinder- und Jugend-Kardiologie"
+    - #578 "SP Kinder- und Jugendradiologie"
+    - #579 "FÄ/FA Innere Medizin und Infektiologie ((M-)WBO 2018)"
+  - CodeSystem: QualifikationenNichtAerztlicherAutoren_OID_URL (urn:oid:1.3.6.1.4.1.19376.3.276.1.5.11)
+    - removed:
+      - #5 "Tiermedizinischer Fachangestellter"
+      - #93 "Medizinische Datenerhebung"
+      - #142 "Veterinärmedizinischer-technischer Assistent"
+      - #158 "Medien, Kultur, Gestaltung, Kunst (außer Pädagogen)"
+      - #159 "Schutz und Sicherheit"
+      - #162 "Verfahrens- und Produktentwicklung, technisches Zeichnen, Konstruktion"
+      - #163 "Sprachen"
+      - #164 "Produktion, Produktionsplanung, Produktionssteuerung, Instandhaltung"
+      - #166 "Reinigung"
+      - #167 "Bau, Architektur, Rohstoffe"
+      - #168 "Verwaltungsberufe (außer medizinische), kaufmännische Berufe, Verkehr"
+      - #170 "Elektro, Energie, Ver- und Entsorgung"
+      - #171 "Gastgewerbe und Tourismus, Veranstaltungsmanagement und Hauswirtschaft"
+      - #172 "IT"
+    - new:
+      - #175 "Fachgesundheits- und krankenpfleger für Intensivpflege und Anästhesie"
+      - #176 "Fachgesundheits- und krankenpfleger im Operations-/Endoskopiedienst"
+      - #177 "Fachgesundheits- und krankenpfleger für Hygiene"
+      - #178 "Fachgesundheits- und krankenpfleger für Palliativ- und Hospizpflege"
+      - #186 "Pflegefachmann/Pflegefachfrau"
+      - #187 "Fachgesundheits- und krankenpfleger für Onkologie"
+      - #188 "Fachgesundheits- und krankenpfleger für Psychiatrie"
+ 
+
+
 ## 2025-01-10  Version 0.11.23
 - feat: added Invariant `CodingSytemCodeInv` throwing a warning if a Coding element is missing system or code. Added to:
   - EndpointDirectory.meta.tag

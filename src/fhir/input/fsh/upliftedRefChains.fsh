@@ -172,7 +172,7 @@ Usage: #definition
 * url = "http://hl7.org/fhir/SearchParameter/PractitionerRole-endpoint"
 * version = "4.0.1"
 * name = "endpoint"
-* status = #draft
+* status = #active
 * experimental = false
 * date = "2019-11-01T09:29:23+11:00"
 * publisher = "Health Level Seven International (Patient Administration)"

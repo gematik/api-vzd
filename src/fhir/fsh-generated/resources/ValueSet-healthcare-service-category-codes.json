@@ -1,12 +1,15 @@
 {
   "resourceType": "ValueSet",
-  "status": "draft",
+  "status": "active",
   "name": "HealthcareServiceCategoryCodes",
   "id": "healthcare-service-category-codes",
   "title": "HealthcareService Category Codes",
   "description": "Codes for the VZD HealthcareService category element.",
-  "version": "0.11.23",
+  "version": "0.11.24",
   "url": "https://gematik.de/fhir/directory/ValueSet/healthcare-service-category-codes",
+  "experimental": false,
+  "publisher": "gematik GmbH",
+  "date": "2024-10-29",
   "compose": {
     "include": [
       {

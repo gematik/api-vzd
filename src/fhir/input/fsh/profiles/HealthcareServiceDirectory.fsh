@@ -77,6 +77,7 @@ Parent: HealthcareServiceDirectory
 Id: HealthcareServiceDirectoryStrict
 Title: "HealthcareServiceDirectoryStrict"
 Description: "HealthcareService in gematik Directory with strict constraints"
+* insert Meta
 * meta.tag only CodingWithCodeAndSystem
 * meta.tag
   * ^slicing.rules = #closed

@@ -2,7 +2,7 @@
   "resourceType": "StructureDefinition",
   "id": "PractitionerDirectory",
   "url": "https://gematik.de/fhir/directory/StructureDefinition/PractitionerDirectory",
-  "version": "0.11.23",
+  "version": "0.11.24",
   "name": "PractitionerDirectory",
   "title": "Practitioner in gematik Directory",
   "status": "active",
@@ -106,22 +106,6 @@
             "code": "Identifier",
             "profile": [
               "http://fhir.de/StructureDefinition/identifier-lanr"
-            ]
-          }
-        ],
-        "mustSupport": true
-      },
-      {
-        "id": "Practitioner.identifier:ZANR",
-        "path": "Practitioner.identifier",
-        "sliceName": "ZANR",
-        "min": 0,
-        "max": "*",
-        "type": [
-          {
-            "code": "Identifier",
-            "profile": [
-              "http://fhir.de/StructureDefinition/identifier-zanr"
             ]
           }
         ],

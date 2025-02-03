@@ -19,8 +19,6 @@ Title: "Practitioner in gematik Directory"
 * identifier[TelematikID] only $IdentifierTelematikID
 * identifier contains LANR 0.. MS
 * identifier[LANR] only $IdentifierLANR
-* identifier contains ZANR 0.. MS
-* identifier[ZANR] only $IdentifierZANR
 * name 1..1 MS
   * text 1..1 MS
   * family 1..1 MS
@@ -46,6 +44,7 @@ Parent: PractitionerDirectory
 Id: PractitionerDirectoryStrict
 Title: "PractitionerDirectoryStrict"
 Description: "Practitioner in gematik Directory with strict constraints"
+* insert Meta
 * meta.tag only CodingWithCodeAndSystem
 * meta.tag
   * ^slicing.rules = #closed

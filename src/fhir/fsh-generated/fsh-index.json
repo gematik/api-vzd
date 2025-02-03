@@ -133,7 +133,7 @@
     "fshType": "CodeSystem",
     "fshFile": "codesystems/external/AerztlicheFachrichtungen.fsh",
     "startLine": 1,
-    "endLine": 83
+    "endLine": 84
   },
   {
     "outputFile": "CodeSystem-aerztlicheBerufsvarianten.json",
@@ -141,7 +141,7 @@
     "fshType": "CodeSystem",
     "fshFile": "codesystems/external/AerztlicheBerufsvarianten.fsh",
     "startLine": 1,
-    "endLine": 8
+    "endLine": 9
   },
   {
     "outputFile": "CodeSystem-facharzttitelderaerztekammern-oid-url.json",
@@ -149,7 +149,7 @@
     "fshType": "CodeSystem",
     "fshFile": "codesystems/external/FacharzttitelDerAerztekammern.fsh",
     "startLine": 1,
-    "endLine": 202
+    "endLine": 204
   },
   {
     "outputFile": "CodeSystem-kbv-cm-sfhir-bar2-wbo-oid-url.json",
@@ -157,7 +157,7 @@
     "fshType": "CodeSystem",
     "fshFile": "codesystems/external/FachgruppenCodesKBV.fsh",
     "startLine": 1,
-    "endLine": 69
+    "endLine": 93
   },
   {
     "outputFile": "CodeSystem-nicht-aerztliche-fachrichtungen-oid-url.json",
@@ -165,7 +165,7 @@
     "fshType": "CodeSystem",
     "fshFile": "codesystems/external/NichtAerztlicheFachrichtungen.fsh",
     "startLine": 1,
-    "endLine": 20
+    "endLine": 22
   },
   {
     "outputFile": "CodeSystem-physicalFeatures.json",
@@ -181,7 +181,7 @@
     "fshType": "CodeSystem",
     "fshFile": "codesystems/external/QualifikationenNichtAerztlicherAutoren.fsh",
     "startLine": 1,
-    "endLine": 183
+    "endLine": 178
   },
   {
     "outputFile": "CodeSystem-qualifikatoren-zahnaerztlicher-autoren-oid-url.json",
@@ -189,7 +189,7 @@
     "fshType": "CodeSystem",
     "fshFile": "codesystems/external/QualifikatorenZahnaerztlicherAutoren.fsh",
     "startLine": 1,
-    "endLine": 11
+    "endLine": 13
   },
   {
     "outputFile": "CodeSystem-zahnaerztliche-fachrichtungen-oid-url.json",
@@ -197,7 +197,7 @@
     "fshType": "CodeSystem",
     "fshFile": "codesystems/external/ZahnAerztlicheFachrichtungen.fsh",
     "startLine": 1,
-    "endLine": 7
+    "endLine": 9
   },
   {
     "outputFile": "Endpoint-MessengerEndpointWithVisibility.json",
@@ -453,7 +453,7 @@
     "fshType": "Profile",
     "fshFile": "profiles/DataType.fsh",
     "startLine": 1,
-    "endLine": 7
+    "endLine": 8
   },
   {
     "outputFile": "StructureDefinition-EndpointDirectory.json",
@@ -485,7 +485,7 @@
     "fshType": "Profile",
     "fshFile": "profiles/HealthcareServiceDirectory.fsh",
     "startLine": 75,
-    "endLine": 110
+    "endLine": 111
   },
   {
     "outputFile": "StructureDefinition-LocationDirectory.json",
@@ -501,7 +501,7 @@
     "fshType": "Profile",
     "fshFile": "profiles/LocationDirectory.fsh",
     "startLine": 36,
-    "endLine": 53
+    "endLine": 54
   },
   {
     "outputFile": "StructureDefinition-OrganizationDirectory.json",
@@ -517,7 +517,7 @@
     "fshType": "Profile",
     "fshFile": "profiles/OrganizationDirectory.fsh",
     "startLine": 55,
-    "endLine": 70
+    "endLine": 71
   },
   {
     "outputFile": "StructureDefinition-OrganizationVisibility.json",
@@ -541,15 +541,15 @@
     "fshType": "Profile",
     "fshFile": "profiles/PractitionerDirectory.fsh",
     "startLine": 1,
-    "endLine": 42
+    "endLine": 40
   },
   {
     "outputFile": "StructureDefinition-PractitionerDirectoryStrict.json",
     "fshName": "PractitionerDirectoryStrict",
     "fshType": "Profile",
     "fshFile": "profiles/PractitionerDirectory.fsh",
-    "startLine": 44,
-    "endLine": 60
+    "startLine": 42,
+    "endLine": 59
   },
   {
     "outputFile": "StructureDefinition-PractitionerRoleDirectory.json",
@@ -565,7 +565,7 @@
     "fshType": "Profile",
     "fshFile": "profiles/PractitionerRoleDirectory.fsh",
     "startLine": 20,
-    "endLine": 36
+    "endLine": 37
   },
   {
     "outputFile": "StructureDefinition-ServiceCoverageArea.json",
@@ -597,7 +597,7 @@
     "fshType": "Profile",
     "fshFile": "profiles/EndpointDirectory.fsh",
     "startLine": 29,
-    "endLine": 45
+    "endLine": 46
   },
   {
     "outputFile": "StructureDefinition-ncpeh-country-ex.json",
@@ -717,7 +717,7 @@
     "fshType": "ValueSet",
     "fshFile": "valuesets/HealthcareServiceCategoryCodes.fsh",
     "startLine": 1,
-    "endLine": 6
+    "endLine": 7
   },
   {
     "outputFile": "ValueSet-healthcareservice-technical-characteristic-vs.json",
@@ -733,6 +733,6 @@
     "fshType": "ValueSet",
     "fshFile": "valuesets/NCPeHHealthcareServiceSpeciality.fsh",
     "startLine": 1,
-    "endLine": 6
+    "endLine": 7
   }
 ]

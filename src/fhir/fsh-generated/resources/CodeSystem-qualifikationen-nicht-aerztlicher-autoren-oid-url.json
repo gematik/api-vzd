@@ -1,12 +1,12 @@
 {
   "resourceType": "CodeSystem",
-  "status": "draft",
+  "status": "active",
   "content": "complete",
   "name": "QualifikationenNichtAerztlicherAutoren_OID_URL",
   "id": "qualifikationen-nicht-aerztlicher-autoren-oid-url",
   "title": "Qualifikationen Nicht Aerztlicher Autoren",
   "description": "Qualifikationen Nicht Aerztlicher Autoren",
-  "version": "0.11.23",
+  "version": "2021-10-15T12:13:26",
   "url": "urn:oid:1.3.6.1.4.1.19376.3.276.1.5.11",
   "concept": [
     {
@@ -28,10 +28,6 @@
     {
       "code": "4",
       "display": "Medizinischer Fachangestellter"
-    },
-    {
-      "code": "5",
-      "display": "Tiermedizinischer Fachangestellter"
     },
     {
       "code": "6",
@@ -107,7 +103,7 @@
     },
     {
       "code": "24",
-      "display": "Assistenten für Gesundheitstourismus, -prophylaxe"
+      "display": "Assistenten für Gesundheitstourismus,  -prophylaxe"
     },
     {
       "code": "25",
@@ -196,6 +192,34 @@
     {
       "code": "46",
       "display": "Pflegewissenschaftler"
+    },
+    {
+      "code": "175",
+      "display": "Fachgesundheits- und krankenpfleger für Intensivpflege und Anästhesie"
+    },
+    {
+      "code": "176",
+      "display": "Fachgesundheits- und krankenpfleger im Operations-/Endoskopiedienst"
+    },
+    {
+      "code": "177",
+      "display": "Fachgesundheits- und krankenpfleger für Hygiene"
+    },
+    {
+      "code": "178",
+      "display": "Fachgesundheits- und krankenpfleger für Palliativ- und Hospizpflege"
+    },
+    {
+      "code": "186",
+      "display": "Pflegefachmann/Pflegefachfrau"
+    },
+    {
+      "code": "187",
+      "display": "Fachgesundheits- und krankenpfleger für Onkologie"
+    },
+    {
+      "code": "188",
+      "display": "Fachgesundheits- und krankenpfleger für Psychiatrie"
     },
     {
       "code": "47",
@@ -307,11 +331,13 @@
     },
     {
       "code": "181",
-      "display": "Apothekenassistent"
+      "display": "Apothekenassistent",
+      "definition": "Der Apothekenassistent hat ein zweijähriges Studium an der Ingenieurschule für Pharmazie in Leipzig absolviert."
     },
     {
       "code": "182",
-      "display": "Apothekerassistent"
+      "display": "Apothekerassistent",
+      "definition": "Personen, die die pharmazeutische Vorprüfung nach der „Prüfungsordnung für Apotheker“ vom 18. Mai 1904 oder nach der „Prüfungsordnung für Apotheker“ vom 8. Dezember 1934 bestanden haben (vorgeprüfte Apothekeranwärter), dürfen eine Tätigkeit unter der Berufsbezeichnung „Apothekerassistentin“ oder „Apothekerassistent“ ausüben (§ 1 Abs. 1 ApoAnwRstG)."
     },
     {
       "code": "74",
@@ -323,7 +349,7 @@
     },
     {
       "code": "76",
-      "display": "Kinder- und Jugendpsychotherapeut"
+      "display": "Kinder- und Jugendlichenpsychotherapeut"
     },
     {
       "code": "77",
@@ -355,11 +381,11 @@
     },
     {
       "code": "184",
-      "display": "Fachpsychotherapeut für Kinder und Jugendliche"
+      "display": "Fachpsychotherapeut für Kinder und Jugendliche"
     },
     {
       "code": "185",
-      "display": "Fachpsychotherapeut für Erwachsene"
+      "display": "Fachpsychotherapeut für Erwachsene"
     },
     {
       "code": "83",
@@ -400,10 +426,6 @@
     {
       "code": "92",
       "display": "med. Datenverarbeitung"
-    },
-    {
-      "code": "93",
-      "display": "Medizinische Datenerhebung"
     },
     {
       "code": "94",
@@ -606,10 +628,6 @@
       "display": "Operationstechnischer Assistent"
     },
     {
-      "code": "142",
-      "display": "Veterinärmedizinischer-technischer Assistent"
-    },
-    {
       "code": "143",
       "display": "Zytologieassistent"
     },
@@ -670,57 +688,16 @@
       "display": "Umwelt"
     },
     {
-      "code": "158",
-      "display": "Medien, Kultur, Gestaltung, Kunst (außer Pädagogen)"
-    },
-    {
-      "code": "159",
-      "display": "Schutz und Sicherheit"
-    },
-    {
-      "code": "162",
-      "display": "Verfahrens- und Produktentwicklung, technisches Zeichnen, Konstruktion"
-    },
-    {
-      "code": "163",
-      "display": "Sprachen"
-    },
-    {
-      "code": "164",
-      "display": "Produktion, Produktionsplanung, Produktionssteuerung, Instandhaltung"
-    },
-    {
       "code": "165",
       "display": "Jurist"
     },
     {
-      "code": "166",
-      "display": "Reinigung"
-    },
-    {
-      "code": "167",
-      "display": "Bau, Architektur, Rohstoffe"
-    },
-    {
-      "code": "168",
-      "display": "Verwaltungsberufe (außer medizinische), kaufmännische Berufe, Verkehr"
-    },
-    {
       "code": "169",
       "display": "Taxifahrer bei Krankentransport"
-    },
-    {
-      "code": "170",
-      "display": "Elektro, Energie, Ver- und Entsorgung"
-    },
-    {
-      "code": "171",
-      "display": "Gastgewerbe und Tourismus, Veranstaltungsmanagement und Hauswirtschaft"
-    },
-    {
-      "code": "172",
-      "display": "IT"
     }
   ],
-  "count": 178
+  "experimental": false,
+  "publisher": "gematik GmbH",
+  "date": "2024-10-29",
+  "count": 171
 }
