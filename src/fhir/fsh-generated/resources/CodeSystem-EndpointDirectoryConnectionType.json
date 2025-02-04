@@ -1,6 +1,6 @@
 {
   "resourceType": "CodeSystem",
-  "status": "active",
+  "status": "draft",
   "content": "complete",
   "name": "EndpointDirectoryConnectionType",
   "id": "EndpointDirectoryConnectionType",
@@ -74,9 +74,6 @@
       "display": "TI-Messenger Terminbuchung"
     }
   ],
-  "experimental": false,
-  "publisher": "gematik GmbH",
-  "date": "2024-10-29",
   "caseSensitive": false,
   "count": 16
 }
