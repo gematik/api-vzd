@@ -30,6 +30,11 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: Validate Resource Status
+        uses: patrick-werner/validate-fhir-resource-status@1.0.0-alpha2
+        with:
+          folder: './src/fhir/fsh-generated/resources'
         
       # Java and .NET are already installed on ubuntu-latest
         
