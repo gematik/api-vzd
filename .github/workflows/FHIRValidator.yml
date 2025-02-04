@@ -40,7 +40,7 @@ jobs:
           # PATH_TO_QUALITY_CONTROL_RULES: qc/custom
           DOTNET_VALIDATION_ENABLED: true
           JAVA_VALIDATION_ENABLED: true
-          JAVA_VALIDATION_OPTIONS: -allow-example-urls true -advisor-file validator/advisor.json -output-style compact -show-message-ids -resolution-context file:Resources/fsh-generated/resources/
+          JAVA_VALIDATION_OPTIONS: -allow-example-urls true -advisor-file src/fhir/validator/advisor.json -output-style compact -show-message-ids -resolution-context file:Resources/fsh-generated/resources/
           SIMPLIFIER_USERNAME: ${{ secrets.SIMPLIFIER_USERNAME }}
           SIMPLIFIER_PASSWORD: ${{ secrets.SIMPLIFIER_PASSWORD }}
           SUSHI_ENABLED: true
