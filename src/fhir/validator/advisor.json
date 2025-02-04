@@ -1,5 +1,6 @@
 {
   "suppress" : [
-    "http://hl7.org/fhir/StructureDefinition/DomainResource#dom-6"
+    "http://hl7.org/fhir/StructureDefinition/DomainResource#dom-6",
+    "Extension_EXT_Unknown_NotHere@SearchParameter.extension"
   ]
 }
