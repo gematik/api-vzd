@@ -133,7 +133,7 @@
     "fshType": "CodeSystem",
     "fshFile": "codesystems/external/AerztlicheFachrichtungen.fsh",
     "startLine": 1,
-    "endLine": 84
+    "endLine": 85
   },
   {
     "outputFile": "CodeSystem-aerztlicheBerufsvarianten.json",
@@ -141,7 +141,7 @@
     "fshType": "CodeSystem",
     "fshFile": "codesystems/external/AerztlicheBerufsvarianten.fsh",
     "startLine": 1,
-    "endLine": 9
+    "endLine": 10
   },
   {
     "outputFile": "CodeSystem-facharzttitelderaerztekammern-oid-url.json",
@@ -149,7 +149,7 @@
     "fshType": "CodeSystem",
     "fshFile": "codesystems/external/FacharzttitelDerAerztekammern.fsh",
     "startLine": 1,
-    "endLine": 204
+    "endLine": 205
   },
   {
     "outputFile": "CodeSystem-kbv-cm-sfhir-bar2-wbo-oid-url.json",
@@ -157,7 +157,7 @@
     "fshType": "CodeSystem",
     "fshFile": "codesystems/external/FachgruppenCodesKBV.fsh",
     "startLine": 1,
-    "endLine": 93
+    "endLine": 94
   },
   {
     "outputFile": "CodeSystem-nicht-aerztliche-fachrichtungen-oid-url.json",
@@ -165,7 +165,7 @@
     "fshType": "CodeSystem",
     "fshFile": "codesystems/external/NichtAerztlicheFachrichtungen.fsh",
     "startLine": 1,
-    "endLine": 22
+    "endLine": 23
   },
   {
     "outputFile": "CodeSystem-physicalFeatures.json",
@@ -181,7 +181,7 @@
     "fshType": "CodeSystem",
     "fshFile": "codesystems/external/QualifikationenNichtAerztlicherAutoren.fsh",
     "startLine": 1,
-    "endLine": 178
+    "endLine": 179
   },
   {
     "outputFile": "CodeSystem-qualifikatoren-zahnaerztlicher-autoren-oid-url.json",
@@ -189,7 +189,7 @@
     "fshType": "CodeSystem",
     "fshFile": "codesystems/external/QualifikatorenZahnaerztlicherAutoren.fsh",
     "startLine": 1,
-    "endLine": 13
+    "endLine": 14
   },
   {
     "outputFile": "CodeSystem-zahnaerztliche-fachrichtungen-oid-url.json",

@@ -5,6 +5,7 @@ Description: "Facharzttitel Der Aerztekammern"
 * insert Meta
 * ^version = "2021-10-15T12:13:26"
 * ^url = "urn:oid:1.2.276.0.76.5.514"
+* ^caseSensitive = true
 * #011001 "FA Allgemeinmedizin"
 * #012901 "SP Geriatrie" "FA Allgemeinmedizin mit SP Geriatrie"
 * #021001 "FA Anästhesiologie"

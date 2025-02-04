@@ -5,6 +5,7 @@ Description: "AerztlicheFachrichtungen"
 * insert Meta
 * ^url = "urn:oid:1.3.6.1.4.1.19376.3.276.1.5.4"
 * ^version = "2019-04-05T08:35:59"
+* ^caseSensitive = true
 * #ALLG "Allgemeinmedizin" "Die Allgemeinmedizin beinhaltet die Grundversorgung eines Patienten bei körperlichen und/oder seelischen Gesundheitsstörungen. Weiterhin gehören die Aspekte der Prävention und Rehabilitation in den Versorgungsbereich der Allgemeinmedizin.Nutzungshinweis: Dazu zählen auch hausärztlich tätige Praxen von Praktischen Ärzten."
 * #ANAE "Anästhesiologie" "Das Fachgebiet der Anästhesiologie umfasst neben den Anästhesieverfahren selbst die Aufrechterhaltung der Vitalfunktionen eines Patienten während eines Eingriffs."
 * #ARBE "Arbeitsmedizin" "Die Arbeitsmedizin ist ein präventivmedizinisches Fachgebiet und umfasst einerseits die Wechselbeziehungen zwischen Arbeits- und Lebenswelten, andererseits auch die Gesundheit und Krankheiten. Der wesentliche Aspekt ist hierbei der Erhalt und die Förderung der physischen und psychischen Gesundheit und Leistungsfähigkeit des arbeitenden Menschen.Nutzungshinweis: Das Konzept umfasst auch die Musikermedizin, auch wenn Patienten aus diesem Bereich nicht notwendigerweise professionelle Musiker sind."
