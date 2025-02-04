@@ -36,7 +36,6 @@ jobs:
         uses: FirelyTeam/firely-terminal-pipeline@v0.6.7
         with:
           PATH_TO_CONFORMANCE_RESOURCES: src/fhir/fsh-generated/resources/
-          #PATH_TO_EXAMPLES: Examples
           # PATH_TO_QUALITY_CONTROL_RULES: qc/custom
           DOTNET_VALIDATION_ENABLED: true
           JAVA_VALIDATION_ENABLED: true
@@ -45,7 +44,7 @@ jobs:
           SIMPLIFIER_PASSWORD: ${{ secrets.SIMPLIFIER_PASSWORD }}
           SUSHI_ENABLED: true
           SUSHI_OPTIONS: src/fhir/
-          EXPECTED_FAILS: VALIDATION_CONFORMANCE_DOTNET #VALIDATION_CONFORMANCE_JAVA VALIDATION_EXAMPLES_JAVA
+          EXPECTED_FAILS: VALIDATION_CONFORMANCE_DOTNET VALIDATION_CONFORMANCE_JAVA
 
       - name: Check for Uncommitted Changes
         run: |
