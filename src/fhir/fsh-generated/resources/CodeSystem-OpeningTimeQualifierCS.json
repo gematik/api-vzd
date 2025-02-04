@@ -17,5 +17,6 @@
   "experimental": false,
   "publisher": "gematik GmbH",
   "date": "2024-10-29",
+  "caseSensitive": false,
   "count": 1
 }
