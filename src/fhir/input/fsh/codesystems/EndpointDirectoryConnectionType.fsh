@@ -1,7 +1,7 @@
 CodeSystem: EndpointDirectoryConnectionType
 Title: "Codes for Endpoint.connectionType"
 Description: "CodeSystem TI specific connection types assigned to the Endpoints"
-//* insert Meta
+* insert Meta
 * ^content = #complete
 * ^caseSensitive = false
 * #tim "TI-Messenger Endpoint"
