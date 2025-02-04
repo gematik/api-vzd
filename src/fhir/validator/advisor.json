@@ -3,6 +3,7 @@
     "http://hl7.org/fhir/StructureDefinition/DomainResource#dom-6",
     "Extension_EXT_Unknown_NotHere@SearchParameter.extension",
     "SD_PATH_SLICING_DEPRECATED",
-    "http://hl7.org/fhir/StructureDefinition/SearchParameter#spd-0"
+    "http://hl7.org/fhir/StructureDefinition/SearchParameter#spd-0",
+    "Terminology_TX_NoValid_13@Endpoint.connectionType"
   ]
 }
