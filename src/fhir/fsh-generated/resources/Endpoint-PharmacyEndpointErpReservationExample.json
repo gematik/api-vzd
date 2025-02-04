@@ -19,7 +19,7 @@
     "display": "Reservierung"
   },
   "name": "ERP Reservierung",
-  "address": "https://be-305314293.adv-erezept.de/gematik/onPremise/<ti_id>/<transactionID>",
+  "address": "https://be-305314293.adv-erezept.de/gematik/onPremise/ti_id/transactionID",
   "payloadType": [
     {
       "coding": [
