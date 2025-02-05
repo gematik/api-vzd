@@ -21,6 +21,13 @@
                          "description": "The telematikID of the organization that uses the TI-Messenger domain",
                          "type": "string"
                                        },
+                        "ik": {
+                         "description": "The IK managed by the defined health insurance domain",
+                         "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                                       },                            
                         "isInsurance": {
                           "description": "Indicates if it is a domain of an health insurance for insured persons\n",
                           "type": "boolean",
