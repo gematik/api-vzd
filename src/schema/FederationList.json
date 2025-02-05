@@ -21,6 +21,13 @@
                          "description": "The telematikID of the organization that uses the TI-Messenger domain",
                          "type": "string"
                                        },
+                        "ik": {
+                         "description": "The IK (Institutionskennzeichen) numbers associated with this domain. Must contain at least one element when isInsurance is true. Must not contain any elements when isInsurence is false.",
+                         "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                                       },                            
                         "isInsurance": {
                           "description": "Indicates if it is a domain of an health insurance for insured persons\n",
                           "type": "boolean",
