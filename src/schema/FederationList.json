@@ -22,7 +22,7 @@
                          "type": "string"
                                        },
                         "ik": {
-                         "description": "The IK managed by the defined health insurance domain",
+                         "description": "The IK (Institutionskennzeichen) numbers associated with this domain. Must contain at least one element when isInsurance is true. Must not contain any elements when isInsurence is false.",
                          "type": "array",
                             "items": {
                                 "type": "string"
