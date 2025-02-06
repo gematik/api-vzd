@@ -56,7 +56,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: FHIR_Validation_Report
-          path: src/fhir/fsh-generated/resources/validation.html
+          path: ${{ github.workspace }}/src/fhir/fsh-generated/resources/validation.html
 
       - name: Check for Uncommitted Changes
         run: |
