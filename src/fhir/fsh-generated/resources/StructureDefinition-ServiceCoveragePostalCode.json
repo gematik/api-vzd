@@ -2,7 +2,7 @@
   "resourceType": "StructureDefinition",
   "id": "ServiceCoveragePostalCode",
   "url": "https://gematik.de/fhir/directory/StructureDefinition/ServiceCoveragePostalCode",
-  "version": "0.11.24",
+  "version": "0.11.25",
   "name": "ServiceCoveragePostalCode",
   "title": "ServiceCoveragePostalCode",
   "status": "active",

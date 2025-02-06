@@ -2,7 +2,7 @@
   "resourceType": "StructureDefinition",
   "id": "CodingWithCodeAndSystem",
   "url": "https://gematik.de/fhir/directory/StructureDefinition/CodingWithCodeAndSystem",
-  "version": "0.11.24",
+  "version": "0.11.25",
   "name": "CodingWithCodeAndSystem",
   "title": "Coding with code and system",
   "status": "active",
