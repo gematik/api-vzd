@@ -52,6 +52,12 @@ jobs:
           SUSHI_OPTIONS: src/fhir/
           EXPECTED_FAILS: VALIDATION_CONFORMANCE_DOTNET VALIDATION_CONFORMANCE_JAVA
 
+      - name: path
+        run: pwd
+
+      - name: List All Files in Workspace
+        run: ls -R $GITHUB_WORKSPACE
+
       - name: Upload validation report
         uses: actions/upload-artifact@v4
         with:
