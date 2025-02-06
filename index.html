@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FHIR Validation Reports</title>
+  <script>
+    async function loadBranches() {
+      const repo = "gematik/api-vzd"; // Ändere das auf dein Repo
+      const branchesUrl = `https://api.github.com/repos/${repo}/branches`;
+
+      try {
+        const response = await fetch(branchesUrl);
+        const branches = await response.json();
+
+        const list = document.getElementById("branch-list");
+        branches.forEach(branch => {
+          const branchName = branch.name;
+          const link = document.createElement("a");
+          link.href = `${branchName}/validation.html`;
+          link.innerText = `Report für ${branchName}`;
+          link.target = "_blank";
+
+          const listItem = document.createElement("li");
+          listItem.appendChild(link);
+          list.appendChild(listItem);
+        });
+      } catch (error) {
+        console.error("Fehler beim Laden der Branches:", error);
+        document.getElementById("error-message").innerText = "Fehler beim Laden der Branches.";
+      }
+    }
+
+    window.onload = loadBranches;
+  </script>
+</head>
+<body>
+<h1>FHIR Validation Reports</h1>
+<p>Klicke auf einen Branch, um den Validierungsbericht zu sehen:</p>
+<ul id="branch-list"></ul>
+<p id="error-message" style="color: red;"></p>
+</body>
+</html>
