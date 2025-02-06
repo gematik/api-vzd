@@ -1,5 +1,11 @@
 # Changelog
 
+## 2025-02-06 Version 0.11.25
+- fix: CodeSystem: AerztlicheBerufsvarianten contained codes with a wrong prefix of `#`, these prefixes were removed.
+
+### data migration
+- remove `#`from code instances of the CodeSystem: `urn:oid:1.2.276.0.76.5.493` used on `Practitoner.qualification`
+
 ## 2025-01-10  Version 0.11.24
 - fix: relaxed cardinality of OrganizationDirectory.identifier[IKNR] from 0..1 -> 0..* allowing multiple IKNR for an Organization
 - removed: PractitionerDirectory.identifier[ZANR]  as it is not required.
