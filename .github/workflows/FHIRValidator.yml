@@ -52,17 +52,14 @@ jobs:
           SUSHI_OPTIONS: src/fhir/
           EXPECTED_FAILS: VALIDATION_CONFORMANCE_DOTNET VALIDATION_CONFORMANCE_JAVA
 
-      - name: path
-        run: pwd
-
-      - name: List All Files in Workspace
-        run: ls -R $GITHUB_WORKSPACE
-
       - name: Upload validation report
         uses: actions/upload-artifact@v4
         with:
           name: FHIR_Validation_Report
           path: ${{ github.workspace }}/validation.html
+          if-no-files-found: error
+          retention-days: 30
+          compression-level: 0
 
       - name: Check for Uncommitted Changes
         run: |
