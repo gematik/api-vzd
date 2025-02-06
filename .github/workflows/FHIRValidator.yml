@@ -52,6 +52,12 @@ jobs:
           SUSHI_OPTIONS: src/fhir/
           EXPECTED_FAILS: VALIDATION_CONFORMANCE_DOTNET VALIDATION_CONFORMANCE_JAVA
 
+      - name: Upload validation report
+        uses: actions/upload-artifact@v4
+        with:
+          name: FHIR_Validation_Report
+          path: src/fhir/fsh-generated/resources/validation.html
+
       - name: Check for Uncommitted Changes
         run: |
           git diff --exit-code 'src/fhir/fsh-generated/resources'|| (echo "Es gibt Änderungen durch die Pipeline. Lokale Sushi Konfiguration prüfen!" && exit 1)
