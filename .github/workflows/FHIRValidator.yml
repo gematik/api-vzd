@@ -60,7 +60,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
           destination_dir: ${{ github.ref_name }}
-          publish_dir: ${{ github.workspace }}/validation-output/
+          publish_dir: ${{ github.workspace }}/validation-output
 
       - name: Check for Uncommitted Changes
         run: |
