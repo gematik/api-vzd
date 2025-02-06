@@ -45,18 +45,27 @@ jobs:
           # PATH_TO_QUALITY_CONTROL_RULES: qc/custom
           DOTNET_VALIDATION_ENABLED: true
           JAVA_VALIDATION_ENABLED: true
-          JAVA_VALIDATION_OPTIONS: -allow-example-urls true -advisor-file src/fhir/validator/advisor.json -html-output validation.html -language de -display-issues-are-warnings -output-style compact -show-message-ids -resolution-context file:src/fhir/fsh-generated/resources/ -html-output validation.html -language de -display-issues-are-warnings
+          JAVA_VALIDATION_OPTIONS: -allow-example-urls true -advisor-file src/fhir/validator/advisor.json -html-output validation-output/validation.html -language de -display-issues-are-warnings -output-style compact -show-message-ids -resolution-context file:src/fhir/fsh-generated/resources/ -html-output validation.html -language de -display-issues-are-warnings
           SIMPLIFIER_USERNAME: ${{ secrets.SIMPLIFIER_USERNAME }}
           SIMPLIFIER_PASSWORD: ${{ secrets.SIMPLIFIER_PASSWORD }}
           SUSHI_ENABLED: true
           SUSHI_OPTIONS: src/fhir/
           EXPECTED_FAILS: VALIDATION_CONFORMANCE_DOTNET VALIDATION_CONFORMANCE_JAVA
 
+      - name: Deploy validation report to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          destination_dir: ${{ github.ref_name }}
+          publish_dir: ${{ github.workspace }}/validation-output/
+
+
       - name: Upload validation report
         uses: actions/upload-artifact@v4
         with:
           name: FHIR_Validation_Report
-          path: ${{ github.workspace }}/validation.html
+          path: ${{ github.workspace }}/validation-output/validation.html
           if-no-files-found: error
           retention-days: 30
           compression-level: 0
