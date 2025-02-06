@@ -54,6 +54,10 @@ jobs:
           SUSHI_OPTIONS: src/fhir/
           EXPECTED_FAILS: VALIDATION_CONFORMANCE_DOTNET VALIDATION_CONFORMANCE_JAVA
 
+      - name: List all directories in workspace
+        run: find $GITHUB_WORKSPACE -type f -print
+
+
       - name: Deploy validation report to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
