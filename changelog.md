@@ -2,6 +2,7 @@
 
 ## 2025-02-06 Version 0.11.25
 - fix: CodeSystem: AerztlicheBerufsvarianten contained codes with a wrong prefix of `#`, these prefixes were removed.
+- feat: added ResultsFilteredEx Extension to represent how many results where filtered together with the reason of the filtering.
 
 ### data migration
 - remove `#`from code instances of the CodeSystem: `urn:oid:1.2.276.0.76.5.493` used on `Practitoner.qualification`

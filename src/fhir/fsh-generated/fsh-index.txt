@@ -1,4 +1,5 @@
 Output File                                                        Name                                             Type        FSH File                                                         Lines
+Bundle-FilteredSearchSetBundle.json                                FilteredSearchSetBundle                          Instance    examples/SearchSetBundle.fsh                                     1 - 12
 CodeSystem-EndpointDirectoryConnectionType.json                    EndpointDirectoryConnectionType                  CodeSystem  codesystems/EndpointDirectoryConnectionType.fsh                  1 - 22
 CodeSystem-EndpointDirectoryPayloadType.json                       EndpointDirectoryPayloadType                     CodeSystem  codesystems/EndpointDirectoryPayloadType.fsh                     1 - 12
 CodeSystem-EndpointVisibilityCS.json                               EndpointVisibilityCS                             CodeSystem  codesystems/EndpointVisibilityCS.fsh                             1 - 7
@@ -75,6 +76,7 @@ StructureDefinition-ServiceCoveragePostalCode.json                 ServiceCovera
 StructureDefinition-SpecialOpeningTimesEX.json                     SpecialOpeningTimesEX                            Extension   profiles/Extension.fsh                                           47 - 63
 StructureDefinition-endpoint-directory-Strict.json                 EndpointDirectoryStrict                          Profile     profiles/EndpointDirectory.fsh                                   29 - 46
 StructureDefinition-ncpeh-country-ex.json                          NCPeHCountryEx                                   Extension   profiles/Extension.fsh                                           74 - 86
+StructureDefinition-results-filtered-ex.json                       ResultsFilteredEx                                Extension   profiles/Extension.fsh                                           88 - 101
 ValueSet-AddressStateVS.json                                       AddressStateVS                                   ValueSet    valuesets/AddressStateVS.fsh                                     1 - 4
 ValueSet-EndpointConnectionTypeVS.json                             EndpointConnectionTypeVS                         ValueSet    valuesets/EndpointConnectionTypeVS.fsh                           1 - 5
 ValueSet-EndpointPayloadTypeVS.json                                EndpointPayloadTypeVS                            ValueSet    valuesets/EndpointPayloadTypeVS.fsh                              1 - 5

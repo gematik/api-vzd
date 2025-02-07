@@ -1,5 +1,13 @@
 [
   {
+    "outputFile": "Bundle-FilteredSearchSetBundle.json",
+    "fshName": "FilteredSearchSetBundle",
+    "fshType": "Instance",
+    "fshFile": "examples/SearchSetBundle.fsh",
+    "startLine": 1,
+    "endLine": 12
+  },
+  {
     "outputFile": "CodeSystem-EndpointDirectoryConnectionType.json",
     "fshName": "EndpointDirectoryConnectionType",
     "fshType": "CodeSystem",
@@ -606,6 +614,14 @@
     "fshFile": "profiles/Extension.fsh",
     "startLine": 74,
     "endLine": 86
+  },
+  {
+    "outputFile": "StructureDefinition-results-filtered-ex.json",
+    "fshName": "ResultsFilteredEx",
+    "fshType": "Extension",
+    "fshFile": "profiles/Extension.fsh",
+    "startLine": 88,
+    "endLine": 101
   },
   {
     "outputFile": "ValueSet-AddressStateVS.json",

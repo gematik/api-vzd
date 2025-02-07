@@ -14,12 +14,13 @@
     "Extension_EXT_Unknown_NotHere@SearchParameter.extension",
     "SD_PATH_SLICING_DEPRECATED",
     "http://hl7.org/fhir/StructureDefinition/SearchParameter#spd-0",
-    "Terminology_TX_NoValid_13@Endpoint.connectionType",
     "Terminology_TX_Binding_NoSource@HealthcareService.characteristic",
     "Terminology_TX_NoValid_3_CC@HealthcareService.specialty",
     "Reference_REF_NoDisplay@HealthcareService.coverageArea",
     "Terminology_TX_NoValid_1_CC@HealthcareService.specialty.coding.display",
-    "Terminology_TX_NoValid_1_CC@HealthcareService.specialty"
-    
+    "Terminology_TX_NoValid_1_CC@HealthcareService.specialty",
+    "BUNDLE_SEARCH_NOSELF",
+    "BUNDLE_SEARCH_NO_MODE",
+    "Terminology_TX_NoValid_13"
   ]
 }

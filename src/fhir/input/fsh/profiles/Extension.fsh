@@ -84,3 +84,18 @@ Context: Organization
 * valueCoding from Iso3166-1-2
   * system 1.. MS
   * code 1.. MS
+
+Extension: ResultsFilteredEx
+Id: results-filtered-ex
+Title: "Results Filtered Extension"
+Description: "Extension reporting the number of results filtered out by the server"
+Context: Bundle.total
+* extension contains
+    count 1..1 MS and
+    reason 1..1 MS
+* extension[count]
+  * value[x] only integer
+  * valueInteger 1.. MS
+* extension[reason]
+  * value[x] only string
+  * valueString 1.. MS
