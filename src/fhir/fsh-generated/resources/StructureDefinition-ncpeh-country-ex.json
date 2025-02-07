@@ -2,7 +2,7 @@
   "resourceType": "StructureDefinition",
   "id": "ncpeh-country-ex",
   "url": "https://gematik.de/fhir/directory/StructureDefinition/ncpeh-country-ex",
-  "version": "0.11.24",
+  "version": "0.11.25",
   "name": "NCPeHCountryEx",
   "title": "National Contact Point of Health (NCPeH) Country Extension",
   "status": "active",

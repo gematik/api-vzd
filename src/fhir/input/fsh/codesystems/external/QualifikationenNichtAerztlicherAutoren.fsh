@@ -5,6 +5,7 @@ Description: "Qualifikationen Nicht Aerztlicher Autoren"
 * insert Meta
 * ^url = "urn:oid:1.3.6.1.4.1.19376.3.276.1.5.11"
 * ^version = "2021-10-15T12:13:26"
+* ^caseSensitive = true
 * #1 "Gesundheits- Sozial-, Sportmanagement"
 * #2 "Arzthilfe, Praxisorganisation, -verwaltung"
 * #179 "Physician Assistant"

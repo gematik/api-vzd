@@ -128,7 +128,7 @@ Description: "Example of a Pharamacy eRP Endpoint"
 * status = #active "Active"
 * connectionType = EndpointDirectoryConnectionType#eRP-onPremise "Reservierung"
 * name = "ERP Reservierung"
-* address = "https://be-305314293.adv-erezept.de/gematik/onPremise/<ti_id>/<transactionID>"
+* address = "https://be-305314293.adv-erezept.de/gematik/onPremise/ti_id/transactionID"
 * payloadType = DataAbsentReason#not-applicable
 
 Instance: PharmacyEndpointOnlineAppointmentBookingExample

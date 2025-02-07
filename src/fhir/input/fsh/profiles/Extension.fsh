@@ -32,20 +32,6 @@ Context: Organization
 * valueCoding 1.. MS
 * valueCoding from OrganizationVisibilityVS
 
-CodeSystem: OrganizationVisibilityCS
-Id: OrganizationVisibilityCS
-Title: "OrganizationVisibilityCS"
-Description: "OrganizationVisibilityCS"
-* insert Meta
-* #hide-versicherte "Eintrag für Versicherte verbergen"
-
-ValueSet: OrganizationVisibilityVS
-Id: OrganizationVisibilityVS
-Title: "OrganizationVisibilityVS"
-Description: "OrganizationVisibilityVS"
-* insert Meta
-* include codes from system OrganizationVisibilityCS
-
 Extension: EndpointVisibility
 Id: EndpointVisibility
 Title: "EndpointVisibility"
@@ -57,20 +43,6 @@ Context: Endpoint
 * valueCoding obeys CodingSytemCodeInv
 * valueCoding 1.. MS
 * valueCoding from EndpointVisibilityVS
-
-CodeSystem: EndpointVisibilityCS
-Id: EndpointVisibilityCS
-Title: "EndpointVisibilityCS"
-Description: "EndpointVisibilityCS"
-* insert Meta
-* #hide-versicherte "Eintrag für Versicherte verbergen"
-
-ValueSet: EndpointVisibilityVS
-Id: EndpointVisibilityVS
-Title: "EndpointVisibilityVS"
-Description: "EndpointVisibilityVS"
-* insert Meta
-* include codes from system EndpointVisibilityCS
 
 Extension: SpecialOpeningTimesEX
 Id: SpecialOpeningTimesEX
@@ -89,20 +61,6 @@ Context: HealthcareService.availableTime
   * valueCoding obeys CodingSytemCodeInv
   * valueCoding 1.. MS
   * valueCoding from OpeningTimeQualifierVS
-
-CodeSystem: OpeningTimeQualifierCS
-Id: OpeningTimeQualifierCS
-Title: "OpeningTimeQualifierCS"
-Description: "Qualifier code for HealthCareService opening times"
-* insert Meta
-* #notdienst "Notdienst"
-
-ValueSet: OpeningTimeQualifierVS
-Id: OpeningTimeQualifierVS
-Title: "OpeningTimeQualifierVS"
-Description: "ValueSet of Qualifier codes for HealthCareService opening times"
-* insert Meta
-* include codes from system OpeningTimeQualifierCS
 
 Extension: PhysicalFeaturesAdditionalNoteEX
 Id: PhysicalFeaturesAdditionalNoteEX
@@ -126,3 +84,19 @@ Context: Organization
 * valueCoding from Iso3166-1-2
   * system 1.. MS
   * code 1.. MS
+
+Extension: ResultsFilteredEx
+Id: results-filtered-ex
+Title: "Results Filtered Extension"
+Description: "Extension reporting the number of results filtered out by the server"
+Context: Bundle.total
+* insert Meta
+* extension contains
+    count 1..1 MS and
+    reason 1..1 MS
+* extension[count]
+  * value[x] only integer
+  * valueInteger 1.. MS
+* extension[reason]
+  * value[x] only string
+  * valueString 1.. MS

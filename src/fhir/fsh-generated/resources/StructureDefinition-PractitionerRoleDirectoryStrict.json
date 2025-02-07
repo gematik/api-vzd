@@ -2,7 +2,7 @@
   "resourceType": "StructureDefinition",
   "id": "PractitionerRoleDirectoryStrict",
   "url": "https://gematik.de/fhir/directory/StructureDefinition/PractitionerRoleDirectoryStrict",
-  "version": "0.11.24",
+  "version": "0.11.25",
   "name": "PractitionerRoleDirectoryStrict",
   "title": "PractitionerRoleDirectoryStrict",
   "status": "active",

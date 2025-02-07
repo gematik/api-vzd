@@ -5,6 +5,7 @@ Description: "Fachgruppen-Codes nach Weiterbildungsordnung Bundesarztregister, B
 * insert Meta
 * ^url = "urn:oid:1.2.276.0.76.5.114"
 * ^version = "1.18"
+* ^caseSensitive = true
 * #010 "FÄ/FA Allgemeinmedizin (alte (M-)WBO, kammerindividuell, EU-Ärzte)"
 * #020 "FÄ/FA Anästhesiologie"
 * #030 "FÄ/FA Augenheilkunde"

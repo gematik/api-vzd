@@ -6,24 +6,25 @@
   "id": "aerztlicheBerufsvarianten",
   "title": "AerztlicheBerufsvarianten",
   "description": "AerztlicheBerufsvarianten",
-  "version": "0.11.24",
+  "version": "0.11.25",
   "url": "urn:oid:1.2.276.0.76.5.493",
   "concept": [
     {
-      "code": "#1",
+      "code": "1",
       "display": "Arzt in Facharztausbildung"
     },
     {
-      "code": "#2",
+      "code": "2",
       "display": "Hausarzt"
     },
     {
-      "code": "#3",
+      "code": "3",
       "display": "Praktischer Arzt"
     }
   ],
   "experimental": false,
   "publisher": "gematik GmbH",
   "date": "2024-10-29",
+  "caseSensitive": true,
   "count": 3
 }

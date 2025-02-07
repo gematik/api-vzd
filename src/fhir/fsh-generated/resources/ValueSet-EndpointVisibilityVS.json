@@ -5,7 +5,7 @@
   "id": "EndpointVisibilityVS",
   "title": "EndpointVisibilityVS",
   "description": "EndpointVisibilityVS",
-  "version": "0.11.24",
+  "version": "0.11.25",
   "url": "https://gematik.de/fhir/directory/ValueSet/EndpointVisibilityVS",
   "experimental": false,
   "publisher": "gematik GmbH",

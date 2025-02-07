@@ -5,6 +5,7 @@ Description: "NichtAerztlicheFachrichtungen_OID_URL"
 * insert Meta
 * ^url = "urn:oid:1.3.6.1.4.1.19376.3.276.1.5.5"
 * ^version = "2021-11-14T15:59:46"
+* ^caseSensitive = true
 * #ERG "Ergotherapie" "Ergotherapie unterstützt und begleitet Menschen jeden Alters, die in ihrer Handlungsfähigkeit eingeschränkt oder von Einschränkung bedroht sind. Ziel ist, sie bei der Durchführung für sie bedeutungsvoller Betätigungen in den Bereichen Selbstversorgung, Produktivität und Freizeit in ihrer persönlichen Umwelt zu stärken.Hierbei dienen spezifische Aktivitäten, Umweltanpassung und Beratung dazu, dem Menschen Handlungsfähigkeit im Alltag, gesellschaftliche Teilhabe und eine Verbesserung seiner Lebensqualität zu ermöglichen. (Definition vom \"Deutschen Verband der Ergotherapeuten e.V.\")Typischerweise werden Dokumente, die von Angehörigen der folgenden Berufsgruppen erstellt werden, mit diesem Code versehen:* Ergotherapeutin/ Ergotherapeut"
 * #ERN "Ernährung und Diätetik" "Das Fachgebiet der Ernährung und Diätetik deckt die Tätigkeiten folgender Berufe ab:* Diätassistentin/ Diätassistent* Diätköchin/ Diätkoch* Ernährungsberaterin/ Ernährungsberater* Oekotrophologin/ Oekotrophologe* Diabetesassistentin/ Diabetesassistent* Diabetesberaterin/ Diabetesberater"
 * #FOR "Forschung" "Das Konzept der Forschung deckt die Tätigkeiten folgender Berufe ab:* Clinical Trial Manager* Fachwissenschaftler/-innen in der Medizin* Klinischer Monitor* Studienassistentin/ Studienassistent* Study Nurse"

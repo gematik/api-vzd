@@ -6,7 +6,7 @@
   "id": "OpeningTimeQualifierCS",
   "title": "OpeningTimeQualifierCS",
   "description": "Qualifier code for HealthCareService opening times",
-  "version": "0.11.24",
+  "version": "0.11.25",
   "url": "https://gematik.de/fhir/directory/CodeSystem/OpeningTimeQualifierCS",
   "concept": [
     {
@@ -17,5 +17,6 @@
   "experimental": false,
   "publisher": "gematik GmbH",
   "date": "2024-10-29",
+  "caseSensitive": false,
   "count": 1
 }

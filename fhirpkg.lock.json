@@ -1,7 +1,7 @@
 {
-  "updated": "2025-01-24T08:05:52.691541+01:00",
+  "updated": "2025-02-07T09:45:27.420738+01:00",
   "dependencies": {
-    "de.basisprofil.r4": "1.5.1",
+    "de.basisprofil.r4": "1.5.2",
     "hl7.fhir.r4.core": "4.0.1",
     "de.ihe-d.terminology": "3.0.1"
   },
