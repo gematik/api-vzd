@@ -621,7 +621,7 @@
     "fshType": "Extension",
     "fshFile": "profiles/Extension.fsh",
     "startLine": 88,
-    "endLine": 101
+    "endLine": 102
   },
   {
     "outputFile": "ValueSet-AddressStateVS.json",

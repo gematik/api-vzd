@@ -90,6 +90,7 @@ Id: results-filtered-ex
 Title: "Results Filtered Extension"
 Description: "Extension reporting the number of results filtered out by the server"
 Context: Bundle.total
+* insert Meta
 * extension contains
     count 1..1 MS and
     reason 1..1 MS
