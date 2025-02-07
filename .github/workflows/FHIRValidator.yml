@@ -32,7 +32,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Validate Resource Status
-        uses: patrick-werner/fhir-resource-status-check@1.0.0
+        uses: patrick-werner/fhir-resource-status-check@1.0.1
         with:
           folder: './src/fhir/fsh-generated/resources'
         
