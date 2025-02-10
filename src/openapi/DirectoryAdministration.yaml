@@ -2233,10 +2233,9 @@ components:
                 type: array
                 items:
                   type: string
-                  example: 
-                    - eEB;V1.0
-                    - DALE-UV;Einsendung;V1.0
-                  description: 'Anwendungskennzeichen, welche diese KIM-Mail-Adresse verarbeiten kann'
+                  description: |
+                     'Anwendungskennzeichen, welche diese KIM-Mail-Adresse verarbeiten kann
+                     Beispiel für Attributbelegung: [ "eEB;V1.0", "DALE-UV;Einsendung;V1.0" ]''
             description: |
               Liste von KIM-Adressen mit der zugehörigen KIM-Version und Anwendungskennzeichen. 
               Für jede Mail Adresse darf nur einen Element in der Liste `kimData` existieren. 
