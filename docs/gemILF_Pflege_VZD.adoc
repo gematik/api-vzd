@@ -1513,8 +1513,10 @@ Wird in Operationen add_Directory_Entry ein Zertifikat angegeben wird, muss ein 
 Wird in Operationen add_Directory_Entry kein Zertifikat angegeben, muss Parameter entryType angegeben werden. +
 Mit Operation modify_Directory_Entry kann über Request Parameter entryType das Attribut im VZD geändert werden, solange kein Zertifikat im VZD enthalten ist (welches dann einen abweichenden Wert gegenüber dem Request Parameter entryType enthalten würde). +
 Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit einem Fehler. 
-|*telematikID* |obligatorisch |Bezeichner: TelematikID +
+|*telematikID* |obligatorisch a|Bezeichner: TelematikID +
 Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
+[pass]
+Format: "(^3-...3.*\|^9-1.(32\|33\|34).*)"
 |*dataFromAuthority* |optional |Wird vom VZD eingetragen +
 Gibt an, ob die Daten vom Kartenherausgeber stammen. +
 Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
@@ -1673,8 +1675,10 @@ Wird in Operationen add_Directory_Entry ein Zertifikat angegeben wird, muss ein 
 Wird in Operationen add_Directory_Entry kein Zertifikat angegeben, muss Parameter entryType angegeben werden. +
 Mit Operation modify_Directory_Entry kann über Request Parameter entryType das Attribut im VZD geändert werden, solange kein Zertifikat im VZD enthalten ist (welches dann einen abweichenden Wert gegenüber dem Request Parameter entryType enthalten würde). +
 Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit einem Fehler. 
-|*telematikID* |obligatorisch |Bezeichner: TelematikID +
-Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
+|*telematikID* |obligatorisch a|Bezeichner: TelematikID +
+Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen. +
+[pass]
+Format: "^5-.*"
 |*dataFromAuthority* |optional |Wird vom VZD eingetragen +
 Gibt an, ob die Daten vom Kartenherausgeber stammen. +
 Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
@@ -1835,8 +1839,10 @@ Wird in Operationen add_Directory_Entry ein Zertifikat angegeben wird, muss ein 
 Wird in Operationen add_Directory_Entry kein Zertifikat angegeben, muss Parameter entryType angegeben werden. +
 Mit Operation modify_Directory_Entry kann über Request Parameter entryType das Attribut im VZD geändert werden, solange kein Zertifikat im VZD enthalten ist (welches dann einen abweichenden Wert gegenüber dem Request Parameter entryType enthalten würde). +
 Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit einem Fehler. 
-|*telematikID* |obligatorisch |Bezeichner: TelematikID +
+|*telematikID* |obligatorisch a|Bezeichner: TelematikID +
 Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
+[pass]
+Format: "^4-1.*"
 |*dataFromAuthority* |optional |Wird vom VZD eingetragen +
 Gibt an, ob die Daten vom Kartenherausgeber stammen. +
 Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
@@ -1997,8 +2003,10 @@ Wird in Operationen add_Directory_Entry ein Zertifikat angegeben wird, muss ein 
 Wird in Operationen add_Directory_Entry kein Zertifikat angegeben, muss Parameter entryType angegeben werden. +
 Mit Operation modify_Directory_Entry kann über Request Parameter entryType das Attribut im VZD geändert werden, solange kein Zertifikat im VZD enthalten ist (welches dann einen abweichenden Wert gegenüber dem Request Parameter entryType enthalten würde). +
 Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit einem Fehler. 
-|*telematikID* |obligatorisch |Bezeichner: TelematikID +
+|*telematikID* |obligatorisch a|Bezeichner: TelematikID +
 Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
+[pass]
+Format: "^1-1.*"
 |*dataFromAuthority* |optional |Wird vom VZD eingetragen +
 Gibt an, ob die Daten vom Kartenherausgeber stammen. +
 Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
@@ -2159,8 +2167,10 @@ Wird in Operationen add_Directory_Entry ein Zertifikat angegeben wird, muss ein 
 Wird in Operationen add_Directory_Entry kein Zertifikat angegeben, muss Parameter entryType angegeben werden. +
 Mit Operation modify_Directory_Entry kann über Request Parameter entryType das Attribut im VZD geändert werden, solange kein Zertifikat im VZD enthalten ist (welches dann einen abweichenden Wert gegenüber dem Request Parameter entryType enthalten würde). +
 Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit einem Fehler. 
-|*telematikID* |obligatorisch |Bezeichner: TelematikID +
+|*telematikID* |obligatorisch a|Bezeichner: TelematikID +
 Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
+[pass]
+Format: "^2-0?1.*"
 |*dataFromAuthority* |optional |Wird vom VZD eingetragen +
 Gibt an, ob die Daten vom Kartenherausgeber stammen. +
 Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
@@ -2318,8 +2328,10 @@ Wird in Operationen add_Directory_Entry ein Zertifikat angegeben wird, muss ein 
 Wird in Operationen add_Directory_Entry kein Zertifikat angegeben, muss Parameter entryType angegeben werden. +
 Mit Operation modify_Directory_Entry kann über Request Parameter entryType das Attribut im VZD geändert werden, solange kein Zertifikat im VZD enthalten ist (welches dann einen abweichenden Wert gegenüber dem Request Parameter entryType enthalten würde). +
 Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit einem Fehler. 
-|*telematikID* |obligatorisch |Bezeichner: TelematikID +
+|*telematikID* |obligatorisch a|Bezeichner: TelematikID +
 Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
+[pass]
+Format: "^8-01.*"
 |*holder* |obligatorisch |Legt fest, wer Änderungen an den Basisdaten des Eintrags vornehmen darf. Hat keinen Einfluss auf Fachdaten und Zertifikatsdaten.
 |*professionOID* |obligatorisch |Bezeichner: Profession OID +
 Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und dem Mapping in ab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
@@ -2475,8 +2487,10 @@ Wird in Operationen add_Directory_Entry ein Zertifikat angegeben wird, muss ein 
 Wird in Operationen add_Directory_Entry kein Zertifikat angegeben, muss Parameter entryType angegeben werden. +
 Mit Operation modify_Directory_Entry kann über Request Parameter entryType das Attribut im VZD geändert werden, solange kein Zertifikat im VZD enthalten ist (welches dann einen abweichenden Wert gegenüber dem Request Parameter entryType enthalten würde). +
 Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit einem Fehler. 
-|*telematikID* |obligatorisch |Bezeichner: TelematikID +
-Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
+|*telematikID* |obligatorisch a|Bezeichner: TelematikID +
+Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen. +
+[pass]
+Format: "^8-03.*"
 |*holder* |obligatorisch |Legt fest, wer Änderungen an den Basisdaten des Eintrags vornehmen darf. Hat keinen Einfluss auf Fachdaten und Zertifikatsdaten.
 |*professionOID* |obligatorisch |Bezeichner: Profession OID +
 Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und dem Mapping in ab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
@@ -2594,8 +2608,10 @@ Wird in Operationen add_Directory_Entry ein Zertifikat angegeben wird, muss ein 
 Wird in Operationen add_Directory_Entry kein Zertifikat angegeben, muss Parameter entryType angegeben werden. +
 Mit Operation modify_Directory_Entry kann über Request Parameter entryType das Attribut im VZD geändert werden, solange kein Zertifikat im VZD enthalten ist (welches dann einen abweichenden Wert gegenüber dem Request Parameter entryType enthalten würde). +
 Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit einem Fehler. 
-|*telematikID* |obligatorisch |Bezeichner: TelematikID +
-Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
+|*telematikID* |obligatorisch a|Bezeichner: TelematikID +
+Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen. +
+[pass]
+Format: "^9-2.(58\|187\|210\|223\|226\|227\|228\|224\|225\|229\|230\|231\|242\|243\|244\|245\|262\|263\|264\|265\|266\|267\|268\|269\|270\|271\|284\|285\|286\|295).*"
 |*dataFromAuthority* |optional |Wird vom VZD eingetragen +
 Gibt an, ob die Daten vom Kartenherausgeber stammen. +
 Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
@@ -2746,8 +2762,10 @@ Wird in Operationen add_Directory_Entry ein Zertifikat angegeben wird, muss ein 
 Wird in Operationen add_Directory_Entry kein Zertifikat angegeben, muss Parameter entryType angegeben werden. +
 Mit Operation modify_Directory_Entry kann über Request Parameter entryType das Attribut im VZD geändert werden, solange kein Zertifikat im VZD enthalten ist (welches dann einen abweichenden Wert gegenüber dem Request Parameter entryType enthalten würde). +
 Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit einem Fehler. 
-|*telematikID* |obligatorisch |Bezeichner: TelematikID +
-Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
+|*telematikID* |obligatorisch a|Bezeichner: TelematikID +
+Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen. +
+[pass]
+Format: "^10-67.(245\|246\|247\|278\|279\|280\|281\|311).*"
 |*dataFromAuthority* |optional |Wird vom VZD eingetragen +
 Gibt an, ob die Daten vom Kartenherausgeber stammen. +
 Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
@@ -2901,8 +2919,10 @@ Wird in Operationen add_Directory_Entry ein Zertifikat angegeben wird, muss ein 
 Wird in Operationen add_Directory_Entry kein Zertifikat angegeben, muss Parameter entryType angegeben werden. +
 Mit Operation modify_Directory_Entry kann über Request Parameter entryType das Attribut im VZD geändert werden, solange kein Zertifikat im VZD enthalten ist (welches dann einen abweichenden Wert gegenüber dem Request Parameter entryType enthalten würde). +
 Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit einem Fehler. 
-|*telematikID* |obligatorisch |Bezeichner: TelematikID +
-Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
+|*telematikID* |obligatorisch a|Bezeichner: TelematikID +
+Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen. +
+[pass]
+Format: "^10-67.(232\|233\|234\|235\|236\|274\|275\|276\|277\|312).*"
 |*dataFromAuthority* |optional |Wird vom VZD eingetragen +
 Gibt an, ob die Daten vom Kartenherausgeber stammen. +
 Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
@@ -3079,8 +3099,10 @@ Wird in Operationen add_Directory_Entry ein Zertifikat angegeben wird, muss ein 
 Wird in Operationen add_Directory_Entry kein Zertifikat angegeben, muss Parameter entryType angegeben werden. +
 Mit Operation modify_Directory_Entry kann über Request Parameter entryType das Attribut im VZD geändert werden, solange kein Zertifikat im VZD enthalten ist (welches dann einen abweichenden Wert gegenüber dem Request Parameter entryType enthalten würde). +
 Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit einem Fehler. 
-|*telematikID* |obligatorisch |Bezeichner: TelematikID +
-Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
+|*telematikID* |obligatorisch a|Bezeichner: TelematikID +
+Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen. +
+[pass]
+Format: "^9-2.(50\|51\|34\|254\|256).*"
 |*dataFromAuthority* |optional |Wird vom VZD eingetragen +
 Gibt an, ob die Daten vom Kartenherausgeber stammen. +
 Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
@@ -3226,8 +3248,10 @@ Wird in Operationen add_Directory_Entry ein Zertifikat angegeben wird, muss ein 
 Wird in Operationen add_Directory_Entry kein Zertifikat angegeben, muss Parameter entryType angegeben werden. +
 Mit Operation modify_Directory_Entry kann über Request Parameter entryType das Attribut im VZD geändert werden, solange kein Zertifikat im VZD enthalten ist (welches dann einen abweichenden Wert gegenüber dem Request Parameter entryType enthalten würde). +
 Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit einem Fehler. 
-|*telematikID* |obligatorisch |Bezeichner: TelematikID +
-Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
+|*telematikID* |obligatorisch a|Bezeichner: TelematikID +
+Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen. +
+[pass]
+Format: "^9-2.(59\|273).*"
 |*dataFromAuthority* |optional |Wird vom VZD eingetragen +
 Gibt an, ob die Daten vom Kartenherausgeber stammen. +
 Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
@@ -3373,8 +3397,10 @@ Wird in Operationen add_Directory_Entry ein Zertifikat angegeben wird, muss ein 
 Wird in Operationen add_Directory_Entry kein Zertifikat angegeben, muss Parameter entryType angegeben werden. +
 Mit Operation modify_Directory_Entry kann über Request Parameter entryType das Attribut im VZD geändert werden, solange kein Zertifikat im VZD enthalten ist (welches dann einen abweichenden Wert gegenüber dem Request Parameter entryType enthalten würde). +
 Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit einem Fehler. 
-|*telematikID* |obligatorisch |Bezeichner: TelematikID +
-Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
+|*telematikID* |obligatorisch a|Bezeichner: TelematikID +
+Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen. +
+[pass]
+Format: "^9-2.282.*"
 |*dataFromAuthority* |optional |Wird vom VZD eingetragen +
 Gibt an, ob die Daten vom Kartenherausgeber stammen. +
 Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
@@ -3537,8 +3563,10 @@ Wird in Operationen add_Directory_Entry ein Zertifikat angegeben wird, muss ein 
 Wird in Operationen add_Directory_Entry kein Zertifikat angegeben, muss Parameter entryType angegeben werden. +
 Mit Operation modify_Directory_Entry kann über Request Parameter entryType das Attribut im VZD geändert werden, solange kein Zertifikat im VZD enthalten ist (welches dann einen abweichenden Wert gegenüber dem Request Parameter entryType enthalten würde). +
 Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit einem Fehler. 
-|*telematikID* |obligatorisch |Bezeichner: TelematikID +
-Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
+|*telematikID* |obligatorisch a|Bezeichner: TelematikID +
+Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen. +
+[pass]
+Format: "^11-2.*"
 |*dataFromAuthority* |optional |Wird vom VZD eingetragen +
 Gibt an, ob die Daten vom Kartenherausgeber stammen. +
 Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
@@ -3707,8 +3735,10 @@ Wird in Operationen add_Directory_Entry ein Zertifikat angegeben wird, muss ein 
 Wird in Operationen add_Directory_Entry kein Zertifikat angegeben, muss Parameter entryType angegeben werden. +
 Mit Operation modify_Directory_Entry kann über Request Parameter entryType das Attribut im VZD geändert werden, solange kein Zertifikat im VZD enthalten ist (welches dann einen abweichenden Wert gegenüber dem Request Parameter entryType enthalten würde). +
 Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit einem Fehler. 
-|*telematikID* |obligatorisch |Bezeichner: TelematikID +
-Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
+|*telematikID* |obligatorisch a|Bezeichner: TelematikID +
+Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen. +
+[pass]
+Format: "^11-1.*"
 |*dataFromAuthority* |optional |Wird vom VZD eingetragen +
 Gibt an, ob die Daten vom Kartenherausgeber stammen. +
 Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
@@ -3847,8 +3877,10 @@ Wird in Operationen add_Directory_Entry ein Zertifikat angegeben wird, muss ein 
 Wird in Operationen add_Directory_Entry kein Zertifikat angegeben, muss Parameter entryType angegeben werden. +
 Mit Operation modify_Directory_Entry kann über Request Parameter entryType das Attribut im VZD geändert werden, solange kein Zertifikat im VZD enthalten ist (welches dann einen abweichenden Wert gegenüber dem Request Parameter entryType enthalten würde). +
 Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit einem Fehler. 
-|*telematikID* |obligatorisch |Bezeichner: TelematikID +
-Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
+|*telematikID* |obligatorisch +|Bezeichner: TelematikID +
+Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen. +
+[pass]
+Format: "^9-2.292.*"
 |*dataFromAuthority* |optional |Wird vom VZD eingetragen +
 Gibt an, ob die Daten vom Kartenherausgeber stammen. +
 Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
