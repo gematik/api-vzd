@@ -3879,7 +3879,6 @@ Mit Operation modify_Directory_Entry kann über Request Parameter entryType das 
 Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit einem Fehler. 
 |*telematikID* |obligatorisch +|Bezeichner: TelematikID +
 Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen. +
-[pass]
 Format: "^9-2.292.*"
 |*dataFromAuthority* |optional |Wird vom VZD eingetragen +
 Gibt an, ob die Daten vom Kartenherausgeber stammen. +
