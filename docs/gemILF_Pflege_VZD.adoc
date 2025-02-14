@@ -904,7 +904,7 @@ a| Bei Organisationseinträgen werden die für Personen vorgesehene Felder given
 [width="100%",cols="50%,50%",options="header",]
 |===
 |*Tabelle* |*TelematikID (regEx)* 
-a|4.2 xref:gemILF_Pflege_VZD.adoc##Tabelle_2[Tab_VZD_Datenbeschreibung_KVen]|"^1-20.*" 
+a|4.2 xref:gemILF_Pflege_VZD.adoc##Tabelle_19[Tab_VZD_Datenbeschreibung_KVen]|"^1-20.*" 
 
 |===
 
