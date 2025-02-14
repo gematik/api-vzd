@@ -899,39 +899,15 @@ a| Bei Organisationseinträgen werden die für Personen vorgesehene Felder given
 |===
 
 {empty} +
-xref:gemILF_Pflege_VZD.adoc#tabelle_19[Tabelle 19]
 {empty} +
+
 [width="100%",cols="50%,50%",options="header",]
 |*Tabelle* |*TelematikID (regEx)* 
 a|4.2 xref:gemILF_Pflege_VZD.adoc##Tabelle_2[Tab_VZD_Datenbeschreibung_KVen]|"^1-20.*" 
 
 |===
 
-.Tabular data from CSV items
-[options="header",format=dsv]
-|===
-Tabelle, TelematikID (regEx)
-4.2 xref:gemILF_Pflege_VZD.adoc##Tabelle_2[Tab_VZD_Datenbeschreibung_KVen],"^1-20.*" 
-4.3 <<Kassenzahnärztliche Vereinigungen (SMC-B Eintrag)>>:"^2-2....2.*"
-4.4 <<SMC-B-Eintrag für Apotheken (ABDA, gematik)>>: "(^3-...2.*|^9-2.54.*)"
-4.5 <<HBA-Eintrag für Apotheker, Pharmazieingenieure und Apothekerassistenten (ABDA, gematik)>>: "(^3-...3.*|^9-1.(32|33|34).*)"
-4.6 <<DKTIG (i.A.d.DKG) - Krankenhaus, Krankenhausapotheke, Vorsorge-und Rehabilitationseinrichtungen (SMC-B-Eintrag)>>: "^5-.*"
-4.7 <<Psychotherapeuten (HBA-Eintrag)>>: "^4-1.*"
-4.8 <<Ärzte-Kammern (HBA-Eintrag)>>: "^1-1.*"
-4.9 <<Zahnärzte-Kammern (HBA-Eintrag)>>: "^2-0?1.*"
-4.10 <<GKV-SV (SMC-B-Eintrag)>> Tabelle 10 Tab_VZD_Datenbeschreibung_GKV-SV_SMC-B KTR: "^8-01.*"
-4.10 <<GKV-SV (SMC-B-Eintrag)>> Tabelle 11 VZD_Datenbeschreibung_GKV-SV_SM-B_KTR ePA: "^8-03.*"
-4.11 <<SMC-B-Org-Eintrag (gematik)>>: "^9-2.(58|187|210|223|226|227|228|224|225|229|230|231|242|243|244|245|262|263|264|265|266|267|268|269|270|271|284|285|286|295).*"
-4.12 <<eGBR – Nichtärztliche Institutionen (SMC-B-Eintrag)>>: "^10-67.(245|246|247|278|279|280|281|311).*"
-4.13 <<eGBR – Weitere Gesundheitsfachberufe (HBA-Eintrag)>>: "^10-67.(232|233|234|235|236|274|275|276|277|312).*"
-4.14 <<gematik - Weitere ärztliche Institutionen (SMC-B-Eintrag)gematik - Weitere ärztliche Institutionen (SMC-B-Eintrag)>>: "^9-2.(50|51|34|254|255|256).*"
-4.15 <<gematik - Kostenträger PKV (SMC-B-Eintrag)>>: "^9-2.(59|273|303).*"
-4.16 <<gematik – DiGA (SMC-B-Eintrag)>>: "^9-2.282.*"
-4.17 <<Handwerkskammern – Nichtärztliche Institutionen (SMC-B-Eintrag)>>: "^11-2.*"
-4.18 <<Handwerkskammern – Weitere Gesundheitsfachberufe (BA-Eintrag)>>: "^11-1.*"
-4.19 <<gematik – NCPeH - National Contact Point for eHealth (SMC-B-Eintrag)>>: "^9-2.292.*"
 
-|===
 
 
 
