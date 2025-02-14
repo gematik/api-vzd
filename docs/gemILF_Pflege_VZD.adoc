@@ -901,10 +901,10 @@ a| Bei Organisationseinträgen werden die für Personen vorgesehene Felder given
 {empty} +
 {empty} +
 
-[width="100%",cols="50%,50%",options="header",]
+[width="100%",cols="5%,45%,50%",options="header",]
 |===
-|*Tabelle* |*TelematikID (regEx)* 
-a|4.2 xref:gemILF_Pflege_VZD.adoc#Tabelle_2[Tab_VZD_Datenbeschreibung_KVen]|"^1-20.*" 
+|*Kapitel*|*Tabelle* |*TelematikID (regEx)* 
+|4.2| xref:gemILF_Pflege_VZD.adoc#Tabelle_2[Tabelle 2: Tab_VZD_Datenbeschreibung_KVen]|"^1-20.*" 
 
 |===
 
@@ -935,7 +935,7 @@ Tabelle 1: TAB_VZD_Wertebereiche_der_Attribute
 
 
 === Kassenärztliche Vereinigungen (SMC-B-Eintrag)
-[[Tab_VZD_Datenbeschreibung_KVen]]
+[[Tabelle_2]]
 Tabelle 2: Tab_VZD_Datenbeschreibung_KVen
 
 [width="100%",cols="18%,10%,72%",options="header",]
