@@ -905,7 +905,7 @@ xref:gemILF_Pflege_VZD.adoc#tabelle_19[Tabelle 19]
 [options="header",format=dsv]
 |===
 Tabelle, TelematikID (regEx)
-4.2 [Tabelle 2](#Tabelle_2),"^1-20.*" 
+4.2 xref:gemILF_Pflege_VZD.adoc##Tabelle_2[Tab_VZD_Datenbeschreibung_KVen],"^1-20.*" 
 4.3 <<Kassenzahnärztliche Vereinigungen (SMC-B Eintrag)>>:"^2-2....2.*"
 4.4 <<SMC-B-Eintrag für Apotheken (ABDA, gematik)>>: "(^3-...2.*|^9-2.54.*)"
 4.5 <<HBA-Eintrag für Apotheker, Pharmazieingenieure und Apothekerassistenten (ABDA, gematik)>>: "(^3-...3.*|^9-1.(32|33|34).*)"
