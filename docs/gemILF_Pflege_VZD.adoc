@@ -901,13 +901,13 @@ a| Bei Organisationseinträgen werden die für Personen vorgesehene Felder given
 {empty} +
 {empty} +
 
-[width="100%",cols="5%,45%,50%",options="header",]
+[width="100%",options="header",]
 |===
 |*Kapitel*|*Tabelle* |*TelematikID (regEx)* 
 |4.2| xref:gemILF_Pflege_VZD.adoc#Tabelle_2[Tabelle 2: Tab_VZD_Datenbeschreibung_KVen] a|"^1-20.*"
 |4.3| xref:gemILF_Pflege_VZD.adoc#Tabelle_3[Tabelle 3: Tab_VZD_Datenbeschreibung_KZVen] a|"^2-2....2.*"
 |4.4| xref:gemILF_Pflege_VZD.adoc#Tabelle_4[Tabelle 4: Tab_VZD_Datenbeschreibung_Apotheken_SMC-B] a|"(\^3-...2.\*\|^9-2.54.*)"
-|4.5| xref:gemILF_Pflege_VZD.adoc#Tabelle_5[Tabelle 5: Tab_VZD_Datenbeschreibung_Apotheker_Pharmazieingenieure_Apothekerassistenten] a|"(\^3-...3.\*\|^9-1.(32\|33\|34).*)"
+|4.5| xref:gemILF_Pflege_VZD.adoc#Tabelle_5[Tabelle 5: Tab_VZD_Datenbeschreibung_Apotheker_ Pharmazieingenieure_Apothekerassistenten] a|"(\^3-...3.\*\|^9-1.(32\|33\|34).*)"
 |4.6| xref:gemILF_Pflege_VZD.adoc#Tabelle_6[Tabelle 6: Tab_VZD_Datenbeschreibung_DKTIG (DKG)] a|"^5-.*"
 |4.7| xref:gemILF_Pflege_VZD.adoc#Tabelle_7[Tabelle 7: Tab_VZD_Datenbeschreibung_Psychotherapeuten] a|"^4-1.*"
 |4.8| xref:gemILF_Pflege_VZD.adoc#Tabelle_8[Tabelle 8: Tab_VZD_Datenbeschreibung_BÄK] a|"^1-1.*"
@@ -924,7 +924,6 @@ a| Bei Organisationseinträgen werden die für Personen vorgesehene Felder given
 |4.18| xref:gemILF_Pflege_VZD.adoc#Tabelle_19[Tabelle 19: Tab_VZD_Datenbeschreibung_BA_HWK] a|"^11-1.*"
 |4.19| xref:gemILF_Pflege_VZD.adoc#Tabelle_20[Tabelle 20: Tab_VZD_Datenbeschreibung_NCPeH] a|"^9-2.292.*"
 |===
-
 
 
 
