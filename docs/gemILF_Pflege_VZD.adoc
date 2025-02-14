@@ -904,8 +904,25 @@ a| Bei Organisationseinträgen werden die für Personen vorgesehene Felder given
 [width="100%",cols="5%,45%,50%",options="header",]
 |===
 |*Kapitel*|*Tabelle* |*TelematikID (regEx)* 
-|4.2| xref:gemILF_Pflege_VZD.adoc#Tabelle_2[Tabelle 2: Tab_VZD_Datenbeschreibung_KVen]|"^1-20.*" 
-
+|4.2| xref:gemILF_Pflege_VZD.adoc#Tabelle_2[Tabelle 2: Tab_VZD_Datenbeschreibung_KVen] a|"^1-20.*"
+|4.3| xref:gemILF_Pflege_VZD.adoc#Tabelle_3[Tabelle 3: Tab_VZD_Datenbeschreibung_KZVen] a|"^2-2....2.*"
+|4.4| xref:gemILF_Pflege_VZD.adoc#Tabelle_4[Tabelle 4: Tab_VZD_Datenbeschreibung_Apotheken_SMC-B] a|"(\^3-...2.\*\|^9-2.54.*)"
+|4.5| xref:gemILF_Pflege_VZD.adoc#Tabelle_5[Tabelle 5: Tab_VZD_Datenbeschreibung_Apotheker_Pharmazieingenieure_Apothekerassistenten] a|"(\^3-...3.\*\|^9-1.(32\|33\|34).*)"
+|4.6| xref:gemILF_Pflege_VZD.adoc#Tabelle_6[Tabelle 6: Tab_VZD_Datenbeschreibung_DKTIG (DKG)] a|"^5-.*"
+|4.7| xref:gemILF_Pflege_VZD.adoc#Tabelle_7[Tabelle 7: Tab_VZD_Datenbeschreibung_Psychotherapeuten] a|"^4-1.*"
+|4.8| xref:gemILF_Pflege_VZD.adoc#Tabelle_8[Tabelle 8: Tab_VZD_Datenbeschreibung_BÄK] a|"^1-1.*"
+|4.9| xref:gemILF_Pflege_VZD.adoc#Tabelle_9[Tabelle 9: Tab_VZD_Datenbeschreibung_BZÄK] a|"^2-0?1.*"
+|4.10| xref:gemILF_Pflege_VZD.adoc#Tabelle_10[Tabelle 10: Tab_VZD_Datenbeschreibung_GKV-SV_SMC-B KTR] a|"^8-01.*"
+|4.10| xref:gemILF_Pflege_VZD.adoc#Tabelle_11[Tabelle 11: VZD_Datenbeschreibung_GKV-SV_SM-B_KTR ePA] a|"^8-03.*"
+|4.11| xref:gemILF_Pflege_VZD.adoc#Tabelle_12[Tabelle 12: Tab_VZD_Datenbeschreibung_der_SMC-B_Org] a|"^9-2.(58\|187\|210\|223\|226\|227\|228\|224\|225\|229\|230\|231\|242\|243\|244\|245\|262\|263\|264\|265\|266\|267\|268\|269\|270\|271\|284\|285\|286\|295).*"
+|4.12| xref:gemILF_Pflege_VZD.adoc#Tabelle_13[Tabelle 13: Tab_VZD_Datenbeschreibung_der_SMC-B_eGBR] a|"^10-67.(245\|246\|247\|278\|279\|280\|281\|311).*"
+|4.13| xref:gemILF_Pflege_VZD.adoc#Tabelle 14[Tabelle 14: Tab_VZD_Datenbeschreibung_eGBR_HBA] a|"^10-67.(232\|233\|234\|235\|236\|274\|275\|276\|277\|312).*"
+|4.14| xref:gemILF_Pflege_VZD.adoc#Tabelle_15[Tabelle 15: Tab_VZD_Datenbeschreibung_der_SMC-B_WÄI] a|"^9-2.(50\|51\|34\|254\|255\|256).*"
+|4.15| xref:gemILF_Pflege_VZD.adoc#Tabelle_16[Tabelle 16: Tab_VZD_Datenbeschreibung_der_SMC-B_KT_PKV] a|"^9-2.(59\|273\|303).*"
+|4.16| xref:gemILF_Pflege_VZD.adoc#Tabelle_17[Tabelle 17: Tab_VZD_Datenbeschreibung_der_SMC-B_DiGA] a|"^9-2.282.*"
+|4.17| xref:gemILF_Pflege_VZD.adoc#Tabelle_18[Tabelle 18: Tab_VZD_Datenbeschreibung_der_SMC-B_HWK] a|"^11-2.*"
+|4.18| xref:gemILF_Pflege_VZD.adoc#Tabelle_19[Tabelle 19: Tab_VZD_Datenbeschreibung_BA_HWK] a|"^11-1.*"
+|4.19| xref:gemILF_Pflege_VZD.adoc#Tabelle_20[Tabelle 20: Tab_VZD_Datenbeschreibung_NCPeH] a|"^9-2.292.*"
 |===
 
 
