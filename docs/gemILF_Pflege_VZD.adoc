@@ -3102,7 +3102,7 @@ Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugef
 |*telematikID* |obligatorisch a|Bezeichner: TelematikID +
 Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen. +
 [pass]
-Format: "^9-2.(50\|51\|34\|254\|256).*"
+Format: "^9-2.(50\|51\|34\|254\|255\|256).*"
 |*dataFromAuthority* |optional |Wird vom VZD eingetragen +
 Gibt an, ob die Daten vom Kartenherausgeber stammen. +
 Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
@@ -3251,7 +3251,7 @@ Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugef
 |*telematikID* |obligatorisch a|Bezeichner: TelematikID +
 Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen. +
 [pass]
-Format: "^9-2.(59\|273).*"
+Format: "^9-2.(59\|273\|303).*"
 |*dataFromAuthority* |optional |Wird vom VZD eingetragen +
 Gibt an, ob die Daten vom Kartenherausgeber stammen. +
 Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
