@@ -921,7 +921,7 @@ Der Wert in Spalte "TelematikID (regEx)" ist ein Regulärer Ausdruck (Regular ex
 |4.8| xref:gemILF_Pflege_VZD.adoc#Tabelle_8[Tabelle 8: Tab_VZD_Datenbeschreibung_BÄK] a|"^1-1.*"
 |4.9| xref:gemILF_Pflege_VZD.adoc#Tabelle_9[Tabelle 9: Tab_VZD_Datenbeschreibung_BZÄK] a|"^2-0?1.*"
 |4.10| xref:gemILF_Pflege_VZD.adoc#Tabelle_10[Tabelle 10: Tab_VZD_Datenbeschreibung_GKV-SV_SMC-B KTR] a|"^8-01.*"
-|4.10| xref:gemILF_Pflege_VZD.adoc#Tabelle_11[Tabelle 11: VZD_Datenbeschreibung_GKV-SV_SM-B_KTR ePA] a|"^8-03.*"
+|4.10| xref:gemILF_Pflege_VZD.adoc#Tabelle_11[Tabelle 11: VZD_Datenbeschreibung_GKV-SV_SM-B_KTR ePA] a|"^8-(03\|04).*"
 |4.11| xref:gemILF_Pflege_VZD.adoc#Tabelle_12[Tabelle 12: Tab_VZD_Datenbeschreibung_der_SMC-B_Org] a|"^9-2.(58\|187\|210\|223\|226\|227\|228\|224\|225\|229\|230\|231\|242\|243\|244\|245\|262\|263\|264\|265\|266\|267\|268\|269\|270\|271\|284\|285\|286\|295).*"
 |4.12| xref:gemILF_Pflege_VZD.adoc#Tabelle_13[Tabelle 13: Tab_VZD_Datenbeschreibung_der_SMC-B_eGBR] a|"^10-67.(245\|246\|247\|278\|279\|280\|281\|311).*"
 |4.13| xref:gemILF_Pflege_VZD.adoc#Tabelle_14[Tabelle 14: Tab_VZD_Datenbeschreibung_eGBR_HBA] a|"^10-67.(232\|233\|234\|235\|236\|274\|275\|276\|277\|312).*"
