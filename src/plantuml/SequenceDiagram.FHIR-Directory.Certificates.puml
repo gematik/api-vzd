@@ -1,6 +1,6 @@
 @startuml
 autonumber 1 1 "<b>[00]"
-title "FHIR-VZD Authentisierung für Versicherte"
+title "FHIR-VZD Lesen von Zertifikaten"
 
     participant FhirVzdClient as "FHIR-VZD-Client"
 
