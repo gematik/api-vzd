@@ -14,6 +14,14 @@ on:
   pull_request:
     branches:
     - 'main**'
+  workflow_call:
+    secrets:
+      SIMPLIFIER_USERNAME:
+        required: true
+      SIMPLIFIER_PASSWORD:
+        required: true
+      WORKFLOW_PERMISSION_GITHUB:
+        required: true
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -28,43 +36,39 @@ jobs:
     
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: Checkout code
+      - name: Checkout code (PR)
         uses: actions/checkout@v4
+        if: github.event_name == 'pull_request'
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+
+      - name: Checkout code (Main)
+        uses: actions/checkout@v4
+        if: github.event_name != 'pull_request'
 
       - name: Validate Resource Status
-        uses: patrick-werner/fhir-resource-status-check@1.0.1
+        uses: patrick-werner/fhir-resource-status-check@1.1.0
         with:
-          folder: './src/fhir/fsh-generated/resources'
-        
-      - name: Ensure validation-output directory exists
-        run: mkdir -p $GITHUB_WORKSPACE/validation-output
-
+          folder: './src/fhir/fsh-generated/resources/'
 
       - name: Firely.Terminal (GitHub Actions)
-        uses: FirelyTeam/firely-terminal-pipeline@v0.6.7
+        uses: FirelyTeam/firely-terminal-pipeline@v0.6.8
         with:
           PATH_TO_CONFORMANCE_RESOURCES: src/fhir/fsh-generated/resources/
           # PATH_TO_QUALITY_CONTROL_RULES: qc/custom
           DOTNET_VALIDATION_ENABLED: true
           JAVA_VALIDATION_ENABLED: true
-          JAVA_VALIDATION_OPTIONS: -allow-example-urls true -advisor-file src/fhir/validator/advisor.json -html-output validation-output/validation.html -language de -display-issues-are-warnings -output-style compact -show-message-ids -resolution-context file:src/fhir/fsh-generated/resources/ -html-output validation.html -language de -display-issues-are-warnings
+          JAVA_VALIDATION_OPTIONS: -allow-example-urls true -output-style compact -advisor-file src/fhir/validator/advisor.json -html-output validation.html -show-message-ids -language de -jurisdiction de -display-issues-are-warnings -resolution-context file:src/fhir/fsh-generated/resources/
           SIMPLIFIER_USERNAME: ${{ secrets.SIMPLIFIER_USERNAME }}
           SIMPLIFIER_PASSWORD: ${{ secrets.SIMPLIFIER_PASSWORD }}
           SUSHI_ENABLED: true
           SUSHI_OPTIONS: src/fhir/
           EXPECTED_FAILS: VALIDATION_CONFORMANCE_DOTNET VALIDATION_CONFORMANCE_JAVA
 
-      - name: List all directories in workspace
-        run: find $GITHUB_WORKSPACE -type f -print
-
-
-      - name: Deploy validation report to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
+      - name: Convert Validation Report
+        uses: patrick-werner/fhir-html-validation-to-markdown@1.0.0
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: gh-pages
-          destination_dir: ${{ github.ref_name }}
-          publish_dir: ${{ github.workspace }}/validation-output
+          input_file: 'validation.html'
 
       - name: Check for Uncommitted Changes
         run: |
