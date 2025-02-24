@@ -49,7 +49,7 @@ jobs:
       - name: Validate Resource Status
         uses: patrick-werner/fhir-resource-status-check@1.1.0
         with:
-          folder: './Resources/fsh-generated/resources/'
+          folder: './src/fhir/fsh-generated/resources/'
 
       - name: Firely.Terminal (GitHub Actions)
         uses: FirelyTeam/firely-terminal-pipeline@v0.6.8
