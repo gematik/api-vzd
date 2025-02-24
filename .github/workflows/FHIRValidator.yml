@@ -65,9 +65,6 @@ jobs:
           SUSHI_OPTIONS: src/fhir/
           EXPECTED_FAILS: VALIDATION_CONFORMANCE_DOTNET VALIDATION_CONFORMANCE_JAVA
 
-      - name: List all directories in workspace
-        run: find $GITHUB_WORKSPACE -type f -print
-
       - name: Convert Validation Report
         uses: patrick-werner/fhir-html-validation-to-markdown@1.0.0
         with:
