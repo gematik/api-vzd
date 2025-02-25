@@ -18,7 +18,7 @@ image::gematik_logo.svg[gematik,float="right"]
 
 [width="100%",cols="50%,50%",options="header",]
 |===
-|Version: |1.0.2
+|Version: |1.0.4
 |Referencing: |gemILF_FHIR_VZD
 |===
 
@@ -38,6 +38,8 @@ image::gematik_logo.svg[gematik,float="right"]
 
 |1.0.2 |11.09.23 |Chap. 2.5 |added chapter "2.5. Authenticate using the gematik Authenticator" |gematik
 |1.0.3 |06.12.24 |Chap. 2.1 |Update URLs in access token example |gematik
+|1.0.4 |25.02.25 |Chap. 2.6 |added chapter "2.6. Authenticate as Holder" |gematik
+
 
 |===
 
@@ -353,3 +355,16 @@ The following sequence diagramm shows the process in detail.
 </p>
 ++++
 ====
+
+=== Authenticate as Holder
+A holder uses its holder client secrets for authentication. +
+
+[gemSpec_VZD_FHIR_Directory] describes this authentication https://gemspec.gematik.de/docs/gemSpec/gemSpec_VZD_FHIR_Directory/latest/#5.12[here]. +
+ +
+The authentication is similar to the process in chapter "2.2. Authenticate for the provider API" with the following changes: +
+
+- [01] With the following request a ti-provider-accesstoken can be obtained +
+  This URL has to be used: curl -X POST "[baseUrl]:9443/auth/realms/*RSDirectoryAdministration*/protocol/openid-connect/token"
+- [04] Exchange the ti-provider-accesstoken for the tim-providerAPI-accesstoken +
+  This URL has to be used: curl -X GET "[baseUrl]/*holder-authenticate*" -H "Authorization: Bearer ..."
+
