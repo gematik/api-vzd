@@ -61,7 +61,7 @@
     "fshType": "CodeSystem",
     "fshFile": "codesystems/OrganizationProfessionOID.fsh",
     "startLine": 1,
-    "endLine": 70
+    "endLine": 73
   },
   {
     "outputFile": "CodeSystem-OrganizationProviderType.json",
@@ -117,7 +117,7 @@
     "fshType": "CodeSystem",
     "fshFile": "codesystems/PractitionerProfessionOID.fsh",
     "startLine": 1,
-    "endLine": 45
+    "endLine": 51
   },
   {
     "outputFile": "CodeSystem-Region.json",

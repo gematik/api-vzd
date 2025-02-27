@@ -6,7 +6,7 @@
   "id": "PractitionerProfessionOID",
   "title": "CodeSystem for Practitioner's ProfessionOID",
   "description": "The codes for Practitioners based on Profession OIDs defined in [gemSpec_OID](https://fachportal.gematik.de/fachportal-import/files/gemSpec_OID_V3.10.0.pdf)",
-  "version": "0.11.25",
+  "version": "0.12.0",
   "url": "https://gematik.de/fhir/directory/CodeSystem/PractitionerProfessionOID",
   "concept": [
     {
@@ -115,7 +115,7 @@
     },
     {
       "code": "1.2.276.0.76.4.237",
-      "display": "Augenoptiker/-in und Optometrist/-in"
+      "display": "Augenoptiker/-in"
     },
     {
       "code": "1.2.276.0.76.4.238",
@@ -147,7 +147,7 @@
     },
     {
       "code": "1.2.276.0.76.4.277",
-      "display": "Ernährungstherapeut/-in"
+      "display": "Leistungserbringer/-in Ernährungstherapie"
     },
     {
       "code": "1.2.276.0.76.4.305",
@@ -155,12 +155,36 @@
     },
     {
       "code": "1.2.276.0.76.4.308",
-      "display": "Augenoptiker/-in, Optometrist/-in und Hörakustiker/-in"
+      "display": "Augenoptiker/-in und Hörakustiker/-in"
+    },
+    {
+      "code": "1.2.276.0.76.4.312",
+      "display": "Hilfsmittelerbringer/-in (Hinweis: Berufsgruppen der Hilfsmittelerbringer/-innen, die nicht den Gesundheitshandwerken zugeordnet sind)"
+    },
+    {
+      "code": "1.2.276.0.76.4.313",
+      "display": "Frisör/-in"
+    },
+    {
+      "code": "1.2.276.0.76.4.316",
+      "display": "Leistungserbringer/-in Soziotherapie"
+    },
+    {
+      "code": "1.2.276.0.76.4.318",
+      "display": "Leistungserbringer/in Stimm-, Sprech-, Sprach- und Schluck-Therapie"
+    },
+    {
+      "code": "1.2.276.0.76.4.315",
+      "display": "Masseur/-in und medizinische/-r Bademeister/-in"
+    },
+    {
+      "code": "1.2.276.0.76.4.319",
+      "display": "Diätassistent/-in"
     }
   ],
   "experimental": false,
   "publisher": "gematik GmbH",
   "date": "2024-10-29",
   "caseSensitive": false,
-  "count": 37
+  "count": 43
 }
