@@ -6,14 +6,14 @@ CodeSystem-EndpointVisibilityCS.json                               EndpointVisib
 CodeSystem-HealthcareServiceSpecialtyCS.json                       HealthcareServiceSpecialtyCS                     CodeSystem  codesystems/HealthcareServiceSpecialtyCS.fsh                     1 - 11
 CodeSystem-HolderCS.json                                           HolderCS                                         CodeSystem  codesystems/HolderCS.fsh                                         1 - 125
 CodeSystem-OpeningTimeQualifierCS.json                             OpeningTimeQualifierCS                           CodeSystem  codesystems/OpeningTimeQualifierCS.fsh                           1 - 7
-CodeSystem-OrganizationProfessionOID.json                          OrganizationProfessionOID                        CodeSystem  codesystems/OrganizationProfessionOID.fsh                        1 - 70
+CodeSystem-OrganizationProfessionOID.json                          OrganizationProfessionOID                        CodeSystem  codesystems/OrganizationProfessionOID.fsh                        1 - 73
 CodeSystem-OrganizationProviderType.json                           OrganizationProviderType                         CodeSystem  codesystems/OrganizationProviderType.fsh                         1 - 11
 CodeSystem-OrganizationVisibilityCS.json                           OrganizationVisibilityCS                         CodeSystem  codesystems/OrganizationVisibilityCS.fsh                         1 - 7
 CodeSystem-Origin.json                                             Origin                                           CodeSystem  codesystems/Origin.fsh                                           1 - 8
 CodeSystem-PharmacyHealthcareSpecialtyCS.json                      PharmacyHealthcareSpecialtyCS                    CodeSystem  codesystems/PharmacyHealthcareServiceSpecialtyCS.fsh             1 - 12
 CodeSystem-PharmacyTypeCS.json                                     PharmacyTypeCS                                   CodeSystem  codesystems/PharmacyTypeCS.fsh                                   1 - 13
 CodeSystem-PharmacyTypeLDAPCS.json                                 PharmacyTypeLDAPCS                               CodeSystem  codesystems/PharmacyTypeLDAPCS.fsh                               1 - 12
-CodeSystem-PractitionerProfessionOID.json                          PractitionerProfessionOID                        CodeSystem  codesystems/PractitionerProfessionOID.fsh                        1 - 45
+CodeSystem-PractitionerProfessionOID.json                          PractitionerProfessionOID                        CodeSystem  codesystems/PractitionerProfessionOID.fsh                        1 - 51
 CodeSystem-Region.json                                             Region                                           CodeSystem  codesystems/Region.fsh                                           1 - 27
 CodeSystem-VZDHealthCareServiceCharacteristicsCS.json              VZDHealthCareServiceCharacteristicsCS            CodeSystem  codesystems/VZDHealthCareServiceCharacteristicsCS.fsh            1 - 9
 CodeSystem-aerztliche-fachrichtungen-oid-url.json                  AerztlicheFachrichtungen_OID_URL                 CodeSystem  codesystems/external/AerztlicheFachrichtungen.fsh                1 - 85

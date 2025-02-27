@@ -2,7 +2,7 @@
   "resourceType": "SearchParameter",
   "id": "OrganizationAliasSP",
   "url": "https://gematik.de/fhir/directory/SearchParameter/OrganizationAliasSP",
-  "version": "0.11.25",
+  "version": "0.12.0",
   "status": "active",
   "experimental": false,
   "publisher": "gematik GmbH",

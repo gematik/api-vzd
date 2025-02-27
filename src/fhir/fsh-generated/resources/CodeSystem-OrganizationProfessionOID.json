@@ -6,7 +6,7 @@
   "id": "OrganizationProfessionOID",
   "title": "CodeSystem for ProfessionOID of Institutions",
   "description": "The codes for Organizations based on Profession OIDs defined in [gemSpec_OID](https://fachportal.gematik.de/fachportal-import/files/gemSpec_OID_V3.10.0.pdf)",
-  "version": "0.11.25",
+  "version": "0.12.0",
   "url": "https://gematik.de/fhir/directory/CodeSystem/OrganizationProfessionOID",
   "concept": [
     {
@@ -256,11 +256,23 @@
     {
       "code": "1.2.276.0.76.4.306",
       "display": "Betriebsstätte Orthopädieschuhmacher und Orthopädietechniker"
+    },
+    {
+      "code": "1.2.276.0.76.4.311",
+      "display": "Betriebsstätte Hilfsmittelerbringer (Hinweis: Betriebsstätten der Hilfsmittelerbringer, welche nicht den Gesundheitshandwerken zugeordnet sind)"
+    },
+    {
+      "code": "1.2.276.0.76.4.314",
+      "display": "Betriebsstätte Frisör"
+    },
+    {
+      "code": "1.2.276.0.76.4.317",
+      "display": "Betriebsstätte Soziotherapie"
     }
   ],
   "experimental": false,
   "publisher": "gematik GmbH",
   "date": "2024-10-29",
   "caseSensitive": false,
-  "count": 62
+  "count": 65
 }

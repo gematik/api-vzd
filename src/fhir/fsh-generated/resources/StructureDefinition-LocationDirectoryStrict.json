@@ -2,7 +2,7 @@
   "resourceType": "StructureDefinition",
   "id": "LocationDirectoryStrict",
   "url": "https://gematik.de/fhir/directory/StructureDefinition/LocationDirectoryStrict",
-  "version": "0.11.25",
+  "version": "0.12.0",
   "name": "LocationDirectoryStrict",
   "title": "LocationDirectoryStrict",
   "status": "active",
