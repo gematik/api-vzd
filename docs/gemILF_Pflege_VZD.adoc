@@ -411,7 +411,7 @@ Der Parameter dn kann nicht im Request angegeben werden.
 
 Entsprechend [gemSpec_VZD] wird ein Teil der Attribute durch den Verzeichnisdienst automatisch mit Werten aus dem Zertifikat gefüllt. Wenn in dieser Operation Attribute, für die dies erlaubt ist, mit einem Wert belegt werden, wird dieser Wert im Verzeichniseintrag gespeichert (auch wenn der Wert durch den Verzeichnisdienst aus dem Zertifikat entnommen werden kann).
 
-Beim Hinzugefügen und Ändern von Daten im VZD müssen die <<Prüfungen beim Eintragen von Daten zur Verbesserung der Datenqualität>>
+Beim Hinzugefügen und Ändern von Daten im VZD müssen die übergebenen Daten den xref:gemILF_Pflege_VZD.adoc#Tabelle_Plausi[Prüfungen beim Eintragen von Daten zur Verbesserung der Datenqualität] und den Vorgaben in den Attributtabellen von Kapitel 4 entsprechen.
 
 ===== DELETE /DirectoryEntries/\{uid}
 
@@ -850,7 +850,7 @@ Versehentlich fehlerhaft eingetragene Berechtigungen müssen durch einen aktuell
 Zur Verbesserung der Datenqualität werden im VZD zusätzliche Prüfungen beim Eintragen der Daten implementiert.
 
 // arvato Beschreibung: https://arvato-systems-group.atlassian.net/browse/FVZ-551
-
+[[Tabelle_Plausi]]
 [width="100%",cols="6%,10%,6%,78%",options="header",]
 |===
 |*Nr* |*Status* |*FHIR-VZD +
