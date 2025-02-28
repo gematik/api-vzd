@@ -411,6 +411,8 @@ Der Parameter dn kann nicht im Request angegeben werden.
 
 Entsprechend [gemSpec_VZD] wird ein Teil der Attribute durch den Verzeichnisdienst automatisch mit Werten aus dem Zertifikat gefüllt. Wenn in dieser Operation Attribute, für die dies erlaubt ist, mit einem Wert belegt werden, wird dieser Wert im Verzeichniseintrag gespeichert (auch wenn der Wert durch den Verzeichnisdienst aus dem Zertifikat entnommen werden kann).
 
+Beim Hinzugefügen und Ändern von Daten im VZD müssen die <<Prüfungen beim Eintragen von Daten zur Verbesserung der Datenqualität>>
+
 ===== DELETE /DirectoryEntries/\{uid}
 
 Durch die Operation deleteDirectoryEntry (HTTP 3.3.1.2 DELETE /DirectoryEntries/\{uid}) wird ein gesamter Verzeichniseintrag gelöscht. Wird eine nicht existierende uid angegeben, dann wird der Request mit HTTP 400 (Not Found) beantwortet.
