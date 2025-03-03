@@ -160,14 +160,6 @@
     "endLine": 205
   },
   {
-    "outputFile": "CodeSystem-kbv-cm-sfhir-bar2-wbo-oid-url.json",
-    "fshName": "KBV_CS_SFHIR_BAR2_WBO_OID_URL",
-    "fshType": "CodeSystem",
-    "fshFile": "codesystems/external/FachgruppenCodesKBV.fsh",
-    "startLine": 1,
-    "endLine": 94
-  },
-  {
     "outputFile": "CodeSystem-nicht-aerztliche-fachrichtungen-oid-url.json",
     "fshName": "NichtAerztlicheFachrichtungen_OID_URL",
     "fshType": "CodeSystem",
@@ -325,7 +317,7 @@
     "fshType": "Instance",
     "fshFile": "examples/PractitionerExample001.fsh",
     "startLine": 1,
-    "endLine": 17
+    "endLine": 15
   },
   {
     "outputFile": "Practitioner-TIPractitionerExampleDentist.json",
@@ -725,7 +717,7 @@
     "fshType": "ValueSet",
     "fshFile": "valuesets/PractitionerQualificationVS.fsh",
     "startLine": 1,
-    "endLine": 9
+    "endLine": 8
   },
   {
     "outputFile": "ValueSet-healthcare-service-category-codes.json",

@@ -19,7 +19,6 @@ CodeSystem-VZDHealthCareServiceCharacteristicsCS.json              VZDHealthCare
 CodeSystem-aerztliche-fachrichtungen-oid-url.json                  AerztlicheFachrichtungen_OID_URL                 CodeSystem  codesystems/external/AerztlicheFachrichtungen.fsh                1 - 85
 CodeSystem-aerztlicheBerufsvarianten.json                          AerztlicheBerufsvarianten                        CodeSystem  codesystems/external/AerztlicheBerufsvarianten.fsh               1 - 10
 CodeSystem-facharzttitelderaerztekammern-oid-url.json              FacharzttitelDerAerztekammern_OID_URL            CodeSystem  codesystems/external/FacharzttitelDerAerztekammern.fsh           1 - 205
-CodeSystem-kbv-cm-sfhir-bar2-wbo-oid-url.json                      KBV_CS_SFHIR_BAR2_WBO_OID_URL                    CodeSystem  codesystems/external/FachgruppenCodesKBV.fsh                     1 - 94
 CodeSystem-nicht-aerztliche-fachrichtungen-oid-url.json            NichtAerztlicheFachrichtungen_OID_URL            CodeSystem  codesystems/external/NichtAerztlicheFachrichtungen.fsh           1 - 23
 CodeSystem-physicalFeatures.json                                   PhysicalFeaturesHealthCareServiceCS              CodeSystem  codesystems/PhysicalFeaturesHealthCareServiceCS.fsh              1 - 9
 CodeSystem-qualifikationen-nicht-aerztlicher-autoren-oid-url.json  QualifikationenNichtAerztlicherAutoren_OID_URL   CodeSystem  codesystems/external/QualifikationenNichtAerztlicherAutoren.fsh  1 - 179
@@ -39,7 +38,7 @@ Organization-NCPeHOrganizationExample.json                         NCPeHOrganiza
 Organization-OrganizationExample.json                              OrganizationExample                              Instance    examples/Examples001.fsh                                         38 - 50
 Organization-OrganizationExample001.json                           OrganizationExample001                           Instance    examples/OrganizationExample001.fsh                              14 - 38
 Organization-PharmacyOrganizationExample.json                      PharmacyOrganizationExample                      Instance    examples/PharmacyExample.fsh                                     1 - 21
-Practitioner-TIPractitionerExample001.json                         PractitionerExample001                           Instance    examples/PractitionerExample001.fsh                              1 - 17
+Practitioner-TIPractitionerExample001.json                         PractitionerExample001                           Instance    examples/PractitionerExample001.fsh                              1 - 15
 Practitioner-TIPractitionerExampleDentist.json                     PractitionerExampleDentist                       Instance    examples/Examples001.fsh                                         13 - 26
 PractitionerRole-PractitionerRoleExample.json                      PractitionerRoleExample                          Instance    examples/Examples001.fsh                                         28 - 35
 SearchParameter-EndpointAddressSP.json                             EndpointAddressSP                                Instance    searchParameter.fsh                                              13 - 22
@@ -89,7 +88,7 @@ ValueSet-OrganizationTypeVS.json                                   OrganizationT
 ValueSet-OrganizationVisibilityVS.json                             OrganizationVisibilityVS                         ValueSet    valuesets/OrganizationVisibilityVS.fsh                           1 - 6
 ValueSet-OriginVS.json                                             OriginVS                                         ValueSet    valuesets/OriginVS.fsh                                           1 - 4
 ValueSet-PhysicalFeaturesHealthCareServiceVS.json                  PhysicalFeaturesHealthCareServiceVS              ValueSet    valuesets/PhysicalFeaturesHealthCareServiceVS.fsh                1 - 4
-ValueSet-PractitionerQualificationVS.json                          PractitionerQualificationVS                      ValueSet    valuesets/PractitionerQualificationVS.fsh                        1 - 9
+ValueSet-PractitionerQualificationVS.json                          PractitionerQualificationVS                      ValueSet    valuesets/PractitionerQualificationVS.fsh                        1 - 8
 ValueSet-healthcare-service-category-codes.json                    HealthcareServiceCategoryCodes                   ValueSet    valuesets/HealthcareServiceCategoryCodes.fsh                     1 - 7
 ValueSet-healthcareservice-technical-characteristic-vs.json        HealthCareServiceTechnicalCharacteristicVS       ValueSet    valuesets/HealthCareServiceCharacteristic.fsh                    1 - 6
 ValueSet-ncpeh-healthcare-service-speciality-cs.json               NCPeHHealthcareServiceSpecialityVS               ValueSet    valuesets/NCPeHHealthcareServiceSpeciality.fsh                   1 - 7
