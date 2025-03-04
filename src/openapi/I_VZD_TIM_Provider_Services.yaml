@@ -224,15 +224,7 @@ paths:
           content:
             application/json:
               schema:
-                type: string
-                enum: [ org, pract, orgPract, none ]
-                example: org
-                description: |
-                  Returns in which part of the directory the MXID is located:
-                   - org:      Located in the Organization part
-                   - pract:    Located in the Practitioner part
-                   - orgPract: Located in the Organization and Practitioner part
-                   - none:     Not found in any part
+                $ref: "#/components/schemas/MxIdLocation"
         400:
           description: Bad Request
           content:
@@ -595,6 +587,17 @@ components:
           type: string
           description: Die Version von dem OpenAPI Document (YAML Datei)
           example: "1.0.0"
+
+    MxIdLocation:
+      type: string
+      enum: [ org, pract, orgPract, none ]
+      example: org
+      description: |
+        Returns in which part of the directory the MXID is located:
+         - org:      Located in the Organization part
+         - pract:    Located in the Practitioner part
+         - orgPract: Located in the Organization and Practitioner part
+         - none:     Not found in any part
 
   securitySchemes:
     OAuth2:
