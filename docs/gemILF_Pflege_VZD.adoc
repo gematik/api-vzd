@@ -1342,6 +1342,10 @@ Die Inhalte werden durch die Kartenherausgeber gepflegt.
 |*specialization* |obligatorisch |Im Attribut specialization werden die ApothekenTypen (OffizinApo, Versand etc) erfasst. Hierfür wird das dafür definierten CodeSysteme https://simplifier.net/vzd-fhir-directory/pharmacytypeldapcs[PharmacyTypeLDAPCS] genutzt . Die Inhalte werden durch die Kartenherausgeber gepflegt. +
 Default für das Attribut ist LEER. LEER wird in der eRezept Anwendung gleich behandelt wie "Sonstige_offen". +
  +
+Hinweis: Beim Eintragen und Ändern der Spezialisierung über die REST Schnittstelle (I_Directory_Administration) müssen nur die Codes angegeben werden, keine weiteren Werte. +
+Beispiele: Für "10 Offizin-Apotheke" aus https://simplifier.net/vzd-fhir-directory/pharmacytypeldapcs[PharmacyTypeLDAPCS] muss übergeben werden: *"10"* +
+Für "10 Offizin-Apotheke" UND "40 Versandapotheke" muss übergeben werden: *"10","40"* +
+ +
 Bezeichner: Fachgebiet +
 Kann mehrfach vorkommen (0..100).
 |*maxKOMLEadr* |optional |Maximale Anzahl von Mail-Adressen in den KOM-LE-Fachdaten.  +
