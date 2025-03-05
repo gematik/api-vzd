@@ -68,7 +68,7 @@ _The following specification was created by gematik solely from a technical poin
 To access the search API a valid searchaccess_token is needed that can be obtained by authenticating via xref:FHIR_VZD_HOWTO_Search.adoc[Authenticate for search]
 
 ==== FHIR Search Basics
-The REST interface /search allows you to search for practitioners and organizations. 
+The REST interface /search allows you to search for practitioners and organizations.
 The standard FHIR search operation is used https://build.fhir.org/search.html +
 
 GET [baseUrl]/[resourceType]?[optional parameters] +
@@ -78,7 +78,7 @@ As resourceType are supported
 - HealthcareService (search for organizations)
 - PractitionerRole (search for practitioners)
 
-The overview about the supported data model can be found here: 
+The overview about the supported data model can be found here:
 https://simplifier.net/vzd-fhir-directory
 
 Only resources with the status "active" may be displayed. For this reason, the [resource].active=true parameter must be specified for all search operations. The minimal variant of the search operations thus looks like this:
@@ -88,19 +88,19 @@ Only resources with the status "active" may be displayed. For this reason, the [
 
 As result, the client receives a FHIR http://hl7.org/fhir/bundle.html[Bundle] resource with the search result. +
  +
- +	
- 
-In addition to the HL7 FHIR specification, the FHIR VZD supports the following search parameters 	
+ +
 
-- practitioner.qualification	
-- location.address (e.g. to search for TI-Messenger addresses)	
+In addition to the HL7 FHIR specification, the FHIR VZD supports the following search parameters
 
-The following HL7 FHIR search parameters are not yet support (but are in work):	
+- practitioner.qualification
+- location.address (e.g. to search for TI-Messenger addresses)
 
-- https://hl7.org/fhir/search.html#_text[_text]	
-- https://hl7.org/fhir/search.html#_content[_content]	
+The following HL7 FHIR search parameters are not yet support (but are in work):
 
- 
+- https://hl7.org/fhir/search.html#_text[_text]
+- https://hl7.org/fhir/search.html#_content[_content]
+
+
 IMPORTANT: For all search operations a valid searchaccess_token is needed that can be achieved by following the authentication flow: link:FHIR_VZD_HOWTO_Authenticate.adoc#_authenticate_for_the_search_endpoint[Get search token]
 
 ==== FHIR Search Organizations
@@ -121,9 +121,9 @@ GET [baseUrl]/search/PractitionerRole?practitioner.active=true
 --
 Additional parameters can be added to refine the search.
  +
- 
+
 ==== FHIR Search Parameters - Overview
-FHIR defines which search parameters can be used for each resource. 
+FHIR defines which search parameters can be used for each resource.
 For each resource the is a "Search Parameters" section. Examples: +
 
 - For practitioners https://www.hl7.org/fhir/practitioner.html#search
@@ -131,7 +131,7 @@ For each resource the is a "Search Parameters" section. Examples: +
 - For endpoints https://www.hl7.org/fhir/endpoint.html#search
 - For locations https://www.hl7.org/fhir/location.html#search
 
-An overview about all resources with its search parameters can be found here: 
+An overview about all resources with its search parameters can be found here:
 https://www.hl7.org/fhir/searchparameter-registry.html +
  +
 The behavior of the search parameter depends from the parameter type and is documented here: https://www.hl7.org/fhir/search.html#ptypes +
@@ -142,11 +142,11 @@ The following custom search parameters are supported in addition to the standard
 
 - Endpoint.address
 - Practitioner.qualification
-** Practitioner.qualification.code.coding.code  
+** Practitioner.qualification.code.coding.code
 ** Practitioner.qualification.code.coding.display
 
 
- 
+
 ==== FHIR VZD Search - "practitioner.name" attribute
 To search a resource the "name" attribute of it can be used in the search operation:
 [source]
@@ -161,15 +161,15 @@ GET [baseUrl]/search/PractitionerRole?practitioner.active=true&practitioner.name
 
 |practitioner.name
 |Timjamin
-|The string "Timjamin" is searched for attribute "name" of the "practitioner" resource.   
+|The string "Timjamin" is searched for attribute "name" of the "practitioner" resource.
 
 |===
- 
- 
-.Response of this Request: 
-link:../samples/FHIRseach/Search_PractitionerRole_name.adoc[Search_PractitionerRole_name] +
+
+
+.Response of this Request:
+link:../samples/FHIRsearch/Search_PractitionerRole_name.adoc[Search_PractitionerRole_name] +
  +
- 
+
 ==== FHIR VZD Search - "endpoint.payload-type" attribute (code based search)
 To search a resource which supports a defined type of communication the "endpoint.payload-type" attribute can be used in the search operation:
 [source]
@@ -184,35 +184,35 @@ GET [baseUrl]/search/PractitionerRole?practitioner.active=true&_include=Practiti
 
 |endpoint.payload-type
 |tim-chat
-|The link:https://hl7.org/fhir/endpoint.html#search["payload-type"] is used to search for resources, supporting the TI-Messenger chat communication. 
+|The link:https://hl7.org/fhir/endpoint.html#search["payload-type"] is used to search for resources, supporting the TI-Messenger chat communication.
  The definition of the link:https://hl7.org/fhir/endpoint.html["endpoint"] is refined in simplifier for the link:https://simplifier.net/vzd-fhir-directory/["FHIR VZD"]. For the payloadType the link:https://simplifier.net/vzd-fhir-directory/endpointpayloadtypevs["ValueSet EndpointPayloadTypeVS"] imports all values from link:https://simplifier.net/vzd-fhir-directory/endpointdirectorypayloadtype["EndpointDirectoryPayloadType"].
 
 |_include
 |PractitionerRole:practitioner
-|"practitioner" resources, linked to the "PractitionerRole" resources of the search request are included in the search response.   
+|"practitioner" resources, linked to the "PractitionerRole" resources of the search request are included in the search response.
 
 |_include
 |PractitionerRole:location
-|"location" resources, linked to the "PractitionerRole" resources of the search request are included in the search response.   
+|"location" resources, linked to the "PractitionerRole" resources of the search request are included in the search response.
 
 |_include
 |PractitionerRole:endpoint
-|"endpoint" resources, linked to the "PractitionerRole" resources of the search request are included in the search response.   
+|"endpoint" resources, linked to the "PractitionerRole" resources of the search request are included in the search response.
 
 |endpoint.status
 |active
-|The search parameter link:https://hl7.org/fhir/endpoint.html#search["status"] ensures, that only active endpoints are returned. 
+|The search parameter link:https://hl7.org/fhir/endpoint.html#search["status"] ensures, that only active endpoints are returned.
 If endpoints are needed, then only active endpoints have to be used/displayed. This has to be ensured by all clients.
 Please note that with this parameter resources with no active endpoints are not returned.
 
 |===
- 
- 
-.Response of this Request: 
-link:../samples/FHIRseach/Search_PractitionerRole_payload-type.adoc[Search_PractitionerRole_payload-type] +
+
+
+.Response of this Request:
+link:../samples/FHIRserach/Search_PractitionerRole_payload-type.adoc[Search_PractitionerRole_payload-type] +
  +
 
- 
+
 ==== FHIR VZD Search - "endpoint.payload-type" attribute (display text based search)
 For the display text of a coded attribute can be searched with the modifier link:https://hl7.org/fhir/search.html#modifiers[":text"]:
 
@@ -228,34 +228,34 @@ GET [baseUrl]/search/PractitionerRole?practitioner.active=true&_include=Practiti
 
 |endpoint.payload-type:text
 |TI-Messenger chat
-|The link:https://hl7.org/fhir/endpoint.html#search["payload-type"] is used to searched for resources, supporting the TI-Messenger chat communication. 
+|The link:https://hl7.org/fhir/endpoint.html#search["payload-type"] is used to searched for resources, supporting the TI-Messenger chat communication.
  The definition of the link:https://hl7.org/fhir/endpoint.html["endpoint"] is refined in simplifier for the link:https://simplifier.net/vzd-fhir-directory/["FHIR VZD"]. For the payloadType the link:https://simplifier.net/vzd-fhir-directory/endpointpayloadtypevs["ValueSet EndpointPayloadTypeVS"] imports all values from link:https://simplifier.net/vzd-fhir-directory/endpointdirectorypayloadtype["EndpointDirectoryPayloadType"].
 
 |_include
 |PractitionerRole:practitioner
-|"practitioner" resources, linked to the "PractitionerRole" resources of the search request are included in the search response.   
+|"practitioner" resources, linked to the "PractitionerRole" resources of the search request are included in the search response.
 
 |_include
 |PractitionerRole:location
-|"location" resources, linked to the "PractitionerRole" resources of the search request are included in the search response.   
+|"location" resources, linked to the "PractitionerRole" resources of the search request are included in the search response.
 
 |_include
 |PractitionerRole:endpoint
-|"endpoint" resources, linked to the "PractitionerRole" resources of the search request are included in the search response.   
+|"endpoint" resources, linked to the "PractitionerRole" resources of the search request are included in the search response.
 
 |endpoint.status
 |active
-|The search parameter link:https://hl7.org/fhir/endpoint.html#search["status"] ensures, that only active endpoints are returned. 
+|The search parameter link:https://hl7.org/fhir/endpoint.html#search["status"] ensures, that only active endpoints are returned.
 If endpoints are needed, then only active endpoints have to be used/displayed. This has to be ensured by all clients.
 Please note that with this parameter resources with no active endpoints are not returned.
 
 |===
- 
- 
-Response of this Request: 
-link:../samples/FHIRseach/Search_PractitionerRole_payload-type_text.adoc[Search_PractitionerRole_payload-type:text] +
+
+
+Response of this Request:
+link:../samples/FHIRsearch/Search_PractitionerRole_payload-type_text.adoc[Search_PractitionerRole_payload-type:text] +
  +
- 
+
 ==== FHIR VZD Search - complex search request
 Search in a city for a practitioner with a defined qualification and offers the communication via TI-Messenger:
 
@@ -271,15 +271,15 @@ GET [baseUrl]/search/PractitionerRole?practitioner.active=true&_include=Practiti
 
 |_include
 |PractitionerRole:practitioner
-|"practitioner" resources, linked to the "PractitionerRole" resources of the search request are included in the search response.   
+|"practitioner" resources, linked to the "PractitionerRole" resources of the search request are included in the search response.
 
 |_include
 |PractitionerRole:location
-|"location" resources, linked to the "PractitionerRole" resources of the search request are included in the search response.   
+|"location" resources, linked to the "PractitionerRole" resources of the search request are included in the search response.
 
 |_include
 |PractitionerRole:endpoint
-|"endpoint" resources, linked to the "PractitionerRole" resources of the search request are included in the search response.   
+|"endpoint" resources, linked to the "PractitionerRole" resources of the search request are included in the search response.
 
 |location.address-city
 |Gelsenkirchen
@@ -287,7 +287,7 @@ GET [baseUrl]/search/PractitionerRole?practitioner.active=true&_include=Practiti
 
 |location.address
 |45884
-|Search for practitioners with search parameter link:https://www.hl7.org/fhir/location.html#search["address"] in all address attributes for "45884". 
+|Search for practitioners with search parameter link:https://www.hl7.org/fhir/location.html#search["address"] in all address attributes for "45884".
 
 |practitioner.qualification
 |1.2.276.0.76.4.241
@@ -296,22 +296,22 @@ Note: For humans a readable text should be used for selection and display of cod
 
 |endpoint.payload-type
 |tim-chat
-|The link:https://hl7.org/fhir/endpoint.html#search["payload-type"] is used to searched for resources, supporting the TI-Messenger chat communication. 
+|The link:https://hl7.org/fhir/endpoint.html#search["payload-type"] is used to searched for resources, supporting the TI-Messenger chat communication.
  The definition of the link:https://hl7.org/fhir/endpoint.html["endpoint"] is refined in simplifier for the link:https://simplifier.net/vzd-fhir-directory/["FHIR VZD"]. For the payloadType the link:https://simplifier.net/vzd-fhir-directory/endpointpayloadtypevs["ValueSet EndpointPayloadTypeVS"] imports all values from link:https://simplifier.net/vzd-fhir-directory/endpointdirectorypayloadtype["EndpointDirectoryPayloadType"].
 
 |endpoint.status
 |active
-|The search parameter link:https://hl7.org/fhir/endpoint.html#search["status"] ensures, that only active endpoints are returned. 
+|The search parameter link:https://hl7.org/fhir/endpoint.html#search["status"] ensures, that only active endpoints are returned.
 If endpoints are needed, then only active endpoints have to be used/displayed. This has to be ensured by all clients.
 Please note that with this parameter resources with no active endpoints are not returned.
 
 |===
- 
- 
-Response of this Request: 
-link:../samples/FHIRseach/Search_PractitionerRole_complex.adoc[Search_PractitionerRole_complex] +
+
+
+Response of this Request:
+link:../samples/FHIRsearch/Search_PractitionerRole_complex.adoc[Search_PractitionerRole_complex] +
  +
- 
+
 ==== FHIR VZD Search - HealtcareService by telematikID
 Search an organization with a telematikID:
 
@@ -327,11 +327,11 @@ GET [baseUrl]/search/HealthcareService?organization.active=true&_include=*&endpo
 
 |_include
 *
-|All resources, linked to the "HealthcareService" resources of the search request are included in the search response.   
+|All resources, linked to the "HealthcareService" resources of the search request are included in the search response.
 
 |endpoint.status
 |active
-|The search parameter link:https://hl7.org/fhir/endpoint.html#search["status"] ensures, that only active endpoints are returned. 
+|The search parameter link:https://hl7.org/fhir/endpoint.html#search["status"] ensures, that only active endpoints are returned.
 If endpoints are needed, then only active endpoints have to be used/displayed. This has to be ensured by all clients.
 Please note that with this parameter resources with no active endpoints are not returned.
 
@@ -341,21 +341,21 @@ Please note that with this parameter resources with no active endpoints are not 
 Note: A resourcew may contain several values in the "identifier". This request searches in all identifier values, independent from the identifier coding system.
 
 |===
- 
-Response of this Request: 
-link:../samples/FHIRseach/Search_HealthcareService_telematikID.adoc[Search_HealthcareService_telematikID] +
+
+Response of this Request:
+link:../samples/FHIRserach/Search_HealthcareService_telematikID.adoc[Search_HealthcareService_telematikID] +
  +
- 
+
 
 ==== FHIR VZD Search results
 The Client can manage the content of the FHIR search response with several parameters. In this section some examples are shown. The full list of parameters for managing search results can be found here: https://www.hl7.org/fhir/search.html#return +
  +
- 
-===== _include Parameter + 
+
+===== _include Parameter +
 The response of the 'FHIR VZD Search with "name" attribute' contains only resources of type "PractitionerRole". +
 With the link:https://www.hl7.org/fhir/search.html#revinclude["_include"] parameter also resources linked with the search result resources are returned: +
  +
- 
+
 [source]
 --
 GET [baseUrl]/search/PractitionerRole?practitioner.active=true&practitioner.name=Timjamin&_include=PractitionerRole:practitioner&_include=PractitionerRole:location&_include=PractitionerRole:endpoint&endpoint.status=active
@@ -368,35 +368,35 @@ GET [baseUrl]/search/PractitionerRole?practitioner.active=true&practitioner.name
 
 |practitioner.name
 |Timjamin
-|The string "Timjamin" is searched for attribute "name" of the "practitioner" resource.   
+|The string "Timjamin" is searched for attribute "name" of the "practitioner" resource.
 
 |_include
 |PractitionerRole:practitioner
-|"practitioner" resources, linked to the "PractitionerRole" resources of the search request are included in the search response.   
+|"practitioner" resources, linked to the "PractitionerRole" resources of the search request are included in the search response.
 
 |_include
 |PractitionerRole:location
-|"location" resources, linked to the "PractitionerRole" resources of the search request are included in the search response.   
+|"location" resources, linked to the "PractitionerRole" resources of the search request are included in the search response.
 
 |_include
 |PractitionerRole:endpoint
-|"endpoint" resources, linked to the "PractitionerRole" resources of the search request are included in the search response.   
+|"endpoint" resources, linked to the "PractitionerRole" resources of the search request are included in the search response.
 
 |endpoint.status
 |active
-|The search parameter link:https://hl7.org/fhir/endpoint.html#search["status"] ensures, that only active endpoints are returned. 
+|The search parameter link:https://hl7.org/fhir/endpoint.html#search["status"] ensures, that only active endpoints are returned.
 If endpoints are needed, then only active endpoints have to be used/displayed. This has to be ensured by all clients.
 Please note that with this parameter resources with no active endpoints are not returned.
 
 |===
- 
- 
-Response of this Request: 
-link:../samples/FHIRseach/Search_PractitionerRole_name_include.adoc[Search_PractitionerRole_name_include]
+
+
+Response of this Request:
+link:../samples/FHIRsearch/Search_PractitionerRole_name_include.adoc[Search_PractitionerRole_name_include]
  +
  +
 
-===== _summary Parameter - count the results +  
+===== _summary Parameter - count the results +
 Using the parameter link:https://www.hl7.org/fhir/search.html#summary[_summary] the client can request the server to return only a portion of the resources:
 [source]
 --
@@ -410,13 +410,13 @@ GET [baseUrl]/search/PractitionerRole?practitioner.active=true&_summary=count
 
 |_summary
 |count
-|only the number of the matching resources is returned   
+|only the number of the matching resources is returned
 
 |===
- 
- 
-Response of this Request: 
-link:../samples/FHIRseach/Search_Result_count.adoc[Search_Result_count]
+
+
+Response of this Request:
+link:../samples/FHIRsearch/Search_Result_count.adoc[Search_Result_count]
  +
 
 ==== Full-text search
@@ -426,9 +426,9 @@ The aim of the full-text search is to replace the cumbersome parameter-based sea
 The full-text search feature from HAPI is used and extended for the https://www.hl7.org/fhir/search.html#_text[_text] search parameter. +
 
 - The HAPI/FHIR full-text search supports the search for texts in the base resource. This HAPI/FHIR full-text search can be used with the https://www.hl7.org/fhir/search.html#_content[_content] search parameter. +
-- This HAPI/FHIR full-text search is extended in the following way to support also the full-text search for linked resources (https://www.hl7.org/fhir/search.html#_text[_text] search parameter).: 
+- This HAPI/FHIR full-text search is extended in the following way to support also the full-text search for linked resources (https://www.hl7.org/fhir/search.html#_text[_text] search parameter).:
 
-. The values of the text attributes of all linked resources are stored in the _text field of HealthcareSevice for organizations and PractitionerRole for people.  
+. The values of the text attributes of all linked resources are stored in the _text field of HealthcareSevice for organizations and PractitionerRole for people.
 This happens when indexing the attributes of all linked resources after data changes.
 . Because of this values in _text field the HAPI full-text search will also match the values of the linked resources, which are stored in the _text field of the main ressources.
 
@@ -443,43 +443,43 @@ The content of the _text attribute is taken into account in the full-text search
 |=======================
 |Resource|Attribute      |Description
 
-|Organization    
-  |name     
+|Organization
+  |name
     |Organization name
 
-|Organization    
+|Organization
   |type.display +
-   type.code     
-    |Name and code of institution type / + 
+   type.code
+    |Name and code of institution type / +
      Name and code of the provider type
 
-|HealthcareService    
-  |speciality.display     
+|HealthcareService
+  |speciality.display
     |Name of the specialization (technically the display values ​​of all codings stored in the attribute)
 
-|HealthcareService    
-  |type.display     
+|HealthcareService
+  |type.display
     |Type of pharmacy https://simplifier.net/vzd-fhir-directory/pharmacytypecs[PharmacyTypeCS] +
      (technically the display values ​​of all codings stored in the attribute)
 
-|HealthcareService    
-  |name     
+|HealthcareService
+  |name
     |Name assigned by the owner for the service
 
-|Location    
-  |address.line     
+|Location
+  |address.line
     |Street including house number
-    
-|Location    
-  |address.city     
+
+|Location
+  |address.city
     |City
-    
-|Location    
-  |address.postalCode     
+
+|Location
+  |address.postalCode
     |postalCode
-    
-|Organization    
-  |identifier.value (Type Telematik_ID or DomainID)     
+
+|Organization
+  |identifier.value (Type Telematik_ID or DomainID)
     |Telematik_ID and DomainID +
  +
 Only identifier codings from the code systems that are technically assigned to the telematics ID or the domain IDs should be used. These CodeSystems are:
@@ -489,8 +489,8 @@ http://fhir.de/StructureDefinition/identifier-bsnr +
 http://fhir.de/StructureDefinition/identifier-kzva +
 http://fhir.de/StructureDefinition/identifier-iknr
 
-|HealthcareService    
-  |identifier.value (Type Telematik_ID or DomainID)     
+|HealthcareService
+  |identifier.value (Type Telematik_ID or DomainID)
     |Telematik_ID and DomainID at HealthcareServices level. The mapping applies to healthcare services, this information is usually available in this attribute when several TelematikIDs are merged into one organization. +
  +
 Only identifier codings from the code systems that are technically assigned to the telematics ID or the domain IDs should be used. These CodeSystems are:
@@ -512,29 +512,29 @@ The content of the _text attribute is taken into account in the full-text search
 |=======================
 |Resource|Attribute      |Description
 
-|Practitioner    
-  |name     
+|Practitioner
+  |name
     |Practitioner name
 
-|Practitioner    
-  |qualification.display     
+|Practitioner
+  |qualification.display
     |Name of the professional group (ProfessionalOID) / +
      Name of the specialization
 
-|Location    
-  |address.line     
+|Location
+  |address.line
     |Street including house number
-    
-|Location    
-  |address.city     
+
+|Location
+  |address.city
     |City
-    
-|Location    
-  |address.postalCode     
+
+|Location
+  |address.postalCode
     |postalCode
-    
-|Practitioner    
-  |identifier      
+
+|Practitioner
+  |identifier
     |Telematik_ID
 
 |=======================
@@ -562,14 +562,14 @@ Therefore, “Arzt/Ärztin” is not found in the search.
 ====== Characters with special meaning in the full-text search
 Special characters can be used to specify search queries. For example, if you put the search query in quotation marks, only the results that exactly match the string will be shown. Additional symbols can be used to exclude or combine search terms, for example. Below are the important signs: +
  +
- 
+
 *Quotation marks ("...")* +
 If the search text is put in quotation marks, only results with the exact same text will be found. +
 
 Special characters (which otherwise have a special meaning) within the quotation marks are interpreted as normal characters. +
 For example, the telematikID should always be put in quotation marks for full-text searches. It contains characters like "-". +
 
-A full-text search with a string will match all linked resource with this string in an indexed attribute, also if the search string is a substring in an indexed attribute. + 
+A full-text search with a string will match all linked resource with this string in an indexed attribute, also if the search string is a substring in an indexed attribute. +
 A search with _text=Berlin will e.g. match resources with "city": "Bernau bei Berlin" or "line": ["Berlingeröder Str. 13"]. +
 A search with _text="Berlin" matches only resources with the exact string "Berlin" in the indexed attributes. +
 
@@ -592,12 +592,12 @@ Examples: _text=Berlin "Organisation 1-2arvtst-ap000139"
           _text=Berlin +"Organisation 1-2arvtst-ap000139"
           _text=Berlin+"Organisation 1-2arvtst-ap000139"
 ----
-All these searches match, if both strings are contained in the linked resources. 
-In this expample "Berlin" is contained in the Location resource and 
+All these searches match, if both strings are contained in the linked resources.
+In this expample "Berlin" is contained in the Location resource and
 "Organisation 1-2arvtst-ap000139" in the Organization name. +
  +
 
- 
+
 *OR operations (,)* +
 OR operations in search strings: The search strings are separated with the following characters
 
@@ -623,7 +623,7 @@ Matches, if string Niedersachsen is contained in the linked resources but not Ha
 
 *Fuzzy-Search (~)* +
 ~N after a word signifies edit distance (fuzziness), e.g. string~ +
-The optional number N is the https://en.wikipedia.org/wiki/Levenshtein_distance[Levenshtein Edit Distance]. 
+The optional number N is the https://en.wikipedia.org/wiki/Levenshtein_distance[Levenshtein Edit Distance].
 See https://www.elastic.co/guide/en/elasticsearch/reference/current/common-options.html#fuzziness[Fuzziness] for valid values and more information.
 
 ----
@@ -643,76 +643,76 @@ This example matches e.g.
 |=======================
 |full-text-search-request|found|description
 
-|_text=Bessinger Str. 42   
-  |nothing found     
+|_text=Bessinger Str. 42
+  |nothing found
     |Because the dot "." has a special meaning, nothing is found.
 
-|_text="Bessinger Str. 42"    
-  |Bessinger Str. 42     
+|_text="Bessinger Str. 42"
+  |Bessinger Str. 42
     |Found, because the string with "." is in quotation marks.
 
-|_text=Bessinger "Str." 42    
-  |Bessinger Str. 42     
+|_text=Bessinger "Str." 42
+  |Bessinger Str. 42
     |Found, because word with "." is in quotation marks.
 
-|_text=Bessinger Str 42    
-  |Bessinger Str. 42     
+|_text=Bessinger Str 42
+  |Bessinger Str. 42
     |Found, because all tokens of the search string are contained, no special character is used in the search string and the tokens of the search string are combined with an AND " ".
 
 |_text=Franz*+Wallraf*+Str*
-  |Franz-Wallraff-Str. 2     
+  |Franz-Wallraff-Str. 2
     |
 
-|_text=Franz+Wallraf+Str    
-  |Franz-Wallraff-Str. 2    
+|_text=Franz+Wallraf+Str
+  |Franz-Wallraff-Str. 2
     |Found, implicitly looking for the beginning of a word (Wallraf finds Wallraff)
 
-|_text="Franz Wallraf Str"    
-  |nothing found    
+|_text="Franz Wallraf Str"
+  |nothing found
     |Because the exact search is for “Wallraf”.
-    
-|_text="Franz Wallraff Str"    
-  |Franz-Wallraff-Str. 2    
+
+|_text="Franz Wallraff Str"
+  |Franz-Wallraff-Str. 2
     |
-    
-|_text=Franz+Wallraff+Str.    
-  |nothing found    
+
+|_text=Franz+Wallraff+Str.
+  |nothing found
     |Because the dot "." has a special meaning, nothing is found.
 
-|_text=Franz-Wallraff-Str    
-  |nothing found    
+|_text=Franz-Wallraff-Str
+  |nothing found
     |Hyphen is not interpreted as a search character here. It has a special meaning.
-        
-|_text="Franz-Wallraff-Str."    
-  |Franz-Wallraff-Str. 2   
+
+|_text="Franz-Wallraff-Str."
+  |Franz-Wallraff-Str. 2
     |
-        
-|_text="Franz"\+"Wallraff"+"Str."    
-  |Franz-Wallraff-Str. 2   
+
+|_text="Franz"\+"Wallraff"+"Str."
+  |Franz-Wallraff-Str. 2
     |
-    
-|_text=Aachen+Wallraf    
-  |Aachen 52078 Franz-Wallraff-Str. 2  
+
+|_text=Aachen+Wallraf
+  |Aachen 52078 Franz-Wallraff-Str. 2
     |
-    
-|_text="Aachen"+Wallraf    
-  |nothing found  
+
+|_text="Aachen"+Wallraf
+  |nothing found
     |Because of the quotation marks for the first word, the search is made for exactly for all words.
 
-|_text="Aachen"+"Wallraf"    
-  |nothing found  
-    |The search is made for exactly for all words.    
+|_text="Aachen"+"Wallraf"
+  |nothing found
+    |The search is made for exactly for all words.
 
-|_text="Aachen"+Wallraf*    
-  |Aachen 52078 Franz-Wallraff-Str. 2  
+|_text="Aachen"+Wallraf*
+  |Aachen 52078 Franz-Wallraff-Str. 2
     |The search is carried out exactly per word. With the * at the end of Wallraf also Wallraff is found.
 
-|_text="Aachen"+"Wallraf*"    
-  |nothing found 
+|_text="Aachen"+"Wallraf*"
+  |nothing found
     |A * in quoted words is not interpreted as a wildcard.
-    
-|_text="aAChen"+wALlraf*    
-  |Aachen 52078 Franz-Wallraff-Str. 2 
+
+|_text="aAChen"+wALlraf*
+  |Aachen 52078 Franz-Wallraff-Str. 2
     |Upper and lower case letters are ignored.
 
 |=======================
@@ -726,6 +726,6 @@ GET [baseUrl]/search/HealthcareService?organization.active=true&location.near=50
 --
 *Please note that for the FHIR VZD "near" search all "near" search parameters ([latitude]|[longitude]|[distance]|[units]) are mandatory.*
 
- 
+
 
 
