@@ -208,12 +208,14 @@ Neu für eGBR HBA und SMC-B |gematik
  +
  +
 4. +
+4.15 +
 4.19
 |
 - Belegung - nicht genutzter - optionaler Attribute ergänzt. +
 - Zuordnung von VZD Einträgen (TelematikIDs) zu Attributtabellen ergänzt. +
 - Prüfung V004: Link auf Simplifier aktualisiert +
 - Attribut "lanr" ergänzt +
+- Tab_VZD_Datenbeschreibung_der_SMC-B_KT_PKV Beschreibung domainID erweitert +
 - Tabelle für NCPeH ergänzt
 |gematik
 |===
@@ -3257,7 +3259,21 @@ Dieses Attribut wird durch den VZD nicht automatisch aus dem Zertifikat ermittel
 |*countryCode* |optional |Siehe TAB_VZD_Wertebereiche_der_Attribute
 |*organization* |optional |Bezeichner: Organisation +
 Dieses Attribut ist ein optionales zweites Namensattribut und wird befüllt bei Bedarf. Ebenso wie displayName ist es geeignet, um nach einem Namen zu filtern und ihn im Suchergebnis anzuzeigen.
-|*domainID* |optional |nicht belegt
+|*domainID* a|obligatorisch +
+ +
+ +
+ +
+ +
+ +
+ +
+optional a| Obligatorisch für alle VZD-Einträge, deren TelematikID mit folgenden Prefixen beginnt:
+
+- 9-2.59.2*
+- 9-2.59.5*
+- 9-2.303.*
+
+Für alle anderen VZD-Einträge: nicht belegt
+
 |*specialization* |optional |nicht belegt
 |*maxKOMLEadr* |optional |Maximale Anzahl von Mail-Adressen in den KOM-LE-Fachdaten. +
 Falls kein Wert eingetragen wurde, können beliebig viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden. +
