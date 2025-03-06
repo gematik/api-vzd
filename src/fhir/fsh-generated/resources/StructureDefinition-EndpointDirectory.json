@@ -98,7 +98,11 @@
             "source": "https://gematik.de/fhir/directory/StructureDefinition/EndpointDirectory"
           }
         ],
-        "mustSupport": true
+        "mustSupport": true,
+        "binding": {
+          "strength": "required",
+          "valueSet": "https://gematik.de/fhir/directory/ValueSet/EndpointConnectionTypeVS"
+        }
       },
       {
         "id": "Endpoint.connectionType.system",
@@ -108,11 +112,7 @@
       {
         "id": "Endpoint.connectionType.code",
         "path": "Endpoint.connectionType.code",
-        "mustSupport": true,
-        "binding": {
-          "strength": "required",
-          "valueSet": "https://gematik.de/fhir/directory/ValueSet/EndpointConnectionTypeVS"
-        }
+        "mustSupport": true
       },
       {
         "id": "Endpoint.name",

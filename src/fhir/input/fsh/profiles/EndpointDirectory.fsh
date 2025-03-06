@@ -17,8 +17,8 @@ Description: "Endpoints for applications in the gematik Directory"
 * status 1..1 MS
 * connectionType obeys CodingSytemCodeInv
 * connectionType 1..1 MS
+* connectionType from EndpointConnectionTypeVS
   * code MS
-  * code from EndpointConnectionTypeVS
   * system MS
 * name 1..1 MS
 * payloadType MS
