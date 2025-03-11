@@ -3217,7 +3217,7 @@ Dieses Attribut ist nicht in der flachen Liste enthalten.
 {empty} +
 {empty} +
 
-=== gematik - Kostenträger PKV (SMC-B-Eintrag)
+=== gematik - Weitere Kostenträger und PKV (SMC-B-Eintrag)
 [[Tabelle_16]]
 Tabelle 16: Tab_VZD_Datenbeschreibung_der_SMC-B_KT_PKV
 
@@ -3262,15 +3262,10 @@ Dieses Attribut ist ein optionales zweites Namensattribut und wird befüllt bei 
 |*domainID* a|obligatorisch +
  +
  +
- +
- +
- +
- +
+
 optional a| Obligatorisch für alle VZD-Einträge, deren TelematikID mit folgenden Prefixen beginnt:
 
-- 9-2.59.2*
-- 9-2.59.5*
-- 9-2.303.*
+- 9-2.59.*  (Private Krankenversicherung oder Weiterer Kostenträger)
 
 Für alle anderen VZD-Einträge: nicht belegt
 
