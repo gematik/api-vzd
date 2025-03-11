@@ -204,7 +204,7 @@ Neu für eGBR HBA und SMC-B |gematik
 - givenName - Verhalten bei der Administration von Attribut givenName genauer beschrieben
 |gematik
 
-|1.5.13 |17.01.2025 |3.7 +
+|1.5.13 |12.03.2025 |3.7 +
  +
  +
 4. +
