@@ -4087,7 +4087,7 @@ Die nachfolgende Tabelle enthält die Bezeichnung der in dem vorliegenden Dokume
 |===
 |*[Quelle]* |*Herausgeber: Titel*
 |[gemGlossar] |gematik: Glossar der Telematikinfrastruktur
-|[gemSpec_VZD] |gematik: Spezifikation Verzeichnisdienst - Version: 1.15.0
+|[gemSpec_VZD] |gematik: Spezifikation Verzeichnisdienst - Version: 1.18.0
 |===
 
 ==== Weitere Dokumente
