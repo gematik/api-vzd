@@ -209,12 +209,14 @@ Neu für eGBR HBA und SMC-B |gematik
  +
 4. +
 4.15 +
+ +
 4.19
 |
 - Belegung - nicht genutzter - optionaler Attribute ergänzt. +
 - Zuordnung von VZD Einträgen (TelematikIDs) zu Attributtabellen ergänzt. +
 - Prüfung V004: Link auf Simplifier aktualisiert +
 - Attribut "lanr" ergänzt +
+- Kapitel umbenannt in "gematik - Weitere Kostenträger und PKV (SMC-B-Eintrag)" +
 - Tab_VZD_Datenbeschreibung_der_SMC-B_KT_PKV Beschreibung domainID erweitert +
 - Tabelle für NCPeH ergänzt
 |gematik
