@@ -56,7 +56,7 @@ image::gematik_logo.svg[gematik,float="right"]
 [width="100%",cols="50%,50%",options="header",]
 |===
 
-|Version: |1.5.12
+|Version: |1.5.13
 
 |Referenzierung: |gemILF_Pflege_VZD
 |===
@@ -204,6 +204,22 @@ Neu für eGBR HBA und SMC-B |gematik
 - givenName - Verhalten bei der Administration von Attribut givenName genauer beschrieben
 |gematik
 
+|1.5.13 |12.03.2025 |3.7 +
+ +
+ +
+4. +
+4.15 +
+ +
+4.19
+|
+- Belegung - nicht genutzter - optionaler Attribute ergänzt. +
+- Zuordnung von VZD Einträgen (TelematikIDs) zu Attributtabellen ergänzt. +
+- Prüfung V004: Link auf Simplifier aktualisiert +
+- Attribut "lanr" ergänzt +
+- Kapitel umbenannt in "gematik - Weitere Kostenträger und PKV (SMC-B-Eintrag)" +
+- Tab_VZD_Datenbeschreibung_der_SMC-B_KT_PKV Beschreibung domainID erweitert +
+- Tabelle für NCPeH ergänzt
+|gematik
 |===
 
 == Einordnung des Dokumentes
@@ -249,7 +265,7 @@ Die Schnittstelle kann in drei Umgebungen genutzt werden:
 
 - Produktivumgebung (PU): für die produktive Nutzung mit Echtdaten durch Kartenherausgeber (HBA und SMC-B) sowie von ihnen berechtigte Dritte
 
-Neue Versionen der Schnittstelle und dieser Anleitung werden im https://fachportal.gematik.de/spezifikationen/[+++Fachportal der gematik+++] veröffentlicht.
+Neue Versionen der Schnittstelle und dieser Anleitung werden über https://gemspec.gematik.de/[+++gemSpecPages+++] veröffentlicht.
 
 === Schnellanleitung
 
@@ -398,6 +414,8 @@ Entweder der Parameter telematikID oder der Parameter userCertificate muss im Re
 Der Parameter dn kann nicht im Request angegeben werden.
 
 Entsprechend [gemSpec_VZD] wird ein Teil der Attribute durch den Verzeichnisdienst automatisch mit Werten aus dem Zertifikat gefüllt. Wenn in dieser Operation Attribute, für die dies erlaubt ist, mit einem Wert belegt werden, wird dieser Wert im Verzeichniseintrag gespeichert (auch wenn der Wert durch den Verzeichnisdienst aus dem Zertifikat entnommen werden kann).
+
+Beim Hinzugefügen und Ändern von Daten im VZD müssen die übergebenen Daten den xref:gemILF_Pflege_VZD.adoc#Tabelle_Plausi[Prüfungen beim Eintragen von Daten zur Verbesserung der Datenqualität] und den Vorgaben in den Attributtabellen von Kapitel 4 entsprechen.
 
 ===== DELETE /DirectoryEntries/\{uid}
 
@@ -837,6 +855,8 @@ Zur Verbesserung der Datenqualität werden im VZD zusätzliche Prüfungen beim E
 
 // arvato Beschreibung: https://arvato-systems-group.atlassian.net/browse/FVZ-551
 
+[[Tabelle_Plausi]]
+
 [width="100%",cols="6%,10%,6%,78%",options="header",]
 |===
 |*Nr* |*Status* |*FHIR-VZD +
@@ -851,7 +871,7 @@ Andere Schreibweisen werden nicht zugelassen.
 | countryCode muss 2-Stellige ISO Code sein. Siehe https://www.iso.org/obp/ui/#search/code/[ISO 3166 "Alpha-2 code"].
 |V004 |umgesetzt |ja
 | Bei SMC-B muss specialization folgendes Format haben: urn:psc:{OID Codesystem}:{Code}, 
-wobei CodeSystems und Codes aus  https://simplifier.net/vzd-fhir-directory/healthcareservicespecialtyvs[HealthcareServiceSpecialtyVS]  
+wobei CodeSystems und Codes aus  https://simplifier.net/vzd-fhir-directory/healthcarespecialtytypevs[HealthcareServiceSpecialtyVS]  
 zu entnehmen sind.
 |V005 |umgesetzt |ja
 | Bei HBA muss specialization folgendes Format haben: urn:as:{OID Codesystem}:{Code}, wobei CodeSystems und Codes aus https://simplifier.net/vzd-fhir-directory/practitionerqualificationvs[PractitionerQualificationVS] zu entnehmen sind.
@@ -892,6 +912,37 @@ a| Bei Organisationseinträgen werden die für Personen vorgesehene Felder given
 
 {empty} +
 {empty} +
+[[Tabelle_TID_Mapping]]
+Die folgende Tabelle beschreibt, wie die VZD Einträge anhand ihrer TelematikID den Attributtabellen in Kapitel 4 zugeordnet werden. 
+Für die VZD Einträge werden die Vorgaben aus den Attributtabellen entsprechend dieser Zuordnung durch den VZD geprüft.
+Der Wert in Spalte "TelematikID (regEx)" ist ein Regulärer Ausdruck (Regular expression), der die zugeordneten TelematikIDs beschreibt.
+
+[width="100%",options="header",]
+|===
+|*Kapitel*|*Tabelle* |*TelematikID (regEx)* 
+|4.2| xref:gemILF_Pflege_VZD.adoc#Tabelle_2[Tabelle 2: Tab_VZD_Datenbeschreibung_KVen] a|"^1-20.*"
+|4.3| xref:gemILF_Pflege_VZD.adoc#Tabelle_3[Tabelle 3: Tab_VZD_Datenbeschreibung_KZVen] a|"^2-2.*"
+|4.4| xref:gemILF_Pflege_VZD.adoc#Tabelle_4[Tabelle 4: Tab_VZD_Datenbeschreibung_Apotheken_SMC-B] a|"(\^3-...2.\*\|^9-2.54.*)"
+|4.5| xref:gemILF_Pflege_VZD.adoc#Tabelle_5[Tabelle 5: Tab_VZD_Datenbeschreibung_Apotheker_ Pharmazieingenieure_Apothekerassistenten] a|"(\^3-...3.\*\|^9-1.(32\|33\|34).*)"
+|4.6| xref:gemILF_Pflege_VZD.adoc#Tabelle_6[Tabelle 6: Tab_VZD_Datenbeschreibung_DKTIG (DKG)] a|"^5-.*"
+|4.7| xref:gemILF_Pflege_VZD.adoc#Tabelle_7[Tabelle 7: Tab_VZD_Datenbeschreibung_Psychotherapeuten] a|"^4-1.*"
+|4.8| xref:gemILF_Pflege_VZD.adoc#Tabelle_8[Tabelle 8: Tab_VZD_Datenbeschreibung_BÄK] a|"^1-1.*"
+|4.9| xref:gemILF_Pflege_VZD.adoc#Tabelle_9[Tabelle 9: Tab_VZD_Datenbeschreibung_BZÄK] a|"^2-0?1.*"
+|4.10| xref:gemILF_Pflege_VZD.adoc#Tabelle_10[Tabelle 10: Tab_VZD_Datenbeschreibung_GKV-SV_SMC-B KTR] a|"^8-01.*"
+|4.10| xref:gemILF_Pflege_VZD.adoc#Tabelle_11[Tabelle 11: VZD_Datenbeschreibung_GKV-SV_SM-B_KTR ePA] a|"^8-(03\|04).*"
+|4.11| xref:gemILF_Pflege_VZD.adoc#Tabelle_12[Tabelle 12: Tab_VZD_Datenbeschreibung_der_SMC-B_Org] a|"^9-2.(58\|187\|210\|223\|226\|227\|228\|224\|225\|229\|230\|231\|242\|243\|244\|245\|262\|263\|264\|265\|266\|267\|268\|269\|270\|271\|284\|285\|286\|295).*"
+|4.12| xref:gemILF_Pflege_VZD.adoc#Tabelle_13[Tabelle 13: Tab_VZD_Datenbeschreibung_der_SMC-B_eGBR] a|"^10-67.(245\|246\|247\|278\|279\|280\|281\|311).*"
+|4.13| xref:gemILF_Pflege_VZD.adoc#Tabelle_14[Tabelle 14: Tab_VZD_Datenbeschreibung_eGBR_HBA] a|"^10-67.(232\|233\|234\|235\|236\|274\|275\|276\|277\|312).*"
+|4.14| xref:gemILF_Pflege_VZD.adoc#Tabelle_15[Tabelle 15: Tab_VZD_Datenbeschreibung_der_SMC-B_WÄI] a|"^9-2.(50\|51\|34\|254\|255\|256).*"
+|4.15| xref:gemILF_Pflege_VZD.adoc#Tabelle_16[Tabelle 16: Tab_VZD_Datenbeschreibung_der_SMC-B_KT_PKV] a|"^9-2.(59\|273\|303).*"
+|4.16| xref:gemILF_Pflege_VZD.adoc#Tabelle_17[Tabelle 17: Tab_VZD_Datenbeschreibung_der_SMC-B_DiGA] a|"^9-2.282.*"
+|4.17| xref:gemILF_Pflege_VZD.adoc#Tabelle_18[Tabelle 18: Tab_VZD_Datenbeschreibung_der_SMC-B_HWK] a|"^11-2.*"
+|4.18| xref:gemILF_Pflege_VZD.adoc#Tabelle_19[Tabelle 19: Tab_VZD_Datenbeschreibung_BA_HWK] a|"^11-1.*"
+|4.19| xref:gemILF_Pflege_VZD.adoc#Tabelle_20[Tabelle 20: Tab_VZD_Datenbeschreibung_NCPeH] a|"^9-2.292.*"
+|===
+
+
+
 
 == Attributtabellen
 
@@ -899,9 +950,10 @@ In den folgenden Abschnitten werden für die Kartenherausgeber spezifische Festl
 
 NOTE: Für KOM-LE wird in der externen Darstellung die Bezeichnung "KIM" genutzt. In den Spezifikationen wird aber noch der Begriff KOM-LE/komLe genutzt.
 
+IMPORTANT: Optionale Attribute - welche nicht belegt werden - sind nicht anzugeben (bitte NICHT mit leeren Wert z.B. "" belegen).
 
 === Wertebereiche der Attribute
-
+[[Tabelle_1]]
 Tabelle 1: TAB_VZD_Wertebereiche_der_Attribute
 
 [width="100%",cols="24%,40%,36%",options="header",]
@@ -915,7 +967,7 @@ Tabelle 1: TAB_VZD_Wertebereiche_der_Attribute
 
 
 === Kassenärztliche Vereinigungen (SMC-B-Eintrag)
-
+[[Tabelle_2]]
 Tabelle 2: Tab_VZD_Datenbeschreibung_KVen
 
 [width="100%",cols="18%,10%,72%",options="header",]
@@ -990,6 +1042,7 @@ Mit Operation modify_Directory_Entry kann über Request Parameter entryType das 
 Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit einem Fehler. 
 |*telematikID* |obligatorisch |Bezeichner: TelematikID +
 Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
+|*lanr* |optional |Wird für SMC-B nicht verwendet.
 |*dataFromAuthority* |optional |Wird vom VZD eingetragen +
 Gibt an, ob die Daten vom Kartenherausgeber stammen. +
 Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
@@ -1074,7 +1127,7 @@ Dieses Attribut ist nicht in der flachen Liste enthalten.
 {empty} +
 
 === Kassenzahnärztliche Vereinigungen (SMC-B Eintrag)
-
+[[Tabelle_3]]
 Tabelle 3: Tab_VZD_Datenbeschreibung_KZVen
 
 [width="100%",cols="18%,10%,72%",options="header",]
@@ -1151,7 +1204,8 @@ Wird in Operationen add_Directory_Entry kein Zertifikat angegeben, muss Paramete
 Mit Operation modify_Directory_Entry kann über Request Parameter entryType das Attribut im VZD geändert werden, solange kein Zertifikat im VZD enthalten ist (welches dann einen abweichenden Wert gegenüber dem Request Parameter entryType enthalten würde). +
 Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit einem Fehler. 
 |*telematikID* |obligatorisch |Bezeichner: TelematikID +
-Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
+Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen. 
+|*lanr* |optional |Wird für SMC-B nicht verwendet.
 |*dataFromAuthority* |optional |Wird vom VZD eingetragen +
 Gibt an, ob die Daten vom Kartenherausgeber stammen. +
 Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
@@ -1243,7 +1297,7 @@ Dafür müssen die ENC Zertifikate aller neuen SMC-B Karten in Attribut Certific
  +	
 Alle anderen - durch Kartenherausgeber gepflegte - Daten müssen bei Änderungen (z.B. Änderung der Adresse, Spezialisierung,...) aktualisiert werden.	
 
-
+[[Tabelle_4]]
 Tabelle 4: Tab_VZD_Datenbeschreibung_Apotheken_SMC-B
 
 [width="100%",cols="18%,10%,72%",options="header",]
@@ -1292,6 +1346,10 @@ Die Inhalte werden durch die Kartenherausgeber gepflegt.
 |*specialization* |obligatorisch |Im Attribut specialization werden die ApothekenTypen (OffizinApo, Versand etc) erfasst. Hierfür wird das dafür definierten CodeSysteme https://simplifier.net/vzd-fhir-directory/pharmacytypeldapcs[PharmacyTypeLDAPCS] genutzt . Die Inhalte werden durch die Kartenherausgeber gepflegt. +
 Default für das Attribut ist LEER. LEER wird in der eRezept Anwendung gleich behandelt wie "Sonstige_offen". +
  +
+Hinweis: Beim Eintragen und Ändern der Spezialisierung über die REST Schnittstelle (I_Directory_Administration) müssen nur die Codes angegeben werden, keine weiteren Werte. +
+Beispiele: Für "10 Offizin-Apotheke" aus https://simplifier.net/vzd-fhir-directory/pharmacytypeldapcs[PharmacyTypeLDAPCS] muss übergeben werden: *"10"* +
+Für "10 Offizin-Apotheke" UND "40 Versandapotheke" muss übergeben werden: *"10","40"* +
+ +
 Bezeichner: Fachgebiet +
 Kann mehrfach vorkommen (0..100).
 |*maxKOMLEadr* |optional |Maximale Anzahl von Mail-Adressen in den KOM-LE-Fachdaten.  +
@@ -1319,7 +1377,8 @@ Wird in Operationen add_Directory_Entry kein Zertifikat angegeben, muss Paramete
 Mit Operation modify_Directory_Entry kann über Request Parameter entryType das Attribut im VZD geändert werden, solange kein Zertifikat im VZD enthalten ist (welches dann einen abweichenden Wert gegenüber dem Request Parameter entryType enthalten würde). +
 Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit einem Fehler. 
 |*telematikID* |obligatorisch |Bezeichner: TelematikID +
-Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
+Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen. 
+|*lanr* |optional |Wird für SMC-B nicht verwendet.
 |*dataFromAuthority* |optional |Wird vom VZD eingetragen +
 Gibt an, ob die Daten vom Kartenherausgeber stammen. +
 Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
@@ -1414,7 +1473,7 @@ Dafür müssen die ENC Zertifikate aller neuen HBA Karten in Attribut Certificat
  +
 Alle anderen - durch Kartenherausgeber gepflegte - Daten müssen bei Änderungen (z.B. Änderung der Adresse, Spezialisierung,...) aktualisiert werden.
 
-
+[[Tabelle_5]]
 Tabelle 5: Tab_VZD_Datenbeschreibung_Apotheker_Pharmazieingenieure_Apothekerassistenten
 
 [width="100%",cols="18%,9%,73%",options="header",]
@@ -1502,6 +1561,7 @@ Mit Operation modify_Directory_Entry kann über Request Parameter entryType das 
 Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit einem Fehler. 
 |*telematikID* |obligatorisch |Bezeichner: TelematikID +
 Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
+|*lanr* |optional |Wird für diese Berufsguppe(n) nicht verwendet.
 |*dataFromAuthority* |optional |Wird vom VZD eingetragen +
 Gibt an, ob die Daten vom Kartenherausgeber stammen. +
 Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
@@ -1586,7 +1646,7 @@ Dieses Attribut ist nicht in der flachen Liste enthalten.
 {empty} +
 
 === DKTIG (i.A.d.DKG) - Krankenhaus, Krankenhausapotheke, Vorsorge-und Rehabilitationseinrichtungen (SMC-B-Eintrag)
-
+[[Tabelle_6]]
 Tabelle 6: Tab_VZD_Datenbeschreibung_DKTIG (DKG)
 
 [width="100%",cols="18%,10%,72%",options="header",]
@@ -1661,7 +1721,8 @@ Wird in Operationen add_Directory_Entry kein Zertifikat angegeben, muss Paramete
 Mit Operation modify_Directory_Entry kann über Request Parameter entryType das Attribut im VZD geändert werden, solange kein Zertifikat im VZD enthalten ist (welches dann einen abweichenden Wert gegenüber dem Request Parameter entryType enthalten würde). +
 Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit einem Fehler. 
 |*telematikID* |obligatorisch |Bezeichner: TelematikID +
-Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
+Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen. 
+|*lanr* |optional |Wird für SMC-B nicht verwendet.
 |*dataFromAuthority* |optional |Wird vom VZD eingetragen +
 Gibt an, ob die Daten vom Kartenherausgeber stammen. +
 Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
@@ -1745,7 +1806,7 @@ Dieses Attribut ist nicht in der flachen Liste enthalten.
 {empty} +
 
 === Psychotherapeuten (HBA-Eintrag)
-
+[[Tabelle_7]]
 Tabelle 7: Tab_VZD_Datenbeschreibung_Psychotherapeuten
 
 [width="100%",cols="19%,10%,71%",options="header",]
@@ -1824,6 +1885,7 @@ Mit Operation modify_Directory_Entry kann über Request Parameter entryType das 
 Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit einem Fehler. 
 |*telematikID* |obligatorisch |Bezeichner: TelematikID +
 Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
+|*lanr* |optional |Wird für diese Berufsguppe(n) nicht verwendet.
 |*dataFromAuthority* |optional |Wird vom VZD eingetragen +
 Gibt an, ob die Daten vom Kartenherausgeber stammen. +
 Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
@@ -1908,7 +1970,7 @@ Dieses Attribut ist nicht in der flachen Liste enthalten.
 {empty} +
 
 === Ärzte-Kammern (HBA-Eintrag)
-
+[[Tabelle_8]]
 Tabelle 8: Tab_VZD_Datenbeschreibung_BÄK
 
 [width="100%",cols="17%,9%,74%",options="header",]
@@ -1986,6 +2048,9 @@ Mit Operation modify_Directory_Entry kann über Request Parameter entryType das 
 Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit einem Fehler. 
 |*telematikID* |obligatorisch |Bezeichner: TelematikID +
 Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
+|*lanr* |optional |Bezeichner: LANR +
+Die lebenslange Arztnummer, kurz LANR, dient der Suche nach Ärzten. 
+Insbesondere für die Suche durch Clients, welche die TelematikID nicht vorliegen haben.
 |*dataFromAuthority* |optional |Wird vom VZD eingetragen +
 Gibt an, ob die Daten vom Kartenherausgeber stammen. +
 Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
@@ -2070,7 +2135,7 @@ Dieses Attribut ist nicht in der flachen Liste enthalten.
 {empty} +
 
 === Zahnärzte-Kammern (HBA-Eintrag)
-
+[[Tabelle_9]]
 Tabelle 9: Tab_VZD_Datenbeschreibung_BZÄK
 
 [width="100%",cols="19%,10%,71%",options="header",]
@@ -2148,6 +2213,7 @@ Mit Operation modify_Directory_Entry kann über Request Parameter entryType das 
 Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit einem Fehler. 
 |*telematikID* |obligatorisch |Bezeichner: TelematikID +
 Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
+|*lanr* |optional |Wird für diese Berufsguppe(n) nicht verwendet.
 |*dataFromAuthority* |optional |Wird vom VZD eingetragen +
 Gibt an, ob die Daten vom Kartenherausgeber stammen. +
 Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
@@ -2234,7 +2300,7 @@ Dieses Attribut ist nicht in der flachen Liste enthalten.
 === GKV-SV (SMC-B-Eintrag)
 
 Hinweis: Wenn die Suche ausschließlichen nach der Domain-ID erfolgt, kann das Ergebnis mehrere Einträge umfassen. Daher sollte immer der entryType bei der Suche mit angegeben werden.
-
+[[Tabelle_10]]
 Tabelle 10: Tab_VZD_Datenbeschreibung_GKV-SV_SMC-B KTR
 
 [width="100%",cols="24%,12%,64%",options="header",]
@@ -2307,6 +2373,7 @@ Mit Operation modify_Directory_Entry kann über Request Parameter entryType das 
 Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit einem Fehler. 
 |*telematikID* |obligatorisch |Bezeichner: TelematikID +
 Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
+|*lanr* |optional |Wird für SMC-B nicht verwendet.
 |*holder* |obligatorisch |Legt fest, wer Änderungen an den Basisdaten des Eintrags vornehmen darf. Hat keinen Einfluss auf Fachdaten und Zertifikatsdaten.
 |*professionOID* |obligatorisch |Bezeichner: Profession OID +
 Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und dem Mapping in ab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
@@ -2393,7 +2460,7 @@ Dieses Attribut ist nicht in der flachen Liste enthalten.
 
 {empty} +
 {empty} +
-
+[[Tabelle_11]]
 Tabelle 11: VZD_Datenbeschreibung_GKV-SV_SM-B_KTR ePA
 
 [width="100%",cols="24%,12%,64%",options="header",]
@@ -2463,7 +2530,8 @@ Wird in Operationen add_Directory_Entry kein Zertifikat angegeben, muss Paramete
 Mit Operation modify_Directory_Entry kann über Request Parameter entryType das Attribut im VZD geändert werden, solange kein Zertifikat im VZD enthalten ist (welches dann einen abweichenden Wert gegenüber dem Request Parameter entryType enthalten würde). +
 Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit einem Fehler. 
 |*telematikID* |obligatorisch |Bezeichner: TelematikID +
-Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
+Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen. +
+|*lanr* |optional |Wird für SMC-B nicht verwendet.
 |*holder* |obligatorisch |Legt fest, wer Änderungen an den Basisdaten des Eintrags vornehmen darf. Hat keinen Einfluss auf Fachdaten und Zertifikatsdaten.
 |*professionOID* |obligatorisch |Bezeichner: Profession OID +
 Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und dem Mapping in ab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
@@ -2514,7 +2582,7 @@ Dieses Attribut ist nicht in der flachen Liste enthalten.
 {empty} +
 
 === SMC-B-Org-Eintrag (gematik)
-
+[[Tabelle_12]]
 Tabelle 12: Tab_VZD_Datenbeschreibung_der_SMC-B_Org
 
 [width="100%",cols="23%,15%,62%",options="header",]
@@ -2583,6 +2651,7 @@ Mit Operation modify_Directory_Entry kann über Request Parameter entryType das 
 Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit einem Fehler. 
 |*telematikID* |obligatorisch |Bezeichner: TelematikID +
 Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
+|*lanr* |optional |Wird für SMC-B nicht verwendet.
 |*dataFromAuthority* |optional |Wird vom VZD eingetragen +
 Gibt an, ob die Daten vom Kartenherausgeber stammen. +
 Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
@@ -2665,7 +2734,7 @@ Dieses Attribut ist nicht in der flachen Liste enthalten.
 === eGBR – Nichtärztliche Institutionen (SMC-B-Eintrag)
 
 eGBR Einträge werden im Verzeichnisdienst durch den TSP angelegt. Der TSP trägt in das Attribut `holder` der Wert `egbr` und seine eigene clientID ein. Damit sind diese Einträge durch eGBR Clients und die Clients des TSPs änderbar.
-
+[[Tabelle_13]]
 Tabelle 13: Tab_VZD_Datenbeschreibung_der_SMC-B_eGBR
 
 [width="100%",cols="18%,12%,70%",options="header",]
@@ -2735,6 +2804,7 @@ Mit Operation modify_Directory_Entry kann über Request Parameter entryType das 
 Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit einem Fehler. 
 |*telematikID* |obligatorisch |Bezeichner: TelematikID +
 Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
+|*lanr* |optional |Wird für SMC-B nicht verwendet.
 |*dataFromAuthority* |optional |Wird vom VZD eingetragen +
 Gibt an, ob die Daten vom Kartenherausgeber stammen. +
 Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
@@ -2819,7 +2889,7 @@ Dieses Attribut ist nicht in der flachen Liste enthalten.
 
 === eGBR – Weitere Gesundheitsfachberufe (HBA-Eintrag)
 eGBR Einträge werden im Verzeichnisdienst durch den TSP angelegt. Der TSP trägt in das Attribut "holder" der Wert "eGBR" und seine eigene clientID ein. Damit sind diese Einträge durch eGBR Clients und die Clients des TSPs änderbar.
-
+[[Tabelle_14]]
 Tabelle 14: Tab_VZD_Datenbeschreibung_eGBR_HBA
 
 [width="100%",cols="18%,10%,72%",options="header",]
@@ -2890,6 +2960,7 @@ Mit Operation modify_Directory_Entry kann über Request Parameter entryType das 
 Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit einem Fehler. 
 |*telematikID* |obligatorisch |Bezeichner: TelematikID +
 Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
+|*lanr* |optional |Wird für diese Berufsguppe(n) nicht verwendet.
 |*dataFromAuthority* |optional |Wird vom VZD eingetragen +
 Gibt an, ob die Daten vom Kartenherausgeber stammen. +
 Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
@@ -2977,7 +3048,7 @@ Dieses Attribut ist nicht in der flachen Liste enthalten.
 {empty} +
 
 === gematik - Weitere ärztliche Institutionen (SMC-B-Eintrag)
-
+[[Tabelle_15]]
 Tabelle 15: Tab_VZD_Datenbeschreibung_der_SMC-B_WÄI
 
 [width="100%",cols="18%,12%,70%",options="header",]
@@ -3068,6 +3139,7 @@ Mit Operation modify_Directory_Entry kann über Request Parameter entryType das 
 Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit einem Fehler. 
 |*telematikID* |obligatorisch |Bezeichner: TelematikID +
 Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
+|*lanr* |optional |Wird für SMC-B nicht verwendet.
 |*dataFromAuthority* |optional |Wird vom VZD eingetragen +
 Gibt an, ob die Daten vom Kartenherausgeber stammen. +
 Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
@@ -3147,8 +3219,8 @@ Dieses Attribut ist nicht in der flachen Liste enthalten.
 {empty} +
 {empty} +
 
-=== gematik - Kostenträger PKV (SMC-B-Eintrag)
-
+=== gematik - Weitere Kostenträger und PKV (SMC-B-Eintrag)
+[[Tabelle_16]]
 Tabelle 16: Tab_VZD_Datenbeschreibung_der_SMC-B_KT_PKV
 
 [width="100%",cols="18%,12%,70%",options="header",]
@@ -3189,7 +3261,16 @@ Dieses Attribut wird durch den VZD nicht automatisch aus dem Zertifikat ermittel
 |*countryCode* |optional |Siehe TAB_VZD_Wertebereiche_der_Attribute
 |*organization* |optional |Bezeichner: Organisation +
 Dieses Attribut ist ein optionales zweites Namensattribut und wird befüllt bei Bedarf. Ebenso wie displayName ist es geeignet, um nach einem Namen zu filtern und ihn im Suchergebnis anzuzeigen.
-|*domainID* |optional |nicht belegt
+|*domainID* a|obligatorisch +
+ +
+ +
+
+optional a| Obligatorisch für alle VZD-Einträge, deren TelematikID mit folgenden Prefixen beginnt:
+
+- 9-2.59.*  (Private Krankenversicherung oder Weiterer Kostenträger)
+
+Für alle anderen VZD-Einträge: nicht belegt
+
 |*specialization* |optional |nicht belegt
 |*maxKOMLEadr* |optional |Maximale Anzahl von Mail-Adressen in den KOM-LE-Fachdaten. +
 Falls kein Wert eingetragen wurde, können beliebig viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden. +
@@ -3215,6 +3296,7 @@ Mit Operation modify_Directory_Entry kann über Request Parameter entryType das 
 Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit einem Fehler. 
 |*telematikID* |obligatorisch |Bezeichner: TelematikID +
 Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
+|*lanr* |optional |Wird für SMC-B nicht verwendet.
 |*dataFromAuthority* |optional |Wird vom VZD eingetragen +
 Gibt an, ob die Daten vom Kartenherausgeber stammen. +
 Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
@@ -3295,7 +3377,7 @@ Dieses Attribut ist nicht in der flachen Liste enthalten.
 {empty} +
 
 === gematik – DiGA (SMC-B-Eintrag)
-
+[[Tabelle_17]]
 Tabelle 17: Tab_VZD_Datenbeschreibung_der_SMC-B_DiGA
 
 [width="100%",cols="18%,12%,70%",options="header",]
@@ -3362,6 +3444,7 @@ Mit Operation modify_Directory_Entry kann über Request Parameter entryType das 
 Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit einem Fehler. 
 |*telematikID* |obligatorisch |Bezeichner: TelematikID +
 Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
+|*lanr* |optional |Wird für SMC-B nicht verwendet.
 |*dataFromAuthority* |optional |Wird vom VZD eingetragen +
 Gibt an, ob die Daten vom Kartenherausgeber stammen. +
 Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
@@ -3444,6 +3527,7 @@ Dieses Attribut ist nicht in der flachen Liste enthalten.
 === Handwerkskammern – Nichtärztliche Institutionen (SMC-B-Eintrag)
 Einträge für Betriebe der Gesundheitshandwerke werden im Verzeichnisdienst durch den Anbieter SMC-B angelegt. Der Anbieter SMC-B trägt in das Attribut holder den Wert der jeweils zuständigen Handwerkskammer und seine eigene clientID ein. Damit sind diese Einträge durch Handwerkskammer-Clients und die Clients des Anbieters SMC-B änderbar. +
  +
+[[Tabelle_18]]
 Tabelle 18: Tab_VZD_Datenbeschreibung_der_SMC-B_HWK
 
 [width="100%",cols="18%,12%,70%",options="header",]
@@ -3526,6 +3610,7 @@ Mit Operation modify_Directory_Entry kann über Request Parameter entryType das 
 Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit einem Fehler. 
 |*telematikID* |obligatorisch |Bezeichner: TelematikID +
 Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
+|*lanr* |optional |Wird für SMC-B nicht verwendet.
 |*dataFromAuthority* |optional |Wird vom VZD eingetragen +
 Gibt an, ob die Daten vom Kartenherausgeber stammen. +
 Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
@@ -3614,6 +3699,7 @@ Dieses Attribut ist nicht in der flachen Liste enthalten.
 === Handwerkskammern – Weitere Gesundheitsfachberufe (BA-Eintrag)
 Einträge für Betriebe der Gesundheitshandwerke werden im Verzeichnisdienst durch den Anbieter HBA angelegt. Der Anbieter HBA trägt in das Attribut holder den Wert der jeweils zuständigen Handwerkskammer und seine eigene clientID ein. Damit sind diese Einträge durch Handwerkskammer-Clients und die Clients des Anbieters HBA änderbar. +
  +
+[[Tabelle_19]]
 Tabelle 19: Tab_VZD_Datenbeschreibung_BA_HWK
 
 [width="100%",cols="18%,12%,70%",options="header",]
@@ -3696,6 +3782,7 @@ Mit Operation modify_Directory_Entry kann über Request Parameter entryType das 
 Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit einem Fehler. 
 |*telematikID* |obligatorisch |Bezeichner: TelematikID +
 Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
+|*lanr* |optional |Wird für diese Berufsguppe(n) nicht verwendet.
 |*dataFromAuthority* |optional |Wird vom VZD eingetragen +
 Gibt an, ob die Daten vom Kartenherausgeber stammen. +
 Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
@@ -3710,7 +3797,7 @@ Legt fest, wer Änderungen an den Basisdaten des Eintrags vornehmen darf. Hat ke
 Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und dem Mapping in ab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
 Kann mehrfach vorkommen (0..100).
 |*title* |optional |Bezeichner: Titel +
-Der Wert wird von der pflegenden Stelle festgelegt..
+Der Wert wird von der pflegenden Stelle festgelegt.
 |*description* |optional |Wird derzeit nicht verwendet.
 |*mail* |optional |Bezeichner: E-Mail-Adresse +
 Kann mehrfach vorkommen (0..1000). +
@@ -3780,7 +3867,159 @@ Dieses Attribut ist nicht in der flachen Liste enthalten.
 {empty} +
 {empty} +
 
+
+=== gematik – NCPeH - National Contact Point for eHealth (SMC-B-Eintrag)
+Einträge für National Contact Point for eHealth werden im Verzeichnisdienst durch die gematik angelegt. +
+ +
+[[Tabelle_20]]
+Tabelle 20: Tab_VZD_Datenbeschreibung_NCPeH
+
+[width="100%",cols="18%,12%,70%",options="header",]
+|===
+|*LDAP-Directory Attribut* |*Pflichtfeld aus Sicht Pflege und Nutzung?* |*Erläuterung*
+|*givenName* |optional |Wird für den NCPeH nicht verwendet.
+|*sn* |optional a| Wird für den NCPeH nicht verwendet.
+|*cn* +
+ +
+  |obligatorisch |
+Wird nicht als Parameter übergeben und damit vom VZD als Kopie von Attribut displayName gesetzt.
+|*otherName* |optional | Wird für den NCPeH nicht verwendet.
+|*displayName* |obligatorisch |Bezeichner: Anzeigename +
+Dieses Attribut wird genutzt, um den Namen der Person gegenüber dem Anwender darzustellen (Verwendung als Filter-Attribut, um die Suche einzuschränken, und bei der Darstellung des Ergebnisses). +
+ +
+Dieses Attribut wird durch den VZD nicht automatisch aus dem Zertifikat ermittelt. +
+Attribut displayName muss vom Client über die Schreiboperationen von Schnittstelle I_Directory_Administration gesetzt werden. +
+Dafür muss die deutsche amtliche Kurzform des Ländernamens aus dem Zertifikatsattribut commonName entnommen und dem VZD an Schnittstelle I_Directory_Administration als Attribut displayName übergeben werden.
+
+|*streetAddress* |optional |Bezeichner: Straße und Hausnummer (wenn verfügbar) der Organisation.
+|*postalCode* |optional |Bezeichner: Postleitzahl der Organisation.
+|*localityName* |optional |Bezeichner: Ort der Organisation.
+|*stateOrProvinceName* |optional |Bezeichner: Bundesland der Organisation.
+|*countryCode* |optional |Siehe TAB_VZD_Wertebereiche_der_Attribute
+|*organization* |optional |Nicht belegt.
+|*domainID* |optional |Nicht belegt.
+|*specialization* |optional | Wird für den NCPeH nicht verwendet.
+|*maxKOMLEadr* |optional |Maximale Anzahl von Mail-Adressen in den KOM-LE-Fachdaten. +
+Falls kein Wert eingetragen wurde, können beliebig viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden. +
+Falls ein Wert eingetragen wurde, können maximal so viele Mail-Adressen in den KOM-LE-Fachdaten eingetragen werden.
+|*userCertificate* |obligatorisch |Bezeichner: Enc-Zertifikat der SMC-B +
+Kann mehrfach vorkommen (0..50) +
+Format: DER, Base64 kodiert +
+Neue Einträge können nur mit Zertifikat angelegt werden. +
+Die pflegende Stelle erhält das Zertifikat vom TSP. +
+Es können Einträge ohne Zertifikat angelegt werden. Diese Einträge werden jedoch nicht über die LDAP-Abfrageschnittstelle gefunden.
+|*userCertificate.active* |obligatorisch |Wird vom VZD eingetragen. +
+Wert == TRUE, wenn das userCertificate gemäß OCSP gültig ist (OCSP Response Status "good"), Wert == FALSE bei Zertifikaten von noch nicht freigeschalteten Karten (OCSP Response Status "unknown"). +
+Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in die flache Liste übernommen.
+|*personalEntry* |obligatorisch |Wird vom VZD aus dem Zertifikat ermittelt und eingetragen. Wenn kein Zertifikat übergeben wird, kann es mit add_Directory_Entry als Parameter übergeben werden. +
+Wert == TRUE, wenn baseDirectoryEntry.entryType den Wert 1 hat (Berufsgruppe), Wert == FALSE sonst (siehe [gemSpec_VZD]#Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID). +
+Nach Löschung aller Zertifikate bleibt der Wert dieses Attributs "personalEntry" erhalten.
+|*entryType* |obligatorisch |Bezeichner: Eintragstyp +
+Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
+ +
+entryType kann über Operationen add_Directory_Entry und modify_Directory_Entry gesetzt werden. +
+Wird in Operationen add_Directory_Entry ein Zertifikat angegeben wird, muss ein eventuell angegebener Parameter entryType mit dem Wert aus dem Zertifikat übereinstimmen. Bei nicht angegebenem Parameter entryType wird das Attribut entryType entsprechend dem Zertifikat gesetzt. +
+Wird in Operationen add_Directory_Entry kein Zertifikat angegeben, muss Parameter entryType angegeben werden. +
+Mit Operation modify_Directory_Entry kann über Request Parameter entryType das Attribut im VZD geändert werden, solange kein Zertifikat im VZD enthalten ist (welches dann einen abweichenden Wert gegenüber dem Request Parameter entryType enthalten würde). +
+Wenn mit Operation add_Directory_Entry_Certificate ein neues Zertifikat hinzugefügt wird - welches in Bezug auf Attribut entryType vom Basisdatensatz abweicht - dann führt das zum Abbruch der Operation mit einem Fehler. 
+|*telematikID* |obligatorisch |Bezeichner: TelematikID +
+Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen.
+|*lanr* |optional |Wird für SMC-B nicht verwendet.
+|*dataFromAuthority* |optional |Wird vom VZD eingetragen +
+Gibt an, ob die Daten vom Kartenherausgeber stammen. +
+Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
+ +
+Wenn der Wert TRUE ist, können die Daten nicht mehr über die Schnittstelle I_Directory_Maintenance bearbeitet werden. Die Schnittstelle I_Directory_Maintenance wird von KOM-LE-Anbietern verwendet.
+|*holder* |obligatorisch |Legt fest, wer Änderungen an den Basisdaten des Eintrags vornehmen darf. Hat keinen Einfluss auf Fachdaten und Zertifikatsdaten.
+|*professionOID* |obligatorisch |Bezeichner: Profession OID +
+Wird vom VZD anhand der in den Zertifikaten enthaltenen OIDs (Extension Admission, Attribut ProfessionOID) und dem Mapping in ab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. +
+Kann mehrfach vorkommen (0..100).
+|*title* |optional |Wird für den NCPeH nicht verwendet.
+|*description* |optional |Wird derzeit nicht verwendet.
+|*mail* |optional |Bezeichner: E-Mail-Adresse +
+Kann mehrfach vorkommen (0..1000). +
+Wird vom KOM-LE-Anbieter eingetragen.
+|*komLeData* |optional a|
+Bezeichner: komLeData +
+kann mehrfach vorkommen (0..1000) +
+ +
+Enthält die KOM-LE-Version des Clientmoduls der angegebenen "mail" Adresse im Attribut "version". Anhand dieser Version erkennt das sendende Clientmodul, welche KOM-LE-Version vom Empfänger-Clientmodul unterstützt wird und in welchem Format die Mail an diesen Empfänger versandt wird. +
+Wenn nicht angegeben, wird KOM-LE-Version 1.0 angenommen. +
+Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
+
+- Ein komLeData-Eintrag setzt sich zusammen aus der Mail-Adresse (Attribut "mail") und der zugehörigen KOM-LE Version (Attribut "version"). 
+- Für jede Mail-Adresse aus dem "mail" Attribut darf es nur einen Eintrag in Datenstruktur komLeData geben. Es dürfen in komLeData keine Mail-Adressen referenziert werden, die nicht im übergeordneten "mail" Attribut enthalten sind.
+- Wenn eine Mail-Adresse gelöscht wird, muss auch ihr komLeData-Eintrag gelöscht werden. +
+ Geschrieben wird immer die gesamte Liste. Für Änderungen muss erst der aktuelle Eintrag gelesen werden und nach Änderung in der Liste der gesamte Eintrag wieder geschrieben werden.
+- Beispiel für den Wert eines komLeData-Eintrags in der flachen Liste (Ausgabe einer LDAP Suche): +
+[source, c]
+----
+komLeData: 1.0,mc_smcb_za@dom1.komle.telematik-test
+komLeData: 1.0,mz_smcb_za@dom2.kim.telematik-test
+komLeData: 1.0,mz_smcb_za@dom1.kim.telematik-test
+komLeData: 1.0,mb_secu_sm@dom3.kim.telematik-test
+komLeData: 1.0,mb_secu_sm@dom4.kim.telematik-test
+komLeData: 1.5,ak_secu_102@dom5.kim.telematik-test
+----
+
+Wird vom KOM-LE-Anbieter eingetragen.
+
+|*kimData* |optional a| {kimData}
+
+[source, c,subs=attributes+]
+----
+{kimData-example_1}
+{kimData-example_2}
+{kimData-example_3}
+{kimData-example_4}
+{kimData-example_5}
+{kimData-example_6}
+----
+
+|*active* |obligatorisch a| {active} +
+ +
+Vorgabe für die Befüllung des "active" Attributs für NCPeH Einträge: +
+
+* Bei Anlage eines neuen NCPeHs wird das "active" Attribut auf "false" (inaktiv) gesetzt.
+* Nach Vervollständigung des NCPeH Eintrags im FHIR VZD wird das "active" Attribut auf "true" (aktiv) gesetzt.
+|*meta* |optional | Kann von den pflegenden Clients zur Abstimmung der Prozesse zwischen z.B. Kartenherausgeber und TSP genutzt werden. Dieses Attribut wird durch den VZD nicht ausgewertet. Die Werte für dieses Attribut müssen von den pflegenden Organisationen festgelegt und abgestimmt werden. +
+Array von Strings (wird in LDAP auf <String, String> gemappt). es erfolgt keine Synchronisierung in die flache Liste. +
+Dieses Attribut ist nicht in der flachen Liste enthalten. +
+Kann mehrfach vorkommen (0..100).
+|*changeDateTime* |obligatorisch |Bezeichner: Änderungszeitstempel +
+Der VZD setzt dieses Attribut bei jeder Schreiboperation für den Datensatz (Basisdaten und Zertifikate) auf die aktuelle Zeit. Format entsprechend RFC 3339, section 5.6. +
+Wird vom VZD automatisch eingetragen.
+|*notBefore* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. Wird vom VZD zur Ermittlung der zeitlich gültigen Zertifikate genutzt. Dieses Attribut ist nicht in der flachen Liste enthalten. +
+Wird vom VZD automatisch eingetragen.
+|*notAfter* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. Wird vom VZD zur Ermittlung der zeitlich gültigen Zertifikate genutzt. Dieses Attribut ist nicht in der flachen Liste enthalten. +
+Wird vom VZD automatisch eingetragen.
+
+|*serialNumber* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. +
+Kann zur Suche nach Zertifikaten genutzt werden. +
+Dieses Attribut ist nicht in der flachen Liste enthalten.
+|*issuer* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. +
+Kann zur Suche nach Zertifikaten genutzt werden. +
+Dieses Attribut ist nicht in der flachen Liste enthalten.
+|*publicKeyAlgorithm* |obligatorisch |Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar. +
+Kann zur Suche nach Zertifikaten genutzt werden. +
+Dieses Attribut ist nicht in der flachen Liste enthalten.
+
+|===
 {empty} +
+ +
+NCPeH VZD Einträge werden mit folgendem Ablauf erzeugt: +
+
+* Die NCPeH Daten - inklusive Zertifikat(en) - werden entsprechend Tabelle Tab_VZD_Datenbeschreibung_NCPeH in den LDAP VZD eingetragen. 
+Dabei wird das "active" Attribut auf "false" (inaktiv) gesetzt. 
+* Der VZD synchronisiert den LDAP NCPeH Eintrag in den FHIR VZD.
+* Nach der Synchronisation wird im FHIR VZD der NCPeH Eintrag um die folgenden Daten angereichert, die nicht im LDAP VZD vorhanden sind. Dafür wird die FHIR VZD Schnittstelle FHIRDirectoryOwnerAPI (/owner) mit der Authentisierung als Holder genutzt.
+** In Organization.extension:ncpehCountryEx wird das Land eingetragen, für das der NCPeH zuständig ist.
+** In HealthcareService.category wird die ProfessionOID von dem NCPeH (1.2.276.0.76.4.292) eingetragen.
+** In HealthcareService.specialty werden die unterstützten Codes (https://simplifier.net/vzd-fhir-directory/ncpeh-healthcare-service-speciality-cs[NCPeHHealthcareServiceSpecialityVS]) für den NCPeH eingetragen. 
+* Nach Vervollständigung des NCPeH Eintrags im FHIR VZD wird das "active" Attribut im LDAP VZD auf "true" (aktiv) gesetzt. Die Aktivierung von dem NCPeH Datensatz im LDAP VZD wird in den FHIR VZD synchronisiert.
+
+
+
 
 == Anhang A – Verzeichnisse
 
@@ -3824,6 +4063,18 @@ Tabelle 13: Tab_VZD_Datenbeschreibung_der_SMC-B_eGBR
 
 Tabelle 14: Tab_VZD_Datenbeschreibung_eGBR_HBA
 
+Tabelle 15: Tab_VZD_Datenbeschreibung_der_SMC-B_WÄI
+
+Tabelle 16: Tab_VZD_Datenbeschreibung_der_SMC-B_KT_PKV
+
+Tabelle 17: Tab_VZD_Datenbeschreibung_der_SMC-B_DiGA
+
+Tabelle 18: Tab_VZD_Datenbeschreibung_der_SMC-B_HWK
+
+Tabelle 19: Tab_VZD_Datenbeschreibung_BA_HWK
+
+Tabelle 20: Tab_VZD_Datenbeschreibung_NCPeH
+
 === Referenzierte Dokumente
 
 ==== Dokumente der gematik
@@ -3836,7 +4087,7 @@ Die nachfolgende Tabelle enthält die Bezeichnung der in dem vorliegenden Dokume
 |===
 |*[Quelle]* |*Herausgeber: Titel*
 |[gemGlossar] |gematik: Glossar der Telematikinfrastruktur
-|[gemSpec_VZD] |gematik: Spezifikation Verzeichnisdienst - Version: 1.15.0
+|[gemSpec_VZD] |gematik: Spezifikation Verzeichnisdienst - Version: 1.18.0
 |===
 
 ==== Weitere Dokumente
