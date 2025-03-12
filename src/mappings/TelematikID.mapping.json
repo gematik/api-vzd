@@ -5,218 +5,319 @@
       "fhirResourceType": "Practitioner",
       "code": "Arzt",
       "displayShort": "Arzt",
-      "specializationRequired": "true"
+      "displayLong": "Ärzt:in",
+      "specializationRequired": "true",
+      "colorBackground": "#D0E2FF",
+      "colorText": "#0043CE"
     },
     {
       "pattern": "^1-20.*",
       "fhirResourceType": "Organization",
       "code": "Arztpaxis",
       "displayShort": "Arztpaxis",
+      "displayLong": "Praxis",
       "fhirIdentifierProfile": "http://fhir.de/StructureDefinition/identifier-bsnr",
-      "specializationRequired": "true"
+      "specializationRequired": "true",
+      "colorBackground": "#D0E2FF",
+      "colorText": "#0043CE"
     },
     {
       "pattern": "^2-0?1.*",
       "fhirResourceType": "Practitioner",
       "code": "Zahnarzt",
       "displayShort": "Zahnarzt",
-      "specializationRequired": "true"
+      "displayLong": "Zahnärzt:in",
+      "specializationRequired": "true",
+      "colorBackground": "#D0E2FF",
+      "colorText": "#0043CE"
     },
     {
       "pattern": "^2-2.*",
       "fhirResourceType": "Organization",
       "code": "Zahnarztpraxis",
       "displayShort": "Zahnarztpraxis",
+      "displayLong": "Zahnarztpraxis",
       "fhirIdentifierProfile": "http://fhir.de/StructureDefinition/identifier-kzva",
-      "specializationRequired": "true"
+      "specializationRequired": "true",
+      "colorBackground": "#D0E2FF",
+      "colorText": "#0043CE"
     },
     {
       "pattern": "^3-...2.*",
       "fhirResourceType": "Organization",
       "code": "Apotheke",
-      "displayShort": "Apotheke"
+      "displayShort": "Apotheke",
+      "displayLong": "Apotheke",
+      "colorBackground": "#E8DAFF",
+      "colorText": "#6929C4"
     },
     {
       "pattern": "^3-...3.*",
       "fhirResourceType": "Practitioner",
       "code": "Apotheker",
-      "displayShort": "Apotheker"
+      "displayShort": "Apotheker",
+      "displayLong": "Apotheker:in",
+      "colorBackground": "#E8DAFF",
+      "colorText": "#6929C4"
     },
     {
       "pattern": "^4-.*",
       "fhirResourceType": "Practitioner",
       "code": "Psychotherapeut",
       "displayShort": "Psychotherapeut",
-      "specializationRequired": "true"
+      "displayLong": "Psychotherpeut:in",
+      "specializationRequired": "true",
+      "colorBackground": "#D0E2FF",
+      "colorText": "#0043CE"
     },
     {
       "pattern": "^5-.*",
       "fhirResourceType": "Organization",
       "code": "Krankenhaus",
       "displayShort": "Krankenhaus",
+      "displayLong": "Krankenhaus",
       "fhirIdentifierProfile": "http://fhir.de/StructureDefinition/identifier-iknr",
-      "specializationRequired": "true"
+      "specializationRequired": "true",
+      "colorBackground": "#BAE6FF",
+      "colorText": "#00539A"
     },
     {
       "pattern": "^8-01.*",
       "fhirResourceType": "Organization",
       "code": "Krankenkasse",
       "displayShort": "Krankenkasse",
-      "fhirIdentifierProfile": "http://fhir.de/StructureDefinition/identifier-iknr"
+      "displayLong": "Krankenkasse",
+      "fhirIdentifierProfile": "http://fhir.de/StructureDefinition/identifier-iknr",
+      "colorBackground": "#393939",
+      "colorText": "#FFFFFF"
     },
     {
       "pattern": "^8-03.*",
       "fhirResourceType": "Organization",
       "code": "Krankenkasse_ePA",
-      "displayShort": "Krankenkasse (ePA)"
+      "displayShort": "Krankenkasse (ePA)",
+      "displayLong": "Krankenkasse (ePA)",
+      "colorBackground": "#393939",
+      "colorText": "#FFFFFF"
     },
     {
       "pattern": "^9-1.32.*",
       "fhirResourceType": "Practitioner",
       "code": "EU_Versandapotheker",
-      "displayShort": "EU-Versandapotheker"
+      "displayShort": "EU-Versandapotheker",
+      "displayLong": "Apotheker:in (Versand)",
+      "colorBackground": "#E8DAFF",
+      "colorText": "#6929C4"
     },
     {
       "pattern": "^9-1.33.*",
       "fhirResourceType": "Practitioner",
       "code": "Apothekerassistent",
-      "displayShort": "Apothekerassistent"
+      "displayShort": "Apothekerassistent",
+      "displayLong": "Apotheker:in Assistenz",
+      "colorBackground": "#E8DAFF",
+      "colorText": "#6929C4"
     },
     {
       "pattern": "^9-1.34.*",
       "fhirResourceType": "Practitioner",
       "code": "Pharmazieingenieur",
-      "displayShort": "Pharmazieingenieur"
+      "displayShort": "Pharmazieingenieur",
+      "displayLong": "Pharmazieingenieur:in",
+      "colorBackground": "#E8DAFF",
+      "colorText": "#6929C4"
     },
     {
       "pattern": "^9-2.50.*",
       "fhirResourceType": "Organization",
       "code": "Private_Arztpraxis",
-      "displayShort": "Private Arztpraxis"
+      "displayShort": "Private Arztpraxis",
+      "displayLong": "Private Praxis",
+      "colorBackground": "#BAE6FF",
+      "colorText": "#00539A"
     },
     {
       "pattern": "^9-2.51.*",
       "fhirResourceType": "Organization",
       "code": "Private_Zahnarztpraxis",
-      "displayShort": "Private Zahnarztpraxis"
+      "displayShort": "Private Zahnarztpraxis",
+      "displayLong": "Private Zahnarztpraxis",
+      "colorBackground": "#BAE6FF",
+      "colorText": "#00539A"
     },
     {
       "pattern": "^9-2.34.*",
       "fhirResourceType": "Organization",
       "code": "Private_Psychotherapeutenpraxis",
       "displayShort": "Private Psychotherapeutenpraxis",
-      "specializationRequired": "true"
+      "displayLong": "Private Psychotherapeutenpraxis",
+      "specializationRequired": "true",
+      "colorBackground": "#BAE6FF",
+      "colorText": "#00539A"
     },
     {
       "pattern": "^9-2.54.*",
       "fhirResourceType": "Organization",
       "code": "EU_Versandapotheke",
-      "displayShort": "EU-Versandapotheke"
+      "displayShort": "EU-Versandapotheke",
+      "displayLong": "Versandapotheke",
+      "colorBackground": "#E8DAFF",
+      "colorText": "#6929C4"
     },
     {
       "pattern": "^9-2.59.*",
       "fhirResourceType": "Organization",
       "code": "Krankenversicherung",
       "displayShort": "Krankenversicherung",
-      "fhirIdentifierProfile": "http://fhir.de/StructureDefinition/identifier-iknr"
+      "displayLong": "PKV & Kostenträger",
+      "fhirIdentifierProfile": "http://fhir.de/StructureDefinition/identifier-iknr",
+      "colorBackground": "#393939",
+      "colorText": "#FFFFFF"
     },
     {
       "pattern": "^9-2.254.*",
       "fhirResourceType": "Organization",
       "code": "Sanitätsdienststelle_Bundeswehr",
-      "displayShort": "Bundeswehr"
+      "displayShort": "Bundeswehr",
+      "displayLong": "Bundeswehr",
+      "colorBackground": "#393939",
+      "colorText": "#FFFFFF"
     },
     {
       "pattern": "^9-2.255.*",
       "fhirResourceType": "Organization",
       "code": "Gesundheitsamt",
-      "displayShort": "Gesundheitsamt"
+      "displayShort": "Gesundheitsamt",
+      "displayLong": "Gesundheitsamt",
+      "colorBackground": "#FFFFFF",
+      "colorText": "#161616",
+      "colorBorder": "#161616"
     },
     {
       "pattern": "^9-2.256.*",
       "fhirResourceType": "Organization",
       "code": "Arbeitsmedizin",
-      "displayShort": "Arbeitsmedizin"
+      "displayShort": "Arbeitsmedizin",
+      "displayLong": "Arbeitsmedizin",
+      "colorBackground": "#393939",
+      "colorText": "#FFFFFF"
     },
     {
       "pattern": "^9-2.273.*",
       "fhirResourceType": "Organization",
       "code": "Krankenversicherung_ePA",
-      "displayShort": "Krankenversicherung (ePA)"
+      "displayShort": "Krankenversicherung (ePA)",
+      "displayLong": "PKV & Kostenträger ePA",
+      "colorBackground": "#393939",
+      "colorText": "#FFFFFF"
     },
     {
       "pattern": "^9-2.282.*",
       "fhirResourceType": "Organization",
       "code": "DiGA",
-      "displayShort": "DiGA"
+      "displayShort": "DiGA",
+      "displayLong": "DiGA",
+      "colorBackground": "#E5E0DF",
+      "colorText": "#171414"
     },
     {
       "pattern": "^9-2.245.*",
       "fhirResourceType": "Organization",
       "code": "Pflege",
-      "displayShort": "Pflege"
+      "displayShort": "Pflege",
+      "displayLong": "Pflegeeinrichtung",
+      "colorBackground": "#FFD6E8",
+      "colorText": "#9F1853"
     },
     {
       "pattern": "^10-67.245.*",
       "fhirResourceType": "Organization",
       "code": "Pflege",
       "displayShort": "Pflege",
-      "specializationRequired": "true"
+      "displayLong": "Pflegeeinrichtung",
+      "specializationRequired": "true",
+      "colorBackground": "#FFD6E8",
+      "colorText": "#9F1853"
     },
     {
       "pattern": "^10-67.246.*",
       "fhirResourceType": "Organization",
       "code": "Geburtshilfe",
       "displayShort": "Geburtshilfe",
-      "specializationRequired": "true"
+      "displayLong": "Geburtshilfe",
+      "specializationRequired": "true",
+      "colorBackground": "#BAE6FF",
+      "colorText": "#00539A"
     },
     {
       "pattern": "^10-67.247.*",
       "fhirResourceType": "Organization",
       "code": "Physiotherapie",
       "displayShort": "Physiotherapie",
-      "specializationRequired": "true"
+      "displayLong": "Physiotherapie",
+      "specializationRequired": "true",
+      "colorBackground": "#D0E2FF",
+      "colorText": "#0043CE"
     },
     {
       "pattern": "^10-67.232.*",
       "fhirResourceType": "Practitioner",
       "code": "Krankenpfleger",
       "displayShort": "Krankenpfleger",
-      "specializationRequired": "true"
+      "displayLong": "Krankenpfleger:in",
+      "specializationRequired": "true",
+      "colorBackground": "#FFD6E8",
+      "colorText": "#9F1853"
     },
     {
       "pattern": "^10-67.233.*",
       "fhirResourceType": "Practitioner",
       "code": "Altenpfleger",
       "displayShort": "Altenpfleger",
-      "specializationRequired": "true"
+      "displayLong": "Altenpfleger:in",
+      "specializationRequired": "true",
+      "colorBackground": "#FFD6E8",
+      "colorText": "#9F1853"
     },
     {
       "pattern": "^10-67.234.*",
       "fhirResourceType": "Practitioner",
       "code": "Pfleger",
       "displayShort": "Pfleger",
-      "specializationRequired": "true"
+      "displayLong": "Pfleger:in",
+      "specializationRequired": "true",
+      "colorBackground": "#FFD6E8",
+      "colorText": "#9F1853"
     },
     {
       "pattern": "^10-67.235.*",
       "fhirResourceType": "Practitioner",
       "code": "Hebamme",
       "displayShort": "Hebamme",
-      "specializationRequired": "true"
+      "displayLong": "Hebamme",
+      "specializationRequired": "true",
+      "colorBackground": "#BAE6FF",
+      "colorText": "#00539A"
     },
     {
       "pattern": "^10-67.236.*",
       "fhirResourceType": "Practitioner",
       "code": "Physiotherapeut",
       "displayShort": "Physiotherapeut",
-      "specializationRequired": "true"
+      "displayLong": "Physiotherpeut:in",
+      "specializationRequired": "true",
+      "colorBackground": "#D0E2FF",
+      "colorText": "#0043CE"
     },
     {
       "pattern": "(?s)^.*$",
       "fhirResourceType": "Organization",
       "code": "Weitere",
-      "displayShort": "Weitere"
+      "displayShort": "Weitere",
+      "displayLong": "Sonstiges",
+      "colorBackground": "#FFFFFF",
+      "colorText": "#161616",
+      "colorBorder": "#161616"
     }
   ]
 }
