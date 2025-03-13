@@ -538,7 +538,7 @@ Pflicht, wenn Organisation ein Provider ist
 |0..1
 |Wird nicht genutzt
 |nein
-|ja
+|nein
 
 |payloadType
 |Prozessbezeichner
