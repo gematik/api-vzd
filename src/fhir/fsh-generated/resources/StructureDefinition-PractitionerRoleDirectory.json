@@ -65,6 +65,22 @@
         "patternUri": "https://gematik.de/fhir/directory/CodeSystem/Origin"
       },
       {
+        "id": "PractitionerRole.extension:holderId",
+        "path": "PractitionerRole.extension",
+        "sliceName": "holderId",
+        "min": 0,
+        "max": "*",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "https://gematik.de/fhir/directory/StructureDefinition/holder-id-ex"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
         "id": "PractitionerRole.practitioner",
         "path": "PractitionerRole.practitioner",
         "min": 1,

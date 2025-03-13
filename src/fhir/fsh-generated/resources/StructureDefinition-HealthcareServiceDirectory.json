@@ -66,6 +66,22 @@
         "patternUri": "https://gematik.de/fhir/directory/CodeSystem/Origin"
       },
       {
+        "id": "HealthcareService.extension:holderId",
+        "path": "HealthcareService.extension",
+        "sliceName": "holderId",
+        "min": 0,
+        "max": "*",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "https://gematik.de/fhir/directory/StructureDefinition/holder-id-ex"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
         "id": "HealthcareService.identifier",
         "path": "HealthcareService.identifier",
         "slicing": {

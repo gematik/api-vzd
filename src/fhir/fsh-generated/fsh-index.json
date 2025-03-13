@@ -245,7 +245,7 @@
     "fshType": "Instance",
     "fshFile": "examples/Examples001.fsh",
     "startLine": 67,
-    "endLine": 109
+    "endLine": 110
   },
   {
     "outputFile": "HealthcareService-NCPeHHealthcareServiceExample.json",
@@ -477,15 +477,15 @@
     "fshType": "Profile",
     "fshFile": "profiles/HealthcareServiceDirectory.fsh",
     "startLine": 1,
-    "endLine": 73
+    "endLine": 74
   },
   {
     "outputFile": "StructureDefinition-HealthcareServiceDirectoryStrict.json",
     "fshName": "HealthcareServiceDirectoryStrict",
     "fshType": "Profile",
     "fshFile": "profiles/HealthcareServiceDirectory.fsh",
-    "startLine": 75,
-    "endLine": 111
+    "startLine": 76,
+    "endLine": 112
   },
   {
     "outputFile": "StructureDefinition-LocationDirectory.json",
@@ -557,15 +557,15 @@
     "fshType": "Profile",
     "fshFile": "profiles/PractitionerRoleDirectory.fsh",
     "startLine": 1,
-    "endLine": 18
+    "endLine": 19
   },
   {
     "outputFile": "StructureDefinition-PractitionerRoleDirectoryStrict.json",
     "fshName": "PractitionerRoleDirectoryStrict",
     "fshType": "Profile",
     "fshFile": "profiles/PractitionerRoleDirectory.fsh",
-    "startLine": 20,
-    "endLine": 37
+    "startLine": 21,
+    "endLine": 38
   },
   {
     "outputFile": "StructureDefinition-ServiceCoverageArea.json",
@@ -598,6 +598,14 @@
     "fshFile": "profiles/EndpointDirectory.fsh",
     "startLine": 29,
     "endLine": 46
+  },
+  {
+    "outputFile": "StructureDefinition-holder-id-ex.json",
+    "fshName": "HolderIdEx",
+    "fshType": "Extension",
+    "fshFile": "profiles/Extension.fsh",
+    "startLine": 104,
+    "endLine": 111
   },
   {
     "outputFile": "StructureDefinition-ncpeh-country-ex.json",
