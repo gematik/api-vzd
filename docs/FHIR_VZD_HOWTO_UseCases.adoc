@@ -53,7 +53,8 @@ _The following specification was created by gematik solely from a technical poin
 
 == Administration of value-added data by the owner of the FHIR VZD Entry
 The VZD Entries are administrated by the responsible healthcare organizations. Some value-added data can be administrated by the owner of the FHIR VZD Entry.
-The link:FHIR_VZD_HOWTO_Data.adoc#directory-of-organizations[FHIR VZD data model] describes which data the owner can maintain himself (column "Changable by owner" in the tables). 
+The link:FHIR_VZD_HOWTO_Data.adoc#directory-of-organizations[FHIR VZD data model] describes which data the owner can maintain himself (column "Changable by owner" in the tables). +
+This section describes how to implement the administration of value-added data in the client (e.g. PVS/AVS/...).
 
 === Authentication
 The value-added data is administrated via the FHIR VZD /owner interface.
@@ -64,8 +65,10 @@ To access the /owner API a valid provider access_token is needed that can be obt
 - If the FHIR VZD Organization Entry owns a TIM domain, then the  link:FHIR_VZD_HOWTO_Authenticate.adoc#23-authenticate-for-the-owner-endpoint-as-an-organization[Authenticate for the /owner interface as an organization] authentication can be used.
 
 
-=== Query API Information
-This operation returns generell API information and no authentication is needed.
+=== Administration of value-added data
+First you have to find the resource instance. Use the operations, described in the link:FHIR_VZD_HOWTO_Search.adoc[FHIR VZD HOWTO Search]. +
+The client has to ensure, that the telematikID of the resource instance (or its superior Organization/Practitioner resource) and the token (see step "Authentication) match. The FHIR VZD will deny all write operations for resources with other telematikIDs. +
+
 
 .Request
 [source]
