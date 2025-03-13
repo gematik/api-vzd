@@ -160,14 +160,6 @@
     "endLine": 205
   },
   {
-    "outputFile": "CodeSystem-kbv-cm-sfhir-bar2-wbo-oid-url.json",
-    "fshName": "KBV_CS_SFHIR_BAR2_WBO_OID_URL",
-    "fshType": "CodeSystem",
-    "fshFile": "codesystems/external/FachgruppenCodesKBV.fsh",
-    "startLine": 1,
-    "endLine": 94
-  },
-  {
     "outputFile": "CodeSystem-nicht-aerztliche-fachrichtungen-oid-url.json",
     "fshName": "NichtAerztlicheFachrichtungen_OID_URL",
     "fshType": "CodeSystem",
@@ -253,7 +245,7 @@
     "fshType": "Instance",
     "fshFile": "examples/Examples001.fsh",
     "startLine": 67,
-    "endLine": 109
+    "endLine": 110
   },
   {
     "outputFile": "HealthcareService-NCPeHHealthcareServiceExample.json",
@@ -325,7 +317,7 @@
     "fshType": "Instance",
     "fshFile": "examples/PractitionerExample001.fsh",
     "startLine": 1,
-    "endLine": 17
+    "endLine": 15
   },
   {
     "outputFile": "Practitioner-TIPractitionerExampleDentist.json",
@@ -485,15 +477,15 @@
     "fshType": "Profile",
     "fshFile": "profiles/HealthcareServiceDirectory.fsh",
     "startLine": 1,
-    "endLine": 73
+    "endLine": 74
   },
   {
     "outputFile": "StructureDefinition-HealthcareServiceDirectoryStrict.json",
     "fshName": "HealthcareServiceDirectoryStrict",
     "fshType": "Profile",
     "fshFile": "profiles/HealthcareServiceDirectory.fsh",
-    "startLine": 75,
-    "endLine": 111
+    "startLine": 76,
+    "endLine": 112
   },
   {
     "outputFile": "StructureDefinition-LocationDirectory.json",
@@ -565,15 +557,15 @@
     "fshType": "Profile",
     "fshFile": "profiles/PractitionerRoleDirectory.fsh",
     "startLine": 1,
-    "endLine": 18
+    "endLine": 19
   },
   {
     "outputFile": "StructureDefinition-PractitionerRoleDirectoryStrict.json",
     "fshName": "PractitionerRoleDirectoryStrict",
     "fshType": "Profile",
     "fshFile": "profiles/PractitionerRoleDirectory.fsh",
-    "startLine": 20,
-    "endLine": 37
+    "startLine": 21,
+    "endLine": 38
   },
   {
     "outputFile": "StructureDefinition-ServiceCoverageArea.json",
@@ -606,6 +598,14 @@
     "fshFile": "profiles/EndpointDirectory.fsh",
     "startLine": 29,
     "endLine": 46
+  },
+  {
+    "outputFile": "StructureDefinition-holder-id-ex.json",
+    "fshName": "HolderIdEx",
+    "fshType": "Extension",
+    "fshFile": "profiles/Extension.fsh",
+    "startLine": 104,
+    "endLine": 111
   },
   {
     "outputFile": "StructureDefinition-ncpeh-country-ex.json",
@@ -725,7 +725,7 @@
     "fshType": "ValueSet",
     "fshFile": "valuesets/PractitionerQualificationVS.fsh",
     "startLine": 1,
-    "endLine": 9
+    "endLine": 8
   },
   {
     "outputFile": "ValueSet-healthcare-service-category-codes.json",

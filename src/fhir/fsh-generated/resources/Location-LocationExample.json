@@ -9,7 +9,7 @@
       }
     ],
     "profile": [
-      "https://gematik.de/fhir/directory/StructureDefinition/LocationDirectory"
+      "https://gematik.de/fhir/directory/StructureDefinition/LocationDirectoryStrict"
     ]
   },
   "name": "Praxis am Rathaus",

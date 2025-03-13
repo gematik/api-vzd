@@ -100,3 +100,12 @@ Context: Bundle.total
 * extension[reason]
   * value[x] only string
   * valueString 1.. MS
+
+Extension: HolderIdEx
+Id: holder-id-ex
+Title: "Holder ID Extension"
+Description: "Extension for the holder ID of a HealthCard"
+Context: HealthcareService, PractitionerRole
+* insert Meta
+* value[x] only code
+* valueCode 1.. MS
