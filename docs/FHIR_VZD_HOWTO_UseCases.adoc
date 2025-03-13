@@ -51,8 +51,18 @@ The document is aimed at software developers who are involved in implementing a 
 _The following specification was created by gematik solely from a technical point of view. In individual cases, it cannot be ruled out that the implementation of the specification will interfere with the technical property rights of third parties. It is solely up to the supplier or manufacturer to take suitable measures to ensure that the products and/or services offered by him on the basis of the specification do not infringe third-party property rights and, if necessary, to obtain the necessary permits/licenses from the property right holders concerned. In this respect, gematik GmbH assumes no liability whatsoever._
 
 
-== FHIRDirectoryProviderAPI
-To access the provider API a valid provider access_token is needed that can be obtained by authenticating via link:FHIR_VZD_HOWTO_Authenticate.adoc#22-authenticate-for-the-provider-api[Provider Authenticate].
+== Administration of value-added data by the owner of the FHIR VZD Entry
+The VZD Entries are administrated by the responsible healthcare organizations. Some value-added data can be administrated by the owner of the FHIR VZD Entry.
+The link:FHIR_VZD_HOWTO_Data.adoc#directory-of-organizations[FHIR VZD data model] describes which data the owner can maintain himself (column "Changable by owner" in the tables). 
+
+=== Authentication
+The value-added data is administrated via the FHIR VZD /owner interface.
+To access the /owner API a valid provider access_token is needed that can be obtained by authenticating via the following via one of the following options
+
+- link:FHIR_VZD_HOWTO_Authenticate.adoc#24-authenticate-for-the-owner-endpoint-as-an-user[Authenticate for the /owner interface by using a smartcard (HBA/SMC-B)]. This has to be the smartcard with the telematikID of the FHIR VZD Entry which is changed. An option is, to link:FHIR_VZD_HOWTO_Authenticate.adoc#25-authenticate-using-the-gematik-authenticator[use the gematik Authenticator]  simplify the interaction with a connector, the card terminals and the users smartcards.
+
+- If the FHIR VZD Organization Entry owns a TIM domain, then the  link:FHIR_VZD_HOWTO_Authenticate.adoc#23-authenticate-for-the-owner-endpoint-as-an-organization[Authenticate for the /owner interface as an organization] authentication can be used.
+
 
 === Query API Information
 This operation returns generell API information and no authentication is needed.
