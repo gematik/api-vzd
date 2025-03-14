@@ -18,7 +18,7 @@ image::gematik_logo.svg[gematik,float="right"]
 
 [width="100%",cols="50%,50%",options="header",]
 |===
-|Version: |1.0.0
+|Version: |0.0.1
 |Referencing: |gemILF_FHIR_VZD
 |===
 
@@ -32,7 +32,7 @@ image::gematik_logo.svg[gematik,float="right"]
  |*Change reason, special instructions* +
  |*Editing* +
 
-|1.0.0 |28.03.25 | |Initial document |gematik
+|0.0.1 |14.03.25 | |Initial document |gematik
 
 |===
 
@@ -64,37 +64,105 @@ To access the /owner API a valid provider access_token is needed that can be obt
 
 - If the FHIR VZD Organization Entry owns a TIM domain, then the  link:FHIR_VZD_HOWTO_Authenticate.adoc#23-authenticate-for-the-owner-endpoint-as-an-organization[Authenticate for the /owner interface as an organization] authentication can be used.
 
+[NOTE]
+====
+You can find sample code for the authentication here link:https://github.com/gematik/api-vzd/tree/main/samples/directory-samples-java/auth-samples[Java sample] 
+and here link:https://github.com/gematik/api-vzd/tree/main/samples/directory-samples-python/directory_samples[Python sample]
+====
 
 === Administration of value-added data
+==== Search
 First you have to find the resource instance. Use the operations, described in the link:FHIR_VZD_HOWTO_Search.adoc[FHIR VZD HOWTO Search]. +
-The client has to ensure, that the telematikID of the resource instance (or its superior Organization/Practitioner resource) and the token (see step "Authentication) match. The FHIR VZD will deny all write operations for resources with other telematikIDs. +
+In the search result the resource data is contained.
 
+==== Change data
+Which attributes of which resources can be added or modified is described in the link:FHIR_VZD_HOWTO_Data.adoc[FHIR VZD data model]. +
+The simplifier profile of the FHIR VZD can be found here link:https://simplifier.net/vzd-fhir-directory[gematik FHIR Directory].
+
+[IMPORTANT]
+====
+The client has to ensure, that the telematikID of the resource instance (or its superior Organization/Practitioner resource) and the token (see step "Authentication) match. The FHIR VZD will deny all write operations for resources with other telematikIDs. +
+====
+==== Update FHIR VZD resource
+Use a FHIR operation to update the resource in the FHIR VZD. +
+ + 
+The following expamle updates attribute organizationVisibility of an Organization resource (this organization will be not found in the /fdv/search interface). 
 
 .Request
 [source]
 ----
-curl  -X GET \
-  'https://fhir-directory-ref.vzd.ti-dienste.de/tim-provider-services/' \
-  --header 'Accept: */*'
+PUT https://fhir-directory-test.vzd.ti-dienste.de/owner/Organization/824d25e9-7fa7-4628-bdb1-62a54f83eae2
 ----
 
 .Response Content
 [source]
 ----
 {
-  "title": "FederationList",
-  "description": "REST Schnittstelle zur Abfrage der Föderationsliste.",
-  "termsOfService": "TBD",
-  "contact": {
-    "name": "Firma 123",
-    "url": "https://contact-url",
-    "email": "contact-email"
-  },
-  "license": {
-    "name": "license-name",
-    "url": "https://license-url"
-  },
-  "version": "1.2.0"
-}
+                "resourceType": "Organization",
+                "id": "824d25e9-7fa7-4628-bdb1-62a54f83eae2",
+                "meta": {
+                    "versionId": "1",
+                    "lastUpdated": "2025-03-06T08:39:43.819+01:00",
+                    "source": "#vE5dZwUVTBZFbPE1",
+                    "profile": [
+                        "https://gematik.de/fhir/directory/StructureDefinition/OrganizationDirectory"
+                    ],
+                    "tag": [
+                        {
+                            "system": "https://gematik.de/fhir/directory/CodeSystem/Origin",
+                            "code": "ldap",
+                            "display": "Synchronized from LDAP VZD"
+                        }
+                    ]
+                },
+                "extension": [
+                    {
+                        "url": "https://gematik.de/fhir/directory/StructureDefinition/OrganizationVisibility",
+                        "valueCoding": {
+                            "system": "https://gematik.de/fhir/directory/CodeSystem/OrganizationVisibilityCS",
+                            "code": "hide-versicherte"
+                        }
+                    }
+                ],
+                "identifier": [
+                    {
+                        "system": "http://hl7.org/fhir/sid/us-npi",
+                        "value": "b1c20438-60ad-4759-9f9b-287958b57e2b"
+                    },
+                    {
+                        "type": {
+                            "coding": [
+                                {
+                                    "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                                    "code": "PRN"
+                                }
+                            ]
+                        },
+                        "system": "https://gematik.de/fhir/sid/telematik-id",
+                        "value": "1-20410167346"
+                    },
+                    {
+                        "system": "https://gematik.de/fhir/directory/CodeSystem/ldapUID",
+                        "value": "aa6d339b-83dd-4e55-a600-692e7dff1d1d"
+                    }
+                ],
+                "active": true,
+                "type": [
+                    {
+                        "coding": [
+                            {
+                                "system": "https://gematik.de/fhir/directory/CodeSystem/OrganizationProfessionOID",
+                                "code": "1.2.276.0.76.4.54",
+                                "display": "Öffentliche Apotheke"
+                            }
+                        ]
+                    }
+                ],
+                "name": "Berufsausübungsgemeinschaft Dr. Melina Harlaß",
+                "alias": [
+                    "Apo Harlaß"
+                ]
+            }
+
 ----
 
