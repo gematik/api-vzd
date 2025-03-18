@@ -94,7 +94,7 @@ The following expamle updates attribute organizationVisibility of an Organizatio
 PUT https://fhir-directory-test.vzd.ti-dienste.de/owner/Organization/824d25e9-7fa7-4628-bdb1-62a54f83eae2
 ----
 
-.Response Content
+.Request Body
 [source]
 ----
 {
