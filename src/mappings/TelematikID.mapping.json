@@ -65,7 +65,7 @@
       "fhirResourceType": "Practitioner",
       "code": "Psychotherapeut",
       "displayShort": "Psychotherapeut",
-      "displayLong": "Psychotherpeut:in",
+      "displayLong": "Psychotherapeut:in",
       "specializationRequired": "true",
       "colorBackground": "#D0E2FF",
       "colorText": "#0043CE"
