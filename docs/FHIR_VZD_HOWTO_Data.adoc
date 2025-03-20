@@ -40,6 +40,7 @@ image::gematik_logo.svg[gematik,float="right"]
 |0.0.6 |27.09.24 | |HealthcareService.active #3.2 changeability updated, Updated several attribute descriptions |gematik
 |0.0.7 |05.12.24 | |Update of FHIR resource Organization: Extension ncpehCountryEx added |gematik
 |0.0.8 |14.03.25 | |Update of FHIR resource Organization: Updated links of Extensions |gematik
+|0.0.9 |19.03.25 | |Update of FHIR resources |gematik
 |===
 
 == Classification of the document
@@ -73,7 +74,7 @@ This part of the directory contains information about persons. +
 
 === Practitioner-Resource
 
-[width="100%",cols="10%,13%,7%,20%,5%,5%",options="header",]
+[width="100%",cols="10%,13%,7%,15%,5%,5%,5%",options="header",]
 |===
 |*Attributes* +
  |*Value* +
@@ -81,12 +82,14 @@ This part of the directory contains information about persons. +
  |*Remark* +
  |*Sync from LDAP-VZD* +
  |*Changable by owner* +
+ |*Changable by holder* +
 
 |id 
 |Logical id of this artifact 
 |0..1 
 |The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes. +
  The only time that a resource does not have an id is when it is being submitted to the server using a create operation. 
+|No
 |No
 |No
 
@@ -96,12 +99,14 @@ This part of the directory contains information about persons. +
 |If the resource was synchronized from LDAP, meta.tag is automatically set to "ldap".
 |No
 |No
+|No
 
 .3+|identifier 
 |TelematikID 
 |1..1 
 |According FHIR Profil https://simplifier.net/packages/de.basisprofil.r4/1.3.2/files/564537[Identifier-Telematik-Id] 
 |Yes
+|No
 |No
 
 |LANR 
@@ -110,11 +115,13 @@ This part of the directory contains information about persons. +
  (Not yet used)
 |No
 |No
+|No
 
 |ZANR 
 |0..* 
 |Lifetime dentist number "Lebenslange Zahnarztnummer". +
  (Not yet used)
+|No
 |No
 |No
 
@@ -130,6 +137,7 @@ This part of the directory contains information about persons. +
 |Indicates whether the person is active or not. Inactive resources may not be found in the /search interface.
 |Yes
 |No
+|No
 
 |name 
 |Name of the Practitioner  
@@ -137,11 +145,13 @@ This part of the directory contains information about persons. +
 |Name of the Practitioner 
 |Yes
 |No
+|No
 
 |telecom 
 |Practitioner contact details
 |0..* 
 |
+|No
 |No
 |No
 
@@ -151,11 +161,13 @@ This part of the directory contains information about persons. +
 |
 |No
 |No
+|No
 
 |birthDate 
 |Practitioner birthDate
 |0..1 
 |
+|No
 |No
 |No
 
@@ -165,6 +177,7 @@ This part of the directory contains information about persons. +
 |
 |No
 |No
+|No
 
 .1+|qualification.code 
 |Coded representation of the qualification. 
@@ -172,11 +185,13 @@ This part of the directory contains information about persons. +
 |According to FHIR profile https://simplifier.net/vzd-fhir-directory/practitionerqualificationvs[PractitionerQualificationVS]
 |Yes
 |No
+|No
 
 |communication 
 |Supported languages
 |0..* 
 |
+|No
 |No
 |No
 
@@ -186,7 +201,7 @@ Example of a https://simplifier.net/vzd-fhir-directory/~resources?category=Examp
  +
 
 === PractitionerRole-Resource
-[width="100%",cols="10%,13%,7%,20%,5%,5%,options="header",]
+[width="100%",cols="10%,13%,7%,15%,5%,5%,5%,options="header",]
 |===
 |*Attributes* +
  |*Value* +
@@ -194,12 +209,14 @@ Example of a https://simplifier.net/vzd-fhir-directory/~resources?category=Examp
  |*Remark* +
  |*Sync from LDAP-VZD* +
  |*Changable by owner* +
+ |*Changable by holder* +
 
 |id 
 |Logical id of this artifact 
 |0..1 
 |The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes. +
  The only time that a resource does not have an id is when it is being submitted to the server using a create operation. 
+|No
 |No
 |No
 
@@ -209,6 +226,7 @@ Example of a https://simplifier.net/vzd-fhir-directory/~resources?category=Examp
 |If the resource was synchronized from LDAP, meta.tag is automatically set to "ldap".
 |No
 |No (Must be set to "owner" for owner resources)
+|No
 
 // .2+|identifier 
 // |LDAP UID 
@@ -231,12 +249,14 @@ Example of a https://simplifier.net/vzd-fhir-directory/~resources?category=Examp
 |A PractitionerRole is always created for the Practitioner. 
 |Yes
 |No
+|No
 
 |location
 |Reference to location resource
 |0..*
 |Address of the Practitioner. 
 |Yes
+|No
 |No
 
 |healthcareService
@@ -245,6 +265,7 @@ Example of a https://simplifier.net/vzd-fhir-directory/~resources?category=Examp
 |The list of healthcare services that this worker provides for this role's Organization/Location(s). 
 |No
 |Yes
+|No
 
 |organization
 |Reference to organization resource
@@ -252,6 +273,15 @@ Example of a https://simplifier.net/vzd-fhir-directory/~resources?category=Examp
 |Not yet used in the FHIR VZD.
 |No
 |No
+|No
+
+|telecom
+|Contact detail
+|0..*
+|May contain website, email, telephone, fax.
+|No
+|Yes
+|Yes
 
 |endpoint
 |Reference to endpoint resource
@@ -259,7 +289,7 @@ Example of a https://simplifier.net/vzd-fhir-directory/~resources?category=Examp
 |One endpoint is created per KIM-/TIM-address. 
 |No (TIM-address)
 |Yes
-
+|No
 
 |===
 Simplifier: https://simplifier.net/vzd-fhir-directory/practitionerroledirectory[PractitionerRole-Resource] +
@@ -267,7 +297,7 @@ Example of a https://simplifier.net/vzd-fhir-directory/~resources?category=Examp
  +
 
 === Location-Resource
-[width="100%",cols="10%,13%,7%,20%,5%,5%,options="header",]
+[width="100%",cols="10%,13%,7%,15%,5%,5%,5%,options="header",]
 |===
 |*Attributes* +
  |*Value* +
@@ -275,12 +305,14 @@ Example of a https://simplifier.net/vzd-fhir-directory/~resources?category=Examp
  |*Remark* +
  |*Sync from LDAP-VZD* +
  |*Changable by owner* +
+ |*Changable by holder* +
 
 |id 
 |Logical id of this artifact 
 |0..1 
 |The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes. +
  The only time that a resource does not have an id is when it is being submitted to the server using a create operation. 
+|No
 |No
 |No
 
@@ -290,11 +322,13 @@ Example of a https://simplifier.net/vzd-fhir-directory/~resources?category=Examp
 |Is set to "ldap" for all synchronized addresses from LDAP.
 |No
 |No
+|No
 
 |name 
 |Not used 
 |0..1 
 |This Element ist not used in the FHIR VZD.
+|No
 |No
 |No
 
@@ -304,12 +338,14 @@ Example of a https://simplifier.net/vzd-fhir-directory/~resources?category=Examp
 |This Element ist not used in the FHIR VZD.
 |No
 |No
+|No
 
 |address 
 |Address 
 |0..1 
 |The exact structure of the address can be found in the link:LDAP2FHIR_Sync.adoc[LDAP sync mapping]. 
 |Yes
+|No
 |No
 
 |position 
@@ -318,11 +354,13 @@ Example of a https://simplifier.net/vzd-fhir-directory/~resources?category=Examp
 |The absolute geographic location of the Location
 |Yes
 |No
+|No
 
 |managingOrganization 
 |Not used 
 |0..1 
 |This Element ist not used in the FHIR VZD.
+|No
 |No
 |No
 
@@ -332,11 +370,13 @@ Example of a https://simplifier.net/vzd-fhir-directory/~resources?category=Examp
 |This Element ist not used in the FHIR VZD.
 |No
 |No
+|No
 
 |hoursOfOperation
 |Not used
 |0..*
 |This Element ist not used in the FHIR VZD.
+|No
 |No
 |No
 
@@ -346,6 +386,7 @@ Example of a https://simplifier.net/vzd-fhir-directory/~resources?category=Examp
 |This Element ist not used in the FHIR VZD.
 |No
 |No
+|No
 
 |===
 Simplifier: https://simplifier.net/vzd-fhir-directory/locationdirectory[Location-Resource] +
@@ -353,7 +394,7 @@ Example of a https://simplifier.net/vzd-fhir-directory/~resources?category=Examp
  +
 
 === Endpoint-Resource
-[width="100%",cols="10%,13%,7%,20%,5%,5%,options="header",]
+[width="100%",cols="10%,13%,7%,15%,5%,5%,5%,options="header",]
 |===
 |*Attributes* +
  |*Value* +
@@ -361,6 +402,7 @@ Example of a https://simplifier.net/vzd-fhir-directory/~resources?category=Examp
  |*Remark* +
  |*Sync from LDAP-VZD* +
  |*Changable by owner* +
+ |*Changable by holder* +
 
 // .2+|identifier 
 // |LDAP UID 
@@ -384,11 +426,13 @@ Example of a https://simplifier.net/vzd-fhir-directory/~resources?category=Examp
 |Is set to "owner" for all endpoints, created by the owner of the VZD entry.
 |No
 |No (Must be set to "owner" for owner resources)
+|No
 
 // |meta.security
 // |OwnerId
 // |0..*
 // |OwnerId of the owner. Is set automatically by the system based on the Telematics ID of the owner token.
+// |No
 // |No
 // |No
 
@@ -399,6 +443,7 @@ Example of a https://simplifier.net/vzd-fhir-directory/~resources?category=Examp
 For example it can be used to hide the endpoint from a part of users.	
 |No
 |Yes
+|Yes
 
 |status
 |state
@@ -408,6 +453,7 @@ For example it can be used to hide the endpoint from a part of users.
  active \| suspended \| error \| off \| entered-in-error \| test
 |No
 |Yes
+|No
 
 |connectionType
 |Type of the endpoint
@@ -415,6 +461,7 @@ For example it can be used to hide the endpoint from a part of users.
 | Values according to https://simplifier.net/vzd-fhir-directory/endpointdirectoryconnectiontype[EndpointConnectionType]
 |No
 |Yes
+|No
 
 |name
 |name of the endpoint
@@ -422,11 +469,13 @@ For example it can be used to hide the endpoint from a part of users.
 |Name assigned by the owner. 
 |No
 |Yes
+|No
 
 |managingOrganization 
 |Not used 
 |0..1 
 |This Element ist not used in the FHIR VZD.
+|No
 |No
 |No
 
@@ -437,6 +486,7 @@ For example it can be used to hide the endpoint from a part of users.
  According to https://simplifier.net/vzd-fhir-directory/endpointpayloadtypevs[EndpointPlayloadTypeVS]. 
 |No
 |Yes
+|No
 
 |address
 |address (e.g. MX-ID, KIM mail address)
@@ -444,7 +494,7 @@ For example it can be used to hide the endpoint from a part of users.
 |Address of the endpoint in URL notation. 
 |No
 |Yes
-
+|No
 
 |===
 Simplifier: https://simplifier.net/vzd-fhir-directory/endpointdirectory[Endpoint-Resource] +
@@ -467,7 +517,7 @@ This part of the directory contains information about organizations. +
 
 === Organization-Resource
 
-[width="100%",cols="10%,13%,7%,20%,5%,5%",options="header",]
+[width="100%",cols="10%,13%,7%,15%,5%,5%,5%",options="header",]
 |===
 |*Attributes* +
  |*Value* +
@@ -475,12 +525,14 @@ This part of the directory contains information about organizations. +
  |*Remark* +
  |*Sync from LDAP-VZD* +
  |*Changable by owner* +
+ |*Changable by holder* +
 
 |id 
 |Logical id of this artifact 
 |0..1 
 |The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes. +
  The only time that a resource does not have an id is when it is being submitted to the server using a create operation. 
+|No
 |No
 |No
 
@@ -490,6 +542,7 @@ This part of the directory contains information about organizations. +
 |If the resource was synchronized from LDAP, meta.tag is automatically set to "ldap".
 |No
 |No (Must be set to "owner" for owner resources)
+|No
 
 .1+|extension:organizationVisibility 
 | https://simplifier.net/vzd-fhir-directory/organizationvisibilitycs[OrganizationVisibilityCS] 
@@ -497,6 +550,7 @@ This part of the directory contains information about organizations. +
 |Visibility of an Organization in the FHIR-VZD. This Extensions includes codes of use-cases in which this Organization SHALL not be visible. +
 Values: link:https://simplifier.net/vzd-fhir-directory/organizationvisibilitycs[OrganizationVisibilityCS]
 |No
+|Yes
 |Yes
 
 .1+|extension:ncpehCountryEx 
@@ -506,6 +560,7 @@ Values: link:https://simplifier.net/vzd-fhir-directory/organizationvisibilitycs[
 Values: link:https://simplifier.net/packages/hl7.fhir.r4.core/4.0.1/files/79837[Iso3166-1-2]
 |No
 |No
+|Yes
 
 .4+|identifier 
 |TelematikID 
@@ -513,11 +568,13 @@ Values: link:https://simplifier.net/packages/hl7.fhir.r4.core/4.0.1/files/79837[
 |According FHIR Profil https://simplifier.net/packages/de.basisprofil.r4/1.3.2/files/564537[Identifier-Telematik-Id] 
 |Yes
 |No
+|No
 
 |BSNR 
 |0..* 
 |Betriebsstättennummer. Used in some sectors.
 |Yes
+|No
 |No
 
 |KZVA 
@@ -525,11 +582,13 @@ Values: link:https://simplifier.net/packages/hl7.fhir.r4.core/4.0.1/files/79837[
 |KZVAbrechnungsnummer
 |Yes
 |No
+|No
 
 |IKNR 
 |0..* 
 |Institutionskennzeichen
 |Yes
+|No
 |No
 
 |active 
@@ -537,6 +596,7 @@ Values: link:https://simplifier.net/packages/hl7.fhir.r4.core/4.0.1/files/79837[
 |1..1 
 |Indicates whether the organization is active or not. Inactive resources may not be found in the /search interface.
 |Yes
+|No
 |No
 
 .2+|type 
@@ -546,12 +606,14 @@ Values: link:https://simplifier.net/packages/hl7.fhir.r4.core/4.0.1/files/79837[
  Mandatory if it is not an Organization.
 |Yes
 |No
+|No
 
 |profession 
 |0..* 
 |Kind of organization. According to FHIR profile https://simplifier.net/vzd-fhir-directory/organizationprofessionoid[OrganiszationProfessionOID] +
  Mandatory if organization is not a provider
 |Yes
+|No
 |No
 
 |name 
@@ -560,11 +622,13 @@ Values: link:https://simplifier.net/packages/hl7.fhir.r4.core/4.0.1/files/79837[
 |Name is synchronized from LDAP VZD.
 |Yes
 |No
+|No
 
 |alias  
 |Alternative name of the Organization  
 |0..* 
 |Not used in the FHIR VZD.
+|No
 |No
 |No
 
@@ -574,11 +638,13 @@ Values: link:https://simplifier.net/packages/hl7.fhir.r4.core/4.0.1/files/79837[
 |Not used in the FHIR VZD.
 |No
 |No
+|No
 
 |address  
 |Not used  
 |0..* 
 |Not used in the FHIR VZD  
+|No
 |No
 |No
 
@@ -588,11 +654,13 @@ Values: link:https://simplifier.net/packages/hl7.fhir.r4.core/4.0.1/files/79837[
 |Not yet used in the FHIR VZD.  
 |No
 |No
+|No
 
 |contact  
 |Contact for the organization for a certain purpose  
 |0..* 
 |Not used in the FHIR VZD.
+|No
 |No
 |No
 
@@ -602,7 +670,7 @@ Example of a https://simplifier.net/vzd-fhir-directory/~resources?category=Examp
  +
 
 === HealthcareService-Resource
-[width="100%",cols="10%,13%,7%,20%,5%,5%,options="header",]
+[width="100%",cols="10%,13%,7%,13%,5%,5%,5%,options="header",]
 |===
 |*Attributes* +
  |*Value* +
@@ -610,12 +678,14 @@ Example of a https://simplifier.net/vzd-fhir-directory/~resources?category=Examp
  |*Remark* +
  |*Sync from LDAP-VZD* +
  |*Changable by owner* +
+ |*Changable by holder* +
 
 |id 
 |Logical id of this artifact 
 |0..1 
 |The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes. +
  The only time that a resource does not have an id is when it is being submitted to the server using a create operation. 
+|No
 |No
 |No
 
@@ -625,6 +695,7 @@ Example of a https://simplifier.net/vzd-fhir-directory/~resources?category=Examp
 |If the resource was synchronized from LDAP, meta.tag is automatically set to "ldap".
 |Yes (Set to "ldap" for synchronized resources)
 |No (Must be set to "owner" for owner resources)
+|No
 
 // .2+|identifier 
 // |LDAP UID 
@@ -633,6 +704,7 @@ Example of a https://simplifier.net/vzd-fhir-directory/~resources?category=Examp
 //  The owner cannot add any further identifiers with the ldapUid system 
 // |Yes
 // |No
+// |No
 
 // |Individual identifier 
 // |0..* 
@@ -640,12 +712,14 @@ Example of a https://simplifier.net/vzd-fhir-directory/~resources?category=Examp
 //  The owner is not allowed to add any identifier with the TelematikId or ldapUid system. 
 // |No
 // |Yes
+// |No
 
 |identifier 
 |TelematikID 
 |0..1 
 |According FHIR Profil https://simplifier.net/packages/de.basisprofil.r4/1.3.2/files/564537[Identifier-Telematik-Id] 
 |Yes
+|No
 |No
 
 |providedBy
@@ -655,11 +729,13 @@ Example of a https://simplifier.net/vzd-fhir-directory/~resources?category=Examp
  Owner resources must necessarily reference the resource synchronized by LDAP. 
 |Yes
 |No
+|No
 
 |category
 |Category of service being performed or delivered
 |1..1
 |Not used in the FHIR VZD.
+|No
 |No
 |No
 
@@ -669,6 +745,7 @@ Example of a https://simplifier.net/vzd-fhir-directory/~resources?category=Examp
 |Type of service according to HealthcareServiceTypeVS https://simplifier.net/vzd-fhir-directory/healthcareservicetypevs +
  Owners are allowed to assign a subset of the values ​​defined by the LDAP VZD synchronized resource (available with FHIR VZD Release 1.2.0-9).
 |Yes
+|No
 |No
 
 |speciality
@@ -681,6 +758,7 @@ Example of a https://simplifier.net/vzd-fhir-directory/~resources?category=Examp
  
 |Yes
 |No,  Yes for owner-resources
+|No
 
 |location
 |Reference to location resource
@@ -689,6 +767,7 @@ Example of a https://simplifier.net/vzd-fhir-directory/~resources?category=Examp
  Not allowed for owner resources. 
 |Yes
 |No
+|No
 
 |name 
 |Name of the HealthcareService  
@@ -696,14 +775,15 @@ Example of a https://simplifier.net/vzd-fhir-directory/~resources?category=Examp
 |Description of service as presented to a consumer while searching.
 |No
 |Yes
+|No
 
 |telecom  
 |A contact detail for the organization  
 |0..* 
-|Is taken from the ApoVZD / pharmacy portal. May contain website, email, telephone, fax. +
-For other organizations: Not used in the FHIR VZD.
+|Is taken from the ApoVZD / pharmacy portal. May contain website, email, telephone, fax.
 |No
-|No
+|Yes
+|Yes
 
 |coverageArea.extension: +
 serviceCoverageArea  
@@ -711,12 +791,14 @@ serviceCoverageArea
 |0..1 
 |Is taken from the ApoVZD / pharmacy portal.
 |No
-|No
+|Yes
+|Yes
 
 |serviceProvisionCode  
 |Conditions under which service is available/offered  
 |0..* 
 |Not used in the FHIR VZD.
+|No
 |No
 |No
 
@@ -725,15 +807,16 @@ serviceCoverageArea
 |0..* 
 |According to https://simplifier.net/vzd-fhir-directory/healthcareservice-technical-characteristic-vs +
 E.g. used for the eRezept (eRX Token Receiver is taken from the ApoVZD / pharmacy portal) +
-and can also show some physical characteristic https://simplifier.net/vzd-fhir-directory/physicalfeatureshealthcareservicevs. 
-
+and can also show some physical characteristic https://simplifier.net/vzd-fhir-directory/physicalfeatureshealthcareservicevs.
 |No
-|No
+|Yes
+|Yes
 
 |communication  
 |The language that this service is offered in  
 |0..* 
 |
+|No
 |No
 |No
 
@@ -743,12 +826,14 @@ and can also show some physical characteristic https://simplifier.net/vzd-fhir-d
 |
 |No
 |No
+|No
 
 |availableTime
 |
 |0..*
-|Times the Service Site is available. More detailed availability information may be provided in the subordinate attributes. 
+|Times the Service Site is available. More detailed availability information may be provided in the subordinate attributes.
 |No
+|Yes
 |Yes
 
 |availableTime.daysOfWeek
@@ -757,12 +842,14 @@ and can also show some physical characteristic https://simplifier.net/vzd-fhir-d
 |Indicates which days of the week are available between the start and end Times.
 |No
 |Yes
+|Yes
 
 |availableTime.allDay
 |Always available?
 |0..1
 |Is this always available? (hence times are irrelevant) e.g. 24 hour service.
 |No
+|Yes
 |Yes
 
 |availableTime.availableStartTime
@@ -771,6 +858,7 @@ and can also show some physical characteristic https://simplifier.net/vzd-fhir-d
 |The opening time of day. Note: If the AllDay flag is set, then this time is ignored.
 |No
 |Yes
+|Yes
 
 |availableTime.availableEndTime
 |Closing time of day
@@ -778,12 +866,14 @@ and can also show some physical characteristic https://simplifier.net/vzd-fhir-d
 |The closing time of day. Note: If the AllDay flag is set, then this time is ignored.
 |No
 |Yes
+|Yes
 
 |availabilityExceptions
 |Description of availability exceptions
 |0..1
 |A description of site availability exceptions, e.g. public holiday availability.
 |No
+|Yes
 |Yes
 
 |endpoint
@@ -793,6 +883,7 @@ and can also show some physical characteristic https://simplifier.net/vzd-fhir-d
  One endpoint is created per KIM-/TIM-address. 
 |No (TIM-address)
 |Yes
+|No
 
 |===
 Simplifier: https://simplifier.net/vzd-fhir-directory/healthcareservicedirectory[HealthcareService-Resource] +
