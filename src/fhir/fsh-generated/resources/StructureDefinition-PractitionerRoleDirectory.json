@@ -102,6 +102,26 @@
         "mustSupport": true
       },
       {
+        "id": "PractitionerRole.telecom",
+        "path": "PractitionerRole.telecom",
+        "mustSupport": true
+      },
+      {
+        "id": "PractitionerRole.telecom.system",
+        "path": "PractitionerRole.telecom.system",
+        "mustSupport": true
+      },
+      {
+        "id": "PractitionerRole.telecom.value",
+        "path": "PractitionerRole.telecom.value",
+        "mustSupport": true
+      },
+      {
+        "id": "PractitionerRole.telecom.use",
+        "path": "PractitionerRole.telecom.use",
+        "mustSupport": true
+      },
+      {
         "id": "PractitionerRole.endpoint",
         "path": "PractitionerRole.endpoint",
         "mustSupport": true

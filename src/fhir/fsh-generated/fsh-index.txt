@@ -69,10 +69,10 @@ StructureDefinition-OrganizationDirectory.json                     OrganizationD
 StructureDefinition-OrganizationDirectoryStrict.json               OrganizationDirectoryStrict                      Profile     profiles/OrganizationDirectory.fsh                               58 - 74
 StructureDefinition-OrganizationVisibility.json                    OrganizationVisibility                           Extension   profiles/Extension.fsh                                           23 - 33
 StructureDefinition-PhysicalFeaturesAdditionalNoteEX.json          PhysicalFeaturesAdditionalNoteEX                 Extension   profiles/Extension.fsh                                           65 - 72
-StructureDefinition-PractitionerDirectory.json                     PractitionerDirectory                            Profile     profiles/PractitionerDirectory.fsh                               1 - 40
-StructureDefinition-PractitionerDirectoryStrict.json               PractitionerDirectoryStrict                      Profile     profiles/PractitionerDirectory.fsh                               42 - 59
-StructureDefinition-PractitionerRoleDirectory.json                 PractitionerRoleDirectory                        Profile     profiles/PractitionerRoleDirectory.fsh                           1 - 19
-StructureDefinition-PractitionerRoleDirectoryStrict.json           PractitionerRoleDirectoryStrict                  Profile     profiles/PractitionerRoleDirectory.fsh                           21 - 38
+StructureDefinition-PractitionerDirectory.json                     PractitionerDirectory                            Profile     profiles/PractitionerDirectory.fsh                               1 - 36
+StructureDefinition-PractitionerDirectoryStrict.json               PractitionerDirectoryStrict                      Profile     profiles/PractitionerDirectory.fsh                               38 - 56
+StructureDefinition-PractitionerRoleDirectory.json                 PractitionerRoleDirectory                        Profile     profiles/PractitionerRoleDirectory.fsh                           1 - 23
+StructureDefinition-PractitionerRoleDirectoryStrict.json           PractitionerRoleDirectoryStrict                  Profile     profiles/PractitionerRoleDirectory.fsh                           25 - 42
 StructureDefinition-ServiceCoverageArea.json                       ServiceCoverageArea                              Extension   profiles/Extension.fsh                                           1 - 12
 StructureDefinition-ServiceCoveragePostalCode.json                 ServiceCoveragePostalCode                        Extension   profiles/Extension.fsh                                           14 - 21
 StructureDefinition-SpecialOpeningTimesEX.json                     SpecialOpeningTimesEX                            Extension   profiles/Extension.fsh                                           47 - 63

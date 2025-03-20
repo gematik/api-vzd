@@ -71,6 +71,11 @@
         "max": "0"
       },
       {
+        "id": "Practitioner.telecom",
+        "path": "Practitioner.telecom",
+        "max": "0"
+      },
+      {
         "id": "Practitioner.address",
         "path": "Practitioner.address",
         "max": "0"

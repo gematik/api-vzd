@@ -147,26 +147,6 @@
         "mustSupport": true
       },
       {
-        "id": "Practitioner.telecom",
-        "path": "Practitioner.telecom",
-        "mustSupport": true
-      },
-      {
-        "id": "Practitioner.telecom.system",
-        "path": "Practitioner.telecom.system",
-        "mustSupport": true
-      },
-      {
-        "id": "Practitioner.telecom.value",
-        "path": "Practitioner.telecom.value",
-        "mustSupport": true
-      },
-      {
-        "id": "Practitioner.telecom.use",
-        "path": "Practitioner.telecom.use",
-        "mustSupport": true
-      },
-      {
         "id": "Practitioner.gender",
         "path": "Practitioner.gender",
         "mustSupport": true

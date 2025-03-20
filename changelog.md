@@ -10,6 +10,10 @@
 - `feat`: added SearchParameter HolderIdSP to enable search for holderIds
 - `feat`: added SearchParameter EndpointOwnerTelematikIdSP to enable search for Endpoint owners TelematikId
 - `feat`: split VZD-Service-Opening-TimeInv in two Invariants to report better validation errors to implementers
+- `change`: moved .telecom from Practitioner to PractitionerRole
+
+### data migration
+- copy .telecom from Practitioner to PractitionerRole(s), remove .telecom on Practitioner
 
 
 ## 2025-02-27 Version 0.12.0

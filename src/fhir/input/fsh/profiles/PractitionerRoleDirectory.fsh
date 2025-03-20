@@ -17,6 +17,10 @@ Title: "PractitionerRole in gematik Directory"
 * endpoint MS
 * healthcareService MS
 * organization MS
+* telecom MS
+  * system MS
+  * value MS
+  * use MS
 
 Profile: PractitionerRoleDirectoryStrict
 Parent: PractitionerRoleDirectory

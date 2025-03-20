@@ -565,15 +565,15 @@
     "fshType": "Profile",
     "fshFile": "profiles/PractitionerDirectory.fsh",
     "startLine": 1,
-    "endLine": 40
+    "endLine": 36
   },
   {
     "outputFile": "StructureDefinition-PractitionerDirectoryStrict.json",
     "fshName": "PractitionerDirectoryStrict",
     "fshType": "Profile",
     "fshFile": "profiles/PractitionerDirectory.fsh",
-    "startLine": 42,
-    "endLine": 59
+    "startLine": 38,
+    "endLine": 56
   },
   {
     "outputFile": "StructureDefinition-PractitionerRoleDirectory.json",
@@ -581,15 +581,15 @@
     "fshType": "Profile",
     "fshFile": "profiles/PractitionerRoleDirectory.fsh",
     "startLine": 1,
-    "endLine": 19
+    "endLine": 23
   },
   {
     "outputFile": "StructureDefinition-PractitionerRoleDirectoryStrict.json",
     "fshName": "PractitionerRoleDirectoryStrict",
     "fshType": "Profile",
     "fshFile": "profiles/PractitionerRoleDirectory.fsh",
-    "startLine": 21,
-    "endLine": 38
+    "startLine": 25,
+    "endLine": 42
   },
   {
     "outputFile": "StructureDefinition-ServiceCoverageArea.json",
