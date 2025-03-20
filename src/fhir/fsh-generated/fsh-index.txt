@@ -58,7 +58,7 @@ SearchParameter-PractitionerRole-endpoint.json                     PractitionerR
 SearchParameter-PractitionerRole-location.json                     PractitionerRole-location                        Instance    upliftedRefChains.fsh                                            131 - 159
 SearchParameter-PractitionerRole-practitioner.json                 PractitionerRole-practitioner                    Instance    upliftedRefChains.fsh                                            99 - 129
 StructureDefinition-CodingWithCodeAndSystem.json                   CodingWithCodeAndSystem                          Profile     profiles/DataType.fsh                                            1 - 8
-StructureDefinition-EndpointDirectory.json                         EndpointDirectory                                Profile     profiles/EndpointDirectory.fsh                                   1 - 27
+StructureDefinition-EndpointDirectory.json                         EndpointDirectory                                Profile     profiles/EndpointDirectory.fsh                                   1 - 29
 StructureDefinition-EndpointOwnerTelematikIdEx.json                EndpointOwnerTelematikIdEx                       Extension   profiles/Extension.fsh                                           113 - 120
 StructureDefinition-EndpointVisibility.json                        EndpointVisibility                               Extension   profiles/Extension.fsh                                           35 - 45
 StructureDefinition-HealthcareServiceDirectory.json                HealthcareServiceDirectory                       Profile     profiles/HealthcareServiceDirectory.fsh                          1 - 75
@@ -76,7 +76,7 @@ StructureDefinition-PractitionerRoleDirectoryStrict.json           PractitionerR
 StructureDefinition-ServiceCoverageArea.json                       ServiceCoverageArea                              Extension   profiles/Extension.fsh                                           1 - 12
 StructureDefinition-ServiceCoveragePostalCode.json                 ServiceCoveragePostalCode                        Extension   profiles/Extension.fsh                                           14 - 21
 StructureDefinition-SpecialOpeningTimesEX.json                     SpecialOpeningTimesEX                            Extension   profiles/Extension.fsh                                           47 - 63
-StructureDefinition-endpoint-directory-Strict.json                 EndpointDirectoryStrict                          Profile     profiles/EndpointDirectory.fsh                                   29 - 46
+StructureDefinition-endpoint-directory-Strict.json                 EndpointDirectoryStrict                          Profile     profiles/EndpointDirectory.fsh                                   31 - 48
 StructureDefinition-holder-id-ex.json                              HolderIdEx                                       Extension   profiles/Extension.fsh                                           104 - 111
 StructureDefinition-ncpeh-country-ex.json                          NCPeHCountryEx                                   Extension   profiles/Extension.fsh                                           74 - 86
 StructureDefinition-results-filtered-ex.json                       ResultsFilteredEx                                Extension   profiles/Extension.fsh                                           88 - 102

@@ -82,6 +82,22 @@
         "mustSupport": true
       },
       {
+        "id": "Endpoint.extension:endpointOwnerTelematikId",
+        "path": "Endpoint.extension",
+        "sliceName": "endpointOwnerTelematikId",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "https://gematik.de/fhir/directory/StructureDefinition/EndpointOwnerTelematikIdEx"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
         "id": "Endpoint.status",
         "path": "Endpoint.status",
         "mustSupport": true

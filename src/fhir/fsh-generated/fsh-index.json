@@ -477,7 +477,7 @@
     "fshType": "Profile",
     "fshFile": "profiles/EndpointDirectory.fsh",
     "startLine": 1,
-    "endLine": 27
+    "endLine": 29
   },
   {
     "outputFile": "StructureDefinition-EndpointOwnerTelematikIdEx.json",
@@ -620,8 +620,8 @@
     "fshName": "EndpointDirectoryStrict",
     "fshType": "Profile",
     "fshFile": "profiles/EndpointDirectory.fsh",
-    "startLine": 29,
-    "endLine": 46
+    "startLine": 31,
+    "endLine": 48
   },
   {
     "outputFile": "StructureDefinition-holder-id-ex.json",
