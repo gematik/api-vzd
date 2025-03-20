@@ -86,3 +86,26 @@ Usage: #definition
 * base = #Organization
 * type = #string
 * expression = "Organization.alias"
+
+Instance: HolderIdSP
+InstanceOf: SearchParameter
+Usage: #definition
+* insert MetaInstance
+* name = "holder-id"
+* description = "Search on .extension(https://gematik.de/fhir/directory/StructureDefinition/HolderId)"
+* code = #holder-id
+* base[+] = #HealthcareService
+* base[+] = #PractitionerRole
+* type = #token
+* expression = "HealthcareService.extension.where(url='https://gematik.de/fhir/directory/StructureDefinition/holder-id-ex').value | PractitionerRole.extension.where(url='https://gematik.de/fhir/directory/StructureDefinition/holder-id-ex').value"
+
+Instance: EndpointOwnerTelematikIdSP
+InstanceOf: SearchParameter
+Usage: #definition
+* insert MetaInstance
+* name = "endpoint-owner-telematik-id"
+* description = "SearchParameter for the Telematik ID of the owner of an Endpoint"
+* code = #endpoint-owner-telematik-id
+* base = #Endpoint
+* type = #token
+* expression = "Endpoint.extension.where(url='https://gematik.de/fhir/directory/StructureDefinition/EndpointOwnerTelematikIdEx').value"

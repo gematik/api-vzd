@@ -5,7 +5,9 @@ Title: "Endpoint in gematik Directory"
 Description: "Endpoints for applications in the gematik Directory"
 * insert Meta
 * id MS
-* extension contains EndpointVisibility named endpointVisibility 0..* MS
+* extension contains 
+  EndpointVisibility named endpointVisibility 0..* MS and
+  EndpointOwnerTelematikIdEx named endpointOwnerTelematikId 0..1 MS
 * meta.tag 1.. MS
   * ^slicing.discriminator.type = #pattern
   * ^slicing.discriminator.path = "system"

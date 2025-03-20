@@ -41,7 +41,8 @@ organisations specific for german Healthcare and Telematics Infrastructure.
   * coding obeys CodingSytemCodeInv
 * appointmentRequired MS
 * availableTime MS
-  * obeys VZD-Service-Opening-TimeInv
+  * obeys VZD-Service-Opening-TimeInv-1
+  * obeys VZD-Service-Opening-TimeInv-2
   * extension contains SpecialOpeningTimesEX named specialOpeningTimes 0..1 MS
   * daysOfWeek ..1 MS
   * allDay ..0

@@ -344,6 +344,14 @@
     "endLine": 22
   },
   {
+    "outputFile": "SearchParameter-EndpointOwnerTelematikIdSP.json",
+    "fshName": "EndpointOwnerTelematikIdSP",
+    "fshType": "Instance",
+    "fshFile": "searchParameter.fsh",
+    "startLine": 102,
+    "endLine": 111
+  },
+  {
     "outputFile": "SearchParameter-EndpointVisibilitySP.json",
     "fshName": "EndpointVisibilitySP",
     "fshType": "Instance",
@@ -382,6 +390,14 @@
     "fshFile": "searchParameter.fsh",
     "startLine": 57,
     "endLine": 66
+  },
+  {
+    "outputFile": "SearchParameter-HolderIdSP.json",
+    "fshName": "HolderIdSP",
+    "fshType": "Instance",
+    "fshFile": "searchParameter.fsh",
+    "startLine": 90,
+    "endLine": 100
   },
   {
     "outputFile": "SearchParameter-OrganizationAliasSP.json",
@@ -464,6 +480,14 @@
     "endLine": 27
   },
   {
+    "outputFile": "StructureDefinition-EndpointOwnerTelematikIdEx.json",
+    "fshName": "EndpointOwnerTelematikIdEx",
+    "fshType": "Extension",
+    "fshFile": "profiles/Extension.fsh",
+    "startLine": 113,
+    "endLine": 120
+  },
+  {
     "outputFile": "StructureDefinition-EndpointVisibility.json",
     "fshName": "EndpointVisibility",
     "fshType": "Extension",
@@ -477,15 +501,15 @@
     "fshType": "Profile",
     "fshFile": "profiles/HealthcareServiceDirectory.fsh",
     "startLine": 1,
-    "endLine": 74
+    "endLine": 75
   },
   {
     "outputFile": "StructureDefinition-HealthcareServiceDirectoryStrict.json",
     "fshName": "HealthcareServiceDirectoryStrict",
     "fshType": "Profile",
     "fshFile": "profiles/HealthcareServiceDirectory.fsh",
-    "startLine": 76,
-    "endLine": 112
+    "startLine": 77,
+    "endLine": 113
   },
   {
     "outputFile": "StructureDefinition-LocationDirectory.json",

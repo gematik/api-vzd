@@ -42,11 +42,13 @@ Practitioner-TIPractitionerExample001.json                         PractitionerE
 Practitioner-TIPractitionerExampleDentist.json                     PractitionerExampleDentist                       Instance    examples/Examples001.fsh                                         13 - 26
 PractitionerRole-PractitionerRoleExample.json                      PractitionerRoleExample                          Instance    examples/Examples001.fsh                                         28 - 35
 SearchParameter-EndpointAddressSP.json                             EndpointAddressSP                                Instance    searchParameter.fsh                                              13 - 22
+SearchParameter-EndpointOwnerTelematikIdSP.json                    EndpointOwnerTelematikIdSP                       Instance    searchParameter.fsh                                              102 - 111
 SearchParameter-EndpointVisibilitySP.json                          EndpointVisibilitySP                             Instance    searchParameter.fsh                                              46 - 55
 SearchParameter-HealthcareService-endpoint.json                    HealthcareService-endpoint                       Instance    upliftedRefChains.fsh                                            65 - 97
 SearchParameter-HealthcareService-location.json                    HealthcareService-location                       Instance    upliftedRefChains.fsh                                            35 - 63
 SearchParameter-HealthcareService-organization.json                HealthcareService-organization                   Instance    upliftedRefChains.fsh                                            1 - 33
 SearchParameter-HealthcareServiceCoverageAreaPostalCodeSP.json     HealthcareServiceCoverageAreaPostalCodeSP        Instance    searchParameter.fsh                                              57 - 66
+SearchParameter-HolderIdSP.json                                    HolderIdSP                                       Instance    searchParameter.fsh                                              90 - 100
 SearchParameter-OrganizationAliasSP.json                           OrganizationAliasSP                              Instance    searchParameter.fsh                                              79 - 88
 SearchParameter-OrganizationNCPeHCountrySP.json                    OrganizationNCPeHCountrySP                       Instance    searchParameter.fsh                                              68 - 77
 SearchParameter-OrganizationTypeDisplaySP.json                     OrganizationTypeDisplaySP                        Instance    searchParameter.fsh                                              1 - 11
@@ -57,9 +59,10 @@ SearchParameter-PractitionerRole-location.json                     PractitionerR
 SearchParameter-PractitionerRole-practitioner.json                 PractitionerRole-practitioner                    Instance    upliftedRefChains.fsh                                            99 - 129
 StructureDefinition-CodingWithCodeAndSystem.json                   CodingWithCodeAndSystem                          Profile     profiles/DataType.fsh                                            1 - 8
 StructureDefinition-EndpointDirectory.json                         EndpointDirectory                                Profile     profiles/EndpointDirectory.fsh                                   1 - 27
+StructureDefinition-EndpointOwnerTelematikIdEx.json                EndpointOwnerTelematikIdEx                       Extension   profiles/Extension.fsh                                           113 - 120
 StructureDefinition-EndpointVisibility.json                        EndpointVisibility                               Extension   profiles/Extension.fsh                                           35 - 45
-StructureDefinition-HealthcareServiceDirectory.json                HealthcareServiceDirectory                       Profile     profiles/HealthcareServiceDirectory.fsh                          1 - 74
-StructureDefinition-HealthcareServiceDirectoryStrict.json          HealthcareServiceDirectoryStrict                 Profile     profiles/HealthcareServiceDirectory.fsh                          76 - 112
+StructureDefinition-HealthcareServiceDirectory.json                HealthcareServiceDirectory                       Profile     profiles/HealthcareServiceDirectory.fsh                          1 - 75
+StructureDefinition-HealthcareServiceDirectoryStrict.json          HealthcareServiceDirectoryStrict                 Profile     profiles/HealthcareServiceDirectory.fsh                          77 - 113
 StructureDefinition-LocationDirectory.json                         LocationDirectory                                Profile     profiles/LocationDirectory.fsh                                   1 - 34
 StructureDefinition-LocationDirectoryStrict.json                   LocationDirectoryStrict                          Profile     profiles/LocationDirectory.fsh                                   36 - 54
 StructureDefinition-OrganizationDirectory.json                     OrganizationDirectory                            Profile     profiles/OrganizationDirectory.fsh                               1 - 53

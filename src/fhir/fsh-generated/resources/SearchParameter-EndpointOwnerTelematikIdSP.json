@@ -1,0 +1,18 @@
+{
+  "resourceType": "SearchParameter",
+  "id": "EndpointOwnerTelematikIdSP",
+  "url": "https://gematik.de/fhir/directory/SearchParameter/EndpointOwnerTelematikIdSP",
+  "version": "0.13.0",
+  "status": "active",
+  "experimental": false,
+  "publisher": "gematik GmbH",
+  "date": "2024-10-29",
+  "name": "endpoint-owner-telematik-id",
+  "description": "SearchParameter for the Telematik ID of the owner of an Endpoint",
+  "code": "endpoint-owner-telematik-id",
+  "base": [
+    "Endpoint"
+  ],
+  "type": "token",
+  "expression": "Endpoint.extension.where(url='https://gematik.de/fhir/directory/StructureDefinition/EndpointOwnerTelematikIdEx').value"
+}
