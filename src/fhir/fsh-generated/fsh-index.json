@@ -533,15 +533,15 @@
     "fshType": "Profile",
     "fshFile": "profiles/OrganizationDirectory.fsh",
     "startLine": 1,
-    "endLine": 53
+    "endLine": 56
   },
   {
     "outputFile": "StructureDefinition-OrganizationDirectoryStrict.json",
     "fshName": "OrganizationDirectoryStrict",
     "fshType": "Profile",
     "fshFile": "profiles/OrganizationDirectory.fsh",
-    "startLine": 55,
-    "endLine": 71
+    "startLine": 58,
+    "endLine": 74
   },
   {
     "outputFile": "StructureDefinition-OrganizationVisibility.json",

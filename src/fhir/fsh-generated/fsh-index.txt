@@ -65,8 +65,8 @@ StructureDefinition-HealthcareServiceDirectory.json                HealthcareSer
 StructureDefinition-HealthcareServiceDirectoryStrict.json          HealthcareServiceDirectoryStrict                 Profile     profiles/HealthcareServiceDirectory.fsh                          77 - 113
 StructureDefinition-LocationDirectory.json                         LocationDirectory                                Profile     profiles/LocationDirectory.fsh                                   1 - 34
 StructureDefinition-LocationDirectoryStrict.json                   LocationDirectoryStrict                          Profile     profiles/LocationDirectory.fsh                                   36 - 54
-StructureDefinition-OrganizationDirectory.json                     OrganizationDirectory                            Profile     profiles/OrganizationDirectory.fsh                               1 - 53
-StructureDefinition-OrganizationDirectoryStrict.json               OrganizationDirectoryStrict                      Profile     profiles/OrganizationDirectory.fsh                               55 - 71
+StructureDefinition-OrganizationDirectory.json                     OrganizationDirectory                            Profile     profiles/OrganizationDirectory.fsh                               1 - 56
+StructureDefinition-OrganizationDirectoryStrict.json               OrganizationDirectoryStrict                      Profile     profiles/OrganizationDirectory.fsh                               58 - 74
 StructureDefinition-OrganizationVisibility.json                    OrganizationVisibility                           Extension   profiles/Extension.fsh                                           23 - 33
 StructureDefinition-PhysicalFeaturesAdditionalNoteEX.json          PhysicalFeaturesAdditionalNoteEX                 Extension   profiles/Extension.fsh                                           65 - 72
 StructureDefinition-PractitionerDirectory.json                     PractitionerDirectory                            Profile     profiles/PractitionerDirectory.fsh                               1 - 40
