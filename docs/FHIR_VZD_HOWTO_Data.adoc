@@ -898,7 +898,8 @@ See <<Endpoint-Resource>>
 
 == Use of the data model in applications
 === eRezept
-Overview of the special data for the eRezept application.
+Overview of the special data for the eRezept application. +
+See also the examples in the simplifier profile: https://simplifier.net/vzd-fhir-directory
 
 ==== Kind of organization/pharmacy
 The kind of organization is stored in the Organization.type attribute. For pharmacies the following codes from https://simplifier.net/vzd-fhir-directory/organizationprofessionoid[OrganizationProfessionOID] are relevant:
@@ -1073,4 +1074,103 @@ Example for HealthcareService.telecom
   ]
 ----
 
+==== Physical Features & Technical Services - HealthcareService.characteristic
+Physical Features and Technical Services of the pharmacy. See HealthcareService.characteristic in the simplifier profile for the supported features and services.  +
+ +
+[IMPORTANT]
+====
+For some services - e.g. "eRX Token Receiver" - an endpoint containing the needed URL has to be added/administrated.
+====
+
+Example for HealthcareService.characteristic
+
+----
+    "characteristic":  [
+        {
+            "extension":  [
+                {
+                    "url": "https://gematik.de/fhir/directory/StructureDefinition/PhysicalFeaturesAdditionalNoteEX",
+                    "valueString": "Vor dem Haus"
+                }
+            ],
+            "coding":  [
+                {
+                    "code": "parkmoeglichkeit",
+                    "system": "https://gematik.de/fhir/directory/CodeSystem/physicalFeatures",
+                    "display": "Parkmöglichkeit"
+                }
+            ]
+        },
+        {
+            "coding":  [
+                {
+                    "code": "erx-token-receiver",
+                    "system": "https://gematik.de/fhir/directory/CodeSystem/VZDHealthCareServiceCharacteristicsCS",
+                    "display": "eRX Token Receiver"
+                }
+            ]
+        },
+        {
+            "coding":  [
+                {
+                    "code": "apotheke-verfuegbarkeitsanfrage",
+                    "system": "https://gematik.de/fhir/directory/CodeSystem/VZDHealthCareServiceCharacteristicsCS",
+                    "display": "Apotheke: Verfügbarkeitsanfrage"
+                }
+            ]
+        },
+        {
+            "coding":  [
+                {
+                    "code": "terminbuchung",
+                    "system": "https://gematik.de/fhir/directory/CodeSystem/VZDHealthCareServiceCharacteristicsCS",
+                    "display": "Terminbuchung"
+                }
+            ]
+        },
+        {
+            "coding":  [
+                {
+                    "code": "oepnv",
+                    "system": "https://gematik.de/fhir/directory/CodeSystem/physicalFeatures",
+                    "display": "ÖPNV in der Nähe"
+                }
+            ]
+        }
+    ]
+----
+
+==== HealthcareService.coverageArea
+The location(s) that the delivery service is available to (not where the service is provided). +
+ +
+Example for HealthcareService.coverageArea
+
+----
+    "coverageArea":  [
+        {
+            "extension":  [
+                {
+                    "url": "https://gematik.de/fhir/directory/StructureDefinition/ServiceCoverageArea",
+                    "valueQuantity": {
+                        "system": "http://unitsofmeasure.org",
+                        "code": "m",
+                        "value": 10000
+                    }
+                },
+                {
+                    "url": "https://gematik.de/fhir/directory/StructureDefinition/ServiceCoveragePostalCode",
+                    "valueString": "60596"
+                },
+                {
+                    "url": "https://gematik.de/fhir/directory/StructureDefinition/ServiceCoveragePostalCode",
+                    "valueString": "60597"
+                },
+                {
+                    "url": "https://gematik.de/fhir/directory/StructureDefinition/ServiceCoveragePostalCode",
+                    "valueString": "60598"
+                }
+            ]
+        }
+    ]
+----
 
