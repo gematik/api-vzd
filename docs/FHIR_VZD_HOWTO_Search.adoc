@@ -46,7 +46,7 @@ image::gematik_logo.svg[gematik,float="right"]
 |1.1.3 |03.12.24 |Full-text search
 |Update example "near" Search parameter
   |gematik
-|1.1.4 |10.01.25 | FHIR VZD Search - read resources via its [id] +
+|1.1.4 |21.03.25 | FHIR VZD Search - read resources via its [id] +
 Full-text search
 |Added this chapter +
  +
@@ -557,7 +557,7 @@ If attributes are required in the search filter - which cannot be searched using
  +
 In this example the _text full-text search parameter is used to search for the telematikID and the endpoint.status search parameter for active endpoints.
 ----
-{{fhir_server}}/search/HealthcareService?organization.active=true&_include=HealthcareService:organization&_include=HealthcareService:endpoint&_include=HealthcareService:location&_text="1-2arvtst-ap104233","1-2arvtst-ap051582"&endpoint.status=active
+{{fhir_server}}/search/HealthcareService?organization.active=true&_include=HealthcareService:organization&_include=HealthcareService:endpoint&_include=HealthcareService:location&_text="1-2arvtst-ap104233"&endpoint.status=active
 ----
 
 ====== Interesting facts about indexing
@@ -638,6 +638,7 @@ Examples: _text="1-2arvtst-ap104233"%20%7C%20"1-2arvtst-ap051582"
 
 All these searches match, if at least one of the strings is contained in the linked resources. +
  +
+Note: The use of the Or-operator decreases the search performance and should be avoided if possible.
 
 *NOT operations (-)* +
 For the NOT operation, the string must begin with "-" hyphen, e.g. -string1
@@ -835,3 +836,22 @@ GET [baseUrl]/search/Endpoint?status=active&_revinclude=HealthcareService:endpoi
 The client has to ensure, that the "active" attribute of the Organization or Practitioner resource has value "true".
 --
 
+== Recommendations for Optimizing FHIR Searches
+
+For efficiency reasons, it is recommended to keep FHIR searches as short as possible, as each search query triggers a corresponding database query. Similar to SQL queries, optimizing search performance can significantly improve response times. The following measures are recommended:
+
+- **Use of the `_text` search attribute**: This allows for full-text search optimization (see section on full-text search).
+- **Separate location-based search from `_text` attribute usage**: This ensures a clear distinction between "search for a doctor in <Location>" and "search for Dr. <Location>."
+- **Use `_include` for dependent sub-resources**: This reduces the number of additional queries needed to retrieve related data.
+
+=== Example Query
+
+The following is an example of an optimized FHIR search query:
+
+[source]
+----
+GET https://fhir-directory-tu.vzd.ti-dienste.de/fdv/search/HealthcareService?organization.active=true
+&_text=Mustermann
+&_include=HealthcareService:organization
+&_include=HealthcareService:location
+----
