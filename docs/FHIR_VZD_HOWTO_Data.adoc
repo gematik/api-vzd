@@ -1074,6 +1074,41 @@ Example for HealthcareService.telecom
   ]
 ----
 
+==== HealthcareService.coverageArea
+The location(s) that the delivery service is available to (not where the service is provided). +
+ +
+Example for HealthcareService.coverageArea
+
+----
+    "coverageArea":  [
+        {
+            "extension":  [
+                {
+                    "url": "https://gematik.de/fhir/directory/StructureDefinition/ServiceCoverageArea",
+                    "valueQuantity": {
+                        "system": "http://unitsofmeasure.org",
+                        "code": "m",
+                        "value": 10000
+                    }
+                },
+                {
+                    "url": "https://gematik.de/fhir/directory/StructureDefinition/ServiceCoveragePostalCode",
+                    "valueString": "60596"
+                },
+                {
+                    "url": "https://gematik.de/fhir/directory/StructureDefinition/ServiceCoveragePostalCode",
+                    "valueString": "60597"
+                },
+                {
+                    "url": "https://gematik.de/fhir/directory/StructureDefinition/ServiceCoveragePostalCode",
+                    "valueString": "60598"
+                }
+            ]
+        }
+    ]
+----
+
+
 ==== Physical Features & Technical Services - HealthcareService.characteristic
 Physical Features and Technical Services of the pharmacy. See HealthcareService.characteristic in the simplifier profile for the supported features and services.  +
  +
@@ -1140,37 +1175,12 @@ Example for HealthcareService.characteristic
     ]
 ----
 
-==== HealthcareService.coverageArea
-The location(s) that the delivery service is available to (not where the service is provided). +
+==== Endpoints for pharmacies
+For Technical Services (see simplifier VZDHealthCareServiceCharacteristicsCS) additional data (e.g. an URL) has to be provided in endpoints. +
  +
-Example for HealthcareService.coverageArea
+Examples for an endpoint: 
 
-----
-    "coverageArea":  [
-        {
-            "extension":  [
-                {
-                    "url": "https://gematik.de/fhir/directory/StructureDefinition/ServiceCoverageArea",
-                    "valueQuantity": {
-                        "system": "http://unitsofmeasure.org",
-                        "code": "m",
-                        "value": 10000
-                    }
-                },
-                {
-                    "url": "https://gematik.de/fhir/directory/StructureDefinition/ServiceCoveragePostalCode",
-                    "valueString": "60596"
-                },
-                {
-                    "url": "https://gematik.de/fhir/directory/StructureDefinition/ServiceCoveragePostalCode",
-                    "valueString": "60597"
-                },
-                {
-                    "url": "https://gematik.de/fhir/directory/StructureDefinition/ServiceCoveragePostalCode",
-                    "valueString": "60598"
-                }
-            ]
-        }
-    ]
-----
+- link:https://simplifier.net/vzd-fhir-directory/pharmacyendpointerpreservationexample[ERP Reservierung]
+- link:https://simplifier.net/vzd-fhir-directory/pharmacyendpointonlineappointmentbookingexample[Online Terminbuchung]
+
 
