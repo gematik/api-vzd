@@ -1,6 +1,6 @@
 # Changelog
 
-## tbd Version 0.13.0
+## 21.03.2025 Version 0.13.0
 - `change`: removed KBV_CS_SFHIR_BAR2_WBO_OID_URL (urn:oid:1.2.276.0.76.5.114) as these were replaced by IHE codes several years ago. 
 - `change`: removed KBV_CS_SFHIR_BAR2_WBO_OID_URL (urn:oid:1.2.276.0.76.5.114) from PractitionerQualificationVS
 - `fix`: set VS binding on correct element for Endpoint.connectionType. Was on code, but should be on connectionType(Coding)
@@ -14,7 +14,6 @@
 
 ### data migration
 - copy .telecom from Practitioner to PractitionerRole(s), remove .telecom on Practitioner
-
 
 ## 2025-02-27 Version 0.12.0
 - `feat`: using SemVer for release versions
