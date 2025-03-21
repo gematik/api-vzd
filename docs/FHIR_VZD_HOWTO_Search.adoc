@@ -46,7 +46,7 @@ image::gematik_logo.svg[gematik,float="right"]
 |1.1.3 |03.12.24 |Full-text search
 |Update example "near" Search parameter
   |gematik
-|1.1.4 |10.01.25 | FHIR VZD Search - read resources via its [id] +
+|1.1.4 |21.03.25 | FHIR VZD Search - read resources via its [id] +
 Full-text search
 |Added this chapter +
  +
