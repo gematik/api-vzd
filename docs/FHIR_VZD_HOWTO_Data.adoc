@@ -1013,3 +1013,34 @@ Example for Location.position
     }
 ----
 
+==== HealthcareService.telecom
+Contacts related to the healthcare service +
+ +
+Example for HealthcareService.telecom
+
+----
+  "telecom": [
+    {
+      "system": "phone",
+      "value": "030 1234567",
+      "use": "work"
+    },
+    {
+      "system": "fax",
+      "value": "030 1234568",
+      "use": "work"
+    },
+    {
+      "system": "url",
+      "value": "https://super-apotheke.de",
+      "use": "work"
+    },
+    {
+      "system": "email",
+      "value": "info@super-apotheke.de",
+      "use": "work"
+    }
+  ]
+----
+
+
