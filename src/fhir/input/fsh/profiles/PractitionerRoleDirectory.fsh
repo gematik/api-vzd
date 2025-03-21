@@ -36,7 +36,6 @@ Description: "PractitionerRole in gematik Directory with strict constraints"
 * period 0..0
 * code 0..0
 * specialty 0..0
-* telecom 0..0
 * availableTime 0..0
 * notAvailable 0..0
 * availabilityExceptions 0..0

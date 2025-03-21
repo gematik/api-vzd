@@ -589,7 +589,7 @@
     "fshType": "Profile",
     "fshFile": "profiles/PractitionerRoleDirectory.fsh",
     "startLine": 25,
-    "endLine": 42
+    "endLine": 41
   },
   {
     "outputFile": "StructureDefinition-ServiceCoverageArea.json",

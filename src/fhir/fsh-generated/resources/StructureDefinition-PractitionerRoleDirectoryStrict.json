@@ -78,11 +78,6 @@
         "max": "0"
       },
       {
-        "id": "PractitionerRole.telecom",
-        "path": "PractitionerRole.telecom",
-        "max": "0"
-      },
-      {
         "id": "PractitionerRole.availableTime",
         "path": "PractitionerRole.availableTime",
         "max": "0"

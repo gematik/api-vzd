@@ -72,7 +72,7 @@ StructureDefinition-PhysicalFeaturesAdditionalNoteEX.json          PhysicalFeatu
 StructureDefinition-PractitionerDirectory.json                     PractitionerDirectory                            Profile     profiles/PractitionerDirectory.fsh                               1 - 36
 StructureDefinition-PractitionerDirectoryStrict.json               PractitionerDirectoryStrict                      Profile     profiles/PractitionerDirectory.fsh                               38 - 56
 StructureDefinition-PractitionerRoleDirectory.json                 PractitionerRoleDirectory                        Profile     profiles/PractitionerRoleDirectory.fsh                           1 - 23
-StructureDefinition-PractitionerRoleDirectoryStrict.json           PractitionerRoleDirectoryStrict                  Profile     profiles/PractitionerRoleDirectory.fsh                           25 - 42
+StructureDefinition-PractitionerRoleDirectoryStrict.json           PractitionerRoleDirectoryStrict                  Profile     profiles/PractitionerRoleDirectory.fsh                           25 - 41
 StructureDefinition-ServiceCoverageArea.json                       ServiceCoverageArea                              Extension   profiles/Extension.fsh                                           1 - 12
 StructureDefinition-ServiceCoveragePostalCode.json                 ServiceCoveragePostalCode                        Extension   profiles/Extension.fsh                                           14 - 21
 StructureDefinition-SpecialOpeningTimesEX.json                     SpecialOpeningTimesEX                            Extension   profiles/Extension.fsh                                           47 - 63
