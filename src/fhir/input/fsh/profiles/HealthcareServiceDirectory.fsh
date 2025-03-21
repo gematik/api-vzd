@@ -5,7 +5,9 @@ Description: """Defines the data structure for medical, regulatory and technical
 organisations specific for german Healthcare and Telematics Infrastructure.
 """
 * insert Meta
-* extension contains HolderIdEx named holderId 0..* MS
+* extension contains 
+  HolderIdEx named holderId 0..* MS and
+  OwnerTelematikIdEx named ownerTelematikId 0..1 MS
 * meta.tag 1.. MS
   * ^slicing.discriminator.type = #pattern
   * ^slicing.discriminator.path = "system"

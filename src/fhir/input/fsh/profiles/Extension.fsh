@@ -110,11 +110,11 @@ Context: HealthcareService, PractitionerRole
 * value[x] only code
 * valueCode 1.. MS
 
-Extension: EndpointOwnerTelematikIdEx
-Id: EndpointOwnerTelematikIdEx
-Title: "EndpointOwnerTelematikIdEx"
-Description: "Extension for the Telematik ID of the owner of an Endpoint"
-Context: Endpoint
+Extension: OwnerTelematikIdEx
+Id: OwnerTelematikIdEx
+Title: "OwnerTelematikIdEx"
+Description: "Extension for the Telematik ID of the owner of a Resource"
+Context: Resource
 * insert Meta
 * value[x] only $IdentifierTelematikID
 * valueIdentifier 1.. MS

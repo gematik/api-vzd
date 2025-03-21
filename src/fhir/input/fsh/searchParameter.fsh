@@ -99,13 +99,13 @@ Usage: #definition
 * type = #token
 * expression = "HealthcareService.extension.where(url='https://gematik.de/fhir/directory/StructureDefinition/holder-id-ex').value | PractitionerRole.extension.where(url='https://gematik.de/fhir/directory/StructureDefinition/holder-id-ex').value"
 
-Instance: EndpointOwnerTelematikIdSP
+Instance: OwnerTelematikIdSP
 InstanceOf: SearchParameter
 Usage: #definition
 * insert MetaInstance
-* name = "endpoint-owner-telematik-id"
-* description = "SearchParameter for the Telematik ID of the owner of an Endpoint"
-* code = #endpoint-owner-telematik-id
-* base = #Endpoint
+* name = "owner-telematik-id"
+* description = "SearchParameter for the Telematik ID of the owner of a resource using the OwnerTelematikIdEx extension"
+* code = #owner-telematik-id
+* base = #Resource
 * type = #token
-* expression = "Endpoint.extension.where(url='https://gematik.de/fhir/directory/StructureDefinition/EndpointOwnerTelematikIdEx').value"
+* expression = "Resource.extension.where(url='https://gematik.de/fhir/directory/StructureDefinition/OwnerTelematikIdEx').value"

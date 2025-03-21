@@ -344,14 +344,6 @@
     "endLine": 22
   },
   {
-    "outputFile": "SearchParameter-EndpointOwnerTelematikIdSP.json",
-    "fshName": "EndpointOwnerTelematikIdSP",
-    "fshType": "Instance",
-    "fshFile": "searchParameter.fsh",
-    "startLine": 102,
-    "endLine": 111
-  },
-  {
     "outputFile": "SearchParameter-EndpointVisibilitySP.json",
     "fshName": "EndpointVisibilitySP",
     "fshType": "Instance",
@@ -432,6 +424,14 @@
     "endLine": 33
   },
   {
+    "outputFile": "SearchParameter-OwnerTelematikIdSP.json",
+    "fshName": "OwnerTelematikIdSP",
+    "fshType": "Instance",
+    "fshFile": "searchParameter.fsh",
+    "startLine": 102,
+    "endLine": 111
+  },
+  {
     "outputFile": "SearchParameter-PractitionerQualificationSP.json",
     "fshName": "PractitionerQualificationSP",
     "fshType": "Instance",
@@ -480,14 +480,6 @@
     "endLine": 29
   },
   {
-    "outputFile": "StructureDefinition-EndpointOwnerTelematikIdEx.json",
-    "fshName": "EndpointOwnerTelematikIdEx",
-    "fshType": "Extension",
-    "fshFile": "profiles/Extension.fsh",
-    "startLine": 113,
-    "endLine": 120
-  },
-  {
     "outputFile": "StructureDefinition-EndpointVisibility.json",
     "fshName": "EndpointVisibility",
     "fshType": "Extension",
@@ -501,15 +493,15 @@
     "fshType": "Profile",
     "fshFile": "profiles/HealthcareServiceDirectory.fsh",
     "startLine": 1,
-    "endLine": 75
+    "endLine": 77
   },
   {
     "outputFile": "StructureDefinition-HealthcareServiceDirectoryStrict.json",
     "fshName": "HealthcareServiceDirectoryStrict",
     "fshType": "Profile",
     "fshFile": "profiles/HealthcareServiceDirectory.fsh",
-    "startLine": 77,
-    "endLine": 113
+    "startLine": 79,
+    "endLine": 115
   },
   {
     "outputFile": "StructureDefinition-LocationDirectory.json",
@@ -552,6 +544,14 @@
     "endLine": 33
   },
   {
+    "outputFile": "StructureDefinition-OwnerTelematikIdEx.json",
+    "fshName": "OwnerTelematikIdEx",
+    "fshType": "Extension",
+    "fshFile": "profiles/Extension.fsh",
+    "startLine": 113,
+    "endLine": 120
+  },
+  {
     "outputFile": "StructureDefinition-PhysicalFeaturesAdditionalNoteEX.json",
     "fshName": "PhysicalFeaturesAdditionalNoteEX",
     "fshType": "Extension",
@@ -581,15 +581,15 @@
     "fshType": "Profile",
     "fshFile": "profiles/PractitionerRoleDirectory.fsh",
     "startLine": 1,
-    "endLine": 23
+    "endLine": 25
   },
   {
     "outputFile": "StructureDefinition-PractitionerRoleDirectoryStrict.json",
     "fshName": "PractitionerRoleDirectoryStrict",
     "fshType": "Profile",
     "fshFile": "profiles/PractitionerRoleDirectory.fsh",
-    "startLine": 25,
-    "endLine": 41
+    "startLine": 27,
+    "endLine": 43
   },
   {
     "outputFile": "StructureDefinition-ServiceCoverageArea.json",

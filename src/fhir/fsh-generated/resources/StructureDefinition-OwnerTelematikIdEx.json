@@ -1,21 +1,21 @@
 {
   "resourceType": "StructureDefinition",
-  "id": "EndpointOwnerTelematikIdEx",
-  "url": "https://gematik.de/fhir/directory/StructureDefinition/EndpointOwnerTelematikIdEx",
+  "id": "OwnerTelematikIdEx",
+  "url": "https://gematik.de/fhir/directory/StructureDefinition/OwnerTelematikIdEx",
   "version": "0.13.0",
-  "name": "EndpointOwnerTelematikIdEx",
-  "title": "EndpointOwnerTelematikIdEx",
+  "name": "OwnerTelematikIdEx",
+  "title": "OwnerTelematikIdEx",
   "status": "active",
   "experimental": false,
   "date": "2024-10-29",
   "publisher": "gematik GmbH",
-  "description": "Extension for the Telematik ID of the owner of an Endpoint",
+  "description": "Extension for the Telematik ID of the owner of a Resource",
   "fhirVersion": "4.0.1",
   "kind": "complex-type",
   "abstract": false,
   "context": [
     {
-      "expression": "Endpoint",
+      "expression": "Resource",
       "type": "element"
     }
   ],
@@ -27,8 +27,8 @@
       {
         "id": "Extension",
         "path": "Extension",
-        "short": "EndpointOwnerTelematikIdEx",
-        "definition": "Extension for the Telematik ID of the owner of an Endpoint"
+        "short": "OwnerTelematikIdEx",
+        "definition": "Extension for the Telematik ID of the owner of a Resource"
       },
       {
         "id": "Extension.extension",
@@ -38,7 +38,7 @@
       {
         "id": "Extension.url",
         "path": "Extension.url",
-        "fixedUri": "https://gematik.de/fhir/directory/StructureDefinition/EndpointOwnerTelematikIdEx"
+        "fixedUri": "https://gematik.de/fhir/directory/StructureDefinition/OwnerTelematikIdEx"
       },
       {
         "id": "Extension.value[x]",
