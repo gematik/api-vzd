@@ -1000,6 +1000,36 @@ Example for opening times
     ],
 ----
 
+*Special Opening Times (e.g. "Notdienst")* +
+For Special Opening Time the extension HealthcareService.availableTime.extension:specialOpeningTimes has to be used. +
+ +
+Example for HealthcareService.availableTime.extension:specialOpeningTimes
+
+----
+            "extension":  [
+                {
+                    "url": "https://gematik.de/fhir/directory/StructureDefinition/SpecialOpeningTimesEX",
+                    "extension":  [
+                        {
+                            "url": "period",
+                            "valuePeriod": {
+                                "start": "07/20/2024 06:30:00",
+                                "end": "07/21/2024 06:30:00"
+                            }
+                        },
+                        {
+                            "url": "qualifier",
+                            "valueCoding": {
+                                "code": "notdienst",
+                                "system": "https://gematik.de/fhir/directory/CodeSystem/OpeningTimeQualifierCS",
+                                "display": "Notdienst"
+                            }
+                        }
+                    ]
+                }
+            ]
+----
+
 ==== Geographic location
 The absolute geographic location of pharmacies are stored in the Location.position attribute. +
 The Location.position.longitude and Location.position.latitude attributes are used, Location.position.altitude is not used. +
