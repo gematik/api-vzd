@@ -32,28 +32,6 @@
           }
         ]
       }
-    },
-    {
-      "code": {
-        "coding": [
-          {
-            "code": "010",
-            "system": "urn:oid:1.2.276.0.76.5.114",
-            "display": "FÄ/FA Allgemeinmedizin (alte (M-)WBO, kammerindividuell, EU-Ärzte)"
-          }
-        ]
-      }
-    },
-    {
-      "code": {
-        "coding": [
-          {
-            "code": "523",
-            "system": "urn:oid:1.2.276.0.76.5.114",
-            "display": "FÄ/FA Innere Medizin und (SP) Gastroenterologie"
-          }
-        ]
-      }
     }
   ],
   "name": [
