@@ -1,0 +1,29 @@
+@startuml
+ 
+class Organization {
+
+}
+ 
+class HealthcareService {
+  {field} meta.tag.origin ("ldap")
+}
+
+class HealthcareService_n {
+  {field} meta.tag.origin ("owner")
+}
+ 
+class Endpoint {
+}
+ 
+class Location {
+}
+ 
+Organization <-- HealthcareService
+HealthcareService --> Endpoint
+HealthcareService --> Location
+ 
+Organization <-- HealthcareService_n
+HealthcareService_n --> Endpoint_n
+HealthcareService_n --> Location_n
+ 
+@enduml
