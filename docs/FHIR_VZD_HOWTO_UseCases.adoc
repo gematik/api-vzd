@@ -261,3 +261,321 @@ PUT https://fhir-directory-test.vzd.ti-dienste.de/owner/Endpoint/035c6e2c-53f8-4
 
 ----
 
+===== FHIR VZD pharmacy Example Data 
+Pharmacy with value-added-data.
+
+.Organization
+[%collapsible%open]
+====
+[source,txt, linenums]
+----
+ {
+  "resourceType": "Organization",
+  "id": "75b8b2ar-5d81-7ct6-b535-f7fc78f5596c",
+  "meta": {
+    "versionId": "2",
+    "lastUpdated": "2025-03-23T01:12:37.167+02:00",
+    "source": "#8Bz25c6HiWzXwkWo",
+    "profile": [
+      "https://gematik.de/fhir/directory/StructureDefinition/OrganizationDirectory"
+    ],
+    "tag": [
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/Origin",
+        "code": "ldap",
+        "display": "Synchronized from LDAP VZD",
+        "userSelected": false
+      }
+    ]
+  },
+  "identifier": [
+    {
+      "type": {
+        "coding": [
+          {
+            "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+            "code": "PRN"
+          }
+        ]
+      },
+      "system": "https://gematik.de/fhir/sid/telematik-id",
+      "value": "3-01.2.1113332066.279"
+    },
+    {
+      "system": "https://gematik.de/fhir/directory/CodeSystem/ldapUID",
+      "value": "ag24e566-8w3e-471c-8309-7ef35905972a"
+    }
+  ],
+  "active": true,
+  "type": [
+    {
+      "coding": [
+        {
+          "system": "https://gematik.de/fhir/directory/CodeSystem/OrganizationProfessionOID",
+          "code": "1.2.276.0.76.4.54",
+          "display": "Öffentliche Apotheke"
+        }
+      ]
+    }
+  ],
+  "name": "Alte-Apotheke"
+} 
+----
+====
+
+.Healthcare Service
+[%collapsible%open]
+====
+[source,txt, linenums]
+----
+ {
+  "resourceType": "HealthcareService",
+  "id": "db27d0fe-b4z3-4e6d-88ee-829f89052603",
+  "meta": {
+    "versionId": "4",
+    "lastUpdated": "2025-03-25T10:25:59.944+02:00",
+    "source": "#iHGPLXQ8CxPXzfdC",
+    "profile": [
+      "https://gematik.de/fhir/directory/StructureDefinition/HealthcareServiceDirectory"
+    ],
+    "tag": [
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/Origin",
+        "code": "ldap",
+        "display": "Synchronized from LDAP VZD",
+        "userSelected": false
+      }
+    ]
+  },
+  "identifier": [
+    {
+      "system": "https://gematik.de/fhir/directory/CodeSystem/ldapUID",
+      "value": "ag24e566-8w3e-471c-8309-7ef35905972a"
+    }
+  ],
+  "providedBy": {
+    "reference": "Organization/76b8a2ac-4d61-4cf6-b555-f2fc75f5566b"
+  },
+  "type": [
+    {
+      "coding": [
+        {
+          "system": "https://gematik.de/fhir/directory/CodeSystem/PharmacyTypeCS",
+          "code": "offizin-apotheke",
+          "display": "Offizin-Apotheke"
+        }
+      ],
+      "text": "apo-vzd"
+    },
+    {
+      "coding": [
+        {
+          "system": "https://gematik.de/fhir/directory/CodeSystem/PharmacyTypeCS",
+          "code": "offizin-apotheke",
+          "display": "Offizin-Apotheke"
+        }
+      ],
+      "text": "ldap"
+    }
+  ],
+  "specialty": [
+    {
+      "coding": [
+        {
+          "system": "https://gematik.de/fhir/directory/CodeSystem/PharmacyHealthcareSpecialtyCS",
+          "code": "30",
+          "display": "Botendienst"
+        },
+        {
+          "system": "https://gematik.de/fhir/directory/CodeSystem/PharmacyHealthcareSpecialtyCS",
+          "code": "10",
+          "display": "Handverkauf"
+        }
+      ],
+      "text": "apo-vzd"
+    },
+    {
+      "coding": [
+        {
+          "system": "https://gematik.de/fhir/directory/CodeSystem/PharmacyHealthcareSpecialtyCS",
+          "code": "10",
+          "display": "Handverkauf"
+        }
+      ],
+      "text": "ldap"
+    }
+  ],
+  "location": [
+    {
+      "reference": "Location/69ec3cc9-dad6-4b0d-ad34-816d1774fc11"
+    }
+  ],
+  "telecom": [
+    {
+      "system": "phone",
+      "value": "0301234567",
+      "rank": 10
+    },
+    {
+      "system": "fax",
+      "value": "0301234568",
+      "rank": 20
+    },
+    {
+      "system": "email",
+      "value": "info@apotheke.de",
+      "rank": 30
+    },
+    {
+      "system": "url",
+      "value": "http://www.apotheke.com",
+      "rank": 40
+    }
+  ],
+  "coverageArea": [
+    {
+      "extension": [
+        {
+          "url": "https://gematik.de/fhir/directory/StructureDefinition/ServiceCoverageArea",
+          "valueQuantity": {
+            "value": 5000,
+            "system": "http://unitsofmeasure.org",
+            "code": "m"
+          }
+        }
+      ]
+    }
+  ],
+  "availableTime": [
+    {
+      "daysOfWeek": [
+        "mon"
+      ],
+      "availableStartTime": "08:30:00",
+      "availableEndTime": "12:30:00"
+    },
+    {
+      "daysOfWeek": [
+        "mon"
+      ],
+      "availableStartTime": "14:00:00",
+      "availableEndTime": "18:30:00"
+    },
+    {
+      "daysOfWeek": [
+        "tue"
+      ],
+      "availableStartTime": "08:30:00",
+      "availableEndTime": "12:30:00"
+    },
+    {
+      "daysOfWeek": [
+        "tue"
+      ],
+      "availableStartTime": "14:00:00",
+      "availableEndTime": "18:30:00"
+    },
+    {
+      "daysOfWeek": [
+        "wed"
+      ],
+      "availableStartTime": "08:30:00",
+      "availableEndTime": "12:30:00"
+    },
+    {
+      "daysOfWeek": [
+        "wed"
+      ],
+      "availableStartTime": "14:00:00",
+      "availableEndTime": "18:30:00"
+    },
+    {
+      "daysOfWeek": [
+        "thu"
+      ],
+      "availableStartTime": "08:30:00",
+      "availableEndTime": "12:30:00"
+    },
+    {
+      "daysOfWeek": [
+        "thu"
+      ],
+      "availableStartTime": "14:00:00",
+      "availableEndTime": "18:30:00"
+    },
+    {
+      "daysOfWeek": [
+        "fri"
+      ],
+      "availableStartTime": "08:30:00",
+      "availableEndTime": "12:30:00"
+    },
+    {
+      "daysOfWeek": [
+        "fri"
+      ],
+      "availableStartTime": "14:00:00",
+      "availableEndTime": "18:30:00"
+    },
+    {
+      "daysOfWeek": [
+        "sat"
+      ],
+      "availableStartTime": "09:30:00",
+      "availableEndTime": "12:30:00"
+    }
+  ]
+} 
+----
+====
+
+.Location
+[%collapsible%open]
+====
+[source,txt, linenums]
+----
+  {
+  "resourceType": "Location",
+  "id": "65eh3cu9-ded7-6b2d-ar32-876d1974fd12",
+  "meta": {
+    "versionId": "2",
+    "lastUpdated": "2025-03-13T10:16:20.003+02:00",
+    "source": "#S3aH7F3GHryuIuOZ",
+    "profile": [
+      "https://gematik.de/fhir/directory/StructureDefinition/LocationDirectory"
+    ],
+    "tag": [
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/Origin",
+        "code": "ldap",
+        "display": "Synchronized from LDAP VZD",
+        "userSelected": false
+      }
+    ]
+  },
+  "identifier": [
+    {
+      "system": "https://gematik.de/fhir/directory/CodeSystem/ldapUID",
+      "value": "ag24e566-8w3e-471c-8309-7ef35905972a"
+    }
+  ],
+  "address": {
+    "use": "work",
+    "type": "postal",
+    "text": "Königstraße 56&#13;&#10;15732&#13;&#10;Schulzendorf&#13;&#10;Brandenburg&#13;&#10;DE",
+    "line": [
+      "Königstraße 56"
+    ],
+    "city": "Schulzendorf",
+    "state": "Brandenburg",
+    "postalCode": "15732",
+    "country": "DE"
+  },
+  "position": {
+    "longitude": 9.304613,
+    "latitude": 48.682805
+  }
+} 
+----
+====
+
