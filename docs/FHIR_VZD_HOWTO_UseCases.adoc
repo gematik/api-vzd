@@ -83,6 +83,29 @@ The simplifier profile of the FHIR VZD can be found here link:https://simplifier
 ====
 The client has to ensure, that the telematikID of the resource instance (or its superior Organization/Practitioner resource) and the token (see step "Authentication) match. The FHIR VZD will deny all write operations for resources with other telematikIDs. +
 ====
+
+A pharmacy/organization may have several HealtcareServices.
+
+====
+++++
+<p align="center">
+  <img width="55%" src=../images/diagrams/ClassDiagram.Org.with.several.HCS.svg>
+</p>
+++++
+====
+The "main" HealtcareServices is marked with code "ldap" in HealthcareService.meta.tag:Origin:
+====
+                    "tag": [
+                        {
+                            "system": "https://gematik.de/fhir/directory/CodeSystem/Origin",
+                            "code": "ldap",
+                            "display": "Synchronized from LDAP VZD",
+                            "userSelected": false
+                        }
+                    ]
+====
+This HealtcareServices - marked with "ldap" - has to be updated with value-added data. 
+
 ==== Update FHIR VZD resource
 Use a FHIR operation to update the resource in the FHIR VZD. +
  +
