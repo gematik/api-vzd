@@ -353,8 +353,8 @@ Example of a https://simplifier.net/vzd-fhir-directory/~resources?category=Examp
 |0..1 
 |The absolute geographic location of the Location
 |Yes
-|No
-|No
+|Yes
+|Yes
 
 |managingOrganization 
 |Not used 
