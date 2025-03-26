@@ -262,7 +262,7 @@ PUT https://fhir-directory-test.vzd.ti-dienste.de/owner/Endpoint/035c6e2c-53f8-4
 ----
 
 === FHIR VZD pharmacy Example Data 
-Pharmacy with value-added-data.
+==== Offizin-Apotheke with "Botendienst" & "Handverkauf"
 
 .Organization
 [%collapsible%open]
