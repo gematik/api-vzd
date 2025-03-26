@@ -1,0 +1,200 @@
+openapi: 3.0.1
+info:
+  title: I_FHIR_VZD_Fachliches_Log
+  description: REST Schnittstelle I_FHIR_VZD_Fachliches_Log
+  version: 1.0.0
+
+  # 1.0.0
+  #   initial Version
+  #   - readLog
+  #
+
+externalDocs:
+  description: Schnittstelle zur Pflege der Verzeichniseinträge
+  url: http://github.com/gematik/api-vzd/
+servers:
+  - url: https://fhir-directory-tu.vzd.ti-dienste.de/FachlichesLog
+    description: Test server (TU)
+  - url: https://fhir-directory-ref.vzd.ti-dienste.de/FachlichesLog
+    description: Referenzumgebung
+  - url: https://fhir-directory.vzd.ti-dienste.de/FachlichesLog
+
+tags:
+  - name: readLog
+    description: Log von Verzeichniseinträgen lesen
+
+paths:
+  /ReadLog:
+    get:
+      tags:
+        - readLog
+      summary: Log von Verzeichniseinträgen lesen
+      description: |
+        Liefert die Log Daten alle zum Filter passenden Verzeichniseinträge. Die maximale Anzahl der zurückgegebenen Einträge ist vom System begrenzt.
+      operationId: readLog
+      # Für Operation readLog werden folgende Kombinationen der Suchparameter erlaubt:
+      # leere Parameterliste
+      # UuId          + operation (optional) + ressourceType (optional) + logTimeFrom (optional) + logTimeTo (optional)
+      # LdapUid       + operation (optional) + ressourceType (optional) + logTimeFrom (optional) + logTimeTo (optional)
+      # clientID      + operation (optional) + ressourceType (optional) + logTimeFrom (optional) + logTimeTo (optional)
+      # *telematikID* + operation (optional) + ressourceType (optional) + logTimeFrom (optional) + logTimeTo (optional)
+      #                 operation            + ressourceType            + logTimeFrom (optional) + logTimeTo (optional)
+      #                 operation            +                          + logTimeFrom (optional) + logTimeTo (optional)
+      #                                      + ressourceType            + logTimeFrom (optional) + logTimeTo (optional)
+      #                 logTimeFrom          + logTimeTo
+      #                 logTimeFrom
+      #                                          logTimeTo
+      # Alle anderen Kombinationen der Suchparameter werden mit 400 bad request beantwortet.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReadLogParameters'
+
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LogEntries'
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        403:
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+components:
+  schemas:
+
+    ReadLogParameters:
+      type: object
+      properties:
+        requesterId:
+          description: Erlaubt die Suche mit Hilfe des Attributs clientID oder holderId.
+            Der Verzeichniseintrag wird selektiert, wenn die angegebene clientID im Log-Datensatz enthalten ist.
+          type: string
+          readOnly: true
+        uuid:
+          description: ID von dem Verzeichniseintrag
+          type: string
+          readOnly: true
+        ldapUid:
+          description: LDAP-ID von dem Verzeichniseintrag
+          type: string
+          readOnly: true
+        telematikId:
+          description: Erlaubt die Suche mit Hilfe des Attributs telematikID (die telematikID in den Basisdaten).
+          type: string
+          readOnly: true
+        operation:
+          description: Erlaubt die Suche anhand der ausgeführten Operation
+          type: string
+          enum: [ create,
+                  update,
+                  delete ]
+          readOnly: true
+        ressourceType:
+          description: Definiert den Typ des Ressourcenobjekts
+          type: string
+          enum: [ HealthcareService,
+                  PractitionerRole,
+                  Location,
+                  Endpoint,
+                  Organization,
+                  Practitioner ]
+          readOnly: true
+        logTimeFrom:
+          description: Erlaubt die Suche mit Hilfe des Attributs logTime.
+          #  Selektiert alle Datensätze mit logTime >= logTimeFrom
+          type: string
+          format: date-time
+          readOnly: true
+        logTimeTo:
+          description: Erlaubt die Suche mit Hilfe des Attributs logTime.
+          #  Selektiert alle Datensätze mit logTime <= logTimeTo
+          type: string
+          format: date-time
+          readOnly: true
+
+    LogEntries:
+      type: array
+      items:
+        $ref: '#/components/schemas/ChangeLog'
+
+    ChangeLog:
+      type: object
+      properties:
+        requesterId:
+          description: clientID oder holderId, der die Datenänderung ausgeführt hat.
+            Der Verzeichniseintrag wird selektiert, wenn die angegebene clientID im Log-Datensatz enthalten ist.
+          type: string
+        uuid:
+          description: ID des Eintrags, der ihn eindeutig identifiziert.
+          type: string
+        ldapUid:
+          description: LDAP-ID von dem Verzeichniseintrag.
+          type: string
+        telematikId:
+          description: Die telematikID in den Basisdaten.
+          type: string
+        operation:
+          description: Ausgeführte Operation.
+          type: string
+          enum: [ create,
+                  update,
+                  delete ]
+        ressourceType:
+          description: Typ des Ressourcenobjekts.
+          type: string
+          enum: [ HealthcareService,
+                  PractitionerRole,
+                  Location,
+                  Endpoint,
+                  Organization,
+                  Practitioner ]
+        logTime:
+          type: string
+          format: date-time
+          description: Zeitpunkt der Schreiboperation für den Datensatz.
+
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+          description: (optionale) Fehlernachricht
+        errors:
+          maxItems: 50
+          minItems: 0
+          type: array
+          items:
+            $ref: '#/components/schemas/InnerError'
+    InnerError:
+      type: object
+      properties:
+        attributeName:
+          description: Name des Attributs, in dem ein Fehler erkannt wurde
+          type: string
+        attributeError:
+          description: Beschreibung des erkannten Fehlers
+          type: string
