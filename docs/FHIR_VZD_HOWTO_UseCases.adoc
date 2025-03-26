@@ -93,7 +93,7 @@ A pharmacy/organization may have several HealtcareServices.
 </p>
 ++++
 ====
-The "main" HealtcareServices is marked with code "ldap" in HealthcareService.meta.tag:Origin:
+The "main" HealtcareServices is marked with code "ldap" in HealthcareService.meta.tag:Origin
 ====
                     "tag": [
                         {
@@ -156,6 +156,7 @@ Used FHIR VZD attributes: +
 
 
 * HealthcareService.specialty - See simplifier profile for possible values.
+
 .Example data:
 [%collapsible%open]
 ====
