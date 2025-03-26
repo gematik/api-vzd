@@ -197,6 +197,8 @@ Used FHIR VZD attributes: +
 ----
 ====
 
+* HealthcareService.characteristic - Physical Features & Technical Services - See simplifier profile for possible values.
+
 
 *Contact details* +
  +
@@ -269,7 +271,7 @@ Used FHIR VZD attributes: +
                 ]
 ----
 ====
-
+// To be added: PLZ
 
 
 *Geographical coordinates* +
