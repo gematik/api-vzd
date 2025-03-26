@@ -106,9 +106,303 @@ The "main" HealtcareServices is marked with code "ldap" in HealthcareService.met
 ====
 This HealtcareServices - marked with "ldap" - has to be updated with value-added data. 
 
-==== Update FHIR VZD resource
-Use a FHIR operation to update the resource in the FHIR VZD. +
+
+
+===== Data categories
+
+*Type and Services of the pharmacy* +
  +
+The type and the services of a pharmacy can be administrated.
+
+Used FHIR VZD attributes: +
+
+* HealthcareService.type - See simplifier profile for possible values.
+
+.Example data:
+[%collapsible%open]
+====
+[source,txt, linenums]
+----
+                "type": [
+                    {
+                        "coding": [
+                            {
+                                "system": "https://gematik.de/fhir/directory/CodeSystem/PharmacyTypeCS",
+                                "code": "offizin-apotheke",
+                                "display": "Offizin-Apotheke"
+                            },
+                            {
+                                "system": "https://gematik.de/fhir/directory/CodeSystem/PharmacyTypeCS",
+                                "code": "versandapotheke",
+                                "display": "Versandapotheke"
+                            }
+                        ],
+                        "text": "apo-vzd"
+                    },
+                    {
+                        "coding": [
+                            {
+                                "system": "https://gematik.de/fhir/directory/CodeSystem/PharmacyTypeCS",
+                                "code": "offizin-apotheke",
+                                "display": "Offizin-Apotheke"
+                            }
+                        ],
+                        "text": "ldap"
+                    }
+                ]
+----
+====
+
+
+
+* HealthcareService.specialty - See simplifier profile for possible values.
+.Example data:
+[%collapsible%open]
+====
+[source,txt, linenums]
+----
+                "specialty": [
+                    {
+                        "coding": [
+                            {
+                                "system": "https://gematik.de/fhir/directory/CodeSystem/PharmacyHealthcareSpecialtyCS",
+                                "code": "30",
+                                "display": "Botendienst"
+                            },
+                            {
+                                "system": "https://gematik.de/fhir/directory/CodeSystem/PharmacyHealthcareSpecialtyCS",
+                                "code": "10",
+                                "display": "Handverkauf"
+                            },
+                            {
+                                "system": "https://gematik.de/fhir/directory/CodeSystem/PharmacyHealthcareSpecialtyCS",
+                                "code": "40",
+                                "display": "Versand"
+                            }
+                        ],
+                        "text": "apo-vzd"
+                    },
+                    {
+                        "coding": [
+                            {
+                                "system": "https://gematik.de/fhir/directory/CodeSystem/PharmacyHealthcareSpecialtyCS",
+                                "code": "10",
+                                "display": "Handverkauf"
+                            }
+                        ],
+                        "text": "ldap"
+                    }
+                ]
+----
+====
+
+
+*Contact details* +
+ +
+How to contact the pharmacy can be administrated.
+
+Used FHIR VZD attributes: +
+
+* HealthcareService.telecom - See simplifier profile for possible values.
+
+.Example data:
+[%collapsible%open]
+====
+[source,txt, linenums]
+----
+                "telecom": [
+                    {
+                        "system": "phone",
+                        "value": "030 1234567",
+                        "rank": 10
+                    },
+                    {
+                        "system": "fax",
+                        "value": "030 1234568",
+                        "rank": 20
+                    },
+                    {
+                        "system": "email",
+                        "value": "info@apotheke.de",
+                        "rank": 30
+                    },
+                    {
+                        "system": "url",
+                        "value": "https://www.apotheke.de",
+                        "rank": 40
+                    }
+                ]
+
+----
+====
+
+
+
+
+*Delivery area* +
+ +
+The area in which the pharmacy offers "Botendienste". +
+ +
+Used FHIR VZD attributes: +
+
+* HealthcareService.coverageArea - See simplifier profile for possible values.
+
+.Example data:
+[%collapsible%open]
+====
+[source,txt, linenums]
+----
+                "coverageArea": [
+                    {
+                        "extension": [
+                            {
+                                "url": "https://gematik.de/fhir/directory/StructureDefinition/ServiceCoverageArea",
+                                "valueQuantity": {
+                                    "value": 15000,
+                                    "system": "http://unitsofmeasure.org",
+                                    "code": "m"
+                                }
+                            }
+                        ]
+                    }
+                ]
+----
+====
+
+
+
+*Geographical coordinates* +
+ +
+Used in the eRezept Apps for feature "Umkeissuche". +
+ +
+Used FHIR VZD attributes: +
+
+* Location.position - See simplifier profile for possible values.
+
+.Example data:
+[%collapsible%open]
+====
+[source,txt, linenums]
+----
+                "position": {
+                    "longitude": 8.087935,
+                    "latitude": 51.086569
+                }
+----
+====
+
+
+
+*Opening hours* +
+ +
+The opening hours of the pharmacy.
+
+Used FHIR VZD attributes: +
+
+* HealthcareService.availableTime - See simplifier profile for possible values.
+
+.Example data:
+[%collapsible%open]
+====
+[source,txt, linenums]
+----
+                "availableTime": [
+                    {
+                        "daysOfWeek": [
+                            "mon"
+                        ],
+                        "availableStartTime": "08:00:00",
+                        "availableEndTime": "13:00:00"
+                    },
+                    {
+                        "daysOfWeek": [
+                            "mon"
+                        ],
+                        "availableStartTime": "14:00:00",
+                        "availableEndTime": "18:30:00"
+                    },
+                    {
+                        "daysOfWeek": [
+                            "tue"
+                        ],
+                        "availableStartTime": "08:00:00",
+                        "availableEndTime": "13:00:00"
+                    },
+                    {
+                        "daysOfWeek": [
+                            "tue"
+                        ],
+                        "availableStartTime": "14:00:00",
+                        "availableEndTime": "18:30:00"
+                    },
+                    {
+                        "daysOfWeek": [
+                            "wed"
+                        ],
+                        "availableStartTime": "08:00:00",
+                        "availableEndTime": "13:00:00"
+                    },
+                    {
+                        "daysOfWeek": [
+                            "wed"
+                        ],
+                        "availableStartTime": "14:00:00",
+                        "availableEndTime": "18:30:00"
+                    },
+                    {
+                        "daysOfWeek": [
+                            "thu"
+                        ],
+                        "availableStartTime": "08:00:00",
+                        "availableEndTime": "13:00:00"
+                    },
+                    {
+                        "daysOfWeek": [
+                            "thu"
+                        ],
+                        "availableStartTime": "14:00:00",
+                        "availableEndTime": "18:30:00"
+                    },
+                    {
+                        "daysOfWeek": [
+                            "fri"
+                        ],
+                        "availableStartTime": "08:00:00",
+                        "availableEndTime": "13:00:00"
+                    },
+                    {
+                        "daysOfWeek": [
+                            "fri"
+                        ],
+                        "availableStartTime": "14:00:00",
+                        "availableEndTime": "18:30:00"
+                    },
+                    {
+                        "daysOfWeek": [
+                            "sat"
+                        ],
+                        "availableStartTime": "08:30:00",
+                        "availableEndTime": "13:00:00"
+                    }
+                ],
+----
+====
+
+
+
+
+*Visibility of the pharmacy for insured persons* +
+ +
+If a pharmacy does not offer services for insured people, it can be hidden from the insured apps. 
+
+- Used FHIR VZD attribute: Organization.extension:organizationVisibility
+- link:https://github.com/gematik/api-vzd/blob/feature/gemILF_VZD_FHIR_Directory/docs/FHIR_VZD_HOWTO_UseCases.adoc#organization---set-organizationvisibility[Update Example]
+
+
+
+
+==== Update FHIR VZD resource
+Examples for FHIR operations to update the resource in the FHIR VZD. +
 
 ===== Organization - set organizationVisibility
 The following example updates attribute organizationVisibility of an Organization resource (this organization will be not found in the /fdv/search interface).
