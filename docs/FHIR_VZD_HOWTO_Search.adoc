@@ -18,7 +18,7 @@ image::gematik_logo.svg[gematik,float="right"]
 
 [width="100%",cols="50%,50%",options="header",]
 |===
-|Version: |1.1.4
+|Version: |1.1.5
 |Referencing: |gemILF_FHIR_VZD
 |===
 
@@ -52,7 +52,9 @@ Full-text search
  +
 Added description of _complexSearch=true
   |gematik
-
+|1.1.5 |02.04.25 |FHIR Operation - pharmacy radius search
+|Update example "near" Search parameter
+  |gematik
 |===
 
 == Classification of the document
@@ -854,3 +856,36 @@ GET https://fhir-directory-tu.vzd.ti-dienste.de/fdv/search/HealthcareService?org
 &_include=HealthcareService:organization
 &_include=HealthcareService:location
 ----
+
+
+== FHIR Operations
+The aim of the search operations is not only to offer users an individual interface, according to specific needs. 
+Instead of a universal approach, tailored search operations that are specifically tailored to different use cases are implemented. +
+ +
+These optimized interfaces reduce the workload for users and enable simple and targeted interaction with the system.
+
+=== Pharmacy radius search
+FHIR operation with full-text search for HealthcareService sorted by distance.  +
+ +
+Search for all organizations in the specified radius, sorted by distance, filtering for active and visible organizations and optionally
+
+- filtering by address information if provided (location parameter),
+- Full-Text search on the narrative data of the HealthcareService. Both a case-insensitive word component search (contains) and a fuzzy search based on the Levenshtein distance (default 2) of word components are carried out (text parameter),
+- filtering entries outside opening hours if they are stored in HealthcareServices. When comparing opening times defined with the target time defined by the current time and the target time defined by the "isOpenInMinutes" parameter, a configurable tolerance (default value: 1 min) is used to compensate for query and display latencies,
+- the search result is reduced to the number of organizations, defined in the "_count" parameter. The number of hits defined by the _count parameter is limited to 1 or 100 if it is outside this range.
+
+
+
+
+Example pharmacy radius search query:
+
+[source]
+----
+GET {{fhir_server}}/fdv/search/HealthcareService?_query=near
+&text=1.2.276.0.76.4.54
+&latitude=52.5128455
+&longitude=13.3912516
+&distance=10
+&_count=8
+----
+
