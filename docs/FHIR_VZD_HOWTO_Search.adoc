@@ -917,6 +917,7 @@ Example pharmacy radius search query:
 GET {{fhir_server}}/fdv/search/HealthcareService?_query=near
     &text=1.2.276.0.76.4.54
     &longitude=13.3912516
+    &latitude=52.5128455
     &distance=10
     &_count=8
 ----
