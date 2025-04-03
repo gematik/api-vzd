@@ -39,6 +39,7 @@ image::gematik_logo.svg[gematik,float="right"]
 |1.0.2 |11.09.23 |Chap. 2.5 |added chapter "2.5. Authenticate using the gematik Authenticator" |gematik
 |1.0.3 |06.12.24 |Chap. 2.1 |Update URLs in access token example |gematik
 |1.0.4 |25.02.25 |Chap. 2.6 |added chapter "2.6. Authenticate as Holder" |gematik
+|1.0.5 |02.04.25 |Chap. 2.1 |added information to fhir-vzd discovery functionality |gematik
 
 
 |===
@@ -218,6 +219,11 @@ Please use link:FHIR_VZD_HOWTO_Provider.adoc#25-example-for-adding-a-domain-with
 {counter:seq1}. After a configured interval (e.g. 5 minutes) the discovery process is repeated and changes regarding the url or port are stored.
 
 {counter:seq1}. When a request is made to the /tim-authenticate endpoint the vzd-fhir directory uses the stored url and port to create the full userinfo endpoint url.
+
+[NOTE]
+====
+The call made to the tim-authenticate endpoint i.e. {{fhir_server}}/tim-authenticate?mxId={{matrix_domain}} must contain the domain that is used in the federation list. (Not the discovered one, which will be looked up and used for the request to the userinfo endpoint.)
+====
 
 === Authenticate for the provider API
 To use the TIM-PROVIDER-API, a corresponding TIM-Provider-API Token is needed.
