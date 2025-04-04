@@ -915,7 +915,7 @@ Example pharmacy radius search query:
 [source]
 ----
 GET {{fhir_server}}/fdv/search/HealthcareService?_query=near
-    &text=1.2.276.0.76.4.54
+    &text="Öffentliche Apotheke"
     &longitude=13.3912516
     &latitude=52.5128455
     &distance=10
