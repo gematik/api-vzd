@@ -89,16 +89,16 @@ _&_include=*_ - Liefet alle FHIR Ressourcen der Apotheke. +
 __text="3-4442-ARV1448252100040518"_ - Selektiert über die FHIR VZD Volltextsuche die gewünschte Apotheke über die TelematikID.
 
 
-==== Change data
-Which attributes of which resources can be added or modified is described in the link:FHIR_VZD_HOWTO_Data.adoc[FHIR VZD data model]. +
-The simplifier profile of the FHIR VZD can be found here link:https://simplifier.net/vzd-fhir-directory[gematik FHIR Directory].
+==== Änderung von Mehrwertdaten der Apotheke
+Die gesamte Übersicht über die änderbaren Attribute wird hier beschrieben link:FHIR_VZD_HOWTO_Data.adoc[FHIR VZD data model]. +
+Das Simplifier Profile FHIR VZD kann hier eigesehen werden link:https://simplifier.net/vzd-fhir-directory[gematik FHIR Directory].
 
 [IMPORTANT]
 ====
-The client has to ensure, that the telematikID of the resource instance (or its superior Organization/Practitioner resource) and the token (see step "Authentication) match. The FHIR VZD will deny all write operations for resources with other telematikIDs. +
+Das AVS muss sicherstellen, dass die TelematikID der FHIR Ressource (bzw. der übergeordneten Apotheke/Organization) und dem verwendeten Token (siehe Kapitel "Authentifizierung) übereinstimmt. Ist dies nicht der Fall, wird der FHIR VZD die Schreiboperation ablehnen. +
 ====
 
-A pharmacy/organization may have several HealtcareServices.
+Eine Apotheke/Organization kann im FHIR VZD mehrere HealtcareServices haben. 
 
 ====
 ++++
@@ -107,7 +107,9 @@ A pharmacy/organization may have several HealtcareServices.
 </p>
 ++++
 ====
-The "main" HealtcareServices is marked with code "ldap" in HealthcareService.meta.tag:Origin
+Der - für das AVS relevante - "Haupt" HealtcareService ist mit dem Code "ldap" in HealthcareService.meta.tag:Origin markiert. 
+Die Mehrwertdaten müssen durch das AVS in diesen HealtcareService eingetragen werden.
+Alle anderen HealtcareServices der Apotheke können durch das AVS ignoriert werden.
 ====
                     "tag": [
                         {
@@ -118,7 +120,7 @@ The "main" HealtcareServices is marked with code "ldap" in HealthcareService.met
                         }
                     ]
 ====
-This HealtcareServices - marked with "ldap" - has to be updated with value-added data. 
+Die Mehrwertdaten müssen durch das AVS in den HealtcareService - markiert mit Code "ldap" - a. 
 
 
 
