@@ -63,6 +63,8 @@ Für den Zugriff auf die /owner Schnittstelle ist ein access_token nötig, welch
 
 - Falls die Apotheke den TI-Messenger (TIM) nutzt und eine eigene TIM Domaine hat, kann folgende Authentifizierung genutzt werden link:FHIR_VZD_HOWTO_Authenticate.adoc#23-authenticate-for-the-owner-endpoint-as-an-organization[Authentifizierung für die /owner Schnittstelle über TIM].
 
+Als Ergebnis der Authentifizierung erhält das AVS ein Token, welches als Bearer Token bei allen folgenden FHIR VZD Operationen im Header übergeben werden muss. Das Token hat eine Gültigkeit von 24 Stunden.
+
 [NOTE]
 ====
 Beispielimplementierungen für diese Authentifizierung sind hier verfügbar link:https://github.com/gematik/api-vzd/tree/main/samples/directory-samples-java/auth-samples[Java sample] 
