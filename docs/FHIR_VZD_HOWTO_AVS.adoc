@@ -1,0 +1,123 @@
+= FHIR VZD HOWTO UseCases
+:source-highlighter: rouge
+:icons:
+:title-page:
+:imagesdir: /images/
+ifdef::env-github[]
+:toc: preamble
+endif::[]
+ifndef::env-github[]
+:toc: left
+endif::[]
+:toclevels: 3
+:toc-title: Table of Contents
+:sectnums:
+
+
+image::gematik_logo.svg[gematik,float="right"]
+
+[width="100%",cols="50%,50%",options="header",]
+|===
+|Version: |0.0.1
+|Referencing: |gemILF_FHIR_VZD
+|===
+
+[big]*Document history*
+
+[width="100%",cols="11%,11%,7%,58%,13%",options="header",]
+|===
+|*Version* +
+ |*Stand* +
+ |*Chap./ Page* +
+ |*Change reason, special instructions* +
+ |*Editing* +
+
+|0.0.1 |04.04.25 | |Initiales Dokument |gematik
+
+|===
+
+== Einordnung des Dokumentes
+=== Zielsetzung
+Dieses Dokument beschreibt die Nutzung der FHIR VZD Schnittstellen durch AVS Systeme.
+
+=== Zielgruppe
+
+Das Dokument richtet sich an Software-Entwickler, die sich mit der Anbindung eines AVS an den FHIR VZD zur Pflege der Mehrwertdaten von Apotheken befassen.
+
+=== Geltungsbereich
+
+*Schutzrechts-/Patentrechtshinweis*
+
+_Die nachfolgende Spezifikation ist von der gematik allein unter technischen Gesichtspunkten erstellt worden. Im Einzelfall kann nicht ausgeschlossen werden, 
+dass die Implementierung der Spezifikation in technische Schutzrechte Dritter eingreift. Es ist allein Sache des Anbieters oder Herstellers, 
+durch geeignete Maßnahmen dafür Sorge zu tragen, dass von ihm aufgrund der Spezifikation angebotene Produkte und/oder Leistungen nicht gegen 
+Schutzrechte Dritter verstoßen und sich ggf. die erforderlichen Erlaubnisse/Lizenzen von den betroffenen Schutzrechtsinhabern einzuholen. 
+Die gematik GmbH übernimmt insofern keinerlei Gewährleistungen._
+
+=== Pflege von Mehrwertdaten für Apotheken
+=== Authentifizierung
+Die Pflege der Apotheken Mehrwertdaten erfogt über die FHIR VZD /owner Schnittstelle. +
+Für den Zugriff auf die /owner Schnittstelle ist ein access_token nötig, welches man über eine der folgenden Optionen erhält:
+
+- link:FHIR_VZD_HOWTO_Authenticate.adoc#24-authenticate-for-the-owner-endpoint-as-an-user[Autentifizierung für die /owner Schnittstelle mit der SMC-B der Apotheke]. Falls die Apotheke mehrere SMC-Bs mit verschiedenen TelematikID hat, muss die SMC-B mit der TelematikID genutzt werden, welche für die eRezept Funktionalität verwendet wird. Optional kann für die Authentifizierung der link:FHIR_VZD_HOWTO_Authenticate.adoc#25-authenticate-using-the-gematik-authenticator[gematik Authenticator]  genutzt werden, der die Interaktionen mit Konnektor, Kartenterminals und der SMC-B vereinfacht.
+
+- Falls die Apotheke den TI-Messenger (TIM) nutzt und eine eigene TIM Domaine hat, kann folgende Authentifizierung genutzt werden link:FHIR_VZD_HOWTO_Authenticate.adoc#23-authenticate-for-the-owner-endpoint-as-an-organization[Authentifizierung für die /owner Schnittstelle über TIM].
+
+[NOTE]
+====
+Beispielimplementierungen für diese Authentifizierung sind hier verfügbar link:https://github.com/gematik/api-vzd/tree/main/samples/directory-samples-java/auth-samples[Java sample] 
+und hier link:https://github.com/gematik/api-vzd/tree/main/samples/directory-samples-python/directory_samples[Python sample]
+====
+
+==== Suche des Apothekeneintrags
+Vor jeder Änderung von Mehrwertdaten müssen zuerst die aktuellen Daten aus dem FHIR VZD gelesen werden. Dafür können die in link:FHIR_VZD_HOWTO_Search.adoc[FHIR VZD HOWTO Search] 
+beschriebenen Suchoperationen genutzt werden. +
+ +
+Die einfachste Form ist die Suche mit der bekannten TelematikID:
+
+.Suchoperation:
+[%collapsible%open]
+====
+[source,txt, linenums]
+----
+GET {{base-url}}/owner/HealthcareService?_include=*&_text="3-4442-ARV1448252100040518"
+----
+====
+_&_include=*_ - Liefet alle FHIR Ressourcen der Apotheke. +
+__text="3-4442-ARV1448252100040518"_ - Selektiert über die FHIR VZD Volltextsuche die gewünschte Apotheke über die TelematikID.
+
+
+==== Change data
+Which attributes of which resources can be added or modified is described in the link:FHIR_VZD_HOWTO_Data.adoc[FHIR VZD data model]. +
+The simplifier profile of the FHIR VZD can be found here link:https://simplifier.net/vzd-fhir-directory[gematik FHIR Directory].
+
+[IMPORTANT]
+====
+The client has to ensure, that the telematikID of the resource instance (or its superior Organization/Practitioner resource) and the token (see step "Authentication) match. The FHIR VZD will deny all write operations for resources with other telematikIDs. +
+====
+
+A pharmacy/organization may have several HealtcareServices.
+
+====
+++++
+<p align="center">
+  <img width="55%" src=../images/diagrams/ClassDiagram.Org.with.several.HCS.svg>
+</p>
+++++
+====
+The "main" HealtcareServices is marked with code "ldap" in HealthcareService.meta.tag:Origin
+====
+                    "tag": [
+                        {
+                            "system": "https://gematik.de/fhir/directory/CodeSystem/Origin",
+                            "code": "ldap",
+                            "display": "Synchronized from LDAP VZD",
+                            "userSelected": false
+                        }
+                    ]
+====
+This HealtcareServices - marked with "ldap" - has to be updated with value-added data. 
+
+
+
+
