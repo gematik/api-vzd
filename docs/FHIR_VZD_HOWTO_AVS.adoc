@@ -2120,7 +2120,7 @@ Das Simplifier Profile FHIR VZD kann hier eigesehen werden link:https://simplifi
 Das AVS muss sicherstellen, dass die TelematikID der FHIR Ressource (bzw. der übergeordneten Apotheke/Organization) und dem verwendeten Token (siehe Kapitel "Authentifizierung) übereinstimmt. Ist dies nicht der Fall, wird der FHIR VZD die Schreiboperation ablehnen. +
 ====
 
-Eine Apotheke/Organization kann im FHIR VZD mehrere HealtcareServices haben. 
+Zur Information für alle Mehrwertdaten, die in der FHIR Ressource HealtcareService gespeichert werden: Eine Apotheke/Organization kann im FHIR VZD mehrere HealtcareServices haben. 
 
 ====
 ++++
@@ -2143,7 +2143,17 @@ Alle anderen HealtcareServices der Apotheke können durch das AVS ignoriert werd
                     ]
 ====
 
+===== Pflege der Öffnungszeiten
+Die Öffnungszeiten der Apotheke befinden sich in der FHIR Ressource HealthcareService:
 
+- HealthcareService.availableTime - Öffnungszeiten
+- HealthcareService.notAvailable - Abweichungen von den Öffnungszeiten (z.B. Ferien, Feiertage,...
+- HealthcareService.availabilityExceptions - Textuelle Beschreibung von Ausnahmen z.B. "Nicht geöffnet an gesetzlichen Feiertagen". Diese textuelle Beschreibung wird nicht maschinell ausgewertet. Deshalb sollen die Ausnahmen ebenfalls in "notAvailable" gepflegt werden, wo z.B. auch die gesetzlichen Feiertage eingetragen werden sollen.
 
+Diese Öffnungszeiten (mit Ausnahme der textuellen Beschreibung in availabilityExceptions) werden in den eRezept Apps zur Suche von geöffneten Apotheken genutzt. +
+ +
+Ablauf: +
+ +
+*1. Lesen des Apotheken-Eintrags aus dem FHIR VZD. Siehe Kapitel link:./FHIR_VZD_HOWTO_AVS.adoc#21-authentication[Suche des Apothekeneintrags]
 
 
