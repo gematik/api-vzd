@@ -53,7 +53,7 @@ Full-text search
 Added description of _complexSearch=true
   |gematik
 |1.1.5 |02.04.25 |FHIR Operation - pharmacy radius search
-|Update example "near" Search parameter
+|Added this chapter
   |gematik
 |===
 
