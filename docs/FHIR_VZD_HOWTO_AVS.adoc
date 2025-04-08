@@ -1,4 +1,4 @@
-= FHIR VZD HOWTO UseCases
+= FHIR VZD HOWTO AVS
 :source-highlighter: rouge
 :icons:
 :title-page:
@@ -32,7 +32,7 @@ image::gematik_logo.svg[gematik,float="right"]
  |*Change reason, special instructions* +
  |*Editing* +
 
-|0.0.1 |04.04.25 | |Initiales Dokument |gematik
+|0.0.1 |08.04.25 | |Initiales Dokument |gematik
 
 |===
 
