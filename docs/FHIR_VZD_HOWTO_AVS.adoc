@@ -2143,13 +2143,15 @@ Alle anderen HealtcareServices der Apotheke können durch das AVS ignoriert werd
                     ]
 ====
 
-===== Pflege der Öffnungszeiten und Kontaktdaten
-Die Öffnungszeiten und Kontaktdaten der Apotheke befinden sich in der FHIR Ressource HealthcareService:
+===== Pflege der Öffnungszeiten, Dienstleistungen und Kontaktdaten
+Die Öffnungszeiten, Dienstleistungen und Kontaktdaten der Apotheke befinden sich in der FHIR Ressource HealthcareService:
 
 - HealthcareService.availableTime - Öffnungszeiten
 - HealthcareService.notAvailable - Abweichungen von den Öffnungszeiten (z.B. Ferien, Feiertage,...
 - HealthcareService.availabilityExceptions - Textuelle Beschreibung von Ausnahmen z.B. "Nicht geöffnet an gesetzlichen Feiertagen". Diese textuelle Beschreibung wird nicht maschinell ausgewertet. Deshalb sollen die Ausnahmen ebenfalls in "notAvailable" gepflegt werden, wo z.B. auch die gesetzlichen Feiertage eingetragen werden sollen.
 - HealthcareService.telecom - Kontaktdaten
+- HealthcareService.characteristic:technicalCharacteristic - Technische Dienstleistungen der Apotheke entsprechend Simplifier Codesystem link:https://simplifier.net/vzd-fhir-directory/vzdhealthcareservicecharacteristicscs[VZDHealthCareServiceCharacteristicsCS].
+- HealthcareService.characteristic:physicalFeatures - Ausstattung und Informationen zur Anfahrt entsprechend link:https://simplifier.net/vzd-fhir-directory/physicalfeatures[PhysicalFeaturesHealthCareServiceCS].
 
 Diese Öffnungszeiten (mit Ausnahme der textuellen Beschreibung in availabilityExceptions) werden in den eRezept Apps zur Suche von geöffneten Apotheken genutzt. +
 Die Kontaktdaten werden in den Apps angezeit und teilweise direkt aufgerufen (z.B. URL, e-mail der Apotheke oder Telefonnummer). +
@@ -2294,12 +2296,13 @@ Ablauf: +
 ----
 ====
 
-*3. Aktualisierung der Öffnungszeiten in der Ressource* +
+*3. Aktualisierung der relevanten Daten in der Ressource* +
  +
 
 - Im FHIR VZD sind für diese Apotheke die Öffnungszeiten in "availableTime" eingetragen. "availableTime" wird durch die aktuellen Öffnungszeiten aus dem AVS überschrieben.
 - "notAvailable" und "availabilityExceptions" ist im FHIR VZD Datensatz nicht vorhanden und wird vom AVS ergänzt.
 - In den Kontaktdaten "telecom" wird die e-mail Adresse ergänzt.
+- Die Dienstleistungen der Apotheke "characteristic" sind bisher nicht vorhanden und werden ergänzt. 
 
 .Der aktualisierte HealthcareService
 [%collapsible%closed]
@@ -2472,7 +2475,60 @@ Ablauf: +
                     }
                 ],
                 "availabilityExceptions": "An Feiertagen geschlossen",
-                "endpoint": [
+		"characteristic":  [
+			{
+				"extension":  [
+					{
+						"url": "https://gematik.de/fhir/directory/StructureDefinition/PhysicalFeaturesAdditionalNoteEX",
+						"valueString": "Parkplatz vor der Apotheke"
+					}
+				],
+				"coding":  [
+					{
+						"code": "parkmoeglichkeit",
+						"system": "https://gematik.de/fhir/directory/CodeSystem/physicalFeatures",
+						"display": "Parkmöglichkeit"
+					}
+				]
+			},
+			{
+				"coding":  [
+					{
+						"code": "erx-token-receiver",
+						"system": "https://gematik.de/fhir/directory/CodeSystem/VZDHealthCareServiceCharacteristicsCS",
+						"display": "eRX Token Receiver"
+					}
+				]
+			},
+			{
+				"coding":  [
+					{
+						"code": "apotheke-verfuegbarkeitsanfrage",
+						"system": "https://gematik.de/fhir/directory/CodeSystem/VZDHealthCareServiceCharacteristicsCS",
+						"display": "Apotheke: Verfügbarkeitsanfrage"
+					}
+				]
+			},
+			{
+				"coding":  [
+					{
+						"code": "terminbuchung",
+						"system": "https://gematik.de/fhir/directory/CodeSystem/VZDHealthCareServiceCharacteristicsCS",
+						"display": "Terminbuchung"
+					}
+				]
+			},
+			{
+				"coding":  [
+					{
+						"code": "oepnv",
+						"system": "https://gematik.de/fhir/directory/CodeSystem/physicalFeatures",
+						"display": "ÖPNV in der Nähe"
+					}
+				]
+			}
+		],
+		"endpoint": [
                     {
                         "reference": "Endpoint/8c57ff0b-58d3-44a5-9ef3-5eca8517d1ca"
                     }
@@ -2499,7 +2555,7 @@ Der "Request Body" von der PUT Operation entspricht dem aktualisierten Healthcar
 
 
 
-===== Pflege von Apotheken-Diensten 
+===== Pflege von Apotheken-Diensten für "Zuweisen ohne Anmeldung"
 
-Die Öffnungszeiten und Kontaktdaten der Apotheke befinden sich in der FHIR Ressource HealthcareService:
+
 
