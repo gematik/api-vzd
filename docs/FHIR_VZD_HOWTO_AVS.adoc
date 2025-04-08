@@ -2229,18 +2229,26 @@ Ablauf: +
                     }
                 ],
                 "telecom": [
-                    {
-                        "system": "phone",
-                        "value": "+49 130 2861960"
-                    },
-                    {
-                        "system": "fax",
-                        "value": "+49 130 2861967"
-                    },
-                    {
-                        "system": "email",
-                        "value": "+49130286196@email-test.gematik.de"
-                    }
+                  {
+                   "system": "phone",
+                   "value": "0301234567",
+                   "rank": 10
+                  },
+                  {
+                   "system": "fax",
+                   "value": "0301234568",
+                   "rank": 20
+                  },
+                  {
+                   "system": "email",
+                   "value": "info@apotheke.de",
+                   "rank": 30
+                  },
+                  {
+                   "system": "url",
+                   "value": "http://www.apotheke.com",
+                   "rank": 40
+                  }
                 ],
                 "availableTime": [
                     {
@@ -2367,18 +2375,26 @@ Ablauf: +
                     }
                 ],
                 "telecom": [
-                    {
-                        "system": "phone",
-                        "value": "+49 130 2861960"
-                    },
-                    {
-                        "system": "fax",
-                        "value": "+49 130 2861967"
-                    },
-                    {
-                        "system": "email",
-                        "value": "+49130286196@email-test.gematik.de"
-                    }
+                  {
+                   "system": "phone",
+                   "value": "0301234567",
+                   "rank": 10
+                  },
+                  {
+                   "system": "fax",
+                   "value": "0301234568",
+                   "rank": 20
+                  },
+                  {
+                   "system": "email",
+                   "value": "info@apotheke.de",
+                   "rank": 30
+                  },
+                  {
+                   "system": "url",
+                   "value": "http://www.apotheke.com",
+                   "rank": 40
+                  }
                 ],
                 "availableTime": [
                     {
@@ -2422,24 +2438,42 @@ Ablauf: +
                         ],
                         "availableStartTime": "08:00:00",
                         "availableEndTime": "18:00:00"
-                    }
-                ],
-                "notAvailable": [
-                    {
-                        "description": "Urlaub",
-                        "during":   { 
-                             "start": "2025-09-01",
-                             "end": "2025-09-01",
-                                      }
                     },
                     {
-                        "description": "1. Mai",
-                        "during":   { 
-                             "start": "2025-05-01",
-                             "end": "2025-05-01",
+                     "extension": [
+                         {
+                           "url": "https://gematik.de/fhir/directory/StructureDefinition/SpecialOpeningTimesEX",
+                           "extension": [
+                               {
+                                   "url": "period",
+                                   "valuePeriod": {
+                                      "start": "07/20/2024 06:30:00",
+                                      "end": "07/21/2024 06:30:00"
+                                    }
+                               },
+                               {
+                                  "url": "qualifier",
+                                  "valueCoding": {
+                                      "code": "notdienst",
+                                      "system": "https://gematik.de/fhir/directory/CodeSystem/OpeningTimeQualifierCS",
+                                      "display": "Notdienst"
                                       }
+                                }
+                            ]
+                         }
+					  ]
                     }
                 ],
+                "notAvailable":  [
+                    {
+                       "description": "Urlaub",
+                       "during": {
+                          "start": "2024-09-01",
+                          "end": "2024-09-21"
+                       }
+                    }
+                ],
+                "availabilityExceptions": "An Feiertagen geschlossen",
                 "endpoint": [
                     {
                         "reference": "Endpoint/8c57ff0b-58d3-44a5-9ef3-5eca8517d1ca"
@@ -2449,3 +2483,8 @@ Ablauf: +
         }
 ----
 ====
+
+*4. Schreiben des aktualisierten HealthcareService in den FHIR VZD* +
+ +
+Das AVS schreibt den - in Punkt 3 aktualisierten - HealthcareService mit einer FHIR PUT Operation in den FHIR VZD.
+
