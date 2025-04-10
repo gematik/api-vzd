@@ -2146,15 +2146,17 @@ Alle anderen HealtcareServices der Apotheke können durch das AVS ignoriert werd
 ===== Pflege der Öffnungszeiten, Dienstleistungen und Kontaktdaten
 Die Öffnungszeiten, Dienstleistungen und Kontaktdaten der Apotheke befinden sich in der FHIR Ressource HealthcareService:
 
-- HealthcareService.availableTime - Öffnungszeiten
-- HealthcareService.notAvailable - Abweichungen von den Öffnungszeiten (z.B. Ferien, Feiertage,...
+- HealthcareService.availableTime - Öffnungszeiten - Werden für die Suche nach geöffneten Apotheken im VZD & Apps ausgewertet.
+- HealthcareService.notAvailable - Abweichungen von den Öffnungszeiten (z.B. Ferien, Feiertage,...).
 - HealthcareService.availabilityExceptions - Textuelle Beschreibung von Ausnahmen z.B. "Nicht geöffnet an gesetzlichen Feiertagen". Diese textuelle Beschreibung wird nicht maschinell ausgewertet. Deshalb sollen die Ausnahmen ebenfalls in "notAvailable" gepflegt werden, wo z.B. auch die gesetzlichen Feiertage eingetragen werden sollen.
-- HealthcareService.telecom - Kontaktdaten
+- HealthcareService.telecom - Kontaktdaten.
 - HealthcareService.characteristic:technicalCharacteristic - Technische Dienstleistungen der Apotheke entsprechend Simplifier Codesystem link:https://simplifier.net/vzd-fhir-directory/vzdhealthcareservicecharacteristicscs[VZDHealthCareServiceCharacteristicsCS].
 - HealthcareService.characteristic:physicalFeatures - Ausstattung und Informationen zur Anfahrt entsprechend link:https://simplifier.net/vzd-fhir-directory/physicalfeatures[PhysicalFeaturesHealthCareServiceCS].
 
 Diese Öffnungszeiten (mit Ausnahme der textuellen Beschreibung in availabilityExceptions) werden in den eRezept Apps zur Suche von geöffneten Apotheken genutzt. +
 Die Kontaktdaten werden in den Apps angezeit und teilweise direkt aufgerufen (z.B. URL, e-mail der Apotheke oder Telefonnummer). +
+Die Technische Dienstleistungen (HealthcareService.characteristic:technicalCharacteristic) müssen eingetragen werden, wenn die Apotheke diese Dienstleistung anbietet. +
+Die Ausstattung und Informationen zur Anfahrt (HealthcareService.characteristic:physicalFeatures) dienen der Information für die Kunden und können in VZD Suche als Suchkriterium genutzt werden. Zum Beispiel "Suche nach barrierefreien Apotheken an einem Ort". +
  +
 Ablauf: +
  +
@@ -2535,6 +2537,373 @@ Ablauf: +
                 ]
             }
         }
+----
+====
+
+*4. Schreiben des aktualisierten HealthcareService in den FHIR VZD* +
+ +
+Das AVS schreibt den - in Punkt 3 aktualisierten - HealthcareService mit einer FHIR PUT Operation in den FHIR VZD.
+
+.Request
+[source]
+----
+PUT https://fhir-directory-test.vzd.ti-dienste.de/owner/HealthcareService/9ea6bb93-d5ac-49ea-ab8c-0d4736e867be
+----
+
+Der "Request Body" von der PUT Operation entspricht dem aktualisierten HealthcareService Datensatz aus Punkt 3.
+
+
+
+
+===== Pflege der Daten für Botendienste
+Wenn die Apotheke Botendienste anbietet (HealthcareService.specialty=30 "Botendienst"), kann über HealthcareService.coverageArea das Liefergebiet eingetragen werden. Diese Daten dienen der Ermittlung der Apotheken mit Botendienste, die zu einem bestimmten Wohnort liefern. +
+In HealthcareService.coverageArea können folgende (optionale) Daten eingetragen werden:
+
+- HealthcareService.coverageArea.extension:serviceCoverageArea - Liefergebiet für Botendienste als Radius um die Apotheken-Adresse - Angabe in Meter.
+- HealthcareService.coverageArea.extension:serviceCoveragePostalCode - Liefergebiet für Botendienste als Liste von Postleitzahlen.
+
+"serviceCoverageArea" und "serviceCoveragePostalCode" können einzeln oder in Kombination angegeben werden. Das Liefergebiet ist die Gesamtmenge aus beiden Attributen. +
+ +
+.Beispieldaten für ein Botendienst-Liefergebiet
+[%collapsible%closed]
+====
+[source,txt, linenums]
+----
+    "coverageArea": [
+        {
+            "extension": [
+                {
+                    "url": "https://gematik.de/fhir/directory/StructureDefinition/ServiceCoverageArea",
+                    "valueQuantity": {
+                        "system": "http://unitsofmeasure.org",
+                        "code": "m",
+                        "value": 10000
+                    }
+                },
+                {
+                    "url": "https://gematik.de/fhir/directory/StructureDefinition/ServiceCoveragePostalCode",
+                    "valueString": "60596"
+                },
+                {
+                    "url": "https://gematik.de/fhir/directory/StructureDefinition/ServiceCoveragePostalCode",
+                    "valueString": "60597"
+                },
+                {
+                    "url": "https://gematik.de/fhir/directory/StructureDefinition/ServiceCoveragePostalCode",
+                    "valueString": "60598"
+                }
+            ]
+        }
+    ]
+----
+====
+
+ +
+Ablauf: +
+ +
+*1. Lesen des Apotheken-Eintrags aus dem FHIR VZD*. Siehe Kapitel link:./FHIR_VZD_HOWTO_AVS.adoc#151-suche-des-apothekeneintrags[Suche des Apothekeneintrags]. +
+*2. Extrahieren der relevanten Ressource aus dem Suchergebnis.* Das Botendienst-Liefergebiet befindet sich in FHIR Ressource HealthcareService mit HealthcareService.meta.tag:Origin=ldap
+
+.FHIR Ressource HealthcareService - aktuelle Daten aus dem FHIR VZD
+[%collapsible%closed]
+====
+[source,txt, linenums]
+----
+{
+                "resourceType": "HealthcareService",
+                "id": "9ea6bb93-d5ac-49ea-ab8c-0d4736e867be",
+                "meta": {
+                    "versionId": "2",
+                    "lastUpdated": "2025-02-17T13:49:56.205+01:00",
+                    "profile": [
+                        "https://gematik.de/fhir/directory/StructureDefinition/HealthcareServiceDirectory"
+                    ],
+                    "tag": [
+                        {
+                            "system": "https://gematik.de/fhir/directory/CodeSystem/Origin",
+                            "code": "ldap",
+                            "display": "Synchronized from LDAP VZD"
+                        },
+                        {
+                            "system": "https://gematik.de/fhir/directory/source",
+                            "code": "ARV-TDG-20250213"
+                        }
+                    ]
+                },
+                "identifier": [
+                    {
+                        "system": "http://hl7.org/fhir/sid/us-npi",
+                        "value": "a52337c2-7dab-4607-ad6c-d5d8b5bd6013"
+                    }
+                ],
+                "providedBy": {
+                    "reference": "Organization/b5938fc4-2b37-4800-8859-9d2b7cfbe647"
+                },
+                "type": [
+                    {
+                        "coding": [
+                            {
+                                "system": "https://gematik.de/fhir/directory/CodeSystem/PharmacyTypeCS",
+                                "code": "versandapotheke",
+                                "display": "Versandapotheke"
+                            }
+                        ]
+                    }
+                ],
+                "specialty": [
+                    {
+                        "coding": [
+                            {
+                                "system": "https://gematik.de/fhir/directory/CodeSystem/PharmacyHealthcareSpecialtyCS",
+                                "code": "30",
+                                "display": "Botendienst"
+                            }
+                        ]
+                    },
+                    {
+                        "coding": [
+                            {
+                                "system": "https://gematik.de/fhir/directory/CodeSystem/PharmacyHealthcareSpecialtyCS",
+                                "code": "20",
+                                "display": "Nacht- und Notdienst"
+                            }
+                        ]
+                    }
+                ],
+                "location": [
+                    {
+                        "reference": "Location/42dd2bae-2b51-42cd-b993-4102b6a223a0"
+                    }
+                ],
+                "telecom": [
+                  {
+                   "system": "phone",
+                   "value": "0301234567",
+                   "rank": 10
+                  },
+                  {
+                   "system": "fax",
+                   "value": "0301234568",
+                   "rank": 20
+                  },
+                  {
+                   "system": "url",
+                   "value": "http://www.apotheke.com",
+                   "rank": 40
+                  }
+                ],
+                "availableTime": [
+                    {
+                        "daysOfWeek": [
+                            "mon"
+                        ],
+                        "availableStartTime": "08:30:00",
+                        "availableEndTime": "18:00:00"
+                    },
+                    {
+                        "daysOfWeek": [
+                            "tue"
+                        ],
+                        "availableStartTime": "07:00:00",
+                        "availableEndTime": "18:00:00"
+                    },
+                    {
+                        "daysOfWeek": [
+                            "wed"
+                        ],
+                        "availableStartTime": "08:00:00",
+                        "availableEndTime": "18:00:00"
+                    },
+                    {
+                        "daysOfWeek": [
+                            "thu"
+                        ],
+                        "availableStartTime": "08:30:00",
+                        "availableEndTime": "22:00:00"
+                    },
+                    {
+                        "daysOfWeek": [
+                            "fri"
+                        ],
+                        "availableStartTime": "08:00:00",
+                        "availableEndTime": "18:00:00"
+                    }
+                ],
+                "endpoint": [
+                    {
+                        "reference": "Endpoint/8c57ff0b-58d3-44a5-9ef3-5eca8517d1ca"
+                    }
+                ]
+            }
+
+----
+====
+
+*3. Aktualisierung der relevanten Daten in der Ressource* +
+ +
+Im FHIR VZD ist für diese Apotheke der Service "Botendienst" in HealthcareService.specialty eingetragen, Ein Liefergebiet für die Botendienste ist aktuell im Datensatz nicht vorhanden. +
+Das AVS ergänzt das Liefergebiet in den Attributen serviceCoverageArea und serviceCoveragePostalCode.
+
+- "serviceCoverageArea" - 10.000 Meter
+- "serviceCoveragePostalCode" - Die Postleitzahlen: 60596, 60597, 60598
+
+.Der aktualisierte HealthcareService
+[%collapsible%closed]
+====
+[source,txt, linenums]
+----
+{
+                "resourceType": "HealthcareService",
+                "id": "9ea6bb93-d5ac-49ea-ab8c-0d4736e867be",
+                "meta": {
+                    "versionId": "2",
+                    "lastUpdated": "2025-02-17T13:49:56.205+01:00",
+                    "profile": [
+                        "https://gematik.de/fhir/directory/StructureDefinition/HealthcareServiceDirectory"
+                    ],
+                    "tag": [
+                        {
+                            "system": "https://gematik.de/fhir/directory/CodeSystem/Origin",
+                            "code": "ldap",
+                            "display": "Synchronized from LDAP VZD"
+                        },
+                        {
+                            "system": "https://gematik.de/fhir/directory/source",
+                            "code": "ARV-TDG-20250213"
+                        }
+                    ]
+                },
+                "identifier": [
+                    {
+                        "system": "http://hl7.org/fhir/sid/us-npi",
+                        "value": "a52337c2-7dab-4607-ad6c-d5d8b5bd6013"
+                    }
+                ],
+                "providedBy": {
+                    "reference": "Organization/b5938fc4-2b37-4800-8859-9d2b7cfbe647"
+                },
+                "type": [
+                    {
+                        "coding": [
+                            {
+                                "system": "https://gematik.de/fhir/directory/CodeSystem/PharmacyTypeCS",
+                                "code": "versandapotheke",
+                                "display": "Versandapotheke"
+                            }
+                        ]
+                    }
+                ],
+                "specialty": [
+                    {
+                        "coding": [
+                            {
+                                "system": "https://gematik.de/fhir/directory/CodeSystem/PharmacyHealthcareSpecialtyCS",
+                                "code": "30",
+                                "display": "Botendienst"
+                            }
+                        ]
+                    },
+                    {
+                        "coding": [
+                            {
+                                "system": "https://gematik.de/fhir/directory/CodeSystem/PharmacyHealthcareSpecialtyCS",
+                                "code": "20",
+                                "display": "Nacht- und Notdienst"
+                            }
+                        ]
+                    }
+                ],
+                "location": [
+                    {
+                        "reference": "Location/42dd2bae-2b51-42cd-b993-4102b6a223a0"
+                    }
+                ],
+                "telecom": [
+                  {
+                   "system": "phone",
+                   "value": "0301234567",
+                   "rank": 10
+                  },
+                  {
+                   "system": "fax",
+                   "value": "0301234568",
+                   "rank": 20
+                  },
+                  {
+                   "system": "url",
+                   "value": "http://www.apotheke.com",
+                   "rank": 40
+                  }
+                ],
+                "availableTime": [
+                    {
+                        "daysOfWeek": [
+                            "mon"
+                        ],
+                        "availableStartTime": "08:30:00",
+                        "availableEndTime": "18:00:00"
+                    },
+                    {
+                        "daysOfWeek": [
+                            "tue"
+                        ],
+                        "availableStartTime": "07:00:00",
+                        "availableEndTime": "18:00:00"
+                    },
+                    {
+                        "daysOfWeek": [
+                            "wed"
+                        ],
+                        "availableStartTime": "08:00:00",
+                        "availableEndTime": "18:00:00"
+                    },
+                    {
+                        "daysOfWeek": [
+                            "thu"
+                        ],
+                        "availableStartTime": "08:30:00",
+                        "availableEndTime": "22:00:00"
+                    },
+                    {
+                        "daysOfWeek": [
+                            "fri"
+                        ],
+                        "availableStartTime": "08:00:00",
+                        "availableEndTime": "18:00:00"
+                    }
+                ],
+		"coverageArea": [
+			{
+				"extension": [
+					{
+						"url": "https://gematik.de/fhir/directory/StructureDefinition/ServiceCoverageArea",
+						"valueQuantity": {
+							"system": "http://unitsofmeasure.org",
+							"code": "m",
+							"value": 10000
+						}
+					},
+					{
+						"url": "https://gematik.de/fhir/directory/StructureDefinition/ServiceCoveragePostalCode",
+						"valueString": "60596"
+					},
+					{
+						"url": "https://gematik.de/fhir/directory/StructureDefinition/ServiceCoveragePostalCode",
+						"valueString": "60597"
+					},
+					{
+						"url": "https://gematik.de/fhir/directory/StructureDefinition/ServiceCoveragePostalCode",
+						"valueString": "60598"
+					}
+				]
+			}
+		],
+                "endpoint": [
+                    {
+                        "reference": "Endpoint/8c57ff0b-58d3-44a5-9ef3-5eca8517d1ca"
+                    }
+                ]
+            }
 ----
 ====
 
