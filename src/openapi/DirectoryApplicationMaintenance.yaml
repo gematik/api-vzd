@@ -6,13 +6,19 @@ info:
    # REST Schnittstelle zur Pflege der Fachanwendungsdaten der Verzeichniseinträge
      Über diese Schnittstelle können Fachanwendungsdaten der Verzeichniseinträge erzeugt, aktualisiert und gelöscht werden. 
 
-  version: 1.4.5
+  version: 1.4.6
 
+  # Änderungen in Version 1.4.6
+  #  Attribut "lanr" (Lebenslange Arztnummer) ergänzt in Schema "baseDirectoryEntry" 
+  #  und als Suchparameter in Operation
+  #  - read_Directory_Entry
+  # 
   # Änderungen in Version 1.4.5
   #  - Operation read_Directory_Entry: 
   #    Attribute aus "Suche nach Vorhandensein oder leerem Inhalt" in description entfernt
   #                - changeDateTimeFrom
   #                - changeDateTimeTo
+  #
   # Änderungen in Version 1.4.4
   #  - Schema baseDirectoryEntry: 
   #     Attribut providedBy ergänzt
@@ -186,6 +192,7 @@ paths:
                   - organization
                   - otherName
                   - telematikID
+                  - lanr
                   - providedBy
                   - specialization
                   - domainID
@@ -206,6 +213,7 @@ paths:
                   - title
                   - organization
                   - otherName
+                  - lanr
                   - specialization
                   - domainID
                   - holder
@@ -292,6 +300,11 @@ paths:
          Entspricht der LDAP Filters Substring Assertion vom Typ "subInitial Component".
         schema:
           type: string  
+      - name: lanr
+        in: query
+        description: Erlaubt die Suche mit Hilfe des Attributs lanr (die lebenslange Arztnummer in den Basisdaten).
+        schema:
+          type: string  
       - name: providedBy
         in: query
         description: |
@@ -319,7 +332,7 @@ paths:
          Erlaubt die Suche mit Hilfe des Attributs holder. 
          Der Verzeichniseintrag wird selektiert, wenn der angegebene holder im Attribut holder (array) des Verzeichniseintrags enthalten ist.
           Wenn der Parameter mit dem eigenen Wert des Clients belegt wird, werden alle gefundenen Einträge zurückgegeben (maximal 100 Einträge).
-          Zur Suche nach Einträge ohne holder ist der Parameter mit dem einem leeren String "" zu belegen. Auch in diesem Fall werden alle gefundenen Einträge zurückgegeben (maximal 100 Einträge).
+          Zur Suche nach Einträge ohne holder ist der Parameter mit einem leeren String "" zu belegen. Auch in diesem Fall werden alle gefundenen Einträge zurückgegeben (maximal 100 Einträge).
         schema:
           type: string  
       - name: personalEntry
@@ -336,14 +349,14 @@ paths:
         in: query
         description: |
          Erlaubt die Suche mit Hilfe des Attributs professionOID. 
-         Selektiert der Verzeichniseintrag, wenn der angegebene Wert in den professionOID's (array) des Basiseintrags vorhanden ist. 
+         Selektiert den Verzeichniseintrag, wenn der angegebene Wert in den professionOID's (array) des Basiseintrags vorhanden ist. 
         schema:
           type: string  
       - name: entryType
         in: query
         description: |
          Erlaubt die Suche mit Hilfe des Attributs entryType. 
-         Selektiert der Verzeichniseintrag, wenn der angegebene Wert in den entryType's (array) des Basiseintrags vorhanden ist. 
+         Selektiert den Verzeichniseintrag, wenn der angegebene Wert in den entryType's (array) des Basiseintrags vorhanden ist. 
         schema:
           type: string  
       - name: maxKOMLEadr
@@ -1182,10 +1195,9 @@ components:
                 type: array
                 items:
                   type: string
-                  example: 
-                    - eEB;V1.0
-                    - DALE-UV;Einsendung;V1.0
-                  description: 'Anwendungskennzeichen, welche diese KIM-Mail-Adresse verarbeiten kann'
+                  description: |
+                     'Anwendungskennzeichen, welche diese KIM-Mail-Adresse verarbeiten kann
+                     Beispiel für Attributbelegung: [ "eEB;V1.0", "DALE-UV;Einsendung;V1.0" ]'
               noVzdMailEntry:
                   type: boolean
                   default: false
@@ -1260,10 +1272,9 @@ components:
                 type: array
                 items:
                   type: string
-                  example: 
-                    - eEB;V1.0
-                    - DALE-UV;Einsendung;V1.0
-                  description: 'Anwendungskennzeichen, welche diese KIM-Mail-Adresse verarbeiten kann'
+                  description: |
+                     'Anwendungskennzeichen, welche diese KIM-Mail-Adresse verarbeiten kann
+                     Beispiel für Attributbelegung: [ "eEB;V1.0", "DALE-UV;Einsendung;V1.0" ]'
             description: |
               Liste von KIM-Adressen mit der zugehörigen KIM-Version und Anwendungskennzeichen. 
               Für jede Mail Adresse darf nur einen Element in der Liste `kimData` existieren. 
@@ -1373,6 +1384,12 @@ components:
           description: 'Wird beim Anlegen des Eintrags vom VZD aus dem Zertifikat übernommen (Feld registrationNumber der Extension Admission).
                     Falls der Basiseintrag (baseDirectoryEntry) ohne Zertifikat angelegt wird, kann in Operation add_Directory_Entry die telematikID angegeben werden.
             Damit ist der Verzeichniseintrag bereits über die telematikID im baseDirectoryEntry auffindbar. Diese telematikID muss mit der telematikID aus dem Zertifikatseintrag (userCertificate) übereinstimmen. Simmten die telematikIDs nicht überein, wird die Operation mit Fehlercode 422 abgelehnt' 
+        lanr:
+          type: array
+          description: Die lebenslange Arztnummer, kurz LANR, dient der Suche nach Ärzten. 
+                       Insbesondere für die Suche durch Clients, welche die TelematikID nicht vorliegen haben.
+          items:
+            type: string
         providedBy:
           type: string
           description: |
@@ -1450,7 +1467,7 @@ components:
         changeDateTime:
           type: string
 #          format: date-time Mit dieser Format Vorgabe ist kein Code mehr generierbar, deshalb auskommentiert. Es soll sich aber weiterhin an das Format gehalten werden.
-          description: Der VZD setzt dieses Attribut bei jeder Schreiboperation für den Datensatz (Basisdaten) auf die aktuelle Zeit. Format entsprechend RFC 3339, section 5.6.
+          description: Der VZD setzt dieses Attribut bei jeder Schreiboperation für den Datensatz (Basisdaten) und die zugeordneten Zertifikate auf die aktuelle Zeit. Format entsprechend RFC 3339, section 5.6.
           readOnly: true
           example: "2017-07-21T17:32:28Z"
         professionOID:
