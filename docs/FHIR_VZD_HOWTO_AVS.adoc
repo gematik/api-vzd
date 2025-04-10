@@ -2514,15 +2514,6 @@ Ablauf: +
 			{
 				"coding":  [
 					{
-						"code": "terminbuchung",
-						"system": "https://gematik.de/fhir/directory/CodeSystem/VZDHealthCareServiceCharacteristicsCS",
-						"display": "Terminbuchung"
-					}
-				]
-			},
-			{
-				"coding":  [
-					{
 						"code": "oepnv",
 						"system": "https://gematik.de/fhir/directory/CodeSystem/physicalFeatures",
 						"display": "ÖPNV in der Nähe"
@@ -2925,6 +2916,59 @@ Der "Request Body" von der PUT Operation entspricht dem aktualisierten Healthcar
 
 
 ===== Pflege von Apotheken-Diensten für "Zuweisen ohne Anmeldung"
+Dienstleistungen der Apotheke können optional zusätlich über "Zuweisen ohne Anmeldung" angeboten werden. Dafür muss zusätlich zu der Dienstleitung in HealthcareService.characteristic:technicalCharacteristic die zugehörige URL in einem FHIR VZD Endpoint eingetragen und dieser mit dem HealthcareService verlinkt werden.
+
+Ablauf: +
+ +
+*1. Lesen des Apotheken-Eintrags aus dem FHIR VZD*. Siehe Kapitel link:./FHIR_VZD_HOWTO_AVS.adoc#151-suche-des-apothekeneintrags[Suche des Apothekeneintrags]. +
+*2. Extrahieren der relevanten Ressource aus dem Suchergebnis.* Die Dienstleistungen der Apotheke befinden sich in FHIR Ressource HealthcareService mit HealthcareService.meta.tag:Origin=ldap 
+*3. Prüfen der verlinkten Endpoints von dem HealthcareService.* Falls Endpunkte mit dem HealthcareService verlinkt sind, muss Attribut Endpoint.connectionType auf Übereinstimmung mit der einzutragenden Dienstleitung geprüft werden (eRP-onPremise, eRP-delivery, eRP-shipment, eRP-availability) geprüft werden. +
+
+
+- Wenn ein passender Endpunkt verfügbar ist, muss er mit der aktuellen URL aktualisiert werden.
+- Wenn kein passender Endpunkt verfügbar ist, muss ein neuer Endpunkt angelegt und mit dem HealthcareService verlinkt werden.
+
+
+
+.FHIR Ressource HealthcareService - aktuelle Daten aus dem FHIR VZD
+[%collapsible%closed]
+====
+[source,txt, linenums]
+----
+
+
+----
+====
+
+*3. Aktualisierung der relevanten Daten in der Ressource* +
+ +
+Im FHIR VZD ist für diese Apotheke der Service "Botendienst" in HealthcareService.specialty eingetragen, Ein Liefergebiet für die Botendienste ist aktuell im Datensatz nicht vorhanden. +
+Das AVS ergänzt das Liefergebiet in den Attributen serviceCoverageArea und serviceCoveragePostalCode.
+
+- "serviceCoverageArea" - 10.000 Meter
+- "serviceCoveragePostalCode" - Die Postleitzahlen: 60596, 60597, 60598
+
+.Der aktualisierte HealthcareService
+[%collapsible%closed]
+====
+[source,txt, linenums]
+----
+
+
+----
+====
+
+*4. Schreiben des aktualisierten HealthcareService in den FHIR VZD* +
+ +
+Das AVS schreibt den - in Punkt 3 aktualisierten - HealthcareService mit einer FHIR PUT Operation in den FHIR VZD.
+
+.Request
+[source]
+----
+PUT https://fhir-directory-test.vzd.ti-dienste.de/owner/HealthcareService/9ea6bb93-d5ac-49ea-ab8c-0d4736e867be
+----
+
+Der "Request Body" von der PUT Operation entspricht dem aktualisierten HealthcareService Datensatz aus Punkt 3.
 
 
 
