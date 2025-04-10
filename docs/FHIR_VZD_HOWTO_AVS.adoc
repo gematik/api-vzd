@@ -2562,8 +2562,8 @@ In HealthcareService.coverageArea können folgende (optionale) Daten eingetragen
 - HealthcareService.coverageArea.extension:serviceCoverageArea - Liefergebiet für Botendienste als Radius um die Apotheken-Adresse - Angabe in Meter.
 - HealthcareService.coverageArea.extension:serviceCoveragePostalCode - Liefergebiet für Botendienste als Liste von Postleitzahlen.
 
-"serviceCoverageArea" und "serviceCoveragePostalCode" können einzeln oder in Kombination angegeben werden. Das Liefergebiet ist die Gesamtmenge aus beiden Attributen. +
- +
+"serviceCoverageArea" und "serviceCoveragePostalCode" können einzeln oder in Kombination angegeben werden. Das Liefergebiet ist die Gesamtmenge aus beiden Attributen. 
+
 .Beispieldaten für ein Botendienst-Liefergebiet
 [%collapsible%closed]
 ====
@@ -2598,7 +2598,7 @@ In HealthcareService.coverageArea können folgende (optionale) Daten eingetragen
 ----
 ====
 
- +
+
 Ablauf: +
  +
 *1. Lesen des Apotheken-Eintrags aus dem FHIR VZD*. Siehe Kapitel link:./FHIR_VZD_HOWTO_AVS.adoc#151-suche-des-apothekeneintrags[Suche des Apothekeneintrags]. +
