@@ -1427,7 +1427,7 @@ POST https://fhir-directory.vzd.ti-dienste.de/owner/Endpoint
             ]
         }
     ],
-    "address": "https://......."
+    "address": "https://ixosapi.service-pt.de/api/GematikAppZuweisung/544566?sig=TiHnTBHTqJwq6NGO3iqDcGBTYGVf%2bBnQAVGPBAz8ZVs%3d&se=2606242634"
 }
 ----
 ====
