@@ -1772,7 +1772,6 @@ Ablauf: +
 ====
 [source,txt, linenums]
 ----
-
             {
                 "resourceType": "Organization",
                 "id": "b5938fc4-2b37-4800-8859-9d2b7cfbe647",
@@ -1939,3 +1938,152 @@ PUT https://fhir-directory.vzd.ti-dienste.de/owner/Organization/b5938fc4-2b37-48
             }
 ----
 ====
+
+
+
+
+
+
+
+===== Pflege der Geo-Koordinaten der Apotheke
+
+Für jede Apotheke ist im FHIR VZD eine Adresse in einer Location Ressource hinterlegt. Für diese Adresse werden die Geo-Koordinaten automatisch ermittelt und in "Location.position" hinterlegt. Wenn die Geo-Koordinaten zu der Adresse nicht automatisch ermittelbar oder zu ungenau waren, können sie korrigiert werden. Bei Änderung der Adresse über die Apothekenkammer werden die Geo-Koordinaten vom FHIR VZD wieder automatisch ermittelt und ersetzen die vorhandenen Werte. +
+Der Wert Location.position.altitude wird im FHIR VZD und den Apps nicht verwendet. +
+In der Location Ressource können nur die Geo-Koordinaten in "Location.position" geändert werden. +
+ +
+Die Geo-Koordinaten der Apotheke werden in den e-Rezept Apps für die Umreissuche der Versicherten nach Apotheken genutzt. +
+ +
+Ablauf: +
+ +
+*1. Lesen des Apotheken-Eintrags aus dem FHIR VZD*. Siehe Kapitel link:./FHIR_VZD_HOWTO_AVS.adoc#151-suche-des-apothekeneintrags[Suche des Apothekeneintrags]. +
+*2. Extrahieren der relevanten Ressource aus dem Suchergebnis.* Die Geo-Koordinaten der Apotheke befindet sich in der FHIR Ressource Location, die in FHIR Ressource HealthcareService (mit HealthcareService.meta.tag:Origin=ldap) referenziert wird. Dieser HealthcareService referenziert genau eine Location Ressource.
+
+.FHIR Ressource Location - aktuelle Daten aus dem FHIR VZD
+[%collapsible%closed]
+====
+[source,txt, linenums]
+----
+	{
+		"resource": {
+                "resourceType": "Location",
+                "id": "42dd2bae-2b51-42cd-b993-4102b6a223a0",
+                "meta": {
+                    "versionId": "1",
+                    "lastUpdated": "2025-02-17T13:49:10.376+01:00",
+                    "source": "#SV5pStlGBhJR5qS2",
+                    "profile": [
+                        "https://gematik.de/fhir/directory/StructureDefinition/LocationDirectory"
+                    ],
+                    "tag": [
+                        {
+                            "system": "https://gematik.de/fhir/directory/CodeSystem/Origin",
+                            "code": "ldap",
+                            "display": "Synchronized from LDAP VZD"
+                        },
+                        {
+                            "system": "https://gematik.de/fhir/directory/source",
+                            "code": "ARV-TDG-20250213"
+                        }
+                    ]
+                },
+                "identifier": [
+                    {
+                        "system": "http://hl7.org/fhir/sid/us-npi",
+                        "value": "3cce2ec3-650e-4492-bfe4-9f59626904e5"
+                    }
+                ],
+                "name": "Location of Organisation 3-4442-ARV1448252100040518",
+                "address": {
+                    "use": "work",
+                    "type": "postal",
+                    "text": "Charlottenstraße 57&#13;&#10;10117&#13;&#10;Berlin",
+                    "line": [
+                        "Charlottenstraße 57"
+                    ],
+                    "city": "Berlin",
+                    "state": "Berlin",
+                    "postalCode": "10117",
+                    "country": "DE"
+                },
+                "position": {
+                    "longitude": 13.3912516,
+                    "latitude": 52.5128455
+                }
+            }
+	}	
+----
+====
+
+
+*3. Aktualisierung der Location Ressource.*  +
+Die Location Ressource enthält bereits die "Location.position". 
+Die Werte in "Location.position.longitude" und "Location.position.latitude" werden durch das AVS korrigiert.
+
+
+*4. Schreiben der aktualisierten Organization in den FHIR VZD* +
+ +
+Das AVS schreibt die - in Punkt 3 aktualisierte - Location mit einer FHIR PUT Operation in den FHIR VZD.
+
+.Request
+[source]
+----
+PUT https://fhir-directory.vzd.ti-dienste.de/owner/Location/42dd2bae-2b51-42cd-b993-4102b6a223a0
+----
+
+.Body von dem PUT
+[%collapsible%closed]
+====
+[source,txt, linenums]
+----
+	{
+		"resource": {
+                "resourceType": "Location",
+                "id": "42dd2bae-2b51-42cd-b993-4102b6a223a0",
+                "meta": {
+                    "versionId": "1",
+                    "lastUpdated": "2025-02-17T13:49:10.376+01:00",
+                    "source": "#SV5pStlGBhJR5qS2",
+                    "profile": [
+                        "https://gematik.de/fhir/directory/StructureDefinition/LocationDirectory"
+                    ],
+                    "tag": [
+                        {
+                            "system": "https://gematik.de/fhir/directory/CodeSystem/Origin",
+                            "code": "ldap",
+                            "display": "Synchronized from LDAP VZD"
+                        },
+                        {
+                            "system": "https://gematik.de/fhir/directory/source",
+                            "code": "ARV-TDG-20250213"
+                        }
+                    ]
+                },
+                "identifier": [
+                    {
+                        "system": "http://hl7.org/fhir/sid/us-npi",
+                        "value": "3cce2ec3-650e-4492-bfe4-9f59626904e5"
+                    }
+                ],
+                "name": "Location of Organisation 3-4442-ARV1448252100040518",
+                "address": {
+                    "use": "work",
+                    "type": "postal",
+                    "text": "Charlottenstraße 57&#13;&#10;10117&#13;&#10;Berlin",
+                    "line": [
+                        "Charlottenstraße 57"
+                    ],
+                    "city": "Berlin",
+                    "state": "Berlin",
+                    "postalCode": "10117",
+                    "country": "DE"
+                },
+                "position": {
+                    "longitude": 13.3912516,
+                    "latitude": 52.5126600
+                }
+            }
+	}	
+
+----
+====
+
