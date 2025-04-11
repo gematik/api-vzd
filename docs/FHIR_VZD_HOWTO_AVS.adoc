@@ -1427,7 +1427,7 @@ POST https://fhir-directory.vzd.ti-dienste.de/owner/Endpoint
             ]
         }
     ],
-    "address": "https://ixosapi.service-pt.de/api/GematikAppZuweisung/544566?sig=TiHnTBHTqJwq6NGO3iqDcGBTYGVf%2bBnQAVGPBAz8ZVs%3d&se=2606242634"
+    "address": "https://test.endpoint.address.do.not.use.local/3-0002-ARV1007143800036051/eRP-delivery"
 }
 ----
 ====
@@ -1484,7 +1484,7 @@ Der FHIR VZD liefert als Ergebnis von dem erfolgreichen POST Request mit HTTP St
             ]
         }
     ],
-    "address": "https://......."
+    "address": "https://test.endpoint.address.do.not.use.local/3-0002-ARV1007143800036051/eRP-delivery"
 }
 ----
 ====
