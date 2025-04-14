@@ -24,6 +24,6 @@ HealthcareService --> Location
  
 Organization <-- HealthcareService_n
 HealthcareService_n --> Endpoint_n
-HealthcareService_n --> Location_n
+
  
 @enduml
