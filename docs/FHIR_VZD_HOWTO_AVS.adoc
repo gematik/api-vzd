@@ -400,6 +400,8 @@ Die Öffnungszeiten, Dienstleistungen und Kontaktdaten der Apotheke befinden sic
 - HealthcareService.characteristic:technicalCharacteristic - Technische Dienstleistungen der Apotheke entsprechend Simplifier Codesystem link:https://simplifier.net/vzd-fhir-directory/vzdhealthcareservicecharacteristicscs[VZDHealthCareServiceCharacteristicsCS].
 - HealthcareService.characteristic:physicalFeatures - Ausstattung und Informationen zur Anfahrt entsprechend link:https://simplifier.net/vzd-fhir-directory/physicalfeatures[PhysicalFeaturesHealthCareServiceCS].
 
+TIP: Das Eintragen von Dienstleistungen für "Zuweisen ohne Anmeldung" wird in Kapitel link:FHIR_VZD_HOWTO_AVS.adoc#pflege-von-apotheken-diensten-für-zuweisen-ohne-anmeldung[Pflege von Apotheken-Diensten für "Zuweisen ohne Anmeldung"] beschrieben.
+
 Diese Öffnungszeiten (mit Ausnahme der textuellen Beschreibung in availabilityExceptions) werden in den eRezept Apps zur Suche von geöffneten Apotheken genutzt. +
 Die Kontaktdaten werden in den Apps angezeit und teilweise direkt aufgerufen (z.B. URL, e-mail der Apotheke oder Telefonnummer). +
 Die Technische Dienstleistungen (HealthcareService.characteristic:technicalCharacteristic) müssen eingetragen werden, wenn die Apotheke diese Dienstleistung anbietet. +
