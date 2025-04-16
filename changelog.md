@@ -1,6 +1,21 @@
 # Changelog
 
-## 2025-02-0276 Version 0.12.0
+## 2025-03-21 Version 0.13.0
+- `change`: removed KBV_CS_SFHIR_BAR2_WBO_OID_URL (urn:oid:1.2.276.0.76.5.114) as these were replaced by IHE codes several years ago. 
+- `change`: removed KBV_CS_SFHIR_BAR2_WBO_OID_URL (urn:oid:1.2.276.0.76.5.114) from PractitionerQualificationVS
+- `fix`: set VS binding on correct element for Endpoint.connectionType. Was on code, but should be on connectionType(Coding)
+- `feat`: added holderId Extension to PractitionerRoleDirectory and HealthcareServiceDirectory to represent the holderId.
+- `feat`: added OwnerTelematikIdEx Extension
+- `feat`: added OwnerTelematikIdEx to HealthcareServiceDirectory, PractitionerRoleDirectory and HealthcareServiceDirectory
+- `feat`: added SearchParameter HolderIdSP to enable search for holderIds
+- `feat`: added SearchParameter OwnerTelematikIdSP to enable search for owners TelematikId
+- `feat`: split VZD-Service-Opening-TimeInv in two Invariants to report better validation errors to implementers
+- `change`: moved .telecom from Practitioner to PractitionerRole
+
+### data migration
+- copy .telecom from Practitioner to PractitionerRole(s), remove .telecom on Practitioner
+
+## 2025-02-27 Version 0.12.0
 - `feat`: using SemVer for release versions
 - `change`: new concepts added to: OrganizationProfessionOID
 - `change`: new concepts added to: PractitionerProfessionOID
