@@ -216,27 +216,6 @@
       "use": "work"
     }
   ],
-  "communication": [
-    {
-      "coding": [
-        {
-          "code": "de",
-          "system": "urn:ietf:bcp:47",
-          "display": "German"
-        }
-      ]
-    },
-    {
-      "coding": [
-        {
-          "code": "en",
-          "system": "urn:ietf:bcp:47",
-          "display": "English"
-        }
-      ]
-    }
-  ],
-  "appointmentRequired": false,
   "notAvailable": [
     {
       "description": "Urlaub",

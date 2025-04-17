@@ -7,7 +7,7 @@ Description: "Endpoints for applications in the gematik Directory"
 * id MS
 * extension contains 
   EndpointVisibility named endpointVisibility 0..* MS and
-  OwnerTelematikIdEx named ownerTelematikId 0..1 MS
+  OwnerTelematikIdEx named ownerTelematikId 0..* MS
 * meta.tag 1.. MS
   * ^slicing.discriminator.type = #pattern
   * ^slicing.discriminator.path = "system"

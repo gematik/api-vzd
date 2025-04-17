@@ -9,11 +9,12 @@ on:
     paths:
       - 'src/fhir/**'
       - '.github/**'
-    branches-ignore:
-    - 'main**'
+    branches-ignore: [ main ]
   pull_request:
-    branches:
-    - 'main**'
+    branches: [ main ]
+    paths:
+      - 'src/fhir/**'
+      - '.github/**'
   workflow_call:
     secrets:
       SIMPLIFIER_USERNAME:

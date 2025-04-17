@@ -80,9 +80,6 @@ Description: "Example of an HealthcareService as to be found in gematik FHIR Dir
 * telecom[+].system = $ContactPointSystem#phone "Phone"
 * telecom[=].value = "030 7654321"
 * telecom[=].use = $ContactPointUse#work "Work"
-* communication[+] = $CommonLanguages#de "German"
-* communication[+] = $CommonLanguages#en "English"
-* appointmentRequired = true 
 * availableTime[+]
   * daysOfWeek = $DaysOfWeek#mon "Monday"
   * availableStartTime = "08:00:00"

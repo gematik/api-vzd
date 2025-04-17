@@ -37,9 +37,6 @@ Description: "PharmacyHealthCareServiceExample"
 * telecom[+].system = $ContactPointSystem#phone "Phone"
 * telecom[=].value = "030 1234567"
 * telecom[=].use = $ContactPointUse#work "Work"
-* communication[+] = $CommonLanguages#de "German"
-* communication[+] = $CommonLanguages#en "English"
-* appointmentRequired = false 
 * availableTime[+]
   * daysOfWeek = $DaysOfWeek#mon "Monday"
   * availableStartTime = "08:00:00"

@@ -7,7 +7,7 @@ organisations specific for german Healthcare and Telematics Infrastructure.
 * insert Meta
 * extension contains 
   HolderIdEx named holderId 0..* MS and
-  OwnerTelematikIdEx named ownerTelematikId 0..1 MS
+  OwnerTelematikIdEx named ownerTelematikId 0..* MS
 * meta.tag 1.. MS
   * ^slicing.discriminator.type = #pattern
   * ^slicing.discriminator.path = "system"

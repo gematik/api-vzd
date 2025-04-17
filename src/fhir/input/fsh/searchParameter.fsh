@@ -106,6 +106,8 @@ Usage: #definition
 * name = "owner-telematik-id"
 * description = "SearchParameter for the Telematik ID of the owner of a resource using the OwnerTelematikIdEx extension"
 * code = #owner-telematik-id
-* base = #Resource
+* base[+] = #Endpoint
+* base[+] = #HealthcareService
+* base[+] = #PractitionerRole
 * type = #token
-* expression = "Resource.extension.where(url='https://gematik.de/fhir/directory/StructureDefinition/OwnerTelematikIdEx').value"
+* expression = "extension.where(url='https://gematik.de/fhir/directory/StructureDefinition/OwnerTelematikIdEx').value"
