@@ -13,6 +13,7 @@
 - `feat`: split VZD-Service-Opening-TimeInv in two Invariants to report better validation errors to implementers
 - `change`: moved .telecom from Practitioner to PractitionerRole
 - `change`: removed communication and appointmentRequired from examples, as these are currently not used
+- `change`: remove deprecated codes from VZDHealthCareServiceCharacteristicsCS
 
 ### data migration
 - copy .telecom from Practitioner to PractitionerRole(s), remove .telecom on Practitioner
