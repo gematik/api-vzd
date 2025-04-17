@@ -107,15 +107,6 @@
     {
       "coding": [
         {
-          "code": "apotheke-verfuegbarkeitsanfrage",
-          "system": "https://gematik.de/fhir/directory/CodeSystem/VZDHealthCareServiceCharacteristicsCS",
-          "display": "Apotheke: Verfügbarkeitsanfrage"
-        }
-      ]
-    },
-    {
-      "coding": [
-        {
           "code": "terminbuchung",
           "system": "https://gematik.de/fhir/directory/CodeSystem/VZDHealthCareServiceCharacteristicsCS",
           "display": "Terminbuchung"
