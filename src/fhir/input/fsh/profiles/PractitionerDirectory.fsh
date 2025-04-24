@@ -22,7 +22,7 @@ Title: "Practitioner in gematik Directory"
 * name 1..1 MS
   * text 1..1 MS
   * family 1..1 MS
-  * given 1..* MS
+  * given MS
   * prefix MS
   * suffix MS
 * gender MS
