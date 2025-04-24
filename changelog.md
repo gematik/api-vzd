@@ -14,6 +14,7 @@
 - `change`: moved .telecom from Practitioner to PractitionerRole
 - `change`: removed communication and appointmentRequired from examples, as these are currently not used
 - `change`: remove deprecated codes from VZDHealthCareServiceCharacteristicsCS
+- `change`: update PractitionerDirectory to change cardinality of 'given' field from 1..* to 0..* 
 
 ### data migration
 - copy .telecom from Practitioner to PractitionerRole(s), remove .telecom on Practitioner
