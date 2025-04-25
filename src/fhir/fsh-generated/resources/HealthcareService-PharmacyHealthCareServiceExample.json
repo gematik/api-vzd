@@ -107,15 +107,6 @@
     {
       "coding": [
         {
-          "code": "apotheke-verfuegbarkeitsanfrage",
-          "system": "https://gematik.de/fhir/directory/CodeSystem/VZDHealthCareServiceCharacteristicsCS",
-          "display": "Apotheke: Verfügbarkeitsanfrage"
-        }
-      ]
-    },
-    {
-      "coding": [
-        {
           "code": "terminbuchung",
           "system": "https://gematik.de/fhir/directory/CodeSystem/VZDHealthCareServiceCharacteristicsCS",
           "display": "Terminbuchung"
@@ -216,27 +207,6 @@
       "use": "work"
     }
   ],
-  "communication": [
-    {
-      "coding": [
-        {
-          "code": "de",
-          "system": "urn:ietf:bcp:47",
-          "display": "German"
-        }
-      ]
-    },
-    {
-      "coding": [
-        {
-          "code": "en",
-          "system": "urn:ietf:bcp:47",
-          "display": "English"
-        }
-      ]
-    }
-  ],
-  "appointmentRequired": false,
   "notAvailable": [
     {
       "description": "Urlaub",

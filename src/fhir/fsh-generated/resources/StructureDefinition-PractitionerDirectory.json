@@ -2,7 +2,7 @@
   "resourceType": "StructureDefinition",
   "id": "PractitionerDirectory",
   "url": "https://gematik.de/fhir/directory/StructureDefinition/PractitionerDirectory",
-  "version": "0.12.0",
+  "version": "0.13.0",
   "name": "PractitionerDirectory",
   "title": "Practitioner in gematik Directory",
   "status": "active",
@@ -133,7 +133,6 @@
       {
         "id": "Practitioner.name.given",
         "path": "Practitioner.name.given",
-        "min": 1,
         "mustSupport": true
       },
       {
@@ -144,26 +143,6 @@
       {
         "id": "Practitioner.name.suffix",
         "path": "Practitioner.name.suffix",
-        "mustSupport": true
-      },
-      {
-        "id": "Practitioner.telecom",
-        "path": "Practitioner.telecom",
-        "mustSupport": true
-      },
-      {
-        "id": "Practitioner.telecom.system",
-        "path": "Practitioner.telecom.system",
-        "mustSupport": true
-      },
-      {
-        "id": "Practitioner.telecom.value",
-        "path": "Practitioner.telecom.value",
-        "mustSupport": true
-      },
-      {
-        "id": "Practitioner.telecom.use",
-        "path": "Practitioner.telecom.use",
         "mustSupport": true
       },
       {

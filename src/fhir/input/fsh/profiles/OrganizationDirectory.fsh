@@ -23,20 +23,23 @@ organisations specific for german Healthcare and Telematics Infrastructure.
 * identifier ^slicing.discriminator.type = #value
 * identifier ^slicing.discriminator.path = "system"
 * identifier ^slicing.rules = #open
-* identifier contains TelematikID 1..1 MS
+* identifier contains 
+    TelematikID 1..1 MS and
+    BSNR 0..1 MS and
+    KZVA 0..1 MS and
+    IKNR 0..* MS
 * identifier[TelematikID] only $IdentifierTelematikID
-* identifier contains BSNR 0..1 MS
 * identifier[BSNR] only $IdentifierBSNR
-* identifier contains KZVA 0..1 MS
 * identifier[KZVA] only $IdentifierKZVA
-* identifier contains IKNR 0..* MS
 * identifier[IKNR] only $IdentifierIKNR
 * type 1..* MS
   * ^slicing.discriminator.type = #pattern
   * ^slicing.discriminator.path = "$this"
   * ^slicing.rules = #open
 * type.coding obeys CodingSytemCodeInv
-* type contains providerType 0..*  MS and profession 0..* MS
+* type contains
+    providerType 0..* MS and
+    profession 0..* MS
 * type[providerType] from OrganizationTypeVS
 * type[profession] from OrganizationProfessionOIDTypeVS
 * name 1..1 MS

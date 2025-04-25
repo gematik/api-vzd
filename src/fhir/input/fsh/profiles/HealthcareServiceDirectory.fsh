@@ -5,6 +5,9 @@ Description: """Defines the data structure for medical, regulatory and technical
 organisations specific for german Healthcare and Telematics Infrastructure.
 """
 * insert Meta
+* extension contains 
+  HolderIdEx named holderId 0..* MS and
+  OwnerTelematikIdEx named ownerTelematikId 0..* MS
 * meta.tag 1.. MS
   * ^slicing.discriminator.type = #pattern
   * ^slicing.discriminator.path = "system"
@@ -40,7 +43,8 @@ organisations specific for german Healthcare and Telematics Infrastructure.
   * coding obeys CodingSytemCodeInv
 * appointmentRequired MS
 * availableTime MS
-  * obeys VZD-Service-Opening-TimeInv
+  * obeys VZD-Service-Opening-TimeInv-1
+  * obeys VZD-Service-Opening-TimeInv-2
   * extension contains SpecialOpeningTimesEX named specialOpeningTimes 0..1 MS
   * daysOfWeek ..1 MS
   * allDay ..0

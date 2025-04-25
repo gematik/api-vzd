@@ -2,6 +2,9 @@ Profile: PractitionerRoleDirectory
 Parent: PractitionerRole
 Title: "PractitionerRole in gematik Directory"
 * insert Meta
+* extension contains 
+  HolderIdEx named holderId 0..* MS and
+  OwnerTelematikIdEx named ownerTelematikId 0..* MS
 * meta.tag 1.. MS
   * ^slicing.discriminator.type = #pattern
   * ^slicing.discriminator.path = "system"
@@ -16,6 +19,10 @@ Title: "PractitionerRole in gematik Directory"
 * endpoint MS
 * healthcareService MS
 * organization MS
+* telecom MS
+  * system MS
+  * value MS
+  * use MS
 
 Profile: PractitionerRoleDirectoryStrict
 Parent: PractitionerRoleDirectory
@@ -31,7 +38,6 @@ Description: "PractitionerRole in gematik Directory with strict constraints"
 * period 0..0
 * code 0..0
 * specialty 0..0
-* telecom 0..0
 * availableTime 0..0
 * notAvailable 0..0
 * availabilityExceptions 0..0

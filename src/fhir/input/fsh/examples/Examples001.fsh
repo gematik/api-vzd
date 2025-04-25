@@ -26,7 +26,7 @@ Description: "Example of a Practitioner (Dentist) as to be found in gematik FHIR
   * text = "Dr. Max Manfred Mustermann"
 
 Instance: PractitionerRoleExample
-InstanceOf: PractitionerRoleDirectory
+InstanceOf: PractitionerRoleDirectoryStrict
 Usage: #example
 Description: "Example of an PractitionerRole as to be found in gematik FHIR Directory"
 * meta.tag[Origin] = Origin#ldap
@@ -50,7 +50,7 @@ Description: "Example of an Organization as to be found in gematik FHIR Director
 * contact.telecom[=].value = "030 1234567"
 
 Instance: LocationExample
-InstanceOf: LocationDirectory
+InstanceOf: LocationDirectoryStrict
 Usage: #example
 Description: "Example of a Location as to be found in gematik FHIR Directory"
 * meta.tag[Origin] = Origin#ldap
@@ -69,6 +69,7 @@ InstanceOf: HealthcareServiceDirectoryStrict
 Usage: #example
 Description: "Example of an HealthcareService as to be found in gematik FHIR Directory"
 * meta.tag[Origin] = Origin#ldap
+* extension[holderId].valueCode = #dtrust
 * providedBy = Reference(OrganizationExample)
 * identifier[TelematikID].value = "2-2.58.00000040"
 * category = PatientBezogenenGesundheitsversorgung#PRA "Arztpraxis"
@@ -79,9 +80,6 @@ Description: "Example of an HealthcareService as to be found in gematik FHIR Dir
 * telecom[+].system = $ContactPointSystem#phone "Phone"
 * telecom[=].value = "030 7654321"
 * telecom[=].use = $ContactPointUse#work "Work"
-* communication[+] = $CommonLanguages#de "German"
-* communication[+] = $CommonLanguages#en "English"
-* appointmentRequired = true 
 * availableTime[+]
   * daysOfWeek = $DaysOfWeek#mon "Monday"
   * availableStartTime = "08:00:00"

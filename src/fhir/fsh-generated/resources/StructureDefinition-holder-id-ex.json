@@ -1,21 +1,25 @@
 {
   "resourceType": "StructureDefinition",
-  "id": "ServiceCoveragePostalCode",
-  "url": "https://gematik.de/fhir/directory/StructureDefinition/ServiceCoveragePostalCode",
+  "id": "holder-id-ex",
+  "url": "https://gematik.de/fhir/directory/StructureDefinition/holder-id-ex",
   "version": "0.13.0",
-  "name": "ServiceCoveragePostalCode",
-  "title": "ServiceCoveragePostalCode",
+  "name": "HolderIdEx",
+  "title": "Holder ID Extension",
   "status": "active",
   "experimental": false,
   "date": "2024-10-29",
   "publisher": "gematik GmbH",
-  "description": "Service coverage area expressed as a postal code (PLZ)",
+  "description": "Extension for the holder ID of a HealthCard",
   "fhirVersion": "4.0.1",
   "kind": "complex-type",
   "abstract": false,
   "context": [
     {
-      "expression": "HealthcareService.coverageArea",
+      "expression": "HealthcareService",
+      "type": "element"
+    },
+    {
+      "expression": "PractitionerRole",
       "type": "element"
     }
   ],
@@ -27,8 +31,8 @@
       {
         "id": "Extension",
         "path": "Extension",
-        "short": "ServiceCoveragePostalCode",
-        "definition": "Service coverage area expressed as a postal code (PLZ)"
+        "short": "Holder ID Extension",
+        "definition": "Extension for the holder ID of a HealthCard"
       },
       {
         "id": "Extension.extension",
@@ -38,7 +42,7 @@
       {
         "id": "Extension.url",
         "path": "Extension.url",
-        "fixedUri": "https://gematik.de/fhir/directory/StructureDefinition/ServiceCoveragePostalCode"
+        "fixedUri": "https://gematik.de/fhir/directory/StructureDefinition/holder-id-ex"
       },
       {
         "id": "Extension.value[x]",
@@ -46,7 +50,7 @@
         "min": 1,
         "type": [
           {
-            "code": "string"
+            "code": "code"
           }
         ],
         "mustSupport": true

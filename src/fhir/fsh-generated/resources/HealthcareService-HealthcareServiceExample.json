@@ -12,6 +12,12 @@
       "https://gematik.de/fhir/directory/StructureDefinition/HealthcareServiceDirectoryStrict"
     ]
   },
+  "extension": [
+    {
+      "url": "https://gematik.de/fhir/directory/StructureDefinition/holder-id-ex",
+      "valueCode": "dtrust"
+    }
+  ],
   "identifier": [
     {
       "system": "https://gematik.de/fhir/sid/telematik-id",
@@ -65,27 +71,6 @@
       "use": "work"
     }
   ],
-  "communication": [
-    {
-      "coding": [
-        {
-          "code": "de",
-          "system": "urn:ietf:bcp:47",
-          "display": "German"
-        }
-      ]
-    },
-    {
-      "coding": [
-        {
-          "code": "en",
-          "system": "urn:ietf:bcp:47",
-          "display": "English"
-        }
-      ]
-    }
-  ],
-  "appointmentRequired": true,
   "availableTime": [
     {
       "daysOfWeek": [

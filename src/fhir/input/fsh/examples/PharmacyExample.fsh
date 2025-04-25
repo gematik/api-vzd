@@ -37,9 +37,6 @@ Description: "PharmacyHealthCareServiceExample"
 * telecom[+].system = $ContactPointSystem#phone "Phone"
 * telecom[=].value = "030 1234567"
 * telecom[=].use = $ContactPointUse#work "Work"
-* communication[+] = $CommonLanguages#de "German"
-* communication[+] = $CommonLanguages#en "English"
-* appointmentRequired = false 
 * availableTime[+]
   * daysOfWeek = $DaysOfWeek#mon "Monday"
   * availableStartTime = "08:00:00"
@@ -76,7 +73,8 @@ Description: "PharmacyHealthCareServiceExample"
 * availabilityExceptions = "An Feiertagen geschlossen"
 * endpoint[+] = Reference(MessengerEndpointWithVisibility)
 * characteristic[technicalCharacteristic][+] = VZDHealthCareServiceCharacteristicsCS#erx-token-receiver "eRX Token Receiver"
-* characteristic[technicalCharacteristic][+] = VZDHealthCareServiceCharacteristicsCS#apotheke-verfuegbarkeitsanfrage "Apotheke: Verfügbarkeitsanfrage"
+// Die folgenden Verfahren wurden zurückgestellt, und werden daher vorerst entfernt
+//* characteristic[technicalCharacteristic][+] = VZDHealthCareServiceCharacteristicsCS#apotheke-verfuegbarkeitsanfrage "Apotheke: Verfügbarkeitsanfrage"
 * characteristic[technicalCharacteristic][+] = VZDHealthCareServiceCharacteristicsCS#terminbuchung "Terminbuchung"
 * characteristic[physicalFeatures][+] = PhysicalFeaturesHealthCareServiceCS#parkmoeglichkeit "Parkmöglichkeit"
   * extension[additionalNote].valueString = "Vor dem Haus"

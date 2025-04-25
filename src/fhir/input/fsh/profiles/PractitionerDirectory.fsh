@@ -22,13 +22,9 @@ Title: "Practitioner in gematik Directory"
 * name 1..1 MS
   * text 1..1 MS
   * family 1..1 MS
-  * given 1..* MS
+  * given MS
   * prefix MS
   * suffix MS
-* telecom MS
-  * system MS
-  * value MS
-  * use MS
 * gender MS
 * birthDate MS
 * photo MS
@@ -52,6 +48,7 @@ Description: "Practitioner in gematik Directory with strict constraints"
   ^slicing.rules = #closed
 * active 0..0
 * address 0..0
+* telecom 0..0
 * qualification 
   * code
     * coding only CodingWithCodeAndSystem

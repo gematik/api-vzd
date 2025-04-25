@@ -2,7 +2,7 @@
   "resourceType": "StructureDefinition",
   "id": "HealthcareServiceDirectory",
   "url": "https://gematik.de/fhir/directory/StructureDefinition/HealthcareServiceDirectory",
-  "version": "0.12.0",
+  "version": "0.13.0",
   "name": "HealthcareServiceDirectory",
   "title": "HealthcareService in gematik Directory",
   "status": "active",
@@ -64,6 +64,38 @@
         "path": "HealthcareService.meta.tag.system",
         "min": 1,
         "patternUri": "https://gematik.de/fhir/directory/CodeSystem/Origin"
+      },
+      {
+        "id": "HealthcareService.extension:holderId",
+        "path": "HealthcareService.extension",
+        "sliceName": "holderId",
+        "min": 0,
+        "max": "*",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "https://gematik.de/fhir/directory/StructureDefinition/holder-id-ex"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "HealthcareService.extension:ownerTelematikId",
+        "path": "HealthcareService.extension",
+        "sliceName": "ownerTelematikId",
+        "min": 0,
+        "max": "*",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "https://gematik.de/fhir/directory/StructureDefinition/OwnerTelematikIdEx"
+            ]
+          }
+        ],
+        "mustSupport": true
       },
       {
         "id": "HealthcareService.identifier",
@@ -338,10 +370,17 @@
         "path": "HealthcareService.availableTime",
         "constraint": [
           {
-            "key": "VZD-Service-Opening-TimeInv",
+            "key": "VZD-Service-Opening-TimeInv-1",
             "severity": "error",
-            "human": "Only allows either specialOpeningTimes extension or daysOfWeek, availableStartTime, availableEndTime",
-            "expression": "extension('https://gematik.de/fhir/directory/StructureDefinition/SpecialOpeningTimesEX').exists() xor (daysOfWeek.exists() and availableStartTime.exists() and availableEndTime.exists())",
+            "human": "If the specialOpeningTimes extension is set, daysOfWeek, availableStartTime, and availableEndTime must not be set.",
+            "expression": "extension('https://gematik.de/fhir/directory/StructureDefinition/SpecialOpeningTimesEX').exists() implies (daysOfWeek.empty() and availableStartTime.empty() and availableEndTime.empty())",
+            "source": "https://gematik.de/fhir/directory/StructureDefinition/HealthcareServiceDirectory"
+          },
+          {
+            "key": "VZD-Service-Opening-TimeInv-2",
+            "severity": "error",
+            "human": "If the specialOpeningTimes extension is not set, daysOfWeek, availableStartTime, and availableEndTime all must be set.",
+            "expression": "extension('https://gematik.de/fhir/directory/StructureDefinition/SpecialOpeningTimesEX').empty() implies (daysOfWeek.exists() and availableStartTime.exists() and availableEndTime.exists())",
             "source": "https://gematik.de/fhir/directory/StructureDefinition/HealthcareServiceDirectory"
           }
         ],
