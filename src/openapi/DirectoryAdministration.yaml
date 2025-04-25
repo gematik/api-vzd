@@ -3,8 +3,15 @@ info:
   title: I_Directory_Administration
   description: REST Schnittstelle zur Pflege der Verzeichniseinträge.
               Über diese Schnittstelle können Verzeichniseinträge inklusive Zertifikaten erzeugt, aktualisiert und gelöscht werden. Die Administration von Fachdaten erfolgt über Schnittstelle I_Directory_Application_Maintenance und wird durch die Fachanwendungen durchgeführt. Lesender Zugriff auf die Fachdaten ist mit Operation getDirectoryEntries in vorliegender Schnittstelle möglich.
-  version: 1.12.6
+  version: 1.12.7
 
+  # Änderungen in Version 1.12.7
+  #  Attribut "lanr" (Lebenslange Arztnummer) ergänzt in Schema "baseDirectoryEntry" 
+  #  und als Suchparameter in Operationen
+  #  - read_Directory_Entry
+  #  - read_Directory_Entry_for_Sync
+  #  - read_Directory_Entry_for_Sync_paging
+  # 
   # Änderungen in Version 1.12.6
   #  - Operation read_Directory_Entry: 
   #    Attribute aus "Suche nach Vorhandensein oder leerem Inhalt" in description entfernt
@@ -374,6 +381,7 @@ paths:
                   - organization
                   - otherName
                   - telematikID
+                  - lanr
                   - providedBy
                   - specialization
                   - domainID
@@ -394,6 +402,7 @@ paths:
                   - title
                   - organization
                   - otherName
+                  - lanr
                   - specialization
                   - domainID
                   - holder
@@ -478,6 +487,11 @@ paths:
         in: query
         description: Erlaubt die Suche nach einem Substring am Anfang der telematikID (die telematikID in den Basisdaten).
                       Entspricht der LDAP Filters Substring Assertion vom Typ "subInitial Component".
+        schema:
+          type: string  
+      - name: lanr
+        in: query
+        description: Erlaubt die Suche mit Hilfe des Attributs lanr (die lebenslange Arztnummer in den Basisdaten).
         schema:
           type: string  
       - name: providedBy
@@ -644,6 +658,7 @@ paths:
 #           - organization
 #           - otherName
 #           - telematikID
+#           - lanr
 #           - specialization
 #           - domainID
 #           - holder
@@ -668,6 +683,7 @@ paths:
 #           - title
 #           - organization
 #           - otherName
+#           - lanr
 #           - specialization
 #           - domainID
 #           - holder
@@ -755,6 +771,11 @@ paths:
         in: query
         description: Erlaubt die Suche nach einem Substring am Anfang der telematikID (die telematikID in den Basisdaten).
                       Entspricht der LDAP Filters Substring Assertion vom Typ "subInitial Component".
+        schema:
+          type: string  
+      - name: lanr
+        in: query
+        description: Erlaubt die Suche mit Hilfe des Attributs lanr (die lebenslange Arztnummer in den Basisdaten).
         schema:
           type: string  
       - name: providedBy
@@ -930,6 +951,7 @@ paths:
 #           - organization
 #           - otherName
 #           - telematikID
+#           - lanr
 #           - specialization
 #           - domainID
 #           - holder
@@ -954,6 +976,7 @@ paths:
 #           - title
 #           - organization
 #           - otherName
+#           - lanr
 #           - specialization
 #           - domainID
 #           - holder
@@ -1041,6 +1064,11 @@ paths:
         in: query
         description: Erlaubt die Suche nach einem Substring am Anfang der telematikID (die telematikID in den Basisdaten).
                       Entspricht der LDAP Filters Substring Assertion vom Typ "subInitial Component".
+        schema:
+          type: string  
+      - name: lanr
+        in: query
+        description: Erlaubt die Suche mit Hilfe des Attributs lanr (die lebenslange Arztnummer in den Basisdaten).
         schema:
           type: string  
       - name: providedBy
@@ -2205,10 +2233,9 @@ components:
                 type: array
                 items:
                   type: string
-                  example: 
-                    - eEB;V1.0
-                    - DALE-UV;Einsendung;V1.0
-                  description: 'Anwendungskennzeichen, welche diese KIM-Mail-Adresse verarbeiten kann'
+                  description: |
+                     'Anwendungskennzeichen, welche diese KIM-Mail-Adresse verarbeiten kann
+                     Beispiel für Attributbelegung: [ "eEB;V1.0", "DALE-UV;Einsendung;V1.0" ]''
             description: |
               Liste von KIM-Adressen mit der zugehörigen KIM-Version und Anwendungskennzeichen. 
               Für jede Mail Adresse darf nur einen Element in der Liste `kimData` existieren. 
@@ -2315,6 +2342,12 @@ components:
           description: 'Wird beim Anlegen des Eintrags vom VZD aus dem Zertifikat übernommen (Feld registrationNumber der Extension Admission).
                     Falls der Basiseintrag (baseDirectoryEntry) ohne Zertifikat angelegt wird, kann in Operation add_Directory_Entry die telematikID angegeben werden.
             Damit ist der Verzeichniseintrag bereits über die telematikID im baseDirectoryEntry auffindbar. Diese telematikID muss mit der telematikID aus dem Zertifikatseintrag (userCertificate) übereinstimmen. Simmten die telematikIDs nicht überein, wird die Operation mit Fehlercode 422 abgelehnt' 
+        lanr:
+          type: array
+          description: Die lebenslange Arztnummer, kurz LANR, dient der Suche nach Ärzten. 
+                       Insbesondere für die Suche durch Clients, welche die TelematikID nicht vorliegen haben.
+          items:
+            type: string
         providedBy:
           type: string
           description: |

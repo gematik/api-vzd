@@ -18,7 +18,7 @@ image::gematik_logo.svg[gematik,float="right"]
 
 [width="100%",cols="50%,50%",options="header",]
 |===
-|Version: |1.2.4
+|Version: |1.2.5
 |Referencing: |gemILF_VZD_FHIR_Directory
 |===
 
@@ -43,7 +43,7 @@ Added description for "near" Search parameter for Location.position
 |1.2.2 |28.03.24 |FHIR_VZD_HOWTO_Data |Simplifier links fixed |gematik
 |1.2.3 |05.09.24 |FHIR_VZD_HOWTO_Search |Full text search index tables updated |gematik
 |1.2.4 |27.09.24 |FHIR_VZD_HOWTO_Data |Attribute description updated |gematik
-
+|1.2.5 |16.04.25 |FHIR_VZD_HOWTO_AVS |Added link to AVS implementation guide|gematik
 |===
 
 == Classification of the document
@@ -70,6 +70,7 @@ The FHIR VZD implementation guide consists of the following parts
 - link:FHIR_VZD_HOWTO_Provider.adoc[TI-Messenger Provider interface /tim-provider-services]
 - link:FHIR_VZD_HOWTO_Owner.adoc[Owner interface /owner]
 - link:FHIR_VZD_HOWTO_Data.adoc[Data Model]
+- link:FHIR_VZD_HOWTO_AVS.adoc[Data maintenance by AVS]
 
 The content of these parts is contained in the linked documents. +
  +

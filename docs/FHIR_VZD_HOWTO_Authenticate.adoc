@@ -39,6 +39,7 @@ image::gematik_logo.svg[gematik,float="right"]
 |1.0.2 |11.09.23 |Chap. 2.5 |added chapter "2.5. Authenticate using the gematik Authenticator" |gematik
 |1.0.3 |06.12.24 |Chap. 2.1 |Update URLs in access token example |gematik
 |1.0.4 |25.02.25 |Chap. 2.6 |added chapter "2.6. Authenticate as Holder" |gematik
+|1.0.5 |02.04.25 |Chap. 2.1 |added information to fhir-vzd discovery functionality |gematik
 
 
 |===
@@ -59,8 +60,8 @@ _The following specification was created by gematik solely from a technical poin
 
 
 == FHIRDirectoryAuthenticationAPIs
-=== Authenticate for the search endpoint
-To use the search endpoint, a corresponding access token from the FHIRDirectoryAuthorizationService must be available. +
+=== Authenticate for the search endpoint with your Homeserver Login
+To use this authentication flow the homeservers userinfo endpoint has to be accessible for the vzd-fhir-directory. +
  +
 With the following procedure an access token can be obtained:
  
@@ -198,6 +199,32 @@ Signature:
 
 For search examples see: link:FHIR_VZD_HOWTO_Search.adoc[Search Examples]
 
+==== How is the correct URL created to request the userinfo endpoint?
+{counter:seq1}. When a domain is added to the federation list the vzd-fhir directory will query
+
+[source]
+----
+<Domain>:443/.well-known/matrix/server
+----
+
+[NOTE]
+====
+In case the well-known document is provided by another domain, because redirects are used.
+The domains used in the redirects must be added to the allowlist of the firewall that protects the vzd-fhir directory.
+Please use link:FHIR_VZD_HOWTO_Provider.adoc#25-example-for-adding-a-domain-with-redirects[Federation API] to add your redirect domains.
+====
+
+{counter:seq1}. The vzd-fhir directory extracts the url and port value of m.server
+
+{counter:seq1}. After a configured interval (24h at the moment) the discovery process is repeated and changes regarding the url or port are stored.
+
+{counter:seq1}. When a request is made to the /tim-authenticate endpoint the vzd-fhir directory uses the stored url and port to create the full userinfo endpoint url.
+
+[NOTE]
+====
+The call made to the tim-authenticate endpoint i.e. {{fhir_server}}/tim-authenticate?mxId={{matrix_domain}} must contain the domain that is used in the federation list. (Not the discovered one, which will be looked up and used for the request to the userinfo endpoint. i.e. "https://{url from discovery}:{port from discovery}/_matrix/federation/v1/openid/userinfo?access_token={value of X-Matrix-OpenID-Token header field in /tim-authenticate request}")
+====
+
 === Authenticate for the provider API
 To use the TIM-PROVIDER-API, a corresponding TIM-Provider-API Token is needed.
 The following sequence diagram shows the flow to obtain such a token 
@@ -280,7 +307,7 @@ The RegService-OpenID-Token must have the following structure:
 HEADER
 {
   "alg": "BP256R1",
-  "typ": "JWT"
+  "typ": "JWT",
   "x5c": [
      "<X.509 Sig-Cert, base64-encoded DER>"
  ]
