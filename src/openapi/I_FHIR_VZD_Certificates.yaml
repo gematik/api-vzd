@@ -2,9 +2,10 @@ openapi: 3.0.1
 info:
   title: I_FHIR_VZD_Certificates
   description: REST Schnittstelle zum Abruf von Zertifikaten.
-
-  version: 0.1.3
-
+  version: 0.1.4
+  # Änderungen in Version 0.1.4
+  #   - Keine Treffer führen zur leeren Liste statt 404
+  #
   # Änderungen in Version 0.1.3
   #   - URLs entsprechend arvato Zuarbeit aktualisiert
   #  
@@ -16,7 +17,6 @@ info:
   #
   # Änderungen in Version 0.1.0
   #   - initiale Version
-
 externalDocs:
   description: I_FHIR_VZD_Certificates REST interface
   url: https://www.gematik.de
@@ -30,9 +30,7 @@ servers:
 tags:
   - name: getInfo
     description: Diese Operation liefert Metadaten über diese Schnittstelle
-
 paths:
-
   /:
     get:
       tags:
@@ -63,9 +61,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-
   /Certificates:
-
     get:
       tags:
         - Certificates
@@ -113,17 +109,14 @@ paths:
           description: Erlaubt die Suche mit Hilfe des Attributs publicKeyAlgorithm.
           schema:
             type: string
-
       responses:
         200:
           description: OK
             #  Es werden alle gefundenen Zertifikatseinträge zurückgegeben.
-
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/userCertificates'
-
         400:
           description: Bad Request
           content:
@@ -143,19 +136,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        404:
-          description: Not Found
-          #  Certificate not found
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-
-
 components:
-
   schemas:
-
     userCertificate:
       description: Jeder Verzeichniseintrag muss mindestens ein Zertifikat enthalten.
       type: object
@@ -218,13 +200,10 @@ components:
             Wert wird vom VZD aus dem Zertifikat Feld "publicKeyAlgorithm" entnommen und in dieses Attribut ohne Formatänderung eingetragen.
           readOnly: true
           example: RSA
-
     userCertificates:
       type: array
       items:
         $ref: '#/components/schemas/userCertificate'
-
-
     Error:
       type: object
       properties:
@@ -237,7 +216,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/InnerError'
-
     InnerError:
       type: object
       properties:
@@ -247,7 +225,6 @@ components:
         attributeError:
           description: Beschreibung des erkannten Fehlers
           type: string
-
     InfoObject:
       required:
         - title
@@ -267,21 +244,15 @@ components:
           type: string
           description: Die Version von dem OpenAPI Document (YAML Datei)
           example: "1.6.0"
-
-
-
   securitySchemes:
     OAuth2:
       description: |
         I_Directory_Administration unterstützt OAuth2 Client Credentials Flow.
         Token Endpoint ist spezifisch für die jeweilige Umgebung:
-        
         **Testumgebung (TU):**
         * https://auth-test.vzd.ti-dienste.de:9443/auth/realms/Service-Authenticate/protocol/openid-connect/token
-        
         **Referenzumgebung (RU):**
         * https://auth-ref.vzd.ti-dienste.de:9443/auth/realms/Service-Authenticate/protocol/openid-connect/token
-        
         **Produktivumgebung (PU):**
         * https://auth.vzd.ti-dienste.de:9443/auth/realms/Service-Authenticate/protocol/openid-connect/token
       type: oauth2
