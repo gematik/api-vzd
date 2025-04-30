@@ -18,7 +18,7 @@ image::gematik_logo.svg[gematik,float="right"]
 
 [width="100%",cols="50%,50%",options="header",]
 |===
-|Version: |1.0.1
+|Version: |1.0.3
 |Referencing: |gemILF_FHIR_VZD
 |===
 
@@ -37,6 +37,8 @@ image::gematik_logo.svg[gematik,float="right"]
 |1.0.1 |25.08.23 | Chap. 2|added link to auth page & removed Bearer for info endpoint |gematik
 
 |1.0.2 |02.04.25 | Chap. 2|added constraints for ik numbers, an example for redirect domain & updated some response content|gematik
+
+|1.0.3 |30.04.25 | Chap. 2|updated constraints for ik numbers|gematik
 
 |===
 
@@ -181,6 +183,9 @@ curl  -X POST \
 - ik must not be set in case isInsurance=false
 - ik has to be unique in the federation list
 - the check digit based on chapter 1.2.5 must be correct (https://www.gkv-datenaustausch.de/media/dokumente/leistungserbringer_1/sonstige_leistungserbringer/GR-IK-2023-11.pdf)
+- ik must be unique in the entire federation list & must also be unique within a request (JSON-Array). 
+Duplicate ik lead to the error code 409 CONFLICT.
+
 
 ==== Example for adding a domain with redirects
 To enable a correct discovery of the userinfo endpoint, redirect domains might need to be added to the allowlist of the firewall protecting the vzd-fhir directory. Please see link:FHIR_VZD_HOWTO_Authenticate.adoc#21-authenticate-for-the-search-endpoint-with-your-homeserver-login[Search Authenticate] for details.
