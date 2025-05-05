@@ -38,11 +38,11 @@ image::gematik_logo.svg[gematik,float="right"]
 
 == Einordnung des Dokumentes
 === Zielsetzung
-Dieses Dokument beschreibt die Nutzung der FHIR VZD Schnittstellen durch AVS Systeme.
+Dieses Dokument beschreibt die Nutzung der FHIR-VZD-Schnittstellen durch AVSe.
 
 === Zielgruppe
 
-Das Dokument richtet sich an Software-Entwickler, die sich mit der Anbindung eines AVS an den FHIR VZD zur Pflege der Mehrwertdaten von Apotheken befassen.
+Das Dokument richtet sich an Software-Entwickler, die sich mit der Anbindung eines AVS an den FHIR-VZD zur Pflege der Mehrwertdaten von Apotheken befassen.
 
 === Geltungsbereich
 
@@ -56,26 +56,26 @@ Die gematik GmbH übernimmt insofern keinerlei Gewährleistungen._
 
 === Pflege von Mehrwertdaten für Apotheken
 === Authentifizierung
-Die Pflege der Apotheken Mehrwertdaten erfogt über die FHIR VZD /owner Schnittstelle. +
-Für den Zugriff auf die /owner Schnittstelle ist ein access_token nötig, welches man über eine der folgenden Optionen erhält:
+Die Pflege der Apotheken-Mehrwertdaten erfogt über die FHIR-VZD-/owner-Schnittstelle. +
+Für den Zugriff auf die /owner-Schnittstelle ist ein access_token nötig, welches man über eine der folgenden Optionen erhält:
 
-- link:FHIR_VZD_HOWTO_Authenticate.adoc#24-authenticate-for-the-owner-endpoint-as-an-user[Autentifizierung für die /owner Schnittstelle mit der SMC-B der Apotheke]. Falls die Apotheke mehrere SMC-Bs mit verschiedenen TelematikID hat, muss die SMC-B mit der TelematikID genutzt werden, welche für die eRezept Funktionalität verwendet wird. Optional kann für die Authentifizierung der link:FHIR_VZD_HOWTO_Authenticate.adoc#25-authenticate-using-the-gematik-authenticator[gematik Authenticator]  genutzt werden, der die Interaktionen mit Konnektor, Kartenterminals und der SMC-B vereinfacht.
+- link:FHIR_VZD_HOWTO_Authenticate.adoc#24-authenticate-for-the-owner-endpoint-as-an-user[Autentifizierung für die /owner-Schnittstelle mit der SMC-B der Apotheke]. Falls die Apotheke mehrere SMC-Bs mit verschiedenen Telematik-IDs hat, muss die SMC-B mit der Telematik-ID genutzt werden, welche für die eRezept-Funktionalität verwendet wird. Optional kann für die Authentifizierung der link:FHIR_VZD_HOWTO_Authenticate.adoc#25-authenticate-using-the-gematik-authenticator[gematik Authenticator]  genutzt werden, der die Interaktionen mit Konnektor, Kartenterminals und der SMC-B vereinfacht.
 
-- Falls die Apotheke den TI-Messenger (TIM) nutzt und eine eigene TIM Domaine hat, kann folgende Authentifizierung genutzt werden link:FHIR_VZD_HOWTO_Authenticate.adoc#23-authenticate-for-the-owner-endpoint-as-an-organization[Authentifizierung für die /owner Schnittstelle über TIM].
+- Falls die Apotheke den TI-Messenger (TIM) nutzt und eine eigene TIM-Domaine hat, kann folgende Authentifizierung genutzt werden link:FHIR_VZD_HOWTO_Authenticate.adoc#23-authenticate-for-the-owner-endpoint-as-an-organization[Authentifizierung für die /owner-Schnittstelle über TIM].
 
-Als Ergebnis der Authentifizierung erhält das AVS ein Token, welches als Bearer Token bei allen folgenden FHIR VZD Operationen im Header übergeben werden muss. Das Token hat eine Gültigkeit von 24 Stunden.
+Als Ergebnis der Authentifizierung erhält das AVS ein Token, welches als Bearer-Token bei allen folgenden FHIR-VZD-Operationen im Header übergeben werden muss. Das Token hat eine Gültigkeit von 24 Stunden.
 
 [NOTE]
 ====
-Beispielimplementierungen für diese Authentifizierung sind hier verfügbar link:https://github.com/gematik/api-vzd/tree/main/samples/directory-samples-java/auth-samples[Java sample] 
-und hier link:https://github.com/gematik/api-vzd/tree/main/samples/directory-samples-python/directory_samples[Python sample]
+Beispielimplementierungen für diese Authentifizierung sind hier verfügbar: link:https://github.com/gematik/api-vzd/tree/main/samples/directory-samples-java/auth-samples[Java sample] 
+und hier: link:https://github.com/gematik/api-vzd/tree/main/samples/directory-samples-python/directory_samples[Python sample]
 ====
 
 ==== Suche des Apothekeneintrags
-Vor jeder Änderung von Mehrwertdaten müssen zuerst die aktuellen Daten aus dem FHIR VZD gelesen werden. Dafür können die in link:FHIR_VZD_HOWTO_Search.adoc[FHIR VZD HOWTO Search] 
+Vor jeder Änderung von Mehrwertdaten müssen zuerst die aktuellen Daten aus dem FHIR-VZD gelesen werden. Dafür können die in link:FHIR_VZD_HOWTO_Search.adoc[FHIR VZD HOWTO Search] 
 beschriebenen Suchoperationen genutzt werden. +
  +
-Die einfachste Form ist die Suche mit der bekannten TelematikID:
+Die einfachste Form ist die Suche mit der bekannten Telematik-ID:
 
 .Suchoperation
 [%collapsible%open]
@@ -85,13 +85,13 @@ Die einfachste Form ist die Suche mit der bekannten TelematikID:
 GET {{base-url}}/owner/HealthcareService?_include=*&_text="3-4442-ARV1448252100040518"
 ----
 ====
-_&_include=*_ - Liefet alle FHIR Ressourcen der Apotheke. +
-__text="3-4442-ARV1448252100040518"_ - Selektiert über die FHIR VZD Volltextsuche die gewünschte Apotheke über die TelematikID.
+_&_include=*_ - Liefet alle FHIR-Ressourcen der Apotheke. +
+__text="3-4442-ARV1448252100040518"_ - Selektiert über die FHIR-VZD-Volltextsuche die gewünschte Apotheke über die Telematik-ID.
  +
  +
-Das Ergebnis der FHIR VZD Suchabfrage:
+Das Ergebnis der FHIR-VZD-Suchabfrage:
 
-.FHIR VZD Daten der Apotheke
+.FHIR-VZD-Daten der Apotheke
 [%collapsible%closed]
 ====
 [source,txt, linenums]
@@ -356,18 +356,18 @@ Das Ergebnis der FHIR VZD Suchabfrage:
 }
 ----
 ====
-Diese Beispieldaten werden in allen folgenden UseCases als aktuelle FHIR VZD Daten der Apotheke verwendet.
+Diese Beispieldaten werden in allen folgenden UseCases als aktuelle FHIR-VZD-Daten der Apotheke verwendet.
 
 ==== Änderung von Mehrwertdaten der Apotheke
 Die gesamte Übersicht über die änderbaren Attribute wird im link:FHIR_VZD_HOWTO_Data.adoc[FHIR VZD data model] beschrieben. +
-Das Simplifier Profile FHIR VZD kann hier eigesehen werden link:https://simplifier.net/vzd-fhir-directory[gematik FHIR Directory].
+Das Simplifier-Profil "FHIR VZD" kann hier eigesehen werden link:https://simplifier.net/vzd-fhir-directory[gematik FHIR Directory].
 
 [IMPORTANT]
 ====
-Das AVS muss sicherstellen, dass die TelematikID der FHIR Ressource (bzw. der übergeordneten Apotheke/Organization) und dem verwendeten Token (siehe Kapitel "Authentifizierung) übereinstimmt. Ist dies nicht der Fall, wird der FHIR VZD die Schreiboperation ablehnen. +
+Das AVS muss sicherstellen, dass die Telematik-ID der FHIR-Ressource (bzw. der übergeordneten Apotheke/Organization) und dem verwendeten Token (siehe Kapitel "Authentifizierung") übereinstimmt. Ist dies nicht der Fall, wird der FHIR-VZD die Schreiboperation ablehnen. +
 ====
 
-Zur Information für alle Mehrwertdaten, die in der FHIR Ressource HealtcareService gespeichert werden: Eine Apotheke/Organization kann im FHIR VZD mehrere HealtcareServices haben. 
+Zur Information für alle Mehrwertdaten, die in der FHIR-Ressource HealtcareService gespeichert werden: Eine Apotheke/Organization kann im FHIR-VZD mehrere HealtcareServices haben. 
 
 ====
 ++++
@@ -376,7 +376,7 @@ Zur Information für alle Mehrwertdaten, die in der FHIR Ressource HealtcareServ
 </p>
 ++++
 ====
-Der - für das AVS relevante - "Haupt" HealtcareService ist mit dem Code "ldap" in HealthcareService.meta.tag:Origin markiert. 
+Der - für das AVS relevante - "Haupt"-HealtcareService ist mit dem Code "ldap" in HealthcareService.meta.tag:Origin markiert. 
 Die Mehrwertdaten müssen durch das AVS in diesen HealtcareService eingetragen werden.
 Alle anderen HealtcareServices der Apotheke können durch das AVS ignoriert werden.
 ====
@@ -391,28 +391,28 @@ Alle anderen HealtcareServices der Apotheke können durch das AVS ignoriert werd
 ====
 
 ===== Pflege der Öffnungszeiten, Dienstleistungen und Kontaktdaten
-Die Öffnungszeiten, Dienstleistungen und Kontaktdaten der Apotheke befinden sich in der FHIR Ressource HealthcareService:
+Die Öffnungszeiten, Dienstleistungen und Kontaktdaten der Apotheke befinden sich in der FHIR-Ressource HealthcareService:
 
 - HealthcareService.availableTime - Öffnungszeiten - Werden für die Suche nach geöffneten Apotheken im VZD & Apps ausgewertet.
 - HealthcareService.notAvailable - Abweichungen von den Öffnungszeiten (z.B. Ferien, Feiertage,...).
 - HealthcareService.availabilityExceptions - Textuelle Beschreibung von Ausnahmen z.B. "Nicht geöffnet an gesetzlichen Feiertagen". Diese textuelle Beschreibung wird nicht maschinell ausgewertet. Deshalb sollen die Ausnahmen ebenfalls in "notAvailable" gepflegt werden, wo z.B. auch die gesetzlichen Feiertage eingetragen werden sollen.
 - HealthcareService.telecom - Kontaktdaten.
-- HealthcareService.characteristic:technicalCharacteristic - Technische Dienstleistungen der Apotheke entsprechend Simplifier Codesystem link:https://simplifier.net/vzd-fhir-directory/vzdhealthcareservicecharacteristicscs[VZDHealthCareServiceCharacteristicsCS].
+- HealthcareService.characteristic:technicalCharacteristic - Technische Dienstleistungen der Apotheke entsprechend Simplifier-Codesystem link:https://simplifier.net/vzd-fhir-directory/vzdhealthcareservicecharacteristicscs[VZDHealthCareServiceCharacteristicsCS].
 - HealthcareService.characteristic:physicalFeatures - Ausstattung und Informationen zur Anfahrt entsprechend link:https://simplifier.net/vzd-fhir-directory/physicalfeatures[PhysicalFeaturesHealthCareServiceCS].
 
-TIP: Das Eintragen von Dienstleistungen für "Zuweisen ohne Anmeldung" wird in Kapitel link:FHIR_VZD_HOWTO_AVS.adoc#pflege-von-apotheken-diensten-für-zuweisen-ohne-anmeldung[Pflege von Apotheken-Diensten für "Zuweisen ohne Anmeldung"] beschrieben.
+TIPP: Das Eintragen von Dienstleistungen für "Zuweisen ohne Anmeldung" wird in Kapitel link:FHIR_VZD_HOWTO_AVS.adoc#pflege-von-apotheken-diensten-für-zuweisen-ohne-anmeldung[Pflege von Apotheken-Diensten für "Zuweisen ohne Anmeldung"] beschrieben.
 
-Diese Öffnungszeiten (mit Ausnahme der textuellen Beschreibung in availabilityExceptions) werden in den eRezept Apps zur Suche von geöffneten Apotheken genutzt. +
-Die Kontaktdaten werden in den Apps angezeit und teilweise direkt aufgerufen (z.B. URL, e-mail der Apotheke oder Telefonnummer). +
+Diese Öffnungszeiten (mit Ausnahme der textuellen Beschreibung in availabilityExceptions) werden in den eRezept-Apps zur Suche von geöffneten Apotheken genutzt. +
+Die Kontaktdaten werden in den Apps angezeit und teilweise direkt aufgerufen (z.B. URL, E-Mail-Adresse der Apotheke oder Telefonnummer). +
 Die Technische Dienstleistungen (HealthcareService.characteristic:technicalCharacteristic) müssen eingetragen werden, wenn die Apotheke diese Dienstleistung anbietet. +
 Die Ausstattung und Informationen zur Anfahrt (HealthcareService.characteristic:physicalFeatures) dienen der Information für die Kunden und können in VZD Suche als Suchkriterium genutzt werden. Zum Beispiel "Suche nach barrierefreien Apotheken an einem Ort". +
  +
 Ablauf: +
  +
-*1. Lesen des Apotheken-Eintrags aus dem FHIR VZD*. Siehe Kapitel link:./FHIR_VZD_HOWTO_AVS.adoc#151-suche-des-apothekeneintrags[Suche des Apothekeneintrags]. +
-*2. Extrahieren der relevanten Ressource aus dem Suchergebnis.* Die Öffnungszeiten befinden sich in FHIR Ressource HealthcareService mit HealthcareService.meta.tag:Origin=ldap
+*1. Lesen des Apotheken-Eintrags aus dem FHIR-VZD*. Siehe Kapitel link:./FHIR_VZD_HOWTO_AVS.adoc#151-suche-des-apothekeneintrags[Suche des Apothekeneintrags]. +
+*2. Extrahieren der relevanten Ressource aus dem Suchergebnis.* Die Öffnungszeiten befinden sich in FHIR-Ressource HealthcareService mit HealthcareService.meta.tag:Origin=ldap
 
-.FHIR Ressource HealthcareService - aktuelle Daten aus dem FHIR VZD
+.FHIR-Ressource HealthcareService - aktuelle Daten aus dem FHIR VZD
 [%collapsible%closed]
 ====
 [source,txt, linenums]
@@ -545,9 +545,9 @@ Ablauf: +
 *3. Aktualisierung der relevanten Daten in der Ressource* +
  +
 
-- Im FHIR VZD sind für diese Apotheke die Öffnungszeiten in "availableTime" eingetragen. "availableTime" wird durch die aktuellen Öffnungszeiten aus dem AVS überschrieben.
-- "notAvailable" und "availabilityExceptions" ist im FHIR VZD Datensatz nicht vorhanden und wird vom AVS ergänzt.
-- In den Kontaktdaten "telecom" wird die e-mail Adresse ergänzt.
+- Im FHIR-VZD sind für diese Apotheke die Öffnungszeiten in "availableTime" eingetragen. "availableTime" wird durch die aktuellen Öffnungszeiten aus dem AVS überschrieben.
+- "notAvailable" und "availabilityExceptions" ist im FHIR-VZD-Datensatz nicht vorhanden und wird vom AVS ergänzt.
+- In den Kontaktdaten "telecom" wird die E-Mail-Adresse ergänzt.
 - Die Dienstleistungen der Apotheke "characteristic" sind bisher nicht vorhanden und werden ergänzt. 
 
 .Der aktualisierte HealthcareService
@@ -770,9 +770,9 @@ Ablauf: +
 ----
 ====
 
-*4. Schreiben des aktualisierten HealthcareService in den FHIR VZD* +
+*4. Schreiben des aktualisierten HealthcareService in den FHIR-VZD* +
  +
-Das AVS schreibt den - in Punkt 3 aktualisierten - HealthcareService mit einer FHIR PUT Operation in den FHIR VZD.
+Das AVS schreibt den - in Punkt 3 aktualisierten - HealthcareService mit einer FHIR-PUT-Operation in den FHIR-VZD.
 
 .Request
 [source]
@@ -780,7 +780,7 @@ Das AVS schreibt den - in Punkt 3 aktualisierten - HealthcareService mit einer F
 PUT https://fhir-directory-test.vzd.ti-dienste.de/owner/HealthcareService/9ea6bb93-d5ac-49ea-ab8c-0d4736e867be
 ----
 
-Der "Request Body" von der PUT Operation entspricht dem aktualisierten HealthcareService Datensatz aus Punkt 3.
+Der "Request Body" von der PUT-Operation entspricht dem aktualisierten HealthcareService-Datensatz aus Punkt 3.
 
 
 
@@ -831,10 +831,10 @@ In HealthcareService.coverageArea können folgende (optionale) Daten eingetragen
 
 Ablauf: +
  +
-*1. Lesen des Apotheken-Eintrags aus dem FHIR VZD*. Siehe Kapitel link:./FHIR_VZD_HOWTO_AVS.adoc#151-suche-des-apothekeneintrags[Suche des Apothekeneintrags]. +
-*2. Extrahieren der relevanten Ressource aus dem Suchergebnis.* Das Botendienst-Liefergebiet befindet sich in FHIR Ressource HealthcareService mit HealthcareService.meta.tag:Origin=ldap
+*1. Lesen des Apotheken-Eintrags aus dem FHIR-VZD*. Siehe Kapitel link:./FHIR_VZD_HOWTO_AVS.adoc#151-suche-des-apothekeneintrags[Suche des Apothekeneintrags]. +
+*2. Extrahieren der relevanten Ressource aus dem Suchergebnis.* Das Botendienst-Liefergebiet befindet sich in FHIR-Ressource HealthcareService mit HealthcareService.meta.tag:Origin=ldap
 
-.FHIR Ressource HealthcareService - aktuelle Daten aus dem FHIR VZD
+.FHIR-Ressource HealthcareService - aktuelle Daten aus dem FHIR-VZD
 [%collapsible%closed]
 ====
 [source,txt, linenums]
@@ -966,7 +966,7 @@ Ablauf: +
 
 *3. Aktualisierung der relevanten Daten in der Ressource* +
  +
-Im FHIR VZD ist für diese Apotheke der Service "Botendienst" in HealthcareService.specialty eingetragen, Ein Liefergebiet für die Botendienste ist aktuell im Datensatz nicht vorhanden. +
+Im FHIR-VZD ist für diese Apotheke der Service "Botendienst" in HealthcareService.specialty eingetragen, ein Liefergebiet für die Botendienste ist aktuell im Datensatz nicht vorhanden. +
 Das AVS ergänzt das Liefergebiet in den Attributen serviceCoverageArea und serviceCoveragePostalCode.
 
 - "serviceCoverageArea" - 10.000 Meter
@@ -1127,9 +1127,9 @@ Das AVS ergänzt das Liefergebiet in den Attributen serviceCoverageArea und serv
 ----
 ====
 
-*4. Schreiben des aktualisierten HealthcareService in den FHIR VZD* +
+*4. Schreiben des aktualisierten HealthcareService in den FHIR-VZD* +
  +
-Das AVS schreibt den - in Punkt 3 aktualisierten - HealthcareService mit einer FHIR PUT Operation in den FHIR VZD.
+Das AVS schreibt den - in Punkt 3 aktualisierten - HealthcareService mit einer FHIR-PUT-Operation in den FHIR-VZD.
 
 .Request
 [source]
@@ -1137,7 +1137,7 @@ Das AVS schreibt den - in Punkt 3 aktualisierten - HealthcareService mit einer F
 PUT https://fhir-directory-test.vzd.ti-dienste.de/owner/HealthcareService/9ea6bb93-d5ac-49ea-ab8c-0d4736e867be
 ----
 
-Der "Request Body" von der PUT Operation entspricht dem aktualisierten HealthcareService Datensatz aus Punkt 3.
+Der "Request Body" von der PUT-Operation entspricht dem aktualisierten HealthcareService-Datensatz aus Punkt 3.
 
 
 
@@ -1145,14 +1145,14 @@ Der "Request Body" von der PUT Operation entspricht dem aktualisierten Healthcar
 
 
 ===== Pflege von Apotheken-Diensten für "Zuweisen ohne Anmeldung"
-Dienstleistungen der Apotheke können optional zusätlich über "Zuweisen ohne Anmeldung" angeboten werden. Dafür muss in HealthcareService.characteristic:technicalCharacteristic die zugehörige URL in einem FHIR VZD Endpoint eingetragen und dieser mit dem HealthcareService verlinkt werden.
+Dienstleistungen der Apotheke können optional zusätlich über "Zuweisen ohne Anmeldung" angeboten werden. Dafür muss in HealthcareService.characteristic:technicalCharacteristic die zugehörige URL in einem FHIR-VZD-Endpoint eingetragen und dieser mit dem HealthcareService verlinkt werden.
 
 Ablauf: +
  +
-*1. Lesen des Apotheken-Eintrags aus dem FHIR VZD*. Siehe Kapitel link:./FHIR_VZD_HOWTO_AVS.adoc#151-suche-des-apothekeneintrags[Suche des Apothekeneintrags]. +
-*2. Extrahieren der relevanten Ressourcen aus dem Suchergebnis.* Die Dienstleistungen der Apotheke befinden sich in FHIR Ressource HealthcareService mit HealthcareService.meta.tag:Origin=ldap Die verlinkten Endpunkte werden zur Prüfung benötigt, ob bereits Endpunkte für "Zuweisen ohne Anmeldung" vorhanden sind.
+*1. Lesen des Apotheken-Eintrags aus dem FHIR-VZD*. Siehe Kapitel link:./FHIR_VZD_HOWTO_AVS.adoc#151-suche-des-apothekeneintrags[Suche des Apothekeneintrags]. +
+*2. Extrahieren der relevanten Ressourcen aus dem Suchergebnis.* Die Dienstleistungen der Apotheke befinden sich in FHIR-Ressource HealthcareService mit HealthcareService.meta.tag:Origin=ldap. Die verlinkten Endpunkte werden zur Prüfung benötigt, ob bereits Endpunkte für "Zuweisen ohne Anmeldung" vorhanden sind.
 
-.FHIR Ressource HealthcareService - aktuelle Daten aus dem FHIR VZD
+.FHIR-Ressource HealthcareService - aktuelle Daten aus dem FHIR-VZD
 [%collapsible%closed]
 ====
 [source,txt, linenums]
@@ -1373,7 +1373,7 @@ Ablauf: +
 ====
 
 
-*3. Prüfen der verlinkten Endpoints von dem HealthcareService.* Falls Endpunkte mit dem HealthcareService verlinkt sind, muss Attribut Endpoint.connectionType auf Übereinstimmung mit der einzutragenden Dienstleitung geprüft werden (eRP-onPremise, eRP-delivery, eRP-shipment, eRP-availability) geprüft werden. +
+*3. Prüfen der verlinkten Endpoints von dem HealthcareService.* Falls Endpunkte mit dem HealthcareService verlinkt sind, muss das Attribut Endpoint.connectionType auf Übereinstimmung mit der einzutragenden Dienstleitung (eRP-onPremise, eRP-delivery, eRP-shipment, eRP-availability) geprüft werden. +
 
 
 - Wenn ein passender Endpunkt verfügbar ist, muss er mit der aktuellen URL aktualisiert werden.
@@ -1382,11 +1382,11 @@ Ablauf: +
 Im weiteren Ablauf wird von einem aktuellen HealthcareService ohne verlinkte Endpoints ausgegangen.
 
 
-*4. Anlegen eines Endpunkts im FHIR VZD* +
+*4. Anlegen eines Endpunkts im FHIR-VZD* +
  +
-Im FHIR VZD wird ein Endpunkt für "Zuweisen ohne Anmeldung" angelegt. Wenn mehrere Dienste über "Zuweisen ohne Anmeldung" von der Apotheke angeboten werden, müssen entsprechend mehr Endpunkte angelegt werden. +
+Im FHIR-VZD wird ein Endpunkt für "Zuweisen ohne Anmeldung" angelegt. Wenn mehrere Dienste über "Zuweisen ohne Anmeldung" von der Apotheke angeboten werden, müssen entsprechend mehr Endpunkte angelegt werden. +
 
-Beispiel für das Anlegen eines Endpunkts durch das AVS mit einer FHIR POST Operation im FHIR VZD:
+Beispiel für das Anlegen eines Endpunkts durch das AVS mit einer FHIR-POST-Operation im FHIR-VZD:
 
 .Request
 [source]
@@ -1434,9 +1434,9 @@ POST https://fhir-directory.vzd.ti-dienste.de/owner/Endpoint
 ----
 ====
 
-Erläuterungen zu den Attributen im POST Body:
+Erläuterungen zu den Attributen im POST-Body:
 
-- Endpoint.meta.tag:Origin - Muss auf "owner" gesetzt werden, da es sich um eine selbst angelegte FHIR Ressource handelt.
+- Endpoint.meta.tag:Origin - Muss auf "owner" gesetzt werden, da es sich um eine selbst angelegte FHIR-Ressource handelt.
 - Endpoint.status - Muss auf "active" gesetzt werden (sonst wird der Endpunkt nicht verwendet). 
 - Endpoint.connectionType - Der angebotene Dienst über "Zuweisen ohne Anmeldung".
 - Endpoint.address - Die URL für den Dienst über "Zuweisen ohne Anmeldung".
@@ -1444,7 +1444,7 @@ Erläuterungen zu den Attributen im POST Body:
 - Endpoint.payloadType - Hier immer "not-applicable". Wird im Kontext von "Zuweisen ohne Anmeldung" nicht verwendet.
 
 
-Der FHIR VZD liefert als Ergebnis von dem erfolgreichen POST Request mit HTTP Status Code "201 Created" folgendes Response.
+Der FHIR-VZD liefert als Ergebnis von dem erfolgreichen POST-Request mit HTTP-Status-Code "201 Created" folgendes Response.
 
 .Ergebnis von dem POST
 [%collapsible%closed]
@@ -1496,7 +1496,7 @@ Die enthaltene "id" wird für die Verlinkung mit dem HealthcareService benötigt
 
 *5. Aktualisierung des HealthcareService* +
  +
-Der angelegte Endpoint muss mit dem HealthcareService verlinkt werden. Dafür wird die "id" aus dem angelegten Endpoint benötigt. Sie wird aus dem Ergebnis/Response vom dem POST Request (siehe Punkt 4) entnommen: +
+Der angelegte Endpoint muss mit dem HealthcareService verlinkt werden. Dafür wird die "id" aus dem angelegten Endpoint benötigt. Sie wird aus dem Ergebnis/Response vom dem POST-Request (siehe Punkt 4) entnommen: +
 [source]
 ----
 ...
@@ -1516,9 +1516,9 @@ Die entnommene "id" wird so im HealthcareService ergänzt:
 ----
 
 
-*6. Schreiben des aktualisierten HealthcareService in den FHIR VZD* +
+*6. Schreiben des aktualisierten HealthcareService in den FHIR-VZD* +
  +
-Das AVS schreibt den - in Punkt 5 aktualisierten - HealthcareService mit einer FHIR PUT Operation in den FHIR VZD.
+Das AVS schreibt den - in Punkt 5 aktualisierten - HealthcareService mit einer FHIR-PUT-Operation in den FHIR-VZD.
 
 .Request
 [source]
@@ -1753,23 +1753,23 @@ PUT https://fhir-directory.vzd.ti-dienste.de/owner/HealthcareService/9ea6bb93-d5
 
 ===== Pflege der Sichtbarkeit der Apotheke für Versicherte
 
-Wenn eine Apotheke mehrere SMC-Bs mit verschiedenen TelematikIDs nutzt, ist im FHIR VZD für jede TelematikID ein Apotheken-Eintrag vorhanden.
-Wenn davon eine TelematikID/SMC-B nicht für Versicherte genutzt werden soll (z.B. dieser Apotheken SMC-B/TelematikID keine e-Rezepte zugewiesen werden sollen), kann ihre Sichtbarkeit "OrganizationVisibility" auf "hide-versicherte" gesetzt werden. +
-Apotheken FHIR VZD Einträge mit OrganizationVisibility="hide-versicherte"
+Wenn eine Apotheke mehrere SMC-Bs mit verschiedenen Telematik-IDs nutzt, ist im FHIR-VZD für jede Telematik-ID ein Apotheken-Eintrag vorhanden.
+Wenn davon eine Telematik-ID/SMC-B nicht für Versicherte genutzt werden soll (z.B. dieser Apotheken SMC-B/Telematik-ID keine e-Rezepte zugewiesen werden sollen), kann ihre Sichtbarkeit "OrganizationVisibility" auf "hide-versicherte" gesetzt werden. +
+Apotheken-FHIR-VZD-Einträge mit OrganizationVisibility="hide-versicherte"
 
-- werden von Versicherten über die FHIR VZD Suche (/fdv/search Endpunkt) nicht gefunden,
+- werden von Versicherten über die FHIR-VZD-Suche (/fdv/search-Endpunkt) nicht gefunden,
 - können von Versicherten keine e-Rezepte zugewiesen werden,
-- sind für HBA und SMC-B Inhaber und TI Anwendungen über die FHIR VZD Suche (/search und /owner Endpunkte) auffindbar,
-- können alle TI Dienste (z.B. KIM, TIM,...) nutzen.
+- sind für HBA- und SMC-B-Inhaber und TI-Anwendungen über die FHIR-VZD-Suche (/search- und /owner-Endpunkte) auffindbar,
+- können alle TI-Dienste (z.B. KIM, TIM,...) nutzen.
 
 
 
 Ablauf: +
  +
-*1. Lesen des Apotheken-Eintrags aus dem FHIR VZD*. Siehe Kapitel link:./FHIR_VZD_HOWTO_AVS.adoc#151-suche-des-apothekeneintrags[Suche des Apothekeneintrags]. +
-*2. Extrahieren der relevanten Ressource aus dem Suchergebnis.* Die Sichtbarkeit der Apotheke befindet sich in FHIR Ressource Organization mit Organization.meta.tag:Origin=ldap. 
+*1. Lesen des Apotheken-Eintrags aus dem FHIR-VZD*. Siehe Kapitel link:./FHIR_VZD_HOWTO_AVS.adoc#151-suche-des-apothekeneintrags[Suche des Apothekeneintrags]. +
+*2. Extrahieren der relevanten Ressource aus dem Suchergebnis.* Die Sichtbarkeit der Apotheke befindet sich in FHIR-Ressource-Organization mit Organization.meta.tag:Origin=ldap. 
 
-.FHIR Ressource Organization - aktuelle Daten aus dem FHIR VZD
+.FHIR-Ressource Organization - aktuelle Daten aus dem FHIR-VZD
 [%collapsible%closed]
 ====
 [source,txt, linenums]
@@ -1836,8 +1836,8 @@ Ablauf: +
 ====
 
 
-*3. Aktualisierung der Organization Ressource.*  +
-Falls die Organization Ressource die "OrganizationVisibility" noch nicht enthält, muss sie ergänzt werden:
+*3. Aktualisierung der Organization-Ressource.*  +
+Falls die Organization-Ressource die "OrganizationVisibility" noch nicht enthält, muss sie ergänzt werden:
 
 .OrganizationVisibility
 [source]
@@ -1853,12 +1853,12 @@ Falls die Organization Ressource die "OrganizationVisibility" noch nicht enthäl
     ]
 ----
 
-Falls die "OrganizationVisibility" bereits in der Organization Ressource enthalten ist, muss ihr Wert geprüft werden. Ist bereits der gewünschte Wert eingetragen, kann hier abgebrochen werden. Im anderen Fall muss der Code "hide-versicherte" in die vorhandene "OrganizationVisibility" eingetragen werden. +
-Um die Apotheke wieder sichtbar für Versicherte zu machen, muss die "OrganizationVisibility" aus der Organization Ressource entfernt werden. +
+Falls die "OrganizationVisibility" bereits in der Organization-Ressource enthalten ist, muss ihr Wert geprüft werden. Ist bereits der gewünschte Wert eingetragen, kann hier abgebrochen werden. Im anderen Fall muss der Code "hide-versicherte" in die vorhandene "OrganizationVisibility" eingetragen werden. +
+Um die Apotheke wieder sichtbar für Versicherte zu machen, muss die "OrganizationVisibility" aus der Organization-Ressource entfernt werden. +
 
-*4. Schreiben der aktualisierten Organization in den FHIR VZD* +
+*4. Schreiben der aktualisierten Organization in den FHIR-VZD* +
  +
-Das AVS schreibt die - in Punkt 3 aktualisierte - Organization mit einer FHIR PUT Operation in den FHIR VZD.
+Das AVS schreibt die - in Punkt 3 aktualisierte - Organization mit einer FHIR-PUT-Operation in den FHIR-VZD.
 
 .Request
 [source]
@@ -1949,18 +1949,18 @@ PUT https://fhir-directory.vzd.ti-dienste.de/owner/Organization/b5938fc4-2b37-48
 
 ===== Pflege der Geo-Koordinaten der Apotheke
 
-Für jede Apotheke ist im FHIR VZD eine Adresse in einer Location Ressource hinterlegt. Für diese Adresse werden die Geo-Koordinaten automatisch ermittelt und in "Location.position" hinterlegt. Wenn die Geo-Koordinaten zu der Adresse nicht automatisch ermittelbar oder zu ungenau waren, können sie korrigiert werden. Bei Änderung der Adresse über die Apothekenkammer werden die Geo-Koordinaten vom FHIR VZD wieder automatisch ermittelt und ersetzen die vorhandenen Werte. +
-Der Wert Location.position.altitude wird im FHIR VZD und den Apps nicht verwendet. +
-In der Location Ressource können nur die Geo-Koordinaten in "Location.position" geändert werden. +
+Für jede Apotheke ist im FHIR-VZD eine Adresse in einer Location-Ressource hinterlegt. Für diese Adresse werden die Geo-Koordinaten automatisch ermittelt und in "Location.position" hinterlegt. Wenn die Geo-Koordinaten zu der Adresse nicht automatisch ermittelbar oder zu ungenau waren, können sie korrigiert werden. Bei Änderung der Adresse über die Apothekenkammer werden die Geo-Koordinaten vom FHIR-VZD wieder automatisch ermittelt und ersetzen die vorhandenen Werte. +
+Der Wert Location.position.altitude wird im FHIR-VZD und den Apps nicht verwendet. +
+In der Location-Ressource können nur die Geo-Koordinaten in "Location.position" geändert werden. +
  +
-Die Geo-Koordinaten der Apotheke werden in den e-Rezept Apps für die Umreissuche der Versicherten nach Apotheken genutzt. +
+Die Geo-Koordinaten der Apotheke werden in den e-Rezept-Apps für die Umkreissuche der Versicherten nach Apotheken genutzt. +
  +
 Ablauf: +
  +
-*1. Lesen des Apotheken-Eintrags aus dem FHIR VZD*. Siehe Kapitel link:./FHIR_VZD_HOWTO_AVS.adoc#151-suche-des-apothekeneintrags[Suche des Apothekeneintrags]. +
-*2. Extrahieren der relevanten Ressource aus dem Suchergebnis.* Die Geo-Koordinaten der Apotheke befindet sich in der FHIR Ressource Location, die in FHIR Ressource HealthcareService (mit HealthcareService.meta.tag:Origin=ldap) referenziert wird. Dieser HealthcareService referenziert genau eine Location Ressource.
+*1. Lesen des Apotheken-Eintrags aus dem FHIR-VZD*. Siehe Kapitel link:./FHIR_VZD_HOWTO_AVS.adoc#151-suche-des-apothekeneintrags[Suche des Apothekeneintrags]. +
+*2. Extrahieren der relevanten Ressource aus dem Suchergebnis.* Die Geo-Koordinaten der Apotheke befindet sich in der FHIR-Ressource Location, die in FHIR-Ressource-HealthcareService (mit HealthcareService.meta.tag:Origin=ldap) referenziert wird. Dieser HealthcareService referenziert genau eine Location-Ressource.
 
-.FHIR Ressource Location - aktuelle Daten aus dem FHIR VZD
+.FHIR-Ressource Location - aktuelle Daten aus dem FHIR-VZD
 [%collapsible%closed]
 ====
 [source,txt, linenums]
@@ -2017,14 +2017,14 @@ Ablauf: +
 ====
 
 
-*3. Aktualisierung der Location Ressource.*  +
-Die Location Ressource enthält bereits die "Location.position". 
+*3. Aktualisierung der Location-Ressource.*  +
+Die Location-Ressource enthält bereits die "Location.position". 
 Die Werte in "Location.position.longitude" und "Location.position.latitude" werden durch das AVS korrigiert.
 
 
-*4. Schreiben der aktualisierten Organization in den FHIR VZD* +
+*4. Schreiben der aktualisierten Organization in den FHIR-VZD* +
  +
-Das AVS schreibt die - in Punkt 3 aktualisierte - Location mit einer FHIR PUT Operation in den FHIR VZD.
+Das AVS schreibt die - in Punkt 3 aktualisierte - Location mit einer FHIR-PUT-Operation in den FHIR-VZD.
 
 .Request
 [source]
