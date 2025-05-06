@@ -36,12 +36,13 @@ organisations specific for german Healthcare and Telematics Infrastructure.
   * ^slicing.discriminator.type = #pattern
   * ^slicing.discriminator.path = "$this"
   * ^slicing.rules = #open
-* type.coding obeys CodingSytemCodeInv
 * type contains
     providerType 0..* MS and
     profession 0..* MS
 * type[providerType] from OrganizationTypeVS
+  * coding obeys CodingSytemCodeInv
 * type[profession] from OrganizationProfessionOIDTypeVS
+  * coding obeys CodingSytemCodeInv
 * name 1..1 MS
 * alias MS
 * contact MS
