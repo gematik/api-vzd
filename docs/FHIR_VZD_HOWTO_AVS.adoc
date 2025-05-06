@@ -33,7 +33,9 @@ image::gematik_logo.svg[gematik,float="right"]
  |*Editing* +
 
 |0.0.1 |11.04.25 | |Initiales Dokument |gematik
-|0.0.2 |07.05.25 | |Update |gematik
+
+|0.0.2 |07.05.25 | |Endpunkte ergänzt +
+|gematik
 
 |===
 
@@ -55,7 +57,15 @@ durch geeignete Maßnahmen dafür Sorge zu tragen, dass von ihm aufgrund der Spe
 Schutzrechte Dritter verstoßen und sich ggf. die erforderlichen Erlaubnisse/Lizenzen von den betroffenen Schutzrechtsinhabern einzuholen. 
 Die gematik GmbH übernimmt insofern keinerlei Gewährleistungen._
 
-=== Pflege von Mehrwertdaten für Apotheken
+== Pflege von Mehrwertdaten für Apotheken
+Die Nutzung des FHIR VZD wird in folgenden Dokumenten beschrieben: +
+
+- link:https://gemspec.gematik.de/docs/gemSpec/gemSpec_VZD_FHIR_Directory[Spezifikation Verzeichnisdienst FHIR-Directory (gemSpec_VZD_FHIR_Directory)]
+- link:https://github.com/gematik/api-vzd/blob/main/docs/gemILF_VZD_FHIR_Directory.adoc[FHIR VZD implementation guide]
+- link:https://simplifier.net/VZD-FHIR-Directory/~introduction[Simplifier Profil VZD-FHIR-Directory]
+
+In den folgenden Kapiteln wird näher auf die Nutzung des FHIR VZD durch AVS zur Pflege der Apotheken-Daten im FHIR VZD eingegangen.
+
 === Endpunkte
 Die FHIR VZD Endpunkte sind in der link:https://gemspec.gematik.de/docs/gemSpec/gemSpec_VZD_FHIR_Directory/latest/#4.2.1[FHIR VZD Spezifikation (gemSpec_VZD_FHIR_Directory)] im Kapitel "Schnittstellen" enthalten. +
 Ein Auszug mit den relevanten Endpunkte für AVS: +
@@ -814,7 +824,7 @@ Das AVS schreibt den - in Punkt 3 aktualisierten - HealthcareService mit einer F
 .Request
 [source]
 ----
-PUT https://fhir-directory-test.vzd.ti-dienste.de/owner/HealthcareService/9ea6bb93-d5ac-49ea-ab8c-0d4736e867be
+PUT {{base-url}}/owner/HealthcareService/9ea6bb93-d5ac-49ea-ab8c-0d4736e867be
 ----
 
 Der "Request Body" von der PUT Operation entspricht dem aktualisierten HealthcareService Datensatz aus Punkt 3.
@@ -1171,7 +1181,7 @@ Das AVS schreibt den - in Punkt 3 aktualisierten - HealthcareService mit einer F
 .Request
 [source]
 ----
-PUT https://fhir-directory-test.vzd.ti-dienste.de/owner/HealthcareService/9ea6bb93-d5ac-49ea-ab8c-0d4736e867be
+PUT {{base-url}}/owner/HealthcareService/9ea6bb93-d5ac-49ea-ab8c-0d4736e867be
 ----
 
 Der "Request Body" von der PUT Operation entspricht dem aktualisierten HealthcareService Datensatz aus Punkt 3.
@@ -1413,8 +1423,8 @@ Ablauf: +
 *3. Prüfen der verlinkten Endpoints von dem HealthcareService.* Falls Endpunkte mit dem HealthcareService verlinkt sind, muss Attribut Endpoint.connectionType auf Übereinstimmung mit der einzutragenden Dienstleitung geprüft werden (eRP-onPremise, eRP-delivery, eRP-shipment, eRP-availability) geprüft werden. +
 
 
-- Wenn ein passender Endpunkt verfügbar ist, muss er mit der aktuellen URL aktualisiert werden.
-- Wenn kein passender Endpunkt verfügbar ist, muss ein neuer Endpunkt angelegt und mit dem HealthcareService verlinkt werden.
+- Wenn ein passender Endpunkt verfügbar ist, muss er mit der aktuellen URL aktualisiert werden. Nach der Aktualisierung muss der Endpunkt mit einer PUT Operation im FHIR VZD aktualisiert werden. In diesem Fall ist der Endpunkt schon mit dem HealthcareService verlinkt und damit ist kein Update von dem HealthcareService nötig.
+- Wenn kein passender Endpunkt verfügbar ist, muss ein neuer Endpunkt angelegt (POST Operation) und mit dem HealthcareService verlinkt (PUT Operation auf den HelathcareService) werden.
 
 Im weiteren Ablauf wird von einem aktuellen HealthcareService ohne verlinkte Endpoints ausgegangen.
 
@@ -1428,7 +1438,7 @@ Beispiel für das Anlegen eines Endpunkts durch das AVS mit einer FHIR POST Oper
 .Request
 [source]
 ----
-POST https://fhir-directory.vzd.ti-dienste.de/owner/Endpoint
+POST {{base-url}}/owner/Endpoint
 ----
 
 .Body von dem POST
@@ -1528,12 +1538,21 @@ Der FHIR VZD liefert als Ergebnis von dem erfolgreichen POST Request mit HTTP St
 ----
 ====
 
-Die enthaltene "id" wird für die Verlinkung mit dem HealthcareService benötigt.
+Die enthaltene "id" wird für die Verlinkung mit dem HealthcareService benötigt. +
+ +
+Wenn der Endpunkt schon im FHIR VZD vorhanden ist, müssen - bei Norwendigkeit - seine Daten mit einer PUT Operation aktualisiert werden:
 
+.Request
+[source]
+----
+PUT {{base-url}}/owner/Endpoint/a4cfc381-fe54-42f9-9a22-2bad9c43015c
+----
+Der Body von der PUT Operation entspricht dem Body der POST Operation bzw. dem - aus dem FHIR VZD gelesenen - Endpunkt mit aktualisierten Daten. +
+Bei einem vorhandenen Endpunkt ist keine Aktualisierung/Verlinkung von dem HealthcareService nötig (Punkt 5 entfällt), da der Endpunkt schon mit dem HealthcareService verlinkt ist.
 
 *5. Aktualisierung des HealthcareService* +
  +
-Der angelegte Endpoint muss mit dem HealthcareService verlinkt werden. Dafür wird die "id" aus dem angelegten Endpoint benötigt. Sie wird aus dem Ergebnis/Response vom dem POST Request (siehe Punkt 4) entnommen: +
+Der neu angelegte Endpoint (POST Operation) muss mit dem HealthcareService verlinkt werden. Dafür wird die "id" aus dem angelegten Endpoint benötigt. Sie wird aus dem Ergebnis/Response vom dem POST Request (siehe Punkt 4) entnommen: +
 [source]
 ----
 ...
@@ -1552,6 +1571,8 @@ Die entnommene "id" wird so im HealthcareService ergänzt:
 ...
 ----
 
+Diese Aktualisierung des HealthcareService entfällt, wenn der Endpunkt schon im FHIR VZD vorhanden war.
+
 
 *6. Schreiben des aktualisierten HealthcareService in den FHIR VZD* +
  +
@@ -1560,7 +1581,7 @@ Das AVS schreibt den - in Punkt 5 aktualisierten - HealthcareService mit einer F
 .Request
 [source]
 ----
-PUT https://fhir-directory.vzd.ti-dienste.de/owner/HealthcareService/9ea6bb93-d5ac-49ea-ab8c-0d4736e867be
+PUT {{base-url}}/owner/HealthcareService/9ea6bb93-d5ac-49ea-ab8c-0d4736e867be
 ----
 
 .Body von dem PUT
@@ -1900,7 +1921,7 @@ Das AVS schreibt die - in Punkt 3 aktualisierte - Organization mit einer FHIR PU
 .Request
 [source]
 ----
-PUT https://fhir-directory.vzd.ti-dienste.de/owner/Organization/b5938fc4-2b37-4800-8859-9d2b7cfbe647
+PUT {{base-url}}/owner/Organization/b5938fc4-2b37-4800-8859-9d2b7cfbe647
 ----
 
 .Body von dem PUT
@@ -2066,7 +2087,7 @@ Das AVS schreibt die - in Punkt 3 aktualisierte - Location mit einer FHIR PUT Op
 .Request
 [source]
 ----
-PUT https://fhir-directory.vzd.ti-dienste.de/owner/Location/42dd2bae-2b51-42cd-b993-4102b6a223a0
+PUT {{base-url}}/owner/Location/42dd2bae-2b51-42cd-b993-4102b6a223a0
 ----
 
 .Body von dem PUT
