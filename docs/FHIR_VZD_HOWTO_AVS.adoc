@@ -34,7 +34,10 @@ image::gematik_logo.svg[gematik,float="right"]
 
 |0.0.1 |11.04.25 | |Initiales Dokument |gematik
 
-|0.0.2 |07.05.25 | |Endpunkte ergänzt +
+|0.0.2 |07.05.25 | 2.1 +
+"Zuweisen ohne Anmeldung"
+|Endpunkte ergänzt +
+Aktualisierung von Endpoints erläutert
 |gematik
 
 |===
