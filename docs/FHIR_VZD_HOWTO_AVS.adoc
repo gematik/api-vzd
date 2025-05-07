@@ -599,8 +599,8 @@ Ablauf: +
  +
 
 - Im FHIR VZD sind für diese Apotheke die Öffnungszeiten in "availableTime" eingetragen. "availableTime" wird durch die aktuellen Öffnungszeiten aus dem AVS überschrieben.
-- "notAvailable" und "availabilityExceptions" ist im FHIR VZD Datensatz nicht vorhanden und wird vom AVS ergänzt.
-- In "HealthcareService.availableTime.extension:specialOpeningTimes" wird ein Notdienst eingetragen. 
+- Es wird eine Urlaubszeit/Schließung in "notAvailable" und "An Feiertagen geschlossen" in "availabilityExceptions" eingetragen. Diese Attribute waren im original FHIR VZD Datensatz nicht vorhanden und werden vom AVS ergänzt.
+- Ein Notdienst wird in "HealthcareService.availableTime.extension:specialOpeningTimes" eingetragen. 
 - In den Kontaktdaten "telecom" wird die e-mail Adresse ergänzt.
 - Die Dienstleistungen der Apotheke "characteristic" sind bisher nicht vorhanden und werden ergänzt. 
 
