@@ -2,7 +2,7 @@
   "resourceType": "StructureDefinition",
   "id": "OrganizationDirectory",
   "url": "https://gematik.de/fhir/directory/StructureDefinition/OrganizationDirectory",
-  "version": "0.13.0",
+  "version": "0.13.1",
   "name": "OrganizationDirectory",
   "title": "Organization in gematik Directory",
   "status": "active",
@@ -197,19 +197,6 @@
         "mustSupport": true
       },
       {
-        "id": "Organization.type.coding",
-        "path": "Organization.type.coding",
-        "constraint": [
-          {
-            "key": "CodingSytemCodeInv",
-            "severity": "warning",
-            "human": "System and Code SHOULD be present",
-            "expression": "system.exists() and code.exists()",
-            "source": "https://gematik.de/fhir/directory/StructureDefinition/OrganizationDirectory"
-          }
-        ]
-      },
-      {
         "id": "Organization.type:providerType",
         "path": "Organization.type",
         "sliceName": "providerType",
@@ -222,6 +209,19 @@
         }
       },
       {
+        "id": "Organization.type:providerType.coding",
+        "path": "Organization.type.coding",
+        "constraint": [
+          {
+            "key": "CodingSytemCodeInv",
+            "severity": "warning",
+            "human": "System and Code SHOULD be present",
+            "expression": "system.exists() and code.exists()",
+            "source": "https://gematik.de/fhir/directory/StructureDefinition/OrganizationDirectory"
+          }
+        ]
+      },
+      {
         "id": "Organization.type:profession",
         "path": "Organization.type",
         "sliceName": "profession",
@@ -232,6 +232,19 @@
           "strength": "required",
           "valueSet": "https://gematik.de/fhir/directory/ValueSet/OrganizationProfessionOIDTypeVS"
         }
+      },
+      {
+        "id": "Organization.type:profession.coding",
+        "path": "Organization.type.coding",
+        "constraint": [
+          {
+            "key": "CodingSytemCodeInv",
+            "severity": "warning",
+            "human": "System and Code SHOULD be present",
+            "expression": "system.exists() and code.exists()",
+            "source": "https://gematik.de/fhir/directory/StructureDefinition/OrganizationDirectory"
+          }
+        ]
       },
       {
         "id": "Organization.name",

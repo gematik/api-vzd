@@ -1,5 +1,8 @@
 # Changelog
 
+## 2025-05-06 Version 0.13.1
+- `change`: applied the CodingSytemCodeInv directly to .type slices instead of .type to avoid Snapshotting issues in some environments.
+
 ## 2025-04-17 Version 0.13.0
 - `change`: removed KBV_CS_SFHIR_BAR2_WBO_OID_URL (urn:oid:1.2.276.0.76.5.114) as these were replaced by IHE codes several years ago. 
 - `change`: removed KBV_CS_SFHIR_BAR2_WBO_OID_URL (urn:oid:1.2.276.0.76.5.114) from PractitionerQualificationVS

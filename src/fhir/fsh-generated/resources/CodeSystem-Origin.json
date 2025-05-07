@@ -5,7 +5,7 @@
   "name": "Origin",
   "id": "Origin",
   "description": "CodeSystem which identifies the origin of a resource in the FHIR Directory",
-  "version": "0.13.0",
+  "version": "0.13.1",
   "url": "https://gematik.de/fhir/directory/CodeSystem/Origin",
   "concept": [
     {
