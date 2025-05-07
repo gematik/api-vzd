@@ -35,8 +35,10 @@ image::gematik_logo.svg[gematik,float="right"]
 |0.0.1 |11.04.25 | |Initiales Dokument |gematik
 
 |0.0.2 |07.05.25 | 2.1 +
+2.5 +
 2.7
 |Endpunkte (URLs) ergänzt +
+Notdienste ergänzt +
 Aktualisierung von Endpoints erläutert
 |gematik
 
