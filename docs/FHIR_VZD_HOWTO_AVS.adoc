@@ -18,7 +18,7 @@ image::gematik_logo.svg[gematik,float="right"]
 
 [width="100%",cols="50%,50%",options="header",]
 |===
-|Version: |0.0.1
+|Version: |0.0.2
 |Referencing: |gemILF_FHIR_VZD
 |===
 
@@ -33,6 +33,14 @@ image::gematik_logo.svg[gematik,float="right"]
  |*Editing* +
 
 |0.0.1 |11.04.25 | |Initiales Dokument |gematik
+
+|0.0.2 |07.05.25 | 2.1 +
+2.5 +
+2.7
+|Endpunkte (URLs) ergänzt +
+Notdienste ergänzt +
+Aktualisierung von Endpoints erläutert
+|gematik
 
 |===
 
@@ -54,7 +62,51 @@ durch geeignete Maßnahmen dafür Sorge zu tragen, dass von ihm aufgrund der Spe
 Schutzrechte Dritter verstoßen und sich ggf. die erforderlichen Erlaubnisse/Lizenzen von den betroffenen Schutzrechtsinhabern einzuholen. 
 Die gematik GmbH übernimmt insofern keinerlei Gewährleistungen._
 
-=== Pflege von Mehrwertdaten für Apotheken
+== Pflege von Mehrwertdaten für Apotheken
+Die Nutzung des FHIR VZD wird in folgenden Dokumenten beschrieben: +
+
+- link:https://gemspec.gematik.de/docs/gemSpec/gemSpec_VZD_FHIR_Directory[Spezifikation Verzeichnisdienst FHIR-Directory (gemSpec_VZD_FHIR_Directory)]
+- link:https://github.com/gematik/api-vzd/blob/main/docs/gemILF_VZD_FHIR_Directory.adoc[FHIR VZD implementation guide]
+- link:https://simplifier.net/VZD-FHIR-Directory/~introduction[Simplifier Profil VZD-FHIR-Directory]
+
+In den folgenden Kapiteln wird näher auf die Nutzung des FHIR VZD durch AVS zur Pflege der Apotheken-Daten im FHIR VZD eingegangen.
+
+=== Endpunkte
+Die FHIR VZD Endpunkte sind in der link:https://gemspec.gematik.de/docs/gemSpec/gemSpec_VZD_FHIR_Directory/latest/#4.2.1[FHIR VZD Spezifikation (gemSpec_VZD_FHIR_Directory)] im Kapitel "Schnittstellen" enthalten. +
+Ein Auszug mit den relevanten Endpunkte für AVS: +
+ +
+link:https://gemspec.gematik.de/docs/gemSpec/gemSpec_VZD_FHIR_Directory/latest/#4.2.1.3[*Endpunkte für das Ändern von eigenen Einträgen im VZD-FHIR-Directory durch TI-Messenger Clients und Org-Admin-Clients*] +
+In der Produktionsumgebung (PU) ist die URL: https://fhir-directory.vzd.ti-dienste.de/owner +
+In der Referenzumgebung (RU) ist die URL: https://fhir-directory-ref.vzd.ti-dienste.de/owner +
+In der Testumgebung (TU) ist die URL: https://fhir-directory-tu.vzd.ti-dienste.de/owner +
+ +
+link:https://gemspec.gematik.de/docs/gemSpec/gemSpec_VZD_FHIR_Directory/latest/#4.2.1.3[*Endpunkte für die Authentisierung*] +
+In der Produktionsumgebung (PU) ist die URL: https://fhir-directory.vzd.ti-dienste.de/owner-authenticate +
+In der Referenzumgebung (RU) ist die URL: https://vzd-fhir-directory-ref.vzd.ti-dienste.de/owner-authenticate + 
+In der Testumgebung (TU) ist die URL: https://fhir-directory-tu.vzd.ti-dienste.de/owner-authenticate +
+ +
+link:https://gemspec.gematik.de/docs/gemSpec/gemSpec_VZD_FHIR_Directory/latest/#4.2.1.3[*FHIR VZD Endpunkte für die Authentisierung mit dem SmartcardIDP*] +
+In der Produktionsumgebung (PU) ist die URL: https://fhir-directory.vzd.ti-dienste.de/signin-gematik-idp-dienst +
+In der Referenzumgebung (RU) ist die URL: https://vzd-fhir-directory-ref.vzd.ti-dienste.de/signin-gematik-idp-dienst +
+In der Testumgebung (TU) ist die URL: https://vzd-fhir-directory-test.vzd.ti-dienste.de/signin-gematik-idp-dienst +
+ +
+link:https://gemspec.gematik.de/docs/gemSpec/gemSpec_VZD_FHIR_Directory/latest/#4.2.1.3[*FHIR-VZD-Endpunkte für die Authentisierung mit dem gematik Authenticator und Polling Endpunkt*] +
+ +
+In der Produktionsumgebung (PU) sind die URLs: +
+https://fhir-directory.vzd.ti-dienste.de/owner-authenticate-decoupled +
+https://fhir-directory.vzd.ti-dienste.de/owner-authenticate-poll +
+https://fhir-directory.vzd.ti-dienste.de/signin-gematik-idp-dienst-decoupled +
+ +
+In der Referenzumgebung (RU) sind die URLs: +
+https://vzd-fhir-directory-ref.vzd.ti-dienste.de/owner-authenticate-decoupled +
+https://vzd-fhir-directory-ref.vzd.ti-dienste.de/owner-authenticate-poll +
+https://vzd-fhir-directory-ref.vzd.ti-dienste.de/signin-gematik-idp-dienst-decoupled +
+ +
+In der Testumgebung (TU) sind die URLs: +
+https://fhir-directory-tu.vzd.ti-dienste.de/owner-authenticate-decoupled +
+https://fhir-directory-tu.vzd.ti-dienste.de/owner-authenticate-poll +
+https://fhir-directory-tu.vzd.ti-dienste.de/signin-gematik-idp-dienst-decoupled +
+
 === Authentifizierung
 Die Pflege der Apotheken Mehrwertdaten erfogt über die FHIR VZD /owner Schnittstelle. +
 Für den Zugriff auf die /owner Schnittstelle ist ein access_token nötig, welches man über eine der folgenden Optionen erhält:
@@ -71,7 +123,7 @@ Beispielimplementierungen für diese Authentifizierung sind hier verfügbar link
 und hier link:https://github.com/gematik/api-vzd/tree/main/samples/directory-samples-python/directory_samples[Python sample]
 ====
 
-==== Suche des Apothekeneintrags
+=== Suche des Apothekeneintrags
 Vor jeder Änderung von Mehrwertdaten müssen zuerst die aktuellen Daten aus dem FHIR VZD gelesen werden. Dafür können die in link:FHIR_VZD_HOWTO_Search.adoc[FHIR VZD HOWTO Search] 
 beschriebenen Suchoperationen genutzt werden. +
  +
@@ -358,7 +410,7 @@ Das Ergebnis der FHIR VZD Suchabfrage:
 ====
 Diese Beispieldaten werden in allen folgenden UseCases als aktuelle FHIR VZD Daten der Apotheke verwendet.
 
-==== Änderung von Mehrwertdaten der Apotheke
+=== Änderung von Mehrwertdaten der Apotheke
 Die gesamte Übersicht über die änderbaren Attribute wird im link:FHIR_VZD_HOWTO_Data.adoc[FHIR VZD data model] beschrieben. +
 Das Simplifier Profile FHIR VZD kann hier eigesehen werden link:https://simplifier.net/vzd-fhir-directory[gematik FHIR Directory].
 
@@ -390,15 +442,16 @@ Alle anderen HealtcareServices der Apotheke können durch das AVS ignoriert werd
                     ]
 ====
 
-===== Pflege der Öffnungszeiten, Dienstleistungen und Kontaktdaten
+=== Pflege der Öffnungszeiten, Notdienste, Dienstleistungen und Kontaktdaten
 Die Öffnungszeiten, Dienstleistungen und Kontaktdaten der Apotheke befinden sich in der FHIR Ressource HealthcareService:
 
-- HealthcareService.availableTime - Öffnungszeiten - Werden für die Suche nach geöffneten Apotheken im VZD & Apps ausgewertet.
-- HealthcareService.notAvailable - Abweichungen von den Öffnungszeiten (z.B. Ferien, Feiertage,...).
-- HealthcareService.availabilityExceptions - Textuelle Beschreibung von Ausnahmen z.B. "Nicht geöffnet an gesetzlichen Feiertagen". Diese textuelle Beschreibung wird nicht maschinell ausgewertet. Deshalb sollen die Ausnahmen ebenfalls in "notAvailable" gepflegt werden, wo z.B. auch die gesetzlichen Feiertage eingetragen werden sollen.
-- HealthcareService.telecom - Kontaktdaten.
-- HealthcareService.characteristic:technicalCharacteristic - Technische Dienstleistungen der Apotheke entsprechend Simplifier Codesystem link:https://simplifier.net/vzd-fhir-directory/vzdhealthcareservicecharacteristicscs[VZDHealthCareServiceCharacteristicsCS].
-- HealthcareService.characteristic:physicalFeatures - Ausstattung und Informationen zur Anfahrt entsprechend link:https://simplifier.net/vzd-fhir-directory/physicalfeatures[PhysicalFeaturesHealthCareServiceCS].
+- *HealthcareService.availableTime* - Die normalen Öffnungszeiten - Werden für die Suche nach geöffneten Apotheken im VZD & Apps ausgewertet.
+- *HealthcareService.notAvailable* - Abweichungen von den normalen Öffnungszeiten (z.B. Ferien, Feiertage,...).
+- *HealthcareService.availabilityExceptions* - Textuelle Beschreibung von Ausnahmen z.B. "Nicht geöffnet an gesetzlichen Feiertagen". Diese textuelle Beschreibung wird nicht maschinell ausgewertet. Deshalb sollen die Ausnahmen ebenfalls in "notAvailable" gepflegt werden, wo z.B. auch die gesetzlichen Feiertage eingetragen werden sollen.
+- *HealthcareService.availableTime.extension:specialOpeningTimes* - Notdienste.
+- *HealthcareService.telecom* - Kontaktdaten.
+- *HealthcareService.characteristic:technicalCharacteristic* - Technische Dienstleistungen der Apotheke entsprechend Simplifier Codesystem link:https://simplifier.net/vzd-fhir-directory/vzdhealthcareservicecharacteristicscs[VZDHealthCareServiceCharacteristicsCS].
+- *HealthcareService.characteristic:physicalFeatures* - Ausstattung und Informationen zur Anfahrt entsprechend link:https://simplifier.net/vzd-fhir-directory/physicalfeatures[PhysicalFeaturesHealthCareServiceCS].
 
 TIP: Das Eintragen von Dienstleistungen für "Zuweisen ohne Anmeldung" wird in Kapitel link:FHIR_VZD_HOWTO_AVS.adoc#pflege-von-apotheken-diensten-für-zuweisen-ohne-anmeldung[Pflege von Apotheken-Diensten für "Zuweisen ohne Anmeldung"] beschrieben.
 
@@ -546,7 +599,8 @@ Ablauf: +
  +
 
 - Im FHIR VZD sind für diese Apotheke die Öffnungszeiten in "availableTime" eingetragen. "availableTime" wird durch die aktuellen Öffnungszeiten aus dem AVS überschrieben.
-- "notAvailable" und "availabilityExceptions" ist im FHIR VZD Datensatz nicht vorhanden und wird vom AVS ergänzt.
+- Es wird eine Urlaubszeit/Schließung in "notAvailable" und "An Feiertagen geschlossen" in "availabilityExceptions" eingetragen. Diese Attribute waren im original FHIR VZD Datensatz nicht vorhanden und werden vom AVS ergänzt.
+- Ein Notdienst wird in "HealthcareService.availableTime.extension:specialOpeningTimes" eingetragen. 
 - In den Kontaktdaten "telecom" wird die e-mail Adresse ergänzt.
 - Die Dienstleistungen der Apotheke "characteristic" sind bisher nicht vorhanden und werden ergänzt. 
 
@@ -777,7 +831,7 @@ Das AVS schreibt den - in Punkt 3 aktualisierten - HealthcareService mit einer F
 .Request
 [source]
 ----
-PUT https://fhir-directory-test.vzd.ti-dienste.de/owner/HealthcareService/9ea6bb93-d5ac-49ea-ab8c-0d4736e867be
+PUT {{base-url}}/owner/HealthcareService/9ea6bb93-d5ac-49ea-ab8c-0d4736e867be
 ----
 
 Der "Request Body" von der PUT Operation entspricht dem aktualisierten HealthcareService Datensatz aus Punkt 3.
@@ -785,7 +839,7 @@ Der "Request Body" von der PUT Operation entspricht dem aktualisierten Healthcar
 
 
 
-===== Pflege der Daten für Botendienste
+=== Pflege der Daten für Botendienste
 Wenn die Apotheke Botendienste anbietet (HealthcareService.specialty=30 "Botendienst"), kann über HealthcareService.coverageArea das Liefergebiet eingetragen werden. Diese Daten dienen der Ermittlung der Apotheken mit Botendienste, die zu einem bestimmten Wohnort liefern. +
 In HealthcareService.coverageArea können folgende (optionale) Daten eingetragen werden:
 
@@ -1134,7 +1188,7 @@ Das AVS schreibt den - in Punkt 3 aktualisierten - HealthcareService mit einer F
 .Request
 [source]
 ----
-PUT https://fhir-directory-test.vzd.ti-dienste.de/owner/HealthcareService/9ea6bb93-d5ac-49ea-ab8c-0d4736e867be
+PUT {{base-url}}/owner/HealthcareService/9ea6bb93-d5ac-49ea-ab8c-0d4736e867be
 ----
 
 Der "Request Body" von der PUT Operation entspricht dem aktualisierten HealthcareService Datensatz aus Punkt 3.
@@ -1144,7 +1198,7 @@ Der "Request Body" von der PUT Operation entspricht dem aktualisierten Healthcar
 
 
 
-===== Pflege von Apotheken-Diensten für "Zuweisen ohne Anmeldung"
+=== Pflege von Apotheken-Diensten für "Zuweisen ohne Anmeldung"
 Dienstleistungen der Apotheke können optional zusätlich über "Zuweisen ohne Anmeldung" angeboten werden. Dafür muss in HealthcareService.characteristic:technicalCharacteristic die zugehörige URL in einem FHIR VZD Endpoint eingetragen und dieser mit dem HealthcareService verlinkt werden.
 
 Ablauf: +
@@ -1376,8 +1430,8 @@ Ablauf: +
 *3. Prüfen der verlinkten Endpoints von dem HealthcareService.* Falls Endpunkte mit dem HealthcareService verlinkt sind, muss Attribut Endpoint.connectionType auf Übereinstimmung mit der einzutragenden Dienstleitung geprüft werden (eRP-onPremise, eRP-delivery, eRP-shipment, eRP-availability) geprüft werden. +
 
 
-- Wenn ein passender Endpunkt verfügbar ist, muss er mit der aktuellen URL aktualisiert werden.
-- Wenn kein passender Endpunkt verfügbar ist, muss ein neuer Endpunkt angelegt und mit dem HealthcareService verlinkt werden.
+- Wenn ein passender Endpunkt verfügbar ist, muss er mit der aktuellen URL aktualisiert werden. Nach der Aktualisierung muss der Endpunkt mit einer PUT Operation im FHIR VZD aktualisiert werden. In diesem Fall ist der Endpunkt schon mit dem HealthcareService verlinkt und damit ist kein Update von dem HealthcareService nötig.
+- Wenn kein passender Endpunkt verfügbar ist, muss ein neuer Endpunkt angelegt (POST Operation) und mit dem HealthcareService verlinkt (PUT Operation auf den HelathcareService) werden.
 
 Im weiteren Ablauf wird von einem aktuellen HealthcareService ohne verlinkte Endpoints ausgegangen.
 
@@ -1391,7 +1445,7 @@ Beispiel für das Anlegen eines Endpunkts durch das AVS mit einer FHIR POST Oper
 .Request
 [source]
 ----
-POST https://fhir-directory.vzd.ti-dienste.de/owner/Endpoint
+POST {{base-url}}/owner/Endpoint
 ----
 
 .Body von dem POST
@@ -1491,12 +1545,21 @@ Der FHIR VZD liefert als Ergebnis von dem erfolgreichen POST Request mit HTTP St
 ----
 ====
 
-Die enthaltene "id" wird für die Verlinkung mit dem HealthcareService benötigt.
+Die enthaltene "id" wird für die Verlinkung mit dem HealthcareService benötigt. +
+ +
+Wenn der Endpunkt schon im FHIR VZD vorhanden ist, müssen - bei Norwendigkeit - seine Daten mit einer PUT Operation aktualisiert werden:
 
+.Request
+[source]
+----
+PUT {{base-url}}/owner/Endpoint/a4cfc381-fe54-42f9-9a22-2bad9c43015c
+----
+Der Body von der PUT Operation entspricht dem Body der POST Operation bzw. dem - aus dem FHIR VZD gelesenen - Endpunkt mit aktualisierten Daten. +
+Bei einem vorhandenen Endpunkt ist keine Aktualisierung/Verlinkung von dem HealthcareService nötig (Punkt 5 entfällt), da der Endpunkt schon mit dem HealthcareService verlinkt ist.
 
 *5. Aktualisierung des HealthcareService* +
  +
-Der angelegte Endpoint muss mit dem HealthcareService verlinkt werden. Dafür wird die "id" aus dem angelegten Endpoint benötigt. Sie wird aus dem Ergebnis/Response vom dem POST Request (siehe Punkt 4) entnommen: +
+Der neu angelegte Endpoint (POST Operation) muss mit dem HealthcareService verlinkt werden. Dafür wird die "id" aus dem angelegten Endpoint benötigt. Sie wird aus dem Ergebnis/Response vom dem POST Request (siehe Punkt 4) entnommen: +
 [source]
 ----
 ...
@@ -1515,6 +1578,8 @@ Die entnommene "id" wird so im HealthcareService ergänzt:
 ...
 ----
 
+Diese Aktualisierung des HealthcareService entfällt, wenn der Endpunkt schon im FHIR VZD vorhanden war.
+
 
 *6. Schreiben des aktualisierten HealthcareService in den FHIR VZD* +
  +
@@ -1523,7 +1588,7 @@ Das AVS schreibt den - in Punkt 5 aktualisierten - HealthcareService mit einer F
 .Request
 [source]
 ----
-PUT https://fhir-directory.vzd.ti-dienste.de/owner/HealthcareService/9ea6bb93-d5ac-49ea-ab8c-0d4736e867be
+PUT {{base-url}}/owner/HealthcareService/9ea6bb93-d5ac-49ea-ab8c-0d4736e867be
 ----
 
 .Body von dem PUT
@@ -1751,7 +1816,7 @@ PUT https://fhir-directory.vzd.ti-dienste.de/owner/HealthcareService/9ea6bb93-d5
 ====
 
 
-===== Pflege der Sichtbarkeit der Apotheke für Versicherte
+=== Pflege der Sichtbarkeit der Apotheke für Versicherte
 
 Wenn eine Apotheke mehrere SMC-Bs mit verschiedenen TelematikIDs nutzt, ist im FHIR VZD für jede TelematikID ein Apotheken-Eintrag vorhanden.
 Wenn davon eine TelematikID/SMC-B nicht für Versicherte genutzt werden soll (z.B. dieser Apotheken SMC-B/TelematikID keine e-Rezepte zugewiesen werden sollen), kann ihre Sichtbarkeit "OrganizationVisibility" auf "hide-versicherte" gesetzt werden. +
@@ -1863,7 +1928,7 @@ Das AVS schreibt die - in Punkt 3 aktualisierte - Organization mit einer FHIR PU
 .Request
 [source]
 ----
-PUT https://fhir-directory.vzd.ti-dienste.de/owner/Organization/b5938fc4-2b37-4800-8859-9d2b7cfbe647
+PUT {{base-url}}/owner/Organization/b5938fc4-2b37-4800-8859-9d2b7cfbe647
 ----
 
 .Body von dem PUT
@@ -1947,7 +2012,7 @@ PUT https://fhir-directory.vzd.ti-dienste.de/owner/Organization/b5938fc4-2b37-48
 
 
 
-===== Pflege der Geo-Koordinaten der Apotheke
+=== Pflege der Geo-Koordinaten der Apotheke
 
 Für jede Apotheke ist im FHIR VZD eine Adresse in einer Location Ressource hinterlegt. Für diese Adresse werden die Geo-Koordinaten automatisch ermittelt und in "Location.position" hinterlegt. Wenn die Geo-Koordinaten zu der Adresse nicht automatisch ermittelbar oder zu ungenau waren, können sie korrigiert werden. Bei Änderung der Adresse über die Apothekenkammer werden die Geo-Koordinaten vom FHIR VZD wieder automatisch ermittelt und ersetzen die vorhandenen Werte. +
 Der Wert Location.position.altitude wird im FHIR VZD und den Apps nicht verwendet. +
@@ -2029,7 +2094,7 @@ Das AVS schreibt die - in Punkt 3 aktualisierte - Location mit einer FHIR PUT Op
 .Request
 [source]
 ----
-PUT https://fhir-directory.vzd.ti-dienste.de/owner/Location/42dd2bae-2b51-42cd-b993-4102b6a223a0
+PUT {{base-url}}/owner/Location/42dd2bae-2b51-42cd-b993-4102b6a223a0
 ----
 
 .Body von dem PUT
