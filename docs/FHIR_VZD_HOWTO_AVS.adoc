@@ -194,7 +194,7 @@ Das Ergebnis der FHIR VZD Suchabfrage:
 					}
 				],
 				"providedBy": {
-					"reference": "Organization/bafbc83a-55c2-42cc-b19b-9de663cb3775"
+					"reference": "Organization/b5938fc4-2b37-4800-8859-9d2b7cfbe647"
 				},
 				"type": [
 					{
@@ -232,7 +232,7 @@ Das Ergebnis der FHIR VZD Suchabfrage:
 				],
 				"location": [
 					{
-						"reference": "Location/b12fefd4-4bf4-4605-b65e-4d6419d8677d"
+						"reference": "Location/42dd2bae-2b51-42cd-b993-4102b6a223a0"
 					}
 				],
 				"telecom": [
@@ -298,7 +298,7 @@ Das Ergebnis der FHIR VZD Suchabfrage:
 			"fullUrl": "https://fhir-directory-ref.vzd.ti-dienste.de/owner/Organization/bafbc83a-55c2-42cc-b19b-9de663cb3775",
 			"resource": {
 				"resourceType": "Organization",
-				"id": "bafbc83a-55c2-42cc-b19b-9de663cb3775",
+				"id": "b5938fc4-2b37-4800-8859-9d2b7cfbe647",
 				"meta": {
 					"versionId": "2",
 					"lastUpdated": "2025-03-10T15:09:25.280+01:00",
@@ -354,10 +354,10 @@ Das Ergebnis der FHIR VZD Suchabfrage:
 			}
 		},
 		{
-			"fullUrl": "https://fhir-directory-ref.vzd.ti-dienste.de/owner/Location/b12fefd4-4bf4-4605-b65e-4d6419d8677d",
+			"fullUrl": "https://fhir-directory-ref.vzd.ti-dienste.de/owner/Location/42dd2bae-2b51-42cd-b993-4102b6a223a0",
 			"resource": {
 				"resourceType": "Location",
-				"id": "b12fefd4-4bf4-4605-b65e-4d6419d8677d",
+				"id": "42dd2bae-2b51-42cd-b993-4102b6a223a0",
 				"meta": {
 					"versionId": "3",
 					"lastUpdated": "2025-03-10T15:09:25.280+01:00",
@@ -495,7 +495,7 @@ Ablauf: +
 		}
 	],
 	"providedBy": {
-		"reference": "Organization/bafbc83a-55c2-42cc-b19b-9de663cb3775"
+		"reference": "Organization/b5938fc4-2b37-4800-8859-9d2b7cfbe647"
 	},
 	"type": [
 		{
@@ -533,7 +533,7 @@ Ablauf: +
 	],
 	"location": [
 		{
-			"reference": "Location/b12fefd4-4bf4-4605-b65e-4d6419d8677d"
+			"reference": "Location/42dd2bae-2b51-42cd-b993-4102b6a223a0"
 		}
 	],
 	"telecom": [
@@ -640,7 +640,7 @@ Das AVS ergänzt das Liefergebiet in den Attributen serviceCoverageArea und serv
 		}
 	],
 	"providedBy": {
-		"reference": "Organization/bafbc83a-55c2-42cc-b19b-9de663cb3775"
+		"reference": "Organization/b5938fc4-2b37-4800-8859-9d2b7cfbe647"
 	},
 	"type": [
 		{
@@ -678,7 +678,7 @@ Das AVS ergänzt das Liefergebiet in den Attributen serviceCoverageArea und serv
 	],
 	"location": [
 		{
-			"reference": "Location/b12fefd4-4bf4-4605-b65e-4d6419d8677d"
+			"reference": "Location/42dd2bae-2b51-42cd-b993-4102b6a223a0"
 		}
 	],
 	"telecom": [
@@ -924,225 +924,8 @@ Ablauf: +
 *2. Extrahieren der relevanten Ressourcen aus dem Suchergebnis.* +
 Die Dienstleistungen der Apotheke befinden sich in FHIR Ressource HealthcareService mit HealthcareService.meta.tag:Origin=ldap Die verlinkten Endpunkte werden zur Prüfung benötigt, ob bereits Endpunkte für "Zuweisen ohne Anmeldung" vorhanden sind.
 
-.FHIR Ressource HealthcareService - aktuelle Daten aus dem FHIR VZD
-[%collapsible%closed]
-====
-[source,txt, linenums]
-----
-{
-                "resourceType": "HealthcareService",
-                "id": "9ea6bb93-d5ac-49ea-ab8c-0d4736e867be",
-                "meta": {
-                    "versionId": "2",
-                    "lastUpdated": "2025-02-17T13:49:56.205+01:00",
-                    "profile": [
-                        "https://gematik.de/fhir/directory/StructureDefinition/HealthcareServiceDirectory"
-                    ],
-                    "tag": [
-                        {
-                            "system": "https://gematik.de/fhir/directory/CodeSystem/Origin",
-                            "code": "ldap",
-                            "display": "Synchronized from LDAP VZD"
-                        },
-                        {
-                            "system": "https://gematik.de/fhir/directory/source",
-                            "code": "ARV-TDG-20250213"
-                        }
-                    ]
-                },
-                "identifier": [
-                    {
-                        "system": "http://hl7.org/fhir/sid/us-npi",
-                        "value": "a52337c2-7dab-4607-ad6c-d5d8b5bd6013"
-                    }
-                ],
-                "providedBy": {
-                    "reference": "Organization/b5938fc4-2b37-4800-8859-9d2b7cfbe647"
-                },
-                "type": [
-                    {
-                        "coding": [
-                            {
-                                "system": "https://gematik.de/fhir/directory/CodeSystem/PharmacyTypeCS",
-                                "code": "versandapotheke",
-                                "display": "Versandapotheke"
-                            }
-                        ]
-                    }
-                ],
-                "specialty": [
-                    {
-                        "coding": [
-                            {
-                                "system": "https://gematik.de/fhir/directory/CodeSystem/PharmacyHealthcareSpecialtyCS",
-                                "code": "50",
-                                "display": "Sterilherstellung"
-                            }
-                        ]
-                    },
-                    {
-                        "coding": [
-                            {
-                                "system": "https://gematik.de/fhir/directory/CodeSystem/PharmacyHealthcareSpecialtyCS",
-                                "code": "20",
-                                "display": "Nacht- und Notdienst"
-                            }
-                        ]
-                    }
-                ],
-                "location": [
-                    {
-                        "reference": "Location/42dd2bae-2b51-42cd-b993-4102b6a223a0"
-                    }
-                ],
-                "telecom": [
-                  {
-                   "system": "phone",
-                   "value": "0301234567",
-                   "rank": 10
-                  },
-                  {
-                   "system": "fax",
-                   "value": "0301234568",
-                   "rank": 20
-                  },
-                  {
-                   "system": "email",
-                   "value": "info@apotheke.de",
-                   "rank": 30
-                  },
-                  {
-                   "system": "url",
-                   "value": "http://www.apotheke.com",
-                   "rank": 40
-                  }
-                ],
-                "availableTime": [
-                    {
-                        "daysOfWeek": [
-                            "mon"
-                        ],
-                        "availableStartTime": "08:30:00",
-                        "availableEndTime": "18:00:00"
-                    },
-                    {
-                        "daysOfWeek": [
-                            "tue"
-                        ],
-                        "availableStartTime": "07:00:00",
-                        "availableEndTime": "18:00:00"
-                    },
-                    {
-                        "daysOfWeek": [
-                            "wed"
-                        ],
-                        "availableStartTime": "08:00:00",
-                        "availableEndTime": "18:00:00"
-                    },
-                    {
-                        "daysOfWeek": [
-                            "thu"
-                        ],
-                        "availableStartTime": "08:30:00",
-                        "availableEndTime": "22:00:00"
-                    },
-                    {
-                        "daysOfWeek": [
-                            "fri"
-                        ],
-                        "availableStartTime": "08:00:00",
-                        "availableEndTime": "18:00:00"
-                    },
-                    {
-                        "daysOfWeek": [
-                            "sat"
-                        ],
-                        "availableStartTime": "08:00:00",
-                        "availableEndTime": "18:00:00"
-                    },
-                    {
-                     "extension": [
-                         {
-                           "url": "https://gematik.de/fhir/directory/StructureDefinition/SpecialOpeningTimesEX",
-                           "extension": [
-                               {
-                                   "url": "period",
-                                   "valuePeriod": {
-                                      "start": "07/20/2024 06:30:00",
-                                      "end": "07/21/2024 06:30:00"
-                                    }
-                               },
-                               {
-                                  "url": "qualifier",
-                                  "valueCoding": {
-                                      "code": "notdienst",
-                                      "system": "https://gematik.de/fhir/directory/CodeSystem/OpeningTimeQualifierCS",
-                                      "display": "Notdienst"
-                                      }
-                                }
-                            ]
-                         }
-					  ]
-                    }
-                ],
-                "notAvailable":  [
-                    {
-                       "description": "Urlaub",
-                       "during": {
-                          "start": "2024-09-01",
-                          "end": "2024-09-21"
-                       }
-                    }
-                ],
-                "availabilityExceptions": "An Feiertagen geschlossen",
-		"characteristic":  [
-			{
-				"extension":  [
-					{
-						"url": "https://gematik.de/fhir/directory/StructureDefinition/PhysicalFeaturesAdditionalNoteEX",
-						"valueString": "Parkplatz vor der Apotheke"
-					}
-				],
-				"coding":  [
-					{
-						"code": "parkmoeglichkeit",
-						"system": "https://gematik.de/fhir/directory/CodeSystem/physicalFeatures",
-						"display": "Parkmöglichkeit"
-					}
-				]
-			},
-			{
-				"coding":  [
-					{
-						"code": "erx-token-receiver",
-						"system": "https://gematik.de/fhir/directory/CodeSystem/VZDHealthCareServiceCharacteristicsCS",
-						"display": "eRX Token Receiver"
-					}
-				]
-			},
-			{
-				"coding":  [
-					{
-						"code": "apotheke-verfuegbarkeitsanfrage",
-						"system": "https://gematik.de/fhir/directory/CodeSystem/VZDHealthCareServiceCharacteristicsCS",
-						"display": "Apotheke: Verfügbarkeitsanfrage"
-					}
-				]
-			},
-			{
-				"coding":  [
-					{
-						"code": "oepnv",
-						"system": "https://gematik.de/fhir/directory/CodeSystem/physicalFeatures",
-						"display": "ÖPNV in der Nähe"
-					}
-				]
-			}
-		]
-      }
 
-----
-====
+Die aktuellen Daten der Ressource HealthcareService im FHIR VZD entsprechen dem aktualisierten Stand aus Kapitel link:FHIR_VZD_HOWTO_AVS.adoc#25-pflege-der-öffnungszeiten-notdienste-dienstleistungen-botendienste-und-kontaktdaten[Pflege der Öffnungszeiten, Notdienste, Dienstleistungen, Botendienste und Kontaktdaten].
 
 
 *3. Prüfen der verlinkten Endpoints von dem HealthcareService.* Falls Endpunkte mit dem HealthcareService verlinkt sind, muss Attribut Endpoint.connectionType auf Übereinstimmung mit der einzutragenden Dienstleitung geprüft werden (eRP-onPremise, eRP-delivery, eRP-shipment, eRP-availability) geprüft werden. +
@@ -1154,7 +937,7 @@ Die Dienstleistungen der Apotheke befinden sich in FHIR Ressource HealthcareServ
 Im weiteren Ablauf wird von einem aktuellen HealthcareService ohne verlinkte Endpoints ausgegangen.
 
 
-*4. Anlegen eines Endpunkts im FHIR VZD* +
+*4. Anlegen der Endpunkte im FHIR VZD* +
  +
 Im FHIR VZD wird ein Endpunkt für "Zuweisen ohne Anmeldung" angelegt. Wenn mehrere Dienste über "Zuweisen ohne Anmeldung" von der Apotheke angeboten werden, müssen entsprechend mehr Endpunkte angelegt werden. +
 
@@ -1225,7 +1008,7 @@ Der FHIR VZD liefert als Ergebnis von dem erfolgreichen POST Request mit HTTP St
 ----
 {
     "resourceType": "Endpoint",
-    "id": "a4cfc381-fe54-42f9-9a22-2bad9c43015c",
+    "id": "816236b6-2dcb-43f1-9d42-95a0c3f74ac2",
     "meta": {
         "versionId": "1",
         "lastUpdated": "2025-04-10T16:03:50.292+02:00",
@@ -1265,12 +1048,63 @@ Der FHIR VZD liefert als Ergebnis von dem erfolgreichen POST Request mit HTTP St
 
 Die enthaltene "id" wird für die Verlinkung mit dem HealthcareService benötigt. +
  +
+Für die Beispielapotheke wird ein zweiter Endpunkt "Reservierung" mit einer FHIR POST Operation angelegt:
+
+.Request
+[source]
+----
+POST {{base-url}}/owner/Endpoint
+----
+
+.Body von dem POST
+[%collapsible%closed]
+====
+[source,txt, linenums]
+----
+{
+    "resourceType": "Endpoint",
+    "meta": {
+        "profile": [
+            "https://gematik.de/fhir/directory/StructureDefinition/EndpointDirectory"
+        ],
+        "tag": [
+            {
+                "system": "https://gematik.de/fhir/directory/CodeSystem/Origin",
+                "code": "owner"
+            }
+        ]
+    },
+    "status": "active",
+    "connectionType": {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/EndpointDirectoryConnectionType",
+        "code": "eRP-onPremise",
+        "display": "Reservierung"
+    },
+    "name": "Reservierung",
+    "payloadType": [
+        {
+            "coding": [
+                {
+                    "system": "http://terminology.hl7.org/CodeSystem/data-absent-reason",
+                    "code": "not-applicable",
+                }
+            ]
+        }
+    ],
+    "address": "https://reservierung.endpoint.address.do.not.use.local/3-0002-ARV1007143800036051/eRP-onPremise"
+}
+----
+====
+
+Dieser Endpunkt erhält im FHIR VZD die "id": "04deb322-4155-4fb8-8c67-b5f3a57a8a58" +
+
+
 Wenn der Endpunkt schon im FHIR VZD vorhanden ist, müssen - bei Norwendigkeit - seine Daten mit einer PUT Operation aktualisiert werden:
 
 .Request
 [source]
 ----
-PUT {{base-url}}/owner/Endpoint/a4cfc381-fe54-42f9-9a22-2bad9c43015c
+PUT {{base-url}}/owner/Endpoint/816236b6-2dcb-43f1-9d42-95a0c3f74ac2
 ----
 Der Body von der PUT Operation entspricht dem Body der POST Operation bzw. dem - aus dem FHIR VZD gelesenen - Endpunkt mit aktualisierten Daten. +
 Bei einem vorhandenen Endpunkt ist keine Aktualisierung/Verlinkung von dem HealthcareService nötig (Punkt 5 entfällt), da der Endpunkt schon mit dem HealthcareService verlinkt ist.
@@ -1281,18 +1115,28 @@ Der neu angelegte Endpoint (POST Operation) muss mit dem HealthcareService verli
 [source]
 ----
 ...
-    "id": "a4cfc381-fe54-42f9-9a22-2bad9c43015c",
+    "id": "04deb322-4155-4fb8-8c67-b5f3a57a8a58",
 ...
 ----
-Die entnommene "id" wird so im HealthcareService ergänzt:
+Zweiter Endpunkt:
 [source]
 ----
 ...
-                "endpoint": [
-                    {
-                        "reference": "Endpoint/a4cfc381-fe54-42f9-9a22-2bad9c43015c"
-                    }
-                ]
+    "id": "816236b6-2dcb-43f1-9d42-95a0c3f74ac2",
+...
+----
+Die entnommenen "id" wird so im HealthcareService ergänzt:
+[source]
+----
+...
+   "endpoint": [
+	{
+		"reference": "Endpoint/04deb322-4155-4fb8-8c67-b5f3a57a8a58"
+	},
+	{
+		"reference": "Endpoint/816236b6-2dcb-43f1-9d42-95a0c3f74ac2"
+	}
+    ],	
 ...
 ----
 
@@ -1306,7 +1150,7 @@ Das AVS schreibt den - in Punkt 5 aktualisierten - HealthcareService mit einer F
 .Request
 [source]
 ----
-PUT {{base-url}}/owner/HealthcareService/9ea6bb93-d5ac-49ea-ab8c-0d4736e867be
+PUT {{base-url}}/owner/HealthcareService/c12804cf-c462-413d-a950-58836f8cf287
 ----
 
 .Body von dem PUT
@@ -1315,223 +1159,311 @@ PUT {{base-url}}/owner/HealthcareService/9ea6bb93-d5ac-49ea-ab8c-0d4736e867be
 [source,txt, linenums]
 ----
 {
-                "resourceType": "HealthcareService",
-                "id": "9ea6bb93-d5ac-49ea-ab8c-0d4736e867be",
-                "meta": {
-                    "versionId": "2",
-                    "lastUpdated": "2025-02-17T13:49:56.205+01:00",
-                    "profile": [
-                        "https://gematik.de/fhir/directory/StructureDefinition/HealthcareServiceDirectory"
-                    ],
-                    "tag": [
-                        {
-                            "system": "https://gematik.de/fhir/directory/CodeSystem/Origin",
-                            "code": "ldap",
-                            "display": "Synchronized from LDAP VZD"
-                        },
-                        {
-                            "system": "https://gematik.de/fhir/directory/source",
-                            "code": "ARV-TDG-20250213"
-                        }
-                    ]
-                },
-                "identifier": [
-                    {
-                        "system": "http://hl7.org/fhir/sid/us-npi",
-                        "value": "a52337c2-7dab-4607-ad6c-d5d8b5bd6013"
-                    }
-                ],
-                "providedBy": {
-                    "reference": "Organization/b5938fc4-2b37-4800-8859-9d2b7cfbe647"
-                },
-                "type": [
-                    {
-                        "coding": [
-                            {
-                                "system": "https://gematik.de/fhir/directory/CodeSystem/PharmacyTypeCS",
-                                "code": "versandapotheke",
-                                "display": "Versandapotheke"
-                            }
-                        ]
-                    }
-                ],
-                "specialty": [
-                    {
-                        "coding": [
-                            {
-                                "system": "https://gematik.de/fhir/directory/CodeSystem/PharmacyHealthcareSpecialtyCS",
-                                "code": "50",
-                                "display": "Sterilherstellung"
-                            }
-                        ]
-                    },
-                    {
-                        "coding": [
-                            {
-                                "system": "https://gematik.de/fhir/directory/CodeSystem/PharmacyHealthcareSpecialtyCS",
-                                "code": "20",
-                                "display": "Nacht- und Notdienst"
-                            }
-                        ]
-                    }
-                ],
-                "location": [
-                    {
-                        "reference": "Location/42dd2bae-2b51-42cd-b993-4102b6a223a0"
-                    }
-                ],
-                "telecom": [
-                  {
-                   "system": "phone",
-                   "value": "0301234567",
-                   "rank": 10
-                  },
-                  {
-                   "system": "fax",
-                   "value": "0301234568",
-                   "rank": 20
-                  },
-                  {
-                   "system": "email",
-                   "value": "info@apotheke.de",
-                   "rank": 30
-                  },
-                  {
-                   "system": "url",
-                   "value": "http://www.apotheke.com",
-                   "rank": 40
-                  }
-                ],
-                "availableTime": [
-                    {
-                        "daysOfWeek": [
-                            "mon"
-                        ],
-                        "availableStartTime": "08:30:00",
-                        "availableEndTime": "18:00:00"
-                    },
-                    {
-                        "daysOfWeek": [
-                            "tue"
-                        ],
-                        "availableStartTime": "07:00:00",
-                        "availableEndTime": "18:00:00"
-                    },
-                    {
-                        "daysOfWeek": [
-                            "wed"
-                        ],
-                        "availableStartTime": "08:00:00",
-                        "availableEndTime": "18:00:00"
-                    },
-                    {
-                        "daysOfWeek": [
-                            "thu"
-                        ],
-                        "availableStartTime": "08:30:00",
-                        "availableEndTime": "22:00:00"
-                    },
-                    {
-                        "daysOfWeek": [
-                            "fri"
-                        ],
-                        "availableStartTime": "08:00:00",
-                        "availableEndTime": "18:00:00"
-                    },
-                    {
-                        "daysOfWeek": [
-                            "sat"
-                        ],
-                        "availableStartTime": "08:00:00",
-                        "availableEndTime": "18:00:00"
-                    },
-                    {
-                     "extension": [
-                         {
-                           "url": "https://gematik.de/fhir/directory/StructureDefinition/SpecialOpeningTimesEX",
-                           "extension": [
-                               {
-                                   "url": "period",
-                                   "valuePeriod": {
-                                      "start": "07/20/2024 06:30:00",
-                                      "end": "07/21/2024 06:30:00"
-                                    }
-                               },
-                               {
-                                  "url": "qualifier",
-                                  "valueCoding": {
-                                      "code": "notdienst",
-                                      "system": "https://gematik.de/fhir/directory/CodeSystem/OpeningTimeQualifierCS",
-                                      "display": "Notdienst"
-                                      }
-                                }
-                            ]
-                         }
-					  ]
-                    }
-                ],
-                "notAvailable":  [
-                    {
-                       "description": "Urlaub",
-                       "during": {
-                          "start": "2024-09-01",
-                          "end": "2024-09-21"
-                       }
-                    }
-                ],
-                "availabilityExceptions": "An Feiertagen geschlossen",
-		"characteristic":  [
-			{
-				"extension":  [
-					{
-						"url": "https://gematik.de/fhir/directory/StructureDefinition/PhysicalFeaturesAdditionalNoteEX",
-						"valueString": "Parkplatz vor der Apotheke"
-					}
-				],
-				"coding":  [
-					{
-						"code": "parkmoeglichkeit",
-						"system": "https://gematik.de/fhir/directory/CodeSystem/physicalFeatures",
-						"display": "Parkmöglichkeit"
-					}
-				]
-			},
-			{
-				"coding":  [
-					{
-						"code": "erx-token-receiver",
-						"system": "https://gematik.de/fhir/directory/CodeSystem/VZDHealthCareServiceCharacteristicsCS",
-						"display": "eRX Token Receiver"
-					}
-				]
-			},
-			{
-				"coding":  [
-					{
-						"code": "apotheke-verfuegbarkeitsanfrage",
-						"system": "https://gematik.de/fhir/directory/CodeSystem/VZDHealthCareServiceCharacteristicsCS",
-						"display": "Apotheke: Verfügbarkeitsanfrage"
-					}
-				]
-			},
-			{
-				"coding":  [
-					{
-						"code": "oepnv",
-						"system": "https://gematik.de/fhir/directory/CodeSystem/physicalFeatures",
-						"display": "ÖPNV in der Nähe"
-					}
-				]
-			}
+	"resourceType": "HealthcareService",
+	"id": "c12804cf-c462-413d-a950-58836f8cf287",
+	"meta": {
+		"versionId": "19",
+		"lastUpdated": "2025-05-12T17:04:01.812+02:00",
+		"source": "#c8BBFZvizbMADZiB",
+		"profile": [
+			"https://gematik.de/fhir/directory/StructureDefinition/HealthcareServiceDirectory"
 		],
-		"endpoint": [
-                    {
-                        "reference": "Endpoint/a4cfc381-fe54-42f9-9a22-2bad9c43015c"
-                    }
-                ]
-      }
+		"tag": [
+			{
+				"system": "https://gematik.de/fhir/directory/CodeSystem/Origin",
+				"code": "ldap",
+				"display": "Synchronized from LDAP VZD",
+				"userSelected": true
+			}
+		]
+	},
+	"identifier": [
+		{
+			"system": "https://gematik.de/fhir/directory/CodeSystem/ldapUID",
+			"value": "e231c5d5-f528-4930-8e74-edb38a5360c9"
+		}
+	],
+	"providedBy": {
+		"reference": "Organization/b5938fc4-2b37-4800-8859-9d2b7cfbe647"
+	},
+	"type": [
+		{
+			"coding": [
+				{
+					"system": "https://gematik.de/fhir/directory/CodeSystem/PharmacyTypeCS",
+					"code": "offizin-apotheke",
+					"display": "Offizin-Apotheke"
+				},
+				{
+					"system": "https://gematik.de/fhir/directory/CodeSystem/PharmacyTypeCS",
+					"code": "versandapotheke",
+					"display": "Versandapotheke"
+				}
+			],
+			"text": "apo-vzd"
+		}
+	],
+	"specialty": [
+		{
+			"coding": [
+				{
+					"system": "https://gematik.de/fhir/directory/CodeSystem/PharmacyHealthcareSpecialtyCS",
+					"code": "10",
+					"display": "Handverkauf"
+				},
+				{
+					"system": "https://gematik.de/fhir/directory/CodeSystem/PharmacyHealthcareSpecialtyCS",
+					"code": "40",
+					"display": "Versand"
+				}
+			],
+			"text": "apo-vzd"
+		}
+	],
+	"location": [
+		{
+			"reference": "Location/42dd2bae-2b51-42cd-b993-4102b6a223a0"
+		}
+	],
+	"telecom": [
+		{
+			"system": "phone",
+			"value": "0301234567",
+			"rank": 10
+		},
+		{
+			"system": "fax",
+			"value": "0301234568",
+			"rank": 20
+		},
+		{
+			"system": "email",
+			"value": "info@apotheke.de",
+			"rank": 30
+		},
+		{
+			"system": "url",
+			"value": "http://www.apotheke.com",
+			"rank": 40
+		}
+	],
+	"coverageArea": [
+		{
+			"extension": [
+				{
+					"url": "https://gematik.de/fhir/directory/StructureDefinition/ServiceCoverageArea",
+					"valueQuantity": {
+						"value": 10000,
+						"system": "http://unitsofmeasure.org",
+						"code": "m"
+					}
+				},
+				{
+					"url": "https://gematik.de/fhir/directory/StructureDefinition/ServiceCoveragePostalCode",
+					"valueString": "60596"
+				},
+				{
+					"url": "https://gematik.de/fhir/directory/StructureDefinition/ServiceCoveragePostalCode",
+					"valueString": "60597"
+				},
+				{
+					"url": "https://gematik.de/fhir/directory/StructureDefinition/ServiceCoveragePostalCode",
+					"valueString": "60598"
+				}
+			]
+		}
+	],
+	"characteristic": [
+		{
+			"extension": [
+				{
+					"url": "https://gematik.de/fhir/directory/StructureDefinition/PhysicalFeaturesAdditionalNoteEX",
+					"valueString": "Parkplatz vor der Apotheke in ausreichender Menge vorhanden"
+				}
+			],
+			"coding": [
+				{
+					"system": "https://gematik.de/fhir/directory/CodeSystem/physicalFeatures",
+					"code": "parkmoeglichkeit",
+					"display": "Parkmöglichkeit"
+				}
+			]
+		},
+		{
+			"extension": [
+				{
+					"url": "https://gematik.de/fhir/directory/StructureDefinition/PhysicalFeaturesAdditionalNoteEX",
+					"valueString": "Für Rollstuhlfahrer ebenerdig ohne Rampe"
+				}
+			],
+			"coding": [
+				{
+					"system": "https://gematik.de/fhir/directory/CodeSystem/physicalFeatures",
+					"code": "barrierefrei",
+					"display": "Barrierefrei"
+				}
+			]
+		},
+		{
+			"extension": [
+				{
+					"url": "https://gematik.de/fhir/directory/StructureDefinition/PhysicalFeaturesAdditionalNoteEX",
+					"valueString": "großer Abholautomat mit Blindenschrift"
+				}
+			],
+			"coding": [
+				{
+					"system": "https://gematik.de/fhir/directory/CodeSystem/physicalFeatures",
+					"code": "abholautomat",
+					"display": "Abholautomat"
+				}
+			]
+		},
+		{
+			"extension": [
+				{
+					"url": "https://gematik.de/fhir/directory/StructureDefinition/PhysicalFeaturesAdditionalNoteEX",
+					"valueString": "ÖPNV in der Nähe U2 Wittelbacher Platz"
+				}
+			],
+			"coding": [
+				{
+					"system": "https://gematik.de/fhir/directory/CodeSystem/physicalFeatures",
+					"code": "oepnv",
+					"display": "ÖPNV in der Nähe"
+				}
+			]
+		}
+	],
+	"availableTime": [
+		{
+			"daysOfWeek": [
+				"mon"
+			],
+			"availableStartTime": "08:30:00",
+			"availableEndTime": "18:00:00"
+		},
+		{
+			"daysOfWeek": [
+				"tue"
+			],
+			"availableStartTime": "07:00:00",
+			"availableEndTime": "18:00:00"
+		},
+		{
+			"daysOfWeek": [
+				"wed"
+			],
+			"availableStartTime": "08:00:00",
+			"availableEndTime": "18:00:00"
+		},
+		{
+			"daysOfWeek": [
+				"thu"
+			],
+			"availableStartTime": "08:30:00",
+			"availableEndTime": "22:00:00"
+		},
+		{
+			"daysOfWeek": [
+				"fri"
+			],
+			"availableStartTime": "08:00:00",
+			"availableEndTime": "18:00:00"
+		},
+		{
+			"extension": [
+				{
+					"url": "https://gematik.de/fhir/directory/StructureDefinition/SpecialOpeningTimesEX",
+					"extension": [
+						{
+							"url": "period",
+							"valuePeriod": {
+								"start": "2024-07-20T06:30:00.000+01:00",
+								"end": "2024-07-21T06:30:00.000+01:00"
+							}
+						},
+						{
+							"url": "qualifier",
+							"valueCoding": {
+								"system": "https://gematik.de/fhir/directory/CodeSystem/OpeningTimeQualifierCS",
+								"code": "notdienst",
+								"display": "Notdienst"
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"extension": [
+				{
+					"url": "https://gematik.de/fhir/directory/StructureDefinition/SpecialOpeningTimesEX",
+					"extension": [
+						{
+							"url": "period",
+							"valuePeriod": {
+								"start": "2024-08-20T06:30:00.000+02:00",
+								"end": "2024-08-21T06:30:00.000+02:00"
+							}
+						},
+						{
+							"url": "qualifier",
+							"valueCoding": {
+								"system": "https://gematik.de/fhir/directory/CodeSystem/OpeningTimeQualifierCS",
+								"code": "notdienst",
+								"display": "Notdienst"
+							}
+						}
+					]
+				}
+			]
+		}
+	],
+	"endpoint": [
+			{
+				"reference": "Endpoint/816236b6-2dcb-43f1-9d42-95a0c3f74ac2"
+			},
+			{
+				"reference": "Endpoint/04deb322-4155-4fb8-8c67-b5f3a57a8a58"
+			}
+    ],	
+	"notAvailable": [
+		{
+			"description": "Urlaub",
+			"during": {
+				"start": "2024-09-01",
+				"end": "2024-09-21"
+			}
+		},
+		{
+			"description": "Urlaub",
+			"during": {
+				"start": "2025-09-01",
+				"end": "2025-09-21"
+			}
+		}
+	],
+	"availabilityExceptions": "An Feiertagen geschlossen"
+}
 ----
 ====
+
+*7. Löschen eines Endpunkts* +
+Wenn ein Endpunkt nicht mehr benötigt wird, kann er im FHIR VZD gelöscht werden:
+
+.Request
+[source]
+----
+DELETE {{base-url}}/owner/Endpoint/816236b6-2dcb-43f1-9d42-95a0c3f74ac2
+----
+Der Body von der DELETE Operation ist leer. +
+[NOTE]
+====
+Nach Löschung eines Endpunkts MUSS der Link zu diesem Endpunt aus der HealthcareService Ressource entfernt werden.
+====
+
+
 
 
 === Pflege der Sichtbarkeit der Apotheke für Versicherte
