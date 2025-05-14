@@ -43,11 +43,9 @@ Aktualisierung von Endpoints erläutert
 |gematik
 
 |1.0.0 |14.05.25 | 2.1 +
-x.x +
-x.x
+2.3-2.6 
 |Endpunkte (URL) korrigiert +
-xxx +
-xxx
+Beispieldaten überarbeitet
 |gematik
 
 |===
