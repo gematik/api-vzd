@@ -25,4 +25,45 @@ Vor der Veröffentlichung auf dem Fachportal erfolgen noch Reviews. Folge dieser
  +
  +
 
-*Aktuell liegen keine Änderungen zu den veröffentlichen VZD Spezifikationen vor.*
+== Änderungen in gemSpec_VZD_FHIR_Directory
+
+*_Es wird Kapitel "4.3.4 Anforderungen an VZD Clients" wie folgt aufgenommen_*
+
+*4.3.4 Anforderungen an VZD Clients* +
+
+*A_27744 - VZD Clients - Nutzung zentraler TI-Systeme durch dezentrale Clients: Verbindungsmanagement* +
+Dezentrale Client-Systeme MÜSSEN dafür sorgen, dass Verbindungen nur im Zusammenhang mit einem konkreten fachlichen Use Case, der die Nutzung der entsprechenden Schnittstelle zwingend erfordert, aufgebaut werden. Verbindungsaufbauten im Rahmen eines Initialisierungsprozesses SOLLEN vermieden werden und sind nur in Kombination mit einem wirksamen Connection-Idle-Timeout zulässig. Das Absetzen regelmäßiger Dummy-Requests zum Umgehen des Idle-Timeouts oder zu anderen Zwecken (z.B. Monitoring) DARF NICHT erfolgen. +
+ +
+Ein Client SOLL sicherstellen, dass gleichzeitig maximal eine Verbindung zur VZD-Schnittstelle aufgebaut wird. Das gleichzeitige Öffnen mehrerer paralleler Verbindungen durch denselben Client ist nicht zulässig, es sei denn, ein verbindliches Maximum wird für eine Schnittstelle explizit definiert. +
+ +
+Im Fall des Fehlschlages des Verbindungsaufbau MUSS eine Wartezeit bis zum nächsten Verbindungsversuch eingehalten werden (Retry-Intervall). Das Retry-Intervall SOLL mit zunehmender Anzahl fehlgeschlagener Verbindungsversuch bis zu einem Maximum erhöht werden. +
+ +
+Verbindungen SOLLEN nach Beendigung des fachlichen Use Cases zeitnah geschlossen werden (5 Sek). Erfolgt dies nicht, MUSS nach Ablauf des Connection-Idle-Timeouts die Verbindung abgebaut werden. +
+ +
+Die maximale Bearbeitungsdauer einer Abfrage SOLL clientseitig per Konfiguration festgelegt werden. Um potenzielle Überlastsituationen durch langlaufende Anfragen (> 30 Sekunden) zu vermeiden, KANN der VZD die maximale Bearbeitungsdauer serverseitig begrenzen (TimeOut) und die Abfrage beenden. +
+<= +
+ +
+ +
+*A_27749 VZD Client - Nutzung zentraler TI-Systeme durch dezentrale Clients: Verbindungsmanagement, Parameter* +
+Dezentrale Client-Systeme oder Apps MÜSSEN parametrisierbar sein, d.h. folgende Parameter müssen aus der Ferne zentral angepasst werden können. Die Standardwerte (Default) MÜSSEN nach Aufforderung durch die gematik in einem [noch zu definierenden Prozess] innerhalb einer [noch festzulegenden Zeit] anpassbar sein. +
+ +
+[width="100%",cols="30%,50%,20%",options="header",]
+|===
+
+|Parameter |Beschreibung |Standardwerte (Default)
+
+|CONNECTION_IDLE_TIMEOUT (Hinweis: DieParameternamenmüssen ggf. produkt-oder Schnittstellenspezifisch angepasst werden) |Haltedauer der TCP-Verbindung eines Clients zu einem Dienst, in der kein Datenverkehr zwischen Client und Dienst stattfindet. |30 Sek
+
+|MAX_CONNECTION |Anzahl der pro Client maximal zulässigen gleichzeitigen Verbindungen. |2
+
+|RETRY_TIME |Mindestwartezeit nach den ersten beiden fehlgeschlagenen Verbindungsversuchen. Bei jedem weiteren Versuch nach dem 3. Versuch SOLL die Wartezeit um diesen Wert bis RETRY_TIME_MAX oder mit größer werden Abständen vergrößert werden. |5 Sek
+
+|RETRY_TIME_MAX |Maximale Wartezeit zwischen zwei Verbindungsversuchen. |5 min
+
+|===
+
+<= +
+ +
+ +
+
+
