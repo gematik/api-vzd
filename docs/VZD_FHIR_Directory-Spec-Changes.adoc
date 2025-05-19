@@ -27,6 +27,29 @@ Vor der Veröffentlichung auf dem Fachportal erfolgen noch Reviews. Folge dieser
 
 == Änderungen in gemSpec_VZD_FHIR_Directory
 
+*_Es wird Kapitel "4.2.1.3" wie folgt angepasst_*
+
+*4.2.1.3 FHIR-Schnittstelle für Besitzer FHIRDirectoryOwnerAPI* +
+ +
+...
+ +
+
+
+*FHIR-VZD-Endpunkte für die Holder Authentisierung (Keycloak-AccessToken) mit Client Credentials*
+
+- In der Produktionsumgebung (PU) ist die URL: https://auth.vzd.ti-dienste.de:9443/auth/realms/RSDirectoryAdministration/protocol/openid-connect/token   
+- In der Referenzumgebung (RU) ist die URL: https://auth-ref.vzd.ti-dienste.de:9443/auth/realms/RSDirectoryAdministration/protocol/openid-connect/token  
+- In der Testumgebung (TU) ist die URL: https://auth-test.vzd.ti-dienste.de:9443/auth/realms/RSDirectoryAdministration/protocol/openid-connect/token 
+ +
+ +
+*FHIR-VZD-Endpunkte für den Tausch des Keycloak-AccessTokens gegen das Holder-AccessToken*
+
+- In der Produktionsumgebung (PU) ist die URL: https://fhir-directory.vzd.ti-dienste.de/holder-authenticate 
+- In der Referenzumgebung (RU) ist die URL: https://fhir-directory-ref.vzd.ti-dienste.de/holder-authenticate  
+- In der Testumgebung (TU) ist die URL: https://fhir-directory-tu.vzd.ti-dienste.de/holder-authenticate  
+
+
+
 *_Es wird Kapitel "4.3.4 Anforderungen an VZD Clients" wie folgt aufgenommen_*
 
 *4.3.4 Anforderungen an VZD Clients* +
