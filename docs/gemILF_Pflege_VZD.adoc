@@ -56,7 +56,7 @@ image::gematik_logo.svg[gematik,float="right"]
 [width="100%",cols="50%,50%",options="header",]
 |===
 
-|Version: |1.5.14
+|Version: |1.5.15
 
 |Referenzierung: |gemILF_Pflege_VZD
 |===
@@ -226,6 +226,13 @@ Neu für eGBR HBA und SMC-B |gematik
 - Prüfung V004: Link auf Simplifier aktualisiert +
 - Korrektur Fachrichtungen/ specialization für Handwerkskammern
 |gematik
+
+|1.5.15 |20.05.2025 |4.15
+|
+- Tab_VZD_Datenbeschreibung_der_SMC-B_KT_PKV - domain Beschreibung aktualisiert
+|gematik
+
+
 |===
 
 == Einordnung des Dokumentes
@@ -3271,7 +3278,7 @@ Dieses Attribut ist ein optionales zweites Namensattribut und wird befüllt bei 
  +
  +
 
-optional a| Obligatorisch für alle VZD-Einträge, deren TelematikID mit folgenden Prefixen beginnt:
+optional a| Obligatorisch für alle VZD-Einträge mit dem Institutionskennzeichen (IK) zu befüllen, deren TelematikID mit folgenden Prefixen beginnt:
 
 - 9-2.59.*  (Private Krankenversicherung oder Weiterer Kostenträger)
 
