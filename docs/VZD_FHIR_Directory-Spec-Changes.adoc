@@ -25,4 +25,172 @@ Vor der Veröffentlichung auf dem Fachportal erfolgen noch Reviews. Folge dieser
  +
  +
 
-*Aktuell liegen keine Änderungen zu den veröffentlichen VZD Spezifikationen vor.*
+== Änderungen in gemSpec_VZD_FHIR_Directory
+
+*_Es wird Kapitel "4.2.1.3" wie folgt angepasst_*
+
+*4.2.1.3 FHIR-Schnittstelle für Besitzer FHIRDirectoryOwnerAPI* +
+ +
+...
+ +
+
+
+*FHIR-VZD-Endpunkte für die Holder Authentisierung (Keycloak-AccessToken) mit Client Credentials*
+
+* In der Produktionsumgebung (PU) ist die URL: https://auth.vzd.ti-dienste.de:9443/auth/realms/RSDirectoryAdministration/protocol/openid-connect/token   
+* In der Referenzumgebung (RU) ist die URL: https://auth-ref.vzd.ti-dienste.de:9443/auth/realms/RSDirectoryAdministration/protocol/openid-connect/token  
+* In der Testumgebung (TU) ist die URL: https://auth-test.vzd.ti-dienste.de:9443/auth/realms/RSDirectoryAdministration/protocol/openid-connect/token 
+
+
+*FHIR-VZD-Endpunkte für den Tausch des Keycloak-AccessTokens gegen das Holder-AccessToken*
+
+* In der Produktionsumgebung (PU) ist die URL: https://fhir-directory.vzd.ti-dienste.de/holder-authenticate 
+* In der Referenzumgebung (RU) ist die URL: https://fhir-directory-ref.vzd.ti-dienste.de/holder-authenticate  
+* In der Testumgebung (TU) ist die URL: https://fhir-directory-tu.vzd.ti-dienste.de/holder-authenticate  
+
+
+
+*_Es wird Kapitel "4.3.4 Anforderungen an VZD Clients" wie folgt aufgenommen_*
+
+*4.3.4 Anforderungen an VZD Clients* +
+
+*A_27744 - VZD Clients - Nutzung zentraler TI-Systeme durch dezentrale Clients: Verbindungsmanagement* +
+Dezentrale Client-Systeme MÜSSEN dafür sorgen, dass Verbindungen nur im Zusammenhang mit einem konkreten fachlichen Use Case, der die Nutzung der entsprechenden Schnittstelle zwingend erfordert, aufgebaut werden. Verbindungsaufbauten im Rahmen eines Initialisierungsprozesses SOLLEN vermieden werden und sind nur in Kombination mit einem wirksamen Connection-Idle-Timeout zulässig. Das Absetzen regelmäßiger Dummy-Requests zum Umgehen des Idle-Timeouts oder zu anderen Zwecken (z.B. Monitoring) DARF NICHT erfolgen. +
+ +
+Ein Client SOLL sicherstellen, dass gleichzeitig maximal eine Verbindung zur VZD-Schnittstelle aufgebaut wird. Das gleichzeitige Öffnen mehrerer paralleler Verbindungen durch denselben Client ist nicht zulässig, es sei denn, ein verbindliches Maximum wird für eine Schnittstelle explizit definiert. +
+ +
+Im Fall des Fehlschlages des Verbindungsaufbau MUSS eine Wartezeit bis zum nächsten Verbindungsversuch eingehalten werden (Retry-Intervall). Das Retry-Intervall SOLL mit zunehmender Anzahl fehlgeschlagener Verbindungsversuch bis zu einem Maximum erhöht werden. +
+ +
+Verbindungen SOLLEN nach Beendigung des fachlichen Use Cases zeitnah geschlossen werden (5 Sek). Erfolgt dies nicht, MUSS nach Ablauf des Connection-Idle-Timeouts die Verbindung abgebaut werden. +
+ +
+Die maximale Bearbeitungsdauer einer Abfrage SOLL clientseitig per Konfiguration festgelegt werden. Um potenzielle Überlastsituationen durch langlaufende Anfragen (> 30 Sekunden) zu vermeiden, KANN der VZD die maximale Bearbeitungsdauer serverseitig begrenzen (TimeOut) und die Abfrage beenden. +
+<= +
+ +
+ +
+*A_27749 VZD Client - Nutzung zentraler TI-Systeme durch dezentrale Clients: Verbindungsmanagement, Parameter* +
+Dezentrale Client-Systeme oder Apps MÜSSEN parametrisierbar sein, d.h. folgende Parameter müssen aus der Ferne zentral angepasst werden können. Die Standardwerte (Default) MÜSSEN nach Aufforderung durch die gematik in einem [noch zu definierenden Prozess] innerhalb einer [noch festzulegenden Zeit] anpassbar sein. +
+ +
+[width="100%",cols="30%,50%,20%",options="header",]
+|===
+
+|Parameter |Beschreibung |Standardwerte (Default)
+
+|CONNECTION_IDLE_TIMEOUT (Hinweis: DieParameternamenmüssen ggf. produkt-oder Schnittstellenspezifisch angepasst werden) |Haltedauer der TCP-Verbindung eines Clients zu einem Dienst, in der kein Datenverkehr zwischen Client und Dienst stattfindet. |30 Sek
+
+|MAX_CONNECTION |Anzahl der pro Client maximal zulässigen gleichzeitigen Verbindungen. |2
+
+|RETRY_TIME |Mindestwartezeit nach den ersten beiden fehlgeschlagenen Verbindungsversuchen. Bei jedem weiteren Versuch nach dem 3. Versuch SOLL die Wartezeit um diesen Wert bis RETRY_TIME_MAX oder mit größer werden Abständen vergrößert werden. |5 Sek
+
+|RETRY_TIME_MAX |Maximale Wartezeit zwischen zwei Verbindungsversuchen. |5 min
+
+|===
+
+<= +
+ +
+ +
+*A_27751 - VZD Client - Nutzung zentraler TI-Systeme durch dezentrale Clients: Angepasste Konfiguration und Außerbetriebnahme von Clients* +
+Jeder Client MUSS entsprechend des tatsächlichen Bedarfs, d.h. der zu erwartenden Anwendungsfälle und deren Häufigkeit so konfiguriert werden, dass nicht notwendige Last (Anfrage- und Verbindungslast auf Systemkomponenten durch parallele Verbindungen, häufige Requests oder ineffiziente Nutzung von Schnittstellen) auf den zentralen TI-Systemen vermieden wird. +
+ +
+Clients, die vorübergehend oder langfristig nicht mehr genutzt werden, SOLLEN in angemessen kurzer Zeit deaktiviert werden. +
+<= +
+ +
+ +
+*A_27752 VZD Client - Nutzung zentraler TI-Systeme durch dezentrale Clients: Vermeidung der Gesamtauslese des VZD durch Clients* +
+Ein Client DARF NICHT eine Gesamtauslese (systematische Abfrage aller verfügbaren Einträge über Einzelabfragen statt Nutzung dafürvorgesehener Exportmechanismen) des Verzeichnisdienstes (VZD) durchführen. Stattdessen SOLLEN die dedizierten Schnittstellen, falls vorhanden, für einen entsprechenden Export genutzt werden.Clients, bei denen durch kontinuierliche Abfragen eine unzulässige Gesamtauslese vermutet wird, KÖNNEN im Zweifel gesperrt werden. +
+<= +
+ +
+ +
+*A_27753 VZD Client - Nutzung zentraler TI-Systeme durch dezentrale Clients: Caching* +
+Zur Lastvermeidung und Erhöhung der Ausfallsicherheit SOLLEN Client-Systeme Antworten von häufig durchgeführten Abfragen kurzzeitig (max. 5 Min.), wenn für den Anwendungsfall nicht explizit anders spezifiziert, aufbewahren (cachen). +
+<= +
+ +
+ +
+*A_27754 VZD Client - Nutzung zentraler TI-Systeme durch dezentrale Clients: Effiziente Gestaltung von FHIR-Suchanfragen* +
+Aus Effizienzgründen SOLLEN dezentrale Clients FHIR-Suchanfragen so kurz und zielgerichtet wie möglich gestalten, da jede Anfrage zu einer direkten Datenbankabfrage führt. Eine ineffiziente Gestaltung von Suchanfragen kann zu unnötiger Systemlast und Verbindungsengpässen führen. +
+ +
+Zur Performanceoptimierung SOLLEN Clients folgende Maßnahmen umsetzen: 
+
+- Verwendung des _text-Suchparameters zur gezielten Volltextsuche
+- Ergänzende Nutzung von geographischen Suchparametern (z. B. address oder location) zur klaren Unterscheidung semantischerSuchkontexte (z. B. zwischen „Suche nach einem Arzt in Berlin“ und „Suche nach Dr. Berlin“)
+- Bei Bedarf: gezieltes Einbinden abhängiger Sub-Ressourcen mittels _include, um Mehrfachanfragen zu vermeiden und Netzwerkverkehr zu reduzieren +
+<= +
+
+Beispielhafte Abfrage zur effizienten Arztsuche:
+====
+[source,txt, linenums]
+----
+https://fhir-directory-tu.vzd.ti-dienste.de/fdv/search/HealthcareService?organization.active=true &_text=Mustermann&_include=HealthcareService%3Aorganization &_include=HealthcareService%3Alocation 
+----
+====
+
+Diese Abfrage kombiniert Volltextsuche mit gezieltem Einbinden abhängiger Ressourcen in einer einzigen Anfrage und reduziert dadurch zusätzliche Roundtrips zur FHIR-Schnittstelle. +
+ +
+*A_27755 VZD Client - Nutzung zentraler TI-Systeme durch dezentrale Clients: Fehler-Monitoring* +
+VZD Clients SOLLEN zur frühzeitigen Erkennung von Instabilitäten im Client- oder Netzwerkbereich Metriken wie Antwortzeiten, Fehlerratenund Timeouts erfassen und bei Bedarf an ein zentrales Monitoring-System übermitteln. +
+<= +
+ +
+ +
+
+
+== Änderungen in gemSpec_VZD
+
+*_Es wird Kapitel "3.3 Anforderungen an VZD Clients" wie folgt aufgenommen_*
+
+*3.3 Anforderungen an VZD Clients* +
+
+*A_27744 - VZD Clients - Nutzung zentraler TI-Systeme durch dezentrale Clients: Verbindungsmanagement* +
+Dezentrale Client-Systeme MÜSSEN dafür sorgen, dass Verbindungen nur im Zusammenhang mit einem konkreten fachlichen Use Case, der die Nutzung der entsprechenden Schnittstelle zwingend erfordert, aufgebaut werden. Verbindungsaufbauten im Rahmen eines Initialisierungsprozesses SOLLEN vermieden werden und sind nur in Kombination mit einem wirksamen Connection-Idle-Timeout zulässig. Das Absetzen regelmäßiger Dummy-Requests zum Umgehen des Idle-Timeouts oder zu anderen Zwecken (z.B. Monitoring) DARF NICHT erfolgen. +
+ +
+Ein Client SOLL sicherstellen, dass gleichzeitig maximal eine Verbindung zur VZD-Schnittstelle aufgebaut wird. Das gleichzeitige Öffnen mehrerer paralleler Verbindungen durch denselben Client ist nicht zulässig, es sei denn, ein verbindliches Maximum wird für eine Schnittstelle explizit definiert. +
+ +
+Im Fall des Fehlschlages des Verbindungsaufbau MUSS eine Wartezeit bis zum nächsten Verbindungsversuch eingehalten werden (Retry-Intervall). Das Retry-Intervall SOLL mit zunehmender Anzahl fehlgeschlagener Verbindungsversuch bis zu einem Maximum erhöht werden. +
+ +
+Verbindungen SOLLEN nach Beendigung des fachlichen Use Cases zeitnah geschlossen werden (5 Sek). Erfolgt dies nicht, MUSS nach Ablauf des Connection-Idle-Timeouts die Verbindung abgebaut werden. +
+ +
+Die maximale Bearbeitungsdauer einer Abfrage SOLL clientseitig per Konfiguration festgelegt werden. Um potenzielle Überlastsituationen durch langlaufende Anfragen (> 30 Sekunden) zu vermeiden, KANN der VZD die maximale Bearbeitungsdauer serverseitig begrenzen (TimeOut) und die Abfrage beenden. +
+<= +
+ +
+ +
+*A_27749 VZD Client - Nutzung zentraler TI-Systeme durch dezentrale Clients: Verbindungsmanagement, Parameter* +
+Dezentrale Client-Systeme oder Apps MÜSSEN parametrisierbar sein, d.h. folgende Parameter müssen aus der Ferne zentral angepasst werden können. Die Standardwerte (Default) MÜSSEN nach Aufforderung durch die gematik in einem [noch zu definierenden Prozess] innerhalb einer [noch festzulegenden Zeit] anpassbar sein. +
+ +
+[width="100%",cols="30%,50%,20%",options="header",]
+|===
+
+|Parameter |Beschreibung |Standardwerte (Default)
+
+|CONNECTION_IDLE_TIMEOUT (Hinweis: DieParameternamenmüssen ggf. produkt-oder Schnittstellenspezifisch angepasst werden) |Haltedauer der TCP-Verbindung eines Clients zu einem Dienst, in der kein Datenverkehr zwischen Client und Dienst stattfindet. |30 Sek
+
+|MAX_CONNECTION |Anzahl der pro Client maximal zulässigen gleichzeitigen Verbindungen. |2
+
+|RETRY_TIME |Mindestwartezeit nach den ersten beiden fehlgeschlagenen Verbindungsversuchen. Bei jedem weiteren Versuch nach dem 3. Versuch SOLL die Wartezeit um diesen Wert bis RETRY_TIME_MAX oder mit größer werden Abständen vergrößert werden. |5 Sek
+
+|RETRY_TIME_MAX |Maximale Wartezeit zwischen zwei Verbindungsversuchen. |5 min
+
+|===
+
+<= +
+ +
+ +
+*A_27751 - VZD Client - Nutzung zentraler TI-Systeme durch dezentrale Clients: Angepasste Konfiguration und Außerbetriebnahme von Clients* +
+Jeder Client MUSS entsprechend des tatsächlichen Bedarfs, d.h. der zu erwartenden Anwendungsfälle und deren Häufigkeit so konfiguriert werden, dass nicht notwendige Last (Anfrage- und Verbindungslast auf Systemkomponenten durch parallele Verbindungen, häufige Requests oder ineffiziente Nutzung von Schnittstellen) auf den zentralen TI-Systemen vermieden wird. +
+ +
+Clients, die vorübergehend oder langfristig nicht mehr genutzt werden, SOLLEN in angemessen kurzer Zeit deaktiviert werden. +
+<= +
+ +
+ +
+*A_27752 VZD Client - Nutzung zentraler TI-Systeme durch dezentrale Clients: Vermeidung der Gesamtauslese des VZD durch Clients* +
+Ein Client DARF NICHT eine Gesamtauslese (systematische Abfrage aller verfügbaren Einträge über Einzelabfragen statt Nutzung dafürvorgesehener Exportmechanismen) des Verzeichnisdienstes (VZD) durchführen. Stattdessen SOLLEN die dedizierten Schnittstellen, falls vorhanden, für einen entsprechenden Export genutzt werden.Clients, bei denen durch kontinuierliche Abfragen eine unzulässige Gesamtauslese vermutet wird, KÖNNEN im Zweifel gesperrt werden. +
+<= +
+ +
+ +
+*A_27753 VZD Client - Nutzung zentraler TI-Systeme durch dezentrale Clients: Caching* +
+Zur Lastvermeidung und Erhöhung der Ausfallsicherheit SOLLEN Client-Systeme Antworten von häufig durchgeführten Abfragen kurzzeitig (max. 5 Min.), wenn für den Anwendungsfall nicht explizit anders spezifiziert, aufbewahren (cachen). +
+<= +
+ +
+ +
+*A_27755 VZD Client - Nutzung zentraler TI-Systeme durch dezentrale Clients: Fehler-Monitoring* +
+VZD Clients SOLLEN zur frühzeitigen Erkennung von Instabilitäten im Client- oder Netzwerkbereich Metriken wie Antwortzeiten, Fehlerratenund Timeouts erfassen und bei Bedarf an ein zentrales Monitoring-System übermitteln. +
+<= +
+ +
+ +
