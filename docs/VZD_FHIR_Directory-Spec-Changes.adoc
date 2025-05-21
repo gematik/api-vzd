@@ -34,6 +34,39 @@ Vor der Veröffentlichung auf dem Fachportal erfolgen noch Reviews. Folge dieser
 ...
  +
 
+*Endpunkte für die Authentisierung* +
+In der Produktionsumgebung (PU) ist die URL: https://fhir-directory.vzd.ti-dienste.de/owner-authenticate +
+
+In der Referenzumgebung (RU) ist die URL: *https://fhir-directory-ref.vzd.ti-dienste.de/owner-authenticate* +
+
+In der Testumgebung (TU) ist die URL: https://fhir-directory-tu.vzd.ti-dienste.de/owner-authenticate +
+ +
+*FHIR VZD Endpunkte für die Authentisierung mit dem SmartcardIDP* +
+In der Produktionsumgebung (PU) ist die URL: *https://fhir-directory.vzd.ti-dienste.de/signin-gematik-idp-dienst*
+
+In der Referenzumgebung (RU) ist die URL: *https://fhir-directory-ref.vzd.ti-dienste.de/signin-gematik-idp-dienst* +
+
+In der Testumgebung (TU) ist die URL: *https://fhir-directory-test.vzd.ti-dienste.de/signin-gematik-idp-dienst* +
+ +
+*FHIR-VZD-Endpunkte für die Authentisierung mit dem gematik Authenticator und Polling Endpunkt* +
+In der Produktionsumgebung (PU) sind die URLs: +
+
+- https://fhir-directory.vzd.ti-dienste.de/owner-authenticate-decoupled 
+- https://fhir-directory.vzd.ti-dienste.de/owner-authenticate-poll 
+- https://fhir-directory.vzd.ti-dienste.de/signin-gematik-idp-dienst-decoupled 
+
+In der Referenzumgebung (RU) sind die URLs: 
+
+- *https://fhir-directory-ref.vzd.ti-dienste.de/owner-authenticate-decoupled*
+- *https://fhir-directory-ref.vzd.ti-dienste.de/owner-authenticate-poll*
+- *https://fhir-directory-ref.vzd.ti-dienste.de/signin-gematik-idp-dienst-decoupled*
+
+In der Testumgebung (TU) sind die URLs:
+
+- https://fhir-directory-tu.vzd.ti-dienste.de/owner-authenticate-decoupled 
+- https://fhir-directory-tu.vzd.ti-dienste.de/owner-authenticate-poll 
+- https://fhir-directory-tu.vzd.ti-dienste.de/signin-gematik-idp-dienst-decoupled 
+
 
 *FHIR-VZD-Endpunkte für die Holder Authentisierung (Keycloak-AccessToken) mit Client Credentials*
 
