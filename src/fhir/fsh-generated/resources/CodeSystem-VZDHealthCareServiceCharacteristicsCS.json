@@ -5,13 +5,9 @@
   "name": "VZDHealthCareServiceCharacteristicsCS",
   "id": "VZDHealthCareServiceCharacteristicsCS",
   "description": "CodeSystem of VZD specific HealthcareService characteristics",
-  "version": "0.13.1",
+  "version": "0.14.0",
   "url": "https://gematik.de/fhir/directory/CodeSystem/VZDHealthCareServiceCharacteristicsCS",
   "concept": [
-    {
-      "code": "erx-token-receiver",
-      "display": "eRX Token Receiver"
-    },
     {
       "code": "terminbuchung",
       "display": "Terminbuchung"
@@ -21,5 +17,5 @@
   "publisher": "gematik GmbH",
   "date": "2024-10-29",
   "caseSensitive": false,
-  "count": 2
+  "count": 1
 }

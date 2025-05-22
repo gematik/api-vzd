@@ -1,4 +1,12 @@
 # Changelog
+## 2025-05-22 Version 0.14.0
+- `change`: removed `erx-token-receiver`from VZDHealthCareServiceCharacteristicsCS. This code was not used in the VZD and was removed.
+- `feat`: added new specialty codes to PharmacyHealthcareSpecialtyCS:
+  - #60 Bluthochdruck "Standardisierte Risikoerfassung bei Bluthochdruck"
+  - #70 Inhalativa "Üben der Inhalationstechnik"
+  - #80 "Polymedikation" "Erweiterte Medikationsberatung bei Polymedikation"
+  - #90 "Orale Krebstherapie" "Betreuung bei Einnahme von Krebsmedikamenten"
+  - #100 "Organtransplantation" "Beratung nach Organtransplantation" PharmacyHealthcareSpecialtyCS
 
 ## 2025-05-06 Version 0.13.1
 - `change`: applied the CodingSytemCodeInv directly to .type slices instead of .type to avoid Snapshotting issues in some environments.
