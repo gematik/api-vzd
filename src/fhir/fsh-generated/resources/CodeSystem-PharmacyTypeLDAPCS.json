@@ -6,7 +6,7 @@
   "id": "PharmacyTypeLDAPCS",
   "title": "Pharmacy type LDAP",
   "description": "Pharmacy type codes used in the LDAP-VZD",
-  "version": "0.13.1",
+  "version": "0.14.0",
   "url": "https://gematik.de/fhir/directory/CodeSystem/PharmacyTypeLDAPCS",
   "concept": [
     {

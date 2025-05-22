@@ -2,7 +2,7 @@
   "resourceType": "StructureDefinition",
   "id": "endpoint-directory-Strict",
   "url": "https://gematik.de/fhir/directory/StructureDefinition/endpoint-directory-Strict",
-  "version": "0.13.1",
+  "version": "0.14.0",
   "name": "EndpointDirectoryStrict",
   "title": "EndpointDirectory-Strict",
   "status": "active",

@@ -2,7 +2,7 @@
   "resourceType": "SearchParameter",
   "id": "HealthcareServiceCoverageAreaPostalCodeSP",
   "url": "https://gematik.de/fhir/directory/SearchParameter/HealthcareServiceCoverageAreaPostalCodeSP",
-  "version": "0.13.1",
+  "version": "0.14.0",
   "status": "active",
   "experimental": false,
   "publisher": "gematik GmbH",

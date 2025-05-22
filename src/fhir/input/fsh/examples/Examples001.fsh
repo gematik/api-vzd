@@ -104,4 +104,3 @@ Description: "Example of an HealthcareService as to be found in gematik FHIR Dir
 * availableTime.availableEndTime = "18:00:00"
 * availabilityExceptions = "An Feiertagen geschlossen"
 * endpoint[+] = Reference(MessengerEndpointWithVisibility)
-* characteristic[technicalCharacteristic] = VZDHealthCareServiceCharacteristicsCS#erx-token-receiver "eRX Token Receiver"

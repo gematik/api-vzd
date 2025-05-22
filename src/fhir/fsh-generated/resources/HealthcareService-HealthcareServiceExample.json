@@ -113,16 +113,5 @@
     {
       "reference": "Endpoint/MessengerEndpointWithVisibility"
     }
-  ],
-  "characteristic": [
-    {
-      "coding": [
-        {
-          "code": "erx-token-receiver",
-          "system": "https://gematik.de/fhir/directory/CodeSystem/VZDHealthCareServiceCharacteristicsCS",
-          "display": "eRX Token Receiver"
-        }
-      ]
-    }
   ]
 }

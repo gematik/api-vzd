@@ -72,7 +72,6 @@ Description: "PharmacyHealthCareServiceExample"
     * end = "2024-09-21"
 * availabilityExceptions = "An Feiertagen geschlossen"
 * endpoint[+] = Reference(MessengerEndpointWithVisibility)
-* characteristic[technicalCharacteristic][+] = VZDHealthCareServiceCharacteristicsCS#erx-token-receiver "eRX Token Receiver"
 // Die folgenden Verfahren wurden zurückgestellt, und werden daher vorerst entfernt
 //* characteristic[technicalCharacteristic][+] = VZDHealthCareServiceCharacteristicsCS#apotheke-verfuegbarkeitsanfrage "Apotheke: Verfügbarkeitsanfrage"
 * characteristic[technicalCharacteristic][+] = VZDHealthCareServiceCharacteristicsCS#terminbuchung "Terminbuchung"

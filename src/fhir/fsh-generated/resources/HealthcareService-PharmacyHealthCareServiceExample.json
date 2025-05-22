@@ -98,15 +98,6 @@
     {
       "coding": [
         {
-          "code": "erx-token-receiver",
-          "system": "https://gematik.de/fhir/directory/CodeSystem/VZDHealthCareServiceCharacteristicsCS",
-          "display": "eRX Token Receiver"
-        }
-      ]
-    },
-    {
-      "coding": [
-        {
           "code": "terminbuchung",
           "system": "https://gematik.de/fhir/directory/CodeSystem/VZDHealthCareServiceCharacteristicsCS",
           "display": "Terminbuchung"

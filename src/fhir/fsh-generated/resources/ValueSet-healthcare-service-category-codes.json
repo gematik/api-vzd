@@ -5,7 +5,7 @@
   "id": "healthcare-service-category-codes",
   "title": "HealthcareService Category Codes",
   "description": "Codes for the VZD HealthcareService category element.",
-  "version": "0.13.1",
+  "version": "0.14.0",
   "url": "https://gematik.de/fhir/directory/ValueSet/healthcare-service-category-codes",
   "experimental": false,
   "publisher": "gematik GmbH",
