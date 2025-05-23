@@ -58,6 +58,29 @@ The document is aimed at software developers who are involved in implementing a 
 
 _The following specification was created by gematik solely from a technical point of view. In individual cases, it cannot be ruled out that the implementation of the specification will interfere with the technical property rights of third parties. It is solely up to the supplier or manufacturer to take suitable measures to ensure that the products and/or services offered by him on the basis of the specification do not infringe third-party property rights and, if necessary, to obtain the necessary permits/licenses from the property right holders concerned. In this respect, gematik GmbH assumes no liability whatsoever._
 
+=== Overview about FHIR VZD endpoints
+
+[width="100%",cols="20%,80%",options="header",]
+|===
+|Endpoint |Authentication
+
+|search | link:https://github.com/gematik/api-vzd/blob/main/docs/FHIR_VZD_HOWTO_Authenticate.adoc#21-authenticate-for-the-search-endpoint-with-your-homeserver-login[TIM Homeserver Login] +
+          [Card] +
+          Owner
+
+|fdv/search |xxxxxx
+
+|owner | link:https://github.com/gematik/api-vzd/blob/main/docs/FHIR_VZD_HOWTO_Authenticate.adoc#231-authenticate-with-an-regservice-openid-token[TIM RegService-OpenID-Token] +
+         link:https://github.com/gematik/api-vzd/blob/main/docs/FHIR_VZD_HOWTO_Authenticate.adoc#24-authenticate-for-the-owner-endpoint-as-an-user[HBA/SMC-B] +
+         link:https://github.com/gematik/api-vzd/blob/main/docs/FHIR_VZD_HOWTO_Authenticate.adoc#26-authenticate-as-holder[Holder Client Credentials]
+
+|link:https://github.com/gematik/api-vzd/blob/main/src/openapi/I_VZD_TIM_Provider_Services.yaml[tim-provider-services] | link:https://github.com/gematik/api-vzd/blob/main/docs/FHIR_VZD_HOWTO_Authenticate.adoc#22-authenticate-for-the-provider-api[Provider Client Credentials]
+
+|link:https://github.com/gematik/api-vzd/blob/main/src/openapi/I_FHIR_VZD_Certificates.yaml[certificates] | Token from "search", "fdv/search" or "owner" endpoint.
+
+|link:https://github.com/gematik/api-vzd/blob/main/src/openapi/I_FHIR_VZD_Fachliches_Log.yaml[log] |xxxxxx
+
+|===
 
 == FHIRDirectoryAuthenticationAPIs
 === Authenticate for the search endpoint with your Homeserver Login
