@@ -18,7 +18,7 @@ image::gematik_logo.svg[gematik,float="right"]
 
 [width="100%",cols="50%,50%",options="header",]
 |===
-|Version: |1.0.4
+|Version: |1.0.6
 |Referencing: |gemILF_FHIR_VZD
 |===
 
@@ -40,7 +40,7 @@ image::gematik_logo.svg[gematik,float="right"]
 |1.0.3 |06.12.24 |Chap. 2.1 |Update URLs in access token example |gematik
 |1.0.4 |25.02.25 |Chap. 2.6 |added chapter "2.6. Authenticate as Holder" |gematik
 |1.0.5 |02.04.25 |Chap. 2.1 |added information to fhir-vzd discovery functionality |gematik
-
+|1.0.6 |23.05.25 |Chap. 1.4 |added section endpoints and authentication |gematik
 
 |===
 
@@ -58,6 +58,42 @@ The document is aimed at software developers who are involved in implementing a 
 
 _The following specification was created by gematik solely from a technical point of view. In individual cases, it cannot be ruled out that the implementation of the specification will interfere with the technical property rights of third parties. It is solely up to the supplier or manufacturer to take suitable measures to ensure that the products and/or services offered by him on the basis of the specification do not infringe third-party property rights and, if necessary, to obtain the necessary permits/licenses from the property right holders concerned. In this respect, gematik GmbH assumes no liability whatsoever._
 
+=== Overview about FHIR VZD endpoints and needed Authentication
+
+[width="100%",cols="20%,80%",options="header",]
+|===
+|Endpoint |Authentication
+
+|search a| 
+
+- link:https://github.com/gematik/api-vzd/blob/main/docs/FHIR_VZD_HOWTO_Authenticate.adoc#21-authenticate-for-the-search-endpoint-with-your-homeserver-login[TIM Homeserver Login (isInsurance=false -> HBA owner)]
+- link:https://github.com/gematik/api-vzd/blob/main/docs/FHIR_VZD_HOWTO_Authenticate.adoc#24-authenticate-for-the-owner-endpoint-as-an-user[Authentication via HBA/SMC-B]
+- All Tokens from "owner" endpoint
+
+|fdv/search a|
+
+- link:https://gemspec.gematik.de/docs/gemSpec/gemSpec_VZD_FHIR_Directory/latest/#4.2.1.5[Application provider Client Credentials (Service-Authenticate)] +
+- link:https://github.com/gematik/api-vzd/blob/main/docs/FHIR_VZD_HOWTO_Authenticate.adoc#21-authenticate-for-the-search-endpoint-with-your-homeserver-login[TIM Homeserver Login (isInsurance=true -> eGK owner/Versicherter)] 
+
+|owner a| 
+
+- link:https://github.com/gematik/api-vzd/blob/main/docs/FHIR_VZD_HOWTO_Authenticate.adoc#231-authenticate-with-an-regservice-openid-token[TIM RegService-OpenID-Token]
+- link:https://github.com/gematik/api-vzd/blob/main/docs/FHIR_VZD_HOWTO_Authenticate.adoc#24-authenticate-for-the-owner-endpoint-as-an-user[Authentication via HBA/SMC-B]
+- link:https://github.com/gematik/api-vzd/blob/main/docs/FHIR_VZD_HOWTO_Authenticate.adoc#26-authenticate-as-holder[Holder Client Credentials]
+
+|link:https://github.com/gematik/api-vzd/blob/main/src/openapi/I_VZD_TIM_Provider_Services.yaml[tim-provider-services]  a| 
+
+- link:https://github.com/gematik/api-vzd/blob/main/docs/FHIR_VZD_HOWTO_Authenticate.adoc#22-authenticate-for-the-provider-api[TIM provider Client Credentials]
+
+|link:https://github.com/gematik/api-vzd/blob/main/src/openapi/I_FHIR_VZD_Certificates.yaml[certificates] a| 
+
+- Token from "search", "fdv/search" or "owner" endpoint.
+
+|link:https://github.com/gematik/api-vzd/blob/main/src/openapi/I_FHIR_VZD_Fachliches_Log.yaml[log] a| 
+
+- Token from "owner" endpoint.
+
+|===
 
 == FHIRDirectoryAuthenticationAPIs
 === Authenticate for the search endpoint with your Homeserver Login
@@ -394,4 +430,3 @@ The authentication is similar to the process in chapter "2.2. Authenticate for t
   This URL has to be used: curl -X POST "[baseUrl]:9443/auth/realms/*RSDirectoryAdministration*/protocol/openid-connect/token"
 - [04] Exchange the ti-provider-accesstoken for the tim-providerAPI-accesstoken +
   This URL has to be used: curl -X GET "[baseUrl]/*holder-authenticate*" -H "Authorization: Bearer ..."
-
