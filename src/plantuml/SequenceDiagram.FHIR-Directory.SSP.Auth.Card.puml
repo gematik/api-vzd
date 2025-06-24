@@ -12,7 +12,6 @@ participant au as "Auth-Service"
 participant fp as "FHIR-Proxy"
 participant idp as "Identity Provider"
 participant fd as "FHIR-Directory"
-participant rd as "TI-Messenger\nRegistrierungsdienst"
 
 activate cl
 o -> cl: [1] SSP UI aufrufen
