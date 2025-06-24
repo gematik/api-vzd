@@ -30,17 +30,20 @@ activate aa
 aa -> idp: [7] GET {authorization_endpoint}
 activate idp
 idp --> aa: challenge
+deactivate idp
 aa -> aa: sign challenge
 aa-> idp: signed_challenge
+activate idp
 idp --> aa: Redirect (302) (auth_code)
+deactivate idp
 aa --> cl: [8] {client_callback_uri} {auth_code}
 deactivate aa
 
 cl -> au: [9] GET /signin-gematik-idp-dienst with {auth_code}
 activate au
 au -> idp: [10] POST {token_Endpoint} (auth_code, verifier)
+activate idp
 idp --> au: [11] Response {id_token}
-
 deactivate idp
 
 au -> au: [12] Validierung id-token und erzeuge owner-accesstoken
