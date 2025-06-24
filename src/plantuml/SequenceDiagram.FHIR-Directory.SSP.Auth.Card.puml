@@ -46,11 +46,11 @@ activate idp
 idp --> au: [11] Response {id_token}
 deactivate idp
 
-au -> au: [12] Validierung id-token und erzeuge owner-accesstoken
-au --> cl: [13] HTTP 200 OK, Result body {"access_token"="owner-accesstoken"}
+au -> au: [12] Validierung id-token
+au --> cl: [13] HTTP 200 OK, Result body {"access_token"="id_token"}
 deactivate au
 
-cl -> cl: [14] Benutzeranmeldung (owner-accesstoken) wird gespeichert
+cl -> cl: [14] Benutzeranmeldung wird gespeichert
 cl -> o: Anzeige SSP Suchseite
 
 deactivate cl
