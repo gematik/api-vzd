@@ -1,0 +1,32 @@
+@startuml
+skinparam dpi 100
+skinparam WrapWidth 200
+skinparam monochrome true
+
+'title "FHIR-Directory, Sequenzdiagram SSP Authenticate mit Passwort"
+actor o as "Org-Admin\noder LE"
+participant cl as "Browser\nSSP Frontend"
+participant be as "SSP Backend"
+participant au as "Auth-Service"
+participant fp as "FHIR-Proxy"
+participant fd as "FHIR-Directory"
+
+
+o -> cl: [1] SSP UI aufrufen
+activate cl
+cl -> cl: [2] Darstellung Login Auswahl
+o -> cl: [3] Login mit Passwort auswählen
+
+cl -> au: [3] Weiterleitung auf Login
+activate au
+au -> cl: [4] Darstellung Login Maske
+o -> au: [5] Anmeldedaten eingeben & bestätigen
+au -> au: [6] Anmeldedaten validieren
+au -> cl: [7] Rückgabe Token, AAccount Informationen
+deactivate au
+
+cl -> cl: [8] Benutzeranmeldung wird gespeichert
+cl -> o: [9] Anzeige SSP Suchseite
+
+deactivate cl
+@enduml
