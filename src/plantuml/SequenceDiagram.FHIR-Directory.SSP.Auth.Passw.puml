@@ -22,7 +22,7 @@ activate au
 au -> cl: [4] Darstellung Login Maske
 o -> au: [5] Anmeldedaten eingeben & bestätigen
 au -> au: [6] Anmeldedaten validieren
-au -> cl: [7] Rückgabe Token, AAccount Informationen
+au -> cl: [7] Rückgabe Token, Account Informationen
 deactivate au
 
 cl -> cl: [8] Benutzeranmeldung wird gespeichert
