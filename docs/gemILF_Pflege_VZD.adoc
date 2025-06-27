@@ -228,9 +228,13 @@ Neu für eGBR HBA und SMC-B |gematik
 |gematik
 
 |1.5.15 |20.05.2025 |3.7 +
+ +
+ +
 4.15
 |
-regEx für Kap. 4.8 aktualisiert +
+- regEx für Kap. 4.8 aktualisiert +
+- Regel V009 auf umgesetzt gestellt +
+- Regel 15 bzgl. CountryCode-Setzung ergänzt +
 - Tab_VZD_Datenbeschreibung_der_SMC-B_KT_PKV - domain Beschreibung aktualisiert
 |gematik
 
@@ -916,13 +920,14 @@ zu entnehmen sind.
 Basiseinträge ohne ProfessionOID dürfen im LDAP-VZD angelegt werden. +
 Entsprechende Datensätze ohne ProfessionOIDs können nicht in den FHIR-VZD synchronisiert werden.
 |V014 |umgesetzt |nein
-a| Bei Organisationseinträgen werden die für Personen vorgesehene Felder givenName und title abgelehnt: +
+| Bei Organisationseinträgen werden die für Personen vorgesehene Felder givenName und title abgelehnt: +
 
 - Unterscheidung erfolgt anhand des Attributes isPersonalEntry (extrahiert aus Zertifikat bzw. direkter Übergabe des Attributes im REST Aufruf).
 - Relevant sind nur die Attribute die im REST Aufruf übergeben werden.
 - Die Validierung gilt nicht für Zertifikatsfelder.
 - Übergabe von Attribute SN (Surname) für Übernahme des Displayname ist weiterhin möglich.
-
+|V015 |umgesetzt |nein
+| Der Standardwert „DE“ für den CountryCode wird bei der Anlage (AddDirectoryEntry) und Aktualisierung (ModifyDirectoryEntry) über den REST-Service RsDirectoryAdministration nicht mehr automatisch gesetzt. Bei der Anlieferung einer PLZ, StateOrProvince, City, Straße muss ein CountryCode obligatorisch angeliefert. Nicht-Anlieferung führt zu einem "Bad Request"-Fehler (Fehlercode 400)
 |===
 
 {empty} +
