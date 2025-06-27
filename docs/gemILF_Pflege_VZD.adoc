@@ -903,7 +903,7 @@ zu entnehmen sind.
 |V008 |umgesetzt |nein
 | Prüfung auf Zugehörigkeit der Daten anhand der TelematikID. Alle Daten eines LDAP Eintrags müssen zur gleichen TelematikID gehören (z.B. Zertifikate).
 // bisher V012
-|V009 |geplant |nein
+|V009 |umgesetzt |nein
 | Für jeden Sektor wird überprüft, welche Attribute obligatorisch sind (Grundlage ist der Implementierungsleitfaden). Wenn Attribute obligatorisch zu setzen sind, dies aber vom Pflegenden nicht befüllt wird, kann der Eintrag nicht angelegt werden. Der Sektor wird anhand der TelematikId erkannt.
 // bisher V015
 |V010 |umgesetzt |nein
