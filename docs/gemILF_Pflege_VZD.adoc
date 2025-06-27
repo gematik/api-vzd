@@ -56,7 +56,7 @@ image::gematik_logo.svg[gematik,float="right"]
 [width="100%",cols="50%,50%",options="header",]
 |===
 
-|Version: |1.5.14
+|Version: |1.5.15
 
 |Referenzierung: |gemILF_Pflege_VZD
 |===
@@ -226,6 +226,19 @@ Neu für eGBR HBA und SMC-B |gematik
 - Prüfung V004: Link auf Simplifier aktualisiert +
 - Korrektur Fachrichtungen/ specialization für Handwerkskammern
 |gematik
+
+|1.5.15 |20.05.2025 |3.7 +
+ +
+ +
+4.15
+|
+- regEx für Kap. 4.8 aktualisiert +
+- Regel V009 auf umgesetzt gestellt +
+- Regel 15 bzgl. CountryCode-Setzung ergänzt +
+- Tab_VZD_Datenbeschreibung_der_SMC-B_KT_PKV - domain Beschreibung aktualisiert
+|gematik
+
+
 |===
 
 == Einordnung des Dokumentes
@@ -890,7 +903,7 @@ zu entnehmen sind.
 |V008 |umgesetzt |nein
 | Prüfung auf Zugehörigkeit der Daten anhand der TelematikID. Alle Daten eines LDAP Eintrags müssen zur gleichen TelematikID gehören (z.B. Zertifikate).
 // bisher V012
-|V009 |geplant |nein
+|V009 |umgesetzt |nein
 | Für jeden Sektor wird überprüft, welche Attribute obligatorisch sind (Grundlage ist der Implementierungsleitfaden). Wenn Attribute obligatorisch zu setzen sind, dies aber vom Pflegenden nicht befüllt wird, kann der Eintrag nicht angelegt werden. Der Sektor wird anhand der TelematikId erkannt.
 // bisher V015
 |V010 |umgesetzt |nein
@@ -907,13 +920,14 @@ zu entnehmen sind.
 Basiseinträge ohne ProfessionOID dürfen im LDAP-VZD angelegt werden. +
 Entsprechende Datensätze ohne ProfessionOIDs können nicht in den FHIR-VZD synchronisiert werden.
 |V014 |umgesetzt |nein
-a| Bei Organisationseinträgen werden die für Personen vorgesehene Felder givenName und title abgelehnt: +
+| Bei Organisationseinträgen werden die für Personen vorgesehene Felder givenName und title abgelehnt: +
 
 - Unterscheidung erfolgt anhand des Attributes isPersonalEntry (extrahiert aus Zertifikat bzw. direkter Übergabe des Attributes im REST Aufruf).
 - Relevant sind nur die Attribute die im REST Aufruf übergeben werden.
 - Die Validierung gilt nicht für Zertifikatsfelder.
 - Übergabe von Attribute SN (Surname) für Übernahme des Displayname ist weiterhin möglich.
-
+|V015 |umgesetzt |nein
+| Der Standardwert „DE“ für den CountryCode wird bei der Anlage (AddDirectoryEntry) und Aktualisierung (ModifyDirectoryEntry) über den REST-Service RsDirectoryAdministration nicht mehr automatisch gesetzt. Bei der Anlieferung einer PLZ, StateOrProvince, City, Straße muss ein CountryCode obligatorisch angeliefert. Nicht-Anlieferung führt zu einem "Bad Request"-Fehler (Fehlercode 400)
 |===
 
 {empty} +
@@ -932,7 +946,7 @@ Der Wert in Spalte "TelematikID (regEx)" ist ein Regulärer Ausdruck (Regular ex
 |4.5| xref:gemILF_Pflege_VZD.adoc#Tabelle_5[Tabelle 5: Tab_VZD_Datenbeschreibung_Apotheker_ Pharmazieingenieure_Apothekerassistenten] a|"(\^3-...3.\*\|^9-1.(32\|33\|34).*)"
 |4.6| xref:gemILF_Pflege_VZD.adoc#Tabelle_6[Tabelle 6: Tab_VZD_Datenbeschreibung_DKTIG (DKG)] a|"^5-.*"
 |4.7| xref:gemILF_Pflege_VZD.adoc#Tabelle_7[Tabelle 7: Tab_VZD_Datenbeschreibung_Psychotherapeuten] a|"^4-1.*"
-|4.8| xref:gemILF_Pflege_VZD.adoc#Tabelle_8[Tabelle 8: Tab_VZD_Datenbeschreibung_BÄK] a|"^1-1.*"
+|4.8| xref:gemILF_Pflege_VZD.adoc#Tabelle_8[Tabelle 8: Tab_VZD_Datenbeschreibung_BÄK] a|"^1-1*"
 |4.9| xref:gemILF_Pflege_VZD.adoc#Tabelle_9[Tabelle 9: Tab_VZD_Datenbeschreibung_BZÄK] a|"^2-0?1.*"
 |4.10| xref:gemILF_Pflege_VZD.adoc#Tabelle_10[Tabelle 10: Tab_VZD_Datenbeschreibung_GKV-SV_SMC-B KTR] a|"^8-01.*"
 |4.10| xref:gemILF_Pflege_VZD.adoc#Tabelle_11[Tabelle 11: VZD_Datenbeschreibung_GKV-SV_SM-B_KTR ePA] a|"^8-(03\|04).*"
@@ -3271,7 +3285,7 @@ Dieses Attribut ist ein optionales zweites Namensattribut und wird befüllt bei 
  +
  +
 
-optional a| Obligatorisch für alle VZD-Einträge, deren TelematikID mit folgenden Prefixen beginnt:
+optional a| Obligatorisch für alle VZD-Einträge mit dem Institutionskennzeichen (IK) zu befüllen, deren TelematikID mit folgenden Prefixen beginnt:
 
 - 9-2.59.*  (Private Krankenversicherung oder Weiterer Kostenträger)
 
