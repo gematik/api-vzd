@@ -28,8 +28,10 @@ be -> fp: [7] Suchanfrage & SSP Backend Token
 activate fp
 fp -> fp: [8] Validiere SSP Backend Token
 fp -> fd: [9] Suchanfrage
+activate fd
 
 fd -> fp: [10] Suchergebnis
+deactivate fd
 fp -> be: [10] Suchergebnis
 deactivate fp
 be -> cl: [10] Suchergebnis
