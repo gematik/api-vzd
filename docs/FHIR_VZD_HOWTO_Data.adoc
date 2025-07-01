@@ -18,7 +18,7 @@ image::gematik_logo.svg[gematik,float="right"]
 
 [width="100%",cols="50%,50%",options="header",]
 |===
-|Version: |0.0.6
+|Version: |0.1.0
 |Referencing: |gemILF_VZD_FHIR_Directory
 |===
 
@@ -38,6 +38,7 @@ image::gematik_logo.svg[gematik,float="right"]
 |0.0.4 |09.07.24 | |Update  |gematik
 |0.0.5 |29.07.24 | |Simplifier links fixed |gematik
 |0.0.6 |27.09.24 | |HealthcareService.active #3.2 changeability updated, Updated several attribute descriptions |gematik
+|0.1.0 |01.07.25 | |Update according Simplifier profile 0.14.0 |gematik
 |===
 
 == Classification of the document
@@ -106,14 +107,14 @@ This part of the directory contains information about persons. +
 |0..* 
 |Lifetime doctor number "Lebenslange Arztnummer". +
  (Not yet used)
-|No
+|Yes
 |No
 
 |ZANR 
 |0..* 
 |Lifetime dentist number "Lebenslange Zahnarztnummer". +
  (Not yet used)
-|No
+|Yes
 |No
 
 // |LDAP UID 
@@ -131,7 +132,7 @@ This part of the directory contains information about persons. +
 
 |name 
 |Name of the Practitioner  
-|1..* 
+|1..1 
 |Name of the Practitioner 
 |Yes
 |No
@@ -242,7 +243,7 @@ Example of a https://simplifier.net/vzd-fhir-directory/~resources?category=Examp
 |0..*
 |The list of healthcare services that this worker provides for this role's Organization/Location(s). 
 |No
-|Yes
+|Yes (see [gemSpec_VZD_FHIR_Directory#5.6,5.7,5.8])
 
 |organization
 |Reference to organization resource
@@ -315,7 +316,7 @@ Example of a https://simplifier.net/vzd-fhir-directory/~resources?category=Examp
 |0..1 
 |The absolute geographic location of the Location
 |Yes
-|No
+|Yes
 
 |managingOrganization 
 |Not used 
@@ -327,20 +328,6 @@ Example of a https://simplifier.net/vzd-fhir-directory/~resources?category=Examp
 |partOf 
 |Not used 
 |0..1 
-|This Element ist not used in the FHIR VZD.
-|No
-|No
-
-|hoursOfOperation
-|Not used
-|0..*
-|This Element ist not used in the FHIR VZD.
-|No
-|No
-
-|availabilityExceptions
-|Not used
-|0..1
 |This Element ist not used in the FHIR VZD.
 |No
 |No
@@ -421,13 +408,6 @@ For example it can be used to hide the endpoint from a part of users.
 |No
 |Yes
 
-|managingOrganization 
-|Not used 
-|0..1 
-|This Element ist not used in the FHIR VZD.
-|No
-|No
-
 |payloadType
 |Type of use
 |1..*
@@ -499,6 +479,14 @@ Values
 |No
 |Yes
 
+.1+|extension:ncpehCountryEx 
+| https://simplifier.net/vzd-fhir-directory/ncpehcountryex[National Contact Point of Health (NCPeH) Country Extension] 
+|0..* 
+|The country extension for National Contact Point of Health (NCPeH) Organizations, representing the country assigned to the NCPeH.
+|No
+|Yes
+
+
 .4+|identifier 
 |TelematikID 
 |1..1 
@@ -555,13 +543,6 @@ Values
 
 |alias  
 |Alternative name of the Organization  
-|0..* 
-|Not used in the FHIR VZD.
-|No
-|No
-
-|telecom  
-|A contact detail for the organization  
 |0..* 
 |Not used in the FHIR VZD.
 |No
@@ -734,7 +715,7 @@ and can also show some physical characteristic https://simplifier.net/vzd-fhir-d
 |0..1 
 |
 |No
-|No
+|Yes
 
 |availableTime
 |
@@ -747,13 +728,6 @@ and can also show some physical characteristic https://simplifier.net/vzd-fhir-d
 |day(s)
 |0..*
 |Indicates which days of the week are available between the start and end Times.
-|No
-|Yes
-
-|availableTime.allDay
-|Always available?
-|0..1
-|Is this always available? (hence times are irrelevant) e.g. 24 hour service.
 |No
 |Yes
 
@@ -771,6 +745,13 @@ and can also show some physical characteristic https://simplifier.net/vzd-fhir-d
 |No
 |Yes
 
+|availableTime.extension:specialOpeningTimes
+|Special opening times
+|0..1
+|https://simplifier.net/vzd-fhir-directory/specialopeningtimesex[SpecialOpeningTimesEX]E.g. emergency service (Notdienst) 
+|No
+|Yes
+
 |availabilityExceptions
 |Description of availability exceptions
 |0..1
@@ -782,7 +763,7 @@ and can also show some physical characteristic https://simplifier.net/vzd-fhir-d
 |Reference to endpoint resource
 |0..*
 |See <<Endpoint-Resource>>. +
- One endpoint is created per KIM-/TIM-address. 
+ One endpoint is created per address (e.g. TIM-MXID, KIM-mail address). 
 |No (TIM-address)
 |Yes
 
