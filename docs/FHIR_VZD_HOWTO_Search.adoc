@@ -18,7 +18,7 @@ image::gematik_logo.svg[gematik,float="right"]
 
 [width="100%",cols="50%,50%",options="header",]
 |===
-|Version: |1.1.6
+|Version: |1.1.5
 |Referencing: |gemILF_FHIR_VZD
 |===
 
@@ -40,25 +40,26 @@ image::gematik_logo.svg[gematik,float="right"]
  Added  description for "near" Search parameter for	Location.position
 
   |gematik
+
 |1.1.2 |05.09.24 |Full-text search
 |Update of tables "_text attribute for organizations" and "_text attribute for persons"
   |gematik
+
 |1.1.3 |03.12.24 |Full-text search
 |Update example "near" Search parameter
   |gematik
+
 |1.1.4 |21.03.25 | FHIR VZD Search - read resources via its [id] +
 Full-text search
 |Added this chapter +
  +
 Added description of _complexSearch=true
   |gematik
-|1.1.5 |02.04.25 |FHIR Operation - pharmacy radius search
+
+|1.1.5 |11.07.25 |FHIR Operations - FHIR VZD endpoint /fdv/search
 |Added this chapter
   |gematik
 
-|1.1.6 |10.06.25 |radius search distance
-|Added limit for distance parameter
-  |gematik
 
 |===
 
@@ -595,7 +596,7 @@ In this case, the HAPI-FHIR rules apply, some of them are explained below.
 
 
 *Characters with special meaning in the complex full-text search* +
-Special characters can be used to specify search queries. For example, if you put the search query in quotation marks, only the results that exactly match the string will be shown. Additional symbols can be used to exclude or combine search terms, for example. Below are the important signs: +
+Special characters can be used to specify search queries. For example, if you put the search query in quotation marks, only the results that exactly match the string will be shown. Additional symbols can be used to exclude or combine search terms, for example. Below are the  signs: +
  +
  
 *Quotation marks ("...")* +
@@ -871,11 +872,16 @@ GET https://fhir-directory-tu.vzd.ti-dienste.de/fdv/search/HealthcareService?org
 ----
 
 
-== FHIR Operations
+== FHIR Operations - FHIR VZD endpoint /fdv/search
 The aim of the search operations is not only to offer users an individual interface, according to specific needs. 
 Instead of a universal approach, tailored search operations that are specifically tailored to different use cases are implemented. +
  +
-These optimized interfaces reduce the workload for users and enable simple and targeted interaction with the system.
+These optimized interfaces reduce the workload for users and enable simple interaction with the system. +
+ +
+Hints for all operations
+
+- All search parameters that are not marked "optional" are mandatory parameters and must be specified. If a mandatory parameter is missing, the FHIR VZD responds with error HTTP 400.
+- These operations only support the search parameters specified here.
 
 === Pharmacy radius search (_query=nearPharmacy)
 FHIR operation with full-text search for pharmacies sorted by distance.  +
@@ -940,4 +946,79 @@ GET {{fhir_server}}/fdv/search/HealthcareService?_query=nearPharmacy
     &_count=8
     &text=Botendienst
 ----
+
+
+
+=== Organization radius search (_query=near)
+[NOTE]
+--
+This operation is similar to the Pharmacy radius search operation but allows to search for any kind of organization.
+--
+FHIR operation with full-text search for organizations sorted by distance.  +
+ +
+Search for all organizations in the specified radius, sorted by distance, filtering for active and visible organizations and optionally
+
+- filtering by address information if provided (location parameter),
+- Full-Text search on the narrative data of the HealthcareService. Both a case-insensitive word component search (contains) and a fuzzy search based on the Levenshtein distance (default 2) of word components are carried out (text parameter),
+- Search is carried out with maximum distance (see "distance" search parameter). If the specified parameter exceeds the configured value, the search radius is limited.
+- filtering entries outside opening hours if they are stored in HealthcareServices. When comparing opening times defined with the target time defined by the current time and the target time defined by the "isOpenInMinutes" parameter, a configurable tolerance (default value: 1 min) is used to compensate for query and display latencies,
+- filtering for active and visible organizations,
+- filtering for organizations of specified type (see search parameter "organization.type"),
+- the search result is reduced to the number of organizations, defined in the "_count" parameter. The number of hits defined by the _count parameter is limited to 1 or 100 if it is outside this range,
+- the search result lists the linked resources Organization, HealthcareService and Location.
+
+
+.Table Organization radius search parameters
+|===
+|Search parameter |Description | Data typ
+
+|*latitude*
+|Latitude of the relevant coordinate.
+|number, double   
+
+|*longitude*
+|Longitude of the relevant coordinate.
+|number, double   
+
+|*distance*
+|Radius in km. Maximum radius ist limited to 100 km.
+|number, int   
+
+|*text* (optional)
+|Search text, will be compared to full text attribute of FHIR resource. The search does not match the syntax for the “_text” attribute defined in the FHIR standard. Instead, a case-insensitive word component search and a fuzzy search are carried out based on the Levenshtein distance (default 2) of word components.
+|String   
+
+|*location* (optional)
+|Address information (city, zip code OR street). Only one type of information is supported in a search request.
+|String   
+
+|*isOpenInMinutes* (optional)
+|Only entries that indicate opening times that are open in x minutes AND that have not maintained opening times. 0 can be delivered to receive the current opened organizations/pharmacies.
+|int   
+
+|*_count* (optional)
+|Desired number of search results.
+|int   
+
+|*organization.type* (optional)
+|Comma separated list of codes from https://simplifier.net/vzd-fhir-directory/organizationprofessionoid[OrganizationProfessionOID]
+|int   
+
+|===
+ 
+Output: Bundle of healthcare services sorted by distance as well as the associated organization and location resources. +
+ +
+
+Example pharmacy radius search query:
+
+[source]
+----
+GET {{fhir_server}}/fdv/search/HealthcareService?_query=near
+    &longitude=13.3912516
+    &latitude=52.5128455
+    &distance=10
+    &_count=8
+    &organization.type=1.2.276.0.76.4.50
+----
+
 
