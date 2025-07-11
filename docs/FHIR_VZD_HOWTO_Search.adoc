@@ -56,8 +56,12 @@ Full-text search
 Added description of _complexSearch=true
   |gematik
 
-|1.1.5 |11.07.25 |FHIR Operations - FHIR VZD endpoint /fdv/search
-|Added this chapter
+|1.1.5 |11.07.25 |FHIR Operations - FHIR VZD endpoint /fdv/search +
+FHIR Search Parameters - Overview +
+FHIR Search Parameters - Custom Search Parameters
+|Added this chapter +
+Added some hints +
+Added custom Search Parameters
   |gematik
 
 
@@ -154,6 +158,10 @@ https://www.hl7.org/fhir/searchparameter-registry.html +
  +
 The behavior of the search parameter depends from the parameter type and is documented here: https://www.hl7.org/fhir/search.html#ptypes +
  +
+Some hints:
+
+- The search with code & CodeSystem may be can be helpful when codes occur in multiple code systems. Example coding of such a search parameter: "&specialty=http://loinc.org|57833-6"
+- Using the "_tag" search parameter, you can filter for system resources (_tag=ldap) or owner created resources (_tag=owner).
 
 ==== FHIR Search Parameters - Custom Search Parameters
 The following custom search parameters are supported in addition to the standard FHIR search parameters
@@ -162,6 +170,8 @@ The following custom search parameters are supported in addition to the standard
 - Practitioner.qualification
 ** Practitioner.qualification.code.coding.code  
 ** Practitioner.qualification.code.coding.display
+- endpoint.endpointVisibility
+
 
 
  
