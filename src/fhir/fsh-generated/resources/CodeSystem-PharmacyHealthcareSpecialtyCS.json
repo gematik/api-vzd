@@ -31,28 +31,23 @@
     },
     {
       "code": "60",
-      "display": "Bluthochdruck",
-      "definition": "Standardisierte Risikoerfassung bei Bluthochdruck"
+      "display": "Bluthochdruck: Standardisierte Risikoerfassung bei Bluthochdruck"
     },
     {
       "code": "70",
-      "display": "Inhalativa",
-      "definition": "Üben der Inhalationstechnik"
+      "display": "Inhalativa: Üben der Inhalationstechnik"
     },
     {
       "code": "80",
-      "display": "Polymedikation",
-      "definition": "Erweiterte Medikationsberatung bei Polymedikation"
+      "display": "Polymedikation: Erweiterte Medikationsberatung bei Polymedikation"
     },
     {
       "code": "90",
-      "display": "Orale Krebstherapie",
-      "definition": "Betreuung bei Einnahme von Krebsmedikamenten"
+      "display": "Orale Krebstherapie: Betreuung bei Einnahme von Krebsmedikamenten"
     },
     {
       "code": "100",
-      "display": "Organtransplantation",
-      "definition": "Beratung nach Organtransplantation"
+      "display": "Organtransplantation: Beratung nach Organtransplantation"
     }
   ],
   "experimental": false,
