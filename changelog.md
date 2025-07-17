@@ -1,6 +1,6 @@
 # Changelog
 
-## tbd Version 0.15.0
+## 2025-07-17 Version 0.15.0
 
 - `change`: the new specialty codes from PharmacyHealthcareSpecialtyCS are now containg the definitons as part of the display value. e.g.: "Bluthochdruck" "Standardisierte Risikoerfassung bei Bluthochdruck" -> "Bluthochdruck: Standardisierte Risikoerfassung bei Bluthochdruck"
 - `change`: the VS http://ihe-d.de/ValueSets/IHEXDShealthcareFacilityTypeCodePatientRelatedHealthcare was removed from the HealthcareServiceCategoryCodes as they are not used or needed for the VZD.
