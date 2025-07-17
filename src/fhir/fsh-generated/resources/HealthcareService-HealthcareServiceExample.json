@@ -27,17 +27,6 @@
   "providedBy": {
     "reference": "Organization/OrganizationExample"
   },
-  "category": [
-    {
-      "coding": [
-        {
-          "code": "PRA",
-          "system": "http://ihe-d.de/CodeSystems/PatientBezogenenGesundheitsversorgung",
-          "display": "Arztpraxis"
-        }
-      ]
-    }
-  ],
   "type": [
     {
       "coding": [

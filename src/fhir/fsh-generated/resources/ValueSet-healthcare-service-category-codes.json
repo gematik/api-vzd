@@ -13,11 +13,6 @@
   "compose": {
     "include": [
       {
-        "valueSet": [
-          "http://ihe-d.de/ValueSets/IHEXDShealthcareFacilityTypeCodePatientRelatedHealthcare"
-        ]
-      },
-      {
         "system": "https://gematik.de/fhir/directory/CodeSystem/OrganizationProfessionOID",
         "concept": [
           {

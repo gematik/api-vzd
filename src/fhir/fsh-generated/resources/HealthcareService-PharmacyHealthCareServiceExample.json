@@ -143,17 +143,6 @@
   "providedBy": {
     "reference": "Organization/PharmacyOrganizationExample"
   },
-  "category": [
-    {
-      "coding": [
-        {
-          "code": "APO",
-          "system": "http://ihe-d.de/CodeSystems/PatientBezogenenGesundheitsversorgung",
-          "display": "Apotheke"
-        }
-      ]
-    }
-  ],
   "type": [
     {
       "coding": [
