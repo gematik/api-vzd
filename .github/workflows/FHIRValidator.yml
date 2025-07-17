@@ -53,23 +53,42 @@ jobs:
           folder: './src/fhir/fsh-generated/resources/'
 
       - name: Firely.Terminal (GitHub Actions)
-        uses: FirelyTeam/firely-terminal-pipeline@v0.6.8
+        uses: FirelyTeam/firely-terminal-pipeline@v0.7.4
         with:
           PATH_TO_CONFORMANCE_RESOURCES: src/fhir/fsh-generated/resources/
           # PATH_TO_QUALITY_CONTROL_RULES: qc/custom
           DOTNET_VALIDATION_ENABLED: true
           JAVA_VALIDATION_ENABLED: true
-          JAVA_VALIDATION_OPTIONS: -allow-example-urls true -output-style compact -advisor-file src/fhir/validator/advisor.json -html-output validation.html -show-message-ids -language de -jurisdiction de -display-issues-are-warnings -resolution-context file:src/fhir/fsh-generated/resources/
+          JAVA_VALIDATION_OPTIONS: >
+            -allow-example-urls true 
+            -output validation.json
+            -html-output validation.html
+            -show-message-ids
+            -language de
+            -jurisdiction de
+            -display-issues-are-warnings
+            -advisor-file src/fhir/validator/advisor.json
+            -resolution-context file:src/fhir/fsh-generated/resources/
           SIMPLIFIER_USERNAME: ${{ secrets.SIMPLIFIER_USERNAME }}
           SIMPLIFIER_PASSWORD: ${{ secrets.SIMPLIFIER_PASSWORD }}
           SUSHI_ENABLED: true
           SUSHI_OPTIONS: src/fhir/
           EXPECTED_FAILS: VALIDATION_CONFORMANCE_DOTNET
 
-      - name: Convert Validation Report
-        uses: patrick-werner/fhir-html-validation-to-markdown@1.0.0
+      - name: Upload validation artifacts
+        uses: actions/upload-artifact@v4
         with:
-          input_file: 'validation.html'
+          name: fhir-validation-results
+          path: |
+            validation.json
+            validation.html
+          retention-days: 1
+
+      - name: Convert Validation Report
+        uses: patrick-werner/validation-outcome-markdown-renderer@v1
+        with:
+          bundle-file: validation.json
+          include: errors
 
       - name: Check for Uncommitted Changes
         run: |
