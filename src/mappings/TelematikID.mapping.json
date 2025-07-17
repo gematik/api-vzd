@@ -318,6 +318,15 @@
       "colorBackground": "#FFFFFF",
       "colorText": "#161616",
       "colorBorder": "#161616"
+    },
+	{
+      "pattern": "^3-([Ss][Mm][Cc]([-]?[Bb])?)[-]?[Tt]estkarte.*",
+      "fhirResourceType": "Organization",
+      "code": "Apotheke",
+      "displayShort": "Apotheke",
+      "displayLong": "Apotheke",
+      "colorBackground": "#E8DAFF",
+      "colorText": "#6929C4"
     }
   ]
 }
