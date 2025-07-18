@@ -1,0 +1,42 @@
+{
+  "resourceType": "CodeSystem",
+  "status": "active",
+  "content": "complete",
+  "name": "PharmacyTypeCS",
+  "id": "PharmacyTypeCS",
+  "title": "Pharmacy type",
+  "description": "Pharmacy type codes of accessability for patients",
+  "version": "0.15.0",
+  "url": "https://gematik.de/fhir/directory/CodeSystem/PharmacyTypeCS",
+  "concept": [
+    {
+      "code": "offizin-apotheke",
+      "display": "Offizin-Apotheke"
+    },
+    {
+      "code": "krankenhausversorgende-apotheke",
+      "display": "Krankenhausversorgende Apotheke"
+    },
+    {
+      "code": "bundeswehrapotheke",
+      "display": "Bundeswehrapotheke"
+    },
+    {
+      "code": "heimversorgende-apotheke",
+      "display": "Heimversorgende Apotheke"
+    },
+    {
+      "code": "versandapotheke",
+      "display": "Versandapotheke"
+    },
+    {
+      "code": "sterilherstellung",
+      "display": "Sterilherstellung"
+    }
+  ],
+  "experimental": false,
+  "publisher": "gematik GmbH",
+  "date": "2024-10-29",
+  "caseSensitive": true,
+  "count": 6
+}

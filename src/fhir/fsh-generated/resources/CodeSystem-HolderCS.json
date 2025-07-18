@@ -1,0 +1,482 @@
+{
+  "resourceType": "CodeSystem",
+  "status": "active",
+  "content": "complete",
+  "name": "HolderCS",
+  "id": "HolderCS",
+  "title": "Codes for identity authorities (Holder)",
+  "description": "Code System for identity authories in the TI, which verify and control the identities of practitioners and organisations",
+  "version": "0.15.0",
+  "url": "https://gematik.de/fhir/directory/CodeSystem/HolderCS",
+  "concept": [
+    {
+      "code": "aeksh",
+      "display": "Ärztekammer Schleswig-Holstein"
+    },
+    {
+      "code": "aekhh",
+      "display": "Ärztekammer Hamburg"
+    },
+    {
+      "code": "aekn",
+      "display": "Ärztekammer Niedersachsen"
+    },
+    {
+      "code": "aekhb",
+      "display": "Ärztekammer Bremen"
+    },
+    {
+      "code": "aeknr",
+      "display": "Ärztekammer Nordrhein"
+    },
+    {
+      "code": "aekwl",
+      "display": "Ärztekammer Westfalen-Lippe"
+    },
+    {
+      "code": "laekh",
+      "display": "Landesärztekammer Hessen"
+    },
+    {
+      "code": "baeknordwuert",
+      "display": "Bezirksärztekammer Nordwürttemberg"
+    },
+    {
+      "code": "baeksuedwuert",
+      "display": "Bezirksärztekammer Südwürttemberg"
+    },
+    {
+      "code": "baeknordbaden",
+      "display": "Bezirksärztekammer Nordbaden"
+    },
+    {
+      "code": "baeksuedba",
+      "display": "Bezirksärztekammer Südbaden"
+    },
+    {
+      "code": "blaek",
+      "display": "Bayerische Landesärztekammer"
+    },
+    {
+      "code": "aekb",
+      "display": "Ärztekammer Berlin"
+    },
+    {
+      "code": "aekmv",
+      "display": "Ärztekammer Mecklenburg-Vorpommern"
+    },
+    {
+      "code": "laekbb",
+      "display": "Landesärztekammer Brandenburg"
+    },
+    {
+      "code": "aeksa",
+      "display": "Ärztekammer Sachsen-Anhalt"
+    },
+    {
+      "code": "laekt",
+      "display": "Landesärztekammer Thüringen"
+    },
+    {
+      "code": "slaek",
+      "display": "Sächsische Landeszahnärztekammer"
+    },
+    {
+      "code": "baekrheinhessen",
+      "display": "Bezirksärztekammer Rheinhessen"
+    },
+    {
+      "code": "baekpfalz",
+      "display": "Bezirksärztekammer Pfalz"
+    },
+    {
+      "code": "baektrier",
+      "display": "Bezirksärztekammer Trier"
+    },
+    {
+      "code": "baekkoblenz",
+      "display": "Bezirksärztekammer Koblenz"
+    },
+    {
+      "code": "baek",
+      "display": "Bundesärtzekammer"
+    },
+    {
+      "code": "kvsh",
+      "display": "KV Schleswig Holstein"
+    },
+    {
+      "code": "kvhh",
+      "display": "KV Hamburg"
+    },
+    {
+      "code": "kvhb",
+      "display": "KV Bremen"
+    },
+    {
+      "code": "kvn",
+      "display": "KV Niedersachsen"
+    },
+    {
+      "code": "kvwl",
+      "display": "KV Westfalen-Lippe"
+    },
+    {
+      "code": "kvno",
+      "display": "KV Nordrhein"
+    },
+    {
+      "code": "kvh",
+      "display": "KV Hessen"
+    },
+    {
+      "code": "kvrlp",
+      "display": "KV Rheinland-Pfalz"
+    },
+    {
+      "code": "kvbw",
+      "display": "KV Baden-Württemberg"
+    },
+    {
+      "code": "kvb",
+      "display": "KV Bayern"
+    },
+    {
+      "code": "kvbe",
+      "display": "KV Berlin"
+    },
+    {
+      "code": "kvsl",
+      "display": "KV Saarland"
+    },
+    {
+      "code": "kvmv",
+      "display": "KV Mecklenburg-Vorpommern"
+    },
+    {
+      "code": "kvbb",
+      "display": "KV Brandenburg"
+    },
+    {
+      "code": "kvsa",
+      "display": "KV Sachsen Anhalt"
+    },
+    {
+      "code": "kvt",
+      "display": "KV Thüringen"
+    },
+    {
+      "code": "kvs",
+      "display": "KV Sachsen"
+    },
+    {
+      "code": "lzkbw",
+      "display": "Landeszahnärztekammer Baden-Württemberg"
+    },
+    {
+      "code": "blzaek",
+      "display": "Bayerische Landeszahnärztekammer"
+    },
+    {
+      "code": "zaekbe",
+      "display": "Zahnärztekammer Berlin"
+    },
+    {
+      "code": "lzkbb",
+      "display": "Landeszahnärztekammer Brandenburg"
+    },
+    {
+      "code": "zaekhb",
+      "display": "Zahnärztekammer Bremen"
+    },
+    {
+      "code": "zaekhh",
+      "display": "Zahnärztekammer Hamburg"
+    },
+    {
+      "code": "lzkh",
+      "display": "Landeszahnärztekammer Hessen"
+    },
+    {
+      "code": "zaekmv",
+      "display": "Zahnärztekammer Mecklenburg-Vorpommern"
+    },
+    {
+      "code": "zaekn",
+      "display": "Zahnärztekammer Niedersachsen"
+    },
+    {
+      "code": "zaeknr",
+      "display": "Zahnärztekammer Nordrhein"
+    },
+    {
+      "code": "lzkrlp",
+      "display": "Landeszahnärztekammer Rheinland-Pfalz"
+    },
+    {
+      "code": "zaeksaar",
+      "display": "Ärztekammer des Saarlandes - Abteilung Zahnärzte"
+    },
+    {
+      "code": "lzaeks",
+      "display": "Landeszahnärztekammer Sachsen"
+    },
+    {
+      "code": "zaeksa",
+      "display": "Zahnärztekammer Sachsen-Anhalt"
+    },
+    {
+      "code": "zaeksh",
+      "display": "Zahnärztekammer Schleswig-Holstein"
+    },
+    {
+      "code": "lzkth",
+      "display": "Landeszahnärztekammer Thüringen"
+    },
+    {
+      "code": "zaekwl",
+      "display": "Zahnärztekammer Westfalen-Lippe"
+    },
+    {
+      "code": "bzaek",
+      "display": "Bundeszahnärztekammer"
+    },
+    {
+      "code": "kzvbw",
+      "display": "KZV Baden-Württemberg"
+    },
+    {
+      "code": "kzvn",
+      "display": "KZV Niedersachsen"
+    },
+    {
+      "code": "kzvrlp",
+      "display": "KZV Rheinland-Pfalz"
+    },
+    {
+      "code": "kzvba",
+      "display": "KZV Bayerns"
+    },
+    {
+      "code": "kzvnr",
+      "display": "KZV Nordrhein"
+    },
+    {
+      "code": "kzvh",
+      "display": "KZV Hessen"
+    },
+    {
+      "code": "kzvb",
+      "display": "KZV Berlin"
+    },
+    {
+      "code": "kzvhb",
+      "display": "KZV Bremen"
+    },
+    {
+      "code": "kzvhh",
+      "display": "KZV Hamburg"
+    },
+    {
+      "code": "kzvsl",
+      "display": "KZV Saarland"
+    },
+    {
+      "code": "kzvsh",
+      "display": "KZV Schleswig-Holstein"
+    },
+    {
+      "code": "kzvwl",
+      "display": "KZV Westfalen-Lippe"
+    },
+    {
+      "code": "kzvmv",
+      "display": "KZV Mecklenburg-Vorpommern"
+    },
+    {
+      "code": "kzvlb",
+      "display": "KZV Brandenburg"
+    },
+    {
+      "code": "kzvsa",
+      "display": "KZV Sachsen-Anhalt"
+    },
+    {
+      "code": "kzvt",
+      "display": "KZV Thüringen"
+    },
+    {
+      "code": "kzvs",
+      "display": "KZV Sachsen"
+    },
+    {
+      "code": "kzbv",
+      "display": "KZBV"
+    },
+    {
+      "code": "lakbw",
+      "display": "Landesapothekerkammer Baden-Württemberg"
+    },
+    {
+      "code": "blak",
+      "display": "Bayerische Landesapothekerkammer"
+    },
+    {
+      "code": "akb",
+      "display": "Apothekerkammer Berlin"
+    },
+    {
+      "code": "lakbb",
+      "display": "Landesapothekerkammer Brandenburg"
+    },
+    {
+      "code": "akhb",
+      "display": "Apothekerkammer Bremen"
+    },
+    {
+      "code": "akhh",
+      "display": "Apothekerkammer Hamburg"
+    },
+    {
+      "code": "lakh",
+      "display": "Landesapothekerkammer Hessen"
+    },
+    {
+      "code": "akmv",
+      "display": "Apothekerkammer Mecklenburg-Vorpommern"
+    },
+    {
+      "code": "akn",
+      "display": "Apothekerkammer Niedersachsen"
+    },
+    {
+      "code": "aknr",
+      "display": "Apothekerkammer Nordrhein"
+    },
+    {
+      "code": "lakrlp",
+      "display": "Landesapothekerkammer Rheinland-Pfalz"
+    },
+    {
+      "code": "aksl",
+      "display": "Apothekerkammer des Saarlandes"
+    },
+    {
+      "code": "aksa",
+      "display": "Apothekerkammer Sachsen-Anhalt"
+    },
+    {
+      "code": "slak",
+      "display": "Sächsische Landesapothekerkammer"
+    },
+    {
+      "code": "aksh",
+      "display": "Apothekerkammer Schleswig-Holstein"
+    },
+    {
+      "code": "lakt",
+      "display": "Landesapothekerkammer Thüringen"
+    },
+    {
+      "code": "akwl",
+      "display": "Apothekerkammer Westfalen-Lippe"
+    },
+    {
+      "code": "bak",
+      "display": "Bundesapothekenkammer"
+    },
+    {
+      "code": "ngda",
+      "display": "NGDA Netzgesellschaft Deutscher Apotheker mbH"
+    },
+    {
+      "code": "ptksh",
+      "display": "Psychotherapeutenkammer Schleswig-Holstein"
+    },
+    {
+      "code": "ptkhh",
+      "display": "Psychotherapeutenkammer Hamburg"
+    },
+    {
+      "code": "ptkn",
+      "display": "Psychotherapeutenkammer Niedersachsen"
+    },
+    {
+      "code": "lptkbr",
+      "display": "Psychotherapeutenkammer Bremen"
+    },
+    {
+      "code": "ptknrw",
+      "display": "Psychotherapeutenkammer Nordrhein-Westfalen"
+    },
+    {
+      "code": "ptkh",
+      "display": "Psychotherapeutenkammer Hessen"
+    },
+    {
+      "code": "lpkrlp",
+      "display": "Psychotherapeutenkammer Rheinland-Pfalz"
+    },
+    {
+      "code": "lpkbw",
+      "display": "Psychotherapeutenkammer Baden-Württemberg"
+    },
+    {
+      "code": "ptkba",
+      "display": "Psychotherapeutenkammer Bayern"
+    },
+    {
+      "code": "ptks",
+      "display": "Psychotherapeutenkammer des Saarlandes"
+    },
+    {
+      "code": "ptkb",
+      "display": "Psychotherapeutenkammer Berlin"
+    },
+    {
+      "code": "optk",
+      "display": "Ostdeutsche Psychotherapeutenkammer"
+    },
+    {
+      "code": "dtrust",
+      "display": "D-Trust"
+    },
+    {
+      "code": "dktig",
+      "display": "DKTIG"
+    },
+    {
+      "code": "dtsg",
+      "display": "Deutsche Telekom Security"
+    },
+    {
+      "code": "gkv",
+      "display": "GKV-Spitzenverband"
+    },
+    {
+      "code": "shc",
+      "display": "SHC Stolle & Heinz Consultants"
+    },
+    {
+      "code": "egbr",
+      "display": "Elektronisches Gesundheitsberuferegister - eGBR"
+    },
+    {
+      "code": "gemmon",
+      "display": "gematik GmbH (Monitoring)"
+    },
+    {
+      "code": "gematik",
+      "display": "gematik GmbH"
+    },
+    {
+      "code": "dgns",
+      "display": "DGN Service / Medisign"
+    }
+  ],
+  "experimental": false,
+  "publisher": "gematik GmbH",
+  "date": "2024-10-29",
+  "caseSensitive": false,
+  "count": 116
+}

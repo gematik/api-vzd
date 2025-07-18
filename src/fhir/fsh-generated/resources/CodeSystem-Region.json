@@ -1,0 +1,90 @@
+{
+  "resourceType": "CodeSystem",
+  "status": "active",
+  "content": "complete",
+  "name": "Region",
+  "id": "Region",
+  "title": "Codes for regions in german healthcare system.",
+  "description": "Additionally to german Bundeslander there are 2 sub-provinces \n`Nordrhein` and `Westfalen-Lippe`.",
+  "version": "0.15.0",
+  "url": "https://gematik.de/fhir/directory/CodeSystem/Region",
+  "concept": [
+    {
+      "code": "Baden-Württemberg",
+      "display": "Baden-Württemberg"
+    },
+    {
+      "code": "Bayern",
+      "display": "Bayern"
+    },
+    {
+      "code": "Berlin",
+      "display": "Berlin"
+    },
+    {
+      "code": "Brandenburg",
+      "display": "Brandenburg"
+    },
+    {
+      "code": "Bremen",
+      "display": "Bremen"
+    },
+    {
+      "code": "Hamburg",
+      "display": "Hamburg"
+    },
+    {
+      "code": "Hessen",
+      "display": "Hessen"
+    },
+    {
+      "code": "Mecklenburg-Vorpommern",
+      "display": "Mecklenburg-Vorpommern"
+    },
+    {
+      "code": "Niedersachsen",
+      "display": "Niedersachsen"
+    },
+    {
+      "code": "Nordrhein-Westfalen",
+      "display": "Nordrhein-Westfalen"
+    },
+    {
+      "code": "Rheinland-Pfalz",
+      "display": "Rheinland-Pfalz"
+    },
+    {
+      "code": "Saarland",
+      "display": "Saarland"
+    },
+    {
+      "code": "Sachsen",
+      "display": "Sachsen"
+    },
+    {
+      "code": "Sachsen-Anhalt",
+      "display": "Sachsen-Anhalt"
+    },
+    {
+      "code": "Schleswig-Holstein",
+      "display": "Schleswig-Holstein"
+    },
+    {
+      "code": "Thüringen",
+      "display": "Thüringen"
+    },
+    {
+      "code": "Nordrhein",
+      "display": "Nordrhein"
+    },
+    {
+      "code": "Westfalen-Lippe",
+      "display": "Westfalen-Lippe"
+    }
+  ],
+  "experimental": false,
+  "publisher": "gematik GmbH",
+  "date": "2024-10-29",
+  "caseSensitive": false,
+  "count": 18
+}

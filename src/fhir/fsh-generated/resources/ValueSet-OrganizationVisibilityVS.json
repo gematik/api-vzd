@@ -1,0 +1,20 @@
+{
+  "resourceType": "ValueSet",
+  "status": "active",
+  "name": "OrganizationVisibilityVS",
+  "id": "OrganizationVisibilityVS",
+  "title": "OrganizationVisibilityVS",
+  "description": "OrganizationVisibilityVS",
+  "version": "0.15.0",
+  "url": "https://gematik.de/fhir/directory/ValueSet/OrganizationVisibilityVS",
+  "experimental": false,
+  "publisher": "gematik GmbH",
+  "date": "2024-10-29",
+  "compose": {
+    "include": [
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/OrganizationVisibilityCS"
+      }
+    ]
+  }
+}
