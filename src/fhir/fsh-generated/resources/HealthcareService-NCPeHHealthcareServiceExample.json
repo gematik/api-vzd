@@ -12,12 +12,6 @@
       "https://gematik.de/fhir/directory/StructureDefinition/HealthcareServiceDirectoryStrict"
     ]
   },
-  "identifier": [
-    {
-      "system": "https://gematik.de/fhir/sid/telematik-id",
-      "value": "2-2.58.00000041"
-    }
-  ],
   "providedBy": {
     "reference": "Organization/NCPeHOrganizationExample"
   },
