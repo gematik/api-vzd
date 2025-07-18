@@ -1,0 +1,28 @@
+{
+  "resourceType": "ValueSet",
+  "status": "active",
+  "name": "HealthcareServiceTypeVS",
+  "id": "HealthcareServiceTypeVS",
+  "description": "ValueSet for `HealthcareService.type`",
+  "version": "0.15.0",
+  "url": "https://gematik.de/fhir/directory/ValueSet/HealthcareServiceTypeVS",
+  "experimental": false,
+  "publisher": "gematik GmbH",
+  "date": "2024-10-29",
+  "compose": {
+    "include": [
+      {
+        "system": "urn:oid:1.3.6.1.4.1.19376.3.276.1.5.4"
+      },
+      {
+        "system": "urn:oid:1.2.276.0.76.5.494"
+      },
+      {
+        "system": "urn:oid:1.3.6.1.4.1.19376.3.276.1.5.5"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/PharmacyTypeCS"
+      }
+    ]
+  }
+}

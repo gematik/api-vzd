@@ -1,0 +1,21 @@
+{
+  "resourceType": "CodeSystem",
+  "status": "active",
+  "content": "complete",
+  "name": "VZDHealthCareServiceCharacteristicsCS",
+  "id": "VZDHealthCareServiceCharacteristicsCS",
+  "description": "CodeSystem of VZD specific HealthcareService characteristics",
+  "version": "0.15.0",
+  "url": "https://gematik.de/fhir/directory/CodeSystem/VZDHealthCareServiceCharacteristicsCS",
+  "concept": [
+    {
+      "code": "terminbuchung",
+      "display": "Terminbuchung"
+    }
+  ],
+  "experimental": false,
+  "publisher": "gematik GmbH",
+  "date": "2024-10-29",
+  "caseSensitive": false,
+  "count": 1
+}

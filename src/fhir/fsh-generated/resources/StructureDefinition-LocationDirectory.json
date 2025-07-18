@@ -1,0 +1,159 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "LocationDirectory",
+  "url": "https://gematik.de/fhir/directory/StructureDefinition/LocationDirectory",
+  "version": "0.15.0",
+  "name": "LocationDirectory",
+  "title": "Location in gematik Directory",
+  "status": "active",
+  "experimental": false,
+  "date": "2024-10-29",
+  "publisher": "gematik GmbH",
+  "description": "Defines the data structure for medical, regulatory and technical\norganisations specific for german Healthcare and Telematics Infrastructure.",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Location",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Location",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Location.id",
+        "path": "Location.id",
+        "mustSupport": true
+      },
+      {
+        "id": "Location.meta.tag",
+        "path": "Location.meta.tag",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "pattern",
+              "path": "system"
+            }
+          ],
+          "rules": "open"
+        },
+        "min": 1,
+        "constraint": [
+          {
+            "key": "CodingSytemCodeInv",
+            "severity": "warning",
+            "human": "System and Code SHOULD be present",
+            "expression": "system.exists() and code.exists()",
+            "source": "https://gematik.de/fhir/directory/StructureDefinition/LocationDirectory"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Location.meta.tag:Origin",
+        "path": "Location.meta.tag",
+        "sliceName": "Origin",
+        "min": 1,
+        "max": "1",
+        "mustSupport": true,
+        "binding": {
+          "strength": "required",
+          "valueSet": "https://gematik.de/fhir/directory/ValueSet/OriginVS"
+        }
+      },
+      {
+        "id": "Location.meta.tag:Origin.system",
+        "path": "Location.meta.tag.system",
+        "min": 1,
+        "patternUri": "https://gematik.de/fhir/directory/CodeSystem/Origin"
+      },
+      {
+        "id": "Location.name",
+        "path": "Location.name",
+        "mustSupport": true
+      },
+      {
+        "id": "Location.description",
+        "path": "Location.description",
+        "mustSupport": true
+      },
+      {
+        "id": "Location.address",
+        "path": "Location.address",
+        "mustSupport": true
+      },
+      {
+        "id": "Location.address.use",
+        "path": "Location.address.use",
+        "mustSupport": true
+      },
+      {
+        "id": "Location.address.text",
+        "path": "Location.address.text",
+        "mustSupport": true
+      },
+      {
+        "id": "Location.address.line",
+        "path": "Location.address.line",
+        "mustSupport": true
+      },
+      {
+        "id": "Location.address.city",
+        "path": "Location.address.city",
+        "mustSupport": true
+      },
+      {
+        "id": "Location.address.district",
+        "path": "Location.address.district",
+        "mustSupport": true
+      },
+      {
+        "id": "Location.address.state",
+        "path": "Location.address.state",
+        "mustSupport": true,
+        "binding": {
+          "strength": "required",
+          "valueSet": "https://gematik.de/fhir/directory/ValueSet/AddressStateVS"
+        }
+      },
+      {
+        "id": "Location.address.postalCode",
+        "path": "Location.address.postalCode",
+        "mustSupport": true
+      },
+      {
+        "id": "Location.address.country",
+        "path": "Location.address.country",
+        "mustSupport": true
+      },
+      {
+        "id": "Location.position",
+        "path": "Location.position",
+        "mustSupport": true
+      },
+      {
+        "id": "Location.position.longitude",
+        "path": "Location.position.longitude",
+        "mustSupport": true
+      },
+      {
+        "id": "Location.position.latitude",
+        "path": "Location.position.latitude",
+        "mustSupport": true
+      },
+      {
+        "id": "Location.position.altitude",
+        "path": "Location.position.altitude",
+        "mustSupport": true
+      },
+      {
+        "id": "Location.managingOrganization",
+        "path": "Location.managingOrganization",
+        "mustSupport": true
+      },
+      {
+        "id": "Location.partOf",
+        "path": "Location.partOf",
+        "mustSupport": true
+      }
+    ]
+  }
+}

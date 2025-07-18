@@ -1,0 +1,19 @@
+{
+  "resourceType": "ValueSet",
+  "status": "active",
+  "name": "PhysicalFeaturesHealthCareServiceVS",
+  "id": "PhysicalFeaturesHealthCareServiceVS",
+  "description": "ValueSet of defined physical features",
+  "version": "0.15.0",
+  "url": "https://gematik.de/fhir/directory/ValueSet/PhysicalFeaturesHealthCareServiceVS",
+  "experimental": false,
+  "publisher": "gematik GmbH",
+  "date": "2024-10-29",
+  "compose": {
+    "include": [
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/physicalFeatures"
+      }
+    ]
+  }
+}

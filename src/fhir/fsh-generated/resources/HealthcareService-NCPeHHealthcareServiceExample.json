@@ -1,0 +1,50 @@
+{
+  "resourceType": "HealthcareService",
+  "id": "NCPeHHealthcareServiceExample",
+  "meta": {
+    "tag": [
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/Origin",
+        "code": "ldap"
+      }
+    ],
+    "profile": [
+      "https://gematik.de/fhir/directory/StructureDefinition/HealthcareServiceDirectoryStrict"
+    ]
+  },
+  "providedBy": {
+    "reference": "Organization/NCPeHOrganizationExample"
+  },
+  "category": [
+    {
+      "coding": [
+        {
+          "code": "1.2.276.0.76.4.292",
+          "system": "https://gematik.de/fhir/directory/CodeSystem/OrganizationProfessionOID",
+          "display": "NCPeH Fachdienst"
+        }
+      ]
+    }
+  ],
+  "specialty": [
+    {
+      "coding": [
+        {
+          "code": "60591-5",
+          "system": "http://loinc.org",
+          "display": "Patientenübersicht"
+        }
+      ]
+    },
+    {
+      "coding": [
+        {
+          "code": "57833-6",
+          "system": "http://loinc.org",
+          "display": "elektronische Verordnungen"
+        }
+      ]
+    }
+  ],
+  "name": "NCPeH Portugal"
+}
