@@ -28,7 +28,6 @@ Description: "PharmacyHealthCareServiceExample"
 * meta.tag[Origin] = Origin#ldap
 * providedBy = Reference(PharmacyOrganizationExample)
 * identifier[TelematikID].value = "3-07.2.1444560000.16.108"
-* category = PatientBezogenenGesundheitsversorgung#APO "Apotheke"
 * type = PharmacyTypeCS#offizin-apotheke "Offizin-Apotheke"
 * specialty[+] = PharmacyHealthcareSpecialtyCS#10 "Handverkauf"
 * specialty[+] = HealthcareServiceSpecialtyCS#allergietest "Allergietest"

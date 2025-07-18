@@ -1,4 +1,13 @@
 # Changelog
+
+## 2025-07-17 Version 0.15.0
+
+- `change`: the new specialty codes from PharmacyHealthcareSpecialtyCS are now containg the definitons as part of the display value. e.g.: "Bluthochdruck" "Standardisierte Risikoerfassung bei Bluthochdruck" -> "Bluthochdruck: Standardisierte Risikoerfassung bei Bluthochdruck"
+- `change`: the VS http://ihe-d.de/ValueSets/IHEXDShealthcareFacilityTypeCodePatientRelatedHealthcare was removed from the HealthcareServiceCategoryCodes as they are not used or needed for the VZD.
+
+### data migration
+- update display values in HealthcareService instances for PharmacyHealthcareSpecialtyCS codes: 60, 70, 80, 90, 100
+  
 ## 2025-05-22 Version 0.14.0
 - `change`: removed `erx-token-receiver`from VZDHealthCareServiceCharacteristicsCS. This code was not used in the VZD and was removed.
 - `feat`: added new specialty codes to PharmacyHealthcareSpecialtyCS:
