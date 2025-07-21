@@ -30,7 +30,7 @@ Title: "Practitioner in gematik Directory"
 * photo MS
 * qualification MS
   * code MS
-  * code from PractitionerQualificationVS
+  * code from PractitionerQualificationVS (extensible)
     * coding obeys CodingSytemCodeInv
 * communication MS
   * coding obeys CodingSytemCodeInv
@@ -50,7 +50,7 @@ Description: "Practitioner in gematik Directory with strict constraints"
 * address 0..0
 * telecom 0..0
 * qualification 
-  * code
+  * code from PractitionerQualificationVS (required)
     * coding only CodingWithCodeAndSystem
 * communication
   * coding only CodingWithCodeAndSystem

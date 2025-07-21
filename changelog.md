@@ -1,5 +1,8 @@
 # Changelog
 
+## 2025-07-21 Version 0.16.0
+- `change`: The binding of PractitionerDirectory.qualification.code has been relaxed to extensible. Since validation in the VZD itself is still performed against the strict profiles (which retain a required binding), this change should not have any impact. Change was motivated by downstream use-cases where the strict binding was too restrictive.
+
 ## 2025-07-17 Version 0.15.0
 
 - `change`: the new specialty codes from PharmacyHealthcareSpecialtyCS are now containg the definitons as part of the display value. e.g.: "Bluthochdruck" "Standardisierte Risikoerfassung bei Bluthochdruck" -> "Bluthochdruck: Standardisierte Risikoerfassung bei Bluthochdruck"

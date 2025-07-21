@@ -2,7 +2,7 @@
   "resourceType": "StructureDefinition",
   "id": "OwnerTelematikIdEx",
   "url": "https://gematik.de/fhir/directory/StructureDefinition/OwnerTelematikIdEx",
-  "version": "0.15.0",
+  "version": "0.16.0",
   "name": "OwnerTelematikIdEx",
   "title": "OwnerTelematikIdEx",
   "status": "active",

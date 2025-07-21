@@ -2,7 +2,7 @@
   "resourceType": "StructureDefinition",
   "id": "PractitionerDirectoryStrict",
   "url": "https://gematik.de/fhir/directory/StructureDefinition/PractitionerDirectoryStrict",
-  "version": "0.15.0",
+  "version": "0.16.0",
   "name": "PractitionerDirectoryStrict",
   "title": "PractitionerDirectoryStrict",
   "status": "active",
@@ -79,6 +79,14 @@
         "id": "Practitioner.address",
         "path": "Practitioner.address",
         "max": "0"
+      },
+      {
+        "id": "Practitioner.qualification.code",
+        "path": "Practitioner.qualification.code",
+        "binding": {
+          "strength": "required",
+          "valueSet": "https://gematik.de/fhir/directory/ValueSet/PractitionerQualificationVS"
+        }
       },
       {
         "id": "Practitioner.qualification.code.coding",

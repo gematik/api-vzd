@@ -4,7 +4,7 @@
   "name": "OrganizationProfessionOIDTypeVS",
   "id": "OrganizationProfessionOIDTypeVS",
   "description": "ValueSet for `Organization.type`",
-  "version": "0.15.0",
+  "version": "0.16.0",
   "url": "https://gematik.de/fhir/directory/ValueSet/OrganizationProfessionOIDTypeVS",
   "experimental": false,
   "publisher": "gematik GmbH",
