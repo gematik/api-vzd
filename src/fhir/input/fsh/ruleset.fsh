@@ -1,4 +1,4 @@
-Alias: $version = 0.11.25
+Alias: $version = 0.11.26
 
 RuleSet: Meta
 * ^status = #active
