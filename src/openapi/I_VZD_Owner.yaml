@@ -2,7 +2,10 @@ openapi: 3.0.3
 info:
   title: I_VZD_Owner
   description: REST interface for owner-authenticate.
-  version: 1.0.1
+  version: 1.0.2
+
+  # version 1.0.2
+  # TokenType von "bearer" auf "Bearer" geändert.
 
   # version 1.0.1
   #  signin-gematik-idp hinzugefügt
@@ -250,7 +253,7 @@ components:
         token_type:
           type: string
           enum:
-            - bearer
+            - Bearer
         expires_in:
           type: integer
           format: int64
