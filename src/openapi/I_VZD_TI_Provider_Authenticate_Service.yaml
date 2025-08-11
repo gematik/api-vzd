@@ -2,7 +2,12 @@ openapi: 3.0.3
 info:
   title: I_VZD_TI_Provider_Authenticate_Service
   description: REST interface to authenticate TI Provider.
-  version: 1.0.0
+  version: 1.0.1
+
+  # version 1.0.1
+  # TokenType von "bearer" auf "Bearer" geändert.
+
+  #  version: 1.0.0
   # initiale Version
 
 externalDocs:
@@ -57,7 +62,7 @@ components:
         token_type:
           type: string
           enum:
-            - bearer
+            - Bearer
         expires_in:
           type: integer
           format: int64
