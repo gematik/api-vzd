@@ -1,4 +1,5 @@
 @startuml SequenceDiagram.FHIR-Directory.search
+autonumber 1 1 "<b>[00]"
 skinparam dpi 100
 skinparam WrapWidth 200
 skinparam monochrome true
@@ -20,17 +21,26 @@ cl -> cl: prüfe ob noch gültiges search-accesstoken\nvom FHIR-Directory Auth-S
 alt kein gültiges search-accesstoken vorhanden
 cl -> hs: POST /_matrix/client/v3/user/{userId}/openid/request_token
 activate hs
-hs --> cl: HTTP 200 OK, Result body {"access_token": "Matrix-OpenID-Token",..., "matrix_server_name": "example.com",...}
+hs --> cl: HTTP 200 OK, Result body {"access_token": "OFdZNozDIomXLrCWjgejIQBM",..., "matrix_server_name": "matrix.service-ti.de",...}
 deactivate hs
-cl -> au: GET /tim-authenticate... (Auth Header mit Matrix-OpenID-Token)
+cl -> au: GET /tim-authenticate?mxId=matrix.service-ti.de"\n -H "X-Matrix-OpenID-Token: OFdZNozDIomXLrCWjgejIQBM"
 activate au
-au -> au: Prüfe ob matrix_server_name\nin Föderationsliste enthalten
-au -> hs: GET /openid/userinfo/\nrequest header, Authorization: Bearer Matrix-OpenID-Token
+au -> au: Prüfe ob matrix.service-ti.de\nTeil der Föderationsliste ist
+au -> au: Ermittele den hinterlegten UserInfo PORT über die Matrix Server URL
+au -> hs: GET matrix.service-ti.de:{PORT}/_matrix/federation/v1/openid/userinfo\access_token=OFdZNozDIomXLrCWjgejIQBM
 activate hs
-hs --> au: HTTP 200 OK\n(Result Body MXID des Nutzers)
+hs --> au: HTTP 200 OK\nResult Body {"sub":"@testuser:matrix.service-ti.de"}
+au -> au: Ermittle den Status von "isInsurance" für URL "matrix.service-ti.de"
+
+alt [isInsurance=false]
+au -> au: Erzeuge search-accesstoken: {...\n"aud":"https://fhir-directory.vzd.ti-dienste.de/search"\n...}
+else [isInsurance=true]
+au -> au: Erzeuge search-accesstoken: {...\n"aud":"https://fhir-directory.vzd.ti-dienste.de/fdv/search"\n...}
+end
+
 deactivate hs
 au -> au: erzeuge search-accesstoken für TI-Messenger-Client
-au --> cl: HTTP 200 OK, Result body\n{"access_token"="search-accesstoken", "token_type":"bearer",\n"expires_in":86400}
+au --> cl: HTTP 200 OK, Result body\n{"access_token"="search-accesstoken", "token_type":"Bearer",\n"expires_in":86400}
 deactivate au
 end
 
