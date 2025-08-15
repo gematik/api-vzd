@@ -2,7 +2,7 @@
   "resourceType": "StructureDefinition",
   "id": "OrganizationDirectoryStrict",
   "url": "https://gematik.de/fhir/directory/StructureDefinition/OrganizationDirectoryStrict",
-  "version": "0.15.0",
+  "version": "0.16.0",
   "name": "OrganizationDirectoryStrict",
   "title": "OrganizationDirectoryStrict",
   "status": "active",
@@ -43,6 +43,19 @@
         "id": "Organization.meta.tag:Origin",
         "path": "Organization.meta.tag",
         "sliceName": "Origin",
+        "type": [
+          {
+            "code": "Coding",
+            "profile": [
+              "https://gematik.de/fhir/directory/StructureDefinition/CodingWithCodeAndSystem"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Organization.meta.tag:FdV",
+        "path": "Organization.meta.tag",
+        "sliceName": "FdV",
         "type": [
           {
             "code": "Coding",

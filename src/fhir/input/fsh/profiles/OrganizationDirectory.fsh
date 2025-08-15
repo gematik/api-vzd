@@ -13,9 +13,12 @@ organisations specific for german Healthcare and Telematics Infrastructure.
   * ^slicing.discriminator.path = "system"
   * ^slicing.rules = #open
 * meta.tag obeys CodingSytemCodeInv
-* meta.tag contains Origin 1..1 MS
+* meta.tag contains Origin 1..1 MS and FdV 0..1 MS
 * meta.tag[Origin] from OriginVS
-* meta.tag[Origin].system = "https://gematik.de/fhir/directory/CodeSystem/Origin"
+* meta.tag[Origin].system = Canonical(Origin)
+* meta.tag[FdV].system = Canonical(ResourceTag)
+* meta.tag[FdV].code = #fdv-relevant
+* meta.tag[FdV].display = "Relevant for ePA FdV"
 * id MS
 * active MS
 * name 1..1 MS

@@ -6,7 +6,7 @@
   "id": "EndpointDirectoryConnectionType",
   "title": "Codes for Endpoint.connectionType",
   "description": "CodeSystem TI specific connection types assigned to the Endpoints",
-  "version": "0.15.0",
+  "version": "0.16.0",
   "url": "https://gematik.de/fhir/directory/CodeSystem/EndpointDirectoryConnectionType",
   "concept": [
     {

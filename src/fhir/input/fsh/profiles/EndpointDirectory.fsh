@@ -15,7 +15,7 @@ Description: "Endpoints for applications in the gematik Directory"
 * meta.tag obeys CodingSytemCodeInv  
 * meta.tag contains Origin 1..1 MS
 * meta.tag[Origin] from OriginVS
-* meta.tag[Origin].system = "https://gematik.de/fhir/directory/CodeSystem/Origin"
+* meta.tag[Origin].system =  Canonical(Origin)
 * status 1..1 MS
 * connectionType obeys CodingSytemCodeInv
 * connectionType 1..1 MS

@@ -2,7 +2,7 @@
   "resourceType": "SearchParameter",
   "id": "EndpointVisibilitySP",
   "url": "https://gematik.de/fhir/directory/SearchParameter/EndpointVisibilitySP",
-  "version": "0.15.0",
+  "version": "0.16.0",
   "status": "active",
   "experimental": false,
   "publisher": "gematik GmbH",
