@@ -6,6 +6,11 @@
       {
         "system": "https://gematik.de/fhir/directory/CodeSystem/Origin",
         "code": "ldap"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/ResourceTag",
+        "code": "fdv-relevant",
+        "display": "Relevant for ePA FdV"
       }
     ],
     "profile": [

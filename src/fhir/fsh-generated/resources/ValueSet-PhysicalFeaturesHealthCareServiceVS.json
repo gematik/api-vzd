@@ -4,7 +4,7 @@
   "name": "PhysicalFeaturesHealthCareServiceVS",
   "id": "PhysicalFeaturesHealthCareServiceVS",
   "description": "ValueSet of defined physical features",
-  "version": "0.15.0",
+  "version": "0.16.0",
   "url": "https://gematik.de/fhir/directory/ValueSet/PhysicalFeaturesHealthCareServiceVS",
   "experimental": false,
   "publisher": "gematik GmbH",

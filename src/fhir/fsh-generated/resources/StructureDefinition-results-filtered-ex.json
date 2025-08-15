@@ -2,7 +2,7 @@
   "resourceType": "StructureDefinition",
   "id": "results-filtered-ex",
   "url": "https://gematik.de/fhir/directory/StructureDefinition/results-filtered-ex",
-  "version": "0.15.0",
+  "version": "0.16.0",
   "name": "ResultsFilteredEx",
   "title": "Results Filtered Extension",
   "status": "active",

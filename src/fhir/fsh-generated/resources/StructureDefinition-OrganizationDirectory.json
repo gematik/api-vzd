@@ -2,7 +2,7 @@
   "resourceType": "StructureDefinition",
   "id": "OrganizationDirectory",
   "url": "https://gematik.de/fhir/directory/StructureDefinition/OrganizationDirectory",
-  "version": "0.15.0",
+  "version": "0.16.0",
   "name": "OrganizationDirectory",
   "title": "Organization in gematik Directory",
   "status": "active",
@@ -64,6 +64,30 @@
         "path": "Organization.meta.tag.system",
         "min": 1,
         "patternUri": "https://gematik.de/fhir/directory/CodeSystem/Origin"
+      },
+      {
+        "id": "Organization.meta.tag:FdV",
+        "path": "Organization.meta.tag",
+        "sliceName": "FdV",
+        "min": 0,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.meta.tag:FdV.system",
+        "path": "Organization.meta.tag.system",
+        "min": 1,
+        "patternUri": "https://gematik.de/fhir/directory/CodeSystem/ResourceTag"
+      },
+      {
+        "id": "Organization.meta.tag:FdV.code",
+        "path": "Organization.meta.tag.code",
+        "patternCode": "fdv-relevant"
+      },
+      {
+        "id": "Organization.meta.tag:FdV.display",
+        "path": "Organization.meta.tag.display",
+        "patternString": "Relevant for ePA FdV"
       },
       {
         "id": "Organization.extension:organizationVisibility",
