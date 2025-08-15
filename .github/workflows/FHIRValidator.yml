@@ -48,7 +48,7 @@ jobs:
         if: github.event_name != 'pull_request'
 
       - name: Validate Resource Status
-        uses: patrick-werner/fhir-resource-status-check@1.1.0
+        uses: patrick-werner/fhir-resource-status-check@1.2.0
         with:
           folder: './src/fhir/fsh-generated/resources/'
 
