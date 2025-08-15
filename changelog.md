@@ -1,10 +1,9 @@
 # Changelog
 
 ## 2025-07-17 Version 0.16.0
-
+- `feat`: Added fdv-relevant tag to Organisation resources and introduced the ResourceTag CodeSystem for all non-origin meta.tag values.
 
 ## 2025-07-17 Version 0.15.0
-
 - `change`: the new specialty codes from PharmacyHealthcareSpecialtyCS are now containg the definitons as part of the display value. e.g.: "Bluthochdruck" "Standardisierte Risikoerfassung bei Bluthochdruck" -> "Bluthochdruck: Standardisierte Risikoerfassung bei Bluthochdruck"
 - `change`: the VS http://ihe-d.de/ValueSets/IHEXDShealthcareFacilityTypeCodePatientRelatedHealthcare was removed from the HealthcareServiceCategoryCodes as they are not used or needed for the VZD.
 
