@@ -51,7 +51,15 @@ au --> cl: [13] HTTP 200 OK, Result body {"access_token"="id_token"}
 deactivate au
 
 cl -> cl: [14] Benutzeranmeldung wird gespeichert
-cl -> o: Anzeige SSP Suchseite
+cl -> fd: [15] GET /checkOwner überprüft, ob die TelematikId des Nutzers bereits im VZD bekannt ist
+alt TelematikId existiert nicht
+    fd --> cl: false
+    cl -> cl: Logout durchführen
+    cl -> o: Fehlermeldung anzeigen: "TelematikId nicht im VZD gefunden"
+else TelematikId existiert
+    fd --> cl: true
+    cl -> o: Benutzer ist angemeldet & Anzeige SSP Suchseite
+end
 
 deactivate cl
 
