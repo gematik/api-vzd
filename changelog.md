@@ -1,13 +1,16 @@
 # Changelog
 
-## 2025-02-06 Version 0.11.25
+## 2025-07-22 - Version 0.11.26
+- feat: relaxed binding of qualification.code on PractitionerDirectory to extensible, allowing the validation of any code as the current existing data instances are not compliant to the strict binding. This is a temporary solution until the data instances are migrated to the new codes and won't be changed in the current and more recent releases.
+
+## 2025-02-06 - Version 0.11.25
 - fix: CodeSystem: AerztlicheBerufsvarianten contained codes with a wrong prefix of `#`, these prefixes were removed.
 - feat: added ResultsFilteredEx Extension to represent how many results where filtered together with the reason of the filtering.
 
 ### data migration
 - remove `#`from code instances of the CodeSystem: `urn:oid:1.2.276.0.76.5.493` used on `Practitoner.qualification`
 
-## 2025-01-10  Version 0.11.24
+## 2025-01-10 Version 0.11.24
 - fix: relaxed cardinality of OrganizationDirectory.identifier[IKNR] from 0..1 -> 0..* allowing multiple IKNR for an Organization
 - removed: PractitionerDirectory.identifier[ZANR]  as it is not required.
 - fix: `breaking` Updated Contents of external IHE & KBV CodeSystems
