@@ -855,3 +855,36 @@ GET https://fhir-directory-tu.vzd.ti-dienste.de/fdv/search/HealthcareService?org
 &_include=HealthcareService:organization
 &_include=HealthcareService:location
 ----
+
+== Special Case: Search by ProfessionOIDs in the ePA Context
+
+Some clients use fdv-search to filter organizations by specific ProfessionOIDs. These queries often include a large number of OIDs combined with logical OR conditions. Such requests can cause significant runtime load during query execution.
+
+As part of new requirement, it was decided to introduce internal query mapping for this use case. This allows the system to handle such searches more efficiently, providing significant performance improvements.
+
+=== Technical Details
+
+In alignment with the requirement ePA-AFO A_24306-02 (Constraint Management – Policy for authorized user groups and users), the following ProfessionOIDs are automatically enriched with a dedicated marker `meta.tag = "fdv-relevant"` (system = https://gematik.de/fhir/directory/CodeSystem/ResourceTag) during the LDAP synchronization process. Existing resources have been updated via a migration job.
+
+Incoming search requests containing these ProfessionOIDs (excluding Diga) are automatically internally mapped to the flag. Any additional ProfessionOIDs that are transferred are discarded during the search. All other search parameters remain unchanged, ensuring transparent client behavior with improved performance.
+
+=== Relevant ProfessionOIDs
+
+[cols="3,3,3,6", options="header"]
+|===
+|OID |Enriches fdv-relevant-Flag in ldap-synchronisation |Is required for fdv-search-mapping |Description
+|1.2.276.0.76.4.50 |x |x |Arztpraxis
+|1.2.276.0.76.4.51 |x |x |Zahnarztpraxis
+|1.2.276.0.76.4.52 |x |x |Psychotherapeut
+|1.2.276.0.76.4.53 |x |x |Krankenhaus
+|1.2.276.0.76.4.54 |x |x |Apotheke
+|1.2.276.0.76.4.245 |x |x |Medizinisches Versorgungszentrum (MVZ)
+|1.2.276.0.76.4.246 |x |x |Berufsverband
+|1.2.276.0.76.4.247 |x |x |Sonstige Leistungserbringer
+|1.2.276.0.76.4.255 |x |x |Kassenärztliche Vereinigung
+|1.2.276.0.76.4.256 |x |x |Kassenzahnärztliche Vereinigung
+|1.2.276.0.76.4.257 |x |x |Krankenhausgesellschaft
+|1.2.276.0.76.4.282 |x | |DIGA (Digital Health Application)
+|===
+
+Note: The OID for representative roles (oid_versicherter) is currently not available and cannot be mapped.
