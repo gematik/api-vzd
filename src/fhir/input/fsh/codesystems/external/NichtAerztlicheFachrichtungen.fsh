@@ -1,3 +1,5 @@
+//FIXME: in IHE 4.0.0: http://ihe-d.de/CodeSystems/NichtaerztlicheFachrichtungen
+
 CodeSystem: NichtAerztlicheFachrichtungen_OID_URL
 Id: nicht-aerztliche-fachrichtungen-oid-url
 Title: "NichtAerztlicheFachrichtungen_OID_URL"

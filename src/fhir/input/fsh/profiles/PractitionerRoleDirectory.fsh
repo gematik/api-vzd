@@ -1,5 +1,5 @@
 Profile: PractitionerRoleDirectory
-Parent: PractitionerRole
+Parent: TIPractitionerRole
 Title: "PractitionerRole in gematik Directory"
 * insert Meta
 * extension contains 
@@ -13,16 +13,10 @@ Title: "PractitionerRole in gematik Directory"
 * meta.tag contains Origin 1..1 MS
 * meta.tag[Origin] from OriginVS
 * meta.tag[Origin].system =  Canonical(Origin)
-* id MS
-* practitioner 1..1 MS
+* practitioner 1.. 
 * location MS
 * endpoint MS
 * healthcareService MS
-* organization MS
-* telecom MS
-  * system MS
-  * value MS
-  * use MS
 
 Profile: PractitionerRoleDirectoryStrict
 Parent: PractitionerRoleDirectory

@@ -2,7 +2,7 @@
   "resourceType": "StructureDefinition",
   "id": "PractitionerRoleDirectory",
   "url": "https://gematik.de/fhir/directory/StructureDefinition/PractitionerRoleDirectory",
-  "version": "0.16.0",
+  "version": "1.0.0",
   "name": "PractitionerRoleDirectory",
   "title": "PractitionerRole in gematik Directory",
   "status": "active",
@@ -13,15 +13,10 @@
   "kind": "resource",
   "abstract": false,
   "type": "PractitionerRole",
-  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/PractitionerRole",
+  "baseDefinition": "https://gematik.de/fhir/ti/StructureDefinition/ti-practitioner-role",
   "derivation": "constraint",
   "differential": {
     "element": [
-      {
-        "id": "PractitionerRole.id",
-        "path": "PractitionerRole.id",
-        "mustSupport": true
-      },
       {
         "id": "PractitionerRole.meta.tag",
         "path": "PractitionerRole.meta.tag",
@@ -99,13 +94,7 @@
       {
         "id": "PractitionerRole.practitioner",
         "path": "PractitionerRole.practitioner",
-        "min": 1,
-        "mustSupport": true
-      },
-      {
-        "id": "PractitionerRole.organization",
-        "path": "PractitionerRole.organization",
-        "mustSupport": true
+        "min": 1
       },
       {
         "id": "PractitionerRole.location",
@@ -115,26 +104,6 @@
       {
         "id": "PractitionerRole.healthcareService",
         "path": "PractitionerRole.healthcareService",
-        "mustSupport": true
-      },
-      {
-        "id": "PractitionerRole.telecom",
-        "path": "PractitionerRole.telecom",
-        "mustSupport": true
-      },
-      {
-        "id": "PractitionerRole.telecom.system",
-        "path": "PractitionerRole.telecom.system",
-        "mustSupport": true
-      },
-      {
-        "id": "PractitionerRole.telecom.value",
-        "path": "PractitionerRole.telecom.value",
-        "mustSupport": true
-      },
-      {
-        "id": "PractitionerRole.telecom.use",
-        "path": "PractitionerRole.telecom.use",
         "mustSupport": true
       },
       {

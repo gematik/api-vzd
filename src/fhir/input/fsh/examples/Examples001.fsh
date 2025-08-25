@@ -17,7 +17,7 @@ Description: "Example of a Practitioner (Dentist) as to be found in gematik FHIR
 * meta.tag[Origin] = Origin#ldap
 * id = "TIPractitionerExampleDentist"
 * identifier[TelematikID].value = "2-2.58.00000040"
-* qualification[+].code = PractitionerProfessionOID#1.2.276.0.76.4.31 "Zahnärztin/Zahnarzt"
+* qualification[+].code = TIPractitionerProfessionOidCS#1.2.276.0.76.4.31 "Zahnärztin/Zahnarzt"
 * name
   * prefix = "Dr."
   * given[+] = "Max"
@@ -34,7 +34,6 @@ Description: "Example of an PractitionerRole as to be found in gematik FHIR Dire
 * location[+] = Reference(LocationExample)
 * endpoint[+] = Reference(MessengerEndpointWithVisibility)
 
-
 Instance: OrganizationExample
 InstanceOf: OrganizationDirectoryStrict
 Usage: #example
@@ -42,7 +41,7 @@ Description: "Example of an Organization as to be found in gematik FHIR Director
 * meta.tag[Origin] = Origin#ldap
 * meta.tag[FdV] = ResourceTag#fdv-relevant "Relevant for ePA FdV"
 * identifier[TelematikID].value = "2-2.58.00000040"
-* type[profession] = https://gematik.de/fhir/directory/CodeSystem/OrganizationProfessionOID#1.2.276.0.76.4.51 "Zahnarztpraxis"
+* type[profession] = https://gematik.de/fhir/directory/CodeSystem/TIOrganizationProfessionTypeOidCS#1.2.276.0.76.4.51 "Zahnarztpraxis"
 * name = "Zahnarztpraxis Dr. Mustermann"
 * active = true
 * alias = "Zahnarztpraxis am Bahnhof"
