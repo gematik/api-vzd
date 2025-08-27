@@ -5,7 +5,7 @@ Title: "PharmacyOrganizationExample"
 Description: "PharmacyOrganizationExample"
 * meta.tag[Origin] = Origin#ldap
 * identifier[TelematikID].value = "3-07.2.1444560000.16.108"
-* type[profession] = OrganizationProfessionOID#1.2.276.0.76.4.54 "Öffentliche Apotheke"
+* type[profession] = TIOrganizationProfessionTypeOidCS#1.2.276.0.76.4.54 "Öffentliche Apotheke"
 * name = "Rathausapotheke"
 * active = true
 * alias = "Rathausapotheke"

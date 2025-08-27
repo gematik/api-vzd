@@ -1,5 +1,5 @@
 Profile: PractitionerDirectory
-Parent: Practitioner
+Parent: TIPractitioner
 Title: "Practitioner in gematik Directory"
 * insert Meta
 * meta.tag 1.. MS
@@ -10,27 +10,9 @@ Title: "Practitioner in gematik Directory"
 * meta.tag contains Origin 1..1 MS
 * meta.tag[Origin] from OriginVS
 * meta.tag[Origin].system =  Canonical(Origin)
-* id MS
-* identifier 1..* MS
-  * ^slicing.discriminator.type = #value
-  * ^slicing.discriminator.path = "system"
-  * ^slicing.rules = #open
-* identifier contains TelematikID 1..1 MS
-* identifier[TelematikID] only $IdentifierTelematikID
-* identifier contains LANR 0.. MS
-* identifier[LANR] only $IdentifierLANR
-* name 1..1 MS
-  * text 1..1 MS
-  * family 1..1 MS
-  * given MS
-  * prefix MS
-  * suffix MS
-* gender MS
-* birthDate MS
-* photo MS
-* qualification MS
-  * code MS
-  * code from PractitionerQualificationVS
+* name ..1 
+* qualification 
+  * code from TIPractitionerQualificationVS
     * coding obeys CodingSytemCodeInv
 * communication MS
   * coding obeys CodingSytemCodeInv

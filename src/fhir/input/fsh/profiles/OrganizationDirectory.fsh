@@ -1,13 +1,12 @@
 Profile: OrganizationDirectory
-Parent: Organization
+Parent: TIOrganization
 Title: "Organization in gematik Directory"
 Description: """Defines the data structure for medical, regulatory and technical 
 organisations specific for german Healthcare and Telematics Infrastructure.
 """
 * insert Meta
 * extension contains 
-    OrganizationVisibility named organizationVisibility 0..* MS and
-    NCPeHCountryEx named ncpehCountryEx 0..1 MS
+    OrganizationVisibility named organizationVisibility 0..* MS
 * meta.tag 1.. MS
   * ^slicing.discriminator.type = #pattern
   * ^slicing.discriminator.path = "system"
@@ -19,45 +18,8 @@ organisations specific for german Healthcare and Telematics Infrastructure.
 * meta.tag[FdV].system = Canonical(ResourceTag)
 * meta.tag[FdV].code = #fdv-relevant
 * meta.tag[FdV].display = "Relevant for ePA FdV"
-* id MS
-* active MS
-* name 1..1 MS
-* identifier 1..* MS
-* identifier ^slicing.discriminator.type = #value
-* identifier ^slicing.discriminator.path = "system"
-* identifier ^slicing.rules = #open
-* identifier contains 
-    TelematikID 1..1 MS and
-    BSNR 0..1 MS and
-    KZVA 0..1 MS and
-    IKNR 0..* MS
-* identifier[TelematikID] only $IdentifierTelematikID
-* identifier[BSNR] only $IdentifierBSNR
-* identifier[KZVA] only $IdentifierKZVA
-* identifier[IKNR] only $IdentifierIKNR
-* type 1..* MS
-  * ^slicing.discriminator.type = #pattern
-  * ^slicing.discriminator.path = "$this"
-  * ^slicing.rules = #open
-* type contains
-    providerType 0..* MS and
-    profession 0..* MS
-* type[providerType] from OrganizationTypeVS
-  * coding obeys CodingSytemCodeInv
-* type[profession] from OrganizationProfessionOIDTypeVS
-  * coding obeys CodingSytemCodeInv
-* name 1..1 MS
-* alias MS
-* contact MS
-* address MS
-  * use MS
-  * text MS
-  * line MS
-  * city MS
-  * state MS
-  * postalCode MS
-  * country MS
-* partOf MS
+* identifier 1..
+* identifier[TelematikID] 1..
 
 Profile: OrganizationDirectoryStrict
 Parent: OrganizationDirectory

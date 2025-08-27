@@ -6,7 +6,7 @@
   "id": "EndpointVisibilityCS",
   "title": "EndpointVisibilityCS",
   "description": "EndpointVisibilityCS",
-  "version": "0.16.0",
+  "version": "1.0.0",
   "url": "https://gematik.de/fhir/directory/CodeSystem/EndpointVisibilityCS",
   "concept": [
     {

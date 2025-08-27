@@ -1,3 +1,6 @@
+//FIXME: URL in IHE http://ihe-d.de/CodeSystems/FachrichtungenAerztlich
+// ABER: EPA nutzt oids: https://gemspec.gematik.de/ig/fhir/terminology/1.0.6/ValueSet-epa-xds-practice-setting-code-vs.html
+
 CodeSystem: AerztlicheFachrichtungen_OID_URL
 Id: aerztliche-fachrichtungen-oid-url
 Title: "AerztlicheFachrichtungen"

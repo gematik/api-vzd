@@ -2,7 +2,7 @@
   "resourceType": "StructureDefinition",
   "id": "OrganizationDirectoryStrict",
   "url": "https://gematik.de/fhir/directory/StructureDefinition/OrganizationDirectoryStrict",
-  "version": "0.16.0",
+  "version": "1.0.0",
   "name": "OrganizationDirectoryStrict",
   "title": "OrganizationDirectoryStrict",
   "status": "active",
@@ -66,23 +66,6 @@
         ]
       },
       {
-        "id": "Organization.extension:organizationVisibility",
-        "path": "Organization.extension",
-        "sliceName": "organizationVisibility"
-      },
-      {
-        "id": "Organization.extension:organizationVisibility.value[x]",
-        "path": "Organization.extension.value[x]",
-        "type": [
-          {
-            "code": "Coding",
-            "profile": [
-              "https://gematik.de/fhir/directory/StructureDefinition/CodingWithCodeAndSystem"
-            ]
-          }
-        ]
-      },
-      {
         "id": "Organization.extension:ncpehCountryEx",
         "path": "Organization.extension",
         "sliceName": "ncpehCountryEx"
@@ -100,12 +83,29 @@
         ]
       },
       {
+        "id": "Organization.extension:organizationVisibility",
+        "path": "Organization.extension",
+        "sliceName": "organizationVisibility"
+      },
+      {
+        "id": "Organization.extension:organizationVisibility.value[x]",
+        "path": "Organization.extension.value[x]",
+        "type": [
+          {
+            "code": "Coding",
+            "profile": [
+              "https://gematik.de/fhir/directory/StructureDefinition/CodingWithCodeAndSystem"
+            ]
+          }
+        ]
+      },
+      {
         "id": "Organization.identifier",
         "path": "Organization.identifier",
         "slicing": {
           "discriminator": [
             {
-              "type": "value",
+              "type": "pattern",
               "path": "system"
             }
           ],

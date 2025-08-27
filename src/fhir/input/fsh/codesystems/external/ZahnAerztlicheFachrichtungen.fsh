@@ -1,3 +1,5 @@
+//FIXME: URL in de.gematik.terminology = https://gematik.de/fhir/terminology/CodeSystem/epa-zahnaerztliche-fachrichtungen-cs
+// Frage: woher stammt die OID, IHE?
 CodeSystem: ZahnaerztlicheFachrichtungen_OID_URL
 Id: zahnaerztliche-fachrichtungen-oid-url
 Title: "ZahnaerztlicheFachrichtungen"
