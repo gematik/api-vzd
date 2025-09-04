@@ -862,9 +862,25 @@ Some clients use fdv-search to filter organizations by specific ProfessionOIDs. 
 
 As part of new requirement, it was decided to introduce internal query mapping for this use case. This allows the system to handle such searches more efficiently, providing significant performance improvements.
 
+=== Example Query Transformation
+
+**Input Query:**
+
+[source]
+----
+https://fhir-directory-ref.vzd.ti-dienste.de/fdv/search/HealthcareService?organization.active=true&_include=HealthcareService:organization&_include=HealthcareService:location&_text=3-02.2.0000005004.16.738&organization.type=1.2.276.0.76.4.50,1.2.276.0.76.4.51,1.2.276.0.76.4.52,1.2.276.0.76.4.53,1.2.276.0.76.4.54,1.2.276.0.76.4.245,1.2.276.0.76.4.246,1.2.276.0.76.4.247,1.2.276.0.76.4.255,1.2.276.0.76.4.256,1.2.276.0.76.4.257
+----
+
+**Transformed Query:**
+
+[source]
+----
+https://fhir-directory-ref.vzd.ti-dienste.de/fdv/search/HealthcareService?organization.active=true&_include=HealthcareService:organization&_include=HealthcareService:location&_text=3-02.2.0000005004.16.738&_tag=fdv-relevant
+----
+
 === Technical Details
 
-In alignment with the requirement ePA-AFO A_24306-02 (Constraint Management – Policy for authorized user groups and users), the following ProfessionOIDs are automatically enriched with a dedicated marker `meta.tag = "fdv-relevant"` (system = https://gematik.de/fhir/directory/CodeSystem/ResourceTag) during the LDAP synchronization process. Existing resources have been updated via a migration job.
+In alignment with the requirement ePA-AFO A_24306-02 (Constraint Management – Policy for authorized user groups and users), the following ProfessionOIDs are automatically enriched with a dedicated marker `_tag = "fdv-relevant"` (system = https://gematik.de/fhir/directory/CodeSystem/ResourceTag) during the LDAP synchronization process. Existing resources have been updated via a migration job.
 
 Incoming search requests containing these ProfessionOIDs (excluding Diga) are automatically internally mapped to the flag. Any additional ProfessionOIDs that are transferred are discarded during the search. All other search parameters remain unchanged, ensuring transparent client behavior with improved performance.
 
@@ -888,3 +904,5 @@ Incoming search requests containing these ProfessionOIDs (excluding Diga) are au
 |===
 
 Note: The OID for representative roles (oid_versicherter) is currently not available and cannot be mapped.
+
+
