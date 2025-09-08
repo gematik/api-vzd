@@ -60,20 +60,6 @@
         "patternUri": "https://gematik.de/fhir/directory/CodeSystem/Origin"
       },
       {
-        "id": "PractitionerRole.extension",
-        "path": "PractitionerRole.extension",
-        "slicing": {
-          "discriminator": [
-            {
-              "type": "value",
-              "path": "url"
-            }
-          ],
-          "ordered": false,
-          "rules": "open"
-        }
-      },
-      {
         "id": "PractitionerRole.extension:holderId",
         "path": "PractitionerRole.extension",
         "sliceName": "holderId",
