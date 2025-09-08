@@ -7,9 +7,7 @@
     "4.0.1"
   ],
   "dependencies": {
-    "de.basisprofil.r4": "1.5.4",
     "de.ihe-d.terminology": "3.0.1",
-    "de.gematik.terminology": "1.0.6",
-    "de.gematik.ti": "dev"
+    "de.gematik.ti": "1.1.0"
   }
 }
