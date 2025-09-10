@@ -1,7 +1,7 @@
 # Changelog
 
 ## tbd Version 1.0.0
-- `feat`: introduced dependencies to de.gematik.terminology & de.gematik.ti in order to allign gematik IGs
+- `feat`: introduced dependencies to de.gematik.terminology & de.gematik.ti in order to align gematik IGs
 
 ## 2025-08-25 Version 0.11.26 (feat for 0.11.25 only)
 - `feat`: relaxed binding of qualification.code on PractitionerDirectory to extensible, allowing the validation of any code as the current existing data instances are not compliant to the strict binding. This is a temporary solution until the data instances are migrated to the new codes and won't be changed in the current and more recent releases.
