@@ -7,7 +7,6 @@
     "4.0.1"
   ],
   "dependencies": {
-    "de.ihe-d.terminology": "3.0.1",
-    "de.gematik.ti": "1.1.0"
+    "de.gematik.ti": "1.1.1"
   }
 }
