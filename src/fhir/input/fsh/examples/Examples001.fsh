@@ -41,7 +41,7 @@ Description: "Example of an Organization as to be found in gematik FHIR Director
 * meta.tag[Origin] = Origin#ldap
 * meta.tag[FdV] = ResourceTag#fdv-relevant "Relevant for ePA FdV"
 * identifier[TelematikID].value = "2-2.58.00000040"
-* type[profession] = https://gematik.de/fhir/directory/CodeSystem/TIOrganizationProfessionTypeOidCS#1.2.276.0.76.4.51 "Zahnarztpraxis"
+* type[profession] = https://gematik.de/fhir/directory/CodeSystem/OrganizationProfessionOID#1.2.276.0.76.4.51 "Zahnarztpraxis"
 * name = "Zahnarztpraxis Dr. Mustermann"
 * active = true
 * alias = "Zahnarztpraxis am Bahnhof"
