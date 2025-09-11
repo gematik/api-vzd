@@ -2,7 +2,7 @@
   "resourceType": "SearchParameter",
   "id": "PractitionerQualificationSP",
   "url": "https://gematik.de/fhir/directory/SearchParameter/PractitionerQualificationSP",
-  "version": "0.16.0",
+  "version": "1.0.0",
   "status": "active",
   "experimental": false,
   "publisher": "gematik GmbH",

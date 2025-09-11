@@ -1,5 +1,12 @@
 # Changelog
 
+## 2025-09-10 Version 1.0.0
+- `feat`: Added dependencies on `de.gematik.terminology` and `de.gematik.ti` to ensure alignment with other gematik IGs.  
+  *Note*: This change does not affect the profiles themselves; it is purely a structural adjustment.
+
+## 2025-08-25 Version 0.11.26 (feat for 0.11.25 only)
+- `feat`: relaxed binding of qualification.code on PractitionerDirectory to extensible, allowing the validation of any code as the current existing data instances are not compliant to the strict binding. This is a temporary solution until the data instances are migrated to the new codes and won't be changed in the current and more recent releases.
+
 ## 2025-07-17 Version 0.16.0
 - `feat`: Added fdv-relevant tag to Organisation resources and introduced the ResourceTag CodeSystem for all non-origin meta.tag values.
 - `change`: updated de.basisprofil.r4 dependency to 1.5.4 which is fully compatible for the VZD

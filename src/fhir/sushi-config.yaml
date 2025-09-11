@@ -1,7 +1,8 @@
 canonical: https://gematik.de/fhir/directory
-version: 0.16.0
+version: 1.0.0
 fhirVersion: 4.0.1
 dependencies:
+  de.gematik.terminology: 1.0.7
+  de.gematik.ti: 1.1.1
   de.basisprofil.r4: 1.5.4
-  de.ihe-d.terminology: 3.0.1
 FSHOnly: true

@@ -2,7 +2,7 @@
   "resourceType": "StructureDefinition",
   "id": "EndpointVisibility",
   "url": "https://gematik.de/fhir/directory/StructureDefinition/EndpointVisibility",
-  "version": "0.16.0",
+  "version": "1.0.0",
   "name": "EndpointVisibility",
   "title": "EndpointVisibility",
   "status": "active",
