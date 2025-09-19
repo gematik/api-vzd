@@ -56,7 +56,7 @@ image::gematik_logo.svg[gematik,float="right"]
 [width="100%",cols="50%,50%",options="header",]
 |===
 
-|Version: |1.5.15
+|Version: |1.5.16
 
 |Referenzierung: |gemILF_Pflege_VZD
 |===
@@ -238,6 +238,10 @@ Neu für eGBR HBA und SMC-B |gematik
 - Tab_VZD_Datenbeschreibung_der_SMC-B_KT_PKV - domain Beschreibung aktualisiert
 |gematik
 
+|1.5.16 |19.09.2025 |4.17 & 4.18
+|
+- Beschreibung "holder" Attribut aktualisiert 
+|gematik
 
 |===
 
@@ -3637,8 +3641,8 @@ Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber gesch
  +
 Wenn der Wert TRUE ist, können die Daten nicht mehr über die Schnittstelle I_Directory_Maintenance bearbeitet werden. Die Schnittstelle I_Directory_Maintenance wird von KOM-LE-Anbietern verwendet.
 |*holder* |obligatorisch |Festlegung Änderungsrechte: +
-Wert „hk<ID>“ und die „clientID“ des eintragenden TSP +
-Kürzel "hk<ID>" mit ID aus den letzten beiden Ziffern der Handwerkskammer-ID (die drei führenden Nullen fallen weg) gemäß +
+Wert „clientID“ der Handwerkskammer („HWK<ID>“) und die „clientID“ des eintragenden TSP +
+Kürzel "HWK<ID>" mit ID aus den letzten beiden Ziffern der Handwerkskammer-ID (die drei führenden Nullen fallen weg) gemäß +
 https://www.xrepository.de/details/urn:xoev-de:xunternehmen:codeliste:handwerkskammern
 Legt fest, wer Änderungen an den Basisdaten des Eintrags vornehmen darf. Hat keinen Einfluss auf Fachdaten und Zertifikatsdaten.
 
@@ -3808,9 +3812,10 @@ Gibt an, ob die Daten vom Kartenherausgeber stammen. +
 Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
  +
 Wenn der Wert TRUE ist, können die Daten nicht mehr über die Schnittstelle I_Directory_Maintenance bearbeitet werden. Die Schnittstelle I_Directory_Maintenance wird von KOM-LE-Anbietern verwendet.
+
 |*holder* |obligatorisch |Festlegung Änderungsrechte: +
-Wert „hk<ID>“ und die „clientID“ des eintragenden TSP +
-Kürzel "hk<ID>" mit ID aus den letzten beiden Ziffern der Handwerkskammer-ID (die drei führenden Nullen fallen weg) gemäß +
+Wert „clientID“ der Handwerkskammer („HWK<ID>“) und die „clientID“ des eintragenden TSP +
+Kürzel "HWK<ID>" mit ID aus den letzten beiden Ziffern der Handwerkskammer-ID (die drei führenden Nullen fallen weg) gemäß +
 https://www.xrepository.de/details/urn:xoev-de:xunternehmen:codeliste:handwerkskammern +
 Legt fest, wer Änderungen an den Basisdaten des Eintrags vornehmen darf. Hat keinen Einfluss auf Fachdaten und Zertifikatsdaten.
 |*professionOID* |obligatorisch |Bezeichner: Profession OID +
