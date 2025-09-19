@@ -25,6 +25,7 @@ image:https://shields.io/badge/Application Maintenance API-1.2.4-green?logo=swag
 
 == Aktuelles
 
+* *19.09.2025* 👨‍💻 https://github.com/gematik/api-vzd/blob/gemILF_Pflege_VZD/1.5.16/docs/gemILF_Pflege_VZD.adoc[Implementierungsleitfaden v1.5.16]
 * *11.08.2025* 👨‍💻 https://github.com/gematik/api-vzd/tree/FHIR_VZD_Authenticate_Bearer/src/openapi[FHIR VZD - TokenType von "bearer" auf "Bearer" geändert: I_VZD_TI_Provider_Authenticate_Service.yaml, I_VZD_Holder_Authenticate_Service.yaml, I_VZD_Owner.yaml, I_VZD_Owner.yaml, I_VZD_Service_Authenticate_Service.yaml]
 * *27.06.2025* 👨‍💻 https://github.com/gematik/api-vzd/blob/gemILF_Pflege_VZD/1.5.15/docs/gemILF_Pflege_VZD.adoc[Implementierungsleitfaden v1.5.15]
 * *16.05.2025* 👨‍💻 https://github.com/gematik/api-vzd/blob/FHIR_VZD_HOWTO_AVS/1.0.1/docs/FHIR_VZD_HOWTO_AVS.adoc[Implementierungsleitfaden AVS v1.0.1]
