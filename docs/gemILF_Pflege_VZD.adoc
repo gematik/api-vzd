@@ -960,7 +960,7 @@ Tabelle 1: TAB_VZD_Wertebereiche_der_Attribute
 |===
 |*Attribut* |*gültige Werte* |*Beschreibung*
 |stateOrProvinceName |Siehe Wertebereich des CodeSystems https://simplifier.net/vzd-fhir-directory/region[VZD-FHIR-Directory] |
-|countryCode |Werte gemäß  ISO-3166-1 ALPHA-2 |Wenn nicht im add oder modify Request angegeben, wird vom VZD der Code "DE" eingetragen.
+|countryCode |Werte gemäß  ISO-3166-1 ALPHA-2 |Der Standardwert „DE“ für den CountryCode wird bei der Anlage und Aktualisierung nicht automatisch gesetzt. Bei der Anlieferung einer PLZ, StateOrProvince, City, Straße muss ein CountryCode obligatorisch angeliefert. Nicht-Anlieferung führt zu einem "Bad Request"-Fehler (Fehlercode 400)
 |===
 {empty} +
 {empty} +
