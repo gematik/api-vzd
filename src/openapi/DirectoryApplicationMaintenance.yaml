@@ -6,12 +6,13 @@ info:
    # REST Schnittstelle zur Pflege der Fachanwendungsdaten der Verzeichniseinträge
      Über diese Schnittstelle können Fachanwendungsdaten der Verzeichniseinträge erzeugt, aktualisiert und gelöscht werden. 
 
+
   version: 1.4.8
   # Änderungen in Version 1.4.8
   #  423-Fehler (Locked) für Änderungen an inaktiven Einträgen ergänzt
   #
   # Änderungen in Version 1.4.7
-  #  OperationEnum hinzugefügt
+  #  Added OperationEnum
   #  - mark_Directory_Entry_Certless
   #  - unmark_Directory_Entry_Certless
   #
