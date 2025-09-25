@@ -18,7 +18,7 @@ image::gematik_logo.svg[gematik,float="right"]
 
 [width="100%",cols="50%,50%",options="header",]
 |===
-|Version: |1.1.5
+|Version: |1.1.6
 |Referencing: |gemILF_FHIR_VZD
 |===
 
@@ -62,6 +62,10 @@ FHIR Search Parameters - Custom Search Parameters
 |Added this chapter +
 Added some hints +
 Added custom Search Parameters
+  |gematik
+
+|1.1.6 |23.09.25 | Special Case: Search by ProfessionOIDs in the ePA Context
+|Added this chapter 
   |gematik
 
 
@@ -882,6 +886,56 @@ GET https://fhir-directory-tu.vzd.ti-dienste.de/fdv/search/HealthcareService?org
 ----
 
 
+== Special Case: Search by ProfessionOIDs in the ePA Context
+
+Some clients use fdv-search to filter organizations by specific ProfessionOIDs. These queries often include a large number of OIDs combined with logical OR conditions. Such requests can cause significant runtime load during query execution.
+
+As part of new requirement, it was decided to introduce internal query mapping for this use case. This allows the system to handle such searches more efficiently, providing significant performance improvements.
+
+=== Example Query Transformation
+
+**Input Query:**
+
+[source]
+----
+https://fhir-directory-ref.vzd.ti-dienste.de/fdv/search/HealthcareService?organization.active=true&_include=HealthcareService:organization&_include=HealthcareService:location&_text=3-02.2.0000005004.16.738&organization.type=1.2.276.0.76.4.50,1.2.276.0.76.4.51,1.2.276.0.76.4.52,1.2.276.0.76.4.53,1.2.276.0.76.4.54,1.2.276.0.76.4.245,1.2.276.0.76.4.246,1.2.276.0.76.4.247,1.2.276.0.76.4.255,1.2.276.0.76.4.256,1.2.276.0.76.4.257
+----
+
+**Transformed Query:**
+
+[source]
+----
+https://fhir-directory-ref.vzd.ti-dienste.de/fdv/search/HealthcareService?organization.active=true&_include=HealthcareService:organization&_include=HealthcareService:location&_text=3-02.2.0000005004.16.738&_tag=fdv-relevant
+----
+
+=== Technical Details
+
+In alignment with the requirement ePA-AFO A_24306-02 (Constraint Management – Policy for authorized user groups and users), the following ProfessionOIDs are automatically enriched with a dedicated marker `_tag = "fdv-relevant"` (system = https://gematik.de/fhir/directory/CodeSystem/ResourceTag) during the LDAP synchronization process. Existing resources have been updated via a migration job.
+
+Incoming search requests containing these ProfessionOIDs (excluding Diga) are automatically internally mapped to the flag. Any additional ProfessionOIDs that are transferred are discarded during the search. All other search parameters remain unchanged, ensuring transparent client behavior with improved performance.
+
+=== Relevant ProfessionOIDs
+
+[cols="3,3,3,6", options="header"]
+|===
+|OID |Enriches fdv-relevant-Flag in ldap-synchronisation |Is required for fdv-search-mapping |Description
+|1.2.276.0.76.4.50 |x |x |Arztpraxis
+|1.2.276.0.76.4.51 |x |x |Zahnarztpraxis
+|1.2.276.0.76.4.52 |x |x |Psychotherapeut
+|1.2.276.0.76.4.53 |x |x |Krankenhaus
+|1.2.276.0.76.4.54 |x |x |Apotheke
+|1.2.276.0.76.4.245 |x |x |Medizinisches Versorgungszentrum (MVZ)
+|1.2.276.0.76.4.246 |x |x |Berufsverband
+|1.2.276.0.76.4.247 |x |x |Sonstige Leistungserbringer
+|1.2.276.0.76.4.255 |x |x |Kassenärztliche Vereinigung
+|1.2.276.0.76.4.256 |x |x |Kassenzahnärztliche Vereinigung
+|1.2.276.0.76.4.257 |x |x |Krankenhausgesellschaft
+|1.2.276.0.76.4.282 |x | |DIGA (Digital Health Application)
+|===
+
+Note: The OID for representative roles (oid_versicherter) is currently not available and cannot be mapped.
+
+
 == FHIR Operations - FHIR VZD endpoint /fdv/search
 The aim of the search operations is not only to offer users an individual interface, according to specific needs. 
 Instead of a universal approach, tailored search operations that are specifically tailored to different use cases are implemented. +
@@ -1030,5 +1084,4 @@ GET {{fhir_server}}/fdv/search/HealthcareService?_query=near
     &_count=8
     &organization.type=1.2.276.0.76.4.50
 ----
-
 
