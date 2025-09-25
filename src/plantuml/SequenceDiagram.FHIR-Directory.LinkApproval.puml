@@ -1,0 +1,61 @@
+@startuml SequenceDiagram.FHIR-Directory.linkApproval
+skinparam dpi 100
+skinparam WrapWidth 200
+skinparam monochrome true
+autonumber "<b>[00]"
+
+'title "FHIR-Directory, Sequenzdiagram link approval'
+actor Nutzer
+participant cl as "FHIR-VZD-Client"
+box <size:16>FHIR-Directory</size> #WhiteSmoke
+  participant fp as "FHIR-Proxy"
+  participant fd as "FHIR-Directory"
+  participant fa as "FHIR-VZD-Administration"
+end box
+
+Nutzer -> cl:Öffne Administration GUI im Client
+activate cl
+
+
+group Lese alle Verlinkungsanfragen, die auf Approval durch Nutzer warten
+  cl -> fa: getPersonInstitutionLinks {}
+  activate fa
+  fa -> fa: prüfe owner-accesstoken
+
+    alt accesstoken is valid
+      fa -> fa: Lesen der Verlinkungsdaten
+      fa --> cl: HTTP 200 OK\n(Result Body json)
+      cl -> cl: Filtern nach Verlinkungsanfragen, die auf Approval durch Nutzer warten
+      
+     else owner-accesstoken is invalid
+      fa --> cl: HTTP 401
+      deactivate fa
+     end
+end
+
+cl --> Nutzer:Anzeige Verlinkungsanfragen, die auf Approval durch Nutzer warten\n(kann auch nur ein Hinweis auf offene Anfragen im GUI sein) 
+Nutzer -> Nutzer: Auswahl der zu Verlinkungsanfragen, die bestätigt werden sollen
+Nutzer -> cl: Verlinkungsapproval \nmit selektierten Verlinkungsanfragen
+
+group VerlinkungsApproval
+  cl -> fa: approvePersonInstitutionLink {id}
+  activate fa
+  fa -> fa: prüfe owner-accesstoken
+
+    alt accesstoken is valid \n& Verlinkungsanfrage wartet auf Approval durch den Nutzer (telematikID aus dem accesstoken)
+      fa -> fa: Eintragen des Verlinkungsapprovals
+      fa -> fd: Eintragung der Verlinkung in die FHIR Daten
+      fd --> fa: HTTP 200 OK
+      fa --> cl: HTTP 200 OK\n(Result Body json)
+      
+     else owner-accesstoken is invalid\noder Verlinkungsanfrage wartet nicht auf Approval durch den authentisierten Nutzer
+      fa --> cl: HTTP 401
+      deactivate fa
+     end
+end
+
+cl -> Nutzer: Ergebnis Verlinkungsapproval
+
+deactivate cl
+
+@enduml
