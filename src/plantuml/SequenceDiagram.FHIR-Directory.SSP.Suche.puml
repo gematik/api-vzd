@@ -7,8 +7,6 @@ skinparam monochrome true
 actor o as "Org-Admin\noder LE"
 participant cl as "Browser\nSSP Frontend"
 participant be as "SSP Backend"
-participant au as "Auth-Service"
-participant fp as "FHIR-Proxy"
 participant fd as "FHIR-Directory"
 
 
@@ -17,23 +15,15 @@ activate cl
 cl -> be: [2] Suchanfrage & Token
 activate be
 
-be -> au: [3] Token Validieren
-activate au
-au -> au: [4] Token validieren
-au -> be: [5] Validierungsergebnis
-deactivate au
+
 
 be -> be: [6] Berechtigungen ermitteln
-be -> fp: [7] Suchanfrage & SSP Backend Token
-activate fp
-fp -> fp: [8] Validiere SSP Backend Token
-fp -> fd: [9] Suchanfrage
+be -> fd: [7] Suchanfrage & Token
 activate fd
 
-fd -> fp: [10] Suchergebnis
+fd -> be: [10] Suchergebnis
 deactivate fd
-fp -> be: [10] Suchergebnis
-deactivate fp
+
 be -> cl: [10] Suchergebnis
 deactivate be
 
