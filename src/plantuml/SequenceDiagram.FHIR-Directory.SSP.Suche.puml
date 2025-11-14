@@ -17,17 +17,17 @@ activate be
 
 
 
-be -> be: [6] Berechtigungen ermitteln
-be -> fd: [7] Suchanfrage & Token
+be -> be: [3] Berechtigungen ermitteln
+be -> fd: [4] Suchanfrage & Token
 activate fd
 
-fd -> be: [10] Suchergebnis
+fd -> be: [5] Suchergebnis
 deactivate fd
 
-be -> cl: [10] Suchergebnis
+be -> cl: [6] Suchergebnis
 deactivate be
 
-cl -> o: [11] Anzeige Suchergebnis
+cl -> o: [7] Anzeige Suchergebnis
 deactivate cl
 
 @enduml
