@@ -574,7 +574,7 @@ Values
 
 |name 
 |Name of the Organization  
-|1..* 
+|1..1 
 |Name is synchronized from LDAP VZD.
 |Yes
 |No
