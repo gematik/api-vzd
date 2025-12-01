@@ -225,6 +225,21 @@ Example of a https://simplifier.net/vzd-fhir-directory/~resources?category=Examp
 // |No
 // |Yes
 
+.1+|extension:holderID 
+|https://simplifier.net/vzd-fhir-directory/holderidex[Holder ID Extension] 
+|0..* 
+|Holder of this PractitionerRole. The holder can change or delete the PractitionerRole.	
+|No
+|Yes
+
+.1+|extension:ownerTelematikId 
+|https://simplifier.net/vzd-fhir-directory/ownertelematikidex[OwnerTelematikIdEx] 
+|0..* 
+|Owner of this PractitionerRole. The owner can change or delete the PractitionerRole.	
+|No
+|Yes
+
+
 |practitioner
 |Reference to Practitioner resource
 |1..1
@@ -259,6 +274,13 @@ Example of a https://simplifier.net/vzd-fhir-directory/~resources?category=Examp
 |One endpoint is created per KIM-/TIM-address. 
 |No
 |Yes
+
+|telecom  
+|A contact detail for the PractitionerRole  
+|0..* 
+|Not used in the FHIR VZD.
+|No
+|No
 
 
 |===
@@ -477,6 +499,14 @@ This part of the directory contains information about organizations. +
 |Yes
 |No (Must be set to "owner" for owner resources)
 
+|meta.tag
+|FdV
+|0..1
+|Indicates whether this organization can be authorized in the ePA FdV (code: "fdv-relevant"). This is set internally by the VZD based on Organization.type:profession. Searching using this flag replaces a search parameter that uses an OR operator for multiple OIDs (which should be avoided for performance reasons).
+|No
+|No
+
+
 .1+|extension:organizationVisibility 
 | https://simplifier.net/vzd-fhir-directory/organizationvisibilitycs[OrganizationVisibilityCS] 
 |0..* 
@@ -544,7 +574,7 @@ Values
 
 |name 
 |Name of the Organization  
-|0..* 
+|1..* 
 |Name is synchronized from LDAP VZD.
 |Yes
 |No
