@@ -669,8 +669,8 @@ Example of a https://simplifier.net/vzd-fhir-directory/~resources?category=Examp
 
 |category
 |Category of service being performed or delivered
-|1..1
-|Not used in the FHIR VZD.
+|0..1
+|Only used for the "NCPeH Fachdienst" in the FHIR VZD (code: "1.2.276.0.76.4.292").
 |No
 |No
 
@@ -691,7 +691,7 @@ Example of a https://simplifier.net/vzd-fhir-directory/~resources?category=Examp
  +
  
 |Yes
-|No,  Yes for owner-resources
+|No, Yes for pharmacies, Yes for owner-resources
 
 |location
 |Reference to location resource
@@ -706,30 +706,30 @@ Example of a https://simplifier.net/vzd-fhir-directory/~resources?category=Examp
 |0..* 
 |Description of service as presented to a consumer while searching.
 |No
-|Yes
+|Yes for owder resources.
 
 |telecom  
 |A contact detail for the organization  
 |0..* 
-|Is taken from the ApoVZD / pharmacy portal. May contain website, email, telephone, fax. +
+|Is used for pharmacies. May contain website, email, telephone, fax. +
 For other organizations: Not used in the FHIR VZD.
 |No
-|No
+|Yes for pharmacies.
 
 |coverageArea.extension: +
 serviceCoverageArea  
 |Delivery area of the service.
 |0..1 
-|Is taken from the ApoVZD / pharmacy portal.
+|Is used for pharmacies.
 |No
-|No
+|Yes
 
-|serviceProvisionCode  
-|Conditions under which service is available/offered  
-|0..* 
-|Not used in the FHIR VZD.
-|No
-|No
+// |serviceProvisionCode  
+// |Conditions under which service is available/offered  
+// |0..* 
+// |Not used in the FHIR VZD.
+// |No
+// |No
 
 |characteristic  
 |Collection of characteristics (attributes)  
@@ -739,14 +739,14 @@ E.g. used for the eRezept (eRX Token Receiver is taken from the ApoVZD / pharmac
 and can also show some physical characteristic https://simplifier.net/vzd-fhir-directory/physicalfeatureshealthcareservicevs. 
 
 |No
-|No
+|Yes for pharmacies.
 
 |communication  
 |The language that this service is offered in  
 |0..* 
 |
 |No
-|No
+|Yes for pharmacies.
 
 |appointmentRequired  
 |If an appointment is required for access to this service  
