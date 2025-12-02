@@ -39,7 +39,7 @@ image::gematik_logo.svg[gematik,float="right"]
 |0.0.5 |29.07.24 | |Simplifier links fixed |gematik
 |0.0.6 |27.09.24 | |HealthcareService.active #3.2 changeability updated, Updated several attribute descriptions |gematik
 |0.1.0 |01.07.25 | |Update according Simplifier profile 0.14.0 |gematik
-|1.0.0 |05.12.25 | |Update according Simplifier profile 1.0.0 |gematik
+|1.0.0 |02.12.25 | |Update according Simplifier profile 1.0.0 |gematik
 |===
 
 == Classification of the document
