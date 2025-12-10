@@ -18,7 +18,7 @@ image::gematik_logo.svg[gematik,float="right"]
 
 [width="100%",cols="50%,50%",options="header",]
 |===
-|Version: |1.0.0
+|Version: |1.0.1
 |Referencing: |gemILF_FHIR_VZD
 |===
 
@@ -33,7 +33,7 @@ image::gematik_logo.svg[gematik,float="right"]
  |*Editing* +
 
 |1.0.0 |28.07.23 | |Initial document |gematik
-
+|1.0.1 |11.12.25 | |New section "General information" |gematik
 |===
 
 == Classification of the document
@@ -170,7 +170,76 @@ The following rules apply when creating a PracititonerRole:
 - The created PractitionerRole can not be linked with an Organization.
 - The created PractitionerRole can not be linked with an HealthcareService (this will be possible in a subsequent release).
 
-////
-Noch einarbeiten:
-https://arvato-systems-group.atlassian.net/browse/FVZ-140
-////
+=== General information
+==== Encoding of nested lists / Codable Concepts
+Values ​​such as HealthcareService.specialty can be delivered to the Owner SST in several ways that are syntactically different but semantically the same. +
+ +
+Example: +
+
+.A specialty element with multiple coding elements
+[%collapsible%closed]
+====
+[source,txt, linenums]
+----
+"specialty": [
+                    {
+                        "coding": [
+                            {
+                                "system": "https://gematik.de/fhir/directory/CodeSystem/PharmacyHealthcareSpecialtyCS",
+                                "code": "10",
+                                "display": "Handverkauf"
+                            },
+                            {
+                                "system": "https://gematik.de/fhir/directory/CodeSystem/PharmacyHealthcareSpecialtyCS",
+                                "code": "40",
+                                "display": "Versand"
+                            }
+                        ],
+                        "text": "apo-vzd"
+                    }
+                ],
+----
+====
+
+.Several specialty elements, each with a coding element
+[%collapsible%closed]
+====
+[source,txt, linenums]
+----
+"specialty": [
+                    {
+                        "coding": [
+                            {
+                                "system": "https://gematik.de/fhir/directory/CodeSystem/PharmacyHealthcareSpecialtyCS",
+                                "code": "10",
+                                "display": "Handverkauf"
+                            }
+                        ],
+                         "text": "apo-vzd"
+                    },
+                    {
+                        "coding": [
+                            {
+                                "system": "https://gematik.de/fhir/directory/CodeSystem/PharmacyHealthcareSpecialtyCS",
+                                "code": "20",
+                                "display": "Nacht- und Notdienst"
+                            }
+                        ],
+                         "text": "apo-vzd"
+                    }
+                ],
+----
+====
+
+Both variants are valid according to the code and FHIR profile. However, such inconsistencies could lead to unexpected behavior internally and for third parties if not all variants are considered. This is a general problem and does not apply only to HealthcareService.specialty. +
+ +
+*Encoding requirement for FHIR VZD clients:* 
+
+- *FHIR VZD clients must encode all values ​​in one child element in Codable Concepts,*
+- *FHIR VZD clients must support both encodings when reading FHIR VZD data (nested loop in the query for values ​​of type CodeableConcept)*
+
+
+
+
+
+
