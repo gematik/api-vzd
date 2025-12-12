@@ -76,7 +76,7 @@ jobs:
           EXPECTED_FAILS: VALIDATION_CONFORMANCE_DOTNET
 
       - name: Upload validation artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: fhir-validation-results
           path: |
