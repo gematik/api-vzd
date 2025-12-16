@@ -4,37 +4,44 @@ class Organization {
   {field} identifier (1..*, MS, LDAP)
   {field} name (1..1, MS)
   {field} alias (0..*, MS)
-  {field} type(1..*, MS, LDAP)
+  {field} type(0..*, MS, LDAP)
   {field} active (1..1, MS, LDAP)
-  {field} telecom (0..*, MS)
   {field} meta.tag.origin (1..1, MS, LDAP)
+  {field} extension:organizationVisibility (0..*, MS)  
+  {field} extension:ncpehCountryEx (0..*, MS)  
 }
  
 class HealthcareService {
-  {field} identifier (1..*, MS)
   {field} providedBy (1..1, MS, LDAP/Owner)
   {field} speciality (0..*, MS, LDAP/Owner)
+  {field} category (0..*, MS)
+  {field} type (0..*, MS, LDAP/Owner)
   {field} location (0..*, MS, LDAP/Owner)
+  {field} name (0..1, MS, Owner)  
   {field} endpoint (0..*, MS)
   {field} meta.tag.origin (1..1, MS, LDAP)
-  {field} meta.security.ownerId (1..*, MS)
-  {field} meta.security.holder (1..*, MS, LDAP)
+  {field} telecom (0..1, MS, Owner) 
+  {field} coverageArea.extension:serviceCoverageArea (0..1, MS, Owner)  
+  {field} characteristic (0..1, MS, Owner)   
+  {field} communication (0..1, MS, Owner)   
+  {field} appointmentRequired (0..1, MS, Owner)   
+  {field} availableTime (0..1, MS, Owner) 
+  {field} availabilityExceptions (0..1, MS, Owner)   
 }
  
 class Endpoint {
-  {field} identifier (1..*, MS)
-  {field} connectionType (0..*, MS)
-  {field} status (0..*, MS)
-  {field} name (0..1, MS)
+  {field} connectionType (1..1, MS)
+  {field} status (1..1, MS)
+  {field} name (1..1, MS)
   {field} address (1..1, MS)
   {field} payloadType (1..*, MS)
   {field} meta.tag.origin (1..1, MS)
-  {field} meta.security.ownerId (1..*, MS)
+  {field} extension:endpointVisibility (0..*, MS)
+  {field} extension:ownerTelematikId (0..*, MS)
 }
- 
 class Location {
-  {field} identifier (1..*, MS, LDAP)
   {field} address (0..1, MS, LDAP)
+  {field} position (0..1, MS)  
   {field} meta.tag.origin (1..1, MS, LDAP)
 }
  
