@@ -3,35 +3,32 @@
 class Practitioner {
   {field} identifier (1..*, MS, LDAP)
   {field} active (1..1, MS, LDAP)
-  {field} name (1..*, MS, LDAP)
+  {field} name (1..1, MS, LDAP)
   {field} qualification (0..*, MS, LDAP)
   {field} meta.tag.origin (1..1, MS, LDAP)
 }
  
 class PractitionerRole {
-  {field} identifier (1..*, MS)
   {field} practitioner (1..1, MS, LDAP)
   {field} location (0..*, MS, LDAP)
   {field} endpoint (0..*, MS)
   {field} meta.tag.origin (1..1, MS, LDAP)
-  {field} meta.security.ownerId (1..*, MS)
-  {field} meta.security.holder (1..*, MS, LDAP)
   {field} healthcareService (0..*, MS, OWNER) (geplant für Verknüpfung mit HealthcareService)
 }
  
 class Endpoint {
-  {field} identifier (1..*, MS)
-  {field} connectionType (0..*, MS)
+  {field} connectionType (1..1, MS)
   {field} status (1..1, MS)
-  {field} name (0..1, MS)
+  {field} name (1..1, MS)
   {field} address (1..1, MS)
   {field} payloadType (1..*, MS)
   {field} meta.tag.origin (1..1, MS)
-  {field} meta.security.ownerId (1..*, MS)
+  {field} extension:endpointVisibility (0..*, MS)
+  {field} extension:ownerTelematikId (0..*, MS)
 }
 class Location {
-  {field} identifier (1..*, MS, LDAP)
   {field} address (0..1, MS, LDAP)
+  {field} position (0..1, MS)  
   {field} meta.tag.origin (1..1, MS, LDAP)
 }
  
