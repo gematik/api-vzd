@@ -18,7 +18,7 @@ image::gematik_logo.svg[gematik,float="right"]
 
 [width="100%",cols="50%,50%",options="header",]
 |===
-|Version: |1.0.2
+|Version: |1.0.3
 |Referencing: |gemILF_FHIR_VZD
 |===
 
@@ -56,7 +56,15 @@ Beispieldaten überarbeitet
 |1.0.2 |21.05.25 | * 
 |Pull Request 164 übernommen (Formulierungen, Tippfehler,...)
 |gematik
+
+
+|1.0.3 |16.12.25 | 2.5 
+|Hinweis zum "Bug im VZD FHIR 1.2.0-15" aufgenommen
+|gematik
+
 |===
+
+
 
 == Einordnung des Dokumentes
 === Zielsetzung
@@ -158,7 +166,7 @@ __tag=ldap_ - Selektiert den "Haupt" HealthcareService, in den die Apotheken-Meh
  +
 Das Ergebnis der FHIR-VZD-Suchabfrage:
 
-.FHIR-VZD-Daten der Apotheke
+.FHIR-VZD-Daten der Apotheke  (Klicken zum Ausklappen)
 [%collapsible%closed]
 ====
 [source,txt, linenums]
@@ -468,7 +476,7 @@ Ablauf: +
 *1. Lesen des Apotheken-Eintrags aus dem FHIR-VZD*. Siehe Kapitel link:./FHIR_VZD_HOWTO_AVS.adoc#151-suche-des-apothekeneintrags[Suche des Apothekeneintrags]. +
 *2. Extrahieren der relevanten Ressource aus dem Suchergebnis.* Die Öffnungszeiten befinden sich in FHI-Ressource-HealthcareService mit HealthcareService.meta.tag:Origin=ldap
 
-.FHI-Ressource-HealthcareService - aktuelle Daten aus dem FHIR-VZD
+.FHI-Ressource-HealthcareService - aktuelle Daten aus dem FHIR-VZD  (Klicken zum Ausklappen)
 [%collapsible%closed]
 ====
 [source,txt, linenums]
@@ -613,7 +621,17 @@ Das AVS ergänzt das Liefergebiet in den Attributen serviceCoverageArea und serv
 - "serviceCoverageArea" - 10.000 Meter
 - "serviceCoveragePostalCode" - Die Postleitzahlen: 60596, 60597, 60598
 
-.Der aktualisierte HealthcareService
+.*Bug im VZD FHIR 1.2.0-15*
+CAUTION: Mit VZD FHIR 1.2.0-15 wurden die HealthcareService.specialty-Container für Apotheken auf den Wert „apo-vzd“ konsolidiert.
+Derzeit wird „apo-vzd“ jedoch bei der Anlieferung über die Owner-Schnittstelle fälschlicherweise verworfen.
+In der Folge führt eine Aktualisierung (PUT) mit dem Wert „apo-vzd“ dazu, dass die hinterlegten Apotheken-Spezialisierungen geleert werden. +
+ +
+Workaround: Vor der Aktualisierung (PUT) des HealthcareService muss der "text" „apo-vzd“ unterhalb des Attributs "Specialty" entfernt werden (auch wenn "text" „apo-vzd“ bereits im Datensatz steht). 
+Diese Vorgehensweise ist bis zur Fehlerbehebung auch im VZD SSP entsprechend umgesetzt. +
+ +
+Fix im kommenden Release FHIR VZD 1.2.0-16: Der "text" „apo-vzd“ wird bei der Anlieferung korrekt berücksichtigt und die übermittelten Specialty-Werte werden übernommen.
+
+.Der aktualisierte HealthcareService (Klicken zum Ausklappen)
 [%collapsible%closed]
 ====
 [source,txt, linenums]
@@ -659,8 +677,7 @@ Das AVS ergänzt das Liefergebiet in den Attributen serviceCoverageArea und serv
 					"code": "versandapotheke",
 					"display": "Versandapotheke"
 				}
-			],
-			"text": "apo-vzd"
+			]
 		}
 	],
 	"specialty": [
@@ -676,8 +693,7 @@ Das AVS ergänzt das Liefergebiet in den Attributen serviceCoverageArea und serv
 					"code": "40",
 					"display": "Versand"
 				}
-			],
-			"text": "apo-vzd"
+			]
 		}
 	],
 	"location": [
@@ -953,7 +969,7 @@ Beispiel für das Anlegen eines Endpunkts durch das AVS mit einer FHIR-POST-Oper
 POST {{base-url}}/owner/Endpoint
 ----
 
-.Body von dem POST
+.Body von dem POST  (Klicken zum Ausklappen)
 [%collapsible%closed]
 ====
 [source,txt, linenums]
@@ -1005,7 +1021,7 @@ Erläuterungen zu den Attributen im POST-Body:
 
 Der FHIR-VZD liefert als Ergebnis von dem erfolgreichen POST-Request mit HTTP-Status-Code "201 Created" folgendes Response.
 
-.Ergebnis von dem POST
+.Ergebnis von dem POST  (Klicken zum Ausklappen)
 [%collapsible%closed]
 ====
 [source,txt, linenums]
@@ -1060,7 +1076,7 @@ Für die Beispielapotheke wird ein zweiter Endpunkt "Reservierung" mit einer FHI
 POST {{base-url}}/owner/Endpoint
 ----
 
-.Body von dem POST
+.Body von dem POST  (Klicken zum Ausklappen)
 [%collapsible%closed]
 ====
 [source,txt, linenums]
@@ -1157,7 +1173,7 @@ Das AVS schreibt den - in Punkt 5 aktualisierten - HealthcareService mit einer F
 PUT {{base-url}}/owner/HealthcareService/c12804cf-c462-413d-a950-58836f8cf287
 ----
 
-.Body von dem PUT
+.Body von dem PUT  (Klicken zum Ausklappen)
 [%collapsible%closed]
 ====
 [source,txt, linenums]
@@ -1488,7 +1504,7 @@ Ablauf: +
 *1. Lesen des Apotheken-Eintrags aus dem FHIR-VZD*. Siehe Kapitel link:./FHIR_VZD_HOWTO_AVS.adoc#151-suche-des-apothekeneintrags[Suche des Apothekeneintrags]. +
 *2. Extrahieren der relevanten Ressource aus dem Suchergebnis.* Die Sichtbarkeit der Apotheke befindet sich in FHI-Ressource-Organization mit Organization.meta.tag:Origin=ldap. 
 
-.FHI-Ressource-Organization - aktuelle Daten aus dem FHIR-VZD
+.FHI-Ressource-Organization - aktuelle Daten aus dem FHIR-VZD  (Klicken zum Ausklappen)
 [%collapsible%closed]
 ====
 [source,txt, linenums]
@@ -1585,7 +1601,7 @@ Das AVS schreibt die - in Punkt 3 aktualisierte - Organization mit einer FHIR-PU
 PUT {{base-url}}/owner/Organization/b5938fc4-2b37-4800-8859-9d2b7cfbe647
 ----
 
-.Body von dem PUT
+.Body von dem PUT  (Klicken zum Ausklappen)
 [%collapsible%closed]
 ====
 [source,txt, linenums]
@@ -1679,7 +1695,7 @@ Ablauf: +
 *1. Lesen des Apotheken-Eintrags aus dem FHIR-VZD*. Siehe Kapitel link:./FHIR_VZD_HOWTO_AVS.adoc#151-suche-des-apothekeneintrags[Suche des Apothekeneintrags]. +
 *2. Extrahieren der relevanten Ressource aus dem Suchergebnis.* Die Geo-Koordinaten der Apotheke befindet sich in der FHI-Ressource Location, die in FHI-Ressource-HealthcareService (mit HealthcareService.meta.tag:Origin=ldap) referenziert wird. Dieser HealthcareService referenziert genau eine Location-Ressource.
 
-.FHI-Ressource Location - aktuelle Daten aus dem FHIR-VZD
+.FHI-Ressource Location - aktuelle Daten aus dem FHIR-VZD  (Klicken zum Ausklappen)
 [%collapsible%closed]
 ====
 [source,txt, linenums]
@@ -1751,7 +1767,7 @@ Das AVS schreibt die - in Punkt 3 aktualisierte - Location mit einer FHIR-PUT-Op
 PUT {{base-url}}/owner/Location/42dd2bae-2b51-42cd-b993-4102b6a223a0
 ----
 
-.Body von dem PUT
+.Body von dem PUT  (Klicken zum Ausklappen)
 [%collapsible%closed]
 ====
 [source,txt, linenums]
