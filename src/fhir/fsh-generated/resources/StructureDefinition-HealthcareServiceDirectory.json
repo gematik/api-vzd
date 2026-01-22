@@ -2,7 +2,7 @@
   "resourceType": "StructureDefinition",
   "id": "HealthcareServiceDirectory",
   "url": "https://gematik.de/fhir/directory/StructureDefinition/HealthcareServiceDirectory",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "name": "HealthcareServiceDirectory",
   "title": "HealthcareService in gematik Directory",
   "status": "active",
@@ -64,6 +64,20 @@
         "path": "HealthcareService.meta.tag.system",
         "min": 1,
         "patternUri": "https://gematik.de/fhir/directory/CodeSystem/Origin"
+      },
+      {
+        "id": "HealthcareService.extension",
+        "path": "HealthcareService.extension",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "value",
+              "path": "url"
+            }
+          ],
+          "ordered": false,
+          "rules": "open"
+        }
       },
       {
         "id": "HealthcareService.extension:holderId",
@@ -385,6 +399,20 @@
           }
         ],
         "mustSupport": true
+      },
+      {
+        "id": "HealthcareService.availableTime.extension",
+        "path": "HealthcareService.availableTime.extension",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "value",
+              "path": "url"
+            }
+          ],
+          "ordered": false,
+          "rules": "open"
+        }
       },
       {
         "id": "HealthcareService.availableTime.extension:specialOpeningTimes",

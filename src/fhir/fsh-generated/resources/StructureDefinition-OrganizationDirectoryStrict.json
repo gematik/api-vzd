@@ -2,7 +2,7 @@
   "resourceType": "StructureDefinition",
   "id": "OrganizationDirectoryStrict",
   "url": "https://gematik.de/fhir/directory/StructureDefinition/OrganizationDirectoryStrict",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "name": "OrganizationDirectoryStrict",
   "title": "OrganizationDirectoryStrict",
   "status": "active",

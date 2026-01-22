@@ -1,8 +1,16 @@
 # Changelog
 
+## 2026-01-22 Version 1.0.1
+- `fix`: OrganizationNCPeHCountrySP contained an incorrect Extension URL; the URL changed when the extension was moved to the `de.gematik.ti` package.
+- The change of the OrganizationNCPeHCountrySP url was missing in the 1.0.0 changelog, it is included now.
+
 ## 2025-09-10 Version 1.0.0
 - `feat`: Added dependencies on `de.gematik.terminology` and `de.gematik.ti` to ensure alignment with other gematik IGs.  
   *Note*: This change does not affect the profiles themselves; it is purely a structural adjustment.
+- **Update 22.01.2026**: `change` the url of OrganizationNCPeHCountrySP was changed as the extension was moved to the `de.gematik.ti` package.
+
+### data migration
+- update instances of OrganizationDirectory: Organization.extension:ncpehCountryEx. The extension url was: `https://gematik.de/fhir/directory/StructureDefinition/NCPeHCountry` - new url is now: `https://gematik.de/fhir/ti/StructureDefinition/ncpeh-country-extension`
 
 ## 2025-08-25 Version 0.11.26 (feat for 0.11.25 only)
 - `feat`: relaxed binding of qualification.code on PractitionerDirectory to extensible, allowing the validation of any code as the current existing data instances are not compliant to the strict binding. This is a temporary solution until the data instances are migrated to the new codes and won't be changed in the current and more recent releases.
