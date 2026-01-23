@@ -243,4 +243,8 @@ Für jede KIM-Adresse im LDAP VZD Attribut "kimData" wird im FHIR VZD ein Endpoi
 
 |============================
 
-Wird kimData.appTags im LDAP VZD genutzt? Falls es im LDAP VZD nie genutzt wird, kann auf die Synchronisation dieses Attributs verzichtet werden.
+Wird kimData.appTags im LDAP VZD genutzt? Falls es im LDAP VZD nie genutzt wird, kann auf die Synchronisation dieses Attributs verzichtet werden. +
+ +
+Besonderheiten:
+
+- Endpunkte mit connectionType "kim-*" dürfen nur vom KIM Fachdienst mit der FAD-ID im Endpunkt geändert und gelöscht werden. 
