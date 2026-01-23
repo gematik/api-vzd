@@ -1,3 +1,42 @@
+= Synchronisierung von LDAP VZD Datensätzen in den FHIR VZD
+:source-highlighter: rouge
+:icons:
+:title-page:
+:imagesdir: /images/
+ifdef::env-github[]
+:toc: preamble
+endif::[]
+ifndef::env-github[]
+:toc: left
+endif::[]
+:toclevels: 3
+:toc-title: Table of Contents
+:sectnums:
+
+
+image::gematik_logo.svg[gematik,float="right"]
+
+[width="100%",cols="50%,50%",options="header",]
+|===
+|Version: |1.0.0
+|Referencing: |LDAP2FHIR_Sync
+|===
+
+[big]*Document history*
+
+[width="100%",cols="11%,11%,7%,58%,13%",options="header",]
+|===
+|*Version* +
+ |*Stand* +
+ |*Chap./ Page* +
+ |*Change reason, special instructions* +
+ |*Editing* +
+
+|1.0.0 |23.01.26 | 3 |Synchronisierung LDAP Fachdaten ergänzt |gematik
+
+|===
+
+== Synchronisierung von Basisdaten
 .Synchronisierung LDAP VZD -> FHIR VZD
 [cols="2,1,2,1,2,2",options="header"]
 |============================
@@ -161,6 +200,7 @@ https://simplifier.net/vzd-fhir-directory/endpointdirectory
 
 |============================
 
+== Synchronisierung von Apotheken Attributen
 .Synchronisierung der Attribute professionOID & specialization für Apotheken
 [cols="1,2,2,2,2",options="header"]
 |============================
@@ -184,3 +224,23 @@ Heimversorgende Apotheke
 Versandapotheke
 |============================
 
+== Synchronisierung der KIM Fachdaten
+Für jede KIM-Adresse im LDAP VZD Attribut "kimData" wird im FHIR VZD ein Endpoint verwendet.
+
+.Synchronisierung der KIM Fachdaten 
+[cols="1,2,2,2",options="header"]
+|============================
+2+|LDAP VZD 2+| FHIR VZD
+|*LDAP-Attribut* |*LDAP Attributwert* |*FHIR Attribut* | *FHIR Attributwert*
+|kimData.mail |KIM Mailadresse| Endpoint.address | KIM Mailadresse aus kimData.mail 
+|kimData.version |KIM Version| Endpoint.connectionType | Abbildung auf https://simplifier.net/vzd-fhir-directory/endpointdirectoryconnectiontype[EndpointConnectionTypeVS] (muss für KIM erweitert werden)
+|kimData.appTags |Liste von appTags| Endpoint.payloadType | appTags entsprechend https://simplifier.net/vzd-fhir-directory/endpointdirectorypayloadtype[EndpointDirectoryPayloadType] (muss für KIM erweitert werden)
+|kimData.mail |KIM Adresse| Endpoint.address | KIM Adresse aus kimData.mail 
+|ou |FAD| Endpoint.?? | FAD (ID des KIM Anbieters) 
+| || Endpoint.status | active
+| || Endpoint.endpointVisibility | hide-versicherte "Eintrag für Versicherte verbergen"
+| || Endpoint.name | "KIM-Mailadresse"
+
+|============================
+
+Wird kimData.appTags im LDAP VZD genutzt? Falls es im LDAP VZD nie genutzt wird, kann auf die Synchronisation dieses Attributs verzichtet werden.
