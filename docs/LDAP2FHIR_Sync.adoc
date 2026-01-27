@@ -143,7 +143,7 @@ Annahme: Identifier.type = domainID
 | jeweilige Resource | Wird in Meta-Info (Bereich Security) abgelegt | -
 
 |maxKOMLEadr |HBA und SMC-B |Maximale Anzahl von mail Adressen in den KOM-LE-Fachdaten. Falls kein Wert eingetragen wurde, können beliebig viele mail Adressen in den KOM-LE Fachdaten eingetragen werden. Falls ein Wert eingetragen wurde, können maximal so viele mail Adressen in den KOM-LE Fachdaten eingetragen werden.
-| - | - |Wird aktuelle nicht synchronisiert, da dieses nicht für die TIM-Umsetzung gebraucht wird und in FHIR anderes geregelt werden kann.
+| - | - |Wird nicht mit den Basisdaten synchonisiert. Siehe Kapitel zu KIM Fachdaten.
 
 |personalEntry |HBA und SMC-B |Wird vom VZD eingetragen Wert == TRUE, wenn alle Zertifikate den entryType 1 haben (Berufsgruppe), Wert == FALSE sonst
 | - | - |
@@ -154,10 +154,10 @@ Annahme: Identifier.type = domainID
 .2+|active |HBA | Zustand des LDAP HBA Eintrags | Practitioner | active | Wird aus LDAP übernommen, wenn im LDAP VZD gültige Zertifikate vorliegen. Ohne gültige Zertifikate im LDAP VZD wird der Eintrag im FHIR VZD auf inaktiv gesetzt (active=false). 
 |SMC-B |Zustand des LDAP SMC-B Eintrags | Organization | active| Wird aus LDAP übernommen, , wenn im LDAP VZD gültige Zertifikate vorliegen. Ohne gültige Zertifikate im LDAP VZD wird der Eintrag im FHIR VZD auf inaktiv gesetzt (active=false). 
 
-.2+|userCertificate |HBA .2+|Bezeichner: Enc-Zertifikat kann mehrfach vorkommen (0..50) Das Zertifikat wird gelöscht, wenn es ungültig geworden ist. Wenn kein Zertifikat vorliegt, dann kann der Eintrag nicht mittels LDAP-Abfrage gefunden werden. Format: DER, Base64-kodiert | - | - |Da aktuelle nur erste einmal der TIM-UserCase umgesetzt wird, werden keine KIM-Zertifikat genutzt.
+.2+|userCertificate |HBA .2+|Bezeichner: Enc-Zertifikat kann mehrfach vorkommen (0..50) Das Zertifikat wird gelöscht, wenn es ungültig geworden ist. Wenn kein Zertifikat vorliegt, dann kann der Eintrag nicht mittels LDAP-Abfrage gefunden werden. Format: DER, Base64-kodiert | - | - |Wird nicht mit den Basisdaten synchonisiert. Siehe Kapitel zu KIM Fachdaten.
 |SMC-B 
 | - | - |
-Da aktuelle nur erste einmal der TIM-UserCase umgesetzt wird, werden keine KIM-Zertifikat genutzt.
+Wird nicht mit den Basisdaten synchonisiert. Siehe Kapitel zu KIM Fachdaten.
 
 .2+|entryType |HBA .2+|Bezeichner: Eintragstyp Wird vom VZD anhand der im Zertifikat enthaltenen OID (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. | - | - |Wird für EPA perspektivisch genutzt. Aus diesem Grund wird aktuelle hier keine Mapping vorgesehen.
 |SMC-B 
@@ -186,14 +186,12 @@ Für Besonderheiten von Apotheken siehe zusätzlich Tabelle "Synchronisierung de
 |description |HBA und SMC-B | 
 | - | - |
 
-|mail |HBA und SMC-B | Wird im aktuellen FHIR VZD Release nicht synchronisiert
-| Endpoint | address | KIM Informationen werden als Endpoint kodiert, s.
-https://simplifier.net/vzd-fhir-directory/endpointdirectory
+|mail |HBA und SMC-B | Wird nicht mit den Basisdaten synchonisiert.
+| - | - | Siehe Kapitel zu KIM Fachdaten.
 
 
-|KOM-LE-Version |HBA und SMC-B | Wird im aktuellen FHIR VZD Release nicht synchronisiert
-| Endpoint | connectionType | KIM Informationen werden als Endpoint kodiert, s.
-https://simplifier.net/vzd-fhir-directory/endpointdirectory
+|KOM-LE-Version |HBA und SMC-B | Wird nicht mit den Basisdaten synchonisiert.
+| - | - |  Siehe Kapitel zu KIM Fachdaten.
 
 |changeDateTime |HBA und SMC-B | 
 | jeweilige Resource | Meta | wird in die FHIR Meta Daten übernommen
@@ -240,6 +238,7 @@ Für jede KIM-Adresse im LDAP VZD Attribut "kimData" wird im FHIR VZD ein Endpoi
 | || Endpoint.status | active
 | || Endpoint.endpointVisibility | hide-versicherte "Eintrag für Versicherte verbergen"
 | || Endpoint.name | "KIM-Mailadresse"
+|userCertificate|<ENC-Zertifikat>| wird nicht in FHIR Attributen abgelegt | Diese Zertifikate werden in einer Datenbanktabelle im FHIR VZD abgelegt.
 
 |============================
 
