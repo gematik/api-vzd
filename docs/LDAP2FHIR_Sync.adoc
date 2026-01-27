@@ -168,6 +168,9 @@ Wird für EPA perspektivisch genutzt. Aus diesem Grund wird aktuelle hier keine 
 | Practitioner  | identifier.value = telematikID |
 |SMC-B | Organization | identifier.value = telematikID |
 
+|lanr |HBA | Lebenslange Arztnummer
+| Practitioner | identifier:LANR | Validierung: 9-stellig numerisch
+
 .3+|professionOID |HBA .2+|
 Wird aus dem Zertifikat übernommen, 
 kann in LDAP (certificate, vzd_entry) 0..n mal vorkommen (im vzd_entry Gesamtmenge aller in allen Zertifikaten enthaltenen OIDs).
@@ -194,7 +197,7 @@ Für Besonderheiten von Apotheken siehe zusätzlich Tabelle "Synchronisierung de
 | - | - |  Siehe Kapitel zu KIM Fachdaten.
 
 |changeDateTime |HBA und SMC-B | 
-| jeweilige Resource | Meta | wird in die FHIR Meta Daten übernommen
+| - | - | wird über FHIR Bordmittel realisiert
 
 |============================
 
@@ -238,7 +241,7 @@ Für jede KIM-Adresse im LDAP VZD Attribut "kimData" wird im FHIR VZD ein Endpoi
 | || Endpoint.status | active
 | || Endpoint.endpointVisibility | hide-versicherte "Eintrag für Versicherte verbergen"
 | || Endpoint.name | "KIM-Mailadresse"
-|userCertificate|<ENC-Zertifikat>| wird nicht in FHIR Attributen abgelegt | Diese Zertifikate werden in einer Datenbanktabelle im FHIR VZD abgelegt.
+|userCertificate|<ENC-Zertifikat>| Datenbanktabelle CERTIFICATE | Die Zertifikate werden in den VZD FHIR synchronisiert. Hierzu werden diese in einer separaten Datenbank-Tabelle mit TelematikId- und LDAP-UUID-Informationen unabhängig des HAPI-FHIR-Servers gespeichert und sind über eine REST-Schnittstelle abfragbar. (base64 → X509Certificate)
 
 |============================
 
