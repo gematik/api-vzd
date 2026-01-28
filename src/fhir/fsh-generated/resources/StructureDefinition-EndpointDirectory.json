@@ -66,20 +66,6 @@
         "patternUri": "https://gematik.de/fhir/directory/CodeSystem/Origin"
       },
       {
-        "id": "Endpoint.extension",
-        "path": "Endpoint.extension",
-        "slicing": {
-          "discriminator": [
-            {
-              "type": "value",
-              "path": "url"
-            }
-          ],
-          "ordered": false,
-          "rules": "open"
-        }
-      },
-      {
         "id": "Endpoint.extension:endpointVisibility",
         "path": "Endpoint.extension",
         "sliceName": "endpointVisibility",
