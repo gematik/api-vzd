@@ -1,0 +1,59 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "OwnerTelematikIdEx",
+  "url": "https://gematik.de/fhir/directory/StructureDefinition/OwnerTelematikIdEx",
+  "version": "1.0.1",
+  "name": "OwnerTelematikIdEx",
+  "title": "OwnerTelematikIdEx",
+  "status": "active",
+  "experimental": false,
+  "date": "2024-10-29",
+  "publisher": "gematik GmbH",
+  "description": "Extension for the Telematik ID of the owner of a Resource",
+  "fhirVersion": "4.0.1",
+  "kind": "complex-type",
+  "abstract": false,
+  "context": [
+    {
+      "expression": "Resource",
+      "type": "element"
+    }
+  ],
+  "type": "Extension",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Extension",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Extension",
+        "path": "Extension",
+        "short": "OwnerTelematikIdEx",
+        "definition": "Extension for the Telematik ID of the owner of a Resource"
+      },
+      {
+        "id": "Extension.extension",
+        "path": "Extension.extension",
+        "max": "0"
+      },
+      {
+        "id": "Extension.url",
+        "path": "Extension.url",
+        "fixedUri": "https://gematik.de/fhir/directory/StructureDefinition/OwnerTelematikIdEx"
+      },
+      {
+        "id": "Extension.value[x]",
+        "path": "Extension.value[x]",
+        "min": 1,
+        "type": [
+          {
+            "code": "Identifier",
+            "profile": [
+              "http://fhir.de/StructureDefinition/identifier-telematik-id"
+            ]
+          }
+        ],
+        "mustSupport": true
+      }
+    ]
+  }
+}

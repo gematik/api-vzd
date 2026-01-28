@@ -1,0 +1,91 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "LocationDirectoryStrict",
+  "url": "https://gematik.de/fhir/directory/StructureDefinition/LocationDirectoryStrict",
+  "version": "1.0.1",
+  "name": "LocationDirectoryStrict",
+  "title": "LocationDirectoryStrict",
+  "status": "active",
+  "experimental": false,
+  "date": "2024-10-29",
+  "publisher": "gematik GmbH",
+  "description": "Location in gematik Directory with strict constraints",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Location",
+  "baseDefinition": "https://gematik.de/fhir/directory/StructureDefinition/LocationDirectory",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Location.meta.tag",
+        "path": "Location.meta.tag",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "pattern",
+              "path": "system"
+            }
+          ],
+          "rules": "closed"
+        }
+      },
+      {
+        "id": "Location.identifier",
+        "path": "Location.identifier",
+        "max": "0"
+      },
+      {
+        "id": "Location.status",
+        "path": "Location.status",
+        "max": "0"
+      },
+      {
+        "id": "Location.operationalStatus",
+        "path": "Location.operationalStatus",
+        "max": "0"
+      },
+      {
+        "id": "Location.alias",
+        "path": "Location.alias",
+        "max": "0"
+      },
+      {
+        "id": "Location.mode",
+        "path": "Location.mode",
+        "max": "0"
+      },
+      {
+        "id": "Location.type",
+        "path": "Location.type",
+        "max": "0"
+      },
+      {
+        "id": "Location.telecom",
+        "path": "Location.telecom",
+        "max": "0"
+      },
+      {
+        "id": "Location.physicalType",
+        "path": "Location.physicalType",
+        "max": "0"
+      },
+      {
+        "id": "Location.hoursOfOperation",
+        "path": "Location.hoursOfOperation",
+        "max": "0"
+      },
+      {
+        "id": "Location.availabilityExceptions",
+        "path": "Location.availabilityExceptions",
+        "max": "0"
+      },
+      {
+        "id": "Location.endpoint",
+        "path": "Location.endpoint",
+        "max": "0"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "resourceType": "CodeSystem",
+  "status": "active",
+  "content": "complete",
+  "name": "ResourceTag",
+  "id": "ResourceTag",
+  "title": "Resource Tag",
+  "description": "All allowed tags for meta.tag usage in the Directory Service, excluding Origin Tags.",
+  "version": "1.0.1",
+  "url": "https://gematik.de/fhir/directory/CodeSystem/ResourceTag",
+  "concept": [
+    {
+      "code": "fdv-relevant",
+      "display": "Relevant for ePA FdV"
+    }
+  ],
+  "experimental": false,
+  "publisher": "gematik GmbH",
+  "date": "2024-10-29",
+  "count": 1
+}

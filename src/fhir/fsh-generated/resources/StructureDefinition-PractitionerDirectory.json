@@ -1,0 +1,103 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "PractitionerDirectory",
+  "url": "https://gematik.de/fhir/directory/StructureDefinition/PractitionerDirectory",
+  "version": "1.0.1",
+  "name": "PractitionerDirectory",
+  "title": "Practitioner in gematik Directory",
+  "status": "active",
+  "experimental": false,
+  "date": "2024-10-29",
+  "publisher": "gematik GmbH",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Practitioner",
+  "baseDefinition": "https://gematik.de/fhir/ti/StructureDefinition/ti-practitioner",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Practitioner.meta.tag",
+        "path": "Practitioner.meta.tag",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "pattern",
+              "path": "system"
+            }
+          ],
+          "rules": "open"
+        },
+        "min": 1,
+        "constraint": [
+          {
+            "key": "CodingSytemCodeInv",
+            "severity": "warning",
+            "human": "System and Code SHOULD be present",
+            "expression": "system.exists() and code.exists()",
+            "source": "https://gematik.de/fhir/directory/StructureDefinition/PractitionerDirectory"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Practitioner.meta.tag:Origin",
+        "path": "Practitioner.meta.tag",
+        "sliceName": "Origin",
+        "min": 1,
+        "max": "1",
+        "mustSupport": true,
+        "binding": {
+          "strength": "required",
+          "valueSet": "https://gematik.de/fhir/directory/ValueSet/OriginVS"
+        }
+      },
+      {
+        "id": "Practitioner.meta.tag:Origin.system",
+        "path": "Practitioner.meta.tag.system",
+        "min": 1,
+        "patternUri": "https://gematik.de/fhir/directory/CodeSystem/Origin"
+      },
+      {
+        "id": "Practitioner.name",
+        "path": "Practitioner.name",
+        "max": "1"
+      },
+      {
+        "id": "Practitioner.qualification.code",
+        "path": "Practitioner.qualification.code",
+        "binding": {
+          "strength": "required",
+          "valueSet": "https://gematik.de/fhir/directory/ValueSet/PractitionerQualificationVS"
+        }
+      },
+      {
+        "id": "Practitioner.qualification.code.coding",
+        "path": "Practitioner.qualification.code.coding",
+        "constraint": [
+          {
+            "key": "CodingSytemCodeInv",
+            "severity": "warning",
+            "human": "System and Code SHOULD be present",
+            "expression": "system.exists() and code.exists()",
+            "source": "https://gematik.de/fhir/directory/StructureDefinition/PractitionerDirectory"
+          }
+        ]
+      },
+      {
+        "id": "Practitioner.communication.coding",
+        "path": "Practitioner.communication.coding",
+        "constraint": [
+          {
+            "key": "CodingSytemCodeInv",
+            "severity": "warning",
+            "human": "System and Code SHOULD be present",
+            "expression": "system.exists() and code.exists()",
+            "source": "https://gematik.de/fhir/directory/StructureDefinition/PractitionerDirectory"
+          }
+        ]
+      }
+    ]
+  }
+}

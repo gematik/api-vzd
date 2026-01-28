@@ -1,0 +1,22 @@
+{
+  "resourceType": "CodeSystem",
+  "status": "active",
+  "content": "complete",
+  "name": "EndpointDirectoryPayloadType",
+  "id": "EndpointDirectoryPayloadType",
+  "title": "Codes for Endpoint.payloadType",
+  "description": "CodeSystem TI specific payload types assigned to the Endpoints\n\nCodes are maintained by gematik.\nThe codes are used to declare which processes are supported by an entity with the corresponding entry in the gematik Directory.\nNew codes can be requested at gematik. There must exist a specification for each code so that developers can find out how to implement the process.",
+  "version": "1.0.1",
+  "url": "https://gematik.de/fhir/directory/CodeSystem/EndpointDirectoryPayloadType",
+  "concept": [
+    {
+      "code": "tim-chat",
+      "display": "TI-Messenger chat"
+    }
+  ],
+  "experimental": false,
+  "publisher": "gematik GmbH",
+  "date": "2024-10-29",
+  "caseSensitive": false,
+  "count": 1
+}

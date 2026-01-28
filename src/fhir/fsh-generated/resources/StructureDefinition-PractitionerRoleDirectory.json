@@ -1,0 +1,116 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "PractitionerRoleDirectory",
+  "url": "https://gematik.de/fhir/directory/StructureDefinition/PractitionerRoleDirectory",
+  "version": "1.0.1",
+  "name": "PractitionerRoleDirectory",
+  "title": "PractitionerRole in gematik Directory",
+  "status": "active",
+  "experimental": false,
+  "date": "2024-10-29",
+  "publisher": "gematik GmbH",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "PractitionerRole",
+  "baseDefinition": "https://gematik.de/fhir/ti/StructureDefinition/ti-practitioner-role",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "PractitionerRole.meta.tag",
+        "path": "PractitionerRole.meta.tag",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "pattern",
+              "path": "system"
+            }
+          ],
+          "rules": "open"
+        },
+        "min": 1,
+        "constraint": [
+          {
+            "key": "CodingSytemCodeInv",
+            "severity": "warning",
+            "human": "System and Code SHOULD be present",
+            "expression": "system.exists() and code.exists()",
+            "source": "https://gematik.de/fhir/directory/StructureDefinition/PractitionerRoleDirectory"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "PractitionerRole.meta.tag:Origin",
+        "path": "PractitionerRole.meta.tag",
+        "sliceName": "Origin",
+        "min": 1,
+        "max": "1",
+        "mustSupport": true,
+        "binding": {
+          "strength": "required",
+          "valueSet": "https://gematik.de/fhir/directory/ValueSet/OriginVS"
+        }
+      },
+      {
+        "id": "PractitionerRole.meta.tag:Origin.system",
+        "path": "PractitionerRole.meta.tag.system",
+        "min": 1,
+        "patternUri": "https://gematik.de/fhir/directory/CodeSystem/Origin"
+      },
+      {
+        "id": "PractitionerRole.extension:holderId",
+        "path": "PractitionerRole.extension",
+        "sliceName": "holderId",
+        "min": 0,
+        "max": "*",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "https://gematik.de/fhir/directory/StructureDefinition/holder-id-ex"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "PractitionerRole.extension:ownerTelematikId",
+        "path": "PractitionerRole.extension",
+        "sliceName": "ownerTelematikId",
+        "min": 0,
+        "max": "*",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "https://gematik.de/fhir/directory/StructureDefinition/OwnerTelematikIdEx"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "PractitionerRole.practitioner",
+        "path": "PractitionerRole.practitioner",
+        "min": 1
+      },
+      {
+        "id": "PractitionerRole.location",
+        "path": "PractitionerRole.location",
+        "mustSupport": true
+      },
+      {
+        "id": "PractitionerRole.healthcareService",
+        "path": "PractitionerRole.healthcareService",
+        "mustSupport": true
+      },
+      {
+        "id": "PractitionerRole.endpoint",
+        "path": "PractitionerRole.endpoint",
+        "mustSupport": true
+      }
+    ]
+  }
+}

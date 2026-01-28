@@ -1,0 +1,116 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "OrganizationDirectory",
+  "url": "https://gematik.de/fhir/directory/StructureDefinition/OrganizationDirectory",
+  "version": "1.0.1",
+  "name": "OrganizationDirectory",
+  "title": "Organization in gematik Directory",
+  "status": "active",
+  "experimental": false,
+  "date": "2024-10-29",
+  "publisher": "gematik GmbH",
+  "description": "Defines the data structure for medical, regulatory and technical \norganisations specific for german Healthcare and Telematics Infrastructure.",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Organization",
+  "baseDefinition": "https://gematik.de/fhir/ti/StructureDefinition/ti-organization",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Organization.meta.tag",
+        "path": "Organization.meta.tag",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "pattern",
+              "path": "system"
+            }
+          ],
+          "rules": "open"
+        },
+        "min": 1,
+        "constraint": [
+          {
+            "key": "CodingSytemCodeInv",
+            "severity": "warning",
+            "human": "System and Code SHOULD be present",
+            "expression": "system.exists() and code.exists()",
+            "source": "https://gematik.de/fhir/directory/StructureDefinition/OrganizationDirectory"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.meta.tag:Origin",
+        "path": "Organization.meta.tag",
+        "sliceName": "Origin",
+        "min": 1,
+        "max": "1",
+        "mustSupport": true,
+        "binding": {
+          "strength": "required",
+          "valueSet": "https://gematik.de/fhir/directory/ValueSet/OriginVS"
+        }
+      },
+      {
+        "id": "Organization.meta.tag:Origin.system",
+        "path": "Organization.meta.tag.system",
+        "min": 1,
+        "patternUri": "https://gematik.de/fhir/directory/CodeSystem/Origin"
+      },
+      {
+        "id": "Organization.meta.tag:FdV",
+        "path": "Organization.meta.tag",
+        "sliceName": "FdV",
+        "min": 0,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.meta.tag:FdV.system",
+        "path": "Organization.meta.tag.system",
+        "min": 1,
+        "patternUri": "https://gematik.de/fhir/directory/CodeSystem/ResourceTag"
+      },
+      {
+        "id": "Organization.meta.tag:FdV.code",
+        "path": "Organization.meta.tag.code",
+        "patternCode": "fdv-relevant"
+      },
+      {
+        "id": "Organization.meta.tag:FdV.display",
+        "path": "Organization.meta.tag.display",
+        "patternString": "Relevant for ePA FdV"
+      },
+      {
+        "id": "Organization.extension:organizationVisibility",
+        "path": "Organization.extension",
+        "sliceName": "organizationVisibility",
+        "min": 0,
+        "max": "*",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "https://gematik.de/fhir/directory/StructureDefinition/OrganizationVisibility"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.identifier",
+        "path": "Organization.identifier",
+        "min": 1
+      },
+      {
+        "id": "Organization.identifier:TelematikID",
+        "path": "Organization.identifier",
+        "sliceName": "TelematikID",
+        "min": 1
+      }
+    ]
+  }
+}

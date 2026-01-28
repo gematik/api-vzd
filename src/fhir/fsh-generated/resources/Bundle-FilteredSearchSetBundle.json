@@ -1,0 +1,106 @@
+{
+  "resourceType": "Bundle",
+  "id": "FilteredSearchSetBundle",
+  "type": "searchset",
+  "total": 3,
+  "_total": {
+    "extension": [
+      {
+        "url": "https://gematik.de/fhir/directory/StructureDefinition/results-filtered-ex",
+        "extension": [
+          {
+            "url": "count",
+            "valueInteger": 15
+          },
+          {
+            "url": "reason",
+            "valueString": "Reason: hideVersicherte"
+          }
+        ]
+      }
+    ]
+  },
+  "entry": [
+    {
+      "fullUrl": "http://example.org/fhir/Endpoint/MessengerEndpointWithVisibility",
+      "resource": {
+        "resourceType": "Endpoint",
+        "id": "MessengerEndpointWithVisibility",
+        "meta": {
+          "tag": [
+            {
+              "system": "https://gematik.de/fhir/directory/CodeSystem/Origin",
+              "code": "owner"
+            }
+          ],
+          "profile": [
+            "https://gematik.de/fhir/directory/StructureDefinition/endpoint-directory-Strict"
+          ]
+        },
+        "extension": [
+          {
+            "url": "https://gematik.de/fhir/directory/StructureDefinition/EndpointVisibility",
+            "valueCoding": {
+              "code": "hide-versicherte",
+              "system": "https://gematik.de/fhir/directory/CodeSystem/EndpointVisibilityCS"
+            }
+          }
+        ],
+        "status": "active",
+        "connectionType": {
+          "code": "tim",
+          "system": "https://gematik.de/fhir/directory/CodeSystem/EndpointDirectoryConnectionType",
+          "display": "TI-Messenger Endpoint"
+        },
+        "name": "Messenger",
+        "payloadType": [
+          {
+            "coding": [
+              {
+                "code": "tim-chat",
+                "system": "https://gematik.de/fhir/directory/CodeSystem/EndpointDirectoryPayloadType",
+                "display": "TI-Messenger chat"
+              }
+            ]
+          }
+        ],
+        "address": "matrix:u/74c1fecc710ce4c8a8bbe310fbc5954c2a5e1e9ef5f70d651da1bfc4c9abe43f:example-domain.de"
+      }
+    },
+    {
+      "fullUrl": "http://example.org/fhir/Endpoint/OrganizationExample001-Endpoint-TIM",
+      "resource": {
+        "resourceType": "Endpoint",
+        "id": "OrganizationExample001-Endpoint-TIM",
+        "meta": {
+          "tag": [
+            {
+              "system": "https://gematik.de/fhir/directory/CodeSystem/Origin",
+              "code": "owner"
+            }
+          ],
+          "profile": [
+            "https://gematik.de/fhir/directory/StructureDefinition/endpoint-directory-Strict"
+          ]
+        },
+        "status": "active",
+        "connectionType": {
+          "code": "tim",
+          "system": "https://gematik.de/fhir/directory/CodeSystem/EndpointDirectoryConnectionType"
+        },
+        "name": "SystemsEngineering:tim.gematik.de",
+        "address": "matrix:u/SystemsEngineering:tim.gematik.de",
+        "payloadType": [
+          {
+            "coding": [
+              {
+                "code": "tim-chat",
+                "system": "https://gematik.de/fhir/directory/CodeSystem/EndpointDirectoryPayloadType"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}
