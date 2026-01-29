@@ -2,7 +2,7 @@
   "resourceType": "StructureDefinition",
   "id": "holder-id-ex",
   "url": "https://gematik.de/fhir/directory/StructureDefinition/holder-id-ex",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "name": "HolderIdEx",
   "title": "Holder ID Extension",
   "status": "active",

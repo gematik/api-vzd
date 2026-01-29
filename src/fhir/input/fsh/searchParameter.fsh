@@ -70,11 +70,11 @@ InstanceOf: SearchParameter
 Usage: #definition
 * insert MetaInstance
 * name = "ncpeh-country"
-* description = "Search on Organization.extension(https://gematik.de/fhir/directory/StructureDefinition/NCPeHCountry)"
+* description = "Search on Organization.extension(https://gematik.de/fhir/ti/StructureDefinition/ncpeh-country-extension)"
 * code = #ncpeh-country
 * base = #Organization
 * type = #token
-* expression = "Organization.extension.where(url = 'https://gematik.de/fhir/directoryNCPeHCountry/StructureDefinition').value.ofType(Coding)"
+* expression = "Organization.extension.where(url = 'https://gematik.de/fhir/ti/StructureDefinition/ncpeh-country-extension').value.ofType(Coding)"
 
 Instance: OrganizationAliasSP
 InstanceOf: SearchParameter

@@ -2,7 +2,7 @@
   "resourceType": "StructureDefinition",
   "id": "HealthcareServiceDirectoryStrict",
   "url": "https://gematik.de/fhir/directory/StructureDefinition/HealthcareServiceDirectoryStrict",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "name": "HealthcareServiceDirectoryStrict",
   "title": "HealthcareServiceDirectoryStrict",
   "status": "active",

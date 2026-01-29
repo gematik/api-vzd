@@ -53,7 +53,7 @@ jobs:
           folder: './src/fhir/fsh-generated/resources/'
 
       - name: Firely.Terminal (GitHub Actions)
-        uses: FirelyTeam/firely-terminal-pipeline@v0.7.28
+        uses: FirelyTeam/firely-terminal-pipeline@v0.7.23
         with:
           PATH_TO_CONFORMANCE_RESOURCES: src/fhir/fsh-generated/resources/
           # PATH_TO_QUALITY_CONTROL_RULES: qc/custom
@@ -73,6 +73,7 @@ jobs:
           SIMPLIFIER_PASSWORD: ${{ secrets.SIMPLIFIER_PASSWORD }}
           SUSHI_ENABLED: true
           SUSHI_OPTIONS: src/fhir/
+          SUSHI_VERSION: 3.17.0
           EXPECTED_FAILS: VALIDATION_CONFORMANCE_DOTNET
 
       - name: Upload validation artifacts
