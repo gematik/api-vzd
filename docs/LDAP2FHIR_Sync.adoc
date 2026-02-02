@@ -254,4 +254,4 @@ Zu beachten:
 - Alle in "komLeData" & "mail"enthaltenen Informationen sind auch in kimData enthalten. Deshalb werden "komLeData" & "mail" nicht in den FHIR VUD synchronisiert.
 - "maxKOMLEadr" war nur für Kassen relevant und kann wegen der Nutzung von den appTags (payloadType) im FHIR VZD entfallen. Dieses Attribut wird deshalb nicht in den FHIR VZD synchronisiert.
 - LDAP "noVzdMailEntry" Parameter für KIM-Adessen -> Wird durch Nutzung von appTags (payloadType) abgedeckt.
-- Aufnahme in den Volltextindex: Endpoint.address, Endpoint.connectionType, Endpoint.payloadType (nur für KIM Adressen oder für alle Endpoints?)
+- Aufnahme in den Volltextindex: Endpoint.address, Endpoint.connectionType, Endpoint.payloadType (nur für KIM Adressen oder für alle Endpoints?), Endpoint.status las z.B. "status.active"
