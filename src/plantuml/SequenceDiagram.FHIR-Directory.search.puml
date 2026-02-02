@@ -1,9 +1,8 @@
 @startuml SequenceDiagram.FHIR-Directory.search
+autonumber 1 1 "<b>[00]"
 skinparam dpi 100
 skinparam WrapWidth 200
 skinparam monochrome true
-
-autonumber
 
 'title "FHIR-Directory, Sequenzdiagram search'
 actor Nutzer
@@ -20,29 +19,32 @@ Nutzer -> cl:gibt FHIR-\nSuchparameter ein
 cl -> cl: prüfe ob noch gültiges search-accesstoken\nvom FHIR-Directory Auth-Service vorliegt
 
 alt kein gültiges search-accesstoken vorhanden
-cl -> hs: POST /_matrix/client/r0/user/{userId}/openid/request_token
+cl -> hs: POST /_matrix/client/v3/user/{userId}/openid/request_token
 activate hs
-hs --> cl: HTTP 200 OK, Result body {"access_token": "OFdZNozDIomXLrCWjgejIQBM" \n ,..., "matrix_server_name": "matrix.service-ti.de",...}
+hs --> cl: HTTP 200 OK, Result body {"access_token": "OFdZNozDIomXLrCWjgejIQBM",..., "matrix_server_name": "matrix.service-ti.de",...}
 deactivate hs
-cl -> au: GET /tim-authenticate?mxId=matrix.service-ti.de" \n -H "X-Matrix-OpenID-Token: OFdZNozDIomXLrCWjgejIQBM"
+cl -> au: GET /tim-authenticate?mxId=matrix.service-ti.de"\n -H "X-Matrix-OpenID-Token: OFdZNozDIomXLrCWjgejIQBM"
 activate au
-au -> au: Prüfe ob die URL "matrix.service-ti.de"\n Teil der Föderationsliste ist.
-au -> au: Ermittele den hinterlegten UserInfo PORT für die Matrix Server URL
-au -> hs: GET matrix.service-ti.de:{PORT}/_matrix/federation/v1/openid/userinfo?access_token=OFdZNozDIomXLrCWjgejIQBM
+au -> au: Prüfe ob matrix.service-ti.de\nTeil der Föderationsliste ist
+au -> au: Ermittele den hinterlegten UserInfo PORT über die Matrix Server URL
+au -> hs: GET matrix.service-ti.de:{PORT}/_matrix/federation/v1/openid/userinfo\access_token=OFdZNozDIomXLrCWjgejIQBM
 activate hs
-hs --> au: HTTP 200 OK\nResult Body {"sub": "@testuser:matrix.service-ti.de"}
-deactivate hs
-au -> au: Ermittle den Status von "isInsurance"\n für URL "matrix.service-ti.de"
-alt isInsurance=false
-au -> au: erzeuge search-accesstoken: {... \n "aud": "https://fhir-directory.vzd.ti-dienste.de/search"\n ...}
-else isInsurance=true
-au -> au: erzeuge search-accesstoken: {... \n "aud": "https://fhir-directory.vzd.ti-dienste.de/fdv/search"\n ...}
+hs --> au: HTTP 200 OK\nResult Body {"sub":"@testuser:matrix.service-ti.de"}
+au -> au: Ermittle den Status von "isInsurance" für URL "matrix.service-ti.de"
+
+alt [isInsurance=false]
+au -> au: Erzeuge search-accesstoken: {...\n"aud":"https://fhir-directory.vzd.ti-dienste.de/search"\n...}
+else [isInsurance=true]
+au -> au: Erzeuge search-accesstoken: {...\n"aud":"https://fhir-directory.vzd.ti-dienste.de/fdv/search"\n...}
 end
-au --> cl: HTTP 200 OK, Result body\n{"access_token"="search-accesstoken", "token_type":"bearer",\n"expires_in":86400}
+
+deactivate hs
+au -> au: erzeuge search-accesstoken für TI-Messenger-Client
+au --> cl: HTTP 200 OK, Result body\n{"access_token"="search-accesstoken", "token_type":"Bearer",\n"expires_in":86400}
 deactivate au
 end
 
-cl -> fp: GET .../search?... (Auth Header mit\nsearch-accesstoken)
+cl -> fp: GET /search?... (Auth Header mit\nsearch-accesstoken)
 activate fp
 fp -> fp: prüfe search-accesstoken
 

@@ -1,0 +1,18 @@
+{
+  "resourceType": "SearchParameter",
+  "id": "PractitionerQualificationSP",
+  "url": "https://gematik.de/fhir/directory/SearchParameter/PractitionerQualificationSP",
+  "version": "1.0.0",
+  "status": "active",
+  "experimental": false,
+  "publisher": "gematik GmbH",
+  "date": "2024-10-29",
+  "name": "practitioner-qualification",
+  "description": "Search on Practitioner.qualification.code & Practitioner.qualification.code.coding.display",
+  "code": "qualification",
+  "base": [
+    "Practitioner"
+  ],
+  "type": "token",
+  "expression": "Practitioner.qualification.code | Practitioner.qualification.code.coding.display"
+}

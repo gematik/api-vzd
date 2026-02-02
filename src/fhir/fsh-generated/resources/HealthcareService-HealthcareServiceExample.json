@@ -9,13 +9,25 @@
       }
     ],
     "profile": [
-      "https://gematik.de/fhir/directory/StructureDefinition/HealthcareServiceDirectory"
+      "https://gematik.de/fhir/directory/StructureDefinition/HealthcareServiceDirectoryStrict"
     ]
   },
+  "extension": [
+    {
+      "url": "https://gematik.de/fhir/directory/StructureDefinition/holder-id-ex",
+      "valueCode": "dtrust"
+    }
+  ],
+  "identifier": [
+    {
+      "system": "https://gematik.de/fhir/sid/telematik-id",
+      "value": "2-2.58.00000040"
+    }
+  ],
   "providedBy": {
     "reference": "Organization/OrganizationExample"
   },
-  "specialty": [
+  "type": [
     {
       "coding": [
         {
@@ -48,45 +60,37 @@
       "use": "work"
     }
   ],
-  "serviceProvisionCode": [
-    {
-      "coding": [
-        {
-          "code": "free",
-          "system": "http://terminology.hl7.org/CodeSystem/service-provision-conditions",
-          "display": "Free"
-        }
-      ]
-    }
-  ],
-  "communication": [
-    {
-      "coding": [
-        {
-          "code": "de",
-          "system": "urn:ietf:bcp:47",
-          "display": "German"
-        }
-      ]
-    },
-    {
-      "coding": [
-        {
-          "code": "en",
-          "system": "urn:ietf:bcp:47",
-          "display": "English"
-        }
-      ]
-    }
-  ],
-  "appointmentRequired": true,
   "availableTime": [
     {
       "daysOfWeek": [
-        "mon",
-        "tue",
-        "wed",
-        "thu",
+        "mon"
+      ],
+      "availableStartTime": "08:00:00",
+      "availableEndTime": "18:00:00"
+    },
+    {
+      "daysOfWeek": [
+        "tue"
+      ],
+      "availableStartTime": "08:00:00",
+      "availableEndTime": "18:00:00"
+    },
+    {
+      "daysOfWeek": [
+        "wed"
+      ],
+      "availableStartTime": "08:00:00",
+      "availableEndTime": "18:00:00"
+    },
+    {
+      "daysOfWeek": [
+        "thu"
+      ],
+      "availableStartTime": "08:00:00",
+      "availableEndTime": "18:00:00"
+    },
+    {
+      "daysOfWeek": [
         "fri"
       ],
       "availableStartTime": "08:00:00",
@@ -96,7 +100,7 @@
   "availabilityExceptions": "An Feiertagen geschlossen",
   "endpoint": [
     {
-      "reference": "Endpoint/EndpointExample"
+      "reference": "Endpoint/MessengerEndpointWithVisibility"
     }
   ]
 }

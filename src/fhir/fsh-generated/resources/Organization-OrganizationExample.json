@@ -6,10 +6,15 @@
       {
         "system": "https://gematik.de/fhir/directory/CodeSystem/Origin",
         "code": "ldap"
+      },
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/ResourceTag",
+        "code": "fdv-relevant",
+        "display": "Relevant for ePA FdV"
       }
     ],
     "profile": [
-      "https://gematik.de/fhir/directory/StructureDefinition/OrganizationDirectory"
+      "https://gematik.de/fhir/directory/StructureDefinition/OrganizationDirectoryStrict"
     ]
   },
   "identifier": [
@@ -36,15 +41,6 @@
   ],
   "contact": [
     {
-      "purpose": {
-        "coding": [
-          {
-            "code": "PATINF",
-            "system": "http://terminology.hl7.org/CodeSystem/contactentity-type",
-            "display": "Patient"
-          }
-        ]
-      },
       "name": {
         "text": "Empfang Zahnarztpraxis Dr. Mustermann"
       },

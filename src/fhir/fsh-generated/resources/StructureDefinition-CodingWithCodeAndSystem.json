@@ -1,0 +1,33 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "CodingWithCodeAndSystem",
+  "url": "https://gematik.de/fhir/directory/StructureDefinition/CodingWithCodeAndSystem",
+  "version": "1.0.0",
+  "name": "CodingWithCodeAndSystem",
+  "title": "Coding with code and system",
+  "status": "active",
+  "experimental": false,
+  "date": "2024-10-29",
+  "publisher": "gematik GmbH",
+  "description": "Coding profile making code and system mandatory",
+  "fhirVersion": "4.0.1",
+  "kind": "complex-type",
+  "abstract": false,
+  "type": "Coding",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Coding",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Coding.system",
+        "path": "Coding.system",
+        "min": 1
+      },
+      {
+        "id": "Coding.code",
+        "path": "Coding.code",
+        "min": 1
+      }
+    ]
+  }
+}

@@ -1,23 +1,23 @@
-Instance: EndpointExample
-InstanceOf: EndpointDirectory
+Instance: MessengerEndpointWithVisibility
+InstanceOf: EndpointDirectoryStrict
 Usage: #example
-Description: "Example of a Endpoint as to be found in gematik FHIR Directory"
+Description: "Example of TI-Messenger Endpoint with visibility"
 * meta.tag[Origin] = Origin#owner
+* extension[endpointVisibility].valueCoding = EndpointVisibilityCS#hide-versicherte
 * status = #active "Active"
 * connectionType = EndpointDirectoryConnectionType#tim "TI-Messenger Endpoint"
 * name = "Messenger"
-* managingOrganization = Reference(OrganizationExample)
 * payloadType = EndpointDirectoryPayloadType#tim-chat "TI-Messenger chat"
 * address = "matrix:u/74c1fecc710ce4c8a8bbe310fbc5954c2a5e1e9ef5f70d651da1bfc4c9abe43f:example-domain.de"
 
 Instance: PractitionerExampleDentist
-InstanceOf: PractitionerDirectory
+InstanceOf: PractitionerDirectoryStrict
 Usage: #example
 Description: "Example of a Practitioner (Dentist) as to be found in gematik FHIR Directory"
 * meta.tag[Origin] = Origin#ldap
 * id = "TIPractitionerExampleDentist"
 * identifier[TelematikID].value = "2-2.58.00000040"
-* qualification[+].code = PractitionerProfessionOID#1.2.276.0.76.4.31 "Zahnärztin/Zahnarzt"
+* qualification[+].code = TIPractitionerProfessionOidCS#1.2.276.0.76.4.31 "Zahnärztin/Zahnarzt"
 * name
   * prefix = "Dr."
   * given[+] = "Max"
@@ -26,32 +26,31 @@ Description: "Example of a Practitioner (Dentist) as to be found in gematik FHIR
   * text = "Dr. Max Manfred Mustermann"
 
 Instance: PractitionerRoleExample
-InstanceOf: PractitionerRoleDirectory
+InstanceOf: PractitionerRoleDirectoryStrict
 Usage: #example
 Description: "Example of an PractitionerRole as to be found in gematik FHIR Directory"
 * meta.tag[Origin] = Origin#ldap
 * practitioner = Reference(PractitionerExampleDentist)
 * location[+] = Reference(LocationExample)
-* endpoint[+] = Reference(EndpointExample)
-
+* endpoint[+] = Reference(MessengerEndpointWithVisibility)
 
 Instance: OrganizationExample
-InstanceOf: OrganizationDirectory
+InstanceOf: OrganizationDirectoryStrict
 Usage: #example
 Description: "Example of an Organization as to be found in gematik FHIR Directory"
 * meta.tag[Origin] = Origin#ldap
+* meta.tag[FdV] = ResourceTag#fdv-relevant "Relevant for ePA FdV"
 * identifier[TelematikID].value = "2-2.58.00000040"
-* type = https://gematik.de/fhir/directory/CodeSystem/OrganizationProfessionOID#1.2.276.0.76.4.51 "Zahnarztpraxis"
+* type[profession] = https://gematik.de/fhir/directory/CodeSystem/OrganizationProfessionOID#1.2.276.0.76.4.51 "Zahnarztpraxis"
 * name = "Zahnarztpraxis Dr. Mustermann"
 * active = true
 * alias = "Zahnarztpraxis am Bahnhof"
-* contact.purpose = $ContactEntityType#PATINF "Patient"
 * contact.name.text = "Empfang Zahnarztpraxis Dr. Mustermann"
 * contact.telecom[+].system = $ContactPointSystem#phone "Phone"
 * contact.telecom[=].value = "030 1234567"
 
 Instance: LocationExample
-InstanceOf: LocationDirectory
+InstanceOf: LocationDirectoryStrict
 Usage: #example
 Description: "Example of a Location as to be found in gematik FHIR Directory"
 * meta.tag[Origin] = Origin#ldap
@@ -63,38 +62,44 @@ Description: "Example of a Location as to be found in gematik FHIR Directory"
 * address.state = "Berlin"
 * address.postalCode = "10117"
 * address.country = "DE"
-* hoursOfOperation.daysOfWeek[+] = $DaysOfWeek#mon "Monday"
-* hoursOfOperation.daysOfWeek[+] = $DaysOfWeek#tue "Tuesday"
-* hoursOfOperation.daysOfWeek[+] = $DaysOfWeek#wed "Wednesday"
-* hoursOfOperation.daysOfWeek[+] = $DaysOfWeek#thu "Thursday"
-* hoursOfOperation.daysOfWeek[+] = $DaysOfWeek#fri "Friday"
-* hoursOfOperation.openingTime = "08:00:00"
-* hoursOfOperation.closingTime = "18:00:00"
-* availabilityExceptions = "An Feiertagen geschlossen"
+* managingOrganization = Reference(OrganizationExample001)
 
 Instance: HealthcareServiceExample
-InstanceOf: HealthcareServiceDirectory
+InstanceOf: HealthcareServiceDirectoryStrict
 Usage: #example
 Description: "Example of an HealthcareService as to be found in gematik FHIR Directory"
 * meta.tag[Origin] = Origin#ldap
+* extension[holderId].valueCode = #dtrust
 * providedBy = Reference(OrganizationExample)
-* specialty[+] = $ÄrztlicheFachrichtungen#MZKH "Zahnmedizin"
-* specialty[+] = $ÄrztlicheFachrichtungen#ORAL "Oralchirurgie"
+* identifier[TelematikID].value = "2-2.58.00000040"
+* type[+] = AerztlicheFachrichtungen_OID_URL#MZKH "Zahnmedizin"
+* type[+] = AerztlicheFachrichtungen_OID_URL#ORAL "Oralchirurgie"
 * location[+] = Reference(LocationExample)
 * name = "Zahnmedizin"
 * telecom[+].system = $ContactPointSystem#phone "Phone"
 * telecom[=].value = "030 7654321"
 * telecom[=].use = $ContactPointUse#work "Work"
-* serviceProvisionCode = $ServiceProvisionConditions#free "Free"
-* communication[+] = $CommonLanguages#de "German"
-* communication[+] = $CommonLanguages#en "English"
-* appointmentRequired = true 
-* availableTime.daysOfWeek[+] = $DaysOfWeek#mon "Monday"
-* availableTime.daysOfWeek[+] = $DaysOfWeek#tue "Tuesday"
-* availableTime.daysOfWeek[+] = $DaysOfWeek#wed "Wednesday"
-* availableTime.daysOfWeek[+] = $DaysOfWeek#thu "Thursday"
-* availableTime.daysOfWeek[+] = $DaysOfWeek#fri "Friday"
+* availableTime[+]
+  * daysOfWeek = $DaysOfWeek#mon "Monday"
+  * availableStartTime = "08:00:00"
+  * availableEndTime = "18:00:00"
+* availableTime[+]
+  * daysOfWeek = $DaysOfWeek#tue "Tuesday"
+  * availableStartTime = "08:00:00"
+  * availableEndTime = "18:00:00"
+* availableTime[+] 
+  * daysOfWeek = $DaysOfWeek#wed "Wednesday"
+  * availableStartTime = "08:00:00"
+  * availableEndTime = "18:00:00"
+* availableTime[+]
+  * daysOfWeek = $DaysOfWeek#thu "Thursday"
+  * availableStartTime = "08:00:00"
+  * availableEndTime = "18:00:00"
+* availableTime[+]
+  * daysOfWeek = $DaysOfWeek#fri "Friday"
+  * availableStartTime = "08:00:00"
+  * availableEndTime = "18:00:00"
 * availableTime.availableStartTime = "08:00:00"
 * availableTime.availableEndTime = "18:00:00"
 * availabilityExceptions = "An Feiertagen geschlossen"
-* endpoint[+] = Reference(EndpointExample)
+* endpoint[+] = Reference(MessengerEndpointWithVisibility)

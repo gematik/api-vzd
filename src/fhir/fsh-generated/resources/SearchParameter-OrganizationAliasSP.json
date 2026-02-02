@@ -1,0 +1,18 @@
+{
+  "resourceType": "SearchParameter",
+  "id": "OrganizationAliasSP",
+  "url": "https://gematik.de/fhir/directory/SearchParameter/OrganizationAliasSP",
+  "version": "1.0.0",
+  "status": "active",
+  "experimental": false,
+  "publisher": "gematik GmbH",
+  "date": "2024-10-29",
+  "name": "alias",
+  "description": "Search on Organization.alias",
+  "code": "alias",
+  "base": [
+    "Organization"
+  ],
+  "type": "string",
+  "expression": "Organization.alias"
+}

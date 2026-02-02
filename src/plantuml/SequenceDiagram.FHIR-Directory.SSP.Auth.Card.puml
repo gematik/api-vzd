@@ -1,0 +1,58 @@
+@startuml
+
+skinparam dpi 100
+skinparam WrapWidth 200
+skinparam monochrome true
+
+'title "FHIR-Directory, Sequenzdiagram SSP Authenticate mit Smartcard'
+actor o as "Org-Admin\noder LE"
+participant cl as "Browser\nSSP Frontend"
+participant aa as "Authenticator App\ndes IDP"
+participant au as "Auth-Service"
+participant fp as "FHIR-Proxy"
+participant idp as "Identity Provider"
+participant fd as "FHIR-Directory"
+
+activate cl
+o -> cl: [1] SSP UI aufrufen
+cl -> cl: [2] Darstellung Login Auswahl
+o -> cl: [3] Login mit HBA / SMC-B auswählen
+
+
+cl -> au: [4] GET /owner-authenticate
+activate au
+au -> au: [5] Erzeuge PKCE Code für verifier und challenge
+au --> cl: Redirect (302) to IDP Authorization Endpoint
+deactivate au
+cl -> aa: [6] Deeplink authenticator://...
+activate aa
+
+aa -> idp: [7] GET {authorization_endpoint}
+activate idp
+idp --> aa: challenge
+deactivate idp
+aa -> aa: sign challenge
+aa-> idp: signed_challenge
+activate idp
+idp --> aa: Redirect (302) (auth_code)
+deactivate idp
+aa --> cl: [8] {client_callback_uri} {auth_code}
+deactivate aa
+
+cl -> au: [9] GET /signin-gematik-idp-dienst with {auth_code}
+activate au
+au -> idp: [10] POST {token_Endpoint} (auth_code, verifier)
+activate idp
+idp --> au: [11] Response {id_token}
+deactivate idp
+
+au -> au: [12] Validierung id-token
+au --> cl: [13] HTTP 200 OK, Result body {"access_token"="id_token"}
+deactivate au
+
+cl -> cl: [14] Benutzeranmeldung wird gespeichert
+cl -> o: Anzeige SSP Suchseite
+
+deactivate cl
+
+@enduml

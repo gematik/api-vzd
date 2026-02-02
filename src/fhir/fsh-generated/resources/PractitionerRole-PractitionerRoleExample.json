@@ -9,7 +9,7 @@
       }
     ],
     "profile": [
-      "https://gematik.de/fhir/directory/StructureDefinition/PractitionerRoleDirectory"
+      "https://gematik.de/fhir/directory/StructureDefinition/PractitionerRoleDirectoryStrict"
     ]
   },
   "practitioner": {
@@ -22,7 +22,7 @@
   ],
   "endpoint": [
     {
-      "reference": "Endpoint/EndpointExample"
+      "reference": "Endpoint/MessengerEndpointWithVisibility"
     }
   ]
 }

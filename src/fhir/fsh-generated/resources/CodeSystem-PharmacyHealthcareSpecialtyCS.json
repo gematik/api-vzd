@@ -1,0 +1,58 @@
+{
+  "resourceType": "CodeSystem",
+  "status": "active",
+  "content": "complete",
+  "name": "PharmacyHealthcareSpecialtyCS",
+  "id": "PharmacyHealthcareSpecialtyCS",
+  "title": "Pharmacy HealthcareService Specialty",
+  "description": "Specialty codes of pharmacy HealthcareServices",
+  "version": "1.0.0",
+  "url": "https://gematik.de/fhir/directory/CodeSystem/PharmacyHealthcareSpecialtyCS",
+  "concept": [
+    {
+      "code": "10",
+      "display": "Handverkauf"
+    },
+    {
+      "code": "20",
+      "display": "Nacht- und Notdienst"
+    },
+    {
+      "code": "30",
+      "display": "Botendienst"
+    },
+    {
+      "code": "40",
+      "display": "Versand"
+    },
+    {
+      "code": "50",
+      "display": "Sterilherstellung"
+    },
+    {
+      "code": "60",
+      "display": "Bluthochdruck: Standardisierte Risikoerfassung bei Bluthochdruck"
+    },
+    {
+      "code": "70",
+      "display": "Inhalativa: Üben der Inhalationstechnik"
+    },
+    {
+      "code": "80",
+      "display": "Polymedikation: Erweiterte Medikationsberatung bei Polymedikation"
+    },
+    {
+      "code": "90",
+      "display": "Orale Krebstherapie: Betreuung bei Einnahme von Krebsmedikamenten"
+    },
+    {
+      "code": "100",
+      "display": "Organtransplantation: Beratung nach Organtransplantation"
+    }
+  ],
+  "experimental": false,
+  "publisher": "gematik GmbH",
+  "date": "2024-10-29",
+  "caseSensitive": false,
+  "count": 10
+}

@@ -1,3 +1,42 @@
+= Synchronisierung von LDAP VZD Datensätzen in den FHIR VZD
+:source-highlighter: rouge
+:icons:
+:title-page:
+:imagesdir: /images/
+ifdef::env-github[]
+:toc: preamble
+endif::[]
+ifndef::env-github[]
+:toc: left
+endif::[]
+:toclevels: 3
+:toc-title: Table of Contents
+:sectnums:
+
+
+image::gematik_logo.svg[gematik,float="right"]
+
+[width="100%",cols="50%,50%",options="header",]
+|===
+|Version: |1.0.0
+|Referencing: |LDAP2FHIR_Sync
+|===
+
+[big]*Document history*
+
+[width="100%",cols="11%,11%,7%,58%,13%",options="header",]
+|===
+|*Version* +
+ |*Stand* +
+ |*Chap./ Page* +
+ |*Change reason, special instructions* +
+ |*Editing* +
+
+|1.0.0 |23.01.26 | 3 |Synchronisierung LDAP Fachdaten ergänzt |gematik
+
+|===
+
+== Synchronisierung von Basisdaten
 .Synchronisierung LDAP VZD -> FHIR VZD
 [cols="2,1,2,1,2,2",options="header"]
 |============================
@@ -104,7 +143,7 @@ Annahme: Identifier.type = domainID
 | jeweilige Resource | Wird in Meta-Info (Bereich Security) abgelegt | -
 
 |maxKOMLEadr |HBA und SMC-B |Maximale Anzahl von mail Adressen in den KOM-LE-Fachdaten. Falls kein Wert eingetragen wurde, können beliebig viele mail Adressen in den KOM-LE Fachdaten eingetragen werden. Falls ein Wert eingetragen wurde, können maximal so viele mail Adressen in den KOM-LE Fachdaten eingetragen werden.
-| - | - |Wird aktuelle nicht synchronisiert, da dieses nicht für die TIM-Umsetzung gebraucht wird und in FHIR anderes geregelt werden kann.
+| - | - |Wird nicht mit den Basisdaten synchonisiert. Siehe Kapitel zu KIM Fachdaten.
 
 |personalEntry |HBA und SMC-B |Wird vom VZD eingetragen Wert == TRUE, wenn alle Zertifikate den entryType 1 haben (Berufsgruppe), Wert == FALSE sonst
 | - | - |
@@ -115,10 +154,10 @@ Annahme: Identifier.type = domainID
 .2+|active |HBA | Zustand des LDAP HBA Eintrags | Practitioner | active | Wird aus LDAP übernommen, wenn im LDAP VZD gültige Zertifikate vorliegen. Ohne gültige Zertifikate im LDAP VZD wird der Eintrag im FHIR VZD auf inaktiv gesetzt (active=false). 
 |SMC-B |Zustand des LDAP SMC-B Eintrags | Organization | active| Wird aus LDAP übernommen, , wenn im LDAP VZD gültige Zertifikate vorliegen. Ohne gültige Zertifikate im LDAP VZD wird der Eintrag im FHIR VZD auf inaktiv gesetzt (active=false). 
 
-.2+|userCertificate |HBA .2+|Bezeichner: Enc-Zertifikat kann mehrfach vorkommen (0..50) Das Zertifikat wird gelöscht, wenn es ungültig geworden ist. Wenn kein Zertifikat vorliegt, dann kann der Eintrag nicht mittels LDAP-Abfrage gefunden werden. Format: DER, Base64-kodiert | - | - |Da aktuelle nur erste einmal der TIM-UserCase umgesetzt wird, werden keine KIM-Zertifikat genutzt.
+.2+|userCertificate |HBA .2+|Bezeichner: Enc-Zertifikat kann mehrfach vorkommen (0..50) Das Zertifikat wird gelöscht, wenn es ungültig geworden ist. Wenn kein Zertifikat vorliegt, dann kann der Eintrag nicht mittels LDAP-Abfrage gefunden werden. Format: DER, Base64-kodiert | - | - |Wird nicht mit den Basisdaten synchonisiert. Siehe Kapitel zu KIM Fachdaten.
 |SMC-B 
 | - | - |
-Da aktuelle nur erste einmal der TIM-UserCase umgesetzt wird, werden keine KIM-Zertifikat genutzt.
+Wird nicht mit den Basisdaten synchonisiert. Siehe Kapitel zu KIM Fachdaten.
 
 .2+|entryType |HBA .2+|Bezeichner: Eintragstyp Wird vom VZD anhand der im Zertifikat enthaltenen OID (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. | - | - |Wird für EPA perspektivisch genutzt. Aus diesem Grund wird aktuelle hier keine Mapping vorgesehen.
 |SMC-B 
@@ -128,6 +167,9 @@ Wird für EPA perspektivisch genutzt. Aus diesem Grund wird aktuelle hier keine 
 .2+|telematikID |HBA .2+|Bezeichner: TelematikID Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen. Ist in den Basisdaten und in den Zertifikatsdaten enthalten. 
 | Practitioner  | identifier.value = telematikID |
 |SMC-B | Organization | identifier.value = telematikID |
+
+|lanr |HBA | Lebenslange Arztnummer
+| Practitioner | identifier:LANR | Validierung: 9-stellig numerisch
 
 .3+|professionOID |HBA .2+|
 Wird aus dem Zertifikat übernommen, 
@@ -147,20 +189,19 @@ Für Besonderheiten von Apotheken siehe zusätzlich Tabelle "Synchronisierung de
 |description |HBA und SMC-B | 
 | - | - |
 
-|mail |HBA und SMC-B | Wird im aktuellen FHIR VZD Release nicht synchronisiert
-| Endpoint | address | KIM Informationen werden als Endpoint kodiert, s.
-https://simplifier.net/vzd-fhir-directory/endpointdirectory
+|mail |HBA und SMC-B | Wird nicht mit den Basisdaten synchonisiert.
+| - | - | Siehe Kapitel zu KIM Fachdaten.
 
 
-|KOM-LE-Version |HBA und SMC-B | Wird im aktuellen FHIR VZD Release nicht synchronisiert
-| Endpoint | connectionType | KIM Informationen werden als Endpoint kodiert, s.
-https://simplifier.net/vzd-fhir-directory/endpointdirectory
+|KOM-LE-Version |HBA und SMC-B | Wird nicht mit den Basisdaten synchonisiert.
+| - | - |  Siehe Kapitel zu KIM Fachdaten.
 
 |changeDateTime |HBA und SMC-B | 
-| jeweilige Resource | Meta | wird in die FHIR Meta Daten übernommen
+| - | - | wird über FHIR Bordmittel realisiert
 
 |============================
 
+== Synchronisierung von Apotheken Attributen
 .Synchronisierung der Attribute professionOID & specialization für Apotheken
 [cols="1,2,2,2,2",options="header"]
 |============================
@@ -184,3 +225,31 @@ Heimversorgende Apotheke
 Versandapotheke
 |============================
 
+== Synchronisierung der KIM Fachdaten
+Für jede KIM-Adresse im LDAP VZD Attribut "kimData" wird im FHIR VZD ein Endpoint verwendet.
+
+.Synchronisierung der KIM Fachdaten 
+[cols="1,2,2,2",options="header"]
+|============================
+2+|LDAP VZD 2+| FHIR VZD
+|*LDAP-Attribut* |*LDAP Attributwert* |*FHIR Attribut* | *FHIR Attributwert*
+|kimData.mail |KIM Mailadresse| Endpoint.address | KIM Mailadresse aus kimData.mail 
+|kimData.version |KIM Version| Endpoint.connectionType | Abbildung auf https://simplifier.net/vzd-fhir-directory/endpointdirectoryconnectiontype[EndpointConnectionTypeVS] (muss für KIM erweitert werden)
+|kimData.appTags |Liste von appTags| Endpoint.payloadType | appTags entsprechend https://simplifier.net/vzd-fhir-directory/endpointdirectorypayloadtype[EndpointDirectoryPayloadType] (muss für KIM erweitert werden). Jedes appTag aus dem LDAP VZD wird in eine Instanz von payloadType synchronisiert.
+
+|ou |FAD| Endpoint.?? | FAD (ID des KIM Anbieters) 
+| || Endpoint.status | active
+| || Endpoint.endpointVisibility | hide-versicherte "Eintrag für Versicherte verbergen"
+| || Endpoint.name | "KIM-Mailadresse" (kann im FHIR VZD später geändert werden, wenn die Administration der KIM Daten im FHIR VZD erfolgt)
+|userCertificate|<ENC-Zertifikat>| Datenbanktabelle CERTIFICATE | Die Zertifikate werden in den VZD FHIR synchronisiert. Hierzu werden diese in einer separaten Datenbank-Tabelle mit TelematikId- und LDAP-UUID-Informationen unabhängig des HAPI-FHIR-Servers gespeichert und sind über die https://github.com/gematik/api-vzd/blob/main/src/openapi/I_FHIR_VZD_Certificates.yaml[I_FHIR_VZD_Certificates REST-Schnittstelle] abfragbar. (base64 → X509Certificate) 
+
+|============================
+
+Zu beachten:
+
+- Endpunkte mit connectionType "kim-*" dürfen nur vom KIM Fachdienst mit der FAD-ID im Endpunkt geändert und gelöscht werden. Der Owner darf die Endpunkt-Referenz nicht entfernen. Ausnahmen gibt es für Administratoren (gematik/arvato). 
+- KIM Endpunkte werden bei der Synchronisation von LDAP in den FHIR VZD mit dem HealthcareService bzw. PractitionerRole verlinkt, in welchem Origin="ldap" gesetzt ist. 
+- Alle in "komLeData" & "mail"enthaltenen Informationen sind auch in kimData enthalten. Deshalb werden "komLeData" & "mail" nicht in den FHIR VZD synchronisiert.
+- "maxKOMLEadr" war nur für Kassen relevant und kann wegen der Nutzung von den appTags (payloadType) im FHIR VZD entfallen. Dieses Attribut wird deshalb nicht in den FHIR VZD synchronisiert.
+- LDAP "noVzdMailEntry" Parameter für KIM-Adessen -> Wird durch Nutzung von appTags (payloadType) abgedeckt.
+- Aufnahme in den Volltextindex: Endpoint.address, Endpoint.connectionType, Endpoint.payloadType (nur für KIM Adressen oder für alle Endpoints?), Endpoint.status als z.B. "Endpoint.status.active"

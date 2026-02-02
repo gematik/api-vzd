@@ -1,0 +1,1825 @@
+= FHIR-VZD HOWTO AVS
+:source-highlighter: rouge
+:icons:
+:title-page:
+:imagesdir: /images/
+ifdef::env-github[]
+:toc: preamble
+endif::[]
+ifndef::env-github[]
+:toc: left
+endif::[]
+:toclevels: 3
+:toc-title: Table of Contents
+:sectnums:
+
+
+image::gematik_logo.svg[gematik,float="right"]
+
+[width="100%",cols="50%,50%",options="header",]
+|===
+|Version: |1.0.3
+|Referencing: |gemILF_FHIR_VZD
+|===
+
+[big]*Document history*
+
+[width="100%",cols="11%,11%,7%,58%,13%",options="header",]
+|===
+|*Version* +
+ |*Stand* +
+ |*Chap./ Page* +
+ |*Change reason, special instructions* +
+ |*Editing* +
+
+|0.0.1 |11.04.25 | |Initiales Dokument |gematik
+
+|0.0.2 |07.05.25 | 2.1 +
+2.5 +
+2.7
+|Endpunkte (URLs) ergänzt +
+Notdienste ergänzt +
+Aktualisierung von Endpoints erläutert
+|gematik
+
+|1.0.0 |14.05.25 | 2.1 +
+2.3-2.6 
+|Endpunkte (URL) korrigiert +
+Beispieldaten überarbeitet
+|gematik
+
+
+|1.0.1 |16.05.25 | 2.5, 2.6 
+|HealthcareService.characteristic:technicalCharacteristic gestrichen, da für AVS nicht relevant
+|gematik
+
+|1.0.2 |21.05.25 | * 
+|Pull Request 164 übernommen (Formulierungen, Tippfehler,...)
+|gematik
+
+
+|1.0.3 |16.12.25 | 2.5 
+|Hinweis zum "Bug im VZD FHIR 1.2.0-15" aufgenommen
+|gematik
+
+|===
+
+
+
+== Einordnung des Dokumentes
+=== Zielsetzung
+Dieses Dokument beschreibt die Nutzung der FHIR-VZD Schnittstellen durch AVSe.
+
+=== Zielgruppe
+
+Das Dokument richtet sich an Software-Entwickler, die sich mit der Anbindung eines AVS an den FHIR-VZD zur Pflege der Mehrwertdaten von Apotheken befassen.
+
+=== Geltungsbereich
+
+*Schutzrechts-/Patentrechtshinweis*
+
+_Die nachfolgende Spezifikation ist von der gematik allein unter technischen Gesichtspunkten erstellt worden. Im Einzelfall kann nicht ausgeschlossen werden, 
+dass die Implementierung der Spezifikation in technische Schutzrechte Dritter eingreift. Es ist allein Sache des Anbieters oder Herstellers, 
+durch geeignete Maßnahmen dafür Sorge zu tragen, dass von ihm aufgrund der Spezifikation angebotene Produkte und/oder Leistungen nicht gegen 
+Schutzrechte Dritter verstoßen und sich ggf. die erforderlichen Erlaubnisse/Lizenzen von den betroffenen Schutzrechtsinhabern einzuholen. 
+Die gematik GmbH übernimmt insofern keinerlei Gewährleistungen._
+
+== Pflege von Mehrwertdaten für Apotheken
+Die Nutzung des FHIR-VZD wird in folgenden Dokumenten beschrieben: +
+
+- link:https://gemspec.gematik.de/docs/gemSpec/gemSpec_VZD_FHIR_Directory[Spezifikation Verzeichnisdienst FHIR-Directory (gemSpec_VZD_FHIR_Directory)]
+- link:https://github.com/gematik/api-vzd/blob/main/docs/gemILF_VZD_FHIR_Directory.adoc[FHIR-VZD implementation guide]
+- link:https://simplifier.net/VZD-FHIR-Directory/~introduction[Simplifier Profil VZD-FHIR-Directory]
+
+In den folgenden Kapiteln wird näher auf die Nutzung des FHIR-VZD durch AVS zur Pflege der Apotheken-Daten im FHIR-VZD eingegangen.
+
+=== Endpunkte
+Die FHIR-VZD Endpunkte sind in der link:https://gemspec.gematik.de/docs/gemSpec/gemSpec_VZD_FHIR_Directory/latest/#4.2.1[FHIR-VZD Spezifikation (gemSpec_VZD_FHIR_Directory)] im Kapitel "Schnittstellen" enthalten. +
+Ein Auszug mit den relevanten Endpunkte für AVS: +
+ +
+link:https://gemspec.gematik.de/docs/gemSpec/gemSpec_VZD_FHIR_Directory/latest/#4.2.1.3[*Endpunkte für das Ändern von eigenen Einträgen im VZD-FHIR-Directory durch TI-Messenger Clients und Org-Admin-Clients*] +
+In der Produktionsumgebung (PU) ist die URL: https://fhir-directory.vzd.ti-dienste.de/owner +
+In der Referenzumgebung (RU) ist die URL: https://fhir-directory-ref.vzd.ti-dienste.de/owner +
+In der Testumgebung (TU) ist die URL: https://fhir-directory-tu.vzd.ti-dienste.de/owner +
+ +
+link:https://gemspec.gematik.de/docs/gemSpec/gemSpec_VZD_FHIR_Directory/latest/#4.2.1.3[*Endpunkte für die Authentisierung*] +
+In der Produktionsumgebung (PU) ist die URL: https://fhir-directory.vzd.ti-dienste.de/owner-authenticate +
+In der Referenzumgebung (RU) ist die URL: https://fhir-directory-ref.vzd.ti-dienste.de/owner-authenticate + 
+In der Testumgebung (TU) ist die URL: https://fhir-directory-tu.vzd.ti-dienste.de/owner-authenticate +
+ +
+link:https://gemspec.gematik.de/docs/gemSpec/gemSpec_VZD_FHIR_Directory/latest/#4.2.1.3[*FHIR-VZD Endpunkte für die Authentisierung mit dem SmartcardIDP*] +
+In der Produktionsumgebung (PU) ist die URL: https://fhir-directory.vzd.ti-dienste.de/signin-gematik-idp-dienst +
+In der Referenzumgebung (RU) ist die URL: https://fhir-directory-ref.vzd.ti-dienste.de/signin-gematik-idp-dienst +
+In der Testumgebung (TU) ist die URL: https://fhir-directory-test.vzd.ti-dienste.de/signin-gematik-idp-dienst +
+ +
+link:https://gemspec.gematik.de/docs/gemSpec/gemSpec_VZD_FHIR_Directory/latest/#4.2.1.3[*FHIR-VZD-Endpunkte für die Authentisierung mit dem gematik Authenticator und Polling Endpunkt*] +
+ +
+In der Produktionsumgebung (PU) sind die URLs: +
+https://fhir-directory.vzd.ti-dienste.de/owner-authenticate-decoupled +
+https://fhir-directory.vzd.ti-dienste.de/owner-authenticate-poll +
+https://fhir-directory.vzd.ti-dienste.de/signin-gematik-idp-dienst-decoupled +
+ +
+In der Referenzumgebung (RU) sind die URLs: +
+https://fhir-directory-ref.vzd.ti-dienste.de/owner-authenticate-decoupled +
+https://fhir-directory-ref.vzd.ti-dienste.de/owner-authenticate-poll +
+https://fhir-directory-ref.vzd.ti-dienste.de/signin-gematik-idp-dienst-decoupled +
+ +
+In der Testumgebung (TU) sind die URLs: +
+https://fhir-directory-tu.vzd.ti-dienste.de/owner-authenticate-decoupled +
+https://fhir-directory-tu.vzd.ti-dienste.de/owner-authenticate-poll +
+https://fhir-directory-tu.vzd.ti-dienste.de/signin-gematik-idp-dienst-decoupled +
+
+=== Authentifizierung
+Die Pflege der Apotheken-Mehrwertdaten erfogt über die FHIR-VZD /owner-Schnittstelle. +
+Für den Zugriff auf die /owner-Schnittstelle ist ein access_token nötig, welches man über eine der folgenden Optionen erhält:
+
+- link:FHIR_VZD_HOWTO_Authenticate.adoc#24-authenticate-for-the-owner-endpoint-as-an-user[Autentifizierung für die /owner-Schnittstelle mit der SMC-B der Apotheke]. Falls die Apotheke mehrere SMC-Bs mit verschiedenen Telematik-IDs hat, muss die SMC-B mit der Telematik-ID genutzt werden, welche für die eRezept Funktionalität verwendet wird. Optional kann für die Authentifizierung der link:FHIR_VZD_HOWTO_Authenticate.adoc#25-authenticate-using-the-gematik-authenticator[gematik Authenticator]  genutzt werden, der die Interaktionen mit Konnektor, Kartenterminals und der SMC-B vereinfacht.
+
+- Falls die Apotheke den TI-Messenger (TIM) nutzt und eine eigene TIM-Domaine hat, kann folgende Authentifizierung genutzt werden link:FHIR_VZD_HOWTO_Authenticate.adoc#23-authenticate-for-the-owner-endpoint-as-an-organization[Authentifizierung für die /owner-Schnittstelle über TIM].
+
+Als Ergebnis der Authentifizierung erhält das AVS ein Token, welches als Bearer Token bei allen folgenden FHIR-VZD-Operationen im Header übergeben werden muss. Das Token hat eine Gültigkeit von 24 Stunden.
+
+[NOTE]
+====
+Beispielimplementierungen für diese Authentifizierung sind hier verfügbar: link:https://github.com/gematik/api-vzd/tree/main/samples/directory-samples-java/auth-samples[Java sample] 
+und hier: link:https://github.com/gematik/api-vzd/tree/main/samples/directory-samples-python/directory_samples[Python sample]
+====
+
+=== Suche des Apothekeneintrags
+Vor jeder Änderung von Mehrwertdaten müssen zuerst die aktuellen Daten aus dem FHIR-VZD gelesen werden. Dafür können die in link:FHIR_VZD_HOWTO_Search.adoc[FHIR-VZD HOWTO Search] 
+beschriebenen Suchoperationen genutzt werden. +
+ +
+Die einfachste Form ist die Suche mit der bekannten Telematik-ID:
+
+.Suchoperation
+[%collapsible%open]
+====
+[source,txt, linenums]
+----
+GET {{base-url}}/owner/HealthcareService?_include=*&_text="3-SMC-B-Testkarte--883110000153626"&_tag=ldap
+----
+====
+_&_include=*_ - Liefet alle FHI-Ressourcen der Apotheke. +
+__text="3-SMC-B-Testkarte--883110000153626"_ - Selektiert über die FHIR-VZD Volltextsuche die gewünschte Apotheke über die Telematik-ID. +
+__tag=ldap_ - Selektiert den "Haupt" HealthcareService, in den die Apotheken-Mehrwertdaten eingetragen werden (siehe auch das folgende Kapitel).
+ +
+ +
+Das Ergebnis der FHIR-VZD-Suchabfrage:
+
+.FHIR-VZD-Daten der Apotheke  (Klicken zum Ausklappen)
+[%collapsible%closed]
+====
+[source,txt, linenums]
+----
+{
+	"resourceType": "Bundle",
+	"id": "382bc095-cfe6-4abc-8b81-aaad62a03b9c",
+	"meta": {
+		"lastUpdated": "2025-05-12T17:04:15.211+02:00"
+	},
+	"type": "searchset",
+	"total": 5,
+	"entry": [
+		{
+			"fullUrl": "https://fhir-directory-ref.vzd.ti-dienste.de/owner/HealthcareService/c12804cf-c462-413d-a950-58836f8cf287",
+			"resource": {
+				"resourceType": "HealthcareService",
+				"id": "c12804cf-c462-413d-a950-58836f8cf287",
+				"meta": {
+					"versionId": "19",
+					"lastUpdated": "2025-05-12T17:04:01.812+02:00",
+					"source": "#c8BBFZvizbMADZiB",
+					"profile": [
+						"https://gematik.de/fhir/directory/StructureDefinition/HealthcareServiceDirectory"
+					],
+					"tag": [
+						{
+							"system": "https://gematik.de/fhir/directory/CodeSystem/Origin",
+							"code": "ldap",
+							"display": "Synchronized from LDAP VZD",
+							"userSelected": true
+						}
+					]
+				},
+				"identifier": [
+					{
+						"system": "https://gematik.de/fhir/directory/CodeSystem/ldapUID",
+						"value": "e231c5d5-f528-4930-8e74-edb38a5360c9"
+					}
+				],
+				"providedBy": {
+					"reference": "Organization/b5938fc4-2b37-4800-8859-9d2b7cfbe647"
+				},
+				"type": [
+					{
+						"coding": [
+							{
+								"system": "https://gematik.de/fhir/directory/CodeSystem/PharmacyTypeCS",
+								"code": "offizin-apotheke",
+								"display": "Offizin-Apotheke"
+							},
+							{
+								"system": "https://gematik.de/fhir/directory/CodeSystem/PharmacyTypeCS",
+								"code": "versandapotheke",
+								"display": "Versandapotheke"
+							}
+						],
+						"text": "apo-vzd"
+					}
+				],
+				"specialty": [
+					{
+						"coding": [
+							{
+								"system": "https://gematik.de/fhir/directory/CodeSystem/PharmacyHealthcareSpecialtyCS",
+								"code": "10",
+								"display": "Handverkauf"
+							},
+							{
+								"system": "https://gematik.de/fhir/directory/CodeSystem/PharmacyHealthcareSpecialtyCS",
+								"code": "40",
+								"display": "Versand"
+							}
+						],
+						"text": "apo-vzd"
+					}
+				],
+				"location": [
+					{
+						"reference": "Location/42dd2bae-2b51-42cd-b993-4102b6a223a0"
+					}
+				],
+				"telecom": [
+					{
+						"system": "phone",
+						"value": "0301234567",
+						"rank": 10
+					},
+					{
+						"system": "fax",
+						"value": "0301234568",
+						"rank": 20
+					},
+					{
+						"system": "email",
+						"value": "info@apotheke.de",
+						"rank": 30
+					}
+				],
+				"availableTime": [
+					{
+						"daysOfWeek": [
+							"mon"
+						],
+						"availableStartTime": "08:30:00",
+						"availableEndTime": "18:00:00"
+					},
+					{
+						"daysOfWeek": [
+							"tue"
+						],
+						"availableStartTime": "07:00:00",
+						"availableEndTime": "18:00:00"
+					},
+					{
+						"daysOfWeek": [
+							"wed"
+						],
+						"availableStartTime": "08:00:00",
+						"availableEndTime": "18:00:00"
+					},
+					{
+						"daysOfWeek": [
+							"thu"
+						],
+						"availableStartTime": "08:30:00",
+						"availableEndTime": "22:00:00"
+					},
+					{
+						"daysOfWeek": [
+							"fri"
+						],
+						"availableStartTime": "08:00:00",
+						"availableEndTime": "18:00:00"
+					}
+				]
+			},
+			"search": {
+				"mode": "match"
+			}
+		},
+		{
+			"fullUrl": "https://fhir-directory-ref.vzd.ti-dienste.de/owner/Organization/bafbc83a-55c2-42cc-b19b-9de663cb3775",
+			"resource": {
+				"resourceType": "Organization",
+				"id": "b5938fc4-2b37-4800-8859-9d2b7cfbe647",
+				"meta": {
+					"versionId": "2",
+					"lastUpdated": "2025-03-10T15:09:25.280+01:00",
+					"source": "#HcHGRtivwpzfnV2a",
+					"profile": [
+						"https://gematik.de/fhir/directory/StructureDefinition/OrganizationDirectory"
+					],
+					"tag": [
+						{
+							"system": "https://gematik.de/fhir/directory/CodeSystem/Origin",
+							"code": "ldap",
+							"display": "Synchronized from LDAP VZD"
+						}
+					]
+				},
+				"identifier": [
+					{
+						"type": {
+							"coding": [
+								{
+									"system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+									"code": "PRN"
+								}
+							]
+						},
+						"system": "https://gematik.de/fhir/sid/telematik-id",
+						"value": "3-SMC-B-Testkarte--883110000153626"
+					},
+					{
+						"system": "https://gematik.de/fhir/directory/CodeSystem/ldapUID",
+						"value": "e231c5d5-f528-4930-8e74-edb38a5360c9"
+					}
+				],
+				"active": true,
+				"type": [
+					{
+						"coding": [
+							{
+								"system": "https://gematik.de/fhir/directory/CodeSystem/OrganizationProfessionOID",
+								"code": "1.2.276.0.76.4.54",
+								"display": "Öffentliche Apotheke"
+							}
+						]
+					}
+				],
+				"name": "West ApothekeTEST-ONLY",
+				"alias": [
+					"3-SMC-B-Testkarte--883110000153626"
+				]
+			},
+			"search": {
+				"mode": "include"
+			}
+		},
+		{
+			"fullUrl": "https://fhir-directory-ref.vzd.ti-dienste.de/owner/Location/42dd2bae-2b51-42cd-b993-4102b6a223a0",
+			"resource": {
+				"resourceType": "Location",
+				"id": "42dd2bae-2b51-42cd-b993-4102b6a223a0",
+				"meta": {
+					"versionId": "3",
+					"lastUpdated": "2025-03-10T15:09:25.280+01:00",
+					"source": "#HcHGRtivwpzfnV2a",
+					"profile": [
+						"https://gematik.de/fhir/directory/StructureDefinition/LocationDirectory"
+					],
+					"tag": [
+						{
+							"system": "https://gematik.de/fhir/directory/CodeSystem/Origin",
+							"code": "ldap",
+							"display": "Synchronized from LDAP VZD"
+						}
+					]
+				},
+				"identifier": [
+					{
+						"system": "https://gematik.de/fhir/directory/CodeSystem/ldapUID",
+						"value": "e231c5d5-f528-4930-8e74-edb38a5360c9"
+					}
+				],
+				"address": {
+					"use": "work",
+					"type": "postal",
+					"text": "Frohnhauser Straße 253&#13;&#10;45144&#13;&#10;Essen&#13;&#10;null&#13;&#10;DE",
+					"line": [
+						"Frohnhauser Straße 253"
+					],
+					"city": "Essen",
+					"postalCode": "45144",
+					"country": "DE"
+				},
+				"position": {
+					"longitude": 11.3496975,
+					"latitude": 48.0022045
+				}
+			},
+			"search": {
+				"mode": "include"
+			}
+		}
+	]
+}
+----
+====
+Diese Beispieldaten werden in allen folgenden UseCases als aktuelle FHIR-VZD-Daten der Apotheke verwendet.
+
+=== Änderung von Mehrwertdaten der Apotheke
+Die gesamte Übersicht über die änderbaren Attribute wird im link:FHIR_VZD_HOWTO_Data.adoc[FHIR-VZD data model] beschrieben. +
+Das Simplifier-Profil FHIR-VZD kann hier eigesehen werden link:https://simplifier.net/vzd-fhir-directory[gematik FHIR Directory].
+
+[IMPORTANT]
+====
+Das AVS muss sicherstellen, dass die Telematik-ID der FHI-Ressource (bzw. der übergeordneten Apotheke/Organization) und dem verwendeten Token (siehe Kapitel "Authentifizierung) übereinstimmt. Ist dies nicht der Fall, wird der FHIR-VZD die Schreiboperation ablehnen. +
+====
+
+Zur Information für alle Mehrwertdaten, die in der FHI-Ressource HealtcareService gespeichert werden: Eine Apotheke/Organization kann im FHIR-VZD mehrere HealtcareServices haben. 
+
+====
+++++
+<p align="center">
+  <img width="55%" src=../images/diagrams/ClassDiagram.Org.with.several.HCS.svg>
+</p>
+++++
+====
+Der - für das AVS relevante - "Haupt"-HealtcareService ist mit dem Code "ldap" in HealthcareService.meta.tag:Origin markiert. 
+Die Mehrwertdaten müssen durch das AVS in diesen HealtcareService eingetragen werden.
+Alle anderen HealtcareServices der Apotheke können durch das AVS ignoriert werden.
+====
+                    "tag": [
+                        {
+                            "system": "https://gematik.de/fhir/directory/CodeSystem/Origin",
+                            "code": "ldap",
+                            "display": "Synchronized from LDAP VZD",
+                            "userSelected": false
+                        }
+                    ]
+====
+
+=== Pflege der Öffnungszeiten, Notdienste, Dienstleistungen, Botendienste und Kontaktdaten
+Die Öffnungszeiten, Dienstleistungen, Botendienste und Kontaktdaten der Apotheke befinden sich in der FHI-Ressource-HealthcareService:
+
+- *HealthcareService.availableTime* - Die normalen Öffnungszeiten - Werden für die Suche nach geöffneten Apotheken im VZD & Apps ausgewertet.
+- *HealthcareService.notAvailable* - Abweichungen von den normalen Öffnungszeiten (z.B. Ferien, Feiertage,...).
+- *HealthcareService.availabilityExceptions* - Textuelle Beschreibung von Ausnahmen z.B. "Nicht geöffnet an gesetzlichen Feiertagen". Diese textuelle Beschreibung wird nicht maschinell ausgewertet. Deshalb sollen die Ausnahmen ebenfalls in "notAvailable" gepflegt werden, wo z.B. auch die gesetzlichen Feiertage eingetragen werden sollen.
+- *HealthcareService.availableTime.extension:specialOpeningTimes* - Notdienste.
+- *HealthcareService.telecom* - Kontaktdaten.
+- *HealthcareService.characteristic:physicalFeatures* - Ausstattung und Informationen zur Anfahrt entsprechend link:https://simplifier.net/vzd-fhir-directory/physicalfeatures[PhysicalFeaturesHealthCareServiceCS].
+- HealthcareService.coverageArea.extension:serviceCoverageArea - Liefergebiet für Botendienste als Radius um die Apotheken-Adresse - Angabe in Meter.
+- HealthcareService.coverageArea.extension:serviceCoveragePostalCode - Liefergebiet für Botendienste als Liste von Postleitzahlen.
+
+"serviceCoverageArea" und "serviceCoveragePostalCode" können einzeln oder in Kombination angegeben werden. Das Liefergebiet ist die Gesamtmenge aus beiden Attributen.
+
+TIP: Das Eintragen von Dienstleistungen für "Zuweisen ohne Anmeldung" wird in Kapitel link:FHIR_VZD_HOWTO_AVS.adoc#pflege-von-apotheken-diensten-für-zuweisen-ohne-anmeldung[Pflege von Apotheken-Diensten für "Zuweisen ohne Anmeldung"] beschrieben.
+
+Diese Öffnungszeiten (mit Ausnahme der textuellen Beschreibung in availabilityExceptions) werden in den eRezept-Apps zur Suche von geöffneten Apotheken genutzt. +
+Die Kontaktdaten werden in den Apps angezeit und teilweise direkt aufgerufen (z.B. URL, E-Mail-Adresse der Apotheke oder Telefonnummer). +
+Die Ausstattung und Informationen zur Anfahrt (HealthcareService.characteristic:physicalFeatures) dienen der Information für die Kunden und können in VZD-Suche als Suchkriterium genutzt werden. Zum Beispiel "Suche nach barrierefreien Apotheken an einem Ort". +
+ +
+Ablauf: +
+ +
+*1. Lesen des Apotheken-Eintrags aus dem FHIR-VZD*. Siehe Kapitel link:./FHIR_VZD_HOWTO_AVS.adoc#151-suche-des-apothekeneintrags[Suche des Apothekeneintrags]. +
+*2. Extrahieren der relevanten Ressource aus dem Suchergebnis.* Die Öffnungszeiten befinden sich in FHI-Ressource-HealthcareService mit HealthcareService.meta.tag:Origin=ldap
+
+.FHI-Ressource-HealthcareService - aktuelle Daten aus dem FHIR-VZD  (Klicken zum Ausklappen)
+[%collapsible%closed]
+====
+[source,txt, linenums]
+----
+{
+	"resourceType": "HealthcareService",
+	"id": "c12804cf-c462-413d-a950-58836f8cf287",
+	"meta": {
+		"versionId": "19",
+		"lastUpdated": "2025-05-12T17:04:01.812+02:00",
+		"source": "#c8BBFZvizbMADZiB",
+		"profile": [
+			"https://gematik.de/fhir/directory/StructureDefinition/HealthcareServiceDirectory"
+		],
+		"tag": [
+			{
+				"system": "https://gematik.de/fhir/directory/CodeSystem/Origin",
+				"code": "ldap",
+				"display": "Synchronized from LDAP VZD",
+				"userSelected": true
+			}
+		]
+	},
+	"identifier": [
+		{
+			"system": "https://gematik.de/fhir/directory/CodeSystem/ldapUID",
+			"value": "e231c5d5-f528-4930-8e74-edb38a5360c9"
+		}
+	],
+	"providedBy": {
+		"reference": "Organization/b5938fc4-2b37-4800-8859-9d2b7cfbe647"
+	},
+	"type": [
+		{
+			"coding": [
+				{
+					"system": "https://gematik.de/fhir/directory/CodeSystem/PharmacyTypeCS",
+					"code": "offizin-apotheke",
+					"display": "Offizin-Apotheke"
+				},
+				{
+					"system": "https://gematik.de/fhir/directory/CodeSystem/PharmacyTypeCS",
+					"code": "versandapotheke",
+					"display": "Versandapotheke"
+				}
+			],
+			"text": "apo-vzd"
+		}
+	],
+	"specialty": [
+		{
+			"coding": [
+				{
+					"system": "https://gematik.de/fhir/directory/CodeSystem/PharmacyHealthcareSpecialtyCS",
+					"code": "10",
+					"display": "Handverkauf"
+				},
+				{
+					"system": "https://gematik.de/fhir/directory/CodeSystem/PharmacyHealthcareSpecialtyCS",
+					"code": "40",
+					"display": "Versand"
+				}
+			],
+			"text": "apo-vzd"
+		}
+	],
+	"location": [
+		{
+			"reference": "Location/42dd2bae-2b51-42cd-b993-4102b6a223a0"
+		}
+	],
+	"telecom": [
+		{
+			"system": "phone",
+			"value": "0301234567",
+			"rank": 10
+		},
+		{
+			"system": "fax",
+			"value": "0301234568",
+			"rank": 20
+		},
+		{
+			"system": "email",
+			"value": "info@apotheke.de",
+			"rank": 30
+		}
+	],
+	"availableTime": [
+		{
+			"daysOfWeek": [
+				"mon"
+			],
+			"availableStartTime": "08:30:00",
+			"availableEndTime": "18:00:00"
+		},
+		{
+			"daysOfWeek": [
+				"tue"
+			],
+			"availableStartTime": "07:00:00",
+			"availableEndTime": "18:00:00"
+		},
+		{
+			"daysOfWeek": [
+				"wed"
+			],
+			"availableStartTime": "08:00:00",
+			"availableEndTime": "18:00:00"
+		},
+		{
+			"daysOfWeek": [
+				"thu"
+			],
+			"availableStartTime": "08:30:00",
+			"availableEndTime": "22:00:00"
+		},
+		{
+			"daysOfWeek": [
+				"fri"
+			],
+			"availableStartTime": "08:00:00",
+			"availableEndTime": "18:00:00"
+		}
+	]
+}
+----
+====
+
+*3. Aktualisierung der relevanten Daten in der Ressource* +
+ +
+
+- Im FHIR-VZD sind für diese Apotheke die Öffnungszeiten in "availableTime" eingetragen. "availableTime" wird durch die aktuellen Öffnungszeiten aus dem AVS überschrieben.
+- Es werden zwei Urlaubszeiten in "notAvailable" und "An Feiertagen geschlossen" in "availabilityExceptions" eingetragen. Diese Attribute waren im original FHIR-VZD-Datensatz nicht vorhanden und werden vom AVS ergänzt.
+- Zwei Notdienste werden in "HealthcareService.availableTime.extension:specialOpeningTimes" eingetragen. 
+- Die Kontaktdaten "telecom" werden vervollständigt.
+- Die Dienstleistungen der Apotheke "characteristic" sind bisher nicht vorhanden und werden ergänzt. Individuelle Texte der Apotheke können dabei in den extension.valuestring geschrieben werden. 
+
+Im FHIR-VZD ist für diese Apotheke der Service "Botendienst" in HealthcareService.specialty eingetragen, ein Liefergebiet für die Botendienste ist aktuell im Datensatz nicht vorhanden.
+Das AVS ergänzt das Liefergebiet in den Attributen serviceCoverageArea und serviceCoveragePostalCode.
+
+- "serviceCoverageArea" - 10.000 Meter
+- "serviceCoveragePostalCode" - Die Postleitzahlen: 60596, 60597, 60598
+
+.*Bug im VZD FHIR 1.2.0-15*
+CAUTION: Mit VZD FHIR 1.2.0-15 wurden die HealthcareService.specialty-Container für Apotheken auf den Wert „apo-vzd“ konsolidiert.
+Derzeit wird „apo-vzd“ jedoch bei der Anlieferung über die Owner-Schnittstelle fälschlicherweise verworfen.
+In der Folge führt eine Aktualisierung (PUT) mit dem Wert „apo-vzd“ dazu, dass die hinterlegten Apotheken-Spezialisierungen geleert werden. +
+ +
+Workaround: Vor der Aktualisierung (PUT) des HealthcareService muss der "text" „apo-vzd“ unterhalb des Attributs "Specialty" entfernt werden (auch wenn "text" „apo-vzd“ bereits im Datensatz steht). 
+Diese Vorgehensweise ist bis zur Fehlerbehebung auch im VZD SSP entsprechend umgesetzt. +
+ +
+Fix im kommenden Release FHIR VZD 1.2.0-16: Der "text" „apo-vzd“ wird bei der Anlieferung korrekt berücksichtigt und die übermittelten Specialty-Werte werden übernommen.
+
+.Der aktualisierte HealthcareService (Klicken zum Ausklappen)
+[%collapsible%closed]
+====
+[source,txt, linenums]
+----
+{
+	"resourceType": "HealthcareService",
+	"id": "c12804cf-c462-413d-a950-58836f8cf287",
+	"meta": {
+		"versionId": "19",
+		"lastUpdated": "2025-05-12T17:04:01.812+02:00",
+		"source": "#c8BBFZvizbMADZiB",
+		"profile": [
+			"https://gematik.de/fhir/directory/StructureDefinition/HealthcareServiceDirectory"
+		],
+		"tag": [
+			{
+				"system": "https://gematik.de/fhir/directory/CodeSystem/Origin",
+				"code": "ldap",
+				"display": "Synchronized from LDAP VZD",
+				"userSelected": true
+			}
+		]
+	},
+	"identifier": [
+		{
+			"system": "https://gematik.de/fhir/directory/CodeSystem/ldapUID",
+			"value": "e231c5d5-f528-4930-8e74-edb38a5360c9"
+		}
+	],
+	"providedBy": {
+		"reference": "Organization/b5938fc4-2b37-4800-8859-9d2b7cfbe647"
+	},
+	"type": [
+		{
+			"coding": [
+				{
+					"system": "https://gematik.de/fhir/directory/CodeSystem/PharmacyTypeCS",
+					"code": "offizin-apotheke",
+					"display": "Offizin-Apotheke"
+				},
+				{
+					"system": "https://gematik.de/fhir/directory/CodeSystem/PharmacyTypeCS",
+					"code": "versandapotheke",
+					"display": "Versandapotheke"
+				}
+			]
+		}
+	],
+	"specialty": [
+		{
+			"coding": [
+				{
+					"system": "https://gematik.de/fhir/directory/CodeSystem/PharmacyHealthcareSpecialtyCS",
+					"code": "10",
+					"display": "Handverkauf"
+				},
+				{
+					"system": "https://gematik.de/fhir/directory/CodeSystem/PharmacyHealthcareSpecialtyCS",
+					"code": "40",
+					"display": "Versand"
+				}
+			]
+		}
+	],
+	"location": [
+		{
+			"reference": "Location/42dd2bae-2b51-42cd-b993-4102b6a223a0"
+		}
+	],
+	"telecom": [
+		{
+			"system": "phone",
+			"value": "0301234567",
+			"rank": 10
+		},
+		{
+			"system": "fax",
+			"value": "0301234568",
+			"rank": 20
+		},
+		{
+			"system": "email",
+			"value": "info@apotheke.de",
+			"rank": 30
+		},
+		{
+			"system": "url",
+			"value": "http://www.apotheke.com",
+			"rank": 40
+		}
+	],
+	"coverageArea": [
+		{
+			"extension": [
+				{
+					"url": "https://gematik.de/fhir/directory/StructureDefinition/ServiceCoverageArea",
+					"valueQuantity": {
+						"value": 10000,
+						"system": "http://unitsofmeasure.org",
+						"code": "m"
+					}
+				},
+				{
+					"url": "https://gematik.de/fhir/directory/StructureDefinition/ServiceCoveragePostalCode",
+					"valueString": "60596"
+				},
+				{
+					"url": "https://gematik.de/fhir/directory/StructureDefinition/ServiceCoveragePostalCode",
+					"valueString": "60597"
+				},
+				{
+					"url": "https://gematik.de/fhir/directory/StructureDefinition/ServiceCoveragePostalCode",
+					"valueString": "60598"
+				}
+			]
+		}
+	],
+	"characteristic": [
+		{
+			"extension": [
+				{
+					"url": "https://gematik.de/fhir/directory/StructureDefinition/PhysicalFeaturesAdditionalNoteEX",
+					"valueString": "Parkplatz vor der Apotheke in ausreichender Menge vorhanden"
+				}
+			],
+			"coding": [
+				{
+					"system": "https://gematik.de/fhir/directory/CodeSystem/physicalFeatures",
+					"code": "parkmoeglichkeit",
+					"display": "Parkmöglichkeit"
+				}
+			]
+		},
+		{
+			"extension": [
+				{
+					"url": "https://gematik.de/fhir/directory/StructureDefinition/PhysicalFeaturesAdditionalNoteEX",
+					"valueString": "Für Rollstuhlfahrer ebenerdig ohne Rampe"
+				}
+			],
+			"coding": [
+				{
+					"system": "https://gematik.de/fhir/directory/CodeSystem/physicalFeatures",
+					"code": "barrierefrei",
+					"display": "Barrierefrei"
+				}
+			]
+		},
+		{
+			"extension": [
+				{
+					"url": "https://gematik.de/fhir/directory/StructureDefinition/PhysicalFeaturesAdditionalNoteEX",
+					"valueString": "großer Abholautomat mit Blindenschrift"
+				}
+			],
+			"coding": [
+				{
+					"system": "https://gematik.de/fhir/directory/CodeSystem/physicalFeatures",
+					"code": "abholautomat",
+					"display": "Abholautomat"
+				}
+			]
+		},
+		{
+			"extension": [
+				{
+					"url": "https://gematik.de/fhir/directory/StructureDefinition/PhysicalFeaturesAdditionalNoteEX",
+					"valueString": "ÖPNV in der Nähe U2 Wittelbacher Platz"
+				}
+			],
+			"coding": [
+				{
+					"system": "https://gematik.de/fhir/directory/CodeSystem/physicalFeatures",
+					"code": "oepnv",
+					"display": "ÖPNV in der Nähe"
+				}
+			]
+		}
+	],
+	"availableTime": [
+		{
+			"daysOfWeek": [
+				"mon"
+			],
+			"availableStartTime": "08:30:00",
+			"availableEndTime": "18:00:00"
+		},
+		{
+			"daysOfWeek": [
+				"tue"
+			],
+			"availableStartTime": "07:00:00",
+			"availableEndTime": "18:00:00"
+		},
+		{
+			"daysOfWeek": [
+				"wed"
+			],
+			"availableStartTime": "08:00:00",
+			"availableEndTime": "18:00:00"
+		},
+		{
+			"daysOfWeek": [
+				"thu"
+			],
+			"availableStartTime": "08:30:00",
+			"availableEndTime": "22:00:00"
+		},
+		{
+			"daysOfWeek": [
+				"fri"
+			],
+			"availableStartTime": "08:00:00",
+			"availableEndTime": "18:00:00"
+		},
+		{
+			"extension": [
+				{
+					"url": "https://gematik.de/fhir/directory/StructureDefinition/SpecialOpeningTimesEX",
+					"extension": [
+						{
+							"url": "period",
+							"valuePeriod": {
+								"start": "2024-07-20T06:30:00.000+01:00",
+								"end": "2024-07-21T06:30:00.000+01:00"
+							}
+						},
+						{
+							"url": "qualifier",
+							"valueCoding": {
+								"system": "https://gematik.de/fhir/directory/CodeSystem/OpeningTimeQualifierCS",
+								"code": "notdienst",
+								"display": "Notdienst"
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"extension": [
+				{
+					"url": "https://gematik.de/fhir/directory/StructureDefinition/SpecialOpeningTimesEX",
+					"extension": [
+						{
+							"url": "period",
+							"valuePeriod": {
+								"start": "2024-08-20T06:30:00.000+02:00",
+								"end": "2024-08-21T06:30:00.000+02:00"
+							}
+						},
+						{
+							"url": "qualifier",
+							"valueCoding": {
+								"system": "https://gematik.de/fhir/directory/CodeSystem/OpeningTimeQualifierCS",
+								"code": "notdienst",
+								"display": "Notdienst"
+							}
+						}
+					]
+				}
+			]
+		}
+	],
+	"notAvailable": [
+		{
+			"description": "Urlaub",
+			"during": {
+				"start": "2024-09-01",
+				"end": "2024-09-21"
+			}
+		},
+		{
+			"description": "Urlaub",
+			"during": {
+				"start": "2025-09-01",
+				"end": "2025-09-21"
+			}
+		}
+	],
+	"availabilityExceptions": "An Feiertagen geschlossen"
+}
+----
+====
+
+*4. Schreiben des aktualisierten HealthcareService in den FHIR-VZD* +
+ +
+Das AVS schreibt den - in Punkt 3 aktualisierten - HealthcareService mit einer FHIR-PUT-Operation in den FHIR-VZD.
+
+.Request
+[source]
+----
+PUT {{base-url}}/owner/HealthcareService/c12804cf-c462-413d-a950-58836f8cf287
+----
+
+Der "Request Body" von der PUT-Operation entspricht dem aktualisierten HealthcareService-Datensatz aus Punkt 3.
+
+
+
+
+
+
+
+=== Pflege von Apotheken-Diensten für "Zuweisen ohne Anmeldung"
+Dienstleistungen der Apotheke können optional zusätlich über "Zuweisen ohne Anmeldung" angeboten werden. Dafür muss die zugehörige URL in einem FHIR-VZD-Endpoint eingetragen und dieser mit dem HealthcareService verlinkt werden.
+
+Ablauf: +
+ +
+*1. Lesen des Apotheken-Eintrags aus dem FHIR-VZD*. Siehe Kapitel link:./FHIR_VZD_HOWTO_AVS.adoc#151-suche-des-apothekeneintrags[Suche des Apothekeneintrags]. +
+*2. Extrahieren der relevanten Ressourcen aus dem Suchergebnis.* +
+Die Dienstleistungen der Apotheke befinden sich in FHI-Ressource-HealthcareService mit HealthcareService.meta.tag:Origin=ldap Die verlinkten Endpunkte werden zur Prüfung benötigt, ob bereits Endpunkte für "Zuweisen ohne Anmeldung" vorhanden sind.
+
+
+Die aktuellen Daten der Ressource-HealthcareService im FHIR-VZD entsprechen dem aktualisierten Stand aus Kapitel link:FHIR_VZD_HOWTO_AVS.adoc#25-pflege-der-öffnungszeiten-notdienste-dienstleistungen-botendienste-und-kontaktdaten[Pflege der Öffnungszeiten, Notdienste, Dienstleistungen, Botendienste und Kontaktdaten].
+
+
+*3. Prüfen der verlinkten Endpoints von dem HealthcareService.* Falls Endpunkte mit dem HealthcareService verlinkt sind, muss das Attribut Endpoint.connectionType auf Übereinstimmung mit der einzutragenden Dienstleitung (eRP-onPremise, eRP-delivery, eRP-shipment, eRP-availability) geprüft werden. +
+
+
+- Wenn ein passender Endpunkt verfügbar ist, muss er mit der aktuellen URL aktualisiert werden. Nach der Aktualisierung muss der Endpunkt mit einer PUT-Operation im FHIR-VZD aktualisiert werden. In diesem Fall ist der Endpunkt schon mit dem HealthcareService verlinkt und damit ist kein Update von dem HealthcareService nötig.
+- Wenn kein passender Endpunkt verfügbar ist, muss ein neuer Endpunkt angelegt (POST Operation) und mit dem HealthcareService verlinkt (PUT-Operation auf den HelathcareService) werden.
+
+Im weiteren Ablauf wird von einem aktuellen HealthcareService ohne verlinkte Endpoints ausgegangen.
+
+
+*4. Anlegen der Endpunkte im FHIR-VZD* +
+ +
+Im FHIR-VZD wird ein Endpunkt für "Zuweisen ohne Anmeldung" angelegt. Wenn mehrere Dienste über "Zuweisen ohne Anmeldung" von der Apotheke angeboten werden, müssen entsprechend mehr Endpunkte angelegt werden. +
+
+Beispiel für das Anlegen eines Endpunkts durch das AVS mit einer FHIR-POST-Operation im FHIR-VZD:
+
+.Request
+[source]
+----
+POST {{base-url}}/owner/Endpoint
+----
+
+.Body von dem POST  (Klicken zum Ausklappen)
+[%collapsible%closed]
+====
+[source,txt, linenums]
+----
+{
+    "resourceType": "Endpoint",
+    "meta": {
+        "profile": [
+            "https://gematik.de/fhir/directory/StructureDefinition/EndpointDirectory"
+        ],
+        "tag": [
+            {
+                "system": "https://gematik.de/fhir/directory/CodeSystem/Origin",
+                "code": "owner"
+            }
+        ]
+    },
+    "status": "active",
+    "connectionType": {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/EndpointDirectoryConnectionType",
+        "code": "eRP-delivery",
+        "display": "Botendienst"
+    },
+    "name": "Botendienst",
+    "payloadType": [
+        {
+            "coding": [
+                {
+                    "system": "http://terminology.hl7.org/CodeSystem/data-absent-reason",
+                    "code": "not-applicable",
+                }
+            ]
+        }
+    ],
+    "address": "https://test.endpoint.address.do.not.use.local/3-0002-ARV1007143800036051/eRP-delivery"
+}
+----
+====
+
+Erläuterungen zu den Attributen im POST-Body:
+
+- Endpoint.meta.tag:Origin - Muss auf "owner" gesetzt werden, da es sich um eine selbst angelegte FHI-Ressource handelt.
+- Endpoint.status - Muss auf "active" gesetzt werden (sonst wird der Endpunkt nicht verwendet). 
+- Endpoint.connectionType - Der angebotene Dienst über "Zuweisen ohne Anmeldung".
+- Endpoint.address - Die URL für den Dienst über "Zuweisen ohne Anmeldung".
+- Endpoint.name - Der Name für den Endpunkt, der einen Hinweis auf den Inhalt geben soll. Dieser Name wird technisch nicht ausgewertet, hilft aber bei der manuellen Durchsicht der Daten.
+- Endpoint.payloadType - Hier immer "not-applicable". Wird im Kontext von "Zuweisen ohne Anmeldung" nicht verwendet.
+
+
+Der FHIR-VZD liefert als Ergebnis von dem erfolgreichen POST-Request mit HTTP-Status-Code "201 Created" folgendes Response.
+
+.Ergebnis von dem POST  (Klicken zum Ausklappen)
+[%collapsible%closed]
+====
+[source,txt, linenums]
+----
+{
+    "resourceType": "Endpoint",
+    "id": "816236b6-2dcb-43f1-9d42-95a0c3f74ac2",
+    "meta": {
+        "versionId": "1",
+        "lastUpdated": "2025-04-10T16:03:50.292+02:00",
+        "source": "#BXQxIYXKa5ORRmNZ",
+        "profile": [
+            "https://gematik.de/fhir/directory/StructureDefinition/EndpointDirectory"
+        ],
+        "tag": [
+            {
+                "system": "https://gematik.de/fhir/directory/CodeSystem/Origin",
+                "code": "owner",
+                "userSelected": true
+            }
+        ]
+    },
+    "status": "active",
+    "connectionType": {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/EndpointDirectoryConnectionType",
+        "code": "eRP-delivery",
+        "display": "Botendienst"
+    },
+    "name": "Botendienst",
+    "payloadType": [
+        {
+            "coding": [
+                {
+                    "system": "http://terminology.hl7.org/CodeSystem/data-absent-reason",
+                    "code": "not-applicable",
+                }
+            ]
+        }
+    ],
+    "address": "https://test.endpoint.address.do.not.use.local/3-0002-ARV1007143800036051/eRP-delivery"
+}
+----
+====
+
+Die enthaltene "id" wird für die Verlinkung mit dem HealthcareService benötigt. +
+ +
+Für die Beispielapotheke wird ein zweiter Endpunkt "Reservierung" mit einer FHIR-POST-Operation angelegt:
+
+.Request
+[source]
+----
+POST {{base-url}}/owner/Endpoint
+----
+
+.Body von dem POST  (Klicken zum Ausklappen)
+[%collapsible%closed]
+====
+[source,txt, linenums]
+----
+{
+    "resourceType": "Endpoint",
+    "meta": {
+        "profile": [
+            "https://gematik.de/fhir/directory/StructureDefinition/EndpointDirectory"
+        ],
+        "tag": [
+            {
+                "system": "https://gematik.de/fhir/directory/CodeSystem/Origin",
+                "code": "owner"
+            }
+        ]
+    },
+    "status": "active",
+    "connectionType": {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/EndpointDirectoryConnectionType",
+        "code": "eRP-onPremise",
+        "display": "Reservierung"
+    },
+    "name": "Reservierung",
+    "payloadType": [
+        {
+            "coding": [
+                {
+                    "system": "http://terminology.hl7.org/CodeSystem/data-absent-reason",
+                    "code": "not-applicable",
+                }
+            ]
+        }
+    ],
+    "address": "https://reservierung.endpoint.address.do.not.use.local/3-0002-ARV1007143800036051/eRP-onPremise"
+}
+----
+====
+
+Dieser Endpunkt erhält im FHIR-VZD die "id": "04deb322-4155-4fb8-8c67-b5f3a57a8a58" +
+
+
+Wenn der Endpunkt schon im FHIR-VZD vorhanden ist, müssen - bei Norwendigkeit - seine Daten mit einer PUT-Operation aktualisiert werden:
+
+.Request
+[source]
+----
+PUT {{base-url}}/owner/Endpoint/816236b6-2dcb-43f1-9d42-95a0c3f74ac2
+----
+Der Body von der PUT-Operation entspricht dem Body der POST Operation bzw. dem - aus dem FHIR-VZD gelesenen - Endpunkt mit aktualisierten Daten. +
+Bei einem vorhandenen Endpunkt ist keine Aktualisierung/Verlinkung von dem HealthcareService nötig (Punkt 5 entfällt), da der Endpunkt schon mit dem HealthcareService verlinkt ist.
+
+*5. Aktualisierung des HealthcareService* +
+ +
+Der neu angelegte Endpoint (POST Operation) muss mit dem HealthcareService verlinkt werden. Dafür wird die "id" aus dem angelegten Endpoint benötigt. Sie wird aus dem Ergebnis/Response vom dem POST-Request (siehe Punkt 4) entnommen: +
+[source]
+----
+...
+    "id": "04deb322-4155-4fb8-8c67-b5f3a57a8a58",
+...
+----
+Zweiter Endpunkt:
+[source]
+----
+...
+    "id": "816236b6-2dcb-43f1-9d42-95a0c3f74ac2",
+...
+----
+Die entnommenen "id" wird so im HealthcareService ergänzt:
+[source]
+----
+...
+   "endpoint": [
+	{
+		"reference": "Endpoint/04deb322-4155-4fb8-8c67-b5f3a57a8a58"
+	},
+	{
+		"reference": "Endpoint/816236b6-2dcb-43f1-9d42-95a0c3f74ac2"
+	}
+    ],	
+...
+----
+
+Diese Aktualisierung des HealthcareService entfällt, wenn der Endpunkt schon im FHIR-VZD vorhanden war.
+
+
+*6. Schreiben des aktualisierten HealthcareService in den FHIR-VZD* +
+ +
+Das AVS schreibt den - in Punkt 5 aktualisierten - HealthcareService mit einer FHIR-PUT-Operation in den FHIR-VZD.
+
+.Request
+[source]
+----
+PUT {{base-url}}/owner/HealthcareService/c12804cf-c462-413d-a950-58836f8cf287
+----
+
+.Body von dem PUT  (Klicken zum Ausklappen)
+[%collapsible%closed]
+====
+[source,txt, linenums]
+----
+{
+	"resourceType": "HealthcareService",
+	"id": "c12804cf-c462-413d-a950-58836f8cf287",
+	"meta": {
+		"versionId": "19",
+		"lastUpdated": "2025-05-12T17:04:01.812+02:00",
+		"source": "#c8BBFZvizbMADZiB",
+		"profile": [
+			"https://gematik.de/fhir/directory/StructureDefinition/HealthcareServiceDirectory"
+		],
+		"tag": [
+			{
+				"system": "https://gematik.de/fhir/directory/CodeSystem/Origin",
+				"code": "ldap",
+				"display": "Synchronized from LDAP VZD",
+				"userSelected": true
+			}
+		]
+	},
+	"identifier": [
+		{
+			"system": "https://gematik.de/fhir/directory/CodeSystem/ldapUID",
+			"value": "e231c5d5-f528-4930-8e74-edb38a5360c9"
+		}
+	],
+	"providedBy": {
+		"reference": "Organization/b5938fc4-2b37-4800-8859-9d2b7cfbe647"
+	},
+	"type": [
+		{
+			"coding": [
+				{
+					"system": "https://gematik.de/fhir/directory/CodeSystem/PharmacyTypeCS",
+					"code": "offizin-apotheke",
+					"display": "Offizin-Apotheke"
+				},
+				{
+					"system": "https://gematik.de/fhir/directory/CodeSystem/PharmacyTypeCS",
+					"code": "versandapotheke",
+					"display": "Versandapotheke"
+				}
+			],
+			"text": "apo-vzd"
+		}
+	],
+	"specialty": [
+		{
+			"coding": [
+				{
+					"system": "https://gematik.de/fhir/directory/CodeSystem/PharmacyHealthcareSpecialtyCS",
+					"code": "10",
+					"display": "Handverkauf"
+				},
+				{
+					"system": "https://gematik.de/fhir/directory/CodeSystem/PharmacyHealthcareSpecialtyCS",
+					"code": "40",
+					"display": "Versand"
+				}
+			],
+			"text": "apo-vzd"
+		}
+	],
+	"location": [
+		{
+			"reference": "Location/42dd2bae-2b51-42cd-b993-4102b6a223a0"
+		}
+	],
+	"telecom": [
+		{
+			"system": "phone",
+			"value": "0301234567",
+			"rank": 10
+		},
+		{
+			"system": "fax",
+			"value": "0301234568",
+			"rank": 20
+		},
+		{
+			"system": "email",
+			"value": "info@apotheke.de",
+			"rank": 30
+		},
+		{
+			"system": "url",
+			"value": "http://www.apotheke.com",
+			"rank": 40
+		}
+	],
+	"coverageArea": [
+		{
+			"extension": [
+				{
+					"url": "https://gematik.de/fhir/directory/StructureDefinition/ServiceCoverageArea",
+					"valueQuantity": {
+						"value": 10000,
+						"system": "http://unitsofmeasure.org",
+						"code": "m"
+					}
+				},
+				{
+					"url": "https://gematik.de/fhir/directory/StructureDefinition/ServiceCoveragePostalCode",
+					"valueString": "60596"
+				},
+				{
+					"url": "https://gematik.de/fhir/directory/StructureDefinition/ServiceCoveragePostalCode",
+					"valueString": "60597"
+				},
+				{
+					"url": "https://gematik.de/fhir/directory/StructureDefinition/ServiceCoveragePostalCode",
+					"valueString": "60598"
+				}
+			]
+		}
+	],
+	"characteristic": [
+		{
+			"extension": [
+				{
+					"url": "https://gematik.de/fhir/directory/StructureDefinition/PhysicalFeaturesAdditionalNoteEX",
+					"valueString": "Parkplatz vor der Apotheke in ausreichender Menge vorhanden"
+				}
+			],
+			"coding": [
+				{
+					"system": "https://gematik.de/fhir/directory/CodeSystem/physicalFeatures",
+					"code": "parkmoeglichkeit",
+					"display": "Parkmöglichkeit"
+				}
+			]
+		},
+		{
+			"extension": [
+				{
+					"url": "https://gematik.de/fhir/directory/StructureDefinition/PhysicalFeaturesAdditionalNoteEX",
+					"valueString": "Für Rollstuhlfahrer ebenerdig ohne Rampe"
+				}
+			],
+			"coding": [
+				{
+					"system": "https://gematik.de/fhir/directory/CodeSystem/physicalFeatures",
+					"code": "barrierefrei",
+					"display": "Barrierefrei"
+				}
+			]
+		},
+		{
+			"extension": [
+				{
+					"url": "https://gematik.de/fhir/directory/StructureDefinition/PhysicalFeaturesAdditionalNoteEX",
+					"valueString": "großer Abholautomat mit Blindenschrift"
+				}
+			],
+			"coding": [
+				{
+					"system": "https://gematik.de/fhir/directory/CodeSystem/physicalFeatures",
+					"code": "abholautomat",
+					"display": "Abholautomat"
+				}
+			]
+		},
+		{
+			"extension": [
+				{
+					"url": "https://gematik.de/fhir/directory/StructureDefinition/PhysicalFeaturesAdditionalNoteEX",
+					"valueString": "ÖPNV in der Nähe U2 Wittelbacher Platz"
+				}
+			],
+			"coding": [
+				{
+					"system": "https://gematik.de/fhir/directory/CodeSystem/physicalFeatures",
+					"code": "oepnv",
+					"display": "ÖPNV in der Nähe"
+				}
+			]
+		}
+	],
+	"availableTime": [
+		{
+			"daysOfWeek": [
+				"mon"
+			],
+			"availableStartTime": "08:30:00",
+			"availableEndTime": "18:00:00"
+		},
+		{
+			"daysOfWeek": [
+				"tue"
+			],
+			"availableStartTime": "07:00:00",
+			"availableEndTime": "18:00:00"
+		},
+		{
+			"daysOfWeek": [
+				"wed"
+			],
+			"availableStartTime": "08:00:00",
+			"availableEndTime": "18:00:00"
+		},
+		{
+			"daysOfWeek": [
+				"thu"
+			],
+			"availableStartTime": "08:30:00",
+			"availableEndTime": "22:00:00"
+		},
+		{
+			"daysOfWeek": [
+				"fri"
+			],
+			"availableStartTime": "08:00:00",
+			"availableEndTime": "18:00:00"
+		},
+		{
+			"extension": [
+				{
+					"url": "https://gematik.de/fhir/directory/StructureDefinition/SpecialOpeningTimesEX",
+					"extension": [
+						{
+							"url": "period",
+							"valuePeriod": {
+								"start": "2024-07-20T06:30:00.000+01:00",
+								"end": "2024-07-21T06:30:00.000+01:00"
+							}
+						},
+						{
+							"url": "qualifier",
+							"valueCoding": {
+								"system": "https://gematik.de/fhir/directory/CodeSystem/OpeningTimeQualifierCS",
+								"code": "notdienst",
+								"display": "Notdienst"
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"extension": [
+				{
+					"url": "https://gematik.de/fhir/directory/StructureDefinition/SpecialOpeningTimesEX",
+					"extension": [
+						{
+							"url": "period",
+							"valuePeriod": {
+								"start": "2024-08-20T06:30:00.000+02:00",
+								"end": "2024-08-21T06:30:00.000+02:00"
+							}
+						},
+						{
+							"url": "qualifier",
+							"valueCoding": {
+								"system": "https://gematik.de/fhir/directory/CodeSystem/OpeningTimeQualifierCS",
+								"code": "notdienst",
+								"display": "Notdienst"
+							}
+						}
+					]
+				}
+			]
+		}
+	],
+	"endpoint": [
+			{
+				"reference": "Endpoint/816236b6-2dcb-43f1-9d42-95a0c3f74ac2"
+			},
+			{
+				"reference": "Endpoint/04deb322-4155-4fb8-8c67-b5f3a57a8a58"
+			}
+    ],	
+	"notAvailable": [
+		{
+			"description": "Urlaub",
+			"during": {
+				"start": "2024-09-01",
+				"end": "2024-09-21"
+			}
+		},
+		{
+			"description": "Urlaub",
+			"during": {
+				"start": "2025-09-01",
+				"end": "2025-09-21"
+			}
+		}
+	],
+	"availabilityExceptions": "An Feiertagen geschlossen"
+}
+----
+====
+
+*7. Löschen eines Endpunkts* +
+Wenn ein Endpunkt nicht mehr benötigt wird, kann er im FHIR-VZD gelöscht werden:
+
+.Request
+[source]
+----
+DELETE {{base-url}}/owner/Endpoint/816236b6-2dcb-43f1-9d42-95a0c3f74ac2
+----
+Der Body von der DELETE Operation ist leer. +
+[NOTE]
+====
+Nach Löschung eines Endpunkts MUSS der Link zu diesem Endpunt aus der HealthcareService Ressource entfernt werden.
+====
+
+
+
+
+=== Pflege der Sichtbarkeit der Apotheke für Versicherte
+
+Wenn eine Apotheke mehrere SMC-Bs mit verschiedenen Telematik-IDs nutzt, ist im FHIR-VZD für jede Telematik-ID ein Apotheken-Eintrag vorhanden.
+Wenn davon eine Telematik-ID/SMC-B nicht für Versicherte genutzt werden soll (z.B. dieser Apotheken SMC-B/Telematik-ID keine e-Rezepte zugewiesen werden sollen), kann ihre Sichtbarkeit "OrganizationVisibility" auf "hide-versicherte" gesetzt werden. +
+Apotheken FHIR-VZD Einträge mit OrganizationVisibility="hide-versicherte"
+
+- werden von Versicherten über die FHIR-VZD-Suche (/fdv/search-Endpunkt) nicht gefunden,
+- können von Versicherten keine e-Rezepte zugewiesen werden,
+- sind für HBA und SMC-B Inhaber und TI-Anwendungen über die FHIR-VZD-Suche (/search und /search-Endpunkte) auffindbar,
+- können alle TI Dienste (z.B. KIM, TIM,...) nutzen.
+
+
+
+Ablauf: +
+ +
+*1. Lesen des Apotheken-Eintrags aus dem FHIR-VZD*. Siehe Kapitel link:./FHIR_VZD_HOWTO_AVS.adoc#151-suche-des-apothekeneintrags[Suche des Apothekeneintrags]. +
+*2. Extrahieren der relevanten Ressource aus dem Suchergebnis.* Die Sichtbarkeit der Apotheke befindet sich in FHI-Ressource-Organization mit Organization.meta.tag:Origin=ldap. 
+
+.FHI-Ressource-Organization - aktuelle Daten aus dem FHIR-VZD  (Klicken zum Ausklappen)
+[%collapsible%closed]
+====
+[source,txt, linenums]
+----
+            {
+                "resourceType": "Organization",
+                "id": "b5938fc4-2b37-4800-8859-9d2b7cfbe647",
+                "meta": {
+                    "versionId": "1",
+                    "lastUpdated": "2025-02-17T13:49:10.376+01:00",
+                    "source": "#SV5pStlGBhJR5qS2",
+                    "profile": [
+                        "https://gematik.de/fhir/directory/StructureDefinition/OrganizationDirectory"
+                    ],
+                    "tag": [
+                        {
+                            "system": "https://gematik.de/fhir/directory/CodeSystem/Origin",
+                            "code": "ldap",
+                            "display": "Synchronized from LDAP VZD"
+                        },
+                        {
+                            "system": "https://gematik.de/fhir/directory/source",
+                            "code": "ARV-TDG-20250213"
+                        }
+                    ]
+                },
+                "identifier": [
+                    {
+                        "system": "http://hl7.org/fhir/sid/us-npi",
+                        "value": "ee30fb34-483f-4a9f-b201-deaeab97c230"
+                    },
+                    {
+                        "type": {
+                            "coding": [
+                                {
+                                    "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                                    "code": "PRN"
+                                }
+                            ]
+                        },
+                        "system": "https://gematik.de/fhir/sid/telematik-id",
+                        "value": "3-4442-ARV1448252100040518"
+                    }
+                ],
+                "active": true,
+                "type": [
+                    {
+                        "coding": [
+                            {
+                                "system": "https://gematik.de/fhir/directory/CodeSystem/OrganizationProfessionOID",
+                                "code": "1.2.276.0.76.4.54",
+                                "display": "Öffentliche Apotheke"
+                            }
+                        ],
+                        "text": "ldap"
+                    }
+                ],
+                "name": "Organisation 3-4442-ARV1448252100040518",
+                "alias": [
+                    "Organisation 3-4442-ARV1448252100040518"
+                ]
+            }
+----
+====
+
+
+*3. Aktualisierung der Organization-Ressource.*  +
+Falls die Organization-Ressource die "OrganizationVisibility" noch nicht enthält, muss sie ergänzt werden:
+
+.OrganizationVisibility
+[source]
+----
+    "extension": [
+        {
+            "url": "https://gematik.de/fhir/directory/StructureDefinition/OrganizationVisibility",
+            "valueCoding": {
+                "system": "https://gematik.de/fhir/directory/CodeSystem/OrganizationVisibilityCS",
+                "code": "hide-versicherte"
+            }
+        }
+    ]
+----
+
+Falls die "OrganizationVisibility" bereits in der Organization-Ressource enthalten ist, muss ihr Wert geprüft werden. Ist bereits der gewünschte Wert eingetragen, kann hier abgebrochen werden. Im anderen Fall muss der Code "hide-versicherte" in die vorhandene "OrganizationVisibility" eingetragen werden. +
+Um die Apotheke wieder sichtbar für Versicherte zu machen, muss die "OrganizationVisibility" aus der Organization-Ressource entfernt werden. +
+
+*4. Schreiben der aktualisierten Organization in den FHIR-VZD* +
+ +
+Das AVS schreibt die - in Punkt 3 aktualisierte - Organization mit einer FHIR-PUT-Operation in den FHIR-VZD.
+
+.Request
+[source]
+----
+PUT {{base-url}}/owner/Organization/b5938fc4-2b37-4800-8859-9d2b7cfbe647
+----
+
+.Body von dem PUT  (Klicken zum Ausklappen)
+[%collapsible%closed]
+====
+[source,txt, linenums]
+----
+            {
+                "resourceType": "Organization",
+                "id": "b5938fc4-2b37-4800-8859-9d2b7cfbe647",
+                "meta": {
+                    "versionId": "1",
+                    "lastUpdated": "2025-02-17T13:49:10.376+01:00",
+                    "source": "#SV5pStlGBhJR5qS2",
+                    "profile": [
+                        "https://gematik.de/fhir/directory/StructureDefinition/OrganizationDirectory"
+                    ],
+                    "tag": [
+                        {
+                            "system": "https://gematik.de/fhir/directory/CodeSystem/Origin",
+                            "code": "ldap",
+                            "display": "Synchronized from LDAP VZD"
+                        },
+                        {
+                            "system": "https://gematik.de/fhir/directory/source",
+                            "code": "ARV-TDG-20250213"
+                        }
+                    ]
+                },
+		"extension": [
+			{
+			"url": "https://gematik.de/fhir/directory/StructureDefinition/OrganizationVisibility",
+			"valueCoding": {
+				"system": "https://gematik.de/fhir/directory/CodeSystem/OrganizationVisibilityCS",
+				"code": "hide-versicherte"
+					}
+			}
+		],
+		"identifier": [
+                    {
+                        "system": "http://hl7.org/fhir/sid/us-npi",
+                        "value": "ee30fb34-483f-4a9f-b201-deaeab97c230"
+                    },
+                    {
+                        "type": {
+                            "coding": [
+                                {
+                                    "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                                    "code": "PRN"
+                                }
+                            ]
+                        },
+                        "system": "https://gematik.de/fhir/sid/telematik-id",
+                        "value": "3-4442-ARV1448252100040518"
+                    }
+                ],
+                "active": true,
+                "type": [
+                    {
+                        "coding": [
+                            {
+                                "system": "https://gematik.de/fhir/directory/CodeSystem/OrganizationProfessionOID",
+                                "code": "1.2.276.0.76.4.54",
+                                "display": "Öffentliche Apotheke"
+                            }
+                        ],
+                        "text": "ldap"
+                    }
+                ],
+                "name": "Organisation 3-4442-ARV1448252100040518",
+                "alias": [
+                    "Organisation 3-4442-ARV1448252100040518"
+                ]
+            }
+----
+====
+
+
+
+
+
+
+
+=== Pflege der Geo-Koordinaten der Apotheke
+
+Für jede Apotheke ist im FHIR-VZD eine Adresse in einer Location-Ressource hinterlegt. Für diese Adresse werden die Geo-Koordinaten automatisch ermittelt und in "Location.position" hinterlegt. Wenn die Geo-Koordinaten zu der Adresse nicht automatisch ermittelbar oder zu ungenau waren, können sie korrigiert werden. Bei Änderung der Adresse über die Apothekenkammer werden die Geo-Koordinaten vom FHIR-VZD wieder automatisch ermittelt und ersetzen die vorhandenen Werte. +
+Der Wert Location.position.altitude wird im FHIR-VZD und den Apps nicht verwendet. +
+In der Location-Ressource können nur die Geo-Koordinaten in "Location.position" geändert werden. +
+ +
+Die Geo-Koordinaten der Apotheke werden in den e-Rezept Apps für die Umkreissuche der Versicherten nach Apotheken genutzt. +
+ +
+Ablauf: +
+ +
+*1. Lesen des Apotheken-Eintrags aus dem FHIR-VZD*. Siehe Kapitel link:./FHIR_VZD_HOWTO_AVS.adoc#151-suche-des-apothekeneintrags[Suche des Apothekeneintrags]. +
+*2. Extrahieren der relevanten Ressource aus dem Suchergebnis.* Die Geo-Koordinaten der Apotheke befindet sich in der FHI-Ressource Location, die in FHI-Ressource-HealthcareService (mit HealthcareService.meta.tag:Origin=ldap) referenziert wird. Dieser HealthcareService referenziert genau eine Location-Ressource.
+
+.FHI-Ressource Location - aktuelle Daten aus dem FHIR-VZD  (Klicken zum Ausklappen)
+[%collapsible%closed]
+====
+[source,txt, linenums]
+----
+	{
+		"resource": {
+                "resourceType": "Location",
+                "id": "42dd2bae-2b51-42cd-b993-4102b6a223a0",
+                "meta": {
+                    "versionId": "1",
+                    "lastUpdated": "2025-02-17T13:49:10.376+01:00",
+                    "source": "#SV5pStlGBhJR5qS2",
+                    "profile": [
+                        "https://gematik.de/fhir/directory/StructureDefinition/LocationDirectory"
+                    ],
+                    "tag": [
+                        {
+                            "system": "https://gematik.de/fhir/directory/CodeSystem/Origin",
+                            "code": "ldap",
+                            "display": "Synchronized from LDAP VZD"
+                        },
+                        {
+                            "system": "https://gematik.de/fhir/directory/source",
+                            "code": "ARV-TDG-20250213"
+                        }
+                    ]
+                },
+                "identifier": [
+                    {
+                        "system": "http://hl7.org/fhir/sid/us-npi",
+                        "value": "3cce2ec3-650e-4492-bfe4-9f59626904e5"
+                    }
+                ],
+                "name": "Location of Organisation 3-4442-ARV1448252100040518",
+                "address": {
+                    "use": "work",
+                    "type": "postal",
+                    "text": "Charlottenstraße 57&#13;&#10;10117&#13;&#10;Berlin",
+                    "line": [
+                        "Charlottenstraße 57"
+                    ],
+                    "city": "Berlin",
+                    "state": "Berlin",
+                    "postalCode": "10117",
+                    "country": "DE"
+                },
+                "position": {
+                    "longitude": 13.3912516,
+                    "latitude": 52.5128455
+                }
+            }
+	}	
+----
+====
+
+
+*3. Aktualisierung der Location-Ressource.*  +
+Die Location-Ressource enthält bereits die "Location.position". 
+Die Werte in "Location.position.longitude" und "Location.position.latitude" werden durch das AVS korrigiert.
+
+
+*4. Schreiben der aktualisierten Organization in den FHIR-VZD* +
+ +
+Das AVS schreibt die - in Punkt 3 aktualisierte - Location mit einer FHIR-PUT-Operation in den FHIR-VZD.
+
+.Request
+[source]
+----
+PUT {{base-url}}/owner/Location/42dd2bae-2b51-42cd-b993-4102b6a223a0
+----
+
+.Body von dem PUT  (Klicken zum Ausklappen)
+[%collapsible%closed]
+====
+[source,txt, linenums]
+----
+	{
+		"resource": {
+                "resourceType": "Location",
+                "id": "42dd2bae-2b51-42cd-b993-4102b6a223a0",
+                "meta": {
+                    "versionId": "1",
+                    "lastUpdated": "2025-02-17T13:49:10.376+01:00",
+                    "source": "#SV5pStlGBhJR5qS2",
+                    "profile": [
+                        "https://gematik.de/fhir/directory/StructureDefinition/LocationDirectory"
+                    ],
+                    "tag": [
+                        {
+                            "system": "https://gematik.de/fhir/directory/CodeSystem/Origin",
+                            "code": "ldap",
+                            "display": "Synchronized from LDAP VZD"
+                        },
+                        {
+                            "system": "https://gematik.de/fhir/directory/source",
+                            "code": "ARV-TDG-20250213"
+                        }
+                    ]
+                },
+                "identifier": [
+                    {
+                        "system": "http://hl7.org/fhir/sid/us-npi",
+                        "value": "3cce2ec3-650e-4492-bfe4-9f59626904e5"
+                    }
+                ],
+                "name": "Location of Organisation 3-4442-ARV1448252100040518",
+                "address": {
+                    "use": "work",
+                    "type": "postal",
+                    "text": "Charlottenstraße 57&#13;&#10;10117&#13;&#10;Berlin",
+                    "line": [
+                        "Charlottenstraße 57"
+                    ],
+                    "city": "Berlin",
+                    "state": "Berlin",
+                    "postalCode": "10117",
+                    "country": "DE"
+                },
+                "position": {
+                    "longitude": 13.3912516,
+                    "latitude": 52.5126600
+                }
+            }
+	}	
+
+----
+====

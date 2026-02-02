@@ -5,7 +5,7 @@
   "name": "Origin",
   "id": "Origin",
   "description": "CodeSystem which identifies the origin of a resource in the FHIR Directory",
-  "version": "0.10.1",
+  "version": "1.0.0",
   "url": "https://gematik.de/fhir/directory/CodeSystem/Origin",
   "concept": [
     {
@@ -15,9 +15,15 @@
     {
       "code": "owner",
       "display": "Provided by Identity Owner"
+    },
+    {
+      "code": "apo",
+      "display": "Synchronized from ApoVZD"
     }
   ],
+  "experimental": false,
   "publisher": "gematik GmbH",
+  "date": "2024-10-29",
   "caseSensitive": false,
-  "count": 2
+  "count": 3
 }

@@ -1,3 +1,3 @@
-[submodule "samples/fhir-search/python/api-telematik"]
-	path = samples/python/api-telematik
-	url = https://github.com/gematik/api-telematik.git
+[submodule "samples/directory-samples-python/api-telematik"]
+	path = samples/directory-samples-python/api-telematik
+	url = https://github.com/gematik/api-telematik

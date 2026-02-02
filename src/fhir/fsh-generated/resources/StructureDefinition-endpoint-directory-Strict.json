@@ -1,0 +1,128 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "endpoint-directory-Strict",
+  "url": "https://gematik.de/fhir/directory/StructureDefinition/endpoint-directory-Strict",
+  "version": "1.0.0",
+  "name": "EndpointDirectoryStrict",
+  "title": "EndpointDirectory-Strict",
+  "status": "active",
+  "experimental": false,
+  "date": "2024-10-29",
+  "publisher": "gematik GmbH",
+  "description": "Endpoint in gematik Directory with strict constraints",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Endpoint",
+  "baseDefinition": "https://gematik.de/fhir/directory/StructureDefinition/EndpointDirectory",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Endpoint.meta.tag",
+        "path": "Endpoint.meta.tag",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "pattern",
+              "path": "system"
+            }
+          ],
+          "rules": "closed"
+        },
+        "type": [
+          {
+            "code": "Coding",
+            "profile": [
+              "https://gematik.de/fhir/directory/StructureDefinition/CodingWithCodeAndSystem"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Endpoint.meta.tag:Origin",
+        "path": "Endpoint.meta.tag",
+        "sliceName": "Origin",
+        "type": [
+          {
+            "code": "Coding",
+            "profile": [
+              "https://gematik.de/fhir/directory/StructureDefinition/CodingWithCodeAndSystem"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Endpoint.extension:endpointVisibility",
+        "path": "Endpoint.extension",
+        "sliceName": "endpointVisibility"
+      },
+      {
+        "id": "Endpoint.extension:endpointVisibility.value[x]",
+        "path": "Endpoint.extension.value[x]",
+        "type": [
+          {
+            "code": "Coding",
+            "profile": [
+              "https://gematik.de/fhir/directory/StructureDefinition/CodingWithCodeAndSystem"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Endpoint.identifier",
+        "path": "Endpoint.identifier",
+        "max": "0"
+      },
+      {
+        "id": "Endpoint.connectionType",
+        "path": "Endpoint.connectionType",
+        "type": [
+          {
+            "code": "Coding",
+            "profile": [
+              "https://gematik.de/fhir/directory/StructureDefinition/CodingWithCodeAndSystem"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Endpoint.managingOrganization",
+        "path": "Endpoint.managingOrganization",
+        "max": "0"
+      },
+      {
+        "id": "Endpoint.contact",
+        "path": "Endpoint.contact",
+        "max": "0"
+      },
+      {
+        "id": "Endpoint.period",
+        "path": "Endpoint.period",
+        "max": "0"
+      },
+      {
+        "id": "Endpoint.payloadType.coding",
+        "path": "Endpoint.payloadType.coding",
+        "type": [
+          {
+            "code": "Coding",
+            "profile": [
+              "https://gematik.de/fhir/directory/StructureDefinition/CodingWithCodeAndSystem"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Endpoint.payloadMimeType",
+        "path": "Endpoint.payloadMimeType",
+        "max": "0"
+      },
+      {
+        "id": "Endpoint.header",
+        "path": "Endpoint.header",
+        "max": "0"
+      }
+    ]
+  }
+}

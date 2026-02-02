@@ -9,7 +9,7 @@
       }
     ],
     "profile": [
-      "https://gematik.de/fhir/directory/StructureDefinition/PractitionerDirectory"
+      "https://gematik.de/fhir/directory/StructureDefinition/PractitionerDirectoryStrict"
     ]
   },
   "identifier": [
@@ -22,7 +22,6 @@
       "value": "123456789"
     }
   ],
-  "active": true,
   "qualification": [
     {
       "code": {
@@ -30,28 +29,6 @@
           {
             "code": "1.2.276.0.76.4.31",
             "system": "https://gematik.de/fhir/directory/CodeSystem/PractitionerProfessionOID"
-          }
-        ]
-      }
-    },
-    {
-      "code": {
-        "coding": [
-          {
-            "code": "010",
-            "system": "urn:oid:1.2.276.0.76.5.514",
-            "display": "FA Allgemeinmedizin"
-          }
-        ]
-      }
-    },
-    {
-      "code": {
-        "coding": [
-          {
-            "code": "523",
-            "system": "urn:oid:1.2.276.0.76.5.514",
-            "display": "FA Innere Medizin und (SP) Gastroenterologie"
           }
         ]
       }

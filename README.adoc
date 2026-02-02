@@ -18,18 +18,38 @@ ifdef::env-github[]
 endif::[]
 
 image:https://shields.io/badge/gem Spec VZD-v1.14.0-blue[link="https://fachportal.gematik.de/fachportal-import/files/gemSpec_VZD_V1.14.0.pdf"]
-image:https://shields.io/badge/gemILF_Pflege_VZD-v1.5.4-green[link="https://github.com/gematik/api-vzd/blob/gemILF_Pflege_VZD/1.5.4/docs/gemILF_Pflege_VZD.adoc"]
+image:https://shields.io/badge/gemILF_Pflege_VZD-v1.5.5-green[link="https://github.com/gematik/api-vzd/blob/gemILF_Pflege_VZD/1.5.5/docs/gemILF_Pflege_VZD.adoc"]
 image:https://shields.io/badge/simplifier.net-0.10.2-red[link="https://simplifier.net/vzd-fhir-directory"] +
 image:https://shields.io/badge/Admin API-1.9.5-green?logo=swagger[link="https://github.com/gematik/api-vzd/blob/I_Directory_Administration/1.9.5/src/openapi/DirectoryAdministration.yaml"]
-image:https://shields.io/badge/Application Maintenance API-1.4.1-green?logo=swagger[link="https://github.com/gematik/api-vzd/blob/I_Directory_Application_Maintenance/1.4.1/src/openapi/DirectoryApplicationMaintenance.yaml"]
+image:https://shields.io/badge/Application Maintenance API-1.2.4-green?logo=swagger[link="https://github.com/gematik/api-vzd/blob/I_Directory_Application_Maintenance/1.2.4/src/openapi/DirectoryApplicationMaintenance.yaml"]
 
 == Aktuelles
 
-
-* *27.10.2023* 👨‍💻 https://github.com/gematik/api-vzd/blob/gemILF_VZD_FHIR_Directory/1.1.0/docs/gemILF_VZD_FHIR_Directory.adoc[FHIR VZD Implementierungsleitfaden v1.1.0]
+* *25.09.2025* 👨‍💻 https://github.com/gematik/api-vzd/blob/gemILF_Pflege_VZD/1.5.17/docs/gemILF_Pflege_VZD.adoc[Implementierungsleitfaden v1.5.17]
+* *25.09.2025* 👨‍💻 https://github.com/gematik/api-vzd/blob/gemILF_Pflege_VZD/1.5.17/docs/FHIR_VZD_HOWTO_Search.adoc[FHIR VZD HOWTO Search v1.1.6]
+* *25.09.2025* 👨‍💻 https://github.com/gematik/api-vzd/blob/gemILF_Pflege_VZD/1.5.17/src/openapi/DirectoryAdministration.yaml[DirectoryAdministration.yaml v1.12.8]
+* *25.09.2025* 👨‍💻 https://github.com/gematik/api-vzd/blob/gemILF_Pflege_VZD/1.5.17/src/openapi/DirectoryApplicationMaintenance.yaml[DirectoryApplicationMaintenance.yaml v1.4.8]
+* *19.09.2025* 👨‍💻 https://github.com/gematik/api-vzd/blob/gemILF_Pflege_VZD/1.5.16/docs/gemILF_Pflege_VZD.adoc[Implementierungsleitfaden v1.5.16]
+* *11.08.2025* 👨‍💻 https://github.com/gematik/api-vzd/tree/FHIR_VZD_Authenticate_Bearer/src/openapi[FHIR VZD - TokenType von "bearer" auf "Bearer" geändert: I_VZD_TI_Provider_Authenticate_Service.yaml, I_VZD_Holder_Authenticate_Service.yaml, I_VZD_Owner.yaml, I_VZD_Owner.yaml, I_VZD_Service_Authenticate_Service.yaml]
+* *27.06.2025* 👨‍💻 https://github.com/gematik/api-vzd/blob/gemILF_Pflege_VZD/1.5.15/docs/gemILF_Pflege_VZD.adoc[Implementierungsleitfaden v1.5.15]
+* *16.05.2025* 👨‍💻 https://github.com/gematik/api-vzd/blob/FHIR_VZD_HOWTO_AVS/1.0.1/docs/FHIR_VZD_HOWTO_AVS.adoc[Implementierungsleitfaden AVS v1.0.1]
+* *12.03.2025* 👨‍💻 https://github.com/gematik/api-vzd/blob/gemILF_Pflege_VZD/1.5.13/docs/gemILF_Pflege_VZD.adoc[Implementierungsleitfaden v1.5.13]
+* *26.09.2024* 👨‍💻 https://github.com/gematik/api-vzd/blob/gemILF_VZD_FHIR_Directory/1.2.4/docs/gemILF_VZD_FHIR_Directory.adoc[FHIR VZD Implementierungsleitfaden v1.2.4]
+* *11.09.2024* 👨‍💻 https://github.com/gematik/api-vzd/blob/gemILF_Pflege_VZD/1.5.12/docs/gemILF_Pflege_VZD.adoc[Implementierungsleitfaden v1.5.12]
+* *29.07.2024* 👨‍💻 https://github.com/gematik/api-vzd/blob/gemILF_VZD_FHIR_Directory/1.2.2/docs/gemILF_VZD_FHIR_Directory.adoc[FHIR VZD Implementierungsleitfaden v1.2.2]
+* *16.05.2024* 👨‍💻 https://github.com/gematik/api-vzd/blob/c8554d0173ff3b4540a8a0e76d41cb9ca99375c8/src/openapi/DirectoryAdministration.yaml[DirectoryAdministration.yaml 1.12.6]
+* *16.05.2024* 👨‍💻 https://github.com/gematik/api-vzd/blob/f8aa6cc260cd6915c936c873c512b5ce11ef1bde/src/openapi/DirectoryApplicationMaintenance.yaml[DirectoryApplicationMaintenance.yaml 1.4.5]
+* *07.05.2024* 👨‍💻 https://simplifier.net/packages/de.gematik.fhir.directory/0.11.6[Simplifier Profil 0.11.6]
+* *30.04.2024* 👨‍💻 https://simplifier.net/packages/de.gematik.fhir.directory/0.11.5[Simplifier Profil 0.11.5]
+* *26.04.2024* 👨‍💻 https://github.com/gematik/api-vzd/blob/gemILF_Pflege_VZD/1.5.10/docs/gemILF_Pflege_VZD.adoc[Implementierungsleitfaden v1.5.10]
+* *22.04.2024* 👨‍💻 https://simplifier.net/packages/de.gematik.fhir.directory/0.11.3[Simplifier Profil 0.11.3]
+* *04.04.2024* 👨‍💻 https://github.com/gematik/api-vzd/blob/gemILF_Pflege_VZD/1.5.9/docs/gemILF_Pflege_VZD.adoc[Implementierungsleitfaden v1.5.9]
+* *23.02.2024* 👨‍💻 https://github.com/gematik/api-vzd/blob/gemILF_Pflege_VZD/1.5.7/docs/gemILF_Pflege_VZD.adoc[Implementierungsleitfaden v1.5.7]
+* *11.09.2023* 👨‍💻 https://github.com/gematik/api-vzd/blob/gemILF_VZD_FHIR_Directory/1.0.2/docs/gemILF_VZD_FHIR_Directory.adoc[FHIR VZD Implementierungsleitfaden v1.0.2]
+* *25.08.2023* 👨‍💻 https://github.com/gematik/api-vzd/blob/gemILF_VZD_FHIR_Directory/1.0.1/docs/gemILF_VZD_FHIR_Directory.adoc[FHIR VZD Implementierungsleitfaden v1.0.1]
 * *28.07.2023* 👨‍💻 https://github.com/gematik/api-vzd/blob/gemILF_VZD_FHIR_Directory/1.0.0/docs/gemILF_VZD_FHIR_Directory.adoc[FHIR VZD Implementierungsleitfaden v1.0.0]
 * *12.05.2023* 👨‍💻 https://github.com/gematik/api-vzd/blob/gemILF_Pflege_VZD/1.5.5/docs/gemILF_Pflege_VZD.adoc[Implementierungsleitfaden v1.5.5]
-* *11.04.2023* 🔥 https://simplifier.net/packages/de.gematik.fhir.directory/0.10.1/~introduction[FHIR Package 0.10.1]
+* *11.04.2023* 🔥 https://simplifier.net/packages/de.gematik.fhir.directory/0.10.2/~introduction[FHIR Package 0.10.2]
 * *18.01.2023* 👨‍💻 https://github.com/gematik/api-vzd/blob/I_Directory_Administration/1.9.5/src/openapi/DirectoryAdministration.yaml[Directory Administration API v1.9.5]
 * *18.01.2023* 👨‍💻 https://github.com/gematik/api-vzd/blob/I_Directory_Application_Maintenance/1.2.4/src/openapi/DirectoryApplicationMaintenance.yaml[Directory Application Maintenance API v1.2.4]
 * *14.12.2022* 📄 https://fachportal.gematik.de/schnelleinstieg/downloadcenter/releases#c6770[Spezifikationen Verzeichnisdienst „VZD FHIR 1.0.0“]
@@ -63,11 +83,11 @@ Verzeichnisdienst bietet folgende Außenschnittstellen an (s. Nummerierung in de
 2. Die Konnektoren leiten die Anfragen zustandslos über das zentrale Netz der TI an den Verzeichnisdienst weiter. Über die LDAP Schnittstelle des zentrale betriebenen VZD werden speziell für solche Abfragen aufbereitete und optimierte Daten durchsucht (so genannte flache Liste). Schnittstelle `I_Directory_Query`, zentral.
 3. Die Kartenherausgeber (bspw. Landesärztekammer oder Kassenzahnärztliche Vereinigungen) in Kooperation mit Trust Service Provider sind verantwortlich für die Befüllung des VZD mit Basisdaten und Zertifikaten. Hierfür stell VZD eine REST API für die Administration der Daten im Verzeichnisdienst. Schnittstelle `I_Directory_Administration`.
 4. Die KIM Anbieter ergänzen die Basisdaten um eigene Inhalte, insb. um die KIM-EMail-Adressen. Schnittstelle `I_Application_Maintenance`.
-5. Für die Suche der Apotheken, z.B. in der gematik eRezept APP, existiert ein dediziertes Apothekenverzeichnis (ApoVZD). ApoVZD synchronisiert regelmäßig die Daten aus dem VZD und ergänzt diese um weitere Inhalte (z.B. um Geolokalisierung und Öffnungszeiten der Apotheken). Schnittstelle `I_Directory_Administration`, analog zu p.3.
-6. Für die Suche der Leistungserbringer-Institutionen im Rahmen der Berechtigungsvergabe in der elektronischen Patientenakte (ePA),vermittelt das ePA-Aktensystem die Kommunikation zwischen VZD und ePA-Frontend. Schnittstelle `I_Directory_Query`, zentral.
-7. _In Entwicklung_: TIM Anbieter registrieren sich und verifizieren sich gegenseitig mit Hilfe von VZD. Schnittstelle. `I_Directory_TIM_Provider_Services`
-8. _In Entwicklung_: VZD bietet direkten Zugriff zur den Daten über FHIR REST Schnittstellen für die TIM Clients und perspektivisch anderen registrierten Clients. Schnittstelle `I_Directory_FHIR#search`.
-9. _In Entwicklung_: Die Leistungserbringer können ihre Daten selbstständig administrieren, um z.B. die Organisationsstrukturen und Standorte zur erfassen. Schnittstelle `I_Directory_FHIR#owner`.
+5. Für die Suche der Apotheken, z.B. in der gematik eRezept APP, wird der FHIR VZD genutzt. Die AVS der Apotheken bzw. der Apotheker über das FHIR VZD Self-Service Portal ergänzen die FHIR VZD Daten um weitere Inhalte (z.B. Öffnungszeiten der Apotheken). Schnittstellen FHIRDirectoryFdvSearchAPI (/fdv/search) für die Suche und FHIRDirectoryOwnerAPI (/owner) für die Ergänzung der Daten.
+6. Für die Suche der Leistungserbringer-Institutionen im Rahmen der Berechtigungsvergabe in der elektronischen Patientenakte (ePA),vermittelt das ePA-Aktensystem die Kommunikation zwischen VZD und ePA-Frontend. Schnittstelle FHIRDirectoryFdvSearchAPI (/fdv/search).
+7. TIM Anbieter registrieren sich und verifizieren sich gegenseitig mit Hilfe von VZD Schnittstelle. `I_Directory_TIM_Provider_Services`
+8. VZD bietet direkten Zugriff zu den Daten über FHIR REST Schnittstellen für die Clients (z.B. TIM, FDV, eRezept App,...). Schnittstellen FHIRDirectoryFdvSearchAPI (/fdv/search) & FHIRDirectoryFdvSearchAPI (/fdv/search).
+9. _In Entwicklung_: Die Leistungserbringer können ihre Daten selbstständig administrieren, um z.B. die Organisationsstrukturen und Standorte zur erfassen. Schnittstelle FHIRDirectoryOwnerAPI (/owner). Für TIM Clients und für die Ergänzung von Mehrwertdaten der Apotheken wurde diese Schnittstelle schon freigegeben.
 
 == Systemarchitektur
 

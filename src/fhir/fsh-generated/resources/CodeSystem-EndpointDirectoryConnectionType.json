@@ -6,7 +6,7 @@
   "id": "EndpointDirectoryConnectionType",
   "title": "Codes for Endpoint.connectionType",
   "description": "CodeSystem TI specific connection types assigned to the Endpoints",
-  "version": "0.10.1",
+  "version": "1.0.0",
   "url": "https://gematik.de/fhir/directory/CodeSystem/EndpointDirectoryConnectionType",
   "concept": [
     {
@@ -14,8 +14,12 @@
       "display": "TI-Messenger Endpoint"
     },
     {
-      "code": "tim-domain",
-      "display": "TI-Messenger domain name"
+      "code": "tim-fa",
+      "display": "TI-Messenger Funktionsaccount"
+    },
+    {
+      "code": "tim-bot",
+      "display": "TI-Messenger Chatbot"
     },
     {
       "code": "kim-1.0",
@@ -34,11 +38,45 @@
       "display": "ePA Endpoint"
     },
     {
-      "code": "erp-supported",
-      "display": "eRP Endpoint"
+      "code": "ident-eingangsabruf",
+      "display": "Ident Eingangsdatenabruf"
+    },
+    {
+      "code": "apotheken-identverfahren",
+      "display": "Apotheken Ident Verfahren"
+    },
+    {
+      "code": "eRP-onPremise",
+      "display": "Reservierung"
+    },
+    {
+      "code": "eRP-delivery",
+      "display": "Botendienst"
+    },
+    {
+      "code": "eRP-shipment",
+      "display": "Versand"
+    },
+    {
+      "code": "eRP-availability",
+      "display": "Apotheke Verfügbarkeitsanfrage"
+    },
+    {
+      "code": "terminbuchung-online",
+      "display": "Online Terminbuchung"
+    },
+    {
+      "code": "terminbuchung-telefonisch",
+      "display": "Telefonische Terminbuchung"
+    },
+    {
+      "code": "terminbuchung-tim",
+      "display": "TI-Messenger Terminbuchung"
     }
   ],
+  "experimental": false,
   "publisher": "gematik GmbH",
+  "date": "2024-10-29",
   "caseSensitive": false,
-  "count": 7
+  "count": 16
 }

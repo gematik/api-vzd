@@ -6,8 +6,16 @@ info:
    # REST Schnittstelle zur Pflege der Fachanwendungsdaten der Verzeichniseinträge
      Über diese Schnittstelle können Fachanwendungsdaten der Verzeichniseinträge erzeugt, aktualisiert und gelöscht werden. 
 
-  version: 1.4.6
+  version: 1.4.8
 
+  # Änderungen in Version 1.4.8
+  #  423-Fehler (Locked) für Änderungen an inaktiven Einträgen ergänzt
+  #
+  # Änderungen in Version 1.4.7
+  #  Added OperationEnum
+  #  - mark_Directory_Entry_Certless
+  #  - unmark_Directory_Entry_Certless
+  #
   # Änderungen in Version 1.4.6
   #  Attribut "lanr" (Lebenslange Arztnummer) ergänzt in Schema "baseDirectoryEntry" 
   #  und als Suchparameter in Operation
@@ -619,7 +627,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'        
-
+        423:
+          description: Locked
+          #  entry.active = false
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
 
   /DirectoryEntries/{telematikID}/KOM-LE_Fachdaten/{fad}:
   
@@ -762,7 +776,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-
+        423:
+          description: Locked
+          #  entry.active = false
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
 
     delete:
       tags:
@@ -998,7 +1018,9 @@ paths:
                  delete_Directory_Entry_Certificate, 
                  add_Directory_FA-Attributes, 
                  modify_Directory_FA-Attributes, 
-                 delete_Directory_FA-Attributes]
+                 delete_Directory_FA-Attributes,
+                 mark_Directory_Entry_Certless,
+                 unmark_Directory_Entry_Certless]
       - name: noDataChanged
         in: query
         description: Erlaubt die Suche nach Log Daten für Schreiboperationen, die keine Daten geändert haben. 
@@ -1578,7 +1600,9 @@ components:
                  delete_Directory_Entry_Certificate, 
                  add_Directory_FA-Attributes, 
                  modify_Directory_FA-Attributes, 
-                 delete_Directory_FA-Attributes]
+                 delete_Directory_FA-Attributes,
+                 mark_Directory_Entry_Certless,
+                 unmark_Directory_Entry_Certless]
           readOnly: true
           example: modify_Directory_Entry
         noDataChanged:

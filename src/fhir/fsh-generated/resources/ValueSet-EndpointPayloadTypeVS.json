@@ -4,13 +4,24 @@
   "name": "EndpointPayloadTypeVS",
   "id": "EndpointPayloadTypeVS",
   "description": "ValueSet for `Endpoint.payloadType`",
-  "version": "0.10.1",
+  "version": "1.0.0",
   "url": "https://gematik.de/fhir/directory/ValueSet/EndpointPayloadTypeVS",
+  "experimental": false,
   "publisher": "gematik GmbH",
+  "date": "2024-10-29",
   "compose": {
     "include": [
       {
         "system": "https://gematik.de/fhir/directory/CodeSystem/EndpointDirectoryPayloadType"
+      },
+      {
+        "system": "http://terminology.hl7.org/CodeSystem/data-absent-reason",
+        "concept": [
+          {
+            "code": "not-applicable",
+            "display": "Not Applicable"
+          }
+        ]
       }
     ]
   }

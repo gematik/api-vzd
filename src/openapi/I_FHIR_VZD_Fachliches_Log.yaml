@@ -1,0 +1,244 @@
+openapi: 3.0.1
+info:
+  title: I_FHIR_VZD_Fachliches_Log
+  description: REST Schnittstelle I_FHIR_VZD_Fachliches_Log
+  version: 1.0.0
+
+  # 1.0.0
+  #   initial Version
+  #   - readLog
+  # 1.0.1
+  #   Anpassung der Abfrageparameter, Rückgabewerte und Beschreibung
+
+externalDocs:
+  description: Schnittstelle zur Pflege der Verzeichniseinträge
+  url: http://github.com/gematik/api-vzd/
+servers:
+  - url: https://fhir-directory-tu.vzd.ti-dienste.de/fachliches-log
+    description: Test server (TU)
+  - url: https://fhir-directory-ref.vzd.ti-dienste.de/fachliches-log
+    description: Referenzumgebung
+  - url: https://fhir-directory.vzd.ti-dienste.de/fachliches-log
+tags:
+  - name: readLog
+    description: Log von Verzeichniseinträgen lesen
+
+paths:
+  /log:
+    get:
+      tags:
+        - readLog
+      summary: Log von Verzeichniseinträgen lesen
+      description: |
+        Liefert die Log Daten aller zum Filter passenden Verzeichniseinträge. 
+        - Die maximale Anzahl der zurückgegebenen Einträge ist vom System auf 200 Einträge begrenzt.
+        - Sind mehr als 200 Einträge vorhanden, wird der Rückgabewert moreAvailable auf "true" gesetzt, um dies anzuzeigen.
+        - Die Log Daten sind in absteigender Reihenfolge des Zeitstempels sortiert.
+        - Die Zeitstempel sind in ISO-8601 Formatiert.
+        - Die Filterung bei Verwendung mehrerer Parameter erfolgt nach dem Prinzip „und“.
+        - Die TelematikId darf nach dem Prinzip „like“ verwendet werden. Alle anderen Parameter sind „exact“.
+        - Owner Abfragen liefern nur Einträge zurück, bei denen die TelematikId des Owners mit der TelematikId des Eintrags übereinstimmt.
+      operationId: readLog
+      # Für Operation readLog werden folgende Kombinationen der Suchparameter erlaubt:
+      # leere Parameterliste
+      # editorId + editorIdType + operation (optional) + resourceType (optional) + logTimeFrom (optional) + logTimeTo (optional)
+      # resourceId              + operation (optional) + resourceType (optional) + logTimeFrom (optional) + logTimeTo (optional)
+      # ldapUid                 + operation (optional) + resourceType (optional) + logTimeFrom (optional) + logTimeTo (optional)
+      # clientID                + operation (optional) + resourceType (optional) + logTimeFrom (optional) + logTimeTo (optional)
+      # *telematikID*           + operation (optional) + resourceType (optional) + logTimeFrom (optional) + logTimeTo (optional)
+      #                           operation            + resourceType            + logTimeFrom (optional) + logTimeTo (optional)
+      #                           operation            +                         + logTimeFrom (optional) + logTimeTo (optional)
+      #                                                + resourceType            + logTimeFrom (optional) + logTimeTo (optional)
+      #                                                                            logTimeFrom            + logTimeTo
+      #                                                                            logTimeFrom
+      #                                                                                                     logTimeTo
+      # Alle anderen Kombinationen der Suchparameter werden mit 400 bad request beantwortet.
+      parameters:
+        - name: editorId
+          in: query
+          description: Erlaubt die Suche anhand der Information wer die Änderung vorgenommen hat (z.B der Holder (holderId) oder Owner (telematikId)).
+            Wird dieses Attribut gesetzt, muss auch der Typ des Akteurs (editorIdType) gesetzt werden.
+          schema:
+            type: string
+            readOnly: true
+        - name: editorIdType
+          in: query
+          description: Definiert den Typ des Akteurs, der die Operation ausgeführt hat.
+            - z.B. der Akteur ist ein Owner, der den Eintrag erstellt hat.
+            - z.B. der Akteur ist ein Holder, der den Eintrag bearbeitet hat.
+            Wird dieses Attribut gesetzt, muss auch die editorId gesetzt werden.
+          schema:
+            type: string
+            enum: [ System,
+                    Holder,
+                    Owner ]
+            readOnly: true
+        - name: resourceId
+          in: query
+          description: Erlaubt die Suche mit Hilfe des Attributs resourceId. 
+            Hierbei handelt es sich um die ID des Verzeichniseintrags.
+          schema:
+            type: string
+            readOnly: true
+        - name: ldapUid
+          in: query
+          description: Erlaubt die Suche mit Hilfe des Attributs ldapUid.
+            Hierbei handelt es sich um die LDAP-ID des Verzeichniseintrags.
+          schema:
+            type: string
+            readOnly: true
+        - name: telematikId
+          in: query
+          description: Erlaubt die Suche mit Hilfe des Attributs TelematikId (die TelematikId in den Basisdaten).
+            Falls bei Owner-Abfragen gesetzt, muss die TelematikId mit der TelematikId des Owners übereinstimmen.
+          schema:
+            type: string
+            readOnly: true
+        - name: operation
+          in: query
+          description: Erlaubt die Suche anhand der ausgeführten Operation.
+          schema:
+            type: string
+            enum: [ create,
+                    update,
+                    delete ]
+            readOnly: true
+        - name: resourceType
+          in: query
+          description: Erlaubt die Suche nach dem Typ des Ressourcenobjekts.
+          schema:
+            type: string
+            enum: [ HealthcareService,
+                    PractitionerRole,
+                    Location,
+                    Endpoint,
+                    Organization,
+                    Practitioner ]
+        - name: logTimeFrom
+          in: query
+          description: Erlaubt die Suche mit Hilfe des Attributs logTime im Format ISO-8601.
+            Selektiert alle Datensätze mit logTime >= logTimeFrom.
+          schema:
+            type: string
+            format: date-time
+            readOnly: true
+            example: 2025-01-01T00:00:01+01:00
+        - name: logTimeTo
+          in: query
+          description: Erlaubt die Suche mit Hilfe des Attributs logTime im Format ISO-8601.
+            Selektiert alle Datensätze mit logTime <= logTimeTo.
+          schema:
+            type: string
+            format: date-time
+            readOnly: true
+            example: 2025-01-01T00:00:01+01:00
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LogEntriesResult'
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        403:
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+components:
+  schemas:
+
+    LogEntriesResult:
+      description: Ergebnis der Abfrage des Logs. 
+        Die maximale Anzahl der zurückgegebenen Einträge ist vom System auf 200 Einträge begrenzt.
+      type: object
+      properties:
+        moreAvailable:
+          description: Gibt an, ob es noch weitere Einträge gibt, die den Filterkriterien entsprechen.
+          type: boolean
+        logEntries:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChangeLog'
+
+    ChangeLog:
+      type: object
+      properties:
+        editorId:
+          description: Id des Akteurs, der die Operation ausgeführt hat.
+          type: string
+        editorIdType:
+          description: Typ des Akteurs, der die Operation ausgeführt hat.
+          type: string
+          enum: [ System,
+                  Holder,
+                  Owner ]
+        resourceId:
+          description: ID des Verzeichniseintrags, der ihn eindeutig identifiziert.
+          type: string
+        ldapUid:
+          description: LDAP-ID des Verzeichniseintrags.
+          type: string
+        telematikId:
+          description: Die telematikID.
+          type: string
+        operation:
+          description: Die ausgeführte Operation.
+          type: string
+          enum: [ create,
+                  update,
+                  delete ]
+        resourceType:
+          description: Der Typ des Ressourcenobjekts.
+          type: string
+          enum: [ HealthcareService,
+                  PractitionerRole,
+                  Location,
+                  Endpoint,
+                  Organization,
+                  Practitioner ]
+        logTime:
+          type: string
+          format: date-time
+          description: Zeitpunkt der Schreiboperation für den Datensatz.
+
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+          description: (optionale) Fehlernachricht
+        errors:
+          maxItems: 50
+          minItems: 0
+          type: array
+          items:
+            $ref: '#/components/schemas/InnerError'
+    InnerError:
+      type: object
+      properties:
+        attributeName:
+          description: Name des Attributs, in dem ein Fehler erkannt wurde
+          type: string
+        attributeError:
+          description: Beschreibung des erkannten Fehlers
+          type: string

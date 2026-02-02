@@ -1,0 +1,40 @@
+@startuml
+autonumber "<b>[00]"
+
+box Fachanwendung
+participant "Fachdienst" as Fachdienst
+end box
+
+box VZD-FHIR-Directory
+participant "OAuth-Server" as OAuth
+participant "Auth-Service" as Auth
+participant "FHIR-Proxy" as Proxy
+end box
+
+title FHIR-VZD Authentisierung für Fachdienste
+
+Fachdienst -> Fachdienst: prüfe, ob gültiges ""search-access_token"" vorliegt
+
+alt kein gültiges search-access_token vorhanden
+    Fachdienst -> Fachdienst: client_id und client_secret z.B. aus config lesen
+    Fachdienst -> OAuth: POST /token (client_id, client_secret)
+    OAuth -> OAuth: prüfe client_id, client_secret
+    OAuth -> Fachdienst: service-authz-token
+    Fachdienst -> Auth: GET /service-authenticate\nAuthorization: Bearer {service-authz-token}
+    Auth -> Auth: Prüfe service-authz-token
+    Auth -> Auth: Erzeuge search-access_token
+    Auth -> Fachdienst: HTTP 200 OK\n{ "access_token": "search-access_token", "token_type": "bearer", "expires_in": 86400 }
+    Fachdienst -> Fachdienst: cache search-access_token
+end
+
+== Suche durch Fachdienst im FHIR VZD ==
+
+Fachdienst -> Proxy: GET /search?... \nAuthorization: Bearer search-access_token
+
+alt search_access_token ist gültig
+    Proxy -> Fachdienst: HTTP 200 OK (Result Body json)
+else search_access_token ist ungültig
+    Proxy -> Fachdienst: HTTP 401
+end
+
+@enduml

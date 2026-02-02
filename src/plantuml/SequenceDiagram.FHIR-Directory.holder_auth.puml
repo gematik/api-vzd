@@ -1,0 +1,34 @@
+@startuml
+autonumber "<b>[00]"
+
+box Client
+participant "Holder" as Holder
+end box
+
+box VZD-FHIR-Directory
+participant "VZD OAuth Service" as OAuth
+participant "TI-ServiceProvider Dienst" as Proxy
+participant "FHIR-Directory" as fhir
+end box
+
+title Holder Authentisierung
+
+Holder -> Holder: prüfe, ob gültiges ""Holder-Access-Token"" vorliegt
+
+alt kein gültiges Holder-Access-Token vorhanden
+
+alt benötigt Key Cloak Holder-Access-Token
+    Holder -> OAuth: POST /token (client_id, client_secret für den Realm RSDirectoryAdministration)
+    OAuth -> OAuth: prüft client_id, client_secret
+    OAuth -> Holder: erstellt Key Cloak Holder-Access-Token (beinhaltet die client-id)
+end
+
+    Holder -> Proxy: GET /holder-authenticate (Key Cloak Holder-Access-Token)
+    Proxy -> Proxy: prüft Token und liest client-id aus
+    Proxy -> Proxy: erstellt Holder-Access-Token
+    Proxy -> Holder: Holder-Access-Token
+
+end
+
+
+@enduml

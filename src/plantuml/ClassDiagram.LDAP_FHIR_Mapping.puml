@@ -1,5 +1,6 @@
 @startuml
 
+
 package "LDAP VZD" <<Frame>> #lightgreen {
 class specialization {
 + 10_Officin_Apotheke
@@ -34,12 +35,12 @@ package "FHIR VZD" <<Frame>> #lightyellow {
   end note  
 
  class HealthcareService_type {
-  + offizin-apotheke                                Offizin-Apotheke
-  + krankenhausversorgende-apotheke  Krankenhausversorgende Apotheke	
-  + bundeswehrapotheke                        Bundeswehrapotheke
-  + heimversorgende-apotheke              Heimversorgende Apotheke
-  + versandapotheke                              Versandapotheke
-  + sterilherstellung                               Sterilherstellung
+  + Offizin-Apotheke
+  + Krankenhausversorgende Apotheke	
+  + Bundeswehrapotheke
+  + Heimversorgende Apotheke
+  + Versandapotheke
+  + Sterilherstellung
  }
 
  class Organization_type {
@@ -49,14 +50,14 @@ package "FHIR VZD" <<Frame>> #lightyellow {
   }
   
  class HealthcareService_characteristic {
-   + erx-token-receiver                        eRX_Token_Receiver
-   + apotheke-verfuegbarkeitsanfrage Apotheke_Verfügbarkeitsanfrage
-   + apotheken-ident-verfahren           Apotheken_Ident_Verfahren
-   + terminbuchung                             Terminbuchung
-   - parkmoeglichkeit                          Parkmöglichkeit                            
-   - oepnv                                           ÖPNV_in_der_Nähe
-   - barrierefrei                                   Barrierefrei
-   - abholautomat                              Abholautomat
+   + eRX_Token_Receiver
+   + Apotheke_Verfügbarkeitsanfrage
+   + Apotheken_Ident_Verfahren
+   + Terminbuchung
+   - Parkmöglichkeit
+   - ÖPNV_in_der_Nähe
+   - Barrierefrei
+   - Abholautomat
   }
 
   class Endpoint {

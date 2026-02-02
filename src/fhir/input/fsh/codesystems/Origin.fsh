@@ -5,3 +5,4 @@ Description: "CodeSystem which identifies the origin of a resource in the FHIR D
 * ^caseSensitive = false
 * #ldap "Synchronized from LDAP Directory"
 * #owner "Provided by Identity Owner"
+* #apo "Synchronized from ApoVZD"

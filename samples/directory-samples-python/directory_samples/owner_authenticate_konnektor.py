@@ -1,6 +1,6 @@
 from requests import Session
 from urllib.parse import urljoin
-from .apitools import (request_to_curl, response_to_text, base64url_decode)
+from .apitools import request_to_curl, response_to_text, base64url_decode
 from jwcrypto import jwt, jws
 from jwcrypto.common import json_encode, base64url_encode
 from json import loads
@@ -29,8 +29,13 @@ def main():
 
     session = Session()
 
-    fhir_directopy_base_url = os.getenv("FHIR_DIRECTORY_BASE_URL") or "https://fhir-directory-test.vzd.ti-dienste.de/"
-    gematik_idp_base_url = os.getenv("GEMATIK_IDP_BASE_URL") or "https://idp-ref.app.ti-dienste.de/"
+    fhir_directopy_base_url = (
+        os.getenv("FHIR_DIRECTORY_BASE_URL")
+        or "https://fhir-directory-ref.vzd.ti-dienste.de/"
+    )
+    gematik_idp_base_url = (
+        os.getenv("GEMATIK_IDP_BASE_URL") or "https://idp-ref.app.ti-dienste.de/"
+    )
 
     response = session.get(
         urljoin(gematik_idp_base_url, "/.well-known/openid-configuration")
@@ -48,14 +53,13 @@ def main():
 
     debug_print("Begin /owner-authenticate")
     response = session.get(
-        urljoin(fhir_directopy_base_url, "/owner-authenticate"),
-        allow_redirects=False
+        urljoin(fhir_directopy_base_url, "/owner-authenticate"), allow_redirects=False
     )
 
     debug_print(request_to_curl(response.request), soft_wrap=True)
     debug_print(response.headers)
 
-    auth_url = response.headers['Location']
+    auth_url = response.headers["Location"]
 
     response = session.get(
         auth_url,
@@ -84,14 +88,14 @@ def main():
     debug_print(last_soap_response())
 
     # find first SMC-B card
-    card = next(filter(lambda c: c.CardType == 'SMC-B', cards))
+    card = next(filter(lambda c: c.CardType == "SMC-B", cards))
 
     debug_print("Using following Card to authenticate:")
     debug_print(card)
 
     card_handle = card.CardHandle
 
-    card_certificates = get_certificates(card_handle, ['C.AUT'], crypt="ECC")
+    card_certificates = get_certificates(card_handle, ["C.AUT"], crypt="ECC")
     debug_print("GetCertificates Request")
     debug_print(last_soap_request())
     debug_print("GetCertificates Response")
@@ -105,12 +109,10 @@ def main():
         # BASE64(DER)
         "x5c": [b64encode(certificate_bytes).decode("utf-8")],
         # BP256R1 for ECC or PS256 for RSA
-        "alg": "BP256R1"
+        "alg": "BP256R1",
     }
 
-    challenge_response_payload = {
-      "njwt": challenge
-    }
+    challenge_response_payload = {"njwt": challenge}
 
     header_and_payload = f"{base64url_encode(json_encode(challenge_response_header))}.{base64url_encode(json_encode(challenge_response_payload))}"
     debug_print("Challenge response header and payload:")
@@ -123,12 +125,14 @@ def main():
 
     debug_print("Challenge response hash", challenge_response_hash)
 
-    challenge_response_signature = external_authenticate(card_handle, challenge_response_hash, "ECC")
+    challenge_response_signature = external_authenticate(
+        card_handle, challenge_response_hash, "ECC"
+    )
     debug_print("ExternalAuthenticate Request")
     debug_print(last_soap_request())
     debug_print("ExternalAuthenticate Response")
     debug_print(last_soap_response())
-    
+
     debug_print("Received signature from konnektor")
     debug_print(challenge_response_signature)
 
@@ -136,7 +140,9 @@ def main():
     r, s = ec_utils.decode_dss_signature(challenge_response_signature)
     challenge_response_signature = _encode_int(r, 256) + _encode_int(s, 256)
 
-    signed_token = header_and_payload + "." + base64url_encode(challenge_response_signature)
+    signed_token = (
+        header_and_payload + "." + base64url_encode(challenge_response_signature)
+    )
 
     debug_print("Complete signed challenge response")
     debug_print(signed_token, soft_wrap=True)
@@ -146,14 +152,12 @@ def main():
 
     token_to_encrypt = jwt.JWT(
         header={
-          "alg": "ECDH-ES",
-          "enc": "A256GCM",
-          "cty": "NJWT",
-          "exp": challenge_payload["exp"]
+            "alg": "ECDH-ES",
+            "enc": "A256GCM",
+            "cty": "NJWT",
+            "exp": challenge_payload["exp"],
         },
-        claims={
-          "njwt": signed_token
-        }
+        claims={"njwt": signed_token},
     )
 
     token_to_encrypt.make_encrypted_token(idp_encryption_key)
@@ -163,38 +167,35 @@ def main():
 
     response = session.post(
         openid_configuration["authorization_endpoint"],
-        data={
-            "signed_challenge": token_to_encrypt.serialize()
-        },
-        allow_redirects=False
+        data={"signed_challenge": token_to_encrypt.serialize()},
+        allow_redirects=False,
     )
 
     debug_print(response.text)
     debug_print(response.headers)
 
-    assert response.status_code == 302, f"Response must be 302 Redirect, got: {response.status_code}"
+    assert (
+        response.status_code == 302
+    ), f"Response must be 302 Redirect, got: {response.status_code}"
 
-    redirect_url = response.headers['Location']
+    redirect_url = response.headers["Location"]
 
-    response = session.get(
-        redirect_url,
-        allow_redirects=False
-    )
+    response = session.get(redirect_url, allow_redirects=False)
     debug_print(request_to_curl(response.request), soft_wrap=True)
     debug_print(response_to_text(response))
 
-    owner_access_token = response.json()['access_token']
+    owner_access_token = response.json()["access_token"]
     print(owner_access_token)
 
-    if not os.path.exists('debug'):
-        os.makedirs('debug')
-        
-    with open(os.path.join('debug', 'owner_authenticate_konnektor.html'), 'w') as f:
+    if not os.path.exists("debug"):
+        os.makedirs("debug")
+
+    with open(os.path.join("debug", "owner_authenticate_konnektor.html"), "w") as f:
         f.write(debug_console.export_html(theme=MONOKAI))
 
 
 # taken from jwcrypto
 def _encode_int(n, bits):
-    e = '{:x}'.format(n)
+    e = "{:x}".format(n)
     ilen = ((bits + 7) // 8) * 2  # number of bytes rounded up times 2 bytes
-    return unhexlify(e.rjust(ilen, '0')[:ilen])
+    return unhexlify(e.rjust(ilen, "0")[:ilen])

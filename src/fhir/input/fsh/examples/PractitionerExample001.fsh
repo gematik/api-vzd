@@ -1,15 +1,12 @@
 Instance: PractitionerExample001
-InstanceOf: PractitionerDirectory
+InstanceOf: PractitionerDirectoryStrict
 Usage: #example
 Description: "Example of a Practitioner as to be found in gematik FHIR Directory"
 * meta.tag[Origin] = Origin#ldap
-* active = true
 * id = "TIPractitionerExample001"
 * identifier[TelematikID].value = "1-1.58.00000040"
 * identifier[LANR].value = "123456789"
-* qualification[+].code = PractitionerProfessionOID#1.2.276.0.76.4.31
-* qualification[+].code = $Facharzttitel#010 "FA Allgemeinmedizin"
-* qualification[+].code = $Facharzttitel#523 "FA Innere Medizin und (SP) Gastroenterologie"
+* qualification[+].code = TIPractitionerProfessionOidCS#1.2.276.0.76.4.31
 * name
   * prefix = "Dr."
   * given[+] = "Max"

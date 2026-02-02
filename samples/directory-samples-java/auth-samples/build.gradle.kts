@@ -31,6 +31,13 @@ dependencies {
 
     testImplementation("io.rest-assured:rest-assured:5.2.0")
     testImplementation("io.rest-assured:json-path:5.2.0")
+
+    // HAPI FHIR LIBRARIES for Mapping FHIR Resources
+    implementation ("ca.uhn.hapi.fhir:hapi-fhir-base:6.10.5")
+    implementation ("ca.uhn.hapi.fhir:hapi-fhir-structures-r4:6.10.5")
+
+    // HAPI FHIR Client
+    implementation ("ca.uhn.hapi.fhir:hapi-fhir-client:6.10.5")
 }
 
     // HAPI FHIR LIBRARIES for Mapping FHIR Resources

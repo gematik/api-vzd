@@ -1,36 +1,16 @@
 {
   "resourceType": "StructureDefinition",
   "id": "LocationDirectory",
-  "extension": [
-    {
-      "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-category",
-      "valueString": "Base.Entities"
-    },
-    {
-      "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-security-category",
-      "valueCode": "business"
-    }
-  ],
   "url": "https://gematik.de/fhir/directory/StructureDefinition/LocationDirectory",
-  "version": "0.10.1",
+  "version": "1.0.0",
   "name": "LocationDirectory",
   "title": "Location in gematik Directory",
   "status": "active",
+  "experimental": false,
+  "date": "2024-10-29",
   "publisher": "gematik GmbH",
   "description": "Defines the data structure for medical, regulatory and technical\norganisations specific for german Healthcare and Telematics Infrastructure.",
   "fhirVersion": "4.0.1",
-  "mapping": [
-    {
-      "identity": "rim",
-      "uri": "http://hl7.org/v3",
-      "name": "RIM Mapping"
-    },
-    {
-      "identity": "w5",
-      "uri": "http://hl7.org/fhir/fivews",
-      "name": "FiveWs Pattern Mapping"
-    }
-  ],
   "kind": "resource",
   "abstract": false,
   "type": "Location",
@@ -49,13 +29,22 @@
         "slicing": {
           "discriminator": [
             {
-              "type": "value",
+              "type": "pattern",
               "path": "system"
             }
           ],
           "rules": "open"
         },
         "min": 1,
+        "constraint": [
+          {
+            "key": "CodingSytemCodeInv",
+            "severity": "warning",
+            "human": "System and Code SHOULD be present",
+            "expression": "system.exists() and code.exists()",
+            "source": "https://gematik.de/fhir/directory/StructureDefinition/LocationDirectory"
+          }
+        ],
         "mustSupport": true
       },
       {
@@ -121,7 +110,7 @@
         "path": "Location.address.state",
         "mustSupport": true,
         "binding": {
-          "strength": "extensible",
+          "strength": "required",
           "valueSet": "https://gematik.de/fhir/directory/ValueSet/AddressStateVS"
         }
       },
@@ -156,33 +145,13 @@
         "mustSupport": true
       },
       {
-        "id": "Location.hoursOfOperation",
-        "path": "Location.hoursOfOperation",
+        "id": "Location.managingOrganization",
+        "path": "Location.managingOrganization",
         "mustSupport": true
       },
       {
-        "id": "Location.hoursOfOperation.daysOfWeek",
-        "path": "Location.hoursOfOperation.daysOfWeek",
-        "mustSupport": true
-      },
-      {
-        "id": "Location.hoursOfOperation.allDay",
-        "path": "Location.hoursOfOperation.allDay",
-        "mustSupport": true
-      },
-      {
-        "id": "Location.hoursOfOperation.openingTime",
-        "path": "Location.hoursOfOperation.openingTime",
-        "mustSupport": true
-      },
-      {
-        "id": "Location.hoursOfOperation.closingTime",
-        "path": "Location.hoursOfOperation.closingTime",
-        "mustSupport": true
-      },
-      {
-        "id": "Location.availabilityExceptions",
-        "path": "Location.availabilityExceptions",
+        "id": "Location.partOf",
+        "path": "Location.partOf",
         "mustSupport": true
       }
     ]

@@ -1,0 +1,26 @@
+{
+  "resourceType": "ValueSet",
+  "status": "active",
+  "name": "HealthcareServiceCategoryCodes",
+  "id": "healthcare-service-category-codes",
+  "title": "HealthcareService Category Codes",
+  "description": "Codes for the VZD HealthcareService category element.",
+  "version": "1.0.0",
+  "url": "https://gematik.de/fhir/directory/ValueSet/healthcare-service-category-codes",
+  "experimental": false,
+  "publisher": "gematik GmbH",
+  "date": "2024-10-29",
+  "compose": {
+    "include": [
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/OrganizationProfessionOID",
+        "concept": [
+          {
+            "code": "1.2.276.0.76.4.292",
+            "display": "NCPeH Fachdienst"
+          }
+        ]
+      }
+    ]
+  }
+}

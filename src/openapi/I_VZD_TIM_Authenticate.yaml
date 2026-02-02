@@ -2,7 +2,12 @@ openapi: 3.0.3
 info:
   title: I_VZD_TIM_Authenticate
   description: REST interface to retrieve the TI-Messenger authenticate token.
-  version: 1.0.0
+  version: 1.0.1
+
+  # version 1.0.1
+  # TokenType von "bearer" auf "Bearer" geändert.
+
+  #  version: 1.0.0
   # initiale Version
 
 externalDocs:
@@ -66,7 +71,7 @@ components:
         token_type:
           type: string
           enum:
-            - bearer
+            - Bearer
         expires_in:
           type: integer
           format: int64
