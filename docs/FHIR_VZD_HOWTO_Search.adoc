@@ -18,7 +18,7 @@ image::gematik_logo.svg[gematik,float="right"]
 
 [width="100%",cols="50%,50%",options="header",]
 |===
-|Version: |1.1.6
+|Version: |1.1.7
 |Referencing: |gemILF_FHIR_VZD
 |===
 
@@ -66,6 +66,10 @@ Added custom Search Parameters
 
 |1.1.6 |23.09.25 | Special Case: Search by ProfessionOIDs in the ePA Context
 |Added this chapter 
+  |gematik
+
+|1.1.7 |03.02.26 | 4.3 Relevant ProfessionOIDs
+|Update fdv-relevant oid-list 
   |gematik
 
 
