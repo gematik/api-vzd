@@ -18,7 +18,7 @@ image::gematik_logo.svg[gematik,float="right"]
 
 [width="100%",cols="50%,50%",options="header",]
 |===
-|Version: |1.1.6
+|Version: |1.1.7
 |Referencing: |gemILF_FHIR_VZD
 |===
 
@@ -66,6 +66,10 @@ Added custom Search Parameters
 
 |1.1.6 |23.09.25 | Special Case: Search by ProfessionOIDs in the ePA Context
 |Added this chapter 
+  |gematik
+
+|1.1.7 |03.02.26 | 4.3 Relevant ProfessionOIDs
+|Update fdv-relevant oid-list 
   |gematik
 
 
@@ -930,7 +934,11 @@ Incoming search requests containing these ProfessionOIDs (excluding Diga) are au
 |1.2.276.0.76.4.255 |x |x |Kassenärztliche Vereinigung
 |1.2.276.0.76.4.256 |x |x |Kassenzahnärztliche Vereinigung
 |1.2.276.0.76.4.257 |x |x |Krankenhausgesellschaft
-|1.2.276.0.76.4.282 |x | |DIGA (Digital Health Application)
+|1.2.276.0.76.4.282 |x |x |DIGA (Digital Health Application)
+|1.2.276.0.76.4.278 |x |x |Ergotherapiepraxis
+|1.2.276.0.76.4.279 |x |x |Logopaedische Praxis
+|1.2.276.0.76.4.280 |x |x |Podologiepraxis
+|1.2.276.0.76.4.281 |x |x |Ernährungstherapeutische Praxis
 |===
 
 Note: The OID for representative roles (oid_versicherter) is currently not available and cannot be mapped.
@@ -1084,4 +1092,3 @@ GET {{fhir_server}}/fdv/search/HealthcareService?_query=near
     &_count=8
     &organization.type=1.2.276.0.76.4.50
 ----
-
