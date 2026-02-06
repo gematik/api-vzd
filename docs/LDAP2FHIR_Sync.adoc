@@ -237,7 +237,7 @@ Für jede KIM-Adresse im LDAP VZD Attribut "kimData" wird im FHIR VZD ein Endpoi
 |kimData.version |KIM Version| Endpoint.connectionType | Abbildung auf https://simplifier.net/vzd-fhir-directory/endpointdirectoryconnectiontype[EndpointConnectionTypeVS] (muss für KIM erweitert werden)
 |kimData.appTags |Liste von appTags| Endpoint.payloadType | appTags entsprechend https://simplifier.net/vzd-fhir-directory/endpointdirectorypayloadtype[EndpointDirectoryPayloadType] (muss für KIM erweitert werden). Jedes appTag aus dem LDAP VZD wird in eine Instanz von payloadType synchronisiert.
 
-|ou |FAD| Endpoint.?? | FAD (ID des KIM Anbieters) 
+|ou |FAD| Endpoint.extension:FADId | FAD (ID des KIM Anbieters) 
 | || Endpoint.status | active
 | || Endpoint.endpointVisibility | hide-versicherte "Eintrag für Versicherte verbergen"
 | || Endpoint.name | "KIM-Mailadresse" (kann im FHIR VZD später geändert werden, wenn die Administration der KIM Daten im FHIR VZD erfolgt)
