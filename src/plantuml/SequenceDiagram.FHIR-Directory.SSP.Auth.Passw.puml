@@ -26,7 +26,6 @@ au -> cl: [7] Rückgabe Token, Account Informationen
 deactivate au
 
 cl -> cl: [8] Benutzeranmeldung wird gespeichert
-cl -> o: [9] Anzeige SSP Suchseite
+cl -> cl: [9] Anzeige SSP Suchseite
 
-deactivate cl
 @enduml
