@@ -234,7 +234,12 @@ Für jede KIM-Adresse im LDAP VZD Attribut "kimData" wird im FHIR VZD ein Endpoi
 2+|LDAP VZD 2+| FHIR VZD
 |*LDAP-Attribut* |*LDAP Attributwert* |*FHIR Attribut* | *FHIR Attributwert*
 |kimData.mail |KIM Mailadresse| Endpoint.address | KIM Mailadresse aus kimData.mail 
-|kimData.version |KIM Version| Endpoint.connectionType | Abbildung auf https://simplifier.net/vzd-fhir-directory/endpointdirectoryconnectiontype[EndpointConnectionTypeVS] (muss für KIM erweitert werden)
+.3+|kimData.version .3+|KIM Version 
+
+|Endpoint.connectionType  | Abbildung auf https://simplifier.net/vzd-fhir-directory/endpointdirectoryconnectiontype[EndpointConnectionTypeVS] (muss für KIM angepasst werden)
+|Endpoint.version*  | Die KIM Version wird aus dem LDAP Attribut kimData.version entnommen und in dieses Endpoint Attribut übernommen.
+|Endpoint.xxl-kim-mails-supported* | Die KIM Option "große Mails" wird aus dem LDAP Attribut kimData.version entnommen ("+" am Ende des LDAP Attributs) und in dieses Endpoint Attribut übernommen. Falls kein "+" am Ende des LDAP Attributs vorhanden ist, wird das Endpoint Attribut auf "false" gesetzt bzw. der Wert nicht eingetragen.
+
 |kimData.appTags |Liste von appTags| Endpoint.payloadType | appTags entsprechend https://simplifier.net/vzd-fhir-directory/endpointdirectorypayloadtype[EndpointDirectoryPayloadType] (muss für KIM erweitert werden). Jedes appTag aus dem LDAP VZD wird in eine Instanz von payloadType synchronisiert.
 
 |ou |FAD| Endpoint.extension:FADId | FAD (ID des KIM Anbieters) 
@@ -244,12 +249,16 @@ Für jede KIM-Adresse im LDAP VZD Attribut "kimData" wird im FHIR VZD ein Endpoi
 |userCertificate|<ENC-Zertifikat>| Datenbanktabelle CERTIFICATE | Die Zertifikate werden in den VZD FHIR synchronisiert. Hierzu werden diese in einer separaten Datenbank-Tabelle mit TelematikId- und LDAP-UUID-Informationen unabhängig des HAPI-FHIR-Servers gespeichert und sind über die https://github.com/gematik/api-vzd/blob/main/src/openapi/I_FHIR_VZD_Certificates.yaml[I_FHIR_VZD_Certificates REST-Schnittstelle] abfragbar. (base64 → X509Certificate) 
 
 |============================
-
+"*" - Diese Endpoint Attribute müssen noch abgestimmt werden. +
+ +
 Zu beachten:
 
-- Endpunkte mit connectionType "kim-*" dürfen nur vom KIM Fachdienst mit der FAD-ID im Endpunkt geändert und gelöscht werden. Der Owner darf die Endpunkt-Referenz nicht entfernen. Ausnahmen gibt es für Administratoren (gematik/arvato). 
+- Endpunkte mit connectionType "kim" dürfen nur vom KIM Fachdienst mit der FAD-ID im Endpunkt geändert und gelöscht werden. Der Owner darf die Endpunkt-Referenz nicht entfernen. Ausnahmen gibt es für Administratoren (gematik/arvato). 
 - KIM Endpunkte werden bei der Synchronisation von LDAP in den FHIR VZD mit dem HealthcareService bzw. PractitionerRole verlinkt, in welchem Origin="ldap" gesetzt ist. 
 - Alle in "komLeData" & "mail"enthaltenen Informationen sind auch in kimData enthalten. Deshalb werden "komLeData" & "mail" nicht in den FHIR VZD synchronisiert.
 - "maxKOMLEadr" war nur für Kassen relevant und kann wegen der Nutzung von den appTags (payloadType) im FHIR VZD entfallen. Dieses Attribut wird deshalb nicht in den FHIR VZD synchronisiert.
 - LDAP "noVzdMailEntry" Parameter für KIM-Adessen -> Wird durch Nutzung von appTags (payloadType) abgedeckt.
 - Aufnahme in den Volltextindex: Endpoint.address, Endpoint.connectionType, Endpoint.payloadType (nur für KIM Adressen oder für alle Endpoints?), Endpoint.status als z.B. "Endpoint.status.active"
+- https://simplifier.net/vzd-fhir-directory/endpointdirectoryconnectiontype[EndpointDirectoryConnectionType] muss für KIM angepasst werden: Die aktuellen Codes kim-* löschen und "kim" aufnehmen.
+- Für die KIM Version muss ein neues Attribut im Endpoint mit Kardinalität 0..1 definiert werden. Das Attribut muss als Suchparameter nutzbar sein. Für KIM Endpoints ist es verpflichtend, für andere optional. Für die Werte muss ein Code System definiert werden; 1.0, 1.5, 2.0
+- Für die Unterstützung von großen KIM-Mails muss ein neues Attribut im Endpoint definiert werden: Entweder ein Boolean Attribut xxl-kim-mails-supported oder ein Wert in connectionType oder payloadType. Das Attribut muss als Suchparameter nutzbar sein.
