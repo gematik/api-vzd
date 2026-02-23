@@ -41,7 +41,7 @@ jobs:
         uses: actions/checkout@v6
         if: github.event_name == 'pull_request'
         with:
-          ref: ${{ github.event.pull_request.head.ref }}
+          ref: ${{ github.event.pull_request.head.sha }}
 
       - name: Checkout code (Main)
         uses: actions/checkout@v6
