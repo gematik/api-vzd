@@ -91,6 +91,15 @@ jobs:
           bundle-file: validation.json
           include: errors
 
+      - name: Debug build identity
+        run: |
+          echo "event=$GITHUB_EVENT_NAME"
+          echo "ref=$GITHUB_REF"
+          echo "sha=$GITHUB_SHA"
+          echo "head=$(git rev-parse HEAD)"
+          echo "sushi=$(npx --yes fsh-sushi@3.17.0 --version || true)"
+          ls -la ~/.fhir/packages | sed -n '1,60p'
+
       - name: Check for Uncommitted Changes
         run: |
           git diff --exit-code 'src/fhir/fsh-generated/resources'|| (echo "Es gibt Änderungen durch die Pipeline. Lokale Sushi Konfiguration prüfen!" && exit 1)
