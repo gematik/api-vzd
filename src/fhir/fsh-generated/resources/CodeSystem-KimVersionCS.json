@@ -1,6 +1,6 @@
 {
   "resourceType": "CodeSystem",
-  "status": "draft",
+  "status": "active",
   "content": "complete",
   "name": "KimVersionCS",
   "id": "KimVersionCS",
@@ -22,5 +22,9 @@
       "display": "KIM 2.0 Endpoint"
     }
   ],
+  "experimental": false,
+  "publisher": "gematik GmbH",
+  "date": "2024-10-29",
+  "caseSensitive": false,
   "count": 3
 }
