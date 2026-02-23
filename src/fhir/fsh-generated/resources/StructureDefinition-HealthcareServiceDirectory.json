@@ -66,6 +66,20 @@
         "patternUri": "https://gematik.de/fhir/directory/CodeSystem/Origin"
       },
       {
+        "id": "HealthcareService.extension",
+        "path": "HealthcareService.extension",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "value",
+              "path": "url"
+            }
+          ],
+          "ordered": false,
+          "rules": "open"
+        }
+      },
+      {
         "id": "HealthcareService.extension:holderId",
         "path": "HealthcareService.extension",
         "sliceName": "holderId",
@@ -86,7 +100,7 @@
         "path": "HealthcareService.extension",
         "sliceName": "ownerTelematikId",
         "min": 0,
-        "max": "*",
+        "max": "1",
         "type": [
           {
             "code": "Extension",
@@ -385,6 +399,20 @@
           }
         ],
         "mustSupport": true
+      },
+      {
+        "id": "HealthcareService.availableTime.extension",
+        "path": "HealthcareService.availableTime.extension",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "value",
+              "path": "url"
+            }
+          ],
+          "ordered": false,
+          "rules": "open"
+        }
       },
       {
         "id": "HealthcareService.availableTime.extension:specialOpeningTimes",
