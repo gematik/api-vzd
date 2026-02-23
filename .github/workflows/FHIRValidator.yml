@@ -40,7 +40,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v6
         with:
-          ref: ${{ github.sha }}
+          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
 
       - name: Validate Resource Status
         uses: patrick-werner/fhir-resource-status-check@1.2.0
