@@ -37,15 +37,10 @@ jobs:
     
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: Checkout code (PR)
+      - name: Checkout code
         uses: actions/checkout@v6
-        if: github.event_name == 'pull_request'
         with:
-          ref: ${{ github.event.pull_request.head.sha }}
-
-      - name: Checkout code (Main)
-        uses: actions/checkout@v6
-        if: github.event_name != 'pull_request'
+          ref: ${{ github.sha }}
 
       - name: Validate Resource Status
         uses: patrick-werner/fhir-resource-status-check@1.2.0
