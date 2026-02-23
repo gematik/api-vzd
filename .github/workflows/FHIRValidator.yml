@@ -40,59 +40,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v6
         with:
-          fetch-depth: 0
-          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
+          ref: ${{ github.sha }}
 
       - name: Validate Resource Status
         uses: patrick-werner/fhir-resource-status-check@1.2.0
         with:
           folder: './src/fhir/fsh-generated/resources/'
-
-      - name: Debug before Firely Terminal
-        shell: bash
-        run: |
-          set -euxo pipefail
-          echo "=== GitHub context ==="
-          echo "event=$GITHUB_EVENT_NAME"
-          echo "ref=$GITHUB_REF"
-          echo "ref_name=${GITHUB_REF_NAME:-}"
-          echo "head_ref=${GITHUB_HEAD_REF:-}"
-          echo "sha=$GITHUB_SHA"
-          echo "head=$(git rev-parse HEAD)"
-          echo "branch=$(git rev-parse --abbrev-ref HEAD || true)"
-          echo "describe=$(git describe --tags --always --dirty || true)"
-
-          echo "=== Tool versions ==="
-          node --version || true
-          npm --version || true
-          dotnet --info || true
-          java -version || true
-
-          echo "=== Working tree (pre terminal) ==="
-          git status --porcelain
-          echo "Changed files (pre terminal):"
-          git diff --name-only -- src/fhir/fsh-generated/resources || true
-
-          echo "=== FHIR package cache (pre terminal) ==="
-          if [ -d "$HOME/.fhir/packages" ]; then
-            ls -la "$HOME/.fhir/packages" | sed -n '1,200p'
-            echo "packages.ini (pre terminal):"
-            cat "$HOME/.fhir/packages/packages.ini" || true
-          else
-            echo "No $HOME/.fhir/packages directory yet"
-          fi
-
-      - name: Normalize GitHub env for deterministic tooling
-        shell: bash
-        run: |
-          # Ensure tools that read GitHub env vars see the same values in push and pull_request runs.
-          echo "GITHUB_SHA=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
-
-          # For pull_request events, normalize refs to the PR head branch (not refs/pull/.../merge).
-          if [ -n "${GITHUB_HEAD_REF:-}" ]; then
-            echo "GITHUB_REF=refs/heads/${GITHUB_HEAD_REF}" >> "$GITHUB_ENV"
-            echo "GITHUB_REF_NAME=${GITHUB_HEAD_REF}" >> "$GITHUB_ENV"
-          fi
 
       - name: Firely.Terminal (GitHub Actions)
         uses: FirelyTeam/firely-terminal-pipeline@v0.7.29
@@ -118,37 +71,6 @@ jobs:
           SUSHI_VERSION: 3.17.0
           EXPECTED_FAILS: VALIDATION_CONFORMANCE_DOTNET
 
-      - name: Debug after Firely Terminal
-        shell: bash
-        run: |
-          set -euxo pipefail
-          echo "=== Working tree (post terminal) ==="
-          git status --porcelain
-
-          echo "Changed files (post terminal):"
-          git diff --name-only -- src/fhir/fsh-generated/resources || true
-
-          echo "Diff summary (post terminal):"
-          git diff --stat -- src/fhir/fsh-generated/resources || true
-
-          echo "First 200 lines of diff (post terminal):"
-          git diff -- src/fhir/fsh-generated/resources | sed -n '1,200p' || true
-
-          echo "=== FHIR package cache (post terminal) ==="
-          if [ -d "$HOME/.fhir/packages" ]; then
-            ls -la "$HOME/.fhir/packages" | sed -n '1,200p'
-            echo "packages.ini (post terminal):"
-            cat "$HOME/.fhir/packages/packages.ini" || true
-
-            CORE_DIR="$HOME/.fhir/packages/hl7.fhir.r4.core#4.0.1"
-            if [ -d "$CORE_DIR" ]; then
-              echo "Core package content hash (hl7.fhir.r4.core#4.0.1):"
-              (cd "$CORE_DIR" && find . -type f -print0 | sort -z | xargs -0 sha256sum | sha256sum) || true
-            else
-              echo "Core package dir not found: $CORE_DIR"
-            fi
-          fi
-
       - name: Upload validation artifacts
         uses: actions/upload-artifact@v6
         with:
@@ -163,6 +85,15 @@ jobs:
         with:
           bundle-file: validation.json
           include: errors
+
+      - name: Debug build identity
+        run: |
+          echo "event=$GITHUB_EVENT_NAME"
+          echo "ref=$GITHUB_REF"
+          echo "sha=$GITHUB_SHA"
+          echo "head=$(git rev-parse HEAD)"
+          echo "sushi=$(npx --yes fsh-sushi@3.17.0 --version || true)"
+          ls -la ~/.fhir/packages | sed -n '1,60p'
 
       - name: Check for Uncommitted Changes
         run: |
