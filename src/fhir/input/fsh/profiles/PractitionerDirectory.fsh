@@ -11,7 +11,7 @@ Title: "Practitioner in gematik Directory"
 * meta.tag[Origin] from OriginVS
 * meta.tag[Origin].system =  Canonical(Origin)
 * active MS
-* identifier:TelematikID ..1
+* identifier[TelematikID] ..1
 * name ..1 
 * qualification 
   * code from TIPractitionerQualificationVS
