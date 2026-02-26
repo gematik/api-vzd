@@ -60,6 +60,17 @@
         "patternUri": "https://gematik.de/fhir/directory/CodeSystem/Origin"
       },
       {
+        "id": "Practitioner.identifier",
+        "path": "Practitioner.identifier",
+        "min": 1
+      },
+      {
+        "id": "Practitioner.identifier:TelematikID",
+        "path": "Practitioner.identifier",
+        "sliceName": "TelematikID",
+        "min": 1
+      },
+      {
         "id": "Practitioner.active",
         "path": "Practitioner.active",
         "mustSupport": true

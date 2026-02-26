@@ -15,6 +15,9 @@
         "system": "https://gematik.de/fhir/directory/CodeSystem/EndpointDirectoryPayloadType"
       },
       {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/EndpointDirectoryKIMappTags"
+      },
+      {
         "system": "http://terminology.hl7.org/CodeSystem/data-absent-reason",
         "concept": [
           {

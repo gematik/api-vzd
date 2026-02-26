@@ -1,0 +1,11 @@
+{
+  "resourceType": "CodeSystem",
+  "status": "draft",
+  "content": "not-present",
+  "name": "EndpointDirectoryKIMappTags",
+  "id": "EndpointDirectoryKIMappTags",
+  "title": "EndpointDirectory KIM appTags",
+  "description": "CodeSystem for KIM appTags to be used in Endpoint.payloadType",
+  "version": "1.0.1",
+  "url": "https://gematik.de/fhir/directory/CodeSystem/EndpointDirectoryKIMappTags"
+}
