@@ -6,7 +6,7 @@
   "status": "active",
   "experimental": false,
   "publisher": "gematik GmbH",
-  "date": "2024-10-29",
+  "date": "2025-02-26",
   "name": "practitioner-qualification",
   "description": "Search on Practitioner.qualification.code & Practitioner.qualification.code.coding.display",
   "code": "qualification",

@@ -7,7 +7,7 @@
   "title": "ConnectionType KimVersion Extension",
   "status": "active",
   "experimental": false,
-  "date": "2024-10-29",
+  "date": "2025-02-26",
   "publisher": "gematik GmbH",
   "description": "Extension for the KIM version of an Endpoint connection type",
   "fhirVersion": "4.0.1",

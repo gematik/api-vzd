@@ -7,7 +7,7 @@
   "title": "EndpointVisibility",
   "status": "active",
   "experimental": false,
-  "date": "2024-10-29",
+  "date": "2025-02-26",
   "publisher": "gematik GmbH",
   "description": "Visibility of an Endpoint in the FHIR-VZD. This Extensions includes codes of use-cases im which this Endpoint SHALL not be visible.",
   "fhirVersion": "4.0.1",

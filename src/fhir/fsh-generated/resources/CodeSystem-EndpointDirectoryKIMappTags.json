@@ -1,11 +1,14 @@
 {
   "resourceType": "CodeSystem",
-  "status": "draft",
+  "status": "active",
   "content": "not-present",
   "name": "EndpointDirectoryKIMappTags",
   "id": "EndpointDirectoryKIMappTags",
   "title": "EndpointDirectory KIM appTags",
   "description": "CodeSystem for KIM appTags to be used in Endpoint.payloadType",
   "version": "1.1.0",
-  "url": "https://gematik.de/fhir/directory/CodeSystem/EndpointDirectoryKIMappTags"
+  "url": "https://gematik.de/fhir/directory/CodeSystem/EndpointDirectoryKIMappTags",
+  "experimental": false,
+  "publisher": "gematik GmbH",
+  "date": "2025-02-26"
 }

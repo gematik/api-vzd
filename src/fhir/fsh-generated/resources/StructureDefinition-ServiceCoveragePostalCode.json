@@ -7,7 +7,7 @@
   "title": "ServiceCoveragePostalCode",
   "status": "active",
   "experimental": false,
-  "date": "2024-10-29",
+  "date": "2025-02-26",
   "publisher": "gematik GmbH",
   "description": "Service coverage area expressed as a postal code (PLZ)",
   "fhirVersion": "4.0.1",

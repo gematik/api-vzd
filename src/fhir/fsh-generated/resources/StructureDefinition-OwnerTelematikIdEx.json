@@ -7,7 +7,7 @@
   "title": "OwnerTelematikIdEx",
   "status": "active",
   "experimental": false,
-  "date": "2024-10-29",
+  "date": "2025-02-26",
   "publisher": "gematik GmbH",
   "description": "Extension for the Telematik ID of the owner of a Resource",
   "fhirVersion": "4.0.1",

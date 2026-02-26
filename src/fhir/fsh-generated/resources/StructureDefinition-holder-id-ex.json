@@ -7,7 +7,7 @@
   "title": "Holder ID Extension",
   "status": "active",
   "experimental": false,
-  "date": "2024-10-29",
+  "date": "2025-02-26",
   "publisher": "gematik GmbH",
   "description": "Extension for the holder ID of a HealthCard",
   "fhirVersion": "4.0.1",

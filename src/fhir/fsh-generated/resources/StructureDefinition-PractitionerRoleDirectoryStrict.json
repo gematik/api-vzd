@@ -7,7 +7,7 @@
   "title": "PractitionerRoleDirectoryStrict",
   "status": "active",
   "experimental": false,
-  "date": "2024-10-29",
+  "date": "2025-02-26",
   "publisher": "gematik GmbH",
   "description": "PractitionerRole in gematik Directory with strict constraints",
   "fhirVersion": "4.0.1",

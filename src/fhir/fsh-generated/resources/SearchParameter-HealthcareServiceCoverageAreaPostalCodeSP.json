@@ -6,7 +6,7 @@
   "status": "active",
   "experimental": false,
   "publisher": "gematik GmbH",
-  "date": "2024-10-29",
+  "date": "2025-02-26",
   "name": "service-coverage-plz",
   "description": "Search on HealthcareService.coverageArea.extension(https://gematik.de/fhir/directory/StructureDefinition/ServiceCoveragePostalCode)",
   "code": "coverageAreaPostalCode",
