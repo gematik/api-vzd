@@ -4,12 +4,12 @@ name: CI (FHIR Validation)
 
 # Controls when the action will run.
 on:
-  # Triggers the workflow on push or pull request events but only for the master branch
+  # Triggers the workflow on pull request events and pushes to main
   push:
+    branches: [ main ]
     paths:
       - 'src/fhir/**'
       - '.github/**'
-    branches-ignore: [ main ]
   pull_request:
     branches: [ main ]
     paths:
