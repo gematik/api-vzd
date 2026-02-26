@@ -4,7 +4,7 @@
   "name": "EndpointConnectionTypeVS",
   "id": "EndpointConnectionTypeVS",
   "description": "ValueSet for `Endpoint.connectionType`",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "url": "https://gematik.de/fhir/directory/ValueSet/EndpointConnectionTypeVS",
   "experimental": false,
   "publisher": "gematik GmbH",

@@ -6,6 +6,6 @@
   "id": "EndpointDirectoryKIMappTags",
   "title": "EndpointDirectory KIM appTags",
   "description": "CodeSystem for KIM appTags to be used in Endpoint.payloadType",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "url": "https://gematik.de/fhir/directory/CodeSystem/EndpointDirectoryKIMappTags"
 }
