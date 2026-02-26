@@ -40,7 +40,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v6
         with:
-          ref: ${{ github.sha }}
+          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || github.ref }}
 
       - name: Validate Resource Status
         uses: patrick-werner/fhir-resource-status-check@1.2.0
@@ -96,6 +96,7 @@ jobs:
           ls -la ~/.fhir/packages | sed -n '1,60p'
 
       - name: Add & Commit
+        if: github.event_name == 'pull_request'
         uses: EndBug/add-and-commit@v9
         with:
           committer_name: GitHub Actions Bot
