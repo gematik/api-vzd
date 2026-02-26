@@ -66,11 +66,6 @@
         }
       },
       {
-        "id": "Practitioner.active",
-        "path": "Practitioner.active",
-        "max": "0"
-      },
-      {
         "id": "Practitioner.telecom",
         "path": "Practitioner.telecom",
         "max": "0"

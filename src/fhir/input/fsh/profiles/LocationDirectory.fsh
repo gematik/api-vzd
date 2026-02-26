@@ -18,7 +18,7 @@ organisations specific for german Healthcare and Telematics Infrastructure.
 * id MS
 * name MS
 * description MS
-* address MS
+* address 1.. MS
   * use MS
   * text MS
   * line MS

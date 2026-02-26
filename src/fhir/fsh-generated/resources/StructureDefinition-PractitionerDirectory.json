@@ -60,6 +60,11 @@
         "patternUri": "https://gematik.de/fhir/directory/CodeSystem/Origin"
       },
       {
+        "id": "Practitioner.active",
+        "path": "Practitioner.active",
+        "mustSupport": true
+      },
+      {
         "id": "Practitioner.name",
         "path": "Practitioner.name",
         "max": "1"

@@ -108,6 +108,7 @@
       {
         "id": "Location.address",
         "path": "Location.address",
+        "min": 1,
         "mustSupport": true
       },
       {

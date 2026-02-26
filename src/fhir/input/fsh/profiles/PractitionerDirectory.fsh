@@ -10,6 +10,8 @@ Title: "Practitioner in gematik Directory"
 * meta.tag contains Origin 1..1 MS
 * meta.tag[Origin] from OriginVS
 * meta.tag[Origin].system =  Canonical(Origin)
+* active MS
+* identifier:TelematikID ..1
 * name ..1 
 * qualification 
   * code from TIPractitionerQualificationVS
@@ -28,7 +30,6 @@ Description: "Practitioner in gematik Directory with strict constraints"
   * ^slicing.rules = #closed
 * identifier 
   ^slicing.rules = #closed
-* active 0..0
 * address 0..0
 * telecom 0..0
 * qualification 
