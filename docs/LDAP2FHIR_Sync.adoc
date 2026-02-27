@@ -260,7 +260,5 @@ Zu beachten:
 - "maxKOMLEadr" war nur für Kassen relevant und kann wegen der Nutzung von den appTags (payloadType) im FHIR VZD entfallen. Dieses Attribut wird deshalb nicht in den FHIR VZD synchronisiert.
 - LDAP "noVzdMailEntry" Parameter für KIM-Adessen -> Wird durch Nutzung von appTags (payloadType) abgedeckt.
 - Aufnahme in den Volltextindex: Endpoint.address, Endpoint.connectionType, Endpoint.payloadType (nur für KIM Adressen oder für alle Endpoints?), Endpoint.status als z.B. "Endpoint.status.active"
-- https://simplifier.net/vzd-fhir-directory/endpointdirectoryconnectiontype[EndpointDirectoryConnectionType] muss für KIM angepasst werden: Die aktuellen Codes kim-* löschen und "kim" aufnehmen.
-- Für die KIM Version muss ein neues Attribut im Endpoint mit Kardinalität 0..1 definiert werden. Das Attribut muss NICHT als Suchparameter nutzbar sein. Für KIM Endpoints ist es verpflichtend, für andere optional. Für die Werte muss ein Code System definiert werden; 1.0, 1.5, 2.0
-- Für die Unterstützung von großen KIM-Mails muss ein neues Attribut im Endpoint definiert werden: Entweder ein Boolean Attribut xxl-kim-mails-supported oder ein Wert in connectionType oder payloadType. Das Attribut muss NICHT als Suchparameter nutzbar sein.
+
 
