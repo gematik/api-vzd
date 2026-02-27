@@ -1,10 +1,10 @@
-Alias: $version = 1.0.1
+Alias: $version = 1.1.0
 
 RuleSet: Meta
 * ^status = #active
 * ^experimental = false
 * ^publisher = "gematik GmbH"
-* ^date = "2024-10-29"
+* ^date = 2025-02-26
 * ^version = $version
 
 RuleSet: MetaInstance
@@ -12,7 +12,7 @@ RuleSet: MetaInstance
 * status = #active
 * experimental = false
 * publisher = "gematik GmbH"
-* date = "2024-10-29"
+* date = 2025-02-26
 
 RuleSet: refChain(code)
 * extension[+]

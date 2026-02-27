@@ -2,12 +2,12 @@
   "resourceType": "StructureDefinition",
   "id": "PractitionerDirectoryStrict",
   "url": "https://gematik.de/fhir/directory/StructureDefinition/PractitionerDirectoryStrict",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "name": "PractitionerDirectoryStrict",
   "title": "PractitionerDirectoryStrict",
   "status": "active",
   "experimental": false,
-  "date": "2024-10-29",
+  "date": "2025-02-26",
   "publisher": "gematik GmbH",
   "description": "Practitioner in gematik Directory with strict constraints",
   "fhirVersion": "4.0.1",
@@ -64,11 +64,6 @@
           ],
           "rules": "closed"
         }
-      },
-      {
-        "id": "Practitioner.active",
-        "path": "Practitioner.active",
-        "max": "0"
       },
       {
         "id": "Practitioner.telecom",

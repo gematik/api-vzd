@@ -6,7 +6,7 @@
   "id": "ResourceTag",
   "title": "Resource Tag",
   "description": "All allowed tags for meta.tag usage in the Directory Service, excluding Origin Tags.",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "url": "https://gematik.de/fhir/directory/CodeSystem/ResourceTag",
   "concept": [
     {
@@ -16,6 +16,6 @@
   ],
   "experimental": false,
   "publisher": "gematik GmbH",
-  "date": "2024-10-29",
+  "date": "2025-02-26",
   "count": 1
 }

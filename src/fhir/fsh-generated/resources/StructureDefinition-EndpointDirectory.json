@@ -2,12 +2,12 @@
   "resourceType": "StructureDefinition",
   "id": "EndpointDirectory",
   "url": "https://gematik.de/fhir/directory/StructureDefinition/EndpointDirectory",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "name": "EndpointDirectory",
   "title": "Endpoint in gematik Directory",
   "status": "active",
   "experimental": false,
-  "date": "2024-10-29",
+  "date": "2025-02-26",
   "publisher": "gematik GmbH",
   "description": "Endpoints for applications in the gematik Directory",
   "fhirVersion": "4.0.1",
@@ -66,6 +66,20 @@
         "patternUri": "https://gematik.de/fhir/directory/CodeSystem/Origin"
       },
       {
+        "id": "Endpoint.extension",
+        "path": "Endpoint.extension",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "value",
+              "path": "url"
+            }
+          ],
+          "ordered": false,
+          "rules": "open"
+        }
+      },
+      {
         "id": "Endpoint.extension:endpointVisibility",
         "path": "Endpoint.extension",
         "sliceName": "endpointVisibility",
@@ -112,6 +126,13 @@
             "human": "System and Code SHOULD be present",
             "expression": "system.exists() and code.exists()",
             "source": "https://gematik.de/fhir/directory/StructureDefinition/EndpointDirectory"
+          },
+          {
+            "key": "KimConnectionTypeInv",
+            "severity": "error",
+            "human": "If the kimVersion extension is used on connectionType, then connectionType must be #kim from EndpointDirectoryConnectionType.",
+            "expression": "extension('https://gematik.de/fhir/directory/StructureDefinition/ConnectionTypeKimVersionEx').exists() implies (code = 'kim' and system = 'https://gematik.de/fhir/directory/CodeSystem/EndpointDirectoryConnectionType')",
+            "source": "https://gematik.de/fhir/directory/StructureDefinition/EndpointDirectory"
           }
         ],
         "mustSupport": true,
@@ -119,6 +140,22 @@
           "strength": "required",
           "valueSet": "https://gematik.de/fhir/directory/ValueSet/EndpointConnectionTypeVS"
         }
+      },
+      {
+        "id": "Endpoint.connectionType.extension:kimVersion",
+        "path": "Endpoint.connectionType.extension",
+        "sliceName": "kimVersion",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "https://gematik.de/fhir/directory/StructureDefinition/ConnectionTypeKimVersionEx"
+            ]
+          }
+        ],
+        "mustSupport": true
       },
       {
         "id": "Endpoint.connectionType.system",

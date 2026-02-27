@@ -6,7 +6,7 @@
   "id": "HolderCS",
   "title": "Codes for identity authorities (Holder)",
   "description": "Code System for identity authories in the TI, which verify and control the identities of practitioners and organisations",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "url": "https://gematik.de/fhir/directory/CodeSystem/HolderCS",
   "concept": [
     {
@@ -476,7 +476,7 @@
   ],
   "experimental": false,
   "publisher": "gematik GmbH",
-  "date": "2024-10-29",
+  "date": "2025-02-26",
   "caseSensitive": false,
   "count": 116
 }

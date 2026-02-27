@@ -2,12 +2,12 @@
   "resourceType": "StructureDefinition",
   "id": "PractitionerRoleDirectory",
   "url": "https://gematik.de/fhir/directory/StructureDefinition/PractitionerRoleDirectory",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "name": "PractitionerRoleDirectory",
   "title": "PractitionerRole in gematik Directory",
   "status": "active",
   "experimental": false,
-  "date": "2024-10-29",
+  "date": "2025-02-26",
   "publisher": "gematik GmbH",
   "fhirVersion": "4.0.1",
   "kind": "resource",
@@ -80,7 +80,7 @@
         "path": "PractitionerRole.extension",
         "sliceName": "ownerTelematikId",
         "min": 0,
-        "max": "*",
+        "max": "1",
         "type": [
           {
             "code": "Extension",

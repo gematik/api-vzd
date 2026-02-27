@@ -1,13 +1,13 @@
 {
-  "updated": "2025-08-25T15:16:23.810541+02:00",
+  "updated": "2026-02-23T14:48:45.75818+01:00",
   "dependencies": {
-    "de.basisprofil.r4": "1.5.4",
+    "de.gematik.ti": "1.2.0",
     "hl7.fhir.r4.core": "4.0.1",
-    "de.ihe-d.terminology": "3.0.1",
-    "de.gematik.terminology": "1.0.6",
-    "hl7.terminology.r4": "6.3.0",
+    "hl7.terminology.r4": "7.0.1",
     "hl7.fhir.uv.extensions.r4": "5.2.0",
-    "dvmd.kdl.r4": "2025.0.0"
+    "de.basisprofil.r4": "1.5.4",
+    "de.gematik.terminology": "1.0.8",
+    "dvmd.kdl.r4": "2025.0.1"
   },
   "missing": {}
 }

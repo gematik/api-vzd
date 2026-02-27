@@ -1,0 +1,30 @@
+{
+  "resourceType": "CodeSystem",
+  "status": "active",
+  "content": "complete",
+  "name": "KimVersionCS",
+  "id": "KimVersionCS",
+  "title": "KimVersionCS",
+  "description": "CodeSystem representing KIM Versions",
+  "version": "1.1.0",
+  "url": "https://gematik.de/fhir/directory/CodeSystem/KimVersionCS",
+  "concept": [
+    {
+      "code": "kim-1.0",
+      "display": "KIM Endpoint"
+    },
+    {
+      "code": "kim-1.5",
+      "display": "KIM 1.5 Endpoint"
+    },
+    {
+      "code": "kim-2.0",
+      "display": "KIM 2.0 Endpoint"
+    }
+  ],
+  "experimental": false,
+  "publisher": "gematik GmbH",
+  "date": "2025-02-26",
+  "caseSensitive": false,
+  "count": 3
+}

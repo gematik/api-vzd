@@ -12,3 +12,8 @@ Invariant: CodingSytemCodeInv
 Description: "System and Code SHOULD be present"
 Expression: "system.exists() and code.exists()"
 Severity: #warning
+
+Invariant: KimConnectionTypeInv
+Description: "If the kimVersion extension is used on connectionType, then connectionType must be #kim from EndpointDirectoryConnectionType."
+Expression: "extension('https://gematik.de/fhir/directory/StructureDefinition/ConnectionTypeKimVersionEx').exists() implies (code = 'kim' and system = 'https://gematik.de/fhir/directory/CodeSystem/EndpointDirectoryConnectionType')"
+Severity: #error

@@ -1,5 +1,5 @@
 canonical: https://gematik.de/fhir/directory
-version: 1.0.1
+version: 1.1.0
 fhirVersion: 4.0.1
 dependencies:
   de.gematik.terminology: 1.0.8

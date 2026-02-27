@@ -5,7 +5,7 @@
   "name": "PhysicalFeaturesHealthCareServiceCS",
   "id": "physicalFeatures",
   "description": "CodeSystem of defined physical features",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "url": "https://gematik.de/fhir/directory/CodeSystem/physicalFeatures",
   "concept": [
     {
@@ -27,7 +27,7 @@
   ],
   "experimental": false,
   "publisher": "gematik GmbH",
-  "date": "2024-10-29",
+  "date": "2025-02-26",
   "caseSensitive": true,
   "count": 4
 }

@@ -2,12 +2,12 @@
   "resourceType": "StructureDefinition",
   "id": "PractitionerDirectory",
   "url": "https://gematik.de/fhir/directory/StructureDefinition/PractitionerDirectory",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "name": "PractitionerDirectory",
   "title": "Practitioner in gematik Directory",
   "status": "active",
   "experimental": false,
-  "date": "2024-10-29",
+  "date": "2025-02-26",
   "publisher": "gematik GmbH",
   "fhirVersion": "4.0.1",
   "kind": "resource",
@@ -58,6 +58,22 @@
         "path": "Practitioner.meta.tag.system",
         "min": 1,
         "patternUri": "https://gematik.de/fhir/directory/CodeSystem/Origin"
+      },
+      {
+        "id": "Practitioner.identifier",
+        "path": "Practitioner.identifier",
+        "min": 1
+      },
+      {
+        "id": "Practitioner.identifier:TelematikID",
+        "path": "Practitioner.identifier",
+        "sliceName": "TelematikID",
+        "min": 1
+      },
+      {
+        "id": "Practitioner.active",
+        "path": "Practitioner.active",
+        "mustSupport": true
       },
       {
         "id": "Practitioner.name",

@@ -90,7 +90,7 @@ Context: Bundle.total
 Extension: HolderIdEx
 Id: holder-id-ex
 Title: "Holder ID Extension"
-Description: "Extension for the holder ID of a HealthCard"
+Description: "Extension for the holder ID of a HealthCard" // liste der berechtigt updates durchzuführen
 Context: HealthcareService, PractitionerRole
 * insert Meta
 * value[x] only code
@@ -99,8 +99,38 @@ Context: HealthcareService, PractitionerRole
 Extension: OwnerTelematikIdEx
 Id: OwnerTelematikIdEx
 Title: "OwnerTelematikIdEx"
-Description: "Extension for the Telematik ID of the owner of a Resource"
+Description: "Extension for the Telematik ID of the owner of a Resource" // erzeuger und inhaber
 Context: Resource
 * insert Meta
 * value[x] only $IdentifierTelematikID
 * valueIdentifier 1.. MS
+
+Extension: ConnectionTypeKimVersionEx
+Id: ConnectionTypeKimVersionEx
+Title: "ConnectionType KimVersion Extension"
+Description: "Extension for the KIM version of an Endpoint connection type"
+Context: Endpoint.connectionType
+* insert Meta
+* extension contains
+    version 1..1 MS and
+    xxlMailSupported 1..1 MS
+* extension[version]
+  * value[x] only Coding
+  * valueCoding obeys CodingSytemCodeInv
+  * valueCoding 1.. MS
+  * valueCoding from KimVersionVS
+* extension[xxlMailSupported]
+  * value[x] only boolean
+  * valueBoolean 1.. MS
+
+Extension: EndpointFADIdEx
+Id: EndpointFADIdEx
+Title: "Endpoint Fachdienst-ID Extension"
+Description: "Extension for the FAD of an KIM Endpoint"
+Context: Endpoint
+* insert Meta
+* value[x] only Identifier
+* valueIdentifier 1.. MS
+  * system 1.. MS
+  * system = $IdentifierFAD
+  * value 1.. MS
