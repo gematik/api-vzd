@@ -236,13 +236,13 @@ Für jede KIM-Adresse im LDAP VZD Attribut "kimData" wird im FHIR VZD ein Endpoi
 |kimData.mail |KIM Mailadresse| Endpoint.address | KIM Mailadresse aus kimData.mail 
 .3+|kimData.version .3+|KIM Version 
 
-|Endpoint.connectionType  | Abbildung auf https://simplifier.net/vzd-fhir-directory/endpointdirectoryconnectiontype[EndpointConnectionTypeVS]. Muss für KIM angepasst werden. Vorschlag "kim" als Code.
-|Endpoint.version*  | Die KIM Version wird aus dem LDAP Attribut kimData.version entnommen und in dieses Endpoint Attribut übernommen, ohne das optionale "+" am Ende.
-|Endpoint.xxl-kim-mails-supported* | Die KIM Option "große Mails" wird aus dem LDAP Attribut kimData.version entnommen ("\+" am Ende des LDAP Attributs) und in dieses Endpoint Attribut übernommen. Falls kein "+" am Ende des LDAP Attributs vorhanden ist, wird das Endpoint Attribut auf "false" gesetzt bzw. der Wert nicht eingetragen.
+|Endpoint.connectionType  | Abbildung auf https://simplifier.net/vzd-fhir-directory/endpointdirectoryconnectiontype[EndpointConnectionTypeVS]. Für KIM-Adressen wird "kim" als Code eingetragen. 
+|Endpoint.connectionType  Extension "kimVersion" | Die KIM Version wird aus dem LDAP Attribut kimData.version entnommen und in Endpoint connectionType Extension "kimVersion" übernommen.
+|Endpoint.connectionType  Extension "xxlMailSupported" | Die KIM Option "große Mails" wird aus dem LDAP Attribut kimData.version entnommen ("\+" am Ende des LDAP Attributs) und in connectionType Extension "xxlMailSupported" als "true" übernommen. Falls kein "+" am Ende des LDAP Attributs vorhanden ist, wird xxlMailSupported auf "false" gesetzt.
 
 |kimData.appTags |Liste von appTags| Endpoint.payloadType | appTags entsprechend https://simplifier.net/vzd-fhir-directory/endpointdirectorypayloadtype[EndpointDirectoryPayloadType] (muss für KIM erweitert werden). Jedes mappbare / relevante appTag aus dem LDAP VZD wird in eine Instanz von payloadType synchronisiert.
 
-|ou |FAD| Endpoint.extension:FADId* | FAD (ID des KIM Anbieters) 
+|ou |FAD| Endpoint.extension:endpointFADIdEx | FAD (ID des KIM Anbieters) 
 | || Endpoint.status | active
 | || Endpoint.meta.tag:Origin | ldap
 | || Endpoint.endpointVisibility | hide-versicherte "Eintrag für Versicherte verbergen"
@@ -250,7 +250,7 @@ Für jede KIM-Adresse im LDAP VZD Attribut "kimData" wird im FHIR VZD ein Endpoi
 |userCertificate|<ENC-Zertifikat>| Datenbanktabelle CERTIFICATE | Die Zertifikate werden in den VZD FHIR synchronisiert. Hierzu werden diese in einer separaten Datenbank-Tabelle mit TelematikId- und LDAP-UUID-Informationen unabhängig des HAPI-FHIR-Servers gespeichert und sind über die https://github.com/gematik/api-vzd/blob/main/src/openapi/I_FHIR_VZD_Certificates.yaml[I_FHIR_VZD_Certificates REST-Schnittstelle] abfragbar. (base64 → X509Certificate) 
 
 |============================
-"*" - Diese Endpoint Attribute müssen noch abgestimmt werden. +
+ +
  +
 Zu beachten:
 
