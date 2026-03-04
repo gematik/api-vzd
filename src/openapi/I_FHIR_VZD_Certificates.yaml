@@ -2,7 +2,10 @@ openapi: 3.0.1
 info:
   title: I_FHIR_VZD_Certificates
   description: REST Schnittstelle zum Abruf von Zertifikaten.
-  version: 0.1.4
+  version: 0.1.5
+  # Änderungen in Version 0.1.5
+  #   - Suchparameter um ldapUid ergänzt
+  #
   # Änderungen in Version 0.1.4
   #   - Keine Treffer führen zur leeren Liste statt 404
   #
@@ -107,6 +110,11 @@ paths:
         - name: publicKeyAlgorithm
           in: query
           description: Erlaubt die Suche mit Hilfe des Attributs publicKeyAlgorithm.
+          schema:
+            type: string
+        - name: ldapUid
+          in: query
+          description: Erlaubt die Suche mit Hilfe der ldapUid.
           schema:
             type: string
       responses:
