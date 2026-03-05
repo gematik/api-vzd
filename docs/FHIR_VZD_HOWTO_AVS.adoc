@@ -468,7 +468,7 @@ Die Öffnungszeiten, Dienstleistungen, Botendienste und Kontaktdaten der Apothek
 TIP: Das Eintragen von Dienstleistungen für "Zuweisen ohne Anmeldung" wird in Kapitel link:FHIR_VZD_HOWTO_AVS.adoc#pflege-von-apotheken-diensten-für-zuweisen-ohne-anmeldung[Pflege von Apotheken-Diensten für "Zuweisen ohne Anmeldung"] beschrieben.
 
 Diese Öffnungszeiten (mit Ausnahme der textuellen Beschreibung in availabilityExceptions) werden in den eRezept-Apps zur Suche von geöffneten Apotheken genutzt. +
-Die Kontaktdaten werden in den Apps angezeit und teilweise direkt aufgerufen (z.B. URL, E-Mail-Adresse der Apotheke oder Telefonnummer). +
+Die Kontaktdaten werden in den Apps angezeigt und teilweise direkt aufgerufen (z.B. URL, E-Mail-Adresse der Apotheke oder Telefonnummer). +
 Die Ausstattung und Informationen zur Anfahrt (HealthcareService.characteristic:physicalFeatures) dienen der Information für die Kunden und können in VZD-Suche als Suchkriterium genutzt werden. Zum Beispiel "Suche nach barrierefreien Apotheken an einem Ort". +
  +
 Ablauf: +
