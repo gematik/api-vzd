@@ -250,8 +250,8 @@ Für jede KIM-Adresse im LDAP VZD Attribut "kimData" wird im FHIR VZD ein Endpoi
 |userCertificate|<ENC-Zertifikat>| Datenbanktabelle CERTIFICATE | Die Zertifikate werden in den VZD FHIR synchronisiert. Hierzu werden diese in einer separaten Datenbank-Tabelle mit TelematikId- und LDAP-UUID-Informationen unabhängig des HAPI-FHIR-Servers gespeichert und sind über die https://github.com/gematik/api-vzd/blob/main/src/openapi/I_FHIR_VZD_Certificates.yaml[I_FHIR_VZD_Certificates REST-Schnittstelle] abfragbar. (base64 → X509Certificate) 
 
 |============================
- +
- +
+
+
 Zu beachten:
 
 - Endpunkte mit connectionType "kim" dürfen nur vom KIM Fachdienst mit der FAD-ID im Endpunkt geändert und gelöscht werden. Der Owner darf die Endpunkt-Referenz nicht entfernen. Ausnahmen gibt es für Administratoren (gematik/arvato). 
@@ -259,6 +259,6 @@ Zu beachten:
 - Alle in "komLeData" & "mail"enthaltenen Informationen sind auch in kimData enthalten. Deshalb werden "komLeData" & "mail" nicht in den FHIR VZD synchronisiert.
 - "maxKOMLEadr" war nur für Kassen relevant und kann wegen der Nutzung von den appTags (payloadType) im FHIR VZD entfallen. Dieses Attribut wird deshalb nicht in den FHIR VZD synchronisiert.
 - LDAP "noVzdMailEntry" Parameter für KIM-Adessen -> Wird durch Nutzung von appTags (payloadType) abgedeckt.
-- Aufnahme in den Volltextindex: Endpoint.address, Endpoint.connectionType, Endpoint.payloadType (nur für KIM Adressen oder für alle Endpoints?), Endpoint.status als z.B. "Endpoint.status.active"
+- Aufnahme in den Volltextindex: Endpoint.address, Endpoint.connectionType, Endpoint.payloadType (für alle Endpoints, nicht auf KIM-Adressen beschränkt), Endpoint.status als z.B. "Endpoint.status.active"
 
 
