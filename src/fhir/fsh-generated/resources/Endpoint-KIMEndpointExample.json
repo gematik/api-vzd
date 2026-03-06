@@ -1,0 +1,76 @@
+{
+  "resourceType": "Endpoint",
+  "id": "KIMEndpointExample",
+  "meta": {
+    "tag": [
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/Origin",
+        "code": "ldap"
+      }
+    ],
+    "profile": [
+      "https://gematik.de/fhir/directory/StructureDefinition/endpoint-directory-Strict"
+    ]
+  },
+  "extension": [
+    {
+      "url": "https://gematik.de/fhir/directory/StructureDefinition/EndpointVisibility",
+      "valueCoding": {
+        "code": "hide-versicherte",
+        "system": "https://gematik.de/fhir/directory/CodeSystem/EndpointVisibilityCS"
+      }
+    },
+    {
+      "valueIdentifier": {
+        "system": "https://gematik.de/fhir/sid/telematik-id",
+        "value": "1-1.58.00000040"
+      },
+      "url": "https://gematik.de/fhir/directory/StructureDefinition/OwnerTelematikIdEx"
+    },
+    {
+      "valueIdentifier": {
+        "system": "https://gematik.de/fhir/sid/fachdienst-id",
+        "value": "fad-12345"
+      },
+      "url": "https://gematik.de/fhir/directory/StructureDefinition/EndpointFADIdEx"
+    }
+  ],
+  "connectionType": {
+    "extension": [
+      {
+        "url": "https://gematik.de/fhir/directory/StructureDefinition/ConnectionTypeKimVersionEx",
+        "extension": [
+          {
+            "url": "version",
+            "valueCoding": {
+              "code": "kim-2.0",
+              "system": "https://gematik.de/fhir/directory/CodeSystem/KimVersionCS",
+              "display": "KIM 2.0 Endpoint"
+            }
+          },
+          {
+            "url": "xxlMailSupported",
+            "valueBoolean": true
+          }
+        ]
+      }
+    ],
+    "code": "kim",
+    "system": "https://gematik.de/fhir/directory/CodeSystem/EndpointDirectoryConnectionType",
+    "display": "KIM Endpoint"
+  },
+  "status": "active",
+  "name": "KIM-Mailadresse",
+  "payloadType": [
+    {
+      "coding": [
+        {
+          "code": "not-applicable",
+          "system": "http://terminology.hl7.org/CodeSystem/data-absent-reason",
+          "display": "Not Applicable"
+        }
+      ]
+    }
+  ],
+  "address": "dr.mustermann@praxis-mustermann.kim.telematik"
+}

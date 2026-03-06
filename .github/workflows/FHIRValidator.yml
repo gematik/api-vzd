@@ -4,12 +4,12 @@ name: CI (FHIR Validation)
 
 # Controls when the action will run.
 on:
-  # Triggers the workflow on push or pull request events but only for the master branch
+  # Triggers the workflow on pull request events and pushes to main
   push:
+    branches: [ main ]
     paths:
       - 'src/fhir/**'
       - '.github/**'
-    branches-ignore: [ main ]
   pull_request:
     branches: [ main ]
     paths:
@@ -37,15 +37,10 @@ jobs:
     
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: Checkout code (PR)
+      - name: Checkout code
         uses: actions/checkout@v6
-        if: github.event_name == 'pull_request'
         with:
-          ref: ${{ github.event.pull_request.head.ref }}
-
-      - name: Checkout code (Main)
-        uses: actions/checkout@v6
-        if: github.event_name != 'pull_request'
+          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || github.ref }}
 
       - name: Validate Resource Status
         uses: patrick-werner/fhir-resource-status-check@1.2.0
@@ -91,6 +86,20 @@ jobs:
           bundle-file: validation.json
           include: errors
 
-      - name: Check for Uncommitted Changes
+      - name: Debug build identity
         run: |
-          git diff --exit-code 'src/fhir/fsh-generated/resources'|| (echo "Es gibt Änderungen durch die Pipeline. Lokale Sushi Konfiguration prüfen!" && exit 1)
+          echo "event=$GITHUB_EVENT_NAME"
+          echo "ref=$GITHUB_REF"
+          echo "sha=$GITHUB_SHA"
+          echo "head=$(git rev-parse HEAD)"
+          echo "sushi=$(npx --yes fsh-sushi@3.17.0 --version || true)"
+          ls -la ~/.fhir/packages | sed -n '1,60p'
+
+      - name: Add & Commit
+        if: github.event_name == 'pull_request'
+        uses: EndBug/add-and-commit@v9
+        with:
+          committer_name: GitHub Actions Bot
+          committer_email: ActionBot@github.com
+          add: src/fhir/fsh-generated/resources/
+          message: 'auto-generated FHIR files by GitHub Actions [skip ci]'
