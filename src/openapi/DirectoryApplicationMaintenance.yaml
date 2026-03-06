@@ -10,6 +10,7 @@ info:
 
   # Änderungen in Version 1.4.8
   #  423-Fehler (Locked) für Änderungen an inaktiven Einträgen ergänzt
+  #  Kommentar "Der WWW-Authenticate Header im Response wird auf OAuth gesetzt" gestrichen (war Kopiefehler aus DirectoryAdministration.yaml)
   #
   # Änderungen in Version 1.4.7
   #  Added OperationEnum
@@ -919,7 +920,7 @@ paths:
                 $ref: '#/components/schemas/Error'
         401:
           description: Unauthorized
-                    #  Der WWW-Authenticate Header im Response wird auf OAuth gesetzt.
+                    
           content:
             application/json:
               schema:
@@ -1046,7 +1047,6 @@ paths:
                 $ref: '#/components/schemas/Error'
         401:
           description: Unauthorized
-                    #  Der WWW-Authenticate Header im Response wird auf OAuth gesetzt.
           content:
             application/json:
               schema:
