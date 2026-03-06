@@ -18,7 +18,7 @@ image::gematik_logo.svg[gematik,float="right"]
 
 [width="100%",cols="50%,50%",options="header",]
 |===
-|Version: |1.1.7
+|Version: |1.1.8
 |Referencing: |gemILF_FHIR_VZD
 |===
 
@@ -72,6 +72,10 @@ Added custom Search Parameters
 |Update fdv-relevant oid-list 
   |gematik
 
+|1.1.8 |06.03.26 | 2.1 FHIRDirectorySearchAPI
+|Information about "total" HAPI bug added 
+  |gematik
+
 
 |===
 
@@ -95,6 +99,8 @@ _The following specification was created by gematik solely from a technical poin
 == API Documentation
 === FHIRDirectorySearchAPI: Search for Practitioners and Organizations
 To access the search API a valid searchaccess_token is needed that can be obtained by authenticating via xref:FHIR_VZD_HOWTO_Search.adoc[Authenticate for search]
+
+IMPORTANT: Note regarding a bug in the HAPI server: In responses to search queries, "total" refers to filtering via Elasticsearch when using full-text search and not to subsequent filtering via the database (non-full-text attributes).
 
 ==== FHIR Search Basics
 The REST interface /search allows you to search for practitioners and organizations. 
@@ -1092,3 +1098,4 @@ GET {{fhir_server}}/fdv/search/HealthcareService?_query=near
     &_count=8
     &organization.type=1.2.276.0.76.4.50
 ----
+
