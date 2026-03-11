@@ -56,7 +56,7 @@ image::gematik_logo.svg[gematik,float="right"]
 [width="100%",cols="50%,50%",options="header",]
 |===
 
-|Version: |1.5.17
+|Version: |1.5.18
 
 |Referenzierung: |gemILF_Pflege_VZD
 |===
@@ -248,6 +248,10 @@ Neu für eGBR HBA und SMC-B |gematik
 - Default Wert für countryCode entfernt 
 |gematik
 
+|1.5.18 |11.03.2026 |4.1
+|
+- Für SMC-B Einträge givenName in Spalte "Pflichtfeld" auf "unzulässig" gesetzt 
+|gematik
 |===
 
 == Einordnung des Dokumentes
@@ -505,7 +509,7 @@ Wenn ein Zertifikatseintrag zu einem VZD-Eintrag hinzugefügt wird, der schon ei
 
 - sn
 
-- givenName
+- 
 
 - otherName
 
@@ -580,8 +584,8 @@ Um die Datenmenge in der Response zu verringern, wird empfohlen, baseEntryOnly=t
 *uid (optional)* ::
 _Query Parameter_ — ID von dem Verzeichniseintrag (distinguishedName.uid) 
 
-*givenName (optional)*  ::
-_Query Parameter_ — Erlaubt die Suche mit Hilfe des Attributs givenName. 
+* (optional)*  ::
+_Query Parameter_ — Erlaubt die Suche mit Hilfe des Attributs . 
 
 *sn (optional)*  ::
 _Query Parameter_ — Erlaubt die Suche mit Hilfe des Attributs sn. 
@@ -666,7 +670,7 @@ Der VZD unterstützt für die Leseoperationen read_Directory_Entry und read_Dire
 
 Suche mit Wildcard "*" in den Parametern 
 
-- givenName 
+-  
 - sn 
 - cn 
 - displayName 
@@ -687,7 +691,7 @@ Suche mit Wildcard "*" in den Parametern
 
 Suche nach Vorhandensein ODER leerem Inhalt eines Attributs des VZD Datensatzes durch Belegung des Attributs im GET Request mit "" in den Parametern 
 
-- givenName 
+-  
 - sn 
 - cn 
 - displayName 
@@ -929,7 +933,7 @@ zu entnehmen sind.
 Basiseinträge ohne ProfessionOID dürfen im LDAP-VZD angelegt werden. +
 Entsprechende Datensätze ohne ProfessionOIDs können nicht in den FHIR-VZD synchronisiert werden.
 |V014 |umgesetzt |nein
-| Bei Organisationseinträgen werden die für Personen vorgesehene Felder givenName und title abgelehnt: +
+| Bei Organisationseinträgen werden die für Personen vorgesehene Felder  und title abgelehnt: +
 
 - Unterscheidung erfolgt anhand des Attributes isPersonalEntry (extrahiert aus Zertifikat bzw. direkter Übergabe des Attributes im REST Aufruf).
 - Relevant sind nur die Attribute die im REST Aufruf übergeben werden.
@@ -1002,7 +1006,7 @@ Tabelle 2: Tab_VZD_Datenbeschreibung_KVen
 [width="100%",cols="18%,10%,72%",options="header",]
 |===
 |*LDAP-Directory Attribut* |*Pflichtfeld aus Sicht Pflege und Nutzung?* |*Erläuterung*
-|*givenName* |optional |Wird für SMC-B nicht verwendet.
+|*givenName* |unzulässig |Wird für SMC-B nicht verwendet.
 |*sn* |obligatorisch a| Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
  +
 Verhalten der Befüllung des Attributs bei Nutzung der Operationen
@@ -1162,7 +1166,7 @@ Tabelle 3: Tab_VZD_Datenbeschreibung_KZVen
 [width="100%",cols="18%,10%,72%",options="header",]
 |===
 |*LDAP-Directory Attribut* |*Pflichtfeld aus Sicht Pflege und Nutzung?* |*Erläuterung*
-|*givenName* |optional |Wird für SMC-B nicht verwendet.
+|*givenName* |unzulässig |Wird für SMC-B nicht verwendet.
 |*sn* |optional a| Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
  +
 Verhalten der Befüllung des Attributs bei Nutzung der Operationen
@@ -1332,7 +1336,7 @@ Tabelle 4: Tab_VZD_Datenbeschreibung_Apotheken_SMC-B
 [width="100%",cols="18%,10%,72%",options="header",]
 |===
 |*LDAP-Directory Attribut* |*Pflichtfeld aus Sicht Pflege und Nutzung?* |*Erläuterung*
-|*givenName* |optional |Wird für SMC-B nicht verwendet.
+|*givenName* |unzulässig |Wird für SMC-B nicht verwendet.
 |*sn* |optional a| Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
  +
 Verhalten der Befüllung des Attributs bei Nutzung der Operationen
@@ -1684,7 +1688,7 @@ Tabelle 6: Tab_VZD_Datenbeschreibung_DKTIG (DKG)
  |*Pflichtfeld aus Sicht Pflege und Nutzung?* +
  |*Erläuterung* +
 
-|*givenName* |optional |Wird für SMC-B nicht verwendet.
+|*givenName* |unzulässig |Wird für SMC-B nicht verwendet.
 |*sn* |optional a| Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
  +
 Verhalten der Befüllung des Attributs bei Nutzung der Operationen
@@ -2335,7 +2339,7 @@ Tabelle 10: Tab_VZD_Datenbeschreibung_GKV-SV_SMC-B KTR
 [width="100%",cols="24%,12%,64%",options="header",]
 |===
 |*LDAP-Directory Attribut* |*Pflichtfeld aus Sicht Pflege und Nutzung?* |*Erläuterung*
-|*givenName* |optional |Wird für SMC-B nicht verwendet.
+|*givenName* |unzulässig |Wird für SMC-B nicht verwendet.
 |*sn* |obligatorisch a| Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
  +
 Verhalten der Befüllung des Attributs bei Nutzung der Operationen
@@ -2495,7 +2499,7 @@ Tabelle 11: VZD_Datenbeschreibung_GKV-SV_SM-B_KTR ePA
 [width="100%",cols="24%,12%,64%",options="header",]
 |===
 |*LDAP-Directory Attribut* |*Pflichtfeld aus Sicht Pflege und Nutzung?* |*Erläuterung*
-|*givenName* |optional |Wird für SMC-B nicht verwendet.
+|*givenName* |unzulässig |Wird für SMC-B nicht verwendet.
 |*sn* |obligatorisch a| Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
  +
 Verhalten der Befüllung des Attributs bei Nutzung der Operationen
@@ -2617,7 +2621,7 @@ Tabelle 12: Tab_VZD_Datenbeschreibung_der_SMC-B_Org
 [width="100%",cols="23%,15%,62%",options="header",]
 |===
 |*LDAP-Directory Attribut* |*Pflichtfeld aus Sicht Pflege und Nutzung?* |*Erläuterung*
-|*givenName* |optional |Wird für SMC-B nicht verwendet.
+|*givenName* |unzulässig |Wird für SMC-B nicht verwendet.
 |*sn* |optional a| Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
  +
 Verhalten der Befüllung des Attributs bei Nutzung der Operationen
@@ -2769,7 +2773,7 @@ Tabelle 13: Tab_VZD_Datenbeschreibung_der_SMC-B_eGBR
 [width="100%",cols="18%,12%,70%",options="header",]
 |===
 |*LDAP-Directory Attribut* |*Pflichtfeld aus Sicht Pflege und Nutzung?* |*Erläuterung*
-|*givenName* |optional |Wird für SMC-B nicht verwendet.
+|*givenName* |unzulässig |Wird für SMC-B nicht verwendet.
 |*sn* |optional a| Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
  +
 Verhalten der Befüllung des Attributs bei Nutzung der Operationen
@@ -3083,7 +3087,7 @@ Tabelle 15: Tab_VZD_Datenbeschreibung_der_SMC-B_WÄI
 [width="100%",cols="18%,12%,70%",options="header",]
 |===
 |*LDAP-Directory Attribut* |*Pflichtfeld aus Sicht Pflege und Nutzung?* |*Erläuterung*
-|*givenName* |optional |Wird für SMC-B nicht verwendet.
+|*givenName* |unzulässig |Wird für SMC-B nicht verwendet.
 |*sn* |optional a| Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
  +
 Verhalten der Befüllung des Attributs bei Nutzung der Operationen
@@ -3255,7 +3259,7 @@ Tabelle 16: Tab_VZD_Datenbeschreibung_der_SMC-B_KT_PKV
 [width="100%",cols="18%,12%,70%",options="header",]
 |===
 |*LDAP-Directory Attribut* |*Pflichtfeld aus Sicht Pflege und Nutzung?* |*Erläuterung*
-|*givenName* |optional |Wird für SMC-B nicht verwendet.
+|*givenName* |unzulässig |Wird für SMC-B nicht verwendet.
 |*sn* |obligatorisch a| Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
  +
 Verhalten der Befüllung des Attributs bei Nutzung der Operationen
@@ -3412,7 +3416,7 @@ Tabelle 17: Tab_VZD_Datenbeschreibung_der_SMC-B_DiGA
 [width="100%",cols="18%,12%,70%",options="header",]
 |===
 |*LDAP-Directory Attribut* |*Pflichtfeld aus Sicht Pflege und Nutzung?* |*Erläuterung*
-|*givenName* |optional |Wird für SMC-B nicht verwendet.
+|*givenName* |unzulässig |Wird für SMC-B nicht verwendet.
 |*sn* |obligatorisch a| Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
  +
 Verhalten der Befüllung des Attributs bei Nutzung der Operationen
@@ -3562,7 +3566,7 @@ Tabelle 18: Tab_VZD_Datenbeschreibung_der_SMC-B_HWK
 [width="100%",cols="18%,12%,70%",options="header",]
 |===
 |*LDAP-Directory Attribut* |*Pflichtfeld aus Sicht Pflege und Nutzung?* |*Erläuterung*
-|*givenName* |optional |Wird für SMC-B nicht verwendet.
+|*givenName* |unzulässig |Wird für SMC-B nicht verwendet.
 |*sn* |optional a| Wird von E-Mail-Clients für die Suche nach Einträgen und die Anzeige von gefundenen Einträgen verwendet. +
  +
 Verhalten der Befüllung des Attributs bei Nutzung der Operationen
@@ -3907,7 +3911,7 @@ Tabelle 20: Tab_VZD_Datenbeschreibung_NCPeH
 [width="100%",cols="18%,12%,70%",options="header",]
 |===
 |*LDAP-Directory Attribut* |*Pflichtfeld aus Sicht Pflege und Nutzung?* |*Erläuterung*
-|*givenName* |optional |Wird für den NCPeH nicht verwendet.
+|*givenName* |unzulässig |Wird für den NCPeH nicht verwendet.
 |*sn* |optional a| Wird für den NCPeH nicht verwendet.
 |*cn* +
  +
