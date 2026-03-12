@@ -255,6 +255,7 @@ Für jede KIM-Adresse im LDAP VZD Attribut "kimData" wird im FHIR VZD ein Endpoi
 Zu beachten:
 
 - Endpunkte mit connectionType "kim" dürfen nur vom KIM Fachdienst mit der FAD-ID im Endpunkt geändert und gelöscht werden. Der Owner darf die Endpunkt-Referenz nicht entfernen. Ausnahmen gibt es für Administratoren (gematik/arvato). 
+- Endpunkte dürfen in jedem Status (z.B. Endpoint.status, Organization.active, Practitioner.active) angelegt, geändert und gelöscht werden.
 - KIM Endpunkte werden bei der Synchronisation von LDAP in den FHIR VZD mit dem HealthcareService bzw. PractitionerRole verlinkt, in welchem Origin="ldap" gesetzt ist. 
 - Der VZD muss für KIM Endpunkte sicherstellen, dass sie nur mit einem HelathcareService verlinkt werden.
 - Alle in "komLeData" & "mail"enthaltenen Informationen sind auch in kimData enthalten. Deshalb werden "komLeData" & "mail" nicht in den FHIR VZD synchronisiert.
