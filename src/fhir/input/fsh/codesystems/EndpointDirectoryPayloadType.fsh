@@ -10,3 +10,4 @@ New codes can be requested at gematik. There must exist a specification for each
 * ^content = #complete
 * ^caseSensitive = false
 * #tim-chat "TI-Messenger chat"
+//TODO: add KIM appTag Codes when available

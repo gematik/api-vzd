@@ -1,5 +1,29 @@
 # Changelog
 
+## 2026-02-26 Version 1.1.0
+- `feat`: added `ConnectionTypeKimVersionEx` extension on `Endpoint.connectionType` to capture the KIM version (`KimVersionVS`) and xxl-mail support (`boolean`)
+- `feat`: added `EndpointFADIdEx` extension on `Endpoint` to capture the Fachdienst-ID (FAD) of a KIM endpoint
+- `feat`: added `EndpointFADIdEx` to `alias.fsh` as `$IdentifierFAD = https://gematik.de/fhir/sid/fachdienst-id`
+- `feat`: added `ConnectionTypeKimVersionEx` as a named extension slice on `EndpointDirectory.connectionType`
+- `feat`: added Invariant `KimConnectionTypeInv` enforcing that if `ConnectionTypeKimVersionEx` is used on `connectionType`, then `connectionType` must be `#kim` from `EndpointDirectoryConnectionType`
+- `change`: `breaking` replaced version-specific KIM codes `#kim-1.0`, `#kim-1.5`, `#kim-2.0` in `EndpointDirectoryConnectionType` with a single generic `#kim "KIM Endpoint"` code; the KIM version is now expressed via `ConnectionTypeKimVersionEx`. This feature was not used yet for KIM, so no migration of existing data is needed.
+- `change`: `breaking` reduced cardinality of `ownerTelematikId` on `HealthcareServiceDirectory` and `PractitionerRoleDirectory` from `0..*` to `0..1`
+- `feat`: added `OwnerTelematikIdEx` (`ownerTelematikId 0..1 MS`) to `LocationDirectory`
+- `change`: reorganized `alias.fsh` with section comments; removed unused identifier aliases (`$NamingSystemTelematikID`, `$IdentifierBSNR`, `$NamingSystemBSNR`, `$IdentifierKZVA`, `$NamingSystemKZVA`, `$IdentifierIKNR`, `$NamingSystemIKNR`, `$IdentifierLANR`, `$NamingSystemLANR`)
+- `feat`: added `KimVersionCS` CodeSystem with codes `#kim-1.0`, `#kim-1.5`, `#kim-2.0`
+- `feat`: added `KimVersionVS` ValueSet including all codes from `KimVersionCS`
+- `feat`: added `EndpointDirectoryKIMappTags` CodeSystem as placeholder for future KIM appTag codes (`#not-present`)
+- `feat`: added `EndpointDirectoryKIMappTags` to `EndpointPayloadTypeVS`
+- `feat`: added `KIMEndpointExample` example instance for a KIM 2.0 endpoint with `ConnectionTypeKimVersionEx` and `EndpointFADIdEx`
+- `feat`: added `active MS` to `PractitionerDirectory`
+- `fix`: set `PractitionerDirectory.identifier[TelematikID]` to min cardinality `1..`
+- `fix`: removed `active 0..0` restriction from `PractitionerDirectoryStrict`
+- `change`: set `LocationDirectory.address` to `1.. MS` (was `MS` only)
+
+### data migration
+- `EndpointDirectoryConnectionType`: replace instances using `#kim-1.0`, `#kim-1.5` or `#kim-2.0` with `#kim`; set the KIM version via the new `ConnectionTypeKimVersionEx` extension on `Endpoint.connectionType` using codes from `KimVersionCS` (`kim-1.0`, `kim-1.5`, `kim-2.0`). As this feature was not used yet for KIM, no migration of existing data is needed.
+- `HealthcareServiceDirectory` and `PractitionerRoleDirectory`: if multiple `ownerTelematikId` extensions are present, reduce to at most one
+
 ## 2026-01-22 Version 1.0.1
 - `fix`: OrganizationNCPeHCountrySP contained an incorrect Extension URL; the URL changed when the extension was moved to the `de.gematik.ti` package.
 - The change of the OrganizationNCPeHCountrySP url was missing in the 1.0.0 changelog, it is included now.

@@ -1,21 +1,21 @@
 {
   "resourceType": "StructureDefinition",
-  "id": "ServiceCoveragePostalCode",
-  "url": "https://gematik.de/fhir/directory/StructureDefinition/ServiceCoveragePostalCode",
+  "id": "EndpointFADIdEx",
+  "url": "https://gematik.de/fhir/directory/StructureDefinition/EndpointFADIdEx",
   "version": "1.1.0",
-  "name": "ServiceCoveragePostalCode",
-  "title": "ServiceCoveragePostalCode",
+  "name": "EndpointFADIdEx",
+  "title": "Endpoint Fachdienst-ID Extension",
   "status": "active",
   "experimental": false,
   "date": "2025-02-26",
   "publisher": "gematik GmbH",
-  "description": "Service coverage area expressed as a postal code (PLZ)",
+  "description": "Extension for the FAD of an KIM Endpoint",
   "fhirVersion": "4.0.1",
   "kind": "complex-type",
   "abstract": false,
   "context": [
     {
-      "expression": "HealthcareService.coverageArea",
+      "expression": "Endpoint",
       "type": "element"
     }
   ],
@@ -27,8 +27,8 @@
       {
         "id": "Extension",
         "path": "Extension",
-        "short": "ServiceCoveragePostalCode",
-        "definition": "Service coverage area expressed as a postal code (PLZ)"
+        "short": "Endpoint Fachdienst-ID Extension",
+        "definition": "Extension for the FAD of an KIM Endpoint"
       },
       {
         "id": "Extension.extension",
@@ -38,7 +38,7 @@
       {
         "id": "Extension.url",
         "path": "Extension.url",
-        "fixedUri": "https://gematik.de/fhir/directory/StructureDefinition/ServiceCoveragePostalCode"
+        "fixedUri": "https://gematik.de/fhir/directory/StructureDefinition/EndpointFADIdEx"
       },
       {
         "id": "Extension.value[x]",
@@ -46,9 +46,22 @@
         "min": 1,
         "type": [
           {
-            "code": "string"
+            "code": "Identifier"
           }
         ],
+        "mustSupport": true
+      },
+      {
+        "id": "Extension.value[x].system",
+        "path": "Extension.value[x].system",
+        "min": 1,
+        "patternUri": "https://gematik.de/fhir/sid/fachdienst-id",
+        "mustSupport": true
+      },
+      {
+        "id": "Extension.value[x].value",
+        "path": "Extension.value[x].value",
+        "min": 1,
         "mustSupport": true
       }
     ]

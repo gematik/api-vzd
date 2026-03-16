@@ -17,11 +17,13 @@ Description: "Endpoints for applications in the gematik Directory"
 * meta.tag[Origin] from OriginVS
 * meta.tag[Origin].system =  Canonical(Origin)
 * status 1..1 MS
-* connectionType obeys CodingSytemCodeInv
 * connectionType 1..1 MS
+* connectionType obeys CodingSytemCodeInv and KimConnectionTypeInv
 * connectionType from EndpointConnectionTypeVS
   * code MS
   * system MS
+* connectionType.extension contains
+   ConnectionTypeKimVersionEx named kimVersion 0..1 MS
 * name 1..1 MS
 * payloadType MS
   * coding obeys CodingSytemCodeInv
