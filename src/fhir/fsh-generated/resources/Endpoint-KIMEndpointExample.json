@@ -43,7 +43,7 @@
           {
             "url": "version",
             "valueCoding": {
-              "code": "kim-2.0",
+              "code": "2.0",
               "system": "https://gematik.de/fhir/directory/CodeSystem/KimVersionCS",
               "display": "KIM 2.0 Endpoint"
             }

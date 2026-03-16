@@ -10,7 +10,7 @@ Description: "Beispiel eines KIM-Endpunkts (KIM 2.0) mit allen relevanten Extens
 * status = #active "Active"
 * connectionType = EndpointDirectoryConnectionType#kim "KIM Endpoint"
 * connectionType.extension[kimVersion]
-  * extension[version].valueCoding = KimVersionCS#kim-2.0 "KIM 2.0 Endpoint"
+  * extension[version].valueCoding = KimVersionCS#2.0 "KIM 2.0 Endpoint"
   * extension[xxlMailSupported].valueBoolean = true
 * name = "KIM-Mailadresse"
 * payloadType = DataAbsentReason#not-applicable "Not Applicable"
