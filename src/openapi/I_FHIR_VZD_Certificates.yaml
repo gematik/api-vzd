@@ -4,7 +4,7 @@ info:
   description: REST Schnittstelle zum Abruf von Zertifikaten.
   version: 0.1.5
   # Änderungen in Version 0.1.5
-  #   - Suchparameter um ldapUid ergänzt
+  #   - Suchparameter und Rückgabe um ldapUid ergänzt
   #
   # Änderungen in Version 0.1.4
   #   - Keine Treffer führen zur leeren Liste statt 404
@@ -154,6 +154,9 @@ components:
           type: string
           description: 'Wird beim Anlegen des Eintrags vom VZD aus dem Zertifikat 
                         übernommen (Feld registrationNumber der Extension Admission).'
+        ldapUid:
+          type: string
+          description: 'ldapUid des Quellsystem.'
         userCertificate:
           type: string
           description: 'Zertifikat im DER Format. Base64 kodiert.'
