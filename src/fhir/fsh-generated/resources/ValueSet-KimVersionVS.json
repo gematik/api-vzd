@@ -1,0 +1,20 @@
+{
+  "resourceType": "ValueSet",
+  "status": "active",
+  "name": "KimVersionVS",
+  "id": "KimVersionVS",
+  "title": "KimVersionVS",
+  "description": "ValueSet of KIM versions",
+  "version": "1.1.0",
+  "url": "https://gematik.de/fhir/directory/ValueSet/KimVersionVS",
+  "experimental": false,
+  "publisher": "gematik GmbH",
+  "date": "2025-02-26",
+  "compose": {
+    "include": [
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/KimVersionCS"
+      }
+    ]
+  }
+}
