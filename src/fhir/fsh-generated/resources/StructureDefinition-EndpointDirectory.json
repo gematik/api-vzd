@@ -2,7 +2,7 @@
   "resourceType": "StructureDefinition",
   "id": "EndpointDirectory",
   "url": "https://gematik.de/fhir/directory/StructureDefinition/EndpointDirectory",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "name": "EndpointDirectory",
   "title": "Endpoint in gematik Directory",
   "status": "active",
@@ -106,6 +106,22 @@
             "code": "Extension",
             "profile": [
               "https://gematik.de/fhir/directory/StructureDefinition/OwnerTelematikIdEx"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Endpoint.extension:endpointFADId",
+        "path": "Endpoint.extension",
+        "sliceName": "endpointFADId",
+        "min": 0,
+        "max": "*",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "https://gematik.de/fhir/directory/StructureDefinition/EndpointFADIdEx"
             ]
           }
         ],

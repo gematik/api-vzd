@@ -5,7 +5,7 @@ Description: "Beispiel eines KIM-Endpunkts (KIM 2.0) mit allen relevanten Extens
 * meta.tag[Origin] = Origin#ldap
 * extension[endpointVisibility].valueCoding = EndpointVisibilityCS#hide-versicherte
 * extension[ownerTelematikId].valueIdentifier.value = "1-1.58.00000040"
-* extension[EndpointFADIdEx].valueIdentifier
+* extension[endpointFADId].valueIdentifier
   * value = "fad-12345"
 * status = #active "Active"
 * connectionType = EndpointDirectoryConnectionType#kim "KIM Endpoint"
