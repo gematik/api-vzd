@@ -1,5 +1,6 @@
 @startuml
 
+package "Krankenhaus" {
 
 class Organization_Krankenhaus {
 +identifier : telematikID, IKNR - Standortdaten_HauptIK
@@ -44,6 +45,9 @@ class Endpoint_Krankenhaus {
 -address : KIM/TIM Adresse
 }
 
+}
+
+package "Standort" {
 
 class Organization_Standort {
 -identifier : telematikID
@@ -80,6 +84,9 @@ class Location_Standort {
 +position : GeoKoordinaten
 }
 
+}
+
+package "Einrichtung" {
 
 class Organization_Einrichtung {
 -identifier : telematikID
@@ -111,6 +118,11 @@ class Location_Einrichtung {
 +position : GeoKoordinaten
 }
 
+}
+
+
+package "Fachabteilung" {
+
 
 class Organization_Fachabteilung {
 -identifier : telematikID
@@ -141,7 +153,7 @@ class Location_Fachabteilung {
 +position : GeoKoordinaten
 }
 
-
+}
 
 
 @enduml
