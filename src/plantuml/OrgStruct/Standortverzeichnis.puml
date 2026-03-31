@@ -1,0 +1,138 @@
+@startuml
+
+
+class Organization_Krankenhaus {
+-identifier : telematikID
++name : Name of Organization
+-alias : Alternative name
+#type : professionOID
+-active : true
+}
+
+
+
+class HealthcareService_Krankenhaus {
+-type : Fachrichtung HealthcareServiceType
++speciality : HL7 Service type
+-name : -
+-telecom : website, email, telephone
+-availableTime: Öffnungszeiten
+}
+
+Organization_Krankenhaus <-- HealthcareService_Krankenhaus : providedBy
+HealthcareService_Krankenhaus --> Location_Krankenhaus : location
+HealthcareService_Krankenhaus --> Endpoint_Krankenhaus : endpoint
+
+
+class Location_Krankenhaus {
+-name : -
++address : Adresse
++position : GeoKoordinaten
+}
+
+
+class Endpoint_Krankenhaus {
+-name: Name
+-endpointVisibility : -
+-status : active
+-connectionType : EndpointConnectionType
+-payloadType : EndpointPlayloadType
+-address : KIM/TIM Adresse
+}
+
+
+class Organization_Standort {
+-identifier : telematikID
++name : Name of Organization
+-alias : Alternative name
+#type : professionOID
+-active : true
+}
+
+
+Organization_Krankenhaus <-- Organization_Standort : "partOf"
+
+class HealthcareService_Standort {
+-type : Fachrichtung HealthcareServiceType
++speciality : HL7 Service type
+-name : -
+-telecom : website, email, telephone
+-availableTime: Öffnungszeiten
+}
+
+HealthcareService_Standort --> Location_Standort : location
+Organization_Standort <-- HealthcareService_Standort : providedBy
+
+
+
+class Location_Standort {
+-name : -
++address : Adresse
++position : GeoKoordinaten
+}
+
+
+class Organization_Einrichtung {
+-identifier : telematikID
++name : Name of Organization
+-alias : Alternative name
+#type : professionOID
+-active : true
+}
+
+
+Organization_Standort <-- Organization_Einrichtung : "partOf"
+
+class HealthcareService_Einrichtung {
+-type : Fachrichtung HealthcareServiceType
++speciality : HL7 Service type
+-name : -
+-telecom : website, email, telephone
+-availableTime: Öffnungszeiten
+}
+
+HealthcareService_Einrichtung --> Location_Einrichtung : location
+Organization_Einrichtung <-- HealthcareService_Einrichtung : providedBy
+
+
+
+class Location_Einrichtung {
+-name : -
++address : Adresse
++position : GeoKoordinaten
+}
+
+
+class Organization_Fachabteilung {
+-identifier : telematikID
++name : Name of Organization
+-alias : Alternative name
+#type : professionOID
+-active : true
+}
+
+
+Organization_Einrichtung <-- Organization_Fachabteilung : "partOf"
+
+class HealthcareService_Fachabteilung {
+-type : Fachrichtung HealthcareServiceType
++speciality : HL7 Service type
+-name : -
+-telecom : website, email, telephone
+-availableTime: Öffnungszeiten
+}
+
+HealthcareService_Fachabteilung --> Location_Fachabteilung : location
+Organization_Fachabteilung <-- HealthcareService_Fachabteilung : providedBy
+
+
+class Location_Fachabteilung {
+-name : -
++address : Adresse
++position : GeoKoordinaten
+}
+
+
+
+
+@enduml
