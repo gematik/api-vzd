@@ -2,19 +2,19 @@
 
 
 class Organization_Krankenhaus {
--identifier : telematikID
-+name : Name of Organization
++identifier : telematikID, IKNR - Standortdaten_HauptIK
++name : Name der Organization - Standortdaten_Bezeichnung
 -alias : Alternative name
 #type : professionOID
--active : true
+#active : true
 }
 
 
 
 class HealthcareService_Krankenhaus {
 -type : Fachrichtung HealthcareServiceType
-+speciality : HL7 Service type
--name : -
+-speciality : HL7 Service type
+#name : -
 -telecom : website, email, telephone
 -availableTime: Öffnungszeiten
 }
@@ -25,11 +25,15 @@ HealthcareService_Krankenhaus --> Endpoint_Krankenhaus : endpoint
 
 
 class Location_Krankenhaus {
--name : -
-+address : Adresse
-+position : GeoKoordinaten
+#name : -
+-address : VZD Adresse 
+-position : VZD GeoKoordinaten
 }
-
+note left of Location_Krankenhaus 
+   Adressdaten werden
+   nur aus dem VZD
+   übernommen
+end note   
 
 class Endpoint_Krankenhaus {
 -name: Name
@@ -48,9 +52,14 @@ class Organization_Standort {
 #type : professionOID
 -active : true
 }
-
+note right of Organization_Standort 
+   Nur für zusätzliche
+   Standorte wird eine
+   Unterorganisation angelegt
+end note 
 
 Organization_Krankenhaus <-- Organization_Standort : "partOf"
+HealthcareService_Krankenhaus -[hidden]right-> Organization_Standort
 
 class HealthcareService_Standort {
 -type : Fachrichtung HealthcareServiceType
