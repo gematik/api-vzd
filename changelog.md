@@ -2,6 +2,10 @@
 
 ## 2026-03-30 Version 1.1.1
 - `feat`: added `EndpointFADIdEx` as a named extension slice `endpointFADId` with cardinality `0..* MS` to `EndpointDirectory`; was previously only included in examples
+- `feat`: added Invariant `KimConnectionTypeRequiresVersionInv` to enforce `ConnectionTypeKimVersionEx` when `Endpoint.connectionType = #kim` from `EndpointDirectoryConnectionType`
+- `feat`: applied `KimConnectionTypeRequiresVersionInv` on `EndpointDirectory.connectionType`
+- `feat`: populated `EndpointDirectoryKIMappTags` with 34 appTag codes and changed CodeSystem content mode from `#not-present` to `#complete`
+- `change`: updated dependency `de.gematik.ti` to `1.3.0`; no impact on VZD behavior, this change serves dependency alignment
 
 ## 2026-02-26 Version 1.1.0
 - `feat`: added `ConnectionTypeKimVersionEx` extension on `Endpoint.connectionType` to capture the KIM version (`KimVersionVS`) and xxl-mail support (`boolean`)
