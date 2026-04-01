@@ -17,3 +17,8 @@ Invariant: KimConnectionTypeInv
 Description: "If the kimVersion extension is used on connectionType, then connectionType must be #kim from EndpointDirectoryConnectionType."
 Expression: "extension('https://gematik.de/fhir/directory/StructureDefinition/ConnectionTypeKimVersionEx').exists() implies (code = 'kim' and system = 'https://gematik.de/fhir/directory/CodeSystem/EndpointDirectoryConnectionType')"
 Severity: #error
+
+Invariant: KimConnectionTypeRequiresVersionInv
+Description: "If connectionType is #kim from EndpointDirectoryConnectionType, then the kimVersion extension must be present."
+Expression: "(code = 'kim' and system = 'https://gematik.de/fhir/directory/CodeSystem/EndpointDirectoryConnectionType') implies extension('https://gematik.de/fhir/directory/StructureDefinition/ConnectionTypeKimVersionEx').exists()"
+Severity: #error
