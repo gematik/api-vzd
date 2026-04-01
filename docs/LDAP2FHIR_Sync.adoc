@@ -238,7 +238,7 @@ Für jede KIM-Adresse im LDAP VZD Attribut "kimData" wird im FHIR VZD ein Endpoi
 
 |Endpoint.connectionType  | Abbildung auf https://simplifier.net/vzd-fhir-directory/endpointdirectoryconnectiontype[EndpointConnectionTypeVS]. Für KIM-Adressen wird "kim" als Code eingetragen. 
 |Endpoint.connectionType  Extension "kimVersion" | Die KIM Version wird aus dem LDAP Attribut kimData.version entnommen und in Endpoint connectionType Extension "kimVersion" übernommen.
-|Endpoint.connectionType  Extension "xxlMailSupported" | Die KIM Option "große Mails" wird aus dem LDAP Attribut kimData.version entnommen ("\+" am Ende des LDAP Attributs) und in connectionType Extension "xxlMailSupported" als "true" übernommen. Falls kein "+" am Ende des LDAP Attributs vorhanden ist, wird xxlMailSupported auf "false" gesetzt.
+|Endpoint.connectionType  Extension "xxlMailSupported" | Die KIM Option "große Mails" wird aus dem LDAP Attribut kimData.version entnommen ("\+" am Ende des LDAP Attributs) und in connectionType Extension (unter kimVersion) "xxlMailSupported" als "true" übernommen. Falls kein "+" am Ende des LDAP Attributs vorhanden ist, wird xxlMailSupported auf "false" gesetzt.
 
 |kimData.appTags |Liste von appTags| Endpoint.payloadType | appTags entsprechend https://simplifier.net/vzd-fhir-directory/endpointdirectorypayloadtype[EndpointDirectoryPayloadType] (muss für KIM erweitert werden). Jedes mappbare / relevante appTag aus dem LDAP VZD wird in eine Instanz von payloadType synchronisiert.
 
