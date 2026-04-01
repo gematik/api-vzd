@@ -7,6 +7,6 @@
     "4.0.1"
   ],
   "dependencies": {
-    "de.gematik.ti": "1.2.0"
+    "de.gematik.ti": "1.3.0"
   }
 }
