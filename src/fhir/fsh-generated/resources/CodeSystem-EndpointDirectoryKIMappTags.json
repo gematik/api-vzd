@@ -1,14 +1,154 @@
 {
   "resourceType": "CodeSystem",
   "status": "active",
-  "content": "not-present",
+  "content": "complete",
   "name": "EndpointDirectoryKIMappTags",
   "id": "EndpointDirectoryKIMappTags",
   "title": "EndpointDirectory KIM appTags",
   "description": "CodeSystem for KIM appTags to be used in Endpoint.payloadType",
   "version": "1.1.1",
   "url": "https://gematik.de/fhir/directory/CodeSystem/EndpointDirectoryKIMappTags",
+  "concept": [
+    {
+      "code": "1ClickAbrechnung",
+      "display": "Online-Quartalsabrechnungen"
+    },
+    {
+      "code": "1ClickHybridDRG",
+      "display": "Abrechnungen für Hybrid-DRG-Leistungen"
+    },
+    {
+      "code": "ArTest",
+      "display": "Autoresponder"
+    },
+    {
+      "code": "BMP",
+      "display": "Bundeseinheitlicher Medikationsplan"
+    },
+    {
+      "code": "DALE-UV",
+      "display": "Datenaustauschverfahren zwischen Durchgangsärzten (Leistungserbringende) und den Trägern der Gesetzlichen Unfallversicherung"
+    },
+    {
+      "code": "DiMus",
+      "display": "Digitale Muster"
+    },
+    {
+      "code": "eRezept",
+      "display": "E-Rezept"
+    },
+    {
+      "code": "Arztbrief",
+      "display": "eArztbrief"
+    },
+    {
+      "code": "eAU",
+      "display": "Elektronische Arbeitsunfähigkeitsbescheinigung"
+    },
+    {
+      "code": "EBZ",
+      "display": "Elektronische Beantragung und Genehmigung zahnärztlicher Leistungen"
+    },
+    {
+      "code": "eDMP",
+      "display": "Disease-Management-Programm Dokumentation"
+    },
+    {
+      "code": "eDokumentation-QSHLT",
+      "display": "Elektronische Dokumentation - Qualitätssicherung in der Holmium-Laser-Therapie"
+    },
+    {
+      "code": "eDokumentation-QSKE",
+      "display": "Elektronische Dokumentation - Qualitätssicherung in der Kapselendoskopie"
+    },
+    {
+      "code": "eDokumentation-QSMG",
+      "display": "Elektronische Dokumentation - Qualitätssicherung in der Molekulargenetik"
+    },
+    {
+      "code": "eDokumentation-QSHGV",
+      "display": "Elektronische Dokumentation - Qualitätssicherung in der Hörgeräteversorgung von Jugendlichen und Erwachsenen"
+    },
+    {
+      "code": "eDokumentation-QSHGVK",
+      "display": "Elektronische Dokumentation - Qualitätssicherung in der Hörgeräteversorgung von Säuglingen, Kleinkindern und Kindern"
+    },
+    {
+      "code": "eHKS",
+      "display": "Abrechnungsbegleitende Dokumentationen von Hautkrebsbehandlungen"
+    },
+    {
+      "code": "eEB",
+      "display": "elektronische Ersatzbescheinigung"
+    },
+    {
+      "code": "GKH-AAR",
+      "display": "Elektronische Beantragung Anschlussrehabilitation"
+    },
+    {
+      "code": "EVP",
+      "display": "Elektronischer Versorgungsplan in der Pflege"
+    },
+    {
+      "code": "eNachricht",
+      "display": "Universeller Austausch von Informationen"
+    },
+    {
+      "code": "KZVAbr",
+      "display": "KZV-Abrechnung"
+    },
+    {
+      "code": "LDT-Auftrag",
+      "display": "Labordatentransfer 3 - Auftrag"
+    },
+    {
+      "code": "LDT-Befund",
+      "display": "Labordatentransfer 3 - Befund"
+    },
+    {
+      "code": "MDN",
+      "display": "Anwendungsübergreifende Eingangsbestätigung"
+    },
+    {
+      "code": "MIO",
+      "display": "Nachrichten mit einem angehängten MIO"
+    },
+    {
+      "code": "NDP2GO",
+      "display": "Notdienstpraxisdaten (NDP2GO)"
+    },
+    {
+      "code": "DIVI-Notfalleinsatzprotokoll",
+      "display": "Notfalleinsatzprotokoll"
+    },
+    {
+      "code": "PFL",
+      "display": "Vollelektronische Abrechnung pflegerischer Leistungen"
+    },
+    {
+      "code": "QSPB",
+      "display": "Qualitätssicherung und Programmbeurteilung"
+    },
+    {
+      "code": "U-Teilnahme",
+      "display": "Bescheinigungen über durchgeführte Kinder-Früherkennungsuntersuchungen"
+    },
+    {
+      "code": "Selbsttest",
+      "display": "Verbindungstest im Rahmen der Einrichtung des KIM-Kontos innerhalb des PVS"
+    },
+    {
+      "code": "Vitalzeichen",
+      "display": "Elektronische Übermittlung von Vitalzeichen von Pflegeeinrichtungen an Vertragsärzte"
+    },
+    {
+      "code": "Vorsorgeplaner",
+      "display": "Kommunikation zwischen einer Krankenkasse und den Vertragsarztpraxen."
+    }
+  ],
   "experimental": false,
   "publisher": "gematik GmbH",
-  "date": "2025-02-26"
+  "date": "2025-02-26",
+  "caseSensitive": true,
+  "count": 34
 }
