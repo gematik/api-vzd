@@ -1,6 +1,6 @@
 # Changelog
 
-## 2026-03-30 Version 1.1.1
+## 2026-04-01 Version 1.1.1
 - `feat`: added `EndpointFADIdEx` as a named extension slice `endpointFADId` with cardinality `0..* MS` to `EndpointDirectory`; was previously only included in examples
 - `feat`: added Invariant `KimConnectionTypeRequiresVersionInv` to enforce `ConnectionTypeKimVersionEx` when `Endpoint.connectionType = #kim` from `EndpointDirectoryConnectionType`
 - `feat`: applied `KimConnectionTypeRequiresVersionInv` on `EndpointDirectory.connectionType`

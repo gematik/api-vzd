@@ -13,5 +13,5 @@ Description: "Beispiel eines KIM-Endpunkts (KIM 2.0) mit allen relevanten Extens
   * extension[version].valueCoding = KimVersionCS#2.0 "KIM 2.0 Endpoint"
   * extension[xxlMailSupported].valueBoolean = true
 * name = "KIM-Mailadresse"
-* payloadType = DataAbsentReason#not-applicable "Not Applicable"
+* payloadType = EndpointDirectoryKIMappTags#Arztbrief "eArztbrief"
 * address = "dr.mustermann@praxis-mustermann.kim.telematik"
