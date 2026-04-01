@@ -2,7 +2,7 @@
   "resourceType": "StructureDefinition",
   "id": "EndpointDirectory",
   "url": "https://gematik.de/fhir/directory/StructureDefinition/EndpointDirectory",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "name": "EndpointDirectory",
   "title": "Endpoint in gematik Directory",
   "status": "active",
@@ -112,6 +112,22 @@
         "mustSupport": true
       },
       {
+        "id": "Endpoint.extension:endpointFADId",
+        "path": "Endpoint.extension",
+        "sliceName": "endpointFADId",
+        "min": 0,
+        "max": "*",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "https://gematik.de/fhir/directory/StructureDefinition/EndpointFADIdEx"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
         "id": "Endpoint.status",
         "path": "Endpoint.status",
         "mustSupport": true
@@ -132,6 +148,13 @@
             "severity": "error",
             "human": "If the kimVersion extension is used on connectionType, then connectionType must be #kim from EndpointDirectoryConnectionType.",
             "expression": "extension('https://gematik.de/fhir/directory/StructureDefinition/ConnectionTypeKimVersionEx').exists() implies (code = 'kim' and system = 'https://gematik.de/fhir/directory/CodeSystem/EndpointDirectoryConnectionType')",
+            "source": "https://gematik.de/fhir/directory/StructureDefinition/EndpointDirectory"
+          },
+          {
+            "key": "KimConnectionTypeRequiresVersionInv",
+            "severity": "error",
+            "human": "If connectionType is #kim from EndpointDirectoryConnectionType, then the kimVersion extension must be present.",
+            "expression": "(code = 'kim' and system = 'https://gematik.de/fhir/directory/CodeSystem/EndpointDirectoryConnectionType') implies extension('https://gematik.de/fhir/directory/StructureDefinition/ConnectionTypeKimVersionEx').exists()",
             "source": "https://gematik.de/fhir/directory/StructureDefinition/EndpointDirectory"
           }
         ],

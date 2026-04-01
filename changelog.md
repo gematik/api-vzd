@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-04-01 Version 1.1.1
+- `feat`: added `EndpointFADIdEx` as a named extension slice `endpointFADId` with cardinality `0..* MS` to `EndpointDirectory`; was previously only included in examples
+- `feat`: added Invariant `KimConnectionTypeRequiresVersionInv` to enforce `ConnectionTypeKimVersionEx` when `Endpoint.connectionType = #kim` from `EndpointDirectoryConnectionType`
+- `feat`: applied `KimConnectionTypeRequiresVersionInv` on `EndpointDirectory.connectionType`
+- `feat`: populated `EndpointDirectoryKIMappTags` with 34 appTag codes and changed CodeSystem content mode from `#not-present` to `#complete`
+- `change`: updated dependency `de.gematik.ti` to `1.3.0`; no impact on VZD behavior, this change serves dependency alignment
+
 ## 2026-02-26 Version 1.1.0
 - `feat`: added `ConnectionTypeKimVersionEx` extension on `Endpoint.connectionType` to capture the KIM version (`KimVersionVS`) and xxl-mail support (`boolean`)
 - `feat`: added `EndpointFADIdEx` extension on `Endpoint` to capture the Fachdienst-ID (FAD) of a KIM endpoint
@@ -10,7 +17,7 @@
 - `change`: `breaking` reduced cardinality of `ownerTelematikId` on `HealthcareServiceDirectory` and `PractitionerRoleDirectory` from `0..*` to `0..1`
 - `feat`: added `OwnerTelematikIdEx` (`ownerTelematikId 0..1 MS`) to `LocationDirectory`
 - `change`: reorganized `alias.fsh` with section comments; removed unused identifier aliases (`$NamingSystemTelematikID`, `$IdentifierBSNR`, `$NamingSystemBSNR`, `$IdentifierKZVA`, `$NamingSystemKZVA`, `$IdentifierIKNR`, `$NamingSystemIKNR`, `$IdentifierLANR`, `$NamingSystemLANR`)
-- `feat`: added `KimVersionCS` CodeSystem with codes `#kim-1.0`, `#kim-1.5`, `#kim-2.0`
+- `feat`: added `KimVersionCS` CodeSystem with codes `#1.0`, `#1.5`, `#2.0`
 - `feat`: added `KimVersionVS` ValueSet including all codes from `KimVersionCS`
 - `feat`: added `EndpointDirectoryKIMappTags` CodeSystem as placeholder for future KIM appTag codes (`#not-present`)
 - `feat`: added `EndpointDirectoryKIMappTags` to `EndpointPayloadTypeVS`

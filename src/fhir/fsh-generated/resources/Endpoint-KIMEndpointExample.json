@@ -65,9 +65,9 @@
     {
       "coding": [
         {
-          "code": "not-applicable",
-          "system": "http://terminology.hl7.org/CodeSystem/data-absent-reason",
-          "display": "Not Applicable"
+          "code": "Arztbrief",
+          "system": "https://gematik.de/fhir/directory/CodeSystem/EndpointDirectoryKIMappTags",
+          "display": "eArztbrief"
         }
       ]
     }
