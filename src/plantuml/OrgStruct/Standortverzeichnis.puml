@@ -158,5 +158,40 @@ class Location_Fachabteilung {
 
 }
 
+package "Zentren" {
+
+
+class Organization_Zentren {
++identifier : erId aus Standortdaten
+-name : -
+-alias : -
++type : Fachabteilungsschlüssel aus Standortdaten
+-active : -
+}
+
+
+Organization_Einrichtung <-- Organization_Zentren : "partOf"
+
+class HealthcareService_Zentren {
+-type : -
+-speciality : -
+-name : -
+-telecom : -
+-availableTime: -
+}
+
+HealthcareService_Zentren --> Location_Zentren : location
+Organization_Zentren <-- HealthcareService_Zentren : providedBy
+
+
+class Location_Zentren {
+-name : -
+-address : -
+-position : -
+}
+
+}
+
+
 
 @enduml
