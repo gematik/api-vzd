@@ -3,8 +3,8 @@
 package "Krankenhaus" {
   
 class Organization_Krankenhaus {
-#identifier : telematikID, IKNR - Standortdaten_HauptIK
-#name : Name der Organization - Standortdaten_Bezeichnung
+#identifier : telematikID, IKNR 
+#name : Name der Organization 
 #alias : Alternative name
 #type : professionOID
 #active : true
