@@ -1,11 +1,11 @@
 @startuml
 
 package "Krankenhaus" {
-
+  
 class Organization_Krankenhaus {
-+identifier : telematikID, IKNR - Standortdaten_HauptIK
-+name : Name der Organization - Standortdaten_Bezeichnung
--alias : Alternative name
+#identifier : telematikID, IKNR - Standortdaten_HauptIK
+#name : Name der Organization - Standortdaten_Bezeichnung
+#alias : Alternative name
 #type : professionOID
 #active : true
 }
@@ -13,11 +13,10 @@ class Organization_Krankenhaus {
 
 
 class HealthcareService_Krankenhaus {
--type : Fachrichtung HealthcareServiceType
--speciality : HL7 Service type
+#type : Fachrichtung HealthcareServiceType
+#speciality : HL7 Service type
 #name : -
--telecom : website, email, telephone
--availableTime: Öffnungszeiten
+#availableTime: Öffnungszeiten
 }
 
 Organization_Krankenhaus <-- HealthcareService_Krankenhaus : providedBy
@@ -27,34 +26,38 @@ HealthcareService_Krankenhaus --> Endpoint_Krankenhaus : endpoint
 
 class Location_Krankenhaus {
 #name : -
--address : VZD Adresse 
+#address : VZD Adresse 
 -position : VZD GeoKoordinaten
 }
-note left of Location_Krankenhaus 
-   Adressdaten werden
-   nur aus dem VZD
-   übernommen
-end note   
+
 
 class Endpoint_Krankenhaus {
--name: Name
--endpointVisibility : -
--status : active
--connectionType : EndpointConnectionType
--payloadType : EndpointPlayloadType
--address : KIM/TIM Adresse
+#name: Name
+#endpointVisibility : -
+#status : active
+#connectionType : EndpointConnectionType
+#payloadType : EndpointPlayloadType
+#address : KIM/TIM Adresse
 }
 
 }
+
+note right of Krankenhaus 
+   Daten werden
+   nur aus dem VZD
+   übernommen.
+   Erkennung Zusammengehörigkeit
+   über IK.
+end note   
 
 package "Standort" {
 
 class Organization_Standort {
--identifier : telematikID
-+name : Name of Organization
--alias : Alternative name
-#type : professionOID
--active : true
++identifier : khId
++name : Hauptstandort
+-alias : -
+-type : -
+-active : "Aktiv" aus Standortdaten
 }
 note right of Organization_Standort 
    Nur für zusätzliche
@@ -66,11 +69,11 @@ Organization_Krankenhaus <-- Organization_Standort : "partOf"
 HealthcareService_Krankenhaus -[hidden]right-> Organization_Standort
 
 class HealthcareService_Standort {
--type : Fachrichtung HealthcareServiceType
-+speciality : HL7 Service type
+-type : -
+-speciality : -
 -name : -
--telecom : website, email, telephone
--availableTime: Öffnungszeiten
+-telecom : -
+-availableTime: -
 }
 
 HealthcareService_Standort --> Location_Standort : location
@@ -89,22 +92,22 @@ class Location_Standort {
 package "Einrichtung" {
 
 class Organization_Einrichtung {
--identifier : telematikID
-+name : Name of Organization
--alias : Alternative name
-#type : professionOID
--active : true
++identifier : soId aus Standortdaten
++name : Name aus Standortdaten
+-alias : -
++type : Einrichtungstyp aus Standortdaten
+-active : Aktiv aus Standortdaten
 }
 
 
 Organization_Standort <-- Organization_Einrichtung : "partOf"
 
 class HealthcareService_Einrichtung {
--type : Fachrichtung HealthcareServiceType
-+speciality : HL7 Service type
+-type : -
+-speciality : -
 -name : -
--telecom : website, email, telephone
--availableTime: Öffnungszeiten
+-telecom : -
+-availableTime: -
 }
 
 HealthcareService_Einrichtung --> Location_Einrichtung : location
@@ -125,22 +128,22 @@ package "Fachabteilung" {
 
 
 class Organization_Fachabteilung {
--identifier : telematikID
-+name : Name of Organization
--alias : Alternative name
-#type : professionOID
--active : true
++identifier : erId aus Standortdaten
+-name : -
+-alias : -
++type : Fachabteilungsschlüssel aus Standortdaten
+-active : -
 }
 
 
 Organization_Einrichtung <-- Organization_Fachabteilung : "partOf"
 
 class HealthcareService_Fachabteilung {
--type : Fachrichtung HealthcareServiceType
-+speciality : HL7 Service type
+-type : -
+-speciality : -
 -name : -
--telecom : website, email, telephone
--availableTime: Öffnungszeiten
+-telecom : -
+-availableTime: -
 }
 
 HealthcareService_Fachabteilung --> Location_Fachabteilung : location
@@ -149,8 +152,8 @@ Organization_Fachabteilung <-- HealthcareService_Fachabteilung : providedBy
 
 class Location_Fachabteilung {
 -name : -
-+address : Adresse
-+position : GeoKoordinaten
+-address : -
+-position : -
 }
 
 }
