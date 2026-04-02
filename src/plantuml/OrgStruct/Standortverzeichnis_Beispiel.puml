@@ -94,7 +94,7 @@ class Location_Standort {
 package "Einrichtung" {
 
 class Organization_Einrichtung {
-+identifier : soId 2582
++identifier : soId 2582 erId 73
 +name : Zentrale Ambulanz Marienhospital
 -alias : -
 +type : 13 
@@ -126,21 +126,21 @@ class Location_Einrichtung {
 }
 
 
-package "Fachabteilung" {
+package "Zentren" {
 
 
-class Organization_Fachabteilung {
+class Organization_Zentren {
 +identifier : erId aus Standortdaten
 -name : -
 -alias : -
-+type : Fachabteilungsschlüssel aus Standortdaten
++type : ZentrenArt aus Standortdaten (2)
 -active : -
 }
 
 
-Organization_Einrichtung <-- Organization_Fachabteilung : "partOf"
+Organization_Einrichtung <-- Organization_Zentren : "partOf"
 
-class HealthcareService_Fachabteilung {
+class HealthcareService_Zentren {
 -type : -
 -speciality : -
 -name : -
@@ -148,11 +148,11 @@ class HealthcareService_Fachabteilung {
 -availableTime: -
 }
 
-HealthcareService_Fachabteilung --> Location_Fachabteilung : location
-Organization_Fachabteilung <-- HealthcareService_Fachabteilung : providedBy
+HealthcareService_Zentren --> Location_Zentren : location
+Organization_Zentren <-- HealthcareService_Zentren : providedBy
 
 
-class Location_Fachabteilung {
+class Location_Zentren {
 -name : -
 -address : -
 -position : -
@@ -160,10 +160,5 @@ class Location_Fachabteilung {
 
 }
 
-note right of Fachabteilung 
-   Link zur 
-   Einrichtung 
-   unklar
-end note  
 
 @enduml
