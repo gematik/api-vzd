@@ -48,7 +48,7 @@ jobs:
           folder: './src/fhir/fsh-generated/resources/'
 
       - name: Firely.Terminal (GitHub Actions)
-        uses: FirelyTeam/firely-terminal-pipeline@v0.8.8
+        uses: FirelyTeam/firely-terminal-pipeline@v0.8.9
         with:
           PATH_TO_CONFORMANCE_RESOURCES: src/fhir/fsh-generated/resources/
           # PATH_TO_QUALITY_CONTROL_RULES: qc/custom
