@@ -1,0 +1,197 @@
+@startuml
+
+package "Krankenhaus" {
+  
+class Organization_Krankenhaus {
+#identifier : telematikID, IKNR 
+#name : Name der Organization 
+#alias : Alternative name
+#type : professionOID
+#active : true
+}
+
+
+
+class HealthcareService_Krankenhaus {
+#type : Fachrichtung HealthcareServiceType
+#speciality : HL7 Service type
+#name : -
+#availableTime: Öffnungszeiten
+}
+
+Organization_Krankenhaus <-- HealthcareService_Krankenhaus : providedBy
+HealthcareService_Krankenhaus --> Location_Krankenhaus : location
+HealthcareService_Krankenhaus --> Endpoint_Krankenhaus : endpoint
+
+
+class Location_Krankenhaus {
+#name : -
+#address : VZD Adresse 
+-position : VZD GeoKoordinaten
+}
+
+
+class Endpoint_Krankenhaus {
+#name: Name
+#endpointVisibility : -
+#status : active
+#connectionType : EndpointConnectionType
+#payloadType : EndpointPlayloadType
+#address : KIM/TIM Adresse
+}
+
+}
+
+note right of Krankenhaus 
+   Daten werden
+   nur aus dem VZD
+   übernommen.
+   Erkennung Zusammengehörigkeit
+   über IK.
+end note   
+
+package "Standort" {
+
+class Organization_Standort {
++identifier : khId
++name : Hauptstandort
+-alias : -
+-type : -
+-active : "Aktiv" aus Standortdaten
+}
+note right of Organization_Standort 
+   Nur für zusätzliche
+   Standorte wird eine
+   Unterorganisation angelegt
+end note 
+
+Organization_Krankenhaus <-- Organization_Standort : "partOf"
+HealthcareService_Krankenhaus -[hidden]right-> Organization_Standort
+
+class HealthcareService_Standort {
+-type : -
+-speciality : -
+-name : -
+-telecom : -
+-availableTime: -
+}
+
+HealthcareService_Standort --> Location_Standort : location
+Organization_Standort <-- HealthcareService_Standort : providedBy
+
+
+
+class Location_Standort {
+-name : -
++address : Adresse
++position : GeoKoordinaten
+}
+
+}
+
+package "Einrichtung" {
+
+class Organization_Einrichtung {
++identifier : soId aus Standortdaten
++name : Name aus Standortdaten
+-alias : -
++type : Einrichtungstyp aus Standortdaten
+-active : Aktiv aus Standortdaten
+}
+
+
+Organization_Standort <-- Organization_Einrichtung : "partOf"
+
+class HealthcareService_Einrichtung {
+-type : -
+-speciality : -
+-name : -
+-telecom : -
+-availableTime: -
+}
+
+HealthcareService_Einrichtung --> Location_Einrichtung : location
+Organization_Einrichtung <-- HealthcareService_Einrichtung : providedBy
+
+
+
+class Location_Einrichtung {
+-name : -
++address : Adresse
++position : GeoKoordinaten
+}
+
+}
+
+
+package "Fachabteilung" {
+
+
+class Organization_Fachabteilung {
++identifier : erId aus Standortdaten
+-name : -
+-alias : -
++type : Fachabteilungsschlüssel aus Standortdaten
+-active : -
+}
+
+
+Organization_Einrichtung <-- Organization_Fachabteilung : "partOf"
+
+class HealthcareService_Fachabteilung {
+-type : -
+-speciality : -
+-name : -
+-telecom : -
+-availableTime: -
+}
+
+HealthcareService_Fachabteilung --> Location_Fachabteilung : location
+Organization_Fachabteilung <-- HealthcareService_Fachabteilung : providedBy
+
+
+class Location_Fachabteilung {
+-name : -
+-address : -
+-position : -
+}
+
+}
+
+package "Zentren" {
+
+
+class Organization_Zentren {
++identifier : erId aus Standortdaten
+-name : -
+-alias : -
++type : Fachabteilungsschlüssel aus Standortdaten
+-active : -
+}
+
+
+Organization_Einrichtung <-- Organization_Zentren : "partOf"
+
+class HealthcareService_Zentren {
+-type : -
+-speciality : -
+-name : -
+-telecom : -
+-availableTime: -
+}
+
+HealthcareService_Zentren --> Location_Zentren : location
+Organization_Zentren <-- HealthcareService_Zentren : providedBy
+
+
+class Location_Zentren {
+-name : -
+-address : -
+-position : -
+}
+
+}
+
+
+
+@enduml
