@@ -170,7 +170,7 @@ class Organization_Zentren {
 }
 
 
-Organization_Einrichtung <-- Organization_Zentren : "partOf"
+Organization_Standort <-right- Organization_Zentren : "partOf"
 
 class HealthcareService_Zentren {
 -type : -
