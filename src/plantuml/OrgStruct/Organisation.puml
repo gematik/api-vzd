@@ -1,0 +1,50 @@
+@startuml
+!define FHIR https://www.hl7.org/fhir/
+skinparam componentStyle rectangle
+
+package "Organisation" {
+    [Organization] << (R,#FFAAAA) >> 
+    [HealthcareService] << (R,#AAFFAA) >> 
+    [Location] << (R,#AAAAFF) >>
+    [Endpoint] << (R,#FFFFAA) >>
+
+    [Organization] --> [HealthcareService] : provides
+    [HealthcareService] --> [Location] : locatedAt
+    [HealthcareService] --> [Endpoint] : uses
+
+    note right of [Organization]
+      **Attributes:**
+      - **name**: Der **Name** der Organisation.
+      - **type**: Der **Typ** der Organisation, z.B. Krankenhaus oder Arztpraxis.
+      - **active**: Ein **Boolescher** Wert, der angibt, ob die Organisation aktiv ist.
+    end note
+
+    note right of [HealthcareService]
+      **Attributes:**
+      - **speciality**: Die **Fachrichtung** des Dienstes, z.B. Kardiologie.
+      - **category**: Die **Kategorie** des Dienstes, z.B. ambulant oder stationär.
+      - **type**: Der **Typ** des Gesundheitsdienstes, z.B. Notfallversorgung.
+      - **telecom**: **Kontaktinformationen**, wie Telefon oder E-Mail.
+      - **characteristic**: **Besondere Merkmale** des Dienstes, z.B. Barrierefreiheit.
+      - **communication**: Optionen der **Kommunikation** mit Patienten, z.B. Sprachen.
+      - **availableTime**: Die **verfügbaren Zeiten**, zu denen der Dienst bereitsteht.
+      - **availabilityExceptions**: **Ausnahmen** von der Verfügbarkeit, wie Feiertage.
+    end note
+
+    note right of [Location]
+      **Attributes:**
+      - **address**: Die **Adresse** des Standorts, einschließlich Straße, Stadt, Postleitzahl und Land.
+      - **position**: Die **geografische Position** des Standorts, oft in Form von Koordinaten (Breiten- und Längengrad).
+    end note
+
+    note right of [Endpoint]
+      **Attributes:**
+      - **address**: Die **Adresse** des Endpunkts, der für die Kommunikation genutzt wird.
+      - **connectionType**: Der **Typ der Verbindung**, z.B. REST, SOAP oder Messaging.
+      - **payloadType**: Der **Datentyp**, den der Endpunkt akzeptiert, z.B. FHIR, JSON oder XML.
+      - **name**: Der **Name** des Endpunkts zur Identifikation.
+      - **status**: Der **Status** des Endpunkts, z.B. aktiv oder inaktiv.
+    end note
+}
+
+@enduml
