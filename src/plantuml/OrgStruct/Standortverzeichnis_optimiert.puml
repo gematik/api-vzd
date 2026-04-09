@@ -45,9 +45,10 @@ class Endpoint_Krankenhaus {
 note right of Krankenhaus 
    Daten werden
    nur aus dem VZD
-   übernommen.
+   übernommen und mit Standorten 
+   aus dem Standortverzeichnis ergänzt.
    Erkennung Zusammengehörigkeit
-   über IK.
+   über IK/HauptIK.
 end note   
 
 package "Standort" {
