@@ -1,0 +1,167 @@
+@startuml
+
+package "Krankenhaus" {
+  
+class Organization_Krankenhaus {
+#<color:#0000FF>identifier.telematikID 5-2-261100797</color> 
+#<color:#0000FF>identifier.IKNR 261100797</color>
+#<color:#0000FF>name : Krankenhaus Bethel Berlin </color>
+#alias : 
+#<color:#0000FF>type : 1.2.276.0.76.4.53 Krankenhaus</color>
+#<color:#0000FF>active : true</color>
+}
+
+
+
+class HealthcareService_Krankenhaus {
+#<color:#0000FF>type : GESU - Öffentliches Gesundheitswesen</color>
+#<color:#0000FF>Origin: ldap</color>
+#speciality : HL7 Service type
+#name : -
+#availableTime: Öffnungszeiten
+}
+
+Organization_Krankenhaus <-- HealthcareService_Krankenhaus : providedBy
+HealthcareService_Krankenhaus --> Location_Krankenhaus : location
+HealthcareService_Krankenhaus --> Endpoint_Krankenhaus : endpoint
+
+
+class Location_Krankenhaus {
+#name : -
+#<color:#0000FF>address : Promenadenstraße 3-5, 12207, Berlin</color>
+-position : VZD GeoKoordinaten
+}
+
+
+class Endpoint_Krankenhaus {
+#name: Name
+#endpointVisibility : -
+#status : active
+#connectionType : EndpointConnectionType
+#payloadType : EndpointPlayloadType
+#address : KIM/TIM Adresse
+}
+
+}
+
+note right of Krankenhaus 
+   Daten werden
+   nur aus dem VZD
+   übernommen und mit Standorten 
+   aus dem Standortverzeichnis ergänzt.
+   Erkennung Zusammengehörigkeit
+   über IK/HauptIK.
+end note   
+
+package "Standort" {
+
+class Organization_Standort {
++<color:#2bcc0e>identifier.standortId: 772328</color>
++<color:#2bcc0e>name : Krankenhaus Bethel Berlin</color>
+-alias : -
+-type : -
++<color:#2bcc0e>active : "Aktiv"</color>
++<color:#2bcc0e>GültigVon : 01.01.2018</color>
++<color:#2bcc0e>GültigBis : -</color>
++<color:#2bcc0e>LetzteÄnderung : 23.05.2025</color>
+}
+
+
+Organization_Krankenhaus <-- Organization_Standort : "partOf"
+HealthcareService_Krankenhaus -[hidden]right-> Organization_Standort
+
+class HealthcareService_Standort {
+-type : -
+-speciality : -
+-name : -
+-telecom : -
+-availableTime: -
+}
+
+HealthcareService_Standort --> Location_Standort : location
+Organization_Standort <-- HealthcareService_Standort : providedBy
+
+
+
+class Location_Standort {
+-name : -
++<color:#2bcc0e>address : Promenadenstraße 3, 12207 Berlin</color>
++<color:#2bcc0e>position : 13.325926780717;52.43255291529 </color>
+}
+
+
+}
+
+package "Einrichtung 1" {
+
+class Organization_Einrichtung1 {
++<color:#2bcc0e>identifier:BSNR : 999999999</color>
++<color:#2bcc0e>name : Krankenhaus Bethel Berlin - Stationäre Behandlung</color>
+-alias : -
++<color:#2bcc0e>type : Stationäre Behandlung</color>
++<color:#2bcc0e>active : "Aktiv"</color>
+}
+
+
+Organization_Standort <-- Organization_Einrichtung1 : "partOf"
+
+class HealthcareService_Einrichtung1 {
+-type : -
+-speciality : -
+-name : -
+-telecom : -
+-availableTime: -
+}
+
+HealthcareService_Einrichtung1 --> Location_Einrichtung1 : location
+Organization_Einrichtung1 <-- HealthcareService_Einrichtung1 : providedBy
+
+
+
+class Location_Einrichtung1 {
+-name : -
++<color:#2bcc0e>address : Promenadenstraße 3, 12207 Berlin</color>
++<color:#2bcc0e>position : 13.325926780717;52.43255291529 </color>
+}
+
+
+}
+
+package "Einrichtung 2" {
+
+class Organization_Einrichtung2 {
++<color:#2bcc0e>identifier:BSNR : 727410300</color>
++<color:#2bcc0e>name : Zentrale Notaufnahme Krankenahaus Bethel Berlin</color>
+-alias : -
++<color:#2bcc0e>type : Zentrale Notaufnahme (ZNA) Erwachsene</color>
++<color:#2bcc0e>active : "Aktiv"</color>
++<color:#2bcc0e>GültigVon : 01.01.2018</color>
++<color:#2bcc0e>GültigBis : -</color>
+}
+
+
+Organization_Standort <-- Organization_Einrichtung2 : "partOf"
+
+class HealthcareService_Einrichtung2 {
+-type : -
+-speciality : -
+-name : -
+-telecom : -
+-availableTime: -
+}
+
+HealthcareService_Einrichtung2 --> Location_Einrichtung2 : location
+Organization_Einrichtung2 <-- HealthcareService_Einrichtung2 : providedBy
+
+
+
+class Location_Einrichtung2 {
+-name : -
++<color:#2bcc0e>address : Promenadenstraße 3, 12207 Berlin</color>
++<color:#2bcc0e>position : 13.325937509553;52.432559456606 </color>
+}
+
+
+}
+
+@enduml
