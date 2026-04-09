@@ -18,7 +18,7 @@ image::gematik_logo.svg[gematik,float="right"]
 
 [width="100%",cols="50%,50%",options="header",]
 |===
-|Version: |1.0.3
+|Version: |1.0.4
 |Referencing: |gemILF_FHIR_VZD
 |===
 
@@ -60,6 +60,10 @@ Beispieldaten überarbeitet
 
 |1.0.3 |16.12.25 | 2.5 
 |Hinweis zum "Bug im VZD FHIR 1.2.0-15" aufgenommen
+|gematik
+
+|1.0.4 |09.04.26 | 2.2 
+|Hinweis auf Implementierungsbeispiele entfernt, da die Beispiele veraltet sind.
 |gematik
 
 |===
@@ -139,11 +143,12 @@ Für den Zugriff auf die /owner-Schnittstelle ist ein access_token nötig, welch
 
 Als Ergebnis der Authentifizierung erhält das AVS ein Token, welches als Bearer Token bei allen folgenden FHIR-VZD-Operationen im Header übergeben werden muss. Das Token hat eine Gültigkeit von 24 Stunden.
 
-[NOTE]
-====
-Beispielimplementierungen für diese Authentifizierung sind hier verfügbar: link:https://github.com/gematik/api-vzd/tree/main/samples/directory-samples-java/auth-samples[Java sample] 
-und hier: link:https://github.com/gematik/api-vzd/tree/main/samples/directory-samples-python/directory_samples[Python sample]
-====
+// Verweis auf Beispielimplementierungen auskommentiert, da Beispiele veraltet sind.
+//[NOTE]
+//====
+//Beispielimplementierungen für diese Authentifizierung sind hier verfügbar: link:https://github.com/gematik/api-vzd/tree/main/samples/directory-samples-java/auth-samples[Java sample] 
+//und hier: link:https://github.com/gematik/api-vzd/tree/main/samples/directory-samples-python/directory_samples[Python sample]
+//====
 
 === Suche des Apothekeneintrags
 Vor jeder Änderung von Mehrwertdaten müssen zuerst die aktuellen Daten aus dem FHIR-VZD gelesen werden. Dafür können die in link:FHIR_VZD_HOWTO_Search.adoc[FHIR-VZD HOWTO Search] 
