@@ -53,10 +53,13 @@ note right of Krankenhaus
    über IK/HauptIK.
 end note   
 
+note "Legende\n<color:#0000FF>Blaue Attribute/Werte werden aus dem VZD übernommen</color>\n<color:#2bcc0e>Grüne Attribute werden aus dem Standortverzeichnis übernommen</color>" as N1
+
 package "Standort" {
 
 class Organization_Standort {
 +<color:#2bcc0e>identifier.standortId: 772328</color>
++<color:#2bcc0e>orgType: "Standort"</color>
 +<color:#2bcc0e>name : Krankenhaus Bethel Berlin</color>
 -alias : -
 -type : -
@@ -96,10 +99,13 @@ package "Einrichtung 1" {
 
 class Organization_Einrichtung1 {
 +<color:#2bcc0e>identifier:BSNR : 999999999</color>
++<color:#2bcc0e>orgType: "Einrichtung"</color>
 +<color:#2bcc0e>name : Krankenhaus Bethel Berlin - Stationäre Behandlung</color>
 -alias : -
 +<color:#2bcc0e>type : Stationäre Behandlung</color>
 +<color:#2bcc0e>active : "Aktiv"</color>
++<color:#2bcc0e>GültigVon : 01.01.2018</color>
++<color:#2bcc0e>GültigBis : -</color>
 }
 
 
@@ -131,6 +137,7 @@ package "Einrichtung 2" {
 
 class Organization_Einrichtung2 {
 +<color:#2bcc0e>identifier:BSNR : 727410300</color>
++<color:#2bcc0e>orgType: "Einrichtung"</color>
 +<color:#2bcc0e>name : Zentrale Notaufnahme Krankenahaus Bethel Berlin</color>
 -alias : -
 +<color:#2bcc0e>type : Zentrale Notaufnahme (ZNA) Erwachsene</color>
