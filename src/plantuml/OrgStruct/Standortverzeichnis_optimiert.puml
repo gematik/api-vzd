@@ -3,19 +3,19 @@
 package "Krankenhaus" {
   
 class Organization_Krankenhaus {
-#identifier : telematikID, IKNR 
-#name : Name der Organization 
-#alias : Alternative name
-#type : professionOID
-#active : true
+#<color:#0000FF>identifier.telematikID xxx</color> 
+#<color:#0000FF>identifier.IKNR xxx</color>
+#<color:#0000FF>name : Krankenhaus xxx </color>
+-alias : 
+#<color:#0000FF>type : 1.2.276.0.76.4.53 Krankenhaus</color>
+#<color:#0000FF>active : true</color>
 }
 
-
-
 class HealthcareService_Krankenhaus {
-#type : Fachrichtung HealthcareServiceType
-#speciality : HL7 Service type
-#name : -
+#<color:#0000FF>type : GESU - Öffentliches Gesundheitswesen</color>
+#<color:#0000FF>Origin: ldap</color>
+-speciality : -
+-name : -
 #availableTime: Öffnungszeiten
 }
 
@@ -26,18 +26,17 @@ HealthcareService_Krankenhaus --> Endpoint_Krankenhaus : endpoint
 
 class Location_Krankenhaus {
 #name : -
-#address : VZD Adresse 
+#<color:#0000FF>address : Promenadenstraße 3-5, 12207, Berlin</color>
 -position : VZD GeoKoordinaten
 }
 
-
 class Endpoint_Krankenhaus {
-#name: Name
-#endpointVisibility : -
-#status : active
-#connectionType : EndpointConnectionType
-#payloadType : EndpointPlayloadType
-#address : KIM/TIM Adresse
+#<color:#0000FF>name: Name</color>
+#<color:#0000FF>endpointVisibility : -</color>
+#<color:#0000FF>status : active</color>
+#<color:#0000FF>connectionType : EndpointConnectionType</color>
+#<color:#0000FF>payloadType : EndpointPlayloadType</color>
+#<color:#0000FF>address : KIM/TIM Adresse</color>
 }
 
 }
@@ -50,6 +49,8 @@ note right of Krankenhaus
    Erkennung Zusammengehörigkeit
    über IK/HauptIK.
 end note   
+
+note "Legende\n<color:#0000FF>Blaue Attribute/Werte werden aus dem VZD übernommen</color>\n<color:#2bcc0e>Grüne Attribute werden aus dem Standortverzeichnis übernommen</color>" as N1
 
 package "Standort" {
 
