@@ -55,17 +55,17 @@ note "Legende\n<color:#0000FF>Blaue Attribute/Werte werden aus dem VZD übernomm
 package "Standort" {
 
 class Organization_Standort {
-+identifier : khId
-+name : Hauptstandort
++<color:#2bcc0e>identifier.standortId: xxx</color>
++<color:#2bcc0e>orgType: "Standort"</color>
++<color:#2bcc0e>name : Krankenhaus xxx</color>
 -alias : -
 -type : -
--active : "Aktiv" aus Standortdaten
++<color:#2bcc0e>active : "Aktiv"</color>
++<color:#2bcc0e>GültigVon : xx.xx.20xx</color>
++<color:#2bcc0e>GültigBis : -</color>
++<color:#2bcc0e>LetzteÄnderung : xx.xx.20xx</color>
 }
-note right of Organization_Standort 
-   Nur für zusätzliche
-   Standorte wird eine
-   Unterorganisation angelegt
-end note 
+
 
 Organization_Krankenhaus <-- Organization_Standort : "partOf"
 HealthcareService_Krankenhaus -[hidden]right-> Organization_Standort
@@ -85,8 +85,8 @@ Organization_Standort <-- HealthcareService_Standort : providedBy
 
 class Location_Standort {
 -name : -
-+address : Adresse
-+position : GeoKoordinaten
++<color:#2bcc0e>address : Straße xx, xxxxx Stadt</color>
++<color:#2bcc0e>position : 13.325926780717;52.43255291529 </color>
 }
 
 package "Zentren" {
@@ -94,7 +94,7 @@ package "Zentren" {
 Organization_Standort <-down- HealthcareService_Zentren : "providedBy"
 
 class HealthcareService_Zentren {
--type : -
++type : "Zentrum"
 -speciality : -
 -name : -
 -telecom : -
@@ -106,8 +106,8 @@ HealthcareService_Zentren --> Location_Zentren : location
 
 class Location_Zentren {
 -name : -
--address : -
--position : -
++<color:#2bcc0e>address : Straße xx, xxxxx Stadt</color>
++<color:#2bcc0e>position : 13.325926780717;52.43255291529 </color>
 }
 
 }
@@ -117,13 +117,13 @@ class Location_Zentren {
 package "Einrichtung" {
 
 class Organization_Einrichtung {
-+identifier : soId aus Standortdaten
-+name : Name aus Standortdaten
++<color:#2bcc0e>identifier:BSNR : 999999999</color>
++<color:#2bcc0e>orgType: "Einrichtung"</color>
++<color:#2bcc0e>name : Krankenhaus xxx - Einrichtungsname</color>
 -alias : -
-+type : Einrichtungstyp aus Standortdaten
--active : Aktiv aus Standortdaten
++<color:#2bcc0e>type : Einrichtungstyp</color>
++<color:#2bcc0e>active : "Aktiv"</color>
 }
-
 
 Organization_Standort <-- Organization_Einrichtung : "partOf"
 
@@ -142,8 +142,8 @@ Organization_Einrichtung <-- HealthcareService_Einrichtung : providedBy
 
 class Location_Einrichtung {
 -name : -
-+address : Adresse
-+position : GeoKoordinaten
++<color:#2bcc0e>address : Straße xx, xxxxx Stadt</color>
++<color:#2bcc0e>position : 13.325926780717;52.43255291529 </color>
 }
 
 package "Fachabteilung" {
@@ -152,7 +152,7 @@ package "Fachabteilung" {
 Organization_Einrichtung <-down- HealthcareService_Fachabteilung : "providedBy"
 
 class HealthcareService_Fachabteilung {
--type : -
++type : "Fachabteilung"
 -speciality : -
 -name : -
 -telecom : -
