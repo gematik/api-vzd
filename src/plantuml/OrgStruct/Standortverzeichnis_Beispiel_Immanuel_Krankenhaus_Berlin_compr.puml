@@ -1,0 +1,180 @@
+@startuml
+
+package "Krankenhaus" {
+  
+class Organization_Krankenhaus {
+#<color:#0000FF>identifier.telematikID 5-2-261100504-000</color> 
+#<color:#0000FF>identifier.IKNR 261100504</color>
+#<color:#0000FF>name : Immanuel Krankenhaus Berlin</color>
+#alias : 
+#<color:#0000FF>type : 1.2.276.0.76.4.53 Krankenhaus</color>
+#<color:#0000FF>active : true</color>
+}
+
+
+
+class HealthcareService_Krankenhaus {
+#<color:#0000FF>type : GESU - Öffentliches Gesundheitswesen</color>
+#<color:#0000FF>Origin: ldap</color>
+#speciality : -
+#name : -
+#availableTime: Öffnungszeiten
+}
+
+Organization_Krankenhaus <-- HealthcareService_Krankenhaus : providedBy
+HealthcareService_Krankenhaus --> Location_Krankenhaus : location
+HealthcareService_Krankenhaus --> Endpoint_Krankenhaus : endpoint
+
+
+class Location_Krankenhaus {
+#name : -
+#<color:#0000FF>address : Königstraße 63, 14109, Berlin</color>
+-position : VZD GeoKoordinaten
+}
+
+
+class Endpoint_Krankenhaus {
+#name: Name
+#endpointVisibility : -
+#status : active
+#connectionType : EndpointConnectionType
+#payloadType : EndpointPlayloadType
+#address : KIM/TIM Adresse
+}
+
+}
+
+note right of Krankenhaus 
+   Daten werden
+   nur aus dem VZD
+   übernommen und mit Standorten 
+   aus dem Standortverzeichnis ergänzt.
+   Erkennung Zusammengehörigkeit
+   über IK/HauptIK.
+end note   
+
+note "Legende\n<color:#0000FF>Blaue Attribute/Werte werden aus dem VZD übernommen</color>\n<color:#2bcc0e>Grüne Attribute werden aus dem Standortverzeichnis übernommen</color>" as N1
+
+package "Standort1" {
+
+class Organization_Standort1 {
++<color:#2bcc0e>identifier.standortId: 772972</color>
++<color:#2bcc0e>name : Standort Berlin Wannsee</color>
+-alias : -
+-type : -
++<color:#2bcc0e>active : "Aktiv"</color>
++<color:#2bcc0e>GültigVon : 2019-01-01</color>
++<color:#2bcc0e>GültigBis : -</color>
++<color:#2bcc0e>LetzteÄnderung : 2025-05-23</color>
+}
+
+Organization_Krankenhaus <-- Organization_Standort1 : "partOf"
+HealthcareService_Krankenhaus -[hidden]right-> Organization_Standort1
+
+}
+
+package "Standort2" {
+
+class Organization_Standort2 {
++<color:#2bcc0e>identifier.standortId: 772973</color>
++<color:#2bcc0e>name : Standort Berlin Buch</color>
+-alias : -
+-type : -
++<color:#2bcc0e>active : "Aktiv"</color>
++<color:#2bcc0e>GültigVon : 2019-01-01</color>
++<color:#2bcc0e>GültigBis : -</color>
++<color:#2bcc0e>LetzteÄnderung : 2025-05-23</color>
+}
+
+Organization_Krankenhaus <-- Organization_Standort2 : "partOf"
+HealthcareService_Krankenhaus -[hidden]right-> Organization_Standort2
+
+
+}
+
+package "Einrichtung 1" {
+
+class Organization_Einrichtung1 {
++<color:#2bcc0e>identifier:BSNR : 999999999</color>
++<color:#2bcc0e>name : Standort Berlin Wannsee - Stationäre Behandlung</color>
+-alias : -
++<color:#2bcc0e>type : Stationäre Behandlung</color>
++<color:#2bcc0e>active : "Aktiv"</color>
++<color:#2bcc0e>GültigVon : 2019-01-01</color>
++<color:#2bcc0e>GültigBis : -</color>
+}
+
+
+Organization_Standort1 <-- Organization_Einrichtung1 : "partOf"
+
+
+}
+
+package "Einrichtung 2" {
+
+class Organization_Einrichtung2 {
++<color:#2bcc0e>identifier:BSNR : 999999999</color>
++<color:#2bcc0e>name : Notfallambulanz</color>
+-alias : -
++<color:#2bcc0e>type : Notfallambulanz</color>
++<color:#2bcc0e>active : "Aktiv"</color>
++<color:#2bcc0e>GültigVon : 2019-01-01</color>
++<color:#2bcc0e>GültigBis : -</color>
+}
+
+Organization_Standort1 <-- Organization_Einrichtung2 : "partOf"
+
+
+}
+
+package "Einrichtung 3" {
+
+class Organization_Einrichtung3 {
++<color:#2bcc0e>identifier:BSNR : 999999999</color>
++<color:#2bcc0e>name : ASV Rheumatologie</color>
+-alias : -
++<color:#2bcc0e>type : Ambulante spezialfachärztliche Versorgung...</color>
++<color:#2bcc0e>active : "Aktiv"</color>
++<color:#2bcc0e>GültigVon : 2019-01-01</color>
++<color:#2bcc0e>GültigBis : -</color>
+}
+
+Organization_Standort1 <-- Organization_Einrichtung3 : "partOf"
+
+
+}
+
+
+package "Einrichtung 4" {
+
+class Organization_Einrichtung4 {
++<color:#2bcc0e>identifier:BSNR : 999999999</color>
++<color:#2bcc0e>name : Standort Berlin Buch - Stationäre Behandlung</color>
+-alias : -
++<color:#2bcc0e>type : Stationäre Behandlung</color>
++<color:#2bcc0e>active : "Aktiv"</color>
++<color:#2bcc0e>GültigVon : 2019-01-01</color>
++<color:#2bcc0e>GültigBis : -</color>
+}
+
+Organization_Standort2 <-- Organization_Einrichtung4 : "partOf"
+
+}
+
+package "Einrichtung 5" {
+
+class Organization_Einrichtung5 {
++<color:#2bcc0e>identifier:BSNR : 999999999</color>
++<color:#2bcc0e>name : Notfallambulanz Rheumatologie</color>
+-alias : -
++<color:#2bcc0e>type : Notfallambulanz</color>
++<color:#2bcc0e>active : "Aktiv"</color>
++<color:#2bcc0e>GültigVon : 2019-01-01</color>
++<color:#2bcc0e>GültigBis : -</color>
+}
+
+Organization_Standort2 <-- Organization_Einrichtung5 : "partOf"
+
+}
+
+@enduml
