@@ -59,6 +59,7 @@ package "Standort1" {
 
 class Organization_Standort1 {
 +<color:#2bcc0e>identifier.standortId: 772972</color>
++<color:#2bcc0e>orgType: "Standort"</color>
 +<color:#2bcc0e>name : Standort Berlin Wannsee</color>
 -alias : -
 -type : -
@@ -94,6 +95,7 @@ package "Standort2" {
 
 class Organization_Standort2 {
 +<color:#2bcc0e>identifier.standortId: 772973</color>
++<color:#2bcc0e>orgType: "Standort"</color>
 +<color:#2bcc0e>name : Standort Berlin Buch</color>
 -alias : -
 -type : -
@@ -129,6 +131,7 @@ package "Einrichtung 1" {
 
 class Organization_Einrichtung1 {
 +<color:#2bcc0e>identifier:BSNR : 999999999</color>
++<color:#2bcc0e>orgType: "Einrichtung"</color>
 +<color:#2bcc0e>name : Standort Berlin Wannsee - Stationäre Behandlung</color>
 -alias : -
 +<color:#2bcc0e>type : Stationäre Behandlung</color>
@@ -165,6 +168,7 @@ package "Einrichtung 2" {
 
 class Organization_Einrichtung2 {
 +<color:#2bcc0e>identifier:BSNR : 999999999</color>
++<color:#2bcc0e>orgType: "Einrichtung"</color>
 +<color:#2bcc0e>name : Notfallambulanz</color>
 -alias : -
 +<color:#2bcc0e>type : Notfallambulanz</color>
@@ -200,6 +204,7 @@ package "Einrichtung 3" {
 
 class Organization_Einrichtung3 {
 +<color:#2bcc0e>identifier:BSNR : 999999999</color>
++<color:#2bcc0e>orgType: "Einrichtung"</color>
 +<color:#2bcc0e>name : ASV Rheumatologie</color>
 -alias : -
 +<color:#2bcc0e>type : Ambulante spezialfachärztliche Versorgung...</color>
@@ -236,6 +241,7 @@ package "Einrichtung 4" {
 
 class Organization_Einrichtung4 {
 +<color:#2bcc0e>identifier:BSNR : 999999999</color>
++<color:#2bcc0e>orgType: "Einrichtung"</color>
 +<color:#2bcc0e>name : Standort Berlin Buch - Stationäre Behandlung</color>
 -alias : -
 +<color:#2bcc0e>type : Stationäre Behandlung</color>
@@ -271,6 +277,7 @@ package "Einrichtung 5" {
 
 class Organization_Einrichtung5 {
 +<color:#2bcc0e>identifier:BSNR : 999999999</color>
++<color:#2bcc0e>orgType: "Einrichtung"</color>
 +<color:#2bcc0e>name : Notfallambulanz Rheumatologie</color>
 -alias : -
 +<color:#2bcc0e>type : Notfallambulanz</color>
