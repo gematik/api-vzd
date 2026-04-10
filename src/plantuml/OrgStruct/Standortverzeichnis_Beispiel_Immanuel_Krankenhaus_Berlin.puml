@@ -133,6 +133,8 @@ class Organization_Einrichtung1 {
 -alias : -
 +<color:#2bcc0e>type : Stationäre Behandlung</color>
 +<color:#2bcc0e>active : "Aktiv"</color>
++<color:#2bcc0e>GültigVon : 2019-01-01</color>
++<color:#2bcc0e>GültigBis : -</color>
 }
 
 
