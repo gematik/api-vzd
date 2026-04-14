@@ -168,7 +168,7 @@ package "Fachabteilung" {
 Organization_Einrichtung <-down- HealthcareService_Fachabteilung : "providedBy"
 
 class HealthcareService_Fachabteilung {
-+type : "Fachabteilung"
++<color:#2bcc0e>type : "Fachabteilung"</color>
 +<color:#2bcc0e>speciality : Fachabteilungsschlüssel 0100</color>
 -name : -
 -telecom : -
@@ -182,7 +182,7 @@ package "Fachabteilung2" {
 Organization_Einrichtung <-down- HealthcareService_Fachabteilung2 : "providedBy"
 
 class HealthcareService_Fachabteilung2 {
-+type : "Fachabteilung"
++<color:#2bcc0e>type : "Fachabteilung"</color>
 +<color:#2bcc0e>speciality : Fachabteilungsschlüssel 0200</color>
 -name : -
 -telecom : -
@@ -196,7 +196,7 @@ package "Fachabteilung3" {
 Organization_Einrichtung <-down- HealthcareService_Fachabteilung3 : "providedBy"
 
 class HealthcareService_Fachabteilung3 {
-+type : "Fachabteilung"
++<color:#2bcc0e>type : "Fachabteilung"</color>
 +<color:#2bcc0e>speciality : Fachabteilungsschlüssel 0300</color>
 -name : -
 -telecom : -
