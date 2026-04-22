@@ -1,0 +1,74 @@
+@startuml
+
+package "Krankenhaus" {
+  
+class Organization_Krankenhaus {
+#<color:#0000FF>identifier.telematikID xxx</color> 
+#<color:#0000FF>identifier.IKNR xxx</color>
+#<color:#0000FF>name : Krankenhaus xxx </color>
+#<color:#0000FF>type : 1.2.276.0.76.4.53 Krankenhaus</color>
+#<color:#0000FF>active : true</color>
+}
+
+
+package "Standort" {
+
+class Organization_Standort {
++<color:#2bcc0e>identifier.standortId: xxx</color>
++<color:#2bcc0e>orgType: "Standort"</color>
++<color:#2bcc0e>name : Krankenhaus xxx - Standort 123</color>
++<color:#2bcc0e>active : true</color>
++<color:#2bcc0e>GültigVon : xx.xx.20xx</color>
++<color:#2bcc0e>GültigBis : -</color>
++<color:#2bcc0e>LetzteÄnderung : xx.xx.20xx</color>
+}
+
+Organization_Krankenhaus <-- Organization_Standort : "partOf"
+
+package "Zentren" {
+
+Organization_Standort <-down- HealthcareService_Zentren : "providedBy"
+
+class HealthcareService_Zentren {
++type : "Zentrum"
+
+}
+
+
+}
+
+}
+
+package "Einrichtung" {
+
+class Organization_Einrichtung {
++<color:#2bcc0e>identifier:BSNR : 999999999</color>
++<color:#2bcc0e>orgType: "Einrichtung"</color>
++<color:#2bcc0e>name : Krankenhaus xxx - Einrichtungsname</color>
++<color:#2bcc0e>type : Einrichtungstyp</color>
++<color:#2bcc0e>active : true</color>
+}
+
+Organization_Standort <-- Organization_Einrichtung : "partOf"
+
+
+
+package "Fachabteilung" {
+
+
+Organization_Einrichtung <-down- HealthcareService_Fachabteilung : "providedBy"
+
+class HealthcareService_Fachabteilung {
++type : "Fachabteilung"
+
+}
+
+
+
+}
+
+}
+
+}
+
+@enduml
