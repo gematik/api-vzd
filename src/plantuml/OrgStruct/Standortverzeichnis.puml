@@ -1,21 +1,20 @@
 @startuml
 
 package "Krankenhaus" {
-  
+
 class Organization_Krankenhaus {
-#identifier : telematikID, IKNR 
-#name : Name der Organization 
-#alias : Alternative name
-#type : professionOID
-#active : true
+#<color:#0000FF>identifier: telematikID, IKNR</color> 
+#<color:#0000FF>name : Name der Organization</color>
+-alias : 
+#<color:#0000FF>type : 1.2.276.0.76.4.53 Krankenhaus</color>
+#<color:#0000FF>active : true</color>
 }
 
-
-
 class HealthcareService_Krankenhaus {
-#type : Fachrichtung HealthcareServiceType
-#speciality : HL7 Service type
-#name : -
+#<color:#0000FF>type : GESU - Öffentliches Gesundheitswesen</color>
+#<color:#0000FF>Origin: ldap</color>
+-speciality : -
+-name : -
 #availableTime: Öffnungszeiten
 }
 
@@ -26,18 +25,17 @@ HealthcareService_Krankenhaus --> Endpoint_Krankenhaus : endpoint
 
 class Location_Krankenhaus {
 #name : -
-#address : VZD Adresse 
+#<color:#0000FF>address : Adresse</color>
 -position : VZD GeoKoordinaten
 }
 
-
 class Endpoint_Krankenhaus {
-#name: Name
-#endpointVisibility : -
-#status : active
-#connectionType : EndpointConnectionType
-#payloadType : EndpointPlayloadType
-#address : KIM/TIM Adresse
+#<color:#0000FF>name: Name</color>
+#<color:#0000FF>endpointVisibility : -</color>
+#<color:#0000FF>status : active</color>
+#<color:#0000FF>connectionType : EndpointConnectionType</color>
+#<color:#0000FF>payloadType : EndpointPlayloadType</color>
+#<color:#0000FF>address : KIM/TIM Adresse</color>
 }
 
 }
@@ -53,17 +51,16 @@ end note
 package "Standort" {
 
 class Organization_Standort {
-+identifier : khId
-+name : Hauptstandort
++<color:#2bcc0e>identifier.standortId: 123456</color>
++<color:#2bcc0e>orgType: "Standort"</color>
++<color:#2bcc0e>name : Name der Organization - Standort 123</color>
 -alias : -
 -type : -
--active : "Aktiv" aus Standortdaten
++<color:#2bcc0e>active : "Aktiv"</color>
++<color:#2bcc0e>GültigVon : 2018-01-01</color>
++<color:#2bcc0e>GültigBis : -</color>
++<color:#2bcc0e>LetzteÄnderung : 2025-12-19</color>
 }
-note right of Organization_Standort 
-   Nur für zusätzliche
-   Standorte wird eine
-   Unterorganisation angelegt
-end note 
 
 Organization_Krankenhaus <-- Organization_Standort : "partOf"
 HealthcareService_Krankenhaus -[hidden]right-> Organization_Standort
@@ -79,12 +76,41 @@ class HealthcareService_Standort {
 HealthcareService_Standort --> Location_Standort : location
 Organization_Standort <-- HealthcareService_Standort : providedBy
 
-
-
 class Location_Standort {
 -name : -
-+address : Adresse
-+position : GeoKoordinaten
++<color:#2bcc0e>address : Adresse</color>
++<color:#2bcc0e>position : GeoKoordinaten</color>
+}
+
+package "Zentren" {
+
+class Organization_Zentren {
++identifier : erId aus Standortdaten
+-name : -
+-alias : -
++type : Fachabteilungsschlüssel aus Standortdaten
+-active : -
+}
+
+Organization_Standort <-down- Organization_Zentren : "partOf"
+
+class HealthcareService_Zentren {
+-type : -
+-speciality : -
+-name : -
+-telecom : -
+-availableTime: -
+}
+
+HealthcareService_Zentren --> Location_Zentren : location
+Organization_Zentren <-- HealthcareService_Zentren : providedBy
+
+class Location_Zentren {
+-name : -
+-address : -
+-position : -
+}
+
 }
 
 }
@@ -92,13 +118,13 @@ class Location_Standort {
 package "Einrichtung" {
 
 class Organization_Einrichtung {
-+identifier : soId aus Standortdaten
-+name : Name aus Standortdaten
++<color:#2bcc0e>identifier:BSNR : 999999999</color>
++<color:#2bcc0e>orgType: "Einrichtung"</color>
++<color:#2bcc0e>name : Name der Organization - Name der Einrichtung</color>
 -alias : -
-+type : Einrichtungstyp aus Standortdaten
--active : Aktiv aus Standortdaten
++<color:#2bcc0e>type : Einrichtungstyp</color>
++<color:#2bcc0e>active : "Aktiv"</color>
 }
-
 
 Organization_Standort <-- Organization_Einrichtung : "partOf"
 
@@ -113,28 +139,22 @@ class HealthcareService_Einrichtung {
 HealthcareService_Einrichtung --> Location_Einrichtung : location
 Organization_Einrichtung <-- HealthcareService_Einrichtung : providedBy
 
-
-
 class Location_Einrichtung {
 -name : -
-+address : Adresse
-+position : GeoKoordinaten
++<color:#2bcc0e>address : Adresse</color>
++<color:#2bcc0e>position : GeoKoordinaten</color>
 }
-
-}
-
 
 package "Fachabteilung" {
 
-
 class Organization_Fachabteilung {
-+identifier : erId aus Standortdaten
--name : -
++<color:#2bcc0e>identifier: erId aus Standortdaten</color>
++<color:#2bcc0e>orgType: "Fachabzeilung"</color>
++<color:#2bcc0e>name : Name der Organization - Name der Einrichtung - Name der Fachabteilung</color>
 -alias : -
-+type : Fachabteilungsschlüssel aus Standortdaten
--active : -
++<color:#2bcc0e>type : Fachabteilungsschlüssel</color>
++<color:#2bcc0e>active : "Aktiv"</color>
 }
-
 
 Organization_Einrichtung <-- Organization_Fachabteilung : "partOf"
 
@@ -149,7 +169,6 @@ class HealthcareService_Fachabteilung {
 HealthcareService_Fachabteilung --> Location_Fachabteilung : location
 Organization_Fachabteilung <-- HealthcareService_Fachabteilung : providedBy
 
-
 class Location_Fachabteilung {
 -name : -
 -address : -
@@ -158,40 +177,6 @@ class Location_Fachabteilung {
 
 }
 
-package "Zentren" {
-
-
-class Organization_Zentren {
-+identifier : erId aus Standortdaten
--name : -
--alias : -
-+type : Fachabteilungsschlüssel aus Standortdaten
--active : -
 }
-
-
-Organization_Standort <-right- Organization_Zentren : "partOf"
-
-class HealthcareService_Zentren {
--type : -
--speciality : -
--name : -
--telecom : -
--availableTime: -
-}
-
-HealthcareService_Zentren --> Location_Zentren : location
-Organization_Zentren <-- HealthcareService_Zentren : providedBy
-
-
-class Location_Zentren {
--name : -
--address : -
--position : -
-}
-
-}
-
-
 
 @enduml
