@@ -85,11 +85,11 @@ class Location_Standort {
 package "Zentren" {
 
 class Organization_Zentren {
-+identifier : erId aus Standortdaten
+-identifier : -
 -name : -
 -alias : -
-+type : Fachabteilungsschlüssel aus Standortdaten
--active : -
++<color:#2bcc0e>type : ZentrenArt aus Standortdaten</color>
+-<color:#2bcc0e>active : -</color>
 }
 
 Organization_Standort <-down- Organization_Zentren : "partOf"
@@ -148,9 +148,9 @@ class Location_Einrichtung {
 package "Fachabteilung" {
 
 class Organization_Fachabteilung {
-+<color:#2bcc0e>identifier: erId aus Standortdaten</color>
+-identifier: -
 +<color:#2bcc0e>orgType: "Fachabzeilung"</color>
-+<color:#2bcc0e>name : Name der Organization - Name der Einrichtung - Name der Fachabteilung</color>
+-name : -
 -alias : -
 +<color:#2bcc0e>type : Fachabteilungsschlüssel</color>
 +<color:#2bcc0e>active : "Aktiv"</color>
