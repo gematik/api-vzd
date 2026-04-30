@@ -85,11 +85,11 @@ class Location_Standort {
 package "Zentren" {
 
 class Organization_Zentren {
--identifier : -
++identifier : erId aus Standortdaten
 -name : -
 -alias : -
-+<color:#2bcc0e>type : ZentrenArt aus Standortdaten</color>
--<color:#2bcc0e>active : -</color>
++type : Fachabteilungsschlüssel aus Standortdaten
+-active : -
 }
 
 Organization_Standort <-down- Organization_Zentren : "partOf"
@@ -102,14 +102,7 @@ class HealthcareService_Zentren {
 -availableTime: -
 }
 
-HealthcareService_Zentren --> Location_Zentren : location
 Organization_Zentren <-- HealthcareService_Zentren : providedBy
-
-class Location_Zentren {
--name : -
--address : -
--position : -
-}
 
 }
 
@@ -148,9 +141,9 @@ class Location_Einrichtung {
 package "Fachabteilung" {
 
 class Organization_Fachabteilung {
--identifier: -
++<color:#2bcc0e>identifier: erId aus Standortdaten</color>
 +<color:#2bcc0e>orgType: "Fachabzeilung"</color>
--name : -
++<color:#2bcc0e>name : Name der Organization - Name der Einrichtung - Name der Fachabteilung</color>
 -alias : -
 +<color:#2bcc0e>type : Fachabteilungsschlüssel</color>
 +<color:#2bcc0e>active : "Aktiv"</color>
@@ -166,14 +159,7 @@ class HealthcareService_Fachabteilung {
 -availableTime: -
 }
 
-HealthcareService_Fachabteilung --> Location_Fachabteilung : location
 Organization_Fachabteilung <-- HealthcareService_Fachabteilung : providedBy
-
-class Location_Fachabteilung {
--name : -
--address : -
--position : -
-}
 
 }
 
