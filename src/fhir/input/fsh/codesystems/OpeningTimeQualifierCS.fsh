@@ -5,3 +5,4 @@ Description: "Qualifier code for HealthCareService opening times"
 * insert Meta
 * ^caseSensitive = false
 * #notdienst "Notdienst"
+* #sonderoeffnung "Sonderöffnung"
