@@ -1,0 +1,191 @@
+@startuml
+
+package "Krankenhaus" {
+  
+class Organization_Krankenhaus {
+#<color:#0000FF>identifier.telematikID 5-2-260342218</color> 
+#<color:#0000FF>identifier.IKNR 260342218</color>
+#<color:#0000FF>name : Inselkrankenhaus Borkum</color>
+-alias : 
+#<color:#0000FF>type : 1.2.276.0.76.4.53 Krankenhaus</color>
+#<color:#0000FF>active : true</color>
+}
+
+class HealthcareService_Krankenhaus {
+#<color:#0000FF>type : GESU - Öffentliches Gesundheitswesen</color>
+#<color:#0000FF>Origin: ldap</color>
+-speciality : -
+-name : -
+#availableTime: Öffnungszeiten
+}
+
+Organization_Krankenhaus <-- HealthcareService_Krankenhaus : providedBy
+HealthcareService_Krankenhaus --> Location_Krankenhaus : location
+HealthcareService_Krankenhaus --> Endpoint_Krankenhaus : endpoint
+
+
+class Location_Krankenhaus {
+#name : -
+#<color:#0000FF>address : Gartenstr. 20, 26757, Borkum</color>
+-position : VZD GeoKoordinaten
+}
+
+class Endpoint_Krankenhaus {
+#<color:#0000FF>name: Name</color>
+#<color:#0000FF>endpointVisibility : -</color>
+#<color:#0000FF>status : active</color>
+#<color:#0000FF>connectionType : EndpointConnectionType</color>
+#<color:#0000FF>payloadType : EndpointPlayloadType</color>
+#<color:#0000FF>address : KIM/TIM Adresse</color>
+}
+
+}
+
+note right of Krankenhaus 
+   Daten werden
+   nur aus dem VZD
+   übernommen und mit Standorten 
+   aus dem Standortverzeichnis ergänzt.
+   Erkennung Zusammengehörigkeit
+   über IK/HauptIK.
+end note   
+
+note "Legende\n<color:#0000FF>Blaue Attribute/Werte werden aus dem VZD übernommen</color>\n<color:#2bcc0e>Grüne Attribute werden aus dem Standortverzeichnis übernommen</color>" as N1
+
+package "Standort" {
+
+class Organization_Standort {
++<color:#2bcc0e>identifier.standortId: 772024</color>
++<color:#2bcc0e>orgType: "Standort"</color>
++<color:#2bcc0e>name : Inselkrankenhaus Borkum</color>
+-alias : -
+-type : -
++<color:#2bcc0e>active : "Aktiv"</color>
++<color:#2bcc0e>GültigVon : 2018-01-01</color>
++<color:#2bcc0e>GültigBis : -</color>
++<color:#2bcc0e>LetzteÄnderung : 2026-01-28</color>
+}
+
+
+Organization_Krankenhaus <-- Organization_Standort : "partOf"
+HealthcareService_Krankenhaus -[hidden]right-> Organization_Standort
+
+class HealthcareService_Standort {
+-type : -
+-speciality : -
+-name : -
+-telecom : -
+-availableTime: -
+}
+
+HealthcareService_Standort --> Location_Standort : location
+Organization_Standort <-- HealthcareService_Standort : providedBy
+
+
+
+class Location_Standort {
+-name : -
++<color:#2bcc0e>address : Gartenstr. 20, 26757, Borkum</color>
++<color:#2bcc0e>position : 6.671117305887;53.58488183671</color>
+}
+
+
+}
+
+package "Einrichtung" {
+
+class Organization_Einrichtung {
++<color:#2bcc0e>identifier:BSNR : 060138600</color>
++<color:#2bcc0e>orgType: "Einrichtung"</color>
++<color:#2bcc0e>name : Notfallambulanz Inselkrankenhaus Borkum</color>
+-alias : -
++<color:#2bcc0e>type : Notfallambulanz</color>
++<color:#2bcc0e>active : "Aktiv"</color>
+}
+
+Organization_Standort <-- Organization_Einrichtung : "partOf"
+
+class HealthcareService_Einrichtung {
+-type : -
+-speciality : -
+-name : -
+-telecom : -
+-availableTime: -
+}
+
+HealthcareService_Einrichtung --> Location_Einrichtung : location
+Organization_Einrichtung <-- HealthcareService_Einrichtung : providedBy
+
+
+
+class Location_Einrichtung {
+-name : -
++<color:#2bcc0e>address : Gartenstr. 20, 26757, Borkum</color>
++<color:#2bcc0e>position : 6.671117305887;53.58488183671</color>
+}
+
+package "Fachabteilung" {
+
+Organization_Einrichtung <-down- HealthcareService_Fachabteilung : "providedBy"
+
+class HealthcareService_Fachabteilung {
++<color:#2bcc0e>type : "Fachabteilung"</color>
++<color:#2bcc0e>speciality : Fachabteilungsschlüssel -</color>
+-name : -
+-telecom : -
+-availableTime: -
+}
+
+}
+}
+
+package "Einrichtung 2" {
+
+class Organization_Einrichtung2 {
++<color:#2bcc0e>identifier:BSNR : 999999999</color>
++<color:#2bcc0e>orgType: "Einrichtung"</color>
++<color:#2bcc0e>name : Inselkrankenhaus Borkum - Stationäre Behandlung</color>
+-alias : -
++<color:#2bcc0e>type : Stationäre Behandlung</color>
++<color:#2bcc0e>active : "Aktiv"</color>
+}
+
+Organization_Standort <-- Organization_Einrichtung2 : "partOf"
+
+class HealthcareService_Einrichtung2 {
+-type : -
+-speciality : -
+-name : -
+-telecom : -
+-availableTime: -
+}
+
+HealthcareService_Einrichtung2 --> Location_Einrichtung2 : location
+Organization_Einrichtung2 <-- HealthcareService_Einrichtung2 : providedBy
+
+
+
+class Location_Einrichtung2 {
+-name : -
++<color:#2bcc0e>address : Gartenstr. 20, 26757, Borkum</color>
++<color:#2bcc0e>position : 6.671117305887;53.58488183671</color>
+}
+
+
+
+package "Fachabteilung 2" {
+
+Organization_Einrichtung2 <-down- HealthcareService_Fachabteilung2 : "providedBy"
+
+class HealthcareService_Fachabteilung2 {
++<color:#2bcc0e>type : "Fachabteilung"</color>
++<color:#2bcc0e>speciality : Fachabteilungsschlüssel 0100</color>
+-name : -
+-telecom : -
+-availableTime: -
+}
+
+}
+}
+
+@enduml

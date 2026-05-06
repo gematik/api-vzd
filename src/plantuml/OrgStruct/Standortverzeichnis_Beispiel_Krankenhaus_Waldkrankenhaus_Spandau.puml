@@ -1,0 +1,431 @@
+@startuml "Waldkrankenhaus Spandau"
+
+package "Krankenhaus" {
+  
+class Organization_Krankenhaus {
+#<color:#0000FF>identifier.telematikID 5-2-261100263</color> 
+#<color:#0000FF>identifier.IKNR 261100263</color>
+#<color:#0000FF>name : Evangelisches Waldkrankenhaus Spandau Krankenhausbetriebs gGmbH</color>
+-alias : 
+#<color:#0000FF>type : 1.2.276.0.76.4.53 Krankenhaus</color>
+#<color:#0000FF>active : true</color>
+}
+
+class HealthcareService_Krankenhaus {
+#<color:#0000FF>type : GESU - Öffentliches Gesundheitswesen</color>
+#<color:#0000FF>Origin: ldap</color>
+-speciality : -
+-name : -
+#availableTime: Öffnungszeiten
+}
+
+Organization_Krankenhaus <-- HealthcareService_Krankenhaus : providedBy
+HealthcareService_Krankenhaus --> Location_Krankenhaus : location
+HealthcareService_Krankenhaus --> Endpoint_Krankenhaus : endpoint
+
+
+class Location_Krankenhaus {
+#name : -
+#<color:#0000FF>address : Stadtrandstraße 555, 13589, Berlin</color>
+-position : VZD GeoKoordinaten
+}
+
+class Endpoint_Krankenhaus {
+#<color:#0000FF>name: Name</color>
+#<color:#0000FF>endpointVisibility : -</color>
+#<color:#0000FF>status : active</color>
+#<color:#0000FF>connectionType : EndpointConnectionType</color>
+#<color:#0000FF>payloadType : EndpointPlayloadType</color>
+#<color:#0000FF>address : KIM/TIM Adresse</color>
+}
+
+}
+
+note right of Krankenhaus 
+   Daten werden
+   nur aus dem VZD
+   übernommen und mit Standorten 
+   aus dem Standortverzeichnis ergänzt.
+   Erkennung Zusammengehörigkeit
+   über IK/HauptIK.
+end note   
+
+note "Legende\n<color:#0000FF>Blaue Attribute/Werte werden aus dem VZD übernommen</color>\n<color:#2bcc0e>Grüne Attribute werden aus dem Standortverzeichnis übernommen</color>" as N1
+
+package "Standort" {
+
+class Organization_Standort {
++<color:#2bcc0e>identifier.standortId: 771637</color>
++<color:#2bcc0e>orgType: "Standort"</color>
++<color:#2bcc0e>name : Evangelisches Waldkrankenhaus Spandau</color>
+-alias : -
+-type : -
++<color:#2bcc0e>active : "Aktiv"</color>
++<color:#2bcc0e>GültigVon : 2019-01-01</color>
++<color:#2bcc0e>GültigBis : -</color>
++<color:#2bcc0e>LetzteÄnderung : 2025-11-27</color>
+}
+
+
+Organization_Krankenhaus <-- Organization_Standort : "partOf"
+HealthcareService_Krankenhaus -[hidden]right-> Organization_Standort
+
+class HealthcareService_Standort {
+-type : -
+-speciality : -
+-name : -
+-telecom : -
+-availableTime: -
+}
+
+HealthcareService_Standort --> Location_Standort : location
+Organization_Standort <-- HealthcareService_Standort : providedBy
+
+
+
+class Location_Standort {
+-name : -
++<color:#2bcc0e>address : Stadtrandstraße 555, 13589, Berlin</color>
++<color:#2bcc0e>position : 13.157562375036;52.56240480009</color>
+}
+
+
+}
+
+package "Einrichtung" {
+
+class Organization_Einrichtung {
++<color:#2bcc0e>identifier:BSNR : 999999999</color>
++<color:#2bcc0e>orgType: "Einrichtung"</color>
++<color:#2bcc0e>name : Stadtrandstraße 555-561 - Stationäre Behandlung</color>
+-alias : -
++<color:#2bcc0e>type : Stationäre Behandlung</color>
++<color:#2bcc0e>active : "Aktiv"</color>
+}
+
+Organization_Standort <-- Organization_Einrichtung : "partOf"
+
+class HealthcareService_Einrichtung {
+-type : -
+-speciality : -
+-name : -
+-telecom : -
+-availableTime: -
+}
+
+HealthcareService_Einrichtung --> Location_Einrichtung : location
+Organization_Einrichtung <-- HealthcareService_Einrichtung : providedBy
+
+
+
+class Location_Einrichtung {
+-name : -
++<color:#2bcc0e>address : Stadtrandstraße 555-561, 13589, Berlin</color>
++<color:#2bcc0e>position : 13.157562375036;52.56240480009</color>
+} 
+
+package "Fachabteilung" {
+
+Organization_Einrichtung <-down- HealthcareService_Fachabteilung : "providedBy"
+
+class HealthcareService_Fachabteilung {
++<color:#2bcc0e>type : "Fachabteilung"</color>
++<color:#2bcc0e>speciality : Fachabteilungsschlüssel -</color>
+-name : -
+-telecom : -
+-availableTime: -
+}
+
+}
+
+}
+
+package "Einrichtung 2" {
+
+class Organization_Einrichtung2 {
++<color:#2bcc0e>identifier:BSNR : 999999999</color>
++<color:#2bcc0e>orgType: "Einrichtung"</color>
++<color:#2bcc0e>name : Ambulantens Onkologisches Zentrum - GYN-Tumore</color>
+-alias : -
++<color:#2bcc0e>type : Ambulante spezialfachärztliche Versorgung nach § 116b Abs. 8 SGB V (altes Recht)</color>
++<color:#2bcc0e>active : "Aktiv"</color>
+}
+
+Organization_Standort <-- Organization_Einrichtung2 : "partOf"
+
+class HealthcareService_Einrichtung2 {
+-type : -
+-speciality : -
+-name : -
+-telecom : -
+-availableTime: -
+}
+
+HealthcareService_Einrichtung2 --> Location_Einrichtung2 : location
+Organization_Einrichtung2 <-- HealthcareService_Einrichtung2 : providedBy
+
+
+
+class Location_Einrichtung2 {
+-name : -
++<color:#2bcc0e>address : Stadtrandstraße 555, 13589, Berlin</color>
++<color:#2bcc0e>position : 13.157562375036;52.56240480009</color>
+} 
+
+package "Fachabteilung 2" {
+
+Organization_Einrichtung2 <-down- HealthcareService_Fachabteilung2 : "providedBy"
+
+class HealthcareService_Fachabteilung2 {
++<color:#2bcc0e>type : "Fachabteilung"</color>
++<color:#2bcc0e>speciality : Fachabteilungsschlüssel -</color>
+-name : -
+-telecom : -
+-availableTime: -
+}
+
+}
+
+}
+
+package "Einrichtung 3" {
+
+class Organization_Einrichtung3 {
++<color:#2bcc0e>identifier:BSNR : 999999999</color>
++<color:#2bcc0e>orgType: "Einrichtung"</color>
++<color:#2bcc0e>name : Ambulantes Onkologisches Zentrum - GI-Tumore</color>
+-alias : -
++<color:#2bcc0e>type : Ambulante spezialfachärztliche Versorgung nach § 116b Abs. 2 SGB V (neues Recht)</color>
++<color:#2bcc0e>active : "Aktiv"</color>
+}
+
+Organization_Standort <-- Organization_Einrichtung3 : "partOf"
+
+class HealthcareService_Einrichtung3 {
+-type : -
+-speciality : -
+-name : -
+-telecom : -
+-availableTime: -
+}
+
+HealthcareService_Einrichtung3 --> Location_Einrichtung3 : location
+Organization_Einrichtung3 <-- HealthcareService_Einrichtung3 : providedBy
+
+
+
+class Location_Einrichtung3 {
+-name : -
++<color:#2bcc0e>address : Stadtrandstraße 555, 13589, Berlin</color>
++<color:#2bcc0e>position : 13.157562375036;52.56240480009</color>
+} 
+
+package "Fachabteilung 3" {
+
+Organization_Einrichtung3 <-down- HealthcareService_Fachabteilung3 : "providedBy"
+
+class HealthcareService_Fachabteilung3 {
++<color:#2bcc0e>type : "Fachabteilung"</color>
++<color:#2bcc0e>speciality : Fachabteilungsschlüssel -</color>
+-name : -
+-telecom : -
+-availableTime: -
+}
+
+}
+
+}
+
+package "Einrichtung 4" {
+
+class Organization_Einrichtung4 {
++<color:#2bcc0e>identifier:BSNR : 726400700</color>
++<color:#2bcc0e>orgType: "Einrichtung"</color>
++<color:#2bcc0e>name : Zentrale Notaufnahme - Notdienstpraxis</color>
+-alias : -
++<color:#2bcc0e>type : Zentrale Notaufnahme (ZNA) - historisch</color>
++<color:#2bcc0e>active : "Aktiv"</color>
+}
+
+Organization_Standort <-- Organization_Einrichtung4 : "partOf"
+
+class HealthcareService_Einrichtung4 {
+-type : -
+-speciality : -
+-name : -
+-telecom : -
+-availableTime: -
+}
+
+HealthcareService_Einrichtung4 --> Location_Einrichtung4 : location
+Organization_Einrichtung4 <-- HealthcareService_Einrichtung4 : providedBy
+
+
+
+class Location_Einrichtung4 {
+-name : -
++<color:#2bcc0e>address : Stadtrandstraße 555, 13589, Berlin</color>
++<color:#2bcc0e>position : 13.157562375036;52.56240480009</color>
+} 
+
+package "Fachabteilung 4" {
+
+Organization_Einrichtung4 <-down- HealthcareService_Fachabteilung4 : "providedBy"
+
+class HealthcareService_Fachabteilung4 {
++<color:#2bcc0e>type : "Fachabteilung"</color>
++<color:#2bcc0e>speciality : Fachabteilungsschlüssel -</color>
+-name : -
+-telecom : -
+-availableTime: -
+}
+
+}
+
+}
+
+package "Einrichtung 5" {
+
+class Organization_Einrichtung5 {
++<color:#2bcc0e>identifier:BSNR : 727411900</color>
++<color:#2bcc0e>orgType: "Einrichtung"</color>
++<color:#2bcc0e>name : ZNA</color>
+-alias : -
++<color:#2bcc0e>type : Zentrale Notaufnahme (ZNA) Erwachsene</color>
++<color:#2bcc0e>active : "Aktiv"</color>
+}
+
+Organization_Standort <-- Organization_Einrichtung5 : "partOf"
+
+class HealthcareService_Einrichtung5 {
+-type : -
+-speciality : -
+-name : -
+-telecom : -
+-availableTime: -
+}
+
+HealthcareService_Einrichtung5 --> Location_Einrichtung5 : location
+Organization_Einrichtung5 <-- HealthcareService_Einrichtung5 : providedBy
+
+
+
+class Location_Einrichtung5 {
+-name : -
++<color:#2bcc0e>address : Stadtrandstraße 555-561, 13589, Berlin</color>
++<color:#2bcc0e>position : 13.157562375036;52.56240480009</color>
+} 
+
+package "Fachabteilung 5" {
+
+Organization_Einrichtung5 <-down- HealthcareService_Fachabteilung5 : "providedBy"
+
+class HealthcareService_Fachabteilung5 {
++<color:#2bcc0e>type : "Fachabteilung"</color>
++<color:#2bcc0e>speciality : Fachabteilungsschlüssel -</color>
+-name : -
+-telecom : -
+-availableTime: -
+}
+
+}
+
+}
+
+package "Einrichtung 6" {
+
+class Organization_Einrichtung6 {
++<color:#2bcc0e>identifier:BSNR : 727411900</color>
++<color:#2bcc0e>orgType: "Einrichtung"</color>
++<color:#2bcc0e>name : ZNA Kinder</color>
+-alias : -
++<color:#2bcc0e>type : Zentrale Notaufnahme (ZNA) Kinder u. Jugendliche</color>
++<color:#2bcc0e>active : "Aktiv"</color>
+}
+
+Organization_Standort <-- Organization_Einrichtung6 : "partOf"
+
+class HealthcareService_Einrichtung6 {
+-type : -
+-speciality : -
+-name : -
+-telecom : -
+-availableTime: -
+}
+
+HealthcareService_Einrichtung6 --> Location_Einrichtung6 : location
+Organization_Einrichtung6 <-- HealthcareService_Einrichtung6 : providedBy
+
+
+
+class Location_Einrichtung6 {
+-name : -
++<color:#2bcc0e>address : Stadtrandstraße 555-561, 13589, Berlin</color>
++<color:#2bcc0e>position : 13.157562375036;52.56240480009</color>
+} 
+
+package "Fachabteilung 6" {
+
+Organization_Einrichtung6 <-down- HealthcareService_Fachabteilung6 : "providedBy"
+
+class HealthcareService_Fachabteilung6 {
++<color:#2bcc0e>type : "Fachabteilung"</color>
++<color:#2bcc0e>speciality : Fachabteilungsschlüssel -</color>
+-name : -
+-telecom : -
+-availableTime: -
+}
+
+}
+
+}
+
+package "Einrichtung 7" {
+
+class Organization_Einrichtung7 {
++<color:#2bcc0e>identifier:BSNR : 727411900</color>
++<color:#2bcc0e>orgType: "Einrichtung"</color>
++<color:#2bcc0e>name : Zentrale Notaufnahme - Notfallambulanz</color>
+-alias : -
++<color:#2bcc0e>type : Zentrale Notaufnahme (ZNA) - historisch</color>
++<color:#2bcc0e>active : "Aktiv"</color>
+}
+
+Organization_Standort <-- Organization_Einrichtung7 : "partOf"
+
+class HealthcareService_Einrichtung7 {
+-type : -
+-speciality : -
+-name : -
+-telecom : -
+-availableTime: -
+}
+
+HealthcareService_Einrichtung7 --> Location_Einrichtung7 : location
+Organization_Einrichtung7 <-- HealthcareService_Einrichtung7 : providedBy
+
+
+
+class Location_Einrichtung7 {
+-name : -
++<color:#2bcc0e>address : Stadtrandstraße 555, 13589, Berlin</color>
++<color:#2bcc0e>position : 13.157562375036;52.56240480009</color>
+} 
+
+package "Fachabteilung 7" {
+
+Organization_Einrichtung7 <-down- HealthcareService_Fachabteilung7 : "providedBy"
+
+class HealthcareService_Fachabteilung7 {
++<color:#2bcc0e>type : "Fachabteilung"</color>
++<color:#2bcc0e>speciality : Fachabteilungsschlüssel -</color>
+-name : -
+-telecom : -
+-availableTime: -
+}
+
+}
+
+}
+
+@enduml
