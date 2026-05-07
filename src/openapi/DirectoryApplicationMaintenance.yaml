@@ -6,8 +6,11 @@ info:
    # REST Schnittstelle zur Pflege der Fachanwendungsdaten der Verzeichniseinträge
      Über diese Schnittstelle können Fachanwendungsdaten der Verzeichniseinträge erzeugt, aktualisiert und gelöscht werden. 
 
-  version: 1.4.8
+  version: 1.4.9
 
+  # Änderungen in Version 1.4.9
+  #  423-Fehler (Locked) für Änderungen an inaktiven Einträgen entfernt
+  #
   # Änderungen in Version 1.4.8
   #  423-Fehler (Locked) für Änderungen an inaktiven Einträgen ergänzt
   #
@@ -627,13 +630,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'        
-        423:
-          description: Locked
-          #  entry.active = false
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
 
   /DirectoryEntries/{telematikID}/KOM-LE_Fachdaten/{fad}:
   
@@ -772,13 +768,6 @@ paths:
         404:
           description: Not Found
                     #  telematikID not found
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-        423:
-          description: Locked
-          #  entry.active = false
           content:
             application/json:
               schema:
