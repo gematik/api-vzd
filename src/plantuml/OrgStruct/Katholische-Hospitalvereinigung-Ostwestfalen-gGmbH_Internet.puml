@@ -1,0 +1,65 @@
+@startuml
+
+package "Träger" {
+  
+class Organization_Träger {
+#<color:#0000FF>name : Katholische Hospitalvereinigung Ostwestfalen gGmbH</color>
+
+}
+
+
+}
+
+package "Krankenhaus" {
+  
+class Organization_Krankenhaus {
+#<color:#0000FF>name : Franziskus Hospital Bielefeld </color>
+#<color:#0000FF>identifier.telematikID xxx</color> 
+#<color:#0000FF>identifier.IKNR xxx</color>
+#<color:#0000FF>type : 1.2.276.0.76.4.53 Krankenhaus</color>
+#<color:#0000FF>active : true</color>
+}
+Organization_Träger <-- Organization_Krankenhaus : "partOf"
+  
+class Organization_Krankenhaus2 {
+#<color:#0000FF>name : Mathilden Hospital Herford </color>
+#<color:#0000FF>identifier.telematikID xxx</color> 
+#<color:#0000FF>identifier.IKNR xxx</color>
+#<color:#0000FF>type : 1.2.276.0.76.4.53 Krankenhaus</color>
+#<color:#0000FF>active : true</color>
+}
+Organization_Träger <-- Organization_Krankenhaus2 : "partOf"
+  
+class Organization_Krankenhaus3 {
+#<color:#0000FF>name : Vinzenz Hospital Rheda-Wiedenbrück </color>
+#<color:#0000FF>identifier.telematikID xxx</color> 
+#<color:#0000FF>identifier.IKNR xxx</color>
+#<color:#0000FF>type : 1.2.276.0.76.4.53 Krankenhaus</color>
+#<color:#0000FF>active : true</color>
+}
+Organization_Träger <-- Organization_Krankenhaus3 : "partOf"
+  
+class Organization_Krankenhaus4 {
+#<color:#0000FF>name : Elisabeth Hospital Gütersloh </color>
+#<color:#0000FF>identifier.telematikID xxx</color> 
+#<color:#0000FF>identifier.IKNR xxx</color>
+#<color:#0000FF>type : 1.2.276.0.76.4.53 Krankenhaus</color>
+#<color:#0000FF>active : true</color>
+}
+Organization_Träger <-- Organization_Krankenhaus4 : "partOf"
+
+class Organization_Krankenhaus5 {
+#<color:#0000FF>name : Marienhospital Oelde </color>
+#<color:#0000FF>identifier.telematikID xxx</color> 
+#<color:#0000FF>identifier.IKNR xxx</color>
+#<color:#0000FF>type : 1.2.276.0.76.4.53 Krankenhaus</color>
+#<color:#0000FF>active : true</color>
+}
+Organization_Träger <-- Organization_Krankenhaus5 : "partOf"
+
+}
+
+
+}
+
+@enduml
