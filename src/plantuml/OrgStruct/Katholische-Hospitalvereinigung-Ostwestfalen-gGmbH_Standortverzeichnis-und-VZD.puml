@@ -1,0 +1,87 @@
+@startuml
+
+package "Träger" {
+  
+class Organization_Träger1 {
+#<color:#2bcc0e>name : Katholische Hospitalvereinigung Ostwestfalen</color>
+}
+
+}
+
+package "Krankenhaus" {
+  
+
+class Organization_Krankenhaus4 {
+#<color:#0000FF>name : Elisabeth Hospital Gütersloh </color>
+#<color:#0000FF>identifier.telematikID xxx</color> 
+#<color:#0000FF>identifier.IKNR xxx</color>
+#<color:#0000FF>type : 1.2.276.0.76.4.53 Krankenhaus</color>
+#<color:#0000FF>active : true</color>
+}
+
+class Organization_Krankenhaus6 {
+#<color:#0000FF>name : Katholische Hospitalvereinigung Ostwestfalen gGmbH Bielefeld </color>
+#<color:#0000FF>identifier.telematikID xxx</color> 
+#<color:#0000FF>identifier.IKNR xxx</color>
+#<color:#0000FF>type : 1.2.276.0.76.4.53 Krankenhaus</color>
+#<color:#0000FF>active : true</color>
+}
+Organization_Träger1 <-- Organization_Krankenhaus6 : "partOf"
+
+}
+
+package "Standort" {
+
+class Organization_Standort {
++<color:#2bcc0e>name : Marienhospital Oelde</color>
++<color:#2bcc0e>identifier.standortId: 772024</color>
++<color:#2bcc0e>orgType: "Standort"</color>
++<color:#2bcc0e>active : "Aktiv"</color>
+}
+Organization_Krankenhaus6 <-- Organization_Standort : "partOf"
+
+class Organization_Standort2 {
++<color:#2bcc0e>name : Sankt Elisabeth Hospital Gütersloh</color>
++<color:#2bcc0e>identifier.standortId: 772024</color>
++<color:#2bcc0e>orgType: "Standort"</color>
++<color:#2bcc0e>active : "Aktiv"</color>
+}
+Organization_Krankenhaus6 <-- Organization_Standort2 : "partOf"
+
+class Organization_Standort3 {
++<color:#2bcc0e>name : Sankt Lucia Hospital Harsewinkel</color>
++<color:#2bcc0e>identifier.standortId: 772024</color>
++<color:#2bcc0e>orgType: "Standort"</color>
++<color:#2bcc0e>active : "Aktiv"</color>
+}
+Organization_Krankenhaus6 <-- Organization_Standort3 : "partOf"
+
+class Organization_Standort4 {
++<color:#2bcc0e>name : Sankt Vinzenz Hospital</color>
++<color:#2bcc0e>identifier.standortId: 772024</color>
++<color:#2bcc0e>orgType: "Standort"</color>
++<color:#2bcc0e>active : "Aktiv"</color>
+}
+Organization_Krankenhaus6 <-- Organization_Standort4 : "partOf"
+
+class Organization_Standort5 {
++<color:#2bcc0e>name : Franziskus Hospital</color>
++<color:#2bcc0e>identifier.standortId: 772024</color>
++<color:#2bcc0e>orgType: "Standort"</color>
++<color:#2bcc0e>active : "Aktiv"</color>
+}
+Organization_Krankenhaus6 <-- Organization_Standort5 : "partOf"
+
+class Organization_Standort6 {
++<color:#2bcc0e>name : Mathilden Hospital</color>
++<color:#2bcc0e>identifier.standortId: 772024</color>
++<color:#2bcc0e>orgType: "Standort"</color>
++<color:#2bcc0e>active : "Aktiv"</color>
+}
+Organization_Krankenhaus6 <-- Organization_Standort6 : "partOf"
+
+}
+
+Krankenhaus -down[hidden]-> Standort
+
+@enduml
