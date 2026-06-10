@@ -1,0 +1,147 @@
+@startuml
+
+package "Krankenhaus" {
+
+class Organization_Krankenhaus {
+#<color:#0000FF>identifier: telematikID, IKNR</color> 
+#<color:#0000FF>name : Name der Organization</color>
+-alias : 
+#<color:#0000FF>type : 1.2.276.0.76.4.53 Krankenhaus</color>
+#<color:#0000FF>active : true</color>
+}
+
+class HealthcareService_Krankenhaus {
+#<color:#0000FF>type : GESU - Öffentliches Gesundheitswesen</color>
+#<color:#0000FF>Origin: ldap</color>
+-speciality : -
+-name : -
+#availableTime: Öffnungszeiten
+}
+
+Organization_Krankenhaus <-- HealthcareService_Krankenhaus : providedBy
+HealthcareService_Krankenhaus --> Location_Krankenhaus : location
+HealthcareService_Krankenhaus --> Endpoint_Krankenhaus : endpoint
+
+
+class Location_Krankenhaus {
+#name : -
+#<color:#0000FF>address : Adresse</color>
+-position : VZD GeoKoordinaten
+}
+
+class Endpoint_Krankenhaus {
+#<color:#0000FF>name: Name</color>
+#<color:#0000FF>endpointVisibility : -</color>
+#<color:#0000FF>status : active</color>
+#<color:#0000FF>connectionType : EndpointConnectionType</color>
+#<color:#0000FF>payloadType : EndpointPlayloadType</color>
+#<color:#0000FF>address : KIM/TIM Adresse</color>
+}
+
+
+package "Standort" {
+
+HealthcareService_Krankenhaus -[hidden]right-> HealthcareService_Standort
+
+class HealthcareService_Standort {
++name: <color:#2bcc0e>Standortname</color>; Zentrenname; Einrichtungsname; Fachabteilungsname
++<color:#2bcc0e>active : "Aktiv"</color>  
++<color:#2bcc0e>identifier.standortId: 123456</color>
++<color:#2bcc0e>orgType: "Standort"</color>
++<color:#2bcc0e>name : Name der Organization - Standort 123</color>
+-alias : -
+-type : -
++<color:#2bcc0e>GültigVon : 2018-01-01</color>
++<color:#2bcc0e>GültigBis : -</color>
++<color:#2bcc0e>LetzteÄnderung : 2025-12-19</color>  
+  
+  
+-type : -
+-speciality : -
+-telecom : -
+-availableTime: -
+}
+
+HealthcareService_Standort --> Location_Standort : location
+Organization_Krankenhaus <-- HealthcareService_Standort : providedBy
+
+class Location_Standort {
+-name : -
++<color:#2bcc0e>address : Adresse</color>
++<color:#2bcc0e>position : GeoKoordinaten</color>
+}
+
+}
+  
+package "Zentren" {
+
+class HealthcareService_Zentren {
++name: <color:#2bcc0e>Standortname; Zentrenname</color>; Einrichtungsname; Fachabteilungsname
++identifier : erId aus Standortdaten
+-name : -
+-alias : -
++type : Fachabteilungsschlüssel aus Standortdaten
+-active : -  
+-type : -
+-speciality : -
+-name : -
+-telecom : -
+-availableTime: -
+}
+
+Organization_Krankenhaus <-- HealthcareService_Zentren : providedBy
+
+}
+
+
+
+package "Einrichtung" {
+
+class HealthcareService_Einrichtung {
++name: <color:#2bcc0e>Standortname</color>; Zentrenname; <color:#2bcc0e>Einrichtungsname</color>; Fachabteilungsname
++<color:#2bcc0e>identifier:BSNR : 999999999</color>
++<color:#2bcc0e>orgType: "Einrichtung"</color>
++<color:#2bcc0e>name : Name der Organization - Name der Einrichtung</color>
+-alias : -
++<color:#2bcc0e>type : Einrichtungstyp</color>
++<color:#2bcc0e>active : "Aktiv"</color>  
+-type : -
+-speciality : -
+-telecom : -
+-availableTime: -
+}
+
+HealthcareService_Einrichtung --> Location_Einrichtung : location
+Organization_Krankenhaus <-- HealthcareService_Einrichtung : providedBy
+
+class Location_Einrichtung {
+-name : -
++<color:#2bcc0e>address : Adresse</color>
++<color:#2bcc0e>position : GeoKoordinaten</color>
+}
+  
+}  
+
+package "Fachabteilung" {
+
+class HealthcareService_Fachabteilung {
++name: <color:#2bcc0e>Standortname</color>; Zentrenname; <color:#2bcc0e>Einrichtungsname; Fachabteilungsname</color>
++<color:#2bcc0e>identifier: erId aus Standortdaten</color>
++<color:#2bcc0e>orgType: "Fachabzeilung"</color>
++<color:#2bcc0e>name : Name der Organization - Name der Einrichtung - Name der Fachabteilung</color>
+-alias : -
++<color:#2bcc0e>type : Fachabteilungsschlüssel</color>
++<color:#2bcc0e>active : "Aktiv"</color>  
+-type : -
+-speciality : -
+-telecom : -
+-availableTime: -
+}
+
+Organization_Krankenhaus <-- HealthcareService_Fachabteilung : providedBy
+
+}
+
+}
+
+@enduml
