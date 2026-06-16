@@ -338,7 +338,9 @@ Das Attribut wird automatisch aus `professionOID` berechnet. Werte werden primä
 
 === lanr
 Bezeichner: LANR
-Die lebenslange Arztnummer, kurz LANR, dient der Suche nach Ärzten. Insbesondere für die Suche durch Clients, welche die TelematikID nicht vorliegen haben. 
+Die lebenslange Arztnummer, kurz LANR, dient der Suche nach Ärzten. Insbesondere für die Suche durch Clients, welche die TelematikID nicht vorliegen haben. +
+
+NOTE: Aktuell enthält die LANR keinen Inhalt.
 
 == Anwendungsdaten
 
@@ -464,6 +466,8 @@ kimData: mb_secu_sm@dom3.kim.telematik-test,1.0
 kimData: mb_secu_sm@dom4.kim.telematik-test,1.0
 kimData: ak_secu_102@dom5.kim.telematik-test,1.5
 ----
+
+NOTE: Aktuell werden keine appTags bzw. Anwendungskennzeichen verwendet.
 
 === maxKOMLEadr
 Maximale Anzahl von mail Adressen in den KOM-LE-Fachdaten. 
