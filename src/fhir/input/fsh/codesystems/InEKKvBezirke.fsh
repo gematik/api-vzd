@@ -1,0 +1,22 @@
+CodeSystem: InEKKvBezirke
+Id: inek-kvbezirke
+Title: "KV-Bezirke"
+Description: "KV-Bezirke aus dem InEK Krankenhausstandortverzeichnis."
+* ^content = #complete
+* #01 "Schleswig-Holstein"
+* #02 "Hamburg"
+* #03 "Bremen"
+* #17 "Niedersachsen"
+* #20 "Westfalen-Lippe"
+* #38 "Nordrhein"
+* #46 "Hessen"
+* #51 "Rheinland-Pfalz"
+* #52 "Baden-Württemberg"
+* #71 "Bayern"
+* #72 "Berlin"
+* #73 "Saarland"
+* #78 "Mecklenburg-Vorpommern"
+* #83 "Brandenburg"
+* #88 "Sachsen-Anhalt"
+* #93 "Thüringen"
+* #98 "Sachsen"
