@@ -26,7 +26,14 @@ organisations specific for german Healthcare and Telematics Infrastructure.
 * providedBy 1..1 MS
 * category MS
   * coding obeys CodingSytemCodeInv
-* category from HealthcareServiceCategoryCodes
+* category ^slicing.discriminator.type = #pattern
+* category ^slicing.discriminator.path = "$this"
+* category ^slicing.rules = #open
+* category contains
+    HealthcareServiceCategoryCodes 0..1 MS and
+    HealthcareServiceVzdLevelVS 1..1 MS
+* category[HealthcareServiceCategoryCodes] from HealthcareServiceCategoryCodes
+* category[HealthcareServiceVzdLevelVS] from HealthcareServiceVzdLevelVS
 * type MS
   * coding obeys CodingSytemCodeInv 
 * type from HealthcareServiceTypeVS
@@ -86,8 +93,10 @@ Description: "HealthcareService in gematik Directory with strict constraints"
 * meta.tag
   * ^slicing.rules = #closed
 * identifier 
-  ^slicing.rules = #closed
+  * ^slicing.rules = #closed
 * active 0..0
+* category
+  * ^slicing.rules = #closed
 * category.coding only CodingWithCodeAndSystem
 * type.coding only CodingWithCodeAndSystem
 * specialty.coding only CodingWithCodeAndSystem
