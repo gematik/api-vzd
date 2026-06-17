@@ -41,7 +41,7 @@ end
 
 Fachdienst -> Fachdienst : aktualisierten VZD-Eintrag mit KIM-Fachdaten
 
-Fachdienst -> Proxy: PUT /owner?... \nAuthorization: Bearer access_token
+Fachdienst -> Proxy: PUT|POST /owner?... \nAuthorization: Bearer access_token
 
 alt access_token ist gültig
     Proxy -> Fachdienst: HTTP 200 OK (Result Body json)
