@@ -1,0 +1,53 @@
+@startuml
+autonumber "<b>[00]"
+
+box KIM-Fachanwendung
+participant "KIM-Clientmodul" as Client
+participant "KIM-Fachdienst" as Fachdienst
+end box
+
+box VZD-FHIR-Directory
+participant "OAuth-Server" as OAuth
+participant "Auth-Service" as Auth
+participant "FHIR-Proxy" as Proxy
+end box
+
+title FHIR-VZD KIM-Fachdaten Verwaltung durch KIM-Fachdienste
+
+Fachdienst -> Fachdienst: prüfe, ob gültiges ""search_access_token"" vorliegt
+
+alt kein gültiges search_access_token vorhanden
+    Fachdienst -> Fachdienst: client_id und client_secret z.B. aus config lesen
+    Fachdienst -> OAuth: POST /token (client_id, client_secret)
+    OAuth -> OAuth: prüfe client_id, client_secret
+    OAuth -> Fachdienst: service-authz-token
+    Fachdienst -> Auth: GET /service-authenticate\nAuthorization: Bearer {service-authz-token}
+    Auth -> Auth: Prüfe service-authz-token
+    Auth -> Auth: Erzeuge search_access_token
+    Auth -> Fachdienst: HTTP 200 OK\n{ "access_token": "search_access_token", "token_type": "bearer", "expires_in": 86400 }
+    Fachdienst -> Fachdienst: cache search_access_token
+end
+
+Client -> Client: prüfe, ob gültiges ""search_access_token"" vorliegt
+
+== KIM-Clientmodul ruft FHIR VZD search_access_token vom KIM Fachdienst ab ==
+
+alt kein gültiges search_access_token vorhanden
+    Client -> Fachdienst: KIM spezifische Authentisierung
+    Fachdienst --> Client: Authentisierungsergebnis
+    Client -> Fachdienst: GET search_access_token
+    Fachdienst --> Client: HTTP 200 OK\n{ "access_token": "search_access_token", "token_type": "bearer", "expires_in": 86400 }
+    Client -> Client: cache search_access_token
+end
+
+== KIM-Clientmodul ermittelt Zertifikate aus dem FHIR VZD ==
+
+Client -> Proxy: GET /search?... \nAuthorization: Bearer search_access_token
+
+alt search_access_token ist gültig
+    Proxy -> Client: HTTP 200 OK (Result Body json mit Zertifikaten)
+else search_access_token ist ungültig
+    Proxy -> Client: HTTP 401
+end
+
+@enduml
