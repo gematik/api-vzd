@@ -12,7 +12,7 @@ participant "Auth-Service" as Auth
 participant "FHIR-Proxy" as Proxy
 end box
 
-title FHIR-VZD KIM-Fachdaten Verwaltung durch KIM-Fachdienste
+title FHIR-VZD - KIM-Clientmodul ermittelt Zertifikate
 
 Fachdienst -> Fachdienst: prüfe, ob gültiges ""search_access_token"" vorliegt
 
