@@ -70,6 +70,9 @@ m| <<specialization>>
 m| <<entryType>>
 | 1..1
 | Typ des Eintags
+m| <<lanr>>
+| 0..N
+| Lebenslange Arztnummer
 
 3+s|Anwendungsdaten
 m| <<mail>>
@@ -80,10 +83,44 @@ m| <<komLeData>>
 | 0..N
 | KIM-Adresse mit Version
 
+m| <<kimData>>
+| 0..N
+| KIM-Adresse mit Version
+
+m| <<maxKOMLEadr>>
+| 0..1
+| Maximale Anzahl von KIM-Adressen in den KOM-LE-Fachdaten
+
 3+s|Zertifikate
 m| <<userCertificate>>
 | 0..N
 | Zertifikat
+
+m| <<notBefore>>
+| 0..1
+| Gültigkeitsbeginn Zertifikat
+
+m| <<userCertificate.active>>
+| 0..1
+| Zertifikat gültig?
+
+m| <<notAfter>>
+| 0..1
+| Gültigkeitsende Zertifikat
+
+m| <<serialNumber>>
+| 0..1
+| Seriennummer des Zertifikats
+
+m| <<issuer>>
+| 0..1
+| Zertifikatsaussteller
+
+m| <<publicKeyAlgorithm>>
+| 0..1
+| Verschlüsselungsalgorithmus des Zertifikats
+
+
 
 3+s|Systemdaten
 m| <<dataFromAuthority>>
@@ -95,6 +132,12 @@ m| <<personalEntry>>
 m| <<changeDateTime>>
 | 1..1
 | Geändert am
+m| <<active>>
+| 1..1
+| Eintrag aktiv?
+m| <<meta>>
+| 0..100
+| Abstimmung zwischen TSP und Kartenherausgeber
 
 |===
 
@@ -155,7 +198,7 @@ Spezifiziert in https://datatracker.ietf.org/doc/html/rfc2256#section-5.4[RFC225
 
 === otherName
 
-NOTE: Es wird nicht mehr empfohlen dieses Attribut zu verwenden.
+NOTE: Dieses Attribut ist deprecated und wird nicht mehr genutzt.
 
 === organization
 
@@ -252,12 +295,12 @@ Zweistelliger Landeskürzel aus dem Wertebereich https://en.wikipedia.org/wiki/I
 
 Berufsgruppe oder Betriebsstätten-Typ innerhalb der Telematikinfrastruktur.
 
-Spezifiziert in https://fachportal.gematik.de/fachportal-import/files/gemSpec_OID_V3.11.0.pdf[gemSpec_OID]
+Spezifiziert in https://gemspec.gematik.de/docs/gemSpec/gemSpec_OID/latest/[gemSpec_OID]
 
 Wertebereiche:
 
-* https://github.com/gematik/api-vzd/blob/master/src/fhir/input/fsh/codesystems/PractitionerProfessionOID.fsh[für Personen (HBA)]
-* https://github.com/gematik/api-vzd/blob/master/src/fhir/input/fsh/codesystems/OrganizationProfessionOID.fsh[für Institutionen (SMC-B)]
+* https://gemspec.gematik.de/docs/gemSpec/gemSpec_OID/latest/#3.5.1.1[für Personen (HBA)]
+* https://gemspec.gematik.de/docs/gemSpec/gemSpec_OID/latest/#GS-A_4443-12[für Institutionen (SMC-B)]
 
 === specialization
 
@@ -293,6 +336,12 @@ Beispiel für Allgemeinmedizin: +
 === entryType
 Das Attribut wird automatisch aus `professionOID` berechnet. Werte werden primär durch ePA verwendet.
 
+=== lanr
+Bezeichner: LANR
+Die lebenslange Arztnummer, kurz LANR, dient der Suche nach Ärzten. Insbesondere für die Suche durch Clients, welche die TelematikID nicht vorliegen haben. +
+
+NOTE: Aktuell enthält die LANR keinen Inhalt.
+
 == Anwendungsdaten
 
 === mail
@@ -304,12 +353,126 @@ mail: adresse2@anbieter.kim.telematik
 ----
 
 === komLeData
-Liste von KIM-Adressen mit der zugehörigen KIM-Version
+Enthält die KOM‑LE-Version des Clientmoduls der angegebenen "mail"-Adresse im Attribut "version".
+Anhand dieser Version erkennt das sendende Clientmodul, welche KOM‑LE-Version vom Empfänger-Clientmodul unterstützt wird und in welchem Format die Mail an diesen Empfänger versandt wird.
 
+Wenn zu einer KOM‑LE-Mail-Adresse aus Attribut "mail" kein korrespondierender Eintrag im Attribut "komLeData" vorhanden ist, muss automatisch die KOM‑LE-Version `1.0` angenommen werden.
+
+Jeder Datensatz muss vollständig sein und besteht aus:
+* der KOM‑LE-Mail-Adresse (Attribut `mail`)
+* der zugehörigen KOM‑LE-Version (Attribut `version`)
+
+Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
+
+* Ein komLeData‑Eintrag besteht aus:
+** der Mail-Adresse (Attribut `mail`)
+** der zugehörigen KOM‑LE-Version (Attribut `version`)
+
+* Für jede Mail-Adresse gilt:
+** Pro Mail-Adresse darf es genau einen Eintrag in der Datenstruktur `komLeData` geben
+
+* Konsistenzregeln:
+** Es dürfen nur Mail-Adressen referenziert werden, die im übergeordneten Attribut `mail` enthalten sind
+** Wenn zu einer Mail-Adresse kein Eintrag existiert,
+*** muss KOM‑LE-Version `1.0` angenommen werden
+
+* Wird eine Mail-Adresse gelöscht:
+** muss auch der zugehörige komLeData‑Eintrag gelöscht werden
+
+* Beim Schreiben der Daten:
+** wird immer die gesamte Liste geschrieben
+
+* Für Änderungen gilt:
+** zuerst den aktuellen Eintrag lesen
+** anschließend die Änderungen in der Liste vornehmen
+** danach die komplette Liste wieder zurückschreiben
+
+.Beispiel für den Wert eines komLeData-Eintrags in der flachen Liste (Ausgabe einer LDAP-Suche):
 ----
-komLeData: 1.0,adresse1@anbieter.kim.telematik
-komLeData: 1.5,adresse2@anbieter.kim.telematik
+komLeData: 1.0,mc_smcb_za@dom1.komle.telematik-test
+komLeData: 1.0,mz_smcb_za@dom2.kim.telematik-test
+komLeData: 1.0,mz_smcb_za@dom1.kim.telematik-test
+komLeData: 1.0,mb_secu_sm@dom3.kim.telematik-test
+komLeData: 1.0,mb_secu_sm@dom4.kim.telematik-test
+komLeData: 1.5,ak_secu_102@dom5.kim.telematik-test
 ----
+
+=== kimData
+Enthält die KOM‑LE-Version des Clientmoduls der angegebenen "mail"-Adresse im Attribut "version".
+Zusätzlich kann zur KOM‑LE-Version ein `+` angegeben sein.
+
+Anhand dieser Version erkennt das sendende Clientmodul:
+* welche KOM‑LE-Version vom Empfänger-Clientmodul unterstützt wird
+* in welchem Format die Mail an diesen Empfänger versandt wird
+
+Wenn ein zusätzliches `+` angegeben ist:
+* können mit dieser "mail"-Adresse Nachrichten größer 15 MiB verarbeitet werden
+
+Wenn noch keine Version zu einer KOM‑LE-Mail-Adresse angegeben wurde:
+* wird vom VZD automatisch die Version `1.0` eingetragen
+
+Jeder Datensatz muss vollständig sein und enthält:
+* die KOM‑LE-Mail-Adresse (Attribut `mail`)
+* die KOM‑LE-Version (Attribut `version`)
+
+Zusätzlich kann ein Datensatz enthalten:
+* ein oder mehrere Anwendungskennzeichen (Attribut `appTags`)
+
+Dabei gilt:
+* Das Attribut `appTags` ist optional
+* Wenn kein Anwendungskennzeichen vorhanden ist,
+** können alle KIM-Anwendungen an diesen Empfänger versendet werden
+
+Die Kodierung eines Eintrags erfolgt wie folgt:
+* Bestandteile werden durch `,` getrennt
+** Mail-Adresse
+** KOM‑LE-Version
+** optional: Anwendungskennzeichen
+
+* Mehrere Anwendungskennzeichen werden durch `|` getrennt
+
+Zu beachten ist bei der Auswertung bzw. Pflege dieser Daten:
+
+* Ein kimData‑Eintrag besteht aus:
+** der Mail-Adresse (Attribut `mail`)
+** der zugehörigen KOM‑LE-Version (Attribut `version`)
+** optional einem `+` hinter der Version
+** optional einem oder mehreren Anwendungskennzeichen (Attribut `appTags`)
+
+* Wenn mehrere Anwendungskennzeichen angegeben sind:
+** werden sie im LDAP-Attribut durch das Zeichen `|` getrennt
+
+* Für jede Mail-Adresse gilt:
+** Es darf nur einen kimData‑Eintrag geben
+
+* Wird eine Mail-Adresse gelöscht:
+** muss auch der zugehörige kimData‑Eintrag gelöscht werden
+
+* Beim Schreiben der Daten:
+** wird immer der gesamte kimData‑Eintrag geschrieben
+** inklusive aller enthaltenen Attribute und Werte (für alle Mail-Adressen)
+
+* Für Änderungen gilt:
+** zuerst den aktuellen Eintrag lesen
+** anschließend Änderungen vornehmen
+** danach den kompletten Eintrag wieder zurückschreiben
+
+.Beispiel für den Wert eines kimData-Eintrags in der flachen Liste (Ausgabe einer LDAP-Suche):
+----
+kimData: mc_smcb_za@dom1.komle.telematik-test,1.0,eEB
+kimData: mz_smcb_za@dom2.kim.telematik-test,1.0,DALE-UV|eEB
+kimData: mz_smcb_za@dom1.kim.telematik-test,1.0
+kimData: mb_secu_sm@dom3.kim.telematik-test,1.0
+kimData: mb_secu_sm@dom4.kim.telematik-test,1.0
+kimData: ak_secu_102@dom5.kim.telematik-test,1.5
+----
+
+NOTE: Aktuell werden keine appTags bzw. Anwendungskennzeichen verwendet.
+
+=== maxKOMLEadr
+Maximale Anzahl von mail Adressen in den KOM-LE-Fachdaten. 
+Falls kein Wert eingetragen wurde, können beliebig viele mail Adressen in den KOM-LE Fachdaten eingetragen werden.
+Falls ein Wert eingetragen wurde, können maximal so viele mail Adressen in den KOM-LE Fachdaten eingetragen werden. 
 
 == Zertifikate
 
@@ -317,6 +480,37 @@ komLeData: 1.5,adresse2@anbieter.kim.telematik
 X509-Zertifikate werden für Verschlüsselung der KIM-Nachrichten sowie bei der Berechtigungserteilung in der ePA verwendet.
 
 Zertifikate werden als DER-kodierte Binary transportiert.
+
+=== notBefore
+Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar.
+Wird vom VZD zur Ermittlung der zeitlich gültigen Zertifikate genutzt.
+Dieses Attribut ist nicht in der flachen Liste enthalten.
+
+=== userCertificate.active
+Wird vom VZD eingetragen.
+Wert == TRUE, wenn das userCertificate gemäß OCSP gültig ist (OCSP Response Status "good"), Wert == FALSE bei Zertifikaten von noch nicht freigeschalteten Karten (OCSP Response Status "unknown").
+Wenn das Attribut den Wert FALSE enthält, wird der Zertifikatseintrag nicht in die flache Liste übernommen.
+
+=== notAfter
+Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar.
+Wird vom VZD zur Ermittlung der zeitlich gültigen Zertifikate genutzt.
+Dieses Attribut ist nicht in der flachen Liste enthalten.
+
+=== serialNumber
+Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar.
+Kann zur Suche nach Zertifikaten genutzt werden.
+Dieses Attribut ist nicht in der flachen Liste enthalten.
+
+=== issuer
+Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar.
+Kann zur Suche nach Zertifikaten genutzt werden.
+Dieses Attribut ist nicht in der flachen Liste enthalten.
+
+=== publicKeyAlgorithm
+Nutzt das Zertifikat RSA oder ECC?
+Wird vom VZD bei Eintrag eines Zertifikats aus dem Zertifikat entnommen und ist nicht änderbar.
+Kann zur Suche nach Zertifikaten genutzt werden.
+Dieses Attribut ist nicht in der flachen Liste enthalten.
 
 == Systemdaten
 
@@ -331,6 +525,18 @@ Enthält `TRUE` wenn Eintrag eine natürliche Person beschreibt (einen Leistungs
 
 === changeDateTime
 Zeitstempel der letzten Änderung. Wert wird bei jeder Aktualisierung durch VZD auf aktuelle Systemzeit gesetzt.
+
+=== active
+Mit diesem Attribut im Basiseintrag (Verzeichnisdienst_Eintrag in Abb_VZD_logisches_Datenmodell) kann der Client (Kartenherausgeber, TSP) die Aufnahme des VZD-Eintrags in die flache Liste steuern. Wenn das Attribut beim Anlegen eines VZD-Eintrags mit Zertifikat nicht angegeben wird, setzt der VZD das Attribut active auf TRUE (Default-Wert).
+Bei FALSE wird der Eintrag vom VZD aus der flachen Liste entfernt bzw. nicht übertragen.
+Dieses Attribut ist nicht in der flachen Liste enthalten.
+Wenn der VZD beim zeitlichen Ablauf des letzten Zertifikats einen VZD-Eintrag aus der flachen Liste entfernt, bleibt das Attribut active unverändert. Beim erneuten Hinzufügen eines Zertifikats wird der VZD-Eintrag also wieder in die flache Liste übernommen, wenn dieses Attribut den Wert "true" enthält.
+
+=== meta
+Kann von den pflegenden Clients zur Abstimmung der Prozesse zwischen z. B. Kartenherausgeber und TSP genutzt werden. Dieses Attribut wird durch den VZD nicht ausgewertet. Die Werte für dieses Attribut müssen von den pflegenden Organisationen festgelegt und abgestimmt werden.
+Array von Strings (wird in LDAP auf <String, String> gemappt).
+Dieses Attribut ist nicht in der flachen Liste enthalten.
+Kann mehrfach vorkommen (0..100).
 
 == Beispiele
 
@@ -424,6 +630,8 @@ Zeitstempel der letzten Änderung. Wert wird bei jeder Aktualisierung durch VZD 
 |mail                   | HBA   |               |        |  x
 |                       | SMC-B |               |        |  x
 |komLeData              | HBA   |               |        |  x
+|                       | SMC-B |               |        |  x
+|kimData                | HBA   |               |        |  x
 |                       | SMC-B |               |        |  x
 |changeDateTime         | HBA   3+| wird vom VZD eingetragen
 |                       | SMC-B 3+| wird vom VZD eingetragen
