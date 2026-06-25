@@ -6,7 +6,6 @@
   "id": "aerztliche-fachrichtungen-oid-url",
   "title": "AerztlicheFachrichtungen",
   "description": "AerztlicheFachrichtungen",
-  "version": "2019-04-05T08:35:59",
   "url": "urn:oid:1.3.6.1.4.1.19376.3.276.1.5.4",
   "concept": [
     {
@@ -398,6 +397,7 @@
   "experimental": false,
   "publisher": "gematik GmbH",
   "date": "2025-02-26",
+  "version": "2019-04-05T08:35:59",
   "caseSensitive": true,
   "count": 77
 }

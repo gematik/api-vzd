@@ -57,11 +57,6 @@
         "max": "0"
       },
       {
-        "id": "Location.type",
-        "path": "Location.type",
-        "max": "0"
-      },
-      {
         "id": "Location.telecom",
         "path": "Location.telecom",
         "max": "0"

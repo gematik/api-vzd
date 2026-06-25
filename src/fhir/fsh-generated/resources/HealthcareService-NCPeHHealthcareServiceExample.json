@@ -12,10 +12,16 @@
       "https://gematik.de/fhir/directory/StructureDefinition/HealthcareServiceDirectoryStrict"
     ]
   },
-  "providedBy": {
-    "reference": "Organization/NCPeHOrganizationExample"
-  },
   "category": [
+    {
+      "coding": [
+        {
+          "code": "vzd",
+          "system": "https://gematik.de/fhir/directory/CodeSystem/vzd-level",
+          "display": "VZD"
+        }
+      ]
+    },
     {
       "coding": [
         {
@@ -26,6 +32,9 @@
       ]
     }
   ],
+  "providedBy": {
+    "reference": "Organization/NCPeHOrganizationExample"
+  },
   "specialty": [
     {
       "coding": [

@@ -6,7 +6,6 @@
   "id": "HealthcareServiceSpecialtyCS",
   "title": "HealthcareService Specialty",
   "description": "Specialty codes of HealthcareServices",
-  "version": "1.2.0",
   "url": "https://gematik.de/fhir/directory/CodeSystem/HealthcareServiceSpecialtyCS",
   "concept": [
     {
@@ -29,6 +28,7 @@
   "experimental": false,
   "publisher": "gematik GmbH",
   "date": "2025-02-26",
+  "version": "1.2.0",
   "caseSensitive": false,
   "count": 4
 }

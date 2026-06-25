@@ -4,11 +4,11 @@
   "name": "AddressStateVS",
   "id": "AddressStateVS",
   "description": "ValueSet for `Address.state`",
-  "version": "1.2.0",
   "url": "https://gematik.de/fhir/directory/ValueSet/AddressStateVS",
   "experimental": false,
   "publisher": "gematik GmbH",
   "date": "2025-02-26",
+  "version": "1.2.0",
   "compose": {
     "include": [
       {

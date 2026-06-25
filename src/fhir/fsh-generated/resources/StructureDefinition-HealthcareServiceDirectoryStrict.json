@@ -71,6 +71,19 @@
         "max": "0"
       },
       {
+        "id": "HealthcareService.category",
+        "path": "HealthcareService.category",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "pattern",
+              "path": "$this"
+            }
+          ],
+          "rules": "closed"
+        }
+      },
+      {
         "id": "HealthcareService.category.coding",
         "path": "HealthcareService.category.coding",
         "type": [

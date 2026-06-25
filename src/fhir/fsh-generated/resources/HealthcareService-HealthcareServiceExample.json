@@ -12,6 +12,17 @@
       "https://gematik.de/fhir/directory/StructureDefinition/HealthcareServiceDirectoryStrict"
     ]
   },
+  "category": [
+    {
+      "coding": [
+        {
+          "code": "vzd",
+          "system": "https://gematik.de/fhir/directory/CodeSystem/vzd-level",
+          "display": "VZD"
+        }
+      ]
+    }
+  ],
   "extension": [
     {
       "url": "https://gematik.de/fhir/directory/StructureDefinition/holder-id-ex",

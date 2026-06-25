@@ -6,7 +6,6 @@
   "id": "KimVersionCS",
   "title": "KimVersionCS",
   "description": "CodeSystem representing KIM Versions",
-  "version": "1.2.0",
   "url": "https://gematik.de/fhir/directory/CodeSystem/KimVersionCS",
   "concept": [
     {
@@ -25,6 +24,7 @@
   "experimental": false,
   "publisher": "gematik GmbH",
   "date": "2025-02-26",
+  "version": "1.2.0",
   "caseSensitive": false,
   "count": 3
 }

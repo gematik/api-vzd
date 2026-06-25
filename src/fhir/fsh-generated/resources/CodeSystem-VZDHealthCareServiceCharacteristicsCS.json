@@ -5,7 +5,6 @@
   "name": "VZDHealthCareServiceCharacteristicsCS",
   "id": "VZDHealthCareServiceCharacteristicsCS",
   "description": "CodeSystem of VZD specific HealthcareService characteristics",
-  "version": "1.2.0",
   "url": "https://gematik.de/fhir/directory/CodeSystem/VZDHealthCareServiceCharacteristicsCS",
   "concept": [
     {
@@ -16,6 +15,7 @@
   "experimental": false,
   "publisher": "gematik GmbH",
   "date": "2025-02-26",
+  "version": "1.2.0",
   "caseSensitive": false,
   "count": 1
 }

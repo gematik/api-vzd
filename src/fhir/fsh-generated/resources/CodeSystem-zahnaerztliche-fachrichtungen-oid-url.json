@@ -6,7 +6,6 @@
   "id": "zahnaerztliche-fachrichtungen-oid-url",
   "title": "ZahnaerztlicheFachrichtungen",
   "description": "ZahnaerztlicheFachrichtungen",
-  "version": "1.2.0",
   "url": "urn:oid:1.2.276.0.76.5.494",
   "concept": [
     {
@@ -21,6 +20,7 @@
   "experimental": false,
   "publisher": "gematik GmbH",
   "date": "2025-02-26",
+  "version": "1.2.0",
   "caseSensitive": true,
   "count": 2
 }

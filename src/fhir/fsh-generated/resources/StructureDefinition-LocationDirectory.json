@@ -106,6 +106,16 @@
         "mustSupport": true
       },
       {
+        "id": "Location.type",
+        "path": "Location.type",
+        "max": "1",
+        "mustSupport": true,
+        "binding": {
+          "strength": "required",
+          "valueSet": "https://gematik.de/fhir/directory/ValueSet/location-vzd-type-vs"
+        }
+      },
+      {
         "id": "Location.address",
         "path": "Location.address",
         "min": 1,
