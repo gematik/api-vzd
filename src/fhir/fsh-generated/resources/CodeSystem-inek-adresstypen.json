@@ -1,0 +1,21 @@
+{
+  "resourceType": "CodeSystem",
+  "status": "active",
+  "content": "complete",
+  "name": "InEKAdresstypen",
+  "id": "inek-adresstypen",
+  "title": "Adresstypen",
+  "description": "Adresstypen aus dem InEK Krankenhausstandortverzeichnis.",
+  "url": "https://gematik.de/fhir/directory/CodeSystem/inek-adresstypen",
+  "concept": [
+    {
+      "code": "1",
+      "display": "Gebäude (§ 2a Absatz 1 Satz 1 KHG)"
+    },
+    {
+      "code": "2",
+      "display": "Fläche (§ 2a Absatz 1 Satz 2 KHG)"
+    }
+  ],
+  "count": 2
+}

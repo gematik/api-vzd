@@ -1,0 +1,16 @@
+{
+  "resourceType": "ValueSet",
+  "status": "active",
+  "name": "InEKZentrenartenVS",
+  "id": "inek-zentrenarten-vs",
+  "title": "InEK Zentrenarten ValueSet",
+  "description": "ValueSet fuer Zentrenarten aus dem InEK Krankenhausstandortverzeichnis.",
+  "url": "https://gematik.de/fhir/directory/ValueSet/inek-zentrenarten-vs",
+  "compose": {
+    "include": [
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/inek-zentrenarten"
+      }
+    ]
+  }
+}

@@ -1,0 +1,1117 @@
+{
+  "resourceType": "ImplementationGuide",
+  "id": "de.gematik.fhir.directory",
+  "url": "https://gematik.de/fhir/directory/ImplementationGuide/de.gematik.fhir.directory",
+  "version": "1.1.1",
+  "name": "GematikFHIRDirectory",
+  "title": "gematik FHIR Directory",
+  "status": "active",
+  "publisher": "gematik GmbH",
+  "contact": [
+    {
+      "name": "gematik GmbH",
+      "telecom": [
+        {
+          "system": "url",
+          "value": "https://www.gematik.de"
+        }
+      ]
+    }
+  ],
+  "description": "Implementation Guide des gematik FHIR-Verzeichnisdienstes (VZD), inkl. Krankenhausverzeichnis (KHVZ).",
+  "packageId": "de.gematik.fhir.directory",
+  "license": "CC0-1.0",
+  "fhirVersion": [
+    "4.0.1"
+  ],
+  "dependsOn": [
+    {
+      "packageId": "de.gematik.terminology",
+      "version": "1.0.8",
+      "uri": "https://gematik.de/fhir/terminology/ImplementationGuide/de.gematik.terminology",
+      "id": "de_gematik_terminology"
+    },
+    {
+      "packageId": "de.gematik.ti",
+      "version": "1.3.0",
+      "uri": "https://gematik.de/fhir/ti/ImplementationGuide/de.gematik.ti",
+      "id": "de_gematik_ti"
+    },
+    {
+      "packageId": "de.basisprofil.r4",
+      "version": "1.5.4",
+      "uri": "http://fhir.org/packages/de.basisprofil.r4/ImplementationGuide/de.basisprofil.r4",
+      "id": "de_basisprofil_r4"
+    },
+    {
+      "packageId": "hl7.fhir.uv.xver-r5.r4",
+      "version": "0.1.0",
+      "uri": "http://hl7.org/fhir/uv/xver/ImplementationGuide/hl7.fhir.uv.xver-r5.r4",
+      "id": "hl7_fhir_uv_xver_r5_r4"
+    }
+  ],
+  "definition": {
+    "resource": [
+      {
+        "reference": {
+          "reference": "ValueSet/AddressStateVS"
+        },
+        "name": "AddressStateVS",
+        "description": "ValueSet for `Address.state`",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "CodeSystem/inek-adresstypen"
+        },
+        "name": "Adresstypen",
+        "description": "Adresstypen aus dem InEK Krankenhausstandortverzeichnis.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "CodeSystem/aerztliche-fachrichtungen-oid-url"
+        },
+        "name": "AerztlicheFachrichtungen",
+        "description": "AerztlicheFachrichtungen",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "CodeSystem/inek-bundeslaender"
+        },
+        "name": "Bundesländer",
+        "description": "Bundesländer aus dem InEK Krankenhausstandortverzeichnis.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "CodeSystem/EndpointDirectoryConnectionType"
+        },
+        "name": "Codes for Endpoint.connectionType",
+        "description": "CodeSystem TI specific connection types assigned to the Endpoints",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "CodeSystem/EndpointDirectoryPayloadType"
+        },
+        "name": "Codes for Endpoint.payloadType",
+        "description": "CodeSystem TI specific payload types assigned to the Endpoints\n\nCodes are maintained by gematik.\nThe codes are used to declare which processes are supported by an entity with the corresponding entry in the gematik Directory.\nNew codes can be requested at gematik. There must exist a specification for each code so that developers can find out how to implement the process.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "CodeSystem/HolderCS"
+        },
+        "name": "Codes for identity authorities (Holder)",
+        "description": "Code System for identity authories in the TI, which verify and control the identities of practitioners and organisations",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "CodeSystem/Region"
+        },
+        "name": "Codes for regions in german healthcare system.",
+        "description": "Additionally to german Bundeslander there are 2 sub-provinces \n`Nordrhein` and `Westfalen-Lippe`.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/CodingWithCodeAndSystem"
+        },
+        "name": "Coding with code and system",
+        "description": "Coding profile making code and system mandatory",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/ConnectionTypeKimVersionEx"
+        },
+        "name": "ConnectionType KimVersion Extension",
+        "description": "Extension for the KIM version of an Endpoint connection type",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "CodeSystem/inek-einrichtungstypen"
+        },
+        "name": "Einrichtungstypen",
+        "description": "Einrichtungstypen aus dem InEK Krankenhausstandortverzeichnis.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/EndpointFADIdEx"
+        },
+        "name": "Endpoint Fachdienst-ID Extension",
+        "description": "Extension for the FAD of an KIM Endpoint",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/EndpointDirectory"
+        },
+        "name": "Endpoint in gematik Directory",
+        "description": "Endpoints for applications in the gematik Directory",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "SearchParameter/EndpointAddressSP"
+        },
+        "name": "EndpointAddressSP",
+        "description": "Search by the address field of the Endpoint resource.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "ValueSet/EndpointConnectionTypeVS"
+        },
+        "name": "EndpointConnectionTypeVS",
+        "description": "ValueSet for `Endpoint.connectionType`",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "CodeSystem/EndpointDirectoryKIMappTags"
+        },
+        "name": "EndpointDirectory KIM appTags",
+        "description": "CodeSystem for KIM appTags to be used in Endpoint.payloadType",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/endpoint-directory-Strict"
+        },
+        "name": "EndpointDirectory-Strict",
+        "description": "Endpoint in gematik Directory with strict constraints",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "ValueSet/EndpointPayloadTypeVS"
+        },
+        "name": "EndpointPayloadTypeVS",
+        "description": "ValueSet for `Endpoint.payloadType`",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/EndpointVisibility"
+        },
+        "name": "EndpointVisibility",
+        "description": "Visibility of an Endpoint in the FHIR-VZD. This Extensions includes codes of use-cases im which this Endpoint SHALL not be visible.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "CodeSystem/EndpointVisibilityCS"
+        },
+        "name": "EndpointVisibilityCS",
+        "description": "EndpointVisibilityCS",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "SearchParameter/EndpointVisibilitySP"
+        },
+        "name": "EndpointVisibilitySP",
+        "description": "Search on Endpoint.extension(https://gematik.de/fhir/directory/StructureDefinition/EndpointVisibility)",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "ValueSet/EndpointVisibilityVS"
+        },
+        "name": "EndpointVisibilityVS",
+        "description": "EndpointVisibilityVS",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "CodeSystem/inek-ermaechtigungsgrundlagen"
+        },
+        "name": "Ermächtigungsgrundlagen",
+        "description": "Ermächtigungsgrundlagen aus dem InEK Krankenhausstandortverzeichnis.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "Bundle/FilteredSearchSetBundle"
+        },
+        "name": "FilteredSearchSetBundle",
+        "exampleBoolean": true
+      },
+      {
+        "reference": {
+          "reference": "ValueSet/healthcare-service-category-codes"
+        },
+        "name": "HealthcareService Category Codes",
+        "description": "Codes for the VZD HealthcareService category element.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/HealthcareServiceEinrichtung"
+        },
+        "name": "HealthcareService Einrichtung (KHVZ)",
+        "description": "Einrichtungs-Ebene des Krankenhausverzeichnisses als HealthcareService.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/HealthcareServiceFachabteilung"
+        },
+        "name": "HealthcareService Fachabteilung (KHVZ)",
+        "description": "Fachabteilungs-Ebene des Krankenhausverzeichnisses als HealthcareService.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/HealthcareServiceDirectory"
+        },
+        "name": "HealthcareService in gematik Directory",
+        "description": "Defines the data structure for medical, regulatory and technical\norganisations specific for german Healthcare and Telematics Infrastructure.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/HealthcareServiceKhvzBase"
+        },
+        "name": "HealthcareService KHVZ Basis (abstrakt)",
+        "description": "Abstraktes Basis-Profil für die KHVZ-HealthcareService-Ebenen\n(Standort, Einrichtung, Zentrum, Fachabteilung). Bündelt die gemeinsamen\nVZD-Constraints. Nicht direkt instanziieren.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "CodeSystem/HealthcareServiceSpecialtyCS"
+        },
+        "name": "HealthcareService Specialty",
+        "description": "Specialty codes of HealthcareServices",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/HealthcareServiceStandort"
+        },
+        "name": "HealthcareService Standort (KHVZ)",
+        "description": "Standort-Ebene des Krankenhausverzeichnisses als HealthcareService.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/HealthcareServiceZentrum"
+        },
+        "name": "HealthcareService Zentrum (KHVZ)",
+        "description": "Zentrums-Ebene des Krankenhausverzeichnisses als HealthcareService.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "SearchParameter/HealthcareService-endpoint"
+        },
+        "name": "HealthcareService-endpoint",
+        "description": "Technical endpoints providing access to electronic services operated for the healthcare service",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "SearchParameter/HealthcareService-location"
+        },
+        "name": "HealthcareService-location",
+        "description": "The location of the Healthcare Service",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "SearchParameter/HealthcareService-organization"
+        },
+        "name": "HealthcareService-organization",
+        "description": "The organization that provides this Healthcare Service",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "SearchParameter/HealthcareServiceCoverageAreaPostalCodeSP"
+        },
+        "name": "HealthcareServiceCoverageAreaPostalCodeSP",
+        "description": "Search on HealthcareService.coverageArea.extension(https://gematik.de/fhir/directory/StructureDefinition/ServiceCoveragePostalCode)",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/HealthcareServiceDirectoryStrict"
+        },
+        "name": "HealthcareServiceDirectoryStrict",
+        "description": "HealthcareService in gematik Directory with strict constraints",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "HealthcareService/HealthcareServiceExample"
+        },
+        "name": "HealthcareServiceExample",
+        "description": "Example of an HealthcareService as to be found in gematik FHIR Directory",
+        "exampleCanonical": "https://gematik.de/fhir/directory/StructureDefinition/HealthcareServiceDirectoryStrict"
+      },
+      {
+        "reference": {
+          "reference": "ValueSet/healthcareservice-technical-characteristic-vs"
+        },
+        "name": "HealthCareServiceTechnicalCharacteristicVS",
+        "description": "HealthCareServiceTechnicalCharacteristicVS",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "ValueSet/HealthcareServiceTypeVS"
+        },
+        "name": "HealthcareServiceTypeVS",
+        "description": "ValueSet for `HealthcareService.type`",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/holder-id-ex"
+        },
+        "name": "Holder ID Extension",
+        "description": "Extension for the holder ID of a HealthCard",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "SearchParameter/HolderIdSP"
+        },
+        "name": "HolderIdSP",
+        "description": "Search on .extension(https://gematik.de/fhir/directory/StructureDefinition/HolderId)",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "ValueSet/inek-adresstypen-vs"
+        },
+        "name": "InEK Adresstypen ValueSet",
+        "description": "ValueSet fuer Adresstypen aus dem InEK Krankenhausstandortverzeichnis.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "ValueSet/inek-bundeslaender-vs"
+        },
+        "name": "InEK Bundeslaender ValueSet",
+        "description": "ValueSet fuer Bundeslaender aus dem InEK Krankenhausstandortverzeichnis.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "ValueSet/inek-einrichtungstypen-vs"
+        },
+        "name": "InEK Einrichtungstypen ValueSet",
+        "description": "ValueSet fuer Einrichtungstypen aus dem InEK Krankenhausstandortverzeichnis.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "ValueSet/inek-ermaechtigungsgrundlagen-vs"
+        },
+        "name": "InEK Ermaechtigungsgrundlagen ValueSet",
+        "description": "ValueSet fuer Ermaechtigungsgrundlagen aus dem InEK Krankenhausstandortverzeichnis.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "ValueSet/inek-kvbezirke-vs"
+        },
+        "name": "InEK KV-Bezirke ValueSet",
+        "description": "ValueSet fuer KV-Bezirke aus dem InEK Krankenhausstandortverzeichnis.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "ValueSet/inek-rechtsformen-vs"
+        },
+        "name": "InEK Rechtsformen ValueSet",
+        "description": "ValueSet fuer Rechtsformen aus dem InEK Krankenhausstandortverzeichnis.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "ValueSet/inek-traegerarten-vs"
+        },
+        "name": "InEK Traegerarten ValueSet",
+        "description": "ValueSet fuer Traegerarten aus dem InEK Krankenhausstandortverzeichnis.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "ValueSet/inek-zentrenarten-vs"
+        },
+        "name": "InEK Zentrenarten ValueSet",
+        "description": "ValueSet fuer Zentrenarten aus dem InEK Krankenhausstandortverzeichnis.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/KhvzGueltigkeitEx"
+        },
+        "name": "KHVZ Gültigkeit Extension",
+        "description": "Gültigkeitszeitraum eines KHVZ-HealthcareService (Standortdaten): gültigVon und gültigBis.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/KhvzLetzteAenderungEx"
+        },
+        "name": "KHVZ Letzte Änderung Extension",
+        "description": "Zeitpunkt der letzten Änderung eines KHVZ-HealthcareService (Standortdaten).",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "HealthcareService/KhvzEinrichtungExample"
+        },
+        "name": "KhvzEinrichtungExample",
+        "description": "Einrichtungs-Ebene des Krankenhausverzeichnisses",
+        "exampleCanonical": "https://gematik.de/fhir/directory/StructureDefinition/HealthcareServiceEinrichtung"
+      },
+      {
+        "reference": {
+          "reference": "Location/KhvzEinrichtungLocationExample"
+        },
+        "name": "KhvzEinrichtungLocationExample",
+        "description": "Location der Einrichtung",
+        "exampleCanonical": "https://gematik.de/fhir/directory/StructureDefinition/LocationDirectoryStrict"
+      },
+      {
+        "reference": {
+          "reference": "HealthcareService/KhvzFachabteilungExample"
+        },
+        "name": "KhvzFachabteilungExample",
+        "description": "Fachabteilungs-Ebene des Krankenhausverzeichnisses",
+        "exampleCanonical": "https://gematik.de/fhir/directory/StructureDefinition/HealthcareServiceFachabteilung"
+      },
+      {
+        "reference": {
+          "reference": "Endpoint/KhvzKrankenhausKimEndpointExample"
+        },
+        "name": "KhvzKrankenhausKimEndpointExample",
+        "description": "KIM-Endpunkt des Krankenhauses",
+        "exampleCanonical": "https://gematik.de/fhir/directory/StructureDefinition/endpoint-directory-Strict"
+      },
+      {
+        "reference": {
+          "reference": "Location/KhvzKrankenhausLocationExample"
+        },
+        "name": "KhvzKrankenhausLocationExample",
+        "description": "Location des Krankenhauses (VZD-Ebene)",
+        "exampleCanonical": "https://gematik.de/fhir/directory/StructureDefinition/LocationDirectoryStrict"
+      },
+      {
+        "reference": {
+          "reference": "Organization/KhvzKrankenhausOrganizationExample"
+        },
+        "name": "KhvzKrankenhausOrganizationExample",
+        "description": "Krankenhaus-Organization als Träger der KHVZ-HealthcareServices",
+        "exampleCanonical": "https://gematik.de/fhir/directory/StructureDefinition/OrganizationDirectoryStrict"
+      },
+      {
+        "reference": {
+          "reference": "HealthcareService/KhvzStandortExample"
+        },
+        "name": "KhvzStandortExample",
+        "description": "Standort-Ebene des Krankenhausverzeichnisses",
+        "exampleCanonical": "https://gematik.de/fhir/directory/StructureDefinition/HealthcareServiceStandort"
+      },
+      {
+        "reference": {
+          "reference": "Location/KhvzStandortLocationExample"
+        },
+        "name": "KhvzStandortLocationExample",
+        "description": "Location des Standorts",
+        "exampleCanonical": "https://gematik.de/fhir/directory/StructureDefinition/LocationDirectoryStrict"
+      },
+      {
+        "reference": {
+          "reference": "HealthcareService/KhvzVzdHealthcareServiceExample"
+        },
+        "name": "KhvzVzdHealthcareServiceExample",
+        "description": "Generischer VZD-HealthcareService (Ebene #vzd) des Krankenhauses",
+        "exampleCanonical": "https://gematik.de/fhir/directory/StructureDefinition/HealthcareServiceDirectoryStrict"
+      },
+      {
+        "reference": {
+          "reference": "HealthcareService/KhvzZentrumExample"
+        },
+        "name": "KhvzZentrumExample",
+        "description": "Zentrums-Ebene des Krankenhausverzeichnisses",
+        "exampleCanonical": "https://gematik.de/fhir/directory/StructureDefinition/HealthcareServiceZentrum"
+      },
+      {
+        "reference": {
+          "reference": "Endpoint/KIMEndpointExample"
+        },
+        "name": "KIMEndpointExample",
+        "description": "Beispiel eines KIM-Endpunkts (KIM 2.0) mit allen relevanten Extensions",
+        "exampleCanonical": "https://gematik.de/fhir/directory/StructureDefinition/endpoint-directory-Strict"
+      },
+      {
+        "reference": {
+          "reference": "CodeSystem/KimVersionCS"
+        },
+        "name": "KimVersionCS",
+        "description": "CodeSystem representing KIM Versions",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "ValueSet/KimVersionVS"
+        },
+        "name": "KimVersionVS",
+        "description": "ValueSet of KIM versions",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "CodeSystem/inek-kvbezirke"
+        },
+        "name": "KV-Bezirke",
+        "description": "KV-Bezirke aus dem InEK Krankenhausstandortverzeichnis.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/LocationDirectory"
+        },
+        "name": "Location in gematik Directory",
+        "description": "Defines the data structure for medical, regulatory and technical\norganisations specific for german Healthcare and Telematics Infrastructure.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "ValueSet/location-vzd-type-vs"
+        },
+        "name": "Location VZD Type ValueSet",
+        "description": "ValueSet zur Klassifikation der Art einer Location im VZD-/KHVZ-Modell. Nutzt das VzdLevelCS, eingeschränkt auf die Ebenen mit eigener Location.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/LocationDirectoryStrict"
+        },
+        "name": "LocationDirectoryStrict",
+        "description": "Location in gematik Directory with strict constraints",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "Location/LocationExample"
+        },
+        "name": "LocationExample",
+        "description": "Example of a Location as to be found in gematik FHIR Directory",
+        "exampleCanonical": "https://gematik.de/fhir/directory/StructureDefinition/LocationDirectoryStrict"
+      },
+      {
+        "reference": {
+          "reference": "Endpoint/MessengerEndpointWithVisibility"
+        },
+        "name": "MessengerEndpointWithVisibility",
+        "description": "Example of TI-Messenger Endpoint with visibility",
+        "exampleCanonical": "https://gematik.de/fhir/directory/StructureDefinition/endpoint-directory-Strict"
+      },
+      {
+        "reference": {
+          "reference": "ValueSet/ncpeh-healthcare-service-speciality-cs"
+        },
+        "name": "NCPeH HealthcareService Speciality ValueSet",
+        "description": "Supported documents by a National Contact Point",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "HealthcareService/NCPeHHealthcareServiceExample"
+        },
+        "name": "NCPeHHealthcareServiceExample",
+        "description": "Example of a NCPeH HealthcareService as to be found in gematik FHIR Directory",
+        "exampleCanonical": "https://gematik.de/fhir/directory/StructureDefinition/HealthcareServiceDirectoryStrict"
+      },
+      {
+        "reference": {
+          "reference": "Organization/NCPeHOrganizationExample"
+        },
+        "name": "NCPeHOrganizationExample",
+        "description": "Example of an NCPeH Organization as to be found in gematik FHIR Directory",
+        "exampleCanonical": "https://gematik.de/fhir/directory/StructureDefinition/OrganizationDirectoryStrict"
+      },
+      {
+        "reference": {
+          "reference": "CodeSystem/nicht-aerztliche-fachrichtungen-oid-url"
+        },
+        "name": "NichtAerztlicheFachrichtungen_OID_URL",
+        "description": "NichtAerztlicheFachrichtungen_OID_URL",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "CodeSystem/OpeningTimeQualifierCS"
+        },
+        "name": "OpeningTimeQualifierCS",
+        "description": "Qualifier code for HealthCareService opening times",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "ValueSet/OpeningTimeQualifierVS"
+        },
+        "name": "OpeningTimeQualifierVS",
+        "description": "ValueSet of Qualifier codes for HealthCareService opening times",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/OrganizationDirectory"
+        },
+        "name": "Organization in gematik Directory",
+        "description": "Defines the data structure for medical, regulatory and technical \norganisations specific for german Healthcare and Telematics Infrastructure.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "SearchParameter/OrganizationAliasSP"
+        },
+        "name": "OrganizationAliasSP",
+        "description": "Search on Organization.alias",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/OrganizationDirectoryStrict"
+        },
+        "name": "OrganizationDirectoryStrict",
+        "description": "Organization in gematik Directory with strict constraints",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "Organization/OrganizationExample"
+        },
+        "name": "OrganizationExample",
+        "description": "Example of an Organization as to be found in gematik FHIR Directory",
+        "exampleCanonical": "https://gematik.de/fhir/directory/StructureDefinition/OrganizationDirectoryStrict"
+      },
+      {
+        "reference": {
+          "reference": "Organization/OrganizationExample001"
+        },
+        "name": "OrganizationExample001",
+        "description": "Example of an Organization as to be found in gematik FHIR Directory",
+        "exampleCanonical": "https://gematik.de/fhir/directory/StructureDefinition/OrganizationDirectoryStrict"
+      },
+      {
+        "reference": {
+          "reference": "Endpoint/OrganizationExample001-Endpoint-TIM"
+        },
+        "name": "OrganizationExample001-Endpoint-TIM",
+        "description": "Example TI-Messenger Endpoint",
+        "exampleCanonical": "https://gematik.de/fhir/directory/StructureDefinition/endpoint-directory-Strict"
+      },
+      {
+        "reference": {
+          "reference": "SearchParameter/OrganizationNCPeHCountrySP"
+        },
+        "name": "OrganizationNCPeHCountrySP",
+        "description": "Search on Organization.extension(https://gematik.de/fhir/ti/StructureDefinition/ncpeh-country-extension)",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "SearchParameter/OrganizationTypeDisplaySP"
+        },
+        "name": "OrganizationTypeDisplaySP",
+        "description": "Search organizations by the display value of their type.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/OrganizationVisibility"
+        },
+        "name": "OrganizationVisibility",
+        "description": "Visibility of an Organization in the FHIR-VZD. This Extensions includes codes of use-cases im which this Organization SHALL not be visible.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "CodeSystem/OrganizationVisibilityCS"
+        },
+        "name": "OrganizationVisibilityCS",
+        "description": "OrganizationVisibilityCS",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "SearchParameter/OrganizationVisibilitySP"
+        },
+        "name": "OrganizationVisibilitySP",
+        "description": "Search on https://gematik.de/fhir/directory/StructureDefinition/OrganizationVisibility extension on organization",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "ValueSet/OrganizationVisibilityVS"
+        },
+        "name": "OrganizationVisibilityVS",
+        "description": "OrganizationVisibilityVS",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "CodeSystem/Origin"
+        },
+        "name": "Origin",
+        "description": "CodeSystem which identifies the origin of a resource in the FHIR Directory",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "ValueSet/OriginVS"
+        },
+        "name": "OriginVS",
+        "description": "ValueSet for `meta.tag[Origin]`",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/OwnerTelematikIdEx"
+        },
+        "name": "OwnerTelematikIdEx",
+        "description": "Extension for the Telematik ID of the owner of a Resource",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "SearchParameter/OwnerTelematikIdSP"
+        },
+        "name": "OwnerTelematikIdSP",
+        "description": "SearchParameter for the Telematik ID of the owner of a resource using the OwnerTelematikIdEx extension",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "CodeSystem/PharmacyHealthcareSpecialtyCS"
+        },
+        "name": "Pharmacy HealthcareService Specialty",
+        "description": "Specialty codes of pharmacy HealthcareServices",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "CodeSystem/PharmacyTypeCS"
+        },
+        "name": "Pharmacy type",
+        "description": "Pharmacy type codes of accessability for patients",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "CodeSystem/PharmacyTypeLDAPCS"
+        },
+        "name": "Pharmacy type LDAP",
+        "description": "Pharmacy type codes used in the LDAP-VZD",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "Endpoint/PharmacyEndpointErpReservationExample"
+        },
+        "name": "PharmacyEndpointErpReservationExample",
+        "description": "Example of a Pharamacy eRP Endpoint",
+        "exampleCanonical": "https://gematik.de/fhir/directory/StructureDefinition/endpoint-directory-Strict"
+      },
+      {
+        "reference": {
+          "reference": "Endpoint/PharmacyEndpointOnlineAppointmentBookingExample"
+        },
+        "name": "PharmacyEndpointOnlineAppointmentBookingExample",
+        "description": "Example of a Pharamacy online appointment booking Endpoint",
+        "exampleCanonical": "https://gematik.de/fhir/directory/StructureDefinition/endpoint-directory-Strict"
+      },
+      {
+        "reference": {
+          "reference": "Endpoint/PharmacyEndpointTIMExample"
+        },
+        "name": "PharmacyEndpointTIMExample",
+        "description": "Example of a Pharamacy TIM Endpoint",
+        "exampleCanonical": "https://gematik.de/fhir/directory/StructureDefinition/endpoint-directory-Strict"
+      },
+      {
+        "reference": {
+          "reference": "HealthcareService/PharmacyHealthCareServiceExample"
+        },
+        "name": "PharmacyHealthCareServiceExample",
+        "description": "PharmacyHealthCareServiceExample",
+        "exampleCanonical": "https://gematik.de/fhir/directory/StructureDefinition/HealthcareServiceDirectoryStrict"
+      },
+      {
+        "reference": {
+          "reference": "Location/PharmacyLocationExample"
+        },
+        "name": "PharmacyLocationExample",
+        "description": "Example of a Pharmacy Location as to be found in gematik FHIR Directory",
+        "exampleCanonical": "https://gematik.de/fhir/directory/StructureDefinition/LocationDirectoryStrict"
+      },
+      {
+        "reference": {
+          "reference": "Organization/PharmacyOrganizationExample"
+        },
+        "name": "PharmacyOrganizationExample",
+        "description": "PharmacyOrganizationExample",
+        "exampleCanonical": "https://gematik.de/fhir/directory/StructureDefinition/OrganizationDirectoryStrict"
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/PhysicalFeaturesAdditionalNoteEX"
+        },
+        "name": "Physical Features Additional Note",
+        "description": "Additional FreeText for HealthCare characteristics",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "CodeSystem/physicalFeatures"
+        },
+        "name": "PhysicalFeaturesHealthCareServiceCS",
+        "description": "CodeSystem of defined physical features",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "ValueSet/PhysicalFeaturesHealthCareServiceVS"
+        },
+        "name": "PhysicalFeaturesHealthCareServiceVS",
+        "description": "ValueSet of defined physical features",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/PractitionerDirectory"
+        },
+        "name": "Practitioner in gematik Directory",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/PractitionerDirectoryStrict"
+        },
+        "name": "PractitionerDirectoryStrict",
+        "description": "Practitioner in gematik Directory with strict constraints",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "Practitioner/TIPractitionerExample001"
+        },
+        "name": "PractitionerExample001",
+        "description": "Example of a Practitioner as to be found in gematik FHIR Directory",
+        "exampleCanonical": "https://gematik.de/fhir/directory/StructureDefinition/PractitionerDirectoryStrict"
+      },
+      {
+        "reference": {
+          "reference": "Practitioner/TIPractitionerExampleDentist"
+        },
+        "name": "PractitionerExampleDentist",
+        "description": "Example of a Practitioner (Dentist) as to be found in gematik FHIR Directory",
+        "exampleCanonical": "https://gematik.de/fhir/directory/StructureDefinition/PractitionerDirectoryStrict"
+      },
+      {
+        "reference": {
+          "reference": "SearchParameter/PractitionerQualificationSP"
+        },
+        "name": "PractitionerQualificationSP",
+        "description": "Search on Practitioner.qualification.code & Practitioner.qualification.code.coding.display",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/PractitionerRoleDirectory"
+        },
+        "name": "PractitionerRole in gematik Directory",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "SearchParameter/PractitionerRole-endpoint"
+        },
+        "name": "PractitionerRole-endpoint",
+        "description": "Technical endpoints providing access to services operated for the practitioner with this role",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "SearchParameter/PractitionerRole-location"
+        },
+        "name": "PractitionerRole-location",
+        "description": "One of the locations at which this practitioner provides care",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "SearchParameter/PractitionerRole-practitioner"
+        },
+        "name": "PractitionerRole-practitioner",
+        "description": "Practitioner that is able to provide the defined services for the organization",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/PractitionerRoleDirectoryStrict"
+        },
+        "name": "PractitionerRoleDirectoryStrict",
+        "description": "PractitionerRole in gematik Directory with strict constraints",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "PractitionerRole/PractitionerRoleExample"
+        },
+        "name": "PractitionerRoleExample",
+        "description": "Example of an PractitionerRole as to be found in gematik FHIR Directory",
+        "exampleCanonical": "https://gematik.de/fhir/directory/StructureDefinition/PractitionerRoleDirectoryStrict"
+      },
+      {
+        "reference": {
+          "reference": "CodeSystem/inek-rechtsformen"
+        },
+        "name": "Rechtsformen",
+        "description": "Rechtsformen aus dem InEK Krankenhausstandortverzeichnis.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "CodeSystem/ResourceTag"
+        },
+        "name": "Resource Tag",
+        "description": "All allowed tags for meta.tag usage in the Directory Service, excluding Origin Tags.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/results-filtered-ex"
+        },
+        "name": "Results Filtered Extension",
+        "description": "Extension reporting the number of results filtered out by the server",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/ServiceCoverageArea"
+        },
+        "name": "ServiceCoverageArea",
+        "description": "ServiceCoverage area as a radius in meters",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/ServiceCoveragePostalCode"
+        },
+        "name": "ServiceCoveragePostalCode",
+        "description": "Service coverage area expressed as a postal code (PLZ)",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/SpecialOpeningTimesEX"
+        },
+        "name": "SpecialOpeningTimesEX",
+        "description": "SpecialOpeningTimesEX",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "CodeSystem/inek-traegerarten"
+        },
+        "name": "Trägerarten",
+        "description": "Trägerarten aus dem InEK Krankenhausstandortverzeichnis.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "ValueSet/HealthcareSpecialtyTypeVS"
+        },
+        "name": "ValueSet of HealthcareService specialities",
+        "description": "HealthcareService specialities",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "CodeSystem/vzd-level"
+        },
+        "name": "VZD Level CodeSystem",
+        "description": "CodeSystem zur Klassifikation der Ebene einer Ressource (HealthcareService oder Location) im VZD-Modell, z. B. VZD, Standort, Einrichtung, Zentrum oder Fachabteilung.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "ValueSet/vzd-level-vs"
+        },
+        "name": "VZD Level ValueSet",
+        "description": "ValueSet zur Klassifikation der Ebene einer Ressource (HealthcareService oder Location) im VZD-Modell, z. B. VZD, Standort, Einrichtung, Zentrum oder Fachabteilung.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "CodeSystem/VZDHealthCareServiceCharacteristicsCS"
+        },
+        "name": "VZDHealthCareServiceCharacteristicsCS",
+        "description": "CodeSystem of VZD specific HealthcareService characteristics",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "CodeSystem/zahnaerztliche-fachrichtungen-oid-url"
+        },
+        "name": "ZahnaerztlicheFachrichtungen",
+        "description": "ZahnaerztlicheFachrichtungen",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "CodeSystem/inek-zentrenarten"
+        },
+        "name": "Zentrenarten",
+        "description": "Zentrenarten aus dem InEK Krankenhausstandortverzeichnis.",
+        "exampleBoolean": false
+      }
+    ],
+    "page": {
+      "nameUrl": "toc.html",
+      "title": "Table of Contents",
+      "generation": "html",
+      "page": [
+        {
+          "nameUrl": "index.html",
+          "title": "Home",
+          "generation": "markdown"
+        },
+        {
+          "nameUrl": "khvz.html",
+          "title": "Krankenhausverzeichnis (KHVZ)",
+          "generation": "markdown"
+        }
+      ]
+    },
+    "parameter": [
+      {
+        "code": "copyrightyear",
+        "value": "2025+"
+      },
+      {
+        "code": "releaselabel",
+        "value": "ci-build"
+      },
+      {
+        "code": "show-inherited-tables",
+        "value": "true"
+      }
+    ]
+  }
+}

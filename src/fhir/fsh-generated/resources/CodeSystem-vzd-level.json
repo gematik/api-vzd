@@ -1,0 +1,33 @@
+{
+  "resourceType": "CodeSystem",
+  "status": "active",
+  "content": "complete",
+  "name": "VzdLevelCS",
+  "id": "vzd-level",
+  "title": "VZD Level CodeSystem",
+  "description": "CodeSystem zur Klassifikation der Ebene einer Ressource (HealthcareService oder Location) im VZD-Modell, z. B. VZD, Standort, Einrichtung, Zentrum oder Fachabteilung.",
+  "url": "https://gematik.de/fhir/directory/CodeSystem/vzd-level",
+  "concept": [
+    {
+      "code": "vzd",
+      "display": "VZD"
+    },
+    {
+      "code": "standort",
+      "display": "Standort"
+    },
+    {
+      "code": "einrichtung",
+      "display": "Einrichtung"
+    },
+    {
+      "code": "zentrum",
+      "display": "Zentrum"
+    },
+    {
+      "code": "fachabteilung",
+      "display": "Fachabteilung"
+    }
+  ],
+  "count": 5
+}

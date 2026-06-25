@@ -1,0 +1,56 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "KhvzLetzteAenderungEx",
+  "url": "https://gematik.de/fhir/directory/StructureDefinition/KhvzLetzteAenderungEx",
+  "version": "1.2.0",
+  "name": "KhvzLetzteAenderungEx",
+  "title": "KHVZ Letzte Änderung Extension",
+  "status": "active",
+  "experimental": false,
+  "date": "2025-02-26",
+  "publisher": "gematik GmbH",
+  "description": "Zeitpunkt der letzten Änderung eines KHVZ-HealthcareService (Standortdaten).",
+  "fhirVersion": "4.0.1",
+  "kind": "complex-type",
+  "abstract": false,
+  "context": [
+    {
+      "expression": "HealthcareService",
+      "type": "element"
+    }
+  ],
+  "type": "Extension",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Extension",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Extension",
+        "path": "Extension",
+        "short": "KHVZ Letzte Änderung Extension",
+        "definition": "Zeitpunkt der letzten Änderung eines KHVZ-HealthcareService (Standortdaten)."
+      },
+      {
+        "id": "Extension.extension",
+        "path": "Extension.extension",
+        "max": "0"
+      },
+      {
+        "id": "Extension.url",
+        "path": "Extension.url",
+        "fixedUri": "https://gematik.de/fhir/directory/StructureDefinition/KhvzLetzteAenderungEx"
+      },
+      {
+        "id": "Extension.value[x]",
+        "path": "Extension.value[x]",
+        "min": 1,
+        "type": [
+          {
+            "code": "dateTime"
+          }
+        ],
+        "mustSupport": true
+      }
+    ]
+  }
+}

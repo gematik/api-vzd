@@ -1,0 +1,109 @@
+{
+  "resourceType": "HealthcareService",
+  "id": "KhvzVzdHealthcareServiceExample",
+  "meta": {
+    "tag": [
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/Origin",
+        "code": "ldap"
+      }
+    ],
+    "profile": [
+      "https://gematik.de/fhir/directory/StructureDefinition/HealthcareServiceDirectoryStrict"
+    ]
+  },
+  "category": [
+    {
+      "coding": [
+        {
+          "code": "vzd",
+          "system": "https://gematik.de/fhir/directory/CodeSystem/vzd-level",
+          "display": "VZD"
+        }
+      ]
+    }
+  ],
+  "providedBy": {
+    "reference": "Organization/KhvzKrankenhausOrganizationExample"
+  },
+  "type": [
+    {
+      "coding": [
+        {
+          "code": "GESU",
+          "system": "urn:oid:1.3.6.1.4.1.19376.3.276.1.5.4",
+          "display": "Öffentliches Gesundheitswesen"
+        }
+      ]
+    }
+  ],
+  "name": "Musterklinik gGmbH",
+  "telecom": [
+    {
+      "system": "phone",
+      "value": "030 1234000",
+      "use": "work"
+    }
+  ],
+  "location": [
+    {
+      "reference": "Location/KhvzKrankenhausLocationExample"
+    }
+  ],
+  "endpoint": [
+    {
+      "reference": "Endpoint/KhvzKrankenhausKimEndpointExample"
+    }
+  ],
+  "availableTime": [
+    {
+      "daysOfWeek": [
+        "mon"
+      ],
+      "availableStartTime": "00:00:00",
+      "availableEndTime": "23:59:59"
+    },
+    {
+      "daysOfWeek": [
+        "tue"
+      ],
+      "availableStartTime": "00:00:00",
+      "availableEndTime": "23:59:59"
+    },
+    {
+      "daysOfWeek": [
+        "wed"
+      ],
+      "availableStartTime": "00:00:00",
+      "availableEndTime": "23:59:59"
+    },
+    {
+      "daysOfWeek": [
+        "thu"
+      ],
+      "availableStartTime": "00:00:00",
+      "availableEndTime": "23:59:59"
+    },
+    {
+      "daysOfWeek": [
+        "fri"
+      ],
+      "availableStartTime": "00:00:00",
+      "availableEndTime": "23:59:59"
+    },
+    {
+      "daysOfWeek": [
+        "sat"
+      ],
+      "availableStartTime": "00:00:00",
+      "availableEndTime": "23:59:59"
+    },
+    {
+      "daysOfWeek": [
+        "sun"
+      ],
+      "availableStartTime": "00:00:00",
+      "availableEndTime": "23:59:59"
+    }
+  ]
+}

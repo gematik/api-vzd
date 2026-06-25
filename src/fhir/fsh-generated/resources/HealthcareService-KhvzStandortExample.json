@@ -1,0 +1,62 @@
+{
+  "resourceType": "HealthcareService",
+  "id": "KhvzStandortExample",
+  "meta": {
+    "tag": [
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/Origin",
+        "code": "ldap"
+      }
+    ],
+    "profile": [
+      "https://gematik.de/fhir/directory/StructureDefinition/HealthcareServiceStandort"
+    ]
+  },
+  "category": [
+    {
+      "coding": [
+        {
+          "code": "standort",
+          "system": "https://gematik.de/fhir/directory/CodeSystem/vzd-level",
+          "display": "Standort"
+        }
+      ]
+    }
+  ],
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-HealthcareService.offeredIn",
+      "valueReference": {
+        "reference": "HealthcareService/KhvzVzdHealthcareServiceExample"
+      }
+    },
+    {
+      "extension": [
+        {
+          "url": "gueltigVon",
+          "valueDateTime": "2018-01-01"
+        }
+      ],
+      "url": "https://gematik.de/fhir/directory/StructureDefinition/KhvzGueltigkeitEx"
+    },
+    {
+      "url": "https://gematik.de/fhir/directory/StructureDefinition/KhvzLetzteAenderungEx",
+      "valueDateTime": "2025-12-19"
+    }
+  ],
+  "identifier": [
+    {
+      "system": "https://gematik.de/fhir/directory/sid/standort-id",
+      "value": "123456"
+    }
+  ],
+  "providedBy": {
+    "reference": "Organization/KhvzKrankenhausOrganizationExample"
+  },
+  "name": "Musterklinik gGmbH - Standort Berlin-Mitte",
+  "location": [
+    {
+      "reference": "Location/KhvzStandortLocationExample"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "resourceType": "ValueSet",
+  "status": "active",
+  "name": "InEKAdresstypenVS",
+  "id": "inek-adresstypen-vs",
+  "title": "InEK Adresstypen ValueSet",
+  "description": "ValueSet fuer Adresstypen aus dem InEK Krankenhausstandortverzeichnis.",
+  "url": "https://gematik.de/fhir/directory/ValueSet/inek-adresstypen-vs",
+  "compose": {
+    "include": [
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/inek-adresstypen"
+      }
+    ]
+  }
+}

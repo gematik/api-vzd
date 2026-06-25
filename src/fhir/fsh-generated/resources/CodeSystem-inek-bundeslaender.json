@@ -1,0 +1,77 @@
+{
+  "resourceType": "CodeSystem",
+  "status": "active",
+  "content": "complete",
+  "name": "InEKBundeslaender",
+  "id": "inek-bundeslaender",
+  "title": "Bundesländer",
+  "description": "Bundesländer aus dem InEK Krankenhausstandortverzeichnis.",
+  "url": "https://gematik.de/fhir/directory/CodeSystem/inek-bundeslaender",
+  "concept": [
+    {
+      "code": "01",
+      "display": "Schleswig-Holstein"
+    },
+    {
+      "code": "02",
+      "display": "Hamburg"
+    },
+    {
+      "code": "03",
+      "display": "Niedersachsen"
+    },
+    {
+      "code": "04",
+      "display": "Bremen"
+    },
+    {
+      "code": "05",
+      "display": "Nordrhein-Westfalen"
+    },
+    {
+      "code": "06",
+      "display": "Hessen"
+    },
+    {
+      "code": "07",
+      "display": "Rheinland-Pfalz"
+    },
+    {
+      "code": "08",
+      "display": "Baden-Württemberg"
+    },
+    {
+      "code": "09",
+      "display": "Bayern"
+    },
+    {
+      "code": "10",
+      "display": "Saarland"
+    },
+    {
+      "code": "11",
+      "display": "Berlin"
+    },
+    {
+      "code": "12",
+      "display": "Brandenburg"
+    },
+    {
+      "code": "13",
+      "display": "Mecklenburg-Vorpommern"
+    },
+    {
+      "code": "14",
+      "display": "Sachsen"
+    },
+    {
+      "code": "15",
+      "display": "Sachsen-Anhalt"
+    },
+    {
+      "code": "16",
+      "display": "Thüringen"
+    }
+  ],
+  "count": 16
+}

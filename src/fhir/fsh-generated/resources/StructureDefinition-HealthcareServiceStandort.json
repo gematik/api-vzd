@@ -1,0 +1,108 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "HealthcareServiceStandort",
+  "url": "https://gematik.de/fhir/directory/StructureDefinition/HealthcareServiceStandort",
+  "version": "1.2.0",
+  "name": "HealthcareServiceStandort",
+  "title": "HealthcareService Standort (KHVZ)",
+  "status": "active",
+  "experimental": false,
+  "date": "2025-02-26",
+  "publisher": "gematik GmbH",
+  "description": "Standort-Ebene des Krankenhausverzeichnisses als HealthcareService.",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "HealthcareService",
+  "baseDefinition": "https://gematik.de/fhir/directory/StructureDefinition/HealthcareServiceKhvzBase",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "HealthcareService.extension",
+        "path": "HealthcareService.extension",
+        "min": 1
+      },
+      {
+        "id": "HealthcareService.extension:offeredIn",
+        "path": "HealthcareService.extension",
+        "sliceName": "offeredIn",
+        "min": 1
+      },
+      {
+        "id": "HealthcareService.extension:offeredIn.extension",
+        "path": "HealthcareService.extension.extension",
+        "max": "0"
+      },
+      {
+        "id": "HealthcareService.extension:offeredIn.value[x]",
+        "path": "HealthcareService.extension.value[x]",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://gematik.de/fhir/directory/StructureDefinition/HealthcareServiceDirectory"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "HealthcareService.identifier",
+        "path": "HealthcareService.identifier",
+        "min": 1
+      },
+      {
+        "id": "HealthcareService.identifier:standortId",
+        "path": "HealthcareService.identifier",
+        "sliceName": "standortId",
+        "min": 1,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "HealthcareService.identifier:standortId.system",
+        "path": "HealthcareService.identifier.system",
+        "min": 1,
+        "patternUri": "https://gematik.de/fhir/directory/sid/standort-id"
+      },
+      {
+        "id": "HealthcareService.identifier:standortId.value",
+        "path": "HealthcareService.identifier.value",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "HealthcareService.category:VzdLevelVS",
+        "path": "HealthcareService.category",
+        "sliceName": "VzdLevelVS",
+        "patternCodeableConcept": {
+          "coding": [
+            {
+              "code": "standort",
+              "system": "https://gematik.de/fhir/directory/CodeSystem/vzd-level"
+            }
+          ]
+        }
+      },
+      {
+        "id": "HealthcareService.type",
+        "path": "HealthcareService.type",
+        "max": "0"
+      },
+      {
+        "id": "HealthcareService.location",
+        "path": "HealthcareService.location",
+        "min": 1,
+        "max": "1",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://gematik.de/fhir/directory/StructureDefinition/LocationDirectory"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

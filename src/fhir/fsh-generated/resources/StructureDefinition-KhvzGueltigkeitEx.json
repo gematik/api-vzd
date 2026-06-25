@@ -1,0 +1,103 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "KhvzGueltigkeitEx",
+  "url": "https://gematik.de/fhir/directory/StructureDefinition/KhvzGueltigkeitEx",
+  "version": "1.2.0",
+  "name": "KhvzGueltigkeitEx",
+  "title": "KHVZ Gültigkeit Extension",
+  "status": "active",
+  "experimental": false,
+  "date": "2025-02-26",
+  "publisher": "gematik GmbH",
+  "description": "Gültigkeitszeitraum eines KHVZ-HealthcareService (Standortdaten): gültigVon und gültigBis.",
+  "fhirVersion": "4.0.1",
+  "kind": "complex-type",
+  "abstract": false,
+  "context": [
+    {
+      "expression": "HealthcareService",
+      "type": "element"
+    }
+  ],
+  "type": "Extension",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Extension",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Extension",
+        "path": "Extension",
+        "short": "KHVZ Gültigkeit Extension",
+        "definition": "Gültigkeitszeitraum eines KHVZ-HealthcareService (Standortdaten): gültigVon und gültigBis."
+      },
+      {
+        "id": "Extension.extension:gueltigVon",
+        "path": "Extension.extension",
+        "sliceName": "gueltigVon",
+        "min": 0,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "Extension.extension:gueltigVon.extension",
+        "path": "Extension.extension.extension",
+        "max": "0"
+      },
+      {
+        "id": "Extension.extension:gueltigVon.url",
+        "path": "Extension.extension.url",
+        "fixedUri": "gueltigVon"
+      },
+      {
+        "id": "Extension.extension:gueltigVon.value[x]",
+        "path": "Extension.extension.value[x]",
+        "min": 1,
+        "type": [
+          {
+            "code": "dateTime"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Extension.extension:gueltigBis",
+        "path": "Extension.extension",
+        "sliceName": "gueltigBis",
+        "min": 0,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "Extension.extension:gueltigBis.extension",
+        "path": "Extension.extension.extension",
+        "max": "0"
+      },
+      {
+        "id": "Extension.extension:gueltigBis.url",
+        "path": "Extension.extension.url",
+        "fixedUri": "gueltigBis"
+      },
+      {
+        "id": "Extension.extension:gueltigBis.value[x]",
+        "path": "Extension.extension.value[x]",
+        "min": 1,
+        "type": [
+          {
+            "code": "dateTime"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Extension.url",
+        "path": "Extension.url",
+        "fixedUri": "https://gematik.de/fhir/directory/StructureDefinition/KhvzGueltigkeitEx"
+      },
+      {
+        "id": "Extension.value[x]",
+        "path": "Extension.value[x]",
+        "max": "0"
+      }
+    ]
+  }
+}

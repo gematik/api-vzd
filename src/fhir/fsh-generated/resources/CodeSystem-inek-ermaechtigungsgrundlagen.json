@@ -1,0 +1,29 @@
+{
+  "resourceType": "CodeSystem",
+  "status": "active",
+  "content": "complete",
+  "name": "InEKErmaechtigungsgrundlagen",
+  "id": "inek-ermaechtigungsgrundlagen",
+  "title": "Ermächtigungsgrundlagen",
+  "description": "Ermächtigungsgrundlagen aus dem InEK Krankenhausstandortverzeichnis.",
+  "url": "https://gematik.de/fhir/directory/CodeSystem/inek-ermaechtigungsgrundlagen",
+  "concept": [
+    {
+      "code": "1",
+      "display": "Krankenhaus nach § 108 Nr. 1 SGB V (Hochschulklinik)"
+    },
+    {
+      "code": "2",
+      "display": "Krankenhaus nach § 108 Nr. 2 SGB V (Plankrankenhaus)"
+    },
+    {
+      "code": "3",
+      "display": "Krankenhaus nach § 108 Nr. 3 SGB V (Versorgungsvertrag)"
+    },
+    {
+      "code": "4",
+      "display": "Sondereinrichtung (z. B. Institut)"
+    }
+  ],
+  "count": 4
+}

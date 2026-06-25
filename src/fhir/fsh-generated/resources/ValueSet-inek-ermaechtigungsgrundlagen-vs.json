@@ -1,0 +1,16 @@
+{
+  "resourceType": "ValueSet",
+  "status": "active",
+  "name": "InEKErmaechtigungsgrundlagenVS",
+  "id": "inek-ermaechtigungsgrundlagen-vs",
+  "title": "InEK Ermaechtigungsgrundlagen ValueSet",
+  "description": "ValueSet fuer Ermaechtigungsgrundlagen aus dem InEK Krankenhausstandortverzeichnis.",
+  "url": "https://gematik.de/fhir/directory/ValueSet/inek-ermaechtigungsgrundlagen-vs",
+  "compose": {
+    "include": [
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/inek-ermaechtigungsgrundlagen"
+      }
+    ]
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "resourceType": "ValueSet",
+  "status": "active",
+  "name": "InEKEinrichtungstypenVS",
+  "id": "inek-einrichtungstypen-vs",
+  "title": "InEK Einrichtungstypen ValueSet",
+  "description": "ValueSet fuer Einrichtungstypen aus dem InEK Krankenhausstandortverzeichnis.",
+  "url": "https://gematik.de/fhir/directory/ValueSet/inek-einrichtungstypen-vs",
+  "compose": {
+    "include": [
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/inek-einrichtungstypen"
+      }
+    ]
+  }
+}

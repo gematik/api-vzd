@@ -1,0 +1,60 @@
+{
+  "resourceType": "HealthcareService",
+  "id": "KhvzEinrichtungExample",
+  "meta": {
+    "tag": [
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/Origin",
+        "code": "ldap"
+      }
+    ],
+    "profile": [
+      "https://gematik.de/fhir/directory/StructureDefinition/HealthcareServiceEinrichtung"
+    ]
+  },
+  "category": [
+    {
+      "coding": [
+        {
+          "code": "einrichtung",
+          "system": "https://gematik.de/fhir/directory/CodeSystem/vzd-level",
+          "display": "Einrichtung"
+        }
+      ]
+    }
+  ],
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-HealthcareService.offeredIn",
+      "valueReference": {
+        "reference": "HealthcareService/KhvzStandortExample"
+      }
+    }
+  ],
+  "identifier": [
+    {
+      "system": "http://fhir.de/sid/bsnr",
+      "value": "999999999"
+    }
+  ],
+  "providedBy": {
+    "reference": "Organization/KhvzKrankenhausOrganizationExample"
+  },
+  "type": [
+    {
+      "coding": [
+        {
+          "code": "00",
+          "system": "https://gematik.de/fhir/directory/CodeSystem/inek-einrichtungstypen",
+          "display": "Stationäre Behandlung"
+        }
+      ]
+    }
+  ],
+  "name": "Musterklinik gGmbH - Klinik für Innere Medizin",
+  "location": [
+    {
+      "reference": "Location/KhvzEinrichtungLocationExample"
+    }
+  ]
+}

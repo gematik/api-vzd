@@ -1,0 +1,103 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "HealthcareServiceFachabteilung",
+  "url": "https://gematik.de/fhir/directory/StructureDefinition/HealthcareServiceFachabteilung",
+  "version": "1.2.0",
+  "name": "HealthcareServiceFachabteilung",
+  "title": "HealthcareService Fachabteilung (KHVZ)",
+  "status": "active",
+  "experimental": false,
+  "date": "2025-02-26",
+  "publisher": "gematik GmbH",
+  "description": "Fachabteilungs-Ebene des Krankenhausverzeichnisses als HealthcareService.",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "HealthcareService",
+  "baseDefinition": "https://gematik.de/fhir/directory/StructureDefinition/HealthcareServiceKhvzBase",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "HealthcareService.extension",
+        "path": "HealthcareService.extension",
+        "min": 1
+      },
+      {
+        "id": "HealthcareService.extension:offeredIn",
+        "path": "HealthcareService.extension",
+        "sliceName": "offeredIn",
+        "min": 1
+      },
+      {
+        "id": "HealthcareService.extension:offeredIn.extension",
+        "path": "HealthcareService.extension.extension",
+        "max": "0"
+      },
+      {
+        "id": "HealthcareService.extension:offeredIn.value[x]",
+        "path": "HealthcareService.extension.value[x]",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://gematik.de/fhir/directory/StructureDefinition/HealthcareServiceEinrichtung"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "HealthcareService.identifier",
+        "path": "HealthcareService.identifier",
+        "min": 1
+      },
+      {
+        "id": "HealthcareService.identifier:erId",
+        "path": "HealthcareService.identifier",
+        "sliceName": "erId",
+        "min": 1,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "HealthcareService.identifier:erId.system",
+        "path": "HealthcareService.identifier.system",
+        "min": 1,
+        "patternUri": "https://gematik.de/fhir/directory/sid/inek-er-id"
+      },
+      {
+        "id": "HealthcareService.identifier:erId.value",
+        "path": "HealthcareService.identifier.value",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "HealthcareService.category:VzdLevelVS",
+        "path": "HealthcareService.category",
+        "sliceName": "VzdLevelVS",
+        "patternCodeableConcept": {
+          "coding": [
+            {
+              "code": "fachabteilung",
+              "system": "https://gematik.de/fhir/directory/CodeSystem/vzd-level"
+            }
+          ]
+        }
+      },
+      {
+        "id": "HealthcareService.type",
+        "path": "HealthcareService.type",
+        "min": 1,
+        "binding": {
+          "strength": "required",
+          "valueSet": "http://fhir.de/ValueSet/dkgev/Fachabteilungsschluessel"
+        }
+      },
+      {
+        "id": "HealthcareService.location",
+        "path": "HealthcareService.location",
+        "max": "0"
+      }
+    ]
+  }
+}

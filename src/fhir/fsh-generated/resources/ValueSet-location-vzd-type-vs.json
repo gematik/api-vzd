@@ -1,0 +1,27 @@
+{
+  "resourceType": "ValueSet",
+  "status": "active",
+  "name": "LocationVzdTypeVS",
+  "id": "location-vzd-type-vs",
+  "title": "Location VZD Type ValueSet",
+  "description": "ValueSet zur Klassifikation der Art einer Location im VZD-/KHVZ-Modell. Nutzt das VzdLevelCS, eingeschränkt auf die Ebenen mit eigener Location.",
+  "url": "https://gematik.de/fhir/directory/ValueSet/location-vzd-type-vs",
+  "compose": {
+    "include": [
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/vzd-level",
+        "concept": [
+          {
+            "code": "vzd"
+          },
+          {
+            "code": "standort"
+          },
+          {
+            "code": "einrichtung"
+          }
+        ]
+      }
+    ]
+  }
+}

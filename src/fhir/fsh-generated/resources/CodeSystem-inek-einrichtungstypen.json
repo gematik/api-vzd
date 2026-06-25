@@ -1,0 +1,89 @@
+{
+  "resourceType": "CodeSystem",
+  "status": "active",
+  "content": "complete",
+  "name": "InEKEinrichtungstypen",
+  "id": "inek-einrichtungstypen",
+  "title": "Einrichtungstypen",
+  "description": "Einrichtungstypen aus dem InEK Krankenhausstandortverzeichnis.",
+  "url": "https://gematik.de/fhir/directory/CodeSystem/inek-einrichtungstypen",
+  "concept": [
+    {
+      "code": "00",
+      "display": "Stationäre Behandlung"
+    },
+    {
+      "code": "02",
+      "display": "Ambulante spezialfachärztliche Versorgung nach § 116b Abs. 2 SGB V (neues Recht)"
+    },
+    {
+      "code": "03",
+      "display": "Ambulante spezialfachärztliche Versorgung nach § 116b Abs. 8 SGB V (altes Recht)"
+    },
+    {
+      "code": "04",
+      "display": "Hochschulambulanzen nach § 117 SGB V"
+    },
+    {
+      "code": "05",
+      "display": "Psychiatrische Institutsambulanzen nach § 118 Abs. 1 SGB V"
+    },
+    {
+      "code": "06",
+      "display": "Psychiatrische Institutsambulanzen nach § 118 Abs. 2 SGB V"
+    },
+    {
+      "code": "07",
+      "display": "Psychosomatische Institutsambulanzen nach § 118 Abs. 3 SGB V"
+    },
+    {
+      "code": "08",
+      "display": "Psychiatrische Institutsambulanzen nach § 118 Abs. 4 SGB V"
+    },
+    {
+      "code": "09",
+      "display": "Geriatrische Institutsambulanzen nach § 118a SGB V"
+    },
+    {
+      "code": "10",
+      "display": "Sozialpädiatrische Zentren nach § 119 SGB V"
+    },
+    {
+      "code": "11",
+      "display": "Medizinische Behandlungszentren nach § 119c SGB V"
+    },
+    {
+      "code": "12",
+      "display": "Kinderspezialambulanzen nach § 120 Abs. 1a SGB V"
+    },
+    {
+      "code": "13",
+      "display": "Notfallambulanz"
+    },
+    {
+      "code": "14",
+      "display": "Zentrale Notaufnahme (ZNA)"
+    },
+    {
+      "code": "01",
+      "display": "Teilstationäre Einrichtung außerhalb eines Standortes mit vollstationärer Behandlung"
+    },
+    {
+      "code": "15",
+      "display": "Zentrale Notaufnahme (ZNA) Erwachsene"
+    },
+    {
+      "code": "16",
+      "display": "Zentrale Notaufnahme (ZNA) Kinder u. Jugendliche"
+    },
+    {
+      "code": "17",
+      "display": "Sektorenübergreifende Versorgungseinrichtung nach § 115g SGB V"
+    },
+    {
+      "code": "18",
+      "display": "Pädiatrische Institutsambulanz nach § 118b SGB V"
+    }
+  ],
+  "count": 19
+}

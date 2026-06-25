@@ -1,0 +1,25 @@
+{
+  "resourceType": "CodeSystem",
+  "status": "active",
+  "content": "complete",
+  "name": "InEKTraegerarten",
+  "id": "inek-traegerarten",
+  "title": "Trägerarten",
+  "description": "Trägerarten aus dem InEK Krankenhausstandortverzeichnis.",
+  "url": "https://krankenhausstandorte.de/fhir/CodeSystem/inek-traegerarten",
+  "concept": [
+    {
+      "code": "f",
+      "display": "freigemeinnützig"
+    },
+    {
+      "code": "ö",
+      "display": "öffentlich"
+    },
+    {
+      "code": "p",
+      "display": "privat"
+    }
+  ],
+  "count": 3
+}

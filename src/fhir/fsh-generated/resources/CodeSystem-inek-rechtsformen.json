@@ -1,0 +1,121 @@
+{
+  "resourceType": "CodeSystem",
+  "status": "active",
+  "content": "complete",
+  "name": "InEKRechtsformen",
+  "id": "inek-rechtsformen",
+  "title": "Rechtsformen",
+  "description": "Rechtsformen aus dem InEK Krankenhausstandortverzeichnis.",
+  "url": "https://gematik.de/fhir/directory/CodeSystem/inek-rechtsformen",
+  "concept": [
+    {
+      "code": "01",
+      "display": "GmbH"
+    },
+    {
+      "code": "02",
+      "display": "GbR"
+    },
+    {
+      "code": "03",
+      "display": "OHG"
+    },
+    {
+      "code": "04",
+      "display": "KG"
+    },
+    {
+      "code": "05",
+      "display": "UG"
+    },
+    {
+      "code": "06",
+      "display": "AG"
+    },
+    {
+      "code": "07",
+      "display": "gGmbH"
+    },
+    {
+      "code": "08",
+      "display": "e. V."
+    },
+    {
+      "code": "09",
+      "display": "AöR"
+    },
+    {
+      "code": "10",
+      "display": "KdöR"
+    },
+    {
+      "code": "11",
+      "display": "KGaA"
+    },
+    {
+      "code": "12",
+      "display": "gAG"
+    },
+    {
+      "code": "13",
+      "display": "Stiftung"
+    },
+    {
+      "code": "14",
+      "display": "GmbH & Co. KG"
+    },
+    {
+      "code": "15",
+      "display": "GmbH & Co. KGaA"
+    },
+    {
+      "code": "16",
+      "display": "Eigenbetrieb"
+    },
+    {
+      "code": "17",
+      "display": "Gebietskörperschaft"
+    },
+    {
+      "code": "18",
+      "display": "Stiftung des öffentlichen Rechts"
+    },
+    {
+      "code": "19",
+      "display": "Altrechtlicher Verein mit Körperschaftsrechten"
+    },
+    {
+      "code": "20",
+      "display": "Kirchliche Stiftung des öffentlichen Rechts"
+    },
+    {
+      "code": "21",
+      "display": "nicht eingetragener Verein"
+    },
+    {
+      "code": "22",
+      "display": "Einzelunternehmen"
+    },
+    {
+      "code": "23",
+      "display": "Stiftung des bürgerlichen Rechts"
+    },
+    {
+      "code": "24",
+      "display": "Stiftung des privaten Rechts"
+    },
+    {
+      "code": "25",
+      "display": "SE"
+    },
+    {
+      "code": "26",
+      "display": "Stiftung & Co. KG"
+    },
+    {
+      "code": "27",
+      "display": "SE & Co. KG"
+    }
+  ],
+  "count": 27
+}

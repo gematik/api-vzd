@@ -1,0 +1,16 @@
+{
+  "resourceType": "ValueSet",
+  "status": "active",
+  "name": "InEKRechtsformenVS",
+  "id": "inek-rechtsformen-vs",
+  "title": "InEK Rechtsformen ValueSet",
+  "description": "ValueSet fuer Rechtsformen aus dem InEK Krankenhausstandortverzeichnis.",
+  "url": "https://gematik.de/fhir/directory/ValueSet/inek-rechtsformen-vs",
+  "compose": {
+    "include": [
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/inek-rechtsformen"
+      }
+    ]
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "resourceType": "HealthcareService",
+  "id": "KhvzZentrumExample",
+  "meta": {
+    "tag": [
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/Origin",
+        "code": "ldap"
+      }
+    ],
+    "profile": [
+      "https://gematik.de/fhir/directory/StructureDefinition/HealthcareServiceZentrum"
+    ]
+  },
+  "category": [
+    {
+      "coding": [
+        {
+          "code": "zentrum",
+          "system": "https://gematik.de/fhir/directory/CodeSystem/vzd-level",
+          "display": "Zentrum"
+        }
+      ]
+    }
+  ],
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-HealthcareService.offeredIn",
+      "valueReference": {
+        "reference": "HealthcareService/KhvzStandortExample"
+      }
+    }
+  ],
+  "identifier": [
+    {
+      "system": "https://gematik.de/fhir/directory/sid/inek-er-id",
+      "value": "ER-123456-Z02"
+    }
+  ],
+  "providedBy": {
+    "reference": "Organization/KhvzKrankenhausOrganizationExample"
+  },
+  "type": [
+    {
+      "coding": [
+        {
+          "code": "02",
+          "system": "https://gematik.de/fhir/directory/CodeSystem/inek-zentrenarten",
+          "display": "Onkologisches Zentrum"
+        }
+      ]
+    }
+  ],
+  "name": "Musterklinik gGmbH - Onkologisches Zentrum"
+}

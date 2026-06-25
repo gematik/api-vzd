@@ -1,0 +1,16 @@
+{
+  "resourceType": "ValueSet",
+  "status": "active",
+  "name": "InEKTraegerartenVS",
+  "id": "inek-traegerarten-vs",
+  "title": "InEK Traegerarten ValueSet",
+  "description": "ValueSet fuer Traegerarten aus dem InEK Krankenhausstandortverzeichnis.",
+  "url": "https://gematik.de/fhir/directory/ValueSet/inek-traegerarten-vs",
+  "compose": {
+    "include": [
+      {
+        "system": "https://krankenhausstandorte.de/fhir/CodeSystem/inek-traegerarten"
+      }
+    ]
+  }
+}

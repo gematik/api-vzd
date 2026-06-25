@@ -1,0 +1,81 @@
+{
+  "resourceType": "CodeSystem",
+  "status": "active",
+  "content": "complete",
+  "name": "InEKKvBezirke",
+  "id": "inek-kvbezirke",
+  "title": "KV-Bezirke",
+  "description": "KV-Bezirke aus dem InEK Krankenhausstandortverzeichnis.",
+  "url": "https://gematik.de/fhir/directory/CodeSystem/inek-kvbezirke",
+  "concept": [
+    {
+      "code": "01",
+      "display": "Schleswig-Holstein"
+    },
+    {
+      "code": "02",
+      "display": "Hamburg"
+    },
+    {
+      "code": "03",
+      "display": "Bremen"
+    },
+    {
+      "code": "17",
+      "display": "Niedersachsen"
+    },
+    {
+      "code": "20",
+      "display": "Westfalen-Lippe"
+    },
+    {
+      "code": "38",
+      "display": "Nordrhein"
+    },
+    {
+      "code": "46",
+      "display": "Hessen"
+    },
+    {
+      "code": "51",
+      "display": "Rheinland-Pfalz"
+    },
+    {
+      "code": "52",
+      "display": "Baden-Württemberg"
+    },
+    {
+      "code": "71",
+      "display": "Bayern"
+    },
+    {
+      "code": "72",
+      "display": "Berlin"
+    },
+    {
+      "code": "73",
+      "display": "Saarland"
+    },
+    {
+      "code": "78",
+      "display": "Mecklenburg-Vorpommern"
+    },
+    {
+      "code": "83",
+      "display": "Brandenburg"
+    },
+    {
+      "code": "88",
+      "display": "Sachsen-Anhalt"
+    },
+    {
+      "code": "93",
+      "display": "Thüringen"
+    },
+    {
+      "code": "98",
+      "display": "Sachsen"
+    }
+  ],
+  "count": 17
+}

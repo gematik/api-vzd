@@ -1,0 +1,16 @@
+{
+  "resourceType": "ValueSet",
+  "status": "active",
+  "name": "VzdLevelVS",
+  "id": "vzd-level-vs",
+  "title": "VZD Level ValueSet",
+  "description": "ValueSet zur Klassifikation der Ebene einer Ressource (HealthcareService oder Location) im VZD-Modell, z. B. VZD, Standort, Einrichtung, Zentrum oder Fachabteilung.",
+  "url": "https://gematik.de/fhir/directory/ValueSet/vzd-level-vs",
+  "compose": {
+    "include": [
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/vzd-level"
+      }
+    ]
+  }
+}

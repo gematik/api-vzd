@@ -1,0 +1,36 @@
+{
+  "resourceType": "Location",
+  "id": "KhvzEinrichtungLocationExample",
+  "meta": {
+    "tag": [
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/Origin",
+        "code": "ldap"
+      }
+    ],
+    "profile": [
+      "https://gematik.de/fhir/directory/StructureDefinition/LocationDirectoryStrict"
+    ]
+  },
+  "type": [
+    {
+      "coding": [
+        {
+          "code": "einrichtung",
+          "system": "https://gematik.de/fhir/directory/CodeSystem/vzd-level",
+          "display": "Einrichtung"
+        }
+      ]
+    }
+  ],
+  "address": {
+    "text": "Klinikstraße 1, Haus B, 10117 Berlin",
+    "line": [
+      "Klinikstraße 1, Haus B"
+    ],
+    "city": "Berlin",
+    "state": "Berlin",
+    "postalCode": "10117",
+    "country": "DE"
+  }
+}

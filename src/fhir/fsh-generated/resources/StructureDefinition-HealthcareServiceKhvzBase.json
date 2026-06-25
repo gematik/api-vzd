@@ -1,0 +1,229 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "HealthcareServiceKhvzBase",
+  "url": "https://gematik.de/fhir/directory/StructureDefinition/HealthcareServiceKhvzBase",
+  "version": "1.2.0",
+  "name": "HealthcareServiceKhvzBase",
+  "title": "HealthcareService KHVZ Basis (abstrakt)",
+  "status": "active",
+  "experimental": false,
+  "date": "2025-02-26",
+  "publisher": "gematik GmbH",
+  "description": "Abstraktes Basis-Profil für die KHVZ-HealthcareService-Ebenen\n(Standort, Einrichtung, Zentrum, Fachabteilung). Bündelt die gemeinsamen\nVZD-Constraints. Nicht direkt instanziieren.",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": true,
+  "type": "HealthcareService",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/HealthcareService",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "HealthcareService.id",
+        "path": "HealthcareService.id",
+        "mustSupport": true
+      },
+      {
+        "id": "HealthcareService.meta.tag",
+        "path": "HealthcareService.meta.tag",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "pattern",
+              "path": "system"
+            }
+          ],
+          "rules": "open"
+        },
+        "min": 1,
+        "constraint": [
+          {
+            "key": "CodingSytemCodeInv",
+            "severity": "warning",
+            "human": "System and Code SHOULD be present",
+            "expression": "system.exists() and code.exists()",
+            "source": "https://gematik.de/fhir/directory/StructureDefinition/HealthcareServiceKhvzBase"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "HealthcareService.meta.tag:Origin",
+        "path": "HealthcareService.meta.tag",
+        "sliceName": "Origin",
+        "min": 1,
+        "max": "1",
+        "mustSupport": true,
+        "binding": {
+          "strength": "required",
+          "valueSet": "https://gematik.de/fhir/directory/ValueSet/OriginVS"
+        }
+      },
+      {
+        "id": "HealthcareService.meta.tag:Origin.system",
+        "path": "HealthcareService.meta.tag.system",
+        "min": 1,
+        "patternUri": "https://gematik.de/fhir/directory/CodeSystem/Origin"
+      },
+      {
+        "id": "HealthcareService.extension",
+        "path": "HealthcareService.extension",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "value",
+              "path": "url"
+            }
+          ],
+          "ordered": false,
+          "rules": "open"
+        }
+      },
+      {
+        "id": "HealthcareService.extension:offeredIn",
+        "path": "HealthcareService.extension",
+        "sliceName": "offeredIn",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "http://hl7.org/fhir/5.0/StructureDefinition/extension-HealthcareService.offeredIn"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "HealthcareService.extension:gueltigkeit",
+        "path": "HealthcareService.extension",
+        "sliceName": "gueltigkeit",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "https://gematik.de/fhir/directory/StructureDefinition/KhvzGueltigkeitEx"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "HealthcareService.extension:letzteAenderung",
+        "path": "HealthcareService.extension",
+        "sliceName": "letzteAenderung",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "https://gematik.de/fhir/directory/StructureDefinition/KhvzLetzteAenderungEx"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "HealthcareService.identifier",
+        "path": "HealthcareService.identifier",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "value",
+              "path": "system"
+            }
+          ],
+          "rules": "open"
+        },
+        "mustSupport": true
+      },
+      {
+        "id": "HealthcareService.providedBy",
+        "path": "HealthcareService.providedBy",
+        "min": 1,
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://gematik.de/fhir/directory/StructureDefinition/OrganizationDirectory"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "HealthcareService.category",
+        "path": "HealthcareService.category",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "pattern",
+              "path": "$this"
+            }
+          ],
+          "rules": "open"
+        },
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "HealthcareService.category.coding",
+        "path": "HealthcareService.category.coding",
+        "constraint": [
+          {
+            "key": "CodingSytemCodeInv",
+            "severity": "warning",
+            "human": "System and Code SHOULD be present",
+            "expression": "system.exists() and code.exists()",
+            "source": "https://gematik.de/fhir/directory/StructureDefinition/HealthcareServiceKhvzBase"
+          }
+        ]
+      },
+      {
+        "id": "HealthcareService.category:VzdLevelVS",
+        "path": "HealthcareService.category",
+        "sliceName": "VzdLevelVS",
+        "min": 1,
+        "max": "1",
+        "mustSupport": true,
+        "binding": {
+          "strength": "required",
+          "valueSet": "https://gematik.de/fhir/directory/ValueSet/vzd-level-vs"
+        }
+      },
+      {
+        "id": "HealthcareService.type",
+        "path": "HealthcareService.type",
+        "mustSupport": true
+      },
+      {
+        "id": "HealthcareService.type.coding",
+        "path": "HealthcareService.type.coding",
+        "constraint": [
+          {
+            "key": "CodingSytemCodeInv",
+            "severity": "warning",
+            "human": "System and Code SHOULD be present",
+            "expression": "system.exists() and code.exists()",
+            "source": "https://gematik.de/fhir/directory/StructureDefinition/HealthcareServiceKhvzBase"
+          }
+        ]
+      },
+      {
+        "id": "HealthcareService.location",
+        "path": "HealthcareService.location",
+        "mustSupport": true
+      },
+      {
+        "id": "HealthcareService.name",
+        "path": "HealthcareService.name",
+        "min": 1,
+        "mustSupport": true
+      }
+    ]
+  }
+}

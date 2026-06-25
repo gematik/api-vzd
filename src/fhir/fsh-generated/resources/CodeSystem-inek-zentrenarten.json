@@ -1,0 +1,49 @@
+{
+  "resourceType": "CodeSystem",
+  "status": "active",
+  "content": "complete",
+  "name": "InEKZentrenarten",
+  "id": "inek-zentrenarten",
+  "title": "Zentrenarten",
+  "description": "Zentrenarten aus dem InEK Krankenhausstandortverzeichnis.",
+  "url": "https://gematik.de/fhir/directory/CodeSystem/inek-zentrenarten",
+  "concept": [
+    {
+      "code": "01",
+      "display": "Seltene Erkrankungen"
+    },
+    {
+      "code": "02",
+      "display": "Onkologisches Zentrum"
+    },
+    {
+      "code": "03",
+      "display": "Traumazentrum"
+    },
+    {
+      "code": "04",
+      "display": "Rheumatologisches Zentrum"
+    },
+    {
+      "code": "05",
+      "display": "Zentrum für Kinder- und Jugendrheumatologie"
+    },
+    {
+      "code": "06",
+      "display": "Herzzentrum"
+    },
+    {
+      "code": "07",
+      "display": "Schlaganfallzentrum/Neurovaskuläres Zentrum"
+    },
+    {
+      "code": "08",
+      "display": "Lungenzentrum"
+    },
+    {
+      "code": "09",
+      "display": "Zentrum für Intensivmedizin"
+    }
+  ],
+  "count": 9
+}

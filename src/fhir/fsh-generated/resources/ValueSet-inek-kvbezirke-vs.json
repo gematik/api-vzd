@@ -1,0 +1,16 @@
+{
+  "resourceType": "ValueSet",
+  "status": "active",
+  "name": "InEKKVBezirkeVS",
+  "id": "inek-kvbezirke-vs",
+  "title": "InEK KV-Bezirke ValueSet",
+  "description": "ValueSet fuer KV-Bezirke aus dem InEK Krankenhausstandortverzeichnis.",
+  "url": "https://gematik.de/fhir/directory/ValueSet/inek-kvbezirke-vs",
+  "compose": {
+    "include": [
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/inek-kvbezirke"
+      }
+    ]
+  }
+}

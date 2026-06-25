@@ -1,0 +1,16 @@
+{
+  "resourceType": "ValueSet",
+  "status": "active",
+  "name": "InEKBundeslaenderVS",
+  "id": "inek-bundeslaender-vs",
+  "title": "InEK Bundeslaender ValueSet",
+  "description": "ValueSet fuer Bundeslaender aus dem InEK Krankenhausstandortverzeichnis.",
+  "url": "https://gematik.de/fhir/directory/ValueSet/inek-bundeslaender-vs",
+  "compose": {
+    "include": [
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/inek-bundeslaender"
+      }
+    ]
+  }
+}
