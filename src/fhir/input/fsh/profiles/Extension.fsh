@@ -123,6 +123,31 @@ Context: Endpoint.connectionType
   * value[x] only boolean
   * valueBoolean 1.. MS
 
+Extension: KhvzGueltigkeitEx
+Id: KhvzGueltigkeitEx
+Title: "KHVZ Gültigkeit Extension"
+Description: "Gültigkeitszeitraum eines KHVZ-HealthcareService (Standortdaten): gültigVon und gültigBis."
+Context: HealthcareService
+* insert Meta
+* extension contains
+    gueltigVon 0..1 MS and
+    gueltigBis 0..1 MS
+* extension[gueltigVon]
+  * value[x] only dateTime
+  * valueDateTime 1.. MS
+* extension[gueltigBis]
+  * value[x] only dateTime
+  * valueDateTime 1.. MS
+
+Extension: KhvzLetzteAenderungEx
+Id: KhvzLetzteAenderungEx
+Title: "KHVZ Letzte Änderung Extension"
+Description: "Zeitpunkt der letzten Änderung eines KHVZ-HealthcareService (Standortdaten)."
+Context: HealthcareService
+* insert Meta
+* value[x] only dateTime
+* valueDateTime 1.. MS
+
 Extension: EndpointFADIdEx
 Id: EndpointFADIdEx
 Title: "Endpoint Fachdienst-ID Extension"

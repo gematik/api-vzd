@@ -72,6 +72,7 @@ Description: "Example of an HealthcareService as to be found in gematik FHIR Dir
 * extension[holderId].valueCode = #dtrust
 * providedBy = Reference(OrganizationExample)
 * identifier[TelematikID].value = "2-2.58.00000040"
+* category[VzdLevelVS] = VzdLevelCS#vzd "VZD"
 * type[+] = AerztlicheFachrichtungen_OID_URL#MZKH "Zahnmedizin"
 * type[+] = AerztlicheFachrichtungen_OID_URL#ORAL "Oralchirurgie"
 * location[+] = Reference(LocationExample)

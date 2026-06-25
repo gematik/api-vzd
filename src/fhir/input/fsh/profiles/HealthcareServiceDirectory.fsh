@@ -31,9 +31,10 @@ organisations specific for german Healthcare and Telematics Infrastructure.
 * category ^slicing.rules = #open
 * category contains
     HealthcareServiceCategoryCodes 0..1 MS and
-    HealthcareServiceVzdLevelVS 1..1 MS
+    VzdLevelVS 1..1 MS
 * category[HealthcareServiceCategoryCodes] from HealthcareServiceCategoryCodes
-* category[HealthcareServiceVzdLevelVS] from HealthcareServiceVzdLevelVS
+* category[VzdLevelVS] from VzdLevelVS
+* category[VzdLevelVS] = VzdLevelCS#vzd
 * type MS
   * coding obeys CodingSytemCodeInv 
 * type from HealthcareServiceTypeVS

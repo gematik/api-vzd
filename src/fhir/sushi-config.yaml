@@ -1,8 +1,30 @@
+id: de.gematik.fhir.directory
 canonical: https://gematik.de/fhir/directory
+name: GematikFHIRDirectory
+title: "gematik FHIR Directory"
+description: "Implementation Guide des gematik FHIR-Verzeichnisdienstes (VZD), inkl. Krankenhausverzeichnis (KHVZ)."
+status: active
 version: 1.1.1
 fhirVersion: 4.0.1
+copyrightYear: 2025+
+releaseLabel: ci-build
+publisher:
+  name: gematik GmbH
+  url: https://www.gematik.de
+license: CC0-1.0
 dependencies:
   de.gematik.terminology: 1.0.8
   de.gematik.ti: 1.3.0
   de.basisprofil.r4: 1.5.4
-FSHOnly: true
+  hl7.fhir.uv.xver-r5.r4: 0.1.0
+pages:
+  index.md:
+    title: Home
+  khvz.md:
+    title: Krankenhausverzeichnis (KHVZ)
+menu:
+  Home: index.html
+  Krankenhausverzeichnis: khvz.html
+  Artefakte: artifacts.html
+parameters:
+  show-inherited-tables: true

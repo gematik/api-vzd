@@ -25,6 +25,12 @@ Alias: $IHEXDShealthcareFacilityTypeCodePatientRelatedHealthcare = http://ihe-d.
 //Extensions
 //Extensions hapi specific:
 Alias: $refChainEx = https://smilecdr.com/fhir/ns/StructureDefinition/searchparameter-uplift-refchain
+//Extensions R5->R4 Cross-Version (aus hl7.fhir.uv.xver-r5.r4):
+Alias: $offeredIn = http://hl7.org/fhir/5.0/StructureDefinition/extension-HealthcareService.offeredIn
+
+// CodeSystems / ValueSets (etabliert)
+Alias: $Fachabteilungsschluessel = http://fhir.de/CodeSystem/dkgev/Fachabteilungsschluessel
+Alias: $FachabteilungsschluesselVS = http://fhir.de/ValueSet/dkgev/Fachabteilungsschluessel
 
 // Identifiers
 // TelematikID
@@ -32,3 +38,10 @@ Alias: $IdentifierTelematikID = http://fhir.de/StructureDefinition/identifier-te
 
 // FADId (Fachdienst-ID)
 Alias: $IdentifierFAD = https://gematik.de/fhir/sid/fachdienst-id
+
+// BSNR (etabliert, deutsche Basisprofile)
+Alias: $bsnr = http://fhir.de/sid/bsnr
+
+// KHVZ-Identifier (Platzhalter - InEK-Absprache ausstehend)
+Alias: $sidStandortId = https://gematik.de/fhir/directory/sid/standort-id
+Alias: $sidInekErId = https://gematik.de/fhir/directory/sid/inek-er-id

@@ -15,7 +15,8 @@ Usage: #example
 Description: "Example of a NCPeH HealthcareService as to be found in gematik FHIR Directory"
 * meta.tag[Origin] = Origin#ldap
 * providedBy = Reference(NCPeHOrganizationExample)
-* category = TIOrganizationProfessionTypeOidCS#1.2.276.0.76.4.292 "NCPeH Fachdienst"
+* category[HealthcareServiceCategoryCodes] = TIOrganizationProfessionTypeOidCS#1.2.276.0.76.4.292 "NCPeH Fachdienst"
+* category[VzdLevelVS] = VzdLevelCS#vzd "VZD"
 * specialty[+] = $loinc#60591-5 "Patientenübersicht"
 * specialty[+] = $loinc#57833-6 "elektronische Verordnungen"
 * name = "NCPeH Portugal"

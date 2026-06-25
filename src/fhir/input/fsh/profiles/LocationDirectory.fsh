@@ -18,6 +18,8 @@ organisations specific for german Healthcare and Telematics Infrastructure.
 * id MS
 * name MS
 * description MS
+* type 0..1 MS
+* type from LocationVzdTypeVS (required)
 * address 1.. MS
   * use MS
   * text MS
@@ -48,7 +50,6 @@ Description: "Location in gematik Directory with strict constraints"
 * operationalStatus 0..0
 * alias 0..0
 * mode 0..0
-* type 0..0
 * telecom 0..0
 * physicalType 0..0
 * hoursOfOperation 0..0
