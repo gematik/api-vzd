@@ -474,11 +474,11 @@ TIP: Das Eintragen von Dienstleistungen für "Zuweisen ohne Anmeldung" wird in K
 
 Diese Öffnungszeiten (mit Ausnahme der textuellen Beschreibung in availabilityExceptions) werden in den eRezept-Apps zur Suche von geöffneten Apotheken genutzt. +
 Die Kontaktdaten werden in den Apps angezeigt und teilweise direkt aufgerufen (z.B. URL, E-Mail-Adresse der Apotheke oder Telefonnummer). +
-Die Ausstattung und Informationen zur Anfahrt (HealthcareService.characteristic:physicalFeatures) dienen der Information für die Kunden und können in VZD-Suche als Suchkriterium genutzt werden. Zum Beispiel "Suche nach barrierefreien Apotheken an einem Ort". +
+Die Ausstattung und Informationen zur Anfahrt (HealthcareService.characteristic:physicalFeatures) dienen der Information für die Kunden und können in VZD-Suche als Suchkriterium genutzt werden. Zum Beispiel "Suche nach barrierefreien Apotheken an einem Ort". + 
  +
 Ablauf: +
  +
-*1. Lesen des Apotheken-Eintrags aus dem FHIR-VZD*. Siehe Kapitel link:./FHIR_VZD_HOWTO_AVS.adoc#151-suche-des-apothekeneintrags[Suche des Apothekeneintrags]. +
+*1. Lesen des Apotheken-Eintrags aus dem FHIR-VZD*. Siehe Kapitel link:./FHIR_VZD_HOWTO_AVS.adoc#151-suche-des-apothekeneintrags[Suche des Apothekeneintrags]. 
 *2. Extrahieren der relevanten Ressource aus dem Suchergebnis.* Die Öffnungszeiten befinden sich in FHI-Ressource-HealthcareService mit HealthcareService.meta.tag:Origin=ldap
 
 .FHI-Ressource-HealthcareService - aktuelle Daten aus dem FHIR-VZD  (Klicken zum Ausklappen)
@@ -612,7 +612,6 @@ Ablauf: +
 ====
 
 *3. Aktualisierung der relevanten Daten in der Ressource* +
- +
 
 - Im FHIR-VZD sind für diese Apotheke die Öffnungszeiten in "availableTime" eingetragen. "availableTime" wird durch die aktuellen Öffnungszeiten aus dem AVS überschrieben.
 - Es werden zwei Urlaubszeiten in "notAvailable" und "An Feiertagen geschlossen" in "availabilityExceptions" eingetragen. Diese Attribute waren im original FHIR-VZD-Datensatz nicht vorhanden und werden vom AVS ergänzt.
@@ -626,6 +625,45 @@ Das AVS ergänzt das Liefergebiet in den Attributen serviceCoverageArea und serv
 - "serviceCoverageArea" - 10.000 Meter
 - "serviceCoveragePostalCode" - Die Postleitzahlen: 60596, 60597, 60598
 
+*Besonderheiten bei der Eintragung von Schließzeiten*
+
+Bei der Eintragung von Schließzeiten sollten Sie folgende Punkte beachten:
+- Anfangszeit muss kleiner Endzeit sein - das folgende Beispiel wäre ungültig:
+=====
+[source,txt, linenums]
+-----
+{
+  "description": "Ferien",
+  "during": {
+    "start": "2025-10-22T00:00:00+02:00",
+    "end": "2025-10-21T00:00:00+02:00"
+}
+-----
+=====
+- gleiche Anfangs- und Endzeit mit Zeitangabe führt zur Schließung von nur 1 Sekunde
+=====
+[source,txt, linenums]
+-----
+{
+  "description": "Betriebsschulung",
+  "during": {
+    "start": "2025-10-22T00:00:00+02:00",
+    "end": "2025-10-22T00:00:00+02:00"
+}
+-----
+=====
+- stattdessen sollte ein ganzer Schließtag folgendermaßen abgebildet werden:
+=====
+[source,txt, linenums]
+-----
+{
+  "description": "Betriebsschulung",
+  "during": {
+    "start": "2025-10-22",
+    "end": "2025-10-22"
+}
+-----
+=====
 .*Bug im VZD FHIR 1.2.0-15*
 CAUTION: Mit VZD FHIR 1.2.0-15 wurden die HealthcareService.specialty-Container für Apotheken auf den Wert „apo-vzd“ konsolidiert.
 Derzeit wird „apo-vzd“ jedoch bei der Anlieferung über die Owner-Schnittstelle fälschlicherweise verworfen.
