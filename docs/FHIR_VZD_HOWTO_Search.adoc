@@ -18,7 +18,7 @@ image::gematik_logo.svg[gematik,float="right"]
 
 [width="100%",cols="50%,50%",options="header",]
 |===
-|Version: |1.1.9
+|Version: |1.1.10
 |Referencing: |gemILF_FHIR_VZD
 |===
 
@@ -78,6 +78,10 @@ Added custom Search Parameters
 
 |1.1.9 |04.06.26 | 5. FHIR Operations - FHIR VZD endpoint /fdv/search
 |Add optional parameter specialty and characteristics to near-searches 
+  |gematik
+
+|1.1.10 |29.06.26 | 5. FHIR Operations - FHIR VZD endpoint /fdv/search
+|Add runtime hints for additional optional parameters in near searches
   |gematik
 
 
@@ -984,6 +988,21 @@ Search for all organizations in the specified radius, sorted by distance, filter
 For specialty and characteristics, repeated usage of the same parameter is supported and combined with AND logic.
 Both parameters are provided as free-text input, but must contain valid codes from the relevant coding systems (for example `10`, `20`, `impfung`). Unknown values lead to no hits.
 
+[NOTE]
+--
+Using additional optional parameters such as `specialty` and `characteristics` increases search complexity and can increase runtime. Depending on radius, combined filters, and additional parameters such as `text` and `isOpenInMinutes`, response times of several seconds are possible.
+
+Observed examples:
+
+- Around 2-3 seconds:
+  `./fdv/search/HealthcareService?_query=near&latitude=47.9147&longitude=12.7191&distance=1&specialty=10`
+- Around 5-6 seconds:
+  `./fdv/search/HealthcareService?_query=nearPharmacy&latitude=47.9147&longitude=12.7191&distance=100&specialty=10&specialty=30&isOpenInMinutes=7322&text=Apo`
+- In rare cases, runtimes up to around 8 seconds were observed.
+
+Runtime behavior should be reviewed by implementing party.
+--
+
 
 .Table Pharmacy radius search parameters
 |===
@@ -1070,6 +1089,21 @@ Search for all organizations in the specified radius, sorted by distance, filter
 For specialty and characteristics, repeated usage of the same parameter is supported and combined with AND logic.
 Both parameters are provided as free-text input, but must contain valid codes from the relevant coding systems (for example `10`, `20`, `impfung`). Unknown values lead to no findings.
 
+[NOTE]
+--
+Using additional optional parameters such as `specialty` and `characteristics` increases search complexity and can increase runtime. Depending on radius, combined filters, and additional parameters such as `text` and `isOpenInMinutes`, response times of several seconds are possible.
+
+Observed examples:
+
+- Around 2-3 seconds:
+  `./ti-fhir-provider/fdv/search/HealthcareService?_query=near&latitude=47.9147&longitude=12.7191&distance=1&specialty=10`
+- Around 5-6 seconds:
+  `./ti-fhir-provider/fdv/search/HealthcareService?_query=nearPharmacy&latitude=47.9147&longitude=12.7191&distance=100&specialty=10&specialty=30&isOpenInMinutes=7322&text=Apo`
+- In rare cases, runtimes up to around 8 seconds were observed.
+
+Runtime behavior should be reviewed by implementing party.
+--
+
 
 .Table Organization radius search parameters
 |===
@@ -1134,4 +1168,3 @@ GET {{fhir_server}}/fdv/search/HealthcareService?_query=near
     &specialty=20
     &characteristics=parkmoeglichkeit
 ----
-
