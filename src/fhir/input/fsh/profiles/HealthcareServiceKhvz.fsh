@@ -15,7 +15,8 @@ VZD-Constraints. Nicht direkt instanziieren."""
 * extension contains
     $offeredIn named offeredIn 0..1 MS and
     KhvzGueltigkeitEx named gueltigkeit 0..1 MS and
-    KhvzLetzteAenderungEx named letzteAenderung 0..1 MS
+    KhvzLetzteAenderungEx named letzteAenderung 0..1 MS and
+    KhvzAusnahmeEx named ausnahme 0..1 MS
 * meta.tag 1.. MS
   * ^slicing.discriminator.type = #pattern
   * ^slicing.discriminator.path = "system"
@@ -52,12 +53,17 @@ Id: HealthcareServiceStandort
 Title: "HealthcareService Standort (KHVZ)"
 Description: "Standort-Ebene des Krankenhausverzeichnisses als HealthcareService."
 * insert Meta
-* extension[offeredIn] 1..1 MS
-* extension[offeredIn].value[x] only Reference(HealthcareServiceDirectory)
+* extension contains KhvzVersionEx named version 0..1 MS
+// Der Standort ist die oberste KHVZ-HealthcareService-Ebene und wird NICHT per offeredIn
+// mit dem Krankenhaus-HealthcareService verbunden; die Zuordnung zum Krankenhaus erfolgt
+// ausschließlich über providedBy -> Organization.
+* extension[offeredIn] 0..0
+* extension[ausnahme] 1..1 MS
 * category[VzdLevelVS] = VzdLevelCS#standort
 * identifier contains standortId 1..1 MS
 * identifier[standortId].system = $sidStandortId
 * identifier[standortId].value 1.. MS
+* active 1..1 MS
 * type 0..0
 * location 1..1 MS
 * location only Reference(LocationDirectory)
@@ -71,16 +77,27 @@ Id: HealthcareServiceEinrichtung
 Title: "HealthcareService Einrichtung (KHVZ)"
 Description: "Einrichtungs-Ebene des Krankenhausverzeichnisses als HealthcareService."
 * insert Meta
+* extension contains
+    KhvzVersorgungsmerkmaleEx named versorgungsmerkmale 0..1 MS and
+    KhvzTraegerEx named traeger 0..1 MS
 * extension[offeredIn] 1..1 MS
 * extension[offeredIn].value[x] only Reference(HealthcareServiceStandort)
+* extension[ausnahme] 1..1 MS
 * category[VzdLevelVS] = VzdLevelCS#einrichtung
 * identifier contains
-    BSNR 0..1 MS and
-    standortId 0..1 MS
+    BSNR 0..* MS and
+    standortId 0..1 MS and
+    standortnummer 0..1 MS and
+    abrechnungsIK 0..* MS
 * identifier[BSNR].system = $bsnr
 * identifier[BSNR].value 1.. MS
 * identifier[standortId].system = $sidStandortId
 * identifier[standortId].value 1.. MS
+* identifier[standortnummer].system = $sidStandortnummer
+* identifier[standortnummer].value 1.. MS
+* identifier[abrechnungsIK].system = $IKNR
+* identifier[abrechnungsIK].value 1.. MS
+* active 1..1 MS
 * type 1.. MS
 * type from InEKEinrichtungstypenVS (required)
 * location 1..1 MS

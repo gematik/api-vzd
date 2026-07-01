@@ -21,7 +21,7 @@
       {
         "id": "HealthcareService.extension",
         "path": "HealthcareService.extension",
-        "min": 1
+        "min": 2
       },
       {
         "id": "HealthcareService.extension:offeredIn",
@@ -47,11 +47,49 @@
         ]
       },
       {
+        "id": "HealthcareService.extension:ausnahme",
+        "path": "HealthcareService.extension",
+        "sliceName": "ausnahme",
+        "min": 1
+      },
+      {
+        "id": "HealthcareService.extension:versorgungsmerkmale",
+        "path": "HealthcareService.extension",
+        "sliceName": "versorgungsmerkmale",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "https://gematik.de/fhir/directory/StructureDefinition/KhvzVersorgungsmerkmaleEx"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "HealthcareService.extension:traeger",
+        "path": "HealthcareService.extension",
+        "sliceName": "traeger",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "https://gematik.de/fhir/directory/StructureDefinition/KhvzTraegerEx"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
         "id": "HealthcareService.identifier:BSNR",
         "path": "HealthcareService.identifier",
         "sliceName": "BSNR",
         "min": 0,
-        "max": "1",
+        "max": "*",
         "mustSupport": true
       },
       {
@@ -83,6 +121,52 @@
       {
         "id": "HealthcareService.identifier:standortId.value",
         "path": "HealthcareService.identifier.value",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "HealthcareService.identifier:standortnummer",
+        "path": "HealthcareService.identifier",
+        "sliceName": "standortnummer",
+        "min": 0,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "HealthcareService.identifier:standortnummer.system",
+        "path": "HealthcareService.identifier.system",
+        "min": 1,
+        "patternUri": "https://gematik.de/fhir/directory/sid/standortnummer"
+      },
+      {
+        "id": "HealthcareService.identifier:standortnummer.value",
+        "path": "HealthcareService.identifier.value",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "HealthcareService.identifier:abrechnungsIK",
+        "path": "HealthcareService.identifier",
+        "sliceName": "abrechnungsIK",
+        "min": 0,
+        "max": "*",
+        "mustSupport": true
+      },
+      {
+        "id": "HealthcareService.identifier:abrechnungsIK.system",
+        "path": "HealthcareService.identifier.system",
+        "min": 1,
+        "patternUri": "http://fhir.de/sid/arge-ik/iknr"
+      },
+      {
+        "id": "HealthcareService.identifier:abrechnungsIK.value",
+        "path": "HealthcareService.identifier.value",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "HealthcareService.active",
+        "path": "HealthcareService.active",
         "min": 1,
         "mustSupport": true
       },

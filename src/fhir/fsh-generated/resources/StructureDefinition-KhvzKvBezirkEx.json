@@ -1,0 +1,69 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "KhvzKvBezirkEx",
+  "url": "https://gematik.de/fhir/directory/StructureDefinition/KhvzKvBezirkEx",
+  "version": "1.2.0",
+  "name": "KhvzKvBezirkEx",
+  "title": "KHVZ KV-Bezirk Extension",
+  "status": "active",
+  "experimental": false,
+  "date": "2025-02-26",
+  "publisher": "gematik GmbH",
+  "description": "KV-Bezirk eines KHVZ-Standorts gemäß InEK-Standortverzeichnis.",
+  "fhirVersion": "4.0.1",
+  "kind": "complex-type",
+  "abstract": false,
+  "context": [
+    {
+      "expression": "Location",
+      "type": "element"
+    }
+  ],
+  "type": "Extension",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Extension",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Extension",
+        "path": "Extension",
+        "short": "KHVZ KV-Bezirk Extension",
+        "definition": "KV-Bezirk eines KHVZ-Standorts gemäß InEK-Standortverzeichnis."
+      },
+      {
+        "id": "Extension.extension",
+        "path": "Extension.extension",
+        "max": "0"
+      },
+      {
+        "id": "Extension.url",
+        "path": "Extension.url",
+        "fixedUri": "https://gematik.de/fhir/directory/StructureDefinition/KhvzKvBezirkEx"
+      },
+      {
+        "id": "Extension.value[x]",
+        "path": "Extension.value[x]",
+        "min": 1,
+        "type": [
+          {
+            "code": "Coding"
+          }
+        ],
+        "constraint": [
+          {
+            "key": "CodingSytemCodeInv",
+            "severity": "warning",
+            "human": "System and Code SHOULD be present",
+            "expression": "system.exists() and code.exists()",
+            "source": "https://gematik.de/fhir/directory/StructureDefinition/KhvzKvBezirkEx"
+          }
+        ],
+        "mustSupport": true,
+        "binding": {
+          "strength": "required",
+          "valueSet": "https://gematik.de/fhir/directory/ValueSet/inek-kvbezirke-vs"
+        }
+      }
+    ]
+  }
+}

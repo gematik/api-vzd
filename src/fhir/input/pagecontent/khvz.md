@@ -11,13 +11,16 @@ Verzeichnisdienst (VZD) über mehrere Ebenen ab. Jede Ebene ist ein eigener
 Die fachliche Klassifikation der Ebene erfolgt über das CodeSystem
 [VzdLevelCS](CodeSystem-vzd-level.html) im Slice `category[VzdLevelVS]`.
 
+Die feldgenaue Abbildung der InEK-XSD-Struktur (`Standortverzeichnis` v2.1) auf die Profile
+ist auf der Seite [KHVZ – Mapping (XSD → Profile)](khvz-mapping.html) beschrieben.
+
 ### Ebenenmodell
 
 | Ebene | Profil | `category[vzdLevel]` | Identifier | `type` (Binding) | `offeredIn` → | `location` |
 |---|---|---|---|---|---|---|
 | (Krankenhaus, generisch) | [HealthcareServiceDirectory](StructureDefinition-HealthcareServiceDirectory.html) | `#vzd` | TelematikID | – | – | LocationDirectory |
-| Standort | [HealthcareServiceStandort](StructureDefinition-HealthcareServiceStandort.html) | `#standort` | `standortId` | – | VZD-HealthcareService | LocationDirectory (1..1) |
-| Einrichtung | [HealthcareServiceEinrichtung](StructureDefinition-HealthcareServiceEinrichtung.html) | `#einrichtung` | `BSNR` (ggf. `standortId`) | [InEKEinrichtungstypenVS](ValueSet-inek-einrichtungstypen-vs.html) | Standort | LocationDirectory (1..1) |
+| Standort | [HealthcareServiceStandort](StructureDefinition-HealthcareServiceStandort.html) | `#standort` | `standortId` | – | – (nur `providedBy`) | LocationDirectory (1..1) |
+| Einrichtung | [HealthcareServiceEinrichtung](StructureDefinition-HealthcareServiceEinrichtung.html) | `#einrichtung` | `BSNR` (0..*), `standortnummer`, `abrechnungsIK` (ggf. `standortId`) | [InEKEinrichtungstypenVS](ValueSet-inek-einrichtungstypen-vs.html) | Standort | LocationDirectory (1..1) |
 | Zentrum | [HealthcareServiceZentrum](StructureDefinition-HealthcareServiceZentrum.html) | `#zentrum` | `erId` | [InEKZentrenartenVS](ValueSet-inek-zentrenarten-vs.html) | Standort | – (0..0) |
 | Fachabteilung | [HealthcareServiceFachabteilung](StructureDefinition-HealthcareServiceFachabteilung.html) | `#fachabteilung` | `erId` | Fachabteilungsschlüssel (dkgev) | Einrichtung | – (0..0) |
 
@@ -33,10 +36,13 @@ Die Eltern-Kind-Beziehung zwischen den HealthcareService-Ebenen wird **nicht** �
 Extension `offeredIn` modelliert. In jedem KHVZ-Profil ist das Ziel von `offeredIn` auf das
 jeweils übergeordnete Profil typisiert:
 
-* Standort → VZD-HealthcareService des Krankenhauses
 * Einrichtung → Standort
 * Zentrum → Standort
 * Fachabteilung → Einrichtung
+
+Der **Standort** ist die oberste KHVZ-`HealthcareService`-Ebene und nutzt **kein** `offeredIn`
+(`extension[offeredIn] 0..0`). Seine Zuordnung zum Krankenhaus erfolgt ausschließlich über
+`providedBy` → Krankenhaus-`Organization`.
 
 ### Gültigkeit und letzte Änderung
 
@@ -52,7 +58,7 @@ Auf den KHVZ-Ebenen (insb. Standort) stehen zwei Extensions zur Verfügung:
 Es wird kein eigenes Location-Profil eingeführt. Standort- und Einrichtungs-Locations nutzen
 das bestehende [LocationDirectory](StructureDefinition-LocationDirectory.html). Dessen `type`
 ist `0..1` und an [LocationVzdTypeVS](ValueSet-location-vzd-type-vs.html) gebunden (Codes
-`vzd`, `organisation`, `standort`, `einrichtung` aus dem gemeinsamen
+`vzd`, `standort`, `einrichtung` aus dem gemeinsamen
 [VzdLevelCS](CodeSystem-vzd-level.html)).
 
 ### Abbildung als UML
@@ -66,7 +72,8 @@ ist `0..1` und an [LocationVzdTypeVS](ValueSet-location-vzd-type-vs.html) gebund
 
 ### Beispiel-Kette
 
-Eine durchgängige Beispiel-Instanzkette (über `offeredIn` verkettet):
+Eine durchgängige Beispiel-Instanzkette (Standort über `providedBy`, darunter über `offeredIn`
+verkettet):
 
 1. [KhvzKrankenhausOrganizationExample](Organization-KhvzKrankenhausOrganizationExample.html)
    – Krankenhaus-`Organization` (Träger)
@@ -75,7 +82,7 @@ Eine durchgängige Beispiel-Instanzkette (über `offeredIn` verkettet):
    [KhvzKrankenhausLocationExample](Location-KhvzKrankenhausLocationExample.html) und KIM-Endpoint
    [KhvzKrankenhausKimEndpointExample](Endpoint-KhvzKrankenhausKimEndpointExample.html)
 3. [KhvzStandortExample](HealthcareService-KhvzStandortExample.html)
-   – Standort, `offeredIn` → VZD-HealthcareService, mit Location
+   – Standort, `providedBy` → Krankenhaus-`Organization` (kein `offeredIn`), mit Location
    [KhvzStandortLocationExample](Location-KhvzStandortLocationExample.html)
 4. [KhvzEinrichtungExample](HealthcareService-KhvzEinrichtungExample.html)
    – Einrichtung, `offeredIn` → Standort, mit Location

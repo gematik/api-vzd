@@ -1,0 +1,245 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "KhvzTraegerEx",
+  "url": "https://gematik.de/fhir/directory/StructureDefinition/KhvzTraegerEx",
+  "version": "1.2.0",
+  "name": "KhvzTraegerEx",
+  "title": "KHVZ Träger Extension",
+  "status": "active",
+  "experimental": false,
+  "date": "2025-02-26",
+  "publisher": "gematik GmbH",
+  "description": "Träger- und Rechtsformangaben einer KHVZ-Einrichtung: Träger, Trägerart, Rechtsform, Sitz der Gesellschaft, Registergericht und Registernummer.",
+  "fhirVersion": "4.0.1",
+  "kind": "complex-type",
+  "abstract": false,
+  "context": [
+    {
+      "expression": "HealthcareService",
+      "type": "element"
+    }
+  ],
+  "type": "Extension",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Extension",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Extension",
+        "path": "Extension",
+        "short": "KHVZ Träger Extension",
+        "definition": "Träger- und Rechtsformangaben einer KHVZ-Einrichtung: Träger, Trägerart, Rechtsform, Sitz der Gesellschaft, Registergericht und Registernummer."
+      },
+      {
+        "id": "Extension.extension:traeger",
+        "path": "Extension.extension",
+        "sliceName": "traeger",
+        "min": 0,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "Extension.extension:traeger.extension",
+        "path": "Extension.extension.extension",
+        "max": "0"
+      },
+      {
+        "id": "Extension.extension:traeger.url",
+        "path": "Extension.extension.url",
+        "fixedUri": "traeger"
+      },
+      {
+        "id": "Extension.extension:traeger.value[x]",
+        "path": "Extension.extension.value[x]",
+        "min": 1,
+        "type": [
+          {
+            "code": "string"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Extension.extension:traegerart",
+        "path": "Extension.extension",
+        "sliceName": "traegerart",
+        "min": 0,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "Extension.extension:traegerart.extension",
+        "path": "Extension.extension.extension",
+        "max": "0"
+      },
+      {
+        "id": "Extension.extension:traegerart.url",
+        "path": "Extension.extension.url",
+        "fixedUri": "traegerart"
+      },
+      {
+        "id": "Extension.extension:traegerart.value[x]",
+        "path": "Extension.extension.value[x]",
+        "min": 1,
+        "type": [
+          {
+            "code": "Coding"
+          }
+        ],
+        "constraint": [
+          {
+            "key": "CodingSytemCodeInv",
+            "severity": "warning",
+            "human": "System and Code SHOULD be present",
+            "expression": "system.exists() and code.exists()",
+            "source": "https://gematik.de/fhir/directory/StructureDefinition/KhvzTraegerEx"
+          }
+        ],
+        "mustSupport": true,
+        "binding": {
+          "strength": "required",
+          "valueSet": "https://gematik.de/fhir/directory/ValueSet/inek-traegerarten-vs"
+        }
+      },
+      {
+        "id": "Extension.extension:rechtsform",
+        "path": "Extension.extension",
+        "sliceName": "rechtsform",
+        "min": 0,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "Extension.extension:rechtsform.extension",
+        "path": "Extension.extension.extension",
+        "max": "0"
+      },
+      {
+        "id": "Extension.extension:rechtsform.url",
+        "path": "Extension.extension.url",
+        "fixedUri": "rechtsform"
+      },
+      {
+        "id": "Extension.extension:rechtsform.value[x]",
+        "path": "Extension.extension.value[x]",
+        "min": 1,
+        "type": [
+          {
+            "code": "Coding"
+          }
+        ],
+        "constraint": [
+          {
+            "key": "CodingSytemCodeInv",
+            "severity": "warning",
+            "human": "System and Code SHOULD be present",
+            "expression": "system.exists() and code.exists()",
+            "source": "https://gematik.de/fhir/directory/StructureDefinition/KhvzTraegerEx"
+          }
+        ],
+        "mustSupport": true,
+        "binding": {
+          "strength": "required",
+          "valueSet": "https://gematik.de/fhir/directory/ValueSet/inek-rechtsformen-vs"
+        }
+      },
+      {
+        "id": "Extension.extension:sitzGesellschaft",
+        "path": "Extension.extension",
+        "sliceName": "sitzGesellschaft",
+        "min": 0,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "Extension.extension:sitzGesellschaft.extension",
+        "path": "Extension.extension.extension",
+        "max": "0"
+      },
+      {
+        "id": "Extension.extension:sitzGesellschaft.url",
+        "path": "Extension.extension.url",
+        "fixedUri": "sitzGesellschaft"
+      },
+      {
+        "id": "Extension.extension:sitzGesellschaft.value[x]",
+        "path": "Extension.extension.value[x]",
+        "min": 1,
+        "type": [
+          {
+            "code": "string"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Extension.extension:registergericht",
+        "path": "Extension.extension",
+        "sliceName": "registergericht",
+        "min": 0,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "Extension.extension:registergericht.extension",
+        "path": "Extension.extension.extension",
+        "max": "0"
+      },
+      {
+        "id": "Extension.extension:registergericht.url",
+        "path": "Extension.extension.url",
+        "fixedUri": "registergericht"
+      },
+      {
+        "id": "Extension.extension:registergericht.value[x]",
+        "path": "Extension.extension.value[x]",
+        "min": 1,
+        "type": [
+          {
+            "code": "string"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Extension.extension:registernummer",
+        "path": "Extension.extension",
+        "sliceName": "registernummer",
+        "min": 0,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "Extension.extension:registernummer.extension",
+        "path": "Extension.extension.extension",
+        "max": "0"
+      },
+      {
+        "id": "Extension.extension:registernummer.url",
+        "path": "Extension.extension.url",
+        "fixedUri": "registernummer"
+      },
+      {
+        "id": "Extension.extension:registernummer.value[x]",
+        "path": "Extension.extension.value[x]",
+        "min": 1,
+        "type": [
+          {
+            "code": "string"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Extension.url",
+        "path": "Extension.url",
+        "fixedUri": "https://gematik.de/fhir/directory/StructureDefinition/KhvzTraegerEx"
+      },
+      {
+        "id": "Extension.value[x]",
+        "path": "Extension.value[x]",
+        "max": "0"
+      }
+    ]
+  }
+}

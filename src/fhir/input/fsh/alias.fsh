@@ -42,6 +42,13 @@ Alias: $IdentifierFAD = https://gematik.de/fhir/sid/fachdienst-id
 // BSNR (etabliert, deutsche Basisprofile)
 Alias: $bsnr = http://fhir.de/sid/bsnr
 
+// IKNR (etabliert, deutsche Basisprofile) - für AbrechnungsIK
+Alias: $IKNR = http://fhir.de/sid/arge-ik/iknr
+
+// Amtlicher Gemeindeschlüssel (fhir.de) - für Gemeindeschlüssel
+Alias: $destatisAgs = http://fhir.de/StructureDefinition/destatis/ags
+
 // KHVZ-Identifier (Platzhalter - InEK-Absprache ausstehend)
 Alias: $sidStandortId = https://gematik.de/fhir/directory/sid/standort-id
+Alias: $sidStandortnummer = https://gematik.de/fhir/directory/sid/standortnummer
 Alias: $sidInekErId = https://gematik.de/fhir/directory/sid/inek-er-id

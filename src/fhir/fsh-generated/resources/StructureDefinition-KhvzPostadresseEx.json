@@ -1,0 +1,56 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "KhvzPostadresseEx",
+  "url": "https://gematik.de/fhir/directory/StructureDefinition/KhvzPostadresseEx",
+  "version": "1.2.0",
+  "name": "KhvzPostadresseEx",
+  "title": "KHVZ Postadresse Extension",
+  "status": "active",
+  "experimental": false,
+  "date": "2025-02-26",
+  "publisher": "gematik GmbH",
+  "description": "Separate Postadresse eines KHVZ-Standorts. In FHIR R4 erlaubt Location nur eine native address; die abweichende Postanschrift (PostAdresse aus dem InEK-Standortverzeichnis) wird daher als zusätzliche Adresse hier abgelegt (use = #postal).",
+  "fhirVersion": "4.0.1",
+  "kind": "complex-type",
+  "abstract": false,
+  "context": [
+    {
+      "expression": "Location",
+      "type": "element"
+    }
+  ],
+  "type": "Extension",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Extension",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Extension",
+        "path": "Extension",
+        "short": "KHVZ Postadresse Extension",
+        "definition": "Separate Postadresse eines KHVZ-Standorts. In FHIR R4 erlaubt Location nur eine native address; die abweichende Postanschrift (PostAdresse aus dem InEK-Standortverzeichnis) wird daher als zusätzliche Adresse hier abgelegt (use = #postal)."
+      },
+      {
+        "id": "Extension.extension",
+        "path": "Extension.extension",
+        "max": "0"
+      },
+      {
+        "id": "Extension.url",
+        "path": "Extension.url",
+        "fixedUri": "https://gematik.de/fhir/directory/StructureDefinition/KhvzPostadresseEx"
+      },
+      {
+        "id": "Extension.value[x]",
+        "path": "Extension.value[x]",
+        "min": 1,
+        "type": [
+          {
+            "code": "Address"
+          }
+        ],
+        "mustSupport": true
+      }
+    ]
+  }
+}

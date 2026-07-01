@@ -25,10 +25,8 @@
   ],
   "extension": [
     {
-      "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-HealthcareService.offeredIn",
-      "valueReference": {
-        "reference": "HealthcareService/KhvzVzdHealthcareServiceExample"
-      }
+      "url": "https://gematik.de/fhir/directory/StructureDefinition/KhvzAusnahmeEx",
+      "valueBoolean": false
     },
     {
       "extension": [
@@ -42,6 +40,10 @@
     {
       "url": "https://gematik.de/fhir/directory/StructureDefinition/KhvzLetzteAenderungEx",
       "valueDateTime": "2025-12-19"
+    },
+    {
+      "url": "https://gematik.de/fhir/directory/StructureDefinition/KhvzVersionEx",
+      "valueInteger": 1
     }
   ],
   "identifier": [
@@ -53,6 +55,7 @@
   "providedBy": {
     "reference": "Organization/KhvzKrankenhausOrganizationExample"
   },
+  "active": true,
   "name": "Musterklinik gGmbH - Standort Berlin-Mitte",
   "location": [
     {

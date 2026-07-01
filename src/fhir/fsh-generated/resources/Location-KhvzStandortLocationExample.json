@@ -12,6 +12,56 @@
       "https://gematik.de/fhir/directory/StructureDefinition/LocationDirectoryStrict"
     ]
   },
+  "extension": [
+    {
+      "url": "https://gematik.de/fhir/directory/StructureDefinition/KhvzKvBezirkEx",
+      "valueCoding": {
+        "code": "72",
+        "system": "https://gematik.de/fhir/directory/CodeSystem/inek-kvbezirke",
+        "display": "Berlin"
+      }
+    },
+    {
+      "url": "https://gematik.de/fhir/directory/StructureDefinition/KhvzPostadresseEx",
+      "valueAddress": {
+        "use": "postal",
+        "line": [
+          "Postfach 12 34 56"
+        ],
+        "city": "Berlin",
+        "postalCode": "10999",
+        "country": "DE"
+      }
+    }
+  ],
+  "address": {
+    "extension": [
+      {
+        "url": "https://gematik.de/fhir/directory/StructureDefinition/KhvzAdresstypEx",
+        "valueCoding": {
+          "code": "1",
+          "system": "https://gematik.de/fhir/directory/CodeSystem/inek-adresstypen",
+          "display": "Gebäude (§ 2a Absatz 1 Satz 1 KHG)"
+        }
+      },
+      {
+        "valueCoding": {
+          "system": "http://fhir.de/sid/destatis/ags",
+          "code": "11000000"
+        },
+        "url": "http://fhir.de/StructureDefinition/destatis/ags"
+      }
+    ],
+    "use": "physical",
+    "text": "Klinikstraße 1, 10117 Berlin",
+    "line": [
+      "Klinikstraße 1"
+    ],
+    "city": "Berlin",
+    "state": "Berlin",
+    "postalCode": "10117",
+    "country": "DE"
+  },
   "type": [
     {
       "coding": [
@@ -23,16 +73,6 @@
       ]
     }
   ],
-  "address": {
-    "text": "Klinikstraße 1, 10117 Berlin",
-    "line": [
-      "Klinikstraße 1"
-    ],
-    "city": "Berlin",
-    "state": "Berlin",
-    "postalCode": "10117",
-    "country": "DE"
-  },
   "position": {
     "longitude": 13.3777,
     "latitude": 52.5163

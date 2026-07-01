@@ -29,17 +29,80 @@
       "valueReference": {
         "reference": "HealthcareService/KhvzStandortExample"
       }
+    },
+    {
+      "url": "https://gematik.de/fhir/directory/StructureDefinition/KhvzAusnahmeEx",
+      "valueBoolean": false
+    },
+    {
+      "extension": [
+        {
+          "url": "psy",
+          "valueBoolean": false
+        },
+        {
+          "url": "drg",
+          "valueBoolean": true
+        }
+      ],
+      "url": "https://gematik.de/fhir/directory/StructureDefinition/KhvzVersorgungsmerkmaleEx"
+    },
+    {
+      "extension": [
+        {
+          "url": "traeger",
+          "valueString": "Musterklinik gGmbH"
+        },
+        {
+          "url": "traegerart",
+          "valueCoding": {
+            "code": "f",
+            "system": "https://krankenhausstandorte.de/fhir/CodeSystem/inek-traegerarten",
+            "display": "freigemeinnützig"
+          }
+        },
+        {
+          "url": "rechtsform",
+          "valueCoding": {
+            "code": "07",
+            "system": "https://gematik.de/fhir/directory/CodeSystem/inek-rechtsformen",
+            "display": "gGmbH"
+          }
+        },
+        {
+          "url": "sitzGesellschaft",
+          "valueString": "Berlin"
+        },
+        {
+          "url": "registergericht",
+          "valueString": "Amtsgericht Charlottenburg"
+        },
+        {
+          "url": "registernummer",
+          "valueString": "HRB 123456"
+        }
+      ],
+      "url": "https://gematik.de/fhir/directory/StructureDefinition/KhvzTraegerEx"
     }
   ],
   "identifier": [
     {
       "system": "http://fhir.de/sid/bsnr",
       "value": "999999999"
+    },
+    {
+      "system": "https://gematik.de/fhir/directory/sid/standortnummer",
+      "value": "771234001"
+    },
+    {
+      "system": "http://fhir.de/sid/arge-ik/iknr",
+      "value": "260123456"
     }
   ],
   "providedBy": {
     "reference": "Organization/KhvzKrankenhausOrganizationExample"
   },
+  "active": true,
   "type": [
     {
       "coding": [

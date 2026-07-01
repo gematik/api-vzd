@@ -105,12 +105,22 @@ Usage: #example
 Description: "Location des Standorts"
 * meta.tag[Origin] = Origin#ldap
 * type = VzdLevelCS#standort "Standort"
+* extension[kvBezirk].valueCoding = InEKKvBezirke#72 "Berlin"
+* address.use = #physical
+* address.extension[adresstyp].valueCoding = InEKAdresstypen#1 "Gebäude (§ 2a Absatz 1 Satz 1 KHG)"
+* address.extension[gemeindeschluessel].valueCoding = http://fhir.de/sid/destatis/ags#11000000
 * address.text = "Klinikstraße 1, 10117 Berlin"
 * address.line = "Klinikstraße 1"
 * address.city = "Berlin"
 * address.state = "Berlin"
 * address.postalCode = "10117"
 * address.country = "DE"
+// PostAdresse als separate Adresse (FHIR R4: Location.address ist 0..1, daher Extension)
+* extension[postadresse].valueAddress.use = #postal
+* extension[postadresse].valueAddress.line = "Postfach 12 34 56"
+* extension[postadresse].valueAddress.city = "Berlin"
+* extension[postadresse].valueAddress.postalCode = "10999"
+* extension[postadresse].valueAddress.country = "DE"
 * position.longitude = 13.3777
 * position.latitude = 52.5163
 
@@ -119,12 +129,14 @@ InstanceOf: HealthcareServiceStandort
 Usage: #example
 Description: "Standort-Ebene des Krankenhausverzeichnisses"
 * meta.tag[Origin] = Origin#ldap
-* extension[offeredIn].valueReference = Reference(KhvzVzdHealthcareServiceExample)
 * extension[gueltigkeit].extension[gueltigVon].valueDateTime = "2018-01-01"
 * extension[letzteAenderung].valueDateTime = "2025-12-19"
+* extension[version].valueInteger = 1
+* extension[ausnahme].valueBoolean = false
 * providedBy = Reference(KhvzKrankenhausOrganizationExample)
 * identifier[standortId].value = "123456"
 * category[VzdLevelVS] = VzdLevelCS#standort "Standort"
+* active = true
 * name = "Musterklinik gGmbH - Standort Berlin-Mitte"
 * location = Reference(KhvzStandortLocationExample)
 
@@ -148,9 +160,21 @@ Usage: #example
 Description: "Einrichtungs-Ebene des Krankenhausverzeichnisses"
 * meta.tag[Origin] = Origin#ldap
 * extension[offeredIn].valueReference = Reference(KhvzStandortExample)
+* extension[ausnahme].valueBoolean = false
+* extension[versorgungsmerkmale].extension[psy].valueBoolean = false
+* extension[versorgungsmerkmale].extension[drg].valueBoolean = true
+* extension[traeger].extension[traeger].valueString = "Musterklinik gGmbH"
+* extension[traeger].extension[traegerart].valueCoding = InEKTraegerarten#f "freigemeinnützig"
+* extension[traeger].extension[rechtsform].valueCoding = InEKRechtsformen#07 "gGmbH"
+* extension[traeger].extension[sitzGesellschaft].valueString = "Berlin"
+* extension[traeger].extension[registergericht].valueString = "Amtsgericht Charlottenburg"
+* extension[traeger].extension[registernummer].valueString = "HRB 123456"
 * providedBy = Reference(KhvzKrankenhausOrganizationExample)
 * identifier[BSNR].value = "999999999"
+* identifier[standortnummer].value = "771234001"
+* identifier[abrechnungsIK].value = "260123456"
 * category[VzdLevelVS] = VzdLevelCS#einrichtung "Einrichtung"
+* active = true
 * type = InEKEinrichtungstypen#00 "Stationäre Behandlung"
 * name = "Musterklinik gGmbH - Klinik für Innere Medizin"
 * location = Reference(KhvzEinrichtungLocationExample)

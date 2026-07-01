@@ -27,24 +27,29 @@
         "id": "HealthcareService.extension:offeredIn",
         "path": "HealthcareService.extension",
         "sliceName": "offeredIn",
-        "min": 1
-      },
-      {
-        "id": "HealthcareService.extension:offeredIn.extension",
-        "path": "HealthcareService.extension.extension",
         "max": "0"
       },
       {
-        "id": "HealthcareService.extension:offeredIn.value[x]",
-        "path": "HealthcareService.extension.value[x]",
+        "id": "HealthcareService.extension:ausnahme",
+        "path": "HealthcareService.extension",
+        "sliceName": "ausnahme",
+        "min": 1
+      },
+      {
+        "id": "HealthcareService.extension:version",
+        "path": "HealthcareService.extension",
+        "sliceName": "version",
+        "min": 0,
+        "max": "1",
         "type": [
           {
-            "code": "Reference",
-            "targetProfile": [
-              "https://gematik.de/fhir/directory/StructureDefinition/HealthcareServiceDirectory"
+            "code": "Extension",
+            "profile": [
+              "https://gematik.de/fhir/directory/StructureDefinition/KhvzVersionEx"
             ]
           }
-        ]
+        ],
+        "mustSupport": true
       },
       {
         "id": "HealthcareService.identifier",
@@ -68,6 +73,12 @@
       {
         "id": "HealthcareService.identifier:standortId.value",
         "path": "HealthcareService.identifier.value",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "HealthcareService.active",
+        "path": "HealthcareService.active",
         "min": 1,
         "mustSupport": true
       },

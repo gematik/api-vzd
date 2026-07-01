@@ -5,8 +5,10 @@ Description: """Defines the data structure for medical, regulatory and technical
 organisations specific for german Healthcare and Telematics Infrastructure.
 """
 * insert Meta
-* extension contains 
-  OwnerTelematikIdEx named ownerTelematikId 0..1 MS
+* extension contains
+  OwnerTelematikIdEx named ownerTelematikId 0..1 MS and
+  KhvzKvBezirkEx named kvBezirk 0..1 MS and
+  KhvzPostadresseEx named postadresse 0..1 MS
 * meta.tag 1.. MS
   * ^slicing.discriminator.type = #pattern
   * ^slicing.discriminator.path = "system"
@@ -21,6 +23,9 @@ organisations specific for german Healthcare and Telematics Infrastructure.
 * type 0..1 MS
 * type from LocationVzdTypeVS (required)
 * address 1.. MS
+  * extension contains
+      KhvzAdresstypEx named adresstyp 0..1 MS and
+      $destatisAgs named gemeindeschluessel 0..1 MS
   * use MS
   * text MS
   * line MS

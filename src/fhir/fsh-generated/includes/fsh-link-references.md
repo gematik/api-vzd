@@ -40,6 +40,7 @@
 [HealthcareServiceTypeVS]: ValueSet-HealthcareServiceTypeVS.html
 [HolderIdEx]: StructureDefinition-holder-id-ex.html
 [HolderIdSP]: SearchParameter-HolderIdSP.html
+[HolderVS]: ValueSet-HolderVS.html
 [InEKAdresstypenVS]: ValueSet-inek-adresstypen-vs.html
 [InEKBundeslaenderVS]: ValueSet-inek-bundeslaender-vs.html
 [InEKEinrichtungstypenVS]: ValueSet-inek-einrichtungstypen-vs.html
@@ -48,8 +49,15 @@
 [InEKRechtsformenVS]: ValueSet-inek-rechtsformen-vs.html
 [InEKTraegerartenVS]: ValueSet-inek-traegerarten-vs.html
 [InEKZentrenartenVS]: ValueSet-inek-zentrenarten-vs.html
+[KhvzAdresstypEx]: StructureDefinition-KhvzAdresstypEx.html
+[KhvzAusnahmeEx]: StructureDefinition-KhvzAusnahmeEx.html
 [KhvzGueltigkeitEx]: StructureDefinition-KhvzGueltigkeitEx.html
+[KhvzKvBezirkEx]: StructureDefinition-KhvzKvBezirkEx.html
 [KhvzLetzteAenderungEx]: StructureDefinition-KhvzLetzteAenderungEx.html
+[KhvzPostadresseEx]: StructureDefinition-KhvzPostadresseEx.html
+[KhvzTraegerEx]: StructureDefinition-KhvzTraegerEx.html
+[KhvzVersionEx]: StructureDefinition-KhvzVersionEx.html
+[KhvzVersorgungsmerkmaleEx]: StructureDefinition-KhvzVersorgungsmerkmaleEx.html
 [KhvzEinrichtungExample]: HealthcareService-KhvzEinrichtungExample.html
 [KhvzEinrichtungLocationExample]: Location-KhvzEinrichtungLocationExample.html
 [KhvzFachabteilungExample]: HealthcareService-KhvzFachabteilungExample.html

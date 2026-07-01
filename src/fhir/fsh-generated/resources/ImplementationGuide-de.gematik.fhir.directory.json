@@ -389,6 +389,14 @@
       },
       {
         "reference": {
+          "reference": "ValueSet/HolderVS"
+        },
+        "name": "HolderVS",
+        "description": "ValueSet der Identitätsverwalter (Holder) in der TI. Enthält alle Codes des HolderCS.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
           "reference": "ValueSet/inek-adresstypen-vs"
         },
         "name": "InEK Adresstypen ValueSet",
@@ -453,6 +461,22 @@
       },
       {
         "reference": {
+          "reference": "StructureDefinition/KhvzAdresstypEx"
+        },
+        "name": "KHVZ Adresstyp Extension",
+        "description": "Adresstyp (Gebäude/Fläche) einer KHVZ-Standortadresse gemäß InEK-Standortverzeichnis.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/KhvzAusnahmeEx"
+        },
+        "name": "KHVZ Ausnahme Extension",
+        "description": "Kennzeichnet einen KHVZ-HealthcareService (Standort/Einrichtung) als Ausnahme im Sinne des InEK-Standortverzeichnisses.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
           "reference": "StructureDefinition/KhvzGueltigkeitEx"
         },
         "name": "KHVZ Gültigkeit Extension",
@@ -461,10 +485,50 @@
       },
       {
         "reference": {
+          "reference": "StructureDefinition/KhvzKvBezirkEx"
+        },
+        "name": "KHVZ KV-Bezirk Extension",
+        "description": "KV-Bezirk eines KHVZ-Standorts gemäß InEK-Standortverzeichnis.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
           "reference": "StructureDefinition/KhvzLetzteAenderungEx"
         },
         "name": "KHVZ Letzte Änderung Extension",
         "description": "Zeitpunkt der letzten Änderung eines KHVZ-HealthcareService (Standortdaten).",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/KhvzPostadresseEx"
+        },
+        "name": "KHVZ Postadresse Extension",
+        "description": "Separate Postadresse eines KHVZ-Standorts. In FHIR R4 erlaubt Location nur eine native address; die abweichende Postanschrift (PostAdresse aus dem InEK-Standortverzeichnis) wird daher als zusätzliche Adresse hier abgelegt (use = #postal).",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/KhvzTraegerEx"
+        },
+        "name": "KHVZ Träger Extension",
+        "description": "Träger- und Rechtsformangaben einer KHVZ-Einrichtung: Träger, Trägerart, Rechtsform, Sitz der Gesellschaft, Registergericht und Registernummer.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/KhvzVersionEx"
+        },
+        "name": "KHVZ Version Extension",
+        "description": "Versionsnummer eines KHVZ-HealthcareService (Standortdaten) gemäß InEK-Standortverzeichnis.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/KhvzVersorgungsmerkmaleEx"
+        },
+        "name": "KHVZ Versorgungsmerkmale Extension",
+        "description": "Versorgungsmerkmale einer KHVZ-Einrichtung: PSY (Psychiatrie/Psychosomatik) und DRG.",
         "exampleBoolean": false
       },
       {
@@ -1095,6 +1159,11 @@
         {
           "nameUrl": "khvz.html",
           "title": "Krankenhausverzeichnis (KHVZ)",
+          "generation": "markdown"
+        },
+        {
+          "nameUrl": "khvz-mapping.html",
+          "title": "KHVZ – Mapping (XSD → Profile)",
           "generation": "markdown"
         }
       ]

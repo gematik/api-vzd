@@ -13,8 +13,18 @@
   <li>
     <a href="index.html">Home</a>
   </li>
-  <li>
-    <a href="khvz.html">Krankenhausverzeichnis</a>
+  <li class="dropdown">
+    <a data-toggle="dropdown" href="#" class="dropdown-toggle">Krankenhausverzeichnis
+      <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="khvz.html">Überblick</a>
+      </li>
+      <li>
+        <a href="khvz-mapping.html">Mapping (XSD → Profile)</a>
+      </li>
+    </ul>
   </li>
   <li>
     <a href="artifacts.html">Artefakte</a>

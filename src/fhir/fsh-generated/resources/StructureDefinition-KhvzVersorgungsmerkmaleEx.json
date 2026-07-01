@@ -1,0 +1,103 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "KhvzVersorgungsmerkmaleEx",
+  "url": "https://gematik.de/fhir/directory/StructureDefinition/KhvzVersorgungsmerkmaleEx",
+  "version": "1.2.0",
+  "name": "KhvzVersorgungsmerkmaleEx",
+  "title": "KHVZ Versorgungsmerkmale Extension",
+  "status": "active",
+  "experimental": false,
+  "date": "2025-02-26",
+  "publisher": "gematik GmbH",
+  "description": "Versorgungsmerkmale einer KHVZ-Einrichtung: PSY (Psychiatrie/Psychosomatik) und DRG.",
+  "fhirVersion": "4.0.1",
+  "kind": "complex-type",
+  "abstract": false,
+  "context": [
+    {
+      "expression": "HealthcareService",
+      "type": "element"
+    }
+  ],
+  "type": "Extension",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Extension",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Extension",
+        "path": "Extension",
+        "short": "KHVZ Versorgungsmerkmale Extension",
+        "definition": "Versorgungsmerkmale einer KHVZ-Einrichtung: PSY (Psychiatrie/Psychosomatik) und DRG."
+      },
+      {
+        "id": "Extension.extension:psy",
+        "path": "Extension.extension",
+        "sliceName": "psy",
+        "min": 0,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "Extension.extension:psy.extension",
+        "path": "Extension.extension.extension",
+        "max": "0"
+      },
+      {
+        "id": "Extension.extension:psy.url",
+        "path": "Extension.extension.url",
+        "fixedUri": "psy"
+      },
+      {
+        "id": "Extension.extension:psy.value[x]",
+        "path": "Extension.extension.value[x]",
+        "min": 1,
+        "type": [
+          {
+            "code": "boolean"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Extension.extension:drg",
+        "path": "Extension.extension",
+        "sliceName": "drg",
+        "min": 0,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "Extension.extension:drg.extension",
+        "path": "Extension.extension.extension",
+        "max": "0"
+      },
+      {
+        "id": "Extension.extension:drg.url",
+        "path": "Extension.extension.url",
+        "fixedUri": "drg"
+      },
+      {
+        "id": "Extension.extension:drg.value[x]",
+        "path": "Extension.extension.value[x]",
+        "min": 1,
+        "type": [
+          {
+            "code": "boolean"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Extension.url",
+        "path": "Extension.url",
+        "fixedUri": "https://gematik.de/fhir/directory/StructureDefinition/KhvzVersorgungsmerkmaleEx"
+      },
+      {
+        "id": "Extension.value[x]",
+        "path": "Extension.value[x]",
+        "max": "0"
+      }
+    ]
+  }
+}

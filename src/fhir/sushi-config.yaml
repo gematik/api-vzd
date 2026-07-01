@@ -22,9 +22,13 @@ pages:
     title: Home
   khvz.md:
     title: Krankenhausverzeichnis (KHVZ)
+  khvz-mapping.md:
+    title: KHVZ – Mapping (XSD → Profile)
 menu:
   Home: index.html
-  Krankenhausverzeichnis: khvz.html
+  Krankenhausverzeichnis:
+    Überblick: khvz.html
+    Mapping (XSD → Profile): khvz-mapping.html
   Artefakte: artifacts.html
 parameters:
   show-inherited-tables: true

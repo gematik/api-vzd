@@ -96,6 +96,38 @@
         "mustSupport": true
       },
       {
+        "id": "Location.extension:kvBezirk",
+        "path": "Location.extension",
+        "sliceName": "kvBezirk",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "https://gematik.de/fhir/directory/StructureDefinition/KhvzKvBezirkEx"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Location.extension:postadresse",
+        "path": "Location.extension",
+        "sliceName": "postadresse",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "https://gematik.de/fhir/directory/StructureDefinition/KhvzPostadresseEx"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
         "id": "Location.name",
         "path": "Location.name",
         "mustSupport": true
@@ -119,6 +151,38 @@
         "id": "Location.address",
         "path": "Location.address",
         "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "Location.address.extension:adresstyp",
+        "path": "Location.address.extension",
+        "sliceName": "adresstyp",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "https://gematik.de/fhir/directory/StructureDefinition/KhvzAdresstypEx"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Location.address.extension:gemeindeschluessel",
+        "path": "Location.address.extension",
+        "sliceName": "gemeindeschluessel",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "http://fhir.de/StructureDefinition/destatis/ags"
+            ]
+          }
+        ],
         "mustSupport": true
       },
       {

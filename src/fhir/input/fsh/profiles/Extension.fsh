@@ -90,7 +90,7 @@ Context: Bundle.total
 Extension: HolderIdEx
 Id: holder-id-ex
 Title: "Holder ID Extension"
-Description: "Extension for the holder ID of a HealthCard" // liste der berechtigt updates durchzuführen
+Description: "Extension for the holder ID of a HealthCard" // liste der berechtigten updates durchzuführen
 Context: HealthcareService, PractitionerRole
 * insert Meta
 * value[x] only code
@@ -159,3 +159,104 @@ Context: Endpoint
   * system 1.. MS
   * system = $IdentifierFAD
   * value 1.. MS
+
+Extension: KhvzAusnahmeEx
+Id: KhvzAusnahmeEx
+Title: "KHVZ Ausnahme Extension"
+Description: "Kennzeichnet einen KHVZ-HealthcareService (Standort/Einrichtung) als Ausnahme im Sinne des InEK-Standortverzeichnisses."
+Context: HealthcareService
+* insert Meta
+* value[x] only boolean
+* valueBoolean 1.. MS
+
+Extension: KhvzVersionEx
+Id: KhvzVersionEx
+Title: "KHVZ Version Extension"
+Description: "Versionsnummer eines KHVZ-HealthcareService (Standortdaten) gemäß InEK-Standortverzeichnis."
+Context: HealthcareService
+* insert Meta
+* value[x] only integer
+* valueInteger 1.. MS
+
+Extension: KhvzVersorgungsmerkmaleEx
+Id: KhvzVersorgungsmerkmaleEx
+Title: "KHVZ Versorgungsmerkmale Extension"
+Description: "Versorgungsmerkmale einer KHVZ-Einrichtung: PSY (Psychiatrie/Psychosomatik) und DRG."
+Context: HealthcareService
+* insert Meta
+* extension contains
+    psy 0..1 MS and
+    drg 0..1 MS
+* extension[psy]
+  * value[x] only boolean
+  * valueBoolean 1.. MS
+* extension[drg]
+  * value[x] only boolean
+  * valueBoolean 1.. MS
+
+Extension: KhvzTraegerEx
+Id: KhvzTraegerEx
+Title: "KHVZ Träger Extension"
+Description: "Träger- und Rechtsformangaben einer KHVZ-Einrichtung: Träger, Trägerart, Rechtsform, Sitz der Gesellschaft, Registergericht und Registernummer."
+Context: HealthcareService
+* insert Meta
+* extension contains
+    traeger 0..1 MS and
+    traegerart 0..1 MS and
+    rechtsform 0..1 MS and
+    sitzGesellschaft 0..1 MS and
+    registergericht 0..1 MS and
+    registernummer 0..1 MS
+* extension[traeger]
+  * value[x] only string
+  * valueString 1.. MS
+* extension[traegerart]
+  * value[x] only Coding
+  * valueCoding obeys CodingSytemCodeInv
+  * valueCoding 1.. MS
+  * valueCoding from InEKTraegerartenVS
+* extension[rechtsform]
+  * value[x] only Coding
+  * valueCoding obeys CodingSytemCodeInv
+  * valueCoding 1.. MS
+  * valueCoding from InEKRechtsformenVS
+* extension[sitzGesellschaft]
+  * value[x] only string
+  * valueString 1.. MS
+* extension[registergericht]
+  * value[x] only string
+  * valueString 1.. MS
+* extension[registernummer]
+  * value[x] only string
+  * valueString 1.. MS
+
+Extension: KhvzKvBezirkEx
+Id: KhvzKvBezirkEx
+Title: "KHVZ KV-Bezirk Extension"
+Description: "KV-Bezirk eines KHVZ-Standorts gemäß InEK-Standortverzeichnis."
+Context: Location
+* insert Meta
+* value[x] only Coding
+* valueCoding obeys CodingSytemCodeInv
+* valueCoding 1.. MS
+* valueCoding from InEKKVBezirkeVS
+
+Extension: KhvzAdresstypEx
+Id: KhvzAdresstypEx
+Title: "KHVZ Adresstyp Extension"
+Description: "Adresstyp (Gebäude/Fläche) einer KHVZ-Standortadresse gemäß InEK-Standortverzeichnis."
+Context: Address
+* insert Meta
+* value[x] only Coding
+* valueCoding obeys CodingSytemCodeInv
+* valueCoding 1.. MS
+* valueCoding from InEKAdresstypenVS
+
+Extension: KhvzPostadresseEx
+Id: KhvzPostadresseEx
+Title: "KHVZ Postadresse Extension"
+Description: "Separate Postadresse eines KHVZ-Standorts. In FHIR R4 erlaubt Location nur eine native address; die abweichende Postanschrift (PostAdresse aus dem InEK-Standortverzeichnis) wird daher als zusätzliche Adresse hier abgelegt (use = #postal)."
+Context: Location
+* insert Meta
+* value[x] only Address
+* valueAddress 1.. MS

@@ -1,0 +1,56 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "KhvzAusnahmeEx",
+  "url": "https://gematik.de/fhir/directory/StructureDefinition/KhvzAusnahmeEx",
+  "version": "1.2.0",
+  "name": "KhvzAusnahmeEx",
+  "title": "KHVZ Ausnahme Extension",
+  "status": "active",
+  "experimental": false,
+  "date": "2025-02-26",
+  "publisher": "gematik GmbH",
+  "description": "Kennzeichnet einen KHVZ-HealthcareService (Standort/Einrichtung) als Ausnahme im Sinne des InEK-Standortverzeichnisses.",
+  "fhirVersion": "4.0.1",
+  "kind": "complex-type",
+  "abstract": false,
+  "context": [
+    {
+      "expression": "HealthcareService",
+      "type": "element"
+    }
+  ],
+  "type": "Extension",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Extension",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Extension",
+        "path": "Extension",
+        "short": "KHVZ Ausnahme Extension",
+        "definition": "Kennzeichnet einen KHVZ-HealthcareService (Standort/Einrichtung) als Ausnahme im Sinne des InEK-Standortverzeichnisses."
+      },
+      {
+        "id": "Extension.extension",
+        "path": "Extension.extension",
+        "max": "0"
+      },
+      {
+        "id": "Extension.url",
+        "path": "Extension.url",
+        "fixedUri": "https://gematik.de/fhir/directory/StructureDefinition/KhvzAusnahmeEx"
+      },
+      {
+        "id": "Extension.value[x]",
+        "path": "Extension.value[x]",
+        "min": 1,
+        "type": [
+          {
+            "code": "boolean"
+          }
+        ],
+        "mustSupport": true
+      }
+    ]
+  }
+}

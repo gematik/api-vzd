@@ -1,0 +1,20 @@
+{
+  "resourceType": "ValueSet",
+  "status": "active",
+  "name": "HolderVS",
+  "id": "HolderVS",
+  "title": "HolderVS",
+  "description": "ValueSet der Identitätsverwalter (Holder) in der TI. Enthält alle Codes des HolderCS.",
+  "url": "https://gematik.de/fhir/directory/ValueSet/HolderVS",
+  "experimental": false,
+  "publisher": "gematik GmbH",
+  "date": "2025-02-26",
+  "version": "1.2.0",
+  "compose": {
+    "include": [
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/HolderCS"
+      }
+    ]
+  }
+}
