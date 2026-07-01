@@ -1,0 +1,34 @@
+@startuml
+top to bottom direction
+skinparam linetype ortho
+skinparam packageStyle rectangle
+skinparam wrapWidth 180
+skinparam nodesep 8
+skinparam ranksep 25
+hide empty members
+
+package "Krankenhaus" {
+}
+
+package "Standort" {
+}
+
+package "Zentren" {
+}
+
+package "Einrichtung" {
+}
+
+package "Fachabteilung" {
+}
+
+Standort -up-> Krankenhaus
+
+Zentren -up-> Standort
+
+Fachabteilung -up-> Einrichtung
+
+Einrichtung -up-> Standort
+
+
+@enduml
