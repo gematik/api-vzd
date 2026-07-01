@@ -625,9 +625,9 @@ Das AVS ergänzt das Liefergebiet in den Attributen serviceCoverageArea und serv
 - "serviceCoverageArea" - 10.000 Meter
 - "serviceCoveragePostalCode" - Die Postleitzahlen: 60596, 60597, 60598
 
-*Besonderheiten bei der Eintragung von Schließzeiten*
+*Besonderheiten bei der Eintragung von Sonderöffnungs-, Schließ- und Sonderschließzeiten*
 
-Bei der Eintragung von Schließzeiten sollten Sie folgende Punkte beachten:
+Bei der Eintragung von Sonderöffnungs-, Schließ- und Sonderschließzeiten sollten Sie folgende Punkte beachten:
 - Anfangszeit muss kleiner Endzeit sein - das folgende Beispiel wäre ungültig:
 =====
 [source,txt, linenums]
@@ -640,7 +640,7 @@ Bei der Eintragung von Schließzeiten sollten Sie folgende Punkte beachten:
 }
 -----
 =====
-- gleiche Anfangs- und Endzeit mit Zeitangabe führt zur Schließung von nur 1 Sekunde
+- gleiche Anfangs- und Endzeit mit Zeitangabe führt zur Öffnung/Schließung von nur 1 Sekunde
 =====
 [source,txt, linenums]
 -----
@@ -652,7 +652,7 @@ Bei der Eintragung von Schließzeiten sollten Sie folgende Punkte beachten:
 }
 -----
 =====
-- stattdessen sollte ein ganzer Schließtag folgendermaßen abgebildet werden:
+- stattdessen sollte ein ganzer Öffnungs-/Schließtag folgendermaßen abgebildet werden:
 =====
 [source,txt, linenums]
 -----
