@@ -116,7 +116,7 @@ Description: "Zentrums-Ebene des Krankenhausverzeichnisses als HealthcareService
 * extension[offeredIn].value[x] only Reference(HealthcareServiceStandort)
 * category[VzdLevelVS] = VzdLevelCS#zentrum
 * identifier contains erId 1..1 MS
-* identifier[erId].system = $sidInekErId
+* identifier[erId].system = $sidZentrumErId
 * identifier[erId].value 1.. MS
 * type 1.. MS
 * type from InEKZentrenartenVS (required)
@@ -135,7 +135,7 @@ Description: "Fachabteilungs-Ebene des Krankenhausverzeichnisses als HealthcareS
 * extension[offeredIn].value[x] only Reference(HealthcareServiceEinrichtung)
 * category[VzdLevelVS] = VzdLevelCS#fachabteilung
 * identifier contains erId 1..1 MS
-* identifier[erId].system = $sidInekErId
+* identifier[erId].system = $sidFachabteilungErId
 * identifier[erId].value 1.. MS
 * type 1.. MS
 * type from $FachabteilungsschluesselVS (required)

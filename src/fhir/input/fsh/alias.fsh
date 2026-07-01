@@ -51,4 +51,5 @@ Alias: $destatisAgs = http://fhir.de/StructureDefinition/destatis/ags
 // KHVZ-Identifier (Platzhalter - InEK-Absprache ausstehend)
 Alias: $sidStandortId = https://gematik.de/fhir/directory/sid/standort-id
 Alias: $sidStandortnummer = https://gematik.de/fhir/directory/sid/standortnummer
-Alias: $sidInekErId = https://gematik.de/fhir/directory/sid/inek-er-id
+Alias: $sidZentrumErId = https://gematik.de/fhir/directory/sid/healthcare-service-zentrum
+Alias: $sidFachabteilungErId = https://gematik.de/fhir/directory/sid/healthcare-service-fachabteilung

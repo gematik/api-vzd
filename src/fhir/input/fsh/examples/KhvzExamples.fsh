@@ -187,7 +187,7 @@ Description: "Zentrums-Ebene des Krankenhausverzeichnisses"
 * meta.tag[Origin] = Origin#ldap
 * extension[offeredIn].valueReference = Reference(KhvzStandortExample)
 * providedBy = Reference(KhvzKrankenhausOrganizationExample)
-* identifier[erId].value = "ER-123456-Z02"
+* identifier[erId].value = "123456-02"
 * category[VzdLevelVS] = VzdLevelCS#zentrum "Zentrum"
 * type = InEKZentrenarten#02 "Onkologisches Zentrum"
 * name = "Musterklinik gGmbH - Onkologisches Zentrum"
@@ -200,7 +200,7 @@ Description: "Fachabteilungs-Ebene des Krankenhausverzeichnisses"
 * meta.tag[Origin] = Origin#ldap
 * extension[offeredIn].valueReference = Reference(KhvzEinrichtungExample)
 * providedBy = Reference(KhvzKrankenhausOrganizationExample)
-* identifier[erId].value = "ER-123456-F0100"
+* identifier[erId].value = "771234001-0100"
 * category[VzdLevelVS] = VzdLevelCS#fachabteilung "Fachabteilung"
 * type = $Fachabteilungsschluessel#0100 "Innere Medizin"
 * name = "Musterklinik gGmbH - Innere Medizin"
