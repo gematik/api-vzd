@@ -33,8 +33,8 @@
   ],
   "identifier": [
     {
-      "system": "https://gematik.de/fhir/directory/sid/inek-er-id",
-      "value": "ER-123456-Z02"
+      "system": "https://gematik.de/fhir/directory/sid/healthcare-service-zentrum",
+      "value": "123456-02"
     }
   ],
   "providedBy": {

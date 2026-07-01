@@ -63,7 +63,7 @@
         "id": "HealthcareService.identifier:erId.system",
         "path": "HealthcareService.identifier.system",
         "min": 1,
-        "patternUri": "https://gematik.de/fhir/directory/sid/inek-er-id"
+        "patternUri": "https://gematik.de/fhir/directory/sid/healthcare-service-fachabteilung"
       },
       {
         "id": "HealthcareService.identifier:erId.value",
