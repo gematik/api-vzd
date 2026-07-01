@@ -626,6 +626,47 @@ Das AVS ergänzt das Liefergebiet in den Attributen serviceCoverageArea und serv
 - "serviceCoverageArea" - 10.000 Meter
 - "serviceCoveragePostalCode" - Die Postleitzahlen: 60596, 60597, 60598
 
+*Besonderheiten bei der Eintragung von Sonderöffnungs-, Schließ- und Sonderschließzeiten*
+
+Bei der Eintragung von Sonderöffnungs-, Schließ- und Sonderschließzeiten sollten Sie folgende Punkte beachten:
+
+- Anfangszeit muss kleiner Endzeit sein - das folgende Beispiel wäre ungültig:
+=====
+[source,txt, linenums]
+-----
+{
+  "description": "Ferien",
+  "during": {
+    "start": "2025-10-22T00:00:00+02:00",
+    "end": "2025-10-21T00:00:00+02:00"
+}
+-----
+=====
+- gleiche Anfangs- und Endzeit mit Zeitangabe führt zur Öffnung/Schließung von nur 1 Sekunde
+=====
+[source,txt, linenums]
+-----
+{
+  "description": "Betriebsschulung",
+  "during": {
+    "start": "2025-10-22T00:00:00+02:00",
+    "end": "2025-10-22T00:00:00+02:00"
+}
+-----
+=====
+- stattdessen sollte ein ganzer Öffnungs-/Schließtag folgendermaßen abgebildet werden:
+=====
+[source,txt, linenums]
+-----
+{
+  "description": "Betriebsschulung",
+  "during": {
+    "start": "2025-10-22",
+    "end": "2025-10-22"
+}
+-----
+=====
+
 .*Bug im VZD FHIR 1.2.0-15*
 CAUTION: Mit VZD FHIR 1.2.0-15 wurden die HealthcareService.specialty-Container für Apotheken auf den Wert „apo-vzd“ konsolidiert.
 Derzeit wird „apo-vzd“ jedoch bei der Anlieferung über die Owner-Schnittstelle fälschlicherweise verworfen.
