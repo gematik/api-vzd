@@ -24,6 +24,17 @@ Metadaten der Export-Datei (`Dateinummer`, `XmlSchemaVersion`, `LetzteÄnderung`
 `Erstelldatum`). ⛔ Nicht auf Ressourcenebene abgebildet – betrifft den Lieferprozess,
 nicht die fachlichen Daten.
 
+### Versionierung / Import-Semantik
+
+Das InEK-Standortverzeichnis liefert **historische Versionen**: derselbe `StandortId` bzw. dieselbe
+`Standortnummer` kann mehrfach vorkommen, zeitlich abgegrenzt über `GültigVon`/`GültigBis`. Für die
+Abbildung im VZD wird pro `StandortId` (Standort) bzw. pro `Standortnummer` (Einrichtung) **nur die
+aktuell gültige Version** übernommen – d. h. der Satz ohne `GültigBis`, andernfalls der mit dem
+jüngsten `GültigVon`. Ältere/abgelaufene Versionen werden nicht als eigene Ressourcen angelegt; der
+Gültigkeitszeitraum bleibt über `extension[gueltigkeit]` (`gültigVon`/`gültigBis`) am jeweiligen
+`HealthcareService` erhalten. Die Ressourcen erhalten deterministische, fachlich abgeleitete IDs, so
+dass ein erneuter Import idempotent ist (Upsert statt Duplikat).
+
 ### Krankenhaus (`KrankenhausTyp`)
 
 ⛔ Out of scope für die KHVZ-`HealthcareService`-Profile – die Krankenhaus-Ebene wird als
@@ -115,16 +126,16 @@ daher über die Extension [KhvzPostadresseEx](StructureDefinition-KhvzPostadress
 
 | XSD-Feld | FHIR-Ziel | Status |
 |---|---|---|
-| `ZentrenArt` (1..*) | `type` ([InEKZentrenartenVS](ValueSet-inek-zentrenarten-vs.html)) | ✅ |
-| (Identität) | `identifier[erId]` | ✅ |
+| `ZentrenArt` (1..*) | je Art eigener `HealthcareServiceZentrum` mit `type` ([InEKZentrenartenVS](ValueSet-inek-zentrenarten-vs.html)) | ✅ |
+| (Identität) | `identifier[erId]` synthetisch: `system = https://gematik.de/fhir/directory/sid/healthcare-service-zentrum`, `value = <StandortId>-<ZentrenArt>` (z. B. `770001-01`) | 🧩 |
 | (Hierarchie) | `extension[offeredIn]` → Standort | ✅ |
 
 ### Fachabteilung (`FachabteilungTyp` → [HealthcareServiceFachabteilung](StructureDefinition-HealthcareServiceFachabteilung.html))
 
 | XSD-Feld | FHIR-Ziel | Status |
 |---|---|---|
-| `Fachabteilungsschlüssel` (1..*) | `type` (dkgev Fachabteilungsschlüssel) | ✅ |
-| (Identität) | `identifier[erId]` | ✅ |
+| `Fachabteilungsschlüssel` (1..*) | je Schlüssel eigener `HealthcareServiceFachabteilung` mit `type` (dkgev Fachabteilungsschlüssel) | ✅ |
+| (Identität) | `identifier[erId]` synthetisch: `system = https://gematik.de/fhir/directory/sid/healthcare-service-fachabteilung`, `value = <Standortnummer>-<Fachabteilungsschlüssel>` (z. B. `770001001-0100`) | 🧩 |
 | (Hierarchie) | `extension[offeredIn]` → Einrichtung | ✅ |
 
 ### Bewusst nicht abgebildete Felder
