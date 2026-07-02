@@ -255,7 +255,7 @@ Context: Address
 Extension: KhvzPostadresseEx
 Id: KhvzPostadresseEx
 Title: "KHVZ Postadresse Extension"
-Description: "Separate Postadresse eines KHVZ-Standorts. In FHIR R4 erlaubt Location nur eine native address; die abweichende Postanschrift (PostAdresse aus dem InEK-Standortverzeichnis) wird daher als zusätzliche Adresse hier abgelegt (use = #postal)."
+Description: "Separate Postadresse eines KHVZ-Standorts. In FHIR R4 erlaubt Location nur eine native address; die abweichende Postanschrift (PostAdresse aus dem InEK-Standortverzeichnis) wird daher als zusätzliche Adresse hier abgelegt (type = #postal)."
 Context: Location
 * insert Meta
 * value[x] only Address
