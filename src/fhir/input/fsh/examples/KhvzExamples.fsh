@@ -106,7 +106,8 @@ Description: "Location des Standorts"
 * meta.tag[Origin] = Origin#ldap
 * type = VzdLevelCS#standort "Standort"
 * extension[kvBezirk].valueCoding = InEKKvBezirke#72 "Berlin"
-* address.use = #physical
+* address.use = #work
+* address.type = #physical
 * address.extension[adresstyp].valueCoding = InEKAdresstypen#1 "Gebäude (§ 2a Absatz 1 Satz 1 KHG)"
 * address.extension[gemeindeschluessel].valueCoding = http://fhir.de/sid/destatis/ags#11000000
 * address.text = "Klinikstraße 1, 10117 Berlin"
@@ -116,7 +117,8 @@ Description: "Location des Standorts"
 * address.postalCode = "10117"
 * address.country = "DE"
 // PostAdresse als separate Adresse (FHIR R4: Location.address ist 0..1, daher Extension)
-* extension[postadresse].valueAddress.use = #postal
+* extension[postadresse].valueAddress.use = #work
+* extension[postadresse].valueAddress.type = #postal
 * extension[postadresse].valueAddress.line = "Postfach 12 34 56"
 * extension[postadresse].valueAddress.city = "Berlin"
 * extension[postadresse].valueAddress.postalCode = "10999"
