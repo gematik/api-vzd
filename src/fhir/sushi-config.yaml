@@ -4,7 +4,7 @@ name: GematikFHIRDirectory
 title: "gematik FHIR Directory"
 description: "Implementation Guide des gematik FHIR-Verzeichnisdienstes (VZD), inkl. Krankenhausverzeichnis (KHVZ)."
 status: active
-version: 1.1.1
+version: 1.3.0-alpha
 fhirVersion: 4.0.1
 copyrightYear: 2025+
 releaseLabel: ci-build

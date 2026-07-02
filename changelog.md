@@ -1,5 +1,7 @@
 # Changelog
 
+## tbd - Version 1.2.0
+
 ## 2026-05-06 Version 1.2.0
 - `feat`: added `sonderoeffnung` concept to `OpeningTimeQualifierCS` which is used to qualify extra opening times in the `SpecialOpeningTimesEX`Extension.
 
