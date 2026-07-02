@@ -2,7 +2,7 @@
   "resourceType": "StructureDefinition",
   "id": "HealthcareServiceKhvzBase",
   "url": "https://gematik.de/fhir/directory/StructureDefinition/HealthcareServiceKhvzBase",
-  "version": "1.2.0",
+  "version": "1.3.0-alpha",
   "name": "HealthcareServiceKhvzBase",
   "title": "HealthcareService KHVZ Basis (abstrakt)",
   "status": "active",

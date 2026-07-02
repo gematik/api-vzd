@@ -2,7 +2,7 @@
   "resourceType": "StructureDefinition",
   "id": "KhvzAusnahmeEx",
   "url": "https://gematik.de/fhir/directory/StructureDefinition/KhvzAusnahmeEx",
-  "version": "1.2.0",
+  "version": "1.3.0-alpha",
   "name": "KhvzAusnahmeEx",
   "title": "KHVZ Ausnahme Extension",
   "status": "active",

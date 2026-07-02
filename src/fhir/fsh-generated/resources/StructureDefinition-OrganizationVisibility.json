@@ -2,7 +2,7 @@
   "resourceType": "StructureDefinition",
   "id": "OrganizationVisibility",
   "url": "https://gematik.de/fhir/directory/StructureDefinition/OrganizationVisibility",
-  "version": "1.2.0",
+  "version": "1.3.0-alpha",
   "name": "OrganizationVisibility",
   "title": "OrganizationVisibility",
   "status": "active",

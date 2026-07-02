@@ -32,6 +32,7 @@
 [HealthcareServiceZentrum]: StructureDefinition-HealthcareServiceZentrum.html
 [HealthcareService-endpoint]: SearchParameter-HealthcareService-endpoint.html
 [HealthcareService-location]: SearchParameter-HealthcareService-location.html
+[HealthcareService-offered-in]: SearchParameter-HealthcareService-offered-in.html
 [HealthcareService-organization]: SearchParameter-HealthcareService-organization.html
 [HealthcareServiceCoverageAreaPostalCodeSP]: SearchParameter-HealthcareServiceCoverageAreaPostalCodeSP.html
 [HealthcareServiceDirectoryStrict]: StructureDefinition-HealthcareServiceDirectoryStrict.html

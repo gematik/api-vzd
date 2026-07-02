@@ -24,7 +24,8 @@
     {
       "url": "https://gematik.de/fhir/directory/StructureDefinition/KhvzPostadresseEx",
       "valueAddress": {
-        "use": "postal",
+        "use": "work",
+        "type": "postal",
         "line": [
           "Postfach 12 34 56"
         ],
@@ -52,7 +53,8 @@
         "url": "http://fhir.de/StructureDefinition/destatis/ags"
       }
     ],
-    "use": "physical",
+    "use": "work",
+    "type": "physical",
     "text": "Klinikstraße 1, 10117 Berlin",
     "line": [
       "Klinikstraße 1"
