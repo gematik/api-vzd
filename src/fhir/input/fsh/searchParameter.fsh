@@ -111,3 +111,15 @@ Usage: #definition
 * base[+] = #PractitionerRole
 * type = #token
 * expression = "extension.where(url='https://gematik.de/fhir/directory/StructureDefinition/OwnerTelematikIdEx').value"
+
+Instance: HealthcareService-offered-in
+InstanceOf: SearchParameter
+Usage: #definition
+* insert MetaInstance
+* name = "offered-in"
+* description = "Search HealthcareService resources by the service within which this service is offered."
+* code = #offered-in
+* base = #HealthcareService
+* type = #reference
+* expression = "HealthcareService.extension.where(url='http://hl7.org/fhir/5.0/StructureDefinition/extension-HealthcareService.offeredIn').value"
+* target = #HealthcareService
