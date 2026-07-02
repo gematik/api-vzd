@@ -1,0 +1,21 @@
+{
+  "resourceType": "SearchParameter",
+  "id": "HealthcareService-offered-in",
+  "url": "https://gematik.de/fhir/directory/SearchParameter/HealthcareService-offered-in",
+  "version": "1.3.0-alpha",
+  "status": "active",
+  "experimental": false,
+  "publisher": "gematik GmbH",
+  "date": "2025-02-26",
+  "name": "offered-in",
+  "description": "Search HealthcareService resources by the service within which this service is offered.",
+  "code": "offered-in",
+  "base": [
+    "HealthcareService"
+  ],
+  "type": "reference",
+  "expression": "HealthcareService.extension.where(url='http://hl7.org/fhir/5.0/StructureDefinition/extension-HealthcareService.offeredIn').value",
+  "target": [
+    "HealthcareService"
+  ]
+}
