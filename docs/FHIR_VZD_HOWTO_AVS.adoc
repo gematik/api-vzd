@@ -18,7 +18,7 @@ image::gematik_logo.svg[gematik,float="right"]
 
 [width="100%",cols="50%,50%",options="header",]
 |===
-|Version: |1.0.4
+|Version: |1.0.5
 |Referencing: |gemILF_FHIR_VZD
 |===
 
@@ -64,6 +64,10 @@ Beispieldaten überarbeitet
 
 |1.0.4 |09.04.26 | 2.2 
 |Hinweis auf Implementierungsbeispiele entfernt, da die Beispiele veraltet sind.
+|gematik
+
+|1.0.5 |02.07.26 | 2.5 
+|Angabe von Zeiträumen bei Öffnungs- und Schließzeiten erläutert.
 |gematik
 
 |===
@@ -474,11 +478,11 @@ TIP: Das Eintragen von Dienstleistungen für "Zuweisen ohne Anmeldung" wird in K
 
 Diese Öffnungszeiten (mit Ausnahme der textuellen Beschreibung in availabilityExceptions) werden in den eRezept-Apps zur Suche von geöffneten Apotheken genutzt. +
 Die Kontaktdaten werden in den Apps angezeigt und teilweise direkt aufgerufen (z.B. URL, E-Mail-Adresse der Apotheke oder Telefonnummer). +
-Die Ausstattung und Informationen zur Anfahrt (HealthcareService.characteristic:physicalFeatures) dienen der Information für die Kunden und können in VZD-Suche als Suchkriterium genutzt werden. Zum Beispiel "Suche nach barrierefreien Apotheken an einem Ort". + 
+Die Ausstattung und Informationen zur Anfahrt (HealthcareService.characteristic:physicalFeatures) dienen der Information für die Kunden und können in VZD-Suche als Suchkriterium genutzt werden. Zum Beispiel "Suche nach barrierefreien Apotheken an einem Ort". +
  +
 Ablauf: +
  +
-*1. Lesen des Apotheken-Eintrags aus dem FHIR-VZD*. Siehe Kapitel link:./FHIR_VZD_HOWTO_AVS.adoc#151-suche-des-apothekeneintrags[Suche des Apothekeneintrags]. 
+*1. Lesen des Apotheken-Eintrags aus dem FHIR-VZD*. Siehe Kapitel link:./FHIR_VZD_HOWTO_AVS.adoc#151-suche-des-apothekeneintrags[Suche des Apothekeneintrags]. +
 *2. Extrahieren der relevanten Ressource aus dem Suchergebnis.* Die Öffnungszeiten befinden sich in FHI-Ressource-HealthcareService mit HealthcareService.meta.tag:Origin=ldap
 
 .FHI-Ressource-HealthcareService - aktuelle Daten aus dem FHIR-VZD  (Klicken zum Ausklappen)
@@ -612,6 +616,7 @@ Ablauf: +
 ====
 
 *3. Aktualisierung der relevanten Daten in der Ressource* +
+ +
 
 - Im FHIR-VZD sind für diese Apotheke die Öffnungszeiten in "availableTime" eingetragen. "availableTime" wird durch die aktuellen Öffnungszeiten aus dem AVS überschrieben.
 - Es werden zwei Urlaubszeiten in "notAvailable" und "An Feiertagen geschlossen" in "availabilityExceptions" eingetragen. Diese Attribute waren im original FHIR-VZD-Datensatz nicht vorhanden und werden vom AVS ergänzt.
@@ -628,6 +633,7 @@ Das AVS ergänzt das Liefergebiet in den Attributen serviceCoverageArea und serv
 *Besonderheiten bei der Eintragung von Sonderöffnungs-, Schließ- und Sonderschließzeiten*
 
 Bei der Eintragung von Sonderöffnungs-, Schließ- und Sonderschließzeiten sollten Sie folgende Punkte beachten:
+
 - Anfangszeit muss kleiner Endzeit sein - das folgende Beispiel wäre ungültig:
 =====
 [source,txt, linenums]
@@ -664,6 +670,7 @@ Bei der Eintragung von Sonderöffnungs-, Schließ- und Sonderschließzeiten soll
 }
 -----
 =====
+
 .*Bug im VZD FHIR 1.2.0-15*
 CAUTION: Mit VZD FHIR 1.2.0-15 wurden die HealthcareService.specialty-Container für Apotheken auf den Wert „apo-vzd“ konsolidiert.
 Derzeit wird „apo-vzd“ jedoch bei der Anlieferung über die Owner-Schnittstelle fälschlicherweise verworfen.
