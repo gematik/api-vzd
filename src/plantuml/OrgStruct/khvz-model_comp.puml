@@ -1,0 +1,64 @@
+@startuml
+top to bottom direction
+skinparam linetype ortho
+skinparam packageStyle rectangle
+skinparam wrapWidth 180
+skinparam nodesep 8
+skinparam ranksep 25
+hide empty members
+
+package "Krankenhaus" {
+
+class Organization_Krankenhaus {
+}
+
+class HealthcareService_Krankenhaus {
+}
+
+class Location_Krankenhaus {
+}
+
+class Endpoint_Krankenhaus {
+}
+
+Organization_Krankenhaus <--- HealthcareService_Krankenhaus : providedBy
+HealthcareService_Krankenhaus ---> Location_Krankenhaus : location
+HealthcareService_Krankenhaus ---> Endpoint_Krankenhaus : endpoint
+}
+
+package "Standort" {
+
+class HealthcareService_Standort {
+}
+
+Organization_Krankenhaus <------- HealthcareService_Standort : providedBy
+}
+
+package "Zentren" {
+
+class HealthcareService_Zentren {
+}
+
+Organization_Krankenhaus <-- HealthcareService_Zentren : providedBy
+HealthcareService_Zentren ---up-> HealthcareService_Standort : offeredIn
+}
+
+package "Einrichtung" {
+
+class HealthcareService_Einrichtung {
+}
+
+Organization_Krankenhaus <-- HealthcareService_Einrichtung : providedBy
+HealthcareService_Einrichtung ---up-> HealthcareService_Standort : offeredIn
+}
+
+package "Fachabteilung" {
+
+class HealthcareService_Fachabteilung {
+}
+
+Organization_Krankenhaus <-right- HealthcareService_Fachabteilung : providedBy
+HealthcareService_Fachabteilung ---up-> HealthcareService_Einrichtung : offeredIn
+}
+
+@enduml
