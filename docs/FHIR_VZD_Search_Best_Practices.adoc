@@ -170,63 +170,63 @@ Wir freuen uns über Feedback, Verbesserungsvorschläge und Praxiserfahrungen, u
 
 ==== Allgemeine Suche & Bedienung
 
-* Volltextsuche und strukturierte Suche mit Suchfilter werden beide angeboten und der Nutzer kann zwischen beiden wählen.
-* Kombination mehrerer Suchbegriffe in der Volltextsuche ohne Operatoren.
-* Auto-Vervollständigung ist vorhanden.
-* Es werden nur Filter für Attribute gezeigt, welche auch im VZD vorhanden sind.
-* Einheitliche und verständliche Filterbezeichnungen.
-* Zuletzt kontaktiert / Favoriten als lokale Liste verfügbar.
+* [ ] Volltextsuche und strukturierte Suche mit Suchfilter werden beide angeboten und der Nutzer kann zwischen beiden wählen. 
+* [ ] Kombination mehrerer Suchbegriffe in der Volltextsuche ohne Operatoren (-, +, &, *, ...) 
+* [ ] Auto‑Vervollständigung ist vorhanden. 
+* [ ] Es werden nur Filter für Attribute gezeigt, welche auch im VZD vorhanden sind. 
+* [ ] Einheitliche und verständliche Filterbezeichnungen. 
+* [ ] Zuletzt kontaktiert / Favoriten: Ärzte überweisen häufig an dieselben KollegInnen. Eine lokale Liste der zuletzt verwendeten Einträge (clientseitig gespeichert, keine VZD-Anfrage)  
 
 ==== Transparenz der Suchlogik
 
-* UI zeigt an, welche Attribute in der Volltextsuche berücksichtigt werden.
-* Hinweis vorhanden, dass Leistungserbringende meist keine KIM-Adresse besitzen.
-* Verständliche Hinweise bei null Treffern.
-* Hinweise zur Präzisierung bei mehr als 100 Suchergebnissen.
+* [ ] UI zeigt an, welche Attribute in der Volltextsuche berücksichtigt werden z.B. mit Info-icon neben der Suchleiste. 
+* [ ] Hinweis vorhanden: Leistungserbringenden (LE) besitzen meist keine KIM‑Adresse. 
+* [ ] Leere Ergebnisse und Hinweise: Bei null Treffern sollte die UI konkrete Hinweise geben: „Keine Ergebnisse gefunden — versuchen Sie einen anderen Suchbegriff oder prüfen Sie die Schreibweise.“ 
+* [ ] Zu viele Ergebnisse: bei mehr als 100 Suchergebnissen dem Nutzer konkrete Hinweise geben, wie die Suche spezifiziert werden kann 
 
 ==== Ergebnisdarstellung
 
-* Eindeutige Kennzeichnung von Institutionen (LEI) und Leistungserbringenden (LE).
-* Filtermöglichkeit nach LEI / LE.
-* Einträge mit mehreren KIM-/TI-M-Adressen werden nur einmal angezeigt.
-* Favoritenfunktion vorhanden.
+* [ ] Eindeutige Kennzeichnung von Institutionen (LEI) vs. Leistungserbringenden (LE). 
+* [ ] Filtermöglichkeit nach LEI / LE (z.B. nach Fachgruppen, Institutionstyp oder nur Einträge mit KIM-Adressen) 
+* [ ] Ein Eintrag mit mehreren KIM-/TI-M-Adressen wird einmal angezeigt; weitere Adressen sind im Eintrag sichtbar. 
+* [ ] Favoriten-Funktion vorhanden (Lokal speichern / ins Adressbuch exportieren).
 
 === Technische Implementierung
 
 ==== Suchlogik & Genauigkeit
 
-* Phonetische Suche implementiert.
-* Wortfragment-Suche unterstützt.
-* Wildcard-Suche bei Volltextsuche nicht notwendig.
-* Eingabevalidierung vorhanden.
-* Suchen erst ab Mindestanzahl von Zeichen durchführen.
-* Clientseitige Normalisierung der Suchbegriffe.
+* [ ] Phonetische Suche (Fuzzy‑Search, „~“) implementiert. 
+* [ ] Wortfragment-Suche unterstützt („muster“ → „Mustermann“). 
+* [ ] Wildcard-Suche ist bei Volltextsuche nicht notwendig. 
+* [ ] Eingabevalidierung verhindert leere Treffer durch Tippfehler. 
+* [ ] Suchen werden nur durchgeführt, wenn mindestens xx Zeichen als Suchbegriff eingegeben wurden 
+* [ ] Clientseitige Normalisierung der Suchbegriffe (z. B. immer „Str“ statt „Str.“ oder “Straße”). 
 
 ==== Performance & Serverlast
 
-* Timeouts korrekt konfiguriert.
-* Abfragen möglichst kurz gehalten.
-* _include wird verwendet.
-* Caching implementiert.
-* Paging ab mehr als 50 Treffern aktiviert.
-* Weitere Treffer werden asynchron nachgeladen.
+* [ ] Timeouts sind korrekt und stabil konfiguriert. 
+* [ ] Abfragen sind möglichst kurz gehalten. 
+* [ ] _include wird verwendet, um Sub‑Ressourcen einzubeziehen. 
+* [ ] Caching ist implementiert (z. B. Favoriten‑Cache). 
+* [ ] Paging ist ab >50 Treffern aktiviert. 
+* [ ] Weitere Treffer werden asynchron nachgeladen. 
 
 ==== Datenqualität & VZD-Konformität
 
-* Nur Ressourcen mit active=true werden angezeigt.
-* Auch abhängige Ressourcen müssen aktiv sein.
-* Trefferlimit von 100 Treffern wird berücksichtigt.
-* Hinweis zur Präzisierung bei mehr als 100 Treffern.
+* [ ] Nur Ressourcen mit active=true werden angezeigt. 
+* [ ] Auch abhängige Ressourcen müssen active sein (z. B. Endpunkt status=active). 
+* [ ] Trefferlimit des VZD (100 Treffer) wird berücksichtigt. 
+* [ ] Bei >100 Treffern Hinweis zur Präzisierung der Suche einblenden. 
 
 ==== Sicherheit & Schnittstellen
 
-* Nutzung ausschließlich der offiziellen VZD-FHIR-REST-API.
-* Kommunikation vollständig über TLS.
-* Authentifizierung über OAuth2 Access Token.
-* Eingabeparameter werden korrekt escaped.
-* Ratenbegrenzung vorhanden.
-* Caching häufig abgefragter Kombinationen.
-* Timeout- und Fallback-Strategie implementiert.
+* [ ] Nutzung ausschließlich der offiziellen VZD‑FHIR‑REST‑API. 
+* [ ] Client/Server-Kommunikation erfolgt vollständig über TLS ohne Zertifikats-Pinning 
+* [ ] Authentifizierung über OAuth2‑Access Token. 
+* [ ] Eingabeparameter werden korrekt escaped (Injection‑Schutz). 
+* [ ] Ratenbegrenzung/Schutz gegen automatisiertes Abziehen des VZD ist vorhanden. 
+* [ ] Caching: Häufig abgefragte Kombinationen (z. B. alle Radiologen im PLZ-Bereich 10xxx) können mit kurzen TTLs (60 Minuten) gecacht werden, um die Last auf dem VZD zu reduzieren und die Antwortzeit zu verbessern. 
+* [ ] Timeout und Fallback: Implementierter Timeout von maximal xxx Sekunden pro Anfrage. Bei Nichterreichbarkeit des VZD sollte die Anwendung einen verständlichen Fehlertext ausgeben und — wenn möglich — auf einen lokalen Cache der letzten Ergebnisse zurückfallen. 
 
 == Beispiel – PVS
 
