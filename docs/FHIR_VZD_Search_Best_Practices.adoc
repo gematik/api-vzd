@@ -1,1 +1,234 @@
+= Best Practices – Suche im FHIR-VZD
+:toc:
+:toclevels: 4
 
+[cols="1,1"]
+|===
+|Version |1.0.0
+|Stand |27.03.2026
+|Status |in Bearbeitung
+|===
+
+== Einordnung des Dokuments
+
+=== Kontext und Zielsetzung
+
+Bei der Suche im Verzeichnisdienst (VZD) treten derzeit verschiedene Herausforderungen auf. Suchende finden häufig nicht die passenden Einträge, was zu zeitaufwendigen Recherchen und ineffizienten Arbeitsabläufen führt. Besonders im Gesundheitswesen, wo ohnehin wenig Zeit zur Verfügung steht, erhöhen solche Verzögerungen den Arbeitsdruck zusätzlich. 
+
+Die Digitalisierung soll Prozesse für Leistungserbringer eigentlich vereinfachen, beschleunigen und entlasten und nicht zusätzliche Belastungen mit sich bringen. Die aktuellen Herausforderungen mit der VZD-Suche innerhalb von Anwendungen stehen diesem Anspruch jedoch entgegen und machen Optimierungen dringend erforderlich. 
+
+Zugleich hängt die tatsächliche Funktionalität der Suche maßgeblich von der Implementierung durch die Hersteller ab, wie Umfragen deutlich gezeigt haben. 
+
+Daher beschreibt dieses Dokument Best Practices und Implementierungstipps für Hersteller, um eine effiziente und nutzerfreundliche VZD‑Suche sicherzustellen. 
+
+Ziel der Empfehlungen ist es:
+
+* Eine benutzerfreundliche und intuitive Suche (User Experience) zu ermöglichen, die den Aufwand für Suchende reduziert
+* Hohe Trefferqualität im Primärsystem zu erreichen, damit Nutzende schnell und zuverlässig die richtigen Einträge finden
+* Optimierte Darstellung der Suchergebnisse, um Nutzenden die Möglichkeit zu bieten durch gezielte Filterung oder Sortierung die Suchergebnisse nachgelagert zu durchsuchen
+* Technische Robustheit und Performance zu verbessern durch effiziente Anfragegestaltung und ressourcenschonende Suchstrategien, um Systemstabilität und Antwortzeiten auf einem hohen Niveau zu halten
+
+=== Zielgruppe
+
+Die Zielgruppe dieses Dokuments sind Hersteller von Anwendungen, die eine Suchfunktion des VZD in ihren Anwendungen implementieren.
+
+Dazu gehören unter anderem:
+
+* Hersteller von Praxissoftware (AVS, PVS, KIS)
+* Hersteller von mobilen Applikationen (Elektronische Patientenakte, E-Rezept)
+* Hersteller / Anbieter von Softwarelösungen zur Kommunikation in der TI (TI-Messenger / KIM)
+
+=== Methodik
+
+Die Erkenntnisse in diesem Dokument stützen sich auf eine Kombination verschiedener Informationsquellen.
+
+Dazu gehören:
+
+* Interviews mit Anwenderinnen und Anwendern, die regelmäßig mit der VZD-Suche arbeiten
+* Hospitationen in realen Nutzungssituationen, um Arbeitsabläufe, Herausforderungen und Suchverhalten direkt zu beobachten
+* Nutzererfahrungen aus den Modellregionen, die wertvolle Einblicke in den praktischen Einsatz unter Alltagsbedingungen liefern
+
+=== Hinweis zur Weiterentwicklung und Verbindlichkeit der Empfehlungen
+
+Die hier beschriebenen Implementierungstipps basieren auf dem aktuellen Entwicklungsstand des FHIR-VZD und den bisher gewonnenen Erfahrungswerten. Da der Verzeichnisdienst kontinuierlich weiterentwickelt wird, können sich einzelne Empfehlungen im Laufe der Zeit ändern oder an neue technische Rahmenbedingungen anpassen.
+
+Die beschriebenen Best Practices stellen keine verpflichtenden Vorgaben, sondern unverbindliche, praxisorientierte Empfehlungen dar, die Herstellern helfen sollen, eine robuste und benutzerfreundliche Suchfunktion zu realisieren.
+
+Wir freuen uns über Feedback, Verbesserungsvorschläge und Praxiserfahrungen, um diese Hinweise gemeinsam weiterzuentwickeln und laufend zu optimieren.
+
+== Implementierungshinweise
+
+=== User Interface
+
+[cols="1,1",options="header"]
+|===
+|Schlecht
+|Besser
+
+|Keine Wahlmöglichkeit zwischen Volltextsuche und Suchfiltern.
+|Sowohl Volltextsuche als auch Suchfilter werden angeboten.
+
+|Unklare Regeln zur Kombination von Suchbegriffen in der Volltextsuche.
+|Klare Vorgaben zur Kombination von Suchbegriffen (z. B. Komma, „und“, Leerzeichen) oder die Möglichkeit, beliebige Trennzeichen zu verwenden.
+
+|Keine Möglichkeit, Suchergebnisse gezielt nach Institutionen oder Personen zu filtern.
+|Option, Ergebnisse nach LEIs (Institutionen) oder LEs (Einzelpersonen) zu filtern.
+
+|Keine eindeutigen Symbole/Attribute zur Unterscheidung zwischen Institutionen und Personen.
+|Klare, konsistente Symbole/Attribute zur sofortigen Unterscheidung zwischen Institutionen (LEI) und Einzelpersonen (LE).
+
+|Anzeige von Filtern, die auf nicht vorhandene Attribute zugreifen (z. B. LANR, obwohl im VZD nicht enthalten).
+|Nur Filter anzeigen, die tatsächlich auf vorhandene Attribute zugreifen können (z. B. keine LANR-Filter, falls nicht im VZD enthalten).
+
+|Uneinheitliche und missverständliche Bezeichnungen für Suchfilter.
+|Einheitliche und klar verständliche Benennungen der Suchfilter.
+
+|Keine klare Trennung zwischen Institutionen und Personen, wodurch unklare Ergebnisse entstehen (z. B. fehlende KIM-Adresse bei Personen).
+|Deutliche Trennung von Institutionen und Personen; klarer Hinweis, dass Personen in der Regel keine KIM-Adresse besitzen.
+
+|Unklare oder fehlende Anzeige, ob KIM-/TI-M-Adressen für einen Suchtreffer vorhanden sind.
+|Klare und eindeutig sichtbare Darstellung, ob für einen Eintrag KIM/TI-M‑Adressen verfügbar sind.
+
+|Einträge mit mehreren Adressen werden mehrfach angezeigt, sodass pro Adresse eine eigene Ergebniszeile entsteht.
+|Einträge mit mehreren Adressen erscheinen nur einmal in der Ergebnisliste; zusätzliche Adressen werden innerhalb des Eintrags strukturiert dargestellt.
+
+|Keine Transparenz darüber, welche Attribute in der Volltextsuche verwendet werden können.
+|Anzeige bzw. Erläuterung der in der Volltextsuche verfügbaren Attribute.
+
+|Keine Möglichkeit, häufig benötigte Adressen zu speichern oder weiterzuverwenden.
+|Möglichkeit, Favoriten zu speichern oder Einträge ins lokale Adressbuch zu übertragen.
+|===
+
+=== Technische Implementierungshinweise
+
+[cols="1,1",options="header"]
+|===
+|Schlecht
+|Besser
+
+|Suche auf Ressourcen, obwohl Daten im Volltext vorhanden sind.
+|Nutzung der performanceoptimierten Volltextsuche.
+
+|Falsch konfigurierte Timeouts, die zu langen Suchzeiten oder Abbrüchen führen.
+|Optimal konfigurierte Timeouts für zuverlässige Verarbeitung.
+
+|Fehlende oder unklare Fehlermeldungen.
+|Klare, verständliche und hilfreiche Fehlermeldungen.
+
+|Keine phonetische Suche; ähnlich klingende Begriffe werden nicht gefunden.
+|Phonetische Suche (FHIR VZD Fuzzy-Search, „~“ am Wortende). Nur verwenden, wenn die Schreibweise unbekannt ist oder die Suche keine Ergebnisse lieferte. Diese Funktion führt in der Regel zu vielen (teils irrelevanten) Treffern.
+
+|Keine automatische Aktualisierung gespeicherter KIM-Adressen.
+|Automatische Aktualisierung von Favoriten/KIM-Adressen.
+
+|Unsortierte Ergebnisse.
+|Nutzer die Möglichkeit geben, die Ergebnisse zu sortieren (Alphabetisch, nach Relevanz („Best Match“) oder Entfernung (Geodaten_query=near).
+
+|Keine Validierung der Eingabeform; kleine Fehler führen zu leeren Ergebnissen.
+|Eingabevalidierung und Unterstützung von Wildcards (außer KIM).
+
+|Kein Caching; führt zu hoher Serverlast und längeren Antwortzeiten.
+|Effizientes Caching zur Lastreduktion und Performance-Steigerung.
+
+|Keine Unterstützung für Wortfragment-Suche (Teilstrings).
+|Unterstützung von Wortfragmenten (z. B. „muster“ → „Mustermann“).
+
+|Uneinheitliche Nomenklatur („Straße“ vs. „Str.“).
+|Einheitliche, konsistente Schreibweise aller Felder. Ggf. clientseitig vorkonfiguriert (Ersetze “straße” und “str.” durch “str”)
+
+|Kein Paging bei großen Trefferlisten.
+|Paging ab mehr als 50 Treffern und asynchrones Nachladen implementieren.
+
+|Suchanfrage zu unspezifisch.
+|Nutzenden bei der Suche dabei unterstützen, sinnvolle Suchanfragen einzugeben (z.B. “Suche nach Name PLZ Fachgebiet”)
+
+|Suchanfragen zu lang und komplex.
+|Möglichst kurze und präzise Abfragen zur Lastreduktion.
+
+|Viele Einzelrequests für abhängige Ressourcen.
+|Nutzung von _include zur Reduktion der Abfrageanzahl.
+
+|Komplexe Volltextsuche wird durch Sonderzeichen unterbrochen.
+|Bei _complexSearch=true Sonderzeichen korrekt escapen (z. B. TI-ID in Anführungszeichen).
+
+|Inaktive Ressourcen werden angezeigt oder verwendet.
+|Nur Ressourcen mit active=true anzeigen; auch abhängige Ressourcen prüfen.
+
+|Keine Begrenzung der Ergebnisse.
+|Trefferlimit von 100 Treffern beachten und Hinweis zur Verfeinerung der Suche geben.
+
+|Keine Favoriten- oder Cache-Mechanismen.
+|Lokaler Favoriten-Cache („Frequent Contacts“) zur Entlastung des VZD.
+
+|Unsichere Kommunikation oder fehlende Token-Validierung.
+|Nutzung der FHIR-REST-API, TLS, OAuth2-Token, Eingabevalidierung und Ratenbegrenzung.
+|===
+
+== Checkliste
+
+=== Benutzeroberfläche
+
+==== Allgemeine Suche & Bedienung
+
+* Volltextsuche und strukturierte Suche mit Suchfilter werden beide angeboten und der Nutzer kann zwischen beiden wählen.
+* Kombination mehrerer Suchbegriffe in der Volltextsuche ohne Operatoren.
+* Auto-Vervollständigung ist vorhanden.
+* Es werden nur Filter für Attribute gezeigt, welche auch im VZD vorhanden sind.
+* Einheitliche und verständliche Filterbezeichnungen.
+* Zuletzt kontaktiert / Favoriten als lokale Liste verfügbar.
+
+==== Transparenz der Suchlogik
+
+* UI zeigt an, welche Attribute in der Volltextsuche berücksichtigt werden.
+* Hinweis vorhanden, dass Leistungserbringende meist keine KIM-Adresse besitzen.
+* Verständliche Hinweise bei null Treffern.
+* Hinweise zur Präzisierung bei mehr als 100 Suchergebnissen.
+
+==== Ergebnisdarstellung
+
+* Eindeutige Kennzeichnung von Institutionen (LEI) und Leistungserbringenden (LE).
+* Filtermöglichkeit nach LEI / LE.
+* Einträge mit mehreren KIM-/TI-M-Adressen werden nur einmal angezeigt.
+* Favoritenfunktion vorhanden.
+
+=== Technische Implementierung
+
+==== Suchlogik & Genauigkeit
+
+* Phonetische Suche implementiert.
+* Wortfragment-Suche unterstützt.
+* Wildcard-Suche bei Volltextsuche nicht notwendig.
+* Eingabevalidierung vorhanden.
+* Suchen erst ab Mindestanzahl von Zeichen durchführen.
+* Clientseitige Normalisierung der Suchbegriffe.
+
+==== Performance & Serverlast
+
+* Timeouts korrekt konfiguriert.
+* Abfragen möglichst kurz gehalten.
+* _include wird verwendet.
+* Caching implementiert.
+* Paging ab mehr als 50 Treffern aktiviert.
+* Weitere Treffer werden asynchron nachgeladen.
+
+==== Datenqualität & VZD-Konformität
+
+* Nur Ressourcen mit active=true werden angezeigt.
+* Auch abhängige Ressourcen müssen aktiv sein.
+* Trefferlimit von 100 Treffern wird berücksichtigt.
+* Hinweis zur Präzisierung bei mehr als 100 Treffern.
+
+==== Sicherheit & Schnittstellen
+
+* Nutzung ausschließlich der offiziellen VZD-FHIR-REST-API.
+* Kommunikation vollständig über TLS.
+* Authentifizierung über OAuth2 Access Token.
+* Eingabeparameter werden korrekt escaped.
+* Ratenbegrenzung vorhanden.
+* Caching häufig abgefragter Kombinationen.
+* Timeout- und Fallback-Strategie implementiert.
+
+== Beispiel – PVS
+
+* KIM-Suche
+* Optional TI-M-Suche
