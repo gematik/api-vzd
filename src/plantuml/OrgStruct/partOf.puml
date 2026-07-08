@@ -1,0 +1,53 @@
+@startuml
+top to bottom direction
+skinparam linetype ortho
+skinparam packageStyle rectangle
+skinparam wrapWidth 180
+skinparam nodesep 8
+skinparam ranksep 25
+hide empty members
+
+package "Haupt_Organisation" {
+
+class Haupt_Organization {
+}
+
+class HealthcareService_Haupt_Organization {
+}
+
+class Location_Haupt_Organization {
+}
+
+class Endpoint_Haupt_Organization {
+}
+
+Haupt_Organization <--- HealthcareService_Haupt_Organization : providedBy
+HealthcareService_Haupt_Organization ---> Location_Haupt_Organization : location
+HealthcareService_Haupt_Organization ---> Endpoint_Haupt_Organization : endpoint
+}
+
+
+
+package "Unter_Organisation" {
+
+class Unter_Organization {
+}
+
+class HealthcareService_Unter_Organization {
+}
+
+class Location_Unter_Organization {
+}
+
+class Endpoint_Unter_Organization {
+}
+
+Unter_Organization <--- HealthcareService_Unter_Organization : providedBy
+HealthcareService_Unter_Organization ---> Location_Unter_Organization : location
+HealthcareService_Unter_Organization ---> Endpoint_Unter_Organization : endpoint
+}
+
+Haupt_Organization <--- Unter_Organization : providedBy
+
+
+@enduml
