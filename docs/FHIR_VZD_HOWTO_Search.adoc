@@ -18,7 +18,7 @@ image::gematik_logo.svg[gematik,float="right"]
 
 [width="100%",cols="50%,50%",options="header",]
 |===
-|Version: |1.1.10
+|Version: |1.1.11
 |Referencing: |gemILF_FHIR_VZD
 |===
 
@@ -82,6 +82,10 @@ Added custom Search Parameters
 
 |1.1.10 |29.06.26 | 5. FHIR Operations - FHIR VZD endpoint /fdv/search
 |Add runtime hints for additional optional parameters in near searches
+  |gematik
+
+|1.1.11 |10.07.26 | Full-text search
+|Add hints for reserved characters (especially comma as OR operator) in complex full-text search
   |gematik
 
 
@@ -625,6 +629,28 @@ In the next FHIR VZD release the following extensions are planned
 ====== Complex full-text search
 If the client wants to use the complex search this can be done by specifying the search parameter _complexSearch=true. +
 In this case, the HAPI-FHIR rules apply, some of them are explained below.
++
+[IMPORTANT]
+--
+In complex full-text search, reserved characters are interpreted as operators.
+This applies in particular to comma `,`, which acts as an OR operator.
+Further reserved characters with special meaning include for example `+`, `-`, `|`, `"`, `(`, `)`, `*`, `~`.
+
+As a consequence, search strings containing these characters can return broader results than expected.
+
+**Solutions to handle commas and other reserved characters:**
+
+1. If you need exact multi-part phrase matching (e.g., address with commas), split into separate quoted terms:
+   - `_text="Musterweg 10" "10178" "Berlin"+Mustermann&_complexSearch=true`
+
+2. Use the `:contains` modifier for more precise matching:
+   - `_text:contains="Musterweg 10, 10178, Berlin"+Mustermann&_complexSearch=true`
+
+3. Remove commas from the search string and use space-separated terms (AND logic):
+   - `_text=Musterweg 10 10178 Berlin Mustermann&_complexSearch=true`
+
+Backslash escaping is not supported in the VZD-FHIR-Directory and will not work as expected.
+--
 
 
 *Characters with special meaning in the complex full-text search* +
@@ -637,7 +663,27 @@ If the search text is put in quotation marks, only results with the exact same t
 Special characters (which otherwise have a special meaning) within the quotation marks are interpreted as normal characters. +
 For example, the telematikID should always be put in quotation marks for full-text searches. It contains characters like "-". +
 
-A full-text search with a string will match all linked resource with this string in an indexed attribute, also if the search string is a substring in an indexed attribute. + 
+[IMPORTANT]
+--
+Not all special characters are reliably treated as literals within quotation marks.
+In particular, the comma `,` continues to act as an OR operator even when enclosed in quotation marks.
+
+Backslash escaping (e.g., `_text="Musterweg 10\, 10178\, Berlin"`) is not supported by the VZD-FHIR-Directory and returns no results.
+
+**Recommended alternatives for exact phrase matching:**
+
+1. Use separate quoted terms without commas:
+   - `_text="Musterweg 10" "10178" "Berlin"+Mustermann`
+
+2. Use the `:contains` modifier with proper quoting:
+   - `_text:contains="Musterweg 10, 10178, Berlin"+Mustermann&_complexSearch=true`
+
+**Examples:**
+- `_text="Musterweg 10, 10178, Berlin"` – The commas are interpreted as OR operators, returning resources matching any part.
+- `_text="Musterweg 10\, 10178\, Berlin"` – Does NOT work; returns no results.
+--
+
+A full-text search with a string will match all linked resource with this string in an indexed attribute, also if the search string is a substring in an indexed attribute. +
 A search with _text=Berlin will e.g. match resources with "city": "Bernau bei Berlin" or "line": ["Berlingeröder Str. 13"]. +
 A search with _text="Berlin" matches only resources with the exact string "Berlin" in the indexed attributes. +
 
@@ -678,6 +724,8 @@ Examples: _text="1-2arvtst-ap104233"%20%7C%20"1-2arvtst-ap051582"
 ----
 
 All these searches match, if at least one of the strings is contained in the linked resources. +
++
+Example from operations: `_text="Musterweg 10, 10178, Berlin"+Mustermann` can lead to broader result sets because comma-separated parts are processed with OR semantics.
  +
 Note: The use of the Or-operator decreases the search performance and should be avoided if possible.
 
