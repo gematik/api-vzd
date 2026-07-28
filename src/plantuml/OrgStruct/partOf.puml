@@ -7,6 +7,8 @@ skinparam nodesep 8
 skinparam ranksep 25
 hide empty members
 
+skinparam DefaultTextColor Black
+
 package "Haupt_Organisation" {
 
 class Haupt_Organization {
@@ -26,8 +28,6 @@ HealthcareService_Haupt_Organization ---> Location_Haupt_Organization : location
 HealthcareService_Haupt_Organization ---> Endpoint_Haupt_Organization : endpoint
 }
 
-
-
 package "Unter_Organisation" {
 
 class Unter_Organization {
@@ -45,9 +45,15 @@ class Endpoint_Unter_Organization {
 Unter_Organization <--- HealthcareService_Unter_Organization : providedBy
 HealthcareService_Unter_Organization ---> Location_Unter_Organization : location
 HealthcareService_Unter_Organization ---> Endpoint_Unter_Organization : endpoint
-}
 
-Haupt_Organization <--- Unter_Organization : providedBy
+skinparam ArrowColor Red
+skinparam LineColor Red
+skinparam DefaultTextColor Red
+Haupt_Organization <--- Unter_Organization : <b><font color="red">partOf</font></b>
+skinparam ArrowColor Black
+skinparam LineColor Black
+skinparam DefaultTextColor Black
+}
 
 
 @enduml
