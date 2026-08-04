@@ -58,7 +58,7 @@ Wird wie definiert umgesetzt.
  +
 Format
 
-urn:psc:<OID Codesystem:Code> 
+urn:psc:<OID Codesystem:Code> oder unqualifiziertes Code-Literal
 |HBA |Bezeichner: Fachgebiet
 Kann mehrfach vorkommen (1..100).
 
