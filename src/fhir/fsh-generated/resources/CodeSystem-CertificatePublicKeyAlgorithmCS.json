@@ -1,0 +1,26 @@
+{
+  "resourceType": "CodeSystem",
+  "status": "active",
+  "content": "complete",
+  "name": "CertificatePublicKeyAlgorithmCS",
+  "id": "CertificatePublicKeyAlgorithmCS",
+  "title": "CertificatePublicKeyAlgorithmCS",
+  "description": "CodeSystem für das Public-Key-Verfahren eines X.509-Zertifikats",
+  "version": "1.3.0",
+  "url": "https://gematik.de/fhir/directory/CodeSystem/CertificatePublicKeyAlgorithmCS",
+  "concept": [
+    {
+      "code": "RSA",
+      "display": "RSA"
+    },
+    {
+      "code": "EC",
+      "display": "Elliptic Curve Cryptography"
+    }
+  ],
+  "experimental": false,
+  "publisher": "gematik GmbH",
+  "date": "2025-02-26",
+  "caseSensitive": true,
+  "count": 2
+}

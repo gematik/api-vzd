@@ -1,5 +1,13 @@
 # Changelog
 
+## tbd - Version 1.3.0
+- `feat`: added `EndpointCertificateEx` extension on `Endpoint` carrying the X.509 certificate (DER, Base64-encoded) plus serial number, issuer DN, public key algorithm, validity period and active flag
+- `feat`: added `EndpointCertificateEx` as a named extension slice `certificate` with cardinality `0..* MS` to `EndpointDirectory`
+- `feat`: added CodeSystem `CertificatePublicKeyAlgorithmCS` (`#RSA`, `#EC`) and ValueSet `CertificatePublicKeyAlgorithmVS` for `EndpointCertificateEx.publicKeyAlgorithm`
+
+### data migration
+- not needed, the new extension is optional and all existing data is still valid
+
 ## 2026-05-06 Version 1.2.0
 - `feat`: added `sonderoeffnung` concept to `OpeningTimeQualifierCS` which is used to qualify extra opening times in the `SpecialOpeningTimesEX`Extension.
 

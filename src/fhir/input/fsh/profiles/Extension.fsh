@@ -134,3 +134,44 @@ Context: Endpoint
   * system 1.. MS
   * system = $IdentifierFAD
   * value 1.. MS
+
+Extension: EndpointCertificateEx
+Id: EndpointCertificateEx
+Title: "Endpoint Certificate Extension"
+Description: """X.509-Zertifikat eines Endpunkts, z. B. das Verschlüsselungszertifikat einer KIM-Mailadresse.
+Die Extension ist wiederholbar, um Zertifikatswechsel (Rollover) abzubilden.
+"""
+Context: Endpoint
+* insert Meta
+* extension contains
+    certificate 1..1 MS and
+    serialNumber 0..1 MS and
+    issuer 0..1 MS and
+    publicKeyAlgorithm 0..1 MS and
+    period 0..1 MS and
+    active 0..1 MS
+* extension[certificate]
+  * ^short = "Zertifikat im DER-Format, Base64-kodiert"
+  * value[x] only base64Binary
+  * valueBase64Binary 1.. MS
+* extension[serialNumber]
+  * ^short = "Seriennummer des Zertifikats (dezimal)"
+  * value[x] only string
+  * valueString 1.. MS
+* extension[issuer]
+  * ^short = "Distinguished Name des Ausstellers"
+  * value[x] only string
+  * valueString 1.. MS
+* extension[publicKeyAlgorithm]
+  * value[x] only Coding
+  * valueCoding obeys CodingSytemCodeInv
+  * valueCoding 1.. MS
+  * valueCoding from CertificatePublicKeyAlgorithmVS
+* extension[period]
+  * ^short = "Gültigkeitszeitraum: start = notBefore, end = notAfter"
+  * value[x] only Period
+  * valuePeriod 1.. MS
+* extension[active]
+  * ^short = "Zertifikat ist gültig bzw. nicht gesperrt"
+  * value[x] only boolean
+  * valueBoolean 1.. MS

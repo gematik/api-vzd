@@ -1,0 +1,242 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "EndpointCertificateEx",
+  "url": "https://gematik.de/fhir/directory/StructureDefinition/EndpointCertificateEx",
+  "version": "1.3.0",
+  "name": "EndpointCertificateEx",
+  "title": "Endpoint Certificate Extension",
+  "status": "active",
+  "experimental": false,
+  "date": "2025-02-26",
+  "publisher": "gematik GmbH",
+  "description": "X.509-Zertifikat eines Endpunkts, z. B. das Verschlüsselungszertifikat einer KIM-Mailadresse.\nDie Extension ist wiederholbar, um Zertifikatswechsel (Rollover) abzubilden.",
+  "fhirVersion": "4.0.1",
+  "kind": "complex-type",
+  "abstract": false,
+  "context": [
+    {
+      "expression": "Endpoint",
+      "type": "element"
+    }
+  ],
+  "type": "Extension",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Extension",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Extension",
+        "path": "Extension",
+        "short": "Endpoint Certificate Extension",
+        "definition": "X.509-Zertifikat eines Endpunkts, z. B. das Verschlüsselungszertifikat einer KIM-Mailadresse.\nDie Extension ist wiederholbar, um Zertifikatswechsel (Rollover) abzubilden."
+      },
+      {
+        "id": "Extension.extension",
+        "path": "Extension.extension",
+        "min": 1
+      },
+      {
+        "id": "Extension.extension:certificate",
+        "path": "Extension.extension",
+        "sliceName": "certificate",
+        "short": "Zertifikat im DER-Format, Base64-kodiert",
+        "min": 1,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "Extension.extension:certificate.extension",
+        "path": "Extension.extension.extension",
+        "max": "0"
+      },
+      {
+        "id": "Extension.extension:certificate.url",
+        "path": "Extension.extension.url",
+        "fixedUri": "certificate"
+      },
+      {
+        "id": "Extension.extension:certificate.value[x]",
+        "path": "Extension.extension.value[x]",
+        "min": 1,
+        "type": [
+          {
+            "code": "base64Binary"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Extension.extension:serialNumber",
+        "path": "Extension.extension",
+        "sliceName": "serialNumber",
+        "short": "Seriennummer des Zertifikats (dezimal)",
+        "min": 0,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "Extension.extension:serialNumber.extension",
+        "path": "Extension.extension.extension",
+        "max": "0"
+      },
+      {
+        "id": "Extension.extension:serialNumber.url",
+        "path": "Extension.extension.url",
+        "fixedUri": "serialNumber"
+      },
+      {
+        "id": "Extension.extension:serialNumber.value[x]",
+        "path": "Extension.extension.value[x]",
+        "min": 1,
+        "type": [
+          {
+            "code": "string"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Extension.extension:issuer",
+        "path": "Extension.extension",
+        "sliceName": "issuer",
+        "short": "Distinguished Name des Ausstellers",
+        "min": 0,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "Extension.extension:issuer.extension",
+        "path": "Extension.extension.extension",
+        "max": "0"
+      },
+      {
+        "id": "Extension.extension:issuer.url",
+        "path": "Extension.extension.url",
+        "fixedUri": "issuer"
+      },
+      {
+        "id": "Extension.extension:issuer.value[x]",
+        "path": "Extension.extension.value[x]",
+        "min": 1,
+        "type": [
+          {
+            "code": "string"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Extension.extension:publicKeyAlgorithm",
+        "path": "Extension.extension",
+        "sliceName": "publicKeyAlgorithm",
+        "min": 0,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "Extension.extension:publicKeyAlgorithm.extension",
+        "path": "Extension.extension.extension",
+        "max": "0"
+      },
+      {
+        "id": "Extension.extension:publicKeyAlgorithm.url",
+        "path": "Extension.extension.url",
+        "fixedUri": "publicKeyAlgorithm"
+      },
+      {
+        "id": "Extension.extension:publicKeyAlgorithm.value[x]",
+        "path": "Extension.extension.value[x]",
+        "min": 1,
+        "type": [
+          {
+            "code": "Coding"
+          }
+        ],
+        "constraint": [
+          {
+            "key": "CodingSytemCodeInv",
+            "severity": "warning",
+            "human": "System and Code SHOULD be present",
+            "expression": "system.exists() and code.exists()",
+            "source": "https://gematik.de/fhir/directory/StructureDefinition/EndpointCertificateEx"
+          }
+        ],
+        "mustSupport": true,
+        "binding": {
+          "strength": "required",
+          "valueSet": "https://gematik.de/fhir/directory/ValueSet/CertificatePublicKeyAlgorithmVS"
+        }
+      },
+      {
+        "id": "Extension.extension:period",
+        "path": "Extension.extension",
+        "sliceName": "period",
+        "short": "Gültigkeitszeitraum: start = notBefore, end = notAfter",
+        "min": 0,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "Extension.extension:period.extension",
+        "path": "Extension.extension.extension",
+        "max": "0"
+      },
+      {
+        "id": "Extension.extension:period.url",
+        "path": "Extension.extension.url",
+        "fixedUri": "period"
+      },
+      {
+        "id": "Extension.extension:period.value[x]",
+        "path": "Extension.extension.value[x]",
+        "min": 1,
+        "type": [
+          {
+            "code": "Period"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Extension.extension:active",
+        "path": "Extension.extension",
+        "sliceName": "active",
+        "short": "Zertifikat ist gültig bzw. nicht gesperrt",
+        "min": 0,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "Extension.extension:active.extension",
+        "path": "Extension.extension.extension",
+        "max": "0"
+      },
+      {
+        "id": "Extension.extension:active.url",
+        "path": "Extension.extension.url",
+        "fixedUri": "active"
+      },
+      {
+        "id": "Extension.extension:active.value[x]",
+        "path": "Extension.extension.value[x]",
+        "min": 1,
+        "type": [
+          {
+            "code": "boolean"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Extension.url",
+        "path": "Extension.url",
+        "fixedUri": "https://gematik.de/fhir/directory/StructureDefinition/EndpointCertificateEx"
+      },
+      {
+        "id": "Extension.value[x]",
+        "path": "Extension.value[x]",
+        "max": "0"
+      }
+    ]
+  }
+}
