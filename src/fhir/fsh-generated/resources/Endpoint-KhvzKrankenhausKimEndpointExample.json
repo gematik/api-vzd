@@ -12,6 +12,15 @@
       "https://gematik.de/fhir/directory/StructureDefinition/endpoint-directory-Strict"
     ]
   },
+  "extension": [
+    {
+      "url": "https://gematik.de/fhir/directory/StructureDefinition/EndpointVisibility",
+      "valueCoding": {
+        "code": "hide-versicherte",
+        "system": "https://gematik.de/fhir/directory/CodeSystem/EndpointVisibilityCS"
+      }
+    }
+  ],
   "connectionType": {
     "extension": [
       {

@@ -165,12 +165,6 @@
         "mustSupport": true
       },
       {
-        "id": "HealthcareService.active",
-        "path": "HealthcareService.active",
-        "min": 1,
-        "mustSupport": true
-      },
-      {
         "id": "HealthcareService.category:VzdLevelVS",
         "path": "HealthcareService.category",
         "sliceName": "VzdLevelVS",

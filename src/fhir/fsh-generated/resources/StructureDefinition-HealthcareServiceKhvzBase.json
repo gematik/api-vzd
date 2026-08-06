@@ -158,6 +158,12 @@
         "mustSupport": true
       },
       {
+        "id": "HealthcareService.active",
+        "path": "HealthcareService.active",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
         "id": "HealthcareService.providedBy",
         "path": "HealthcareService.providedBy",
         "min": 1,

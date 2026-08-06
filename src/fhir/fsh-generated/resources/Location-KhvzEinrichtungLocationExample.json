@@ -32,5 +32,9 @@
     "state": "Berlin",
     "postalCode": "10117",
     "country": "DE"
+  },
+  "position": {
+    "longitude": 13.3785,
+    "latitude": 52.517
   }
 }

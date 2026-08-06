@@ -32,6 +32,7 @@ VZD-Constraints. Nicht direkt instanziieren."""
 * identifier ^slicing.rules = #open
 * providedBy 1..1 MS
 * providedBy only Reference(OrganizationDirectory)
+* active 1..1 MS
 * category MS
   * coding obeys CodingSytemCodeInv
 * category ^slicing.discriminator.type = #pattern
@@ -63,7 +64,6 @@ Description: "Standort-Ebene des Krankenhausverzeichnisses als HealthcareService
 * identifier contains standortId 1..1 MS
 * identifier[standortId].system = $sidStandortId
 * identifier[standortId].value 1.. MS
-* active 1..1 MS
 * type 0..0
 * location 1..1 MS
 * location only Reference(LocationDirectory)
@@ -97,7 +97,6 @@ Description: "Einrichtungs-Ebene des Krankenhausverzeichnisses als HealthcareSer
 * identifier[standortnummer].value 1.. MS
 * identifier[abrechnungsIK].system = $IKNR
 * identifier[abrechnungsIK].value 1.. MS
-* active 1..1 MS
 * type 1.. MS
 * type from InEKEinrichtungstypenVS (required)
 * location 1..1 MS

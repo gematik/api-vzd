@@ -40,6 +40,7 @@
   "providedBy": {
     "reference": "Organization/KhvzKrankenhausOrganizationExample"
   },
+  "active": true,
   "type": [
     {
       "coding": [

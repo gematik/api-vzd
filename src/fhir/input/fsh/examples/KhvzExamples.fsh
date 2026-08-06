@@ -1,8 +1,10 @@
 // ============================================================================
 // KHVZ Beispiel-Kette:
 // Organization (Krankenhaus) -> generischer VZD-HS (#vzd)
-//   -> Standort -> Einrichtung -> Zentrum
-//                  Einrichtung -> Fachabteilung
+// Organization (Krankenhaus) -> Standort
+// Standort -> Einrichtung
+// Standort -> Zentrum
+// Einrichtung -> Fachabteilung
 // Hierarchie über extension[offeredIn].
 // ============================================================================
 
@@ -89,6 +91,7 @@ InstanceOf: EndpointDirectoryStrict
 Usage: #example
 Description: "KIM-Endpunkt des Krankenhauses"
 * meta.tag[Origin] = Origin#ldap
+* extension[endpointVisibility].valueCoding = EndpointVisibilityCS#hide-versicherte
 * status = #active "Active"
 * connectionType = EndpointDirectoryConnectionType#kim "KIM Endpoint"
 * connectionType.extension[kimVersion]
@@ -155,6 +158,8 @@ Description: "Location der Einrichtung"
 * address.state = "Berlin"
 * address.postalCode = "10117"
 * address.country = "DE"
+* position.longitude = 13.3785
+* position.latitude = 52.5170
 
 Instance: KhvzEinrichtungExample
 InstanceOf: HealthcareServiceEinrichtung
@@ -191,6 +196,7 @@ Description: "Zentrums-Ebene des Krankenhausverzeichnisses"
 * providedBy = Reference(KhvzKrankenhausOrganizationExample)
 * identifier[erId].value = "123456-02"
 * category[VzdLevelVS] = VzdLevelCS#zentrum "Zentrum"
+* active = true
 * type = InEKZentrenarten#02 "Onkologisches Zentrum"
 * name = "Musterklinik gGmbH - Onkologisches Zentrum"
 
@@ -204,5 +210,6 @@ Description: "Fachabteilungs-Ebene des Krankenhausverzeichnisses"
 * providedBy = Reference(KhvzKrankenhausOrganizationExample)
 * identifier[erId].value = "771234001-0100"
 * category[VzdLevelVS] = VzdLevelCS#fachabteilung "Fachabteilung"
+* active = true
 * type = $Fachabteilungsschluessel#0100 "Innere Medizin"
 * name = "Musterklinik gGmbH - Innere Medizin"
