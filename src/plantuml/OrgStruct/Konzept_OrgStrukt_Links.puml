@@ -42,6 +42,10 @@ skinparam ArrowColor Blue
 skinparam LineColor Blue
 skinparam DefaultTextColor Blue
 Organization_Krankenhaus <------- HealthcareService_Standort : providedBy
+skinparam ArrowColor Green
+skinparam LineColor Green
+skinparam DefaultTextColor Green
+HealthcareService_Standort ---up-> HealthcareService_Krankenhaus : offeredIn
 skinparam ArrowColor Black
 skinparam LineColor Black
 skinparam DefaultTextColor Black
@@ -56,7 +60,7 @@ class HealthcareService_Zentren {
 skinparam ArrowColor Blue
 skinparam LineColor Blue
 skinparam DefaultTextColor Blue
-Organization_Krankenhaus <-- HealthcareService_Zentren : providedBy
+Organization_Krankenhaus <-right- HealthcareService_Zentren : providedBy
 skinparam ArrowColor Green
 skinparam LineColor Green
 skinparam DefaultTextColor Green
@@ -125,6 +129,10 @@ skinparam ArrowColor Black
 skinparam LineColor Black
 skinparam DefaultTextColor Black
 }
+
+' Positionierung unten links
+KKA_Organization -[hidden]left- HealthcareService_Standort
+KKA_Organization -[hidden]down- HealthcareService_Fachabteilung
 
 
 @enduml
