@@ -1,0 +1,116 @@
+@startuml
+top to bottom direction
+skinparam linetype ortho
+skinparam packageStyle rectangle
+skinparam wrapWidth 180
+skinparam nodesep 8
+skinparam ranksep 25
+hide empty members
+
+package "Krankenhaus" {
+
+class Organization_Krankenhaus {
+}
+
+class HealthcareService_Krankenhaus {
+}
+
+class Location_Krankenhaus {
+}
+
+class Endpoint_Krankenhaus {
+}
+
+skinparam ArrowColor Blue
+skinparam LineColor Blue
+skinparam DefaultTextColor Blue
+Organization_Krankenhaus <--- HealthcareService_Krankenhaus : providedBy
+skinparam ArrowColor Black
+skinparam LineColor Black
+skinparam DefaultTextColor Black
+
+HealthcareService_Krankenhaus ---> Location_Krankenhaus : location
+HealthcareService_Krankenhaus ---> Endpoint_Krankenhaus : endpoint
+}
+
+package "Standort" {
+
+class HealthcareService_Standort {
+}
+
+skinparam ArrowColor Blue
+skinparam LineColor Blue
+skinparam DefaultTextColor Blue
+'Organization_Krankenhaus <------- HealthcareService_Standort : providedBy
+skinparam ArrowColor Green
+skinparam LineColor Green
+skinparam DefaultTextColor Green
+HealthcareService_Standort ---up-> HealthcareService_Krankenhaus : offeredIn
+skinparam ArrowColor Black
+skinparam LineColor Black
+skinparam DefaultTextColor Black
+
+}
+
+package "Zentren" {
+
+class HealthcareService_Zentren {
+}
+
+skinparam ArrowColor Blue
+skinparam LineColor Blue
+skinparam DefaultTextColor Blue
+'Organization_Krankenhaus <-- HealthcareService_Zentren : providedBy
+skinparam ArrowColor Green
+skinparam LineColor Green
+skinparam DefaultTextColor Green
+HealthcareService_Zentren ---up-> HealthcareService_Standort : offeredIn
+skinparam ArrowColor Black
+skinparam LineColor Black
+skinparam DefaultTextColor Black
+
+}
+
+package "Einrichtung" {
+
+class HealthcareService_Einrichtung {
+}
+
+skinparam ArrowColor Blue
+skinparam LineColor Blue
+skinparam DefaultTextColor Blue
+'Organization_Krankenhaus <-- HealthcareService_Einrichtung : providedBy
+skinparam ArrowColor Green
+skinparam LineColor Green
+skinparam DefaultTextColor Green
+HealthcareService_Einrichtung ---up-> HealthcareService_Standort : offeredIn
+skinparam ArrowColor Black
+skinparam LineColor Black
+skinparam DefaultTextColor Black
+
+}
+
+package "Fachabteilung" {
+
+class HealthcareService_Fachabteilung {
+}
+
+skinparam ArrowColor Blue
+skinparam LineColor Blue
+skinparam DefaultTextColor Blue
+'Organization_Krankenhaus <-right- HealthcareService_Fachabteilung : providedBy
+skinparam ArrowColor Green
+skinparam LineColor Green
+skinparam DefaultTextColor Green
+HealthcareService_Fachabteilung ---up-> HealthcareService_Einrichtung : offeredIn
+skinparam ArrowColor Black
+skinparam LineColor Black
+skinparam DefaultTextColor Black
+}
+
+' Alle HealthcareService-Klassen horizontal ausrichten
+'HealthcareService_Standort -[hidden]right- HealthcareService_Zentren
+'HealthcareService_Zentren -[hidden]right- HealthcareService_Einrichtung
+'HealthcareService_Einrichtung -[hidden]right- HealthcareService_Fachabteilung
+
+@enduml
