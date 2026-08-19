@@ -15,15 +15,13 @@ class Organization_Krankenhaus {
 class HealthcareService_Krankenhaus {
 }
 
-class Location_Krankenhaus {
-}
+'class Location_Krankenhaus {}
 
-class Endpoint_Krankenhaus {
-}
+'class Endpoint_Krankenhaus {}
 
-Organization_Krankenhaus <--- HealthcareService_Krankenhaus : providedBy
-HealthcareService_Krankenhaus ---> Location_Krankenhaus : location
-HealthcareService_Krankenhaus ---> Endpoint_Krankenhaus : endpoint
+Organization_Krankenhaus <-[thickness=3]-- HealthcareService_Krankenhaus : providedBy
+'HealthcareService_Krankenhaus ---> Location_Krankenhaus : location
+'HealthcareService_Krankenhaus ---> Endpoint_Krankenhaus : endpoint
 }
 
 package "Standort" as PST {
@@ -31,8 +29,8 @@ package "Standort" as PST {
 class HealthcareService_Standort {
 }
 
-Organization_Krankenhaus <-------- HealthcareService_Standort : providedBy
-HealthcareService_Standort ---up----> HealthcareService_Krankenhaus : offeredIn
+Organization_Krankenhaus <-[thickness=3]------- HealthcareService_Standort : providedBy
+HealthcareService_Standort ...up....> HealthcareService_Krankenhaus : offeredIn
 }
 
 package "Zentren" as PZE {
@@ -40,8 +38,8 @@ package "Zentren" as PZE {
 class HealthcareService_Zentren {
 }
 
-Organization_Krankenhaus <-- HealthcareService_Zentren : providedBy
-HealthcareService_Zentren ---up-> HealthcareService_Standort : offeredIn
+Organization_Krankenhaus <-[thickness=3]- HealthcareService_Zentren : providedBy
+HealthcareService_Zentren ...up.> HealthcareService_Standort : offeredIn
 }
 
 package "Einrichtung" as PEI {
@@ -49,8 +47,8 @@ package "Einrichtung" as PEI {
 class HealthcareService_Einrichtung {
 }
 
-Organization_Krankenhaus <--- HealthcareService_Einrichtung : providedBy
-HealthcareService_Einrichtung ---up-> HealthcareService_Standort : offeredIn
+Organization_Krankenhaus <-[thickness=3]-- HealthcareService_Einrichtung : providedBy
+HealthcareService_Einrichtung ...up.> HealthcareService_Standort : offeredIn
 }
 
 package "Fachabteilung" as PFA {
@@ -58,8 +56,8 @@ package "Fachabteilung" as PFA {
 class HealthcareService_Fachabteilung {
 }
 
-Organization_Krankenhaus <-right- HealthcareService_Fachabteilung : providedBy
-HealthcareService_Fachabteilung ---up-> HealthcareService_Einrichtung : offeredIn
+Organization_Krankenhaus <-right[thickness=3]- HealthcareService_Fachabteilung : providedBy
+HealthcareService_Fachabteilung ...up.> HealthcareService_Einrichtung : offeredIn
 }
 
 
