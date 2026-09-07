@@ -1,0 +1,53 @@
+{
+  "resourceType": "CodeSystem",
+  "status": "active",
+  "content": "complete",
+  "name": "NichtPatientenbezogeneGesundheitsversorgung_OID_URL",
+  "id": "nicht-patientenbezogene-gesundheitsversorgung-oid-url",
+  "title": "NichtPatientenbezogeneGesundheitsversorgung",
+  "description": "Einrichtungsarten der nicht-patientenbezogenen Gesundheitsversorgung (IHE-D healthcareFacilityTypeCode)",
+  "version": "2018-07-13T16:21:25",
+  "url": "urn:oid:1.3.6.1.4.1.19376.3.276.1.5.3",
+  "concept": [
+    {
+      "code": "BIL",
+      "display": "Bildungseinrichtung",
+      "definition": "Kindergarten, Schulen, Hochschulen und andere erzieherische Einrichtungen für Kinder oder Erwachsene"
+    },
+    {
+      "code": "FOR",
+      "display": "Forschungseinrichtung",
+      "definition": "Einrichtung der medizinischen Forschung außerhalb von Arztpraxis oder Krankenhaus."
+    },
+    {
+      "code": "GEN",
+      "display": "Gen-Analysedienste",
+      "definition": "Organisationen die Dienste für Vaterschafts-/Mutterschaftstest anbieten, für Abstammungtests, Riskoanalysen, etc."
+    },
+    {
+      "code": "MDK",
+      "display": "Medizinischer Dienst der Krankenversicherung",
+      "definition": "Alle medizinischen Dienste die sozialmedizinische Begutachtungen nach § 275 SGB V für die Krankenversicherungen oder Pflegebegutachtungen nach § 18 bzw. §§ 114ff SGB XI für die Pflegeversicherungen durchführen."
+    },
+    {
+      "code": "PAT",
+      "display": "Patient außerhalb der Betreuung",
+      "definition": "Dieser Wert kann zur Kennzeichnung der Herkunft von Dokumenten verwendet werden, die der Patient selbstständig erstellt und eingestellt hat, zum Beispiel über ein Patientenportal oder eine Smartphone-App. Daten die vom Patienten über eine solche Lösung stellvertretend für einen Heilberufler eingestellt werden (z.B. gescannter Arztbrief, DICOM-DVD) sollten nicht diesen Wert verwenden, sondern den für den Heilberufler vorgesehenen Wert."
+    },
+    {
+      "code": "SPE",
+      "display": "Spendedienste",
+      "definition": "Blutspendedienst, Knochenmarkspendedienst, Samenbank, Nabelschnur-Blutbank, Bio-Banken, etc."
+    },
+    {
+      "code": "VER",
+      "display": "Versicherungsträger",
+      "definition": "Träger der gesetzlichen Krankenversicherung (d.h. Krankenkasse) oder der privaten Krankenversicherung."
+    }
+  ],
+  "experimental": false,
+  "publisher": "gematik GmbH",
+  "date": "2025-02-26",
+  "caseSensitive": true,
+  "count": 7
+}
