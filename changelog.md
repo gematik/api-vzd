@@ -1,5 +1,18 @@
 # Changelog
 
+## 2026-09-07 - Version 1.3.0
+- `feat`: added `EndpointCertificateEx` extension on `Endpoint` carrying the X.509 certificate (DER, Base64-encoded) plus serial number, issuer DN, public key algorithm, validity period and active flag
+- `feat`: added `EndpointCertificateEx` as a named extension slice `certificate` with cardinality `0..* MS` to `EndpointDirectory`
+- `feat`: added CodeSystem `CertificatePublicKeyAlgorithmCS` (`#RSA`, `#EC`) and ValueSet `CertificatePublicKeyAlgorithmVS` for `EndpointCertificateEx.publicKeyAlgorithm`
+- `feat`: added CodeSystem `PatientenbezogeneGesundheitsversorgung_OID_URL` (`urn:oid:1.3.6.1.4.1.19376.3.276.1.5.2`) with the codes `#APD`, `#APO`, `#BER`, `#PRA`, `#BAA`, `#BHR`, `#HEB`, `#HOS`, `#KHS`, `#MVZ`, `#HAN`, `#REH`, `#HEI`, `#PFL`, `#RTN`, `#SEL`, `#TMZ`
+- `feat`: added CodeSystem `NichtPatientenbezogeneGesundheitsversorgung_OID_URL` (`urn:oid:1.3.6.1.4.1.19376.3.276.1.5.3`) with the codes `#BIL`, `#FOR`, `#GEN`, `#MDK`, `#PAT`, `#SPE`, `#VER`
+- `feat`: added both CodeSystems to `HealthcareServiceTypeVS`, extending the value list for `HealthcareService.type` by the IHE-D healthcareFacilityTypeCodes
+- `change`: updated dependency `de.gematik.terminology` to `1.0.9` and `de.gematik.ti` to `1.3.1`; no impact on VZD behavior, this change serves dependency alignment as `de.gematik.ti` already declares `de.gematik.terminology 1.0.9`
+
+### data migration
+- not needed, the new extension is optional and all existing data is still valid
+- the extension of `HealthcareServiceTypeVS` is additive, all existing `HealthcareService.type` codes remain valid
+
 ## 2026-05-06 Version 1.2.0
 - `feat`: added `sonderoeffnung` concept to `OpeningTimeQualifierCS` which is used to qualify extra opening times in the `SpecialOpeningTimesEX`Extension.
 

@@ -8,7 +8,8 @@ Description: "Endpoints for applications in the gematik Directory"
 * extension contains 
   EndpointVisibility named endpointVisibility 0..* MS and
   OwnerTelematikIdEx named ownerTelematikId 0..* MS and
-  EndpointFADIdEx named endpointFADId 0..* MS
+  EndpointFADIdEx named endpointFADId 0..* MS and
+  EndpointCertificateEx named certificate 0..* MS
 * meta.tag 1.. MS
   * ^slicing.discriminator.type = #pattern
   * ^slicing.discriminator.path = "system"

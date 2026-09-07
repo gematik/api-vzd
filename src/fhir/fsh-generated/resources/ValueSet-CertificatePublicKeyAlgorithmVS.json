@@ -1,0 +1,20 @@
+{
+  "resourceType": "ValueSet",
+  "status": "active",
+  "name": "CertificatePublicKeyAlgorithmVS",
+  "id": "CertificatePublicKeyAlgorithmVS",
+  "title": "CertificatePublicKeyAlgorithmVS",
+  "description": "ValueSet der Public-Key-Verfahren von X.509-Zertifikaten",
+  "version": "1.3.0",
+  "url": "https://gematik.de/fhir/directory/ValueSet/CertificatePublicKeyAlgorithmVS",
+  "experimental": false,
+  "publisher": "gematik GmbH",
+  "date": "2025-02-26",
+  "compose": {
+    "include": [
+      {
+        "system": "https://gematik.de/fhir/directory/CodeSystem/CertificatePublicKeyAlgorithmCS"
+      }
+    ]
+  }
+}
