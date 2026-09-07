@@ -1,6 +1,6 @@
 # Changelog
 
-## tbd - Version 1.3.0
+## 2026-09-07 - Version 1.3.0
 - `feat`: added `EndpointCertificateEx` extension on `Endpoint` carrying the X.509 certificate (DER, Base64-encoded) plus serial number, issuer DN, public key algorithm, validity period and active flag
 - `feat`: added `EndpointCertificateEx` as a named extension slice `certificate` with cardinality `0..* MS` to `EndpointDirectory`
 - `feat`: added CodeSystem `CertificatePublicKeyAlgorithmCS` (`#RSA`, `#EC`) and ValueSet `CertificatePublicKeyAlgorithmVS` for `EndpointCertificateEx.publicKeyAlgorithm`
