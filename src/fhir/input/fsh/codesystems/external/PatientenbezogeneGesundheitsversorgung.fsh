@@ -1,10 +1,6 @@
-//FIXME: URL in IHE http://ihe-d.de/CodeSystems/PatientBezogenenGesundheitsversorgung
-// ABER: VZD nutzt oids analog zu den Fachrichtungen-CodeSystemen
-// TODO: Solange der VZD am OID-Canonical haengt, muss dieses CodeSystem lokal gepflegt werden.
-//       Bei einer Umstellung auf URL-Canonicals kann es durch de.ihe-d.terminology#3.0.1 ersetzt werden:
-//       http://ihe-d.de/CodeSystems/PatientBezogenenGesundheitsversorgung (Version 2018-07-13T16:21:42),
-//       inhaltlich identisch (17 Codes, gleiche Displays und Definitionen).
-//       Breaking: coding.system in bestehenden Instanzen wandert von urn:oid: auf die IHE-URL.
+// Inhalt 1:1 aus de.ihe-d.terminology#3.0.1, dort publiziert als http://ihe-d.de/CodeSystems/PatientBezogenenGesundheitsversorgung.
+// Lokale Kopie noetig, weil dort nur der URL-Canonical existiert - VZD, ePA-Terminologie und LDAP-Quelle nutzen dagegen die OID.
+// TODO: durch das Paket ersetzen, sobald gematik auf Canonicals wechselt; breaking, coding.system aendert sich in allen Instanzen.
 
 CodeSystem: PatientenbezogeneGesundheitsversorgung_OID_URL
 Id: patientenbezogene-gesundheitsversorgung-oid-url
