@@ -1,0 +1,23 @@
+@startuml
+autonumber "<b>[00]"
+
+box KIM-Clientmodul #Yellow
+participant "Accountverwaltung-GUI" as AccGUI
+end box
+
+box KIM-Fachdienst #Yellow
+participant "AccounManager" as AccMgmt
+end box
+
+box LDAP VZD #LightGreen
+participant "LDAP VZD" as VZD
+end box
+
+title KIM 1.5 Accountverwaltung
+
+AccGUI -> AccMgmt: Authentisierung über SMC-B/HBA (REST)
+AccGUI -> AccMgmt: Verwaltung KIM-Adressen (REST)
+AccMgmt -> VZD: Authentisierung KIM Fachdienst \nüber TLS-Client Zertifikat (TLS)
+AccMgmt -> VZD: Verwaltung KIM-Adressen (REST)
+
+@enduml
