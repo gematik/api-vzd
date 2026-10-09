@@ -29,6 +29,9 @@ Sync (Updates) müssen auch für verschobene KIM-Adressen in FHIR Unterstrukture
 end note
 
 o -> ssp: appTag für KIM-Adresse eintragen
+note right of o 
+Welche Regeln für appTags werden wo geprüft?
+end note
 ssp -> fd: appTag für authentifizierten Nutzer eintragen (noVzdMailEntry muss gesetzt sein, bzw. entsprechender Wert in EndpointVisibilityCS)
 
 o -> ssp: KIM-Adressen in Unterstruktur verschieben
