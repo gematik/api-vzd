@@ -2,6 +2,7 @@
 skinparam dpi 100
 skinparam WrapWidth 200
 skinparam monochrome true
+autonumber "<b>[00]"
 
 'title "FHIR-Directory, Sequenzdiagram SSP Authenticate mit Passwort"
 actor o as "Org-Admin\noder LE"
@@ -12,22 +13,28 @@ participant ldap as "LDAP VZD"
 participant fd as "FHIR-Directory"
 
 
-o -> cl: [1] KIM-Adresse einrichten\n(mail, Version, noVzdMailEntry)
+o -> cl: KIM-Adresse einrichten\n(mail, Version, noVzdMailEntry)
 activate cl
-cl -> kimfd: [2] KIM-Adresse einrichten\n(mail, Version, noVzdMailEntry)
-kimfd -> ldap: [3] KIM-Adresse einrichten\n(mail, Version, noVzdMailEntry)
+note right of o 
+Wenn noVzdMailEntry=true, dann können im FHIR VZD appTags eingetragen werden.
+end note
+cl -> kimfd: KIM-Adresse einrichten\n(mail, Version, noVzdMailEntry)
+kimfd -> ldap: KIM-Adresse einrichten\n(mail, Version, noVzdMailEntry)
 deactivate cl
 
 ldap -> fd: Sync KIM-Adresse\n(mail, Version, noVzdMailEntry)
 
 note left of fd 
-Sync muss auch für verschobene KIM-Adressen in FHIR Unterstrukturen funktionieren
+Sync (Updates) müssen auch für verschobene KIM-Adressen in FHIR Unterstrukturen funktionieren.\n noVzdMailEntry muss in Endpoint.extension:endpointVisibility synchronisiert werden.
 end note
 
 o -> ssp: appTag für KIM-Adresse eintragen
-ssp -> fd: appTag für authentifizierten Nutzer eintragen (noVzdMailEntry muss gesetzt sein)
+ssp -> fd: appTag für authentifizierten Nutzer eintragen (noVzdMailEntry muss gesetzt sein, bzw. entsprechender Wert in EndpointVisibilityCS)
 
 o -> ssp: KIM-Adressen in Unterstruktur verschieben
+note right of o 
+Berechtigungskonzept muss geklärt werden, z.B. Owner & Holder
+end note
 ssp -> fd: KIM-Adressen in Unterstruktur verschieben
 
 o -> ssp: appTag für KIM-Adresse löschen
