@@ -1,0 +1,40 @@
+@startuml
+skinparam dpi 100
+skinparam WrapWidth 200
+skinparam monochrome true
+
+'title "FHIR-Directory, Sequenzdiagram SSP Authenticate mit Passwort"
+actor o as "Org-Admin\noder LE"
+participant cl as "KIM-Clientmodul"
+participant ssp as "SelfService"
+participant kimfd as "KIM Fachdienst"
+participant ldap as "LDAP VZD"
+participant fd as "FHIR-Directory"
+
+
+o -> cl: [1] KIM-Adresse einrichten\n(mail, Version, noVzdMailEntry)
+activate cl
+cl -> kimfd: [2] KIM-Adresse einrichten\n(mail, Version, noVzdMailEntry)
+kimfd -> ldap: [3] KIM-Adresse einrichten\n(mail, Version, noVzdMailEntry)
+deactivate cl
+
+ldap -> fd: Sync KIM-Adresse\n(mail, Version, noVzdMailEntry)
+
+note left of fd 
+Sync muss auch für verschobene KIM-Adressen in FHIR Unterstrukturen funktionieren
+end note
+
+o -> ssp: appTag für KIM-Adresse eintragen
+ssp -> fd: appTag für authentifizierten Nutzer eintragen (noVzdMailEntry muss gesetzt sein)
+
+o -> ssp: KIM-Adressen in Unterstruktur verschieben
+ssp -> fd: KIM-Adressen in Unterstruktur verschieben
+
+o -> ssp: appTag für KIM-Adresse löschen
+ssp -> fd: appTag für authentifizierten Nutzer löschen
+
+note left of ldap 
+KIM-Adresse wird weiterhin im LDAP VZD nur in kimData gespeichert
+end note
+
+@enduml
