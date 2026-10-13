@@ -1,6 +1,6 @@
 # Changelog
 
-## tbd - Version 1.4.0
+## 2026-10-14 - Version 1.4.0
 - `change`: `breaking` set cardinality of `start` and `end` in `SpecialOpeningTimesEX.extension:period.valuePeriod` from `0..1` to `1..1 MS`; open periods are no longer allowed for special opening times
 - `change`: `breaking` set cardinality of `start` and `end` in `HealthcareServiceDirectory.notAvailable.during` from `0..1` to `1..1 MS`; open periods are no longer allowed for closing times
 
