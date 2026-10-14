@@ -1,0 +1,128 @@
+@startuml
+skinparam dpi 100
+skinparam WrapWidth 200
+skinparam monochrome true
+autonumber "<b>[00]"
+
+'title "Zusätzliche KIM-Adressen für Kassen"
+actor o as "Org-Admin\noder LE"
+participant cl as "KIM-Clientmodul"
+participant ssp as "SelfService"
+participant kimfd as "KIM Fachdienst"
+participant ldap as "LDAP VZD"
+participant fd as "FHIR-Directory"
+
+note left of fd 
+<b>KIM-Fachdaten
+LDAP-VZD: eAU@kasse.kim.telematik
+LDAP-VZD:
+<b>mail=eAU@kasse.kim.telematik
+<b>komLeData=1.5,eAU@kasse.kim.telematik
+<b>kimData=eAU@kasse.kim.telematik,1.5
+
+FHIR-VZD:
+<b>Endpoint.connectionType=kim
+<b>Endpoint.connectionType.extension:kimVersion=1.5
+<b>Endpoint.address=eAU@kasse.kim.telematik
+end note
+
+alt Öffentlich sichtbare KIM-Adresse eintragen
+
+o -> cl: KIM-Adresse einrichten\n(mail, Version, noVzdMailEntry=false)
+activate cl
+cl -> kimfd: KIM-Adresse einrichten\n(mail, Version, noVzdMailEntry=false)
+kimfd -> ldap: KIM-Adresse einrichten\n(mail, Version, noVzdMailEntry=false)
+deactivate cl
+
+ldap -> fd: Sync KIM-Adresse\n(mail, Version, noVzdMailEntry=false)
+
+note left of fd 
+KIM-Fachdaten
+LDAP-VZD:
+mail=eAU@kasse.kim.telematik
+komLeData=1.5,eAU@kasse.kim.telematik
+kimData=eAU@kasse.kim.telematik,1.5
+
+<b>mail=oeffentliche-kim-adresse@test.kim.telematik
+<b>komLeData=1.5,oeffentliche-kim-adresse@test.kim.telematik
+<b>kimData=oeffentliche-kim-adresse@test.kim.telematik,1.5
+
+FHIR-VZD:
+Endpoint.connectionType=kim
+Endpoint.connectionType.extension:kimVersion=1.5
+Endpoint.address=eAU@kasse.kim.telematik
+
+<b>Endpoint.connectionType=kim
+<b>Endpoint.connectionType.extension:kimVersion=1.5
+<b>Endpoint.address=oeffentliche-kim-adresse@test.kim.telematik
+end note
+
+else KIM-Adresse für Fachverfahren eintragen 
+
+o -> cl: KIM-Adresse einrichten\n(mail, Version, noVzdMailEntry)
+activate cl
+note right of o 
+Wenn noVzdMailEntry=true, dann können im FHIR VZD appTags eingetragen werden.
+end note
+cl -> kimfd: KIM-Adresse einrichten\n(mail, Version, noVzdMailEntry=true)
+kimfd -> ldap: KIM-Adresse einrichten\n(mail, Version, noVzdMailEntry=true)
+deactivate cl
+
+ldap -> fd: Sync KIM-Adresse\n(mail, Version, noVzdMailEntry=true)
+
+note left of fd 
+KIM-Fachdaten
+LDAP-VZD:
+mail=eAU@kasse.kim.telematik
+komLeData=1.5,eAU@kasse.kim.telematik
+kimData=eAU@kasse.kim.telematik,1.5
+
+mail=
+komLeData=
+<b>kimData=fachverfahren1@test.kim.telematik,1.5
+
+FHIR-VZD:
+Endpoint.connectionType=kim
+Endpoint.connectionType.extension:kimVersion=1.5
+Endpoint.address=oeffentliche-kim-adresse@test.kim.telematik
+
+<b>Endpoint.connectionType=kim
+<b>Endpoint.connectionType.extension:kimVersion=1.5
+<b>Endpoint.extension:endpointVisibility=Fachverfahren
+<b>Endpoint.address=fachverfahren1@test.kim.telematik
+end note
+
+end
+
+== appTag für KIM-Adresse eintragen ==
+
+o -> ssp: appTag für KIM-Adresse eintragen
+note right of o 
+Welche Regeln für appTags werden wo geprüft?
+end note
+ssp -> fd: appTag für authentifizierten Nutzer eintragen (noVzdMailEntry muss gesetzt sein, bzw. entsprechender Wert in EndpointVisibilityCS)
+
+note left of fd 
+<b>KIM-Fachdaten</b>
+LDAP-VZD:
+mail=eAU@kasse.kim.telematik
+komLeData=1.5,eAU@kasse.kim.telematik
+kimData=eAU@kasse.kim.telematik,1.5
+
+mail=
+komLeData=
+kimData=fachverfahren1@test.kim.telematik,1.5
+
+FHIR-VZD:
+Endpoint.connectionType=kim
+Endpoint.connectionType.extension:kimVersion=1.5
+Endpoint.address=oeffentliche-kim-adresse@test.kim.telematik
+
+Endpoint.connectionType=kim
+Endpoint.connectionType.extension:kimVersion=1.5
+Endpoint.extension:endpointVisibility=Fachverfahren
+<b>Endpoint.payloadType=eEB</b>
+Endpoint.address=fachverfahren1@test.kim.telematik
+end note
+
+@enduml
