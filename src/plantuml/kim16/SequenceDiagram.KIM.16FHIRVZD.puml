@@ -36,14 +36,14 @@ end note
 note left of fd 
 KIM-Fachdaten
 LDAP-VZD:
-mail=oeffentliche-kim-adresse@test.kim.telematik
-komLeData=1.5,oeffentliche-kim-adresse@test.kim.telematik
-kimData=oeffentliche-kim-adresse@test.kim.telematik,1.5
+<b>mail=oeffentliche-kim-adresse@test.kim.telematik
+<b>komLeData=1.5,oeffentliche-kim-adresse@test.kim.telematik
+<b>kimData=oeffentliche-kim-adresse@test.kim.telematik,1.5
 
 FHIR-VZD:
-Endpoint.connectionType=kim
-Endpoint.connectionType.extension:kimVersion=1.5
-Endpoint.address=oeffentliche-kim-adresse@test.kim.telematik
+<b>Endpoint.connectionType=kim
+<b>Endpoint.connectionType.extension:kimVersion=1.5
+<b>Endpoint.address=oeffentliche-kim-adresse@test.kim.telematik
 end note
 
 == KIM-Adresse für Fachverfahren eintragen ==
@@ -68,17 +68,17 @@ kimData=oeffentliche-kim-adresse@test.kim.telematik,1.5
 
 mail=
 komLeData=
-kimData=fachverfahren1@test.kim.telematik,1.5
+<b>kimData=fachverfahren1@test.kim.telematik,1.5
 
 FHIR-VZD:
 Endpoint.connectionType=kim
 Endpoint.connectionType.extension:kimVersion=1.5
 Endpoint.address=oeffentliche-kim-adresse@test.kim.telematik
 
-Endpoint.connectionType=kim
-Endpoint.connectionType.extension:kimVersion=1.5
-Endpoint.extension:endpointVisibility=Fachverfahren
-Endpoint.address=fachverfahren1@test.kim.telematik
+<b>Endpoint.connectionType=kim
+<b>Endpoint.connectionType.extension:kimVersion=1.5
+<b>Endpoint.extension:endpointVisibility=Fachverfahren
+<b>Endpoint.address=fachverfahren1@test.kim.telematik
 end note
 
 == appTag für KIM-Adresse eintragen ==
@@ -90,7 +90,7 @@ end note
 ssp -> fd: appTag für authentifizierten Nutzer eintragen (noVzdMailEntry muss gesetzt sein, bzw. entsprechender Wert in EndpointVisibilityCS)
 
 note left of fd 
-KIM-Fachdaten
+<b>KIM-Fachdaten</b>
 LDAP-VZD:
 mail=oeffentliche-kim-adresse@test.kim.telematik
 komLeData=1.5,oeffentliche-kim-adresse@test.kim.telematik
@@ -108,7 +108,7 @@ Endpoint.address=oeffentliche-kim-adresse@test.kim.telematik
 Endpoint.connectionType=kim
 Endpoint.connectionType.extension:kimVersion=1.5
 Endpoint.extension:endpointVisibility=Fachverfahren
-Endpoint.payloadType=eEB
+<b>Endpoint.payloadType=eEB</b>
 Endpoint.address=fachverfahren1@test.kim.telematik
 end note
 
