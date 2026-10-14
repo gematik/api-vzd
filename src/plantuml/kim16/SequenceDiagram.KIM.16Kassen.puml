@@ -16,14 +16,14 @@ note left of fd
 <b>KIM-Fachdaten
 LDAP-VZD: eAU@kasse.kim.telematik
 LDAP-VZD:
-<b>mail=eAU@kasse.kim.telematik
-<b>komLeData=1.5,eAU@kasse.kim.telematik
-<b>kimData=eAU@kasse.kim.telematik,1.5
+mail=eAU@kasse.kim.telematik
+komLeData=1.5,eAU@kasse.kim.telematik
+kimData=eAU@kasse.kim.telematik,1.5
 
 FHIR-VZD:
-<b>Endpoint.connectionType=kim
-<b>Endpoint.connectionType.extension:kimVersion=1.5
-<b>Endpoint.address=eAU@kasse.kim.telematik
+Endpoint.connectionType=kim
+Endpoint.connectionType.extension:kimVersion=1.5
+Endpoint.address=eAU@kasse.kim.telematik
 end note
 
 alt Öffentlich sichtbare KIM-Adresse eintragen
@@ -43,9 +43,9 @@ mail=eAU@kasse.kim.telematik
 komLeData=1.5,eAU@kasse.kim.telematik
 kimData=eAU@kasse.kim.telematik,1.5
 
-<b>mail=oeffentliche-kim-adresse@test.kim.telematik
-<b>komLeData=1.5,oeffentliche-kim-adresse@test.kim.telematik
-<b>kimData=oeffentliche-kim-adresse@test.kim.telematik,1.5
+<b>mail=oeffentliche-kim-adresse@kasse.kim.telematik
+<b>komLeData=1.5,oeffentliche-kim-adresse@kasse.kim.telematik
+<b>kimData=oeffentliche-kim-adresse@kasse.kim.telematik,1.5
 
 FHIR-VZD:
 Endpoint.connectionType=kim
@@ -54,7 +54,7 @@ Endpoint.address=eAU@kasse.kim.telematik
 
 <b>Endpoint.connectionType=kim
 <b>Endpoint.connectionType.extension:kimVersion=1.5
-<b>Endpoint.address=oeffentliche-kim-adresse@test.kim.telematik
+<b>Endpoint.address=oeffentliche-kim-adresse@kasse.kim.telematik
 end note
 
 else KIM-Adresse für Fachverfahren eintragen 
@@ -79,17 +79,17 @@ kimData=eAU@kasse.kim.telematik,1.5
 
 mail=
 komLeData=
-<b>kimData=fachverfahren1@test.kim.telematik,1.5
+<b>kimData=fachverfahren1@kasse.kim.telematik,1.5
 
 FHIR-VZD:
 Endpoint.connectionType=kim
 Endpoint.connectionType.extension:kimVersion=1.5
-Endpoint.address=oeffentliche-kim-adresse@test.kim.telematik
+Endpoint.address=oeffentliche-kim-adresse@kasse.kim.telematik
 
 <b>Endpoint.connectionType=kim
 <b>Endpoint.connectionType.extension:kimVersion=1.5
 <b>Endpoint.extension:endpointVisibility=Fachverfahren
-<b>Endpoint.address=fachverfahren1@test.kim.telematik
+<b>Endpoint.address=fachverfahren1@kasse.kim.telematik
 end note
 
 end
@@ -111,18 +111,18 @@ kimData=eAU@kasse.kim.telematik,1.5
 
 mail=
 komLeData=
-kimData=fachverfahren1@test.kim.telematik,1.5
+kimData=fachverfahren1@kasse.kim.telematik,1.5
 
 FHIR-VZD:
 Endpoint.connectionType=kim
 Endpoint.connectionType.extension:kimVersion=1.5
-Endpoint.address=oeffentliche-kim-adresse@test.kim.telematik
+Endpoint.address=oeffentliche-kim-adresse@kasse.kim.telematik
 
 Endpoint.connectionType=kim
 Endpoint.connectionType.extension:kimVersion=1.5
 Endpoint.extension:endpointVisibility=Fachverfahren
 <b>Endpoint.payloadType=eEB</b>
-Endpoint.address=fachverfahren1@test.kim.telematik
+Endpoint.address=fachverfahren1@kasse.kim.telematik
 end note
 
 @enduml
