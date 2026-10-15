@@ -392,7 +392,7 @@ Please note that with this parameter resources with no active endpoints are not 
 |organization.identifier
 |1-2arvtst-ap000052
 |Search for the organization with search parameter "identifier" for telematikID "1-2arvtst-ap000052". +
-Note: A resourcew may contain several values in the "identifier". This request searches in all identifier values, independent from the identifier coding system.
+Note: A resourcew may contain several values in the "identifier". This request searches in all identifier values, independent of the identifier coding system.
 
 |===
  
@@ -1216,3 +1216,106 @@ GET {{fhir_server}}/fdv/search/HealthcareService?_query=near
     &specialty=20
     &characteristics=parkmoeglichkeit
 ----
+
+=== ePA organization search (_query=epaSearch)
+
+Custom FHIR query for an optimized and performant search for healthcare services in the ePA context. +
++
+The query is intended for manufacturers of ePA frontend applications (ePA-FdV) and provides an optimized alternative to complex FHIR search requests containing a large number of ProfessionOIDs. +
++
+The search filters for active and visible organizations and
+
+- performs a full-text search if the `text` parameter is provided,
+- filters organizations according to the ProfessionOIDs applicable to the specified ePA version,
+- optionally includes or excludes DiGA organizations,
+- optionally excludes organizations with specified ProfessionOIDs,
+- optionally filters for an organization identifier, e.g. a Telematik-ID,
+- returns the associated HealthcareService, Organization and Location resources.
+
+The list of allowed ProfessionOIDs is determined by the specified ePA `version`. The corresponding ProfessionOID lists are maintained by the FHIR VZD and do not have to be provided by the client. +
++
+This avoids complex search requests containing a large number of ProfessionOIDs combined by OR conditions and therefore reduces the runtime load of the FHIR VZD.
+
+[NOTE]
+--
+The operation is intended to be used instead of explicitly specifying the complete list of ProfessionOIDs applicable to an ePA version via `organization.type`.
+
+The client specifies the required ePA version. Filtering for the corresponding ProfessionOIDs is performed by the FHIR VZD.
+--
+
+==== Input
+.Table ePA organization search parameters
+|===
+|Search parameter |Description |Data typ
+
+|*text*
+|Search text, will be compared to the full-text attribute of the FHIR resource.
+|String
+
+|*version* (optional)
+|ePA version used to determine the applicable list of ProfessionOIDs. Supported values are `3.0` and `3.1`.
+|String
+
+|*includeDiga* (optional)
+|Controls whether organizations of type DiGA (Digital Health Application) are included in the search result. If set to `false`, DiGA organizations are excluded. The ProfessionOID for DiGA is: 1.2.276.0.76.4.282
+|boolean
+
+|*excludeType* (optional)
+|ProfessionOID to be explicitly excluded from the search result. The parameter can be used to exclude organization types from the set of ProfessionOIDs applicable to the selected ePA version.
+|String
+
+|*identifier* (optional)
+|Filters organizations by `Organization.identifier`. This parameter can be used, for example, to search for a specific organization by its Telematik-ID.
+|String
+
+|===
+
+==== Output
+
+The operation returns a FHIR Bundle containing the HealthcareService resources matching the search criteria as well as the associated Organization and Location resources. +
++
+Only active and visible organizations matching the ProfessionOID configuration of the specified ePA version are returned.
+
+==== Example queries
+
+.Search for HealthcareServices for ePA version 3.1
+[source]
+----
+GET {{fhir_server}}/fdv/search/HealthcareService?_query=epaSearch
+    &text=Mustermann
+    &version=3.1
+----
+
+.Search for HealthcareServices for ePA version 3.1 excluding DiGA
+[source]
+----
+GET {{fhir_server}}/fdv/search/HealthcareService?_query=epaSearch
+    &text=Mustermann
+    &version=3.1
+    &includeDiga=false
+----
+
+.Search for HealthcareServices excluding a specific ProfessionOID
+[source]
+----
+GET {{fhir_server}}/fdv/search/HealthcareService?_query=epaSearch
+    &text=Mustermann
+    &version=3.1
+    &excludeType=1.2.276.0.76.4.54
+----
+
+.Search for an HealthcareServices by Telematik-ID
+[source]
+----
+GET {{fhir_server}}/fdv/search/HealthcareService?_query=epaSearch
+    &version=3.1
+    &identifier=1-2arvtst-ap000052
+----
+
+==== Restrictions
+
+- Only HealthcareServices are searched. PractitionerRole resources are not part of this operation.
+- Only one full-text search value is supported. To search multiple values use whitespaces.
+- Combining multiple full-text search values with OR semantics is not supported.
+- The applicable ProfessionOIDs are determined by the specified ePA version and do not have to be provided by the client.
+- Additional search parameters not documented for this operation are not supported.
