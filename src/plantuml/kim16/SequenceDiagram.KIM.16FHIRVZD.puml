@@ -83,9 +83,6 @@ end note
 == appTag & Sichtbarkeit für KIM-Adresse eintragen ==
 
 o -> ssp: appTag & Sichtbarkeit für KIM-Adresse eintragen
-note right of o 
-Welche Regeln für appTags werden wo geprüft?
-end note
 ssp -> fd: appTag & Sichtbarkeit für authentifizierten Nutzer eintragen
 
 note left of fd 
