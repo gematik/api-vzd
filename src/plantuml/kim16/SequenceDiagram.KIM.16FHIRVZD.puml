@@ -26,10 +26,10 @@ cl -> kimfd: KIM-Adresse einrichten\n(mail, Version, noVzdMailEntry=false)
 kimfd -> ldap: KIM-Adresse einrichten\n(mail, Version, noVzdMailEntry=false)
 deactivate cl
 
-ldap -> fd: Sync KIM-Adresse\n(mail, Version, noVzdMailEntry=false)
+ldap -> fd: Sync KIM-Adresse\n(mail, Version)
 
 note left of fd 
-Sync (Updates) müssen auch für verschobene KIM-Adressen in FHIR Unterstrukturen funktionieren.\n noVzdMailEntry muss in Endpoint.extension:endpointVisibility synchronisiert werden.
+Sync (Updates) müssen auch für verschobene KIM-Adressen in FHIR Unterstrukturen funktionieren.
 end note
 
 
@@ -57,7 +57,7 @@ cl -> kimfd: KIM-Adresse einrichten\n(mail, Version, noVzdMailEntry=true)
 kimfd -> ldap: KIM-Adresse einrichten\n(mail, Version, noVzdMailEntry=true)
 deactivate cl
 
-ldap -> fd: Sync KIM-Adresse\n(mail, Version, noVzdMailEntry=true)
+ldap -> fd: Sync KIM-Adresse\n(mail, Version)
 
 note left of fd 
 KIM-Fachdaten
@@ -77,17 +77,16 @@ Endpoint.address=oeffentliche-kim-adresse@test.kim.telematik
 
 <b>Endpoint.connectionType=kim
 <b>Endpoint.connectionType.extension:kimVersion=1.5
-<b>Endpoint.extension:endpointVisibility=Fachverfahren
 <b>Endpoint.address=fachverfahren1@test.kim.telematik
 end note
 
-== appTag für KIM-Adresse eintragen ==
+== appTag & Sichtbarkeit für KIM-Adresse eintragen ==
 
-o -> ssp: appTag für KIM-Adresse eintragen
+o -> ssp: appTag & Sichtbarkeit für KIM-Adresse eintragen
 note right of o 
 Welche Regeln für appTags werden wo geprüft?
 end note
-ssp -> fd: appTag für authentifizierten Nutzer eintragen (noVzdMailEntry muss gesetzt sein, bzw. entsprechender Wert in EndpointVisibilityCS)
+ssp -> fd: appTag & Sichtbarkeit für authentifizierten Nutzer eintragen
 
 note left of fd 
 <b>KIM-Fachdaten</b>
@@ -107,7 +106,7 @@ Endpoint.address=oeffentliche-kim-adresse@test.kim.telematik
 
 Endpoint.connectionType=kim
 Endpoint.connectionType.extension:kimVersion=1.5
-Endpoint.extension:endpointVisibility=Fachverfahren
+<b>Endpoint.extension:endpointVisibility=Fachverfahren
 <b>Endpoint.payloadType=eEB</b>
 Endpoint.address=fachverfahren1@test.kim.telematik
 end note
@@ -119,12 +118,5 @@ note right of o
 Berechtigungskonzept muss geklärt werden, z.B. Owner & Holder
 end note
 ssp -> fd: KIM-Adressen in Unterstruktur verschieben
-
-o -> ssp: appTag für KIM-Adresse löschen
-ssp -> fd: appTag für authentifizierten Nutzer löschen
-
-note left of ldap 
-KIM-Adresse wird weiterhin im LDAP VZD nur in kimData gespeichert
-end note
 
 @enduml
