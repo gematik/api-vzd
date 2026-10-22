@@ -104,7 +104,7 @@ Annahme: Identifier.type = domainID
 | jeweilige Resource | Wird in Meta-Info (Bereich Security) abgelegt | -
 
 |maxKOMLEadr |HBA und SMC-B |Maximale Anzahl von mail Adressen in den KOM-LE-Fachdaten. Falls kein Wert eingetragen wurde, können beliebig viele mail Adressen in den KOM-LE Fachdaten eingetragen werden. Falls ein Wert eingetragen wurde, können maximal so viele mail Adressen in den KOM-LE Fachdaten eingetragen werden.
-| - | - |Wird aktuelle nicht synchronisiert, da dieses nicht für die TIM-Umsetzung gebraucht wird und in FHIR anderes geregelt werden kann.
+| - | - |Wird aktuelle nicht synchronisiert, da dieses nur für den KAssenbereich relevant ist und in FHIR anderes geregelt werden kann.
 
 |personalEntry |HBA und SMC-B |Wird vom VZD eingetragen Wert == TRUE, wenn alle Zertifikate den entryType 1 haben (Berufsgruppe), Wert == FALSE sonst
 | - | - |
@@ -147,12 +147,12 @@ Für Besonderheiten von Apotheken siehe zusätzlich Tabelle "Synchronisierung de
 |description |HBA und SMC-B | 
 | - | - |
 
-|mail |HBA und SMC-B | Wird im aktuellen FHIR VZD Release nicht synchronisiert
+|mail |HBA und SMC-B | 
 | Endpoint | address | KIM Informationen werden als Endpoint kodiert, s.
 https://simplifier.net/vzd-fhir-directory/endpointdirectory
 
 
-|KOM-LE-Version |HBA und SMC-B | Wird im aktuellen FHIR VZD Release nicht synchronisiert
+|KOM-LE-Version |HBA und SMC-B | 
 | Endpoint | connectionType | KIM Informationen werden als Endpoint kodiert, s.
 https://simplifier.net/vzd-fhir-directory/endpointdirectory
 
