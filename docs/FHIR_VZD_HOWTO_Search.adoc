@@ -84,6 +84,9 @@ Added custom Search Parameters
 |Add runtime hints for additional optional parameters in near searches
   |gematik
 
+|1.1.11 |23.10.26 | 2.1.12 Full-text search 
+|Updated HealthcareService.specialty and HealthcareService.type description 
+  |gematik
 
 |===
 
