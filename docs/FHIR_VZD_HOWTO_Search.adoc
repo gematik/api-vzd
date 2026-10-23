@@ -504,12 +504,13 @@ The content of the _text attribute is taken into account in the full-text search
      Name and code of the provider type
 
 |HealthcareService    
-  |speciality.display     
-    |Name of the specialization (technically the display values ​​of all codings stored in the attribute)
+  |specialty.display     
+    |Type of the specialization https://gematik.de/fhir/directory/ValueSet/HealthcareSpecialtyTypeVS[HealthcareService Specialties] +
+     (technically the display values ​​of all codings stored in the attribute)
 
 |HealthcareService    
   |type.display     
-    |Type of pharmacy https://simplifier.net/vzd-fhir-directory/pharmacytypecs[PharmacyTypeCS] +
+    |Type of the HealthcareService https://gematik.de/fhir/directory/ValueSet/HealthcareServiceTypeVS[HealthcareService Types] +
      (technically the display values ​​of all codings stored in the attribute)
 
 |HealthcareService    
