@@ -634,6 +634,7 @@ Das AVS ergänzt das Liefergebiet in den Attributen serviceCoverageArea und serv
 
 Bei der Eintragung von Sonderöffnungs-, Schließ- und Sonderschließzeiten sollten Sie folgende Punkte beachten:
 
+- Anfangszeit muss eine Endzeit besitzen, sonst werden die regulären Öffnungszeiten nicht mehr beachtet. Die Apotheke könnte somit für immer geschlossen (Schließzeiten) oder geöffnet (Sonderöffnungszeiten) sein.
 - Anfangszeit muss kleiner Endzeit sein - das folgende Beispiel wäre ungültig:
 =====
 [source,txt, linenums]
