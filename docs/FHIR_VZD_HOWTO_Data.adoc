@@ -18,7 +18,7 @@ image::gematik_logo.svg[gematik,float="right"]
 
 [width="100%",cols="50%,50%",options="header",]
 |===
-|Version: |1.0.1
+|Version: |1.0.2
 |Referencing: |gemILF_VZD_FHIR_Directory
 |===
 
@@ -41,6 +41,7 @@ image::gematik_logo.svg[gematik,float="right"]
 |0.1.0 |01.07.25 | |Update according Simplifier profile 0.14.0 |gematik
 |1.0.0 |02.12.25 | |Update according Simplifier profile 1.0.0 |gematik
 |1.0.1 |06.03.26 | |Links updated |gematik
+|1.0.2 |22.10.26 | |Sync Info updated |gematik
 |===
 
 == Classification of the document
@@ -451,7 +452,7 @@ For example it can be used to hide the endpoint from a part of users.
 |address (e.g. MX-ID, KIM mail address)
 |1..1
 |Address of the endpoint in URL notation. 
-|No
+|Yes
 |Yes
 
 
@@ -934,4 +935,3 @@ Example for Location.position
         "longitude": 13.37796
     }
 ----
-
