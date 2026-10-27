@@ -1,5 +1,5 @@
 .Synchronisierung LDAP VZD -> FHIR VZD
-[cols="2,1,2,1,2,2",options="header"]
+[cols="12,8,30,10,20,20",options="header",width="100%"]
 |============================
 |LDAP-Attribut |LDAP-Eintragstyp |Nutzung LDAP gemäß VZD-Spec Tab_VZD_Datenbeschreibung |FHIR-Ressource | FHIR-Element | Bemerkungen
 
@@ -213,7 +213,7 @@ Weitere Informationen zum Sonderfall der Zusammenführung von Organsiationen üb
 |============================
 
 .Synchronisierung der Attribute professionOID & specialization für Apotheken
-[cols="1,2,2,2,2",options="header"]
+[cols="14,26,18,21,21",options="header",width="100%"]
 |============================
 2+|LDAP VZD 3+| FHIR VZD
 |LDAP-Attribut |LDAP Attributwert |Organization.type |HealthcareService.specialty (PharmacyHealthcareSpecialityCS) | HealthcareService.type (PharmacyTypeCS)
