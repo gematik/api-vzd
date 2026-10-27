@@ -58,7 +58,7 @@ Wird wie definiert umgesetzt.
  +
 Format
 
-urn:psc:<OID Codesystem:Code> 
+urn:psc:<OID Codesystem:Code> oder unqualifiziertes Code-Literal
 |HBA |Bezeichner: Fachgebiet
 Kann mehrfach vorkommen (1..100).
 
@@ -66,13 +66,13 @@ Für Einträge der Leistungserbringer (HBA-Eintrag)
 Der Wertebereich entspricht den in hl7 definierten Werten ( https://wiki.hl7.de/index.php?title=IG:Value_Sets_f%C3%BCr_XDS# DocumentEntry.authorSpecialty). urn:as:<OID Codesystem:Code> Beispiel für FA Allgemeinmedizin: urn:as:1.2.276.0.76.5.114:010 | Practitioner | qualification.code.coding.system = Codesystem
 qualification.code.coding.code = Code
 qualification.code.coding.display = <added by FHIR-Proxy> 
-| specialization enthält die medizinische Fachrichtung (Allgemein, Augen, Kinder, ...) 
+| specialization enthält die medizinische Fachrichtung (Allgemein, Augen, Kinder, ...) 
 
 im Gegensatz zur professionOID, die die Art der LEI beschreibt (Arztpraxis, Zahnarztpraxis, Krankenhaus, ...)
 
 Es werden folgenden Codes verwendet: https://simplifier.net/packages/de.basisprofil.r4/1.2.0/files/483083
 
-Codesystem ist ensprechend:  urn:oid:1.2.276.0.76.5.114
+Codesystem ist ensprechend:  urn:oid:1.2.276.0.76.5.114
 .2+|SMC-B .2+|Bezeichner: Fachgebiet
 Kann mehrfach vorkommen (1..100).
 
@@ -104,7 +104,7 @@ Annahme: Identifier.type = domainID
 | jeweilige Resource | Wird in Meta-Info (Bereich Security) abgelegt | -
 
 |maxKOMLEadr |HBA und SMC-B |Maximale Anzahl von mail Adressen in den KOM-LE-Fachdaten. Falls kein Wert eingetragen wurde, können beliebig viele mail Adressen in den KOM-LE Fachdaten eingetragen werden. Falls ein Wert eingetragen wurde, können maximal so viele mail Adressen in den KOM-LE Fachdaten eingetragen werden.
-| - | - |Wird aktuelle nicht synchronisiert, da dieses nicht für die TIM-Umsetzung gebraucht wird und in FHIR anderes geregelt werden kann.
+| - | - |Wird aktuelle nicht synchronisiert, da dieses nur für den KAssenbereich relevant ist und in FHIR anderes geregelt werden kann.
 
 |personalEntry |HBA und SMC-B |Wird vom VZD eingetragen Wert == TRUE, wenn alle Zertifikate den entryType 1 haben (Berufsgruppe), Wert == FALSE sonst
 | - | - |
@@ -147,12 +147,12 @@ Für Besonderheiten von Apotheken siehe zusätzlich Tabelle "Synchronisierung de
 |description |HBA und SMC-B | 
 | - | - |
 
-|mail |HBA und SMC-B | Wird im aktuellen FHIR VZD Release nicht synchronisiert
+|mail |HBA und SMC-B | 
 | Endpoint | address | KIM Informationen werden als Endpoint kodiert, s.
 https://simplifier.net/vzd-fhir-directory/endpointdirectory
 
 
-|KOM-LE-Version |HBA und SMC-B | Wird im aktuellen FHIR VZD Release nicht synchronisiert
+|KOM-LE-Version |HBA und SMC-B | 
 | Endpoint | connectionType | KIM Informationen werden als Endpoint kodiert, s.
 https://simplifier.net/vzd-fhir-directory/endpointdirectory
 
@@ -183,4 +183,3 @@ Heimversorgende Apotheke
 | 40 Versandapotheke ||40 Versand|versandapotheke +
 Versandapotheke
 |============================
-
