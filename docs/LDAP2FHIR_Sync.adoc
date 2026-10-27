@@ -212,29 +212,6 @@ Weitere Informationen zum Sonderfall der Zusammenführung von Organsiationen üb
 
 |============================
 
-.Synchronisierung der Attribute professionOID & specialization für Apotheken
-[cols="14,26,18,21,21",options="header",width="100%"]
-|============================
-2+|LDAP VZD 3+| FHIR VZD
-|LDAP-Attribut |LDAP Attributwert |Organization.type |HealthcareService.specialty (PharmacyHealthcareSpecialityCS) | HealthcareService.type (PharmacyTypeCS)
-.4+|professionOID ||||
-| 1.2.276.0.76.4.54 Öffentliche Apotheke | 1.2.276.0.76.4.54 Öffentliche Apotheke ||
-| 1.2.276.0.76.4.55 Krankenhausapotheke | 1.2.276.0.76.4.55 Krankenhausapotheke ||
-| 1.2.276.0.76.4.56 Bundeswehrapotheke | 1.2.276.0.76.4.56 Bundeswehrapotheke ||bundeswehrapotheke +
-Bundeswehrapotheke
-
-.5+|specialization +
-(PharmacyTypeCS) ||||
-| 10 Offizin-Apotheke ||10 Handverkauf |offizin-apotheke +
-Offizin-Apotheke
-| 20 Krankenhausversorgende Apotheke |||krankenhausversorgende-apotheke +
-Krankenhausversorgende Apotheke 
-| 30 Heimversorgende Apotheke |||heimversorgende-apotheke +
-Heimversorgende Apotheke
-| 40 Versandapotheke ||40 Versand|versandapotheke +
-Versandapotheke
-|============================
-
 .Synchronisierung der KIM-Daten
 [cols="20,25,25,30",options="header",width="100%"]
 |============================
@@ -283,4 +260,27 @@ pass:[<del>Historische appTags-basierte payloadType-Zuordnungen werden nicht meh
 
 | | |Endpoint.name
 |`KIM-Mailadresse` (kann im FHIR VZD später geändert werden, wenn die Administration der KIM Daten im FHIR VZD erfolgt)
+|============================
+
+.Synchronisierung der Attribute professionOID & specialization für Apotheken
+[cols="14,26,18,21,21",options="header",width="100%"]
+|============================
+2+|LDAP VZD 3+| FHIR VZD
+|LDAP-Attribut |LDAP Attributwert |Organization.type |HealthcareService.specialty (PharmacyHealthcareSpecialityCS) | HealthcareService.type (PharmacyTypeCS)
+.4+|professionOID ||||
+| 1.2.276.0.76.4.54 Öffentliche Apotheke | 1.2.276.0.76.4.54 Öffentliche Apotheke ||
+| 1.2.276.0.76.4.55 Krankenhausapotheke | 1.2.276.0.76.4.55 Krankenhausapotheke ||
+| 1.2.276.0.76.4.56 Bundeswehrapotheke | 1.2.276.0.76.4.56 Bundeswehrapotheke ||bundeswehrapotheke +
+Bundeswehrapotheke
+
+.5+|specialization +
+(PharmacyTypeCS) ||||
+| 10 Offizin-Apotheke ||10 Handverkauf |offizin-apotheke +
+Offizin-Apotheke
+| 20 Krankenhausversorgende Apotheke |||krankenhausversorgende-apotheke +
+Krankenhausversorgende Apotheke 
+| 30 Heimversorgende Apotheke |||heimversorgende-apotheke +
+Heimversorgende Apotheke
+| 40 Versandapotheke ||40 Versand|versandapotheke +
+Versandapotheke
 |============================
