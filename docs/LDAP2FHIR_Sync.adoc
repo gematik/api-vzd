@@ -222,27 +222,17 @@ Weitere Informationen zum Sonderfall der Zusammenführung von Organsiationen üb
 |Endpoint.address
 |KIM Mailadresse aus kimData.mail
 
-|kimData.version
-|KIM Version
+.3+|kimData.version
+.3+|KIM Version
 |Endpoint.connectionType
-|Abbildung auf EndpointConnectionTypeVS. Für KIM-Adressen wird `kim` als Code eingetragen.
+|Abbildung auf https://simplifier.net/vzd-fhir-directory/endpointdirectoryconnectiontype[EndpointConnectionTypeVS]. Für KIM-Adressen wird `kim` als Code eingetragen.
 
-|kimData.version
-|KIM Version
 |Endpoint.connectionType Extension `kimVersion`
 |Die KIM Version wird aus dem LDAP Attribut kimData.version entnommen und in Endpoint connectionType Extension `kimVersion` übernommen.
 
-|kimData.version
-|KIM Version (Suffix `+` für große Mails)
 |Endpoint.connectionType Extension `xxlMailSupported`
 |Die KIM Option „große Mails“ wird aus dem LDAP Attribut kimData.version entnommen (`+` am Ende des LDAP Attributs) und in connectionType Extension `xxlMailSupported` als `true` übernommen. +
 Falls kein `+` am Ende des LDAP Attributs vorhanden ist, wird `xxlMailSupported` auf `false` gesetzt.
-
-|kimData.appTags
-|Liste von appTags
-|Endpoint.payloadType
-|Übernahme laut aktuellem Stand nicht mehr benötigt und wird entfernt. +
-pass:[<del>Historische appTags-basierte payloadType-Zuordnungen werden nicht mehr fortgeführt.</del>]
 
 |ou
 |FAD
@@ -260,6 +250,11 @@ pass:[<del>Historische appTags-basierte payloadType-Zuordnungen werden nicht meh
 
 | | |Endpoint.name
 |`KIM-Mailadresse` (kann im FHIR VZD später geändert werden, wenn die Administration der KIM Daten im FHIR VZD erfolgt)
+
+|userCertificate
+|<ENC-Zertifikat>
+|Datenbanktabelle `CERTIFICATE`
+|Die Zertifikate werden in den VZD FHIR synchronisiert. Hierzu werden diese in einer separaten Datenbank-Tabelle mit TelematikId- und LDAP-UUID-Informationen unabhängig des HAPI-FHIR-Servers gespeichert und sind über die https://github.com/gematik/api-vzd/blob/main/src/openapi/I_FHIR_VZD_Certificates.yaml[I_FHIR_VZD_Certificates REST-Schnittstelle] abfragbar. (base64 → X509Certificate)
 |============================
 
 .Synchronisierung der Attribute professionOID & specialization für Apotheken
