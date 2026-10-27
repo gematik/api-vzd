@@ -235,3 +235,52 @@ Heimversorgende Apotheke
 Versandapotheke
 |============================
 
+.Synchronisierung der KIM-Daten
+[cols="20,25,25,30",options="header",width="100%"]
+|============================
+|LDAP-Attribut |LDAP Attributwert |FHIR Attribut |FHIR Attributwert
+
+|kimData.mail
+|KIM Mailadresse
+|Endpoint.address
+|KIM Mailadresse aus kimData.mail
+
+|kimData.version
+|KIM Version
+|Endpoint.connectionType
+|Abbildung auf EndpointConnectionTypeVS. Für KIM-Adressen wird `kim` als Code eingetragen.
+
+|kimData.version
+|KIM Version
+|Endpoint.connectionType Extension `kimVersion`
+|Die KIM Version wird aus dem LDAP Attribut kimData.version entnommen und in Endpoint connectionType Extension `kimVersion` übernommen.
+
+|kimData.version
+|KIM Version (Suffix `+` für große Mails)
+|Endpoint.connectionType Extension `xxlMailSupported`
+|Die KIM Option „große Mails“ wird aus dem LDAP Attribut kimData.version entnommen (`+` am Ende des LDAP Attributs) und in connectionType Extension `xxlMailSupported` als `true` übernommen. +
+Falls kein `+` am Ende des LDAP Attributs vorhanden ist, wird `xxlMailSupported` auf `false` gesetzt.
+
+|kimData.appTags
+|Liste von appTags
+|Endpoint.payloadType
+|Übernahme laut aktuellem Stand nicht mehr benötigt und wird entfernt. +
+pass:[<del>Historische appTags-basierte payloadType-Zuordnungen werden nicht mehr fortgeführt.</del>]
+
+|ou
+|FAD
+|Endpoint.extension:endpointFADIdEx
+|FAD (ID des KIM Anbieters)
+
+| | |Endpoint.status
+|active (immer true)
+
+| | |Endpoint.meta.tag:Origin
+|ldap
+
+| | |Endpoint.endpointVisibility
+|hide-versicherte „Eintrag für Versicherte verbergen“ (immer false)
+
+| | |Endpoint.name
+|`KIM-Mailadresse` (kann im FHIR VZD später geändert werden, wenn die Administration der KIM Daten im FHIR VZD erfolgt)
+|============================
