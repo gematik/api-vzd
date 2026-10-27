@@ -45,6 +45,11 @@ Added description for "near" Search parameter for Location.position
 |1.2.4 |27.09.24 |FHIR_VZD_HOWTO_Data |Attribute description updated |gematik
 |1.2.5 |16.04.25 |FHIR_VZD_HOWTO_AVS |Added link to AVS implementation guide|gematik
 |1.2.6 |02.12.25 |FHIR_VZD_HOWTO_Data |Updated according FHIR VZDSimplifier profile 1.0.0 |gematik
+|1.2.7 |27.10.26 |FHIR_VZD_HOWTO_Search +
+FHIR_VZD_HOWTO_Data
+|Updated Full-text search & FHIR Operations +
+LDAP->FHIR Sync Info updated
+|gematik
 |===
 
 == Classification of the document
