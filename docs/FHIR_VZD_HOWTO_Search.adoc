@@ -18,7 +18,7 @@ image::gematik_logo.svg[gematik,float="right"]
 
 [width="100%",cols="50%,50%",options="header",]
 |===
-|Version: |1.1.11
+|Version: |1.1.12
 |Referencing: |gemILF_FHIR_VZD
 |===
 
@@ -88,6 +88,9 @@ Added custom Search Parameters
 |Add hints for reserved characters (especially comma as OR operator) in complex full-text search
   |gematik
 
+|1.1.12 |23.10.26 | 2.1.12 Full-text search 
+|Updated HealthcareService.specialty and HealthcareService.type description 
+  |gematik
 
 |===
 
@@ -508,12 +511,13 @@ The content of the _text attribute is taken into account in the full-text search
      Name and code of the provider type
 
 |HealthcareService    
-  |speciality.display     
-    |Name of the specialization (technically the display values ​​of all codings stored in the attribute)
+  |specialty.display     
+    |Type of the specialization https://gematik.de/fhir/directory/ValueSet/HealthcareSpecialtyTypeVS[HealthcareService Specialties] +
+     (technically the display values ​​of all codings stored in the attribute)
 
 |HealthcareService    
   |type.display     
-    |Type of pharmacy https://simplifier.net/vzd-fhir-directory/pharmacytypecs[PharmacyTypeCS] +
+    |Type of the HealthcareService https://gematik.de/fhir/directory/ValueSet/HealthcareServiceTypeVS[HealthcareService Types] +
      (technically the display values ​​of all codings stored in the attribute)
 
 |HealthcareService    
@@ -629,7 +633,8 @@ In the next FHIR VZD release the following extensions are planned
 ====== Complex full-text search
 If the client wants to use the complex search this can be done by specifying the search parameter _complexSearch=true. +
 In this case, the HAPI-FHIR rules apply, some of them are explained below.
-+
+
+
 [IMPORTANT]
 --
 In complex full-text search, reserved characters are interpreted as operators.
