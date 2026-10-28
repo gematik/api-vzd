@@ -1,5 +1,5 @@
 .Synchronisierung LDAP VZD -> FHIR VZD
-[cols="2,1,2,1,2,2",options="header"]
+[cols="12,8,30,10,20,20",options="header",width="100%"]
 |============================
 |LDAP-Attribut |LDAP-Eintragstyp |Nutzung LDAP gemäß VZD-Spec Tab_VZD_Datenbeschreibung |FHIR-Ressource | FHIR-Element | Bemerkungen
 
@@ -28,12 +28,10 @@ Kann beim Anlegen des Datensatzes und beim Ändern gesetzt werden (falls nicht g
 Bezeichner: Ort
 
 Bezeichner: Bundesland oder Region | Practitioner 
-.2+| address. use = work
+.2+| address.use = work
 address.type = postal
-address.text = "streetAddress&#13;&#10;postalCode &#13;&#10;localityName&#13;&#10;
-stateOrProvinceName&#13;
-&#10;countryCode"
-address.line="streetAddress"
+address.text = "streetAddress, postalCode, localityName, stateOrProvinceName, countryCode"
+address.line = "streetAddress"
 address.city = localityName
 address.state = stateOrProvinceName
 address.postalCode = postalCode
@@ -63,20 +61,20 @@ urn:psc:<OID Codesystem:Code> oder unqualifiziertes Code-Literal
 Kann mehrfach vorkommen (1..100).
 
 Für Einträge der Leistungserbringer (HBA-Eintrag)
-Der Wertebereich entspricht den in hl7 definierten Werten ( https://wiki.hl7.de/index.php?title=IG:Value_Sets_f%C3%BCr_XDS# DocumentEntry.authorSpecialty). urn:as:<OID Codesystem:Code> Beispiel für FA Allgemeinmedizin: urn:as:1.2.276.0.76.5.114:010 | Practitioner | qualification.code.coding.system = Codesystem
+Der Wertebereich entspricht den in HL7 definierten Werten ( https://wiki.hl7.de/index.php?title=IG:Value_Sets_f%C3%BCr_XDS# DocumentEntry.authorSpecialty). urn:as:<OID Codesystem:Code> Beispiel für FA Allgemeinmedizin: urn:as:1.2.276.0.76.5.114:010 | Practitioner | qualification.code.coding.system = Codesystem
 qualification.code.coding.code = Code
 qualification.code.coding.display = <added by FHIR-Proxy> 
 | specialization enthält die medizinische Fachrichtung (Allgemein, Augen, Kinder, ...) 
 
 im Gegensatz zur professionOID, die die Art der LEI beschreibt (Arztpraxis, Zahnarztpraxis, Krankenhaus, ...)
 
-Es werden folgenden Codes verwendet: https://simplifier.net/packages/de.basisprofil.r4/1.2.0/files/483083
+Es werden folgenden Codes verwendet: https://gematik.de/fhir/directory/ValueSet/PractitionerQualificationVS
 
 Codesystem ist ensprechend:  urn:oid:1.2.276.0.76.5.114
 .2+|SMC-B .2+|Bezeichner: Fachgebiet
 Kann mehrfach vorkommen (1..100).
 
-Für Einträge der Leistungserbringerorganisationen (SMC-B Eintrag) Der Wertebereich entspricht den in hl7 definierten und für ePA festgelegten Werten ( https://wiki.hl7.de/index.php?title=IG:Value_Sets_f%C3%BCr_XDS# DocumentEntry.practiceSettingCode). 
+Für Einträge der Leistungserbringerorganisationen (SMC-B Eintrag) Der Wertebereich entspricht den in HL7 definierten und für ePA festgelegten Werten ( https://wiki.hl7.de/index.php?title=IG:Value_Sets_f%C3%BCr_XDS# DocumentEntry.practiceSettingCode). 
 | HealthcareService.specialty | Werte die nicht dem Valueset https://simplifier.net/vzd-fhir-directory/healthcarespecialtytypevs[HealthcareServiceSpecialtyVS] zugeordnet werden können, werden nicht gemappt. Die Synchronisation wird hierdurch nicht unterbrochen. |
 ValueSets / Code Systems definiert:
 Valueset https://simplifier.net/vzd-fhir-directory/healthcarespecialtytypevs[HealthcareServiceSpecialtyVS] +
@@ -100,14 +98,31 @@ Für Besonderheiten von Apotheken siehe zusätzlich Tabelle "Synchronisierung de
 Es wird ein "genereller" Identifier Type für diese domainID verwendet. 
 Annahme: Identifier.type = domainID
 
+KZVA +
+Relevante TelematikIds = "^2-2.\*"
+
+Validierung +
+Die domainID muss dem Pattern "^KZV\\d{2}_\\d{1,6}$" (z.B. KZV30_123456) entsprechen:
+Bei der Synchronisation in den VZD FHIR wird die Darstellung der Abrechnungsnummer automatisch in das Format (Pattern "^[0-9]{9}$") gemäß http://fhir.de/StructureDefinition/identifier-kzva[Identifier-Profil für die Abbildung einer KZVAbrechnungsnummer] konvertiert (d.h. z.B.  KZV30_123456 wird in 030123456 umgewandelt). 
+Wird bereits ein nummerischer Wert entsprechend Regex "^[0-9]{9}$" angeliefert wird dieser ohne Änderung übernommen. 
+Wird kein valider Wert entsprechend dem Regex "^[0-9]{9}$" angeliefert wird der Wert verworfen und eine Warnung geloggt. 
+
+BSNR +
+Relevante TelematikIds =  "^1-20."
+Die Inhalte werden nicht validiert
+
+IKNR +
+Relevante TelematikIds =  "^5-.*"
+Die Inhalte werden nicht validiert
+
 |holder |HBA und SMC-B |Legt fest, wer Änderungen an den Basisdaten des Eintrags vornehmen darf. Hat keinen Einfluss auf Fachdaten und Zertifikatsdaten. 
 | jeweilige Resource | Wird in Meta-Info (Bereich Security) abgelegt | -
 
 |maxKOMLEadr |HBA und SMC-B |Maximale Anzahl von mail Adressen in den KOM-LE-Fachdaten. Falls kein Wert eingetragen wurde, können beliebig viele mail Adressen in den KOM-LE Fachdaten eingetragen werden. Falls ein Wert eingetragen wurde, können maximal so viele mail Adressen in den KOM-LE Fachdaten eingetragen werden.
-| - | - |Wird aktuelle nicht synchronisiert, da dieses nur für den KAssenbereich relevant ist und in FHIR anderes geregelt werden kann.
+| - | - |Wird aktuelle nicht synchronisiert, da dieses nur für den Kassenbereich relevant ist und in FHIR anderes geregelt werden kann.
 
-|personalEntry |HBA und SMC-B |Wird vom VZD eingetragen Wert == TRUE, wenn alle Zertifikate den entryType 1 haben (Berufsgruppe), Wert == FALSE sonst
-| - | - |
+|personalEntry |HBA und SMC-B |Wird vom VZD eingetragen Wert == TRUE, wenn alle Zertifikate den entryType 1 haben (Berufsgruppe), sonst Wert == FALSE
+| Das Feld steuert den FHIR-Zieldatentyp (true = PractitionerRole + Practitioner, false =  HealthcareService + Organization) | - |
 
 |dataFromAuthority |HBA und SMC-B |wird vom VZD eingetragen Wert == TRUE, wenn der Verzeichnisdienst_Eintrag von dem Kartenherausgeber geschrieben wurde, Wert == FALSE sonst
 | - | - |Wird über neues Berechtigungsmodell behandelet
@@ -115,19 +130,38 @@ Annahme: Identifier.type = domainID
 .2+|active |HBA | Zustand des LDAP HBA Eintrags | Practitioner | active | Wird aus LDAP übernommen, wenn im LDAP VZD gültige Zertifikate vorliegen. Ohne gültige Zertifikate im LDAP VZD wird der Eintrag im FHIR VZD auf inaktiv gesetzt (active=false). 
 |SMC-B |Zustand des LDAP SMC-B Eintrags | Organization | active| Wird aus LDAP übernommen, , wenn im LDAP VZD gültige Zertifikate vorliegen. Ohne gültige Zertifikate im LDAP VZD wird der Eintrag im FHIR VZD auf inaktiv gesetzt (active=false). 
 
-.2+|userCertificate |HBA .2+|Bezeichner: Enc-Zertifikat kann mehrfach vorkommen (0..50) Das Zertifikat wird gelöscht, wenn es ungültig geworden ist. Wenn kein Zertifikat vorliegt, dann kann der Eintrag nicht mittels LDAP-Abfrage gefunden werden. Format: DER, Base64-kodiert | - | - |Da aktuelle nur erste einmal der TIM-UserCase umgesetzt wird, werden keine KIM-Zertifikat genutzt.
+.2+|userCertificate |HBA .2+|Bezeichner: Enc-Zertifikat kann mehrfach vorkommen (0..50) Das Zertifikat wird gelöscht, wenn es ungültig geworden ist. Wenn kein Zertifikat vorliegt, dann kann der Eintrag nicht mittels LDAP-Abfrage gefunden werden. Format: DER, Base64-kodiert | - | - |Da aktuell nur erst einmal der TIM-UserCase umgesetzt wird, werden keine KIM-Zertifikat genutzt.
 |SMC-B 
 | - | - |
-Da aktuelle nur erste einmal der TIM-UserCase umgesetzt wird, werden keine KIM-Zertifikat genutzt.
+Da aktuell nur erst einmal der TIM-UserCase umgesetzt wird, werden keine KIM-Zertifikat genutzt.
 
-.2+|entryType |HBA .2+|Bezeichner: Eintragstyp Wird vom VZD anhand der im Zertifikat enthaltenen OID (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. | - | - |Wird für EPA perspektivisch genutzt. Aus diesem Grund wird aktuelle hier keine Mapping vorgesehen.
+.2+|entryType |HBA .2+|Bezeichner: Eintragstyp Wird vom VZD anhand der im Zertifikat enthaltenen OID (Extension Admission, Attribut ProfessionOID) und der Spalte Eintragstyp in Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID automatisch eingetragen. Siehe auch [gemSpecOID]# Tab_PKI_402 und Tab_PKI_403. | - | - |Wird für EPA perspektivisch genutzt. Aus diesem Grund wird aktuell hier kein Mapping vorgesehen.
 |SMC-B 
 | - | - |
-Wird für EPA perspektivisch genutzt. Aus diesem Grund wird aktuelle hier keine Mapping vorgesehen.
+Wird für EPA perspektivisch genutzt. Aus diesem Grund wird aktuell hier kein Mapping vorgesehen.
 
 .2+|telematikID |HBA .2+|Bezeichner: TelematikID Wird vom VZD anhand der im jeweiligen Zertifikat enthaltenen Telematik-ID (Feld registrationNumber der Extension Admission) übernommen. Ist in den Basisdaten und in den Zertifikatsdaten enthalten. 
 | Practitioner  | identifier.value = telematikID |
 |SMC-B | Organization | identifier.value = telematikID |
+
+|lanr |HBA |Lebenslange Arztnummer | Practitioner | identifier
+
+type.coding.system=http://terminology.hl7.org/CodeSystem/v2-0203
+
+identifier.system=https://fhir.kbv.de/sid/KBV_NS_Base_ANR |https://simplifier.net/packages/de.basisprofil.r4/1.5.2/files/2720747[Identifier-Profil für die Abbildung einer lebenslangen Arztnummer]
+
+Beispiel:
+
+<identifier>
+        <type>
+            <coding>
+                <system value="http://terminology.hl7.org/CodeSystem/v2-0203" />
+                <code value="LANR" />
+            </coding>
+        </type>
+        <system value="https://fhir.kbv.de/sid/KBV_NS_Base_ANR" />
+        <value value="012345678" />
+ </identifier>
 
 .3+|professionOID |HBA .2+|
 Wird aus dem Zertifikat übernommen, 
@@ -159,10 +193,72 @@ https://simplifier.net/vzd-fhir-directory/endpointdirectory
 |changeDateTime |HBA und SMC-B | 
 | jeweilige Resource | Meta | wird in die FHIR Meta Daten übernommen
 
+|meta |HBA und SMC-B | 
+| - | - | wird ignoriert
+
+.2+|entryActive / active |HBA .2+|Status-Flag wird ab VZD FHIR 1.2.0 synchronisiert.
+
+Das Attribut wurde zur Aktivierung bzw. Deaktivierung eines Basiseintrags für die Identity Provider / Kartenherausgeber eingeführt. 
+
+Gültige Einträge können so temporär und langfristig ausgeblendet werden. 
+
+Das Attribut wird 1:1 auf das Active-Attribut der FHIR-Ressourcen Practitoner (bei HBA) und Organisation (bei SMCB) gemappt.  | Practitioner | active .2+| -
+|SMC-B | Organization | active
+
+.2+|providedBy |HBA |nicht relevant | - | - .2+| 
+|SMC-B |Mapping zur Verknüpfung von hierarchischen HealthcareServices.
+
+Weitere Informationen zum Sonderfall der Zusammenführung von Organsiationen über die TelematikID | HealthcareService | providedBy 
+
+|============================
+
+.Synchronisierung der KIM-Daten
+[cols="20,25,25,30",options="header",width="100%"]
+|============================
+|LDAP-Attribut |LDAP Attributwert |FHIR Attribut |FHIR Attributwert
+
+|kimData.mail
+|KIM Mailadresse
+|Endpoint.address
+|KIM Mailadresse aus kimData.mail
+
+.3+|kimData.version
+.3+|KIM Version
+|Endpoint.connectionType
+|Abbildung auf https://simplifier.net/vzd-fhir-directory/endpointdirectoryconnectiontype[EndpointConnectionTypeVS]. Für KIM-Adressen wird `kim` als Code eingetragen.
+
+|Endpoint.connectionType Extension `kimVersion`
+|Die KIM Version wird aus dem LDAP Attribut kimData.version entnommen und in Endpoint connectionType Extension `kimVersion` übernommen.
+
+|Endpoint.connectionType Extension `xxlMailSupported`
+|Die KIM Option „große Mails“ wird aus dem LDAP Attribut kimData.version entnommen (`+` am Ende des LDAP Attributs) und in connectionType Extension `xxlMailSupported` als `true` übernommen. +
+Falls kein `+` am Ende des LDAP Attributs vorhanden ist, wird `xxlMailSupported` auf `false` gesetzt.
+
+|ou
+|FAD
+|Endpoint.extension:endpointFADIdEx
+|FAD (ID des KIM Anbieters)
+
+| | |Endpoint.status
+|active (immer true)
+
+| | |Endpoint.meta.tag:Origin
+|ldap
+
+| | |Endpoint.endpointVisibility
+|hide-versicherte „Eintrag für Versicherte verbergen“ (immer false)
+
+| | |Endpoint.name
+|`KIM-Mailadresse` (kann im FHIR VZD später geändert werden, wenn die Administration der KIM Daten im FHIR VZD erfolgt)
+
+|userCertificate
+|<ENC-Zertifikat>
+|Datenbanktabelle `CERTIFICATE`
+|Die Zertifikate werden in den VZD FHIR synchronisiert. Hierzu werden diese in einer separaten Datenbank-Tabelle mit TelematikId- und LDAP-UUID-Informationen unabhängig des HAPI-FHIR-Servers gespeichert und sind über die https://github.com/gematik/api-vzd/blob/main/src/openapi/I_FHIR_VZD_Certificates.yaml[I_FHIR_VZD_Certificates REST-Schnittstelle] abfragbar. (base64 → X509Certificate)
 |============================
 
 .Synchronisierung der Attribute professionOID & specialization für Apotheken
-[cols="1,2,2,2,2",options="header"]
+[cols="14,26,18,21,21",options="header",width="100%"]
 |============================
 2+|LDAP VZD 3+| FHIR VZD
 |LDAP-Attribut |LDAP Attributwert |Organization.type |HealthcareService.specialty (PharmacyHealthcareSpecialityCS) | HealthcareService.type (PharmacyTypeCS)
