@@ -98,20 +98,20 @@ Für Besonderheiten von Apotheken siehe zusätzlich Tabelle "Synchronisierung de
 Es wird ein "genereller" Identifier Type für diese domainID verwendet. 
 Annahme: Identifier.type = domainID
 
-KZVA
-Relevante TelematikIds = "^2-2.*"
+KZVA +
+Relevante TelematikIds = "^2-2.\*"
 
-Validierung
+Validierung +
 Die domainID muss dem Pattern "^KZV\\d{2}_\\d{1,6}$" (z.B. KZV30_123456) entsprechen:
 Bei der Synchronisation in den VZD FHIR wird die Darstellung der Abrechnungsnummer automatisch in das Format (Pattern "^[0-9]{9}$") gemäß http://fhir.de/StructureDefinition/identifier-kzva[Identifier-Profil für die Abbildung einer KZVAbrechnungsnummer] konvertiert (d.h. z.B.  KZV30_123456 wird in 030123456 umgewandelt). 
 Wird bereits ein nummerischer Wert entsprechend Regex "^[0-9]{9}$" angeliefert wird dieser ohne Änderung übernommen. 
 Wird kein valider Wert entsprechend dem Regex "^[0-9]{9}$" angeliefert wird der Wert verworfen und eine Warnung geloggt. 
 
-BSNR
+BSNR +
 Relevante TelematikIds =  "^1-20."
 Die Inhalte werden nicht validiert
 
-IKNR
+IKNR +
 Relevante TelematikIds =  "^5-.*"
 Die Inhalte werden nicht validiert
 
