@@ -44,6 +44,7 @@ LDAP-VZD:
 FHIR-VZD:
 <b>Endpoint.connectionType=kim
 <b>Endpoint.connectionType.extension:kimVersion=1.5
+<b>Endpoint.extension:endpointVisibility=hide-versicherte
 <b>Endpoint.address=oeffentliche-kim-adresse@test.kim.telematik
 end note
 
@@ -78,10 +79,12 @@ komLeData=
 FHIR-VZD:
 Endpoint.connectionType=kim
 Endpoint.connectionType.extension:kimVersion=1.5
+Endpoint.extension:endpointVisibility=hide-versicherte
 Endpoint.address=oeffentliche-kim-adresse@test.kim.telematik
 
 <b>Endpoint.connectionType=kim
 <b>Endpoint.connectionType.extension:kimVersion=1.5
+<b>Endpoint.extension:endpointVisibility=hide-versicherte
 <b>Endpoint.address=fachverfahren1@test.kim.telematik
 end note
 
@@ -108,11 +111,12 @@ kimData=fachverfahren1@test.kim.telematik,1.5
 FHIR-VZD:
 Endpoint.connectionType=kim
 Endpoint.connectionType.extension:kimVersion=1.5
+Endpoint.extension:endpointVisibility=hide-versicherte
 Endpoint.address=oeffentliche-kim-adresse@test.kim.telematik
 
 Endpoint.connectionType=kim
 Endpoint.connectionType.extension:kimVersion=1.5
-<b>Endpoint.extension:endpointVisibility=Fachverfahren
+Endpoint.extension:endpointVisibility=<b>Fachverfahren</b>,hide-versicherte
 <b>Endpoint.payloadType=eEB</b>
 Endpoint.address=fachverfahren1@test.kim.telematik
 end note
