@@ -1,0 +1,65 @@
+name: Publish AsciiDoc
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Asciidoctor
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y asciidoctor
+
+      - name: Generate HTML
+        run: |
+          mkdir -p public
+
+          asciidoctor \
+            -b html5 \
+            -a docinfo=shared \
+            -a imagesdir=images \
+            FHIR_VZD_Search_Best_Practices.adoc \
+            -o public/index.html
+
+          # Bilder übernehmen
+          if [ -d images ]; then
+            cp -r images public/
+          fi
+
+          # docinfo wie im Deploy-Workflow injizieren
+          if [ -f docinfo.html ]; then
+            awk -v docinfo="docinfo.html" '
+              /<\/head>/ {
+                while ((getline line < docinfo) > 0) print line
+                close(docinfo)
+              }
+              { print }
+            ' public/index.html > public/index.tmp
+
+            mv public/index.tmp public/index.html
+          fi
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    environment:
+      name: github-pages
+
+    steps:
+      - uses: actions/deploy-pages@v4
