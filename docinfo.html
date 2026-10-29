@@ -1,0 +1,341 @@
+<style>
+/*
+ * Hinweis: Diese Datei wird in generierte Asciidoctor-HTML-Seiten injiziert.
+ * Die Selektoren sind dort vorhanden. IDE-Warnungen "Selector never used"
+ * können für diese Datei ignoriert werden.
+ */
+
+/* ── Überschriften ─────────────────────────────────────────────────────────── */
+h1, h2, h3, h4, h5, h6,
+#header h1,
+#content h1, #content h2, #content h3, #content h4, #content h5, #content h6 {
+  color: #000E52 !important;
+}
+#toctitle {
+  color: #000E52 !important;
+}
+
+/* Asciidoctor rendert Abschnittstitel als <a class="link"> – Farbe angleichen */
+#content h1 a.link, #content h2 a.link, #content h3 a.link,
+#content h4 a.link, #content h5 a.link, #content h6 a.link {
+  color: #000E52 !important;
+  text-decoration: none;
+}
+
+/* ── Layout ────────────────────────────────────────────────────────────────── */
+/* Body-Inhalt und fixiertes TOC-Panel unter den fixen Breadcrumb-Header schieben */
+body {
+  padding-top: 36px !important;
+}
+#toc.toc2 {
+  top: 36px !important;
+  height: calc(100% - 36px) !important;
+}
+/* Anker-Sprünge berücksichtigen den fixen Header */
+html {
+  scroll-padding-top: 44px;
+}
+
+/* ── Breadcrumb-Bar ────────────────────────────────────────────────────────── */
+#breadcrumb-bar {
+  background: #000E52;
+  padding: 8px 16px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 2000;
+  color: rgba(255,255,255,.6);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+#breadcrumb-bar a {
+  color: #fff;
+  text-decoration: none;
+}
+#breadcrumb-bar a:hover {
+  text-decoration: underline;
+}
+#breadcrumb-bar .separator {
+  margin: 0 6px;
+  color: rgba(255,255,255,.4);
+}
+#breadcrumb-bar .current {
+  color: rgba(255,255,255,.85);
+}
+
+/* ── Versions-Switcher ─────────────────────────────────────────────────────── */
+#version-switcher {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: rgba(255,255,255,.7);
+  font-size: 13px;
+  white-space: nowrap;
+}
+#version-switcher select {
+  background: rgba(255,255,255,.15);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,.3);
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-size: 13px;
+  font-family: inherit;
+  cursor: pointer;
+}
+#version-switcher select:hover {
+  background: rgba(255,255,255,.25);
+}
+#version-switcher select option {
+  background: #000E52;
+  color: #fff;
+}
+
+/* ── Lightbox für klickbare SVG-Mockups ───────────────────────────────────── */
+#mockup-lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 3000;
+  padding: 24px;
+  box-sizing: border-box;
+}
+#mockup-lightbox.open {
+  display: flex;
+}
+#mockup-lightbox img {
+  max-width: min(96vw, 1400px);
+  max-height: 90vh;
+  width: auto;
+  height: auto;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
+}
+#mockup-lightbox-close {
+   position: absolute;
+   top: 8px;
+   right: 8px;
+   border: 0;
+   border-radius: 6px;
+   padding: 8px 12px;
+   font-size: 14px;
+   cursor: pointer;
+   background: #fff;
+   color: #000E52;
+   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+   z-index: 10;
+}
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var defined = {
+    'docs': 'Dokumentation',
+    'modules': 'Module',
+    'overview': 'Übersicht'
+  };
+
+  function labelFromFilename(name) {
+    name = name.replace(/\.html$/, '');
+    if (defined[name]) return defined[name];
+    // AF_12345_Beschreibung -> Beschreibung (lesbar)
+    var af = name.match(/^AF_\d+_(.+)$/);
+    if (af) return af[1].replace(/_/g, ' ');
+    return name.replace(/_/g, ' ');
+  }
+
+  var path = window.location.pathname;
+  // Pfadsegmente relativ zum Site-Root ermitteln
+  // Unterstützt sowohl /repo/_site/docs/foo.html als auch /docs/foo.html
+  var segments = path.replace(/^\//, '').split('/');
+
+  // ── Site-Root erkennen ──────────────────────────────────────────────────
+  // Lokaler _site-Ordner
+  var siteStart = 0;
+  for (var s = 0; s < segments.length; s++) {
+    if (segments[s] === '_site') { siteStart = s + 1; break; }
+  }
+  // GitHub Pages Project-Site: /<repo>/...
+  if (siteStart === 0 && /\.github\.io$/i.test(window.location.hostname) && segments.length > 1) {
+    siteStart = 1;
+  }
+
+  var relSegments = segments.slice(siteStart);
+
+  // ── Versionssegment erkennen ────────────────────────────────────────────
+  // Erstes Segment nach Site-Root ist die Version, wenn es "v..." oder "dev" ist
+  var currentVersion = '';
+  var versionSegmentIndex = -1;
+  if (relSegments.length > 0 && (/^v\d/.test(relSegments[0]) || relSegments[0] === 'dev')) {
+    currentVersion = relSegments[0];
+    versionSegmentIndex = 0;
+    relSegments = relSegments.slice(1);  // Rest ist der Pfad innerhalb der Version
+  }
+
+  // Modul-Overview: modules/<modul>/docs/overview.html
+  var isModuleOverview = (
+    relSegments.length === 4 &&
+    relSegments[0] === 'modules' &&
+    relSegments[2] === 'docs' &&
+    relSegments[3] === 'overview.html'
+  );
+
+  // Tiefe berechnen für relative Links (innerhalb der Version)
+  var depth = relSegments.length - 1;
+  var prefix = '';
+  for (var i = 0; i < depth; i++) prefix += '../';
+  if (prefix === '') prefix = './';
+
+  var crumbs = [];
+  // Startseite immer als erstes Element
+  var isHome = (relSegments.length <= 1 &&
+    (relSegments[0] === '' || relSegments[0] === 'index.html'));
+
+  if (isHome) {
+    crumbs.push('<span class="current">Startseite</span>');
+  } else {
+    crumbs.push('<a href="' + prefix + 'index.html">Startseite</a>');
+
+    // Zwischensegmente (Verzeichnisse)
+    var accumPath = prefix;
+    for (var j = 0; j < relSegments.length - 1; j++) {
+      var seg = relSegments[j];
+      var prev = j > 0 ? relSegments[j - 1] : '';
+
+      if (seg === 'docs') {
+        // Auf Modul-Overview docs/overview ausblenden (Variante 1)
+        if (!isModuleOverview) {
+          crumbs.push('<span class="current">' + (defined[seg] || seg) + '</span>');
+        }
+        accumPath += seg + '/';
+      } else if (seg === 'modules') {
+        // modules überspringen, da redundant mit Modulname
+        accumPath += seg + '/';
+      } else if (prev === 'modules') {
+        // Auf Modul-Overview ist der Modulname das aktuelle Element
+        if (isModuleOverview) {
+          crumbs.push('<span class="current">' + seg + '</span>');
+        } else {
+          var overviewHref = accumPath + seg + '/docs/overview.html';
+          crumbs.push('<a href="' + overviewHref + '">' + seg + '</a>');
+        }
+        accumPath += seg + '/';
+      } else {
+        // Sonstige Segmente (z.B. Repo-Präfix) nicht als Modul behandeln
+        accumPath += seg + '/';
+      }
+    }
+
+    // Letztes Segment = aktuelle Seite (außer bei Modul-Overview in Variante 1)
+    if (!isModuleOverview) {
+      var lastSeg = relSegments[relSegments.length - 1];
+      crumbs.push('<span class="current">' + labelFromFilename(lastSeg) + '</span>');
+    }
+  }
+
+  var sep = '<span class="separator">\u203A</span>';
+  var bar = document.createElement('div');
+  bar.id = 'breadcrumb-bar';
+
+  // Breadcrumbs links
+  var breadcrumbSpan = document.createElement('span');
+  breadcrumbSpan.innerHTML = crumbs.join(sep);
+  bar.appendChild(breadcrumbSpan);
+
+  document.body.insertBefore(bar, document.body.firstChild);
+
+  // ── Versions-Switcher laden ─────────────────────────────────────────────
+  // versions.json liegt im Root der gh-pages Site (eine Ebene über der Version)
+  if (currentVersion) {
+    var versionsJsonUrl = prefix + '../versions.json';
+    // Unterpfad innerhalb der Version (für Seitenwechsel)
+    var subPath = relSegments.join('/') || 'index.html';
+
+    fetch(versionsJsonUrl).then(function(res) {
+      if (!res.ok) return;
+      return res.json();
+    }).then(function(versions) {
+      if (!Array.isArray(versions) || versions.length < 1) return;
+
+      var switcher = document.createElement('div');
+      switcher.id = 'version-switcher';
+
+      var label = document.createElement('span');
+      label.textContent = 'Version:';
+      switcher.appendChild(label);
+
+      var select = document.createElement('select');
+      versions.forEach(function(v) {
+        var opt = document.createElement('option');
+        opt.value = v.id;
+        opt.textContent = v.id === 'dev' ? 'dev (Entwicklung)' : v.id;
+        if (v.id === currentVersion) opt.selected = true;
+        select.appendChild(opt);
+      });
+
+      select.addEventListener('change', function() {
+        // Zum gleichen Pfad in der anderen Version navigieren
+        var newBase = prefix + '../' + select.value + '/';
+        window.location.href = newBase + subPath;
+      });
+
+      switcher.appendChild(select);
+      bar.appendChild(switcher);
+    }).catch(function() {
+      // versions.json nicht verfügbar (z.B. lokaler Build) – kein Menü anzeigen
+    });
+  }
+
+  // ── Klickbare SVG-Mockups als Overlay anzeigen ───────────────────────────
+  var lightbox = document.createElement('div');
+  lightbox.id = 'mockup-lightbox';
+  lightbox.setAttribute('aria-hidden', 'true');
+
+  var closeBtn = document.createElement('button');
+  closeBtn.id = 'mockup-lightbox-close';
+  closeBtn.type = 'button';
+  closeBtn.setAttribute('aria-label', 'Overlay schließen');
+  closeBtn.textContent = 'Schließen';
+
+  var lightboxImg = document.createElement('img');
+  lightboxImg.alt = 'Mockup Vorschau';
+
+  lightbox.appendChild(closeBtn);
+  lightbox.appendChild(lightboxImg);
+  document.body.appendChild(lightbox);
+
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    lightbox.setAttribute('aria-hidden', 'true');
+    lightboxImg.removeAttribute('src');
+  }
+
+  closeBtn.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', function(e) {
+    if (e.target === lightbox) closeLightbox();
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeLightbox();
+  });
+
+  document.addEventListener('click', function(e) {
+    var trigger = e.target.closest('td a[href$=".svg"], td a[href$=".svg?"]');
+    if (!trigger || !trigger.querySelector('img')) return;
+    e.preventDefault();
+
+    var href = trigger.getAttribute('href');
+    if (!href) return;
+
+    lightboxImg.src = href;
+    lightbox.classList.add('open');
+    lightbox.setAttribute('aria-hidden', 'false');
+  });
+});
+</script>
