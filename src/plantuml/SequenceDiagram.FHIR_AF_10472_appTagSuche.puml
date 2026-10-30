@@ -38,7 +38,7 @@ activate cl
 cl -> fd: Suchanfrage \nGET ...&IKNR=12345678
 activate fd
 fd -> fd: Durchführung der Suche;\nFilterung der Endpoint's im Suchergebnis entspreched Werte in endpointVisibility
-fd -> cl: Suchergebnis (defaulte@test.kim.telematik, GKH-AAR@test.kim.telematik)
+fd -> cl: Suchergebnis (default@test.kim.telematik, GKH-AAR@test.kim.telematik)
 deactivate fd
 cl -> o: Suchergebnis (default@test.kim.telematik, GKH-AAR@test.kim.telematik)
 deactivate cl
