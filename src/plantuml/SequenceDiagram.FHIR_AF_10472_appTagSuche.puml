@@ -5,7 +5,7 @@ skinparam sequenceMessageAlign center
 autonumber "<b>[00]"
 
 'title "FHIR-Directory, Sequenzdiagram SSP Authenticate mit Passwort"
-actor o as "Org-Admin\noder LE"
+actor o as "LE"
 participant cl as "Client\n(PVS/AVS/KIS)"
 participant fd as "FHIR-Directory"
 
@@ -33,9 +33,9 @@ end note
 
 == Normale Suchanfrage im FHIR VZD ==
 
-o -> cl: Suchanfrage \nGET ...&IKNR=12345678
+o -> cl: Suchanfrage \nGET ...&IKNR=12345678\n&_include=HealthcareService:endpoint
 activate cl
-cl -> fd: Suchanfrage \nGET ...&IKNR=12345678
+cl -> fd: Suchanfrage \nGET ...&IKNR=12345678\n&_include=HealthcareService:endpoint
 activate fd
 fd -> fd: Durchführung der Suche;\nFilterung der Endpoint's im Suchergebnis entspreched Werte in endpointVisibility
 fd -> cl: Suchergebnis (default@test.kim.telematik, GKH-AAR@test.kim.telematik)
