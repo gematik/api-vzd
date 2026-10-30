@@ -1,0 +1,59 @@
+@startuml
+skinparam dpi 100
+skinparam WrapWidth 200
+skinparam sequenceMessageAlign center
+autonumber "<b>[00]"
+
+'title "FHIR-Directory, Sequenzdiagram SSP Authenticate mit Passwort"
+actor o as "Org-Admin\noder LE"
+participant cl as "Client\n(PVS/AVS/KIS)"
+participant fd as "FHIR-Directory"
+
+note right of cl
+**KIM-Fachdaten im FHIR-VZD**
+
+Endpoint(1).connectionType=kim
+Endpoint(1).connectionType.extension:kimVersion=1.5
+Endpoint(1).extension:endpointVisibility=hide-versicherte
+Endpoint(1).address=default@test.kim.telematik
+
+Endpoint(2).connectionType=kim
+Endpoint(2).connectionType.extension:kimVersion=1.5
+Endpoint(2).extension:endpointVisibility=hide-versicherte
+Endpoint(2).payloadType=GKH-AAR
+Endpoint(2).address=GKH-AAR@test.kim.telematik
+
+
+Endpoint(3).connectionType=kim
+Endpoint(3).connectionType.extension:kimVersion=1.5
+Endpoint(3).extension:endpointVisibility=Fachverfahren,hide-versicherte
+Endpoint(3).payloadType=eEB
+Endpoint(3).address=eEB@test.kim.telematik
+end note
+
+== Normale Suchanfrage im FHIR VZD ==
+
+o -> cl: Suchanfrage \nGET ...&IKNR=12345678
+activate cl
+cl -> fd: Suchanfrage \nGET ...&IKNR=12345678
+activate fd
+fd -> fd: Durchführung der Suche;\nFilterung der Endpoint's im Suchergebnis entspreched Werte in endpointVisibility
+fd -> cl: Suchergebnis (defaulte@test.kim.telematik, GKH-AAR@test.kim.telematik)
+deactivate fd
+cl -> o: Suchergebnis (default@test.kim.telematik, GKH-AAR@test.kim.telematik)
+deactivate cl
+
+
+== Suchanfrage nach KIM-Adressen für Fachverfahren mit eingeschränkte Sichtbarkeit ==
+
+o -> cl: Use Case Fachverfahen eEB
+activate cl
+cl -> fd: Suchanfrage \nGET ...&IKNR=12345678\n&_include=HealthcareService:endpoint\n&endpoint.payload-type=eEB
+activate fd
+fd -> fd: Durchführung der Suche;\nFilterung der Endpoint's im Suchergebnis entspreched Werte in payload-type. 
+fd -> cl: Suchergebnis (eEB@test.kim.telematik@test.kim.telematik)
+deactivate fd
+cl -> o: Ergebnis Use Case Fachverfahen eEB
+deactivate cl
+
+@enduml
