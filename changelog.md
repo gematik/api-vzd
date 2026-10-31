@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-10-14 - Version 1.4.0
+- `change`: `breaking` set cardinality of `start` and `end` in `SpecialOpeningTimesEX.extension:period.valuePeriod` from `0..1` to `1..1 MS`; open periods are no longer allowed for special opening times
+- `change`: `breaking` set cardinality of `start` and `end` in `HealthcareServiceDirectory.notAvailable.during` from `0..1` to `1..1 MS`; open periods are no longer allowed for closing times
+
+### data migration
+- needed for `HealthcareService` resources containing a `notAvailable.during` or a `specialOpeningTimes` period with only `start` or only `end`; these must be completed with the missing value (e.g. a date far in the past or future)
+- periods without `start` and `end` are invalid and should be removed
+
 ## 2026-09-07 - Version 1.3.0
 - `feat`: added `EndpointCertificateEx` extension on `Endpoint` carrying the X.509 certificate (DER, Base64-encoded) plus serial number, issuer DN, public key algorithm, validity period and active flag
 - `feat`: added `EndpointCertificateEx` as a named extension slice `certificate` with cardinality `0..* MS` to `EndpointDirectory`
