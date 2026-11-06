@@ -53,12 +53,12 @@ activate cl
 cl -> ldap: Suchanfrage \n ldapsearch ... domain=12345678
 activate ldap
 ldap -> ldap: Durchführung der Suche
-ldap -> cl: Suchergebnis (mail=eAU@kasse.kim.telematik, komLeData=1.5,eAU@kasse.kim.telematik, kimData=eAU@kasse.kim.telematik,1.5;\ndefault@kasse.kim.telematik,1.5;\neFF@kasse.kim.telematik)
+ldap --> cl: Suchergebnis (mail=eAU@kasse.kim.telematik, komLeData=1.5,eAU@kasse.kim.telematik, kimData=eAU@kasse.kim.telematik,1.5;\ndefault@kasse.kim.telematik,1.5;\neFF@kasse.kim.telematik)
 deactivate ldap
 note right of cl
 Client wertet nur das "mail" Attribut (und/oder komLeData), aber nicht "kimData" nicht aus
 end note
-cl -> o: Suchergebnis (eAU@kasse.kim.telematik,1.5)
+cl --> o: Suchergebnis (eAU@kasse.kim.telematik,1.5)
 deactivate cl
 
 == Versenden einer eAU ==
@@ -68,19 +68,19 @@ activate cl
 cl -> ldap: Suchanfrage \n ldapsearch ... domain=12345678
 activate ldap
 ldap -> ldap: Durchführung der Suche
-ldap -> cl: Suchergebnis (**mail=eAU@kasse.kim.telematik, komLeData=1.5,eAU@kasse.kim.telematik**, kimData=eAU@kasse.kim.telematik,1.5;default@kasse.kim.telematik,1.5;eFF@kasse.kim.telematik)
+ldap --> cl: Suchergebnis (**mail=eAU@kasse.kim.telematik, komLeData=1.5,eAU@kasse.kim.telematik**, kimData=eAU@kasse.kim.telematik,1.5;default@kasse.kim.telematik,1.5;eFF@kasse.kim.telematik)
 deactivate ldap
 cl -> cl: Erstellung eAU KIM-Mail
 cl -> kimCl: Versende eAU KIM-Mail
 activate kimCl
 kimCl -> ldap: Suchanfrage \n ldapsearch ... **kimData=eAU@kasse.kim.telematik**
 activate ldap
-ldap -> kimCl: Suchergebnis\n (VZD-Eintrag mit Zertifikaten)
+ldap --> kimCl: Suchergebnis\n (VZD-Eintrag mit Zertifikaten)
 deactivate ldap
 kimCl -> kimCl: KIM-Mail Verschlüsselung via Konnektor\nKIM-Mail Versand über KIM-Fachdienst
-kimCl -> cl: Ergebnis KIM-Mailversand
+kimCl --> cl: Ergebnis KIM-Mailversand
 deactivate kimCl
-cl -> o: Ergebnis Use Case Fachverfahen eAU
+cl --> o: Ergebnis Use Case Fachverfahen eAU
 deactivate cl
 
 == Normale Suchanfrage im FHIR VZD ==
@@ -93,9 +93,9 @@ fhir -> fhir: Durchführung der Suche;\nFilterung der Endpoint's im Suchergebnis
 note right of fhir
 Endpoint mit eAU@kasse.kim.telematik wird wegen **endpointVisibility=Fachverfahren** aus Suchergebnis entfernt
 end note
-fhir -> cl: Suchergebnis (default@kasse.kim.telematik)
+fhir --> cl: Suchergebnis (default@kasse.kim.telematik)
 deactivate fhir
-cl -> o: Suchergebnis (default@kasse.kim.telematik)
+cl --> o: Suchergebnis (default@kasse.kim.telematik)
 deactivate cl
 
 
@@ -106,19 +106,19 @@ activate cl
 cl -> fhir: Suchanfrage \nGET ...&IKNR=12345678\n&_include=HealthcareService:endpoint\n**&endpoint.payload-type=eFF**
 activate fhir
 fhir -> fhir: Durchführung der Suche;\nFilterung der Endpoint's im Suchergebnis entspreched Werte in payload-type. 
-fhir -> cl: Suchergebnis (eFF@kasse.kim.telematik)
+fhir --> cl: Suchergebnis (eFF@kasse.kim.telematik)
 deactivate fhir
 cl -> cl: Erstellung eFF KIM-Mail
 cl -> kimCl: Versende eFF KIM-Mail
 activate kimCl
 kimCl -> ldap: Suchanfrage \n ldapsearch ... **kimData=eFF@kasse.kim.telematik**
 activate ldap
-ldap -> kimCl: Suchergebnis\n (VZD-Eintrag mit Zertifikaten)
+ldap --> kimCl: Suchergebnis\n (VZD-Eintrag mit Zertifikaten)
 deactivate ldap
 kimCl -> kimCl: KIM-Mail Verschlüsselung via Konnektor\nKIM-Mail Versand über KIM-Fachdienst
-kimCl -> cl: Ergebnis KIM-Mailversand
+kimCl --> cl: Ergebnis KIM-Mailversand
 deactivate kimCl
-cl -> o: Ergebnis Use Case Fachverfahen eFF
+cl --> o: Ergebnis Use Case Fachverfahen eFF
 deactivate cl
 
 @enduml
