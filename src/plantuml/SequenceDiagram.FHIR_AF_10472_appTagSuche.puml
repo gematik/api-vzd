@@ -38,9 +38,9 @@ activate cl
 cl -> fd: Suchanfrage \nGET ...&IKNR=12345678\n&_include=HealthcareService:endpoint
 activate fd
 fd -> fd: Durchführung der Suche;\nFilterung der Endpoint's im Suchergebnis entspreched Werte in endpointVisibility
-fd -> cl: Suchergebnis (default@test.kim.telematik, GKH-AAR@test.kim.telematik)
+fd --> cl: Suchergebnis (default@test.kim.telematik, GKH-AAR@test.kim.telematik)
 deactivate fd
-cl -> o: Suchergebnis (default@test.kim.telematik, GKH-AAR@test.kim.telematik)
+cl --> o: Suchergebnis (default@test.kim.telematik, GKH-AAR@test.kim.telematik)
 deactivate cl
 
 
@@ -51,9 +51,9 @@ activate cl
 cl -> fd: Suchanfrage \nGET ...&IKNR=12345678\n&_include=HealthcareService:endpoint\n&endpoint.payload-type=eEB
 activate fd
 fd -> fd: Durchführung der Suche;\nFilterung der Endpoint's im Suchergebnis entspreched Werte in payload-type. 
-fd -> cl: Suchergebnis (eEB@test.kim.telematik@test.kim.telematik)
+fd --> cl: Suchergebnis (eEB@test.kim.telematik@test.kim.telematik)
 deactivate fd
-cl -> o: Ergebnis Use Case Fachverfahen eEB
+cl --> o: Ergebnis Use Case Fachverfahen eEB
 deactivate cl
 
 @enduml
