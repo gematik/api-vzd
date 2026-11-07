@@ -53,6 +53,8 @@ organisations specific for german Healthcare and Telematics Infrastructure.
 * notAvailable MS
   * description MS
   * during MS
+    * start 1.. MS
+    * end 1.. MS
 * availabilityExceptions MS
 * endpoint MS
 * characteristic MS
