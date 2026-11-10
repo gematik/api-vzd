@@ -41,7 +41,7 @@ Endpoint(2).address=eAU@kasse.kim.telematik
 
 Endpoint(3).connectionType=kim
 Endpoint(3).connectionType.extension:kimVersion=1.5
-Endpoint(3).extension:endpointVisibility=Fachverfahren,hide-versicherte
+Endpoint(3).extension:endpointVisibility=hide-versicherte
 Endpoint(3).payloadType=eFF
 Endpoint(3).address=eFF@kasse.kim.telematik
 end note
@@ -93,9 +93,9 @@ fhir -> fhir: Durchführung der Suche;\nFilterung der Endpoint's im Suchergebnis
 note right of fhir
 Endpoint mit eAU@kasse.kim.telematik wird wegen **endpointVisibility=Fachverfahren** aus Suchergebnis entfernt
 end note
-fhir --> cl: Suchergebnis (default@kasse.kim.telematik)
+fhir --> cl: Suchergebnis (default@kasse.kim.telematik, eFF@kasse.kim.telematik)
 deactivate fhir
-cl --> o: Suchergebnis (default@kasse.kim.telematik)
+cl --> o: Suchergebnis (default@kasse.kim.telematik, eFF@kasse.kim.telematik)
 deactivate cl
 
 
