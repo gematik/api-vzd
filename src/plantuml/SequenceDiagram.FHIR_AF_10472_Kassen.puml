@@ -1,124 +1,124 @@
 @startuml
-skinparam dpi 100
-skinparam WrapWidth 200
+
+skinparam dpi 120
+skinparam defaultFontSize 10
+skinparam ParticipantFontSize 10
+skinparam ActorFontSize 10
+skinparam MessageFontSize 9
+skinparam NoteFontSize 8
+
+skinparam BoxPadding 4
 skinparam sequenceMessageAlign center
+skinparam WrapWidth 150
+skinparam maxMessageSize 42
 autonumber "<b>[00]"
 
-'title "FHIR-Directory, Sequenzdiagram SSP Authenticate mit Passwort"
 actor o as "LE"
 participant cl as "Client\n(PVS/AVS/KIS)"
-participant kimCl as "KIM-Clientmodul"
+participant kim as "KIM-Client"
 participant ldap as "LDAP-VZD"
-participant fhir as "FHIR-Directory"
+participant fhir as "FHIR-VZD"
+
+legend top right
+  **Beispiel: KIM-Adressen der Kasse**
+
+  LDAP-VZD:
+  mail = eAU@kasse.kim.telematik
+  komLeData = 1.5,eAU@kasse.kim.telematik
+  kimData = eAU@kasse.kim.telematik,1.5;
+            default@kasse.kim.telematik,1.5;
+            eFF@kasse.kim.telematik,1.5
+
+  FHIR-VZD:
+  Endpoint 1: default@… | hide-versicherte
+  Endpoint 2: eAU@…     | payload=eAU
+              visibility=Fachverfahren,
+              hide-versicherte
+  Endpoint 3: eFF@…     | payload=eFF
+              visibility=hide-versicherte
+
+  Alle Endpoints: connectionType=kim,
+  kimVersion=1.5
+endlegend
+
+== Suche im LDAP-VZD ==
+
+o -> cl: KIM-Adressen der Kasse suchen
+activate cl
+cl -> ldap: ldapsearch (domain=12345678)
+activate ldap
+ldap -> ldap: Suche durchführen
+ldap --> cl: mail=eAU@…;\nkomLeData=eAU@…; kimData=default@…,eAU@…,eFF@…
+deactivate ldap
 
 note right of cl
-**KIM-Fachdaten im LDAP-VZD**
-
-mail=eAU@kasse.kim.telematik
-komLeData=1.5,eAU@kasse.kim.telematik
-kimData=eAU@kasse.kim.telematik,1.5
-
-mail=
-komLeData=
-kimData=default@kasse.kim.telematik,1.5
-
-mail=
-komLeData=
-kimData=eFF@kasse.kim.telematik,1.5
-
-**KIM-Fachdaten im FHIR-VZD**
-
-Endpoint(1).connectionType=kim
-Endpoint(1).connectionType.extension:kimVersion=1.5
-Endpoint(1).extension:endpointVisibility=hide-versicherte
-Endpoint(1).address=default@kasse.kim.telematik
-
-Endpoint(2).connectionType=kim
-Endpoint(2).connectionType.extension:kimVersion=1.5
-Endpoint(2).extension:endpointVisibility=Fachverfahren,hide-versicherte
-Endpoint(2).payloadType=eAU
-Endpoint(2).address=eAU@kasse.kim.telematik
-
-Endpoint(3).connectionType=kim
-Endpoint(3).connectionType.extension:kimVersion=1.5
-Endpoint(3).extension:endpointVisibility=hide-versicherte
-Endpoint(3).payloadType=eFF
-Endpoint(3).address=eFF@kasse.kim.telematik
+  Der Client wertet mail
+  und/oder komLeData aus,
+  nicht kimData.
 end note
 
-== Suchanfrage mit IK der Kasse im LDAP VZD ==
-
-o -> cl: Suchanfrage nach KIM-Adressen einer Kasse 
-activate cl
-cl -> ldap: Suchanfrage \n ldapsearch ... domain=12345678
-activate ldap
-ldap -> ldap: Durchführung der Suche
-ldap --> cl: Suchergebnis (mail=eAU@kasse.kim.telematik, komLeData=1.5,eAU@kasse.kim.telematik, kimData=eAU@kasse.kim.telematik,1.5;\ndefault@kasse.kim.telematik,1.5;\neFF@kasse.kim.telematik)
-deactivate ldap
-note right of cl
-Client wertet nur das "mail" Attribut (und/oder komLeData), aber nicht "kimData" nicht aus
-end note
-cl --> o: Suchergebnis (eAU@kasse.kim.telematik,1.5)
+cl --> o: eAU@kasse.kim.telematik
 deactivate cl
 
-== Versenden einer eAU ==
+== eAU versenden ==
 
-o -> cl: Use Case Fachverfahen eAU
+o -> cl: Fachverfahren eAU
 activate cl
-cl -> ldap: Suchanfrage \n ldapsearch ... domain=12345678
+cl -> ldap: KIM-Adresse der Kasse suchen
 activate ldap
-ldap -> ldap: Durchführung der Suche
-ldap --> cl: Suchergebnis (**mail=eAU@kasse.kim.telematik, komLeData=1.5,eAU@kasse.kim.telematik**, kimData=eAU@kasse.kim.telematik,1.5;default@kasse.kim.telematik,1.5;eFF@kasse.kim.telematik)
+ldap --> cl: mail=eAU@…;\nkomLeData=eAU@…; kimData=default@…,eAU@…,eFF@…
 deactivate ldap
-cl -> cl: Erstellung eAU KIM-Mail
-cl -> kimCl: Versende eAU KIM-Mail
-activate kimCl
-kimCl -> ldap: Suchanfrage \n ldapsearch ... **kimData=eAU@kasse.kim.telematik**
+
+cl -> kim: eAU-KIM-Mail versenden
+activate kim
+kim -> ldap: Empfänger suchen\nkimData=eAU@…
 activate ldap
-ldap --> kimCl: Suchergebnis\n (VZD-Eintrag mit Zertifikaten)
+ldap --> kim: VZD-Eintrag mit Zertifikaten
 deactivate ldap
-kimCl -> kimCl: KIM-Mail Verschlüsselung via Konnektor\nKIM-Mail Versand über KIM-Fachdienst
-kimCl --> cl: Ergebnis KIM-Mailversand
-deactivate kimCl
-cl --> o: Ergebnis Use Case Fachverfahen eAU
+kim -> kim: Verschlüsseln und versenden
+kim --> cl: Versand-Ergebnis
+deactivate kim
+cl --> o: Ergebnis
 deactivate cl
 
-== Normale Suchanfrage im FHIR VZD ==
+== Normale Suche im FHIR-VZD ==
 
-o -> cl: Suchanfrage nach KIM-Adressen einer Kasse 
+o -> cl: KIM-Adressen der Kasse suchen
 activate cl
-cl -> fhir: Suchanfrage \nGET ...&IKNR=12345678\n&_include=HealthcareService:endpoint
+cl -> fhir: GET …?IKNR=12345678\n&_include=HealthcareService:endpoint
 activate fhir
-fhir -> fhir: Durchführung der Suche;\nFilterung der Endpoint's im Suchergebnis entspreched Werte in endpointVisibility
+fhir -> fhir: Suche und Sichtbarkeitsfilter
 note right of fhir
-Endpoint mit eAU@kasse.kim.telematik wird wegen **endpointVisibility=Fachverfahren** aus Suchergebnis entfernt
+  Endpoint eAU wird wegen
+  visibility=Fachverfahren
+  ausgeblendet.
 end note
-fhir --> cl: Suchergebnis (default@kasse.kim.telematik, eFF@kasse.kim.telematik)
+fhir --> cl: default@…; eFF@…
 deactivate fhir
-cl --> o: Suchergebnis (default@kasse.kim.telematik, eFF@kasse.kim.telematik)
+cl --> o: default@…; eFF@…
 deactivate cl
 
+== eFF versenden ==
 
-== Versenden einer KIM-Mail aus neuem Fachverfahren (eFF) ==
-
-o -> cl: Use Case Fachverfahen eFF
+o -> cl: Fachverfahren eFF
 activate cl
-cl -> fhir: Suchanfrage \nGET ...&IKNR=12345678\n&_include=HealthcareService:endpoint\n**&endpoint.payload-type=eFF**
+cl -> fhir: GET …?IKNR=12345678\n&_include=HealthcareService:endpoint\n&endpoint.payload-type=eFF
 activate fhir
-fhir -> fhir: Durchführung der Suche;\nDa ein appTag/payload-type Filter angegeben wurde, werden auch die Endpoints mit appTags im Suchergebnis geliefert. 
-fhir --> cl: Suchergebnis (eFF@kasse.kim.telematik und je nach Suchanfrage auch alle anderen Endpoints)
+fhir -> fhir: Suche mit payload-type-Filter
+fhir --> cl: eFF-Endpoint\n(ggf. weitere Endpoints)
 deactivate fhir
-cl -> cl: Extrahieren des Endpoints mit appTag=eFF; \n Prüfen ob Endpoint.status=active; \n Erstellung KIM-Mail
-cl -> kimCl: Versende eFF KIM-Mail
-activate kimCl
-kimCl -> ldap: Suchanfrage \n ldapsearch ... **kimData=eFF@kasse.kim.telematik**
+
+cl -> cl: eFF-Endpoint extrahieren,\nStatus active prüfen,\nKIM-Mail erstellen
+cl -> kim: eFF-KIM-Mail versenden
+activate kim
+kim -> ldap: Empfänger suchen\nkimData=eFF@…
 activate ldap
-ldap --> kimCl: Suchergebnis\n (VZD-Eintrag mit Zertifikaten)
+ldap --> kim: VZD-Eintrag mit Zertifikaten
 deactivate ldap
-kimCl -> kimCl: KIM-Mail Verschlüsselung via Konnektor\nKIM-Mail Versand über KIM-Fachdienst
-kimCl --> cl: Ergebnis KIM-Mailversand
-deactivate kimCl
-cl --> o: Ergebnis Use Case Fachverfahen eFF
+kim -> kim: Verschlüsseln und versenden
+kim --> cl: Versand-Ergebnis
+deactivate kim
+cl --> o: Ergebnis
 deactivate cl
 
 @enduml
