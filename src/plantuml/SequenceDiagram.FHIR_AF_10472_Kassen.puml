@@ -105,10 +105,10 @@ o -> cl: Use Case Fachverfahen eFF
 activate cl
 cl -> fhir: Suchanfrage \nGET ...&IKNR=12345678\n&_include=HealthcareService:endpoint\n**&endpoint.payload-type=eFF**
 activate fhir
-fhir -> fhir: Durchführung der Suche;\nFilterung der Endpoint's im Suchergebnis entspreched Werte in payload-type. 
-fhir --> cl: Suchergebnis (eFF@kasse.kim.telematik)
+fhir -> fhir: Durchführung der Suche;\nDa ein appTag/payload-type Filter angegeben wurde, werden auch die Endpoints mit appTags im Suchergebnis geliefert. 
+fhir --> cl: Suchergebnis (eFF@kasse.kim.telematik und je nach Suchanfrage auch alle anderen Endpoints)
 deactivate fhir
-cl -> cl: Erstellung eFF KIM-Mail
+cl -> cl: Extrahieren des Endpoints mit appTag=eFF; \n Prüfen ob Endpoint.status=active; \n Erstellung KIM-Mail
 cl -> kimCl: Versende eFF KIM-Mail
 activate kimCl
 kimCl -> ldap: Suchanfrage \n ldapsearch ... **kimData=eFF@kasse.kim.telematik**
