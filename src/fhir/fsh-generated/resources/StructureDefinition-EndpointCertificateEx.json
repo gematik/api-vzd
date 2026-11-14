@@ -2,7 +2,7 @@
   "resourceType": "StructureDefinition",
   "id": "EndpointCertificateEx",
   "url": "https://gematik.de/fhir/directory/StructureDefinition/EndpointCertificateEx",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "name": "EndpointCertificateEx",
   "title": "Endpoint Certificate Extension",
   "status": "active",

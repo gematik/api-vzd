@@ -56,6 +56,8 @@ Context: HealthcareService.availableTime
 * extension[period]
   * value[x] only Period
   * valuePeriod 1.. MS
+    * start 1.. MS
+    * end 1.. MS
 * extension[qualifier]
   * value[x] only Coding
   * valueCoding obeys CodingSytemCodeInv
