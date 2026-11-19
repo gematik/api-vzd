@@ -1,0 +1,60 @@
+@startuml
+
+skinparam dpi 120
+skinparam defaultFontSize 10
+skinparam ParticipantFontSize 10
+skinparam ActorFontSize 10
+skinparam MessageFontSize 9
+skinparam NoteFontSize 8
+
+skinparam BoxPadding 4
+skinparam sequenceMessageAlign center
+skinparam WrapWidth 150
+skinparam maxMessageSize 42
+autonumber "<b>[00]"
+
+participant cl as "Client"
+participant fhir as "FHIR-VZD"
+
+== Suche vorhandene LEI im FHIR-VZD ==
+
+activate cl
+cl -> fhir: GET .../owner/HealthcareService?organization.identifier=TelematiID&...
+activate fhir
+fhir --> cl: Bundle (HealthcareService,Organization,...)
+deactivate fhir
+
+== Erzeuge Unterorganisation für die LEI im FHIR-VZD ==
+cl -> cl: Entnehme dem Boundle: Organization.id, HealthcareService.id (Ressourcen-ID_hcs1),...
+cl -> cl: Erzeuge HealthcareService für die Unterorganisation 
+cl -> fhir: POST .../owner/HealthcareService body={erzeugter HealthcareService}
+fhir --> cl: 201 Created (Ressourcen-ID_hcs2)
+
+== Optional: Erzeuge Adresse für die Unterorganisation im FHIR-VZD ==
+cl -> cl: Erzeuge Location für die Unterorganisation
+cl -> fhir: POST .../owner/Location body={erzeugte Location}
+fhir --> cl: 201 Created (Ressourcen-ID_loc) 
+
+cl -> fhir: GET .../owner/HealthcareService/{Ressourcen-ID_hcs2}
+fhir --> cl: 200 OK (HealthcareService Unterorganisation)
+cl -> cl: Link auf Location in HealtcareService eintragen "Location/Ressourcen-ID_loc"
+cl -> fhir: PUT .../owner/HealthcareService/{Ressourcen-ID_hcs2} body={HealtcareService}
+
+
+== Optional: KIM-Endpoint in Unterorganisation verschieben ==
+cl -> cl: Ermittele die Ressourcen-ID von dem relevanten Endpunkt (Ressourcen-ID_ep)
+
+cl -> fhir: GET .../owner/HealthcareService/{Ressourcen-ID_hcs1}
+fhir --> cl: 200 OK (HealthcareService Organisation)
+cl -> fhir: GET .../owner/HealthcareService/{Ressourcen-ID_hcs2}
+fhir --> cl: 200 (HealthcareService Unterorganisation)
+
+cl -> cl: Füge im HealthcareService der Unterorganisation die Referenz auf den KIM-Endpoint ein
+cl -> fhir: PUT .../owner/HealthcareService/{Ressourcen-ID_hcs2} body={HealtcareService}
+fhir --> cl: 200 OK
+
+cl -> cl: Lösche im HealthcareService der Organisation die Referenz auf den KIM-Endpoint
+cl -> fhir: PUT .../owner/HealthcareService/{Ressourcen-ID_hcs1} body={HealtcareService}
+fhir --> cl: 200 OK
+
+@enduml
