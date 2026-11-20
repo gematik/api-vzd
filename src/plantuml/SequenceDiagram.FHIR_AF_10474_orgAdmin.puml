@@ -28,33 +28,50 @@ deactivate fhir
 cl -> cl: Entnehme dem Boundle: Organization.id, HealthcareService.id (Ressourcen-ID_hcs1),...
 cl -> cl: Erzeuge HealthcareService für die Unterorganisation 
 cl -> fhir: POST .../owner/HealthcareService body={erzeugter HealthcareService}
+activate fhir
 fhir --> cl: 201 Created (Ressourcen-ID_hcs2)
+deactivate fhir
 
 == Optional: Erzeuge Adresse für die Unterorganisation im FHIR-VZD ==
 cl -> cl: Erzeuge Location für die Unterorganisation
 cl -> fhir: POST .../owner/Location body={erzeugte Location}
+activate fhir
 fhir --> cl: 201 Created (Ressourcen-ID_loc) 
+deactivate fhir
 
 cl -> fhir: GET .../owner/HealthcareService/{Ressourcen-ID_hcs2}
+activate fhir
 fhir --> cl: 200 OK (HealthcareService Unterorganisation)
+deactivate fhir
 cl -> cl: Link auf Location in HealtcareService eintragen "Location/Ressourcen-ID_loc"
 cl -> fhir: PUT .../owner/HealthcareService/{Ressourcen-ID_hcs2} body={HealtcareService}
-
+activate fhir
+fhir --> cl: 200 OK 
+deactivate fhir
 
 == Optional: KIM-Endpoint in Unterorganisation verschieben ==
 cl -> cl: Ermittele die Ressourcen-ID von dem relevanten Endpunkt (Ressourcen-ID_ep)
 
 cl -> fhir: GET .../owner/HealthcareService/{Ressourcen-ID_hcs1}
+activate fhir
 fhir --> cl: 200 OK (HealthcareService Organisation)
+deactivate fhir
 cl -> fhir: GET .../owner/HealthcareService/{Ressourcen-ID_hcs2}
+activate fhir
 fhir --> cl: 200 (HealthcareService Unterorganisation)
+deactivate fhir
 
 cl -> cl: Füge im HealthcareService der Unterorganisation die Referenz auf den KIM-Endpoint ein
 cl -> fhir: PUT .../owner/HealthcareService/{Ressourcen-ID_hcs2} body={HealtcareService}
+activate fhir
 fhir --> cl: 200 OK
+deactivate fhir
 
 cl -> cl: Lösche im HealthcareService der Organisation die Referenz auf den KIM-Endpoint
 cl -> fhir: PUT .../owner/HealthcareService/{Ressourcen-ID_hcs1} body={HealtcareService}
+
+activate fhir
 fhir --> cl: 200 OK
+deactivate fhir
 
 @enduml
