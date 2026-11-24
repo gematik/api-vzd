@@ -4,7 +4,7 @@ skinparam WrapWidth 200
 skinparam monochrome true
 autonumber "<b>[00]"
 
-'title "FHIR-Directory, Sequenzdiagram link request'
+'title "FHIR-Directory, Sequenzdiagram Organization link request'
 actor Nutzer
 participant cl as "FHIR-VZD-Client"
 box <size:16>FHIR-Directory</size> #WhiteSmoke
@@ -13,11 +13,11 @@ box <size:16>FHIR-Directory</size> #WhiteSmoke
   participant fa as "FHIR-VZD-Administration"
 end box
 
-Nutzer -> cl:Start Verlinkungsanfrage \nmit Suche nach der zu verlinkenden Ressourcen
+Nutzer -> cl:Start Verlinkungsanfrage \nmit Suche nach der zu verlinkenden Organisation
 activate cl
 
-group Suche aller eigenen Ressourcen, die verlinkt werden können
-  cl -> fp: GET /owner?... (Suche alle eigenen HealthcareService oder PractitionerRole \nmit telematikID aus dem accesstoken)
+group Suche die eigene Organization Ressource, die verlinkt werden kann
+  cl -> fp: GET /owner?... (Suche die eigene Organization Ressource\nmit telematikID aus dem accesstoken)
   activate fp
   fp -> fp: prüfe owner-accesstoken
 
@@ -33,8 +33,8 @@ group Suche aller eigenen Ressourcen, die verlinkt werden können
      end
 end
 
-group Suche der Ressourcen, mit denen die Verlinkung erstellt werden soll
-  cl -> fp: GET /owner?... (Mit Nutzer Suchstring für \nHealthcareService oder PractitionerRole)
+group Suche der Organization Ressource, mit der die Verlinkung erstellt werden soll
+  cl -> fp: GET /owner?... (Mit Nutzer Suchstring für \nOrganization)
   activate fp
   fp -> fp: prüfe owner-accesstoken
 
@@ -51,7 +51,7 @@ group Suche der Ressourcen, mit denen die Verlinkung erstellt werden soll
 end
 
 group Lese alle vorhandenen Verlinkungsdaten
-  cl -> fa: getPersonInstitutionLinks {}
+  cl -> fa: getOrganizationLinks {}
   activate fa
   fa -> fa: prüfe owner-accesstoken
     alt accesstoken is valid
@@ -64,14 +64,14 @@ group Lese alle vorhandenen Verlinkungsdaten
      end
 end
 
-cl --> Nutzer:Anzeige aller eigenen und gesuchten Ressourcen \n(HealthcareService und PractitionerRole) \nsowie vorhandene Verlinkungsdaten
-Nutzer -> Nutzer: Auswahl der zu zu verlinkenden Ressourcen
-Nutzer -> cl: Verlinkungsanfrage \nmit ausgewählten Ressourcen \n{HealthcareService, PractitionerRole}
+cl --> Nutzer:Anzeige der eigenen und gesuchten Organizations \nsowie vorhandene Verlinkungsdaten
+Nutzer -> Nutzer: Auswahl der zu zu verlinkenden Organization\nund der Verlinkungsrichtung (über- oder untergerodnet)
+Nutzer -> cl: Verlinkungsanfrage \nmit ausgewählten Organizations
 
 group VerlinkungsRequest
-  cl -> fa: suggestPersonInstitutionLink {HealthcareService, PractitionerRole}
+  cl -> fa: suggestOrganizationLink {HealthcareService, PractitionerRole}
   activate fa
-  fa -> fa: prüfe owner-accesstoken\n& Prüfe, dass eine der Ressourcen \neine eigene Ressource ist\n& Prüfe, dass eine der Ressourcen\n ein HealthcareService und die andere\n Ressource eine PractitionerRole ist.
+  fa -> fa: prüfe owner-accesstoken\n& Prüfe, dass eine der Ressourcen \neine eigene Ressource ist\n& Prüfe, dass beide Ressourcen\n Organizations sind.
 
     alt accesstoken is valid
       fa -> fa: Eintragen des Verlinkungsrequests
