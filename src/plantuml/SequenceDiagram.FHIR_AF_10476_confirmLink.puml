@@ -4,7 +4,7 @@ skinparam WrapWidth 200
 skinparam monochrome true
 autonumber "<b>[00]"
 
-'title "FHIR-Directory, Sequenzdiagram link approval'
+'title "FHIR-Directory, Bestätigen einer Verlinkungsanfrage für zwei Organisationen mit verschiedenen Telematik-IDs'
 actor Nutzer
 participant cl as "FHIR-VZD-Client"
 box <size:16>FHIR-Directory</size> #WhiteSmoke
@@ -18,7 +18,7 @@ activate cl
 
 
 group Lese alle Verlinkungsanfragen, die auf Approval durch Nutzer warten
-  cl -> fa: getPersonInstitutionLinks {}
+  cl -> fa: getOrganizationLinks {}
   activate fa
   fa -> fa: prüfe owner-accesstoken
 
@@ -33,12 +33,12 @@ group Lese alle Verlinkungsanfragen, die auf Approval durch Nutzer warten
      end
 end
 
-cl --> Nutzer:Anzeige Verlinkungsanfragen, die auf Approval durch Nutzer warten\n(kann auch nur ein Hinweis auf offene Anfragen im GUI sein) 
-Nutzer -> Nutzer: Auswahl der zu Verlinkungsanfragen, die bestätigt werden sollen
-Nutzer -> cl: Verlinkungsapproval \nmit selektierten Verlinkungsanfragen
+cl --> Nutzer:Anzeige Verlinkungsanfragen, die auf Approval durch Nutzer warten) 
+Nutzer -> Nutzer: Auswahl der Verlinkungsanfrage, die bestätigt werden soll
+Nutzer -> cl: Verlinkungsapproval \nmit selektierter Verlinkungsanfrage
 
 group VerlinkungsApproval
-  cl -> fa: approvePersonInstitutionLink {id}
+  cl -> fa: approveOrganizationLink {id}
   activate fa
   fa -> fa: prüfe owner-accesstoken
 
