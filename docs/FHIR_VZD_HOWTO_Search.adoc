@@ -18,7 +18,7 @@ image::gematik_logo.svg[gematik,float="right"]
 
 [width="100%",cols="50%,50%",options="header",]
 |===
-|Version: |1.1.12
+|Version: |1.1.13
 |Referencing: |gemILF_FHIR_VZD
 |===
 
@@ -91,6 +91,11 @@ Added custom Search Parameters
 |1.1.12 |23.10.26 | 2.1.12 Full-text search 
 |Updated HealthcareService.specialty and HealthcareService.type description 
   |gematik
+
+|1.1.13 |25.11.26 | 4.3. Relevant ProfessionOIDs 
+| Description for OIDs corrected
+  |gematik
+
 
 |===
 
@@ -995,12 +1000,12 @@ Incoming search requests containing these ProfessionOIDs (excluding Diga) are au
 |1.2.276.0.76.4.52 |x |x |Psychotherapeut
 |1.2.276.0.76.4.53 |x |x |Krankenhaus
 |1.2.276.0.76.4.54 |x |x |Apotheke
-|1.2.276.0.76.4.245 |x |x |Medizinisches Versorgungszentrum (MVZ)
-|1.2.276.0.76.4.246 |x |x |Berufsverband
-|1.2.276.0.76.4.247 |x |x |Sonstige Leistungserbringer
-|1.2.276.0.76.4.255 |x |x |Kassenärztliche Vereinigung
-|1.2.276.0.76.4.256 |x |x |Kassenzahnärztliche Vereinigung
-|1.2.276.0.76.4.257 |x |x |Krankenhausgesellschaft
+|1.2.276.0.76.4.245 |x |x |Betriebsstätte Gesundheits-, Kranken- und Altenpflege
+|1.2.276.0.76.4.246 |x |x |Betriebsstätte Geburtshilfe
+|1.2.276.0.76.4.247 |x |x |Betriebsstätte Physiotherapie
+|1.2.276.0.76.4.255 |x |x |Betriebsstätte Öffentlicher Gesundheitsdienst
+|1.2.276.0.76.4.256 |x |x |Betriebsstätte Arbeitsmedizin
+|1.2.276.0.76.4.257 |x |x |Betriebsstätte Vorsorge- und Rehabilitation
 |1.2.276.0.76.4.282 |x |x |DIGA (Digital Health Application)
 |1.2.276.0.76.4.278 |x |x |Ergotherapiepraxis
 |1.2.276.0.76.4.279 |x |x |Logopaedische Praxis
