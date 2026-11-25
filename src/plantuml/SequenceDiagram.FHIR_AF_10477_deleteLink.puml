@@ -4,7 +4,7 @@ skinparam WrapWidth 200
 skinparam monochrome true
 autonumber "<b>[00]"
 
-'title "FHIR-Directory, Sequenzdiagram link removal'
+'title "FHIR-Directory, Sequenzdiagram Löschen einer Verlinkung von zwei Organisationen mit verschiedenen Telematik-IDs'
 actor Nutzer
 participant cl as "FHIR-VZD-Client"
 box <size:16>FHIR-Directory</size> #WhiteSmoke
@@ -13,12 +13,12 @@ box <size:16>FHIR-Directory</size> #WhiteSmoke
   participant fa as "FHIR-VZD-Administration"
 end box
 
-Nutzer -> cl:Suche nach eigenen verlinkten Ressourcen
+Nutzer -> cl:Suche nach eigener verlinkten Organization Ressource
 activate cl
 
 
 group Lese alle eigenen verlinkten Rassourcen
-  cl -> fp: GET /owner?... (Suche alle eigenen HealthcareService oder PractitionerRole \nmit telematikID aus dem accesstoken)
+  cl -> fp: GET /owner?... (Suche eigene Organization \nmit telematikID aus dem accesstoken)
   activate fp
   fp -> fp: prüfe owner-accesstoken
 
@@ -34,16 +34,16 @@ group Lese alle eigenen verlinkten Rassourcen
      end
 end
 
-cl --> Nutzer:Anzeige eigener, verlinkter Ressourcen 
-Nutzer -> Nutzer: Auswahl der Verlinkungen, die gelöscht werden sollen
-Nutzer -> cl: Lösche Verlinkungen \nmit selektierten Ressourcen
+cl --> Nutzer:Anzeige eigener, verlinkter Ressource 
+Nutzer -> Nutzer: Auswahl der Verlinkung, die gelöscht werden soll
+Nutzer -> cl: Lösche Verlinkung \nmit selektierten Organization Ressource
 
 group VerlinkungsRemoval
-  cl -> fa: deletePersonInstitutionLink {id}
+  cl -> fa: deleteOrganizationLink {id}
   activate fa
   fa -> fa: prüfe owner-accesstoken
 
-    alt accesstoken is valid \n& Verlinkung gehört zu eigener Ressource (telematikID aus dem accesstoken)
+    alt accesstoken is valid \n& Verlinkung gehört zu eigener Organization Ressource (telematikID aus dem accesstoken)
       fa -> fa: Eintragen des Verlinkungsremovals
       fa -> fd: Löschen der Verlinkung in die FHIR Daten
       fd --> fa: HTTP 200 OK
